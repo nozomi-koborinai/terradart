@@ -145,7 +145,7 @@ final class BatchAccountNetworkProfile {
 final class BatchAccountAccess {
   const BatchAccountAccess({this.defaultAction, this.ipRule});
 
-  final TfArg<String>? defaultAction;
+  final BatchAccountDefaultAction? defaultAction;
 
   final List<BatchAccountIpRule>? ipRule;
 
@@ -156,6 +156,21 @@ final class BatchAccountAccess {
   };
 }
 
+/// `default_action` — derived from the provider schema description.
+extension type const BatchAccountDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchAccountDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountDefaultAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = BatchAccountDefaultAction._(TfArgLiteral('Allow'));
+  static const deny = BatchAccountDefaultAction._(TfArgLiteral('Deny'));
+
+  static const List<BatchAccountDefaultAction> values = [allow, deny];
+}
+
 /// Typed helper for the `network_profile.account_access.ip_rule` block of
 /// `azurerm_batch_account` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -163,7 +178,7 @@ final class BatchAccountAccess {
 final class BatchAccountIpRule {
   const BatchAccountIpRule({this.action, required this.ipRange});
 
-  final TfArg<String>? action;
+  final BatchAccountAction? action;
 
   final TfArg<String> ipRange;
 
@@ -174,13 +189,26 @@ final class BatchAccountIpRule {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const BatchAccountAction._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountAction.variable(String name) : this._(TfArg.variable(name));
+  BatchAccountAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = BatchAccountAction._(TfArgLiteral('Allow'));
+
+  static const List<BatchAccountAction> values = [allow];
+}
+
 /// Typed helper for the `network_profile.node_management_access` block of
 /// `azurerm_batch_account` (derived from provider schema).
 @immutable
 final class BatchAccountNodeManagementAccess {
   const BatchAccountNodeManagementAccess({this.defaultAction, this.ipRule});
 
-  final TfArg<String>? defaultAction;
+  final BatchAccountDefaultAction? defaultAction;
 
   final List<BatchAccountIpRule>? ipRule;
 
@@ -197,7 +225,8 @@ final class AzurermBatchAccount extends Resource {
 
   AzurermBatchAccount(
     super.localName, {
-    List<BatchAccountAllowedAuthenticationModes>? allowedAuthenticationModes,
+    EnumList<BatchAccountAllowedAuthenticationModes>?
+    allowedAuthenticationModes,
     TfArg<List<Map<String, Object?>>>? encryption,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -219,10 +248,7 @@ final class AzurermBatchAccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedAuthenticationModes != null)
-             'allowed_authentication_modes': TfArg.literal([
-               for (final e in allowedAuthenticationModes) e.toTfJson(),
-             ]),
+           'allowed_authentication_modes': ?allowedAuthenticationModes,
            'encryption': ?encryption,
            'location': location,
            'name': name,

@@ -9,6 +9,37 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_secret_manager_secret`.
 const Set<String> _googleSecretManagerSecretSensitive = <String>{};
 
+/// Secret Manager Secret enum for `secret_type`.
+extension type const SecretManagerSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecretManagerSecretType.variable(String name) : this._(TfArg.variable(name));
+  SecretManagerSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecretManagerSecretType.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudSqlDbCredentials = SecretManagerSecretType._(
+    TfArgLiteral('CLOUD_SQL_DB_CREDENTIALS'),
+  );
+  static const accessKey = SecretManagerSecretType._(
+    TfArgLiteral('ACCESS_KEY'),
+  );
+  static const certificate = SecretManagerSecretType._(
+    TfArgLiteral('CERTIFICATE'),
+  );
+  static const otherDbCredentials = SecretManagerSecretType._(
+    TfArgLiteral('OTHER_DB_CREDENTIALS'),
+  );
+  static const other = SecretManagerSecretType._(TfArgLiteral('OTHER'));
+
+  static const List<SecretManagerSecretType> values = [
+    cloudSqlDbCredentials,
+    accessKey,
+    certificate,
+    otherDbCredentials,
+    other,
+  ];
+}
+
 /// Exactly one of `user_managed`, `auto` on the `replication` block of `google_secret_manager_secret`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -184,7 +215,7 @@ final class GoogleSecretManagerSecret extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? project,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? secretType,
+    SecretManagerSecretType? secretType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

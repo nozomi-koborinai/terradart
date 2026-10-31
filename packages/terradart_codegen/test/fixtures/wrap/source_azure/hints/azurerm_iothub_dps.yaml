@@ -15,3 +15,8 @@ properties:
           - "all"
           - "deviceApi"
           - "serviceApi"
+  - api_name: sku
+    properties:
+      - api_name: name
+        enum_values:
+          - "S1"

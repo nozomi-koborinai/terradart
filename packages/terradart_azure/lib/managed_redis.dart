@@ -22,8 +22,10 @@ export 'src/managed_redis/azurerm_managed_redis.dart'
         ManagedRedisIdentity,
         ManagedRedisModule,
         ManagedRedisModuleName,
+        ManagedRedisPersistenceAppendOnlyFileBackupFrequency,
         ManagedRedisPersistenceRedisDatabaseBackupFrequency,
-        ManagedRedisPublicNetworkAccess;
+        ManagedRedisPublicNetworkAccess,
+        ManagedRedisSkuName;
 export 'src/managed_redis/azurerm_managed_redis_access_policy_assignment.dart'
     show AzurermManagedRedisAccessPolicyAssignment;
 export 'src/managed_redis/azurerm_managed_redis_geo_replication.dart'

@@ -74,7 +74,8 @@ final class NetworkServicesLbEdgeExtensionExtensions {
 
   final TfArg<String> service;
 
-  final TfArg<List<String>>? supportedEvents;
+  final EnumList<NetworkServicesLbEdgeExtensionSupportedEvents>?
+  supportedEvents;
 
   @internal
   Map<String, Object?> encode() => {
@@ -85,6 +86,49 @@ final class NetworkServicesLbEdgeExtensionExtensions {
     'service': service.toTfJson(),
     'supported_events': ?supportedEvents?.toTfJson(),
   };
+}
+
+/// `supported_events` — derived from the provider schema description.
+extension type const NetworkServicesLbEdgeExtensionSupportedEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbEdgeExtensionSupportedEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbEdgeExtensionSupportedEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbEdgeExtensionSupportedEvents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const requestHeaders = NetworkServicesLbEdgeExtensionSupportedEvents._(
+    TfArgLiteral('REQUEST_HEADERS'),
+  );
+  static const requestBody = NetworkServicesLbEdgeExtensionSupportedEvents._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const responseHeaders =
+      NetworkServicesLbEdgeExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_HEADERS'),
+      );
+  static const responseBody = NetworkServicesLbEdgeExtensionSupportedEvents._(
+    TfArgLiteral('RESPONSE_BODY'),
+  );
+  static const requestTrailers =
+      NetworkServicesLbEdgeExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_TRAILERS'),
+      );
+  static const responseTrailers =
+      NetworkServicesLbEdgeExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_TRAILERS'),
+      );
+
+  static const List<NetworkServicesLbEdgeExtensionSupportedEvents> values = [
+    requestHeaders,
+    requestBody,
+    responseHeaders,
+    responseBody,
+    requestTrailers,
+    responseTrailers,
+  ];
 }
 
 /// Typed helper for the `extension_chains.match_condition` block of

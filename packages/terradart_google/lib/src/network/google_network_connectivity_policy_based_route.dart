@@ -188,7 +188,7 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 
   final TfArg<String>? destRange;
 
-  final TfArg<String>? ipProtocol;
+  final NetworkConnectivityPolicyBasedRouteIpProtocol? ipProtocol;
 
   final NetworkConnectivityPolicyBasedRouteProtocolVersion protocolVersion;
 
@@ -201,6 +201,34 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
     'protocol_version': protocolVersion.toTfJson(),
     'src_range': ?srcRange?.toTfJson(),
   };
+}
+
+/// `ip_protocol` — derived from the provider schema description.
+extension type const NetworkConnectivityPolicyBasedRouteIpProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityPolicyBasedRouteIpProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityPolicyBasedRouteIpProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityPolicyBasedRouteIpProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tcp = NetworkConnectivityPolicyBasedRouteIpProtocol._(
+    TfArgLiteral('TCP'),
+  );
+  static const udp = NetworkConnectivityPolicyBasedRouteIpProtocol._(
+    TfArgLiteral('UDP'),
+  );
+  static const all = NetworkConnectivityPolicyBasedRouteIpProtocol._(
+    TfArgLiteral('ALL'),
+  );
+
+  static const List<NetworkConnectivityPolicyBasedRouteIpProtocol> values = [
+    tcp,
+    udp,
+    all,
+  ];
 }
 
 /// `protocol_version` — derived from the provider schema description.

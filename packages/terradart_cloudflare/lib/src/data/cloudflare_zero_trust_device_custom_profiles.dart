@@ -8,6 +8,31 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustDeviceCustomProfilesSensitive =
     <String>{};
 
+/// Data Zero Trust Device Custom Profiles Profile enum for `profile_type`.
+extension type const DataZeroTrustDeviceCustomProfilesProfileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustDeviceCustomProfilesProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDeviceCustomProfilesProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDeviceCustomProfilesProfileType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const warp = DataZeroTrustDeviceCustomProfilesProfileType._(
+    TfArgLiteral('warp'),
+  );
+  static const browserExtension =
+      DataZeroTrustDeviceCustomProfilesProfileType._(
+        TfArgLiteral('browser_extension'),
+      );
+
+  static const List<DataZeroTrustDeviceCustomProfilesProfileType> values = [
+    warp,
+    browserExtension,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_device_custom_profiles`.
 final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_custom_profiles';
@@ -16,7 +41,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
-    TfArg<String>? profileType,
+    DataZeroTrustDeviceCustomProfilesProfileType? profileType,
     super.provider,
     super.timeouts,
   }) : super(

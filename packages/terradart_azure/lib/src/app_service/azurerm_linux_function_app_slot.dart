@@ -244,7 +244,7 @@ final class LinuxFunctionAppSlotAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final LinuxFunctionAppSlotDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -256,7 +256,8 @@ final class LinuxFunctionAppSlotAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final LinuxFunctionAppSlotUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final LinuxFunctionAppSlotActiveDirectory? activeDirectory;
 
@@ -290,6 +291,71 @@ final class LinuxFunctionAppSlotAuthSettings {
   };
 }
 
+/// `default_provider` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotDefaultProvider.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureactivedirectory = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const github = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+  static const google = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = LinuxFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+
+  static const List<LinuxFunctionAppSlotDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    github,
+    google,
+    microsoftaccount,
+    twitter,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous =
+      LinuxFunctionAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('AllowAnonymous'),
+      );
+  static const redirecttologinpage =
+      LinuxFunctionAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+
+  static const List<LinuxFunctionAppSlotUnauthenticatedClientAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+  ];
+}
+
 /// Typed helper for the `auth_settings.active_directory` block of
 /// `azurerm_linux_function_app_slot` (derived from provider schema).
 @immutable
@@ -298,23 +364,83 @@ final class LinuxFunctionAppSlotActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppSlotActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppSlotActiveDirectoryClientSecret {
+  const LinuxFunctionAppSlotActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppSlotActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppSlotActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppSlotActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppSlotActiveDirectoryClientSecretChoice
+    extends LinuxFunctionAppSlotActiveDirectoryClientSecret {
+  const LinuxFunctionAppSlotActiveDirectoryClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName
+    extends LinuxFunctionAppSlotActiveDirectoryClientSecret {
+  const LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -324,25 +450,80 @@ final class LinuxFunctionAppSlotActiveDirectory {
 final class LinuxFunctionAppSlotFacebook {
   const LinuxFunctionAppSlotFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final LinuxFunctionAppSlotAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class LinuxFunctionAppSlotAppSecret {
+  const LinuxFunctionAppSlotAppSecret();
+
+  /// Sets `app_secret`.
+  const factory LinuxFunctionAppSlotAppSecret.appSecret(
+    Sensitive<String> appSecret,
+  ) = LinuxFunctionAppSlotAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory LinuxFunctionAppSlotAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = LinuxFunctionAppSlotAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotAppSecret.appSecret] choice: sets `app_secret`.
+final class LinuxFunctionAppSlotAppSecretChoice
+    extends LinuxFunctionAppSlotAppSecret {
+  const LinuxFunctionAppSlotAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class LinuxFunctionAppSlotAppSecretSettingName
+    extends LinuxFunctionAppSlotAppSecret {
+  const LinuxFunctionAppSlotAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -352,25 +533,82 @@ final class LinuxFunctionAppSlotFacebook {
 final class LinuxFunctionAppSlotGithub {
   const LinuxFunctionAppSlotGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppSlotGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppSlotGithubClientSecret {
+  const LinuxFunctionAppSlotGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppSlotGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppSlotGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppSlotGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppSlotGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppSlotGithubClientSecretChoice
+    extends LinuxFunctionAppSlotGithubClientSecret {
+  const LinuxFunctionAppSlotGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotGithubClientSecretSettingName
+    extends LinuxFunctionAppSlotGithubClientSecret {
+  const LinuxFunctionAppSlotGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -380,25 +618,82 @@ final class LinuxFunctionAppSlotGithub {
 final class LinuxFunctionAppSlotGoogle {
   const LinuxFunctionAppSlotGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppSlotGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppSlotGoogleClientSecret {
+  const LinuxFunctionAppSlotGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppSlotGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppSlotGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppSlotGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppSlotGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppSlotGoogleClientSecretChoice
+    extends LinuxFunctionAppSlotGoogleClientSecret {
+  const LinuxFunctionAppSlotGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotGoogleClientSecretSettingName
+    extends LinuxFunctionAppSlotGoogleClientSecret {
+  const LinuxFunctionAppSlotGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -408,25 +703,82 @@ final class LinuxFunctionAppSlotGoogle {
 final class LinuxFunctionAppSlotMicrosoft {
   const LinuxFunctionAppSlotMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppSlotMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppSlotMicrosoftClientSecret {
+  const LinuxFunctionAppSlotMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppSlotMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppSlotMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppSlotMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppSlotMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppSlotMicrosoftClientSecretChoice
+    extends LinuxFunctionAppSlotMicrosoftClientSecret {
+  const LinuxFunctionAppSlotMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotMicrosoftClientSecretSettingName
+    extends LinuxFunctionAppSlotMicrosoftClientSecret {
+  const LinuxFunctionAppSlotMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -436,21 +788,80 @@ final class LinuxFunctionAppSlotMicrosoft {
 final class LinuxFunctionAppSlotTwitter {
   const LinuxFunctionAppSlotTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final LinuxFunctionAppSlotConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class LinuxFunctionAppSlotConsumerSecret {
+  const LinuxFunctionAppSlotConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory LinuxFunctionAppSlotConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = LinuxFunctionAppSlotConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory LinuxFunctionAppSlotConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = LinuxFunctionAppSlotConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class LinuxFunctionAppSlotConsumerSecretChoice
+    extends LinuxFunctionAppSlotConsumerSecret {
+  const LinuxFunctionAppSlotConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppSlotConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class LinuxFunctionAppSlotConsumerSecretSettingName
+    extends LinuxFunctionAppSlotConsumerSecret {
+  const LinuxFunctionAppSlotConsumerSecretSettingName(
+    this.consumerSecretSettingName,
+  );
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -491,7 +902,7 @@ final class LinuxFunctionAppSlotAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final LinuxFunctionAppSlotForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -505,7 +916,7 @@ final class LinuxFunctionAppSlotAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final LinuxFunctionAppSlotUnauthenticatedAction? unauthenticatedAction;
 
   final LinuxFunctionAppSlotActiveDirectoryV2? activeDirectoryV2;
 
@@ -557,6 +968,67 @@ final class LinuxFunctionAppSlotAuthSettingsV2 {
   };
 }
 
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotForwardProxyConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = LinuxFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = LinuxFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = LinuxFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<LinuxFunctionAppSlotForwardProxyConvention> values = [
+    custom,
+    noproxy,
+    standard,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotUnauthenticatedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous = LinuxFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage =
+      LinuxFunctionAppSlotUnauthenticatedAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const return401 = LinuxFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = LinuxFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<LinuxFunctionAppSlotUnauthenticatedAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+    return401,
+    return403,
+  ];
+}
+
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
 /// `azurerm_linux_function_app_slot` (derived from provider schema).
 @immutable
@@ -567,8 +1039,7 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -586,9 +1057,7 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -607,15 +1076,80 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredential();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory LinuxFunctionAppSlotClientCredential.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppSlotClientCredential.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppSlotClientCredentialClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotClientCredentialClientSecretSettingName
+    extends LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredentialClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -776,14 +1310,14 @@ final class LinuxFunctionAppSlotLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final LinuxFunctionAppSlotCookieExpirationConvention?
+  cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -797,9 +1331,7 @@ final class LinuxFunctionAppSlotLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final LinuxFunctionAppSlotTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -814,10 +1346,98 @@ final class LinuxFunctionAppSlotLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class LinuxFunctionAppSlotTokenStore {
+  const LinuxFunctionAppSlotTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory LinuxFunctionAppSlotTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = LinuxFunctionAppSlotTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory LinuxFunctionAppSlotTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = LinuxFunctionAppSlotTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class LinuxFunctionAppSlotTokenStorePath
+    extends LinuxFunctionAppSlotTokenStore {
+  const LinuxFunctionAppSlotTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppSlotTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class LinuxFunctionAppSlotTokenStoreSasSettingName
+    extends LinuxFunctionAppSlotTokenStore {
+  const LinuxFunctionAppSlotTokenStoreSasSettingName(
+    this.tokenStoreSasSettingName,
+  );
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
+  };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = LinuxFunctionAppSlotCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      LinuxFunctionAppSlotCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<LinuxFunctionAppSlotCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -910,7 +1530,7 @@ final class LinuxFunctionAppSlotSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final LinuxFunctionAppSlotFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -928,6 +1548,21 @@ final class LinuxFunctionAppSlotSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = LinuxFunctionAppSlotFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = LinuxFunctionAppSlotFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<LinuxFunctionAppSlotFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_linux_function_app_slot` (derived from provider schema).
 @immutable
@@ -940,7 +1575,7 @@ final class LinuxFunctionAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final LinuxFunctionAppSlotConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -950,6 +1585,65 @@ final class LinuxFunctionAppSlotConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotConnectionStringType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotConnectionStringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const apihub = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const postgresql = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = LinuxFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
+
+  static const List<LinuxFunctionAppSlotConnectionStringType> values = [
+    apihub,
+    custom,
+    docdb,
+    eventhub,
+    mysql,
+    notificationhub,
+    postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1037,7 +1731,7 @@ final class LinuxFunctionAppSlotSiteConfig {
 
   final TfArg<num>? elasticInstanceMinimum;
 
-  final TfArg<String>? ftpsState;
+  final LinuxFunctionAppSlotFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -1045,27 +1739,29 @@ final class LinuxFunctionAppSlotSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final LinuxFunctionAppSlotIpRestrictionDefaultAction?
+  ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final LinuxFunctionAppSlotLoadBalancingMode? loadBalancingMode;
 
-  final TfArg<String>? managedPipelineMode;
+  final LinuxFunctionAppSlotManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final LinuxFunctionAppSlotMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final LinuxFunctionAppSlotMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxFunctionAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final LinuxFunctionAppSlotScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final LinuxFunctionAppSlotScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1137,6 +1833,321 @@ final class LinuxFunctionAppSlotSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = LinuxFunctionAppSlotFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const disabled = LinuxFunctionAppSlotFtpsState._(
+    TfArgLiteral('Disabled'),
+  );
+  static const ftpsonly = LinuxFunctionAppSlotFtpsState._(
+    TfArgLiteral('FtpsOnly'),
+  );
+
+  static const List<LinuxFunctionAppSlotFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxFunctionAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxFunctionAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxFunctionAppSlotIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotLoadBalancingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const leastrequests = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const weightedroundrobin = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const leastresponsetime = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const weightedtotaltraffic = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+  static const requesthash = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin = LinuxFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+
+  static const List<LinuxFunctionAppSlotLoadBalancingMode> values = [
+    leastrequests,
+    weightedroundrobin,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const classic = LinuxFunctionAppSlotManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const integrated = LinuxFunctionAppSlotManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+
+  static const List<LinuxFunctionAppSlotManagedPipelineMode> values = [
+    classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotMinimumTlsCipherSuite.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsAes128GcmSha256 = LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsRsaWithAes128CbcSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes128GcmSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsRsaWithAes256CbcSha =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsRsaWithAes256CbcSha256 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes256GcmSha384 =
+      LinuxFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+
+  static const List<LinuxFunctionAppSlotMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p1 = LinuxFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p3 = LinuxFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+  static const v1p2 = LinuxFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = LinuxFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+
+  static const List<LinuxFunctionAppSlotMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotRemoteDebuggingVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = LinuxFunctionAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxFunctionAppSlotRemoteDebuggingVersion> values = [
+    vs2022,
+  ];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxFunctionAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxFunctionAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxFunctionAppSlotScmIpRestrictionDefaultAction> values =
+      [allow, deny];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p1 = LinuxFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p3 = LinuxFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+  static const v1p2 = LinuxFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = LinuxFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+
+  static const List<LinuxFunctionAppSlotScmMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `site_config.app_service_logs` block of
 /// `azurerm_linux_function_app_slot` (derived from provider schema).
 @immutable
@@ -1162,43 +2173,341 @@ final class LinuxFunctionAppSlotAppServiceLogs {
 @immutable
 final class LinuxFunctionAppSlotApplicationStack {
   const LinuxFunctionAppSlotApplicationStack({
-    this.dotnetVersion,
-    this.javaVersion,
-    this.nodeVersion,
-    this.powershellCoreVersion,
-    this.pythonVersion,
-    this.useCustomRuntime,
+    required this.runtime,
     this.useDotnetIsolatedRuntime,
-    this.docker,
   });
 
-  final TfArg<String>? dotnetVersion;
-
-  final TfArg<String>? javaVersion;
-
-  final TfArg<String>? nodeVersion;
-
-  final TfArg<String>? powershellCoreVersion;
-
-  final TfArg<String>? pythonVersion;
-
-  final TfArg<bool>? useCustomRuntime;
+  final LinuxFunctionAppSlotRuntime runtime;
 
   final TfArg<bool>? useDotnetIsolatedRuntime;
 
-  final List<LinuxFunctionAppSlotDocker>? docker;
-
   @internal
   Map<String, Object?> encode() => {
-    'dotnet_version': ?dotnetVersion?.toTfJson(),
-    'java_version': ?javaVersion?.toTfJson(),
-    'node_version': ?nodeVersion?.toTfJson(),
-    'powershell_core_version': ?powershellCoreVersion?.toTfJson(),
-    'python_version': ?pythonVersion?.toTfJson(),
-    'use_custom_runtime': ?useCustomRuntime?.toTfJson(),
+    ...runtime.encode(),
     'use_dotnet_isolated_runtime': ?useDotnetIsolatedRuntime?.toTfJson(),
-    if (docker != null) 'docker': [for (final e in docker!) e.encode()],
   };
+}
+
+/// Exactly one of `docker`, `dotnet_version`, `java_version`, `node_version`, `powershell_core_version`, `python_version`, `use_custom_runtime` on the `site_config.application_stack` block of `azurerm_linux_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.docker(...)`.
+sealed class LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntime();
+
+  /// Sets `docker`.
+  const factory LinuxFunctionAppSlotRuntime.docker(
+    List<LinuxFunctionAppSlotDocker> docker,
+  ) = LinuxFunctionAppSlotRuntimeDocker;
+
+  /// Sets `dotnet_version`.
+  const factory LinuxFunctionAppSlotRuntime.dotnetVersion(
+    LinuxFunctionAppSlotDotnetVersion dotnetVersion,
+  ) = LinuxFunctionAppSlotRuntimeDotnetVersion;
+
+  /// Sets `java_version`.
+  const factory LinuxFunctionAppSlotRuntime.javaVersion(
+    LinuxFunctionAppSlotJavaVersion javaVersion,
+  ) = LinuxFunctionAppSlotRuntimeJavaVersion;
+
+  /// Sets `node_version`.
+  const factory LinuxFunctionAppSlotRuntime.nodeVersion(
+    LinuxFunctionAppSlotNodeVersion nodeVersion,
+  ) = LinuxFunctionAppSlotRuntimeNodeVersion;
+
+  /// Sets `powershell_core_version`.
+  const factory LinuxFunctionAppSlotRuntime.powershellCoreVersion(
+    LinuxFunctionAppSlotPowershellCoreVersion powershellCoreVersion,
+  ) = LinuxFunctionAppSlotRuntimePowershellCoreVersion;
+
+  /// Sets `python_version`.
+  const factory LinuxFunctionAppSlotRuntime.pythonVersion(
+    LinuxFunctionAppSlotPythonVersion pythonVersion,
+  ) = LinuxFunctionAppSlotRuntimePythonVersion;
+
+  /// Sets `use_custom_runtime`.
+  const factory LinuxFunctionAppSlotRuntime.useCustomRuntime(
+    TfArg<bool> useCustomRuntime,
+  ) = LinuxFunctionAppSlotUseCustomRuntime;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSlotRuntime.docker] choice: sets `docker`.
+final class LinuxFunctionAppSlotRuntimeDocker
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimeDocker(this.docker);
+
+  final List<LinuxFunctionAppSlotDocker> docker;
+
+  @internal
+  @override
+  String get blockKey => 'docker';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'docker': [for (final e in docker) e.encode()],
+  };
+}
+
+/// The [LinuxFunctionAppSlotRuntime.dotnetVersion] choice: sets `dotnet_version`.
+final class LinuxFunctionAppSlotRuntimeDotnetVersion
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimeDotnetVersion(this.dotnetVersion);
+
+  final LinuxFunctionAppSlotDotnetVersion dotnetVersion;
+
+  @internal
+  @override
+  String get blockKey => 'dotnet_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dotnet_version': dotnetVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotRuntime.javaVersion] choice: sets `java_version`.
+final class LinuxFunctionAppSlotRuntimeJavaVersion
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimeJavaVersion(this.javaVersion);
+
+  final LinuxFunctionAppSlotJavaVersion javaVersion;
+
+  @internal
+  @override
+  String get blockKey => 'java_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'java_version': javaVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotRuntime.nodeVersion] choice: sets `node_version`.
+final class LinuxFunctionAppSlotRuntimeNodeVersion
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimeNodeVersion(this.nodeVersion);
+
+  final LinuxFunctionAppSlotNodeVersion nodeVersion;
+
+  @internal
+  @override
+  String get blockKey => 'node_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'node_version': nodeVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotRuntime.powershellCoreVersion] choice: sets `powershell_core_version`.
+final class LinuxFunctionAppSlotRuntimePowershellCoreVersion
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimePowershellCoreVersion(
+    this.powershellCoreVersion,
+  );
+
+  final LinuxFunctionAppSlotPowershellCoreVersion powershellCoreVersion;
+
+  @internal
+  @override
+  String get blockKey => 'powershell_core_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'powershell_core_version': powershellCoreVersion.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppSlotRuntime.pythonVersion] choice: sets `python_version`.
+final class LinuxFunctionAppSlotRuntimePythonVersion
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotRuntimePythonVersion(this.pythonVersion);
+
+  final LinuxFunctionAppSlotPythonVersion pythonVersion;
+
+  @internal
+  @override
+  String get blockKey => 'python_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'python_version': pythonVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSlotRuntime.useCustomRuntime] choice: sets `use_custom_runtime`.
+final class LinuxFunctionAppSlotUseCustomRuntime
+    extends LinuxFunctionAppSlotRuntime {
+  const LinuxFunctionAppSlotUseCustomRuntime(this.useCustomRuntime);
+
+  final TfArg<bool> useCustomRuntime;
+
+  @internal
+  @override
+  String get blockKey => 'use_custom_runtime';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'use_custom_runtime': useCustomRuntime.toTfJson(),
+  };
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p1 = LinuxFunctionAppSlotDotnetVersion._(TfArgLiteral('3.1'));
+  static const v6p0 = LinuxFunctionAppSlotDotnetVersion._(TfArgLiteral('6.0'));
+  static const v7p0 = LinuxFunctionAppSlotDotnetVersion._(TfArgLiteral('7.0'));
+  static const v8p0 = LinuxFunctionAppSlotDotnetVersion._(TfArgLiteral('8.0'));
+  static const v9p0 = LinuxFunctionAppSlotDotnetVersion._(TfArgLiteral('9.0'));
+  static const v10p0 = LinuxFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('10.0'),
+  );
+
+  static const List<LinuxFunctionAppSlotDotnetVersion> values = [
+    v3p1,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `java_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotJavaVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotJavaVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotJavaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotJavaVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v8 = LinuxFunctionAppSlotJavaVersion._(TfArgLiteral('8'));
+  static const v11 = LinuxFunctionAppSlotJavaVersion._(TfArgLiteral('11'));
+  static const v17 = LinuxFunctionAppSlotJavaVersion._(TfArgLiteral('17'));
+  static const v21 = LinuxFunctionAppSlotJavaVersion._(TfArgLiteral('21'));
+  static const v25 = LinuxFunctionAppSlotJavaVersion._(TfArgLiteral('25'));
+
+  static const List<LinuxFunctionAppSlotJavaVersion> values = [
+    v8,
+    v11,
+    v17,
+    v21,
+    v25,
+  ];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotNodeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v12 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('12'));
+  static const v14 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('14'));
+  static const v16 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('16'));
+  static const v18 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('18'));
+  static const v20 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('20'));
+  static const v22 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('22'));
+  static const v24 = LinuxFunctionAppSlotNodeVersion._(TfArgLiteral('24'));
+
+  static const List<LinuxFunctionAppSlotNodeVersion> values = [
+    v12,
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
+}
+
+/// `powershell_core_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotPowershellCoreVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotPowershellCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotPowershellCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotPowershellCoreVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v7 = LinuxFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7'),
+  );
+  static const v7p2 = LinuxFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.2'),
+  );
+  static const v7p4 = LinuxFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.4'),
+  );
+  static const v7p6 = LinuxFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.6'),
+  );
+
+  static const List<LinuxFunctionAppSlotPowershellCoreVersion> values = [
+    v7,
+    v7p2,
+    v7p4,
+    v7p6,
+  ];
+}
+
+/// `python_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotPythonVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotPythonVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotPythonVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotPythonVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p14 = LinuxFunctionAppSlotPythonVersion._(
+    TfArgLiteral('3.14'),
+  );
+  static const v3p13 = LinuxFunctionAppSlotPythonVersion._(
+    TfArgLiteral('3.13'),
+  );
+  static const v3p12 = LinuxFunctionAppSlotPythonVersion._(
+    TfArgLiteral('3.12'),
+  );
+  static const v3p11 = LinuxFunctionAppSlotPythonVersion._(
+    TfArgLiteral('3.11'),
+  );
+  static const v3p10 = LinuxFunctionAppSlotPythonVersion._(
+    TfArgLiteral('3.10'),
+  );
+  static const v3p9 = LinuxFunctionAppSlotPythonVersion._(TfArgLiteral('3.9'));
+  static const v3p8 = LinuxFunctionAppSlotPythonVersion._(TfArgLiteral('3.8'));
+  static const v3p7 = LinuxFunctionAppSlotPythonVersion._(TfArgLiteral('3.7'));
+
+  static const List<LinuxFunctionAppSlotPythonVersion> values = [
+    v3p14,
+    v3p13,
+    v3p12,
+    v3p11,
+    v3p10,
+    v3p9,
+    v3p8,
+    v3p7,
+  ];
 }
 
 /// Typed helper for the `site_config.application_stack.docker` block of
@@ -1268,7 +2577,7 @@ final class LinuxFunctionAppSlotIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxFunctionAppSlotAction? action;
 
   final TfArg<String>? description;
 
@@ -1297,6 +2606,21 @@ final class LinuxFunctionAppSlotIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LinuxFunctionAppSlotAction._(TfArgLiteral('Allow'));
+  static const deny = LinuxFunctionAppSlotAction._(TfArgLiteral('Deny'));
+
+  static const List<LinuxFunctionAppSlotAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_linux_function_app_slot` (derived from provider schema).
 @immutable
@@ -1312,7 +2636,7 @@ final class LinuxFunctionAppSlotScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxFunctionAppSlotAction? action;
 
   final TfArg<String>? description;
 
@@ -1364,7 +2688,7 @@ final class LinuxFunctionAppSlotStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final LinuxFunctionAppSlotStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1375,6 +2699,29 @@ final class LinuxFunctionAppSlotStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppSlotStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureblob = LinuxFunctionAppSlotStorageAccountType._(
+    TfArgLiteral('AzureBlob'),
+  );
+  static const azurefiles = LinuxFunctionAppSlotStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<LinuxFunctionAppSlotStorageAccountType> values = [
+    azureblob,
+    azurefiles,
+  ];
 }
 
 /// Factory wrapper for `azurerm_linux_function_app_slot`.

@@ -654,7 +654,8 @@ final class AwsRdsCluster extends Resource {
     TfArg<bool>? enableGlobalWriteForwarding,
     TfArg<bool>? enableHttpEndpoint,
     TfArg<bool>? enableLocalWriteForwarding,
-    List<RdsClusterEnabledCloudwatchLogsExports>? enabledCloudwatchLogsExports,
+    EnumList<RdsClusterEnabledCloudwatchLogsExports>?
+    enabledCloudwatchLogsExports,
     required TfArg<String> engine,
     RdsClusterEngineLifecycleSupport? engineLifecycleSupport,
     RdsClusterEngineMode? engineMode,
@@ -727,10 +728,7 @@ final class AwsRdsCluster extends Resource {
            'enable_global_write_forwarding': ?enableGlobalWriteForwarding,
            'enable_http_endpoint': ?enableHttpEndpoint,
            'enable_local_write_forwarding': ?enableLocalWriteForwarding,
-           if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': TfArg.literal([
-               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
-             ]),
+           'enabled_cloudwatch_logs_exports': ?enabledCloudwatchLogsExports,
            'engine': engine,
            'engine_lifecycle_support': ?engineLifecycleSupport,
            'engine_mode': ?engineMode,

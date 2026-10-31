@@ -9,6 +9,7 @@ export 'src/security/azurerm_security_center_assessment.dart'
 export 'src/security/azurerm_security_center_assessment_policy.dart'
     show
         AzurermSecurityCenterAssessmentPolicy,
+        SecurityCenterAssessmentPolicyCategories,
         SecurityCenterAssessmentPolicyThreats;
 export 'src/security/azurerm_security_center_automation.dart'
     show
@@ -26,9 +27,11 @@ export 'src/security/azurerm_security_center_contact.dart'
 export 'src/security/azurerm_security_center_server_vulnerability_assessment_virtual_machine.dart'
     show AzurermSecurityCenterServerVulnerabilityAssessmentVirtualMachine;
 export 'src/security/azurerm_security_center_server_vulnerability_assessments_setting.dart'
-    show AzurermSecurityCenterServerVulnerabilityAssessmentsSetting;
+    show
+        AzurermSecurityCenterServerVulnerabilityAssessmentsSetting,
+        SecurityCenterServerVulnerabilityAssessmentsSettingVulnerabilityAssessmentProvider;
 export 'src/security/azurerm_security_center_setting.dart'
-    show AzurermSecurityCenterSetting;
+    show AzurermSecurityCenterSetting, SecurityCenterSettingName;
 export 'src/security/azurerm_security_center_storage_defender.dart'
     show AzurermSecurityCenterStorageDefender;
 export 'src/security/azurerm_security_center_subscription_pricing.dart'

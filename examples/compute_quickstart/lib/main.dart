@@ -258,7 +258,10 @@ final class NetworkStack extends Stack {
           capacityGb: .literal(1024),
         ),
         networks: [
-          FilestoreInstanceNetworks(network: mainVpc.ref, modes: [.modeIpv4]),
+          FilestoreInstanceNetworks(
+            network: mainVpc.ref,
+            modes: .literal([.modeIpv4]),
+          ),
         ],
         dependsOn: apiDeps,
       ),
@@ -689,7 +692,7 @@ final class NetworkStack extends Stack {
         description: .literal('Global firewall policy with embedded rules'),
         rule: [
           ComputeNetworkFirewallPolicyWithRulesRule(
-            action: .literal('allow'),
+            action: .allow,
             direction: .ingress,
             priority: .literal(1000),
             ruleName: .literal('allow-https'),
@@ -853,7 +856,7 @@ final class NetworkStack extends Stack {
         description: .literal('Regional firewall policy with embedded rules'),
         rule: [
           ComputeRegionNetworkFirewallPolicyWithRulesRule(
-            action: .literal('allow'),
+            action: .allow,
             direction: .ingress,
             priority: .literal(1000),
             ruleName: .literal('allow-https'),

@@ -224,7 +224,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
     TfArg<bool>? availabilityZoneChangeProtection,
     TfArg<bool>? deleteProtection,
     TfArg<String>? description,
-    List<NetworkfirewallFirewallEnabledAnalysisTypes>? enabledAnalysisTypes,
+    EnumList<NetworkfirewallFirewallEnabledAnalysisTypes>? enabledAnalysisTypes,
     required TfArg<String> firewallPolicyArn,
     TfArg<bool>? firewallPolicyChangeProtection,
     required TfArg<String> name,
@@ -247,10 +247,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
                ?availabilityZoneChangeProtection,
            'delete_protection': ?deleteProtection,
            'description': ?description,
-           if (enabledAnalysisTypes != null)
-             'enabled_analysis_types': TfArg.literal([
-               for (final e in enabledAnalysisTypes) e.toTfJson(),
-             ]),
+           'enabled_analysis_types': ?enabledAnalysisTypes,
            'firewall_policy_arn': firewallPolicyArn,
            'firewall_policy_change_protection': ?firewallPolicyChangeProtection,
            'name': name,

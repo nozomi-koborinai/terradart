@@ -10,6 +10,32 @@ import '../compute/google_compute_node_template.dart'
 /// Sensitive field paths for `google_compute_node_group`.
 const Set<String> _googleComputeNodeGroupSensitive = <String>{};
 
+/// Compute Node Group Maintenance enum for `maintenance_policy`.
+extension type const ComputeNodeGroupMaintenancePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNodeGroupMaintenancePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNodeGroupMaintenancePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNodeGroupMaintenancePolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = ComputeNodeGroupMaintenancePolicy._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const migrateWithinNodeGroup = ComputeNodeGroupMaintenancePolicy._(
+    TfArgLiteral('MIGRATE_WITHIN_NODE_GROUP'),
+  );
+  static const restartInPlace = ComputeNodeGroupMaintenancePolicy._(
+    TfArgLiteral('RESTART_IN_PLACE'),
+  );
+
+  static const List<ComputeNodeGroupMaintenancePolicy> values = [
+    defaultCase,
+    migrateWithinNodeGroup,
+    restartInPlace,
+  ];
+}
+
 /// Typed helper for the `autoscaling_policy` block of
 /// `google_compute_node_group` (derived from provider schema).
 @immutable
@@ -150,7 +176,7 @@ final class GoogleComputeNodeGroup extends Resource {
     required RefTo<GoogleComputeNodeTemplate> nodeTemplate,
     TfArg<num>? initialSize,
     ComputeNodeGroupAutoscalingPolicy? autoscalingPolicy,
-    TfArg<String>? maintenancePolicy,
+    ComputeNodeGroupMaintenancePolicy? maintenancePolicy,
     ComputeNodeGroupMaintenanceWindow? maintenanceWindow,
     ComputeNodeGroupShareSettings? shareSettings,
     TfArg<String>? description,

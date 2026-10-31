@@ -7,6 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_dev_tool_portal`.
 const Set<String> _azurermSpringCloudDevToolPortalSensitive = <String>{};
 
+/// Spring Cloud Dev Tool Portal enum for `name`.
+extension type const SpringCloudDevToolPortalName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudDevToolPortalName.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudDevToolPortalName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudDevToolPortalName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudDevToolPortalName._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpringCloudDevToolPortalName> values = [defaultCase];
+}
+
 /// Typed helper for the `sso` block of
 /// `azurerm_spring_cloud_dev_tool_portal` (derived from provider schema).
 @immutable
@@ -43,7 +59,7 @@ final class AzurermSpringCloudDevToolPortal extends Resource {
     super.localName, {
     TfArg<bool>? applicationAcceleratorEnabled,
     TfArg<bool>? applicationLiveViewEnabled,
-    required TfArg<String> name,
+    required SpringCloudDevToolPortalName name,
     TfArg<bool>? publicNetworkAccessEnabled,
     required TfArg<String> springCloudServiceId,
     SpringCloudDevToolPortalSso? sso,

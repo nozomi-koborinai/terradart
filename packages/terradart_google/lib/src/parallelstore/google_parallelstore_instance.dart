@@ -8,6 +8,64 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_parallelstore_instance`.
 const Set<String> _googleParallelstoreInstanceSensitive = <String>{};
 
+/// Parallelstore Instance Directory Stripe enum for `directory_stripe_level`.
+extension type const ParallelstoreInstanceDirectoryStripeLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ParallelstoreInstanceDirectoryStripeLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ParallelstoreInstanceDirectoryStripeLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ParallelstoreInstanceDirectoryStripeLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const directoryStripeLevelMin =
+      ParallelstoreInstanceDirectoryStripeLevel._(
+        TfArgLiteral('DIRECTORY_STRIPE_LEVEL_MIN'),
+      );
+  static const directoryStripeLevelBalanced =
+      ParallelstoreInstanceDirectoryStripeLevel._(
+        TfArgLiteral('DIRECTORY_STRIPE_LEVEL_BALANCED'),
+      );
+  static const directoryStripeLevelMax =
+      ParallelstoreInstanceDirectoryStripeLevel._(
+        TfArgLiteral('DIRECTORY_STRIPE_LEVEL_MAX'),
+      );
+
+  static const List<ParallelstoreInstanceDirectoryStripeLevel> values = [
+    directoryStripeLevelMin,
+    directoryStripeLevelBalanced,
+    directoryStripeLevelMax,
+  ];
+}
+
+/// Parallelstore Instance File Stripe enum for `file_stripe_level`.
+extension type const ParallelstoreInstanceFileStripeLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ParallelstoreInstanceFileStripeLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ParallelstoreInstanceFileStripeLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ParallelstoreInstanceFileStripeLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fileStripeLevelMin = ParallelstoreInstanceFileStripeLevel._(
+    TfArgLiteral('FILE_STRIPE_LEVEL_MIN'),
+  );
+  static const fileStripeLevelBalanced = ParallelstoreInstanceFileStripeLevel._(
+    TfArgLiteral('FILE_STRIPE_LEVEL_BALANCED'),
+  );
+  static const fileStripeLevelMax = ParallelstoreInstanceFileStripeLevel._(
+    TfArgLiteral('FILE_STRIPE_LEVEL_MAX'),
+  );
+
+  static const List<ParallelstoreInstanceFileStripeLevel> values = [
+    fileStripeLevelMin,
+    fileStripeLevelBalanced,
+    fileStripeLevelMax,
+  ];
+}
+
 /// Terraform `deployment_type` for [GoogleParallelstoreInstance].
 extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
     implements TfArg<String> {
@@ -18,9 +76,6 @@ extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
   const ParallelstoreInstanceDeploymentType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const unspecified = ParallelstoreInstanceDeploymentType._(
-    TfArgLiteral('DEPLOYMENT_TYPE_UNSPECIFIED'),
-  );
   static const scratch = ParallelstoreInstanceDeploymentType._(
     TfArgLiteral('SCRATCH'),
   );
@@ -29,7 +84,6 @@ extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
   );
 
   static const List<ParallelstoreInstanceDeploymentType> values = [
-    unspecified,
     scratch,
     persistent,
   ];
@@ -63,8 +117,8 @@ final class GoogleParallelstoreInstance extends Resource {
     RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? description,
     ParallelstoreInstanceDeploymentType? deploymentType,
-    TfArg<String>? directoryStripeLevel,
-    TfArg<String>? fileStripeLevel,
+    ParallelstoreInstanceDirectoryStripeLevel? directoryStripeLevel,
+    ParallelstoreInstanceFileStripeLevel? fileStripeLevel,
     TfArg<String>? reservedIpRange,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

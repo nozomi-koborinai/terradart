@@ -23,12 +23,12 @@ final class SagemakerAlgorithmInferenceSpecification {
 
   final TfArg<List<String>>? supportedContentTypes;
 
-  final List<SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes>?
+  final EnumList<SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes>?
   supportedRealtimeInferenceInstanceTypes;
 
   final TfArg<List<String>>? supportedResponseMimeTypes;
 
-  final List<SagemakerAlgorithmSupportedTransformInstanceTypes>?
+  final EnumList<SagemakerAlgorithmSupportedTransformInstanceTypes>?
   supportedTransformInstanceTypes;
 
   final List<SagemakerAlgorithmContainers>? containers;
@@ -36,15 +36,11 @@ final class SagemakerAlgorithmInferenceSpecification {
   @internal
   Map<String, Object?> encode() => {
     'supported_content_types': ?supportedContentTypes?.toTfJson(),
-    if (supportedRealtimeInferenceInstanceTypes != null)
-      'supported_realtime_inference_instance_types': [
-        for (final e in supportedRealtimeInferenceInstanceTypes!) e.toTfJson(),
-      ],
+    'supported_realtime_inference_instance_types':
+        ?supportedRealtimeInferenceInstanceTypes?.toTfJson(),
     'supported_response_mime_types': ?supportedResponseMimeTypes?.toTfJson(),
-    if (supportedTransformInstanceTypes != null)
-      'supported_transform_instance_types': [
-        for (final e in supportedTransformInstanceTypes!) e.toTfJson(),
-      ],
+    'supported_transform_instance_types': ?supportedTransformInstanceTypes
+        ?.toTfJson(),
     if (containers != null)
       'containers': [for (final e in containers!) e.encode()],
   };
@@ -2345,7 +2341,7 @@ final class SagemakerAlgorithmTrainingSpecification {
     this.trainingChannels,
   });
 
-  final List<SagemakerAlgorithmSupportedTrainingInstanceTypes>
+  final EnumList<SagemakerAlgorithmSupportedTrainingInstanceTypes>
   supportedTrainingInstanceTypes;
 
   final TfArg<bool>? supportsDistributedTraining;
@@ -2368,9 +2364,8 @@ final class SagemakerAlgorithmTrainingSpecification {
 
   @internal
   Map<String, Object?> encode() => {
-    'supported_training_instance_types': [
-      for (final e in supportedTrainingInstanceTypes) e.toTfJson(),
-    ],
+    'supported_training_instance_types': supportedTrainingInstanceTypes
+        .toTfJson(),
     'supports_distributed_training': ?supportsDistributedTraining?.toTfJson(),
     'training_image': trainingImage.toTfJson(),
     'training_image_digest': ?trainingImageDigest?.toTfJson(),
@@ -3748,26 +3743,21 @@ final class SagemakerAlgorithmTrainingChannels {
 
   final TfArg<String> name;
 
-  final List<SagemakerAlgorithmSupportedCompressionTypes>?
+  final EnumList<SagemakerAlgorithmSupportedCompressionTypes>?
   supportedCompressionTypes;
 
   final TfArg<List<String>> supportedContentTypes;
 
-  final List<SagemakerAlgorithmSupportedInputModes> supportedInputModes;
+  final EnumList<SagemakerAlgorithmSupportedInputModes> supportedInputModes;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'is_required': ?isRequired?.toTfJson(),
     'name': name.toTfJson(),
-    if (supportedCompressionTypes != null)
-      'supported_compression_types': [
-        for (final e in supportedCompressionTypes!) e.toTfJson(),
-      ],
+    'supported_compression_types': ?supportedCompressionTypes?.toTfJson(),
     'supported_content_types': supportedContentTypes.toTfJson(),
-    'supported_input_modes': [
-      for (final e in supportedInputModes) e.toTfJson(),
-    ],
+    'supported_input_modes': supportedInputModes.toTfJson(),
   };
 }
 

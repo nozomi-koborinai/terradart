@@ -335,7 +335,7 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
     TfArg<bool>? copyTagsToBackups,
     TfArg<bool>? copyTagsToVolumes,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    List<FsxOpenzfsFileSystemDeleteOptions>? deleteOptions,
+    EnumList<FsxOpenzfsFileSystemDeleteOptions>? deleteOptions,
     required FsxOpenzfsFileSystemDeploymentType deploymentType,
     TfArg<String>? endpointIpAddressRange,
     TfArg<Map<String, String>>? finalBackupTags,
@@ -367,10 +367,7 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
            'copy_tags_to_backups': ?copyTagsToBackups,
            'copy_tags_to_volumes': ?copyTagsToVolumes,
            'daily_automatic_backup_start_time': ?dailyAutomaticBackupStartTime,
-           if (deleteOptions != null)
-             'delete_options': TfArg.literal([
-               for (final e in deleteOptions) e.toTfJson(),
-             ]),
+           'delete_options': ?deleteOptions,
            'deployment_type': deploymentType,
            'endpoint_ip_address_range': ?endpointIpAddressRange,
            'final_backup_tags': ?finalBackupTags,

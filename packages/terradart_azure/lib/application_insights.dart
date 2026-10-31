@@ -9,10 +9,12 @@ export 'src/application_insights/azurerm_application_insights.dart'
 export 'src/application_insights/azurerm_application_insights_analytics_item.dart'
     show
         ApplicationInsightsAnalyticsItemScope,
+        ApplicationInsightsAnalyticsItemType,
         AzurermApplicationInsightsAnalyticsItem;
 export 'src/application_insights/azurerm_application_insights_api_key.dart'
     show
         ApplicationInsightsApiKeyReadPermissions,
+        ApplicationInsightsApiKeyWritePermissions,
         AzurermApplicationInsightsApiKey;
 export 'src/application_insights/azurerm_application_insights_smart_detection_rule.dart'
     show
@@ -27,7 +29,7 @@ export 'src/application_insights/azurerm_application_insights_standard_web_test.
         ApplicationInsightsStandardWebTestValidationRules,
         AzurermApplicationInsightsStandardWebTest;
 export 'src/application_insights/azurerm_application_insights_web_test.dart'
-    show AzurermApplicationInsightsWebTest;
+    show ApplicationInsightsWebTestKind, AzurermApplicationInsightsWebTest;
 export 'src/application_insights/azurerm_application_insights_workbook.dart'
     show
         ApplicationInsightsWorkbookIdentity,

@@ -3,6 +3,18 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: inbound_ip_rule
+    properties:
+      - api_name: action
+        enum_values:
+          - "Allow"
+  - api_name: public_network_access
+    enum_values:
+      - "Enabled"
+      - "Disabled"
+  - api_name: sku
+    enum_values:
+      - "Standard"
   - api_name: topic_spaces_configuration
     properties:
       - api_name: alternative_authentication_name_source

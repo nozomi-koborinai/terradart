@@ -163,7 +163,7 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
 
   AwsEcrRepositoryCreationTemplate(
     super.localName, {
-    required List<EcrRepositoryCreationTemplateAppliedFor> appliedFor,
+    required EnumList<EcrRepositoryCreationTemplateAppliedFor> appliedFor,
     TfArg<String>? customRoleArn,
     TfArg<String>? description,
     EcrRepositoryCreationTemplateImageTagMutability? imageTagMutability,
@@ -183,9 +183,7 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'applied_for': TfArg.literal([
-             for (final e in appliedFor) e.toTfJson(),
-           ]),
+           'applied_for': appliedFor,
            'custom_role_arn': ?customRoleArn,
            'description': ?description,
            'image_tag_mutability': ?imageTagMutability,

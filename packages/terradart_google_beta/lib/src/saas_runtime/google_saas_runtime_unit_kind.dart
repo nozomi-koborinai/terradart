@@ -30,10 +30,31 @@ final class SaasRuntimeUnitKindAppParams {
 final class SaasRuntimeUnitKindScope {
   const SaasRuntimeUnitKindScope({required this.type});
 
-  final TfArg<String> type;
+  final SaasRuntimeUnitKindType type;
 
   @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const SaasRuntimeUnitKindType._(TfArg<String> _)
+    implements TfArg<String> {
+  SaasRuntimeUnitKindType.variable(String name) : this._(TfArg.variable(name));
+  SaasRuntimeUnitKindType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeUnitKindType.arg(TfArg<String> arg) : this._(arg);
+
+  static const typeRegional = SaasRuntimeUnitKindType._(
+    TfArgLiteral('TYPE_REGIONAL'),
+  );
+  static const typeGlobal = SaasRuntimeUnitKindType._(
+    TfArgLiteral('TYPE_GLOBAL'),
+  );
+
+  static const List<SaasRuntimeUnitKindType> values = [
+    typeRegional,
+    typeGlobal,
+  ];
 }
 
 /// Typed helper for the `application_template_component` block of

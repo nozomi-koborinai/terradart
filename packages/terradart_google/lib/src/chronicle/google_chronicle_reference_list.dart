@@ -7,6 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_reference_list`.
 const Set<String> _googleChronicleReferenceListSensitive = <String>{};
 
+/// Chronicle Reference List Syntax enum for `syntax_type`.
+extension type const ChronicleReferenceListSyntaxType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleReferenceListSyntaxType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleReferenceListSyntaxType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleReferenceListSyntaxType.arg(TfArg<String> arg) : this._(arg);
+
+  static const referenceListSyntaxTypePlainTextString =
+      ChronicleReferenceListSyntaxType._(
+        TfArgLiteral('REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING'),
+      );
+  static const referenceListSyntaxTypeRegex =
+      ChronicleReferenceListSyntaxType._(
+        TfArgLiteral('REFERENCE_LIST_SYNTAX_TYPE_REGEX'),
+      );
+  static const referenceListSyntaxTypeCidr = ChronicleReferenceListSyntaxType._(
+    TfArgLiteral('REFERENCE_LIST_SYNTAX_TYPE_CIDR'),
+  );
+
+  static const List<ChronicleReferenceListSyntaxType> values = [
+    referenceListSyntaxTypePlainTextString,
+    referenceListSyntaxTypeRegex,
+    referenceListSyntaxTypeCidr,
+  ];
+}
+
 /// Typed helper for the `entries` block of
 /// `google_chronicle_reference_list` (derived from provider schema).
 @immutable
@@ -69,7 +97,7 @@ final class GoogleChronicleReferenceList extends Resource {
     super.localName, {
     required TfArg<String> referenceListId,
     required TfArg<String> description,
-    required TfArg<String> syntaxType,
+    required ChronicleReferenceListSyntaxType syntaxType,
     required List<ChronicleReferenceListEntries> entries,
     required TfArg<String> location,
     required TfArg<String> instance,

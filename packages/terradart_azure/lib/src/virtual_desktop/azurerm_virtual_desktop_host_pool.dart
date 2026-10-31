@@ -127,6 +127,23 @@ extension type const VirtualDesktopHostPoolPublicNetworkAccess._(
   ];
 }
 
+/// Virtual Desktop Host Pool enum for `type`.
+extension type const VirtualDesktopHostPoolType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualDesktopHostPoolType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualDesktopHostPoolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualDesktopHostPoolType.arg(TfArg<String> arg) : this._(arg);
+
+  static const personal = VirtualDesktopHostPoolType._(
+    TfArgLiteral('Personal'),
+  );
+  static const pooled = VirtualDesktopHostPoolType._(TfArgLiteral('Pooled'));
+
+  static const List<VirtualDesktopHostPoolType> values = [personal, pooled];
+}
+
 /// Typed helper for the `scheduled_agent_updates` block of
 /// `azurerm_virtual_desktop_host_pool` (derived from provider schema).
 @immutable
@@ -237,7 +254,7 @@ final class AzurermVirtualDesktopHostPool extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? startVmOnConnect,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required VirtualDesktopHostPoolType type,
     TfArg<bool>? validateEnvironment,
     TfArg<String>? vmTemplate,
     VirtualDesktopHostPoolScheduledAgentUpdates? scheduledAgentUpdates,

@@ -7,3 +7,9 @@ properties:
     enum_values:
       - "shared"
       - "user"
+  - api_name: type
+    enum_values:
+      - "query"
+      - "function"
+      - "folder"
+      - "recent"

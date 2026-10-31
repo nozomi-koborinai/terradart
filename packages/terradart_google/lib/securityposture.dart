@@ -15,6 +15,7 @@ export 'src/securityposture/google_securityposture_posture.dart'
         SecurityposturePostureConstraint,
         SecurityposturePostureCustomConstraint,
         SecurityposturePostureCustomOutput,
+        SecurityposturePostureMethodTypes,
         SecurityposturePostureModuleEnablementState,
         SecurityposturePostureOrgPolicyConstraint,
         SecurityposturePostureOrgPolicyConstraintCustom,

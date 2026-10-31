@@ -75,32 +75,17 @@ class SchemaJsonParser {
     );
   }
 
-  /// Sanitizes description strings so they survive schemantic's downstream
-  /// emission. Schemantic reads `stringValue` from the analyzer (which
-  /// strips Dart escapes) and re-emits via `code_builder`'s
-  /// `literalString`, which does not re-escape `$` or `\`. Two narrow
-  /// substitutions keep the documentation readable while avoiding broken
-  /// Dart source in the generated `.g.dart`:
-  ///
-  /// 1. `$` -> full-width dollar (`＄`). Without this, descriptions like
-  ///    BigQuery's partition-decorator example `sample_table$20190123` get
-  ///    re-emitted as `'$20190123'` and the Dart parser tries to
-  ///    interpolate.
-  /// 2. `\'` (literal backslash + apostrophe) -> `'` (apostrophe). The
-  ///    hashicorp/google schema occasionally ships over-escaped
-  ///    apostrophes (`instance\'s nominal CPU` on
-  ///    `google_compute_instance.advanced_machine_features.visible_core_count`).
-  ///    The analyzer hands code_builder a String with a literal backslash
-  ///    before the quote; code_builder escapes the quote but not the
-  ///    backslash, so the emitted `.g.dart` contains `'instance\\'s'`
-  ///    which terminates the string at the apparent escape sequence.
-  ///    Collapsing the over-escape keeps the documentation intent
-  ///    (`instance's`) and is intentionally narrower than stripping every
-  ///    backslash (which would mangle `\n` literals, `\p{Ll}` regex class
-  ///    references, etc. that appear in other descriptions).
+  /// Collapses the over-escaped apostrophes (`\'` → `'`) the
+  /// hashicorp/google schema occasionally ships (`instance\'s nominal CPU`
+  /// on `google_compute_instance.advanced_machine_features.visible_core_count`).
+  /// Every other character stays as the schema wrote it, because enum wire
+  /// values are read from descriptions (`Available values: "thresholds.$key"`).
+  /// An emitter that puts a description in a Dart string literal escapes it
+  /// there (`dartSingleQuotedBody`). A `///` doc comment needs no escape
+  /// for `$`.
   static String? _sanitizeDescription(String? s) {
     if (s == null) return null;
-    return s.replaceAll(r'$', '＄').replaceAll(r"\'", "'");
+    return s.replaceAll(r"\'", "'");
   }
 
   BlockDef _parseBlock(Map<String, Object?> block) {

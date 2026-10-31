@@ -9,6 +9,30 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_apigee_organization`.
 const Set<String> _googleApigeeOrganizationSensitive = <String>{};
 
+/// Apigee Organization Billing enum for `billing_type`.
+extension type const ApigeeOrganizationBillingType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeOrganizationBillingType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeOrganizationBillingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeOrganizationBillingType.arg(TfArg<String> arg) : this._(arg);
+
+  static const subscription = ApigeeOrganizationBillingType._(
+    TfArgLiteral('SUBSCRIPTION'),
+  );
+  static const evaluation = ApigeeOrganizationBillingType._(
+    TfArgLiteral('EVALUATION'),
+  );
+  static const payg = ApigeeOrganizationBillingType._(TfArgLiteral('PAYG'));
+
+  static const List<ApigeeOrganizationBillingType> values = [
+    subscription,
+    evaluation,
+    payg,
+  ];
+}
+
 /// Apigee Organization Runtime enum for `runtime_type`.
 extension type const ApigeeOrganizationRuntimeType._(TfArg<String> _)
     implements TfArg<String> {
@@ -115,7 +139,7 @@ final class GoogleApigeeOrganization extends Resource {
     TfArg<String>? analyticsRegion,
     RefTo<GoogleComputeNetwork>? authorizedNetwork,
     ApigeeOrganizationRuntimeType? runtimeType,
-    TfArg<String>? billingType,
+    ApigeeOrganizationBillingType? billingType,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<bool>? disableVpcPeering,

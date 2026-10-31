@@ -461,11 +461,11 @@ final class SentinelAlertRuleScheduledGrouping {
     this.reopenClosedIncidents,
   });
 
-  final List<SentinelAlertRuleScheduledByAlertDetails>? byAlertDetails;
+  final EnumList<SentinelAlertRuleScheduledByAlertDetails>? byAlertDetails;
 
   final TfArg<List<String>>? byCustomDetails;
 
-  final List<SentinelAlertRuleScheduledByEntities>? byEntities;
+  final EnumList<SentinelAlertRuleScheduledByEntities>? byEntities;
 
   final TfArg<bool>? enabled;
 
@@ -477,11 +477,9 @@ final class SentinelAlertRuleScheduledGrouping {
 
   @internal
   Map<String, Object?> encode() => {
-    if (byAlertDetails != null)
-      'by_alert_details': [for (final e in byAlertDetails!) e.toTfJson()],
+    'by_alert_details': ?byAlertDetails?.toTfJson(),
     'by_custom_details': ?byCustomDetails?.toTfJson(),
-    if (byEntities != null)
-      'by_entities': [for (final e in byEntities!) e.toTfJson()],
+    'by_entities': ?byEntities?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
     'entity_matching_method': ?entityMatchingMethod?.toTfJson(),
     'lookback_duration': ?lookbackDuration?.toTfJson(),
@@ -659,7 +657,7 @@ final class AzurermSentinelAlertRuleScheduled extends Resource {
     required SentinelAlertRuleScheduledSeverity severity,
     TfArg<String>? suppressionDuration,
     TfArg<bool>? suppressionEnabled,
-    List<SentinelAlertRuleScheduledTactics>? tactics,
+    EnumList<SentinelAlertRuleScheduledTactics>? tactics,
     TfArg<List<String>>? techniques,
     SentinelAlertRuleScheduledTriggerOperator? triggerOperator,
     TfArg<num>? triggerThreshold,
@@ -690,8 +688,7 @@ final class AzurermSentinelAlertRuleScheduled extends Resource {
            'severity': severity,
            'suppression_duration': ?suppressionDuration,
            'suppression_enabled': ?suppressionEnabled,
-           if (tactics != null)
-             'tactics': TfArg.literal([for (final e in tactics) e.toTfJson()]),
+           'tactics': ?tactics,
            'techniques': ?techniques,
            'trigger_operator': ?triggerOperator,
            'trigger_threshold': ?triggerThreshold,

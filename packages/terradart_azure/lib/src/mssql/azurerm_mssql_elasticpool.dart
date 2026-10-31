@@ -48,6 +48,322 @@ extension type const MssqlElasticpoolLicenseType._(TfArg<String> _)
   ];
 }
 
+/// Mssql Elasticpool Maintenance Configuration enum for `maintenance_configuration_name`.
+extension type const MssqlElasticpoolMaintenanceConfigurationName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MssqlElasticpoolMaintenanceConfigurationName.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlElasticpoolMaintenanceConfigurationName.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlElasticpoolMaintenanceConfigurationName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sqlDefault = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_Default'),
+  );
+  static const sqlEastusDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS_DB_1'),
+  );
+  static const sqlEastus2Db1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS2_DB_1'),
+  );
+  static const sqlSoutheastasiaDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SoutheastAsia_DB_1'),
+      );
+  static const sqlAustraliaeastDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaEast_DB_1'),
+      );
+  static const sqlNortheuropeDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthEurope_DB_1'),
+      );
+  static const sqlSouthcentralusDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthCentralUS_DB_1'),
+      );
+  static const sqlWestus2Db1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS2_DB_1'),
+  );
+  static const sqlUksouthDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKSouth_DB_1'),
+  );
+  static const sqlWesteuropeDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestEurope_DB_1'),
+      );
+  static const sqlEastusDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS_DB_2'),
+  );
+  static const sqlEastus2Db2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS2_DB_2'),
+  );
+  static const sqlWestus2Db2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS2_DB_2'),
+  );
+  static const sqlSoutheastasiaDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SoutheastAsia_DB_2'),
+      );
+  static const sqlAustraliaeastDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaEast_DB_2'),
+      );
+  static const sqlNortheuropeDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthEurope_DB_2'),
+      );
+  static const sqlSouthcentralusDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthCentralUS_DB_2'),
+      );
+  static const sqlUksouthDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKSouth_DB_2'),
+  );
+  static const sqlWesteuropeDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestEurope_DB_2'),
+      );
+  static const sqlAustraliasoutheastDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaSoutheast_DB_1'),
+      );
+  static const sqlBrazilsouthDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSouth_DB_1'),
+      );
+  static const sqlCanadacentralDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaCentral_DB_1'),
+      );
+  static const sqlCanadaeastDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaEast_DB_1'),
+      );
+  static const sqlCentralusDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralUS_DB_1'),
+  );
+  static const sqlEastasiaDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastAsia_DB_1'),
+  );
+  static const sqlFrancecentralDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceCentral_DB_1'),
+      );
+  static const sqlGermanywestcentralDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_GermanyWestCentral_DB_1'),
+      );
+  static const sqlCentralindiaDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CentralIndia_DB_1'),
+      );
+  static const sqlSouthindiaDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthIndia_DB_1'),
+      );
+  static const sqlJapaneastDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanEast_DB_1'),
+  );
+  static const sqlJapanwestDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanWest_DB_1'),
+  );
+  static const sqlNorthcentralusDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthCentralUS_DB_1'),
+      );
+  static const sqlUkwestDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKWest_DB_1'),
+  );
+  static const sqlWestusDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS_DB_1'),
+  );
+  static const sqlAustraliasoutheastDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaSoutheast_DB_2'),
+      );
+  static const sqlBrazilsouthDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSouth_DB_2'),
+      );
+  static const sqlCanadacentralDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaCentral_DB_2'),
+      );
+  static const sqlCanadaeastDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaEast_DB_2'),
+      );
+  static const sqlCentralusDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralUS_DB_2'),
+  );
+  static const sqlEastasiaDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastAsia_DB_2'),
+  );
+  static const sqlFrancecentralDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceCentral_DB_2'),
+      );
+  static const sqlGermanywestcentralDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_GermanyWestCentral_DB_2'),
+      );
+  static const sqlCentralindiaDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CentralIndia_DB_2'),
+      );
+  static const sqlSouthindiaDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthIndia_DB_2'),
+      );
+  static const sqlJapaneastDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanEast_DB_2'),
+  );
+  static const sqlJapanwestDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanWest_DB_2'),
+  );
+  static const sqlNorthcentralusDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthCentralUS_DB_2'),
+      );
+  static const sqlUkwestDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKWest_DB_2'),
+  );
+  static const sqlWestusDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS_DB_2'),
+  );
+  static const sqlWestcentralusDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestCentralUS_DB_1'),
+      );
+  static const sqlFrancesouthDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceSouth_DB_1'),
+      );
+  static const sqlWestcentralusDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestCentralUS_DB_2'),
+      );
+  static const sqlFrancesouthDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceSouth_DB_2'),
+      );
+  static const sqlSwitzerlandnorthDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwitzerlandNorth_DB_1'),
+      );
+  static const sqlSwitzerlandnorthDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwitzerlandNorth_DB_2'),
+      );
+  static const sqlBrazilsoutheastDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSoutheast_DB_1'),
+      );
+  static const sqlUaenorthDb1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UAENorth_DB_1'),
+  );
+  static const sqlBrazilsoutheastDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSoutheast_DB_2'),
+      );
+  static const sqlUaenorthDb2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UAENorth_DB_2'),
+  );
+  static const sqlSouthafricanorthDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthAfricaNorth_DB_1'),
+      );
+  static const sqlSouthafricanorthDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthAfricaNorth_DB_2'),
+      );
+  static const sqlWestus3Db1 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS3_DB_1'),
+  );
+  static const sqlWestus3Db2 = MssqlElasticpoolMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS3_DB_2'),
+  );
+  static const sqlSwedencentralDb1 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwedenCentral_DB_1'),
+      );
+  static const sqlSwedencentralDb2 =
+      MssqlElasticpoolMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwedenCentral_DB_2'),
+      );
+
+  static const List<MssqlElasticpoolMaintenanceConfigurationName> values = [
+    sqlDefault,
+    sqlEastusDb1,
+    sqlEastus2Db1,
+    sqlSoutheastasiaDb1,
+    sqlAustraliaeastDb1,
+    sqlNortheuropeDb1,
+    sqlSouthcentralusDb1,
+    sqlWestus2Db1,
+    sqlUksouthDb1,
+    sqlWesteuropeDb1,
+    sqlEastusDb2,
+    sqlEastus2Db2,
+    sqlWestus2Db2,
+    sqlSoutheastasiaDb2,
+    sqlAustraliaeastDb2,
+    sqlNortheuropeDb2,
+    sqlSouthcentralusDb2,
+    sqlUksouthDb2,
+    sqlWesteuropeDb2,
+    sqlAustraliasoutheastDb1,
+    sqlBrazilsouthDb1,
+    sqlCanadacentralDb1,
+    sqlCanadaeastDb1,
+    sqlCentralusDb1,
+    sqlEastasiaDb1,
+    sqlFrancecentralDb1,
+    sqlGermanywestcentralDb1,
+    sqlCentralindiaDb1,
+    sqlSouthindiaDb1,
+    sqlJapaneastDb1,
+    sqlJapanwestDb1,
+    sqlNorthcentralusDb1,
+    sqlUkwestDb1,
+    sqlWestusDb1,
+    sqlAustraliasoutheastDb2,
+    sqlBrazilsouthDb2,
+    sqlCanadacentralDb2,
+    sqlCanadaeastDb2,
+    sqlCentralusDb2,
+    sqlEastasiaDb2,
+    sqlFrancecentralDb2,
+    sqlGermanywestcentralDb2,
+    sqlCentralindiaDb2,
+    sqlSouthindiaDb2,
+    sqlJapaneastDb2,
+    sqlJapanwestDb2,
+    sqlNorthcentralusDb2,
+    sqlUkwestDb2,
+    sqlWestusDb2,
+    sqlWestcentralusDb1,
+    sqlFrancesouthDb1,
+    sqlWestcentralusDb2,
+    sqlFrancesouthDb2,
+    sqlSwitzerlandnorthDb1,
+    sqlSwitzerlandnorthDb2,
+    sqlBrazilsoutheastDb1,
+    sqlUaenorthDb1,
+    sqlBrazilsoutheastDb2,
+    sqlUaenorthDb2,
+    sqlSouthafricanorthDb1,
+    sqlSouthafricanorthDb2,
+    sqlWestus3Db1,
+    sqlWestus3Db2,
+    sqlSwedencentralDb1,
+    sqlSwedencentralDb2,
+  ];
+}
+
 /// At most one of `max_size_bytes`, `max_size_gb` on `azurerm_mssql_elasticpool`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -270,7 +586,7 @@ final class AzurermMssqlElasticpool extends Resource {
     TfArg<num>? highAvailabilityReplicaCount,
     MssqlElasticpoolLicenseType? licenseType,
     required TfArg<String> location,
-    TfArg<String>? maintenanceConfigurationName,
+    MssqlElasticpoolMaintenanceConfigurationName? maintenanceConfigurationName,
     MssqlElasticpoolMaxSize? maxSize,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,

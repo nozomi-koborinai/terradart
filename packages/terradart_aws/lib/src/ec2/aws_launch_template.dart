@@ -884,11 +884,12 @@ final class LaunchTemplateInstanceRequirements {
     required this.vcpuCount,
   });
 
-  final List<LaunchTemplateAcceleratorManufacturers>? acceleratorManufacturers;
+  final EnumList<LaunchTemplateAcceleratorManufacturers>?
+  acceleratorManufacturers;
 
-  final List<LaunchTemplateAcceleratorNames>? acceleratorNames;
+  final EnumList<LaunchTemplateAcceleratorNames>? acceleratorNames;
 
-  final List<LaunchTemplateAcceleratorTypes>? acceleratorTypes;
+  final EnumList<LaunchTemplateAcceleratorTypes>? acceleratorTypes;
 
   final LaunchTemplateInstanceTypes? instanceTypes;
 
@@ -896,13 +897,13 @@ final class LaunchTemplateInstanceRequirements {
 
   final LaunchTemplateBurstablePerformance? burstablePerformance;
 
-  final List<LaunchTemplateCpuManufacturers>? cpuManufacturers;
+  final EnumList<LaunchTemplateCpuManufacturers>? cpuManufacturers;
 
-  final List<LaunchTemplateInstanceGenerations>? instanceGenerations;
+  final EnumList<LaunchTemplateInstanceGenerations>? instanceGenerations;
 
   final LaunchTemplateLocalStorage? localStorage;
 
-  final List<LaunchTemplateLocalStorageTypes>? localStorageTypes;
+  final EnumList<LaunchTemplateLocalStorageTypes>? localStorageTypes;
 
   final LaunchTemplatePrice? price;
 
@@ -930,26 +931,16 @@ final class LaunchTemplateInstanceRequirements {
 
   @internal
   Map<String, Object?> encode() => {
-    if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': [
-        for (final e in acceleratorManufacturers!) e.toTfJson(),
-      ],
-    if (acceleratorNames != null)
-      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
-    if (acceleratorTypes != null)
-      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
+    'accelerator_manufacturers': ?acceleratorManufacturers?.toTfJson(),
+    'accelerator_names': ?acceleratorNames?.toTfJson(),
+    'accelerator_types': ?acceleratorTypes?.toTfJson(),
     ...?instanceTypes?.encode(),
     'bare_metal': ?bareMetal?.toTfJson(),
     'burstable_performance': ?burstablePerformance?.toTfJson(),
-    if (cpuManufacturers != null)
-      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
-    if (instanceGenerations != null)
-      'instance_generations': [
-        for (final e in instanceGenerations!) e.toTfJson(),
-      ],
+    'cpu_manufacturers': ?cpuManufacturers?.toTfJson(),
+    'instance_generations': ?instanceGenerations?.toTfJson(),
     'local_storage': ?localStorage?.toTfJson(),
-    if (localStorageTypes != null)
-      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
+    'local_storage_types': ?localStorageTypes?.toTfJson(),
     ...?price?.encode(),
     'on_demand_max_price_percentage_over_lowest_price':
         ?onDemandMaxPricePercentageOverLowestPrice?.toTfJson(),

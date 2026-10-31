@@ -8,13 +8,17 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudfunctions/google_cloudfunctions_function.dart'
     show
         CloudfunctionsFunctionAutomaticUpdatePolicy,
+        CloudfunctionsFunctionDockerRegistry,
         CloudfunctionsFunctionEventTrigger,
         CloudfunctionsFunctionFailurePolicy,
+        CloudfunctionsFunctionIngressSettings,
         CloudfunctionsFunctionOnDeployUpdatePolicy,
         CloudfunctionsFunctionSecretEnvironmentVariables,
         CloudfunctionsFunctionSecretVolumes,
         CloudfunctionsFunctionSourceRepository,
+        CloudfunctionsFunctionStatus,
         CloudfunctionsFunctionVersions,
+        CloudfunctionsFunctionVpcConnectorEgressSettings,
         GoogleCloudfunctionsFunction;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_binding.dart'
     show

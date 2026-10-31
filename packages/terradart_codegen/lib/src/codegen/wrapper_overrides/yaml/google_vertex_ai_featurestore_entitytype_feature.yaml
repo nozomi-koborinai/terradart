@@ -1,5 +1,4 @@
 outputDir: vertex_ai
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
@@ -26,7 +25,7 @@ curatedDoc: |-
   ///   'age',
   ///   entitytype: entity.name,
   ///   name: TfArg.literal('age'),
-  ///   valueType: TfArg.literal('INT64'),
+  ///   valueType: .int64,
   /// );
   /// ```
 

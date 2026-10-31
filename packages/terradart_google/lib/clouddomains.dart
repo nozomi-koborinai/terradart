@@ -8,14 +8,19 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/clouddomains/google_clouddomains_registration.dart'
     show
         ClouddomainsRegistrationAdminContact,
+        ClouddomainsRegistrationAlgorithm,
         ClouddomainsRegistrationContactSettings,
         ClouddomainsRegistrationCustomDns,
+        ClouddomainsRegistrationDigestType,
         ClouddomainsRegistrationDnsSettings,
         ClouddomainsRegistrationDsRecords,
         ClouddomainsRegistrationGlueRecords,
         ClouddomainsRegistrationManagementSettings,
         ClouddomainsRegistrationPostalAddress,
+        ClouddomainsRegistrationPreferredRenewalMethod,
+        ClouddomainsRegistrationPrivacy,
         ClouddomainsRegistrationRegistrantContact,
         ClouddomainsRegistrationTechnicalContact,
+        ClouddomainsRegistrationTransferLockState,
         ClouddomainsRegistrationYearlyPrice,
         GoogleClouddomainsRegistration;

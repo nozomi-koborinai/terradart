@@ -90,6 +90,108 @@ extension type const SpannerInstanceState._(TfArg<String> _)
   static const List<SpannerInstanceState> values = [ready, creating];
 }
 
+/// At most one of `num_nodes`, `processing_units`, `autoscaling_config` on `google_spanner_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.numNodes(...)`.
+sealed class SpannerInstanceCapacity {
+  const SpannerInstanceCapacity();
+
+  /// Sets `num_nodes`.
+  const factory SpannerInstanceCapacity.numNodes(TfArg<num> numNodes) =
+      SpannerInstanceCapacityNumNodes;
+
+  /// Sets `processing_units`.
+  const factory SpannerInstanceCapacity.processingUnits(
+    TfArg<num> processingUnits,
+  ) = SpannerInstanceCapacityProcessingUnits;
+
+  /// Sets `autoscaling_config`.
+  const factory SpannerInstanceCapacity.autoscalingConfig(
+    SpannerInstanceAutoscalingConfig autoscalingConfig,
+  ) = SpannerInstanceCapacityAutoscalingConfig;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [SpannerInstanceCapacity.numNodes] choice: sets `num_nodes`.
+final class SpannerInstanceCapacityNumNodes extends SpannerInstanceCapacity {
+  const SpannerInstanceCapacityNumNodes(this.numNodes);
+
+  final TfArg<num> numNodes;
+
+  @internal
+  @override
+  String get blockKey => 'num_nodes';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'num_nodes': numNodes.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'num_nodes': numNodes};
+}
+
+/// The [SpannerInstanceCapacity.processingUnits] choice: sets `processing_units`.
+final class SpannerInstanceCapacityProcessingUnits
+    extends SpannerInstanceCapacity {
+  const SpannerInstanceCapacityProcessingUnits(this.processingUnits);
+
+  final TfArg<num> processingUnits;
+
+  @internal
+  @override
+  String get blockKey => 'processing_units';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'processing_units': processingUnits.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'processing_units': processingUnits,
+  };
+}
+
+/// The [SpannerInstanceCapacity.autoscalingConfig] choice: sets `autoscaling_config`.
+final class SpannerInstanceCapacityAutoscalingConfig
+    extends SpannerInstanceCapacity {
+  const SpannerInstanceCapacityAutoscalingConfig(this.autoscalingConfig);
+
+  final SpannerInstanceAutoscalingConfig autoscalingConfig;
+
+  @internal
+  @override
+  String get blockKey => 'autoscaling_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'autoscaling_config': autoscalingConfig.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'autoscaling_config': TfArg.literal(autoscalingConfig.encode()),
+  };
+}
+
 /// Typed helper for the `autoscaling_config` block of
 /// `google_spanner_instance` (derived from provider schema).
 @immutable
@@ -489,7 +591,8 @@ final class SpannerInstanceAutoscalingTargets {
 /// - [config]: instance configuration name (e.g. `regional-asia-northeast1`).
 /// - [displayName]: user-visible label.
 ///
-/// Set exactly one of [numNodes] or [processingUnits] for capacity.
+/// Size it with [capacity]: `.numNodes(...)`, `.processingUnits(...)` or
+/// `.autoscalingConfig(...)`, at most one (the provider rejects two).
 ///
 /// Enable `spanner.googleapis.com` via [GoogleProjectService] before apply.
 ///
@@ -499,7 +602,7 @@ final class SpannerInstanceAutoscalingTargets {
 ///   'app',
 ///   config: .literal('regional-asia-northeast1'),
 ///   displayName: TfArg.literal('App Spanner'),
-///   numNodes: TfArg.literal(1),
+///   capacity: .numNodes(.literal(1)),
 /// );
 /// ```
 final class GoogleSpannerInstance extends Resource {
@@ -509,16 +612,14 @@ final class GoogleSpannerInstance extends Resource {
     super.localName, {
     required RefTo<GoogleSpannerInstanceConfig> config,
     required TfArg<String> displayName,
-    TfArg<num>? numNodes,
-    TfArg<num>? processingUnits,
+    SpannerInstanceCapacity? capacity,
     SpannerInstanceEdition? edition,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? defaultBackupScheduleType,
+    SpannerInstanceDefaultBackupScheduleType? defaultBackupScheduleType,
     TfArg<bool>? forceDestroy,
-    TfArg<String>? instanceType,
+    SpannerInstanceType? instanceType,
     TfArg<String>? name,
     TfArg<String>? project,
-    SpannerInstanceAutoscalingConfig? autoscalingConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -528,8 +629,7 @@ final class GoogleSpannerInstance extends Resource {
          argMap: {
            'config': config.encodeAs('name'),
            'display_name': displayName,
-           'num_nodes': ?numNodes,
-           'processing_units': ?processingUnits,
+           ...?capacity?.argMap,
            'edition': ?edition,
            'labels': ?labels,
            'default_backup_schedule_type': ?defaultBackupScheduleType,
@@ -537,8 +637,6 @@ final class GoogleSpannerInstance extends Resource {
            'instance_type': ?instanceType,
            'name': ?name,
            'project': ?project,
-           if (autoscalingConfig != null)
-             'autoscaling_config': TfArg.literal(autoscalingConfig.encode()),
          },
        );
 

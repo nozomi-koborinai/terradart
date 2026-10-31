@@ -8,6 +8,30 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_logic_app_integration_account`.
 const Set<String> _azurermLogicAppIntegrationAccountSensitive = <String>{};
 
+/// Logic App Integration Account Sku enum for `sku_name`.
+extension type const LogicAppIntegrationAccountSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppIntegrationAccountSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppIntegrationAccountSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppIntegrationAccountSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = LogicAppIntegrationAccountSkuName._(
+    TfArgLiteral('Basic'),
+  );
+  static const free = LogicAppIntegrationAccountSkuName._(TfArgLiteral('Free'));
+  static const standard = LogicAppIntegrationAccountSkuName._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<LogicAppIntegrationAccountSkuName> values = [
+    basic,
+    free,
+    standard,
+  ];
+}
+
 /// Factory wrapper for `azurerm_logic_app_integration_account`.
 final class AzurermLogicAppIntegrationAccount extends Resource {
   static const String tfType = 'azurerm_logic_app_integration_account';
@@ -18,7 +42,7 @@ final class AzurermLogicAppIntegrationAccount extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required LogicAppIntegrationAccountSkuName skuName,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

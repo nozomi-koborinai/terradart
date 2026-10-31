@@ -11,8 +11,9 @@ export 'src/data/cloudflare_worker.dart'
         DataWorkerOrder,
         DataWorkerOrderBy;
 export 'src/data/cloudflare_worker_version.dart'
-    show DataCloudflareWorkerVersion;
-export 'src/data/cloudflare_workers.dart' show DataCloudflareWorkers;
+    show DataCloudflareWorkerVersion, DataWorkerVersionInclude;
+export 'src/data/cloudflare_workers.dart'
+    show DataCloudflareWorkers, DataWorkersOrder, DataWorkersOrderBy;
 export 'src/data/cloudflare_workers_cron_trigger.dart'
     show DataCloudflareWorkersCronTrigger;
 export 'src/data/cloudflare_workers_custom_domain.dart'
@@ -35,7 +36,10 @@ export 'src/data/cloudflare_workers_kv_namespace.dart'
         DataWorkersKvNamespaceFilter,
         DataWorkersKvNamespaceOrder;
 export 'src/data/cloudflare_workers_kv_namespaces.dart'
-    show DataCloudflareWorkersKvNamespaces;
+    show
+        DataCloudflareWorkersKvNamespaces,
+        DataWorkersKvNamespacesDirection,
+        DataWorkersKvNamespacesOrder;
 export 'src/data/cloudflare_workers_route.dart' show DataCloudflareWorkersRoute;
 export 'src/data/cloudflare_workers_routes.dart'
     show DataCloudflareWorkersRoutes;

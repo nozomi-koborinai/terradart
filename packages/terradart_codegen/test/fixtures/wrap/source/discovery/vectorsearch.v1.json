@@ -1,0 +1,90 @@
+{
+  "name": "vectorsearch",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://vectorsearch.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudVectorsearchV1Collection": {
+      "properties": {
+        "vectorSchema": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudVectorsearchV1VectorField"
+          }
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1DataObject": {
+      "properties": {}
+    },
+    "GoogleCloudVectorsearchV1DedicatedInfrastructure": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "STORAGE_OPTIMIZED",
+            "PERFORMANCE_OPTIMIZED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1DenseScannIndex": {
+      "properties": {
+        "featureNormType": {
+          "enum": [
+            "FEATURE_NORM_TYPE_UNSPECIFIED",
+            "NONE",
+            "UNIT_L2_NORM"
+          ]
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1DenseVectorField": {
+      "properties": {
+        "vertexEmbeddingConfig": {
+          "$ref": "GoogleCloudVectorsearchV1VertexEmbeddingConfig"
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1Index": {
+      "properties": {
+        "distanceMetric": {
+          "enum": [
+            "DISTANCE_METRIC_UNSPECIFIED",
+            "DOT_PRODUCT",
+            "COSINE_DISTANCE"
+          ]
+        },
+        "denseScann": {
+          "$ref": "GoogleCloudVectorsearchV1DenseScannIndex"
+        },
+        "dedicatedInfrastructure": {
+          "$ref": "GoogleCloudVectorsearchV1DedicatedInfrastructure"
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1VectorField": {
+      "properties": {
+        "denseVector": {
+          "$ref": "GoogleCloudVectorsearchV1DenseVectorField"
+        }
+      }
+    },
+    "GoogleCloudVectorsearchV1VertexEmbeddingConfig": {
+      "properties": {
+        "taskType": {
+          "enum": [
+            "EMBEDDING_TASK_TYPE_UNSPECIFIED",
+            "RETRIEVAL_QUERY",
+            "RETRIEVAL_DOCUMENT",
+            "SEMANTIC_SIMILARITY",
+            "CLASSIFICATION",
+            "CLUSTERING",
+            "QUESTION_ANSWERING",
+            "FACT_VERIFICATION",
+            "CODE_RETRIEVAL_QUERY"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -6,13 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_managed_disk_sas_token`.
 const Set<String> _azurermManagedDiskSasTokenSensitive = <String>{'sas_url'};
 
+/// Managed Disk Sas Token Access enum for `access_level`.
+extension type const ManagedDiskSasTokenAccessLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskSasTokenAccessLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDiskSasTokenAccessLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskSasTokenAccessLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const read = ManagedDiskSasTokenAccessLevel._(TfArgLiteral('Read'));
+  static const write = ManagedDiskSasTokenAccessLevel._(TfArgLiteral('Write'));
+
+  static const List<ManagedDiskSasTokenAccessLevel> values = [read, write];
+}
+
 /// Factory wrapper for `azurerm_managed_disk_sas_token`.
 final class AzurermManagedDiskSasToken extends Resource {
   static const String tfType = 'azurerm_managed_disk_sas_token';
 
   AzurermManagedDiskSasToken(
     super.localName, {
-    required TfArg<String> accessLevel,
+    required ManagedDiskSasTokenAccessLevel accessLevel,
     required TfArg<num> durationInSeconds,
     required TfArg<String> managedDiskId,
     super.lifecycle,

@@ -9,6 +9,28 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_backup_policy_vm_workload`.
 const Set<String> _azurermBackupPolicyVmWorkloadSensitive = <String>{};
 
+/// Backup Policy Vm Workload enum for `workload_type`.
+extension type const BackupPolicyVmWorkloadType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyVmWorkloadType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyVmWorkloadType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyVmWorkloadType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sqldatabase = BackupPolicyVmWorkloadType._(
+    TfArgLiteral('SQLDataBase'),
+  );
+  static const saphanadatabase = BackupPolicyVmWorkloadType._(
+    TfArgLiteral('SAPHanaDatabase'),
+  );
+
+  static const List<BackupPolicyVmWorkloadType> values = [
+    sqldatabase,
+    saphanadatabase,
+  ];
+}
+
 /// Typed helper for the `protection_policy` block of
 /// `azurerm_backup_policy_vm_workload` (derived from provider schema).
 @immutable
@@ -23,7 +45,7 @@ final class BackupPolicyVmWorkloadProtectionPolicy {
     this.simpleRetention,
   });
 
-  final TfArg<String> policyType;
+  final BackupPolicyVmWorkloadPolicyType policyType;
 
   final BackupPolicyVmWorkloadBackup backup;
 
@@ -49,6 +71,32 @@ final class BackupPolicyVmWorkloadProtectionPolicy {
   };
 }
 
+/// `policy_type` — derived from the provider schema description.
+extension type const BackupPolicyVmWorkloadPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyVmWorkloadPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyVmWorkloadPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyVmWorkloadPolicyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const differential = BackupPolicyVmWorkloadPolicyType._(
+    TfArgLiteral('Differential'),
+  );
+  static const full = BackupPolicyVmWorkloadPolicyType._(TfArgLiteral('Full'));
+  static const incremental = BackupPolicyVmWorkloadPolicyType._(
+    TfArgLiteral('Incremental'),
+  );
+  static const log = BackupPolicyVmWorkloadPolicyType._(TfArgLiteral('Log'));
+
+  static const List<BackupPolicyVmWorkloadPolicyType> values = [
+    differential,
+    full,
+    incremental,
+    log,
+  ];
+}
+
 /// Typed helper for the `protection_policy.backup` block of
 /// `azurerm_backup_policy_vm_workload` (derived from provider schema).
 @immutable
@@ -60,7 +108,7 @@ final class BackupPolicyVmWorkloadBackup {
     this.weekdays,
   });
 
-  final TfArg<String>? frequency;
+  final BackupPolicyVmWorkloadFrequency? frequency;
 
   final TfArg<num>? frequencyInMinutes;
 
@@ -75,6 +123,23 @@ final class BackupPolicyVmWorkloadBackup {
     'time': ?time?.toTfJson(),
     'weekdays': ?weekdays?.toTfJson(),
   };
+}
+
+/// `frequency` — derived from the provider schema description.
+extension type const BackupPolicyVmWorkloadFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyVmWorkloadFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyVmWorkloadFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyVmWorkloadFrequency.arg(TfArg<String> arg) : this._(arg);
+
+  static const daily = BackupPolicyVmWorkloadFrequency._(TfArgLiteral('Daily'));
+  static const weekly = BackupPolicyVmWorkloadFrequency._(
+    TfArgLiteral('Weekly'),
+  );
+
+  static const List<BackupPolicyVmWorkloadFrequency> values = [daily, weekly];
 }
 
 /// Typed helper for the `protection_policy.retention_daily` block of
@@ -103,13 +168,13 @@ final class BackupPolicyVmWorkloadRetentionMonthly {
 
   final TfArg<num> count;
 
-  final TfArg<String> formatType;
+  final BackupPolicyVmWorkloadFormatType formatType;
 
   final TfArg<List<num>>? monthdays;
 
   final TfArg<List<String>>? weekdays;
 
-  final TfArg<List<String>>? weeks;
+  final EnumList<BackupPolicyVmWorkloadWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -119,6 +184,49 @@ final class BackupPolicyVmWorkloadRetentionMonthly {
     'weekdays': ?weekdays?.toTfJson(),
     'weeks': ?weeks?.toTfJson(),
   };
+}
+
+/// `format_type` — derived from the provider schema description.
+extension type const BackupPolicyVmWorkloadFormatType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyVmWorkloadFormatType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyVmWorkloadFormatType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyVmWorkloadFormatType.arg(TfArg<String> arg) : this._(arg);
+
+  static const daily = BackupPolicyVmWorkloadFormatType._(
+    TfArgLiteral('Daily'),
+  );
+  static const weekly = BackupPolicyVmWorkloadFormatType._(
+    TfArgLiteral('Weekly'),
+  );
+
+  static const List<BackupPolicyVmWorkloadFormatType> values = [daily, weekly];
+}
+
+/// `weeks` — derived from the provider schema description.
+extension type const BackupPolicyVmWorkloadWeeks._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyVmWorkloadWeeks.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyVmWorkloadWeeks.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyVmWorkloadWeeks.arg(TfArg<String> arg) : this._(arg);
+
+  static const first = BackupPolicyVmWorkloadWeeks._(TfArgLiteral('First'));
+  static const second = BackupPolicyVmWorkloadWeeks._(TfArgLiteral('Second'));
+  static const third = BackupPolicyVmWorkloadWeeks._(TfArgLiteral('Third'));
+  static const fourth = BackupPolicyVmWorkloadWeeks._(TfArgLiteral('Fourth'));
+  static const last = BackupPolicyVmWorkloadWeeks._(TfArgLiteral('Last'));
+
+  static const List<BackupPolicyVmWorkloadWeeks> values = [
+    first,
+    second,
+    third,
+    fourth,
+    last,
+  ];
 }
 
 /// Typed helper for the `protection_policy.retention_weekly` block of
@@ -156,7 +264,7 @@ final class BackupPolicyVmWorkloadRetentionYearly {
 
   final TfArg<num> count;
 
-  final TfArg<String> formatType;
+  final BackupPolicyVmWorkloadFormatType formatType;
 
   final TfArg<List<num>>? monthdays;
 
@@ -164,7 +272,7 @@ final class BackupPolicyVmWorkloadRetentionYearly {
 
   final TfArg<List<String>>? weekdays;
 
-  final TfArg<List<String>>? weeks;
+  final EnumList<BackupPolicyVmWorkloadWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -218,7 +326,7 @@ final class AzurermBackupPolicyVmWorkload extends Resource {
     required TfArg<String> name,
     required TfArg<String> recoveryVaultName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> workloadType,
+    required BackupPolicyVmWorkloadType workloadType,
     required List<BackupPolicyVmWorkloadProtectionPolicy> protectionPolicy,
     required BackupPolicyVmWorkloadSettings settings,
     super.lifecycle,

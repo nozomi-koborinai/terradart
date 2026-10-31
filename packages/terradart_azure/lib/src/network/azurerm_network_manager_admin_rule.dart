@@ -88,13 +88,36 @@ final class NetworkManagerAdminRuleDestination {
 
   final TfArg<String> addressPrefix;
 
-  final TfArg<String> addressPrefixType;
+  final NetworkManagerAdminRuleAddressPrefixType addressPrefixType;
 
   @internal
   Map<String, Object?> encode() => {
     'address_prefix': addressPrefix.toTfJson(),
     'address_prefix_type': addressPrefixType.toTfJson(),
   };
+}
+
+/// `address_prefix_type` — derived from the provider schema description.
+extension type const NetworkManagerAdminRuleAddressPrefixType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkManagerAdminRuleAddressPrefixType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagerAdminRuleAddressPrefixType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkManagerAdminRuleAddressPrefixType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipprefix = NetworkManagerAdminRuleAddressPrefixType._(
+    TfArgLiteral('IPPrefix'),
+  );
+  static const servicetag = NetworkManagerAdminRuleAddressPrefixType._(
+    TfArgLiteral('ServiceTag'),
+  );
+
+  static const List<NetworkManagerAdminRuleAddressPrefixType> values = [
+    ipprefix,
+    servicetag,
+  ];
 }
 
 /// Typed helper for the `source` block of
@@ -108,7 +131,7 @@ final class NetworkManagerAdminRuleSource {
 
   final TfArg<String> addressPrefix;
 
-  final TfArg<String> addressPrefixType;
+  final NetworkManagerAdminRuleAddressPrefixType addressPrefixType;
 
   @internal
   Map<String, Object?> encode() => {

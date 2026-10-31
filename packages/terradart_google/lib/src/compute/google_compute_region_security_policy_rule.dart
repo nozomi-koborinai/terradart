@@ -15,6 +15,45 @@ import '../compute/google_compute_region_security_policy.dart'
 /// Sensitive field paths for `google_compute_region_security_policy_rule`.
 const Set<String> _googleComputeRegionSecurityPolicyRuleSensitive = <String>{};
 
+/// Compute Region Security Policy Rule enum for `action`.
+extension type const ComputeRegionSecurityPolicyRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionSecurityPolicyRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionSecurityPolicyRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionSecurityPolicyRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('allow'),
+  );
+  static const deny403 = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny502 = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(502)'),
+  );
+  static const rateBasedBan = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('rate_based_ban'),
+  );
+  static const throttle = ComputeRegionSecurityPolicyRuleAction._(
+    TfArgLiteral('throttle'),
+  );
+
+  static const List<ComputeRegionSecurityPolicyRuleAction> values = [
+    allow,
+    deny403,
+    deny404,
+    deny502,
+    rateBasedBan,
+    throttle,
+  ];
+}
+
 @immutable
 class ComputeRegionSecurityPolicyRuleMatch {
   const ComputeRegionSecurityPolicyRuleMatch({this.versionedExpr, this.config});
@@ -37,20 +76,55 @@ class ComputeRegionSecurityPolicyRuleMatchConfig {
   Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
 }
 
+/// Action for requests over a `rate_limit_options` threshold.
+extension type const ComputeRegionSecurityPolicyRuleExceedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionSecurityPolicyRuleExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionSecurityPolicyRuleExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionSecurityPolicyRuleExceedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deny403 = ComputeRegionSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeRegionSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeRegionSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeRegionSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeRegionSecurityPolicyRuleExceedAction> values = [
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 @immutable
 class ComputeRegionSecurityPolicyRuleRateLimitOptions {
   const ComputeRegionSecurityPolicyRuleRateLimitOptions({
+    this.exceedAction,
     this.enforceOnKey,
     this.enforceOnKeyName,
     this.enforceOnKeyConfigs,
   });
 
+  final ComputeRegionSecurityPolicyRuleExceedAction? exceedAction;
   final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
   final TfArg<String>? enforceOnKeyName;
   final List<ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig>?
   enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
+    if (exceedAction != null) 'exceed_action': exceedAction!.toTfJson(),
     if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
@@ -209,7 +283,7 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
 
   GoogleComputeRegionSecurityPolicyRule(
     super.localName, {
-    required TfArg<String> action,
+    required ComputeRegionSecurityPolicyRuleAction action,
     TfArg<String>? description,
     TfArg<bool>? preview,
     required TfArg<num> priority,

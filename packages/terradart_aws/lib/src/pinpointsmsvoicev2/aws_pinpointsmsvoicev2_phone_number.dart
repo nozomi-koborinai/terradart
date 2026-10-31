@@ -101,7 +101,8 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
     TfArg<bool>? forceDisassociate,
     required TfArg<String> isoCountryCode,
     required Pinpointsmsvoicev2PhoneNumberMessageType messageType,
-    required List<Pinpointsmsvoicev2PhoneNumberCapabilities> numberCapabilities,
+    required EnumList<Pinpointsmsvoicev2PhoneNumberCapabilities>
+    numberCapabilities,
     required Pinpointsmsvoicev2PhoneNumberType numberType,
     TfArg<String>? optOutListName,
     TfArg<String>? region,
@@ -123,9 +124,7 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
            'force_disassociate': ?forceDisassociate,
            'iso_country_code': isoCountryCode,
            'message_type': messageType,
-           'number_capabilities': TfArg.literal([
-             for (final e in numberCapabilities) e.toTfJson(),
-           ]),
+           'number_capabilities': numberCapabilities,
            'number_type': numberType,
            'opt_out_list_name': ?optOutListName,
            'region': ?region,

@@ -11,6 +11,7 @@ export 'src/vector/google_vector_search_collection.dart'
         VectorSearchCollectionDenseVector,
         VectorSearchCollectionEncryptionSpec,
         VectorSearchCollectionSparseVector,
+        VectorSearchCollectionTaskType,
         VectorSearchCollectionVectorSchema,
         VectorSearchCollectionVertexEmbeddingConfig;
 export 'src/vector/google_vector_search_data_object.dart'

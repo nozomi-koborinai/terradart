@@ -9,6 +9,84 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_access_rules`.
 const Set<String> _cloudflareAccessRulesSensitive = <String>{};
 
+/// Data Access Rules enum for `direction`.
+extension type const DataAccessRulesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRulesDirection.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRulesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRulesDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataAccessRulesDirection._(TfArgLiteral('asc'));
+  static const desc = DataAccessRulesDirection._(TfArgLiteral('desc'));
+
+  static const List<DataAccessRulesDirection> values = [asc, desc];
+}
+
+/// Data Access Rules enum for `match`.
+extension type const DataAccessRulesMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRulesMatch.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRulesMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRulesMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = DataAccessRulesMatch._(TfArgLiteral('any'));
+  static const all = DataAccessRulesMatch._(TfArgLiteral('all'));
+
+  static const List<DataAccessRulesMatch> values = [any, all];
+}
+
+/// Data Access Rules enum for `mode`.
+extension type const DataAccessRulesMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRulesMode.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRulesMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRulesMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const block = DataAccessRulesMode._(TfArgLiteral('block'));
+  static const challenge = DataAccessRulesMode._(TfArgLiteral('challenge'));
+  static const whitelist = DataAccessRulesMode._(TfArgLiteral('whitelist'));
+  static const jsChallenge = DataAccessRulesMode._(
+    TfArgLiteral('js_challenge'),
+  );
+  static const managedChallenge = DataAccessRulesMode._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<DataAccessRulesMode> values = [
+    block,
+    challenge,
+    whitelist,
+    jsChallenge,
+    managedChallenge,
+  ];
+}
+
+/// Data Access Rules enum for `order`.
+extension type const DataAccessRulesOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRulesOrder.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRulesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRulesOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const configurationTarget = DataAccessRulesOrder._(
+    TfArgLiteral('configuration.target'),
+  );
+  static const configurationValue = DataAccessRulesOrder._(
+    TfArgLiteral('configuration.value'),
+  );
+  static const mode = DataAccessRulesOrder._(TfArgLiteral('mode'));
+
+  static const List<DataAccessRulesOrder> values = [
+    configurationTarget,
+    configurationValue,
+    mode,
+  ];
+}
+
 /// Typed helper for the `configuration` block of
 /// `cloudflare_access_rules` (derived from provider schema).
 @immutable
@@ -54,12 +132,12 @@ final class DataCloudflareAccessRules extends Data {
   DataCloudflareAccessRules(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
-    TfArg<String>? match,
+    DataAccessRulesDirection? direction,
+    DataAccessRulesMatch? match,
     TfArg<num>? maxItems,
-    TfArg<String>? mode,
+    DataAccessRulesMode? mode,
     TfArg<String>? notes,
-    TfArg<String>? order,
+    DataAccessRulesOrder? order,
     RefTo<CloudflareZone>? zoneId,
     DataAccessRulesConfiguration? configuration,
     super.provider,

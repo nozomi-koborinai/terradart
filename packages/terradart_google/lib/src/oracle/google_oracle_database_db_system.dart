@@ -55,10 +55,15 @@ extension type const OracleDatabaseDbSystemDatabaseEdition._(TfArg<String> _)
   static const enterpriseEdition = OracleDatabaseDbSystemDatabaseEdition._(
     TfArgLiteral('ENTERPRISE_EDITION'),
   );
+  static const enterpriseEditionHighPerformance =
+      OracleDatabaseDbSystemDatabaseEdition._(
+        TfArgLiteral('ENTERPRISE_EDITION_HIGH_PERFORMANCE'),
+      );
 
   static const List<OracleDatabaseDbSystemDatabaseEdition> values = [
     standardEdition,
     enterpriseEdition,
+    enterpriseEditionHighPerformance,
   ];
 }
 
@@ -111,7 +116,7 @@ final class OracleDatabaseDbSystemProperties {
 
   final TfArg<num> computeCount;
 
-  final TfArg<String>? computeModel;
+  final OracleDatabaseDbSystemComputeModel? computeModel;
 
   final TfArg<num>? dataStorageSizeGb;
 
@@ -166,6 +171,25 @@ final class OracleDatabaseDbSystemProperties {
     'db_system_options': ?dbSystemOptions?.encode(),
     'time_zone': ?timeZone?.encode(),
   };
+}
+
+/// `compute_model` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemComputeModel._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemComputeModel.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemComputeModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemComputeModel.arg(TfArg<String> arg) : this._(arg);
+
+  static const ecpu = OracleDatabaseDbSystemComputeModel._(
+    TfArgLiteral('ECPU'),
+  );
+  static const ocpu = OracleDatabaseDbSystemComputeModel._(
+    TfArgLiteral('OCPU'),
+  );
+
+  static const List<OracleDatabaseDbSystemComputeModel> values = [ecpu, ocpu];
 }
 
 /// Typed helper for the `properties.data_collection_options` block of
@@ -312,13 +336,14 @@ final class OracleDatabaseDbSystemDbBackupConfig {
 
   final TfArg<bool>? autoBackupEnabled;
 
-  final TfArg<String>? autoFullBackupDay;
+  final OracleDatabaseDbSystemAutoFullBackupDay? autoFullBackupDay;
 
-  final TfArg<String>? autoFullBackupWindow;
+  final OracleDatabaseDbSystemAutoFullBackupWindow? autoFullBackupWindow;
 
-  final TfArg<String>? autoIncrementalBackupWindow;
+  final OracleDatabaseDbSystemAutoIncrementalBackupWindow?
+  autoIncrementalBackupWindow;
 
-  final TfArg<String>? backupDeletionPolicy;
+  final OracleDatabaseDbSystemBackupDeletionPolicy? backupDeletionPolicy;
 
   final TfArg<num>? retentionPeriodDays;
 
@@ -340,16 +365,241 @@ final class OracleDatabaseDbSystemDbBackupConfig {
   };
 }
 
+/// `auto_full_backup_day` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemAutoFullBackupDay._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemAutoFullBackupDay.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemAutoFullBackupDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemAutoFullBackupDay.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const monday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = OracleDatabaseDbSystemAutoFullBackupDay._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<OracleDatabaseDbSystemAutoFullBackupDay> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
+}
+
+/// `auto_full_backup_window` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemAutoFullBackupWindow._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseDbSystemAutoFullBackupWindow.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemAutoFullBackupWindow.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemAutoFullBackupWindow.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const slotOne = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_ONE'),
+  );
+  static const slotTwo = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_TWO'),
+  );
+  static const slotThree = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_THREE'),
+  );
+  static const slotFour = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_FOUR'),
+  );
+  static const slotFive = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_FIVE'),
+  );
+  static const slotSix = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_SIX'),
+  );
+  static const slotSeven = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_SEVEN'),
+  );
+  static const slotEight = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_EIGHT'),
+  );
+  static const slotNine = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_NINE'),
+  );
+  static const slotTen = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_TEN'),
+  );
+  static const slotEleven = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_ELEVEN'),
+  );
+  static const slotTwelve = OracleDatabaseDbSystemAutoFullBackupWindow._(
+    TfArgLiteral('SLOT_TWELVE'),
+  );
+
+  static const List<OracleDatabaseDbSystemAutoFullBackupWindow> values = [
+    slotOne,
+    slotTwo,
+    slotThree,
+    slotFour,
+    slotFive,
+    slotSix,
+    slotSeven,
+    slotEight,
+    slotNine,
+    slotTen,
+    slotEleven,
+    slotTwelve,
+  ];
+}
+
+/// `auto_incremental_backup_window` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseDbSystemAutoIncrementalBackupWindow.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemAutoIncrementalBackupWindow.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemAutoIncrementalBackupWindow.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const slotOne = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_ONE'),
+  );
+  static const slotTwo = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_TWO'),
+  );
+  static const slotThree = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_THREE'),
+  );
+  static const slotFour = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_FOUR'),
+  );
+  static const slotFive = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_FIVE'),
+  );
+  static const slotSix = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_SIX'),
+  );
+  static const slotSeven = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_SEVEN'),
+  );
+  static const slotEight = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_EIGHT'),
+  );
+  static const slotNine = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_NINE'),
+  );
+  static const slotTen = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_TEN'),
+  );
+  static const slotEleven = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_ELEVEN'),
+  );
+  static const slotTwelve = OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
+    TfArgLiteral('SLOT_TWELVE'),
+  );
+
+  static const List<OracleDatabaseDbSystemAutoIncrementalBackupWindow> values =
+      [
+        slotOne,
+        slotTwo,
+        slotThree,
+        slotFour,
+        slotFive,
+        slotSix,
+        slotSeven,
+        slotEight,
+        slotNine,
+        slotTen,
+        slotEleven,
+        slotTwelve,
+      ];
+}
+
+/// `backup_deletion_policy` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemBackupDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseDbSystemBackupDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemBackupDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemBackupDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deleteImmediately = OracleDatabaseDbSystemBackupDeletionPolicy._(
+    TfArgLiteral('DELETE_IMMEDIATELY'),
+  );
+  static const deleteAfterRetentionPeriod =
+      OracleDatabaseDbSystemBackupDeletionPolicy._(
+        TfArgLiteral('DELETE_AFTER_RETENTION_PERIOD'),
+      );
+
+  static const List<OracleDatabaseDbSystemBackupDeletionPolicy> values = [
+    deleteImmediately,
+    deleteAfterRetentionPeriod,
+  ];
+}
+
 /// Typed helper for the `properties.db_home.database.properties.db_backup_config.backup_destination_details` block of
 /// `google_oracle_database_db_system` (derived from provider schema).
 @immutable
 final class OracleDatabaseDbSystemBackupDestinationDetails {
   const OracleDatabaseDbSystemBackupDestinationDetails({this.type});
 
-  final TfArg<String>? type;
+  final OracleDatabaseDbSystemType? type;
 
   @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemType._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemType.arg(TfArg<String> arg) : this._(arg);
+
+  static const nfs = OracleDatabaseDbSystemType._(TfArgLiteral('NFS'));
+  static const recoveryAppliance = OracleDatabaseDbSystemType._(
+    TfArgLiteral('RECOVERY_APPLIANCE'),
+  );
+  static const objectStore = OracleDatabaseDbSystemType._(
+    TfArgLiteral('OBJECT_STORE'),
+  );
+  static const local = OracleDatabaseDbSystemType._(TfArgLiteral('LOCAL'));
+  static const dbrs = OracleDatabaseDbSystemType._(TfArgLiteral('DBRS'));
+
+  static const List<OracleDatabaseDbSystemType> values = [
+    nfs,
+    recoveryAppliance,
+    objectStore,
+    local,
+    dbrs,
+  ];
 }
 
 /// Typed helper for the `properties.db_system_options` block of
@@ -358,12 +608,35 @@ final class OracleDatabaseDbSystemBackupDestinationDetails {
 final class OracleDatabaseDbSystemOptions {
   const OracleDatabaseDbSystemOptions({this.storageManagement});
 
-  final TfArg<String>? storageManagement;
+  final OracleDatabaseDbSystemStorageManagement? storageManagement;
 
   @internal
   Map<String, Object?> encode() => {
     'storage_management': ?storageManagement?.toTfJson(),
   };
+}
+
+/// `storage_management` — derived from the provider schema description.
+extension type const OracleDatabaseDbSystemStorageManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemStorageManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemStorageManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemStorageManagement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asm = OracleDatabaseDbSystemStorageManagement._(
+    TfArgLiteral('ASM'),
+  );
+  static const lvm = OracleDatabaseDbSystemStorageManagement._(
+    TfArgLiteral('LVM'),
+  );
+
+  static const List<OracleDatabaseDbSystemStorageManagement> values = [
+    asm,
+    lvm,
+  ];
 }
 
 /// Typed helper for the `properties.time_zone` block of

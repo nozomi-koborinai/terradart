@@ -8,13 +8,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_user_assigned_identity`.
 const Set<String> _azurermUserAssignedIdentitySensitive = <String>{};
 
+/// User Assigned Identity Isolation enum for `isolation_scope`.
+extension type const UserAssignedIdentityIsolationScope._(TfArg<String> _)
+    implements TfArg<String> {
+  UserAssignedIdentityIsolationScope.variable(String name)
+    : this._(TfArg.variable(name));
+  UserAssignedIdentityIsolationScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const UserAssignedIdentityIsolationScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const regional = UserAssignedIdentityIsolationScope._(
+    TfArgLiteral('Regional'),
+  );
+
+  static const List<UserAssignedIdentityIsolationScope> values = [regional];
+}
+
 /// Factory wrapper for `azurerm_user_assigned_identity`.
 final class AzurermUserAssignedIdentity extends Resource {
   static const String tfType = 'azurerm_user_assigned_identity';
 
   AzurermUserAssignedIdentity(
     super.localName, {
-    TfArg<String>? isolationScope,
+    UserAssignedIdentityIsolationScope? isolationScope,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,

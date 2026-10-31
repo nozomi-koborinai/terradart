@@ -256,7 +256,7 @@ final class AwsSesEventDestination extends Resource {
     super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
-    required List<SesEventDestinationMatchingTypes> matchingTypes,
+    required EnumList<SesEventDestinationMatchingTypes> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
     SesEventDestinationTarget? target,
@@ -269,9 +269,7 @@ final class AwsSesEventDestination extends Resource {
          argMap: {
            'configuration_set_name': configurationSetName,
            'enabled': ?enabled,
-           'matching_types': TfArg.literal([
-             for (final e in matchingTypes) e.toTfJson(),
-           ]),
+           'matching_types': matchingTypes,
            'name': name,
            'region': ?region,
            ...?target?.argMap,

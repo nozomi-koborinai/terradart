@@ -52,6 +52,41 @@ extension type const KubernetesClusterNodePoolGpuDriver._(TfArg<String> _)
   ];
 }
 
+/// Kubernetes Cluster Node Pool Gpu enum for `gpu_instance`.
+extension type const KubernetesClusterNodePoolGpuInstance._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolGpuInstance.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolGpuInstance.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolGpuInstance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mig1g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG1g'),
+  );
+  static const mig2g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG2g'),
+  );
+  static const mig3g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG3g'),
+  );
+  static const mig4g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG4g'),
+  );
+  static const mig7g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG7g'),
+  );
+
+  static const List<KubernetesClusterNodePoolGpuInstance> values = [
+    mig1g,
+    mig2g,
+    mig3g,
+    mig4g,
+    mig7g,
+  ];
+}
+
 /// Kubernetes Cluster Node Pool Kubelet Disk enum for `kubelet_disk_type`.
 extension type const KubernetesClusterNodePoolKubeletDiskType._(TfArg<String> _)
     implements TfArg<String> {
@@ -75,6 +110,21 @@ extension type const KubernetesClusterNodePoolKubeletDiskType._(TfArg<String> _)
   ];
 }
 
+/// Kubernetes Cluster Node Pool enum for `mode`.
+extension type const KubernetesClusterNodePoolMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const system = KubernetesClusterNodePoolMode._(TfArgLiteral('System'));
+  static const user = KubernetesClusterNodePoolMode._(TfArgLiteral('User'));
+
+  static const List<KubernetesClusterNodePoolMode> values = [system, user];
+}
+
 /// Kubernetes Cluster Node Pool Os Disk enum for `os_disk_type`.
 extension type const KubernetesClusterNodePoolOsDiskType._(TfArg<String> _)
     implements TfArg<String> {
@@ -95,6 +145,52 @@ extension type const KubernetesClusterNodePoolOsDiskType._(TfArg<String> _)
   static const List<KubernetesClusterNodePoolOsDiskType> values = [
     ephemeral,
     managed,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Os enum for `os_sku`.
+extension type const KubernetesClusterNodePoolOsSku._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolOsSku.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolOsSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolOsSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurelinux = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('AzureLinux'),
+  );
+  static const azurelinux3 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('AzureLinux3'),
+  );
+  static const ubuntu = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu'),
+  );
+  static const ubuntu2204 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu2204'),
+  );
+  static const ubuntu2404 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu2404'),
+  );
+  static const windows2019 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2019'),
+  );
+  static const windows2022 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2022'),
+  );
+  static const windows2025 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2025'),
+  );
+
+  static const List<KubernetesClusterNodePoolOsSku> values = [
+    azurelinux,
+    azurelinux3,
+    ubuntu,
+    ubuntu2204,
+    ubuntu2404,
+    windows2019,
+    windows2022,
+    windows2025,
   ];
 }
 
@@ -209,7 +305,7 @@ final class KubernetesClusterNodePoolKubeletConfig {
 
   final TfArg<String>? cpuCfsQuotaPeriod;
 
-  final TfArg<String>? cpuManagerPolicy;
+  final KubernetesClusterNodePoolCpuManagerPolicy? cpuManagerPolicy;
 
   final TfArg<num>? imageGcHighThreshold;
 
@@ -217,7 +313,7 @@ final class KubernetesClusterNodePoolKubeletConfig {
 
   final TfArg<num>? podMaxPid;
 
-  final TfArg<String>? topologyManagerPolicy;
+  final KubernetesClusterNodePoolTopologyManagerPolicy? topologyManagerPolicy;
 
   @internal
   Map<String, Object?> encode() => {
@@ -234,6 +330,63 @@ final class KubernetesClusterNodePoolKubeletConfig {
   };
 }
 
+/// `cpu_manager_policy` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolCpuManagerPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodePoolCpuManagerPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolCpuManagerPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolCpuManagerPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = KubernetesClusterNodePoolCpuManagerPolicy._(
+    TfArgLiteral('none'),
+  );
+  static const static = KubernetesClusterNodePoolCpuManagerPolicy._(
+    TfArgLiteral('static'),
+  );
+
+  static const List<KubernetesClusterNodePoolCpuManagerPolicy> values = [
+    none,
+    static,
+  ];
+}
+
+/// `topology_manager_policy` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolTopologyManagerPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodePoolTopologyManagerPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolTopologyManagerPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolTopologyManagerPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = KubernetesClusterNodePoolTopologyManagerPolicy._(
+    TfArgLiteral('none'),
+  );
+  static const bestEffort = KubernetesClusterNodePoolTopologyManagerPolicy._(
+    TfArgLiteral('best-effort'),
+  );
+  static const restricted = KubernetesClusterNodePoolTopologyManagerPolicy._(
+    TfArgLiteral('restricted'),
+  );
+  static const singleNumaNode =
+      KubernetesClusterNodePoolTopologyManagerPolicy._(
+        TfArgLiteral('single-numa-node'),
+      );
+
+  static const List<KubernetesClusterNodePoolTopologyManagerPolicy> values = [
+    none,
+    bestEffort,
+    restricted,
+    singleNumaNode,
+  ];
+}
+
 /// Typed helper for the `linux_os_config` block of
 /// `azurerm_kubernetes_cluster_node_pool` (derived from provider schema).
 @immutable
@@ -247,9 +400,10 @@ final class KubernetesClusterNodePoolLinuxOsConfig {
 
   final TfArg<num>? swapFileSizeMb;
 
-  final TfArg<String>? transparentHugePage;
+  final KubernetesClusterNodePoolTransparentHugePage? transparentHugePage;
 
-  final TfArg<String>? transparentHugePageDefrag;
+  final KubernetesClusterNodePoolTransparentHugePageDefrag?
+  transparentHugePageDefrag;
 
   final KubernetesClusterNodePoolSysctlConfig? sysctlConfig;
 
@@ -260,6 +414,67 @@ final class KubernetesClusterNodePoolLinuxOsConfig {
     'transparent_huge_page_defrag': ?transparentHugePageDefrag?.toTfJson(),
     'sysctl_config': ?sysctlConfig?.encode(),
   };
+}
+
+/// `transparent_huge_page` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolTransparentHugePage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodePoolTransparentHugePage.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolTransparentHugePage.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolTransparentHugePage.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const always = KubernetesClusterNodePoolTransparentHugePage._(
+    TfArgLiteral('always'),
+  );
+  static const madvise = KubernetesClusterNodePoolTransparentHugePage._(
+    TfArgLiteral('madvise'),
+  );
+  static const never = KubernetesClusterNodePoolTransparentHugePage._(
+    TfArgLiteral('never'),
+  );
+
+  static const List<KubernetesClusterNodePoolTransparentHugePage> values = [
+    always,
+    madvise,
+    never,
+  ];
+}
+
+/// `transparent_huge_page_defrag` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolTransparentHugePageDefrag._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodePoolTransparentHugePageDefrag.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolTransparentHugePageDefrag.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolTransparentHugePageDefrag.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const always = KubernetesClusterNodePoolTransparentHugePageDefrag._(
+    TfArgLiteral('always'),
+  );
+  static const defer = KubernetesClusterNodePoolTransparentHugePageDefrag._(
+    TfArgLiteral('defer'),
+  );
+  static const deferMadvise =
+      KubernetesClusterNodePoolTransparentHugePageDefrag._(
+        TfArgLiteral('defer+madvise'),
+      );
+  static const madvise = KubernetesClusterNodePoolTransparentHugePageDefrag._(
+    TfArgLiteral('madvise'),
+  );
+  static const never = KubernetesClusterNodePoolTransparentHugePageDefrag._(
+    TfArgLiteral('never'),
+  );
+
+  static const List<KubernetesClusterNodePoolTransparentHugePageDefrag> values =
+      [always, defer, deferMadvise, madvise, never];
 }
 
 /// Typed helper for the `linux_os_config.sysctl_config` block of
@@ -433,7 +648,7 @@ final class KubernetesClusterNodePoolAllowedHostPorts {
 
   final TfArg<num>? portStart;
 
-  final TfArg<String>? protocol;
+  final KubernetesClusterNodePoolProtocol? protocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -443,36 +658,134 @@ final class KubernetesClusterNodePoolAllowedHostPorts {
   };
 }
 
+/// `protocol` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = KubernetesClusterNodePoolProtocol._(TfArgLiteral('TCP'));
+  static const udp = KubernetesClusterNodePoolProtocol._(TfArgLiteral('UDP'));
+
+  static const List<KubernetesClusterNodePoolProtocol> values = [tcp, udp];
+}
+
 /// Typed helper for the `upgrade_settings` block of
 /// `azurerm_kubernetes_cluster_node_pool` (derived from provider schema).
 @immutable
 final class KubernetesClusterNodePoolUpgradeSettings {
   const KubernetesClusterNodePoolUpgradeSettings({
     this.drainTimeoutInMinutes,
-    this.maxSurge,
-    this.maxUnavailable,
+    this.upgradeCapacity,
     this.nodeSoakDurationInMinutes,
     this.undrainableNodeBehavior,
   });
 
   final TfArg<num>? drainTimeoutInMinutes;
 
-  final TfArg<String>? maxSurge;
-
-  final TfArg<String>? maxUnavailable;
+  final KubernetesClusterNodePoolUpgradeCapacity? upgradeCapacity;
 
   final TfArg<num>? nodeSoakDurationInMinutes;
 
-  final TfArg<String>? undrainableNodeBehavior;
+  final KubernetesClusterNodePoolUndrainableNodeBehavior?
+  undrainableNodeBehavior;
 
   @internal
   Map<String, Object?> encode() => {
     'drain_timeout_in_minutes': ?drainTimeoutInMinutes?.toTfJson(),
-    'max_surge': ?maxSurge?.toTfJson(),
-    'max_unavailable': ?maxUnavailable?.toTfJson(),
+    ...?upgradeCapacity?.encode(),
     'node_soak_duration_in_minutes': ?nodeSoakDurationInMinutes?.toTfJson(),
     'undrainable_node_behavior': ?undrainableNodeBehavior?.toTfJson(),
   };
+}
+
+/// At most one of `max_surge`, `max_unavailable` on the `upgrade_settings` block of `azurerm_kubernetes_cluster_node_pool`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.maxSurge(...)`.
+sealed class KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacity();
+
+  /// Sets `max_surge`.
+  const factory KubernetesClusterNodePoolUpgradeCapacity.maxSurge(
+    TfArg<String> maxSurge,
+  ) = KubernetesClusterNodePoolUpgradeCapacityMaxSurge;
+
+  /// Sets `max_unavailable`.
+  const factory KubernetesClusterNodePoolUpgradeCapacity.maxUnavailable(
+    TfArg<String> maxUnavailable,
+  ) = KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [KubernetesClusterNodePoolUpgradeCapacity.maxSurge] choice: sets `max_surge`.
+final class KubernetesClusterNodePoolUpgradeCapacityMaxSurge
+    extends KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacityMaxSurge(this.maxSurge);
+
+  final TfArg<String> maxSurge;
+
+  @internal
+  @override
+  String get blockKey => 'max_surge';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'max_surge': maxSurge.toTfJson()};
+}
+
+/// The [KubernetesClusterNodePoolUpgradeCapacity.maxUnavailable] choice: sets `max_unavailable`.
+final class KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable
+    extends KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable(
+    this.maxUnavailable,
+  );
+
+  final TfArg<String> maxUnavailable;
+
+  @internal
+  @override
+  String get blockKey => 'max_unavailable';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'max_unavailable': maxUnavailable.toTfJson(),
+  };
+}
+
+/// `undrainable_node_behavior` — derived from the provider schema description.
+extension type const KubernetesClusterNodePoolUndrainableNodeBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodePoolUndrainableNodeBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolUndrainableNodeBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolUndrainableNodeBehavior.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cordon = KubernetesClusterNodePoolUndrainableNodeBehavior._(
+    TfArgLiteral('Cordon'),
+  );
+  static const schedule = KubernetesClusterNodePoolUndrainableNodeBehavior._(
+    TfArgLiteral('Schedule'),
+  );
+
+  static const List<KubernetesClusterNodePoolUndrainableNodeBehavior> values = [
+    cordon,
+    schedule,
+  ];
 }
 
 /// Typed helper for the `windows_profile` block of
@@ -500,7 +813,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     KubernetesClusterNodePoolEvictionPolicy? evictionPolicy,
     TfArg<bool>? fipsEnabled,
     KubernetesClusterNodePoolGpuDriver? gpuDriver,
-    TfArg<String>? gpuInstance,
+    KubernetesClusterNodePoolGpuInstance? gpuInstance,
     TfArg<bool>? hostEncryptionEnabled,
     TfArg<String>? hostGroupId,
     KubernetesClusterNodePoolKubeletDiskType? kubeletDiskType,
@@ -508,7 +821,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<num>? maxCount,
     TfArg<num>? maxPods,
     TfArg<num>? minCount,
-    TfArg<String>? mode,
+    KubernetesClusterNodePoolMode? mode,
     required TfArg<String> name,
     TfArg<num>? nodeCount,
     TfArg<Map<String, String>>? nodeLabels,
@@ -518,7 +831,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<String>? orchestratorVersion,
     TfArg<num>? osDiskSizeGb,
     KubernetesClusterNodePoolOsDiskType? osDiskType,
-    TfArg<String>? osSku,
+    KubernetesClusterNodePoolOsSku? osSku,
     KubernetesClusterNodePoolOsType? osType,
     TfArg<String>? podSubnetId,
     KubernetesClusterNodePoolPriority? priority,

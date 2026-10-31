@@ -43,6 +43,20 @@ extension type const Aadb2cDirectoryDataResidencyLocation._(TfArg<String> _)
   ];
 }
 
+/// Aadb2c Directory Sku enum for `sku_name`.
+extension type const Aadb2cDirectorySkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  Aadb2cDirectorySkuName.variable(String name) : this._(TfArg.variable(name));
+  Aadb2cDirectorySkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const Aadb2cDirectorySkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const premiump1 = Aadb2cDirectorySkuName._(TfArgLiteral('PremiumP1'));
+  static const premiump2 = Aadb2cDirectorySkuName._(TfArgLiteral('PremiumP2'));
+
+  static const List<Aadb2cDirectorySkuName> values = [premiump1, premiump2];
+}
+
 /// Factory wrapper for `azurerm_aadb2c_directory`.
 final class AzurermAadb2cDirectory extends Resource {
   static const String tfType = 'azurerm_aadb2c_directory';
@@ -54,7 +68,7 @@ final class AzurermAadb2cDirectory extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> domainName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required Aadb2cDirectorySkuName skuName,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

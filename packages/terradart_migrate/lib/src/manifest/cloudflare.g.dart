@@ -173,16 +173,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccessRulesDirection',
         ),
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccessRulesMatch',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -194,9 +194,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccessRulesMode',
         ),
         MigrateSlot(
           tfName: 'notes',
@@ -208,9 +208,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccessRulesOrder',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -654,16 +654,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountDnsSettingsInternalViewsDirection',
         ),
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountDnsSettingsInternalViewsMatch',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -675,9 +675,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountDnsSettingsInternalViewsOrder',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -853,9 +853,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountMembersDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -867,16 +867,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountMembersOrder',
         ),
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountMembersStatus',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1400,9 +1400,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountTokensDirection',
         ),
         MigrateSlot(
           tfName: 'include_expired',
@@ -1451,9 +1451,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAccountsDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -2916,16 +2916,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAiSearchInstancesOrderBy',
         ),
         MigrateSlot(
           tfName: 'order_by_direction',
           dartName: 'orderByDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataAiSearchInstancesOrderByDirection',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -3447,9 +3447,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldDiscoveryOperationsDirection',
         ),
         MigrateSlot(
           tfName: 'endpoint',
@@ -3482,23 +3482,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldDiscoveryOperationsOrder',
         ),
         MigrateSlot(
           tfName: 'origin',
           dartName: 'origin',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldDiscoveryOperationsOrigin',
         ),
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldDiscoveryOperationsState',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -3786,9 +3786,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldOperationsDirection',
         ),
         MigrateSlot(
           tfName: 'endpoint',
@@ -3828,9 +3828,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiShieldOperationsOrder',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -4391,9 +4391,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataApiTokensDirection',
         ),
         MigrateSlot(
           tfName: 'include_expired',
@@ -6408,9 +6408,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'deploy',
           dartName: 'deploy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCertificatePacksDeploy',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -6422,9 +6422,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCertificatePacksStatus',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -6702,9 +6702,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataClientCertificatesStatus',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -7271,9 +7271,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sort_order',
           dartName: 'sortOrder',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCloudforceOneRequestMessageSortOrder',
         ),
       ],
       getters: <MigrateGetter>[
@@ -7599,16 +7599,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sort_order',
           dartName: 'sortOrder',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCloudforceOneRequestsSortOrder',
         ),
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCloudforceOneRequestsStatus',
         ),
       ],
       getters: <MigrateGetter>[
@@ -7873,9 +7873,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataConnectivityDirectoryServicesType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -8693,9 +8693,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'certificate_authority',
           dartName: 'certificateAuthority',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomHostnamesCertificateAuthority',
         ),
         MigrateSlot(
           tfName: 'custom_origin_server',
@@ -8707,16 +8707,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomHostnamesDirection',
         ),
         MigrateSlot(
           tfName: 'hostname_status',
           dartName: 'hostnameStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomHostnamesHostnameStatus',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -8728,9 +8728,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomHostnamesOrder',
         ),
         MigrateSlot(
           tfName: 'ssl',
@@ -8742,9 +8742,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_status',
           dartName: 'sslStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomHostnamesSslStatus',
         ),
         MigrateSlot(
           tfName: 'wildcard',
@@ -9292,9 +9292,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'identifier',
           dartName: 'identifier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataCustomPagesIdentifier',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -9640,9 +9640,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomSslsMatch',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -9654,9 +9654,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataCustomSslsStatus',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -10619,9 +10619,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDnsRecordsDirection',
         ),
         MigrateSlot(
           tfName: 'include_shadow_metadata',
@@ -10633,9 +10633,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDnsRecordsMatch',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -10647,9 +10647,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDnsRecordsOrder',
         ),
         MigrateSlot(
           tfName: 'proxied',
@@ -10682,16 +10682,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tag_match',
           dartName: 'tagMatch',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDnsRecordsTagMatch',
         ),
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDnsRecordsType',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -11551,9 +11551,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailRoutingAddressesDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -12105,9 +12105,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityAllowPoliciesDirection',
         ),
         MigrateSlot(
           tfName: 'is_acceptable_sender',
@@ -12140,9 +12140,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityAllowPoliciesOrder',
         ),
         MigrateSlot(
           tfName: 'pattern',
@@ -12154,9 +12154,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pattern_type',
           dartName: 'patternType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityAllowPoliciesPatternType',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -12670,9 +12670,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityBlockSendersDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -12684,9 +12684,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityBlockSendersOrder',
         ),
         MigrateSlot(
           tfName: 'pattern',
@@ -12698,9 +12698,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pattern_type',
           dartName: 'patternType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityBlockSendersPatternType',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -13068,23 +13068,23 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'active_delivery_mode',
           dartName: 'activeDeliveryMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityDomainsActiveDeliveryMode',
         ),
         MigrateSlot(
           tfName: 'allowed_delivery_mode',
           dartName: 'allowedDeliveryMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityDomainsAllowedDeliveryMode',
         ),
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityDomainsDirection',
         ),
         MigrateSlot(
           tfName: 'domain',
@@ -13110,9 +13110,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityDomainsOrder',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -13124,9 +13124,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityDomainsStatus',
         ),
       ],
       getters: <MigrateGetter>[
@@ -13187,9 +13187,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityImpersonationRegistriesDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -13201,16 +13201,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityImpersonationRegistriesOrder',
         ),
         MigrateSlot(
           tfName: 'provenance',
           dartName: 'provenance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityImpersonationRegistriesProvenance',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -13663,9 +13663,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityTrustedDomainsListDirection',
         ),
         MigrateSlot(
           tfName: 'is_recent',
@@ -13691,9 +13691,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataEmailSecurityTrustedDomainsListOrder',
         ),
         MigrateSlot(
           tfName: 'pattern',
@@ -15201,7 +15201,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'settingId',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'HostnameTlsSettingSettingId',
+          dartType: 'HostnameTlsSettingName',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -15266,9 +15266,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'setting_id',
           dartName: 'settingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataHostnameTlsSettingName',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -15325,9 +15325,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'setting_id',
           dartName: 'settingId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataHostnameTlsSettingsName',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -17961,9 +17961,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset_id',
           dartName: 'datasetId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLogpushDatasetFieldDatasetId',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -18014,9 +18014,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset_id',
           dartName: 'datasetId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLogpushDatasetJobDatasetId',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -19224,9 +19224,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'device_type',
           dartName: 'deviceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataMagicTransitConnectorsDeviceType',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -22273,9 +22273,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'region',
           dartName: 'region',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataObservatoryScheduledTestRegion',
         ),
         MigrateSlot(
           tfName: 'url',
@@ -23197,9 +23197,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldConnectionsListDirection',
         ),
         MigrateSlot(
           tfName: 'exclude_cdn_cgi',
@@ -23218,9 +23218,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'export',
           dartName: 'export',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldConnectionsListExport',
         ),
         MigrateSlot(
           tfName: 'hosts',
@@ -23239,9 +23239,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldConnectionsListOrderBy',
         ),
         MigrateSlot(
           tfName: 'page',
@@ -23274,9 +23274,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldConnectionsListStatus',
         ),
         MigrateSlot(
           tfName: 'urls',
@@ -23441,9 +23441,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldCookiesListDirection',
         ),
         MigrateSlot(
           tfName: 'domain',
@@ -23455,9 +23455,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'export',
           dartName: 'export',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldCookiesListExport',
         ),
         MigrateSlot(
           tfName: 'hosts',
@@ -23490,9 +23490,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldCookiesListOrderBy',
         ),
         MigrateSlot(
           tfName: 'page',
@@ -23525,9 +23525,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'same_site',
           dartName: 'sameSite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldCookiesListSameSite',
         ),
         MigrateSlot(
           tfName: 'secure',
@@ -23539,9 +23539,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldCookiesListType',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -23888,9 +23888,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldScriptsListDirection',
         ),
         MigrateSlot(
           tfName: 'exclude_cdn_cgi',
@@ -23916,9 +23916,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'export',
           dartName: 'export',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldScriptsListExport',
         ),
         MigrateSlot(
           tfName: 'hosts',
@@ -23937,9 +23937,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldScriptsListOrderBy',
         ),
         MigrateSlot(
           tfName: 'page',
@@ -23972,9 +23972,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldScriptsListStatus',
         ),
         MigrateSlot(
           tfName: 'urls',
@@ -27528,9 +27528,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scopes',
           dartName: 'scopes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'SecretsStoreSecretScopes',
         ),
         MigrateSlot(
           tfName: 'store_id',
@@ -27679,9 +27680,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSecretsStoreSecretsDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -27693,9 +27694,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSecretsStoreSecretsOrder',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -27766,9 +27767,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSecretsStoresDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -27780,9 +27781,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSecretsStoresOrder',
         ),
       ],
       getters: <MigrateGetter>[
@@ -28470,9 +28471,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_type',
           dartName: 'resourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataShareResourcesResourceType',
         ),
         MigrateSlot(
           tfName: 'share_id',
@@ -28484,9 +28485,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataShareResourcesStatus',
         ),
       ],
       getters: <MigrateGetter>[
@@ -28530,9 +28531,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSharesDirection',
         ),
         MigrateSlot(
           tfName: 'include_recipient_counts',
@@ -28551,9 +28552,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kind',
           dartName: 'kind',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSharesKind',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -28565,9 +28566,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSharesOrder',
         ),
         MigrateSlot(
           tfName: 'resource_types',
@@ -28579,9 +28580,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSharesStatus',
         ),
         MigrateSlot(
           tfName: 'tag',
@@ -28593,9 +28594,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_type',
           dartName: 'targetType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSharesTargetType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -29303,9 +29304,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSpectrumApplicationsDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -29317,9 +29318,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSpectrumApplicationsOrder',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -30791,9 +30792,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataStreamsStatus',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -31288,9 +31289,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataTokenValidationRulesListAction',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -31747,9 +31748,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataTurnstileWidgetsDirection',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -31768,9 +31769,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataTurnstileWidgetsOrder',
         ),
       ],
       getters: <MigrateGetter>[
@@ -32481,9 +32482,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataUserGroupMembersDirection',
         ),
         MigrateSlot(
           tfName: 'fuzzy_email',
@@ -32542,9 +32543,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataUserGroupsDirection',
         ),
         MigrateSlot(
           tfName: 'fuzzy_name',
@@ -34483,9 +34484,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWebAnalyticsSitesOrderBy',
         ),
       ],
       getters: <MigrateGetter>[
@@ -34931,9 +34932,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'include',
           dartName: 'include',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWorkerVersionInclude',
         ),
         MigrateSlot(
           tfName: 'version_id',
@@ -35102,16 +35103,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWorkersOrder',
         ),
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWorkersOrderBy',
         ),
       ],
       getters: <MigrateGetter>[
@@ -36139,9 +36140,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWorkersKvNamespacesDirection',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -36153,9 +36154,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataWorkersKvNamespacesOrder',
         ),
       ],
       getters: <MigrateGetter>[
@@ -39122,9 +39123,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustAccessInfrastructureTargetsDirection',
         ),
         MigrateSlot(
           tfName: 'hostname',
@@ -39220,9 +39221,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustAccessInfrastructureTargetsOrder',
         ),
         MigrateSlot(
           tfName: 'tag',
@@ -40754,9 +40755,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustCasbIntegrationsDirection',
         ),
         MigrateSlot(
           tfName: 'dlp_enabled',
@@ -40775,9 +40776,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustCasbIntegrationsOrder',
         ),
         MigrateSlot(
           tfName: 'page',
@@ -40803,9 +40804,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustCasbIntegrationsStatus',
         ),
         MigrateSlot(
           tfName: 'use_cases',
@@ -41964,9 +41965,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'profile_type',
           dartName: 'profileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDeviceCustomProfilesProfileType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -43794,16 +43795,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sort_by',
           dartName: 'sortBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDexRulesSortBy',
         ),
         MigrateSlot(
           tfName: 'sort_order',
           dartName: 'sortOrder',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDexRulesSortOrder',
         ),
       ],
       getters: <MigrateGetter>[
@@ -44023,9 +44024,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kind',
           dartName: 'kind',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDexTestsKind',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -46914,9 +46915,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDnsLocationsDirection',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -46935,9 +46936,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustDnsLocationsOrderBy',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -47520,9 +47521,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustGatewayPoliciesDirection',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -47541,9 +47542,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustGatewayPoliciesOrderBy',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -48018,9 +48019,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustGatewayProxyEndpointsDirection',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -48039,9 +48040,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustGatewayProxyEndpointsOrderBy',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -48315,9 +48316,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustListsDirection',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -48336,9 +48337,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustListsOrderBy',
         ),
         MigrateSlot(
           tfName: 'search',
@@ -48350,9 +48351,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustListsType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -50604,9 +50605,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustTunnelCloudflaredsStatus',
         ),
         MigrateSlot(
           tfName: 'uuid',
@@ -51066,9 +51067,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZeroTrustTunnelWarpConnectorsStatus',
         ),
         MigrateSlot(
           tfName: 'uuid',
@@ -52706,16 +52707,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZonesDirection',
         ),
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZonesMatch',
         ),
         MigrateSlot(
           tfName: 'max_items',
@@ -52734,16 +52735,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZonesOrder',
         ),
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataZonesStatus',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -76569,7 +76570,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsSettingsMode',
+          dartType: 'ZeroTrustGatewaySettingsProxyInspectionMode',
         ),
       ],
     ),
@@ -78029,6 +78030,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'country': 'country',
       },
     ),
+    'DataAccessRulesDirection': MigrateEnum(
+      name: 'DataAccessRulesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAccessRulesMatch': MigrateEnum(
+      name: 'DataAccessRulesMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataAccessRulesMode': MigrateEnum(
+      name: 'DataAccessRulesMode',
+      members: <String, String>{
+        'block': 'block',
+        'challenge': 'challenge',
+        'whitelist': 'whitelist',
+        'js_challenge': 'jsChallenge',
+        'managed_challenge': 'managedChallenge',
+      },
+    ),
+    'DataAccessRulesOrder': MigrateEnum(
+      name: 'DataAccessRulesOrder',
+      members: <String, String>{
+        'configuration.target': 'configurationTarget',
+        'configuration.value': 'configurationValue',
+        'mode': 'mode',
+      },
+    ),
     'DataAccessRulesTarget': MigrateEnum(
       name: 'DataAccessRulesTarget',
       members: <String, String>{
@@ -78058,6 +78085,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'modified_on': 'modifiedOn',
       },
     ),
+    'DataAccountDnsSettingsInternalViewsDirection': MigrateEnum(
+      name: 'DataAccountDnsSettingsInternalViewsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAccountDnsSettingsInternalViewsMatch': MigrateEnum(
+      name: 'DataAccountDnsSettingsInternalViewsMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataAccountDnsSettingsInternalViewsOrder': MigrateEnum(
+      name: 'DataAccountDnsSettingsInternalViewsOrder',
+      members: <String, String>{
+        'name': 'name',
+        'created_on': 'createdOn',
+        'modified_on': 'modifiedOn',
+      },
+    ),
     'DataAccountMemberDirection': MigrateEnum(
       name: 'DataAccountMemberDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
@@ -78079,8 +78122,37 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'status': 'status',
       },
     ),
+    'DataAccountMembersDirection': MigrateEnum(
+      name: 'DataAccountMembersDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAccountMembersOrder': MigrateEnum(
+      name: 'DataAccountMembersOrder',
+      members: <String, String>{
+        'user.first_name': 'userFirstName',
+        'user.last_name': 'userLastName',
+        'user.email': 'userEmail',
+        'status': 'status',
+      },
+    ),
+    'DataAccountMembersStatus': MigrateEnum(
+      name: 'DataAccountMembersStatus',
+      members: <String, String>{
+        'accepted': 'accepted',
+        'pending': 'pending',
+        'rejected': 'rejected',
+      },
+    ),
     'DataAccountTokenDirection': MigrateEnum(
       name: 'DataAccountTokenDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAccountTokensDirection': MigrateEnum(
+      name: 'DataAccountTokensDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAccountsDirection': MigrateEnum(
+      name: 'DataAccountsDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
     'DataAiSearchInstanceOrderBy': MigrateEnum(
@@ -78090,6 +78162,44 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'DataAiSearchInstanceOrderByDirection': MigrateEnum(
       name: 'DataAiSearchInstanceOrderByDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataAiSearchInstancesOrderBy': MigrateEnum(
+      name: 'DataAiSearchInstancesOrderBy',
+      members: <String, String>{'created_at': 'createdAt'},
+    ),
+    'DataAiSearchInstancesOrderByDirection': MigrateEnum(
+      name: 'DataAiSearchInstancesOrderByDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataApiShieldDiscoveryOperationsDirection': MigrateEnum(
+      name: 'DataApiShieldDiscoveryOperationsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataApiShieldDiscoveryOperationsOrder': MigrateEnum(
+      name: 'DataApiShieldDiscoveryOperationsOrder',
+      members: <String, String>{
+        'host': 'host',
+        'method': 'method',
+        'endpoint': 'endpoint',
+        'traffic_stats.requests': 'trafficStatsRequests',
+        'traffic_stats.last_updated': 'trafficStatsLastUpdated',
+      },
+    ),
+    'DataApiShieldDiscoveryOperationsOrigin': MigrateEnum(
+      name: 'DataApiShieldDiscoveryOperationsOrigin',
+      members: <String, String>{
+        'ML': 'ml',
+        'SessionIdentifier': 'sessionidentifier',
+        'LabelDiscovery': 'labeldiscovery',
+      },
+    ),
+    'DataApiShieldDiscoveryOperationsState': MigrateEnum(
+      name: 'DataApiShieldDiscoveryOperationsState',
+      members: <String, String>{
+        'review': 'review',
+        'saved': 'saved',
+        'ignored': 'ignored',
+      },
     ),
     'DataApiShieldOperationDirection': MigrateEnum(
       name: 'DataApiShieldOperationDirection',
@@ -78104,8 +78214,25 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'thresholds.\$key': 'thresholdsKey',
       },
     ),
+    'DataApiShieldOperationsDirection': MigrateEnum(
+      name: 'DataApiShieldOperationsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataApiShieldOperationsOrder': MigrateEnum(
+      name: 'DataApiShieldOperationsOrder',
+      members: <String, String>{
+        'method': 'method',
+        'host': 'host',
+        'endpoint': 'endpoint',
+        'thresholds.\$key': 'thresholdsKey',
+      },
+    ),
     'DataApiTokenDirection': MigrateEnum(
       name: 'DataApiTokenDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataApiTokensDirection': MigrateEnum(
+      name: 'DataApiTokensDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
     'DataCertificatePackDeploy': MigrateEnum(
@@ -78119,8 +78246,29 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'DataCertificatePackFilterStatus',
       members: <String, String>{'all': 'all'},
     ),
+    'DataCertificatePacksDeploy': MigrateEnum(
+      name: 'DataCertificatePacksDeploy',
+      members: <String, String>{
+        'staging': 'staging',
+        'production': 'production',
+      },
+    ),
+    'DataCertificatePacksStatus': MigrateEnum(
+      name: 'DataCertificatePacksStatus',
+      members: <String, String>{'all': 'all'},
+    ),
     'DataClientCertificateFilterStatus': MigrateEnum(
       name: 'DataClientCertificateFilterStatus',
+      members: <String, String>{
+        'all': 'all',
+        'active': 'active',
+        'pending_reactivation': 'pendingReactivation',
+        'pending_revocation': 'pendingRevocation',
+        'revoked': 'revoked',
+      },
+    ),
+    'DataClientCertificatesStatus': MigrateEnum(
+      name: 'DataClientCertificatesStatus',
       members: <String, String>{
         'all': 'all',
         'active': 'active',
@@ -78140,12 +78288,35 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'declined': 'declined',
       },
     ),
+    'DataCloudforceOneRequestMessageSortOrder': MigrateEnum(
+      name: 'DataCloudforceOneRequestMessageSortOrder',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
     'DataCloudforceOneRequestSortOrder': MigrateEnum(
       name: 'DataCloudforceOneRequestSortOrder',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
+    'DataCloudforceOneRequestsSortOrder': MigrateEnum(
+      name: 'DataCloudforceOneRequestsSortOrder',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataCloudforceOneRequestsStatus': MigrateEnum(
+      name: 'DataCloudforceOneRequestsStatus',
+      members: <String, String>{
+        'open': 'open',
+        'accepted': 'accepted',
+        'reported': 'reported',
+        'approved': 'approved',
+        'completed': 'completed',
+        'declined': 'declined',
+      },
+    ),
     'DataConnectivityDirectoryServiceFilterType': MigrateEnum(
       name: 'DataConnectivityDirectoryServiceFilterType',
+      members: <String, String>{'tcp': 'tcp', 'http': 'http'},
+    ),
+    'DataConnectivityDirectoryServicesType': MigrateEnum(
+      name: 'DataConnectivityDirectoryServicesType',
       members: <String, String>{'tcp': 'tcp', 'http': 'http'},
     ),
     'DataCustomHostnameCertificateAuthority': MigrateEnum(
@@ -78211,6 +78382,84 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'holding_deployment': 'holdingDeployment',
       },
     ),
+    'DataCustomHostnamesCertificateAuthority': MigrateEnum(
+      name: 'DataCustomHostnamesCertificateAuthority',
+      members: <String, String>{
+        'google': 'google',
+        'lets_encrypt': 'letsEncrypt',
+        'ssl_com': 'sslCom',
+      },
+    ),
+    'DataCustomHostnamesDirection': MigrateEnum(
+      name: 'DataCustomHostnamesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataCustomHostnamesHostnameStatus': MigrateEnum(
+      name: 'DataCustomHostnamesHostnameStatus',
+      members: <String, String>{
+        'active': 'active',
+        'pending': 'pending',
+        'active_redeploying': 'activeRedeploying',
+        'moved': 'moved',
+        'pending_deletion': 'pendingDeletion',
+        'deleted': 'deleted',
+        'pending_blocked': 'pendingBlocked',
+        'pending_migration': 'pendingMigration',
+        'pending_provisioned': 'pendingProvisioned',
+        'test_pending': 'testPending',
+        'test_active': 'testActive',
+        'test_active_apex': 'testActiveApex',
+        'test_blocked': 'testBlocked',
+        'test_failed': 'testFailed',
+        'provisioned': 'provisioned',
+        'blocked': 'blocked',
+      },
+    ),
+    'DataCustomHostnamesOrder': MigrateEnum(
+      name: 'DataCustomHostnamesOrder',
+      members: <String, String>{'ssl': 'ssl', 'ssl_status': 'sslStatus'},
+    ),
+    'DataCustomHostnamesSslStatus': MigrateEnum(
+      name: 'DataCustomHostnamesSslStatus',
+      members: <String, String>{
+        'initializing': 'initializing',
+        'pending_validation': 'pendingValidation',
+        'deleted': 'deleted',
+        'pending_issuance': 'pendingIssuance',
+        'pending_deployment': 'pendingDeployment',
+        'pending_deletion': 'pendingDeletion',
+        'pending_expiration': 'pendingExpiration',
+        'expired': 'expired',
+        'active': 'active',
+        'initializing_timed_out': 'initializingTimedOut',
+        'validation_timed_out': 'validationTimedOut',
+        'issuance_timed_out': 'issuanceTimedOut',
+        'deployment_timed_out': 'deploymentTimedOut',
+        'deletion_timed_out': 'deletionTimedOut',
+        'pending_cleanup': 'pendingCleanup',
+        'staging_deployment': 'stagingDeployment',
+        'staging_active': 'stagingActive',
+        'deactivating': 'deactivating',
+        'inactive': 'inactive',
+        'backup_issued': 'backupIssued',
+        'holding_deployment': 'holdingDeployment',
+      },
+    ),
+    'DataCustomPagesIdentifier': MigrateEnum(
+      name: 'DataCustomPagesIdentifier',
+      members: <String, String>{
+        '1000_errors': 'v1000Errors',
+        '500_errors': 'v500Errors',
+        'basic_challenge': 'basicChallenge',
+        'country_challenge': 'countryChallenge',
+        'ip_block': 'ipBlock',
+        'managed_challenge': 'managedChallenge',
+        'ratelimit_block': 'ratelimitBlock',
+        'under_attack': 'underAttack',
+        'waf_block': 'wafBlock',
+        'waf_challenge': 'wafChallenge',
+      },
+    ),
     'DataCustomSslFilterStatus': MigrateEnum(
       name: 'DataCustomSslFilterStatus',
       members: <String, String>{
@@ -78224,6 +78473,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'DataCustomSslMatch': MigrateEnum(
       name: 'DataCustomSslMatch',
       members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataCustomSslsMatch': MigrateEnum(
+      name: 'DataCustomSslsMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataCustomSslsStatus': MigrateEnum(
+      name: 'DataCustomSslsStatus',
+      members: <String, String>{
+        'active': 'active',
+        'expired': 'expired',
+        'deleted': 'deleted',
+        'pending': 'pending',
+        'initializing': 'initializing',
+      },
     ),
     'DataDnsRecordDirection': MigrateEnum(
       name: 'DataDnsRecordDirection',
@@ -78273,9 +78536,81 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'DataDnsRecordTagMatch',
       members: <String, String>{'any': 'any', 'all': 'all'},
     ),
+    'DataDnsRecordsDirection': MigrateEnum(
+      name: 'DataDnsRecordsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataDnsRecordsMatch': MigrateEnum(
+      name: 'DataDnsRecordsMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataDnsRecordsOrder': MigrateEnum(
+      name: 'DataDnsRecordsOrder',
+      members: <String, String>{
+        'type': 'type',
+        'name': 'name',
+        'content': 'content',
+        'ttl': 'ttl',
+        'proxied': 'proxied',
+      },
+    ),
+    'DataDnsRecordsTagMatch': MigrateEnum(
+      name: 'DataDnsRecordsTagMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataDnsRecordsType': MigrateEnum(
+      name: 'DataDnsRecordsType',
+      members: <String, String>{
+        'A': 'a',
+        'AAAA': 'aaaa',
+        'CAA': 'caa',
+        'CERT': 'cert',
+        'CNAME': 'cname',
+        'DNSKEY': 'dnskey',
+        'DS': 'ds',
+        'HTTPS': 'https',
+        'LOC': 'loc',
+        'MX': 'mx',
+        'NAPTR': 'naptr',
+        'NS': 'ns',
+        'OPENPGPKEY': 'openpgpkey',
+        'PTR': 'ptr',
+        'SMIMEA': 'smimea',
+        'SRV': 'srv',
+        'SSHFP': 'sshfp',
+        'SVCB': 'svcb',
+        'TLSA': 'tlsa',
+        'TXT': 'txt',
+        'URI': 'uri',
+      },
+    ),
     'DataEmailRoutingAddressDirection': MigrateEnum(
       name: 'DataEmailRoutingAddressDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailRoutingAddressesDirection': MigrateEnum(
+      name: 'DataEmailRoutingAddressesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityAllowPoliciesDirection': MigrateEnum(
+      name: 'DataEmailSecurityAllowPoliciesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityAllowPoliciesOrder': MigrateEnum(
+      name: 'DataEmailSecurityAllowPoliciesOrder',
+      members: <String, String>{
+        'pattern': 'pattern',
+        'created_at': 'createdAt',
+      },
+    ),
+    'DataEmailSecurityAllowPoliciesPatternType': MigrateEnum(
+      name: 'DataEmailSecurityAllowPoliciesPatternType',
+      members: <String, String>{
+        'EMAIL': 'email',
+        'DOMAIN': 'domain',
+        'IP': 'ip',
+        'UNKNOWN': 'unknown',
+      },
     ),
     'DataEmailSecurityAllowPolicyDirection': MigrateEnum(
       name: 'DataEmailSecurityAllowPolicyDirection',
@@ -78317,6 +78652,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'created_at': 'createdAt',
       },
     ),
+    'DataEmailSecurityBlockSendersDirection': MigrateEnum(
+      name: 'DataEmailSecurityBlockSendersDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityBlockSendersOrder': MigrateEnum(
+      name: 'DataEmailSecurityBlockSendersOrder',
+      members: <String, String>{
+        'pattern': 'pattern',
+        'created_at': 'createdAt',
+      },
+    ),
+    'DataEmailSecurityBlockSendersPatternType': MigrateEnum(
+      name: 'DataEmailSecurityBlockSendersPatternType',
+      members: <String, String>{
+        'EMAIL': 'email',
+        'DOMAIN': 'domain',
+        'IP': 'ip',
+        'UNKNOWN': 'unknown',
+      },
+    ),
     'DataEmailSecurityDomainActiveDeliveryMode': MigrateEnum(
       name: 'DataEmailSecurityDomainActiveDeliveryMode',
       members: <String, String>{
@@ -78354,6 +78709,64 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'DataEmailSecurityDomainOrder',
       members: <String, String>{'domain': 'domain', 'created_at': 'createdAt'},
     ),
+    'DataEmailSecurityDomainsActiveDeliveryMode': MigrateEnum(
+      name: 'DataEmailSecurityDomainsActiveDeliveryMode',
+      members: <String, String>{
+        'DIRECT': 'direct',
+        'BCC': 'bcc',
+        'JOURNAL': 'journal',
+        'API': 'api',
+        'RETRO_SCAN': 'retroScan',
+      },
+    ),
+    'DataEmailSecurityDomainsAllowedDeliveryMode': MigrateEnum(
+      name: 'DataEmailSecurityDomainsAllowedDeliveryMode',
+      members: <String, String>{
+        'DIRECT': 'direct',
+        'BCC': 'bcc',
+        'JOURNAL': 'journal',
+        'API': 'api',
+        'RETRO_SCAN': 'retroScan',
+      },
+    ),
+    'DataEmailSecurityDomainsDirection': MigrateEnum(
+      name: 'DataEmailSecurityDomainsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityDomainsOrder': MigrateEnum(
+      name: 'DataEmailSecurityDomainsOrder',
+      members: <String, String>{'domain': 'domain', 'created_at': 'createdAt'},
+    ),
+    'DataEmailSecurityDomainsStatus': MigrateEnum(
+      name: 'DataEmailSecurityDomainsStatus',
+      members: <String, String>{
+        'PENDING': 'pending',
+        'ACTIVE': 'active',
+        'FAILED': 'failed',
+        'TIMEOUT': 'timeout',
+      },
+    ),
+    'DataEmailSecurityImpersonationRegistriesDirection': MigrateEnum(
+      name: 'DataEmailSecurityImpersonationRegistriesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityImpersonationRegistriesOrder': MigrateEnum(
+      name: 'DataEmailSecurityImpersonationRegistriesOrder',
+      members: <String, String>{
+        'name': 'name',
+        'email': 'email',
+        'created_at': 'createdAt',
+      },
+    ),
+    'DataEmailSecurityImpersonationRegistriesProvenance': MigrateEnum(
+      name: 'DataEmailSecurityImpersonationRegistriesProvenance',
+      members: <String, String>{
+        'A1S_INTERNAL': 'a1sInternal',
+        'SNOOPY-CASB_OFFICE_365': 'snoopyCasbOffice365',
+        'SNOOPY-OFFICE_365': 'snoopyOffice365',
+        'SNOOPY-GOOGLE_DIRECTORY': 'snoopyGoogleDirectory',
+      },
+    ),
     'DataEmailSecurityImpersonationRegistryDirection': MigrateEnum(
       name: 'DataEmailSecurityImpersonationRegistryDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
@@ -78379,6 +78792,17 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'DataEmailSecurityTrustedDomainsDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
+    'DataEmailSecurityTrustedDomainsListDirection': MigrateEnum(
+      name: 'DataEmailSecurityTrustedDomainsListDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataEmailSecurityTrustedDomainsListOrder': MigrateEnum(
+      name: 'DataEmailSecurityTrustedDomainsListOrder',
+      members: <String, String>{
+        'pattern': 'pattern',
+        'created_at': 'createdAt',
+      },
+    ),
     'DataEmailSecurityTrustedDomainsOrder': MigrateEnum(
       name: 'DataEmailSecurityTrustedDomainsOrder',
       members: <String, String>{
@@ -78386,9 +78810,217 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'created_at': 'createdAt',
       },
     ),
+    'DataHostnameTlsSettingName': MigrateEnum(
+      name: 'DataHostnameTlsSettingName',
+      members: <String, String>{
+        'ciphers': 'ciphers',
+        'min_tls_version': 'minTlsVersion',
+        'http2': 'http2',
+      },
+    ),
+    'DataHostnameTlsSettingsName': MigrateEnum(
+      name: 'DataHostnameTlsSettingsName',
+      members: <String, String>{
+        'ciphers': 'ciphers',
+        'min_tls_version': 'minTlsVersion',
+        'http2': 'http2',
+      },
+    ),
+    'DataLogpushDatasetFieldDatasetId': MigrateEnum(
+      name: 'DataLogpushDatasetFieldDatasetId',
+      members: <String, String>{
+        'access_requests': 'accessRequests',
+        'account_abuse_protection_events': 'accountAbuseProtectionEvents',
+        'audit_logs': 'auditLogs',
+        'audit_logs_v2': 'auditLogsV2',
+        'biso_user_actions': 'bisoUserActions',
+        'casb_findings': 'casbFindings',
+        'device_posture_results': 'devicePostureResults',
+        'dex_application_tests': 'dexApplicationTests',
+        'dex_device_state_events': 'dexDeviceStateEvents',
+        'dlp_forensic_copies': 'dlpForensicCopies',
+        'dns_firewall_logs': 'dnsFirewallLogs',
+        'dns_logs': 'dnsLogs',
+        'email_security_alerts': 'emailSecurityAlerts',
+        'email_security_post_delivery_events':
+            'emailSecurityPostDeliveryEvents',
+        'firewall_events': 'firewallEvents',
+        'gateway_dns': 'gatewayDns',
+        'gateway_http': 'gatewayHttp',
+        'gateway_network': 'gatewayNetwork',
+        'http_requests': 'httpRequests',
+        'ipsec_logs': 'ipsecLogs',
+        'magic_bgp_logs': 'magicBgpLogs',
+        'magic_ids_detections': 'magicIdsDetections',
+        'mcp_portal_logs': 'mcpPortalLogs',
+        'mnm_flow_logs': 'mnmFlowLogs',
+        'nel_reports': 'nelReports',
+        'network_analytics_logs': 'networkAnalyticsLogs',
+        'page_shield_events': 'pageShieldEvents',
+        'sinkhole_http_logs': 'sinkholeHttpLogs',
+        'spectrum_events': 'spectrumEvents',
+        'ssh_logs': 'sshLogs',
+        'turnstile_events': 'turnstileEvents',
+        'warp_config_changes': 'warpConfigChanges',
+        'warp_toggle_changes': 'warpToggleChanges',
+        'websocket_analytics': 'websocketAnalytics',
+        'workers_trace_events': 'workersTraceEvents',
+        'zaraz_events': 'zarazEvents',
+        'zero_trust_network_sessions': 'zeroTrustNetworkSessions',
+      },
+    ),
+    'DataLogpushDatasetJobDatasetId': MigrateEnum(
+      name: 'DataLogpushDatasetJobDatasetId',
+      members: <String, String>{
+        'access_requests': 'accessRequests',
+        'account_abuse_protection_events': 'accountAbuseProtectionEvents',
+        'audit_logs': 'auditLogs',
+        'audit_logs_v2': 'auditLogsV2',
+        'biso_user_actions': 'bisoUserActions',
+        'casb_findings': 'casbFindings',
+        'device_posture_results': 'devicePostureResults',
+        'dex_application_tests': 'dexApplicationTests',
+        'dex_device_state_events': 'dexDeviceStateEvents',
+        'dlp_forensic_copies': 'dlpForensicCopies',
+        'dns_firewall_logs': 'dnsFirewallLogs',
+        'dns_logs': 'dnsLogs',
+        'email_security_alerts': 'emailSecurityAlerts',
+        'email_security_post_delivery_events':
+            'emailSecurityPostDeliveryEvents',
+        'firewall_events': 'firewallEvents',
+        'gateway_dns': 'gatewayDns',
+        'gateway_http': 'gatewayHttp',
+        'gateway_network': 'gatewayNetwork',
+        'http_requests': 'httpRequests',
+        'ipsec_logs': 'ipsecLogs',
+        'magic_bgp_logs': 'magicBgpLogs',
+        'magic_ids_detections': 'magicIdsDetections',
+        'mcp_portal_logs': 'mcpPortalLogs',
+        'mnm_flow_logs': 'mnmFlowLogs',
+        'nel_reports': 'nelReports',
+        'network_analytics_logs': 'networkAnalyticsLogs',
+        'page_shield_events': 'pageShieldEvents',
+        'sinkhole_http_logs': 'sinkholeHttpLogs',
+        'spectrum_events': 'spectrumEvents',
+        'ssh_logs': 'sshLogs',
+        'turnstile_events': 'turnstileEvents',
+        'warp_config_changes': 'warpConfigChanges',
+        'warp_toggle_changes': 'warpToggleChanges',
+        'websocket_analytics': 'websocketAnalytics',
+        'workers_trace_events': 'workersTraceEvents',
+        'zaraz_events': 'zarazEvents',
+        'zero_trust_network_sessions': 'zeroTrustNetworkSessions',
+      },
+    ),
     'DataMagicTransitConnectorDeviceType': MigrateEnum(
       name: 'DataMagicTransitConnectorDeviceType',
       members: <String, String>{'MANAGED': 'managed', 'LICENSED': 'licensed'},
+    ),
+    'DataMagicTransitConnectorsDeviceType': MigrateEnum(
+      name: 'DataMagicTransitConnectorsDeviceType',
+      members: <String, String>{'MANAGED': 'managed', 'LICENSED': 'licensed'},
+    ),
+    'DataObservatoryScheduledTestRegion': MigrateEnum(
+      name: 'DataObservatoryScheduledTestRegion',
+      members: <String, String>{
+        'asia-east1': 'asiaEast1',
+        'asia-northeast1': 'asiaNortheast1',
+        'asia-northeast2': 'asiaNortheast2',
+        'asia-south1': 'asiaSouth1',
+        'asia-southeast1': 'asiaSoutheast1',
+        'australia-southeast1': 'australiaSoutheast1',
+        'europe-north1': 'europeNorth1',
+        'europe-southwest1': 'europeSouthwest1',
+        'europe-west1': 'europeWest1',
+        'europe-west2': 'europeWest2',
+        'europe-west3': 'europeWest3',
+        'europe-west4': 'europeWest4',
+        'europe-west8': 'europeWest8',
+        'europe-west9': 'europeWest9',
+        'me-west1': 'meWest1',
+        'southamerica-east1': 'southamericaEast1',
+        'us-central1': 'usCentral1',
+        'us-east1': 'usEast1',
+        'us-east4': 'usEast4',
+        'us-south1': 'usSouth1',
+        'us-west1': 'usWest1',
+      },
+    ),
+    'DataPageShieldConnectionsListDirection': MigrateEnum(
+      name: 'DataPageShieldConnectionsListDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataPageShieldConnectionsListExport': MigrateEnum(
+      name: 'DataPageShieldConnectionsListExport',
+      members: <String, String>{'csv': 'csv'},
+    ),
+    'DataPageShieldConnectionsListOrderBy': MigrateEnum(
+      name: 'DataPageShieldConnectionsListOrderBy',
+      members: <String, String>{
+        'first_seen_at': 'firstSeenAt',
+        'last_seen_at': 'lastSeenAt',
+      },
+    ),
+    'DataPageShieldConnectionsListStatus': MigrateEnum(
+      name: 'DataPageShieldConnectionsListStatus',
+      members: <String, String>{
+        'active': 'active',
+        'infrequent': 'infrequent',
+        'inactive': 'inactive',
+      },
+    ),
+    'DataPageShieldCookiesListDirection': MigrateEnum(
+      name: 'DataPageShieldCookiesListDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataPageShieldCookiesListExport': MigrateEnum(
+      name: 'DataPageShieldCookiesListExport',
+      members: <String, String>{'csv': 'csv'},
+    ),
+    'DataPageShieldCookiesListOrderBy': MigrateEnum(
+      name: 'DataPageShieldCookiesListOrderBy',
+      members: <String, String>{
+        'first_seen_at': 'firstSeenAt',
+        'last_seen_at': 'lastSeenAt',
+      },
+    ),
+    'DataPageShieldCookiesListSameSite': MigrateEnum(
+      name: 'DataPageShieldCookiesListSameSite',
+      members: <String, String>{
+        'lax': 'lax',
+        'strict': 'strict',
+        'none': 'none',
+      },
+    ),
+    'DataPageShieldCookiesListType': MigrateEnum(
+      name: 'DataPageShieldCookiesListType',
+      members: <String, String>{
+        'first_party': 'firstParty',
+        'unknown': 'unknown',
+      },
+    ),
+    'DataPageShieldScriptsListDirection': MigrateEnum(
+      name: 'DataPageShieldScriptsListDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataPageShieldScriptsListExport': MigrateEnum(
+      name: 'DataPageShieldScriptsListExport',
+      members: <String, String>{'csv': 'csv'},
+    ),
+    'DataPageShieldScriptsListOrderBy': MigrateEnum(
+      name: 'DataPageShieldScriptsListOrderBy',
+      members: <String, String>{
+        'first_seen_at': 'firstSeenAt',
+        'last_seen_at': 'lastSeenAt',
+      },
+    ),
+    'DataPageShieldScriptsListStatus': MigrateEnum(
+      name: 'DataPageShieldScriptsListStatus',
+      members: <String, String>{
+        'active': 'active',
+        'infrequent': 'infrequent',
+        'inactive': 'inactive',
+      },
     ),
     'DataSecretsStoreDirection': MigrateEnum(
       name: 'DataSecretsStoreDirection',
@@ -78414,6 +79046,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'created': 'created',
         'modified': 'modified',
         'status': 'status',
+      },
+    ),
+    'DataSecretsStoreSecretsDirection': MigrateEnum(
+      name: 'DataSecretsStoreSecretsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataSecretsStoreSecretsOrder': MigrateEnum(
+      name: 'DataSecretsStoreSecretsOrder',
+      members: <String, String>{
+        'name': 'name',
+        'comment': 'comment',
+        'created': 'created',
+        'modified': 'modified',
+        'status': 'status',
+      },
+    ),
+    'DataSecretsStoresDirection': MigrateEnum(
+      name: 'DataSecretsStoresDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataSecretsStoresOrder': MigrateEnum(
+      name: 'DataSecretsStoresOrder',
+      members: <String, String>{
+        'name': 'name',
+        'created': 'created',
+        'modified': 'modified',
       },
     ),
     'DataShareDirection': MigrateEnum(
@@ -78463,6 +79121,53 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'deleted': 'deleted',
       },
     ),
+    'DataShareResourcesResourceType': MigrateEnum(
+      name: 'DataShareResourcesResourceType',
+      members: <String, String>{
+        'custom-ruleset': 'customRuleset',
+        'gateway-policy': 'gatewayPolicy',
+        'gateway-destination-ip': 'gatewayDestinationIp',
+        'gateway-block-page-settings': 'gatewayBlockPageSettings',
+        'gateway-extended-email-matching': 'gatewayExtendedEmailMatching',
+        'idp-federation-grant': 'idpFederationGrant',
+        'trust-grant': 'trustGrant',
+      },
+    ),
+    'DataShareResourcesStatus': MigrateEnum(
+      name: 'DataShareResourcesStatus',
+      members: <String, String>{
+        'active': 'active',
+        'deleting': 'deleting',
+        'deleted': 'deleted',
+      },
+    ),
+    'DataSharesDirection': MigrateEnum(
+      name: 'DataSharesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataSharesKind': MigrateEnum(
+      name: 'DataSharesKind',
+      members: <String, String>{'sent': 'sent', 'received': 'received'},
+    ),
+    'DataSharesOrder': MigrateEnum(
+      name: 'DataSharesOrder',
+      members: <String, String>{'name': 'name', 'created': 'created'},
+    ),
+    'DataSharesStatus': MigrateEnum(
+      name: 'DataSharesStatus',
+      members: <String, String>{
+        'active': 'active',
+        'deleting': 'deleting',
+        'deleted': 'deleted',
+      },
+    ),
+    'DataSharesTargetType': MigrateEnum(
+      name: 'DataSharesTargetType',
+      members: <String, String>{
+        'account': 'account',
+        'organization': 'organization',
+      },
+    ),
     'DataSpectrumApplicationDirection': MigrateEnum(
       name: 'DataSpectrumApplicationDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
@@ -78477,8 +79182,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'dns': 'dns',
       },
     ),
+    'DataSpectrumApplicationsDirection': MigrateEnum(
+      name: 'DataSpectrumApplicationsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataSpectrumApplicationsOrder': MigrateEnum(
+      name: 'DataSpectrumApplicationsOrder',
+      members: <String, String>{
+        'protocol': 'protocol',
+        'app_id': 'appId',
+        'created_on': 'createdOn',
+        'modified_on': 'modifiedOn',
+        'dns': 'dns',
+      },
+    ),
+    'DataStreamsStatus': MigrateEnum(
+      name: 'DataStreamsStatus',
+      members: <String, String>{
+        'pendingupload': 'pendingupload',
+        'downloading': 'downloading',
+        'queued': 'queued',
+        'inprogress': 'inprogress',
+        'ready': 'ready',
+        'error': 'error',
+        'live-inprogress': 'liveInprogress',
+      },
+    ),
     'DataTokenValidationRulesFilterAction': MigrateEnum(
       name: 'DataTokenValidationRulesFilterAction',
+      members: <String, String>{'log': 'log', 'block': 'block'},
+    ),
+    'DataTokenValidationRulesListAction': MigrateEnum(
+      name: 'DataTokenValidationRulesListAction',
       members: <String, String>{'log': 'log', 'block': 'block'},
     ),
     'DataTurnstileWidgetDirection': MigrateEnum(
@@ -78495,12 +79230,38 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'modified_on': 'modifiedOn',
       },
     ),
+    'DataTurnstileWidgetsDirection': MigrateEnum(
+      name: 'DataTurnstileWidgetsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataTurnstileWidgetsOrder': MigrateEnum(
+      name: 'DataTurnstileWidgetsOrder',
+      members: <String, String>{
+        'id': 'id',
+        'sitekey': 'sitekey',
+        'name': 'name',
+        'created_on': 'createdOn',
+        'modified_on': 'modifiedOn',
+      },
+    ),
     'DataUserGroupDirection': MigrateEnum(
       name: 'DataUserGroupDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
+    'DataUserGroupMembersDirection': MigrateEnum(
+      name: 'DataUserGroupMembersDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataUserGroupsDirection': MigrateEnum(
+      name: 'DataUserGroupsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
     'DataWebAnalyticsSiteOrderBy': MigrateEnum(
       name: 'DataWebAnalyticsSiteOrderBy',
+      members: <String, String>{'host': 'host', 'created': 'created'},
+    ),
+    'DataWebAnalyticsSitesOrderBy': MigrateEnum(
+      name: 'DataWebAnalyticsSitesOrderBy',
       members: <String, String>{'host': 'host', 'created': 'created'},
     ),
     'DataWorkerOrder': MigrateEnum(
@@ -78516,6 +79277,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'name': 'name',
       },
     ),
+    'DataWorkerVersionInclude': MigrateEnum(
+      name: 'DataWorkerVersionInclude',
+      members: <String, String>{'modules': 'modules'},
+    ),
     'DataWorkersKvNamespaceDirection': MigrateEnum(
       name: 'DataWorkersKvNamespaceDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
@@ -78524,12 +79289,44 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'DataWorkersKvNamespaceOrder',
       members: <String, String>{'id': 'id', 'title': 'title'},
     ),
+    'DataWorkersKvNamespacesDirection': MigrateEnum(
+      name: 'DataWorkersKvNamespacesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataWorkersKvNamespacesOrder': MigrateEnum(
+      name: 'DataWorkersKvNamespacesOrder',
+      members: <String, String>{'id': 'id', 'title': 'title'},
+    ),
+    'DataWorkersOrder': MigrateEnum(
+      name: 'DataWorkersOrder',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataWorkersOrderBy': MigrateEnum(
+      name: 'DataWorkersOrderBy',
+      members: <String, String>{
+        'deployed_on': 'deployedOn',
+        'updated_on': 'updatedOn',
+        'created_on': 'createdOn',
+        'name': 'name',
+      },
+    ),
     'DataZeroTrustAccessInfrastructureTargetDirection': MigrateEnum(
       name: 'DataZeroTrustAccessInfrastructureTargetDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
     ),
     'DataZeroTrustAccessInfrastructureTargetOrder': MigrateEnum(
       name: 'DataZeroTrustAccessInfrastructureTargetOrder',
+      members: <String, String>{
+        'hostname': 'hostname',
+        'created_at': 'createdAt',
+      },
+    ),
+    'DataZeroTrustAccessInfrastructureTargetsDirection': MigrateEnum(
+      name: 'DataZeroTrustAccessInfrastructureTargetsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustAccessInfrastructureTargetsOrder': MigrateEnum(
+      name: 'DataZeroTrustAccessInfrastructureTargetsOrder',
       members: <String, String>{
         'hostname': 'hostname',
         'created_at': 'createdAt',
@@ -78557,6 +79354,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'status': 'status',
       },
     ),
+    'DataZeroTrustCasbIntegrationsDirection': MigrateEnum(
+      name: 'DataZeroTrustCasbIntegrationsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustCasbIntegrationsOrder': MigrateEnum(
+      name: 'DataZeroTrustCasbIntegrationsOrder',
+      members: <String, String>{
+        'application': 'application',
+        'created': 'created',
+        'name': 'name',
+        'status': 'status',
+      },
+    ),
+    'DataZeroTrustCasbIntegrationsStatus': MigrateEnum(
+      name: 'DataZeroTrustCasbIntegrationsStatus',
+      members: <String, String>{
+        'Healthy': 'healthy',
+        'Initializing': 'initializing',
+        'Offline': 'offline',
+        'Unhealthy': 'unhealthy',
+      },
+    ),
     'DataZeroTrustDeviceCustomProfileFilterProfileType': MigrateEnum(
       name: 'DataZeroTrustDeviceCustomProfileFilterProfileType',
       members: <String, String>{
@@ -78564,8 +79383,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'browser_extension': 'browserExtension',
       },
     ),
+    'DataZeroTrustDeviceCustomProfilesProfileType': MigrateEnum(
+      name: 'DataZeroTrustDeviceCustomProfilesProfileType',
+      members: <String, String>{
+        'warp': 'warp',
+        'browser_extension': 'browserExtension',
+      },
+    ),
+    'DataZeroTrustDexRulesSortBy': MigrateEnum(
+      name: 'DataZeroTrustDexRulesSortBy',
+      members: <String, String>{
+        'name': 'name',
+        'created_at': 'createdAt',
+        'updated_at': 'updatedAt',
+      },
+    ),
+    'DataZeroTrustDexRulesSortOrder': MigrateEnum(
+      name: 'DataZeroTrustDexRulesSortOrder',
+      members: <String, String>{'ASC': 'asc', 'DESC': 'desc'},
+    ),
     'DataZeroTrustDexTestKind': MigrateEnum(
       name: 'DataZeroTrustDexTestKind',
+      members: <String, String>{'http': 'http', 'traceroute': 'traceroute'},
+    ),
+    'DataZeroTrustDexTestsKind': MigrateEnum(
+      name: 'DataZeroTrustDexTestsKind',
       members: <String, String>{'http': 'http', 'traceroute': 'traceroute'},
     ),
     'DataZeroTrustDnsLocationDirection': MigrateEnum(
@@ -78578,6 +79420,31 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'name': 'name',
         'created_at': 'createdAt',
         'updated_at': 'updatedAt',
+      },
+    ),
+    'DataZeroTrustDnsLocationsDirection': MigrateEnum(
+      name: 'DataZeroTrustDnsLocationsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustDnsLocationsOrderBy': MigrateEnum(
+      name: 'DataZeroTrustDnsLocationsOrderBy',
+      members: <String, String>{
+        'name': 'name',
+        'created_at': 'createdAt',
+        'updated_at': 'updatedAt',
+      },
+    ),
+    'DataZeroTrustGatewayPoliciesDirection': MigrateEnum(
+      name: 'DataZeroTrustGatewayPoliciesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustGatewayPoliciesOrderBy': MigrateEnum(
+      name: 'DataZeroTrustGatewayPoliciesOrderBy',
+      members: <String, String>{
+        'name': 'name',
+        'created_at': 'createdAt',
+        'updated_at': 'updatedAt',
+        'precedence': 'precedence',
       },
     ),
     'DataZeroTrustGatewayPolicyDirection': MigrateEnum(
@@ -78599,6 +79466,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     ),
     'DataZeroTrustGatewayProxyEndpointOrderBy': MigrateEnum(
       name: 'DataZeroTrustGatewayProxyEndpointOrderBy',
+      members: <String, String>{
+        'name': 'name',
+        'created_at': 'createdAt',
+        'updated_at': 'updatedAt',
+      },
+    ),
+    'DataZeroTrustGatewayProxyEndpointsDirection': MigrateEnum(
+      name: 'DataZeroTrustGatewayProxyEndpointsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustGatewayProxyEndpointsOrderBy': MigrateEnum(
+      name: 'DataZeroTrustGatewayProxyEndpointsOrderBy',
       members: <String, String>{
         'name': 'name',
         'created_at': 'createdAt',
@@ -78632,6 +79511,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'item_count': 'itemCount',
       },
     ),
+    'DataZeroTrustListsDirection': MigrateEnum(
+      name: 'DataZeroTrustListsDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZeroTrustListsOrderBy': MigrateEnum(
+      name: 'DataZeroTrustListsOrderBy',
+      members: <String, String>{
+        'name': 'name',
+        'created_at': 'createdAt',
+        'updated_at': 'updatedAt',
+        'item_count': 'itemCount',
+      },
+    ),
+    'DataZeroTrustListsType': MigrateEnum(
+      name: 'DataZeroTrustListsType',
+      members: <String, String>{
+        'SERIAL': 'serial',
+        'URL': 'url',
+        'DOMAIN': 'domain',
+        'EMAIL': 'email',
+        'IP': 'ip',
+        'CATEGORY': 'category',
+        'LOCATION': 'location',
+        'DEVICE': 'device',
+        'AAGUID': 'aaguid',
+      },
+    ),
     'DataZeroTrustTunnelCloudflaredFilterStatus': MigrateEnum(
       name: 'DataZeroTrustTunnelCloudflaredFilterStatus',
       members: <String, String>{
@@ -78641,8 +79547,26 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'down': 'down',
       },
     ),
+    'DataZeroTrustTunnelCloudflaredsStatus': MigrateEnum(
+      name: 'DataZeroTrustTunnelCloudflaredsStatus',
+      members: <String, String>{
+        'inactive': 'inactive',
+        'degraded': 'degraded',
+        'healthy': 'healthy',
+        'down': 'down',
+      },
+    ),
     'DataZeroTrustTunnelWarpConnectorFilterStatus': MigrateEnum(
       name: 'DataZeroTrustTunnelWarpConnectorFilterStatus',
+      members: <String, String>{
+        'inactive': 'inactive',
+        'degraded': 'degraded',
+        'healthy': 'healthy',
+        'down': 'down',
+      },
+    ),
+    'DataZeroTrustTunnelWarpConnectorsStatus': MigrateEnum(
+      name: 'DataZeroTrustTunnelWarpConnectorsStatus',
       members: <String, String>{
         'inactive': 'inactive',
         'degraded': 'degraded',
@@ -78675,6 +79599,33 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'account.id': 'accountId',
         'account.name': 'accountName',
         'plan.id': 'planId',
+      },
+    ),
+    'DataZonesDirection': MigrateEnum(
+      name: 'DataZonesDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'DataZonesMatch': MigrateEnum(
+      name: 'DataZonesMatch',
+      members: <String, String>{'any': 'any', 'all': 'all'},
+    ),
+    'DataZonesOrder': MigrateEnum(
+      name: 'DataZonesOrder',
+      members: <String, String>{
+        'name': 'name',
+        'status': 'status',
+        'account.id': 'accountId',
+        'account.name': 'accountName',
+        'plan.id': 'planId',
+      },
+    ),
+    'DataZonesStatus': MigrateEnum(
+      name: 'DataZonesStatus',
+      members: <String, String>{
+        'initializing': 'initializing',
+        'pending': 'pending',
+        'active': 'active',
+        'moved': 'moved',
       },
     ),
     'DnsRecordLatDirection': MigrateEnum(
@@ -78855,8 +79806,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'connection_established': 'connectionEstablished',
       },
     ),
-    'HostnameTlsSettingSettingId': MigrateEnum(
-      name: 'HostnameTlsSettingSettingId',
+    'HostnameTlsSettingName': MigrateEnum(
+      name: 'HostnameTlsSettingName',
       members: <String, String>{
         'ciphers': 'ciphers',
         'min_tls_version': 'minTlsVersion',
@@ -80094,6 +81045,15 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'SchemaValidationSettingsValidationOverrideMitigationAction',
       members: <String, String>{'none': 'none'},
     ),
+    'SecretsStoreSecretScopes': MigrateEnum(
+      name: 'SecretsStoreSecretScopes',
+      members: <String, String>{
+        'workers': 'workers',
+        'ai_gateway': 'aiGateway',
+        'dex': 'dex',
+        'access': 'access',
+      },
+    ),
     'ShareResourceResourceType': MigrateEnum(
       name: 'ShareResourceResourceType',
       members: <String, String>{
@@ -81316,8 +82276,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'ZeroTrustGatewaySettingsFallbackAction',
       members: <String, String>{'allow': 'allow', 'block': 'block'},
     ),
-    'ZeroTrustGatewaySettingsSettingsMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsSettingsMode',
+    'ZeroTrustGatewaySettingsProxyInspectionMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsProxyInspectionMode',
       members: <String, String>{'static': 'static', 'dynamic': 'dynamic'},
     ),
     'ZeroTrustListType': MigrateEnum(

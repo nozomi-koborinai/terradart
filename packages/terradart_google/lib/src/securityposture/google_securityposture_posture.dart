@@ -279,7 +279,7 @@ final class SecurityposturePostureCustomConstraint {
 
   final TfArg<String>? displayName;
 
-  final TfArg<List<String>> methodTypes;
+  final EnumList<SecurityposturePostureMethodTypes> methodTypes;
 
   final TfArg<String> name;
 
@@ -312,6 +312,32 @@ extension type const SecurityposturePostureActionType._(TfArg<String> _)
   static const deny = SecurityposturePostureActionType._(TfArgLiteral('DENY'));
 
   static const List<SecurityposturePostureActionType> values = [allow, deny];
+}
+
+/// `method_types` — derived from the provider schema description.
+extension type const SecurityposturePostureMethodTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityposturePostureMethodTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityposturePostureMethodTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityposturePostureMethodTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const create = SecurityposturePostureMethodTypes._(
+    TfArgLiteral('CREATE'),
+  );
+  static const update = SecurityposturePostureMethodTypes._(
+    TfArgLiteral('UPDATE'),
+  );
+  static const delete = SecurityposturePostureMethodTypes._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<SecurityposturePostureMethodTypes> values = [
+    create,
+    update,
+    delete,
+  ];
 }
 
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module` block of

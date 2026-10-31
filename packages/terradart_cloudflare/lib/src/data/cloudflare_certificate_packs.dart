@@ -7,6 +7,37 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_certificate_packs`.
 const Set<String> _cloudflareCertificatePacksSensitive = <String>{};
 
+/// Data Certificate Packs enum for `deploy`.
+extension type const DataCertificatePacksDeploy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCertificatePacksDeploy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCertificatePacksDeploy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCertificatePacksDeploy.arg(TfArg<String> arg) : this._(arg);
+
+  static const staging = DataCertificatePacksDeploy._(TfArgLiteral('staging'));
+  static const production = DataCertificatePacksDeploy._(
+    TfArgLiteral('production'),
+  );
+
+  static const List<DataCertificatePacksDeploy> values = [staging, production];
+}
+
+/// Data Certificate Packs enum for `status`.
+extension type const DataCertificatePacksStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCertificatePacksStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCertificatePacksStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCertificatePacksStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = DataCertificatePacksStatus._(TfArgLiteral('all'));
+
+  static const List<DataCertificatePacksStatus> values = [all];
+}
+
 /// Factory wrapper for `cloudflare_certificate_packs`.
 ///
 /// Accepted Permissions
@@ -17,9 +48,9 @@ final class DataCloudflareCertificatePacks extends Data {
 
   DataCloudflareCertificatePacks(
     super.localName, {
-    TfArg<String>? deploy,
+    DataCertificatePacksDeploy? deploy,
     TfArg<num>? maxItems,
-    TfArg<String>? status,
+    DataCertificatePacksStatus? status,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

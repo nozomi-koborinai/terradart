@@ -2,5 +2,11 @@
 # v5.12.0 internal/services/network/private_link_service_resource.go. Never hand-edit;
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
+properties:
+  - api_name: nat_ip_configuration
+    properties:
+      - api_name: private_ip_address_version
+        enum_values:
+          - "IPv4"
 exactly_one_of_groups:
   - ["destination_ip_address", "load_balancer_frontend_ip_configuration_ids"]

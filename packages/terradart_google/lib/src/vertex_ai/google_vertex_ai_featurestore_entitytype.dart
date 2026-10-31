@@ -61,15 +61,73 @@ final class VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis {
     this.state,
   });
 
-  final TfArg<String>? anomalyDetectionBaseline;
+  final VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline?
+  anomalyDetectionBaseline;
 
-  final TfArg<String>? state;
+  final VertexAiFeaturestoreEntitytypeState? state;
 
   @internal
   Map<String, Object?> encode() => {
     'anomaly_detection_baseline': ?anomalyDetectionBaseline?.toTfJson(),
     'state': ?state?.toTfJson(),
   };
+}
+
+/// `anomaly_detection_baseline` — derived from the provider schema description.
+extension type const VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const latestStats =
+      VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline._(
+        TfArgLiteral('LATEST_STATS'),
+      );
+  static const mostRecentSnapshotStats =
+      VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline._(
+        TfArgLiteral('MOST_RECENT_SNAPSHOT_STATS'),
+      );
+  static const previousImportFeaturesStats =
+      VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline._(
+        TfArgLiteral('PREVIOUS_IMPORT_FEATURES_STATS'),
+      );
+
+  static const List<VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline>
+  values = [latestStats, mostRecentSnapshotStats, previousImportFeaturesStats];
+}
+
+/// `state` — derived from the provider schema description.
+extension type const VertexAiFeaturestoreEntitytypeState._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiFeaturestoreEntitytypeState.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiFeaturestoreEntitytypeState.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiFeaturestoreEntitytypeState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const defaultCase = VertexAiFeaturestoreEntitytypeState._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const enabled = VertexAiFeaturestoreEntitytypeState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = VertexAiFeaturestoreEntitytypeState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<VertexAiFeaturestoreEntitytypeState> values = [
+    defaultCase,
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `monitoring_config.numerical_threshold_config` block of

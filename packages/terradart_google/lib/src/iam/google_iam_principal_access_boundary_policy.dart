@@ -39,7 +39,7 @@ final class IamPrincipalAccessBoundaryPolicyRules {
 
   final TfArg<String>? description;
 
-  final TfArg<String> effect;
+  final IamPrincipalAccessBoundaryPolicyEffect effect;
 
   final TfArg<List<String>> resources;
 
@@ -49,6 +49,23 @@ final class IamPrincipalAccessBoundaryPolicyRules {
     'effect': effect.toTfJson(),
     'resources': resources.toTfJson(),
   };
+}
+
+/// `effect` — derived from the provider schema description.
+extension type const IamPrincipalAccessBoundaryPolicyEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  IamPrincipalAccessBoundaryPolicyEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  IamPrincipalAccessBoundaryPolicyEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamPrincipalAccessBoundaryPolicyEffect.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = IamPrincipalAccessBoundaryPolicyEffect._(
+    TfArgLiteral('ALLOW'),
+  );
+
+  static const List<IamPrincipalAccessBoundaryPolicyEffect> values = [allow];
 }
 
 /// Factory wrapper for `google_iam_principal_access_boundary_policy`.

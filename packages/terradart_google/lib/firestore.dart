@@ -39,6 +39,7 @@ export 'src/firestore/google_firestore_document.dart'
     show GoogleFirestoreDocument;
 export 'src/firestore/google_firestore_field.dart'
     show
+        FirestoreFieldArrayConfig,
         FirestoreFieldIndexConfig,
         FirestoreFieldIndexes,
         FirestoreFieldMode,
@@ -63,6 +64,8 @@ export 'src/firestore/google_firestore_index.dart'
         FirestoreIndexFieldVectorConfig,
         FirestoreIndexOrder,
         FirestoreIndexQueryScope,
+        FirestoreIndexTextIndexType,
+        FirestoreIndexTextMatchType,
         GoogleFirestoreIndex;
 export 'src/firestore/google_firestore_user_creds.dart'
     show GoogleFirestoreUserCreds;

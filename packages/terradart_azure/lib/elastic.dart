@@ -20,13 +20,18 @@ export 'src/elastic/azurerm_elastic_cloud_elasticsearch.dart'
         ElasticCloudElasticsearchFilteringTag,
         ElasticCloudElasticsearchLogs;
 export 'src/elastic/azurerm_elastic_san.dart'
-    show AzurermElasticSan, ElasticSanSku, ElasticSanSkuName;
+    show AzurermElasticSan, ElasticSanSku, ElasticSanSkuName, ElasticSanTier;
 export 'src/elastic/azurerm_elastic_san_volume.dart'
-    show AzurermElasticSanVolume, ElasticSanVolumeCreateSource;
+    show
+        AzurermElasticSanVolume,
+        ElasticSanVolumeCreateSource,
+        ElasticSanVolumeSourceType;
 export 'src/elastic/azurerm_elastic_san_volume_group.dart'
     show
         AzurermElasticSanVolumeGroup,
+        ElasticSanVolumeGroupAction,
         ElasticSanVolumeGroupEncryption,
         ElasticSanVolumeGroupEncryptionType,
         ElasticSanVolumeGroupIdentity,
-        ElasticSanVolumeGroupNetworkRule;
+        ElasticSanVolumeGroupNetworkRule,
+        ElasticSanVolumeGroupProtocolType;

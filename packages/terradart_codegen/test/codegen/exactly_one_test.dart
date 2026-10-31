@@ -1587,7 +1587,7 @@ void main() {
     );
   });
 
-  test('ProviderEnums.mmGroups seals groups with the enum gate closed', () {
+  test('ProviderEnums.mmGroups seals groups and reads the MM value table', () {
     const mm = {
       'google_thing': MmResourceOverrides(
         fieldOverrides: {},
@@ -1603,7 +1603,7 @@ void main() {
       ),
     };
     final groups = ProviderEnums.mmGroups(mm);
-    expect(groups.enabled, isFalse);
+    expect(groups.enabled, isTrue);
     final root = groups.rootGroups('google_thing', _derives);
     expect(root.exactlyOne, [
       ['a', 'b'],
@@ -1615,7 +1615,7 @@ void main() {
       groups.nestedHints('google_thing', _derives).enumValues([
         'e',
       ], 'no values'),
-      isNull,
+      ['X', 'Y'],
     );
     const data = WrapperOverride(
       outputDir: 'data',

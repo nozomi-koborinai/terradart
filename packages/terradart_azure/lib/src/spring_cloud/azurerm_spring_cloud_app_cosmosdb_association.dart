@@ -7,13 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermSpringCloudAppCosmosdbAssociationSensitive =
     <String>{};
 
+/// Spring Cloud App Cosmosdb Association Api enum for `api_type`.
+extension type const SpringCloudAppCosmosdbAssociationApiType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudAppCosmosdbAssociationApiType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudAppCosmosdbAssociationApiType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudAppCosmosdbAssociationApiType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cassandra = SpringCloudAppCosmosdbAssociationApiType._(
+    TfArgLiteral('cassandra'),
+  );
+  static const gremlin = SpringCloudAppCosmosdbAssociationApiType._(
+    TfArgLiteral('gremlin'),
+  );
+  static const mongo = SpringCloudAppCosmosdbAssociationApiType._(
+    TfArgLiteral('mongo'),
+  );
+  static const sql = SpringCloudAppCosmosdbAssociationApiType._(
+    TfArgLiteral('sql'),
+  );
+  static const table = SpringCloudAppCosmosdbAssociationApiType._(
+    TfArgLiteral('table'),
+  );
+
+  static const List<SpringCloudAppCosmosdbAssociationApiType> values = [
+    cassandra,
+    gremlin,
+    mongo,
+    sql,
+    table,
+  ];
+}
+
 /// Factory wrapper for `azurerm_spring_cloud_app_cosmosdb_association`.
 final class AzurermSpringCloudAppCosmosdbAssociation extends Resource {
   static const String tfType = 'azurerm_spring_cloud_app_cosmosdb_association';
 
   AzurermSpringCloudAppCosmosdbAssociation(
     super.localName, {
-    required TfArg<String> apiType,
+    required SpringCloudAppCosmosdbAssociationApiType apiType,
     required TfArg<String> cosmosdbAccessKey,
     required TfArg<String> cosmosdbAccountId,
     TfArg<String>? cosmosdbCassandraKeyspaceName,

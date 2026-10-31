@@ -36,6 +36,23 @@ extension type const VirtualNetworkGatewayGeneration._(TfArg<String> _)
   ];
 }
 
+/// Virtual Network Gateway enum for `type`.
+extension type const VirtualNetworkGatewayType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualNetworkGatewayType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualNetworkGatewayType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualNetworkGatewayType.arg(TfArg<String> arg) : this._(arg);
+
+  static const expressroute = VirtualNetworkGatewayType._(
+    TfArgLiteral('ExpressRoute'),
+  );
+  static const vpn = VirtualNetworkGatewayType._(TfArgLiteral('Vpn'));
+
+  static const List<VirtualNetworkGatewayType> values = [expressroute, vpn];
+}
+
 /// Virtual Network Gateway Vpn enum for `vpn_type`.
 extension type const VirtualNetworkGatewayVpnType._(TfArg<String> _)
     implements TfArg<String> {
@@ -281,9 +298,9 @@ final class VirtualNetworkGatewayVpnClientConfiguration {
 
   final Sensitive<String>? radiusServerSecret;
 
-  final List<VirtualNetworkGatewayVpnAuthTypes>? vpnAuthTypes;
+  final EnumList<VirtualNetworkGatewayVpnAuthTypes>? vpnAuthTypes;
 
-  final List<VirtualNetworkGatewayVpnClientProtocols>? vpnClientProtocols;
+  final EnumList<VirtualNetworkGatewayVpnClientProtocols>? vpnClientProtocols;
 
   final VirtualNetworkGatewayIpsecPolicy? ipsecPolicy;
 
@@ -304,12 +321,8 @@ final class VirtualNetworkGatewayVpnClientConfiguration {
     'address_space': addressSpace.toTfJson(),
     'radius_server_address': ?radiusServerAddress?.toTfJson(),
     'radius_server_secret': ?radiusServerSecret?.toTfJson(),
-    if (vpnAuthTypes != null)
-      'vpn_auth_types': [for (final e in vpnAuthTypes!) e.toTfJson()],
-    if (vpnClientProtocols != null)
-      'vpn_client_protocols': [
-        for (final e in vpnClientProtocols!) e.toTfJson(),
-      ],
+    'vpn_auth_types': ?vpnAuthTypes?.toTfJson(),
+    'vpn_client_protocols': ?vpnClientProtocols?.toTfJson(),
     'ipsec_policy': ?ipsecPolicy?.encode(),
     if (radiusServer != null)
       'radius_server': [for (final e in radiusServer!) e.encode()],
@@ -766,7 +779,7 @@ final class AzurermVirtualNetworkGateway extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> sku,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required VirtualNetworkGatewayType type,
     TfArg<bool>? virtualWanTrafficEnabled,
     VirtualNetworkGatewayVpnType? vpnType,
     VirtualNetworkGatewayBgpSettings? bgpSettings,

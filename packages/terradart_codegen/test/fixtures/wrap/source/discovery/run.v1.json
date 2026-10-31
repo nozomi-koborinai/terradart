@@ -1,0 +1,53 @@
+{
+  "name": "run",
+  "version": "v1",
+  "revision": "20261023",
+  "sourceUrl": "https://run.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "DomainMapping": {
+      "properties": {
+        "spec": {
+          "$ref": "DomainMappingSpec"
+        },
+        "status": {
+          "$ref": "DomainMappingStatus"
+        }
+      }
+    },
+    "DomainMappingSpec": {
+      "properties": {
+        "certificateMode": {
+          "enum": [
+            "CERTIFICATE_MODE_UNSPECIFIED",
+            "NONE",
+            "AUTOMATIC"
+          ]
+        }
+      }
+    },
+    "DomainMappingStatus": {
+      "properties": {
+        "resourceRecords": {
+          "items": {
+            "$ref": "ResourceRecord"
+          }
+        }
+      }
+    },
+    "ResourceRecord": {
+      "properties": {
+        "type": {
+          "enum": [
+            "RECORD_TYPE_UNSPECIFIED",
+            "A",
+            "AAAA",
+            "CNAME"
+          ]
+        }
+      }
+    },
+    "Service": {
+      "properties": {}
+    }
+  }
+}

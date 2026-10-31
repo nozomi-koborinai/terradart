@@ -56,7 +56,12 @@ export 'src/api_shield/cloudflare_token_validation_rules.dart'
         TokenValidationRulesSelector;
 export 'src/data/cloudflare_api_shield.dart' show DataCloudflareApiShield;
 export 'src/data/cloudflare_api_shield_discovery_operations.dart'
-    show DataCloudflareApiShieldDiscoveryOperations;
+    show
+        DataApiShieldDiscoveryOperationsDirection,
+        DataApiShieldDiscoveryOperationsOrder,
+        DataApiShieldDiscoveryOperationsOrigin,
+        DataApiShieldDiscoveryOperationsState,
+        DataCloudflareApiShieldDiscoveryOperations;
 export 'src/data/cloudflare_api_shield_operation.dart'
     show
         DataApiShieldOperationDirection,
@@ -66,7 +71,10 @@ export 'src/data/cloudflare_api_shield_operation.dart'
 export 'src/data/cloudflare_api_shield_operation_schema_validation_settings.dart'
     show DataCloudflareApiShieldOperationSchemaValidationSettings;
 export 'src/data/cloudflare_api_shield_operations.dart'
-    show DataCloudflareApiShieldOperations;
+    show
+        DataApiShieldOperationsDirection,
+        DataApiShieldOperationsOrder,
+        DataCloudflareApiShieldOperations;
 export 'src/data/cloudflare_api_shield_schema.dart'
     show DataCloudflareApiShieldSchema;
 export 'src/data/cloudflare_api_shield_schema_validation_settings.dart'
@@ -95,4 +103,6 @@ export 'src/data/cloudflare_token_validation_rules.dart'
         DataTokenValidationRulesFilter,
         DataTokenValidationRulesFilterAction;
 export 'src/data/cloudflare_token_validation_rules_list.dart'
-    show DataCloudflareTokenValidationRulesList;
+    show
+        DataCloudflareTokenValidationRulesList,
+        DataTokenValidationRulesListAction;

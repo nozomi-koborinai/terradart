@@ -290,10 +290,10 @@ final class CloudflareLoadBalancerPool extends Resource {
   CloudflareLoadBalancerPool(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    List<LoadBalancerPoolCheckRegions>? checkRegions,
+    EnumList<LoadBalancerPoolCheckRegions>? checkRegions,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    List<LoadBalancerPoolHealthSources>? healthSources,
+    EnumList<LoadBalancerPoolHealthSources>? healthSources,
     TfArg<num>? latitude,
     TfArg<num>? longitude,
     TfArg<num>? minimumOrigins,
@@ -313,16 +313,10 @@ final class CloudflareLoadBalancerPool extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (checkRegions != null)
-             'check_regions': TfArg.literal([
-               for (final e in checkRegions) e.toTfJson(),
-             ]),
+           'check_regions': ?checkRegions,
            'description': ?description,
            'enabled': ?enabled,
-           if (healthSources != null)
-             'health_sources': TfArg.literal([
-               for (final e in healthSources) e.toTfJson(),
-             ]),
+           'health_sources': ?healthSources,
            'latitude': ?latitude,
            'longitude': ?longitude,
            'minimum_origins': ?minimumOrigins,

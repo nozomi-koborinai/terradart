@@ -142,14 +142,13 @@ final class AccessanalyzerAnalyzerInclusion {
 
   final TfArg<List<String>>? resourceArns;
 
-  final List<AccessanalyzerAnalyzerResourceTypes>? resourceTypes;
+  final EnumList<AccessanalyzerAnalyzerResourceTypes>? resourceTypes;
 
   @internal
   Map<String, Object?> encode() => {
     'account_ids': ?accountIds?.toTfJson(),
     'resource_arns': ?resourceArns?.toTfJson(),
-    if (resourceTypes != null)
-      'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
+    'resource_types': ?resourceTypes?.toTfJson(),
   };
 }
 

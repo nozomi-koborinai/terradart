@@ -184,14 +184,11 @@ final class SagemakerLabelingJobInputConfig {
 final class SagemakerLabelingJobDataAttributes {
   const SagemakerLabelingJobDataAttributes({this.contentClassifiers});
 
-  final List<SagemakerLabelingJobContentClassifiers>? contentClassifiers;
+  final EnumList<SagemakerLabelingJobContentClassifiers>? contentClassifiers;
 
   @internal
   Map<String, Object?> encode() => {
-    if (contentClassifiers != null)
-      'content_classifiers': [
-        for (final e in contentClassifiers!) e.toTfJson(),
-      ],
+    'content_classifiers': ?contentClassifiers?.toTfJson(),
   };
 }
 

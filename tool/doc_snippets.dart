@@ -404,7 +404,7 @@ Future<List<String>> checkDocSnippets(
       }
     }
 
-    var diagnostics = await _analyze(sandbox.path);
+    var diagnostics = await analyzeDiagnostics(sandbox.path);
     // A lowerCamel name a doc-comment fence leaves undefined stands for a
     // value the example does not build; declare it and analyze again.
     final undefined = <String, Set<String>>{};
@@ -422,7 +422,7 @@ Future<List<String>> checkDocSnippets(
         files[path] = f;
         File(path).writeAsStringSync(f.contents);
       }
-      diagnostics = await _analyze(sandbox.path);
+      diagnostics = await analyzeDiagnostics(sandbox.path);
     }
 
     for (final d in diagnostics) {
@@ -469,7 +469,7 @@ bool _readsUndeclared(Snippet s, String name) {
   return read.hasMatch(s.code) && !declared.hasMatch(s.code);
 }
 
-typedef _Diagnostic = ({
+typedef AnalyzerDiagnostic = ({
   String severity,
   String code,
   String file,
@@ -478,13 +478,13 @@ typedef _Diagnostic = ({
 });
 
 /// The machine-format diagnostics of `dart analyze` over [dir].
-Future<List<_Diagnostic>> _analyze(String dir) async {
+Future<List<AnalyzerDiagnostic>> analyzeDiagnostics(String dir) async {
   final analyze = await Process.run('dart', [
     'analyze',
     '--format=machine',
     dir,
   ], workingDirectory: dir);
-  final out = <_Diagnostic>[];
+  final out = <AnalyzerDiagnostic>[];
   for (final line in '${analyze.stdout}\n${analyze.stderr}'.split('\n')) {
     final parts = line.split('|');
     if (parts.length < 8) continue;

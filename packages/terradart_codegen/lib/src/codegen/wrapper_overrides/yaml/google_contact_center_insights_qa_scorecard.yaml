@@ -15,8 +15,9 @@ prelude: |
     static const customerDefined = ContactCenterInsightsQaScorecardSource._(TfArgLiteral('QA_SCORECARD_SOURCE_CUSTOMER_DEFINED'));
     /// Scorecard sourced from Discovery Engine.
     static const discoveryEngine = ContactCenterInsightsQaScorecardSource._(TfArgLiteral('QA_SCORECARD_SOURCE_DISCOVERY_ENGINE'));
+    static const qaScorecardSourceIntentTaxonomy = ContactCenterInsightsQaScorecardSource._(TfArgLiteral('QA_SCORECARD_SOURCE_INTENT_TAXONOMY'));
 
-    static const List<ContactCenterInsightsQaScorecardSource> values = [customerDefined, discoveryEngine];
+    static const List<ContactCenterInsightsQaScorecardSource> values = [customerDefined, discoveryEngine, qaScorecardSourceIntentTaxonomy];
   }
 
 dartTypeOverrides:

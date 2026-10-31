@@ -27,7 +27,7 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 
   final TfArg<num>? maxIdleConnectionsPercent;
 
-  final List<DbProxyDefaultTargetGroupSessionPinningFilters>?
+  final EnumList<DbProxyDefaultTargetGroupSessionPinningFilters>?
   sessionPinningFilters;
 
   @internal
@@ -36,10 +36,7 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
     'init_query': ?initQuery?.toTfJson(),
     'max_connections_percent': ?maxConnectionsPercent?.toTfJson(),
     'max_idle_connections_percent': ?maxIdleConnectionsPercent?.toTfJson(),
-    if (sessionPinningFilters != null)
-      'session_pinning_filters': [
-        for (final e in sessionPinningFilters!) e.toTfJson(),
-      ],
+    'session_pinning_filters': ?sessionPinningFilters?.toTfJson(),
   };
 }
 

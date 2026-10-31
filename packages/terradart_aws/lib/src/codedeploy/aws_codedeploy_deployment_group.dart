@@ -533,7 +533,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
     required this.triggerTargetArn,
   });
 
-  final List<CodedeployDeploymentGroupTriggerEvents> triggerEvents;
+  final EnumList<CodedeployDeploymentGroupTriggerEvents> triggerEvents;
 
   final TfArg<String> triggerName;
 
@@ -541,7 +541,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    'trigger_events': [for (final e in triggerEvents) e.toTfJson()],
+    'trigger_events': triggerEvents.toTfJson(),
     'trigger_name': triggerName.toTfJson(),
     'trigger_target_arn': triggerTargetArn.toTfJson(),
   };

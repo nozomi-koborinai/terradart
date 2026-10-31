@@ -102,7 +102,7 @@ final class AwsRedshiftEventSubscription extends Resource {
   AwsRedshiftEventSubscription(
     super.localName, {
     TfArg<bool>? enabled,
-    List<RedshiftEventSubscriptionEventCategories>? eventCategories,
+    EnumList<RedshiftEventSubscriptionEventCategories>? eventCategories,
     required TfArg<String> name,
     TfArg<String>? region,
     RedshiftEventSubscriptionSeverity? severity,
@@ -118,10 +118,7 @@ final class AwsRedshiftEventSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'enabled': ?enabled,
-           if (eventCategories != null)
-             'event_categories': TfArg.literal([
-               for (final e in eventCategories) e.toTfJson(),
-             ]),
+           'event_categories': ?eventCategories,
            'name': name,
            'region': ?region,
            'severity': ?severity,

@@ -2,5 +2,11 @@
 # v5.12.0 internal/services/recoveryservices/backup_protected_vm_resource.go. Never hand-edit;
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
+properties:
+  - api_name: protection_state
+    enum_values:
+      - "Protected"
+      - "BackupsSuspended"
+      - "ProtectionStopped"
 at_most_one_of_groups:
   - ["exclude_disk_luns", "include_disk_luns"]

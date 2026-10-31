@@ -10,6 +10,31 @@ import '../subnet/azurerm_subnet.dart' show AzurermSubnet;
 /// Sensitive field paths for `azurerm_app_service_environment_v3`.
 const Set<String> _azurermAppServiceEnvironmentV3Sensitive = <String>{};
 
+/// App Service Environment V3 Internal Load Balancing enum for `internal_load_balancing_mode`.
+extension type const AppServiceEnvironmentV3InternalLoadBalancingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppServiceEnvironmentV3InternalLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceEnvironmentV3InternalLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceEnvironmentV3InternalLoadBalancingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = AppServiceEnvironmentV3InternalLoadBalancingMode._(
+    TfArgLiteral('None'),
+  );
+  static const webPublishing =
+      AppServiceEnvironmentV3InternalLoadBalancingMode._(
+        TfArgLiteral('Web, Publishing'),
+      );
+
+  static const List<AppServiceEnvironmentV3InternalLoadBalancingMode> values = [
+    none,
+    webPublishing,
+  ];
+}
+
 /// At most one of `dedicated_host_count`, `zone_redundant` on `azurerm_app_service_environment_v3`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -115,7 +140,7 @@ final class AzurermAppServiceEnvironmentV3 extends Resource {
     super.localName, {
     TfArg<bool>? allowNewPrivateEndpointConnections,
     AppServiceEnvironmentV3Placement? placement,
-    TfArg<String>? internalLoadBalancingMode,
+    AppServiceEnvironmentV3InternalLoadBalancingMode? internalLoadBalancingMode,
     required TfArg<String> name,
     TfArg<bool>? remoteDebuggingEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,

@@ -48,7 +48,7 @@ final class CdnFrontdoorSecurityPolicyAssociation {
     required this.domain,
   });
 
-  final TfArg<List<String>> patternsToMatch;
+  final EnumList<CdnFrontdoorSecurityPolicyPatternsToMatch> patternsToMatch;
 
   final List<CdnFrontdoorSecurityPolicyDomain> domain;
 
@@ -57,6 +57,24 @@ final class CdnFrontdoorSecurityPolicyAssociation {
     'patterns_to_match': patternsToMatch.toTfJson(),
     'domain': [for (final e in domain) e.encode()],
   };
+}
+
+/// `patterns_to_match` — derived from the provider schema description.
+extension type const CdnFrontdoorSecurityPolicyPatternsToMatch._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorSecurityPolicyPatternsToMatch.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorSecurityPolicyPatternsToMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorSecurityPolicyPatternsToMatch.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = CdnFrontdoorSecurityPolicyPatternsToMatch._(
+    TfArgLiteral('/*'),
+  );
+
+  static const List<CdnFrontdoorSecurityPolicyPatternsToMatch> values = [value];
 }
 
 /// Typed helper for the `security_policies.firewall.association.domain` block of

@@ -78,22 +78,18 @@ final class ZeroTrustAccessPolicyRdp {
     this.allowedClipboardRemoteToLocalFormats,
   });
 
-  final List<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>?
+  final EnumList<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>?
   allowedClipboardLocalToRemoteFormats;
 
-  final List<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>?
+  final EnumList<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>?
   allowedClipboardRemoteToLocalFormats;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedClipboardLocalToRemoteFormats != null)
-      'allowed_clipboard_local_to_remote_formats': [
-        for (final e in allowedClipboardLocalToRemoteFormats!) e.toTfJson(),
-      ],
-    if (allowedClipboardRemoteToLocalFormats != null)
-      'allowed_clipboard_remote_to_local_formats': [
-        for (final e in allowedClipboardRemoteToLocalFormats!) e.toTfJson(),
-      ],
+    'allowed_clipboard_local_to_remote_formats':
+        ?allowedClipboardLocalToRemoteFormats?.toTfJson(),
+    'allowed_clipboard_remote_to_local_formats':
+        ?allowedClipboardRemoteToLocalFormats?.toTfJson(),
   };
 }
 
@@ -675,11 +671,11 @@ final class ZeroTrustAccessPolicyServiceToken {
 final class ZeroTrustAccessPolicyUserRiskScore {
   const ZeroTrustAccessPolicyUserRiskScore({required this.userRiskScore});
 
-  final List<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore> userRiskScore;
+  final EnumList<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore> userRiskScore;
 
   @internal
   Map<String, Object?> encode() => {
-    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
+    'user_risk_score': userRiskScore.toTfJson(),
   };
 }
 
@@ -841,7 +837,8 @@ final class ZeroTrustAccessPolicyMfaConfig {
     this.sessionDuration,
   });
 
-  final List<ZeroTrustAccessPolicyAllowedAuthenticators>? allowedAuthenticators;
+  final EnumList<ZeroTrustAccessPolicyAllowedAuthenticators>?
+  allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
 
@@ -849,10 +846,7 @@ final class ZeroTrustAccessPolicyMfaConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedAuthenticators != null)
-      'allowed_authenticators': [
-        for (final e in allowedAuthenticators!) e.toTfJson(),
-      ],
+    'allowed_authenticators': ?allowedAuthenticators?.toTfJson(),
     'mfa_disabled': ?mfaDisabled?.toTfJson(),
     'session_duration': ?sessionDuration?.toTfJson(),
   };

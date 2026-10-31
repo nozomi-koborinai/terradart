@@ -15,12 +15,33 @@ final class NetworkFunctionCollectorPolicyIpfxEmission {
     required this.destinationTypes,
   });
 
-  final TfArg<List<String>> destinationTypes;
+  final EnumList<NetworkFunctionCollectorPolicyDestinationTypes>
+  destinationTypes;
 
   @internal
   Map<String, Object?> encode() => {
     'destination_types': destinationTypes.toTfJson(),
   };
+}
+
+/// `destination_types` — derived from the provider schema description.
+extension type const NetworkFunctionCollectorPolicyDestinationTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkFunctionCollectorPolicyDestinationTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkFunctionCollectorPolicyDestinationTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkFunctionCollectorPolicyDestinationTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azuremonitor = NetworkFunctionCollectorPolicyDestinationTypes._(
+    TfArgLiteral('AzureMonitor'),
+  );
+
+  static const List<NetworkFunctionCollectorPolicyDestinationTypes> values = [
+    azuremonitor,
+  ];
 }
 
 /// Typed helper for the `ipfx_ingestion` block of

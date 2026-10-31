@@ -39,8 +39,9 @@ void main() {
       ModuleCall,
       DuplicateModuleError,
       TfTimeouts,
+      EnumList,
     ];
-    expect(symbols, hasLength(32));
+    expect(symbols, hasLength(33));
   });
 
   test('generator building blocks stay out of the public library', () {

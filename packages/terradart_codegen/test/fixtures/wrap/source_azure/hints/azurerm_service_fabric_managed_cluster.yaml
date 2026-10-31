@@ -3,6 +3,32 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: authentication
+    properties:
+      - api_name: certificate
+        properties:
+          - api_name: type
+            enum_values:
+              - "AdminClient"
+              - "ReadOnlyClient"
+  - api_name: lb_rule
+    properties:
+      - api_name: probe_protocol
+        enum_values:
+          - "http"
+          - "https"
+          - "tcp"
+      - api_name: protocol
+        enum_values:
+          - "tcp"
+          - "udp"
+  - api_name: node_type
+    properties:
+      - api_name: data_disk_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
   - api_name: sku
     enum_values:
       - "Basic"

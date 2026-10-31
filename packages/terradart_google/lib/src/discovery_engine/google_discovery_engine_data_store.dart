@@ -63,6 +63,57 @@ extension type const DiscoveryEngineDataStoreIndustryVertical._(TfArg<String> _)
   ];
 }
 
+/// Discovery Engine Data Store enum for `location`.
+extension type const DiscoveryEngineDataStoreLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineDataStoreLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineDataStoreLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineDataStoreLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineDataStoreLocation> values = [global, us, eu];
+}
+
+/// Discovery Engine Data Store Solution enum for `solution_types`.
+extension type const DiscoveryEngineDataStoreSolutionTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreSolutionTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreSolutionTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreSolutionTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const solutionTypeRecommendation =
+      DiscoveryEngineDataStoreSolutionTypes._(
+        TfArgLiteral('SOLUTION_TYPE_RECOMMENDATION'),
+      );
+  static const solutionTypeSearch = DiscoveryEngineDataStoreSolutionTypes._(
+    TfArgLiteral('SOLUTION_TYPE_SEARCH'),
+  );
+  static const solutionTypeChat = DiscoveryEngineDataStoreSolutionTypes._(
+    TfArgLiteral('SOLUTION_TYPE_CHAT'),
+  );
+  static const solutionTypeGenerativeChat =
+      DiscoveryEngineDataStoreSolutionTypes._(
+        TfArgLiteral('SOLUTION_TYPE_GENERATIVE_CHAT'),
+      );
+
+  static const List<DiscoveryEngineDataStoreSolutionTypes> values = [
+    solutionTypeRecommendation,
+    solutionTypeSearch,
+    solutionTypeChat,
+    solutionTypeGenerativeChat,
+  ];
+}
+
 /// Typed helper for the `advanced_site_search_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
@@ -280,7 +331,8 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
 
   final TfArg<List<String>>? excludeHtmlIds;
 
-  final TfArg<List<String>>? structuredContentTypes;
+  final EnumList<DiscoveryEngineDataStoreStructuredContentTypes>?
+  structuredContentTypes;
 
   @internal
   Map<String, Object?> encode() => {
@@ -293,6 +345,27 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
     'exclude_html_ids': ?excludeHtmlIds?.toTfJson(),
     'structured_content_types': ?structuredContentTypes?.toTfJson(),
   };
+}
+
+/// `structured_content_types` — derived from the provider schema description.
+extension type const DiscoveryEngineDataStoreStructuredContentTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataStoreStructuredContentTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreStructuredContentTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreStructuredContentTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const shareholderStructure =
+      DiscoveryEngineDataStoreStructuredContentTypes._(
+        TfArgLiteral('shareholder-structure'),
+      );
+
+  static const List<DiscoveryEngineDataStoreStructuredContentTypes> values = [
+    shareholderStructure,
+  ];
 }
 
 /// Typed helper for the `document_processing_config.default_parsing_config.ocr_parsing_config` block of
@@ -348,12 +421,12 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
 
   GoogleDiscoveryEngineDataStore(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineDataStoreLocation location,
     required TfArg<String> dataStoreId,
     required TfArg<String> displayName,
     required DiscoveryEngineDataStoreIndustryVertical industryVertical,
     DiscoveryEngineDataStoreContentConfig? contentConfig,
-    TfArg<List<String>>? solutionTypes,
+    EnumList<DiscoveryEngineDataStoreSolutionTypes>? solutionTypes,
     TfArg<bool>? skipDefaultSchemaCreation,
     TfArg<String>? project,
     TfArg<bool>? aclEnabled,

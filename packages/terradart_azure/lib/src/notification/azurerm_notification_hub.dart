@@ -25,7 +25,7 @@ final class NotificationHubApnsCredential {
     required this.token,
   });
 
-  final TfArg<String> applicationMode;
+  final NotificationHubApplicationMode applicationMode;
 
   final TfArg<String> bundleId;
 
@@ -43,6 +43,28 @@ final class NotificationHubApnsCredential {
     'team_id': teamId.toTfJson(),
     'token': token.toTfJson(),
   };
+}
+
+/// `application_mode` — derived from the provider schema description.
+extension type const NotificationHubApplicationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NotificationHubApplicationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NotificationHubApplicationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NotificationHubApplicationMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const production = NotificationHubApplicationMode._(
+    TfArgLiteral('Production'),
+  );
+  static const sandbox = NotificationHubApplicationMode._(
+    TfArgLiteral('Sandbox'),
+  );
+
+  static const List<NotificationHubApplicationMode> values = [
+    production,
+    sandbox,
+  ];
 }
 
 /// Typed helper for the `browser_credential` block of

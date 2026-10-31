@@ -49,11 +49,12 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
     this.vmwareEnginePreferences,
   });
 
-  final TfArg<String>? commitmentPlan;
+  final MigrationCenterPreferenceSetCommitmentPlan? commitmentPlan;
 
-  final TfArg<String>? sizingOptimizationStrategy;
+  final MigrationCenterPreferenceSetSizingOptimizationStrategy?
+  sizingOptimizationStrategy;
 
-  final TfArg<String>? targetProduct;
+  final MigrationCenterPreferenceSetTargetProduct? targetProduct;
 
   final MigrationCenterPreferenceSetComputeEnginePreferences?
   computeEnginePreferences;
@@ -78,6 +79,102 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
   };
 }
 
+/// `commitment_plan` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetCommitmentPlan._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetCommitmentPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetCommitmentPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetCommitmentPlan.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const commitmentPlanNone =
+      MigrationCenterPreferenceSetCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_PLAN_NONE'),
+      );
+  static const commitmentPlanOneYear =
+      MigrationCenterPreferenceSetCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_PLAN_ONE_YEAR'),
+      );
+  static const commitmentPlanThreeYears =
+      MigrationCenterPreferenceSetCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_PLAN_THREE_YEARS'),
+      );
+
+  static const List<MigrationCenterPreferenceSetCommitmentPlan> values = [
+    commitmentPlanNone,
+    commitmentPlanOneYear,
+    commitmentPlanThreeYears,
+  ];
+}
+
+/// `sizing_optimization_strategy` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetSizingOptimizationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetSizingOptimizationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetSizingOptimizationStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetSizingOptimizationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const sizingOptimizationStrategySameAsSource =
+      MigrationCenterPreferenceSetSizingOptimizationStrategy._(
+        TfArgLiteral('SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE'),
+      );
+  static const sizingOptimizationStrategyModerate =
+      MigrationCenterPreferenceSetSizingOptimizationStrategy._(
+        TfArgLiteral('SIZING_OPTIMIZATION_STRATEGY_MODERATE'),
+      );
+  static const sizingOptimizationStrategyAggressive =
+      MigrationCenterPreferenceSetSizingOptimizationStrategy._(
+        TfArgLiteral('SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE'),
+      );
+
+  static const List<MigrationCenterPreferenceSetSizingOptimizationStrategy>
+  values = [
+    sizingOptimizationStrategySameAsSource,
+    sizingOptimizationStrategyModerate,
+    sizingOptimizationStrategyAggressive,
+  ];
+}
+
+/// `target_product` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetTargetProduct._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetTargetProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetTargetProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetTargetProduct.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const computeMigrationTargetProductComputeEngine =
+      MigrationCenterPreferenceSetTargetProduct._(
+        TfArgLiteral('COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE'),
+      );
+  static const computeMigrationTargetProductVmwareEngine =
+      MigrationCenterPreferenceSetTargetProduct._(
+        TfArgLiteral('COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE'),
+      );
+  static const computeMigrationTargetProductSoleTenancy =
+      MigrationCenterPreferenceSetTargetProduct._(
+        TfArgLiteral('COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY'),
+      );
+
+  static const List<MigrationCenterPreferenceSetTargetProduct> values = [
+    computeMigrationTargetProductComputeEngine,
+    computeMigrationTargetProductVmwareEngine,
+    computeMigrationTargetProductSoleTenancy,
+  ];
+}
+
 /// Typed helper for the `virtual_machine_preferences.compute_engine_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
@@ -88,7 +185,7 @@ final class MigrationCenterPreferenceSetComputeEnginePreferences {
     this.machinePreferences,
   });
 
-  final TfArg<String>? licenseType;
+  final MigrationCenterPreferenceSetLicenseType? licenseType;
 
   final MigrationCenterPreferenceSetPersistentDiskType? persistentDiskType;
 
@@ -100,6 +197,30 @@ final class MigrationCenterPreferenceSetComputeEnginePreferences {
     'persistent_disk_type': ?persistentDiskType?.toTfJson(),
     'machine_preferences': ?machinePreferences?.encode(),
   };
+}
+
+/// `license_type` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterPreferenceSetLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetLicenseType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const licenseTypeDefault = MigrationCenterPreferenceSetLicenseType._(
+    TfArgLiteral('LICENSE_TYPE_DEFAULT'),
+  );
+  static const licenseTypeBringYourOwnLicense =
+      MigrationCenterPreferenceSetLicenseType._(
+        TfArgLiteral('LICENSE_TYPE_BRING_YOUR_OWN_LICENSE'),
+      );
+
+  static const List<MigrationCenterPreferenceSetLicenseType> values = [
+    licenseTypeDefault,
+    licenseTypeBringYourOwnLicense,
+  ];
 }
 
 /// `persistent_disk_type` — derived from the provider schema description.
@@ -190,11 +311,13 @@ final class MigrationCenterPreferenceSetSoleTenancyPreferences {
     this.nodeTypes,
   });
 
-  final TfArg<String>? commitmentPlan;
+  final MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan?
+  commitmentPlan;
 
   final TfArg<num>? cpuOvercommitRatio;
 
-  final TfArg<String>? hostMaintenancePolicy;
+  final MigrationCenterPreferenceSetHostMaintenancePolicy?
+  hostMaintenancePolicy;
 
   final List<MigrationCenterPreferenceSetNodeTypes>? nodeTypes;
 
@@ -206,6 +329,71 @@ final class MigrationCenterPreferenceSetSoleTenancyPreferences {
     if (nodeTypes != null)
       'node_types': [for (final e in nodeTypes!) e.encode()],
   };
+}
+
+/// `commitment_plan` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const onDemand =
+      MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
+        TfArgLiteral('ON_DEMAND'),
+      );
+  static const commitment1Year =
+      MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_1_YEAR'),
+      );
+  static const commitment3Year =
+      MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_3_YEAR'),
+      );
+
+  static const List<
+    MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan
+  >
+  values = [onDemand, commitment1Year, commitment3Year];
+}
+
+/// `host_maintenance_policy` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetHostMaintenancePolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetHostMaintenancePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetHostMaintenancePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetHostMaintenancePolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const hostMaintenancePolicyDefault =
+      MigrationCenterPreferenceSetHostMaintenancePolicy._(
+        TfArgLiteral('HOST_MAINTENANCE_POLICY_DEFAULT'),
+      );
+  static const hostMaintenancePolicyRestartInPlace =
+      MigrationCenterPreferenceSetHostMaintenancePolicy._(
+        TfArgLiteral('HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE'),
+      );
+  static const hostMaintenancePolicyMigrateWithinNodeGroup =
+      MigrationCenterPreferenceSetHostMaintenancePolicy._(
+        TfArgLiteral('HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP'),
+      );
+
+  static const List<MigrationCenterPreferenceSetHostMaintenancePolicy> values =
+      [
+        hostMaintenancePolicyDefault,
+        hostMaintenancePolicyRestartInPlace,
+        hostMaintenancePolicyMigrateWithinNodeGroup,
+      ];
 }
 
 /// Typed helper for the `virtual_machine_preferences.sole_tenancy_preferences.node_types` block of
@@ -231,7 +419,8 @@ final class MigrationCenterPreferenceSetVmwareEnginePreferences {
     this.storageDeduplicationCompressionRatio,
   });
 
-  final TfArg<String>? commitmentPlan;
+  final MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan?
+  commitmentPlan;
 
   final TfArg<num>? cpuOvercommitRatio;
 
@@ -247,6 +436,53 @@ final class MigrationCenterPreferenceSetVmwareEnginePreferences {
     'storage_deduplication_compression_ratio':
         ?storageDeduplicationCompressionRatio?.toTfJson(),
   };
+}
+
+/// `commitment_plan` — derived from the provider schema description.
+extension type const MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const onDemand =
+      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+        TfArgLiteral('ON_DEMAND'),
+      );
+  static const commitment1YearMonthlyPayments =
+      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_1_YEAR_MONTHLY_PAYMENTS'),
+      );
+  static const commitment3YearMonthlyPayments =
+      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_3_YEAR_MONTHLY_PAYMENTS'),
+      );
+  static const commitment1YearUpfrontPayment =
+      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_1_YEAR_UPFRONT_PAYMENT'),
+      );
+  static const commitment3YearUpfrontPayment =
+      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
+        TfArgLiteral('COMMITMENT_3_YEAR_UPFRONT_PAYMENT'),
+      );
+
+  static const List<
+    MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan
+  >
+  values = [
+    onDemand,
+    commitment1YearMonthlyPayments,
+    commitment3YearMonthlyPayments,
+    commitment1YearUpfrontPayment,
+    commitment3YearUpfrontPayment,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_preference_set`.

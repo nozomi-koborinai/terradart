@@ -41,17 +41,24 @@ export 'src/oracle/google_oracle_database_autonomous_database.dart'
     show
         GoogleOracleDatabaseAutonomousDatabase,
         OracleDatabaseAutonomousDatabaseCustomerContacts,
+        OracleDatabaseAutonomousDatabaseDbEdition,
         OracleDatabaseAutonomousDatabaseDbWorkload,
         OracleDatabaseAutonomousDatabaseDeletionPolicy,
         OracleDatabaseAutonomousDatabaseLicenseType,
+        OracleDatabaseAutonomousDatabaseMaintenanceScheduleType,
+        OracleDatabaseAutonomousDatabaseOperationsInsightsState,
         OracleDatabaseAutonomousDatabaseProperties,
         OracleDatabaseAutonomousDatabaseSourceConfig;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
     show
         GoogleOracleDatabaseCloudExadataInfrastructure,
         OracleDatabaseCloudExadataInfrastructureCustomerContacts,
+        OracleDatabaseCloudExadataInfrastructureDaysOfWeek,
         OracleDatabaseCloudExadataInfrastructureDeletionPolicy,
         OracleDatabaseCloudExadataInfrastructureMaintenanceWindow,
+        OracleDatabaseCloudExadataInfrastructureMonths,
+        OracleDatabaseCloudExadataInfrastructurePatchingMode,
+        OracleDatabaseCloudExadataInfrastructurePreference,
         OracleDatabaseCloudExadataInfrastructureProperties;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure_exascale_config.dart'
     show GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig;
@@ -60,12 +67,21 @@ export 'src/oracle/google_oracle_database_cloud_vm_cluster.dart'
         GoogleOracleDatabaseCloudVmCluster,
         OracleDatabaseCloudVmClusterDeletionPolicy,
         OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions,
+        OracleDatabaseCloudVmClusterDiskRedundancy,
+        OracleDatabaseCloudVmClusterLicenseType,
         OracleDatabaseCloudVmClusterProperties,
-        OracleDatabaseCloudVmClusterTimeZone;
+        OracleDatabaseCloudVmClusterTimeZone,
+        OracleDatabaseCloudVmClusterVmBackupStorageType,
+        OracleDatabaseCloudVmClusterVmFileSystemStorageType;
 export 'src/oracle/google_oracle_database_db_system.dart'
     show
         GoogleOracleDatabaseDbSystem,
+        OracleDatabaseDbSystemAutoFullBackupDay,
+        OracleDatabaseDbSystemAutoFullBackupWindow,
+        OracleDatabaseDbSystemAutoIncrementalBackupWindow,
+        OracleDatabaseDbSystemBackupDeletionPolicy,
         OracleDatabaseDbSystemBackupDestinationDetails,
+        OracleDatabaseDbSystemComputeModel,
         OracleDatabaseDbSystemDataCollectionOptions,
         OracleDatabaseDbSystemDatabase,
         OracleDatabaseDbSystemDatabaseEdition,
@@ -76,13 +92,17 @@ export 'src/oracle/google_oracle_database_db_system.dart'
         OracleDatabaseDbSystemLicenseModel,
         OracleDatabaseDbSystemOptions,
         OracleDatabaseDbSystemProperties,
-        OracleDatabaseDbSystemTimeZone;
+        OracleDatabaseDbSystemStorageManagement,
+        OracleDatabaseDbSystemTimeZone,
+        OracleDatabaseDbSystemType;
 export 'src/oracle/google_oracle_database_exadb_vm_cluster.dart'
     show
         GoogleOracleDatabaseExadbVmCluster,
         OracleDatabaseExadbVmClusterDataCollectionOptions,
         OracleDatabaseExadbVmClusterDeletionPolicy,
+        OracleDatabaseExadbVmClusterLicenseModel,
         OracleDatabaseExadbVmClusterProperties,
+        OracleDatabaseExadbVmClusterShapeAttribute,
         OracleDatabaseExadbVmClusterTimeZone,
         OracleDatabaseExadbVmClusterVmFileSystemStorage;
 export 'src/oracle/google_oracle_database_exascale_db_storage_vault.dart'
@@ -100,14 +120,20 @@ export 'src/oracle/google_oracle_database_goldengate_connection.dart'
         OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties,
         OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties,
         OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage,
+        OracleDatabaseGoldengateConnectionAuthenticationMode,
+        OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType,
         OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProperties,
         OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage,
         OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionProperties,
         OracleDatabaseGoldengateConnectionBootstrapServers,
         OracleDatabaseGoldengateConnectionCatalog,
+        OracleDatabaseGoldengateConnectionCatalogType,
+        OracleDatabaseGoldengateConnectionDatabricksAuthenticationType,
         OracleDatabaseGoldengateConnectionDatabricksConnectionProperties,
         OracleDatabaseGoldengateConnectionDb2ConnectionProperties,
+        OracleDatabaseGoldengateConnectionDb2SecurityProtocol,
         OracleDatabaseGoldengateConnectionDeletionPolicy,
+        OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType,
         OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties,
         OracleDatabaseGoldengateConnectionGenericConnectionProperties,
         OracleDatabaseGoldengateConnectionGlueIcebergCatalog,
@@ -119,12 +145,16 @@ export 'src/oracle/google_oracle_database_goldengate_connection.dart'
         OracleDatabaseGoldengateConnectionHdfsConnectionProperties,
         OracleDatabaseGoldengateConnectionIcebergConnectionProperties,
         OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProperties,
+        OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol,
         OracleDatabaseGoldengateConnectionKafkaConnectionProperties,
+        OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType,
         OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionProperties,
+        OracleDatabaseGoldengateConnectionKafkaSecurityProtocol,
         OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionProperties,
         OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProperties,
         OracleDatabaseGoldengateConnectionMongodbConnectionProperties,
         OracleDatabaseGoldengateConnectionMysqlConnectionProperties,
+        OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode,
         OracleDatabaseGoldengateConnectionNessieIcebergCatalog,
         OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperties,
         OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProperties,
@@ -132,11 +162,18 @@ export 'src/oracle/google_oracle_database_goldengate_connection.dart'
         OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties,
         OracleDatabaseGoldengateConnectionPolarisIcebergCatalog,
         OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties,
+        OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode,
         OracleDatabaseGoldengateConnectionProperties,
         OracleDatabaseGoldengateConnectionRedisConnectionProperties,
         OracleDatabaseGoldengateConnectionRestIcebergCatalog,
+        OracleDatabaseGoldengateConnectionRoutingMethod,
+        OracleDatabaseGoldengateConnectionSchemeType,
+        OracleDatabaseGoldengateConnectionSessionMode,
+        OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType,
         OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties,
-        OracleDatabaseGoldengateConnectionStorage;
+        OracleDatabaseGoldengateConnectionStorage,
+        OracleDatabaseGoldengateConnectionStorageType,
+        OracleDatabaseGoldengateConnectionType;
 export 'src/oracle/google_oracle_database_goldengate_connection_assignment.dart'
     show
         GoogleOracleDatabaseGoldengateConnectionAssignment,
@@ -145,7 +182,9 @@ export 'src/oracle/google_oracle_database_goldengate_connection_assignment.dart'
 export 'src/oracle/google_oracle_database_goldengate_deployment.dart'
     show
         GoogleOracleDatabaseGoldengateDeployment,
+        OracleDatabaseGoldengateDeploymentDay,
         OracleDatabaseGoldengateDeploymentDeletionPolicy,
+        OracleDatabaseGoldengateDeploymentLicenseModel,
         OracleDatabaseGoldengateDeploymentMaintenanceConfig,
         OracleDatabaseGoldengateDeploymentMaintenanceWindow,
         OracleDatabaseGoldengateDeploymentOggData,

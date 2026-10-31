@@ -6,6 +6,69 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_public_maintenance_configurations`.
 const Set<String> _azurermPublicMaintenanceConfigurationsSensitive = <String>{};
 
+/// Data Public Maintenance Configurations Recur enum for `recur_every`.
+extension type const DataPublicMaintenanceConfigurationsRecurEvery._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataPublicMaintenanceConfigurationsRecurEvery.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPublicMaintenanceConfigurationsRecurEvery.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPublicMaintenanceConfigurationsRecurEvery.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mondayThursday = DataPublicMaintenanceConfigurationsRecurEvery._(
+    TfArgLiteral('Monday-Thursday'),
+  );
+  static const fridaySunday = DataPublicMaintenanceConfigurationsRecurEvery._(
+    TfArgLiteral('Friday-Sunday'),
+  );
+
+  static const List<DataPublicMaintenanceConfigurationsRecurEvery> values = [
+    mondayThursday,
+    fridaySunday,
+  ];
+}
+
+/// Data Public Maintenance Configurations enum for `scope`.
+extension type const DataPublicMaintenanceConfigurationsScope._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPublicMaintenanceConfigurationsScope.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPublicMaintenanceConfigurationsScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPublicMaintenanceConfigurationsScope.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const extension = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('Extension'),
+  );
+  static const host = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('Host'),
+  );
+  static const inguestpatch = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('InGuestPatch'),
+  );
+  static const osimage = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('OSImage'),
+  );
+  static const sqldb = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('SQLDB'),
+  );
+  static const sqlmanagedinstance = DataPublicMaintenanceConfigurationsScope._(
+    TfArgLiteral('SQLManagedInstance'),
+  );
+
+  static const List<DataPublicMaintenanceConfigurationsScope> values = [
+    extension,
+    host,
+    inguestpatch,
+    osimage,
+    sqldb,
+    sqlmanagedinstance,
+  ];
+}
+
 /// Factory wrapper for `azurerm_public_maintenance_configurations`.
 final class DataAzurermPublicMaintenanceConfigurations extends Data {
   static const String tfType = 'azurerm_public_maintenance_configurations';
@@ -13,8 +76,8 @@ final class DataAzurermPublicMaintenanceConfigurations extends Data {
   DataAzurermPublicMaintenanceConfigurations(
     super.localName, {
     TfArg<String>? location,
-    TfArg<String>? recurEvery,
-    TfArg<String>? scope,
+    DataPublicMaintenanceConfigurationsRecurEvery? recurEvery,
+    DataPublicMaintenanceConfigurationsScope? scope,
     super.provider,
     super.timeouts,
   }) : super(

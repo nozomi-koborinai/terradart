@@ -13,6 +13,19 @@ const Set<String> _cloudflareWorkerVersionSensitive = <String>{
   'bindings.text',
 };
 
+/// Data Worker Version enum for `include`.
+extension type const DataWorkerVersionInclude._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkerVersionInclude.variable(String name) : this._(TfArg.variable(name));
+  DataWorkerVersionInclude.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkerVersionInclude.arg(TfArg<String> arg) : this._(arg);
+
+  static const modules = DataWorkerVersionInclude._(TfArgLiteral('modules'));
+
+  static const List<DataWorkerVersionInclude> values = [modules];
+}
+
 /// Factory wrapper for `cloudflare_worker_version`.
 ///
 /// Accepted Permissions
@@ -24,7 +37,7 @@ final class DataCloudflareWorkerVersion extends Data {
   DataCloudflareWorkerVersion(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? include,
+    DataWorkerVersionInclude? include,
     required TfArg<String> versionId,
     required TfArg<String> workerId,
     super.provider,

@@ -18,6 +18,30 @@ const Set<String> _googleComputeInstanceTemplateSensitive = <String>{
   'metadata_startup_script',
 };
 
+/// Compute Instance Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateKeyRevocationActionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ComputeInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceTemplateKeyRevocationActionType> values = [
+    none,
+    stop,
+  ];
+}
+
 // ===========================================================================
 // Enums (all prefixed `InstanceTemplate` to avoid collision with
 // `google_compute_instance` in the same `compute/` package.)
@@ -54,12 +78,14 @@ extension type const InstanceTemplateNicType._(TfArg<String> _)
   );
   static const mrdma = InstanceTemplateNicType._(TfArgLiteral('MRDMA'));
   static const irdma = InstanceTemplateNicType._(TfArgLiteral('IRDMA'));
+  static const idpf = InstanceTemplateNicType._(TfArgLiteral('IDPF'));
 
   static const List<InstanceTemplateNicType> values = [
     gvnic,
     virtioNet,
     mrdma,
     irdma,
+    idpf,
   ];
 }
 
@@ -130,10 +156,18 @@ extension type const InstanceTemplateProvisioningModel._(TfArg<String> _)
     TfArgLiteral('STANDARD'),
   );
   static const spot = InstanceTemplateProvisioningModel._(TfArgLiteral('SPOT'));
+  static const flexStart = InstanceTemplateProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound = InstanceTemplateProvisioningModel._(
+    TfArgLiteral('RESERVATION_BOUND'),
+  );
 
   static const List<InstanceTemplateProvisioningModel> values = [
     standard,
     spot,
+    flexStart,
+    reservationBound,
   ];
 }
 
@@ -183,11 +217,19 @@ extension type const InstanceTemplateConfidentialInstanceType._(TfArg<String> _)
   static const tdx = InstanceTemplateConfidentialInstanceType._(
     TfArgLiteral('TDX'),
   );
+  static const bmsai = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
 
   static const List<InstanceTemplateConfidentialInstanceType> values = [
     sev,
     sevSnp,
     tdx,
+    bmsai,
+    cca,
   ];
 }
 
@@ -346,7 +388,7 @@ final class ComputeInstanceTemplateDisk {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeInstanceTemplateArchitecture? architecture;
 
   final TfArg<bool>? autoDelete;
 
@@ -362,7 +404,7 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceTemplateInterface? interface;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -384,7 +426,7 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<String>? storagePool;
 
-  final TfArg<String>? type;
+  final ComputeInstanceTemplateType? type;
 
   final ComputeInstanceTemplateDiskEncryptionKey? diskEncryptionKey;
 
@@ -420,6 +462,61 @@ final class ComputeInstanceTemplateDisk {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const arm64 = ComputeInstanceTemplateArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+  static const x8664 = ComputeInstanceTemplateArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+
+  static const List<ComputeInstanceTemplateArchitecture> values = [
+    arm64,
+    x8664,
+  ];
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const nvme = ComputeInstanceTemplateInterface._(TfArgLiteral('NVME'));
+  static const scsi = ComputeInstanceTemplateInterface._(TfArgLiteral('SCSI'));
+
+  static const List<ComputeInstanceTemplateInterface> values = [nvme, scsi];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateType.arg(TfArg<String> arg) : this._(arg);
+
+  static const persistent = ComputeInstanceTemplateType._(
+    TfArgLiteral('PERSISTENT'),
+  );
+  static const scratch = ComputeInstanceTemplateType._(TfArgLiteral('SCRATCH'));
+
+  static const List<ComputeInstanceTemplateType> values = [persistent, scratch];
 }
 
 /// Typed helper for the `disk.disk_encryption_key` block of
@@ -544,7 +641,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceTemplateIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -562,7 +659,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceTemplateStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -599,6 +696,54 @@ final class ComputeInstanceTemplateNetworkInterface {
     if (ipv6AccessConfig != null)
       'ipv6_access_config': [for (final e in ipv6AccessConfig!) e.encode()],
   };
+}
+
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateIgmpQuery.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateIgmpQuery.arg(TfArg<String> arg) : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceTemplateIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateStackType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeInstanceTemplateStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -678,16 +823,16 @@ extension type const ComputeInstanceTemplateTotalEgressBandwidthTier._(
   const ComputeInstanceTemplateTotalEgressBandwidthTier.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const tier1 = ComputeInstanceTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase = ComputeInstanceTemplateTotalEgressBandwidthTier._(
     TfArgLiteral('DEFAULT'),
   );
+  static const tier1 = ComputeInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeInstanceTemplateTotalEgressBandwidthTier> values = [
-    tier1,
     defaultCase,
+    tier1,
   ];
 }
 
@@ -857,7 +1002,7 @@ final class ComputeInstanceTemplateNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceTemplateOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -867,6 +1012,23 @@ final class ComputeInstanceTemplateNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ComputeInstanceTemplateOperator._(TfArgLiteral('IN'));
+  static const notIn = ComputeInstanceTemplateOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<ComputeInstanceTemplateOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -1038,7 +1200,7 @@ final class GoogleComputeInstanceTemplate extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? resourceManagerTags,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceTemplateKeyRevocationActionType? keyRevocationActionType,
     required List<ComputeInstanceTemplateDisk> disk,
     List<ComputeInstanceTemplateNetworkInterface>? networkInterface,
     ComputeInstanceTemplateServiceAccount? serviceAccount,

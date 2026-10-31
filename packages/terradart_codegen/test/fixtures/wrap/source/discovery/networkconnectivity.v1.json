@@ -1,0 +1,502 @@
+{
+  "name": "networkconnectivity",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AllocationOptions": {
+      "properties": {
+        "allocationStrategy": {
+          "enum": [
+            "ALLOCATION_STRATEGY_UNSPECIFIED",
+            "RANDOM",
+            "FIRST_AVAILABLE",
+            "RANDOM_FIRST_N_AVAILABLE",
+            "FIRST_SMALLEST_FITTING"
+          ]
+        }
+      }
+    },
+    "Destination": {
+      "properties": {
+        "stateTimeline": {
+          "$ref": "StateTimeline"
+        },
+        "endpoints": {
+          "items": {
+            "$ref": "DestinationEndpoint"
+          }
+        }
+      }
+    },
+    "DestinationEndpoint": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "VALID",
+            "INVALID"
+          ]
+        }
+      }
+    },
+    "Filter": {
+      "properties": {
+        "protocolVersion": {
+          "enum": [
+            "PROTOCOL_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ]
+        }
+      }
+    },
+    "Gateway": {
+      "properties": {
+        "capacity": {
+          "enum": [
+            "GATEWAY_CAPACITY_UNSPECIFIED",
+            "CAPACITY_1_GBPS",
+            "CAPACITY_10_GBPS"
+          ]
+        }
+      }
+    },
+    "GatewayAdvertisedRoute": {
+      "properties": {
+        "recipient": {
+          "enum": [
+            "RECIPIENT_UNSPECIFIED",
+            "ADVERTISE_TO_HUB"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Group": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Hub": {
+      "properties": {
+        "presetTopology": {
+          "enum": [
+            "PRESET_TOPOLOGY_UNSPECIFIED",
+            "MESH",
+            "STAR",
+            "HYBRID_INSPECTION"
+          ]
+        },
+        "policyMode": {
+          "enum": [
+            "POLICY_MODE_UNSPECIFIED",
+            "PRESET"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ]
+        },
+        "spokeSummary": {
+          "$ref": "SpokeSummary"
+        }
+      }
+    },
+    "InternalRange": {
+      "properties": {
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "VPC_SUBNET",
+            "INTERNAL_ADDRESS"
+          ]
+        },
+        "usage": {
+          "enum": [
+            "USAGE_UNSPECIFIED",
+            "FOR_VPC",
+            "EXTERNAL_TO_VPC",
+            "FOR_MIGRATION"
+          ]
+        },
+        "peering": {
+          "enum": [
+            "PEERING_UNSPECIFIED",
+            "FOR_SELF",
+            "FOR_PEER",
+            "NOT_SHARED"
+          ]
+        },
+        "overlaps": {
+          "items": {
+            "enum": [
+              "OVERLAP_UNSPECIFIED",
+              "OVERLAP_ROUTE_RANGE",
+              "OVERLAP_EXISTING_SUBNET_RANGE"
+            ]
+          }
+        },
+        "rangeStatus": {
+          "enum": [
+            "RANGE_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE",
+            "CREATING",
+            "DELETING"
+          ]
+        },
+        "allocationOptions": {
+          "$ref": "AllocationOptions"
+        }
+      }
+    },
+    "MulticloudDataTransferConfig": {
+      "properties": {
+        "services": {
+          "additionalProperties": {
+            "$ref": "StateTimeline"
+          }
+        }
+      }
+    },
+    "PolicyBasedRoute": {
+      "properties": {
+        "filter": {
+          "$ref": "Filter"
+        },
+        "nextHopOtherRoutes": {
+          "enum": [
+            "OTHER_ROUTES_UNSPECIFIED",
+            "DEFAULT_ROUTING"
+          ]
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warnings"
+          }
+        }
+      }
+    },
+    "PscConfig": {
+      "properties": {
+        "producerInstanceLocation": {
+          "enum": [
+            "PRODUCER_INSTANCE_LOCATION_UNSPECIFIED",
+            "CUSTOM_RESOURCE_HIERARCHY_LEVELS"
+          ]
+        }
+      }
+    },
+    "PscConnection": {
+      "properties": {
+        "errorType": {
+          "enum": [
+            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
+            "ERROR_INTERNAL",
+            "ERROR_CONSUMER_SIDE",
+            "ERROR_PRODUCER_SIDE"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "CREATING",
+            "DELETING",
+            "CREATE_REPAIRING",
+            "DELETE_REPAIRING"
+          ]
+        },
+        "ipVersion": {
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ]
+        }
+      }
+    },
+    "RegionalEndpoint": {
+      "properties": {
+        "accessType": {
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "GLOBAL",
+            "REGIONAL"
+          ]
+        }
+      }
+    },
+    "ServiceConnectionPolicy": {
+      "properties": {
+        "pscConfig": {
+          "$ref": "PscConfig"
+        },
+        "infrastructure": {
+          "enum": [
+            "INFRASTRUCTURE_UNSPECIFIED",
+            "PSC"
+          ]
+        },
+        "pscConnections": {
+          "items": {
+            "$ref": "PscConnection"
+          }
+        }
+      }
+    },
+    "Spoke": {
+      "properties": {
+        "spokeType": {
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK",
+            "GATEWAY",
+            "PRODUCER_VPC_NETWORK"
+          ]
+        },
+        "reasons": {
+          "items": {
+            "$ref": "StateReason"
+          }
+        },
+        "gateway": {
+          "$ref": "Gateway"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "SpokeStateCount": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "SpokeStateReasonCount": {
+      "properties": {
+        "stateReasonCode": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "REJECTED",
+            "PAUSED",
+            "FAILED",
+            "UPDATE_PENDING_REVIEW",
+            "UPDATE_REJECTED",
+            "UPDATE_FAILED"
+          ]
+        }
+      }
+    },
+    "SpokeSummary": {
+      "properties": {
+        "spokeStateCounts": {
+          "items": {
+            "$ref": "SpokeStateCount"
+          }
+        },
+        "spokeTypeCounts": {
+          "items": {
+            "$ref": "SpokeTypeCount"
+          }
+        },
+        "spokeStateReasonCounts": {
+          "items": {
+            "$ref": "SpokeStateReasonCount"
+          }
+        }
+      }
+    },
+    "SpokeTypeCount": {
+      "properties": {
+        "spokeType": {
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK",
+            "GATEWAY",
+            "PRODUCER_VPC_NETWORK"
+          ]
+        }
+      }
+    },
+    "StateMetadata": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ADDING",
+            "ACTIVE",
+            "DELETING",
+            "SUSPENDING",
+            "SUSPENDED"
+          ]
+        }
+      }
+    },
+    "StateReason": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "REJECTED",
+            "PAUSED",
+            "FAILED",
+            "UPDATE_PENDING_REVIEW",
+            "UPDATE_REJECTED",
+            "UPDATE_FAILED"
+          ]
+        }
+      }
+    },
+    "StateTimeline": {
+      "properties": {
+        "states": {
+          "items": {
+            "$ref": "StateMetadata"
+          }
+        }
+      }
+    },
+    "Transport": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "PENDING_CONFIG",
+            "PENDING_KEY",
+            "ACTIVE",
+            "DELETING",
+            "DEPROVISIONED",
+            "SUSPENDED"
+          ]
+        },
+        "stackType": {
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4_ONLY",
+            "IPV4_IPV6"
+          ]
+        },
+        "bandwidth": {
+          "enum": [
+            "BANDWIDTH_UNSPECIFIED",
+            "BPS_50M",
+            "BPS_100M",
+            "BPS_200M",
+            "BPS_300M",
+            "BPS_400M",
+            "BPS_500M",
+            "BPS_1G",
+            "BPS_2G",
+            "BPS_5G",
+            "BPS_10G",
+            "BPS_20G",
+            "BPS_50G",
+            "BPS_100G"
+          ]
+        }
+      }
+    },
+    "Warnings": {
+      "properties": {
+        "code": {
+          "enum": [
+            "WARNING_UNSPECIFIED",
+            "RESOURCE_NOT_ACTIVE",
+            "RESOURCE_BEING_MODIFIED"
+          ]
+        }
+      }
+    }
+  },
+  "parameters": {
+    "ServiceConnectionPolicy": {
+      "autoSubnetworkConfig.ipStack": {
+        "enum": [
+          "SUBNET_IP_STACK_UNSPECIFIED",
+          "IPV4_ONLY",
+          "IPV6_ONLY",
+          "IPV4_IPV6"
+        ]
+      },
+      "subnetworkMode": {
+        "enum": [
+          "SUBNETWORK_MODE_UNSPECIFIED",
+          "USER_PROVIDED",
+          "AUTO_CREATED"
+        ]
+      }
+    }
+  }
+}

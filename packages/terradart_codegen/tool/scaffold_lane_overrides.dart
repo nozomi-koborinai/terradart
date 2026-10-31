@@ -109,10 +109,13 @@ void main(List<String> args) {
           '${rules.exactlyOneDefaults ? 'deriveExactlyOne: true\n' : ''}',
     );
   }
-  // tool/wrap_lanes_test.dart requires both flags on every data override of
-  // a lane with data-source hints.
+  // tool/wrap_lanes_test.dart requires deriveEnums on every data override
+  // of a lane that derives enums, and deriveExactlyOne too on a lane with
+  // data-source hints.
   final dataHints = hasDataSourceHints(schemaDir)
       ? 'deriveEnums: true\nderiveExactlyOne: true\n'
+      : rules.derivedEnumDefaults
+      ? 'deriveEnums: true\n'
       : '';
   for (final type in dataSources) {
     write(

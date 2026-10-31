@@ -1,0 +1,48 @@
+{
+  "name": "cloudquotas",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://cloudquotas.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "QuotaAdjusterSettings": {
+      "properties": {
+        "enablement": {
+          "enum": [
+            "ENABLEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "QuotaConfig": {
+      "properties": {
+        "requestOrigin": {
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "CLOUD_CONSOLE",
+            "AUTO_ADJUSTER"
+          ]
+        }
+      }
+    },
+    "QuotaPreference": {
+      "properties": {
+        "quotaConfig": {
+          "$ref": "QuotaConfig"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "QuotaPreference": {
+      "ignoreSafetyChecks": {
+        "enum": [
+          "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+          "QUOTA_DECREASE_BELOW_USAGE",
+          "QUOTA_DECREASE_PERCENTAGE_TOO_HIGH"
+        ]
+      }
+    }
+  }
+}

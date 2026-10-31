@@ -207,11 +207,11 @@ final class BigqueryTableBiglakeConfiguration {
 
   final TfArg<String> connectionId;
 
-  final TfArg<String> fileFormat;
+  final BigqueryTableFileFormat fileFormat;
 
   final TfArg<String> storageUri;
 
-  final TfArg<String> tableFormat;
+  final BigqueryTableFormat tableFormat;
 
   @internal
   Map<String, Object?> encode() => {
@@ -220,6 +220,32 @@ final class BigqueryTableBiglakeConfiguration {
     'storage_uri': storageUri.toTfJson(),
     'table_format': tableFormat.toTfJson(),
   };
+}
+
+/// `file_format` — derived from the provider schema description.
+extension type const BigqueryTableFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableFileFormat.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableFileFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const parquet = BigqueryTableFileFormat._(TfArgLiteral('PARQUET'));
+
+  static const List<BigqueryTableFileFormat> values = [parquet];
+}
+
+/// `table_format` — derived from the provider schema description.
+extension type const BigqueryTableFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableFormat.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const iceberg = BigqueryTableFormat._(TfArgLiteral('ICEBERG'));
+
+  static const List<BigqueryTableFormat> values = [iceberg];
 }
 
 /// Typed helper for the `encryption_configuration` block of
@@ -346,13 +372,13 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<String>? connectionId;
 
-  final TfArg<List<String>>? decimalTargetTypes;
+  final EnumList<BigqueryTableDecimalTargetTypes>? decimalTargetTypes;
 
   final FileSetSpecType? fileSetSpecType;
 
   final TfArg<bool>? ignoreUnknownValues;
 
-  final TfArg<String>? jsonExtension;
+  final BigqueryTableJsonExtension? jsonExtension;
 
   final TfArg<num>? maxBadRecords;
 
@@ -406,6 +432,46 @@ final class BigqueryTableExternalDataConfiguration {
     'json_options': ?jsonOptions?.encode(),
     'parquet_options': ?parquetOptions?.encode(),
   };
+}
+
+/// `decimal_target_types` — derived from the provider schema description.
+extension type const BigqueryTableDecimalTargetTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableDecimalTargetTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableDecimalTargetTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableDecimalTargetTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const numeric = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('NUMERIC'),
+  );
+  static const bignumeric = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('BIGNUMERIC'),
+  );
+  static const string = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('STRING'),
+  );
+
+  static const List<BigqueryTableDecimalTargetTypes> values = [
+    numeric,
+    bignumeric,
+    string,
+  ];
+}
+
+/// `json_extension` — derived from the provider schema description.
+extension type const BigqueryTableJsonExtension._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableJsonExtension.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableJsonExtension.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableJsonExtension.arg(TfArg<String> arg) : this._(arg);
+
+  static const geojson = BigqueryTableJsonExtension._(TfArgLiteral('GEOJSON'));
+
+  static const List<BigqueryTableJsonExtension> values = [geojson];
 }
 
 /// Typed helper for the `external_data_configuration.avro_options` block of
@@ -464,13 +530,13 @@ final class BigqueryTableColumnFamily {
     this.column,
   });
 
-  final TfArg<String>? encoding;
+  final BigqueryTableColumnFamilyEncoding? encoding;
 
   final TfArg<String>? familyId;
 
   final TfArg<bool>? onlyReadLatest;
 
-  final TfArg<String>? type;
+  final BigqueryTableColumnFamilyType? type;
 
   final List<BigqueryTableColumn>? column;
 
@@ -482,6 +548,53 @@ final class BigqueryTableColumnFamily {
     'type': ?type?.toTfJson(),
     if (column != null) 'column': [for (final e in column!) e.encode()],
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableColumnFamilyEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableColumnFamilyEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableColumnFamilyEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableColumnFamilyEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const text = BigqueryTableColumnFamilyEncoding._(TfArgLiteral('TEXT'));
+  static const binary = BigqueryTableColumnFamilyEncoding._(
+    TfArgLiteral('BINARY'),
+  );
+
+  static const List<BigqueryTableColumnFamilyEncoding> values = [text, binary];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const BigqueryTableColumnFamilyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableColumnFamilyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableColumnFamilyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableColumnFamilyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bytes = BigqueryTableColumnFamilyType._(TfArgLiteral('BYTES'));
+  static const string = BigqueryTableColumnFamilyType._(TfArgLiteral('STRING'));
+  static const integer = BigqueryTableColumnFamilyType._(
+    TfArgLiteral('INTEGER'),
+  );
+  static const float = BigqueryTableColumnFamilyType._(TfArgLiteral('FLOAT'));
+  static const boolean = BigqueryTableColumnFamilyType._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const json = BigqueryTableColumnFamilyType._(TfArgLiteral('JSON'));
+
+  static const List<BigqueryTableColumnFamilyType> values = [
+    bytes,
+    string,
+    integer,
+    float,
+    boolean,
+    json,
+  ];
 }
 
 /// Typed helper for the `external_data_configuration.bigtable_options.column_family.column` block of
@@ -497,7 +610,7 @@ final class BigqueryTableColumn {
     this.type,
   });
 
-  final TfArg<String>? encoding;
+  final BigqueryTableColumnFamilyEncoding? encoding;
 
   final TfArg<String>? fieldName;
 
@@ -507,7 +620,7 @@ final class BigqueryTableColumn {
 
   final TfArg<String>? qualifierString;
 
-  final TfArg<String>? type;
+  final BigqueryTableColumnFamilyType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -538,7 +651,7 @@ final class BigqueryTableCsvOptions {
 
   final TfArg<bool>? allowQuotedNewlines;
 
-  final TfArg<String>? encoding;
+  final BigqueryTableEncoding? encoding;
 
   final TfArg<String>? fieldDelimiter;
 
@@ -546,7 +659,7 @@ final class BigqueryTableCsvOptions {
 
   final TfArg<num>? skipLeadingRows;
 
-  final TfArg<String>? sourceColumnMatch;
+  final BigqueryTableSourceColumnMatch? sourceColumnMatch;
 
   @internal
   Map<String, Object?> encode() => {
@@ -558,6 +671,37 @@ final class BigqueryTableCsvOptions {
     'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
     'source_column_match': ?sourceColumnMatch?.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableEncoding.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryTableEncoding._(TfArgLiteral('UTF-8'));
+  static const iso88591 = BigqueryTableEncoding._(TfArgLiteral('ISO-8859-1'));
+
+  static const List<BigqueryTableEncoding> values = [utf8, iso88591];
+}
+
+/// `source_column_match` — derived from the provider schema description.
+extension type const BigqueryTableSourceColumnMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableSourceColumnMatch.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableSourceColumnMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableSourceColumnMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const position = BigqueryTableSourceColumnMatch._(
+    TfArgLiteral('POSITION'),
+  );
+  static const name = BigqueryTableSourceColumnMatch._(TfArgLiteral('NAME'));
+
+  static const List<BigqueryTableSourceColumnMatch> values = [position, name];
 }
 
 /// Typed helper for the `external_data_configuration.google_sheets_options` block of
@@ -607,10 +751,42 @@ final class BigqueryTableHivePartitioningOptions {
 final class BigqueryTableJsonOptions {
   const BigqueryTableJsonOptions({this.encoding});
 
-  final TfArg<String>? encoding;
+  final BigqueryTableJsonOptionsEncoding? encoding;
 
   @internal
   Map<String, Object?> encode() => {'encoding': ?encoding?.toTfJson()};
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableJsonOptionsEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableJsonOptionsEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableJsonOptionsEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableJsonOptionsEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryTableJsonOptionsEncoding._(TfArgLiteral('UTF-8'));
+  static const utf16be = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-16BE'),
+  );
+  static const utf16le = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-16LE'),
+  );
+  static const utf32be = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-32BE'),
+  );
+  static const utf32le = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-32LE'),
+  );
+
+  static const List<BigqueryTableJsonOptionsEncoding> values = [
+    utf8,
+    utf16be,
+    utf16le,
+    utf32be,
+    utf32le,
+  ];
 }
 
 /// Typed helper for the `external_data_configuration.parquet_options` block of
@@ -712,10 +888,23 @@ final class BigqueryTableRange {
 final class BigqueryTableSchemaForeignTypeInfo {
   const BigqueryTableSchemaForeignTypeInfo({required this.typeSystem});
 
-  final TfArg<String> typeSystem;
+  final BigqueryTableTypeSystem typeSystem;
 
   @internal
   Map<String, Object?> encode() => {'type_system': typeSystem.toTfJson()};
+}
+
+/// `type_system` — derived from the provider schema description.
+extension type const BigqueryTableTypeSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableTypeSystem.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableTypeSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableTypeSystem.arg(TfArg<String> arg) : this._(arg);
+
+  static const hive = BigqueryTableTypeSystem._(TfArgLiteral('HIVE'));
+
+  static const List<BigqueryTableTypeSystem> values = [hive];
 }
 
 /// Typed helper for the `table_constraints` block of

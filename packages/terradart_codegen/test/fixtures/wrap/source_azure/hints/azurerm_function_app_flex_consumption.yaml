@@ -3,11 +3,59 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: auth_settings
+    properties:
+      - api_name: default_provider
+        enum_values:
+          - "AzureActiveDirectory"
+          - "Facebook"
+          - "Github"
+          - "Google"
+          - "MicrosoftAccount"
+          - "Twitter"
+      - api_name: unauthenticated_client_action
+        enum_values:
+          - "AllowAnonymous"
+          - "RedirectToLoginPage"
+  - api_name: auth_settings_v2
+    properties:
+      - api_name: forward_proxy_convention
+        enum_values:
+          - "Custom"
+          - "NoProxy"
+          - "Standard"
+      - api_name: login
+        properties:
+          - api_name: cookie_expiration_convention
+            enum_values:
+              - "FixedTime"
+              - "IdentityProviderDerived"
+      - api_name: unauthenticated_action
+        enum_values:
+          - "AllowAnonymous"
+          - "RedirectToLoginPage"
+          - "Return401"
+          - "Return403"
   - api_name: client_certificate_mode
     enum_values:
       - "Optional"
       - "OptionalInteractiveUser"
       - "Required"
+  - api_name: connection_string
+    properties:
+      - api_name: type
+        enum_values:
+          - "ApiHub"
+          - "Custom"
+          - "DocDb"
+          - "EventHub"
+          - "MySql"
+          - "NotificationHub"
+          - "PostgreSQL"
+          - "RedisCache"
+          - "SQLAzure"
+          - "SQLServer"
+          - "ServiceBus"
   - api_name: runtime_name
     enum_values:
       - "custom"
@@ -16,8 +64,72 @@ properties:
       - "node"
       - "powershell"
       - "python"
+  - api_name: site_config
+    properties:
+      - api_name: ip_restriction
+        properties:
+          - api_name: action
+            enum_values:
+              - "Allow"
+              - "Deny"
+      - api_name: ip_restriction_default_action
+        enum_values:
+          - "Allow"
+          - "Deny"
+      - api_name: load_balancing_mode
+        enum_values:
+          - "LeastRequests"
+          - "WeightedRoundRobin"
+          - "LeastResponseTime"
+          - "WeightedTotalTraffic"
+          - "RequestHash"
+          - "PerSiteRoundRobin"
+      - api_name: managed_pipeline_mode
+        enum_values:
+          - "Classic"
+          - "Integrated"
+      - api_name: minimum_tls_version
+        enum_values:
+          - "1.1"
+          - "1.3"
+          - "1.2"
+          - "1.0"
+      - api_name: remote_debugging_version
+        enum_values:
+          - "VS2017"
+          - "VS2019"
+          - "VS2022"
+      - api_name: scm_ip_restriction
+        properties:
+          - api_name: action
+            enum_values:
+              - "Allow"
+              - "Deny"
+      - api_name: scm_ip_restriction_default_action
+        enum_values:
+          - "Allow"
+          - "Deny"
+      - api_name: scm_minimum_tls_version
+        enum_values:
+          - "1.1"
+          - "1.3"
+          - "1.2"
+          - "1.0"
   - api_name: storage_authentication_type
     enum_values:
       - "StorageAccountConnectionString"
       - "SystemAssignedIdentity"
       - "UserAssignedIdentity"
+  - api_name: storage_container_type
+    enum_values:
+      - "blobContainer"
+exactly_one_of_groups:
+  - ["auth_settings.facebook.app_secret", "auth_settings.facebook.app_secret_setting_name"]
+  - ["auth_settings.github.client_secret", "auth_settings.github.client_secret_setting_name"]
+  - ["auth_settings.google.client_secret", "auth_settings.google.client_secret_setting_name"]
+  - ["auth_settings.microsoft.client_secret", "auth_settings.microsoft.client_secret_setting_name"]
+  - ["auth_settings.twitter.consumer_secret", "auth_settings.twitter.consumer_secret_setting_name"]
+at_most_one_of_groups:
+  - ["auth_settings.active_directory.client_secret", "auth_settings.active_directory.client_secret_setting_name"]
+  - ["auth_settings_v2.active_directory_v2.client_secret_certificate_thumbprint", "auth_settings_v2.active_directory_v2.client_secret_setting_name"]
+  - ["auth_settings_v2.login.token_store_path", "auth_settings_v2.login.token_store_sas_setting_name"]

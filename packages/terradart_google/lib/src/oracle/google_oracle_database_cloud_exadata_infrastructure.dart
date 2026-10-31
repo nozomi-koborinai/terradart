@@ -109,7 +109,8 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<num>? customActionTimeoutMins;
 
-  final TfArg<List<String>>? daysOfWeek;
+  final EnumList<OracleDatabaseCloudExadataInfrastructureDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<List<num>>? hoursOfDay;
 
@@ -117,11 +118,11 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<num>? leadTimeWeek;
 
-  final TfArg<List<String>>? months;
+  final EnumList<OracleDatabaseCloudExadataInfrastructureMonths>? months;
 
-  final TfArg<String>? patchingMode;
+  final OracleDatabaseCloudExadataInfrastructurePatchingMode? patchingMode;
 
-  final TfArg<String>? preference;
+  final OracleDatabaseCloudExadataInfrastructurePreference? preference;
 
   final TfArg<List<num>>? weeksOfMonth;
 
@@ -138,6 +139,158 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
     'preference': ?preference?.toTfJson(),
     'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
+}
+
+/// `days_of_week` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructureDaysOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructureDaysOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructureDaysOfWeek.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const monday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<OracleDatabaseCloudExadataInfrastructureDaysOfWeek> values =
+      [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
+}
+
+/// `months` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructureMonths._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructureMonths.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructureMonths.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructureMonths.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const january = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('JANUARY'),
+  );
+  static const february = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('FEBRUARY'),
+  );
+  static const march = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('MARCH'),
+  );
+  static const april = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('APRIL'),
+  );
+  static const may = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('MAY'),
+  );
+  static const june = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('JUNE'),
+  );
+  static const july = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('JULY'),
+  );
+  static const august = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('AUGUST'),
+  );
+  static const september = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('SEPTEMBER'),
+  );
+  static const october = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('OCTOBER'),
+  );
+  static const november = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('NOVEMBER'),
+  );
+  static const december = OracleDatabaseCloudExadataInfrastructureMonths._(
+    TfArgLiteral('DECEMBER'),
+  );
+
+  static const List<OracleDatabaseCloudExadataInfrastructureMonths> values = [
+    january,
+    february,
+    march,
+    april,
+    may,
+    june,
+    july,
+    august,
+    september,
+    october,
+    november,
+    december,
+  ];
+}
+
+/// `patching_mode` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructurePatchingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructurePatchingMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructurePatchingMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const rolling = OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+    TfArgLiteral('ROLLING'),
+  );
+  static const nonRolling =
+      OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+        TfArgLiteral('NON_ROLLING'),
+      );
+
+  static const List<OracleDatabaseCloudExadataInfrastructurePatchingMode>
+  values = [rolling, nonRolling];
+}
+
+/// `preference` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructurePreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructurePreference.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructurePreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructurePreference.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const customPreference =
+      OracleDatabaseCloudExadataInfrastructurePreference._(
+        TfArgLiteral('CUSTOM_PREFERENCE'),
+      );
+  static const noPreference =
+      OracleDatabaseCloudExadataInfrastructurePreference._(
+        TfArgLiteral('NO_PREFERENCE'),
+      );
+
+  static const List<OracleDatabaseCloudExadataInfrastructurePreference> values =
+      [customPreference, noPreference];
 }
 
 /// Factory wrapper for `google_oracle_database_cloud_exadata_infrastructure`.

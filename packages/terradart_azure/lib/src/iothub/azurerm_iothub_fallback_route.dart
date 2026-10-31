@@ -8,6 +8,46 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_iothub_fallback_route`.
 const Set<String> _azurermIothubFallbackRouteSensitive = <String>{};
 
+/// Iothub Fallback Route enum for `source`.
+extension type const IothubFallbackRouteSource._(TfArg<String> _)
+    implements TfArg<String> {
+  IothubFallbackRouteSource.variable(String name)
+    : this._(TfArg.variable(name));
+  IothubFallbackRouteSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const IothubFallbackRouteSource.arg(TfArg<String> arg) : this._(arg);
+
+  static const deviceconnectionstateevents = IothubFallbackRouteSource._(
+    TfArgLiteral('DeviceConnectionStateEvents'),
+  );
+  static const devicejoblifecycleevents = IothubFallbackRouteSource._(
+    TfArgLiteral('DeviceJobLifecycleEvents'),
+  );
+  static const devicelifecycleevents = IothubFallbackRouteSource._(
+    TfArgLiteral('DeviceLifecycleEvents'),
+  );
+  static const devicemessages = IothubFallbackRouteSource._(
+    TfArgLiteral('DeviceMessages'),
+  );
+  static const digitaltwinchangeevents = IothubFallbackRouteSource._(
+    TfArgLiteral('DigitalTwinChangeEvents'),
+  );
+  static const invalid = IothubFallbackRouteSource._(TfArgLiteral('Invalid'));
+  static const twinchangeevents = IothubFallbackRouteSource._(
+    TfArgLiteral('TwinChangeEvents'),
+  );
+
+  static const List<IothubFallbackRouteSource> values = [
+    deviceconnectionstateevents,
+    devicejoblifecycleevents,
+    devicelifecycleevents,
+    devicemessages,
+    digitaltwinchangeevents,
+    invalid,
+    twinchangeevents,
+  ];
+}
+
 /// Factory wrapper for `azurerm_iothub_fallback_route`.
 final class AzurermIothubFallbackRoute extends Resource {
   static const String tfType = 'azurerm_iothub_fallback_route';
@@ -19,7 +59,7 @@ final class AzurermIothubFallbackRoute extends Resource {
     required TfArg<List<String>> endpointNames,
     required TfArg<String> iothubName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? source,
+    IothubFallbackRouteSource? source,
     super.lifecycle,
     super.dependsOn,
     super.provider,

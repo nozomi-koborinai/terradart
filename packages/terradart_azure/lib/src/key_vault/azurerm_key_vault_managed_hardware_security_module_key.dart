@@ -7,6 +7,110 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermKeyVaultManagedHardwareSecurityModuleKeySensitive =
     <String>{};
 
+/// Key Vault Managed Hardware Security Module Key enum for `curve`.
+extension type const KeyVaultManagedHardwareSecurityModuleKeyCurve._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KeyVaultManagedHardwareSecurityModuleKeyCurve.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultManagedHardwareSecurityModuleKeyCurve.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultManagedHardwareSecurityModuleKeyCurve.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const p256 = KeyVaultManagedHardwareSecurityModuleKeyCurve._(
+    TfArgLiteral('P-256'),
+  );
+  static const p256k = KeyVaultManagedHardwareSecurityModuleKeyCurve._(
+    TfArgLiteral('P-256K'),
+  );
+  static const p384 = KeyVaultManagedHardwareSecurityModuleKeyCurve._(
+    TfArgLiteral('P-384'),
+  );
+  static const p521 = KeyVaultManagedHardwareSecurityModuleKeyCurve._(
+    TfArgLiteral('P-521'),
+  );
+
+  static const List<KeyVaultManagedHardwareSecurityModuleKeyCurve> values = [
+    p256,
+    p256k,
+    p384,
+    p521,
+  ];
+}
+
+/// Key Vault Managed Hardware Security Module Key enum for `key_opts`.
+extension type const KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KeyVaultManagedHardwareSecurityModuleKeyOpts.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultManagedHardwareSecurityModuleKeyOpts.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultManagedHardwareSecurityModuleKeyOpts.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const decrypt = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('decrypt'),
+  );
+  static const encrypt = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('encrypt'),
+  );
+  static const sign = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('sign'),
+  );
+  static const unwrapkey = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('unwrapKey'),
+  );
+  static const verify = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('verify'),
+  );
+  static const wrapkey = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('wrapKey'),
+  );
+  static const import = KeyVaultManagedHardwareSecurityModuleKeyOpts._(
+    TfArgLiteral('import'),
+  );
+
+  static const List<KeyVaultManagedHardwareSecurityModuleKeyOpts> values = [
+    decrypt,
+    encrypt,
+    sign,
+    unwrapkey,
+    verify,
+    wrapkey,
+    import,
+  ];
+}
+
+/// Key Vault Managed Hardware Security Module Key enum for `key_type`.
+extension type const KeyVaultManagedHardwareSecurityModuleKeyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KeyVaultManagedHardwareSecurityModuleKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultManagedHardwareSecurityModuleKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultManagedHardwareSecurityModuleKeyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ecHsm = KeyVaultManagedHardwareSecurityModuleKeyType._(
+    TfArgLiteral('EC-HSM'),
+  );
+  static const octHsm = KeyVaultManagedHardwareSecurityModuleKeyType._(
+    TfArgLiteral('oct-HSM'),
+  );
+  static const rsaHsm = KeyVaultManagedHardwareSecurityModuleKeyType._(
+    TfArgLiteral('RSA-HSM'),
+  );
+
+  static const List<KeyVaultManagedHardwareSecurityModuleKeyType> values = [
+    ecHsm,
+    octHsm,
+    rsaHsm,
+  ];
+}
+
 /// Factory wrapper for `azurerm_key_vault_managed_hardware_security_module_key`.
 final class AzurermKeyVaultManagedHardwareSecurityModuleKey extends Resource {
   static const String tfType =
@@ -14,11 +118,11 @@ final class AzurermKeyVaultManagedHardwareSecurityModuleKey extends Resource {
 
   AzurermKeyVaultManagedHardwareSecurityModuleKey(
     super.localName, {
-    TfArg<String>? curve,
+    KeyVaultManagedHardwareSecurityModuleKeyCurve? curve,
     TfArg<String>? expirationDate,
-    required TfArg<List<String>> keyOpts,
+    required EnumList<KeyVaultManagedHardwareSecurityModuleKeyOpts> keyOpts,
     TfArg<num>? keySize,
-    required TfArg<String> keyType,
+    required KeyVaultManagedHardwareSecurityModuleKeyType keyType,
     required TfArg<String> managedHsmId,
     required TfArg<String> name,
     TfArg<String>? notBeforeDate,

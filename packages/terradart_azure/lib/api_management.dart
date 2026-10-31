@@ -33,6 +33,7 @@ export 'src/api_management/azurerm_api_management_api.dart'
         ApiManagementApiAuthOpenidAuthentication,
         ApiManagementApiBearerTokenSendingMethods,
         ApiManagementApiContact,
+        ApiManagementApiContentFormat,
         ApiManagementApiImport,
         ApiManagementApiLicense,
         ApiManagementApiOauth2Authorization,
@@ -52,6 +53,7 @@ export 'src/api_management/azurerm_api_management_api_diagnostic.dart'
         ApiManagementApiDiagnosticHeaders,
         ApiManagementApiDiagnosticHttpCorrelationProtocol,
         ApiManagementApiDiagnosticIdentifier,
+        ApiManagementApiDiagnosticMode,
         ApiManagementApiDiagnosticOperationNameFormat,
         ApiManagementApiDiagnosticQueryParams,
         ApiManagementApiDiagnosticVerbosity,
@@ -152,12 +154,13 @@ export 'src/api_management/azurerm_api_management_diagnostic.dart'
         ApiManagementDiagnosticHeaders,
         ApiManagementDiagnosticHttpCorrelationProtocol,
         ApiManagementDiagnosticIdentifier,
+        ApiManagementDiagnosticMode,
         ApiManagementDiagnosticOperationNameFormat,
         ApiManagementDiagnosticQueryParams,
         ApiManagementDiagnosticVerbosity,
         AzurermApiManagementDiagnostic;
 export 'src/api_management/azurerm_api_management_email_template.dart'
-    show AzurermApiManagementEmailTemplate;
+    show ApiManagementEmailTemplateName, AzurermApiManagementEmailTemplate;
 export 'src/api_management/azurerm_api_management_gateway.dart'
     show ApiManagementGatewayLocationData, AzurermApiManagementGateway;
 export 'src/api_management/azurerm_api_management_gateway_api.dart'
@@ -242,6 +245,8 @@ export 'src/api_management/azurerm_api_management_redis_cache.dart'
 export 'src/api_management/azurerm_api_management_standalone_gateway.dart'
     show
         ApiManagementStandaloneGatewaySku,
+        ApiManagementStandaloneGatewaySkuName,
+        ApiManagementStandaloneGatewayVirtualNetworkType,
         AzurermApiManagementStandaloneGateway;
 export 'src/api_management/azurerm_api_management_subscription.dart'
     show
@@ -253,7 +258,10 @@ export 'src/api_management/azurerm_api_management_subscription.dart'
 export 'src/api_management/azurerm_api_management_tag.dart'
     show AzurermApiManagementTag;
 export 'src/api_management/azurerm_api_management_user.dart'
-    show ApiManagementUserConfirmation, AzurermApiManagementUser;
+    show
+        ApiManagementUserConfirmation,
+        ApiManagementUserState,
+        AzurermApiManagementUser;
 export 'src/api_management/azurerm_api_management_workspace.dart'
     show AzurermApiManagementWorkspace;
 export 'src/api_management/azurerm_api_management_workspace_api_version_set.dart'

@@ -546,7 +546,7 @@ final class ComputeLbStack extends Stack {
         'lb_armor_deny_rule',
         securityPolicy: lbArmor.ref,
         priority: .literal(1000),
-        action: .literal('deny(403)'),
+        action: .deny403,
         description: .literal('Block example CIDR'),
         match: const ComputeSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
@@ -647,7 +647,7 @@ final class ComputeLbStack extends Stack {
         rules: [
           ComputeRegionSecurityPolicyRules(
             priority: .literal(2147483647),
-            action: .literal('allow'),
+            action: .allow,
             match: ComputeRegionSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
               config: .new(srcIpRanges: const ['*']),
@@ -664,7 +664,7 @@ final class ComputeLbStack extends Stack {
         securityPolicy: regionalArmor.ref,
         region: .literal(region),
         priority: .literal(2000),
-        action: .literal('deny(403)'),
+        action: .deny403,
         description: .literal('Block example CIDR (regional)'),
         match: const ComputeRegionSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,

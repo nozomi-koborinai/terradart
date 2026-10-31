@@ -1036,9 +1036,9 @@ final class CloudflareLeftoverStack extends Stack {
         'oauth_client',
         accountId: .literal(accountId),
         clientName: .literal(leftover),
-        grantTypes: [.authorizationCode],
+        grantTypes: .literal([.authorizationCode]),
         redirectUris: .literal([leftover]),
-        responseTypes: [.token],
+        responseTypes: .literal([.token]),
         scopes: .literal([leftover]),
         tokenEndpointAuthMethod: .none,
       ),
@@ -1200,7 +1200,7 @@ final class CloudflareLeftoverStack extends Stack {
         bucketName: .literal(leftover),
         queueId: .literal('00000000000000000000000000000001'),
         rules: [
-          R2BucketEventNotificationRules(actions: [.putobject]),
+          R2BucketEventNotificationRules(actions: .literal([.putobject])),
         ],
       ),
     );
@@ -1335,7 +1335,7 @@ final class CloudflareLeftoverStack extends Stack {
         'secrets_store_secret',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        scopes: .literal([leftover]),
+        scopes: .literal([.workers]),
         storeId: .literal('00000000000000000000000000000001'),
         value: leftoverSecret,
       ),
@@ -3048,7 +3048,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareCustomPages(
         'd_custom_pages',
-        identifier: .literal('1000_errors'),
+        identifier: .v1000Errors,
         accountId: .literal(accountId),
       ),
     );
@@ -3405,7 +3405,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareHostnameTlsSetting(
         'd_hostname_tls_setting',
         hostname: .literal(leftover),
-        settingId: .literal('ciphers'),
+        settingId: .ciphers,
         zoneId: .literal(zoneId),
       ),
     );
@@ -3413,7 +3413,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareHostnameTlsSettings(
         'd_hostname_tls_settings',
-        settingId: .literal('ciphers'),
+        settingId: .ciphers,
         zoneId: .literal(zoneId),
       ),
     );
@@ -3585,7 +3585,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLogpushDatasetField(
         'd_logpush_dataset_field',
         accountId: .literal(accountId),
-        datasetId: .literal('audit_logs'),
+        datasetId: .auditLogs,
       ),
     );
 
@@ -3593,7 +3593,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLogpushDatasetJob(
         'd_logpush_dataset_job',
         accountId: .literal(accountId),
-        datasetId: .literal('audit_logs'),
+        datasetId: .auditLogs,
       ),
     );
 

@@ -1,0 +1,369 @@
+{
+  "name": "alloydb",
+  "version": "v1",
+  "revision": "20261018",
+  "sourceUrl": "https://alloydb.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AutomatedBackupPolicy": {
+      "properties": {
+        "weeklySchedule": {
+          "$ref": "WeeklySchedule"
+        }
+      }
+    },
+    "Backup": {
+      "properties": {
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "AUTOMATED",
+            "CONTINUOUS"
+          ]
+        },
+        "databaseVersion": {
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "POSTGRES_18"
+          ]
+        }
+      }
+    },
+    "ClientConnectionConfig": {
+      "properties": {
+        "sslConfig": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "Cluster": {
+      "properties": {
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "TRIAL"
+          ]
+        },
+        "continuousBackupInfo": {
+          "$ref": "ContinuousBackupInfo"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "migrationSource": {
+          "$ref": "MigrationSource"
+        },
+        "databaseVersion": {
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "POSTGRES_18"
+          ]
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
+        "clusterType": {
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY"
+          ]
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy"
+        },
+        "maintenanceVersionSelectionPolicy": {
+          "enum": [
+            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "STOPPED",
+            "EMPTY",
+            "CREATING",
+            "DELETING",
+            "FAILED",
+            "BOOTSTRAPPING",
+            "MAINTENANCE",
+            "PROMOTING",
+            "SWITCHOVER"
+          ]
+        },
+        "automatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy"
+        }
+      }
+    },
+    "ConnectionPoolConfig": {
+      "properties": {
+        "authproxyPoolerScalingType": {
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ]
+        },
+        "poolerScalingType": {
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ]
+        }
+      }
+    },
+    "ContinuousBackupInfo": {
+      "properties": {
+        "schedule": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        }
+      }
+    },
+    "DnsAutomationInfo": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING_CREATE",
+            "ACTIVE",
+            "PENDING_DELETE",
+            "CREATE_FAILED",
+            "DELETE_FAILED"
+          ]
+        }
+      }
+    },
+    "EncryptionInfo": {
+      "properties": {
+        "encryptionType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "instanceType": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "READ_POOL",
+            "SECONDARY"
+          ]
+        },
+        "clientConnectionConfig": {
+          "$ref": "ClientConnectionConfig"
+        },
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig"
+        },
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig"
+        },
+        "activationPolicy": {
+          "enum": [
+            "ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ]
+        },
+        "availabilityType": {
+          "enum": [
+            "AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "STOPPED",
+            "CREATING",
+            "DELETING",
+            "MAINTENANCE",
+            "FAILED",
+            "BOOTSTRAPPING",
+            "PROMOTING",
+            "SWITCHOVER",
+            "STOPPING",
+            "STARTING"
+          ]
+        },
+        "dataApiAccess": {
+          "enum": [
+            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "MaintenanceUpdatePolicy": {
+      "properties": {
+        "maintenanceWindows": {
+          "items": {
+            "$ref": "MaintenanceWindow"
+          }
+        }
+      }
+    },
+    "MaintenanceWindow": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "MigrationSource": {
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "MIGRATION_SOURCE_TYPE_UNSPECIFIED",
+            "DMS"
+          ]
+        }
+      }
+    },
+    "PscAutoConnectionConfig": {
+      "properties": {
+        "dnsAutomationInfos": {
+          "items": {
+            "$ref": "DnsAutomationInfo"
+          }
+        }
+      }
+    },
+    "PscInstanceConfig": {
+      "properties": {
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          }
+        },
+        "pscAutoDnsState": {
+          "enum": [
+            "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+            "PSC_AUTO_DNS_STATE_ENABLED",
+            "PSC_AUTO_DNS_STATE_DISABLED"
+          ]
+        },
+        "pscAutoConnectionPolicyState": {
+          "enum": [
+            "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "SslConfig": {
+      "properties": {
+        "caSource": {
+          "enum": [
+            "CA_SOURCE_UNSPECIFIED",
+            "CA_SOURCE_MANAGED"
+          ]
+        },
+        "sslMode": {
+          "enum": [
+            "SSL_MODE_UNSPECIFIED",
+            "SSL_MODE_ALLOW",
+            "SSL_MODE_REQUIRE",
+            "SSL_MODE_VERIFY_CA",
+            "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+            "ENCRYPTED_ONLY"
+          ]
+        }
+      }
+    },
+    "User": {
+      "properties": {
+        "userType": {
+          "enum": [
+            "USER_TYPE_UNSPECIFIED",
+            "ALLOYDB_BUILT_IN",
+            "ALLOYDB_IAM_USER",
+            "ALLOYDB_IAM_GROUP",
+            "ALLOYDB_IAM_GROUP_USER",
+            "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT"
+          ]
+        }
+      }
+    },
+    "WeeklySchedule": {
+      "properties": {
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,29 +3,12 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
-# Schema docs say "Must be one of DATA_READ, DATA_WRITE, or ADMIN_READ" but
-# deriveEnums does not parse that phrasing — hand-write the enum.
-deriveEnums: false
 
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-# Nested dartTypeOverrides are not applied by the emitter today, so the
-# helper field stays `TfArg<String>`; the prelude enum implements it, so
-# call sites pass `ProjectIamAuditConfigAuditLogConfigLogType.adminRead`.
-prelude: |
-  /// Permission type for which IAM audit logging is configured.
-  extension type const ProjectIamAuditConfigAuditLogConfigLogType._(TfArg<String> _) implements TfArg<String> {
-    ProjectIamAuditConfigAuditLogConfigLogType.variable(String name) : this._(TfArg.variable(name));
-    ProjectIamAuditConfigAuditLogConfigLogType.expression(String template) : this._(TfArg.expression(template));
-    const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg) : this._(arg);
-
-    static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('DATA_READ'));
-    static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('DATA_WRITE'));
-    static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('ADMIN_READ'));
-
-    static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [dataRead, dataWrite, adminRead];
-  }
+typeNames:
+  audit_log_config.log_type: ProjectIamAuditConfigAuditLogConfigLogType
 
 curatedDoc: |-
   /// Project-level **IAM audit logging config** — enables Admin Activity,

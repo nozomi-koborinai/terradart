@@ -5,11 +5,29 @@ provider_version: "5.12.0"
 properties:
   - api_name: tls
     properties:
+      - api_name: certificate_type
+        enum_values:
+          - "CustomerCertificate"
+          - "ManagedCertificate"
       - api_name: cipher_suite
         properties:
           - api_name: custom_ciphers
             properties:
+              - api_name: tls12
+                enum_values:
+                  - "ECDHE_RSA_AES128_GCM_SHA256"
+                  - "ECDHE_RSA_AES256_GCM_SHA384"
+                  - "ECDHE_RSA_AES128_SHA256"
+                  - "ECDHE_RSA_AES256_SHA384"
               - api_name: tls13
                 enum_values:
                   - "TLS_AES_128_GCM_SHA256"
                   - "TLS_AES_256_GCM_SHA384"
+          - api_name: type
+            enum_values:
+              - "Customized"
+              - "TLS12_2023"
+              - "TLS12_2022"
+      - api_name: minimum_version
+        enum_values:
+          - "TLS12"

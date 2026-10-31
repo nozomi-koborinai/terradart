@@ -1,4 +1,49 @@
 outputDir: compute
+enumValues:
+  default_route_action.retry_policy.retry_conditions:
+    - '5xx'
+    - gateway-error
+    - connect-failure
+    - retriable-4xx
+    - refused-stream
+    - cancelled
+    - deadline-exceeded
+    - internal
+    - resource-exhausted
+    - unavailable
+  path_matcher.default_route_action.retry_policy.retry_conditions:
+    - '5xx'
+    - gateway-error
+    - connect-failure
+    - retriable-4xx
+    - refused-stream
+    - cancelled
+    - deadline-exceeded
+    - internal
+    - resource-exhausted
+    - unavailable
+  path_matcher.path_rule.route_action.retry_policy.retry_conditions:
+    - '5xx'
+    - gateway-error
+    - connect-failure
+    - retriable-4xx
+    - refused-stream
+    - cancelled
+    - deadline-exceeded
+    - internal
+    - resource-exhausted
+    - unavailable
+  path_matcher.route_rules.route_action.retry_policy.retry_conditions:
+    - '5xx'
+    - gateway-error
+    - connect-failure
+    - retriable-4xx
+    - refused-stream
+    - cancelled
+    - deadline-exceeded
+    - internal
+    - resource-exhausted
+    - unavailable
 
 deriveClassDoc: true
 deriveExactlyOne: true

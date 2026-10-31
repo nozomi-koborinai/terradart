@@ -23,6 +23,21 @@ extension type const ApiManagementUserConfirmation._(TfArg<String> _)
   static const List<ApiManagementUserConfirmation> values = [invite, signup];
 }
 
+/// Api Management User enum for `state`.
+extension type const ApiManagementUserState._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementUserState.variable(String name) : this._(TfArg.variable(name));
+  ApiManagementUserState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementUserState.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = ApiManagementUserState._(TfArgLiteral('active'));
+  static const blocked = ApiManagementUserState._(TfArgLiteral('blocked'));
+  static const pending = ApiManagementUserState._(TfArgLiteral('pending'));
+
+  static const List<ApiManagementUserState> values = [active, blocked, pending];
+}
+
 /// Factory wrapper for `azurerm_api_management_user`.
 final class AzurermApiManagementUser extends Resource {
   static const String tfType = 'azurerm_api_management_user';
@@ -37,7 +52,7 @@ final class AzurermApiManagementUser extends Resource {
     TfArg<String>? note,
     Sensitive<String>? password,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? state,
+    ApiManagementUserState? state,
     required TfArg<String> userId,
     super.lifecycle,
     super.dependsOn,

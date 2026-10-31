@@ -7,6 +7,21 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_account_tokens`.
 const Set<String> _cloudflareAccountTokensSensitive = <String>{};
 
+/// Data Account Tokens enum for `direction`.
+extension type const DataAccountTokensDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountTokensDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountTokensDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountTokensDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataAccountTokensDirection._(TfArgLiteral('asc'));
+  static const desc = DataAccountTokensDirection._(TfArgLiteral('desc'));
+
+  static const List<DataAccountTokensDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_account_tokens`.
 ///
 /// Accepted Permissions
@@ -18,7 +33,7 @@ final class DataCloudflareAccountTokens extends Data {
   DataCloudflareAccountTokens(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataAccountTokensDirection? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
     super.provider,

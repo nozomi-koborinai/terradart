@@ -286,18 +286,6 @@ WrapperOverride _derive(
         );
       }
       final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
-      if (isEnumListType(dartType)) {
-        final encode = '[for (final e in $ident) e.toTfJson()]';
-        return (
-          tfName: m,
-          ident: ident,
-          fieldType: dartType,
-          encodeExpr: encode,
-          argMapExpr: 'TfArg.literal($encode)',
-          deprecation: deprecation,
-          defaultValue: null,
-        );
-      }
       return (
         tfName: m,
         ident: ident,

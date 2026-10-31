@@ -31,6 +31,28 @@ extension type const CdnFrontdoorFirewallPolicyMode._(TfArg<String> _)
   ];
 }
 
+/// Cdn Frontdoor Firewall Policy Sku enum for `sku_name`.
+extension type const CdnFrontdoorFirewallPolicySkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorFirewallPolicySkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicySkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicySkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const standardAzurefrontdoor = CdnFrontdoorFirewallPolicySkuName._(
+    TfArgLiteral('Standard_AzureFrontDoor'),
+  );
+  static const premiumAzurefrontdoor = CdnFrontdoorFirewallPolicySkuName._(
+    TfArgLiteral('Premium_AzureFrontDoor'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicySkuName> values = [
+    standardAzurefrontdoor,
+    premiumAzurefrontdoor,
+  ];
+}
+
 /// Typed helper for the `custom_rule` block of
 /// `azurerm_cdn_frontdoor_firewall_policy` (derived from provider schema).
 @immutable
@@ -46,7 +68,7 @@ final class CdnFrontdoorFirewallPolicyCustomRule {
     this.matchCondition,
   });
 
-  final TfArg<String> action;
+  final CdnFrontdoorFirewallPolicyCustomRuleAction action;
 
   final TfArg<bool>? enabled;
 
@@ -74,6 +96,46 @@ final class CdnFrontdoorFirewallPolicyCustomRule {
     if (matchCondition != null)
       'match_condition': [for (final e in matchCondition!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyCustomRuleAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyCustomRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyCustomRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyCustomRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const block = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('Block'),
+  );
+  static const log = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('Log'),
+  );
+  static const redirect = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('Redirect'),
+  );
+  static const jschallenge = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('JSChallenge'),
+  );
+  static const captcha = CdnFrontdoorFirewallPolicyCustomRuleAction._(
+    TfArgLiteral('CAPTCHA'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyCustomRuleAction> values = [
+    allow,
+    block,
+    log,
+    redirect,
+    jschallenge,
+    captcha,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
@@ -121,7 +183,7 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
 
   final TfArg<String>? selector;
 
-  final List<CdnFrontdoorFirewallPolicyTransforms>? transforms;
+  final EnumList<CdnFrontdoorFirewallPolicyTransforms>? transforms;
 
   @internal
   Map<String, Object?> encode() => {
@@ -130,8 +192,7 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
     'negation_condition': ?negationCondition?.toTfJson(),
     'operator': operator.toTfJson(),
     'selector': ?selector?.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
   };
 }
 
@@ -442,7 +503,7 @@ final class CdnFrontdoorFirewallPolicyManagedRule {
     this.override,
   });
 
-  final TfArg<String> action;
+  final CdnFrontdoorFirewallPolicyManagedRuleAction action;
 
   final TfArg<String> type;
 
@@ -461,6 +522,38 @@ final class CdnFrontdoorFirewallPolicyManagedRule {
       'exclusion': [for (final e in exclusion!) e.encode()],
     if (override != null) 'override': [for (final e in override!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyManagedRuleAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyManagedRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyManagedRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyManagedRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = CdnFrontdoorFirewallPolicyManagedRuleAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const log = CdnFrontdoorFirewallPolicyManagedRuleAction._(
+    TfArgLiteral('Log'),
+  );
+  static const block = CdnFrontdoorFirewallPolicyManagedRuleAction._(
+    TfArgLiteral('Block'),
+  );
+  static const redirect = CdnFrontdoorFirewallPolicyManagedRuleAction._(
+    TfArgLiteral('Redirect'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyManagedRuleAction> values = [
+    allow,
+    log,
+    block,
+    redirect,
+  ];
 }
 
 /// Typed helper for the `managed_rule.exclusion` block of
@@ -601,7 +694,7 @@ final class CdnFrontdoorFirewallPolicyRule {
     this.exclusion,
   });
 
-  final CdnFrontdoorFirewallPolicyAction action;
+  final CdnFrontdoorFirewallPolicyRuleAction action;
 
   final TfArg<bool>? enabled;
 
@@ -620,35 +713,38 @@ final class CdnFrontdoorFirewallPolicyRule {
 }
 
 /// `action` — derived from the provider schema description.
-extension type const CdnFrontdoorFirewallPolicyAction._(TfArg<String> _)
+extension type const CdnFrontdoorFirewallPolicyRuleAction._(TfArg<String> _)
     implements TfArg<String> {
-  CdnFrontdoorFirewallPolicyAction.variable(String name)
+  CdnFrontdoorFirewallPolicyRuleAction.variable(String name)
     : this._(TfArg.variable(name));
-  CdnFrontdoorFirewallPolicyAction.expression(String template)
+  CdnFrontdoorFirewallPolicyRuleAction.expression(String template)
     : this._(TfArg.expression(template));
-  const CdnFrontdoorFirewallPolicyAction.arg(TfArg<String> arg) : this._(arg);
+  const CdnFrontdoorFirewallPolicyRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const allow = CdnFrontdoorFirewallPolicyAction._(
+  static const allow = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('Allow'),
   );
-  static const anomalyscoring = CdnFrontdoorFirewallPolicyAction._(
+  static const anomalyscoring = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('AnomalyScoring'),
   );
-  static const block = CdnFrontdoorFirewallPolicyAction._(
+  static const block = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('Block'),
   );
-  static const captcha = CdnFrontdoorFirewallPolicyAction._(
+  static const captcha = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('CAPTCHA'),
   );
-  static const jschallenge = CdnFrontdoorFirewallPolicyAction._(
+  static const jschallenge = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('JSChallenge'),
   );
-  static const log = CdnFrontdoorFirewallPolicyAction._(TfArgLiteral('Log'));
-  static const redirect = CdnFrontdoorFirewallPolicyAction._(
+  static const log = CdnFrontdoorFirewallPolicyRuleAction._(
+    TfArgLiteral('Log'),
+  );
+  static const redirect = CdnFrontdoorFirewallPolicyRuleAction._(
     TfArgLiteral('Redirect'),
   );
 
-  static const List<CdnFrontdoorFirewallPolicyAction> values = [
+  static const List<CdnFrontdoorFirewallPolicyRuleAction> values = [
     allow,
     anomalyscoring,
     block,
@@ -675,7 +771,7 @@ final class AzurermCdnFrontdoorFirewallPolicy extends Resource {
     TfArg<String>? redirectUrl,
     TfArg<bool>? requestBodyCheckEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required CdnFrontdoorFirewallPolicySkuName skuName,
     TfArg<Map<String, String>>? tags,
     List<CdnFrontdoorFirewallPolicyCustomRule>? customRule,
     CdnFrontdoorFirewallPolicyLogScrubbing? logScrubbing,

@@ -49,9 +49,6 @@ extension type const ComputeDiskGuestOsFeatureType._(TfArg<String> _)
   static const sevSnpCapable = ComputeDiskGuestOsFeatureType._(
     TfArgLiteral('SEV_SNP_CAPABLE'),
   );
-  static const suspendResumeCompatible = ComputeDiskGuestOsFeatureType._(
-    TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'),
-  );
   static const tdxCapable = ComputeDiskGuestOsFeatureType._(
     TfArgLiteral('TDX_CAPABLE'),
   );
@@ -60,6 +57,19 @@ extension type const ComputeDiskGuestOsFeatureType._(TfArg<String> _)
   );
   static const snpSvsmCapable = ComputeDiskGuestOsFeatureType._(
     TfArgLiteral('SNP_SVSM_CAPABLE'),
+  );
+  static const bareMetalLinuxCompatible = ComputeDiskGuestOsFeatureType._(
+    TfArgLiteral('BARE_METAL_LINUX_COMPATIBLE'),
+  );
+  static const bmsaiCapable = ComputeDiskGuestOsFeatureType._(
+    TfArgLiteral('BMSAI_CAPABLE'),
+  );
+  static const ccaCapable = ComputeDiskGuestOsFeatureType._(
+    TfArgLiteral('CCA_CAPABLE'),
+  );
+  static const idpf = ComputeDiskGuestOsFeatureType._(TfArgLiteral('IDPF'));
+  static const suspendSafeFpr = ComputeDiskGuestOsFeatureType._(
+    TfArgLiteral('SUSPEND_SAFE_FPR'),
   );
 
   static const List<ComputeDiskGuestOsFeatureType> values = [
@@ -72,10 +82,14 @@ extension type const ComputeDiskGuestOsFeatureType._(TfArg<String> _)
     gVnic,
     sevLiveMigratable,
     sevSnpCapable,
-    suspendResumeCompatible,
     tdxCapable,
     sevLiveMigratableV2,
     snpSvsmCapable,
+    bareMetalLinuxCompatible,
+    bmsaiCapable,
+    ccaCapable,
+    idpf,
+    suspendSafeFpr,
   ];
 }
 

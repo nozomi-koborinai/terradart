@@ -9,6 +9,26 @@ properties:
         enum_values:
           - "Allow"
           - "Deny"
+      - api_name: rule
+        properties:
+          - api_name: protocols
+            properties:
+              - api_name: type
+                enum_values:
+                  - "Http"
+                  - "Https"
+                  - "Mssql"
+  - api_name: nat_rule_collection
+    properties:
+      - api_name: action
+        enum_values:
+          - "Dnat"
+      - api_name: rule
+        properties:
+          - api_name: protocols
+            enum_values:
+              - "TCP"
+              - "UDP"
   - api_name: network_rule_collection
     properties:
       - api_name: action

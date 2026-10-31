@@ -36,6 +36,27 @@ extension type const NetappPoolQosType._(TfArg<String> _)
   static const List<NetappPoolQosType> values = [auto, manual];
 }
 
+/// Netapp Pool Service enum for `service_level`.
+extension type const NetappPoolServiceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappPoolServiceLevel.variable(String name) : this._(TfArg.variable(name));
+  NetappPoolServiceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappPoolServiceLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = NetappPoolServiceLevel._(TfArgLiteral('Premium'));
+  static const standard = NetappPoolServiceLevel._(TfArgLiteral('Standard'));
+  static const ultra = NetappPoolServiceLevel._(TfArgLiteral('Ultra'));
+  static const flexible = NetappPoolServiceLevel._(TfArgLiteral('Flexible'));
+
+  static const List<NetappPoolServiceLevel> values = [
+    premium,
+    standard,
+    ultra,
+    flexible,
+  ];
+}
+
 /// Factory wrapper for `azurerm_netapp_pool`.
 final class AzurermNetappPool extends Resource {
   static const String tfType = 'azurerm_netapp_pool';
@@ -50,7 +71,7 @@ final class AzurermNetappPool extends Resource {
     required TfArg<String> name,
     NetappPoolQosType? qosType,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> serviceLevel,
+    required NetappPoolServiceLevel serviceLevel,
     required TfArg<num> sizeInTb,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

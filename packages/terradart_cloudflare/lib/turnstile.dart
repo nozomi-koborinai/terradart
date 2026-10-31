@@ -11,7 +11,10 @@ export 'src/data/cloudflare_turnstile_widget.dart'
         DataTurnstileWidgetFilter,
         DataTurnstileWidgetOrder;
 export 'src/data/cloudflare_turnstile_widgets.dart'
-    show DataCloudflareTurnstileWidgets;
+    show
+        DataCloudflareTurnstileWidgets,
+        DataTurnstileWidgetsDirection,
+        DataTurnstileWidgetsOrder;
 export 'src/turnstile/cloudflare_turnstile_widget.dart'
     show
         CloudflareTurnstileWidget,

@@ -6,6 +6,49 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_oauth_client`.
 const Set<String> _googleIamOauthClientSensitive = <String>{};
 
+/// Iam Oauth Client Allowed Grant enum for `allowed_grant_types`.
+extension type const IamOauthClientAllowedGrantTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  IamOauthClientAllowedGrantTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  IamOauthClientAllowedGrantTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamOauthClientAllowedGrantTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const authorizationCodeGrant = IamOauthClientAllowedGrantTypes._(
+    TfArgLiteral('AUTHORIZATION_CODE_GRANT'),
+  );
+  static const refreshTokenGrant = IamOauthClientAllowedGrantTypes._(
+    TfArgLiteral('REFRESH_TOKEN_GRANT'),
+  );
+
+  static const List<IamOauthClientAllowedGrantTypes> values = [
+    authorizationCodeGrant,
+    refreshTokenGrant,
+  ];
+}
+
+/// Iam Oauth Client enum for `client_type`.
+extension type const IamOauthClientType._(TfArg<String> _)
+    implements TfArg<String> {
+  IamOauthClientType.variable(String name) : this._(TfArg.variable(name));
+  IamOauthClientType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamOauthClientType.arg(TfArg<String> arg) : this._(arg);
+
+  static const publicClient = IamOauthClientType._(
+    TfArgLiteral('PUBLIC_CLIENT'),
+  );
+  static const confidentialClient = IamOauthClientType._(
+    TfArgLiteral('CONFIDENTIAL_CLIENT'),
+  );
+
+  static const List<IamOauthClientType> values = [
+    publicClient,
+    confidentialClient,
+  ];
+}
+
 /// Factory wrapper for `google_iam_oauth_client`.
 ///
 /// Represents an OAuth Client. Used to access Google Cloud resources on behalf
@@ -34,10 +77,10 @@ const Set<String> _googleIamOauthClientSensitive = <String>{};
 ///   'demo',
 ///   oauthClientId: TfArg.literal('terradart-oauth'),
 ///   location: TfArg.literal('global'),
-///   allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
+///   allowedGrantTypes: .literal([.authorizationCodeGrant]),
 ///   allowedRedirectUris: TfArg.literal(['https://www.example.com']),
 ///   allowedScopes: TfArg.literal(['openid']),
-///   clientType: TfArg.literal('PUBLIC_CLIENT'),
+///   clientType: .publicClient,
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
 /// ```
@@ -48,10 +91,10 @@ final class GoogleIamOauthClient extends Resource {
     super.localName, {
     required TfArg<String> oauthClientId,
     required TfArg<String> location,
-    required TfArg<List<String>> allowedGrantTypes,
+    required EnumList<IamOauthClientAllowedGrantTypes> allowedGrantTypes,
     required TfArg<List<String>> allowedRedirectUris,
     required TfArg<List<String>> allowedScopes,
-    TfArg<String>? clientType,
+    IamOauthClientType? clientType,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<bool>? disabled,

@@ -39,7 +39,10 @@ export 'src/apigee/google_apigee_api_product.dart'
         ApigeeApiProductOperationGroup,
         ApigeeApiProductOperationGroupOperationConfigs,
         ApigeeApiProductOperationGroupOperations,
+        ApigeeApiProductOperationTypes,
         ApigeeApiProductQuotaCounterScope,
+        ApigeeApiProductQuotaTimeUnit,
+        ApigeeApiProductTimeUnit,
         GoogleApigeeApiProduct;
 export 'src/apigee/google_apigee_app_group.dart'
     show ApigeeAppGroupAttributes, ApigeeAppGroupStatus, GoogleApigeeAppGroup;
@@ -67,7 +70,7 @@ export 'src/apigee/google_apigee_endpoint_attachment.dart'
 export 'src/apigee/google_apigee_env_keystore.dart'
     show GoogleApigeeEnvKeystore;
 export 'src/apigee/google_apigee_env_references.dart'
-    show GoogleApigeeEnvReferences;
+    show ApigeeEnvReferencesResourceType, GoogleApigeeEnvReferences;
 export 'src/apigee/google_apigee_envgroup.dart' show GoogleApigeeEnvgroup;
 export 'src/apigee/google_apigee_envgroup_attachment.dart'
     show GoogleApigeeEnvgroupAttachment;
@@ -100,9 +103,13 @@ export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'
     show GoogleApigeeEnvironmentKeyvaluemaps;
 export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
     show GoogleApigeeEnvironmentKeyvaluemapsEntries;
-export 'src/apigee/google_apigee_flowhook.dart' show GoogleApigeeFlowhook;
+export 'src/apigee/google_apigee_flowhook.dart'
+    show ApigeeFlowhookFlowHookPoint, GoogleApigeeFlowhook;
 export 'src/apigee/google_apigee_instance.dart'
-    show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
+    show
+        ApigeeInstanceAccessLoggingConfig,
+        ApigeeInstancePeeringCidrRange,
+        GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'
     show GoogleApigeeInstanceAttachment;
 export 'src/apigee/google_apigee_keystores_aliases_key_cert_file.dart'
@@ -111,6 +118,7 @@ export 'src/apigee/google_apigee_keystores_aliases_pkcs12.dart'
     show GoogleApigeeKeystoresAliasesPkcs12;
 export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
     show
+        ApigeeKeystoresAliasesSelfSignedCertSigAlg,
         ApigeeKeystoresAliasesSelfSignedCertSubject,
         ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames,
         ApigeeKeystoresAliasesSelfSignedCertType,
@@ -118,6 +126,7 @@ export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
 export 'src/apigee/google_apigee_nat_address.dart' show GoogleApigeeNatAddress;
 export 'src/apigee/google_apigee_organization.dart'
     show
+        ApigeeOrganizationBillingType,
         ApigeeOrganizationProperties,
         ApigeeOrganizationProperty,
         ApigeeOrganizationRetention,
@@ -137,6 +146,7 @@ export 'src/apigee/google_apigee_security_action.dart'
         ApigeeSecurityActionExpirationTtl,
         ApigeeSecurityActionFlag,
         ApigeeSecurityActionHeaders,
+        ApigeeSecurityActionHttpMethods,
         ApigeeSecurityActionState,
         GoogleApigeeSecurityAction;
 export 'src/apigee/google_apigee_security_feedback.dart'

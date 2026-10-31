@@ -77,9 +77,9 @@ final class DialogflowCxToolVersionDataStoreConnections {
 
   final TfArg<String>? dataStore;
 
-  final TfArg<String>? dataStoreType;
+  final DialogflowCxToolVersionDataStoreType? dataStoreType;
 
-  final TfArg<String>? documentProcessingMode;
+  final DialogflowCxToolVersionDocumentProcessingMode? documentProcessingMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -87,6 +87,57 @@ final class DialogflowCxToolVersionDataStoreConnections {
     'data_store_type': ?dataStoreType?.toTfJson(),
     'document_processing_mode': ?documentProcessingMode?.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DialogflowCxToolVersionDataStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolVersionDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolVersionDataStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolVersionDataStoreType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const publicWeb = DialogflowCxToolVersionDataStoreType._(
+    TfArgLiteral('PUBLIC_WEB'),
+  );
+  static const unstructured = DialogflowCxToolVersionDataStoreType._(
+    TfArgLiteral('UNSTRUCTURED'),
+  );
+  static const structured = DialogflowCxToolVersionDataStoreType._(
+    TfArgLiteral('STRUCTURED'),
+  );
+
+  static const List<DialogflowCxToolVersionDataStoreType> values = [
+    publicWeb,
+    unstructured,
+    structured,
+  ];
+}
+
+/// `document_processing_mode` — derived from the provider schema description.
+extension type const DialogflowCxToolVersionDocumentProcessingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxToolVersionDocumentProcessingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolVersionDocumentProcessingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolVersionDocumentProcessingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const documents = DialogflowCxToolVersionDocumentProcessingMode._(
+    TfArgLiteral('DOCUMENTS'),
+  );
+  static const chunks = DialogflowCxToolVersionDocumentProcessingMode._(
+    TfArgLiteral('CHUNKS'),
+  );
+
+  static const List<DialogflowCxToolVersionDocumentProcessingMode> values = [
+    documents,
+    chunks,
+  ];
 }
 
 /// Typed helper for the `tool.data_store_spec.fallback_prompt` block of
@@ -190,7 +241,7 @@ final class DialogflowCxToolVersionApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final TfArg<String> requestLocation;
+  final DialogflowCxToolVersionRequestLocation requestLocation;
 
   final TfArg<String>? secretVersionForApiKey;
 
@@ -201,6 +252,29 @@ final class DialogflowCxToolVersionApiKeyConfig {
     'request_location': requestLocation.toTfJson(),
     'secret_version_for_api_key': ?secretVersionForApiKey?.toTfJson(),
   };
+}
+
+/// `request_location` — derived from the provider schema description.
+extension type const DialogflowCxToolVersionRequestLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolVersionRequestLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolVersionRequestLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolVersionRequestLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const header = DialogflowCxToolVersionRequestLocation._(
+    TfArgLiteral('HEADER'),
+  );
+  static const queryString = DialogflowCxToolVersionRequestLocation._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+
+  static const List<DialogflowCxToolVersionRequestLocation> values = [
+    header,
+    queryString,
+  ];
 }
 
 /// Typed helper for the `tool.open_api_spec.authentication.bearer_token_config` block of
@@ -240,7 +314,7 @@ final class DialogflowCxToolVersionOauthConfig {
 
   final Sensitive<String>? clientSecret;
 
-  final TfArg<String> oauthGrantType;
+  final DialogflowCxToolVersionOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -260,18 +334,60 @@ final class DialogflowCxToolVersionOauthConfig {
   };
 }
 
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const DialogflowCxToolVersionOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolVersionOauthGrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolVersionOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolVersionOauthGrantType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const clientCredential = DialogflowCxToolVersionOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<DialogflowCxToolVersionOauthGrantType> values = [
+    clientCredential,
+  ];
+}
+
 /// Typed helper for the `tool.open_api_spec.authentication.service_agent_auth_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
 final class DialogflowCxToolVersionServiceAgentAuthConfig {
   const DialogflowCxToolVersionServiceAgentAuthConfig({this.serviceAgentAuth});
 
-  final TfArg<String>? serviceAgentAuth;
+  final DialogflowCxToolVersionServiceAgentAuth? serviceAgentAuth;
 
   @internal
   Map<String, Object?> encode() => {
     'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
   };
+}
+
+/// `service_agent_auth` — derived from the provider schema description.
+extension type const DialogflowCxToolVersionServiceAgentAuth._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolVersionServiceAgentAuth.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolVersionServiceAgentAuth.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolVersionServiceAgentAuth.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const idToken = DialogflowCxToolVersionServiceAgentAuth._(
+    TfArgLiteral('ID_TOKEN'),
+  );
+  static const accessToken = DialogflowCxToolVersionServiceAgentAuth._(
+    TfArgLiteral('ACCESS_TOKEN'),
+  );
+
+  static const List<DialogflowCxToolVersionServiceAgentAuth> values = [
+    idToken,
+    accessToken,
+  ];
 }
 
 /// Typed helper for the `tool.open_api_spec.service_directory_config` block of

@@ -8,6 +8,21 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_lb_nat_rule`.
 const Set<String> _azurermLbNatRuleSensitive = <String>{};
 
+/// Lb Nat Rule enum for `protocol`.
+extension type const LbNatRuleProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  LbNatRuleProtocol.variable(String name) : this._(TfArg.variable(name));
+  LbNatRuleProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbNatRuleProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = LbNatRuleProtocol._(TfArgLiteral('All'));
+  static const tcp = LbNatRuleProtocol._(TfArgLiteral('Tcp'));
+  static const udp = LbNatRuleProtocol._(TfArgLiteral('Udp'));
+
+  static const List<LbNatRuleProtocol> values = [all, tcp, udp];
+}
+
 /// Factory wrapper for `azurerm_lb_nat_rule`.
 final class AzurermLbNatRule extends Resource {
   static const String tfType = 'azurerm_lb_nat_rule';
@@ -24,7 +39,7 @@ final class AzurermLbNatRule extends Resource {
     TfArg<num>? idleTimeoutInMinutes,
     required TfArg<String> loadbalancerId,
     required TfArg<String> name,
-    required TfArg<String> protocol,
+    required LbNatRuleProtocol protocol,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? tcpResetEnabled,
     super.lifecycle,

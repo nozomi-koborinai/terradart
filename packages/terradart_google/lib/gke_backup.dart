@@ -80,6 +80,7 @@ export 'src/gke_backup/google_gke_backup_restore_plan.dart'
         GkeBackupRestorePlanTransformationRules,
         GkeBackupRestorePlanVolumeDataRestorePolicy,
         GkeBackupRestorePlanVolumeDataRestorePolicyBindings,
+        GkeBackupRestorePlanVolumeType,
         GoogleGkeBackupRestorePlan;
 export 'src/gke_backup/google_gke_backup_restore_plan_iam_binding.dart'
     show

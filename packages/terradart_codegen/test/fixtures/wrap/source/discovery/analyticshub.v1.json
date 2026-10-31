@@ -1,0 +1,180 @@
+{
+  "name": "analyticshub",
+  "version": "v1",
+  "revision": "20261019",
+  "sourceUrl": "https://analyticshub.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BigQueryDatasetSource": {
+      "properties": {
+        "effectiveReplicas": {
+          "items": {
+            "$ref": "Replica"
+          }
+        }
+      }
+    },
+    "DataExchange": {
+      "properties": {
+        "discoveryType": {
+          "enum": [
+            "DISCOVERY_TYPE_UNSPECIFIED",
+            "DISCOVERY_TYPE_PRIVATE",
+            "DISCOVERY_TYPE_PUBLIC"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo": {
+      "properties": {
+        "cloudMarketplace": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo"
+        }
+      }
+    },
+    "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo": {
+      "properties": {
+        "commercialState": {
+          "enum": [
+            "COMMERCIAL_STATE_UNSPECIFIED",
+            "ONBOARDING",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "Listing": {
+      "properties": {
+        "bigqueryDataset": {
+          "$ref": "BigQueryDatasetSource"
+        },
+        "commercialInfo": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
+        },
+        "resourceType": {
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
+          ]
+        },
+        "categories": {
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "CATEGORY_OTHERS",
+              "CATEGORY_ADVERTISING_AND_MARKETING",
+              "CATEGORY_COMMERCE",
+              "CATEGORY_CLIMATE_AND_ENVIRONMENT",
+              "CATEGORY_DEMOGRAPHICS",
+              "CATEGORY_ECONOMICS",
+              "CATEGORY_EDUCATION",
+              "CATEGORY_ENERGY",
+              "CATEGORY_FINANCIAL",
+              "CATEGORY_GAMING",
+              "CATEGORY_GEOSPATIAL",
+              "CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE",
+              "CATEGORY_MEDIA",
+              "CATEGORY_PUBLIC_SECTOR",
+              "CATEGORY_RETAIL",
+              "CATEGORY_SPORTS",
+              "CATEGORY_SCIENCE_AND_RESEARCH",
+              "CATEGORY_TRANSPORTATION_AND_LOGISTICS",
+              "CATEGORY_TRAVEL_AND_TOURISM",
+              "CATEGORY_GOOGLE_EARTH_ENGINE"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ]
+        },
+        "discoveryType": {
+          "enum": [
+            "DISCOVERY_TYPE_UNSPECIFIED",
+            "DISCOVERY_TYPE_PRIVATE",
+            "DISCOVERY_TYPE_PUBLIC"
+          ]
+        },
+        "storedProcedureConfig": {
+          "$ref": "StoredProcedureConfig"
+        }
+      }
+    },
+    "QueryTemplate": {
+      "properties": {
+        "routine": {
+          "$ref": "Routine"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFTED",
+            "PENDING",
+            "DELETED",
+            "APPROVED"
+          ]
+        }
+      }
+    },
+    "Replica": {
+      "properties": {
+        "replicaState": {
+          "enum": [
+            "REPLICA_STATE_UNSPECIFIED",
+            "READY_TO_USE",
+            "UNAVAILABLE"
+          ]
+        },
+        "primaryState": {
+          "enum": [
+            "PRIMARY_STATE_UNSPECIFIED",
+            "PRIMARY_REPLICA"
+          ]
+        }
+      }
+    },
+    "Routine": {
+      "properties": {
+        "routineType": {
+          "enum": [
+            "ROUTINE_TYPE_UNSPECIFIED",
+            "TABLE_VALUED_FUNCTION"
+          ]
+        }
+      }
+    },
+    "StoredProcedureConfig": {
+      "properties": {
+        "allowedStoredProcedureTypes": {
+          "items": {
+            "enum": [
+              "STORED_PROCEDURE_TYPE_UNSPECIFIED",
+              "SQL_PROCEDURE"
+            ]
+          }
+        }
+      }
+    },
+    "Subscription": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_ACTIVE",
+            "STATE_STALE",
+            "STATE_INACTIVE"
+          ]
+        },
+        "resourceType": {
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
+          ]
+        }
+      }
+    }
+  }
+}

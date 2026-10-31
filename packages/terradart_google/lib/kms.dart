@@ -34,6 +34,7 @@ export 'src/kms/google_kms_autokey_config.dart'
 export 'src/kms/google_kms_crypto_key.dart'
     show
         GoogleKmsCryptoKey,
+        KmsCryptoKeyVersionAlgorithm,
         KmsCryptoKeyVersionTemplate,
         KmsKeyPurpose,
         KmsProtectionLevel;

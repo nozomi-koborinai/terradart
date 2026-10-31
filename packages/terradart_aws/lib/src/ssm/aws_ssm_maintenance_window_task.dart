@@ -293,17 +293,15 @@ final class SsmMaintenanceWindowTaskNotificationConfig {
 
   final TfArg<String>? notificationArn;
 
-  final List<SsmMaintenanceWindowTaskNotificationEvents>? notificationEvents;
+  final EnumList<SsmMaintenanceWindowTaskNotificationEvents>?
+  notificationEvents;
 
   final SsmMaintenanceWindowTaskNotificationType? notificationType;
 
   @internal
   Map<String, Object?> encode() => {
     'notification_arn': ?notificationArn?.toTfJson(),
-    if (notificationEvents != null)
-      'notification_events': [
-        for (final e in notificationEvents!) e.toTfJson(),
-      ],
+    'notification_events': ?notificationEvents?.toTfJson(),
     'notification_type': ?notificationType?.toTfJson(),
   };
 }

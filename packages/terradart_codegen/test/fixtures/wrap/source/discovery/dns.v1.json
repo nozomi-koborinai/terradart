@@ -1,0 +1,228 @@
+{
+  "name": "dns",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://dns.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "DnsKeySpec": {
+      "properties": {
+        "keyType": {
+          "enum": [
+            "keySigning",
+            "zoneSigning"
+          ]
+        },
+        "algorithm": {
+          "enum": [
+            "rsasha1",
+            "rsasha256",
+            "rsasha512",
+            "ecdsap256sha256",
+            "ecdsap384sha384"
+          ]
+        }
+      }
+    },
+    "ManagedZone": {
+      "properties": {
+        "forwardingConfig": {
+          "$ref": "ManagedZoneForwardingConfig"
+        },
+        "dnssecConfig": {
+          "$ref": "ManagedZoneDnsSecConfig"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "private"
+          ]
+        }
+      }
+    },
+    "ManagedZoneDnsSecConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "off",
+            "on",
+            "transfer"
+          ]
+        },
+        "defaultKeySpecs": {
+          "items": {
+            "$ref": "DnsKeySpec"
+          }
+        },
+        "nonExistence": {
+          "enum": [
+            "nsec",
+            "nsec3"
+          ]
+        }
+      }
+    },
+    "ManagedZoneForwardingConfig": {
+      "properties": {
+        "targetNameServers": {
+          "items": {
+            "$ref": "ManagedZoneForwardingConfigNameServerTarget"
+          }
+        }
+      }
+    },
+    "ManagedZoneForwardingConfigNameServerTarget": {
+      "properties": {
+        "forwardingPath": {
+          "enum": [
+            "default",
+            "private"
+          ]
+        }
+      }
+    },
+    "OutboundEndpoint": {
+      "properties": {}
+    },
+    "Policy": {
+      "properties": {
+        "alternativeNameServerConfig": {
+          "$ref": "PolicyAlternativeNameServerConfig"
+        }
+      }
+    },
+    "PolicyAlternativeNameServerConfig": {
+      "properties": {
+        "targetNameServers": {
+          "items": {
+            "$ref": "PolicyAlternativeNameServerConfigTargetNameServer"
+          }
+        }
+      }
+    },
+    "PolicyAlternativeNameServerConfigTargetNameServer": {
+      "properties": {
+        "forwardingPath": {
+          "enum": [
+            "default",
+            "private"
+          ]
+        }
+      }
+    },
+    "RRSetRoutingPolicy": {
+      "properties": {
+        "primaryBackup": {
+          "$ref": "RRSetRoutingPolicyPrimaryBackupPolicy"
+        },
+        "geo": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
+        },
+        "wrr": {
+          "$ref": "RRSetRoutingPolicyWrrPolicy"
+        }
+      }
+    },
+    "RRSetRoutingPolicyGeoPolicy": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "RRSetRoutingPolicyGeoPolicyGeoPolicyItem"
+          }
+        }
+      }
+    },
+    "RRSetRoutingPolicyGeoPolicyGeoPolicyItem": {
+      "properties": {
+        "healthCheckedTargets": {
+          "$ref": "RRSetRoutingPolicyHealthCheckTargets"
+        }
+      }
+    },
+    "RRSetRoutingPolicyHealthCheckTargets": {
+      "properties": {
+        "internalLoadBalancers": {
+          "items": {
+            "$ref": "RRSetRoutingPolicyLoadBalancerTarget"
+          }
+        }
+      }
+    },
+    "RRSetRoutingPolicyLoadBalancerTarget": {
+      "properties": {
+        "loadBalancerType": {
+          "enum": [
+            "none",
+            "globalL7ilb",
+            "regionalL4ilb",
+            "regionalL7ilb"
+          ]
+        },
+        "ipProtocol": {
+          "enum": [
+            "undefined",
+            "tcp",
+            "udp"
+          ]
+        }
+      }
+    },
+    "RRSetRoutingPolicyPrimaryBackupPolicy": {
+      "properties": {
+        "backupGeoTargets": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
+        },
+        "primaryTargets": {
+          "$ref": "RRSetRoutingPolicyHealthCheckTargets"
+        }
+      }
+    },
+    "RRSetRoutingPolicyWrrPolicy": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "RRSetRoutingPolicyWrrPolicyWrrPolicyItem"
+          }
+        }
+      }
+    },
+    "RRSetRoutingPolicyWrrPolicyWrrPolicyItem": {
+      "properties": {
+        "healthCheckedTargets": {
+          "$ref": "RRSetRoutingPolicyHealthCheckTargets"
+        }
+      }
+    },
+    "ResourceRecordSet": {
+      "properties": {
+        "routingPolicy": {
+          "$ref": "RRSetRoutingPolicy"
+        }
+      }
+    },
+    "ResponsePolicy": {
+      "properties": {}
+    },
+    "ResponsePolicyRule": {
+      "properties": {
+        "localData": {
+          "$ref": "ResponsePolicyRuleLocalData"
+        },
+        "behavior": {
+          "enum": [
+            "behaviorUnspecified",
+            "bypassResponsePolicy"
+          ]
+        }
+      }
+    },
+    "ResponsePolicyRuleLocalData": {
+      "properties": {
+        "localDatas": {
+          "items": {
+            "$ref": "ResourceRecordSet"
+          }
+        }
+      }
+    }
+  }
+}

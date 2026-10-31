@@ -33,3 +33,14 @@ properties:
               - "Definition"
               - "Tools"
               - "Updates"
+  - api_name: scope
+    enum_values:
+      - "Extension"
+      - "Host"
+      - "InGuestPatch"
+      - "OSImage"
+      - "SQLDB"
+      - "SQLManagedInstance"
+  - api_name: visibility
+    enum_values:
+      - "Custom"

@@ -34,6 +34,7 @@ export 'src/certificate_manager/google_certificate_manager_certificate_map_entry
         CertificateManagerCertificateMapEntryMatch,
         CertificateManagerCertificateMapEntryMatchHostname,
         CertificateManagerCertificateMapEntryMatchMatcher,
+        CertificateManagerCertificateMapEntryMatcher,
         GoogleCertificateManagerCertificateMapEntry;
 export 'src/certificate_manager/google_certificate_manager_dns_authorization.dart'
     show

@@ -21,6 +21,56 @@ const Set<String> _googleComputeInstanceFromTemplateSensitive = <String>{
   'boot_disk.initialize_params.source_snapshot_encryption_key.rsa_encrypted_key',
 };
 
+/// Compute Instance From Template Desired enum for `desired_status`.
+extension type const ComputeInstanceFromTemplateDesiredStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateDesiredStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateDesiredStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateDesiredStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const running = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const suspended = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const terminated = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('TERMINATED'),
+  );
+
+  static const List<ComputeInstanceFromTemplateDesiredStatus> values = [
+    running,
+    suspended,
+    terminated,
+  ];
+}
+
+/// Compute Instance From Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceFromTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateKeyRevocationActionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none = ComputeInstanceFromTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceFromTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceFromTemplateKeyRevocationActionType> values =
+      [none, stop];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_instance_from_template` (derived from provider schema).
 @immutable
@@ -38,7 +88,8 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
 
   final TfArg<bool>? enableUefiNetworking;
 
-  final TfArg<String>? performanceMonitoringUnit;
+  final ComputeInstanceFromTemplatePerformanceMonitoringUnit?
+  performanceMonitoringUnit;
 
   final TfArg<num>? threadsPerCore;
 
@@ -55,6 +106,36 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
     'turbo_mode': ?turboMode?.toTfJson(),
     'visible_core_count': ?visibleCoreCount?.toTfJson(),
   };
+}
+
+/// `performance_monitoring_unit` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplatePerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplatePerformanceMonitoringUnit.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplatePerformanceMonitoringUnit.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const architectural =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ARCHITECTURAL'),
+      );
+  static const enhanced =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ENHANCED'),
+      );
+  static const standard =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('STANDARD'),
+      );
+
+  static const List<ComputeInstanceFromTemplatePerformanceMonitoringUnit>
+  values = [architectural, enhanced, standard];
 }
 
 /// Typed helper for the `attached_disk` block of
@@ -84,7 +165,7 @@ final class ComputeInstanceFromTemplateAttachedDisk {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceFromTemplateMode? mode;
 
   final TfArg<String> source;
 
@@ -100,6 +181,28 @@ final class ComputeInstanceFromTemplateAttachedDisk {
     'mode': ?mode?.toTfJson(),
     'source': source.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const readOnly = ComputeInstanceFromTemplateMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = ComputeInstanceFromTemplateMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<ComputeInstanceFromTemplateMode> values = [
+    readOnly,
+    readWrite,
+  ];
 }
 
 /// Typed helper for the `boot_disk` block of
@@ -135,11 +238,11 @@ final class ComputeInstanceFromTemplateBootDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceFromTemplateInterface? interface;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceFromTemplateMode? mode;
 
   final TfArg<String>? source;
 
@@ -161,6 +264,26 @@ final class ComputeInstanceFromTemplateBootDisk {
     'source': ?source?.toTfJson(),
     'initialize_params': ?initializeParams?.encode(),
   };
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateInterface.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvme = ComputeInstanceFromTemplateInterface._(
+    TfArgLiteral('NVME'),
+  );
+  static const scsi = ComputeInstanceFromTemplateInterface._(
+    TfArgLiteral('SCSI'),
+  );
+
+  static const List<ComputeInstanceFromTemplateInterface> values = [nvme, scsi];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -185,7 +308,7 @@ final class ComputeInstanceFromTemplateInitializeParams {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeInstanceFromTemplateArchitecture? architecture;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -235,6 +358,29 @@ final class ComputeInstanceFromTemplateInitializeParams {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const arm64 = ComputeInstanceFromTemplateArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+  static const x8664 = ComputeInstanceFromTemplateArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+
+  static const List<ComputeInstanceFromTemplateArchitecture> values = [
+    arm64,
+    x8664,
+  ];
 }
 
 /// Typed helper for the `boot_disk.initialize_params.source_image_encryption_key` block of
@@ -302,7 +448,8 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final ComputeInstanceFromTemplateConfidentialInstanceType?
+  confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -311,6 +458,39 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateConfidentialInstanceType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateConfidentialInstanceType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bmsai = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
+  static const sev = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<ComputeInstanceFromTemplateConfidentialInstanceType>
+  values = [bmsai, cca, sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `guest_accelerator` block of
@@ -379,7 +559,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceFromTemplateIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -397,7 +577,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceFromTemplateStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -436,6 +616,29 @@ final class ComputeInstanceFromTemplateNetworkInterface {
   };
 }
 
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateIgmpQuery.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateIgmpQuery.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceFromTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceFromTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceFromTemplateIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
 /// `nic_type` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
     implements TfArg<String> {
@@ -448,25 +651,52 @@ extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
   static const gvnic = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('GVNIC'),
   );
-  static const virtioNet = ComputeInstanceFromTemplateNicType._(
-    TfArgLiteral('VIRTIO_NET'),
-  );
   static const idpf = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('IDPF'),
-  );
-  static const mrdma = ComputeInstanceFromTemplateNicType._(
-    TfArgLiteral('MRDMA'),
   );
   static const irdma = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('IRDMA'),
   );
+  static const mrdma = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const virtioNet = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
 
   static const List<ComputeInstanceFromTemplateNicType> values = [
     gvnic,
-    virtioNet,
     idpf,
-    mrdma,
     irdma,
+    mrdma,
+    virtioNet,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateStackType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeInstanceFromTemplateStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
   ];
 }
 
@@ -482,7 +712,7 @@ final class ComputeInstanceFromTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<String>? networkTier;
+  final ComputeInstanceFromTemplateNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -492,6 +722,38 @@ final class ComputeInstanceFromTemplateAccessConfig {
     'network_tier': ?networkTier?.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedStandard = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+  static const premium = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardOverridesFixedStandard =
+      ComputeInstanceFromTemplateNetworkTier._(
+        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
+      );
+
+  static const List<ComputeInstanceFromTemplateNetworkTier> values = [
+    fixedStandard,
+    premium,
+    standard,
+    standardOverridesFixedStandard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -532,7 +794,7 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
 
   final TfArg<String>? name;
 
-  final TfArg<String> networkTier;
+  final ComputeInstanceFromTemplateNetworkTier networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -576,16 +838,16 @@ extension type const ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const tier1 = ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase =
       ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
         TfArgLiteral('DEFAULT'),
       );
+  static const tier1 = ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeInstanceFromTemplateTotalEgressBandwidthTier>
-  values = [tier1, defaultCase];
+  values = [defaultCase, tier1];
 }
 
 /// Typed helper for the `params` block of
@@ -669,15 +931,16 @@ final class ComputeInstanceFromTemplateScheduling {
 
   final TfArg<num>? hostErrorTimeoutSeconds;
 
-  final TfArg<String>? instanceTerminationAction;
+  final ComputeInstanceFromTemplateInstanceTerminationAction?
+  instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<String>? onHostMaintenance;
+  final ComputeInstanceFromTemplateOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<String>? provisioningModel;
+  final ComputeInstanceFromTemplateProvisioningModel? provisioningModel;
 
   final TfArg<String>? terminationTime;
 
@@ -711,6 +974,87 @@ final class ComputeInstanceFromTemplateScheduling {
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
     'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
+}
+
+/// `instance_termination_action` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateInstanceTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateInstanceTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateInstanceTerminationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateInstanceTerminationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const delete = ComputeInstanceFromTemplateInstanceTerminationAction._(
+    TfArgLiteral('DELETE'),
+  );
+  static const stop = ComputeInstanceFromTemplateInstanceTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceFromTemplateInstanceTerminationAction>
+  values = [delete, stop];
+}
+
+/// `on_host_maintenance` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateOnHostMaintenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateOnHostMaintenance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const migrate = ComputeInstanceFromTemplateOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+  static const terminate = ComputeInstanceFromTemplateOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+
+  static const List<ComputeInstanceFromTemplateOnHostMaintenance> values = [
+    migrate,
+    terminate,
+  ];
+}
+
+/// `provisioning_model` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateProvisioningModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateProvisioningModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const flexStart = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound =
+      ComputeInstanceFromTemplateProvisioningModel._(
+        TfArgLiteral('RESERVATION_BOUND'),
+      );
+  static const spot = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const standard = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeInstanceFromTemplateProvisioningModel> values = [
+    flexStart,
+    reservationBound,
+    spot,
+    standard,
+  ];
 }
 
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
@@ -765,7 +1109,7 @@ final class ComputeInstanceFromTemplateNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceFromTemplateOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -775,6 +1119,29 @@ final class ComputeInstanceFromTemplateNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inCase = ComputeInstanceFromTemplateOperator._(
+    TfArgLiteral('IN'),
+  );
+  static const notIn = ComputeInstanceFromTemplateOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<ComputeInstanceFromTemplateOperator> values = [
+    inCase,
+    notIn,
+  ];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -823,7 +1190,7 @@ final class ComputeInstanceFromTemplateScratchDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String> interface;
+  final ComputeInstanceFromTemplateInterface interface;
 
   final TfArg<num>? size;
 
@@ -931,10 +1298,10 @@ final class GoogleComputeInstanceFromTemplate extends Resource {
     TfArg<bool>? allowStoppingForUpdate,
     TfArg<bool>? deletionProtection,
     TfArg<String>? deletionPolicy,
-    TfArg<String>? desiredStatus,
+    ComputeInstanceFromTemplateDesiredStatus? desiredStatus,
     TfArg<bool>? enableDisplay,
     TfArg<String>? hostname,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceFromTemplateKeyRevocationActionType? keyRevocationActionType,
     TfArg<String>? minCpuPlatform,
     TfArg<List<String>>? resourcePolicies,
     TfArg<String>? project,

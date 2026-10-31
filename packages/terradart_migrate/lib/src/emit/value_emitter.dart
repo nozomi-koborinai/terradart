@@ -1099,9 +1099,29 @@ final class ValueEmitter {
       return enumCall(_inPosition(true, () => _expression(e)));
     }
 
+    if (slot.repeated && slot.wrapped) {
+      // An `EnumList<E>`: a literal list of members, or one value that is
+      // the whole list.
+      if (value is TupleExpr) {
+        return _arg('literal([${value.elements.map(element).join(', ')}])');
+      }
+      if (!isExpression(value)) {
+        throw MigrateBlocker(
+          'argument "$path" expects a list of $enumName but is a '
+          '${_describe(value)}',
+        );
+      }
+      if (singleReference(value) case final ref?) {
+        if (classifyTraversal(ref) case VariableReference(:final name)) {
+          usedVariables.add(name);
+          return _arg('variable(${dartString(name)})');
+        }
+      }
+      return _expression(value);
+    }
     if (slot.repeated) {
-      // The parameter is a Dart list (`List<E>`), so a reference to a whole
-      // list has no slot to go in.
+      // The parameter is a bare Dart list (`List<E>`), so a reference to a
+      // whole list has no slot to go in.
       if (value is! TupleExpr && isExpression(value)) {
         throw MigrateBlocker(
           'argument "$path" takes a list of $enumName values, not a '

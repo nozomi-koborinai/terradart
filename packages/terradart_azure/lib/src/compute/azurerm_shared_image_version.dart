@@ -196,15 +196,14 @@ final class SharedImageVersionUefi {
     this.additionalSignatures,
   });
 
-  final List<SharedImageVersionSignatureTemplateNames> signatureTemplateNames;
+  final EnumList<SharedImageVersionSignatureTemplateNames>
+  signatureTemplateNames;
 
   final SharedImageVersionAdditionalSignatures? additionalSignatures;
 
   @internal
   Map<String, Object?> encode() => {
-    'signature_template_names': [
-      for (final e in signatureTemplateNames) e.toTfJson(),
-    ],
+    'signature_template_names': signatureTemplateNames.toTfJson(),
     'additional_signatures': ?additionalSignatures?.encode(),
   };
 }

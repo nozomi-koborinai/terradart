@@ -10,6 +10,24 @@ import '../discovery_engine/google_discovery_engine_search_engine.dart'
 /// Sensitive field paths for `google_discovery_engine_control`.
 const Set<String> _googleDiscoveryEngineControlSensitive = <String>{};
 
+/// Discovery Engine Control enum for `location`.
+extension type const DiscoveryEngineControlLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineControlLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineControlLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineControlLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineControlLocation> values = [global, us, eu];
+}
+
 /// Discovery Engine Control Solution enum for `solution_type`.
 extension type const DiscoveryEngineControlSolutionType._(TfArg<String> _)
     implements TfArg<String> {
@@ -39,6 +57,28 @@ extension type const DiscoveryEngineControlSolutionType._(TfArg<String> _)
     solutionTypeSearch,
     solutionTypeChat,
     solutionTypeGenerativeChat,
+  ];
+}
+
+/// Discovery Engine Control Use enum for `use_cases`.
+extension type const DiscoveryEngineControlUseCases._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlUseCases.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlUseCases.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlUseCases.arg(TfArg<String> arg) : this._(arg);
+
+  static const searchUseCaseSearch = DiscoveryEngineControlUseCases._(
+    TfArgLiteral('SEARCH_USE_CASE_SEARCH'),
+  );
+  static const searchUseCaseBrowse = DiscoveryEngineControlUseCases._(
+    TfArgLiteral('SEARCH_USE_CASE_BROWSE'),
+  );
+
+  static const List<DiscoveryEngineControlUseCases> values = [
+    searchUseCaseSearch,
+    searchUseCaseBrowse,
   ];
 }
 
@@ -296,7 +336,7 @@ final class DiscoveryEngineControlInterpolationBoostSpec {
 
   final TfArg<String>? fieldName;
 
-  final TfArg<String>? interpolationType;
+  final DiscoveryEngineControlInterpolationType? interpolationType;
 
   final DiscoveryEngineControlPoint? controlPoint;
 
@@ -330,6 +370,23 @@ extension type const DiscoveryEngineControlAttributeType._(TfArg<String> _)
     numerical,
     freshness,
   ];
+}
+
+/// `interpolation_type` — derived from the provider schema description.
+extension type const DiscoveryEngineControlInterpolationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlInterpolationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlInterpolationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlInterpolationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const linear = DiscoveryEngineControlInterpolationType._(
+    TfArgLiteral('LINEAR'),
+  );
+
+  static const List<DiscoveryEngineControlInterpolationType> values = [linear];
 }
 
 /// Typed helper for the `boost_action.interpolation_boost_spec.control_point` block of
@@ -526,14 +583,14 @@ final class GoogleDiscoveryEngineControl extends Resource {
 
   GoogleDiscoveryEngineControl(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineControlLocation location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     required TfArg<String> controlId,
     required TfArg<String> displayName,
     required DiscoveryEngineControlSolutionType solutionType,
     required DiscoveryEngineControlAction action,
-    TfArg<List<String>>? useCases,
+    EnumList<DiscoveryEngineControlUseCases>? useCases,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     List<DiscoveryEngineControlConditions>? conditions,

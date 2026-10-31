@@ -6,6 +6,45 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_security_center_assessment_policy`.
 const Set<String> _azurermSecurityCenterAssessmentPolicySensitive = <String>{};
 
+/// Security Center Assessment Policy enum for `categories`.
+extension type const SecurityCenterAssessmentPolicyCategories._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityCenterAssessmentPolicyCategories.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityCenterAssessmentPolicyCategories.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityCenterAssessmentPolicyCategories.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const unknown = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('Unknown'),
+  );
+  static const compute = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('Compute'),
+  );
+  static const data = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('Data'),
+  );
+  static const identityandaccess = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('IdentityAndAccess'),
+  );
+  static const iot = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('IoT'),
+  );
+  static const networking = SecurityCenterAssessmentPolicyCategories._(
+    TfArgLiteral('Networking'),
+  );
+
+  static const List<SecurityCenterAssessmentPolicyCategories> values = [
+    unknown,
+    compute,
+    data,
+    identityandaccess,
+    iot,
+    networking,
+  ];
+}
+
 /// Security Center Assessment Policy enum for `threats`.
 extension type const SecurityCenterAssessmentPolicyThreats._(TfArg<String> _)
     implements TfArg<String> {
@@ -59,13 +98,13 @@ final class AzurermSecurityCenterAssessmentPolicy extends Resource {
 
   AzurermSecurityCenterAssessmentPolicy(
     super.localName, {
-    TfArg<List<String>>? categories,
+    EnumList<SecurityCenterAssessmentPolicyCategories>? categories,
     required TfArg<String> description,
     required TfArg<String> displayName,
     TfArg<String>? implementationEffort,
     TfArg<String>? remediationDescription,
     TfArg<String>? severity,
-    List<SecurityCenterAssessmentPolicyThreats>? threats,
+    EnumList<SecurityCenterAssessmentPolicyThreats>? threats,
     TfArg<String>? userImpact,
     super.lifecycle,
     super.dependsOn,
@@ -80,8 +119,7 @@ final class AzurermSecurityCenterAssessmentPolicy extends Resource {
            'implementation_effort': ?implementationEffort,
            'remediation_description': ?remediationDescription,
            'severity': ?severity,
-           if (threats != null)
-             'threats': TfArg.literal([for (final e in threats) e.toTfJson()]),
+           'threats': ?threats,
            'user_impact': ?userImpact,
          },
        );

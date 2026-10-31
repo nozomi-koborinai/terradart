@@ -118,7 +118,7 @@ final class StorageTransferStack extends Stack {
       GoogleStorageTransferJob(
         'copy',
         description: .literal('terradart disabled gcs copy'),
-        status: .literal('DISABLED'),
+        status: .disabled,
         transferSpec: StorageTransferJobTransferSpec(
           gcsDataSource: .new(bucketName: src.ref),
           gcsDataSink: .new(bucketName: dst.ref),

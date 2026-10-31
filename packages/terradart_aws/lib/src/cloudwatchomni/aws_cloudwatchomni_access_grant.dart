@@ -166,7 +166,7 @@ final class CloudwatchomniAccessGrantResource {
 
   final TfArg<String> resourceType;
 
-  final List<CloudwatchomniAccessGrantSignalTypes>? signalTypes;
+  final EnumList<CloudwatchomniAccessGrantSignalTypes>? signalTypes;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -176,8 +176,7 @@ final class CloudwatchomniAccessGrantResource {
   Map<String, Object?> encode() => {
     'resource_arns': ?resourceArns?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
-    if (signalTypes != null)
-      'signal_types': [for (final e in signalTypes!) e.toTfJson()],
+    'signal_types': ?signalTypes?.toTfJson(),
     'tags': ?tags?.toTfJson(),
     if (rowScopeGroup != null)
       'row_scope_group': [for (final e in rowScopeGroup!) e.encode()],

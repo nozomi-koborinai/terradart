@@ -65,7 +65,8 @@ final class AzurermMssqlManagedInstanceSecurityAlertPolicy extends Resource {
 
   AzurermMssqlManagedInstanceSecurityAlertPolicy(
     super.localName, {
-    List<MssqlManagedInstanceSecurityAlertPolicyDisabledAlerts>? disabledAlerts,
+    EnumList<MssqlManagedInstanceSecurityAlertPolicyDisabledAlerts>?
+    disabledAlerts,
     TfArg<bool>? emailAccountAdminsEnabled,
     TfArg<List<String>>? emailAddresses,
     TfArg<bool>? enabled,
@@ -81,10 +82,7 @@ final class AzurermMssqlManagedInstanceSecurityAlertPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disabledAlerts != null)
-             'disabled_alerts': TfArg.literal([
-               for (final e in disabledAlerts) e.toTfJson(),
-             ]),
+           'disabled_alerts': ?disabledAlerts,
            'email_account_admins_enabled': ?emailAccountAdminsEnabled,
            'email_addresses': ?emailAddresses,
            'enabled': ?enabled,

@@ -7,6 +7,36 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_workers_kv_namespaces`.
 const Set<String> _cloudflareWorkersKvNamespacesSensitive = <String>{};
 
+/// Data Workers Kv Namespaces enum for `direction`.
+extension type const DataWorkersKvNamespacesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersKvNamespacesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWorkersKvNamespacesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersKvNamespacesDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataWorkersKvNamespacesDirection._(TfArgLiteral('asc'));
+  static const desc = DataWorkersKvNamespacesDirection._(TfArgLiteral('desc'));
+
+  static const List<DataWorkersKvNamespacesDirection> values = [asc, desc];
+}
+
+/// Data Workers Kv Namespaces enum for `order`.
+extension type const DataWorkersKvNamespacesOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersKvNamespacesOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWorkersKvNamespacesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersKvNamespacesOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const id = DataWorkersKvNamespacesOrder._(TfArgLiteral('id'));
+  static const title = DataWorkersKvNamespacesOrder._(TfArgLiteral('title'));
+
+  static const List<DataWorkersKvNamespacesOrder> values = [id, title];
+}
+
 /// Factory wrapper for `cloudflare_workers_kv_namespaces`.
 ///
 /// Accepted Permissions
@@ -18,9 +48,9 @@ final class DataCloudflareWorkersKvNamespaces extends Data {
   DataCloudflareWorkersKvNamespaces(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataWorkersKvNamespacesDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataWorkersKvNamespacesOrder? order,
     super.provider,
     super.timeouts,
   }) : super(

@@ -3,6 +3,18 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+enumValues:
+  configmanagement.config_sync.git.secret_type:
+    - ssh
+    - cookiefile
+    - gcenode
+    - token
+    - gcpserviceaccount
+    - none
+  configmanagement.config_sync.oci.secret_type:
+    - gcenode
+    - gcpserviceaccount
+    - none
 
 extraImports:
   - "import 'package:meta/meta.dart';"

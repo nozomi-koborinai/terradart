@@ -17,6 +17,7 @@ export 'src/machine_learning/azurerm_machine_learning_compute_instance.dart'
     show
         AzurermMachineLearningComputeInstance,
         MachineLearningComputeInstanceAssignToUser,
+        MachineLearningComputeInstanceAuthorizationType,
         MachineLearningComputeInstanceIdentity,
         MachineLearningComputeInstanceSsh;
 export 'src/machine_learning/azurerm_machine_learning_datastore_blobstorage.dart'
@@ -53,7 +54,9 @@ export 'src/machine_learning/azurerm_machine_learning_workspace.dart'
         MachineLearningWorkspaceIsolationMode,
         MachineLearningWorkspaceKind,
         MachineLearningWorkspaceManagedNetwork,
-        MachineLearningWorkspaceServerlessCompute;
+        MachineLearningWorkspaceServerlessCompute,
+        MachineLearningWorkspaceSkuName,
+        MachineLearningWorkspaceStorageAccountAccessType;
 export 'src/machine_learning/azurerm_machine_learning_workspace_network_outbound_rule_fqdn.dart'
     show AzurermMachineLearningWorkspaceNetworkOutboundRuleFqdn;
 export 'src/machine_learning/azurerm_machine_learning_workspace_network_outbound_rule_private_endpoint.dart'

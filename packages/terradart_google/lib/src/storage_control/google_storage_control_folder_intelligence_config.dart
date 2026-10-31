@@ -8,6 +8,36 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageControlFolderIntelligenceConfigSensitive =
     <String>{};
 
+/// Storage Control Folder Intelligence Config Edition enum for `edition_config`.
+extension type const StorageControlFolderIntelligenceConfigEditionConfig._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StorageControlFolderIntelligenceConfigEditionConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageControlFolderIntelligenceConfigEditionConfig.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StorageControlFolderIntelligenceConfigEditionConfig.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const inherit = StorageControlFolderIntelligenceConfigEditionConfig._(
+    TfArgLiteral('INHERIT'),
+  );
+  static const trial = StorageControlFolderIntelligenceConfigEditionConfig._(
+    TfArgLiteral('TRIAL'),
+  );
+  static const disabled = StorageControlFolderIntelligenceConfigEditionConfig._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const standard = StorageControlFolderIntelligenceConfigEditionConfig._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<StorageControlFolderIntelligenceConfigEditionConfig>
+  values = [inherit, trial, disabled, standard];
+}
+
 /// Typed helper for the `filter` block of
 /// `google_storage_control_folder_intelligence_config` (derived from provider schema).
 @immutable
@@ -250,7 +280,7 @@ final class GoogleStorageControlFolderIntelligenceConfig extends Resource {
 
   GoogleStorageControlFolderIntelligenceConfig(
     super.localName, {
-    TfArg<String>? editionConfig,
+    StorageControlFolderIntelligenceConfigEditionConfig? editionConfig,
     required TfArg<String> name,
     StorageControlFolderIntelligenceConfigFilter? filter,
     super.lifecycle,

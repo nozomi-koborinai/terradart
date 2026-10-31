@@ -75,7 +75,7 @@ final class LinuxWebAppAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final LinuxWebAppDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -87,7 +87,7 @@ final class LinuxWebAppAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final LinuxWebAppUnauthenticatedClientAction? unauthenticatedClientAction;
 
   final LinuxWebAppActiveDirectory? activeDirectory;
 
@@ -121,6 +121,61 @@ final class LinuxWebAppAuthSettings {
   };
 }
 
+/// `default_provider` — derived from the provider schema description.
+extension type const LinuxWebAppDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = LinuxWebAppDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = LinuxWebAppDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const github = LinuxWebAppDefaultProvider._(TfArgLiteral('Github'));
+  static const google = LinuxWebAppDefaultProvider._(TfArgLiteral('Google'));
+  static const microsoftaccount = LinuxWebAppDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = LinuxWebAppDefaultProvider._(TfArgLiteral('Twitter'));
+
+  static const List<LinuxWebAppDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    github,
+    google,
+    microsoftaccount,
+    twitter,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const LinuxWebAppUnauthenticatedClientAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous = LinuxWebAppUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage = LinuxWebAppUnauthenticatedClientAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+
+  static const List<LinuxWebAppUnauthenticatedClientAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+  ];
+}
+
 /// Typed helper for the `auth_settings.active_directory` block of
 /// `azurerm_linux_web_app` (derived from provider schema).
 @immutable
@@ -129,23 +184,81 @@ final class LinuxWebAppActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxWebAppActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_linux_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxWebAppActiveDirectoryClientSecret {
+  const LinuxWebAppActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxWebAppActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxWebAppActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxWebAppActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxWebAppActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxWebAppActiveDirectoryClientSecretChoice
+    extends LinuxWebAppActiveDirectoryClientSecret {
+  const LinuxWebAppActiveDirectoryClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxWebAppActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppActiveDirectoryClientSecretSettingName
+    extends LinuxWebAppActiveDirectoryClientSecret {
+  const LinuxWebAppActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -155,25 +268,77 @@ final class LinuxWebAppActiveDirectory {
 final class LinuxWebAppFacebook {
   const LinuxWebAppFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final LinuxWebAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_linux_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class LinuxWebAppSecret {
+  const LinuxWebAppSecret();
+
+  /// Sets `app_secret`.
+  const factory LinuxWebAppSecret.appSecret(Sensitive<String> appSecret) =
+      LinuxWebAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory LinuxWebAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = LinuxWebAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppSecret.appSecret] choice: sets `app_secret`.
+final class LinuxWebAppSecretChoice extends LinuxWebAppSecret {
+  const LinuxWebAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [LinuxWebAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class LinuxWebAppSecretSettingName extends LinuxWebAppSecret {
+  const LinuxWebAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -183,25 +348,80 @@ final class LinuxWebAppFacebook {
 final class LinuxWebAppGithub {
   const LinuxWebAppGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxWebAppGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_linux_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxWebAppGithubClientSecret {
+  const LinuxWebAppGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxWebAppGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxWebAppGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxWebAppGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxWebAppGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxWebAppGithubClientSecretChoice
+    extends LinuxWebAppGithubClientSecret {
+  const LinuxWebAppGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxWebAppGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppGithubClientSecretSettingName
+    extends LinuxWebAppGithubClientSecret {
+  const LinuxWebAppGithubClientSecretSettingName(this.clientSecretSettingName);
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -211,25 +431,80 @@ final class LinuxWebAppGithub {
 final class LinuxWebAppGoogle {
   const LinuxWebAppGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxWebAppGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_linux_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxWebAppGoogleClientSecret {
+  const LinuxWebAppGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxWebAppGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxWebAppGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxWebAppGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxWebAppGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxWebAppGoogleClientSecretChoice
+    extends LinuxWebAppGoogleClientSecret {
+  const LinuxWebAppGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxWebAppGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppGoogleClientSecretSettingName
+    extends LinuxWebAppGoogleClientSecret {
+  const LinuxWebAppGoogleClientSecretSettingName(this.clientSecretSettingName);
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -239,25 +514,82 @@ final class LinuxWebAppGoogle {
 final class LinuxWebAppMicrosoft {
   const LinuxWebAppMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxWebAppMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_linux_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxWebAppMicrosoftClientSecret {
+  const LinuxWebAppMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxWebAppMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxWebAppMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxWebAppMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxWebAppMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxWebAppMicrosoftClientSecretChoice
+    extends LinuxWebAppMicrosoftClientSecret {
+  const LinuxWebAppMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxWebAppMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppMicrosoftClientSecretSettingName
+    extends LinuxWebAppMicrosoftClientSecret {
+  const LinuxWebAppMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -267,21 +599,77 @@ final class LinuxWebAppMicrosoft {
 final class LinuxWebAppTwitter {
   const LinuxWebAppTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final LinuxWebAppConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_linux_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class LinuxWebAppConsumerSecret {
+  const LinuxWebAppConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory LinuxWebAppConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = LinuxWebAppConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory LinuxWebAppConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = LinuxWebAppConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class LinuxWebAppConsumerSecretChoice extends LinuxWebAppConsumerSecret {
+  const LinuxWebAppConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [LinuxWebAppConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class LinuxWebAppConsumerSecretSettingName
+    extends LinuxWebAppConsumerSecret {
+  const LinuxWebAppConsumerSecretSettingName(this.consumerSecretSettingName);
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -322,7 +710,7 @@ final class LinuxWebAppAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final LinuxWebAppForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -336,7 +724,7 @@ final class LinuxWebAppAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final LinuxWebAppUnauthenticatedAction? unauthenticatedAction;
 
   final LinuxWebAppActiveDirectoryV2? activeDirectoryV2;
 
@@ -388,6 +776,62 @@ final class LinuxWebAppAuthSettingsV2 {
   };
 }
 
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const LinuxWebAppForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppForwardProxyConvention.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = LinuxWebAppForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = LinuxWebAppForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = LinuxWebAppForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<LinuxWebAppForwardProxyConvention> values = [
+    custom,
+    noproxy,
+    standard,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const LinuxWebAppUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppUnauthenticatedAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowanonymous = LinuxWebAppUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage = LinuxWebAppUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const return401 = LinuxWebAppUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = LinuxWebAppUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<LinuxWebAppUnauthenticatedAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+    return401,
+    return403,
+  ];
+}
+
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
 /// `azurerm_linux_web_app` (derived from provider schema).
 @immutable
@@ -398,8 +842,7 @@ final class LinuxWebAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -417,9 +860,7 @@ final class LinuxWebAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxWebAppClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -438,15 +879,80 @@ final class LinuxWebAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_linux_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredential();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory LinuxWebAppClientCredential.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = LinuxWebAppClientCredentialClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxWebAppClientCredential.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxWebAppClientCredentialClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxWebAppClientCredentialClientSecretCertificateThumbprint
+    extends LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredentialClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [LinuxWebAppClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppClientCredentialClientSecretSettingName
+    extends LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredentialClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -607,14 +1113,13 @@ final class LinuxWebAppLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final LinuxWebAppCookieExpirationConvention? cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -628,9 +1133,7 @@ final class LinuxWebAppLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final LinuxWebAppTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -645,10 +1148,93 @@ final class LinuxWebAppLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_linux_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class LinuxWebAppTokenStore {
+  const LinuxWebAppTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory LinuxWebAppTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = LinuxWebAppTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory LinuxWebAppTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = LinuxWebAppTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class LinuxWebAppTokenStorePath extends LinuxWebAppTokenStore {
+  const LinuxWebAppTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [LinuxWebAppTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class LinuxWebAppTokenStoreSasSettingName extends LinuxWebAppTokenStore {
+  const LinuxWebAppTokenStoreSasSettingName(this.tokenStoreSasSettingName);
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
+  };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const LinuxWebAppCookieExpirationConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = LinuxWebAppCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      LinuxWebAppCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<LinuxWebAppCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -741,7 +1327,7 @@ final class LinuxWebAppSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final LinuxWebAppFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -759,6 +1345,20 @@ final class LinuxWebAppSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const LinuxWebAppFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppFrequencyUnit.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = LinuxWebAppFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = LinuxWebAppFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<LinuxWebAppFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_linux_web_app` (derived from provider schema).
 @immutable
@@ -771,7 +1371,7 @@ final class LinuxWebAppConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final LinuxWebAppConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -781,6 +1381,60 @@ final class LinuxWebAppConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxWebAppConnectionStringType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppConnectionStringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppConnectionStringType.arg(TfArg<String> arg) : this._(arg);
+
+  static const apihub = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = LinuxWebAppConnectionStringType._(TfArgLiteral('DocDb'));
+  static const eventhub = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = LinuxWebAppConnectionStringType._(TfArgLiteral('MySql'));
+  static const notificationhub = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const postgresql = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = LinuxWebAppConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
+
+  static const List<LinuxWebAppConnectionStringType> values = [
+    apihub,
+    custom,
+    docdb,
+    eventhub,
+    mysql,
+    notificationhub,
+    postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -837,7 +1491,7 @@ final class LinuxWebAppApplicationLogs {
     this.azureBlobStorage,
   });
 
-  final TfArg<String> fileSystemLevel;
+  final LinuxWebAppFileSystemLevel fileSystemLevel;
 
   final LinuxWebAppApplicationLogsAzureBlobStorage? azureBlobStorage;
 
@@ -846,6 +1500,32 @@ final class LinuxWebAppApplicationLogs {
     'file_system_level': fileSystemLevel.toTfJson(),
     'azure_blob_storage': ?azureBlobStorage?.encode(),
   };
+}
+
+/// `file_system_level` — derived from the provider schema description.
+extension type const LinuxWebAppFileSystemLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppFileSystemLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppFileSystemLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppFileSystemLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = LinuxWebAppFileSystemLevel._(TfArgLiteral('Error'));
+  static const information = LinuxWebAppFileSystemLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const off = LinuxWebAppFileSystemLevel._(TfArgLiteral('Off'));
+  static const verbose = LinuxWebAppFileSystemLevel._(TfArgLiteral('Verbose'));
+  static const warning = LinuxWebAppFileSystemLevel._(TfArgLiteral('Warning'));
+
+  static const List<LinuxWebAppFileSystemLevel> values = [
+    error,
+    information,
+    off,
+    verbose,
+    warning,
+  ];
 }
 
 /// Typed helper for the `logs.application_logs.azure_blob_storage` block of
@@ -858,7 +1538,7 @@ final class LinuxWebAppApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final LinuxWebAppLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -872,21 +1552,84 @@ final class LinuxWebAppApplicationLogsAzureBlobStorage {
   };
 }
 
-/// Typed helper for the `logs.http_logs` block of
-/// `azurerm_linux_web_app` (derived from provider schema).
-@immutable
-final class LinuxWebAppHttpLogs {
-  const LinuxWebAppHttpLogs({this.azureBlobStorage, this.fileSystem});
+/// `level` — derived from the provider schema description.
+extension type const LinuxWebAppLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppLevel.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppLevel.arg(TfArg<String> arg) : this._(arg);
 
-  final LinuxWebAppHttpLogsAzureBlobStorage? azureBlobStorage;
+  static const error = LinuxWebAppLevel._(TfArgLiteral('Error'));
+  static const information = LinuxWebAppLevel._(TfArgLiteral('Information'));
+  static const verbose = LinuxWebAppLevel._(TfArgLiteral('Verbose'));
+  static const warning = LinuxWebAppLevel._(TfArgLiteral('Warning'));
 
-  final LinuxWebAppFileSystem? fileSystem;
+  static const List<LinuxWebAppLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
+}
+
+/// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_linux_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.azureBlobStorage(...)`.
+sealed class LinuxWebAppHttpLogs {
+  const LinuxWebAppHttpLogs();
+
+  /// Sets `azure_blob_storage`.
+  const factory LinuxWebAppHttpLogs.azureBlobStorage(
+    LinuxWebAppHttpLogsAzureBlobStorage azureBlobStorage,
+  ) = LinuxWebAppHttpLogsAzureBlobStorageChoice;
+
+  /// Sets `file_system`.
+  const factory LinuxWebAppHttpLogs.fileSystem(
+    LinuxWebAppFileSystem fileSystem,
+  ) = LinuxWebAppHttpLogsFileSystem;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxWebAppHttpLogs.azureBlobStorage] choice: sets `azure_blob_storage`.
+final class LinuxWebAppHttpLogsAzureBlobStorageChoice
+    extends LinuxWebAppHttpLogs {
+  const LinuxWebAppHttpLogsAzureBlobStorageChoice(this.azureBlobStorage);
+
+  final LinuxWebAppHttpLogsAzureBlobStorage azureBlobStorage;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {
-    'azure_blob_storage': ?azureBlobStorage?.encode(),
-    'file_system': ?fileSystem?.encode(),
+    'azure_blob_storage': azureBlobStorage.encode(),
   };
+}
+
+/// The [LinuxWebAppHttpLogs.fileSystem] choice: sets `file_system`.
+final class LinuxWebAppHttpLogsFileSystem extends LinuxWebAppHttpLogs {
+  const LinuxWebAppHttpLogsFileSystem(this.fileSystem);
+
+  final LinuxWebAppFileSystem fileSystem;
+
+  @internal
+  @override
+  String get blockKey => 'file_system';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'file_system': fileSystem.encode()};
 }
 
 /// Typed helper for the `logs.http_logs.azure_blob_storage` block of
@@ -981,7 +1724,7 @@ final class LinuxWebAppSiteConfig {
 
   final TfArg<List<String>>? defaultDocuments;
 
-  final TfArg<String>? ftpsState;
+  final LinuxWebAppFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -989,25 +1732,25 @@ final class LinuxWebAppSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final LinuxWebAppIpRestrictionDefaultAction? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final LinuxWebAppLoadBalancingMode? loadBalancingMode;
 
   final TfArg<bool>? localMysqlEnabled;
 
-  final TfArg<String>? managedPipelineMode;
+  final LinuxWebAppManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final LinuxWebAppMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final LinuxWebAppMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxWebAppRemoteDebuggingVersion? remoteDebuggingVersion;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final LinuxWebAppScmIpRestrictionDefaultAction? scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final LinuxWebAppScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1071,6 +1814,280 @@ final class LinuxWebAppSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const LinuxWebAppFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppFtpsState.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = LinuxWebAppFtpsState._(TfArgLiteral('AllAllowed'));
+  static const disabled = LinuxWebAppFtpsState._(TfArgLiteral('Disabled'));
+  static const ftpsonly = LinuxWebAppFtpsState._(TfArgLiteral('FtpsOnly'));
+
+  static const List<LinuxWebAppFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxWebAppIpRestrictionDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxWebAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxWebAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxWebAppIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const LinuxWebAppLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppLoadBalancingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const leastrequests = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const weightedroundrobin = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const leastresponsetime = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const weightedtotaltraffic = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+  static const requesthash = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin = LinuxWebAppLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+
+  static const List<LinuxWebAppLoadBalancingMode> values = [
+    leastrequests,
+    weightedroundrobin,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const LinuxWebAppManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppManagedPipelineMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const classic = LinuxWebAppManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const integrated = LinuxWebAppManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+
+  static const List<LinuxWebAppManagedPipelineMode> values = [
+    classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const LinuxWebAppMinimumTlsCipherSuite._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppMinimumTlsCipherSuite.arg(TfArg<String> arg) : this._(arg);
+
+  static const tlsAes128GcmSha256 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      LinuxWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsRsaWithAes128CbcSha256 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes128GcmSha256 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+  );
+  static const tlsRsaWithAes256CbcSha = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsRsaWithAes256CbcSha256 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes256GcmSha384 = LinuxWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+  );
+
+  static const List<LinuxWebAppMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxWebAppMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = LinuxWebAppMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = LinuxWebAppMinimumTlsVersion._(TfArgLiteral('1.3'));
+  static const v1p2 = LinuxWebAppMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = LinuxWebAppMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<LinuxWebAppMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxWebAppRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppRemoteDebuggingVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const vs2022 = LinuxWebAppRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxWebAppRemoteDebuggingVersion> values = [vs2022];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxWebAppScmIpRestrictionDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxWebAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxWebAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxWebAppScmIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxWebAppScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppScmMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = LinuxWebAppScmMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = LinuxWebAppScmMinimumTlsVersion._(TfArgLiteral('1.3'));
+  static const v1p2 = LinuxWebAppScmMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = LinuxWebAppScmMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<LinuxWebAppScmMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `site_config.application_stack` block of
 /// `azurerm_linux_web_app` (derived from provider schema).
 @immutable
@@ -1098,21 +2115,21 @@ final class LinuxWebAppApplicationStack {
 
   final TfArg<String>? dockerRegistryUsername;
 
-  final TfArg<String>? dotnetVersion;
+  final LinuxWebAppDotnetVersion? dotnetVersion;
 
-  final TfArg<String>? goVersion;
+  final LinuxWebAppGoVersion? goVersion;
 
-  final TfArg<String>? javaServer;
+  final LinuxWebAppJavaServer? javaServer;
 
   final TfArg<String>? javaServerVersion;
 
-  final TfArg<String>? javaVersion;
+  final LinuxWebAppJavaVersion? javaVersion;
 
-  final TfArg<String>? nodeVersion;
+  final LinuxWebAppNodeVersion? nodeVersion;
 
-  final TfArg<String>? phpVersion;
+  final LinuxWebAppPhpVersion? phpVersion;
 
-  final TfArg<String>? pythonVersion;
+  final LinuxWebAppPythonVersion? pythonVersion;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1129,6 +2146,162 @@ final class LinuxWebAppApplicationStack {
     'php_version': ?phpVersion?.toTfJson(),
     'python_version': ?pythonVersion?.toTfJson(),
   };
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const LinuxWebAppDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppDotnetVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p1 = LinuxWebAppDotnetVersion._(TfArgLiteral('3.1'));
+  static const v5p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('5.0'));
+  static const v6p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('6.0'));
+  static const v7p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('7.0'));
+  static const v8p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('8.0'));
+  static const v9p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('9.0'));
+  static const v10p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('10.0'));
+
+  static const List<LinuxWebAppDotnetVersion> values = [
+    v3p1,
+    v5p0,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `go_version` — derived from the provider schema description.
+extension type const LinuxWebAppGoVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppGoVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppGoVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppGoVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p19 = LinuxWebAppGoVersion._(TfArgLiteral('1.19'));
+  static const v1p18 = LinuxWebAppGoVersion._(TfArgLiteral('1.18'));
+
+  static const List<LinuxWebAppGoVersion> values = [v1p19, v1p18];
+}
+
+/// `java_server` — derived from the provider schema description.
+extension type const LinuxWebAppJavaServer._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppJavaServer.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppJavaServer.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppJavaServer.arg(TfArg<String> arg) : this._(arg);
+
+  static const java = LinuxWebAppJavaServer._(TfArgLiteral('JAVA'));
+  static const tomcat = LinuxWebAppJavaServer._(TfArgLiteral('TOMCAT'));
+  static const jbosseap = LinuxWebAppJavaServer._(TfArgLiteral('JBOSSEAP'));
+
+  static const List<LinuxWebAppJavaServer> values = [java, tomcat, jbosseap];
+}
+
+/// `java_version` — derived from the provider schema description.
+extension type const LinuxWebAppJavaVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppJavaVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppJavaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppJavaVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v8 = LinuxWebAppJavaVersion._(TfArgLiteral('8'));
+  static const v11 = LinuxWebAppJavaVersion._(TfArgLiteral('11'));
+  static const v17 = LinuxWebAppJavaVersion._(TfArgLiteral('17'));
+  static const v21 = LinuxWebAppJavaVersion._(TfArgLiteral('21'));
+  static const v25 = LinuxWebAppJavaVersion._(TfArgLiteral('25'));
+
+  static const List<LinuxWebAppJavaVersion> values = [v8, v11, v17, v21, v25];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const LinuxWebAppNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppNodeVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v12Lts = LinuxWebAppNodeVersion._(TfArgLiteral('12-lts'));
+  static const v14Lts = LinuxWebAppNodeVersion._(TfArgLiteral('14-lts'));
+  static const v16Lts = LinuxWebAppNodeVersion._(TfArgLiteral('16-lts'));
+  static const v18Lts = LinuxWebAppNodeVersion._(TfArgLiteral('18-lts'));
+  static const v20Lts = LinuxWebAppNodeVersion._(TfArgLiteral('20-lts'));
+  static const v22Lts = LinuxWebAppNodeVersion._(TfArgLiteral('22-lts'));
+  static const v24Lts = LinuxWebAppNodeVersion._(TfArgLiteral('24-lts'));
+
+  static const List<LinuxWebAppNodeVersion> values = [
+    v12Lts,
+    v14Lts,
+    v16Lts,
+    v18Lts,
+    v20Lts,
+    v22Lts,
+    v24Lts,
+  ];
+}
+
+/// `php_version` — derived from the provider schema description.
+extension type const LinuxWebAppPhpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppPhpVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppPhpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppPhpVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v7p4 = LinuxWebAppPhpVersion._(TfArgLiteral('7.4'));
+  static const v8p0 = LinuxWebAppPhpVersion._(TfArgLiteral('8.0'));
+  static const v8p1 = LinuxWebAppPhpVersion._(TfArgLiteral('8.1'));
+  static const v8p2 = LinuxWebAppPhpVersion._(TfArgLiteral('8.2'));
+  static const v8p3 = LinuxWebAppPhpVersion._(TfArgLiteral('8.3'));
+  static const v8p4 = LinuxWebAppPhpVersion._(TfArgLiteral('8.4'));
+  static const v8p5 = LinuxWebAppPhpVersion._(TfArgLiteral('8.5'));
+
+  static const List<LinuxWebAppPhpVersion> values = [
+    v7p4,
+    v8p0,
+    v8p1,
+    v8p2,
+    v8p3,
+    v8p4,
+    v8p5,
+  ];
+}
+
+/// `python_version` — derived from the provider schema description.
+extension type const LinuxWebAppPythonVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppPythonVersion.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppPythonVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppPythonVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p7 = LinuxWebAppPythonVersion._(TfArgLiteral('3.7'));
+  static const v3p8 = LinuxWebAppPythonVersion._(TfArgLiteral('3.8'));
+  static const v3p9 = LinuxWebAppPythonVersion._(TfArgLiteral('3.9'));
+  static const v3p10 = LinuxWebAppPythonVersion._(TfArgLiteral('3.10'));
+  static const v3p11 = LinuxWebAppPythonVersion._(TfArgLiteral('3.11'));
+  static const v3p12 = LinuxWebAppPythonVersion._(TfArgLiteral('3.12'));
+  static const v3p13 = LinuxWebAppPythonVersion._(TfArgLiteral('3.13'));
+  static const v3p14 = LinuxWebAppPythonVersion._(TfArgLiteral('3.14'));
+
+  static const List<LinuxWebAppPythonVersion> values = [
+    v3p7,
+    v3p8,
+    v3p9,
+    v3p10,
+    v3p11,
+    v3p12,
+    v3p13,
+    v3p14,
+  ];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting` block of
@@ -1157,7 +2330,7 @@ final class LinuxWebAppAction {
     this.minimumProcessExecutionTime,
   });
 
-  final TfArg<String> actionType;
+  final LinuxWebAppActionType actionType;
 
   final TfArg<String>? minimumProcessExecutionTime;
 
@@ -1166,6 +2339,19 @@ final class LinuxWebAppAction {
     'action_type': actionType.toTfJson(),
     'minimum_process_execution_time': ?minimumProcessExecutionTime?.toTfJson(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const LinuxWebAppActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppActionType.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const recycle = LinuxWebAppActionType._(TfArgLiteral('Recycle'));
+
+  static const List<LinuxWebAppActionType> values = [recycle];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting.trigger` block of
@@ -1337,7 +2523,7 @@ final class LinuxWebAppIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxWebAppIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1366,6 +2552,21 @@ final class LinuxWebAppIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LinuxWebAppIpRestrictionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppIpRestrictionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppIpRestrictionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppIpRestrictionAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LinuxWebAppIpRestrictionAction._(TfArgLiteral('Allow'));
+  static const deny = LinuxWebAppIpRestrictionAction._(TfArgLiteral('Deny'));
+
+  static const List<LinuxWebAppIpRestrictionAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_linux_web_app` (derived from provider schema).
 @immutable
@@ -1381,7 +2582,7 @@ final class LinuxWebAppScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxWebAppIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1453,7 +2654,7 @@ final class LinuxWebAppStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final LinuxWebAppStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1464,6 +2665,28 @@ final class LinuxWebAppStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxWebAppStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppStorageAccountType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureblob = LinuxWebAppStorageAccountType._(
+    TfArgLiteral('AzureBlob'),
+  );
+  static const azurefiles = LinuxWebAppStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<LinuxWebAppStorageAccountType> values = [
+    azureblob,
+    azurefiles,
+  ];
 }
 
 /// Factory wrapper for `azurerm_linux_web_app`.

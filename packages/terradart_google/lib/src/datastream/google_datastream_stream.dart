@@ -930,11 +930,11 @@ final class DatastreamStreamBlmtConfig {
 
   final TfArg<String> connectionName;
 
-  final TfArg<String> fileFormat;
+  final DatastreamStreamBlmtConfigFileFormat fileFormat;
 
   final TfArg<String>? rootPath;
 
-  final TfArg<String> tableFormat;
+  final DatastreamStreamTableFormat tableFormat;
 
   @internal
   Map<String, Object?> encode() => {
@@ -944,6 +944,49 @@ final class DatastreamStreamBlmtConfig {
     'root_path': ?rootPath?.toTfJson(),
     'table_format': tableFormat.toTfJson(),
   };
+}
+
+/// `file_format` — derived from the provider schema description.
+extension type const DatastreamStreamBlmtConfigFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamBlmtConfigFileFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamBlmtConfigFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamBlmtConfigFileFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fileFormatUnspecified = DatastreamStreamBlmtConfigFileFormat._(
+    TfArgLiteral('FILE_FORMAT_UNSPECIFIED'),
+  );
+  static const parquet = DatastreamStreamBlmtConfigFileFormat._(
+    TfArgLiteral('PARQUET'),
+  );
+
+  static const List<DatastreamStreamBlmtConfigFileFormat> values = [
+    fileFormatUnspecified,
+    parquet,
+  ];
+}
+
+/// `table_format` — derived from the provider schema description.
+extension type const DatastreamStreamTableFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamTableFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamTableFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamTableFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const tableFormatUnspecified = DatastreamStreamTableFormat._(
+    TfArgLiteral('TABLE_FORMAT_UNSPECIFIED'),
+  );
+  static const iceberg = DatastreamStreamTableFormat._(TfArgLiteral('ICEBERG'));
+
+  static const List<DatastreamStreamTableFormat> values = [
+    tableFormatUnspecified,
+    iceberg,
+  ];
 }
 
 /// Typed helper for the `destination_config.bigquery_destination_config.merge` block of

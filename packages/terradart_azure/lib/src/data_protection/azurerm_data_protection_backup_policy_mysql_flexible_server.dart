@@ -34,7 +34,8 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType
+  dataStoreType;
 
   final TfArg<String> duration;
 
@@ -43,6 +44,29 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vaultstore =
+      DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType>
+  values = [vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of
@@ -88,27 +112,24 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerCriteria {
   final DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriteria?
   absoluteCriteria;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek>?
   daysOfWeek;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear>?
   monthsOfYear;
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

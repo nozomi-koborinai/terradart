@@ -6,6 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_scc_v2_organization_mute_config`.
 const Set<String> _googleSccV2OrganizationMuteConfigSensitive = <String>{};
 
+/// Scc V2 Organization Mute Config enum for `type`.
+extension type const SccV2OrganizationMuteConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  SccV2OrganizationMuteConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  SccV2OrganizationMuteConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccV2OrganizationMuteConfigType.arg(TfArg<String> arg) : this._(arg);
+
+  static const static = SccV2OrganizationMuteConfigType._(
+    TfArgLiteral('STATIC'),
+  );
+  static const dynamic = SccV2OrganizationMuteConfigType._(
+    TfArgLiteral('DYNAMIC'),
+  );
+
+  static const List<SccV2OrganizationMuteConfigType> values = [static, dynamic];
+}
+
 /// Factory wrapper for `google_scc_v2_organization_mute_config`.
 ///
 /// Mute Findings is a volume management feature in Security Command Center that
@@ -29,7 +48,7 @@ final class GoogleSccV2OrganizationMuteConfig extends Resource {
     TfArg<String>? location,
     required TfArg<String> muteConfigId,
     required TfArg<String> organization,
-    required TfArg<String> type,
+    required SccV2OrganizationMuteConfigType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

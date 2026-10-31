@@ -1,0 +1,72 @@
+{
+  "name": "iam",
+  "version": "v3",
+  "revision": "20261023",
+  "sourceUrl": "https://iam.googleapis.com/$discovery/rest?version=v3",
+  "schemas": {
+    "GoogleIamV3AccessPolicy": {
+      "properties": {
+        "details": {
+          "$ref": "GoogleIamV3AccessPolicyDetails"
+        }
+      }
+    },
+    "GoogleIamV3AccessPolicyDetails": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GoogleIamV3AccessPolicyRule"
+          }
+        }
+      }
+    },
+    "GoogleIamV3AccessPolicyRule": {
+      "properties": {
+        "effect": {
+          "enum": [
+            "EFFECT_UNSPECIFIED",
+            "DENY",
+            "ALLOW"
+          ]
+        }
+      }
+    },
+    "GoogleIamV3PolicyBinding": {
+      "properties": {
+        "policyKind": {
+          "enum": [
+            "POLICY_KIND_UNSPECIFIED",
+            "PRINCIPAL_ACCESS_BOUNDARY",
+            "ACCESS"
+          ]
+        }
+      }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicy": {
+      "properties": {
+        "details": {
+          "$ref": "GoogleIamV3PrincipalAccessBoundaryPolicyDetails"
+        }
+      }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicyDetails": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GoogleIamV3PrincipalAccessBoundaryPolicyRule"
+          }
+        }
+      }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicyRule": {
+      "properties": {
+        "effect": {
+          "enum": [
+            "EFFECT_UNSPECIFIED",
+            "ALLOW"
+          ]
+        }
+      }
+    }
+  }
+}

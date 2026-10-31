@@ -1,0 +1,28 @@
+{
+  "name": "cloudsupport",
+  "version": "v2",
+  "revision": "20261028",
+  "sourceUrl": "https://cloudsupport.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "SupportEventSubscription": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "WORKING",
+            "FAILING",
+            "DELETED"
+          ]
+        },
+        "failureReason": {
+          "enum": [
+            "FAILURE_REASON_UNSPECIFIED",
+            "PERMISSION_DENIED",
+            "TOPIC_NOT_FOUND",
+            "OTHER"
+          ]
+        }
+      }
+    }
+  }
+}

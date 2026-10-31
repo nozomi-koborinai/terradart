@@ -32,7 +32,7 @@ void main() {
         '--output ../terradart_google/lib/src '
         '--overrides-root lib/src/codegen/wrapper_overrides/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
-        '--mm-groups '
+        '--mm-groups --discovery-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
         '--typed-references '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
@@ -50,7 +50,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml '
         '--resource-provider google-beta '
-        '--mm-hints '
+        '--mm-hints --discovery-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
         '--typed-references '
         '--reference-lane test/fixtures/wrap/source=../terradart_google/lib/src '
@@ -210,6 +210,40 @@ providers:
             'lane x: providerEnums must be a bool',
           ),
         ),
+      );
+    });
+
+    test('discovery: true adds --discovery-enums and needs MM hints', () {
+      expect(parseWrapLanes(lane).single.discovery, isFalse);
+      final x = parseWrapLanes(
+        '$lane    mmGroups: true\n    discovery: true\n',
+      ).single;
+      expect(WrapGate.wrap.args(x), contains('--discovery-enums'));
+      expect(WrapGate.regen.args(x), contains('--discovery-enums'));
+      expect(WrapGate.lint.args(x), isNot(contains('--discovery-enums')));
+      for (final bad in ['    discovery: true\n', '    discovery: maybe\n']) {
+        expect(
+          () => parseWrapLanes('$lane$bad'),
+          throwsA(
+            isA<FormatException>().having(
+              (e) => e.message,
+              'message',
+              contains('lane x: discovery must be a bool'),
+            ),
+          ),
+          reason: bad,
+        );
+      }
+    });
+
+    test('the google lanes read their Discovery copy', () {
+      final lanes = parseWrapLanes(File(providersPath).readAsStringSync());
+      expect(
+        [
+          for (final l in lanes)
+            if (l.discovery) l.name,
+        ],
+        ['google', 'google-beta'],
       );
     });
 
@@ -430,8 +464,15 @@ providers:
     });
     tearDown(() => dir.deleteSync(recursive: true));
 
-    test('is empty while the lane has no data-source hints', () {
+    test('is empty while the lane derives no enums and has no data hints', () {
       expect(dataSourceDerivationGaps(schemaDir, overridesRoot), isEmpty);
+    });
+
+    test('names each data override a providerEnums lane leaves untyped', () {
+      expect(
+        dataSourceDerivationGaps(schemaDir, overridesRoot, providerEnums: true),
+        ['data_x_bare.yaml: deriveEnums'],
+      );
     });
 
     test('names each data override flag a lane with data hints lacks', () {
@@ -525,10 +566,14 @@ providers:
     );
   });
 
-  test('every data override of a lane with data hints derives them', () {
+  test('every data override of a lane with value sets derives them', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       expect(
-        dataSourceDerivationGaps(lane.schemaDir, lane.overridesRoot),
+        dataSourceDerivationGaps(
+          lane.schemaDir,
+          lane.overridesRoot,
+          providerEnums: lane.providerEnums,
+        ),
         isEmpty,
         reason: 'lane ${lane.name}',
       );

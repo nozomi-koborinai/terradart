@@ -10,6 +10,48 @@ const Set<String> _azurermSpringCloudConnectionSensitive = <String>{
   'authentication.secret',
 };
 
+/// Spring Cloud Connection Client enum for `client_type`.
+extension type const SpringCloudConnectionClientType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudConnectionClientType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudConnectionClientType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudConnectionClientType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dotnet = SpringCloudConnectionClientType._(
+    TfArgLiteral('dotnet'),
+  );
+  static const java = SpringCloudConnectionClientType._(TfArgLiteral('java'));
+  static const python = SpringCloudConnectionClientType._(
+    TfArgLiteral('python'),
+  );
+  static const go = SpringCloudConnectionClientType._(TfArgLiteral('go'));
+  static const php = SpringCloudConnectionClientType._(TfArgLiteral('php'));
+  static const ruby = SpringCloudConnectionClientType._(TfArgLiteral('ruby'));
+  static const django = SpringCloudConnectionClientType._(
+    TfArgLiteral('django'),
+  );
+  static const nodejs = SpringCloudConnectionClientType._(
+    TfArgLiteral('nodejs'),
+  );
+  static const springboot = SpringCloudConnectionClientType._(
+    TfArgLiteral('springBoot'),
+  );
+
+  static const List<SpringCloudConnectionClientType> values = [
+    dotnet,
+    java,
+    python,
+    go,
+    php,
+    ruby,
+    django,
+    nodejs,
+    springboot,
+  ];
+}
+
 /// Spring Cloud Connection Vnet enum for `vnet_solution`.
 extension type const SpringCloudConnectionVnetSolution._(TfArg<String> _)
     implements TfArg<String> {
@@ -58,7 +100,7 @@ final class SpringCloudConnectionAuthentication {
 
   final TfArg<String>? subscriptionId;
 
-  final TfArg<String> type;
+  final SpringCloudConnectionType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -70,6 +112,38 @@ final class SpringCloudConnectionAuthentication {
     'subscription_id': ?subscriptionId?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const SpringCloudConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudConnectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const secret = SpringCloudConnectionType._(TfArgLiteral('secret'));
+  static const serviceprincipalsecret = SpringCloudConnectionType._(
+    TfArgLiteral('servicePrincipalSecret'),
+  );
+  static const serviceprincipalcertificate = SpringCloudConnectionType._(
+    TfArgLiteral('servicePrincipalCertificate'),
+  );
+  static const systemassignedidentity = SpringCloudConnectionType._(
+    TfArgLiteral('systemAssignedIdentity'),
+  );
+  static const userassignedidentity = SpringCloudConnectionType._(
+    TfArgLiteral('userAssignedIdentity'),
+  );
+
+  static const List<SpringCloudConnectionType> values = [
+    secret,
+    serviceprincipalsecret,
+    serviceprincipalcertificate,
+    systemassignedidentity,
+    userassignedidentity,
+  ];
 }
 
 /// Typed helper for the `secret_store` block of
@@ -90,7 +164,7 @@ final class AzurermSpringCloudConnection extends Resource {
 
   AzurermSpringCloudConnection(
     super.localName, {
-    TfArg<String>? clientType,
+    SpringCloudConnectionClientType? clientType,
     required TfArg<String> name,
     required TfArg<String> springCloudId,
     required TfArg<String> targetResourceId,

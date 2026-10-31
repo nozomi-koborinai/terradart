@@ -7,3 +7,8 @@ properties:
     enum_values:
       - "invite"
       - "signup"
+  - api_name: state
+    enum_values:
+      - "active"
+      - "blocked"
+      - "pending"

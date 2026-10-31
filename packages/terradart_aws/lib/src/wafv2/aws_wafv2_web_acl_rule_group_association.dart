@@ -251,7 +251,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAcfpRuleSetRequestInsp
     this.usernameField,
   });
 
-  final TfArg<String> payloadType;
+  final Wafv2WebAclRuleGroupAssociationPayloadType payloadType;
 
   final List<Wafv2WebAclRuleGroupAssociationAddressFields>? addressFields;
 
@@ -278,6 +278,30 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAcfpRuleSetRequestInsp
     if (usernameField != null)
       'username_field': [for (final e in usernameField!) e.encode()],
   };
+}
+
+/// `payload_type` — derived from the provider schema description.
+extension type const Wafv2WebAclRuleGroupAssociationPayloadType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Wafv2WebAclRuleGroupAssociationPayloadType.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclRuleGroupAssociationPayloadType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclRuleGroupAssociationPayloadType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const json = Wafv2WebAclRuleGroupAssociationPayloadType._(
+    TfArgLiteral('JSON'),
+  );
+  static const formEncoded = Wafv2WebAclRuleGroupAssociationPayloadType._(
+    TfArgLiteral('FORM_ENCODED'),
+  );
+
+  static const List<Wafv2WebAclRuleGroupAssociationPayloadType> values = [
+    json,
+    formEncoded,
+  ];
 }
 
 /// Typed helper for the `managed_rule_group.managed_rule_group_configs.aws_managed_rules_acfp_rule_set.request_inspection.address_fields` block of
@@ -599,7 +623,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAtpRuleSetRequestInspe
     this.usernameField,
   });
 
-  final TfArg<String> payloadType;
+  final Wafv2WebAclRuleGroupAssociationPayloadType payloadType;
 
   final List<Wafv2WebAclRuleGroupAssociationPasswordField>? passwordField;
 

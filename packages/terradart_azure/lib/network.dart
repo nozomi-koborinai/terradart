@@ -53,12 +53,16 @@ export 'src/network/azurerm_application_gateway.dart'
         ApplicationGatewayBackend,
         ApplicationGatewayBackendAddressPool,
         ApplicationGatewayBackendHttpSettings,
+        ApplicationGatewayBackendHttpSettingsProtocol,
+        ApplicationGatewayBackendProtocol,
+        ApplicationGatewayCipherSuites,
         ApplicationGatewayClientAuthenticationMode,
         ApplicationGatewayComponents,
         ApplicationGatewayCondition,
         ApplicationGatewayConnectionDraining,
         ApplicationGatewayCookieBasedAffinity,
         ApplicationGatewayCustomErrorConfiguration,
+        ApplicationGatewayDisabledProtocols,
         ApplicationGatewayDisabledRuleGroup,
         ApplicationGatewayExclusion,
         ApplicationGatewayFirewallMode,
@@ -71,12 +75,14 @@ export 'src/network/azurerm_application_gateway.dart'
         ApplicationGatewayListener,
         ApplicationGatewayMatch,
         ApplicationGatewayMatchVariable,
+        ApplicationGatewayMinProtocolVersion,
         ApplicationGatewayPathRule,
+        ApplicationGatewayPolicyType,
         ApplicationGatewayPrivateIpAddressAllocation,
         ApplicationGatewayPrivateLinkConfiguration,
         ApplicationGatewayPrivateLinkConfigurationIpConfiguration,
         ApplicationGatewayProbe,
-        ApplicationGatewayProtocol,
+        ApplicationGatewayProbeProtocol,
         ApplicationGatewayRedirectConfiguration,
         ApplicationGatewayRedirectType,
         ApplicationGatewayRequestHeaderConfiguration,
@@ -98,6 +104,7 @@ export 'src/network/azurerm_application_gateway.dart'
         ApplicationGatewayTrustedRootCertificate,
         ApplicationGatewayUrl,
         ApplicationGatewayUrlPathMap,
+        ApplicationGatewayVerifyClientCertificateRevocation,
         ApplicationGatewayWafConfiguration,
         AzurermApplicationGateway;
 export 'src/network/azurerm_application_load_balancer.dart'
@@ -128,14 +135,17 @@ export 'src/network/azurerm_network_connection_monitor.dart'
         NetworkConnectionMonitorHttpConfiguration,
         NetworkConnectionMonitorIcmpConfiguration,
         NetworkConnectionMonitorItem,
+        NetworkConnectionMonitorItemType,
         NetworkConnectionMonitorMethod,
         NetworkConnectionMonitorPreferredIpVersion,
         NetworkConnectionMonitorProtocol,
         NetworkConnectionMonitorRequestHeader,
         NetworkConnectionMonitorSuccessThreshold,
+        NetworkConnectionMonitorTargetResourceType,
         NetworkConnectionMonitorTcpConfiguration,
         NetworkConnectionMonitorTestConfiguration,
-        NetworkConnectionMonitorTestGroup;
+        NetworkConnectionMonitorTestGroup,
+        NetworkConnectionMonitorType;
 export 'src/network/azurerm_network_ddos_protection_plan.dart'
     show AzurermNetworkDdosProtectionPlan;
 export 'src/network/azurerm_network_function_azure_traffic_collector.dart'
@@ -143,11 +153,14 @@ export 'src/network/azurerm_network_function_azure_traffic_collector.dart'
 export 'src/network/azurerm_network_function_collector_policy.dart'
     show
         AzurermNetworkFunctionCollectorPolicy,
+        NetworkFunctionCollectorPolicyDestinationTypes,
         NetworkFunctionCollectorPolicyIpfxEmission,
         NetworkFunctionCollectorPolicyIpfxIngestion;
 export 'src/network/azurerm_network_interface.dart'
     show
         AzurermNetworkInterface,
+        NetworkInterfaceAuxiliaryMode,
+        NetworkInterfaceAuxiliarySku,
         NetworkInterfaceIpConfiguration,
         NetworkInterfacePrivateIpAddressAllocation,
         NetworkInterfacePrivateIpAddressVersion;
@@ -162,11 +175,15 @@ export 'src/network/azurerm_network_interface_nat_rule_association.dart'
 export 'src/network/azurerm_network_interface_security_group_association.dart'
     show AzurermNetworkInterfaceSecurityGroupAssociation;
 export 'src/network/azurerm_network_manager.dart'
-    show AzurermNetworkManager, NetworkManagerScope;
+    show
+        AzurermNetworkManager,
+        NetworkManagerScope,
+        NetworkManagerScopeAccesses;
 export 'src/network/azurerm_network_manager_admin_rule.dart'
     show
         AzurermNetworkManagerAdminRule,
         NetworkManagerAdminRuleAction,
+        NetworkManagerAdminRuleAddressPrefixType,
         NetworkManagerAdminRuleDestination,
         NetworkManagerAdminRuleDirection,
         NetworkManagerAdminRuleProtocol,
@@ -182,7 +199,7 @@ export 'src/network/azurerm_network_manager_connectivity_configuration.dart'
         NetworkManagerConnectivityConfigurationGroupConnectivity,
         NetworkManagerConnectivityConfigurationHub;
 export 'src/network/azurerm_network_manager_deployment.dart'
-    show AzurermNetworkManagerDeployment;
+    show AzurermNetworkManagerDeployment, NetworkManagerDeploymentScopeAccess;
 export 'src/network/azurerm_network_manager_ipam_pool.dart'
     show AzurermNetworkManagerIpamPool;
 export 'src/network/azurerm_network_manager_ipam_pool_static_cidr.dart'
@@ -301,7 +318,8 @@ export 'src/network/azurerm_private_link_service.dart'
         PrivateLinkServiceDestination,
         PrivateLinkServiceDestinationIpAddress,
         PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds,
-        PrivateLinkServiceNatIpConfiguration;
+        PrivateLinkServiceNatIpConfiguration,
+        PrivateLinkServicePrivateIpAddressVersion;
 export 'src/network/azurerm_public_ip.dart'
     show
         AzurermPublicIp,
@@ -353,6 +371,7 @@ export 'src/network/azurerm_virtual_network_gateway.dart'
         VirtualNetworkGatewayRadiusServer,
         VirtualNetworkGatewayRevokedCertificate,
         VirtualNetworkGatewayRootCertificate,
+        VirtualNetworkGatewayType,
         VirtualNetworkGatewayVpnAuthTypes,
         VirtualNetworkGatewayVpnClientConfiguration,
         VirtualNetworkGatewayVpnClientProtocols,
@@ -370,7 +389,8 @@ export 'src/network/azurerm_virtual_network_gateway_connection.dart'
         VirtualNetworkGatewayConnectionMode,
         VirtualNetworkGatewayConnectionPfsGroup,
         VirtualNetworkGatewayConnectionProtocol,
-        VirtualNetworkGatewayConnectionTrafficSelectorPolicy;
+        VirtualNetworkGatewayConnectionTrafficSelectorPolicy,
+        VirtualNetworkGatewayConnectionType;
 export 'src/network/azurerm_virtual_network_gateway_nat_rule.dart'
     show
         AzurermVirtualNetworkGatewayNatRule,
@@ -398,6 +418,7 @@ export 'src/network/azurerm_web_application_firewall_policy.dart'
         WebApplicationFirewallPolicyOperator,
         WebApplicationFirewallPolicyRateLimitDuration,
         WebApplicationFirewallPolicyRule,
+        WebApplicationFirewallPolicyRuleAction,
         WebApplicationFirewallPolicyRuleGroup,
         WebApplicationFirewallPolicyRuleGroupOverride,
         WebApplicationFirewallPolicyRuleGroupOverrideRule,

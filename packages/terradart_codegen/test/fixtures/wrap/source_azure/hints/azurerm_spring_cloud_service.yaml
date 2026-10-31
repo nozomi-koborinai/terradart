@@ -10,6 +10,28 @@ properties:
       - "S3"
       - "S4"
       - "S5"
+  - api_name: config_server_git_setting
+    properties:
+      - api_name: repository
+        properties:
+          - api_name: ssh_auth
+            properties:
+              - api_name: host_key_algorithm
+                enum_values:
+                  - "ssh-dss"
+                  - "ssh-rsa"
+                  - "ecdsa-sha2-nistp256"
+                  - "ecdsa-sha2-nistp384"
+                  - "ecdsa-sha2-nistp521"
+      - api_name: ssh_auth
+        properties:
+          - api_name: host_key_algorithm
+            enum_values:
+              - "ssh-dss"
+              - "ssh-rsa"
+              - "ecdsa-sha2-nistp256"
+              - "ecdsa-sha2-nistp384"
+              - "ecdsa-sha2-nistp521"
   - api_name: network
     properties:
       - api_name: outbound_type

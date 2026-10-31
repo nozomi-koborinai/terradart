@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermCognitiveAccountConnectionAccountKeySensitive =
     <String>{'account_key'};
 
+/// Cognitive Account Connection Account Key enum for `category`.
+extension type const CognitiveAccountConnectionAccountKeyCategory._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitiveAccountConnectionAccountKeyCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitiveAccountConnectionAccountKeyCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountConnectionAccountKeyCategory.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurestorageaccount =
+      CognitiveAccountConnectionAccountKeyCategory._(
+        TfArgLiteral('AzureStorageAccount'),
+      );
+
+  static const List<CognitiveAccountConnectionAccountKeyCategory> values = [
+    azurestorageaccount,
+  ];
+}
+
 /// Factory wrapper for `azurerm_cognitive_account_connection_account_key`.
 final class AzurermCognitiveAccountConnectionAccountKey extends Resource {
   static const String tfType =
@@ -15,7 +36,7 @@ final class AzurermCognitiveAccountConnectionAccountKey extends Resource {
   AzurermCognitiveAccountConnectionAccountKey(
     super.localName, {
     required Sensitive<String> accountKey,
-    required TfArg<String> category,
+    required CognitiveAccountConnectionAccountKeyCategory category,
     required TfArg<String> cognitiveAccountId,
     required TfArg<Map<String, String>> metadata,
     required TfArg<String> name,

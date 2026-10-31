@@ -1,0 +1,98 @@
+{
+  "name": "memcache",
+  "version": "v1",
+  "revision": "20261008",
+  "sourceUrl": "https://memcache.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudMemcacheV1MaintenancePolicy": {
+      "properties": {
+        "weeklyMaintenanceWindow": {
+          "items": {
+            "$ref": "WeeklyMaintenanceWindow"
+          }
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "PERFORMING_MAINTENANCE",
+            "MEMCACHE_VERSION_UPGRADING"
+          ]
+        },
+        "memcacheNodes": {
+          "items": {
+            "$ref": "Node"
+          }
+        },
+        "instanceMessages": {
+          "items": {
+            "$ref": "InstanceMessage"
+          }
+        },
+        "maintenancePolicy": {
+          "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
+        },
+        "memcacheVersion": {
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ]
+        }
+      }
+    },
+    "InstanceMessage": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "ZONE_DISTRIBUTION_UNBALANCED"
+          ]
+        }
+      }
+    },
+    "Node": {
+      "properties": {
+        "memcacheVersion": {
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "WeeklyMaintenanceWindow": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -479,9 +479,9 @@ final class CesEvaluationScenario {
 
   final TfArg<String> task;
 
-  final TfArg<String>? taskCompletionBehavior;
+  final CesEvaluationTaskCompletionBehavior? taskCompletionBehavior;
 
-  final TfArg<String>? userGoalBehavior;
+  final CesEvaluationUserGoalBehavior? userGoalBehavior;
 
   final TfArg<Map<String, String>>? variableOverrides;
 
@@ -502,6 +502,55 @@ final class CesEvaluationScenario {
     if (userFacts != null)
       'user_facts': [for (final e in userFacts!) e.encode()],
   };
+}
+
+/// `task_completion_behavior` — derived from the provider schema description.
+extension type const CesEvaluationTaskCompletionBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CesEvaluationTaskCompletionBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesEvaluationTaskCompletionBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesEvaluationTaskCompletionBehavior.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const taskSatisfied = CesEvaluationTaskCompletionBehavior._(
+    TfArgLiteral('TASK_SATISFIED'),
+  );
+  static const taskRejected = CesEvaluationTaskCompletionBehavior._(
+    TfArgLiteral('TASK_REJECTED'),
+  );
+
+  static const List<CesEvaluationTaskCompletionBehavior> values = [
+    taskSatisfied,
+    taskRejected,
+  ];
+}
+
+/// `user_goal_behavior` — derived from the provider schema description.
+extension type const CesEvaluationUserGoalBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CesEvaluationUserGoalBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesEvaluationUserGoalBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesEvaluationUserGoalBehavior.arg(TfArg<String> arg) : this._(arg);
+
+  static const userGoalSatisfied = CesEvaluationUserGoalBehavior._(
+    TfArgLiteral('USER_GOAL_SATISFIED'),
+  );
+  static const userGoalRejected = CesEvaluationUserGoalBehavior._(
+    TfArgLiteral('USER_GOAL_REJECTED'),
+  );
+  static const userGoalIgnored = CesEvaluationUserGoalBehavior._(
+    TfArgLiteral('USER_GOAL_IGNORED'),
+  );
+
+  static const List<CesEvaluationUserGoalBehavior> values = [
+    userGoalSatisfied,
+    userGoalRejected,
+    userGoalIgnored,
+  ];
 }
 
 /// Typed helper for the `scenario.scenario_expectations` block of

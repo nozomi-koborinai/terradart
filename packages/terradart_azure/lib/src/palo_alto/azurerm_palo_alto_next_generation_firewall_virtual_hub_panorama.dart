@@ -23,7 +23,7 @@ final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDestinationNat {
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol protocol;
 
   final PaloAltoNextGenerationFirewallVirtualHubPanoramaBackendConfig?
   backendConfig;
@@ -38,6 +38,30 @@ final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDestinationNat {
     'backend_config': ?backendConfig?.encode(),
     'frontend_config': ?frontendConfig?.encode(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tcp = PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol._(
+    TfArgLiteral('TCP'),
+  );
+  static const udp = PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol._(
+    TfArgLiteral('UDP'),
+  );
+
+  static const List<PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol>
+  values = [tcp, udp];
 }
 
 /// Typed helper for the `destination_nat.backend_config` block of
@@ -80,24 +104,66 @@ final class PaloAltoNextGenerationFirewallVirtualHubPanoramaFrontendConfig {
   };
 }
 
-/// Typed helper for the `dns_settings` block of
-/// `azurerm_palo_alto_next_generation_firewall_virtual_hub_panorama` (derived from provider schema).
-@immutable
-final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings {
-  const PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings({
-    this.dnsServers,
-    this.useAzureDns,
-  });
+/// At most one of `dns_servers`, `use_azure_dns` on the `dns_settings` block of `azurerm_palo_alto_next_generation_firewall_virtual_hub_panorama`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dnsServers(...)`.
+sealed class PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings();
 
-  final TfArg<List<String>>? dnsServers;
+  /// Sets `dns_servers`.
+  const factory PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings.dnsServers(
+    TfArg<List<String>> dnsServers,
+  ) = PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers;
 
-  final TfArg<bool>? useAzureDns;
+  /// Sets `use_azure_dns`.
+  const factory PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings.useAzureDns(
+    TfArg<bool> useAzureDns,
+  ) = PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
-  Map<String, Object?> encode() => {
-    'dns_servers': ?dnsServers?.toTfJson(),
-    'use_azure_dns': ?useAzureDns?.toTfJson(),
-  };
+  Map<String, Object?> encode();
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings.dnsServers] choice: sets `dns_servers`.
+final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers
+    extends PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers(
+    this.dnsServers,
+  );
+
+  final TfArg<List<String>> dnsServers;
+
+  @internal
+  @override
+  String get blockKey => 'dns_servers';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_servers': dnsServers.toTfJson()};
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings.useAzureDns] choice: sets `use_azure_dns`.
+final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns
+    extends PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns(
+    this.useAzureDns,
+  );
+
+  final TfArg<bool> useAzureDns;
+
+  @internal
+  @override
+  String get blockKey => 'use_azure_dns';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'use_azure_dns': useAzureDns.toTfJson()};
 }
 
 /// Typed helper for the `network_profile` block of

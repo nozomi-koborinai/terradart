@@ -153,7 +153,7 @@ final class GoogleChronicleBigQueryExport extends Resource {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
-    TfArg<String>? bigQueryExportPackage,
+    ChronicleBigQueryExportPackage? bigQueryExportPackage,
     ChronicleBigQueryExportUdmEventsSettings? udmEventsSettings,
     ChronicleBigQueryExportUdmEventsAggregatesSettings?
     udmEventsAggregatesSettings,

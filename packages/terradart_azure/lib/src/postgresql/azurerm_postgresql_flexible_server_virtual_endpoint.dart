@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermPostgresqlFlexibleServerVirtualEndpointSensitive =
     <String>{};
 
+/// Postgresql Flexible Server Virtual Endpoint enum for `type`.
+extension type const PostgresqlFlexibleServerVirtualEndpointType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PostgresqlFlexibleServerVirtualEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerVirtualEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerVirtualEndpointType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const readwrite = PostgresqlFlexibleServerVirtualEndpointType._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<PostgresqlFlexibleServerVirtualEndpointType> values = [
+    readwrite,
+  ];
+}
+
 /// Factory wrapper for `azurerm_postgresql_flexible_server_virtual_endpoint`.
 final class AzurermPostgresqlFlexibleServerVirtualEndpoint extends Resource {
   static const String tfType =
@@ -17,7 +37,7 @@ final class AzurermPostgresqlFlexibleServerVirtualEndpoint extends Resource {
     required TfArg<String> name,
     required TfArg<String> replicaServerId,
     required TfArg<String> sourceServerId,
-    required TfArg<String> type,
+    required PostgresqlFlexibleServerVirtualEndpointType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

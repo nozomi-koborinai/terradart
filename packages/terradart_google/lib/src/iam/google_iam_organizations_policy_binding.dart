@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_organizations_policy_binding`.
 const Set<String> _googleIamOrganizationsPolicyBindingSensitive = <String>{};
 
+/// Iam Organizations Policy Binding Policy enum for `policy_kind`.
+extension type const IamOrganizationsPolicyBindingPolicyKind._(TfArg<String> _)
+    implements TfArg<String> {
+  IamOrganizationsPolicyBindingPolicyKind.variable(String name)
+    : this._(TfArg.variable(name));
+  IamOrganizationsPolicyBindingPolicyKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamOrganizationsPolicyBindingPolicyKind.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const principalAccessBoundary =
+      IamOrganizationsPolicyBindingPolicyKind._(
+        TfArgLiteral('PRINCIPAL_ACCESS_BOUNDARY'),
+      );
+  static const access = IamOrganizationsPolicyBindingPolicyKind._(
+    TfArgLiteral('ACCESS'),
+  );
+
+  static const List<IamOrganizationsPolicyBindingPolicyKind> values = [
+    principalAccessBoundary,
+    access,
+  ];
+}
+
 /// Typed helper for the `condition` block of
 /// `google_iam_organizations_policy_binding` (derived from provider schema).
 @immutable
@@ -115,7 +139,7 @@ final class GoogleIamOrganizationsPolicyBinding extends Resource {
     required TfArg<String> organization,
     required TfArg<String> policy,
     required TfArg<String> policyBindingId,
-    TfArg<String>? policyKind,
+    IamOrganizationsPolicyBindingPolicyKind? policyKind,
     IamOrganizationsPolicyBindingCondition? condition,
     required IamOrganizationsPolicyBindingTarget target,
     super.lifecycle,

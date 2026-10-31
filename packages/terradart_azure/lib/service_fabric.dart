@@ -42,8 +42,12 @@ export 'src/service_fabric/azurerm_service_fabric_managed_cluster.dart'
         ServiceFabricManagedClusterCertificate,
         ServiceFabricManagedClusterCertificates,
         ServiceFabricManagedClusterCustomFabricSetting,
+        ServiceFabricManagedClusterDataDiskType,
         ServiceFabricManagedClusterLbRule,
         ServiceFabricManagedClusterNodeType,
+        ServiceFabricManagedClusterProbeProtocol,
+        ServiceFabricManagedClusterProtocol,
         ServiceFabricManagedClusterSku,
+        ServiceFabricManagedClusterType,
         ServiceFabricManagedClusterUpgradeWave,
         ServiceFabricManagedClusterVmSecrets;

@@ -242,7 +242,7 @@ final class WindowsFunctionAppSlotAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final WindowsFunctionAppSlotDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -254,7 +254,8 @@ final class WindowsFunctionAppSlotAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final WindowsFunctionAppSlotUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final WindowsFunctionAppSlotActiveDirectory? activeDirectory;
 
@@ -288,6 +289,69 @@ final class WindowsFunctionAppSlotAuthSettings {
   };
 }
 
+/// `default_provider` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotDefaultProvider.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureactivedirectory = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const github = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+  static const google = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = WindowsFunctionAppSlotDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+
+  static const List<WindowsFunctionAppSlotDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    github,
+    google,
+    microsoftaccount,
+    twitter,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous =
+      WindowsFunctionAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('AllowAnonymous'),
+      );
+  static const redirecttologinpage =
+      WindowsFunctionAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+
+  static const List<WindowsFunctionAppSlotUnauthenticatedClientAction> values =
+      [allowanonymous, redirecttologinpage];
+}
+
 /// Typed helper for the `auth_settings.active_directory` block of
 /// `azurerm_windows_function_app_slot` (derived from provider schema).
 @immutable
@@ -296,23 +360,83 @@ final class WindowsFunctionAppSlotActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsFunctionAppSlotActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsFunctionAppSlotActiveDirectoryClientSecret {
+  const WindowsFunctionAppSlotActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsFunctionAppSlotActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsFunctionAppSlotActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsFunctionAppSlotActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsFunctionAppSlotActiveDirectoryClientSecretChoice
+    extends WindowsFunctionAppSlotActiveDirectoryClientSecret {
+  const WindowsFunctionAppSlotActiveDirectoryClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName
+    extends WindowsFunctionAppSlotActiveDirectoryClientSecret {
+  const WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -322,25 +446,80 @@ final class WindowsFunctionAppSlotActiveDirectory {
 final class WindowsFunctionAppSlotFacebook {
   const WindowsFunctionAppSlotFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final WindowsFunctionAppSlotAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class WindowsFunctionAppSlotAppSecret {
+  const WindowsFunctionAppSlotAppSecret();
+
+  /// Sets `app_secret`.
+  const factory WindowsFunctionAppSlotAppSecret.appSecret(
+    Sensitive<String> appSecret,
+  ) = WindowsFunctionAppSlotAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory WindowsFunctionAppSlotAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = WindowsFunctionAppSlotAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotAppSecret.appSecret] choice: sets `app_secret`.
+final class WindowsFunctionAppSlotAppSecretChoice
+    extends WindowsFunctionAppSlotAppSecret {
+  const WindowsFunctionAppSlotAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class WindowsFunctionAppSlotAppSecretSettingName
+    extends WindowsFunctionAppSlotAppSecret {
+  const WindowsFunctionAppSlotAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -350,25 +529,82 @@ final class WindowsFunctionAppSlotFacebook {
 final class WindowsFunctionAppSlotGithub {
   const WindowsFunctionAppSlotGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsFunctionAppSlotGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsFunctionAppSlotGithubClientSecret {
+  const WindowsFunctionAppSlotGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsFunctionAppSlotGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsFunctionAppSlotGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsFunctionAppSlotGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsFunctionAppSlotGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsFunctionAppSlotGithubClientSecretChoice
+    extends WindowsFunctionAppSlotGithubClientSecret {
+  const WindowsFunctionAppSlotGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppSlotGithubClientSecretSettingName
+    extends WindowsFunctionAppSlotGithubClientSecret {
+  const WindowsFunctionAppSlotGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -378,25 +614,82 @@ final class WindowsFunctionAppSlotGithub {
 final class WindowsFunctionAppSlotGoogle {
   const WindowsFunctionAppSlotGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsFunctionAppSlotGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsFunctionAppSlotGoogleClientSecret {
+  const WindowsFunctionAppSlotGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsFunctionAppSlotGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsFunctionAppSlotGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsFunctionAppSlotGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsFunctionAppSlotGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsFunctionAppSlotGoogleClientSecretChoice
+    extends WindowsFunctionAppSlotGoogleClientSecret {
+  const WindowsFunctionAppSlotGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppSlotGoogleClientSecretSettingName
+    extends WindowsFunctionAppSlotGoogleClientSecret {
+  const WindowsFunctionAppSlotGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -406,25 +699,82 @@ final class WindowsFunctionAppSlotGoogle {
 final class WindowsFunctionAppSlotMicrosoft {
   const WindowsFunctionAppSlotMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsFunctionAppSlotMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsFunctionAppSlotMicrosoftClientSecret {
+  const WindowsFunctionAppSlotMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsFunctionAppSlotMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsFunctionAppSlotMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsFunctionAppSlotMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsFunctionAppSlotMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsFunctionAppSlotMicrosoftClientSecretChoice
+    extends WindowsFunctionAppSlotMicrosoftClientSecret {
+  const WindowsFunctionAppSlotMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppSlotMicrosoftClientSecretSettingName
+    extends WindowsFunctionAppSlotMicrosoftClientSecret {
+  const WindowsFunctionAppSlotMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -434,21 +784,80 @@ final class WindowsFunctionAppSlotMicrosoft {
 final class WindowsFunctionAppSlotTwitter {
   const WindowsFunctionAppSlotTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final WindowsFunctionAppSlotConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class WindowsFunctionAppSlotConsumerSecret {
+  const WindowsFunctionAppSlotConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory WindowsFunctionAppSlotConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = WindowsFunctionAppSlotConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory WindowsFunctionAppSlotConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = WindowsFunctionAppSlotConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class WindowsFunctionAppSlotConsumerSecretChoice
+    extends WindowsFunctionAppSlotConsumerSecret {
+  const WindowsFunctionAppSlotConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [WindowsFunctionAppSlotConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class WindowsFunctionAppSlotConsumerSecretSettingName
+    extends WindowsFunctionAppSlotConsumerSecret {
+  const WindowsFunctionAppSlotConsumerSecretSettingName(
+    this.consumerSecretSettingName,
+  );
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -489,7 +898,7 @@ final class WindowsFunctionAppSlotAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final WindowsFunctionAppSlotForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -503,7 +912,7 @@ final class WindowsFunctionAppSlotAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final WindowsFunctionAppSlotUnauthenticatedAction? unauthenticatedAction;
 
   final WindowsFunctionAppSlotActiveDirectoryV2? activeDirectoryV2;
 
@@ -555,6 +964,67 @@ final class WindowsFunctionAppSlotAuthSettingsV2 {
   };
 }
 
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotForwardProxyConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = WindowsFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = WindowsFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = WindowsFunctionAppSlotForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<WindowsFunctionAppSlotForwardProxyConvention> values = [
+    custom,
+    noproxy,
+    standard,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotUnauthenticatedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous = WindowsFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage =
+      WindowsFunctionAppSlotUnauthenticatedAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const return401 = WindowsFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = WindowsFunctionAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<WindowsFunctionAppSlotUnauthenticatedAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+    return401,
+    return403,
+  ];
+}
+
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
 /// `azurerm_windows_function_app_slot` (derived from provider schema).
 @immutable
@@ -565,8 +1035,7 @@ final class WindowsFunctionAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -584,9 +1053,7 @@ final class WindowsFunctionAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsFunctionAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -605,15 +1072,80 @@ final class WindowsFunctionAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class WindowsFunctionAppSlotClientCredential {
+  const WindowsFunctionAppSlotClientCredential();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory WindowsFunctionAppSlotClientCredential.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = WindowsFunctionAppSlotClientCredentialClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsFunctionAppSlotClientCredential.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsFunctionAppSlotClientCredentialClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsFunctionAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends WindowsFunctionAppSlotClientCredential {
+  const WindowsFunctionAppSlotClientCredentialClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [WindowsFunctionAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppSlotClientCredentialClientSecretSettingName
+    extends WindowsFunctionAppSlotClientCredential {
+  const WindowsFunctionAppSlotClientCredentialClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -774,14 +1306,14 @@ final class WindowsFunctionAppSlotLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final WindowsFunctionAppSlotCookieExpirationConvention?
+  cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -795,9 +1327,7 @@ final class WindowsFunctionAppSlotLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final WindowsFunctionAppSlotTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -812,10 +1342,98 @@ final class WindowsFunctionAppSlotLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class WindowsFunctionAppSlotTokenStore {
+  const WindowsFunctionAppSlotTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory WindowsFunctionAppSlotTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = WindowsFunctionAppSlotTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory WindowsFunctionAppSlotTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = WindowsFunctionAppSlotTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class WindowsFunctionAppSlotTokenStorePath
+    extends WindowsFunctionAppSlotTokenStore {
+  const WindowsFunctionAppSlotTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [WindowsFunctionAppSlotTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class WindowsFunctionAppSlotTokenStoreSasSettingName
+    extends WindowsFunctionAppSlotTokenStore {
+  const WindowsFunctionAppSlotTokenStoreSasSettingName(
+    this.tokenStoreSasSettingName,
+  );
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
+  };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = WindowsFunctionAppSlotCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      WindowsFunctionAppSlotCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<WindowsFunctionAppSlotCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -908,7 +1526,7 @@ final class WindowsFunctionAppSlotSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final WindowsFunctionAppSlotFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -926,6 +1544,24 @@ final class WindowsFunctionAppSlotSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotFrequencyUnit.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const day = WindowsFunctionAppSlotFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = WindowsFunctionAppSlotFrequencyUnit._(
+    TfArgLiteral('Hour'),
+  );
+
+  static const List<WindowsFunctionAppSlotFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_windows_function_app_slot` (derived from provider schema).
 @immutable
@@ -938,7 +1574,7 @@ final class WindowsFunctionAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final WindowsFunctionAppSlotConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -948,6 +1584,66 @@ final class WindowsFunctionAppSlotConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotConnectionStringType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotConnectionStringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const apihub = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const postgresql = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = WindowsFunctionAppSlotConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
+
+  static const List<WindowsFunctionAppSlotConnectionStringType> values = [
+    apihub,
+    custom,
+    docdb,
+    eventhub,
+    mysql,
+    notificationhub,
+    postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1029,7 +1725,7 @@ final class WindowsFunctionAppSlotSiteConfig {
 
   final TfArg<num>? elasticInstanceMinimum;
 
-  final TfArg<String>? ftpsState;
+  final WindowsFunctionAppSlotFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -1037,27 +1733,29 @@ final class WindowsFunctionAppSlotSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final WindowsFunctionAppSlotIpRestrictionDefaultAction?
+  ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final WindowsFunctionAppSlotLoadBalancingMode? loadBalancingMode;
 
-  final TfArg<String>? managedPipelineMode;
+  final WindowsFunctionAppSlotManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final WindowsFunctionAppSlotMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final WindowsFunctionAppSlotMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final WindowsFunctionAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final WindowsFunctionAppSlotScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final WindowsFunctionAppSlotScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1125,6 +1823,327 @@ final class WindowsFunctionAppSlotSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = WindowsFunctionAppSlotFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const disabled = WindowsFunctionAppSlotFtpsState._(
+    TfArgLiteral('Disabled'),
+  );
+  static const ftpsonly = WindowsFunctionAppSlotFtpsState._(
+    TfArgLiteral('FtpsOnly'),
+  );
+
+  static const List<WindowsFunctionAppSlotFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsFunctionAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsFunctionAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsFunctionAppSlotIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotLoadBalancingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const leastrequests = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const weightedroundrobin = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const leastresponsetime = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const weightedtotaltraffic = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+  static const requesthash = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin = WindowsFunctionAppSlotLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+
+  static const List<WindowsFunctionAppSlotLoadBalancingMode> values = [
+    leastrequests,
+    weightedroundrobin,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotManagedPipelineMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const classic = WindowsFunctionAppSlotManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const integrated = WindowsFunctionAppSlotManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+
+  static const List<WindowsFunctionAppSlotManagedPipelineMode> values = [
+    classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotMinimumTlsCipherSuite.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsAes128GcmSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+      );
+  static const tlsAes256GcmSha384 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsRsaWithAes128CbcSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes128GcmSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsRsaWithAes256CbcSha =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsRsaWithAes256CbcSha256 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes256GcmSha384 =
+      WindowsFunctionAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+
+  static const List<WindowsFunctionAppSlotMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p1 = WindowsFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p3 = WindowsFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+  static const v1p2 = WindowsFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = WindowsFunctionAppSlotMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+
+  static const List<WindowsFunctionAppSlotMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotRemoteDebuggingVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = WindowsFunctionAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<WindowsFunctionAppSlotRemoteDebuggingVersion> values = [
+    vs2022,
+  ];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotScmIpRestrictionDefaultAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotScmIpRestrictionDefaultAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allow = WindowsFunctionAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsFunctionAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsFunctionAppSlotScmIpRestrictionDefaultAction>
+  values = [allow, deny];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotScmMinimumTlsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p1 = WindowsFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p3 = WindowsFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+  static const v1p2 = WindowsFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = WindowsFunctionAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+
+  static const List<WindowsFunctionAppSlotScmMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `site_config.app_service_logs` block of
 /// `azurerm_windows_function_app_slot` (derived from provider schema).
 @immutable
@@ -1150,35 +2169,272 @@ final class WindowsFunctionAppSlotAppServiceLogs {
 @immutable
 final class WindowsFunctionAppSlotApplicationStack {
   const WindowsFunctionAppSlotApplicationStack({
-    this.dotnetVersion,
-    this.javaVersion,
-    this.nodeVersion,
-    this.powershellCoreVersion,
-    this.useCustomRuntime,
+    required this.runtime,
     this.useDotnetIsolatedRuntime,
   });
 
-  final TfArg<String>? dotnetVersion;
-
-  final TfArg<String>? javaVersion;
-
-  final TfArg<String>? nodeVersion;
-
-  final TfArg<String>? powershellCoreVersion;
-
-  final TfArg<bool>? useCustomRuntime;
+  final WindowsFunctionAppSlotRuntime runtime;
 
   final TfArg<bool>? useDotnetIsolatedRuntime;
 
   @internal
   Map<String, Object?> encode() => {
-    'dotnet_version': ?dotnetVersion?.toTfJson(),
-    'java_version': ?javaVersion?.toTfJson(),
-    'node_version': ?nodeVersion?.toTfJson(),
-    'powershell_core_version': ?powershellCoreVersion?.toTfJson(),
-    'use_custom_runtime': ?useCustomRuntime?.toTfJson(),
+    ...runtime.encode(),
     'use_dotnet_isolated_runtime': ?useDotnetIsolatedRuntime?.toTfJson(),
   };
+}
+
+/// Exactly one of `dotnet_version`, `java_version`, `node_version`, `powershell_core_version`, `use_custom_runtime` on the `site_config.application_stack` block of `azurerm_windows_function_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dotnetVersion(...)`.
+sealed class WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotRuntime();
+
+  /// Sets `dotnet_version`.
+  const factory WindowsFunctionAppSlotRuntime.dotnetVersion(
+    WindowsFunctionAppSlotDotnetVersion dotnetVersion,
+  ) = WindowsFunctionAppSlotRuntimeDotnetVersion;
+
+  /// Sets `java_version`.
+  const factory WindowsFunctionAppSlotRuntime.javaVersion(
+    WindowsFunctionAppSlotJavaVersion javaVersion,
+  ) = WindowsFunctionAppSlotRuntimeJavaVersion;
+
+  /// Sets `node_version`.
+  const factory WindowsFunctionAppSlotRuntime.nodeVersion(
+    WindowsFunctionAppSlotNodeVersion nodeVersion,
+  ) = WindowsFunctionAppSlotRuntimeNodeVersion;
+
+  /// Sets `powershell_core_version`.
+  const factory WindowsFunctionAppSlotRuntime.powershellCoreVersion(
+    WindowsFunctionAppSlotPowershellCoreVersion powershellCoreVersion,
+  ) = WindowsFunctionAppSlotRuntimePowershellCoreVersion;
+
+  /// Sets `use_custom_runtime`.
+  const factory WindowsFunctionAppSlotRuntime.useCustomRuntime(
+    TfArg<bool> useCustomRuntime,
+  ) = WindowsFunctionAppSlotUseCustomRuntime;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsFunctionAppSlotRuntime.dotnetVersion] choice: sets `dotnet_version`.
+final class WindowsFunctionAppSlotRuntimeDotnetVersion
+    extends WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotRuntimeDotnetVersion(this.dotnetVersion);
+
+  final WindowsFunctionAppSlotDotnetVersion dotnetVersion;
+
+  @internal
+  @override
+  String get blockKey => 'dotnet_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dotnet_version': dotnetVersion.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotRuntime.javaVersion] choice: sets `java_version`.
+final class WindowsFunctionAppSlotRuntimeJavaVersion
+    extends WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotRuntimeJavaVersion(this.javaVersion);
+
+  final WindowsFunctionAppSlotJavaVersion javaVersion;
+
+  @internal
+  @override
+  String get blockKey => 'java_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'java_version': javaVersion.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotRuntime.nodeVersion] choice: sets `node_version`.
+final class WindowsFunctionAppSlotRuntimeNodeVersion
+    extends WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotRuntimeNodeVersion(this.nodeVersion);
+
+  final WindowsFunctionAppSlotNodeVersion nodeVersion;
+
+  @internal
+  @override
+  String get blockKey => 'node_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'node_version': nodeVersion.toTfJson()};
+}
+
+/// The [WindowsFunctionAppSlotRuntime.powershellCoreVersion] choice: sets `powershell_core_version`.
+final class WindowsFunctionAppSlotRuntimePowershellCoreVersion
+    extends WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotRuntimePowershellCoreVersion(
+    this.powershellCoreVersion,
+  );
+
+  final WindowsFunctionAppSlotPowershellCoreVersion powershellCoreVersion;
+
+  @internal
+  @override
+  String get blockKey => 'powershell_core_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'powershell_core_version': powershellCoreVersion.toTfJson(),
+  };
+}
+
+/// The [WindowsFunctionAppSlotRuntime.useCustomRuntime] choice: sets `use_custom_runtime`.
+final class WindowsFunctionAppSlotUseCustomRuntime
+    extends WindowsFunctionAppSlotRuntime {
+  const WindowsFunctionAppSlotUseCustomRuntime(this.useCustomRuntime);
+
+  final TfArg<bool> useCustomRuntime;
+
+  @internal
+  @override
+  String get blockKey => 'use_custom_runtime';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'use_custom_runtime': useCustomRuntime.toTfJson(),
+  };
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotDotnetVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v3p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v3.0'),
+  );
+  static const v4p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v4.0'),
+  );
+  static const v6p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v6.0'),
+  );
+  static const v7p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v7.0'),
+  );
+  static const v8p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v8.0'),
+  );
+  static const v9p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v9.0'),
+  );
+  static const v10p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v10.0'),
+  );
+
+  static const List<WindowsFunctionAppSlotDotnetVersion> values = [
+    v3p0,
+    v4p0,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `java_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotJavaVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotJavaVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotJavaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotJavaVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p8 = WindowsFunctionAppSlotJavaVersion._(TfArgLiteral('1.8'));
+  static const v11 = WindowsFunctionAppSlotJavaVersion._(TfArgLiteral('11'));
+  static const v17 = WindowsFunctionAppSlotJavaVersion._(TfArgLiteral('17'));
+  static const v21 = WindowsFunctionAppSlotJavaVersion._(TfArgLiteral('21'));
+  static const v25 = WindowsFunctionAppSlotJavaVersion._(TfArgLiteral('25'));
+
+  static const List<WindowsFunctionAppSlotJavaVersion> values = [
+    v1p8,
+    v11,
+    v17,
+    v21,
+    v25,
+  ];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotNodeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v12 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~12'));
+  static const v14 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~14'));
+  static const v16 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~16'));
+  static const v18 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~18'));
+  static const v20 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~20'));
+  static const v22 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~22'));
+  static const v24 = WindowsFunctionAppSlotNodeVersion._(TfArgLiteral('~24'));
+
+  static const List<WindowsFunctionAppSlotNodeVersion> values = [
+    v12,
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
+}
+
+/// `powershell_core_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotPowershellCoreVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppSlotPowershellCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotPowershellCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotPowershellCoreVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v7 = WindowsFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7'),
+  );
+  static const v7p2 = WindowsFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.2'),
+  );
+  static const v7p4 = WindowsFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.4'),
+  );
+  static const v7p6 = WindowsFunctionAppSlotPowershellCoreVersion._(
+    TfArgLiteral('7.6'),
+  );
+
+  static const List<WindowsFunctionAppSlotPowershellCoreVersion> values = [
+    v7,
+    v7p2,
+    v7p4,
+    v7p6,
+  ];
 }
 
 /// Typed helper for the `site_config.cors` block of
@@ -1216,7 +2472,7 @@ final class WindowsFunctionAppSlotIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsFunctionAppSlotAction? action;
 
   final TfArg<String>? description;
 
@@ -1245,6 +2501,21 @@ final class WindowsFunctionAppSlotIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = WindowsFunctionAppSlotAction._(TfArgLiteral('Allow'));
+  static const deny = WindowsFunctionAppSlotAction._(TfArgLiteral('Deny'));
+
+  static const List<WindowsFunctionAppSlotAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_windows_function_app_slot` (derived from provider schema).
 @immutable
@@ -1260,7 +2531,7 @@ final class WindowsFunctionAppSlotScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsFunctionAppSlotAction? action;
 
   final TfArg<String>? description;
 
@@ -1312,7 +2583,7 @@ final class WindowsFunctionAppSlotStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final WindowsFunctionAppSlotStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1323,6 +2594,25 @@ final class WindowsFunctionAppSlotStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsFunctionAppSlotStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppSlotStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppSlotStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppSlotStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurefiles = WindowsFunctionAppSlotStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<WindowsFunctionAppSlotStorageAccountType> values = [
+    azurefiles,
+  ];
 }
 
 /// Factory wrapper for `azurerm_windows_function_app_slot`.

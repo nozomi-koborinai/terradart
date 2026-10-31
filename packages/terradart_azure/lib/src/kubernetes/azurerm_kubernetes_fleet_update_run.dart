@@ -114,10 +114,34 @@ final class KubernetesFleetUpdateRunManagedClusterUpdate {
 final class KubernetesFleetUpdateRunNodeImageSelection {
   const KubernetesFleetUpdateRunNodeImageSelection({required this.type});
 
-  final TfArg<String> type;
+  final KubernetesFleetUpdateRunNodeImageSelectionType type;
 
   @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const KubernetesFleetUpdateRunNodeImageSelectionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesFleetUpdateRunNodeImageSelectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesFleetUpdateRunNodeImageSelectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesFleetUpdateRunNodeImageSelectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const consistent = KubernetesFleetUpdateRunNodeImageSelectionType._(
+    TfArgLiteral('Consistent'),
+  );
+  static const latest = KubernetesFleetUpdateRunNodeImageSelectionType._(
+    TfArgLiteral('Latest'),
+  );
+
+  static const List<KubernetesFleetUpdateRunNodeImageSelectionType> values = [
+    consistent,
+    latest,
+  ];
 }
 
 /// Typed helper for the `managed_cluster_update.upgrade` block of
@@ -131,13 +155,36 @@ final class KubernetesFleetUpdateRunUpgrade {
 
   final TfArg<String>? kubernetesVersion;
 
-  final TfArg<String> type;
+  final KubernetesFleetUpdateRunUpgradeType type;
 
   @internal
   Map<String, Object?> encode() => {
     'kubernetes_version': ?kubernetesVersion?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const KubernetesFleetUpdateRunUpgradeType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesFleetUpdateRunUpgradeType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesFleetUpdateRunUpgradeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesFleetUpdateRunUpgradeType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const full = KubernetesFleetUpdateRunUpgradeType._(
+    TfArgLiteral('Full'),
+  );
+  static const nodeimageonly = KubernetesFleetUpdateRunUpgradeType._(
+    TfArgLiteral('NodeImageOnly'),
+  );
+
+  static const List<KubernetesFleetUpdateRunUpgradeType> values = [
+    full,
+    nodeimageonly,
+  ];
 }
 
 /// Typed helper for the `stage` block of

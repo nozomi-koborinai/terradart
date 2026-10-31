@@ -7,6 +7,41 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_workers`.
 const Set<String> _cloudflareWorkersSensitive = <String>{};
 
+/// Data Workers enum for `order`.
+extension type const DataWorkersOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersOrder.variable(String name) : this._(TfArg.variable(name));
+  DataWorkersOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataWorkersOrder._(TfArgLiteral('asc'));
+  static const desc = DataWorkersOrder._(TfArgLiteral('desc'));
+
+  static const List<DataWorkersOrder> values = [asc, desc];
+}
+
+/// Data Workers Order enum for `order_by`.
+extension type const DataWorkersOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersOrderBy.variable(String name) : this._(TfArg.variable(name));
+  DataWorkersOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const deployedOn = DataWorkersOrderBy._(TfArgLiteral('deployed_on'));
+  static const updatedOn = DataWorkersOrderBy._(TfArgLiteral('updated_on'));
+  static const createdOn = DataWorkersOrderBy._(TfArgLiteral('created_on'));
+  static const name = DataWorkersOrderBy._(TfArgLiteral('name'));
+
+  static const List<DataWorkersOrderBy> values = [
+    deployedOn,
+    updatedOn,
+    createdOn,
+    name,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_workers`.
 ///
 /// Accepted Permissions
@@ -19,8 +54,8 @@ final class DataCloudflareWorkers extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
-    TfArg<String>? orderBy,
+    DataWorkersOrder? order,
+    DataWorkersOrderBy? orderBy,
     super.provider,
     super.timeouts,
   }) : super(

@@ -74,10 +74,15 @@ export 'src/iam/google_iam_folders_policy_binding.dart'
     show
         GoogleIamFoldersPolicyBinding,
         IamFoldersPolicyBindingCondition,
+        IamFoldersPolicyBindingPolicyKind,
         IamFoldersPolicyBindingTarget,
         IamFoldersPolicyBindingTargetPrincipalSet,
         IamFoldersPolicyBindingTargetResource;
-export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
+export 'src/iam/google_iam_oauth_client.dart'
+    show
+        GoogleIamOauthClient,
+        IamOauthClientAllowedGrantTypes,
+        IamOauthClientType;
 export 'src/iam/google_iam_oauth_client_credential.dart'
     show GoogleIamOauthClientCredential;
 export 'src/iam/google_iam_organization_access_policy.dart'
@@ -92,6 +97,7 @@ export 'src/iam/google_iam_organizations_policy_binding.dart'
     show
         GoogleIamOrganizationsPolicyBinding,
         IamOrganizationsPolicyBindingCondition,
+        IamOrganizationsPolicyBindingPolicyKind,
         IamOrganizationsPolicyBindingTarget,
         IamOrganizationsPolicyBindingTargetPrincipalSet,
         IamOrganizationsPolicyBindingTargetResource;
@@ -99,6 +105,7 @@ export 'src/iam/google_iam_principal_access_boundary_policy.dart'
     show
         GoogleIamPrincipalAccessBoundaryPolicy,
         IamPrincipalAccessBoundaryPolicyDetails,
+        IamPrincipalAccessBoundaryPolicyEffect,
         IamPrincipalAccessBoundaryPolicyRules;
 export 'src/iam/google_iam_project_access_policy.dart'
     show
@@ -112,6 +119,7 @@ export 'src/iam/google_iam_projects_policy_binding.dart'
     show
         GoogleIamProjectsPolicyBinding,
         IamProjectsPolicyBindingCondition,
+        IamProjectsPolicyBindingPolicyKind,
         IamProjectsPolicyBindingTarget,
         IamProjectsPolicyBindingTargetPrincipalSet,
         IamProjectsPolicyBindingTargetResource;
@@ -133,6 +141,7 @@ export 'src/iam/google_iam_workforce_pool_provider.dart'
         IamWorkforcePoolProviderAttributesType,
         IamWorkforcePoolProviderClientSecret,
         IamWorkforcePoolProviderExtendedAttributesOauth2Client,
+        IamWorkforcePoolProviderExtendedAttributesType,
         IamWorkforcePoolProviderExtraAttributesOauth2Client,
         IamWorkforcePoolProviderGroupSource,
         IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client,
@@ -154,7 +163,9 @@ export 'src/iam/google_iam_workforce_pool_provider_key.dart'
     show
         GoogleIamWorkforcePoolProviderKey,
         IamWorkforcePoolProviderKeyData,
-        IamWorkforcePoolProviderKeySpec;
+        IamWorkforcePoolProviderKeySpec,
+        IamWorkforcePoolProviderKeyState,
+        IamWorkforcePoolProviderKeyUse;
 export 'src/iam/google_iam_workforce_pool_provider_scim_tenant.dart'
     show GoogleIamWorkforcePoolProviderScimTenant;
 export 'src/iam/google_iam_workforce_pool_provider_scim_token.dart'

@@ -227,7 +227,7 @@ final class StorageManagementPolicyFilters {
     this.matchBlobIndexTag,
   });
 
-  final List<StorageManagementPolicyBlobTypes> blobTypes;
+  final EnumList<StorageManagementPolicyBlobTypes> blobTypes;
 
   final TfArg<List<String>>? prefixMatch;
 
@@ -235,7 +235,7 @@ final class StorageManagementPolicyFilters {
 
   @internal
   Map<String, Object?> encode() => {
-    'blob_types': [for (final e in blobTypes) e.toTfJson()],
+    'blob_types': blobTypes.toTfJson(),
     'prefix_match': ?prefixMatch?.toTfJson(),
     if (matchBlobIndexTag != null)
       'match_blob_index_tag': [for (final e in matchBlobIndexTag!) e.encode()],
@@ -276,7 +276,7 @@ final class StorageManagementPolicyMatchBlobIndexTag {
 
   final TfArg<String> name;
 
-  final TfArg<String>? operation;
+  final StorageManagementPolicyOperation? operation;
 
   final TfArg<String> value;
 
@@ -286,6 +286,20 @@ final class StorageManagementPolicyMatchBlobIndexTag {
     'operation': ?operation?.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+extension type const StorageManagementPolicyOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageManagementPolicyOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageManagementPolicyOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageManagementPolicyOperation.arg(TfArg<String> arg) : this._(arg);
+
+  static const eq = StorageManagementPolicyOperation._(TfArgLiteral('=='));
+
+  static const List<StorageManagementPolicyOperation> values = [eq];
 }
 
 /// Factory wrapper for `azurerm_storage_management_policy`.

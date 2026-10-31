@@ -1,4 +1,9 @@
 outputDir: discovery_engine
+enumValues:
+  chat_engine_config.agent_creation_config.location:
+    - global
+    - us
+    - eu
 
 deriveClassDoc: true
 deriveExactlyOne: true

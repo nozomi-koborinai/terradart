@@ -10,6 +10,75 @@ import '../identity/google_identity_platform_tenant.dart'
 const Set<String>
 _googleIdentityPlatformTenantDefaultSupportedIdpConfigSensitive = <String>{};
 
+/// Identity Platform Tenant Default Supported Idp Config Idp enum for `idp_id`.
+extension type const IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IdentityPlatformTenantDefaultSupportedIdpConfigIdpId.variable(String name)
+    : this._(TfArg.variable(name));
+  IdentityPlatformTenantDefaultSupportedIdpConfigIdpId.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IdentityPlatformTenantDefaultSupportedIdpConfigIdpId.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const appleCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('apple.com'),
+      );
+  static const facebookCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('facebook.com'),
+      );
+  static const gcAppleCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('gc.apple.com'),
+      );
+  static const githubCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('github.com'),
+      );
+  static const googleCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('google.com'),
+      );
+  static const linkedinCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('linkedin.com'),
+      );
+  static const microsoftCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('microsoft.com'),
+      );
+  static const playgamesGoogleCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('playgames.google.com'),
+      );
+  static const twitterCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('twitter.com'),
+      );
+  static const yahooCom =
+      IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('yahoo.com'),
+      );
+
+  static const List<IdentityPlatformTenantDefaultSupportedIdpConfigIdpId>
+  values = [
+    appleCom,
+    facebookCom,
+    gcAppleCom,
+    githubCom,
+    googleCom,
+    linkedinCom,
+    microsoftCom,
+    playgamesGoogleCom,
+    twitterCom,
+    yahooCom,
+  ];
+}
+
 /// Factory wrapper for `google_identity_platform_tenant_default_supported_idp_config`.
 ///
 /// Configurations options for the tenant for authenticating with a the standard
@@ -36,7 +105,7 @@ final class GoogleIdentityPlatformTenantDefaultSupportedIdpConfig
     required TfArg<String> clientSecret,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? enabled,
-    required TfArg<String> idpId,
+    required IdentityPlatformTenantDefaultSupportedIdpConfigIdpId idpId,
     TfArg<String>? project,
     required RefTo<GoogleIdentityPlatformTenant> tenant,
     super.lifecycle,

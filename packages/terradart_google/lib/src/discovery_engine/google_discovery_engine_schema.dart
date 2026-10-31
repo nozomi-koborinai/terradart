@@ -9,6 +9,22 @@ import '../discovery_engine/google_discovery_engine_data_store.dart'
 /// Sensitive field paths for `google_discovery_engine_schema`.
 const Set<String> _googleDiscoveryEngineSchemaSensitive = <String>{};
 
+/// Discovery Engine Schema enum for `location`.
+extension type const DiscoveryEngineSchemaLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineSchemaLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSchemaLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSchemaLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineSchemaLocation._(TfArgLiteral('global'));
+  static const us = DiscoveryEngineSchemaLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineSchemaLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineSchemaLocation> values = [global, us, eu];
+}
+
 /// Factory wrapper for `google_discovery_engine_schema`.
 ///
 /// Schema defines the structure and layout of a type of document data.
@@ -28,7 +44,7 @@ final class GoogleDiscoveryEngineSchema extends Resource {
 
   GoogleDiscoveryEngineSchema(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineSchemaLocation location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> schemaId,
     TfArg<String>? jsonSchema,

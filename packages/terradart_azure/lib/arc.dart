@@ -30,6 +30,7 @@ export 'src/arc/azurerm_arc_kubernetes_flux_configuration.dart'
         ArcKubernetesFluxConfigurationClientSecret,
         ArcKubernetesFluxConfigurationGitRepository,
         ArcKubernetesFluxConfigurationKustomizations,
+        ArcKubernetesFluxConfigurationReferenceType,
         ArcKubernetesFluxConfigurationScope,
         ArcKubernetesFluxConfigurationServicePrincipal,
         ArcKubernetesFluxConfigurationSource,
@@ -52,6 +53,7 @@ export 'src/arc/azurerm_arc_private_link_scope.dart'
     show AzurermArcPrivateLinkScope;
 export 'src/arc/azurerm_arc_resource_bridge_appliance.dart'
     show
+        ArcResourceBridgeApplianceDistro,
         ArcResourceBridgeApplianceIdentity,
         ArcResourceBridgeApplianceInfrastructureProvider,
         AzurermArcResourceBridgeAppliance;

@@ -1733,22 +1733,17 @@ final class SagemakerDomainStudioWebPortalSettings {
     this.hiddenMlTools,
   });
 
-  final List<SagemakerDomainHiddenAppTypes>? hiddenAppTypes;
+  final EnumList<SagemakerDomainHiddenAppTypes>? hiddenAppTypes;
 
-  final List<SagemakerDomainHiddenInstanceTypes>? hiddenInstanceTypes;
+  final EnumList<SagemakerDomainHiddenInstanceTypes>? hiddenInstanceTypes;
 
-  final List<SagemakerDomainHiddenMlTools>? hiddenMlTools;
+  final EnumList<SagemakerDomainHiddenMlTools>? hiddenMlTools;
 
   @internal
   Map<String, Object?> encode() => {
-    if (hiddenAppTypes != null)
-      'hidden_app_types': [for (final e in hiddenAppTypes!) e.toTfJson()],
-    if (hiddenInstanceTypes != null)
-      'hidden_instance_types': [
-        for (final e in hiddenInstanceTypes!) e.toTfJson(),
-      ],
-    if (hiddenMlTools != null)
-      'hidden_ml_tools': [for (final e in hiddenMlTools!) e.toTfJson()],
+    'hidden_app_types': ?hiddenAppTypes?.toTfJson(),
+    'hidden_instance_types': ?hiddenInstanceTypes?.toTfJson(),
+    'hidden_ml_tools': ?hiddenMlTools?.toTfJson(),
   };
 }
 

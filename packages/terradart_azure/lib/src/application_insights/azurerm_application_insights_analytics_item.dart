@@ -30,6 +30,37 @@ extension type const ApplicationInsightsAnalyticsItemScope._(TfArg<String> _)
   ];
 }
 
+/// Application Insights Analytics Item enum for `type`.
+extension type const ApplicationInsightsAnalyticsItemType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationInsightsAnalyticsItemType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsAnalyticsItemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsAnalyticsItemType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const query = ApplicationInsightsAnalyticsItemType._(
+    TfArgLiteral('query'),
+  );
+  static const function = ApplicationInsightsAnalyticsItemType._(
+    TfArgLiteral('function'),
+  );
+  static const folder = ApplicationInsightsAnalyticsItemType._(
+    TfArgLiteral('folder'),
+  );
+  static const recent = ApplicationInsightsAnalyticsItemType._(
+    TfArgLiteral('recent'),
+  );
+
+  static const List<ApplicationInsightsAnalyticsItemType> values = [
+    query,
+    function,
+    folder,
+    recent,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights_analytics_item`.
 final class AzurermApplicationInsightsAnalyticsItem extends Resource {
   static const String tfType = 'azurerm_application_insights_analytics_item';
@@ -41,7 +72,7 @@ final class AzurermApplicationInsightsAnalyticsItem extends Resource {
     TfArg<String>? functionAlias,
     required TfArg<String> name,
     required ApplicationInsightsAnalyticsItemScope scope,
-    required TfArg<String> type,
+    required ApplicationInsightsAnalyticsItemType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

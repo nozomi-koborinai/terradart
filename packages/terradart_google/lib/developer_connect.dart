@@ -11,7 +11,9 @@ export 'src/developer_connect/google_developer_connect_account_connector.dart'
         DeveloperConnectAccountConnectorCustomOauthConfig,
         DeveloperConnectAccountConnectorProviderOauthConfig,
         DeveloperConnectAccountConnectorProxyConfig,
+        DeveloperConnectAccountConnectorScmProvider,
         DeveloperConnectAccountConnectorServiceDirectoryConfig,
+        DeveloperConnectAccountConnectorSystemProviderId,
         GoogleDeveloperConnectAccountConnector;
 export 'src/developer_connect/google_developer_connect_connection.dart'
     show
@@ -21,6 +23,7 @@ export 'src/developer_connect/google_developer_connect_connection.dart'
         DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential,
         DeveloperConnectConnectionBitbucketDataCenterConfig,
         DeveloperConnectConnectionCryptoKeyConfig,
+        DeveloperConnectConnectionGithubApp,
         DeveloperConnectConnectionGithubConfig,
         DeveloperConnectConnectionGithubConfigAuthorizerCredential,
         DeveloperConnectConnectionGithubEnterpriseConfig,
@@ -37,5 +40,8 @@ export 'src/developer_connect/google_developer_connect_insights_config.dart'
         DeveloperConnectInsightsConfigArtifactConfigs,
         DeveloperConnectInsightsConfigGoogleArtifactAnalysis,
         DeveloperConnectInsightsConfigGoogleArtifactRegistry,
+        DeveloperConnectInsightsConfigScope,
+        DeveloperConnectInsightsConfigScopeAppHubApplication,
+        DeveloperConnectInsightsConfigScopeTargetProjects,
         DeveloperConnectInsightsConfigTargetProjects,
         GoogleDeveloperConnectInsightsConfig;

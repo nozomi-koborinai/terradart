@@ -104,7 +104,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
     TfArg<String>? description,
     TfArg<bool>? forwardLocally,
     required TfArg<String> name,
-    List<MagicTransitSiteAclProtocols>? protocols,
+    EnumList<MagicTransitSiteAclProtocols>? protocols,
     required TfArg<String> siteId,
     TfArg<bool>? unidirectional,
     required MagicTransitSiteAclLan1 lan1,
@@ -120,10 +120,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
            'description': ?description,
            'forward_locally': ?forwardLocally,
            'name': name,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'site_id': siteId,
            'unidirectional': ?unidirectional,
            'lan_1': TfArg.literal(lan1.encode()),

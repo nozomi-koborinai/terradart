@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_apigee_env_references`.
 const Set<String> _googleApigeeEnvReferencesSensitive = <String>{};
 
+/// Apigee Env References Resource enum for `resource_type`.
+extension type const ApigeeEnvReferencesResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeEnvReferencesResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeEnvReferencesResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeEnvReferencesResourceType.arg(TfArg<String> arg) : this._(arg);
+
+  static const keystore = ApigeeEnvReferencesResourceType._(
+    TfArgLiteral('KeyStore'),
+  );
+  static const truststore = ApigeeEnvReferencesResourceType._(
+    TfArgLiteral('TrustStore'),
+  );
+
+  static const List<ApigeeEnvReferencesResourceType> values = [
+    keystore,
+    truststore,
+  ];
+}
+
 /// Factory wrapper for `google_apigee_env_references`.
 ///
 /// An `Environment Reference` in Apigee.
@@ -25,7 +47,7 @@ final class GoogleApigeeEnvReferences extends Resource {
     required TfArg<String> name,
     required TfArg<String> envId,
     required TfArg<String> refers,
-    required TfArg<String> resourceType,
+    required ApigeeEnvReferencesResourceType resourceType,
     TfArg<String>? description,
     super.lifecycle,
     super.dependsOn,

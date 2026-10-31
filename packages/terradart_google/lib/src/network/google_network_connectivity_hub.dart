@@ -6,6 +6,52 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_connectivity_hub`.
 const Set<String> _googleNetworkConnectivityHubSensitive = <String>{};
 
+/// Network Connectivity Hub Policy enum for `policy_mode`.
+extension type const NetworkConnectivityHubPolicyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityHubPolicyMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityHubPolicyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityHubPolicyMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = NetworkConnectivityHubPolicyMode._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const preset = NetworkConnectivityHubPolicyMode._(
+    TfArgLiteral('PRESET'),
+  );
+
+  static const List<NetworkConnectivityHubPolicyMode> values = [custom, preset];
+}
+
+/// Network Connectivity Hub Preset enum for `preset_topology`.
+extension type const NetworkConnectivityHubPresetTopology._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityHubPresetTopology.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityHubPresetTopology.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityHubPresetTopology.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mesh = NetworkConnectivityHubPresetTopology._(
+    TfArgLiteral('MESH'),
+  );
+  static const star = NetworkConnectivityHubPresetTopology._(
+    TfArgLiteral('STAR'),
+  );
+  static const hybridInspection = NetworkConnectivityHubPresetTopology._(
+    TfArgLiteral('HYBRID_INSPECTION'),
+  );
+
+  static const List<NetworkConnectivityHubPresetTopology> values = [
+    mesh,
+    star,
+    hybridInspection,
+  ];
+}
+
 /// Factory wrapper for `google_network_connectivity_hub`.
 ///
 /// The NetworkConnectivity Hub resource
@@ -16,8 +62,8 @@ final class GoogleNetworkConnectivityHub extends Resource {
     super.localName, {
     TfArg<String>? name,
     TfArg<String>? description,
-    TfArg<String>? policyMode,
-    TfArg<String>? presetTopology,
+    NetworkConnectivityHubPolicyMode? policyMode,
+    NetworkConnectivityHubPresetTopology? presetTopology,
     TfArg<bool>? exportPsc,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,

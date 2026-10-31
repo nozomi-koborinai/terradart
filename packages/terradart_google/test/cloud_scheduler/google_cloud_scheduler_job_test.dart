@@ -25,7 +25,7 @@ void main() {
       final CloudSchedulerJobTarget t = .httpTarget(
         CloudSchedulerJobHttpTarget(
           uri: const .literal('https://example.com'),
-          httpMethod: const .literal('POST'),
+          httpMethod: .post,
           oidcToken: CloudSchedulerJobOidcToken(
             serviceAccountEmail: .literal('sa@p.iam.gserviceaccount.com'),
           ),
@@ -48,7 +48,7 @@ void main() {
       final CloudSchedulerJobTarget t = const .appEngineHttpTarget(
         CloudSchedulerJobAppEngineHttpTarget(
           relativeUri: .literal('/cron'),
-          httpMethod: .literal('POST'),
+          httpMethod: .post,
           appEngineRouting: CloudSchedulerJobAppEngineRouting(
             service: .literal('default'),
             version: .literal('v1'),
@@ -104,7 +104,7 @@ void main() {
         target: const .httpTarget(
           CloudSchedulerJobHttpTarget(
             uri: .literal('https://app.example.com/health'),
-            httpMethod: .literal('GET'),
+            httpMethod: .get,
           ),
         ),
       );

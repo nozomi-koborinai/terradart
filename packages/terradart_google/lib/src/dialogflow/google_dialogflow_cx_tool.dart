@@ -45,9 +45,9 @@ final class DialogflowCxToolDataStoreConnections {
 
   final TfArg<String>? dataStore;
 
-  final TfArg<String>? dataStoreType;
+  final DialogflowCxToolDataStoreType? dataStoreType;
 
-  final TfArg<String>? documentProcessingMode;
+  final DialogflowCxToolDocumentProcessingMode? documentProcessingMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -55,6 +55,55 @@ final class DialogflowCxToolDataStoreConnections {
     'data_store_type': ?dataStoreType?.toTfJson(),
     'document_processing_mode': ?documentProcessingMode?.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DialogflowCxToolDataStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolDataStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolDataStoreType.arg(TfArg<String> arg) : this._(arg);
+
+  static const publicWeb = DialogflowCxToolDataStoreType._(
+    TfArgLiteral('PUBLIC_WEB'),
+  );
+  static const unstructured = DialogflowCxToolDataStoreType._(
+    TfArgLiteral('UNSTRUCTURED'),
+  );
+  static const structured = DialogflowCxToolDataStoreType._(
+    TfArgLiteral('STRUCTURED'),
+  );
+
+  static const List<DialogflowCxToolDataStoreType> values = [
+    publicWeb,
+    unstructured,
+    structured,
+  ];
+}
+
+/// `document_processing_mode` — derived from the provider schema description.
+extension type const DialogflowCxToolDocumentProcessingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolDocumentProcessingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolDocumentProcessingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolDocumentProcessingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const documents = DialogflowCxToolDocumentProcessingMode._(
+    TfArgLiteral('DOCUMENTS'),
+  );
+  static const chunks = DialogflowCxToolDocumentProcessingMode._(
+    TfArgLiteral('CHUNKS'),
+  );
+
+  static const List<DialogflowCxToolDocumentProcessingMode> values = [
+    documents,
+    chunks,
+  ];
 }
 
 /// Typed helper for the `data_store_spec.fallback_prompt` block of
@@ -155,7 +204,7 @@ final class DialogflowCxToolApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final TfArg<String> requestLocation;
+  final DialogflowCxToolRequestLocation requestLocation;
 
   final TfArg<String>? secretVersionForApiKey;
 
@@ -166,6 +215,28 @@ final class DialogflowCxToolApiKeyConfig {
     'request_location': requestLocation.toTfJson(),
     'secret_version_for_api_key': ?secretVersionForApiKey?.toTfJson(),
   };
+}
+
+/// `request_location` — derived from the provider schema description.
+extension type const DialogflowCxToolRequestLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolRequestLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolRequestLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolRequestLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const header = DialogflowCxToolRequestLocation._(
+    TfArgLiteral('HEADER'),
+  );
+  static const queryString = DialogflowCxToolRequestLocation._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+
+  static const List<DialogflowCxToolRequestLocation> values = [
+    header,
+    queryString,
+  ];
 }
 
 /// Typed helper for the `open_api_spec.authentication.bearer_token_config` block of
@@ -205,7 +276,7 @@ final class DialogflowCxToolOauthConfig {
 
   final Sensitive<String>? clientSecret;
 
-  final TfArg<String> oauthGrantType;
+  final DialogflowCxToolOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -225,18 +296,56 @@ final class DialogflowCxToolOauthConfig {
   };
 }
 
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const DialogflowCxToolOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolOauthGrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolOauthGrantType.arg(TfArg<String> arg) : this._(arg);
+
+  static const clientCredential = DialogflowCxToolOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<DialogflowCxToolOauthGrantType> values = [clientCredential];
+}
+
 /// Typed helper for the `open_api_spec.authentication.service_agent_auth_config` block of
 /// `google_dialogflow_cx_tool` (derived from provider schema).
 @immutable
 final class DialogflowCxToolServiceAgentAuthConfig {
   const DialogflowCxToolServiceAgentAuthConfig({this.serviceAgentAuth});
 
-  final TfArg<String>? serviceAgentAuth;
+  final DialogflowCxToolServiceAgentAuth? serviceAgentAuth;
 
   @internal
   Map<String, Object?> encode() => {
     'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
   };
+}
+
+/// `service_agent_auth` — derived from the provider schema description.
+extension type const DialogflowCxToolServiceAgentAuth._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxToolServiceAgentAuth.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxToolServiceAgentAuth.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxToolServiceAgentAuth.arg(TfArg<String> arg) : this._(arg);
+
+  static const idToken = DialogflowCxToolServiceAgentAuth._(
+    TfArgLiteral('ID_TOKEN'),
+  );
+  static const accessToken = DialogflowCxToolServiceAgentAuth._(
+    TfArgLiteral('ACCESS_TOKEN'),
+  );
+
+  static const List<DialogflowCxToolServiceAgentAuth> values = [
+    idToken,
+    accessToken,
+  ];
 }
 
 /// Typed helper for the `open_api_spec.service_directory_config` block of

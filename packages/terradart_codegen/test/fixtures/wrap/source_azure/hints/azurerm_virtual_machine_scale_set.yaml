@@ -11,6 +11,24 @@ properties:
     enum_values:
       - "Windows_Client"
       - "Windows_Server"
+  - api_name: priority
+    enum_values:
+      - "Low"
+      - "Regular"
+  - api_name: storage_profile_data_disk
+    properties:
+      - api_name: managed_disk_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
+  - api_name: storage_profile_os_disk
+    properties:
+      - api_name: managed_disk_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
   - api_name: upgrade_policy_mode
     enum_values:
       - "Automatic"

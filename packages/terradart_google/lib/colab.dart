@@ -9,6 +9,7 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/colab/google_colab_notebook_execution.dart'
     show
+        ColabNotebookExecutionAcceleratorType,
         ColabNotebookExecutionCompute,
         ColabNotebookExecutionComputeCustomEnvironmentSpec,
         ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName,
@@ -40,6 +41,7 @@ export 'src/colab/google_colab_runtime.dart'
         GoogleColabRuntime;
 export 'src/colab/google_colab_runtime_template.dart'
     show
+        ColabRuntimeTemplateAcceleratorType,
         ColabRuntimeTemplateColabImage,
         ColabRuntimeTemplateDataPersistentDiskSpec,
         ColabRuntimeTemplateEncryptionSpec,
@@ -65,6 +67,7 @@ export 'src/colab/google_colab_runtime_template_iam_policy.dart'
     show GoogleColabRuntimeTemplateIamPolicy;
 export 'src/colab/google_colab_schedule.dart'
     show
+        ColabScheduleAcceleratorType,
         ColabScheduleCompute,
         ColabScheduleComputeCustomEnvironmentSpec,
         ColabScheduleComputeNotebookRuntimeTemplateResourceName,
@@ -76,8 +79,10 @@ export 'src/colab/google_colab_schedule.dart'
         ColabScheduleDataformRepositorySource,
         ColabScheduleDataformRepositorySourceChoice,
         ColabScheduleDesiredState,
+        ColabScheduleDiskType,
         ColabScheduleDnsPeeringConfigs,
         ColabScheduleEncryptionSpec,
+        ColabScheduleFailurePolicy,
         ColabScheduleGcsNotebookSource,
         ColabScheduleGcsNotebookSourceChoice,
         ColabScheduleIdentity,
@@ -91,6 +96,7 @@ export 'src/colab/google_colab_schedule.dart'
         ColabSchedulePscInterfaceConfig,
         ColabScheduleRequest,
         ColabScheduleReservationAffinity,
+        ColabScheduleReservationAffinityType,
         ColabScheduleRuntimeConfig,
         ColabScheduleSource,
         ColabScheduleWorkbenchRuntime,

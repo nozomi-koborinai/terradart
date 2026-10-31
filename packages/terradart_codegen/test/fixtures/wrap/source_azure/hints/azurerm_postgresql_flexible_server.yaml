@@ -3,12 +3,40 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: create_mode
+    enum_values:
+      - "Default"
+      - "PointInTimeRestore"
+      - "Replica"
+      - "ReviveDropped"
+      - "GeoRestore"
+      - "Update"
   - api_name: high_availability
     properties:
       - api_name: mode
         enum_values:
           - "SameZone"
           - "ZoneRedundant"
+  - api_name: replication_role
+    enum_values:
+      - "None"
+  - api_name: storage_tier
+    enum_values:
+      - "P4"
+      - "P6"
+      - "P10"
+      - "P15"
+      - "P20"
+      - "P30"
+      - "P40"
+      - "P50"
+      - "P60"
+      - "P70"
+      - "P80"
+  - api_name: storage_type
+    enum_values:
+      - "Premium_LRS"
+      - "PremiumV2_LRS"
   - api_name: version
     enum_values:
       - "18"

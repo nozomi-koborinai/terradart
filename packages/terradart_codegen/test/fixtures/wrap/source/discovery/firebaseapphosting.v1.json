@@ -1,0 +1,233 @@
+{
+  "name": "firebaseapphosting",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://firebaseapphosting.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Backend": {
+      "properties": {
+        "servingLocality": {
+          "enum": [
+            "SERVING_LOCALITY_UNSPECIFIED",
+            "REGIONAL_STRICT",
+            "GLOBAL_ACCESS"
+          ]
+        }
+      }
+    },
+    "Build": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "BUILDING",
+            "BUILT",
+            "DEPLOYING",
+            "READY",
+            "FAILED",
+            "SKIPPED",
+            "EXPIRED"
+          ]
+        },
+        "errors": {
+          "items": {
+            "$ref": "Error"
+          }
+        },
+        "config": {
+          "$ref": "Config"
+        }
+      }
+    },
+    "Config": {
+      "properties": {
+        "effectiveEnv": {
+          "items": {
+            "$ref": "EnvironmentVariable"
+          }
+        },
+        "env": {
+          "items": {
+            "$ref": "EnvironmentVariable"
+          }
+        }
+      }
+    },
+    "CustomDomainStatus": {
+      "properties": {
+        "hostState": {
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_NON_FAH",
+            "HOST_CONFLICT",
+            "HOST_WRONG_SHARD",
+            "HOST_ACTIVE"
+          ]
+        },
+        "ownershipState": {
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ]
+        },
+        "certState": {
+          "enum": [
+            "CERT_STATE_UNSPECIFIED",
+            "CERT_PREPARING",
+            "CERT_VALIDATING",
+            "CERT_PROPAGATING",
+            "CERT_ACTIVE",
+            "CERT_EXPIRING_SOON",
+            "CERT_EXPIRED"
+          ]
+        },
+        "requiredDnsUpdates": {
+          "items": {
+            "$ref": "DnsUpdates"
+          }
+        }
+      }
+    },
+    "DnsRecord": {
+      "properties": {
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A",
+            "CNAME",
+            "TXT",
+            "AAAA",
+            "CAA"
+          ]
+        },
+        "relevantState": {
+          "items": {
+            "enum": [
+              "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
+              "HOST_STATE",
+              "OWNERSHIP_STATE",
+              "CERT_STATE"
+            ]
+          }
+        }
+      }
+    },
+    "DnsRecordSet": {
+      "properties": {
+        "records": {
+          "items": {
+            "$ref": "DnsRecord"
+          }
+        }
+      }
+    },
+    "DnsUpdates": {
+      "properties": {
+        "discovered": {
+          "items": {
+            "$ref": "DnsRecordSet"
+          }
+        },
+        "desired": {
+          "items": {
+            "$ref": "DnsRecordSet"
+          }
+        }
+      }
+    },
+    "Domain": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DEFAULT",
+            "CUSTOM"
+          ]
+        },
+        "customDomainStatus": {
+          "$ref": "CustomDomainStatus"
+        }
+      }
+    },
+    "EnvironmentVariable": {
+      "properties": {
+        "availability": {
+          "items": {
+            "enum": [
+              "AVAILABILITY_UNSPECIFIED",
+              "BUILD",
+              "RUNTIME"
+            ]
+          }
+        },
+        "origin": {
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "BACKEND_OVERRIDES",
+            "BUILD_CONFIG",
+            "APPHOSTING_YAML",
+            "FIREBASE_SYSTEM"
+          ]
+        }
+      }
+    },
+    "Error": {
+      "properties": {
+        "errorSource": {
+          "enum": [
+            "ERROR_SOURCE_UNSPECIFIED",
+            "CLOUD_BUILD",
+            "CLOUD_RUN"
+          ]
+        }
+      }
+    },
+    "Path": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PATTERN_TYPE_UNSPECIFIED",
+            "RE2",
+            "GLOB",
+            "PREFIX"
+          ]
+        }
+      }
+    },
+    "RolloutPolicy": {
+      "properties": {
+        "requiredPaths": {
+          "items": {
+            "$ref": "Path"
+          }
+        },
+        "ignoredPaths": {
+          "items": {
+            "$ref": "Path"
+          }
+        }
+      }
+    },
+    "Traffic": {
+      "properties": {
+        "rolloutPolicy": {
+          "$ref": "RolloutPolicy"
+        }
+      }
+    }
+  }
+}

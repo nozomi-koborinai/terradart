@@ -162,7 +162,7 @@ final class GlueCrawlerJdbcTarget {
 
   final TfArg<String> connectionName;
 
-  final List<GlueCrawlerEnableAdditionalMetadata>? enableAdditionalMetadata;
+  final EnumList<GlueCrawlerEnableAdditionalMetadata>? enableAdditionalMetadata;
 
   final TfArg<List<String>>? exclusions;
 
@@ -171,10 +171,7 @@ final class GlueCrawlerJdbcTarget {
   @internal
   Map<String, Object?> encode() => {
     'connection_name': connectionName.toTfJson(),
-    if (enableAdditionalMetadata != null)
-      'enable_additional_metadata': [
-        for (final e in enableAdditionalMetadata!) e.toTfJson(),
-      ],
+    'enable_additional_metadata': ?enableAdditionalMetadata?.toTfJson(),
     'exclusions': ?exclusions?.toTfJson(),
     'path': path.toTfJson(),
   };

@@ -7,6 +7,120 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_api_shield_discovery_operations`.
 const Set<String> _cloudflareApiShieldDiscoveryOperationsSensitive = <String>{};
 
+/// Data Api Shield Discovery Operations enum for `direction`.
+extension type const DataApiShieldDiscoveryOperationsDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataApiShieldDiscoveryOperationsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldDiscoveryOperationsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldDiscoveryOperationsDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataApiShieldDiscoveryOperationsDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataApiShieldDiscoveryOperationsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataApiShieldDiscoveryOperationsDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Api Shield Discovery Operations enum for `order`.
+extension type const DataApiShieldDiscoveryOperationsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldDiscoveryOperationsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldDiscoveryOperationsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldDiscoveryOperationsOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const host = DataApiShieldDiscoveryOperationsOrder._(
+    TfArgLiteral('host'),
+  );
+  static const method = DataApiShieldDiscoveryOperationsOrder._(
+    TfArgLiteral('method'),
+  );
+  static const endpoint = DataApiShieldDiscoveryOperationsOrder._(
+    TfArgLiteral('endpoint'),
+  );
+  static const trafficStatsRequests = DataApiShieldDiscoveryOperationsOrder._(
+    TfArgLiteral('traffic_stats.requests'),
+  );
+  static const trafficStatsLastUpdated =
+      DataApiShieldDiscoveryOperationsOrder._(
+        TfArgLiteral('traffic_stats.last_updated'),
+      );
+
+  static const List<DataApiShieldDiscoveryOperationsOrder> values = [
+    host,
+    method,
+    endpoint,
+    trafficStatsRequests,
+    trafficStatsLastUpdated,
+  ];
+}
+
+/// Data Api Shield Discovery Operations enum for `origin`.
+extension type const DataApiShieldDiscoveryOperationsOrigin._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldDiscoveryOperationsOrigin.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldDiscoveryOperationsOrigin.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldDiscoveryOperationsOrigin.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ml = DataApiShieldDiscoveryOperationsOrigin._(
+    TfArgLiteral('ML'),
+  );
+  static const sessionidentifier = DataApiShieldDiscoveryOperationsOrigin._(
+    TfArgLiteral('SessionIdentifier'),
+  );
+  static const labeldiscovery = DataApiShieldDiscoveryOperationsOrigin._(
+    TfArgLiteral('LabelDiscovery'),
+  );
+
+  static const List<DataApiShieldDiscoveryOperationsOrigin> values = [
+    ml,
+    sessionidentifier,
+    labeldiscovery,
+  ];
+}
+
+/// Data Api Shield Discovery Operations enum for `state`.
+extension type const DataApiShieldDiscoveryOperationsState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldDiscoveryOperationsState.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldDiscoveryOperationsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldDiscoveryOperationsState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const review = DataApiShieldDiscoveryOperationsState._(
+    TfArgLiteral('review'),
+  );
+  static const saved = DataApiShieldDiscoveryOperationsState._(
+    TfArgLiteral('saved'),
+  );
+  static const ignored = DataApiShieldDiscoveryOperationsState._(
+    TfArgLiteral('ignored'),
+  );
+
+  static const List<DataApiShieldDiscoveryOperationsState> values = [
+    review,
+    saved,
+    ignored,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_api_shield_discovery_operations`.
 ///
 /// Accepted Permissions
@@ -19,14 +133,14 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
   DataCloudflareApiShieldDiscoveryOperations(
     super.localName, {
     TfArg<bool>? diff,
-    TfArg<String>? direction,
+    DataApiShieldDiscoveryOperationsDirection? direction,
     TfArg<String>? endpoint,
     TfArg<List<String>>? host,
     TfArg<num>? maxItems,
     TfArg<List<String>>? method,
-    TfArg<String>? order,
-    TfArg<String>? origin,
-    TfArg<String>? state,
+    DataApiShieldDiscoveryOperationsOrder? order,
+    DataApiShieldDiscoveryOperationsOrigin? origin,
+    DataApiShieldDiscoveryOperationsState? state,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

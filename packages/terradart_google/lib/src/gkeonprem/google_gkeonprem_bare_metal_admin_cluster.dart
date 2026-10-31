@@ -135,7 +135,7 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? operatingSystem;
+  final GkeonpremBareMetalAdminClusterOperatingSystem? operatingSystem;
 
   final List<GkeonpremBareMetalAdminClusterNodeConfigs>? nodeConfigs;
 
@@ -149,6 +149,26 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfig {
       'node_configs': [for (final e in nodeConfigs!) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
   };
+}
+
+/// `operating_system` — derived from the provider schema description.
+extension type const GkeonpremBareMetalAdminClusterOperatingSystem._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeonpremBareMetalAdminClusterOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalAdminClusterOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalAdminClusterOperatingSystem.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const linux = GkeonpremBareMetalAdminClusterOperatingSystem._(
+    TfArgLiteral('LINUX'),
+  );
+
+  static const List<GkeonpremBareMetalAdminClusterOperatingSystem> values = [
+    linux,
+  ];
 }
 
 /// Typed helper for the `control_plane.control_plane_node_pool_config.node_pool_config.node_configs` block of
@@ -362,7 +382,7 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConf
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? operatingSystem;
+  final GkeonpremBareMetalAdminClusterOperatingSystem? operatingSystem;
 
   final GkeonpremBareMetalAdminClusterKubeletConfig? kubeletConfig;
 
@@ -415,7 +435,7 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfigTaints {
     this.value,
   });
 
-  final TfArg<String>? effect;
+  final GkeonpremBareMetalAdminClusterTaintsEffect? effect;
 
   final TfArg<String>? key;
 
@@ -427,6 +447,34 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfigTaints {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
+}
+
+/// `effect` — derived from the provider schema description.
+extension type const GkeonpremBareMetalAdminClusterTaintsEffect._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeonpremBareMetalAdminClusterTaintsEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalAdminClusterTaintsEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalAdminClusterTaintsEffect.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noSchedule = GkeonpremBareMetalAdminClusterTaintsEffect._(
+    TfArgLiteral('NO_SCHEDULE'),
+  );
+  static const preferNoSchedule = GkeonpremBareMetalAdminClusterTaintsEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = GkeonpremBareMetalAdminClusterTaintsEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<GkeonpremBareMetalAdminClusterTaintsEffect> values = [
+    noSchedule,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Typed helper for the `load_balancer.manual_lb_config` block of

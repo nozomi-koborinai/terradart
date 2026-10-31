@@ -81,7 +81,7 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   AwsPrometheusScraperLoggingConfiguration(
     super.localName, {
     TfArg<String>? region,
-    List<PrometheusScraperLoggingConfigurationScraperComponents>?
+    EnumList<PrometheusScraperLoggingConfigurationScraperComponents>?
     scraperComponents,
     required TfArg<String> scraperId,
     List<PrometheusScraperLoggingConfigurationLoggingDestination>?
@@ -94,10 +94,7 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'region': ?region,
-           if (scraperComponents != null)
-             'scraper_components': TfArg.literal([
-               for (final e in scraperComponents) e.toTfJson(),
-             ]),
+           'scraper_components': ?scraperComponents,
            'scraper_id': scraperId,
            if (loggingDestination != null)
              'logging_destination': TfArg.literal([

@@ -4,3 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+typeNames:
+  site_config.auto_heal_setting.action: WindowsWebAppAction
+
+sealedNames:
+  "auth_settings_v2.active_directory_v2.client_secret_certificate_thumbprint, auth_settings_v2.active_directory_v2.client_secret_setting_name": client_credential

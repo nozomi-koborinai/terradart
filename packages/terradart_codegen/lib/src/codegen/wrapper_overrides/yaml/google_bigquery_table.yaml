@@ -1,9 +1,34 @@
+enumValues:
+  external_data_configuration.bigtable_options.column_family.column.type:
+    - "BYTES"
+    - "STRING"
+    - "INTEGER"
+    - "FLOAT"
+    - "BOOLEAN"
+    - "JSON"
+  external_data_configuration.bigtable_options.column_family.column.encoding:
+    - "TEXT"
+    - "BINARY"
+  external_data_configuration.bigtable_options.column_family.type:
+    - "BYTES"
+    - "STRING"
+    - "INTEGER"
+    - "FLOAT"
+    - "BOOLEAN"
+    - "JSON"
+  external_data_configuration.bigtable_options.column_family.encoding:
+    - "TEXT"
+    - "BINARY"
+
 outputDir: bigquery
 
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+
+typeNames:
+  external_data_configuration.csv_options.encoding: BigqueryTableEncoding
 
 curatedDoc: |-
   /// Required identity:

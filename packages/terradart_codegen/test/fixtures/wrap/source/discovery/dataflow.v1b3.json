@@ -1,0 +1,26 @@
+{
+  "name": "dataflow",
+  "version": "v1b3",
+  "revision": "20261022",
+  "sourceUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3",
+  "schemas": {
+    "RuntimeEnvironment": {
+      "properties": {
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
+          ]
+        },
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ]
+        }
+      }
+    }
+  }
+}

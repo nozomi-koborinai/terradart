@@ -65,7 +65,7 @@ final class AwsRedshiftLogging extends Resource {
     RefTo<AwsS3Bucket>? bucketName,
     required TfArg<String> clusterIdentifier,
     RedshiftLoggingLogDestinationType? logDestinationType,
-    List<RedshiftLoggingLogExports>? logExports,
+    EnumList<RedshiftLoggingLogExports>? logExports,
     TfArg<String>? region,
     TfArg<String>? s3KeyPrefix,
     super.lifecycle,
@@ -78,10 +78,7 @@ final class AwsRedshiftLogging extends Resource {
            'bucket_name': ?bucketName?.encodeAs('id'),
            'cluster_identifier': clusterIdentifier,
            'log_destination_type': ?logDestinationType,
-           if (logExports != null)
-             'log_exports': TfArg.literal([
-               for (final e in logExports) e.toTfJson(),
-             ]),
+           'log_exports': ?logExports,
            'region': ?region,
            's3_key_prefix': ?s3KeyPrefix,
          },

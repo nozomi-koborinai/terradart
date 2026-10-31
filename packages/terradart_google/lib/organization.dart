@@ -16,10 +16,14 @@ export 'src/data/google_organization_iam_policy.dart'
     show DataGoogleOrganizationIamPolicy;
 export 'src/data/google_organizations.dart' show DataGoogleOrganizations;
 export 'src/organization/google_org_policy_custom_constraint.dart'
-    show GoogleOrgPolicyCustomConstraint, OrgPolicyCustomConstraintActionType;
+    show
+        GoogleOrgPolicyCustomConstraint,
+        OrgPolicyCustomConstraintActionType,
+        OrgPolicyCustomConstraintMethodTypes;
 export 'src/organization/google_org_policy_policy.dart'
     show
         GoogleOrgPolicyPolicy,
+        OrgPolicyPolicyAllowAll,
         OrgPolicyPolicyCondition,
         OrgPolicyPolicyDryRunSpec,
         OrgPolicyPolicyRules,
@@ -28,11 +32,14 @@ export 'src/organization/google_org_policy_policy.dart'
 export 'src/organization/google_organization_access_approval_settings.dart'
     show
         GoogleOrganizationAccessApprovalSettings,
-        OrganizationAccessApprovalSettingsEnrolledServices;
+        OrganizationAccessApprovalSettingsCloudProduct,
+        OrganizationAccessApprovalSettingsEnrolledServices,
+        OrganizationAccessApprovalSettingsEnrollmentLevel;
 export 'src/organization/google_organization_iam_audit_config.dart'
     show
         GoogleOrganizationIamAuditConfig,
-        OrganizationIamAuditConfigAuditLogConfig;
+        OrganizationIamAuditConfigAuditLogConfig,
+        OrganizationIamAuditConfigLogType;
 export 'src/organization/google_organization_iam_binding.dart'
     show GoogleOrganizationIamBinding, OrganizationIamBindingCondition;
 export 'src/organization/google_organization_iam_custom_role.dart'

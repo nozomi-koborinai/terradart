@@ -20,14 +20,15 @@ final class GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration 
 
   final TfArg<num> fromPort;
 
-  final List<GlobalacceleratorCustomRoutingEndpointGroupProtocols> protocols;
+  final EnumList<GlobalacceleratorCustomRoutingEndpointGroupProtocols>
+  protocols;
 
   final TfArg<num> toPort;
 
   @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'to_port': toPort.toTfJson(),
   };
 }

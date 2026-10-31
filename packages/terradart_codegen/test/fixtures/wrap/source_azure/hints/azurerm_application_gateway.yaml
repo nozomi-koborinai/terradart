@@ -3,12 +3,22 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: backend
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Tcp"
+          - "Tls"
   - api_name: backend_http_settings
     properties:
       - api_name: cookie_based_affinity
         enum_values:
           - "Disabled"
           - "Enabled"
+      - api_name: protocol
+        enum_values:
+          - "Http"
+          - "Https"
   - api_name: custom_error_configuration
     properties:
       - api_name: status_code
@@ -43,6 +53,16 @@ properties:
               - "HttpStatus405"
               - "HttpStatus404"
               - "HttpStatus403"
+      - api_name: protocol
+        enum_values:
+          - "Http"
+          - "Https"
+  - api_name: listener
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Tcp"
+          - "Tls"
   - api_name: private_link_configuration
     properties:
       - api_name: ip_configuration
@@ -102,12 +122,113 @@ properties:
           - "Standard_v2"
           - "WAF"
           - "WAF_v2"
+  - api_name: ssl_policy
+    properties:
+      - api_name: cipher_suites
+        enum_values:
+          - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA"
+          - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
+          - "TLS_DHE_DSS_WITH_AES_256_CBC_SHA"
+          - "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256"
+          - "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
+          - "TLS_DHE_RSA_WITH_AES_128_CBC_SHA"
+          - "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
+          - "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
+          - "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"
+          - "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA"
+          - "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
+          - "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+          - "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"
+          - "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384"
+          - "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+          - "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
+          - "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
+          - "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+          - "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"
+          - "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"
+          - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+          - "TLS_RSA_WITH_AES_128_CBC_SHA"
+          - "TLS_RSA_WITH_AES_128_CBC_SHA256"
+          - "TLS_RSA_WITH_AES_128_GCM_SHA256"
+          - "TLS_RSA_WITH_AES_256_CBC_SHA"
+          - "TLS_RSA_WITH_AES_256_CBC_SHA256"
+          - "TLS_RSA_WITH_AES_256_GCM_SHA384"
+          - "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
+      - api_name: disabled_protocols
+        enum_values:
+          - "TLSv1_1"
+          - "TLSv1_3"
+          - "TLSv1_2"
+          - "TLSv1_0"
+      - api_name: min_protocol_version
+        enum_values:
+          - "TLSv1_1"
+          - "TLSv1_3"
+          - "TLSv1_2"
+          - "TLSv1_0"
+      - api_name: policy_type
+        enum_values:
+          - "Custom"
+          - "CustomV2"
+          - "Predefined"
   - api_name: ssl_profile
     properties:
       - api_name: client_authentication_mode
         enum_values:
           - "Passthrough"
           - "Strict"
+      - api_name: ssl_policy
+        properties:
+          - api_name: cipher_suites
+            enum_values:
+              - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA"
+              - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
+              - "TLS_DHE_DSS_WITH_AES_256_CBC_SHA"
+              - "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256"
+              - "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
+              - "TLS_DHE_RSA_WITH_AES_128_CBC_SHA"
+              - "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
+              - "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
+              - "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"
+              - "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA"
+              - "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
+              - "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+              - "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"
+              - "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384"
+              - "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+              - "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
+              - "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
+              - "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+              - "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"
+              - "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"
+              - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+              - "TLS_RSA_WITH_AES_128_CBC_SHA"
+              - "TLS_RSA_WITH_AES_128_CBC_SHA256"
+              - "TLS_RSA_WITH_AES_128_GCM_SHA256"
+              - "TLS_RSA_WITH_AES_256_CBC_SHA"
+              - "TLS_RSA_WITH_AES_256_CBC_SHA256"
+              - "TLS_RSA_WITH_AES_256_GCM_SHA384"
+              - "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
+          - api_name: disabled_protocols
+            enum_values:
+              - "TLSv1_1"
+              - "TLSv1_3"
+              - "TLSv1_2"
+              - "TLSv1_0"
+          - api_name: min_protocol_version
+            enum_values:
+              - "TLSv1_1"
+              - "TLSv1_3"
+              - "TLSv1_2"
+              - "TLSv1_0"
+          - api_name: policy_type
+            enum_values:
+              - "Custom"
+              - "CustomV2"
+              - "Predefined"
+      - api_name: verify_client_certificate_revocation
+        enum_values:
+          - "OCSP"
   - api_name: waf_configuration
     properties:
       - api_name: exclusion

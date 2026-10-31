@@ -1,0 +1,110 @@
+{
+  "name": "hypercomputecluster",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://hypercomputecluster.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Cluster": {
+      "properties": {
+        "computeResources": {
+          "additionalProperties": {
+            "$ref": "ComputeResource"
+          }
+        },
+        "storageResources": {
+          "additionalProperties": {
+            "$ref": "StorageResource"
+          }
+        }
+      }
+    },
+    "ComputeResource": {
+      "properties": {
+        "config": {
+          "$ref": "ComputeResourceConfig"
+        }
+      }
+    },
+    "ComputeResourceConfig": {
+      "properties": {
+        "newSpotInstances": {
+          "$ref": "NewSpotInstancesConfig"
+        }
+      }
+    },
+    "GcsAutoclassConfig": {
+      "properties": {
+        "terminalStorageClass": {
+          "enum": [
+            "TERMINAL_STORAGE_CLASS_UNSPECIFIED",
+            "NEARLINE",
+            "ARCHIVE"
+          ]
+        }
+      }
+    },
+    "NewBucketConfig": {
+      "properties": {
+        "autoclass": {
+          "$ref": "GcsAutoclassConfig"
+        },
+        "storageClass": {
+          "enum": [
+            "STORAGE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "NEARLINE",
+            "COLDLINE",
+            "ARCHIVE",
+            "RAPID"
+          ]
+        }
+      }
+    },
+    "NewFilestoreConfig": {
+      "properties": {
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "protocol": {
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "NFSV3",
+            "NFSV41"
+          ]
+        }
+      }
+    },
+    "NewSpotInstancesConfig": {
+      "properties": {
+        "terminationAction": {
+          "enum": [
+            "TERMINATION_ACTION_UNSPECIFIED",
+            "STOP",
+            "DELETE"
+          ]
+        }
+      }
+    },
+    "StorageResource": {
+      "properties": {
+        "config": {
+          "$ref": "StorageResourceConfig"
+        }
+      }
+    },
+    "StorageResourceConfig": {
+      "properties": {
+        "newBucket": {
+          "$ref": "NewBucketConfig"
+        },
+        "newFilestore": {
+          "$ref": "NewFilestoreConfig"
+        }
+      }
+    }
+  }
+}

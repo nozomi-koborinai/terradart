@@ -1,0 +1,141 @@
+{
+  "name": "looker",
+  "version": "v1",
+  "revision": "20261020",
+  "sourceUrl": "https://looker.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CustomDomain": {
+      "properties": {
+        "state": {
+          "enum": [
+            "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
+            "UNVERIFIED",
+            "VERIFIED",
+            "MODIFYING",
+            "AVAILABLE",
+            "UNAVAILABLE",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "EncryptionConfig": {
+      "properties": {
+        "kmsKeyState": {
+          "enum": [
+            "KMS_KEY_STATE_UNSPECIFIED",
+            "VALID",
+            "REVOKED"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "pscConfig": {
+          "$ref": "PscConfig"
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "softDeleteReason": {
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "EXPORTING",
+            "IMPORTING"
+          ]
+        },
+        "platformEdition": {
+          "enum": [
+            "PLATFORM_EDITION_UNSPECIFIED",
+            "LOOKER_CORE_TRIAL",
+            "LOOKER_CORE_STANDARD",
+            "LOOKER_CORE_STANDARD_ANNUAL",
+            "LOOKER_CORE_ENTERPRISE_ANNUAL",
+            "LOOKER_CORE_EMBED_ANNUAL",
+            "LOOKER_CORE_NONPROD_STANDARD_ANNUAL",
+            "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL",
+            "LOOKER_CORE_NONPROD_EMBED_ANNUAL",
+            "LOOKER_CORE_TRIAL_STANDARD",
+            "LOOKER_CORE_TRIAL_ENTERPRISE",
+            "LOOKER_CORE_TRIAL_EMBED"
+          ]
+        },
+        "customDomain": {
+          "$ref": "CustomDomain"
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
+          ]
+        }
+      }
+    },
+    "MaintenanceWindow": {
+      "properties": {
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "PscConfig": {
+      "properties": {
+        "serviceAttachments": {
+          "items": {
+            "$ref": "ServiceAttachment"
+          }
+        }
+      }
+    },
+    "ServiceAttachment": {
+      "properties": {
+        "connectionStatus": {
+          "enum": [
+            "UNKNOWN",
+            "ACCEPTED",
+            "PENDING",
+            "REJECTED",
+            "NEEDS_ATTENTION",
+            "CLOSED"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -7,3 +7,11 @@ properties:
     enum_values:
       - "EncryptionAtRestWithCustomerManagedKey"
       - "EncryptionAtRestWithPlatformKey"
+  - api_name: network_rule
+    properties:
+      - api_name: action
+        enum_values:
+          - "Allow"
+  - api_name: protocol_type
+    enum_values:
+      - "Iscsi"

@@ -10,6 +10,7 @@ export 'src/app/google_app_engine_application.dart'
     show
         AppEngineApplicationFeatureSettings,
         AppEngineApplicationIap,
+        AppEngineApplicationSslPolicy,
         AppEngineDatabaseType,
         AppEngineServingStatus,
         GoogleAppEngineApplication;
@@ -38,6 +39,8 @@ export 'src/app/google_app_engine_flexible_app_version.dart'
         AppEngineFlexibleAppVersionFiles,
         AppEngineFlexibleAppVersionFlexibleRuntimeSettings,
         AppEngineFlexibleAppVersionHandlers,
+        AppEngineFlexibleAppVersionInboundServices,
+        AppEngineFlexibleAppVersionInstanceClass,
         AppEngineFlexibleAppVersionLivenessCheck,
         AppEngineFlexibleAppVersionLogin,
         AppEngineFlexibleAppVersionManualScalingMode,
@@ -67,15 +70,19 @@ export 'src/app/google_app_engine_service_split_traffic.dart'
         GoogleAppEngineServiceSplitTraffic;
 export 'src/app/google_app_engine_standard_app_version.dart'
     show
+        AppEngineStandardAppVersionAppEngineBundledServices,
         AppEngineStandardAppVersionAuthFailAction,
         AppEngineStandardAppVersionAutomaticScaling,
         AppEngineStandardAppVersionAutomaticScalingChoice,
         AppEngineStandardAppVersionBasicScaling,
         AppEngineStandardAppVersionBasicScalingChoice,
         AppEngineStandardAppVersionDeployment,
+        AppEngineStandardAppVersionEgressSetting,
         AppEngineStandardAppVersionEntrypoint,
         AppEngineStandardAppVersionFiles,
         AppEngineStandardAppVersionHandlers,
+        AppEngineStandardAppVersionInboundServices,
+        AppEngineStandardAppVersionInstanceClass,
         AppEngineStandardAppVersionLegacyServices,
         AppEngineStandardAppVersionLegacyServicesAppEngineApis,
         AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices,

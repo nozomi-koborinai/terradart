@@ -13,10 +13,26 @@ const Set<String> _googleDialogflowFulfillmentSensitive = <String>{};
 final class DialogflowFulfillmentFeatures {
   const DialogflowFulfillmentFeatures({required this.type});
 
-  final TfArg<String> type;
+  final DialogflowFulfillmentType type;
 
   @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DialogflowFulfillmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowFulfillmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowFulfillmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowFulfillmentType.arg(TfArg<String> arg) : this._(arg);
+
+  static const smalltalk = DialogflowFulfillmentType._(
+    TfArgLiteral('SMALLTALK'),
+  );
+
+  static const List<DialogflowFulfillmentType> values = [smalltalk];
 }
 
 /// Typed helper for the `generic_web_service` block of

@@ -387,30 +387,31 @@ final class ZeroTrustGatewaySettingsHostSelector {
 final class ZeroTrustGatewaySettingsInspection {
   const ZeroTrustGatewaySettingsInspection({this.mode});
 
-  final ZeroTrustGatewaySettingsSettingsMode? mode;
+  final ZeroTrustGatewaySettingsProxyInspectionMode? mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-extension type const ZeroTrustGatewaySettingsSettingsMode._(TfArg<String> _)
-    implements TfArg<String> {
-  ZeroTrustGatewaySettingsSettingsMode.variable(String name)
+extension type const ZeroTrustGatewaySettingsProxyInspectionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustGatewaySettingsProxyInspectionMode.variable(String name)
     : this._(TfArg.variable(name));
-  ZeroTrustGatewaySettingsSettingsMode.expression(String template)
+  ZeroTrustGatewaySettingsProxyInspectionMode.expression(String template)
     : this._(TfArg.expression(template));
-  const ZeroTrustGatewaySettingsSettingsMode.arg(TfArg<String> arg)
+  const ZeroTrustGatewaySettingsProxyInspectionMode.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const static = ZeroTrustGatewaySettingsSettingsMode._(
+  static const static = ZeroTrustGatewaySettingsProxyInspectionMode._(
     TfArgLiteral('static'),
   );
-  static const dynamic = ZeroTrustGatewaySettingsSettingsMode._(
+  static const dynamic = ZeroTrustGatewaySettingsProxyInspectionMode._(
     TfArgLiteral('dynamic'),
   );
 
-  static const List<ZeroTrustGatewaySettingsSettingsMode> values = [
+  static const List<ZeroTrustGatewaySettingsProxyInspectionMode> values = [
     static,
     dynamic,
   ];

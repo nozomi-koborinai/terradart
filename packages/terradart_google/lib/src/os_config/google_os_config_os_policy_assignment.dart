@@ -125,9 +125,6 @@ extension type const OsConfigOsPolicyAssignmentMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const OsConfigOsPolicyAssignmentMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const modeUnspecified = OsConfigOsPolicyAssignmentMode._(
-    TfArgLiteral('MODE_UNSPECIFIED'),
-  );
   static const validation = OsConfigOsPolicyAssignmentMode._(
     TfArgLiteral('VALIDATION'),
   );
@@ -136,7 +133,6 @@ extension type const OsConfigOsPolicyAssignmentMode._(TfArg<String> _)
   );
 
   static const List<OsConfigOsPolicyAssignmentMode> values = [
-    modeUnspecified,
     validation,
     enforcement,
   ];
@@ -274,9 +270,6 @@ extension type const OsConfigOsPolicyAssignmentInterpreter._(TfArg<String> _)
   const OsConfigOsPolicyAssignmentInterpreter.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const interpreterUnspecified = OsConfigOsPolicyAssignmentInterpreter._(
-    TfArgLiteral('INTERPRETER_UNSPECIFIED'),
-  );
   static const none = OsConfigOsPolicyAssignmentInterpreter._(
     TfArgLiteral('NONE'),
   );
@@ -288,7 +281,6 @@ extension type const OsConfigOsPolicyAssignmentInterpreter._(TfArg<String> _)
   );
 
   static const List<OsConfigOsPolicyAssignmentInterpreter> values = [
-    interpreterUnspecified,
     none,
     shell,
     powershell,
@@ -439,9 +431,6 @@ extension type const OsConfigOsPolicyAssignmentState._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const OsConfigOsPolicyAssignmentState.arg(TfArg<String> arg) : this._(arg);
 
-  static const desiredStateUnspecified = OsConfigOsPolicyAssignmentState._(
-    TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-  );
   static const present = OsConfigOsPolicyAssignmentState._(
     TfArgLiteral('PRESENT'),
   );
@@ -453,7 +442,6 @@ extension type const OsConfigOsPolicyAssignmentState._(TfArg<String> _)
   );
 
   static const List<OsConfigOsPolicyAssignmentState> values = [
-    desiredStateUnspecified,
     present,
     absent,
     contentsMatch,
@@ -514,10 +502,6 @@ extension type const OsConfigOsPolicyAssignmentDesiredState._(TfArg<String> _)
   const OsConfigOsPolicyAssignmentDesiredState.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const desiredStateUnspecified =
-      OsConfigOsPolicyAssignmentDesiredState._(
-        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-      );
   static const installed = OsConfigOsPolicyAssignmentDesiredState._(
     TfArgLiteral('INSTALLED'),
   );
@@ -526,7 +510,6 @@ extension type const OsConfigOsPolicyAssignmentDesiredState._(TfArg<String> _)
   );
 
   static const List<OsConfigOsPolicyAssignmentDesiredState> values = [
-    desiredStateUnspecified,
     installed,
     removed,
   ];
@@ -730,9 +713,6 @@ extension type const OsConfigOsPolicyAssignmentArchiveType._(TfArg<String> _)
   const OsConfigOsPolicyAssignmentArchiveType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const archiveTypeUnspecified = OsConfigOsPolicyAssignmentArchiveType._(
-    TfArgLiteral('ARCHIVE_TYPE_UNSPECIFIED'),
-  );
   static const deb = OsConfigOsPolicyAssignmentArchiveType._(
     TfArgLiteral('DEB'),
   );
@@ -741,7 +721,6 @@ extension type const OsConfigOsPolicyAssignmentArchiveType._(TfArg<String> _)
   );
 
   static const List<OsConfigOsPolicyAssignmentArchiveType> values = [
-    archiveTypeUnspecified,
     deb,
     debSrc,
   ];

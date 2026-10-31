@@ -7,6 +7,79 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_shares`.
 const Set<String> _cloudflareSharesSensitive = <String>{};
 
+/// Data Shares enum for `direction`.
+extension type const DataSharesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesDirection.variable(String name) : this._(TfArg.variable(name));
+  DataSharesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataSharesDirection._(TfArgLiteral('asc'));
+  static const desc = DataSharesDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSharesDirection> values = [asc, desc];
+}
+
+/// Data Shares enum for `kind`.
+extension type const DataSharesKind._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesKind.variable(String name) : this._(TfArg.variable(name));
+  DataSharesKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const sent = DataSharesKind._(TfArgLiteral('sent'));
+  static const received = DataSharesKind._(TfArgLiteral('received'));
+
+  static const List<DataSharesKind> values = [sent, received];
+}
+
+/// Data Shares enum for `order`.
+extension type const DataSharesOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesOrder.variable(String name) : this._(TfArg.variable(name));
+  DataSharesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataSharesOrder._(TfArgLiteral('name'));
+  static const created = DataSharesOrder._(TfArgLiteral('created'));
+
+  static const List<DataSharesOrder> values = [name, created];
+}
+
+/// Data Shares enum for `status`.
+extension type const DataSharesStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesStatus.variable(String name) : this._(TfArg.variable(name));
+  DataSharesStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = DataSharesStatus._(TfArgLiteral('active'));
+  static const deleting = DataSharesStatus._(TfArgLiteral('deleting'));
+  static const deleted = DataSharesStatus._(TfArgLiteral('deleted'));
+
+  static const List<DataSharesStatus> values = [active, deleting, deleted];
+}
+
+/// Data Shares Target enum for `target_type`.
+extension type const DataSharesTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesTargetType.variable(String name) : this._(TfArg.variable(name));
+  DataSharesTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesTargetType.arg(TfArg<String> arg) : this._(arg);
+
+  static const account = DataSharesTargetType._(TfArgLiteral('account'));
+  static const organization = DataSharesTargetType._(
+    TfArgLiteral('organization'),
+  );
+
+  static const List<DataSharesTargetType> values = [account, organization];
+}
+
 /// Factory wrapper for `cloudflare_shares`.
 final class DataCloudflareShares extends Data {
   static const String tfType = 'cloudflare_shares';
@@ -14,16 +87,16 @@ final class DataCloudflareShares extends Data {
   DataCloudflareShares(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataSharesDirection? direction,
     TfArg<bool>? includeRecipientCounts,
     TfArg<bool>? includeResources,
-    TfArg<String>? kind,
+    DataSharesKind? kind,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataSharesOrder? order,
     TfArg<List<String>>? resourceTypes,
-    TfArg<String>? status,
+    DataSharesStatus? status,
     TfArg<List<String>>? tag,
-    TfArg<String>? targetType,
+    DataSharesTargetType? targetType,
     super.provider,
     super.timeouts,
   }) : super(

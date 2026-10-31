@@ -23,6 +23,16 @@ properties:
     enum_values:
       - "LicenseIncluded"
       - "BasePrice"
+  - api_name: minimum_tls_version
+    enum_values:
+      - "1.2"
+  - api_name: proxy_override
+    enum_values:
+      - "Redirect"
+      - "Proxy"
+  - api_name: service_principal_type
+    enum_values:
+      - "SystemAssigned"
   - api_name: sku_name
     enum_values:
       - "BC_Gen4"
@@ -33,3 +43,9 @@ properties:
       - "GP_Gen5"
       - "GP_Gen8IH"
       - "GP_Gen8IM"
+  - api_name: storage_account_type
+    enum_values:
+      - "GRS"
+      - "LRS"
+      - "ZRS"
+      - "GZRS"

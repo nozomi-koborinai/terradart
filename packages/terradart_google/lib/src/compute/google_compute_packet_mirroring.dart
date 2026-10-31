@@ -189,7 +189,7 @@ final class GoogleComputePacketMirroring extends Resource {
     required ComputePacketMirroringMirroredResources mirroredResources,
     ComputePacketMirroringFilter? filter,
     TfArg<String>? description,
-    TfArg<String>? enable,
+    ComputePacketMirroringEnable? enable,
     TfArg<num>? priority,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,

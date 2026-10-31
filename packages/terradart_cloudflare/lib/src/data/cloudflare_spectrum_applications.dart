@@ -7,6 +7,51 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_spectrum_applications`.
 const Set<String> _cloudflareSpectrumApplicationsSensitive = <String>{};
 
+/// Data Spectrum Applications enum for `direction`.
+extension type const DataSpectrumApplicationsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSpectrumApplicationsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSpectrumApplicationsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSpectrumApplicationsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataSpectrumApplicationsDirection._(TfArgLiteral('asc'));
+  static const desc = DataSpectrumApplicationsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSpectrumApplicationsDirection> values = [asc, desc];
+}
+
+/// Data Spectrum Applications enum for `order`.
+extension type const DataSpectrumApplicationsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSpectrumApplicationsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSpectrumApplicationsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSpectrumApplicationsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const protocol = DataSpectrumApplicationsOrder._(
+    TfArgLiteral('protocol'),
+  );
+  static const appId = DataSpectrumApplicationsOrder._(TfArgLiteral('app_id'));
+  static const createdOn = DataSpectrumApplicationsOrder._(
+    TfArgLiteral('created_on'),
+  );
+  static const modifiedOn = DataSpectrumApplicationsOrder._(
+    TfArgLiteral('modified_on'),
+  );
+  static const dns = DataSpectrumApplicationsOrder._(TfArgLiteral('dns'));
+
+  static const List<DataSpectrumApplicationsOrder> values = [
+    protocol,
+    appId,
+    createdOn,
+    modifiedOn,
+    dns,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_spectrum_applications`.
 ///
 /// Accepted Permissions
@@ -17,9 +62,9 @@ final class DataCloudflareSpectrumApplications extends Data {
 
   DataCloudflareSpectrumApplications(
     super.localName, {
-    TfArg<String>? direction,
+    DataSpectrumApplicationsDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataSpectrumApplicationsOrder? order,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

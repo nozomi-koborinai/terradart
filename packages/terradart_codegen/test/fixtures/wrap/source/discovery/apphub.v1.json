@@ -1,0 +1,188 @@
+{
+  "name": "apphub",
+  "version": "v1",
+  "revision": "20261019",
+  "sourceUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Application": {
+      "properties": {
+        "applicationType": {
+          "$ref": "ApplicationType"
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "scope": {
+          "$ref": "Scope"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "ApplicationType": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AI_APPLICATION"
+          ]
+        }
+      }
+    },
+    "Attributes": {
+      "properties": {
+        "environment": {
+          "$ref": "Environment"
+        },
+        "criticality": {
+          "$ref": "Criticality"
+        }
+      }
+    },
+    "Boundary": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL",
+            "MANAGED_AUTOMATIC"
+          ]
+        }
+      }
+    },
+    "Criticality": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        }
+      }
+    },
+    "Environment": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ]
+        }
+      }
+    },
+    "FunctionalType": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AGENT",
+            "MCP_SERVER",
+            "ENDPOINT"
+          ]
+        }
+      }
+    },
+    "RegistrationType": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EXCLUSIVE",
+            "SHARED"
+          ]
+        }
+      }
+    },
+    "Scope": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "REGIONAL",
+            "GLOBAL"
+          ]
+        }
+      }
+    },
+    "Service": {
+      "properties": {
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "DETACHED"
+          ]
+        },
+        "serviceProperties": {
+          "$ref": "ServiceProperties"
+        }
+      }
+    },
+    "ServiceProjectAttachment": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "ServiceProperties": {
+      "properties": {
+        "registrationType": {
+          "$ref": "RegistrationType"
+        },
+        "functionalType": {
+          "$ref": "FunctionalType"
+        }
+      }
+    },
+    "Workload": {
+      "properties": {
+        "workloadProperties": {
+          "$ref": "WorkloadProperties"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "DETACHED"
+          ]
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        }
+      }
+    },
+    "WorkloadProperties": {
+      "properties": {
+        "functionalType": {
+          "$ref": "FunctionalType"
+        }
+      }
+    }
+  }
+}

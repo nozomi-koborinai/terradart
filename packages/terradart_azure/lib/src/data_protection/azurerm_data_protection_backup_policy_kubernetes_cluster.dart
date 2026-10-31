@@ -36,7 +36,7 @@ final class DataProtectionBackupPolicyKubernetesClusterLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyKubernetesClusterDataStoreType dataStoreType;
 
   final TfArg<String> duration;
 
@@ -45,6 +45,32 @@ final class DataProtectionBackupPolicyKubernetesClusterLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyKubernetesClusterDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyKubernetesClusterDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyKubernetesClusterDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const operationalstore =
+      DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+        TfArgLiteral('OperationalStore'),
+      );
+  static const vaultstore =
+      DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<DataProtectionBackupPolicyKubernetesClusterDataStoreType>
+  values = [operationalstore, vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of
@@ -96,7 +122,7 @@ final class DataProtectionBackupPolicyKubernetesClusterCriteria {
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
@@ -105,8 +131,7 @@ final class DataProtectionBackupPolicyKubernetesClusterCriteria {
     'days_of_week': ?daysOfWeek?.toTfJson(),
     'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

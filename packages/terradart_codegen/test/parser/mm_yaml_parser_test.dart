@@ -22,6 +22,62 @@ void main() {
       expect(result.fieldOverrides['project']?.forceNew ?? false, isFalse);
     });
 
+    test('a name snake-cases as the provider generator does', () {
+      final result = const MmYamlParser().parseString('''
+name: Rule
+properties:
+  - name: 'IPProtocol'
+    type: Enum
+    enum_values: [TCP, UDP]
+  - name: 'enableIPv6Route'
+    type: Enum
+    enum_values: [ON]
+  - name: 'v1Mode'
+    type: Enum
+    enum_values: [A]
+''');
+      expect(result.enumValuesByPath.keys, [
+        'ip_protocol',
+        'enable_i_pv6_route',
+        'v1_mode',
+      ]);
+    });
+
+    test('constraints key by the Terraform name, never api_name', () {
+      final result = const MmYamlParser().parseString('''
+name: Job
+properties:
+  - name: 'state'
+    type: Enum
+    output: true
+    enum_values: [DRAFT, RUNNING, FAILED]
+  - name: 'desiredState'
+    api_name: state
+    type: Enum
+    enum_values: [RUNNING]
+''');
+      expect(result.fieldOverrides['state']!.enumValues, [
+        'DRAFT',
+        'RUNNING',
+        'FAILED',
+      ]);
+      expect(result.fieldOverrides['desired_state']!.enumValues, ['RUNNING']);
+    });
+
+    test('a hint file keys its properties by api_name alone', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - api_name: configuration
+    properties:
+      - api_name: resource_types
+        enum_values: [A, B]
+''');
+      expect(
+        result.fieldOverrides['configuration.resource_types']!.enumValues,
+        ['A', 'B'],
+      );
+    });
+
     test('validation.regex / minLength / maxLength are surfaced', () {
       final result = const MmYamlParser().parseString(yaml);
       final c = result.fieldOverrides['name']!;
@@ -506,4 +562,71 @@ properties:
       expect(result.fieldOverrides.keys, ['mode']);
     },
   );
+
+  test('enumValuesByPath keys parameters and blocks by Terraform name', () {
+    final result = const MmYamlParser().parseString('''
+parameters:
+  - name: region
+    type: Enum
+    enum_values: [EU, US]
+properties:
+  - name: backend
+    api_name: backends
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: balancingMode
+          type: Enum
+          enum_values: [RATE, UTILIZATION]
+  - name: settings
+    type: NestedObject
+    flatten_object: true
+    properties:
+      - name: tier
+        type: Enum
+        enum_values: [BASIC]
+''');
+    expect(result.enumValuesByPath, {
+      'region': ['EU', 'US'],
+      'backend.balancing_mode': ['RATE', 'UTILIZATION'],
+      'tier': ['BASIC'],
+    });
+  });
+
+  test('Map value_type properties carry enum and REST paths', () {
+    final result = const MmYamlParser().parseString('''
+name: Federation
+api_resource_type_kind: MetastoreFederation
+properties:
+  - name: backendMetastores
+    type: Map
+    key_name: rank
+    value_type:
+      type: NestedObject
+      properties:
+        - name: metastoreType
+          type: Enum
+          enum_values: [BIGQUERY, DATAPROC_METASTORE]
+  - name: settings
+    type: NestedObject
+    flatten_object: true
+    properties:
+      - name: tierName
+        api_name: tier
+        type: String
+''');
+    expect(result.apiResource, 'MetastoreFederation');
+    expect(result.enumValuesByPath, {
+      'backend_metastores.metastore_type': ['BIGQUERY', 'DATAPROC_METASTORE'],
+    });
+    expect(result.restPathsByPath, {
+      'backend_metastores': ['backendMetastores'],
+      'backend_metastores.metastore_type': [
+        'backendMetastores',
+        'metastoreType',
+      ],
+      'tier_name': ['settings', 'tier'],
+    });
+  });
 }

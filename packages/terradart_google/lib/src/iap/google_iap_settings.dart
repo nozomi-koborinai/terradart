@@ -24,7 +24,7 @@ final class IapSettingsAccessSettings {
     this.workforceIdentitySettings,
   });
 
-  final TfArg<List<String>>? identitySources;
+  final EnumList<IapSettingsIdentitySources>? identitySources;
 
   final IapSettingsAllowedDomainsSettings? allowedDomainsSettings;
 
@@ -48,6 +48,24 @@ final class IapSettingsAccessSettings {
     'reauth_settings': ?reauthSettings?.encode(),
     'workforce_identity_settings': ?workforceIdentitySettings?.encode(),
   };
+}
+
+/// `identity_sources` — derived from the provider schema description.
+extension type const IapSettingsIdentitySources._(TfArg<String> _)
+    implements TfArg<String> {
+  IapSettingsIdentitySources.variable(String name)
+    : this._(TfArg.variable(name));
+  IapSettingsIdentitySources.expression(String template)
+    : this._(TfArg.expression(template));
+  const IapSettingsIdentitySources.arg(TfArg<String> arg) : this._(arg);
+
+  static const workforceIdentityFederation = IapSettingsIdentitySources._(
+    TfArgLiteral('WORKFORCE_IDENTITY_FEDERATION'),
+  );
+
+  static const List<IapSettingsIdentitySources> values = [
+    workforceIdentityFederation,
+  ];
 }
 
 /// Typed helper for the `access_settings.allowed_domains_settings` block of
@@ -289,14 +307,13 @@ final class IapSettingsAttributePropagationSettings {
 
   final TfArg<String>? expression;
 
-  final List<IapSettingsOutputCredentials>? outputCredentials;
+  final EnumList<IapSettingsOutputCredentials>? outputCredentials;
 
   @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'expression': ?expression?.toTfJson(),
-    if (outputCredentials != null)
-      'output_credentials': [for (final e in outputCredentials!) e.toTfJson()],
+    'output_credentials': ?outputCredentials?.toTfJson(),
   };
 }
 

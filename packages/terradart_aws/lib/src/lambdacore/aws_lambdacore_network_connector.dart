@@ -39,7 +39,7 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
     required this.subnetIds,
   });
 
-  final List<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>
+  final EnumList<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>
   associatedComputeResourceTypes;
 
   final LambdacoreNetworkConnectorNetworkProtocol? networkProtocol;
@@ -50,9 +50,8 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    'associated_compute_resource_types': [
-      for (final e in associatedComputeResourceTypes) e.toTfJson(),
-    ],
+    'associated_compute_resource_types': associatedComputeResourceTypes
+        .toTfJson(),
     'network_protocol': ?networkProtocol?.toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

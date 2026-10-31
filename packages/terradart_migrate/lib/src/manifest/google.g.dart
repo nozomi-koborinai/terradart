@@ -2705,9 +2705,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AlloydbBackupType',
         ),
         MigrateSlot(
           tfName: 'encryption_config',
@@ -2922,9 +2922,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_version',
           dartName: 'databaseVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AlloydbClusterDatabaseVersion',
         ),
         MigrateSlot(
           tfName: 'etag',
@@ -2950,9 +2950,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subscription_type',
           dartName: 'subscriptionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AlloydbClusterSubscriptionType',
         ),
         MigrateSlot(
           tfName: 'continuous_backup_config',
@@ -3394,9 +3394,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'activation_policy',
           dartName: 'activationPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AlloydbInstanceActivationPolicy',
         ),
         MigrateSlot(
           tfName: 'annotations',
@@ -3408,9 +3408,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'availability_type',
           dartName: 'availabilityType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AlloydbInstanceAvailabilityType',
         ),
         MigrateSlot(
           tfName: 'database_flags',
@@ -4218,9 +4218,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'quota_time_unit',
           dartName: 'quotaTimeUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApigeeApiProductQuotaTimeUnit',
         ),
         MigrateSlot(
           tfName: 'quota_counter_scope',
@@ -5092,9 +5092,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_type',
           dartName: 'resourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApigeeEnvReferencesResourceType',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -5861,9 +5861,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'flow_hook_point',
           dartName: 'flowHookPoint',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApigeeFlowhookFlowHookPoint',
         ),
         MigrateSlot(
           tfName: 'sharedflow',
@@ -5959,9 +5959,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peering_cidr_range',
           dartName: 'peeringCidrRange',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApigeeInstancePeeringCidrRange',
         ),
         MigrateSlot(
           tfName: 'ip_range',
@@ -6417,9 +6417,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sig_alg',
           dartName: 'sigAlg',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApigeeKeystoresAliasesSelfSignedCertSigAlg',
         ),
         MigrateSlot(
           tfName: 'key_size',
@@ -6601,9 +6601,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'billing_type',
           dartName: 'billingType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApigeeOrganizationBillingType',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -7849,9 +7849,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'plugin_category',
           dartName: 'pluginCategory',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApihubPluginCategory',
         ),
         MigrateSlot(
           tfName: 'actions_config',
@@ -8213,9 +8213,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'check_existing_usage',
           dartName: 'checkExistingUsage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApikeysKeyCheckExistingUsage',
         ),
       ],
       getters: <MigrateGetter>[
@@ -8291,9 +8291,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_policy',
           dartName: 'sslPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineApplicationSslPolicy',
         ),
         MigrateSlot(
           tfName: 'feature_settings',
@@ -8650,9 +8650,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_class',
           dartName: 'instanceClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineFlexibleAppVersionInstanceClass',
         ),
         MigrateSlot(
           tfName: '',
@@ -8772,9 +8772,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'inbound_services',
           dartName: 'inboundServices',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AppEngineFlexibleAppVersionInboundServices',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -9079,9 +9080,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_class',
           dartName: 'instanceClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineStandardAppVersionInstanceClass',
         ),
         MigrateSlot(
           tfName: 'env_variables',
@@ -9190,9 +9191,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'inbound_services',
           dartName: 'inboundServices',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AppEngineStandardAppVersionInboundServices',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -10956,9 +10958,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'format',
           dartName: 'format',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ArtifactRegistryRepositoryFormat',
         ),
         MigrateSlot(
           tfName: 'mode',
@@ -14857,9 +14859,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BiglakeDatabaseType',
         ),
         MigrateSlot(
           tfName: 'hive_options',
@@ -17161,9 +17163,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BiglakeTableType',
         ),
         MigrateSlot(
           tfName: 'hive_options',
@@ -17656,9 +17658,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'categories',
           dartName: 'categories',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'BigqueryAnalyticsHubListingCategories',
         ),
         MigrateSlot(
           tfName: 'data_exchange_id',
@@ -24807,9 +24810,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'global_policy_evaluation_mode',
           dartName: 'globalPolicyEvaluationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BinaryAuthorizationPolicyGlobalPolicyEvaluationMode',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -26162,9 +26165,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tool_execution_mode',
           dartName: 'toolExecutionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppToolExecutionMode',
         ),
         MigrateSlot(
           tfName: 'audio_processing_config',
@@ -26950,9 +26953,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'execution_type',
           dartName: 'executionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesToolExecutionType',
         ),
         MigrateSlot(
           tfName: 'timeout',
@@ -27169,9 +27172,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'execution_type',
           dartName: 'executionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesToolsetExecutionType',
         ),
         MigrateSlot(
           tfName: 'open_api_toolset',
@@ -27308,9 +27311,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'big_query_export_package',
           dartName: 'bigQueryExportPackage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleBigQueryExportPackage',
         ),
         MigrateSlot(
           tfName: 'udm_events_settings',
@@ -29048,9 +29051,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFindingsRefinementType',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -29709,9 +29712,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'syntax_type',
           dartName: 'syntaxType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleReferenceListSyntaxType',
         ),
         MigrateSlot(
           tfName: 'entries',
@@ -30103,9 +30106,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'run_frequency',
           dartName: 'runFrequency',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleRuleDeploymentRunFrequency',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -32214,9 +32217,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_key_revocation_action',
           dartName: 'encryptionKeyRevocationAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2InstanceEncryptionKeyRevocationAction',
         ),
         MigrateSlot(
           tfName: 'encryption_key_shutdown_duration',
@@ -32228,9 +32231,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ingress',
           dartName: 'ingress',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2InstanceIngress',
         ),
         MigrateSlot(
           tfName: 'invoker_iam_disabled',
@@ -32249,9 +32252,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'launch_stage',
           dartName: 'launchStage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2InstanceLaunchStage',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -32277,9 +32280,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restart_policy',
           dartName: 'restartPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2InstanceRestartPolicy',
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -35143,9 +35146,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'severity',
           dartName: 'severity',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudSecurityComplianceCloudControlSeverity',
         ),
         MigrateSlot(
           tfName: 'supported_cloud_providers',
@@ -39462,9 +39465,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'docker_registry',
           dartName: 'dockerRegistry',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudfunctionsFunctionDockerRegistry',
         ),
         MigrateSlot(
           tfName: 'docker_repository',
@@ -39504,9 +39507,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ingress_settings',
           dartName: 'ingressSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudfunctionsFunctionIngressSettings',
         ),
         MigrateSlot(
           tfName: 'kms_key_name',
@@ -39611,9 +39614,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_connector_egress_settings',
           dartName: 'vpcConnectorEgressSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudfunctionsFunctionVpcConnectorEgressSettings',
         ),
         MigrateSlot(
           tfName: 'automatic_update_policy',
@@ -41739,9 +41742,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'purpose',
           dartName: 'purpose',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeAddressPurpose',
         ),
         MigrateSlot(
           tfName: 'network_tier',
@@ -42075,16 +42078,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeAttachedDiskMode',
         ),
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeAttachedDiskInterface',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -48164,9 +48167,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_status',
           dartName: 'desiredStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceDesiredStatus',
         ),
         MigrateSlot(
           tfName: 'min_cpu_platform',
@@ -48192,9 +48195,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'boot_disk',
@@ -48820,9 +48823,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_status',
           dartName: 'desiredStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateDesiredStatus',
         ),
         MigrateSlot(
           tfName: 'enable_display',
@@ -48841,9 +48844,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'min_cpu_platform',
@@ -50535,9 +50538,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'disk',
@@ -51633,9 +51636,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'requested_features',
           dartName: 'requestedFeatures',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeInterconnectRequestedFeatures',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -51881,9 +51885,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bandwidth',
           dartName: 'bandwidth',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInterconnectAttachmentBandwidth',
         ),
         MigrateSlot(
           tfName: 'vlan_tag8021q',
@@ -51895,9 +51899,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mtu',
           dartName: 'mtu',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInterconnectAttachmentMtu',
         ),
         MigrateSlot(
           tfName: 'encryption',
@@ -51916,9 +51920,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'edge_availability_domain',
           dartName: 'edgeAvailabilityDomain',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInterconnectAttachmentEdgeAvailabilityDomain',
         ),
         MigrateSlot(
           tfName: 'candidate_subnets',
@@ -53666,9 +53670,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_type',
           dartName: 'policyType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeNetworkFirewallPolicyType',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -54101,9 +54105,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_type',
           dartName: 'targetType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeNetworkFirewallPolicyRuleTargetType',
         ),
         MigrateSlot(
           tfName: 'target_forwarding_rules',
@@ -54726,9 +54730,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'maintenance_policy',
           dartName: 'maintenancePolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeNodeGroupMaintenancePolicy',
         ),
         MigrateSlot(
           tfName: 'maintenance_window',
@@ -55022,9 +55026,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyType',
         ),
         MigrateSlot(
           tfName: 'advanced_options_config',
@@ -55326,9 +55330,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enable',
           dartName: 'enable',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputePacketMirroringEnable',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -55418,16 +55422,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimal_action',
           dartName: 'minimalAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputePerInstanceConfigMinimalAction',
         ),
         MigrateSlot(
           tfName: 'most_disruptive_allowed_action',
           dartName: 'mostDisruptiveAllowedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputePerInstanceConfigMostDisruptiveAllowedAction',
         ),
         MigrateSlot(
           tfName: 'remove_instance_on_destroy',
@@ -55760,9 +55764,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ipv6_access_type',
           dartName: 'ipv6AccessType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputePublicAdvertisedPrefixIpv6AccessType',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -56672,9 +56676,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionCommitmentType',
         ),
         MigrateSlot(
           tfName: 'category',
@@ -58693,9 +58697,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'instance_description',
@@ -60525,9 +60529,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_type',
           dartName: 'policyType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionNetworkFirewallPolicyWithRulesPolicyType',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -60644,16 +60648,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimal_action',
           dartName: 'minimalAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionPerInstanceConfigMinimalAction',
         ),
         MigrateSlot(
           tfName: 'most_disruptive_allowed_action',
           dartName: 'mostDisruptiveAllowedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction',
         ),
         MigrateSlot(
           tfName: 'remove_instance_on_destroy',
@@ -61049,9 +61053,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionSecurityPolicyRuleAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -64015,9 +64019,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'endpoint_types',
           dartName: 'endpointTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRouterNatEndpointTypes',
         ),
         MigrateSlot(
           tfName: 'source_subnetwork_ip_ranges_to_nat64',
@@ -64489,9 +64494,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'advertised_groups',
           dartName: 'advertisedGroups',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRouterPeerAdvertisedGroups',
         ),
         MigrateSlot(
           tfName: 'advertised_route_priority',
@@ -65156,9 +65162,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeSecurityPolicyRuleAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -67442,9 +67448,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ipv6_google_access',
           dartName: 'privateIpv6GoogleAccess',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeSubnetworkPrivateIpv6GoogleAccess',
         ),
         MigrateSlot(
           tfName: 'log_config',
@@ -68774,9 +68780,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'session_affinity',
           dartName: 'sessionAffinity',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeTargetPoolSessionAffinity',
         ),
         MigrateSlot(
           tfName: 'backup_pool',
@@ -70546,9 +70552,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'question_type',
           dartName: 'questionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContactCenterInsightsQaQuestionType',
         ),
         MigrateSlot(
           tfName: 'abbreviation',
@@ -71390,9 +71396,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'distribution',
           dartName: 'distribution',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerAttachedClusterDistribution',
         ),
         MigrateSlot(
           tfName: 'platform_version',
@@ -72533,9 +72539,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'datapath_provider',
           dartName: 'datapathProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDatapathProvider',
         ),
         MigrateSlot(
           tfName: 'dataplane_optimization_mode',
@@ -72666,9 +72672,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'in_transit_encryption_config',
           dartName: 'inTransitEncryptionConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterInTransitEncryptionConfig',
         ),
         MigrateSlot(
           tfName: 'initial_node_count',
@@ -72744,9 +72750,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ipv6_google_access',
           dartName: 'privateIpv6GoogleAccess',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterPrivateIpv6GoogleAccess',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -74260,9 +74266,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerRegistryLocation',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -75537,9 +75543,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'activated_policy_types',
           dartName: 'activatedPolicyTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataCatalogTaxonomyActivatedPolicyTypes',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -77345,9 +77352,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role',
           dartName: 'role',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DatabaseMigrationServiceConnectionProfileRole',
         ),
         MigrateSlot(
           tfName: '',
@@ -77445,9 +77452,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_state',
           dartName: 'desiredState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DatabaseMigrationServiceMigrationJobDesiredState',
         ),
         MigrateSlot(
           tfName: 'destination',
@@ -77862,9 +77869,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_configuration',
           dartName: 'ipConfiguration',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataflowJobIpConfiguration',
         ),
         MigrateSlot(
           tfName: 'service_account_email',
@@ -77913,9 +77920,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'on_delete',
           dartName: 'onDelete',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataflowJobOnDelete',
         ),
         MigrateSlot(
           tfName: 'skip_wait_on_job_termination',
@@ -88631,11 +88638,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'app_hub_application',
-          dartName: 'appHubApplication',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'scope',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_hub_application':
+                'DeveloperConnectInsightsConfigScopeAppHubApplication',
+            'target_projects':
+                'DeveloperConnectInsightsConfigScopeTargetProjects',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -88680,14 +88694,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'DeveloperConnectInsightsConfigArtifactConfigs',
-        ),
-        MigrateSlot(
-          tfName: 'target_projects',
-          dartName: 'targetProjects',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DeveloperConnectInsightsConfigTargetProjects',
         ),
       ],
       getters: <MigrateGetter>[
@@ -90308,9 +90314,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'purge_data_types',
           dartName: 'purgeDataTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DialogflowCxSecuritySettingsPurgeDataTypes',
         ),
         MigrateSlot(
           tfName: 'audio_export_settings',
@@ -91275,9 +91282,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_response_platforms',
           dartName: 'defaultResponsePlatforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DialogflowIntentDefaultResponsePlatforms',
         ),
         MigrateSlot(
           tfName: 'events',
@@ -91703,9 +91711,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineAclConfigLocation',
         ),
         MigrateSlot(
           tfName: 'idp_config',
@@ -91747,9 +91755,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineAssistantLocation',
         ),
         MigrateSlot(
           tfName: 'collection_id',
@@ -91805,9 +91813,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'web_grounding_type',
           dartName: 'webGroundingType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineAssistantWebGroundingType',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -92044,9 +92052,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineCmekConfigLocation',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -92137,9 +92145,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineControlLocation',
         ),
         MigrateSlot(
           tfName: 'collection_id',
@@ -92195,9 +92203,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'use_cases',
           dartName: 'useCases',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineControlUseCases',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -92303,9 +92312,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connector_modes',
           dartName: 'connectorModes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineDataConnectorModes',
         ),
         MigrateSlot(
           tfName: 'data_source',
@@ -92365,9 +92375,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineDataConnectorLocation',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -92393,9 +92403,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sync_mode',
           dartName: 'syncMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineDataConnectorSyncMode',
         ),
         MigrateSlot(
           tfName: 'action_config',
@@ -92603,9 +92613,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineDataStoreLocation',
         ),
         MigrateSlot(
           tfName: 'data_store_id',
@@ -92638,9 +92648,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'solution_types',
           dartName: 'solutionTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineDataStoreSolutionTypes',
         ),
         MigrateSlot(
           tfName: 'skip_default_schema_creation',
@@ -92793,9 +92804,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDiscoveryEngineDataStoreLocation',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -92899,9 +92910,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataDiscoveryEngineDataStoresLocation',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -92946,9 +92957,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineLicenseConfigLocation',
         ),
         MigrateSlot(
           tfName: 'license_count',
@@ -93068,9 +93079,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineRecommendationEngineLocation',
         ),
         MigrateSlot(
           tfName: 'engine_id',
@@ -93191,9 +93202,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineSchemaLocation',
         ),
         MigrateSlot(
           tfName: 'data_store_id',
@@ -93333,9 +93344,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'app_type',
           dartName: 'appType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineSearchEngineAppType',
         ),
         MigrateSlot(
           tfName: 'disable_analytics',
@@ -93787,9 +93798,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineServingConfigLocation',
         ),
         MigrateSlot(
           tfName: 'collection_id',
@@ -93920,9 +93931,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineSitemapLocation',
         ),
         MigrateSlot(
           tfName: 'data_store_id',
@@ -93999,9 +94010,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineTargetSiteLocation',
         ),
         MigrateSlot(
           tfName: 'data_store_id',
@@ -94127,9 +94138,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineUserStoreLocation',
         ),
         MigrateSlot(
           tfName: 'user_store_id',
@@ -94211,9 +94222,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineWidgetConfigLocation',
         ),
         MigrateSlot(
           tfName: 'engine_id',
@@ -95993,9 +96004,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'release_channel',
           dartName: 'releaseChannel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'EdgecontainerClusterReleaseChannel',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -97366,9 +97377,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'notification_category_subscriptions',
           dartName: 'notificationCategorySubscriptions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'EssentialContactsContactNotificationCategorySubscriptions',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -103326,9 +103338,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'web_grounding_type',
           dartName: 'webGroundingType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GeminiGeminiGcpEnablementSettingWebGroundingType',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -103923,9 +103935,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'product',
           dartName: 'product',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GeminiLoggingSettingBindingProduct',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -104033,9 +104045,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'release_channel',
           dartName: 'releaseChannel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GeminiReleaseChannelSettingReleaseChannel',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -104145,9 +104157,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'product',
           dartName: 'product',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GeminiReleaseChannelSettingBindingProduct',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -108697,9 +108709,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'skip_validations',
           dartName: 'skipValidations',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GkeonpremVmwareClusterSkipValidations',
         ),
         MigrateSlot(
           tfName: 'annotations',
@@ -109846,9 +109859,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'complex_data_type_reference_parsing',
           dartName: 'complexDataTypeReferenceParsing',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HealthcareFhirStoreComplexDataTypeReferenceParsing',
         ),
         MigrateSlot(
           tfName: 'default_search_handling_strict',
@@ -111014,9 +111027,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_kind',
           dartName: 'policyKind',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IamFoldersPolicyBindingPolicyKind',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -111120,9 +111133,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'allowed_grant_types',
           dartName: 'allowedGrantTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamOauthClientAllowedGrantTypes',
         ),
         MigrateSlot(
           tfName: 'allowed_redirect_uris',
@@ -111141,9 +111155,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'client_type',
           dartName: 'clientType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IamOauthClientType',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -111520,9 +111534,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_kind',
           dartName: 'policyKind',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IamOrganizationsPolicyBindingPolicyKind',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -111910,9 +111924,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_kind',
           dartName: 'policyKind',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IamProjectsPolicyBindingPolicyKind',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -112623,9 +112637,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'use',
           dartName: 'use',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IamWorkforcePoolProviderKeyUse',
         ),
         MigrateSlot(
           tfName: 'workforce_pool_id',
@@ -118253,9 +118267,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'idp_id',
           dartName: 'idpId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IdentityPlatformDefaultSupportedIdpConfigIdpId',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -118603,9 +118617,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'idp_id',
           dartName: 'idpId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IdentityPlatformTenantDefaultSupportedIdpConfigIdpId',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -124249,9 +124263,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'per_unit_storage_throughput',
           dartName: 'perUnitStorageThroughput',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LustreInstancePerUnitStorageThroughput',
         ),
         MigrateSlot(
           tfName: 'gke_support_enabled',
@@ -125653,16 +125667,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_type',
           dartName: 'nodeType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceNodeType',
         ),
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceMode',
         ),
         MigrateSlot(
           tfName: 'engine_version',
@@ -125674,16 +125688,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'authorization_mode',
           dartName: 'authorizationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceAuthorizationMode',
         ),
         MigrateSlot(
           tfName: 'transit_encryption_mode',
           dartName: 'transitEncryptionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceTransitEncryptionMode',
         ),
         MigrateSlot(
           tfName: 'desired_auto_created_endpoints',
@@ -127482,9 +127496,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'integrated_services',
           dartName: 'integratedServices',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ModelArmorFloorsettingIntegratedServices',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -128962,9 +128977,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'period',
           dartName: 'period',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MonitoringUptimeCheckConfigPeriod',
         ),
         MigrateSlot(
           tfName: 'selected_regions',
@@ -128972,6 +128987,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'MonitoringUptimeCheckRegion',
         ),
         MigrateSlot(
@@ -129737,9 +129753,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backup_vault_type',
           dartName: 'backupVaultType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetappBackupVaultType',
         ),
         MigrateSlot(
           tfName: 'backup_retention_policy',
@@ -130408,9 +130424,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocols',
           dartName: 'protocols',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleNetappVolumeProtocols',
         ),
         MigrateSlot(
           tfName: 'share_name',
@@ -130436,9 +130453,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'smb_settings',
           dartName: 'smbSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetappVolumeSmbSettings',
         ),
         MigrateSlot(
           tfName: 'unix_permissions',
@@ -130457,9 +130475,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_style',
           dartName: 'securityStyle',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetappVolumeSecurityStyle',
         ),
         MigrateSlot(
           tfName: 'kerberos_enabled',
@@ -130534,9 +130552,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restricted_actions',
           dartName: 'restrictedActions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetappVolumeRestrictedActions',
         ),
         MigrateSlot(
           tfName: 'throughput_mibps',
@@ -131692,16 +131711,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_mode',
           dartName: 'policyMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkConnectivityHubPolicyMode',
         ),
         MigrateSlot(
           tfName: 'preset_topology',
           dartName: 'presetTopology',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkConnectivityHubPresetTopology',
         ),
         MigrateSlot(
           tfName: 'export_psc',
@@ -132071,9 +132090,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'overlaps',
           dartName: 'overlaps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkConnectivityInternalRangeOverlaps',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -132958,9 +132978,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bandwidth',
           dartName: 'bandwidth',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkConnectivityTransportBandwidth',
         ),
         MigrateSlot(
           tfName: 'remote_account_id',
@@ -133346,9 +133366,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'provider_type',
           dartName: 'providerType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'NetworkManagementNetworkMonitoringProviderType',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -133425,16 +133445,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'aggregation_interval',
           dartName: 'aggregationInterval',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval',
         ),
         MigrateSlot(
           tfName: 'cross_project_metadata',
           dartName: 'crossProjectMetadata',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -133481,9 +133503,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'metadata',
           dartName: 'metadata',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkManagementOrganizationVpcFlowLogsConfigMetadata',
         ),
         MigrateSlot(
           tfName: 'metadata_fields',
@@ -133502,9 +133524,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkManagementOrganizationVpcFlowLogsConfigState',
         ),
         MigrateSlot(
           tfName: 'vpc_flow_logs_config_id',
@@ -134294,9 +134316,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_profile',
           dartName: 'policyProfile',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkSecurityAuthzPolicyProfile',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -136246,9 +136268,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkSecurityMirroringEndpointGroupType',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -137492,9 +137514,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'access_types',
           dartName: 'accessTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesAgentConnectivityTemplateAccessTypes',
         ),
         MigrateSlot(
           tfName: 'egress_network_config',
@@ -137651,9 +137674,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocols',
           dartName: 'protocols',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesAgentGatewayProtocols',
         ),
         MigrateSlot(
           tfName: 'registries',
@@ -138109,9 +138133,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesEdgeCacheOriginRetryConditions',
         ),
         MigrateSlot(
           tfName: 'failover_origin',
@@ -140635,9 +140660,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'distribution_scope',
           dartName: 'distributionScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkServicesMulticastGroupRangeDistributionScope',
         ),
         MigrateSlot(
           tfName: 'require_explicit_accept',
@@ -145158,9 +145183,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'method_types',
           dartName: 'methodTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'OrgPolicyCustomConstraintMethodTypes',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -146165,9 +146191,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorAction',
         ),
         MigrateSlot(
           tfName: 'orchestrated_resource',
@@ -146292,9 +146318,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForFolderAction',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -146427,9 +146453,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationAction',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -146675,16 +146701,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'directory_stripe_level',
           dartName: 'directoryStripeLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ParallelstoreInstanceDirectoryStripeLevel',
         ),
         MigrateSlot(
           tfName: 'file_stripe_level',
           dartName: 'fileStripeLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ParallelstoreInstanceFileStripeLevel',
         ),
         MigrateSlot(
           tfName: 'reserved_ip_range',
@@ -149530,9 +149556,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ProjectDefaultServiceAccountsAction',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -149544,9 +149570,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restore_policy',
           dartName: 'restorePolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ProjectDefaultServiceAccountsRestorePolicy',
         ),
       ],
       getters: <MigrateGetter>[
@@ -153292,9 +153318,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'types',
           dartName: 'types',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ResourceManagerCapabilityConfigTypes',
         ),
       ],
       getters: <MigrateGetter>[
@@ -155149,9 +155176,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SccV2FolderMuteConfigType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -155460,9 +155487,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SccV2OrganizationMuteConfigType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -156166,9 +156193,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SccV2ProjectMuteConfigType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -156524,9 +156551,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret_type',
           dartName: 'secretType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SecretManagerRegionalSecretType',
         ),
         MigrateSlot(
           tfName: 'customer_managed_encryption',
@@ -157473,9 +157500,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret_type',
           dartName: 'secretType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SecretManagerSecretType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -158395,9 +158422,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'events',
           dartName: 'events',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'SecureSourceManagerHookEvents',
         ),
         MigrateSlot(
           tfName: 'disabled',
@@ -161155,16 +161183,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataSiteVerificationTokenType',
         ),
         MigrateSlot(
           tfName: 'verification_method',
           dartName: 'verificationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataSiteVerificationTokenVerificationMethod',
         ),
       ],
       getters: <MigrateGetter>[
@@ -162182,18 +162210,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'num_nodes',
-          dartName: 'numNodes',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'capacity',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'processing_units',
-          dartName: 'processingUnits',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'num_nodes': 'SpannerInstanceCapacityNumNodes',
+            'processing_units': 'SpannerInstanceCapacityProcessingUnits',
+            'autoscaling_config': 'SpannerInstanceCapacityAutoscalingConfig',
+          },
         ),
         MigrateSlot(
           tfName: 'edition',
@@ -162212,9 +162239,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_backup_schedule_type',
           dartName: 'defaultBackupScheduleType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SpannerInstanceDefaultBackupScheduleType',
         ),
         MigrateSlot(
           tfName: 'force_destroy',
@@ -162226,9 +162253,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_type',
           dartName: 'instanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SpannerInstanceType',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -162243,14 +162270,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'autoscaling_config',
-          dartName: 'autoscalingConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'SpannerInstanceAutoscalingConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -163200,9 +163219,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_type',
           dartName: 'instanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceType',
         ),
         MigrateSlot(
           tfName: 'node_count',
@@ -163738,9 +163757,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_version',
           dartName: 'databaseVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSqlDatabaseInstancesDatabaseVersion',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -163759,9 +163778,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataSqlDatabaseInstancesState',
         ),
         MigrateSlot(
           tfName: 'tier',
@@ -163958,9 +163977,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_version',
           dartName: 'databaseVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SqlSourceRepresentationInstanceDatabaseVersion',
         ),
         MigrateSlot(
           tfName: 'dump_file_path',
@@ -165974,9 +165993,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'edition_config',
           dartName: 'editionConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageControlFolderIntelligenceConfigEditionConfig',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -166093,9 +166112,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_scope',
           dartName: 'resourceScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'DataStorageControlFolderIntelligenceFindingsSummaryResourceScope',
         ),
       ],
       getters: <MigrateGetter>[
@@ -166128,9 +166148,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'edition_config',
           dartName: 'editionConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageControlOrganizationIntelligenceConfigEditionConfig',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -166249,9 +166269,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_scope',
           dartName: 'resourceScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope',
         ),
       ],
       getters: <MigrateGetter>[
@@ -166710,9 +166731,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_scope',
           dartName: 'resourceScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'DataStorageControlProjectIntelligenceFindingsSummaryResourceScope',
         ),
       ],
       getters: <MigrateGetter>[
@@ -167990,6 +168012,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'StorageNotificationEventType',
         ),
         MigrateSlot(
@@ -168424,9 +168447,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobStatus',
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -169833,9 +169856,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'distance_metric',
           dartName: 'distanceMetric',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VectorSearchIndexDistanceMetric',
         ),
         MigrateSlot(
           tfName: 'filter_fields',
@@ -171318,9 +171341,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value_type',
           dartName: 'valueType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'VertexAiFeaturestoreEntitytypeFeatureValueType',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -171427,9 +171450,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'index_update_method',
           dartName: 'indexUpdateMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiIndexUpdateMethod',
         ),
         MigrateSlot(
           tfName: 'encryption_spec',
@@ -171983,23 +172006,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloud_observability',
           dartName: 'cloudObservability',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorCloudObservability',
         ),
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorConfig',
         ),
         MigrateSlot(
           tfName: 'metric_sources',
           dartName: 'metricSources',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'List<Map<String, dynamic>>',
+          repeated: true,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorMetricSources',
         ),
       ],
       getters: <MigrateGetter>[
@@ -179441,9 +179468,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_patterns_enforcement_scopes',
           dartName: 'servicePatternsEnforcementScopes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType:
+              'AccessContextManagerServicePerimeterServicePatternsEnforcementScopes',
         ),
         MigrateSlot(
           tfName: 'allowed_service_patterns',
@@ -179959,9 +179988,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_patterns_enforcement_scopes',
           dartName: 'servicePatternsEnforcementScopes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType:
+              'AccessContextManagerServicePerimetersServicePatternsEnforcementScopes',
         ),
         MigrateSlot(
           tfName: 'allowed_service_patterns',
@@ -180453,9 +180484,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'export_format',
               dartName: 'exportFormat',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat',
             ),
             MigrateSlot(
               tfName: 'document_examples',
@@ -180687,34 +180719,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions':
-        MigrateHelper(
-          className:
-              'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'append_methodology',
-              dartName: 'appendMethodology',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'bool',
-            ),
-            MigrateSlot(
-              tfName: 'export_format',
-              dartName: 'exportFormat',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'export_methodology_artifact',
-              dartName: 'exportMethodologyArtifact',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'bool',
-            ),
-          ],
+    'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions': MigrateHelper(
+      className:
+          'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'append_methodology',
+          dartName: 'appendMethodology',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
+        MigrateSlot(
+          tfName: 'export_format',
+          dartName: 'exportFormat',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat',
+        ),
+        MigrateSlot(
+          tfName: 'export_methodology_artifact',
+          dartName: 'exportMethodologyArtifact',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
     'AgenticApplicationsAnalystAgentPersonaRawFileResource': MigrateHelper(
       className: 'AgenticApplicationsAnalystAgentPersonaRawFileResource',
       slots: <MigrateSlot>[
@@ -180946,29 +180978,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions':
-        MigrateHelper(
-          className:
-              'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'export_format',
-              dartName: 'exportFormat',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'slide_examples',
-              dartName: 'slideExamples',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper: 'AgenticApplicationsAnalystAgentPersonaSlideExamples',
-            ),
-          ],
+    'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions': MigrateHelper(
+      className: 'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'export_format',
+          dartName: 'exportFormat',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat',
         ),
+        MigrateSlot(
+          tfName: 'slide_examples',
+          dartName: 'slideExamples',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'AgenticApplicationsAnalystAgentPersonaSlideExamples',
+        ),
+      ],
+    ),
     'AgenticApplicationsAnalystAgentPersonaTables': MigrateHelper(
       className: 'AgenticApplicationsAnalystAgentPersonaTables',
       slots: <MigrateSlot>[
@@ -181035,9 +181066,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'visualization_mode',
           dartName: 'visualizationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AgenticApplicationsAnalystAgentPersonaVisualizationMode',
         ),
         MigrateSlot(
           tfName: 'visualization_examples',
@@ -182046,9 +182077,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operation_types',
           dartName: 'operationTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ApigeeApiProductOperationTypes',
         ),
       ],
     ),
@@ -182129,9 +182161,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'time_unit',
           dartName: 'timeUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApigeeApiProductTimeUnit',
         ),
       ],
     ),
@@ -182645,9 +182677,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_methods',
           dartName: 'httpMethods',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ApigeeSecurityActionHttpMethods',
         ),
         MigrateSlot(
           tfName: 'ip_address_ranges',
@@ -182947,9 +182980,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_type',
           dartName: 'encryptionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApihubApiHubInstanceEncryptionType',
         ),
         MigrateSlot(
           tfName: 'vertex_location',
@@ -183019,9 +183052,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'trigger_mode',
           dartName: 'triggerMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApihubPluginTriggerMode',
         ),
       ],
     ),
@@ -183059,9 +183092,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value_type',
           dartName: 'valueType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApihubPluginValueType',
         ),
         MigrateSlot(
           tfName: 'enum_options',
@@ -183089,9 +183122,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'supported_auth_types',
           dartName: 'supportedAuthTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ApihubPluginSupportedAuthTypes',
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -183227,9 +183261,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_element_location',
           dartName: 'httpElementLocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApihubPluginInstanceHttpElementLocation',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -183254,9 +183288,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'auth_type',
           dartName: 'authType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApihubPluginInstanceAuthType',
         ),
         MigrateSlot(
           tfName: 'api_key_config',
@@ -183310,9 +183344,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'curation_type',
           dartName: 'curationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApihubPluginInstanceCurationType',
         ),
         MigrateSlot(
           tfName: 'custom_curation',
@@ -184527,10 +184561,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'app_engine_bundled_services',
               dartName: 'appEngineBundledServices',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
+              repeated: true,
               positional: true,
-              dartType: 'List<String>',
+              dartType: 'AppEngineStandardAppVersionAppEngineBundledServices',
             ),
           ],
           shorthand: 'appEngineBundledServices',
@@ -184686,9 +184721,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'egress_setting',
           dartName: 'egressSetting',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineStandardAppVersionEgressSetting',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -185488,10 +185523,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'public_repository',
           dartName: 'publicRepository',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'ArtifactRegistryPythonPublicRepository',
         ),
       ],
       shorthand: 'publicRepository',
@@ -186137,9 +186172,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peering_mode',
           dartName: 'peeringMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BackupDrManagementServerPeeringMode',
         ),
       ],
     ),
@@ -187653,9 +187688,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway_identity',
           dartName: 'gatewayIdentity',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BeyondcorpSecurityGatewayApplicationGatewayIdentity',
         ),
         MigrateSlot(
           tfName: 'metadata_headers',
@@ -187883,9 +187918,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway_identity',
           dartName: 'gatewayIdentity',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BeyondcorpSecurityGatewayIdentity',
         ),
         MigrateSlot(
           tfName: 'metadata_headers',
@@ -188833,16 +188868,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'direction',
           dartName: 'direction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BiglakeIcebergTableDirection',
         ),
         MigrateSlot(
           tfName: 'null_order',
           dartName: 'nullOrder',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BiglakeIcebergTableNullOrder',
         ),
         MigrateSlot(
           tfName: 'source_id',
@@ -189761,9 +189796,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'routine_type',
           dartName: 'routineType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryAnalyticsHubQueryTemplateRoutineType',
         ),
       ],
     ),
@@ -190551,6 +190586,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
+          wrapped: false,
           dartType: 'BigqueryDatasetAccessDatasetTargetType',
         ),
       ],
@@ -190623,10 +190659,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_types',
           dartName: 'targetTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
-          dartType: 'String',
+          dartType: 'BigqueryDatasetAccessTargetType',
         ),
       ],
     ),
@@ -190912,9 +190948,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'special_group',
           dartName: 'specialGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BigqueryDatasetSpecialGroup',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -191437,9 +191473,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encoding',
           dartName: 'encoding',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobEncoding',
         ),
         MigrateSlot(
           tfName: 'field_delimiter',
@@ -191458,9 +191494,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'json_extension',
           dartName: 'jsonExtension',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobJsonExtension',
         ),
         MigrateSlot(
           tfName: 'max_bad_records',
@@ -191493,9 +191529,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'schema_update_options',
           dartName: 'schemaUpdateOptions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'BigqueryJobSchemaUpdateOptions',
         ),
         MigrateSlot(
           tfName: 'skip_leading_rows',
@@ -191640,9 +191677,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'schema_update_options',
           dartName: 'schemaUpdateOptions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'BigqueryJobSchemaUpdateOptions',
         ),
         MigrateSlot(
           tfName: 'use_legacy_sql',
@@ -192139,9 +192177,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_format',
           dartName: 'fileFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BigqueryTableFileFormat',
         ),
         MigrateSlot(
           tfName: 'storage_uri',
@@ -192153,9 +192191,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'table_format',
           dartName: 'tableFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BigqueryTableFormat',
         ),
       ],
     ),
@@ -192200,9 +192238,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encoding',
           dartName: 'encoding',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableColumnFamilyEncoding',
         ),
         MigrateSlot(
           tfName: 'field_name',
@@ -192235,9 +192273,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableColumnFamilyType',
         ),
       ],
     ),
@@ -192247,9 +192285,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encoding',
           dartName: 'encoding',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableColumnFamilyEncoding',
         ),
         MigrateSlot(
           tfName: 'family_id',
@@ -192268,9 +192306,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableColumnFamilyType',
         ),
         MigrateSlot(
           tfName: 'column',
@@ -192344,9 +192382,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encoding',
           dartName: 'encoding',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableEncoding',
         ),
         MigrateSlot(
           tfName: 'field_delimiter',
@@ -192372,9 +192410,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_column_match',
           dartName: 'sourceColumnMatch',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableSourceColumnMatch',
         ),
       ],
     ),
@@ -192445,9 +192483,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'decimal_target_types',
           dartName: 'decimalTargetTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'BigqueryTableDecimalTargetTypes',
         ),
         MigrateSlot(
           tfName: 'file_set_spec_type',
@@ -192466,9 +192505,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'json_extension',
           dartName: 'jsonExtension',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableJsonExtension',
         ),
         MigrateSlot(
           tfName: 'max_bad_records',
@@ -192708,9 +192747,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encoding',
           dartName: 'encoding',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryTableJsonOptionsEncoding',
         ),
       ],
     ),
@@ -192890,9 +192929,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type_system',
           dartName: 'typeSystem',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'BigqueryTableTypeSystem',
         ),
       ],
     ),
@@ -193211,9 +193250,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_scaling_factor',
           dartName: 'nodeScalingFactor',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigtableInstanceNodeScalingFactor',
         ),
         MigrateSlot(
           tfName: 'num_nodes',
@@ -193795,9 +193834,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'signature_algorithm',
           dartName: 'signatureAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BinaryAuthorizationAttestorSignatureAlgorithm',
         ),
       ],
     ),
@@ -194077,10 +194116,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'matcher',
           dartName: 'matcher',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'CertificateManagerCertificateMapEntryMatcher',
         ),
       ],
       shorthand: 'matcher',
@@ -194496,9 +194535,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'request_location',
           dartName: 'requestLocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesAgentRequestLocation',
         ),
       ],
     ),
@@ -194753,9 +194792,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'oauth_grant_type',
           dartName: 'oauthGrantType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesAgentOauthGrantType',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -195027,9 +195066,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'prebuilt_ambient_sound',
           dartName: 'prebuiltAmbientSound',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppPrebuiltAmbientSound',
         ),
         MigrateSlot(
           tfName: 'volume_gain_db',
@@ -195198,9 +195237,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'channel_type',
           dartName: 'channelType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppChannelType',
         ),
         MigrateSlot(
           tfName: 'disable_barge_in_control',
@@ -195267,9 +195306,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'error_handling_strategy',
           dartName: 'errorHandlingStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppErrorHandlingStrategy',
         ),
         MigrateSlot(
           tfName: 'end_session_config',
@@ -195506,9 +195545,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'persona',
           dartName: 'persona',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppPersona',
         ),
       ],
     ),
@@ -195635,9 +195674,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesAppType',
         ),
         MigrateSlot(
           tfName: 'unique_items',
@@ -195758,9 +195797,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'semantic_similarity_channel',
           dartName: 'semanticSimilarityChannel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppSemanticSimilarityChannel',
         ),
         MigrateSlot(
           tfName: 'semantic_similarity_success_threshold',
@@ -195816,16 +195855,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'modality',
           dartName: 'modality',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppModality',
         ),
         MigrateSlot(
           tfName: 'theme',
           dartName: 'theme',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesAppTheme',
         ),
         MigrateSlot(
           tfName: 'web_widget_title',
@@ -195876,9 +195915,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'channel_type',
           dartName: 'channelType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesDeploymentChannelType',
         ),
         MigrateSlot(
           tfName: 'disable_barge_in_control',
@@ -195992,9 +196031,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'persona',
           dartName: 'persona',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesDeploymentPersona',
         ),
       ],
     ),
@@ -196065,16 +196104,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'modality',
           dartName: 'modality',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesDeploymentModality',
         ),
         MigrateSlot(
           tfName: 'theme',
           dartName: 'theme',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesDeploymentTheme',
         ),
         MigrateSlot(
           tfName: 'web_widget_title',
@@ -196675,9 +196714,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match_type',
           dartName: 'matchType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesGuardrailMatchType',
         ),
       ],
     ),
@@ -196708,9 +196747,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_scope',
           dartName: 'policyScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesGuardrailPolicyScope',
         ),
         MigrateSlot(
           tfName: 'prompt',
@@ -196957,9 +196996,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'attribute_type',
           dartName: 'attributeType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesToolAttributeType',
         ),
         MigrateSlot(
           tfName: 'field_name',
@@ -196971,9 +197010,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpolation_type',
           dartName: 'interpolationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesToolInterpolationType',
         ),
         MigrateSlot(
           tfName: 'control_points',
@@ -197426,9 +197465,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'modality_type',
           dartName: 'modalityType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolModalityType',
         ),
         MigrateSlot(
           tfName: 'grounding_config',
@@ -197615,9 +197654,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolParametersType',
         ),
         MigrateSlot(
           tfName: 'unique_items',
@@ -197799,9 +197838,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolParametersType',
         ),
         MigrateSlot(
           tfName: 'unique_items',
@@ -198059,9 +198098,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'request_location',
           dartName: 'requestLocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolsetRequestLocation',
         ),
       ],
     ),
@@ -198205,9 +198244,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operation',
           dartName: 'operation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolsetOperation',
         ),
       ],
     ),
@@ -198321,9 +198360,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'oauth_grant_type',
           dartName: 'oauthGrantType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CesToolsetOauthGrantType',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -199079,16 +199118,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceType',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199134,9 +199173,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'region',
           dartName: 'region',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleFeedRegion',
         ),
         MigrateSlot(
           tfName: 'secret_access_key',
@@ -199167,9 +199206,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199222,16 +199261,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'region',
           dartName: 'region',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedRegion',
         ),
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199291,9 +199330,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199441,9 +199480,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'api_type',
           dartName: 'apiType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAwsIamSettingsApiType',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199603,16 +199642,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceType',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199663,9 +199702,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199911,9 +199950,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ingestion_type',
           dartName: 'ingestionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedCrowdstrikeAlertsSettingsIngestionType',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -199964,9 +200003,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ingestion_type',
           dartName: 'ingestionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedCrowdstrikeDetectsSettingsIngestionType',
         ),
         MigrateSlot(
           tfName: 'authentication',
@@ -200249,16 +200288,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceType',
         ),
       ],
     ),
@@ -200282,9 +200321,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
         ),
       ],
     ),
@@ -200380,9 +200419,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
         ),
       ],
     ),
@@ -200411,16 +200450,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceType',
         ),
         MigrateSlot(
           tfName: 'uri',
@@ -200757,9 +200796,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'content_type',
           dartName: 'contentType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedContentType',
         ),
         MigrateSlot(
           tfName: 'hostname',
@@ -200949,9 +200988,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'api_type',
           dartName: 'apiType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedQualysScanSettingsApiType',
         ),
         MigrateSlot(
           tfName: 'hostname',
@@ -201150,16 +201189,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_deletion_option',
           dartName: 'sourceDeletionOption',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
         ),
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedAmazonS3SettingsSourceType',
         ),
         MigrateSlot(
           tfName: 'uri',
@@ -202957,9 +202996,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'projection_type',
           dartName: 'projectionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleFeedProjectionType',
         ),
         MigrateSlot(
           tfName: 'workspace_customer_id',
@@ -203013,9 +203052,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'outcome_filter_operator',
           dartName: 'outcomeFilterOperator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleFindingsRefinementOutcomeFilterOperator',
         ),
         MigrateSlot(
           tfName: 'outcome_value',
@@ -203219,9 +203258,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'precondition_op',
           dartName: 'preconditionOp',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleParserExtensionPreconditionOp',
         ),
         MigrateSlot(
           tfName: 'precondition_path',
@@ -203259,9 +203298,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_format',
           dartName: 'logFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleParserExtensionLogFormat',
         ),
         MigrateSlot(
           tfName: 'extractors',
@@ -203340,9 +203379,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'precondition_op',
           dartName: 'preconditionOp',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleParserPreconditionOp',
         ),
         MigrateSlot(
           tfName: 'precondition_path',
@@ -203380,9 +203419,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_format',
           dartName: 'logFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ChronicleParserLogFormat',
         ),
         MigrateSlot(
           tfName: 'extractors',
@@ -204017,9 +204056,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'driver',
           dartName: 'driver',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudRunServiceDriver',
         ),
         MigrateSlot(
           tfName: 'read_only',
@@ -204407,9 +204446,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunServicePortsName',
         ),
         MigrateSlot(
           tfName: 'protocol',
@@ -205332,9 +205371,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2InstancePortsName',
         ),
       ],
     ),
@@ -206015,9 +206054,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2JobPortsName',
         ),
       ],
     ),
@@ -207130,9 +207169,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudRunV2ServicePortsName',
         ),
       ],
     ),
@@ -208859,9 +208898,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_method',
           dartName: 'httpMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudSchedulerJobHttpMethod',
         ),
         MigrateSlot(
           tfName: 'relative_uri',
@@ -208941,9 +208980,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_method',
           dartName: 'httpMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudSchedulerJobHttpMethod',
         ),
         MigrateSlot(
           tfName: 'uri',
@@ -209355,9 +209394,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value_type',
           dartName: 'valueType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudSecurityComplianceCloudControlValueType',
         ),
         MigrateSlot(
           tfName: 'default_value',
@@ -209571,9 +209610,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value_type',
           dartName: 'valueType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudSecurityComplianceCloudControlValueType',
         ),
         MigrateSlot(
           tfName: 'default_value',
@@ -209700,9 +209739,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'value_type',
               dartName: 'valueType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'CloudSecurityComplianceCloudControlValueType',
             ),
             MigrateSlot(
               tfName: 'default_value',
@@ -209936,9 +209975,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'enforcement_mode',
               dartName: 'enforcementMode',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType:
+                  'CloudSecurityComplianceFrameworkDeploymentEnforcementMode',
             ),
             MigrateSlot(
               tfName: 'cloud_control_details',
@@ -211373,9 +211413,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_type',
           dartName: 'machineType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CloudbuildTriggerMachineType',
         ),
         MigrateSlot(
           tfName: 'requested_verify_option',
@@ -214330,9 +214370,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'usages',
           dartName: 'usages',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ClouddeployTargetUsages',
         ),
         MigrateSlot(
           tfName: 'verbose',
@@ -214568,9 +214609,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'privacy',
           dartName: 'privacy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ClouddomainsRegistrationPrivacy',
         ),
         MigrateSlot(
           tfName: 'admin_contact',
@@ -214647,9 +214688,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'algorithm',
           dartName: 'algorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ClouddomainsRegistrationAlgorithm',
         ),
         MigrateSlot(
           tfName: 'digest',
@@ -214661,9 +214702,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'digest_type',
           dartName: 'digestType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ClouddomainsRegistrationDigestType',
         ),
         MigrateSlot(
           tfName: 'key_tag',
@@ -214706,16 +214747,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'preferred_renewal_method',
           dartName: 'preferredRenewalMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ClouddomainsRegistrationPreferredRenewalMethod',
         ),
         MigrateSlot(
           tfName: 'transfer_lock_state',
           dartName: 'transferLockState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ClouddomainsRegistrationTransferLockState',
         ),
       ],
     ),
@@ -215922,9 +215963,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ColabNotebookExecutionAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -216237,9 +216278,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ColabRuntimeTemplateAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -216623,9 +216664,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ColabScheduleAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'gpu_partition_size',
@@ -216794,9 +216835,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'disk_type',
           dartName: 'diskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ColabScheduleDiskType',
         ),
       ],
     ),
@@ -216921,9 +216962,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'reservation_affinity_type',
           dartName: 'reservationAffinityType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ColabScheduleReservationAffinityType',
         ),
         MigrateSlot(
           tfName: 'use_reservation_pool',
@@ -216947,9 +216988,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'failure_policy',
           dartName: 'failurePolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ColabScheduleFailurePolicy',
         ),
         MigrateSlot(
           tfName: 'gcs_output_directory',
@@ -216984,9 +217025,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retention_mode',
           dartName: 'retentionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentRetentionMode',
         ),
       ],
     ),
@@ -217060,9 +217101,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'environment_size',
           dartName: 'environmentSize',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentSize',
         ),
         MigrateSlot(
           tfName: 'node_count',
@@ -217074,9 +217115,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resilience_mode',
           dartName: 'resilienceMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentResilienceMode',
         ),
         MigrateSlot(
           tfName: 'data_retention_config',
@@ -217238,9 +217279,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_type',
           dartName: 'machineType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentDatabaseConfigMachineType',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -217471,9 +217512,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_type',
           dartName: 'connectionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentConnectionType',
         ),
         MigrateSlot(
           tfName: 'enable_private_endpoint',
@@ -217632,9 +217673,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'web_server_plugins_mode',
           dartName: 'webServerPluginsMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentWebServerPluginsMode',
         ),
         MigrateSlot(
           tfName: 'cloud_data_lineage_integration',
@@ -217665,9 +217706,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_mode',
           dartName: 'storageMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentStorageMode',
         ),
       ],
     ),
@@ -217729,9 +217770,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_type',
           dartName: 'machineType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComposerEnvironmentWebServerConfigMachineType',
         ),
       ],
     ),
@@ -219029,7 +219070,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'name',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'LocalityLbPolicy',
+          dartType: 'ComputeBackendServicePolicyName',
         ),
       ],
     ),
@@ -219976,9 +220017,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeFirewallPolicyWithRulesAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -220236,16 +220277,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'name',
     ),
-    'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan': MigrateHelper(
-      className: 'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan',
+    'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice': MigrateHelper(
+      className: 'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'predefined_rollout_plan',
           dartName: 'predefinedRolloutPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan',
         ),
       ],
       shorthand: 'predefinedRolloutPlan',
@@ -220270,7 +220311,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           variants: <String, String>{
             'name': 'ComputeGlobalVmExtensionPolicyPlanName',
             'predefined_rollout_plan':
-                'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan',
+                'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice',
           },
         ),
         MigrateSlot(
@@ -220674,9 +220715,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_type',
           dartName: 'fileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeImageFileType',
         ),
       ],
     ),
@@ -220693,9 +220734,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_type',
           dartName: 'fileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeImageFileType',
         ),
       ],
     ),
@@ -220810,9 +220851,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_type',
           dartName: 'fileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeImageFileType',
         ),
       ],
     ),
@@ -220841,9 +220882,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_type',
           dartName: 'fileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeImageFileType',
         ),
       ],
     ),
@@ -220853,9 +220894,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'container_type',
           dartName: 'containerType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeImageContainerType',
         ),
         MigrateSlot(
           tfName: 'sha1',
@@ -221213,9 +221254,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceMode',
         ),
         MigrateSlot(
           tfName: 'source',
@@ -221281,9 +221322,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceInterface',
         ),
         MigrateSlot(
           tfName: 'kms_key_self_link',
@@ -221296,9 +221337,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceMode',
         ),
         MigrateSlot(
           tfName: 'source',
@@ -221369,9 +221410,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -221402,9 +221443,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'performance_monitoring_unit',
           dartName: 'performanceMonitoringUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplatePerformanceMonitoringUnit',
         ),
         MigrateSlot(
           tfName: 'threads_per_core',
@@ -221497,9 +221538,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateMode',
         ),
         MigrateSlot(
           tfName: 'source',
@@ -221565,9 +221606,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateInterface',
         ),
         MigrateSlot(
           tfName: 'kms_key_self_link',
@@ -221580,9 +221621,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateMode',
         ),
         MigrateSlot(
           tfName: 'source',
@@ -221607,9 +221648,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -221645,9 +221686,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture',
           dartName: 'architecture',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateArchitecture',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -221798,9 +221839,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -221862,9 +221903,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateIgmpQuery',
         ),
         MigrateSlot(
           tfName: 'internal_ipv6_prefix_length',
@@ -221926,9 +221967,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateStackType',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -222006,9 +222047,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -222109,9 +222150,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_termination_action',
           dartName: 'instanceTerminationAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateInstanceTerminationAction',
         ),
         MigrateSlot(
           tfName: 'min_node_cpus',
@@ -222123,9 +222164,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'on_host_maintenance',
           dartName: 'onHostMaintenance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateOnHostMaintenance',
         ),
         MigrateSlot(
           tfName: 'preemptible',
@@ -222137,9 +222178,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'provisioning_model',
           dartName: 'provisioningModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateProvisioningModel',
         ),
         MigrateSlot(
           tfName: 'termination_time',
@@ -222204,9 +222245,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromTemplateInterface',
         ),
         MigrateSlot(
           tfName: 'size',
@@ -222415,16 +222456,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_action_on_failure',
           dartName: 'defaultActionOnFailure',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'InstanceGroupManagerDefaultActionOnFailure',
         ),
         MigrateSlot(
           tfName: 'force_update_on_repair',
           dartName: 'forceUpdateOnRepair',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'InstanceGroupManagerForceUpdateOnRepair',
+        ),
+        MigrateSlot(
+          tfName: 'on_failed_health_check',
+          dartName: 'onFailedHealthCheck',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'InstanceGroupManagerOnFailedHealthCheck',
         ),
       ],
     ),
@@ -222472,9 +222520,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'InstanceGroupManagerStandbyPolicyMode',
         ),
       ],
     ),
@@ -222491,9 +222539,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'delete_rule',
           dartName: 'deleteRule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceGroupManagerStatefulDeleteRule',
         ),
       ],
     ),
@@ -222510,9 +222558,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'delete_rule',
           dartName: 'deleteRule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceGroupManagerStatefulDeleteRule',
         ),
       ],
     ),
@@ -222522,9 +222570,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'InstanceGroupManagerTargetSizePolicyMode',
         ),
       ],
     ),
@@ -222731,9 +222779,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture',
           dartName: 'architecture',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceArchitecture',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -222928,9 +222976,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceIgmpQuery',
         ),
         MigrateSlot(
           tfName: 'internal_ipv6_prefix_length',
@@ -222993,9 +223041,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceStackType',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -223074,9 +223122,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -223540,9 +223588,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture',
           dartName: 'architecture',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateArchitecture',
         ),
         MigrateSlot(
           tfName: 'auto_delete',
@@ -223596,9 +223644,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateInterface',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -223673,9 +223721,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateType',
         ),
         MigrateSlot(
           tfName: 'disk_encryption_key',
@@ -223857,9 +223905,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateIgmpQuery',
         ),
         MigrateSlot(
           tfName: 'internal_ipv6_prefix_length',
@@ -223921,9 +223969,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateStackType',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -224001,9 +224049,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -225021,9 +225069,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeNetworkFirewallPolicyWithRulesAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -225486,9 +225534,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'versioned_expr',
           dartName: 'versionedExpr',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleVersionedExpr',
         ),
         MigrateSlot(
           tfName: 'config',
@@ -225537,9 +225585,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleType',
         ),
       ],
     ),
@@ -225549,9 +225597,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225568,9 +225616,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225606,9 +225654,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225625,9 +225673,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225890,9 +225938,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'predefined_rollout_plan',
           dartName: 'predefinedRolloutPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputePreviewFeaturePredefinedRolloutPlan',
         ),
       ],
     ),
@@ -227060,9 +227108,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionCommitmentResourcesType',
         ),
       ],
     ),
@@ -227689,16 +227737,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_action_on_failure',
           dartName: 'defaultActionOnFailure',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'RegionInstanceGroupManagerDefaultActionOnFailure',
         ),
         MigrateSlot(
           tfName: 'force_update_on_repair',
           dartName: 'forceUpdateOnRepair',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'RegionInstanceGroupManagerForceUpdateOnRepair',
+        ),
+        MigrateSlot(
+          tfName: 'on_failed_health_check',
+          dartName: 'onFailedHealthCheck',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'RegionInstanceGroupManagerOnFailedHealthCheck',
         ),
       ],
     ),
@@ -227774,9 +227829,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'RegionInstanceGroupManagerStandbyPolicyMode',
         ),
       ],
     ),
@@ -227793,9 +227848,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'delete_rule',
           dartName: 'deleteRule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceGroupManagerStatefulDeleteRule',
         ),
       ],
     ),
@@ -227812,9 +227867,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'delete_rule',
           dartName: 'deleteRule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceGroupManagerStatefulDeleteRule',
         ),
       ],
     ),
@@ -227824,9 +227879,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'RegionInstanceGroupManagerTargetSizePolicyMode',
         ),
       ],
     ),
@@ -227957,9 +228012,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateNetworkTier',
         ),
       ],
     ),
@@ -227983,9 +228038,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'performance_monitoring_unit',
           dartName: 'performanceMonitoringUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplatePerformanceMonitoringUnit',
         ),
         MigrateSlot(
           tfName: 'threads_per_core',
@@ -228035,9 +228090,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -228054,9 +228109,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture',
           dartName: 'architecture',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateArchitecture',
         ),
         MigrateSlot(
           tfName: 'auto_delete',
@@ -228110,9 +228165,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interface',
           dartName: 'interface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateInterface',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -228124,9 +228179,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateMode',
         ),
         MigrateSlot(
           tfName: 'provisioned_iops',
@@ -228187,9 +228242,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateType',
         ),
         MigrateSlot(
           tfName: 'disk_encryption_key',
@@ -228262,9 +228317,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateNetworkTier',
         ),
       ],
     ),
@@ -228319,9 +228374,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateIgmpQuery',
         ),
         MigrateSlot(
           tfName: 'internal_ipv6_prefix_length',
@@ -228383,9 +228438,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateStackType',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -228463,9 +228518,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -228554,9 +228609,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_termination_action',
           dartName: 'instanceTerminationAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateInstanceTerminationAction',
         ),
         MigrateSlot(
           tfName: 'min_node_cpus',
@@ -228568,9 +228623,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'on_host_maintenance',
           dartName: 'onHostMaintenance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateOnHostMaintenance',
         ),
         MigrateSlot(
           tfName: 'preemptible',
@@ -228582,9 +228637,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'provisioning_model',
           dartName: 'provisioningModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateProvisioningModel',
         ),
         MigrateSlot(
           tfName: 'termination_time',
@@ -229309,9 +229364,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionNetworkFirewallPolicyWithRulesAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -229848,6 +229903,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'ComputeRegionSecurityPolicyRuleRateLimitOptions',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'exceed_action',
+          dartName: 'exceedAction',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'ComputeRegionSecurityPolicyRuleExceedAction',
+        ),
+        MigrateSlot(
           tfName: 'enforce_on_key',
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
@@ -229904,9 +229966,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionSecurityPolicyRulesAction',
         ),
         MigrateSlot(
           tfName: 'match',
@@ -230102,9 +230164,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exceed_action',
           dartName: 'exceedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionSecurityPolicyExceedAction',
         ),
         MigrateSlot(
           tfName: 'rate_limit_threshold',
@@ -231192,9 +231254,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRegionUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -231483,9 +231546,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRegionUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -231815,9 +231879,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRegionUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -232348,9 +232413,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'collocation',
           dartName: 'collocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeResourcePolicyCollocation',
         ),
         MigrateSlot(
           tfName: 'gpu_topology',
@@ -232799,9 +232864,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRolloutPlanValidationType',
         ),
         MigrateSlot(
           tfName: 'time_based_validation_metadata',
@@ -232945,11 +233010,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'advertised_groups',
           dartName: 'advertisedGroups',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
-          dartType: 'String',
+          dartType: 'ComputeRouterBgpAdvertisedGroup',
         ),
         MigrateSlot(
           tfName: 'asn',
@@ -233154,9 +233218,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_ip_ranges_to_nat',
           dartName: 'sourceIpRangesToNat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeRouterNatSourceIpRangesToNat',
         ),
       ],
     ),
@@ -233482,9 +233547,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'request_body_inspection_size',
           dartName: 'requestBodyInspectionSize',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeSecurityPolicyRequestBodyInspectionSize',
         ),
         MigrateSlot(
           tfName: 'user_ip_request_headers',
@@ -233532,9 +233597,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'rule_visibility',
           dartName: 'ruleVisibility',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SecurityPolicyRuleVisibility',
         ),
         MigrateSlot(
           tfName: 'threshold_configs',
@@ -233700,6 +233765,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'ComputeSecurityPolicyRuleRateLimitOptions',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'exceed_action',
+          dartName: 'exceedAction',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'ComputeSecurityPolicyRuleExceedAction',
+        ),
+        MigrateSlot(
           tfName: 'enforce_on_key',
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
@@ -233737,9 +233809,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeSecurityPolicyRuleType',
         ),
       ],
     ),
@@ -233922,9 +233994,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exceed_action',
           dartName: 'exceedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeSecurityPolicyExceedAction',
         ),
         MigrateSlot(
           tfName: 'rate_limit_threshold',
@@ -234007,9 +234079,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SecurityPolicyRedirectType',
         ),
         MigrateSlot(
           tfName: 'target',
@@ -234026,9 +234098,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SecurityPolicyTrafficGranularityType',
         ),
         MigrateSlot(
           tfName: 'enable_each_unique_value',
@@ -235883,9 +235955,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -236190,9 +236263,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -236480,9 +236554,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retry_conditions',
           dartName: 'retryConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ComputeUrlMapRetryConditions',
         ),
         MigrateSlot(
           tfName: 'per_try_timeout',
@@ -237032,9 +237107,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bandwidth_allocation',
           dartName: 'bandwidthAllocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeWireGroupBandwidthAllocation',
         ),
         MigrateSlot(
           tfName: 'bandwidth_unmetered',
@@ -237046,9 +237121,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'fault_response',
           dartName: 'faultResponse',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeWireGroupFaultResponse',
         ),
       ],
     ),
@@ -237508,9 +237583,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'ContactCenterInsightsQaQuestionPredefinedQuestionConfigType',
         ),
       ],
     ),
@@ -237520,9 +237596,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset_validation_warnings',
           dartName: 'datasetValidationWarnings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContactCenterInsightsQaQuestionDatasetValidationWarnings',
         ),
         MigrateSlot(
           tfName: 'total_valid_label_count',
@@ -238952,9 +239029,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterStatus',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -239224,9 +239301,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'performance_monitoring_unit',
           dartName: 'performanceMonitoringUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterPerformanceMonitoringUnit',
         ),
         MigrateSlot(
           tfName: 'threads_per_core',
@@ -239255,9 +239332,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterAnonymousAuthenticationConfigMode',
         ),
       ],
     ),
@@ -239291,9 +239368,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterAutoMonitoringConfigScope',
         ),
       ],
     ),
@@ -239396,9 +239473,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'strategy',
           dartName: 'strategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterStrategy',
         ),
         MigrateSlot(
           tfName: 'blue_green_settings',
@@ -239456,9 +239533,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'autoscaling_profile',
           dartName: 'autoscalingProfile',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterAutoscalingProfile',
         ),
         MigrateSlot(
           tfName: 'default_compute_class_enabled',
@@ -239538,9 +239615,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'evaluation_mode',
           dartName: 'evaluationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterEvaluationMode',
         ),
       ],
     ),
@@ -239725,9 +239802,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'load_balancer_type',
           dartName: 'loadBalancerType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterLoadBalancerType',
         ),
       ],
     ),
@@ -239737,9 +239814,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -239876,9 +239953,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterState',
         ),
       ],
     ),
@@ -239976,9 +240053,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_dns',
           dartName: 'clusterDns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDns',
         ),
         MigrateSlot(
           tfName: 'cluster_dns_domain',
@@ -239990,9 +240067,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_dns_scope',
           dartName: 'clusterDnsScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDnsScope',
         ),
       ],
     ),
@@ -240059,9 +240136,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_tier',
           dartName: 'desiredTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDesiredTier',
         ),
       ],
     ),
@@ -240250,16 +240327,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'end_time_behavior',
           dartName: 'endTimeBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterEndTimeBehavior',
         ),
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterExclusionOptionsScope',
         ),
       ],
     ),
@@ -240293,9 +240370,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'event_type',
           dartName: 'eventType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContainerClusterEventType',
         ),
       ],
     ),
@@ -240305,9 +240383,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'membership_type',
           dartName: 'membershipType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterMembershipType',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -240324,9 +240402,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'channel',
           dartName: 'channel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterGatewayApiConfigChannel',
         ),
       ],
     ),
@@ -240396,9 +240474,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'patch_mode',
           dartName: 'patchMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterPatchMode',
         ),
       ],
     ),
@@ -240420,9 +240498,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpu_driver_version',
           dartName: 'gpuDriverVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterGpuDriverVersion',
         ),
       ],
     ),
@@ -240432,9 +240510,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpu_sharing_strategy',
           dartName: 'gpuSharingStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterGpuSharingStrategy',
         ),
         MigrateSlot(
           tfName: 'max_shared_clients_per_gpu',
@@ -240548,9 +240626,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'capabilities',
           dartName: 'capabilities',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContainerClusterCapabilities',
         ),
         MigrateSlot(
           tfName: 'dial_timeout',
@@ -240705,9 +240784,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterStackType',
         ),
         MigrateSlot(
           tfName: 'additional_ip_ranges_config',
@@ -240859,9 +240938,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'insecure_kubelet_readonly_port_enabled',
           dartName: 'insecureKubeletReadonlyPortEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterInsecureKubeletReadonlyPortEnabled',
         ),
         MigrateSlot(
           tfName: 'max_parallel_image_pulls',
@@ -240966,9 +241045,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enable_components',
           dartName: 'enableComponents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContainerClusterLoggingConfigEnableComponents',
         ),
       ],
     ),
@@ -241084,9 +241164,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterScope',
         ),
       ],
     ),
@@ -241212,9 +241292,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enable_components',
           dartName: 'enableComponents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContainerClusterMonitoringConfigEnableComponents',
         ),
         MigrateSlot(
           tfName: 'advanced_datapath_observability_config',
@@ -241322,9 +241403,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'total_egress_bandwidth_tier',
           dartName: 'totalEgressBandwidthTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterTotalEgressBandwidthTier',
         ),
       ],
     ),
@@ -241341,9 +241422,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'provider',
           dartName: 'provider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterProvider',
         ),
       ],
     ),
@@ -241377,9 +241458,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterNetworkTier',
         ),
       ],
     ),
@@ -241396,9 +241477,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -241450,9 +241531,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpudirect_strategy',
           dartName: 'gpudirectStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterGpudirectStrategy',
         ),
         MigrateSlot(
           tfName: 'image_type',
@@ -241478,16 +241559,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'local_ssd_encryption_mode',
           dartName: 'localSsdEncryptionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterLocalSsdEncryptionMode',
         ),
         MigrateSlot(
           tfName: 'logging_variant',
           dartName: 'loggingVariant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterLoggingVariant',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -241769,16 +241850,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'insecure_kubelet_readonly_port_enabled',
           dartName: 'insecureKubeletReadonlyPortEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterInsecureKubeletReadonlyPortEnabled',
         ),
         MigrateSlot(
           tfName: 'logging_variant',
           dartName: 'loggingVariant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterLoggingVariant',
         ),
         MigrateSlot(
           tfName: 'containerd_config',
@@ -241804,9 +241885,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cgroup_mode',
           dartName: 'cgroupMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterCgroupMode',
         ),
         MigrateSlot(
           tfName: 'sysctls',
@@ -241818,16 +241899,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transparent_hugepage_defrag',
           dartName: 'transparentHugepageDefrag',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterTransparentHugepageDefrag',
         ),
         MigrateSlot(
           tfName: 'transparent_hugepage_enabled',
           dartName: 'transparentHugepageEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterTransparentHugepageEnabled',
         ),
         MigrateSlot(
           tfName: 'accurate_time_config',
@@ -241877,9 +241958,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_creation_mode',
           dartName: 'nodeCreationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterNodeCreationMode',
         ),
       ],
     ),
@@ -241934,9 +242015,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy',
           dartName: 'policy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterPolicy',
         ),
       ],
     ),
@@ -241946,9 +242027,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'insecure_kubelet_readonly_port_enabled',
           dartName: 'insecureKubeletReadonlyPortEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterInsecureKubeletReadonlyPortEnabled',
         ),
       ],
     ),
@@ -242137,9 +242218,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cgroup_mode',
           dartName: 'cgroupMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterCgroupMode',
         ),
         MigrateSlot(
           tfName: 'node_kernel_module_loading',
@@ -242157,9 +242238,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location_policy',
           dartName: 'locationPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterLocationPolicy',
         ),
         MigrateSlot(
           tfName: 'max_node_count',
@@ -242275,9 +242356,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterPlacementPolicyType',
         ),
       ],
     ),
@@ -242287,9 +242368,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'hpa_profile',
           dartName: 'hpaProfile',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterHpaProfile',
         ),
       ],
     ),
@@ -242578,9 +242659,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'channel',
           dartName: 'channel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterReleaseChannelChannel',
         ),
       ],
     ),
@@ -242590,9 +242671,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'consume_reservation_type',
           dartName: 'consumeReservationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterConsumeReservationType',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -242700,9 +242781,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterSandboxConfigType',
         ),
       ],
     ),
@@ -242719,9 +242800,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterSecondaryBootDisksMode',
         ),
       ],
     ),
@@ -242771,16 +242852,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterSecurityPostureConfigMode',
         ),
         MigrateSlot(
           tfName: 'vulnerability_mode',
           dartName: 'vulnerabilityMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterVulnerabilityMode',
         ),
       ],
     ),
@@ -242948,9 +243029,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'effect',
           dartName: 'effect',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterEffect',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -242974,9 +243055,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture_taint_behavior',
           dartName: 'architectureTaintBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterArchitectureTaintBehavior',
         ),
       ],
     ),
@@ -242993,9 +243074,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterTopologyManagerScope',
         ),
       ],
     ),
@@ -243019,9 +243100,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'strategy',
           dartName: 'strategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterStrategy',
         ),
         MigrateSlot(
           tfName: 'blue_green_settings',
@@ -243158,9 +243239,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'osversion',
           dartName: 'osversion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterOsversion',
         ),
       ],
     ),
@@ -243182,9 +243263,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterWorkloadMetadataConfigMode',
         ),
       ],
     ),
@@ -243273,9 +243354,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'performance_monitoring_unit',
           dartName: 'performanceMonitoringUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolPerformanceMonitoringUnit',
         ),
         MigrateSlot(
           tfName: 'threads_per_core',
@@ -243292,9 +243373,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location_policy',
           dartName: 'locationPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolLocationPolicy',
         ),
         MigrateSlot(
           tfName: 'max_node_count',
@@ -243488,9 +243569,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -243813,9 +243894,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpu_driver_version',
           dartName: 'gpuDriverVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolGpuDriverVersion',
         ),
       ],
     ),
@@ -243825,9 +243906,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpu_sharing_strategy',
           dartName: 'gpuSharingStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolGpuSharingStrategy',
         ),
         MigrateSlot(
           tfName: 'max_shared_clients_per_gpu',
@@ -243917,9 +243998,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'capabilities',
           dartName: 'capabilities',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ContainerNodePoolCapabilities',
         ),
         MigrateSlot(
           tfName: 'dial_timeout',
@@ -244111,9 +244193,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'insecure_kubelet_readonly_port_enabled',
           dartName: 'insecureKubeletReadonlyPortEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolInsecureKubeletReadonlyPortEnabled',
         ),
         MigrateSlot(
           tfName: 'max_parallel_image_pulls',
@@ -244206,9 +244288,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cgroup_mode',
           dartName: 'cgroupMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolCgroupMode',
         ),
         MigrateSlot(
           tfName: 'sysctls',
@@ -244220,16 +244302,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transparent_hugepage_defrag',
           dartName: 'transparentHugepageDefrag',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolTransparentHugepageDefrag',
         ),
         MigrateSlot(
           tfName: 'transparent_hugepage_enabled',
           dartName: 'transparentHugepageEnabled',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolTransparentHugepageEnabled',
         ),
         MigrateSlot(
           tfName: 'accurate_time_config',
@@ -244418,9 +244500,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'total_egress_bandwidth_tier',
           dartName: 'totalEgressBandwidthTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolTotalEgressBandwidthTier',
         ),
       ],
     ),
@@ -244437,9 +244519,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -244491,9 +244573,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpudirect_strategy',
           dartName: 'gpudirectStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolGpudirectStrategy',
         ),
         MigrateSlot(
           tfName: 'image_type',
@@ -244519,16 +244601,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'local_ssd_encryption_mode',
           dartName: 'localSsdEncryptionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolLocalSsdEncryptionMode',
         ),
         MigrateSlot(
           tfName: 'logging_variant',
           dartName: 'loggingVariant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolLoggingVariant',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -244855,9 +244937,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy',
           dartName: 'policy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolPolicy',
         ),
       ],
     ),
@@ -244881,9 +244963,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolType',
         ),
       ],
     ),
@@ -244959,9 +245041,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'consume_reservation_type',
           dartName: 'consumeReservationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolConsumeReservationType',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -244985,9 +245067,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolSandboxConfigType',
         ),
       ],
     ),
@@ -245004,9 +245086,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolSecondaryBootDisksMode',
         ),
       ],
     ),
@@ -245126,9 +245208,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'effect',
           dartName: 'effect',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolEffect',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -245152,9 +245234,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'architecture_taint_behavior',
           dartName: 'architectureTaintBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolArchitectureTaintBehavior',
         ),
       ],
     ),
@@ -245171,9 +245253,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolScope',
         ),
       ],
     ),
@@ -245197,9 +245279,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'strategy',
           dartName: 'strategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolStrategy',
         ),
         MigrateSlot(
           tfName: 'blue_green_settings',
@@ -245217,9 +245299,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'osversion',
           dartName: 'osversion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolOsversion',
         ),
       ],
     ),
@@ -245229,9 +245311,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolWorkloadMetadataConfigMode',
         ),
       ],
     ),
@@ -246220,9 +246302,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exclusion_type',
           dartName: 'exclusionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLossPreventionContentPolicyExclusionType',
         ),
         MigrateSlot(
           tfName: 'likelihood',
@@ -247518,9 +247600,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'logical_operator',
           dartName: 'logicalOperator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLossPreventionDeidentifyTemplateLogicalOperator',
         ),
         MigrateSlot(
           tfName: 'conditions',
@@ -248270,42 +248352,95 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations':
+    'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig':
         MigrateHelper(
           className:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'transformations',
-              dartName: 'transformations',
+              tfName: 'context',
+              dartName: 'context',
               kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateTransformations',
-            ),
-          ],
-        ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'buckets',
-              dartName: 'buckets',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
+              required: false,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
+                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
+            ),
+            MigrateSlot(
+              tfName: 'crypto_key',
+              dartName: 'cryptoKey',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
+            ),
+            MigrateSlot(
+              tfName: 'surrogate_info_type',
+              dartName: 'surrogateInfoType',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
             ),
           ],
         ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation': MigrateHelper(
+    'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig': MigrateHelper(
       className:
-          'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation',
+          'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'common_alphabet',
+          dartName: 'commonAlphabet',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet',
+        ),
+        MigrateSlot(
+          tfName: 'custom_alphabet',
+          dartName: 'customAlphabet',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'radix',
+          dartName: 'radix',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'context',
+          dartName: 'context',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
+        ),
+        MigrateSlot(
+          tfName: 'crypto_key',
+          dartName: 'cryptoKey',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
+        ),
+        MigrateSlot(
+          tfName: 'surrogate_info_type',
+          dartName: 'surrogateInfoType',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
+        ),
+      ],
+    ),
+    'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation': MigrateHelper(
+      className:
+          'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'bucketing_config',
@@ -248331,7 +248466,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
         ),
         MigrateSlot(
           tfName: 'crypto_hash_config',
@@ -248349,7 +248484,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig',
         ),
         MigrateSlot(
           tfName: 'date_shift_config',
@@ -248415,6 +248550,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'transformations',
+              dartName: 'transformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              helper: 'DataLossPreventionDeidentifyTemplateTransformations',
+            ),
+          ],
+        ),
+    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'buckets',
+              dartName: 'buckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
+            ),
+          ],
+        ),
     'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations':
         MigrateHelper(
           className:
@@ -248436,7 +248604,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: true,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation',
+                  'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
             ),
           ],
         ),
@@ -248487,39 +248655,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'context',
-              dartName: 'context',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
-            ),
-            MigrateSlot(
-              tfName: 'crypto_key',
-              dartName: 'cryptoKey',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-            MigrateSlot(
-              tfName: 'surrogate_info_type',
-              dartName: 'surrogateInfoType',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
-            ),
-          ],
-        ),
     'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig':
         MigrateHelper(
           className:
@@ -248532,61 +248667,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: true,
               wrapped: false,
               helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-          ],
-        ),
-    'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'common_alphabet',
-              dartName: 'commonAlphabet',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              dartType:
-                  'DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet',
-            ),
-            MigrateSlot(
-              tfName: 'custom_alphabet',
-              dartName: 'customAlphabet',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'radix',
-              dartName: 'radix',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'num',
-            ),
-            MigrateSlot(
-              tfName: 'context',
-              dartName: 'context',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
-            ),
-            MigrateSlot(
-              tfName: 'crypto_key',
-              dartName: 'cryptoKey',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-            MigrateSlot(
-              tfName: 'surrogate_info_type',
-              dartName: 'surrogateInfoType',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
             ),
           ],
         ),
@@ -250772,9 +250852,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'types',
           dartName: 'types',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType:
+              'DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes',
         ),
       ],
     ),
@@ -251002,9 +251084,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exclusion_type',
           dartName: 'exclusionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLossPreventionInspectTemplateExclusionType',
         ),
         MigrateSlot(
           tfName: 'likelihood',
@@ -251767,9 +251849,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exclusion_type',
           dartName: 'exclusionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataLossPreventionJobTriggerExclusionType',
         ),
         MigrateSlot(
           tfName: 'likelihood',
@@ -253758,9 +253840,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_version',
           dartName: 'databaseVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DatabaseMigrationServiceConnectionProfileDatabaseVersion',
         ),
         MigrateSlot(
           tfName: 'edition',
@@ -256780,9 +256862,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'change_types',
           dartName: 'changeTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataplexMetadataFeedChangeTypes',
         ),
         MigrateSlot(
           tfName: 'entry_types',
@@ -257992,9 +258075,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'disk_type',
           dartName: 'diskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterDiskType',
         ),
         MigrateSlot(
           tfName: 'provisioned_iops',
@@ -258110,9 +258193,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -258129,23 +258212,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_tier',
           dartName: 'clusterTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterTier',
         ),
         MigrateSlot(
           tfName: 'cluster_type',
           dartName: 'clusterType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterType',
         ),
         MigrateSlot(
           tfName: 'engine',
           dartName: 'engine',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterEngine',
         ),
         MigrateSlot(
           tfName: 'staging_bucket',
@@ -258325,9 +258408,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'local_ssd_interface',
           dartName: 'localSsdInterface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterLocalSsdInterface',
         ),
         MigrateSlot(
           tfName: 'num_local_ssds',
@@ -258893,9 +258976,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'metric_source',
           dartName: 'metricSource',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataprocClusterMetricSource',
         ),
       ],
     ),
@@ -258905,9 +258988,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'roles',
           dartName: 'roles',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataprocClusterRoles',
         ),
         MigrateSlot(
           tfName: 'node_group_config',
@@ -259008,9 +259092,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'local_ssd_interface',
           dartName: 'localSsdInterface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterLocalSsdInterface',
         ),
         MigrateSlot(
           tfName: 'num_local_ssds',
@@ -259102,9 +259186,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'roles',
           dartName: 'roles',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataprocClusterNodePoolTargetRoles',
         ),
         MigrateSlot(
           tfName: 'node_pool_config',
@@ -259129,9 +259214,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'preemptibility',
           dartName: 'preemptibility',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterPreemptibility',
         ),
         MigrateSlot(
           tfName: 'disk_config',
@@ -259201,9 +259286,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'consume_reservation_type',
           dartName: 'consumeReservationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterConsumeReservationType',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -259281,9 +259366,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'optional_components',
           dartName: 'optionalComponents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataprocClusterOptionalComponents',
         ),
         MigrateSlot(
           tfName: 'override_properties',
@@ -260971,9 +261057,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'disk_type',
           dartName: 'diskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocWorkflowTemplateDiskType',
         ),
         MigrateSlot(
           tfName: 'provisioned_iops',
@@ -261176,16 +261262,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'boot_disk_type',
           dartName: 'bootDiskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocWorkflowTemplateBootDiskType',
         ),
         MigrateSlot(
           tfName: 'local_ssd_interface',
           dartName: 'localSsdInterface',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocWorkflowTemplateLocalSsdInterface',
         ),
         MigrateSlot(
           tfName: 'num_local_ssds',
@@ -262308,9 +262394,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'optional_components',
           dartName: 'optionalComponents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataprocWorkflowTemplateOptionalComponents',
         ),
         MigrateSlot(
           tfName: 'properties',
@@ -263562,9 +263649,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_format',
           dartName: 'fileFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DatastreamStreamBlmtConfigFileFormat',
         ),
         MigrateSlot(
           tfName: 'root_path',
@@ -263576,9 +263663,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'table_format',
           dartName: 'tableFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DatastreamStreamTableFormat',
         ),
       ],
     ),
@@ -265557,9 +265644,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_provider',
           dartName: 'scmProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DeveloperConnectAccountConnectorScmProvider',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -265605,9 +265692,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'system_provider_id',
           dartName: 'systemProviderId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DeveloperConnectAccountConnectorSystemProviderId',
         ),
       ],
     ),
@@ -265792,9 +265879,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'github_app',
           dartName: 'githubApp',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DeveloperConnectConnectionGithubApp',
         ),
         MigrateSlot(
           tfName: 'authorizer_credential',
@@ -266078,6 +266165,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'DeveloperConnectInsightsConfigScopeAppHubApplication': MigrateHelper(
+      className: 'DeveloperConnectInsightsConfigScopeAppHubApplication',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_hub_application',
+          dartName: 'appHubApplication',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appHubApplication',
+    ),
+    'DeveloperConnectInsightsConfigScopeTargetProjects': MigrateHelper(
+      className: 'DeveloperConnectInsightsConfigScopeTargetProjects',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target_projects',
+          dartName: 'targetProjects',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DeveloperConnectInsightsConfigTargetProjects',
+        ),
+      ],
+      shorthand: 'targetProjects',
     ),
     'DeveloperConnectInsightsConfigTargetProjects': MigrateHelper(
       className: 'DeveloperConnectInsightsConfigTargetProjects',
@@ -266852,9 +266968,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowConversationProfileType',
         ),
       ],
     ),
@@ -268112,9 +268228,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_banned_phrase_match_strategy',
           dartName: 'defaultBannedPhraseMatchStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy',
         ),
         MigrateSlot(
           tfName: 'banned_phrases',
@@ -269717,9 +269834,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'request_location',
           dartName: 'requestLocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolRequestLocation',
         ),
         MigrateSlot(
           tfName: 'secret_version_for_api_key',
@@ -269818,16 +269935,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_store_type',
           dartName: 'dataStoreType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolDataStoreType',
         ),
         MigrateSlot(
           tfName: 'document_processing_mode',
           dartName: 'documentProcessingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolDocumentProcessingMode',
         ),
       ],
     ),
@@ -269896,9 +270013,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'oauth_grant_type',
           dartName: 'oauthGrantType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolOauthGrantType',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -269965,9 +270082,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_agent_auth',
           dartName: 'serviceAgentAuth',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolServiceAgentAuth',
         ),
       ],
     ),
@@ -270017,9 +270134,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'request_location',
           dartName: 'requestLocation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolVersionRequestLocation',
         ),
         MigrateSlot(
           tfName: 'secret_version_for_api_key',
@@ -270118,16 +270235,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_store_type',
           dartName: 'dataStoreType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolVersionDataStoreType',
         ),
         MigrateSlot(
           tfName: 'document_processing_mode',
           dartName: 'documentProcessingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolVersionDocumentProcessingMode',
         ),
       ],
     ),
@@ -270196,9 +270313,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'oauth_grant_type',
           dartName: 'oauthGrantType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolVersionOauthGrantType',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -270265,9 +270382,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service_agent_auth',
           dartName: 'serviceAgentAuth',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DialogflowCxToolVersionServiceAgentAuth',
         ),
       ],
     ),
@@ -270746,9 +270863,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowFulfillmentType',
         ),
       ],
     ),
@@ -271204,9 +271321,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'oauth_grant_type',
           dartName: 'oauthGrantType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DialogflowToolOauthGrantType',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -271395,9 +271512,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match_type',
           dartName: 'matchType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineAssistantMatchType',
         ),
         MigrateSlot(
           tfName: 'phrase',
@@ -271456,9 +271573,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'failure_mode',
           dartName: 'failureMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineAssistantFailureMode',
         ),
         MigrateSlot(
           tfName: 'response_template',
@@ -271508,9 +271625,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineChatEngineAgentCreationConfigLocation',
         ),
         MigrateSlot(
           tfName: 'time_zone',
@@ -271780,9 +271897,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpolation_type',
           dartName: 'interpolationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineControlInterpolationType',
         ),
         MigrateSlot(
           tfName: 'control_point',
@@ -271993,16 +272110,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enabled_actions',
           dartName: 'enabledActions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineDataConnectorEnabledActions',
         ),
         MigrateSlot(
           tfName: 'supported_connector_modes',
           dartName: 'supportedConnectorModes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineDataConnectorSupportedConnectorModes',
         ),
       ],
     ),
@@ -272059,9 +272178,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entity_name',
           dartName: 'entityName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineDataConnectorEntityName',
         ),
         MigrateSlot(
           tfName: 'key_property_mappings',
@@ -272345,9 +272464,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'structured_content_types',
           dartName: 'structuredContentTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineDataStoreStructuredContentTypes',
         ),
       ],
     ),
@@ -272505,9 +272625,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'optimization_objective',
           dartName: 'optimizationObjective',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineRecommendationEngineOptimizationObjective',
         ),
         MigrateSlot(
           tfName: 'training_state',
@@ -272519,9 +272639,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineRecommendationEngineType',
         ),
         MigrateSlot(
           tfName: 'engine_features_config',
@@ -272567,9 +272687,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'target_field',
               dartName: 'targetField',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'DiscoveryEngineRecommendationEngineTargetField',
             ),
             MigrateSlot(
               tfName: 'target_field_value_float',
@@ -272586,9 +272706,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'context_event_type',
           dartName: 'contextEventType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineRecommendationEngineContextEventType',
         ),
       ],
     ),
@@ -272617,9 +272737,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'search_add_ons',
           dartName: 'searchAddOns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DiscoveryEngineSearchEngineConfigSearchAddOns',
         ),
         MigrateSlot(
           tfName: 'search_tier',
@@ -275995,10 +276116,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'array_config',
           dartName: 'arrayConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'FirestoreFieldArrayConfig',
         ),
       ],
       shorthand: 'arrayConfig',
@@ -276109,16 +276230,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'index_type',
           dartName: 'indexType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FirestoreIndexTextIndexType',
         ),
         MigrateSlot(
           tfName: 'match_type',
           dartName: 'matchType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FirestoreIndexTextMatchType',
         ),
       ],
     ),
@@ -276142,16 +276263,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloud_product',
           dartName: 'cloudProduct',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'FolderAccessApprovalSettingsCloudProduct',
         ),
         MigrateSlot(
           tfName: 'enrollment_level',
           dartName: 'enrollmentLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FolderAccessApprovalSettingsEnrollmentLevel',
         ),
       ],
     ),
@@ -276169,9 +276290,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_type',
           dartName: 'logType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'FolderIamAuditConfigLogType',
         ),
       ],
     ),
@@ -276992,6 +277113,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'GkeBackupBackupPlanDayOfWeek',
         ),
       ],
@@ -277795,9 +277917,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'volume_type',
           dartName: 'volumeType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'GkeBackupRestorePlanVolumeType',
         ),
       ],
     ),
@@ -278319,9 +278441,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'management',
           dartName: 'management',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeHubFeatureMembershipConfigmanagementManagement',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -278515,9 +278637,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret_type',
           dartName: 'secretType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeHubFeatureMembershipGitSecretType',
         ),
         MigrateSlot(
           tfName: 'sync_branch',
@@ -278609,7 +278731,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'management',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'GkeHubFeatureMembershipManagement',
+          dartType: 'GkeHubFeatureMembershipMeshManagement',
         ),
       ],
     ),
@@ -278619,9 +278741,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backends',
           dartName: 'backends',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GkeHubFeatureMembershipBackends',
         ),
       ],
     ),
@@ -278645,9 +278768,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret_type',
           dartName: 'secretType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeHubFeatureMembershipOciSecretType',
         ),
         MigrateSlot(
           tfName: 'sync_repo',
@@ -279466,9 +279589,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'upgrade_types',
           dartName: 'upgradeTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GkeHubRolloutSequenceUpgradeTypes',
         ),
       ],
     ),
@@ -279895,9 +280019,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'operating_system',
               dartName: 'operatingSystem',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'GkeonpremBareMetalAdminClusterOperatingSystem',
             ),
             MigrateSlot(
               tfName: 'kubelet_config',
@@ -280108,9 +280232,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operating_system',
           dartName: 'operatingSystem',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeonpremBareMetalAdminClusterOperatingSystem',
         ),
         MigrateSlot(
           tfName: 'node_configs',
@@ -280138,9 +280262,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'effect',
           dartName: 'effect',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeonpremBareMetalAdminClusterTaintsEffect',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -280587,9 +280711,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'operating_system',
               dartName: 'operatingSystem',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'GkeonpremBareMetalClusterOperatingSystem',
             ),
             MigrateSlot(
               tfName: 'kubelet_config',
@@ -280880,9 +281004,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operating_system',
           dartName: 'operatingSystem',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeonpremBareMetalClusterOperatingSystem',
         ),
         MigrateSlot(
           tfName: 'node_configs',
@@ -281075,9 +281199,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operating_system',
           dartName: 'operatingSystem',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'GkeonpremBareMetalNodePoolOperatingSystem',
         ),
         MigrateSlot(
           tfName: 'node_configs',
@@ -283313,9 +283437,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'terminal_storage_class',
           dartName: 'terminalStorageClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HypercomputeclusterClusterTerminalStorageClass',
         ),
       ],
     ),
@@ -283636,9 +283760,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_class',
           dartName: 'storageClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HypercomputeclusterClusterStorageClass',
         ),
         MigrateSlot(
           tfName: 'autoclass',
@@ -283760,9 +283884,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'per_unit_storage_throughput',
           dartName: 'perUnitStorageThroughput',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HypercomputeclusterClusterPerUnitStorageThroughput',
         ),
       ],
     ),
@@ -283829,9 +283953,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'termination_action',
           dartName: 'terminationAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HypercomputeclusterClusterTerminationAction',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -284602,9 +284726,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'effect',
           dartName: 'effect',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipalAccessBoundaryPolicyEffect',
         ),
         MigrateSlot(
           tfName: 'resources',
@@ -284882,9 +285006,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'attributes_type',
           dartName: 'attributesType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IamWorkforcePoolProviderExtendedAttributesType',
         ),
         MigrateSlot(
           tfName: 'client_id',
@@ -285940,9 +286064,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'identity_sources',
           dartName: 'identitySources',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IapSettingsIdentitySources',
         ),
         MigrateSlot(
           tfName: 'allowed_domains_settings',
@@ -286911,9 +287036,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enabled_providers',
           dartName: 'enabledProviders',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IdentityPlatformConfigEnabledProviders',
         ),
         MigrateSlot(
           tfName: 'state',
@@ -287795,9 +287921,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'auth_type',
           dartName: 'authType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'IntegrationConnectorsConnectionAuthConfigAuthType',
         ),
         MigrateSlot(
           tfName: 'additional_variable',
@@ -288108,16 +288234,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'client_cert_type',
           dartName: 'clientCertType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IntegrationConnectorsConnectionClientCertType',
         ),
         MigrateSlot(
           tfName: 'server_cert_type',
           dartName: 'serverCertType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'IntegrationConnectorsConnectionServerCertType',
         ),
         MigrateSlot(
           tfName: 'trust_model',
@@ -288751,9 +288877,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'algorithm',
           dartName: 'algorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'KmsCryptoKeyVersionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'protection_level',
@@ -289926,9 +290052,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'squash_mode',
           dartName: 'squashMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LustreInstanceSquashMode',
         ),
       ],
     ),
@@ -289945,9 +290071,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_squash_mode',
           dartName: 'defaultSquashMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LustreInstanceDefaultSquashMode',
         ),
         MigrateSlot(
           tfName: 'default_squash_uid',
@@ -289973,9 +290099,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LustreInstanceMode',
         ),
       ],
     ),
@@ -290153,9 +290279,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'day_of_week',
           dartName: 'dayOfWeek',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LustreInstanceDayOfWeek',
         ),
         MigrateSlot(
           tfName: 'start_time',
@@ -290180,16 +290306,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operation',
           dartName: 'operation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ManagedKafkaAclOperation',
         ),
         MigrateSlot(
           tfName: 'permission_type',
           dartName: 'permissionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ManagedKafkaAclPermissionType',
         ),
         MigrateSlot(
           tfName: 'principal',
@@ -290317,9 +290443,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ManagedKafkaClusterMode',
         ),
       ],
     ),
@@ -290529,9 +290655,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'append_fsync',
           dartName: 'appendFsync',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceAppendFsync',
         ),
       ],
     ),
@@ -290840,9 +290966,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'rdb_snapshot_period',
           dartName: 'rdbSnapshotPeriod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MemorystoreInstanceRdbSnapshotPeriod',
         ),
         MigrateSlot(
           tfName: 'rdb_snapshot_start_time',
@@ -290991,9 +291117,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_type',
           dartName: 'licenseType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MigrationCenterPreferenceSetLicenseType',
         ),
         MigrateSlot(
           tfName: 'persistent_disk_type',
@@ -291056,9 +291182,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'commitment_plan',
           dartName: 'commitmentPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan',
         ),
         MigrateSlot(
           tfName: 'cpu_overcommit_ratio',
@@ -291070,9 +291197,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'host_maintenance_policy',
           dartName: 'hostMaintenancePolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MigrationCenterPreferenceSetHostMaintenancePolicy',
         ),
         MigrateSlot(
           tfName: 'node_types',
@@ -291091,23 +291218,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'commitment_plan',
           dartName: 'commitmentPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MigrationCenterPreferenceSetCommitmentPlan',
         ),
         MigrateSlot(
           tfName: 'sizing_optimization_strategy',
           dartName: 'sizingOptimizationStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MigrationCenterPreferenceSetSizingOptimizationStrategy',
         ),
         MigrateSlot(
           tfName: 'target_product',
           dartName: 'targetProduct',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MigrationCenterPreferenceSetTargetProduct',
         ),
         MigrateSlot(
           tfName: 'compute_engine_preferences',
@@ -291149,9 +291276,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'commitment_plan',
           dartName: 'commitmentPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan',
         ),
         MigrateSlot(
           tfName: 'cpu_overcommit_ratio',
@@ -291248,9 +291376,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingFilterEnforcement',
         ),
       ],
     ),
@@ -291336,9 +291464,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingFilterEnforcement',
         ),
       ],
     ),
@@ -291360,16 +291488,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidence_level',
           dartName: 'confidenceLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingConfidenceLevel',
         ),
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingFilterEnforcement',
         ),
       ],
     ),
@@ -291379,16 +291507,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidence_level',
           dartName: 'confidenceLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingConfidenceLevel',
         ),
         MigrateSlot(
           tfName: 'filter_type',
           dartName: 'filterType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ModelArmorFloorsettingFilterType',
         ),
       ],
     ),
@@ -291452,9 +291580,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateFilterEnforcement',
         ),
       ],
     ),
@@ -291504,10 +291632,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'alias',
           dartName: 'alias',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateAlias',
         ),
       ],
       shorthand: 'alias',
@@ -291532,9 +291660,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateFilterEnforcement',
         ),
       ],
     ),
@@ -291572,9 +291700,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enforcement_type',
           dartName: 'enforcementType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateEnforcementType',
         ),
         MigrateSlot(
           tfName: 'ignore_partial_invocation_failures',
@@ -291600,9 +291728,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'modalities',
           dartName: 'modalities',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ModelArmorTemplateModalities',
         ),
         MigrateSlot(
           tfName: 'filter_version_selector',
@@ -291643,16 +291772,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidence_level',
           dartName: 'confidenceLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateConfidenceLevel',
         ),
         MigrateSlot(
           tfName: 'filter_enforcement',
           dartName: 'filterEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateFilterEnforcement',
         ),
       ],
     ),
@@ -291662,16 +291791,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidence_level',
           dartName: 'confidenceLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateConfidenceLevel',
         ),
         MigrateSlot(
           tfName: 'filter_type',
           dartName: 'filterType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ModelArmorTemplateFilterType',
         ),
       ],
     ),
@@ -294438,9 +294567,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_protocol',
           dartName: 'ipProtocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkConnectivityPolicyBasedRouteIpProtocol',
         ),
         MigrateSlot(
           tfName: 'protocol_version',
@@ -295722,9 +295851,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'NetworkSecurityAuthzPolicyMethodsName',
         ),
         MigrateSlot(
           tfName: 'params',
@@ -296965,9 +297094,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'redirect_conditions',
           dartName: 'redirectConditions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesEdgeCacheOriginRedirectConditions',
         ),
       ],
     ),
@@ -298714,9 +298844,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'response_code',
           dartName: 'responseCode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'NetworkServicesHttpRouteResponseCode',
         ),
         MigrateSlot(
           tfName: 'strip_query',
@@ -298943,9 +299073,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'supported_events',
           dartName: 'supportedEvents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesLbEdgeExtensionSupportedEvents',
         ),
       ],
     ),
@@ -299059,9 +299190,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'supported_events',
           dartName: 'supportedEvents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesLbRouteExtensionSupportedEvents',
         ),
         MigrateSlot(
           tfName: 'timeout',
@@ -299168,9 +299300,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'supported_events',
           dartName: 'supportedEvents',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'NetworkServicesLbTrafficExtensionSupportedEvents',
         ),
         MigrateSlot(
           tfName: 'timeout',
@@ -299239,9 +299372,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_type',
           dartName: 'connectionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'NetworkServicesMulticastDomainConnectionType',
         ),
         MigrateSlot(
           tfName: 'ncc_hub',
@@ -299608,9 +299741,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'db_edition',
           dartName: 'dbEdition',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseAutonomousDatabaseDbEdition',
         ),
         MigrateSlot(
           tfName: 'db_version',
@@ -299650,9 +299783,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'maintenance_schedule_type',
           dartName: 'maintenanceScheduleType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseAutonomousDatabaseMaintenanceScheduleType',
         ),
         MigrateSlot(
           tfName: 'mtls_connection_required',
@@ -299671,9 +299804,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operations_insights_state',
           dartName: 'operationsInsightsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseAutonomousDatabaseOperationsInsightsState',
         ),
         MigrateSlot(
           tfName: 'private_endpoint_ip',
@@ -299758,9 +299891,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'days_of_week',
           dartName: 'daysOfWeek',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'OracleDatabaseCloudExadataInfrastructureDaysOfWeek',
         ),
         MigrateSlot(
           tfName: 'hours_of_day',
@@ -299786,23 +299920,24 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'months',
           dartName: 'months',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'OracleDatabaseCloudExadataInfrastructureMonths',
         ),
         MigrateSlot(
           tfName: 'patching_mode',
           dartName: 'patchingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudExadataInfrastructurePatchingMode',
         ),
         MigrateSlot(
           tfName: 'preference',
           dartName: 'preference',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudExadataInfrastructurePreference',
         ),
         MigrateSlot(
           tfName: 'weeks_of_month',
@@ -299932,9 +300067,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'disk_redundancy',
           dartName: 'diskRedundancy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudVmClusterDiskRedundancy',
         ),
         MigrateSlot(
           tfName: 'gi_version',
@@ -299953,9 +300088,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_type',
           dartName: 'licenseType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudVmClusterLicenseType',
         ),
         MigrateSlot(
           tfName: 'local_backup_enabled',
@@ -300002,16 +300137,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vm_backup_storage_type',
           dartName: 'vmBackupStorageType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudVmClusterVmBackupStorageType',
         ),
         MigrateSlot(
           tfName: 'vm_file_system_storage_type',
           dartName: 'vmFileSystemStorageType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseCloudVmClusterVmFileSystemStorageType',
         ),
         MigrateSlot(
           tfName: 'diagnostics_data_collection_options',
@@ -300057,9 +300192,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemType',
         ),
       ],
     ),
@@ -300205,30 +300340,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'auto_full_backup_day',
           dartName: 'autoFullBackupDay',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemAutoFullBackupDay',
         ),
         MigrateSlot(
           tfName: 'auto_full_backup_window',
           dartName: 'autoFullBackupWindow',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemAutoFullBackupWindow',
         ),
         MigrateSlot(
           tfName: 'auto_incremental_backup_window',
           dartName: 'autoIncrementalBackupWindow',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemAutoIncrementalBackupWindow',
         ),
         MigrateSlot(
           tfName: 'backup_deletion_policy',
           dartName: 'backupDeletionPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemBackupDeletionPolicy',
         ),
         MigrateSlot(
           tfName: 'retention_period_days',
@@ -300288,9 +300423,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_management',
           dartName: 'storageManagement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemStorageManagement',
         ),
       ],
     ),
@@ -300307,9 +300442,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'compute_model',
           dartName: 'computeModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseDbSystemComputeModel',
         ),
         MigrateSlot(
           tfName: 'data_storage_size_gb',
@@ -300516,9 +300651,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_model',
           dartName: 'licenseModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseExadbVmClusterLicenseModel',
         ),
         MigrateSlot(
           tfName: 'node_count',
@@ -300537,9 +300672,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'shape_attribute',
           dartName: 'shapeAttribute',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseExadbVmClusterShapeAttribute',
         ),
         MigrateSlot(
           tfName: 'ssh_public_keys',
@@ -300846,9 +300981,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scheme_type',
           dartName: 'schemeType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionSchemeType',
         ),
         MigrateSlot(
           tfName: 'secret_access_key_secret',
@@ -300902,9 +301037,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'azure_authority_host',
@@ -301066,9 +301202,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'catalog_type',
           dartName: 'catalogType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionCatalogType',
         ),
         MigrateSlot(
           tfName: 'glue_iceberg_catalog',
@@ -301112,9 +301248,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionDatabricksAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'client_id',
@@ -301208,9 +301345,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_protocol',
           dartName: 'securityProtocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionDb2SecurityProtocol',
         ),
         MigrateSlot(
           tfName: 'ssl_client_keystash_file',
@@ -301266,9 +301403,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'fingerprint',
@@ -301294,9 +301432,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'security_protocol',
               dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'OracleDatabaseGoldengateConnectionDb2SecurityProtocol',
             ),
             MigrateSlot(
               tfName: 'servers',
@@ -301559,9 +301697,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'connection_factory',
@@ -301650,9 +301789,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'security_protocol',
               dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
             ),
             MigrateSlot(
               tfName: 'ssl_key_password',
@@ -301776,9 +301916,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'security_protocol',
               dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionKafkaSecurityProtocol',
             ),
             MigrateSlot(
               tfName: 'ssl_key_password',
@@ -301862,9 +302003,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'key_store_file',
@@ -302044,9 +302186,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'security_protocol',
               dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'OracleDatabaseGoldengateConnectionDb2SecurityProtocol',
             ),
             MigrateSlot(
               tfName: 'server_certificate_validation_required',
@@ -302087,204 +302229,204 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'OracleDatabaseGoldengateConnectionMongodbConnectionProperties':
-        MigrateHelper(
-          className:
-              'OracleDatabaseGoldengateConnectionMongodbConnectionProperties',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'database_id',
-              dartName: 'databaseId',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password',
-              dartName: 'password',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password_secret_version',
-              dartName: 'passwordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'security_protocol',
-              dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'technology_type',
-              dartName: 'technologyType',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'tls_ca_file',
-              dartName: 'tlsCaFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'tls_certificate_key_file',
-              dartName: 'tlsCertificateKeyFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'tls_certificate_key_file_password',
-              dartName: 'tlsCertificateKeyFilePassword',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'tls_certificate_key_file_password_secret_version',
-              dartName: 'tlsCertificateKeyFilePasswordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'username',
-              dartName: 'username',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+    'OracleDatabaseGoldengateConnectionMongodbConnectionProperties': MigrateHelper(
+      className:
+          'OracleDatabaseGoldengateConnectionMongodbConnectionProperties',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
-    'OracleDatabaseGoldengateConnectionMysqlConnectionProperties':
-        MigrateHelper(
-          className:
-              'OracleDatabaseGoldengateConnectionMysqlConnectionProperties',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database',
-              dartName: 'database',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'db_system_id',
-              dartName: 'dbSystemId',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'host',
-              dartName: 'host',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password',
-              dartName: 'password',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password_secret_version',
-              dartName: 'passwordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'port',
-              dartName: 'port',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'num',
-            ),
-            MigrateSlot(
-              tfName: 'security_protocol',
-              dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_ca_file',
-              dartName: 'sslCaFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_cert_file',
-              dartName: 'sslCertFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_crl_file',
-              dartName: 'sslCrlFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_key_file',
-              dartName: 'sslKeyFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_mode',
-              dartName: 'sslMode',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'technology_type',
-              dartName: 'technologyType',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'username',
-              dartName: 'username',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'additional_attributes',
-              dartName: 'additionalAttributes',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper: 'OracleDatabaseGoldengateConnectionAdditionalAttributes',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'database_id',
+          dartName: 'databaseId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'password',
+          dartName: 'password',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password_secret_version',
+          dartName: 'passwordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'security_protocol',
+          dartName: 'securityProtocol',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'technology_type',
+          dartName: 'technologyType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tls_ca_file',
+          dartName: 'tlsCaFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tls_certificate_key_file',
+          dartName: 'tlsCertificateKeyFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tls_certificate_key_file_password',
+          dartName: 'tlsCertificateKeyFilePassword',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tls_certificate_key_file_password_secret_version',
+          dartName: 'tlsCertificateKeyFilePasswordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'username',
+          dartName: 'username',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'OracleDatabaseGoldengateConnectionMysqlConnectionProperties': MigrateHelper(
+      className: 'OracleDatabaseGoldengateConnectionMysqlConnectionProperties',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'db_system_id',
+          dartName: 'dbSystemId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password',
+          dartName: 'password',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password_secret_version',
+          dartName: 'passwordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'security_protocol',
+          dartName: 'securityProtocol',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_ca_file',
+          dartName: 'sslCaFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_cert_file',
+          dartName: 'sslCertFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_crl_file',
+          dartName: 'sslCrlFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_key_file',
+          dartName: 'sslKeyFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_mode',
+          dartName: 'sslMode',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode',
+        ),
+        MigrateSlot(
+          tfName: 'technology_type',
+          dartName: 'technologyType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'username',
+          dartName: 'username',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'additional_attributes',
+          dartName: 'additionalAttributes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'OracleDatabaseGoldengateConnectionAdditionalAttributes',
+        ),
+      ],
+    ),
     'OracleDatabaseGoldengateConnectionNessieIcebergCatalog': MigrateHelper(
       className: 'OracleDatabaseGoldengateConnectionNessieIcebergCatalog',
       slots: <MigrateSlot>[
@@ -302445,9 +302587,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_mode',
               dartName: 'authenticationMode',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'OracleDatabaseGoldengateConnectionAuthenticationMode',
             ),
             MigrateSlot(
               tfName: 'connection_string',
@@ -302480,9 +302622,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'session_mode',
               dartName: 'sessionMode',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType: 'OracleDatabaseGoldengateConnectionSessionMode',
             ),
             MigrateSlot(
               tfName: 'technology_type',
@@ -302610,129 +302752,130 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties':
-        MigrateHelper(
-          className:
-              'OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database',
-              dartName: 'database',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'db_system_id',
-              dartName: 'dbSystemId',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'host',
-              dartName: 'host',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password',
-              dartName: 'password',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password_secret_version',
-              dartName: 'passwordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'port',
-              dartName: 'port',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'num',
-            ),
-            MigrateSlot(
-              tfName: 'security_protocol',
-              dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_ca_file',
-              dartName: 'sslCaFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_cert_file',
-              dartName: 'sslCertFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_crl_file',
-              dartName: 'sslCrlFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_key_file',
-              dartName: 'sslKeyFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'ssl_mode',
-              dartName: 'sslMode',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'technology_type',
-              dartName: 'technologyType',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'username',
-              dartName: 'username',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'additional_attributes',
-              dartName: 'additionalAttributes',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper: 'OracleDatabaseGoldengateConnectionAdditionalAttributes',
-            ),
-          ],
+    'OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties': MigrateHelper(
+      className:
+          'OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'db_system_id',
+          dartName: 'dbSystemId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password',
+          dartName: 'password',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password_secret_version',
+          dartName: 'passwordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'security_protocol',
+          dartName: 'securityProtocol',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_ca_file',
+          dartName: 'sslCaFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_cert_file',
+          dartName: 'sslCertFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_crl_file',
+          dartName: 'sslCrlFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_key_file',
+          dartName: 'sslKeyFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ssl_mode',
+          dartName: 'sslMode',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode',
+        ),
+        MigrateSlot(
+          tfName: 'technology_type',
+          dartName: 'technologyType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'username',
+          dartName: 'username',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'additional_attributes',
+          dartName: 'additionalAttributes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'OracleDatabaseGoldengateConnectionAdditionalAttributes',
+        ),
+      ],
+    ),
     'OracleDatabaseGoldengateConnectionProperties': MigrateHelper(
       className: 'OracleDatabaseGoldengateConnectionProperties',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'connection_type',
           dartName: 'connectionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionType',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -302751,9 +302894,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'routing_method',
           dartName: 'routingMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionRoutingMethod',
         ),
         MigrateSlot(
           tfName: 'amazon_kinesis_connection_properties',
@@ -303013,111 +303156,111 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'OracleDatabaseGoldengateConnectionRedisConnectionProperties':
-        MigrateHelper(
-          className:
-              'OracleDatabaseGoldengateConnectionRedisConnectionProperties',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'authentication_type',
-              dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'key_store_file',
-              dartName: 'keyStoreFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'key_store_password',
-              dartName: 'keyStorePassword',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'key_store_password_secret_version',
-              dartName: 'keyStorePasswordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password',
-              dartName: 'password',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'password_secret_version',
-              dartName: 'passwordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'redis_cluster_id',
-              dartName: 'redisClusterId',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'security_protocol',
-              dartName: 'securityProtocol',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'servers',
-              dartName: 'servers',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'technology_type',
-              dartName: 'technologyType',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'trust_store_file',
-              dartName: 'trustStoreFile',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'trust_store_password',
-              dartName: 'trustStorePassword',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'trust_store_password_secret_version',
-              dartName: 'trustStorePasswordSecretVersion',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'username',
-              dartName: 'username',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+    'OracleDatabaseGoldengateConnectionRedisConnectionProperties': MigrateHelper(
+      className: 'OracleDatabaseGoldengateConnectionRedisConnectionProperties',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'authentication_type',
+          dartName: 'authenticationType',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType',
         ),
+        MigrateSlot(
+          tfName: 'key_store_file',
+          dartName: 'keyStoreFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key_store_password',
+          dartName: 'keyStorePassword',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key_store_password_secret_version',
+          dartName: 'keyStorePasswordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password',
+          dartName: 'password',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'password_secret_version',
+          dartName: 'passwordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'redis_cluster_id',
+          dartName: 'redisClusterId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'security_protocol',
+          dartName: 'securityProtocol',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'servers',
+          dartName: 'servers',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'technology_type',
+          dartName: 'technologyType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'trust_store_file',
+          dartName: 'trustStoreFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'trust_store_password',
+          dartName: 'trustStorePassword',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'trust_store_password_secret_version',
+          dartName: 'trustStorePasswordSecretVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'username',
+          dartName: 'username',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'OracleDatabaseGoldengateConnectionRestIcebergCatalog': MigrateHelper(
       className: 'OracleDatabaseGoldengateConnectionRestIcebergCatalog',
       slots: <MigrateSlot>[
@@ -303145,9 +303288,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'authentication_type',
               dartName: 'authenticationType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: false,
-              dartType: 'String',
+              dartType:
+                  'OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType',
             ),
             MigrateSlot(
               tfName: 'connection_url',
@@ -303206,9 +303350,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_type',
           dartName: 'storageType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateConnectionStorageType',
         ),
         MigrateSlot(
           tfName: 'amazon_s3_iceberg_storage',
@@ -303284,9 +303428,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'day',
           dartName: 'day',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateDeploymentDay',
         ),
         MigrateSlot(
           tfName: 'start_hour',
@@ -303378,9 +303522,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_model',
           dartName: 'licenseModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OracleDatabaseGoldengateDeploymentLicenseModel',
         ),
         MigrateSlot(
           tfName: 'maintenance_config',
@@ -303475,9 +303619,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'allow_all',
           dartName: 'allowAll',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrgPolicyPolicyAllowAll',
         ),
         MigrateSlot(
           tfName: 'deny_all',
@@ -303571,16 +303715,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloud_product',
           dartName: 'cloudProduct',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrganizationAccessApprovalSettingsCloudProduct',
         ),
         MigrateSlot(
           tfName: 'enrollment_level',
           dartName: 'enrollmentLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrganizationAccessApprovalSettingsEnrollmentLevel',
         ),
       ],
     ),
@@ -303598,9 +303742,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_type',
           dartName: 'logType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrganizationIamAuditConfigLogType',
         ),
       ],
     ),
@@ -305389,9 +305533,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpreter',
           dartName: 'interpreter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorInterpreter',
         ),
         MigrateSlot(
           tfName: 'output_file_path',
@@ -305477,9 +305621,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorFileState',
         ),
         MigrateSlot(
           tfName: 'file',
@@ -306563,9 +306707,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpreter',
           dartName: 'interpreter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationInterpreter',
         ),
         MigrateSlot(
           tfName: 'output_file_path',
@@ -306651,9 +306795,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationFileState',
         ),
         MigrateSlot(
           tfName: 'file',
@@ -306949,9 +307093,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationMode',
         ),
         MigrateSlot(
           tfName: 'resource_groups',
@@ -307024,9 +307168,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_state',
           dartName: 'desiredState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationDesiredState',
         ),
         MigrateSlot(
           tfName: 'apt',
@@ -307184,9 +307328,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'archive_type',
           dartName: 'archiveType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationArchiveType',
         ),
         MigrateSlot(
           tfName: 'components',
@@ -307484,9 +307628,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpreter',
           dartName: 'interpreter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorForOrganizationInterpreter',
         ),
         MigrateSlot(
           tfName: 'output_file_path',
@@ -307752,9 +307896,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorMode',
         ),
         MigrateSlot(
           tfName: 'resource_groups',
@@ -307817,9 +307961,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_state',
           dartName: 'desiredState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorDesiredState',
         ),
         MigrateSlot(
           tfName: 'apt',
@@ -307977,9 +308121,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'archive_type',
           dartName: 'archiveType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorArchiveType',
         ),
         MigrateSlot(
           tfName: 'components',
@@ -308272,9 +308416,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interpreter',
           dartName: 'interpreter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OsConfigV2PolicyOrchestratorInterpreter',
         ),
         MigrateSlot(
           tfName: 'output_file_path',
@@ -310468,9 +310612,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'known_extensions',
           dartName: 'knownExtensions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'PrivatecaCertificateTemplateKnownExtensions',
         ),
         MigrateSlot(
           tfName: 'additional_extensions',
@@ -310877,16 +311022,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloud_product',
           dartName: 'cloudProduct',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ProjectAccessApprovalSettingsCloudProduct',
         ),
         MigrateSlot(
           tfName: 'enrollment_level',
           dartName: 'enrollmentLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ProjectAccessApprovalSettingsEnrollmentLevel',
         ),
       ],
     ),
@@ -310904,9 +311049,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_type',
           dartName: 'logType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ProjectIamAuditConfigAuditLogConfigLogType',
         ),
       ],
     ),
@@ -314708,9 +314853,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'readme',
           dartName: 'readme',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SecureSourceManagerRepositoryReadme',
         ),
       ],
     ),
@@ -314919,9 +315064,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'method_types',
           dartName: 'methodTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'SecurityposturePostureMethodTypes',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -315851,6 +315997,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SpannerInstanceCapacityAutoscalingConfig': MigrateHelper(
+      className: 'SpannerInstanceCapacityAutoscalingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'autoscaling_config',
+          dartName: 'autoscalingConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SpannerInstanceAutoscalingConfig',
+        ),
+      ],
+      shorthand: 'autoscalingConfig',
+    ),
+    'SpannerInstanceCapacityNumNodes': MigrateHelper(
+      className: 'SpannerInstanceCapacityNumNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'num_nodes',
+          dartName: 'numNodes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'numNodes',
+    ),
+    'SpannerInstanceCapacityProcessingUnits': MigrateHelper(
+      className: 'SpannerInstanceCapacityProcessingUnits',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'processing_units',
+          dartName: 'processingUnits',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'processingUnits',
+    ),
     'SpannerInstanceConfigReplicas': MigrateHelper(
       className: 'SpannerInstanceConfigReplicas',
       slots: <MigrateSlot>[
@@ -316273,9 +316462,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceMode',
         ),
         MigrateSlot(
           tfName: 'organizational_unit',
@@ -316392,9 +316581,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'retention_unit',
           dartName: 'retentionUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceRetentionUnit',
         ),
       ],
     ),
@@ -316677,9 +316866,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'server_ca_mode',
           dartName: 'serverCaMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceServerCaMode',
         ),
         MigrateSlot(
           tfName: 'server_ca_pool',
@@ -316691,16 +316880,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'server_certificate_rotation_mode',
           dartName: 'serverCertificateRotationMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceServerCertificateRotationMode',
         ),
         MigrateSlot(
           tfName: 'ssl_mode',
           dartName: 'sslMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceSslMode',
         ),
         MigrateSlot(
           tfName: 'authorized_networks',
@@ -316768,9 +316957,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'update_track',
           dartName: 'updateTrack',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceUpdateTrack',
         ),
       ],
     ),
@@ -316780,9 +316969,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'complexity',
           dartName: 'complexity',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceComplexity',
         ),
         MigrateSlot(
           tfName: 'disallow_username_substring',
@@ -317168,16 +317357,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connector_enforcement',
           dartName: 'connectorEnforcement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceConnectorEnforcement',
         ),
         MigrateSlot(
           tfName: 'data_api_access',
           dartName: 'dataApiAccess',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstanceDataApiAccess',
         ),
         MigrateSlot(
           tfName: 'data_disk_provisioned_iops',
@@ -317252,9 +317441,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pricing_plan',
           dartName: 'pricingPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SqlDatabaseInstancePricingPlan',
         ),
         MigrateSlot(
           tfName: 'replication_lag_max_seconds',
@@ -317725,16 +317914,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'event_based_hold',
           dartName: 'eventBasedHold',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageBatchOperationsJobEventBasedHold',
         ),
         MigrateSlot(
           tfName: 'temporary_hold',
           dartName: 'temporaryHold',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageBatchOperationsJobTemporaryHold',
         ),
       ],
     ),
@@ -317783,9 +317972,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'terminal_storage_class',
           dartName: 'terminalStorageClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageBucketTerminalStorageClass',
         ),
       ],
     ),
@@ -317837,9 +318026,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'matches_storage_class',
           dartName: 'matchesStorageClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'StorageBucketMatchesStorageClass',
         ),
         MigrateSlot(
           tfName: 'matches_suffix',
@@ -317907,9 +318097,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'with_state',
           dartName: 'withState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageBucketWithState',
         ),
       ],
     ),
@@ -317964,9 +318154,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restriction_mode',
           dartName: 'restrictionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageBucketRestrictionMode',
         ),
       ],
     ),
@@ -317976,9 +318166,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restriction_mode',
           dartName: 'restrictionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageBucketRestrictionMode',
         ),
       ],
     ),
@@ -318024,9 +318214,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'restriction_mode',
           dartName: 'restrictionMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageBucketRestrictionMode',
         ),
       ],
     ),
@@ -318114,9 +318304,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageBucketMode',
         ),
         MigrateSlot(
           tfName: 'public_network_source',
@@ -318263,9 +318453,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageBucketObjectRetentionMode',
         ),
         MigrateSlot(
           tfName: 'retain_until_time',
@@ -318962,9 +319152,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'credential_type',
           dartName: 'credentialType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageFtpUserCredentialType',
         ),
         MigrateSlot(
           tfName: 'ssh_public_key_body',
@@ -319742,16 +319932,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'log_action_states',
           dartName: 'logActionStates',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'StorageTransferJobLogActionStates',
         ),
         MigrateSlot(
           tfName: 'log_actions',
           dartName: 'logActions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'StorageTransferJobLogActions',
         ),
       ],
     ),
@@ -319761,65 +319953,65 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'acl',
           dartName: 'acl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobAcl',
         ),
         MigrateSlot(
           tfName: 'gid',
           dartName: 'gid',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobGid',
         ),
         MigrateSlot(
           tfName: 'kms_key',
           dartName: 'kmsKey',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobKmsKey',
         ),
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobMode',
         ),
         MigrateSlot(
           tfName: 'storage_class',
           dartName: 'storageClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobStorageClass',
         ),
         MigrateSlot(
           tfName: 'symlink',
           dartName: 'symlink',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobSymlink',
         ),
         MigrateSlot(
           tfName: 'temporary_hold',
           dartName: 'temporaryHold',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobTemporaryHold',
         ),
         MigrateSlot(
           tfName: 'time_created',
           dartName: 'timeCreated',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobTimeCreated',
         ),
         MigrateSlot(
           tfName: 'uid',
           dartName: 'uid',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobUid',
         ),
       ],
     ),
@@ -319829,16 +320021,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'event_types',
           dartName: 'eventTypes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'StorageTransferJobEventTypes',
         ),
         MigrateSlot(
           tfName: 'payload_format',
           dartName: 'payloadFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageTransferJobPayloadFormat',
         ),
         MigrateSlot(
           tfName: 'pubsub_topic',
@@ -319964,30 +320157,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'auth_method',
           dartName: 'authMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobAuthMethod',
         ),
         MigrateSlot(
           tfName: 'list_api',
           dartName: 'listApi',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobListApi',
         ),
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobProtocol',
         ),
         MigrateSlot(
           tfName: 'request_model',
           dartName: 'requestModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobRequestModel',
         ),
       ],
     ),
@@ -320151,9 +320344,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'overwrite_when',
           dartName: 'overwriteWhen',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageTransferJobOverwriteWhen',
         ),
         MigrateSlot(
           tfName: 'metadata_options',
@@ -321860,9 +322053,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'task_type',
           dartName: 'taskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'VectorSearchCollectionTaskType',
         ),
         MigrateSlot(
           tfName: 'text_template',
@@ -322064,9 +322257,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiDeploymentResourcePoolAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -322570,9 +322763,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scheme',
           dartName: 'scheme',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiEndpointWithModelGardenDeploymentScheme',
         ),
         MigrateSlot(
           tfName: 'http_headers',
@@ -322703,9 +322896,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiEndpointWithModelGardenDeploymentAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -322858,34 +323051,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'publisherModel',
     ),
-    'VertexAiEndpointWithModelGardenDeploymentReservationAffinity':
-        MigrateHelper(
-          className:
-              'VertexAiEndpointWithModelGardenDeploymentReservationAffinity',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key',
-              dartName: 'key',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'reservation_affinity_type',
-              dartName: 'reservationAffinityType',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'values',
-              dartName: 'values',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-          ],
+    'VertexAiEndpointWithModelGardenDeploymentReservationAffinity': MigrateHelper(
+      className: 'VertexAiEndpointWithModelGardenDeploymentReservationAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'reservation_affinity_type',
+          dartName: 'reservationAffinityType',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType:
+              'VertexAiEndpointWithModelGardenDeploymentReservationAffinityType',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
     'VertexAiEndpointWithModelGardenDeploymentStartupProbe': MigrateHelper(
       className: 'VertexAiEndpointWithModelGardenDeploymentStartupProbe',
       slots: <MigrateSlot>[
@@ -323277,16 +323469,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'anomaly_detection_baseline',
           dartName: 'anomalyDetectionBaseline',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline',
         ),
         MigrateSlot(
           tfName: 'state',
           dartName: 'state',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiFeaturestoreEntitytypeState',
         ),
       ],
     ),
@@ -323467,23 +323659,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'distance_measure_type',
           dartName: 'distanceMeasureType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiIndexDistanceMeasureType',
         ),
         MigrateSlot(
           tfName: 'feature_norm_type',
           dartName: 'featureNormType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiIndexFeatureNormType',
         ),
         MigrateSlot(
           tfName: 'shard_size',
           dartName: 'shardSize',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiIndexShardSize',
         ),
         MigrateSlot(
           tfName: 'algorithm_config',
@@ -323741,6 +323933,375 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'VertexAiOnlineEvaluatorCloudObservability': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorCloudObservability',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'log_view',
+          dartName: 'logView',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'trace_view',
+          dartName: 'traceView',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'open_telemetry',
+          dartName: 'openTelemetry',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorOpenTelemetry',
+        ),
+        MigrateSlot(
+          tfName: 'session_scope',
+          dartName: 'sessionScope',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorSessionScope',
+        ),
+        MigrateSlot(
+          tfName: 'trace_scope',
+          dartName: 'traceScope',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorTraceScope',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorConfig': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_evaluated_samples_per_run',
+          dartName: 'maxEvaluatedSamplesPerRun',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'random_sampling',
+          dartName: 'randomSampling',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorRandomSampling',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorDuration': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorDuration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorInactivityTrigger': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorInactivityTrigger',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'threshold',
+          dartName: 'threshold',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorMetricSources': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorMetricSources',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metric',
+          dartName: 'metric',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'metric_resource_name',
+          dartName: 'metricResourceName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorModelCallErrors': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorModelCallErrors',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorModelCalls': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorModelCalls',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorOpenTelemetry': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorOpenTelemetry',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'semconv_version',
+          dartName: 'semconvVersion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorRandomSampling': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorRandomSampling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'percentage',
+          dartName: 'percentage',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorSessionScope': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorSessionScope',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorSessionScopeFilter',
+        ),
+        MigrateSlot(
+          tfName: 'inactivity_trigger',
+          dartName: 'inactivityTrigger',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorInactivityTrigger',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorSessionScopeFilter': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorSessionScopeFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'duration',
+          dartName: 'duration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorDuration',
+        ),
+        MigrateSlot(
+          tfName: 'model_call_errors',
+          dartName: 'modelCallErrors',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorModelCallErrors',
+        ),
+        MigrateSlot(
+          tfName: 'model_calls',
+          dartName: 'modelCalls',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorModelCalls',
+        ),
+        MigrateSlot(
+          tfName: 'tool_call_errors',
+          dartName: 'toolCallErrors',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorToolCallErrors',
+        ),
+        MigrateSlot(
+          tfName: 'tool_calls',
+          dartName: 'toolCalls',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorToolCalls',
+        ),
+        MigrateSlot(
+          tfName: 'total_token_usage',
+          dartName: 'totalTokenUsage',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorTotalTokenUsage',
+        ),
+        MigrateSlot(
+          tfName: 'user_turns',
+          dartName: 'userTurns',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorUserTurns',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorToolCallErrors': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorToolCallErrors',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorToolCalls': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorToolCalls',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorTotalTokenUsage': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorTotalTokenUsage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorTraceScope': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorTraceScope',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorTraceScopeFilter',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorTraceScopeFilter': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorTraceScopeFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'duration',
+          dartName: 'duration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorDuration',
+        ),
+        MigrateSlot(
+          tfName: 'total_token_usage',
+          dartName: 'totalTokenUsage',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiOnlineEvaluatorTotalTokenUsage',
+        ),
+      ],
+    ),
+    'VertexAiOnlineEvaluatorUserTurns': MigrateHelper(
+      className: 'VertexAiOnlineEvaluatorUserTurns',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'comparison_operator',
+          dartName: 'comparisonOperator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'VertexAiOnlineEvaluatorComparisonOperator',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
     'VertexAiPersistentResourceAutoscalingSpec': MigrateHelper(
       className: 'VertexAiPersistentResourceAutoscalingSpec',
       slots: <MigrateSlot>[
@@ -323773,9 +324334,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'boot_disk_type',
           dartName: 'bootDiskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiPersistentResourceBootDiskType',
         ),
       ],
     ),
@@ -323831,9 +324392,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'accelerator_type',
           dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiPersistentResourceAcceleratorType',
         ),
         MigrateSlot(
           tfName: 'machine_type',
@@ -324530,9 +325091,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role',
           dartName: 'role',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiReasoningEngineRole',
         ),
         MigrateSlot(
           tfName: 'parts',
@@ -325162,9 +325723,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_topic_enum',
           dartName: 'managedTopicEnum',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VertexAiReasoningEngineManagedTopicEnum',
         ),
       ],
     ),
@@ -325957,9 +326518,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'access_mode',
           dartName: 'accessMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VmwareengineClusterAccessMode',
         ),
         MigrateSlot(
           tfName: 'datastore',
@@ -325978,9 +326539,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'nfs_version',
           dartName: 'nfsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'VmwareengineClusterNfsVersion',
         ),
         MigrateSlot(
           tfName: 'datastore_network',
@@ -326581,9 +327142,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WorkbenchInstanceConfidentialInstanceType',
         ),
       ],
     ),
@@ -327817,6 +328378,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'ANY_SERVICE_ACCOUNT': 'anyServiceAccount',
           },
         ),
+    'AccessContextManagerServicePerimeterServicePatternsEnforcementScopes':
+        MigrateEnum(
+          name:
+              'AccessContextManagerServicePerimeterServicePatternsEnforcementScopes',
+          members: <String, String>{
+            'GOOGLE_APIS_VIA_PRIVATE_PATH': 'googleApisViaPrivatePath',
+          },
+        ),
     'AccessContextManagerServicePerimeterSourceRestriction': MigrateEnum(
       name: 'AccessContextManagerServicePerimeterSourceRestriction',
       members: <String, String>{
@@ -327848,6 +328417,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PERIMETER_TYPE_BRIDGE': 'perimeterTypeBridge',
       },
     ),
+    'AccessContextManagerServicePerimetersServicePatternsEnforcementScopes':
+        MigrateEnum(
+          name:
+              'AccessContextManagerServicePerimetersServicePatternsEnforcementScopes',
+          members: <String, String>{
+            'GOOGLE_APIS_VIA_PRIVATE_PATH': 'googleApisViaPrivatePath',
+          },
+        ),
     'AccessContextManagerServicePerimetersSourceRestriction': MigrateEnum(
       name: 'AccessContextManagerServicePerimetersSourceRestriction',
       members: <String, String>{
@@ -327895,6 +328472,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'AgentRegistryServiceMcpServerSpecType',
       members: <String, String>{'NO_SPEC': 'noSpec', 'TOOL_SPEC': 'toolSpec'},
     ),
+    'AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat':
+        MigrateEnum(
+          name:
+              'AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat',
+          members: <String, String>{
+            'PDF': 'pdf',
+            'DOCX': 'docx',
+            'GOOGLE_DOCS': 'googleDocs',
+          },
+        ),
+    'AgenticApplicationsAnalystAgentPersonaMathRenderingMode': MigrateEnum(
+      name: 'AgenticApplicationsAnalystAgentPersonaMathRenderingMode',
+      members: <String, String>{
+        'MATH_RENDERING_MODE_LATEX': 'mathRenderingModeLatex',
+        'MATH_RENDERING_MODE_PLAIN_TEXT': 'mathRenderingModePlainText',
+      },
+    ),
+    'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat':
+        MigrateEnum(
+          name:
+              'AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat',
+          members: <String, String>{
+            'MARKDOWN': 'markdown',
+            'HTML': 'html',
+            'PDF': 'pdf',
+          },
+        ),
     'AgenticApplicationsAnalystAgentPersonaRole': MigrateEnum(
       name: 'AgenticApplicationsAnalystAgentPersonaRole',
       members: <String, String>{
@@ -327931,6 +328535,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'specialtyLiabilityUnderwriter',
         'ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER':
             'catastropheExposureModeler',
+      },
+    ),
+    'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat':
+        MigrateEnum(
+          name:
+              'AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat',
+          members: <String, String>{
+            'PDF': 'pdf',
+            'PNG': 'png',
+            'PPTX': 'pptx',
+            'GOOGLE_SLIDES': 'googleSlides',
+          },
+        ),
+    'AgenticApplicationsAnalystAgentPersonaVisualizationMode': MigrateEnum(
+      name: 'AgenticApplicationsAnalystAgentPersonaVisualizationMode',
+      members: <String, String>{
+        'VISUALIZATION_MODE_EXPLICIT_ONLY': 'visualizationModeExplicitOnly',
+        'VISUALIZATION_MODE_WHEN_NECESSARY': 'visualizationModeWhenNecessary',
+        'VISUALIZATION_MODE_WHEN_HELPFUL': 'visualizationModeWhenHelpful',
+        'VISUALIZATION_MODE_ALWAYS': 'visualizationModeAlways',
       },
     ),
     'AlertCombiner': MigrateEnum(
@@ -327973,6 +328597,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ALIGN_PERCENT_CHANGE': 'percentChange',
       },
     ),
+    'AlloydbBackupType': MigrateEnum(
+      name: 'AlloydbBackupType',
+      members: <String, String>{
+        'TYPE_UNSPECIFIED': 'typeUnspecified',
+        'ON_DEMAND': 'onDemand',
+        'AUTOMATED': 'automated',
+        'CONTINUOUS': 'continuous',
+      },
+    ),
+    'AlloydbClusterDatabaseVersion': MigrateEnum(
+      name: 'AlloydbClusterDatabaseVersion',
+      members: <String, String>{
+        'POSTGRES_13': 'postgres13',
+        'POSTGRES_14': 'postgres14',
+        'POSTGRES_15': 'postgres15',
+        'POSTGRES_16': 'postgres16',
+        'POSTGRES_17': 'postgres17',
+        'POSTGRES_18': 'postgres18',
+      },
+    ),
     'AlloydbClusterDayOfWeek': MigrateEnum(
       name: 'AlloydbClusterDayOfWeek',
       members: <String, String>{
@@ -327997,9 +328641,29 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SUNDAY': 'sunday',
       },
     ),
+    'AlloydbClusterSubscriptionType': MigrateEnum(
+      name: 'AlloydbClusterSubscriptionType',
+      members: <String, String>{'TRIAL': 'trial', 'STANDARD': 'standard'},
+    ),
     'AlloydbClusterType': MigrateEnum(
       name: 'AlloydbClusterType',
       members: <String, String>{'PRIMARY': 'primary', 'SECONDARY': 'secondary'},
+    ),
+    'AlloydbInstanceActivationPolicy': MigrateEnum(
+      name: 'AlloydbInstanceActivationPolicy',
+      members: <String, String>{
+        'ACTIVATION_POLICY_UNSPECIFIED': 'activationPolicyUnspecified',
+        'ALWAYS': 'always',
+        'NEVER': 'never',
+      },
+    ),
+    'AlloydbInstanceAvailabilityType': MigrateEnum(
+      name: 'AlloydbInstanceAvailabilityType',
+      members: <String, String>{
+        'AVAILABILITY_TYPE_UNSPECIFIED': 'availabilityTypeUnspecified',
+        'ZONAL': 'zonal',
+        'REGIONAL': 'regional',
+      },
     ),
     'AlloydbInstanceSslMode': MigrateEnum(
       name: 'AlloydbInstanceSslMode',
@@ -328034,12 +328698,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'remoteservice': 'remoteservice',
       },
     ),
+    'ApigeeApiProductOperationTypes': MigrateEnum(
+      name: 'ApigeeApiProductOperationTypes',
+      members: <String, String>{'query': 'query', 'mutation': 'mutation'},
+    ),
     'ApigeeApiProductQuotaCounterScope': MigrateEnum(
       name: 'ApigeeApiProductQuotaCounterScope',
       members: <String, String>{
         'QUOTA_COUNTER_SCOPE_UNSPECIFIED': 'quotaCounterScopeUnspecified',
         'PROXY': 'proxy',
         'OPERATION': 'operation',
+      },
+    ),
+    'ApigeeApiProductQuotaTimeUnit': MigrateEnum(
+      name: 'ApigeeApiProductQuotaTimeUnit',
+      members: <String, String>{
+        'second': 'second',
+        'minute': 'minute',
+        'hour': 'hour',
+        'day': 'day',
+        'month': 'month',
+        'year': 'year',
+      },
+    ),
+    'ApigeeApiProductTimeUnit': MigrateEnum(
+      name: 'ApigeeApiProductTimeUnit',
+      members: <String, String>{
+        'second': 'second',
+        'minute': 'minute',
+        'hour': 'hour',
+        'day': 'day',
+        'month': 'month',
+        'year': 'year',
       },
     ),
     'ApigeeAppGroupStatus': MigrateEnum(
@@ -328068,6 +328758,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ApigeeDatastoreTargetType',
       members: <String, String>{'gcs': 'gcs', 'bigquery': 'bigquery'},
     ),
+    'ApigeeEnvReferencesResourceType': MigrateEnum(
+      name: 'ApigeeEnvReferencesResourceType',
+      members: <String, String>{
+        'KeyStore': 'keystore',
+        'TrustStore': 'truststore',
+      },
+    ),
     'ApigeeEnvironmentApiProxyType': MigrateEnum(
       name: 'ApigeeEnvironmentApiProxyType',
       members: <String, String>{
@@ -328093,12 +328790,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'COMPREHENSIVE': 'comprehensive',
       },
     ),
+    'ApigeeFlowhookFlowHookPoint': MigrateEnum(
+      name: 'ApigeeFlowhookFlowHookPoint',
+      members: <String, String>{
+        'PreProxyFlowHook': 'preproxyflowhook',
+        'PostProxyFlowHook': 'postproxyflowhook',
+        'PreTargetFlowHook': 'pretargetflowhook',
+        'PostTargetFlowHook': 'posttargetflowhook',
+      },
+    ),
+    'ApigeeInstancePeeringCidrRange': MigrateEnum(
+      name: 'ApigeeInstancePeeringCidrRange',
+      members: <String, String>{
+        'SLASH_16': 'slash16',
+        'SLASH_17': 'slash17',
+        'SLASH_18': 'slash18',
+        'SLASH_19': 'slash19',
+        'SLASH_20': 'slash20',
+        'SLASH_22': 'slash22',
+        'SLASH_23': 'slash23',
+      },
+    ),
+    'ApigeeKeystoresAliasesSelfSignedCertSigAlg': MigrateEnum(
+      name: 'ApigeeKeystoresAliasesSelfSignedCertSigAlg',
+      members: <String, String>{
+        'SHA512withRSA': 'sha512withrsa',
+        'SHA384withRSA': 'sha384withrsa',
+        'SHA256withRSA': 'sha256withrsa',
+      },
+    ),
     'ApigeeKeystoresAliasesSelfSignedCertType': MigrateEnum(
       name: 'ApigeeKeystoresAliasesSelfSignedCertType',
       members: <String, String>{
         'ALIAS_TYPE_UNSPECIFIED': 'aliasTypeUnspecified',
         'CERT': 'cert',
         'KEY_CERT': 'keyCert',
+      },
+    ),
+    'ApigeeOrganizationBillingType': MigrateEnum(
+      name: 'ApigeeOrganizationBillingType',
+      members: <String, String>{
+        'SUBSCRIPTION': 'subscription',
+        'EVALUATION': 'evaluation',
+        'PAYG': 'payg',
       },
     ),
     'ApigeeOrganizationRetention': MigrateEnum(
@@ -328111,6 +328845,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApigeeOrganizationRuntimeType': MigrateEnum(
       name: 'ApigeeOrganizationRuntimeType',
       members: <String, String>{'CLOUD': 'cloud', 'HYBRID': 'hybrid'},
+    ),
+    'ApigeeSecurityActionHttpMethods': MigrateEnum(
+      name: 'ApigeeSecurityActionHttpMethods',
+      members: <String, String>{
+        'GET': 'get',
+        'HEAD': 'head',
+        'POST': 'post',
+        'PUT': 'put',
+        'DELETE': 'delete',
+        'CONNECT': 'connect',
+        'OPTIONS': 'options',
+        'TRACE': 'trace',
+        'PATCH': 'patch',
+      },
     ),
     'ApigeeSecurityActionState': MigrateEnum(
       name: 'ApigeeSecurityActionState',
@@ -328155,6 +328903,79 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'EXTERNAL_CALLOUT': 'externalCallout',
       },
     ),
+    'ApihubApiHubInstanceEncryptionType': MigrateEnum(
+      name: 'ApihubApiHubInstanceEncryptionType',
+      members: <String, String>{'GMEK': 'gmek', 'CMEK': 'cmek'},
+    ),
+    'ApihubPluginCategory': MigrateEnum(
+      name: 'ApihubPluginCategory',
+      members: <String, String>{
+        'API_GATEWAY': 'apiGateway',
+        'API_PRODUCER': 'apiProducer',
+      },
+    ),
+    'ApihubPluginInstanceAuthType': MigrateEnum(
+      name: 'ApihubPluginInstanceAuthType',
+      members: <String, String>{
+        'NO_AUTH': 'noAuth',
+        'GOOGLE_SERVICE_ACCOUNT': 'googleServiceAccount',
+        'USER_PASSWORD': 'userPassword',
+        'API_KEY': 'apiKey',
+        'OAUTH2_CLIENT_CREDENTIALS': 'oauth2ClientCredentials',
+      },
+    ),
+    'ApihubPluginInstanceCurationType': MigrateEnum(
+      name: 'ApihubPluginInstanceCurationType',
+      members: <String, String>{
+        'DEFAULT_CURATION_FOR_API_METADATA': 'defaultCurationForApiMetadata',
+        'CUSTOM_CURATION_FOR_API_METADATA': 'customCurationForApiMetadata',
+      },
+    ),
+    'ApihubPluginInstanceHttpElementLocation': MigrateEnum(
+      name: 'ApihubPluginInstanceHttpElementLocation',
+      members: <String, String>{
+        'QUERY': 'query',
+        'HEADER': 'header',
+        'PATH': 'path',
+        'BODY': 'body',
+        'COOKIE': 'cookie',
+      },
+    ),
+    'ApihubPluginSupportedAuthTypes': MigrateEnum(
+      name: 'ApihubPluginSupportedAuthTypes',
+      members: <String, String>{
+        'NO_AUTH': 'noAuth',
+        'GOOGLE_SERVICE_ACCOUNT': 'googleServiceAccount',
+        'USER_PASSWORD': 'userPassword',
+        'API_KEY': 'apiKey',
+        'OAUTH2_CLIENT_CREDENTIALS': 'oauth2ClientCredentials',
+      },
+    ),
+    'ApihubPluginTriggerMode': MigrateEnum(
+      name: 'ApihubPluginTriggerMode',
+      members: <String, String>{
+        'API_HUB_ON_DEMAND_TRIGGER': 'apiHubOnDemandTrigger',
+        'API_HUB_SCHEDULE_TRIGGER': 'apiHubScheduleTrigger',
+        'NON_API_HUB_MANAGED': 'nonApiHubManaged',
+      },
+    ),
+    'ApihubPluginValueType': MigrateEnum(
+      name: 'ApihubPluginValueType',
+      members: <String, String>{
+        'STRING': 'string',
+        'INT': 'int',
+        'BOOL': 'bool',
+        'SECRET': 'secret',
+        'ENUM': 'enumCase',
+        'MULTI_SELECT': 'multiSelect',
+        'MULTI_STRING': 'multiString',
+        'MULTI_INT': 'multiInt',
+      },
+    ),
+    'ApikeysKeyCheckExistingUsage': MigrateEnum(
+      name: 'ApikeysKeyCheckExistingUsage',
+      members: <String, String>{'SKIP': 'skip', 'CHECK': 'check'},
+    ),
     'AppCheckEnforcementMode': MigrateEnum(
       name: 'AppCheckEnforcementMode',
       members: <String, String>{
@@ -328162,11 +328983,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ENFORCED': 'enforced',
       },
     ),
+    'AppEngineApplicationSslPolicy': MigrateEnum(
+      name: 'AppEngineApplicationSslPolicy',
+      members: <String, String>{'DEFAULT': 'defaultCase', 'MODERN': 'modern'},
+    ),
     'AppEngineDatabaseType': MigrateEnum(
       name: 'AppEngineDatabaseType',
       members: <String, String>{
         'CLOUD_FIRESTORE': 'cloudFirestore',
         'CLOUD_DATASTORE_COMPATIBILITY': 'cloudDatastore',
+        'CLOUD_DATASTORE': 'legacyCloudDatastore',
       },
     ),
     'AppEngineDomainMappingOverrideStrategy': MigrateEnum(
@@ -328193,6 +329019,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AUTH_FAIL_ACTION_REDIRECT': 'authFailActionRedirect',
         'AUTH_FAIL_ACTION_UNAUTHORIZED': 'authFailActionUnauthorized',
+      },
+    ),
+    'AppEngineFlexibleAppVersionInboundServices': MigrateEnum(
+      name: 'AppEngineFlexibleAppVersionInboundServices',
+      members: <String, String>{
+        'INBOUND_SERVICE_MAIL': 'inboundServiceMail',
+        'INBOUND_SERVICE_MAIL_BOUNCE': 'inboundServiceMailBounce',
+        'INBOUND_SERVICE_XMPP_ERROR': 'inboundServiceXmppError',
+        'INBOUND_SERVICE_XMPP_MESSAGE': 'inboundServiceXmppMessage',
+        'INBOUND_SERVICE_XMPP_SUBSCRIBE': 'inboundServiceXmppSubscribe',
+        'INBOUND_SERVICE_XMPP_PRESENCE': 'inboundServiceXmppPresence',
+        'INBOUND_SERVICE_CHANNEL_PRESENCE': 'inboundServiceChannelPresence',
+        'INBOUND_SERVICE_WARMUP': 'inboundServiceWarmup',
+      },
+    ),
+    'AppEngineFlexibleAppVersionInstanceClass': MigrateEnum(
+      name: 'AppEngineFlexibleAppVersionInstanceClass',
+      members: <String, String>{
+        'F1': 'f1',
+        'F2': 'f2',
+        'F4': 'f4',
+        'F4_1G': 'f41g',
+        'B1': 'b1',
+        'B2': 'b2',
+        'B4': 'b4',
+        'B8': 'b8',
+        'B4_1G': 'b41g',
       },
     ),
     'AppEngineFlexibleAppVersionLogin': MigrateEnum(
@@ -328262,11 +329115,64 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SYSTEM_DISABLED': 'systemDisabled',
       },
     ),
+    'AppEngineStandardAppVersionAppEngineBundledServices': MigrateEnum(
+      name: 'AppEngineStandardAppVersionAppEngineBundledServices',
+      members: <String, String>{
+        'BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE':
+            'bundledServiceTypeAppIdentityService',
+        'BUNDLED_SERVICE_TYPE_BLOBSTORE': 'bundledServiceTypeBlobstore',
+        'BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE':
+            'bundledServiceTypeCapabilityService',
+        'BUNDLED_SERVICE_TYPE_DATASTORE_V3': 'bundledServiceTypeDatastoreV3',
+        'BUNDLED_SERVICE_TYPE_IMAGES': 'bundledServiceTypeImages',
+        'BUNDLED_SERVICE_TYPE_MAIL': 'bundledServiceTypeMail',
+        'BUNDLED_SERVICE_TYPE_MEMCACHE': 'bundledServiceTypeMemcache',
+        'BUNDLED_SERVICE_TYPE_MODULES': 'bundledServiceTypeModules',
+        'BUNDLED_SERVICE_TYPE_SEARCH': 'bundledServiceTypeSearch',
+        'BUNDLED_SERVICE_TYPE_TASKQUEUES': 'bundledServiceTypeTaskqueues',
+        'BUNDLED_SERVICE_TYPE_URLFETCH': 'bundledServiceTypeUrlfetch',
+        'BUNDLED_SERVICE_TYPE_USERS': 'bundledServiceTypeUsers',
+      },
+    ),
     'AppEngineStandardAppVersionAuthFailAction': MigrateEnum(
       name: 'AppEngineStandardAppVersionAuthFailAction',
       members: <String, String>{
         'AUTH_FAIL_ACTION_REDIRECT': 'authFailActionRedirect',
         'AUTH_FAIL_ACTION_UNAUTHORIZED': 'authFailActionUnauthorized',
+      },
+    ),
+    'AppEngineStandardAppVersionEgressSetting': MigrateEnum(
+      name: 'AppEngineStandardAppVersionEgressSetting',
+      members: <String, String>{
+        'ALL_TRAFFIC': 'allTraffic',
+        'PRIVATE_IP_RANGES': 'privateIpRanges',
+      },
+    ),
+    'AppEngineStandardAppVersionInboundServices': MigrateEnum(
+      name: 'AppEngineStandardAppVersionInboundServices',
+      members: <String, String>{
+        'INBOUND_SERVICE_MAIL': 'inboundServiceMail',
+        'INBOUND_SERVICE_MAIL_BOUNCE': 'inboundServiceMailBounce',
+        'INBOUND_SERVICE_XMPP_ERROR': 'inboundServiceXmppError',
+        'INBOUND_SERVICE_XMPP_MESSAGE': 'inboundServiceXmppMessage',
+        'INBOUND_SERVICE_XMPP_SUBSCRIBE': 'inboundServiceXmppSubscribe',
+        'INBOUND_SERVICE_XMPP_PRESENCE': 'inboundServiceXmppPresence',
+        'INBOUND_SERVICE_CHANNEL_PRESENCE': 'inboundServiceChannelPresence',
+        'INBOUND_SERVICE_WARMUP': 'inboundServiceWarmup',
+      },
+    ),
+    'AppEngineStandardAppVersionInstanceClass': MigrateEnum(
+      name: 'AppEngineStandardAppVersionInstanceClass',
+      members: <String, String>{
+        'F1': 'f1',
+        'F2': 'f2',
+        'F4': 'f4',
+        'F4_1G': 'f41g',
+        'B1': 'b1',
+        'B2': 'b2',
+        'B4': 'b4',
+        'B8': 'b8',
+        'B4_1G': 'b41g',
       },
     ),
     'AppEngineStandardAppVersionLogin': MigrateEnum(
@@ -328434,6 +329340,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'EMERGENCY': 'emergency',
       },
     ),
+    'ArtifactRegistryPythonPublicRepository': MigrateEnum(
+      name: 'ArtifactRegistryPythonPublicRepository',
+      members: <String, String>{'PYPI': 'pypi'},
+    ),
+    'ArtifactRegistryRepositoryFormat': MigrateEnum(
+      name: 'ArtifactRegistryRepositoryFormat',
+      members: <String, String>{
+        'DOCKER': 'docker',
+        'MAVEN': 'maven',
+        'NPM': 'npm',
+        'APT': 'apt',
+        'YUM': 'yum',
+        'GOOGET': 'googet',
+        'PYTHON': 'python',
+        'KFP': 'kfp',
+        'GO': 'go',
+        'GENERIC': 'generic',
+        'RUBY': 'ruby',
+        'CONDA': 'conda',
+      },
+    ),
     'ArtifactRegistryRuleAction': MigrateEnum(
       name: 'ArtifactRegistryRuleAction',
       members: <String, String>{
@@ -328470,7 +329397,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AssuredWorkloadsWorkloadComplianceRegime': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadComplianceRegime',
       members: <String, String>{
-        'COMPLIANCE_REGIME_UNSPECIFIED': 'complianceRegimeUnspecified',
         'IL4': 'il4ComplianceRegime',
         'CJIS': 'cjis',
         'FEDRAMP_HIGH': 'fedrampHigh',
@@ -328497,21 +329423,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT':
             'healthcareAndLifeSciencesControlsUsSupport',
         'IRS_1075': 'irs1075',
+        'AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT':
+            'australiaDataBoundaryAndSupport',
+        'CANADA_DATA_BOUNDARY_AND_SUPPORT': 'canadaDataBoundaryAndSupport',
+        'DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS':
+            'dataBoundaryForCanadaControlledGoods',
+        'DATA_BOUNDARY_FOR_CANADA_PROTECTED_B':
+            'dataBoundaryForCanadaProtectedB',
+        'DATA_BOUNDARY_FOR_CJIS': 'dataBoundaryForCjis',
+        'DATA_BOUNDARY_FOR_FEDRAMP_HIGH': 'dataBoundaryForFedrampHigh',
+        'DATA_BOUNDARY_FOR_FEDRAMP_MODERATE': 'dataBoundaryForFedrampModerate',
+        'DATA_BOUNDARY_FOR_IL2': 'dataBoundaryForIl2',
+        'DATA_BOUNDARY_FOR_IL4': 'dataBoundaryForIl4',
+        'DATA_BOUNDARY_FOR_IL5': 'dataBoundaryForIl5',
+        'DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075':
+            'dataBoundaryForIrsPublication1075',
+        'DATA_BOUNDARY_FOR_ITAR': 'dataBoundaryForItar',
+        'EU_DATA_BOUNDARY_AND_SUPPORT': 'euDataBoundaryAndSupport',
+        'ISRAEL_DATA_BOUNDARY_AND_SUPPORT': 'israelDataBoundaryAndSupport',
+        'JAPAN_DATA_BOUNDARY': 'japanDataBoundary',
+        'SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS':
+            'switzerlandDataBoundaryWithAccessJustifications',
+        'KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS':
+            'ksaDataBoundaryWithAccessJustifications',
+        'REGIONAL_DATA_BOUNDARY': 'regionalDataBoundary',
+        'US_DATA_BOUNDARY_AND_SUPPORT': 'usDataBoundaryAndSupport',
+        'US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES':
+            'usDataBoundaryForHealthcareAndLifeSciences',
+        'US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT':
+            'usDataBoundaryForHealthcareAndLifeSciencesWithSupport',
+        'CANADA_CONTROLLED_GOODS': 'canadaControlledGoods',
       },
     ),
     'AssuredWorkloadsWorkloadKajEnrollmentType': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadKajEnrollmentType',
       members: <String, String>{
-        'KAJ_ENROLLMENT_TYPE_UNSPECIFIED': 'kajEnrollmentTypeUnspecified',
-        'FULL_KAJ': 'fullKaj',
-        'EKM_ONLY': 'ekmOnly',
         'KEY_ACCESS_TRANSPARENCY_OFF': 'keyAccessTransparencyOff',
       },
     ),
     'AssuredWorkloadsWorkloadPartner': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadPartner',
       members: <String, String>{
-        'PARTNER_UNSPECIFIED': 'partnerUnspecified',
         'LOCAL_CONTROLS_BY_S3NS': 'localControlsByS3ns',
         'SOVEREIGN_CONTROLS_BY_T_SYSTEMS': 'sovereignControlsByTSystems',
         'SOVEREIGN_CONTROLS_BY_SIA_MINSAIT': 'sovereignControlsBySiaMinsait',
@@ -328524,11 +329476,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AssuredWorkloadsWorkloadResourceType': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadResourceType',
       members: <String, String>{
-        'RESOURCE_TYPE_UNSPECIFIED': 'resourceTypeUnspecified',
         'CONSUMER_PROJECT': 'consumerProject',
+        'CONSUMER_FOLDER': 'consumerFolder',
         'ENCRYPTION_KEYS_PROJECT': 'encryptionKeysProject',
         'KEYRING': 'keyring',
-        'CONSUMER_FOLDER': 'consumerFolder',
       },
     ),
     'AutoscalerCpuPredictiveMethod': MigrateEnum(
@@ -328725,6 +329676,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MATCH_BACKUP_EXPIRE_TIME': 'matchBackupExpireTime',
       },
     ),
+    'BackupDrManagementServerPeeringMode': MigrateEnum(
+      name: 'BackupDrManagementServerPeeringMode',
+      members: <String, String>{
+        'PRIVATE_SERVICE_ACCESS': 'privateServiceAccess',
+      },
+    ),
     'BackupDrManagementServerType': MigrateEnum(
       name: 'BackupDrManagementServerType',
       members: <String, String>{'BACKUP_RESTORE': 'backupRestore'},
@@ -328909,6 +329866,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TIER_1': 'tier1',
       },
     ),
+    'BeyondcorpSecurityGatewayApplicationGatewayIdentity': MigrateEnum(
+      name: 'BeyondcorpSecurityGatewayApplicationGatewayIdentity',
+      members: <String, String>{'RESOURCE_NAME': 'resourceName'},
+    ),
     'BeyondcorpSecurityGatewayApplicationOutputType': MigrateEnum(
       name: 'BeyondcorpSecurityGatewayApplicationOutputType',
       members: <String, String>{
@@ -328923,6 +329884,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PROXY_GATEWAY': 'proxyGateway',
         'API_GATEWAY': 'apiGateway',
       },
+    ),
+    'BeyondcorpSecurityGatewayIdentity': MigrateEnum(
+      name: 'BeyondcorpSecurityGatewayIdentity',
+      members: <String, String>{'RESOURCE_NAME': 'resourceName'},
     ),
     'BeyondcorpSecurityGatewayOutputType': MigrateEnum(
       name: 'BeyondcorpSecurityGatewayOutputType',
@@ -328942,6 +329907,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DEFAULT': 'defaultCost',
         'ADD_COST_TO_MED': 'addCostToMed',
       },
+    ),
+    'BiglakeDatabaseType': MigrateEnum(
+      name: 'BiglakeDatabaseType',
+      members: <String, String>{'HIVE': 'hive'},
     ),
     'BiglakeHiveTableSerdeType': MigrateEnum(
       name: 'BiglakeHiveTableSerdeType',
@@ -328966,11 +329935,53 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CATALOG_TYPE_FEDERATED': 'catalogTypeFederated',
       },
     ),
+    'BiglakeIcebergTableDirection': MigrateEnum(
+      name: 'BiglakeIcebergTableDirection',
+      members: <String, String>{'asc': 'asc', 'desc': 'desc'},
+    ),
+    'BiglakeIcebergTableNullOrder': MigrateEnum(
+      name: 'BiglakeIcebergTableNullOrder',
+      members: <String, String>{
+        'nulls-first': 'nullsFirst',
+        'nulls-last': 'nullsLast',
+      },
+    ),
+    'BiglakeTableType': MigrateEnum(
+      name: 'BiglakeTableType',
+      members: <String, String>{'HIVE': 'hive'},
+    ),
     'BigqueryAnalyticsHubDataExchangeDiscoveryType': MigrateEnum(
       name: 'BigqueryAnalyticsHubDataExchangeDiscoveryType',
       members: <String, String>{
         'DISCOVERY_TYPE_PRIVATE': 'privateDiscovery',
         'DISCOVERY_TYPE_PUBLIC': 'publicDiscovery',
+      },
+    ),
+    'BigqueryAnalyticsHubListingCategories': MigrateEnum(
+      name: 'BigqueryAnalyticsHubListingCategories',
+      members: <String, String>{
+        'CATEGORY_OTHERS': 'categoryOthers',
+        'CATEGORY_ADVERTISING_AND_MARKETING': 'categoryAdvertisingAndMarketing',
+        'CATEGORY_COMMERCE': 'categoryCommerce',
+        'CATEGORY_CLIMATE_AND_ENVIRONMENT': 'categoryClimateAndEnvironment',
+        'CATEGORY_DEMOGRAPHICS': 'categoryDemographics',
+        'CATEGORY_ECONOMICS': 'categoryEconomics',
+        'CATEGORY_EDUCATION': 'categoryEducation',
+        'CATEGORY_ENERGY': 'categoryEnergy',
+        'CATEGORY_FINANCIAL': 'categoryFinancial',
+        'CATEGORY_GAMING': 'categoryGaming',
+        'CATEGORY_GEOSPATIAL': 'categoryGeospatial',
+        'CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE':
+            'categoryHealthcareAndLifeScience',
+        'CATEGORY_MEDIA': 'categoryMedia',
+        'CATEGORY_PUBLIC_SECTOR': 'categoryPublicSector',
+        'CATEGORY_RETAIL': 'categoryRetail',
+        'CATEGORY_SPORTS': 'categorySports',
+        'CATEGORY_SCIENCE_AND_RESEARCH': 'categoryScienceAndResearch',
+        'CATEGORY_TRANSPORTATION_AND_LOGISTICS':
+            'categoryTransportationAndLogistics',
+        'CATEGORY_TRAVEL_AND_TOURISM': 'categoryTravelAndTourism',
+        'CATEGORY_GOOGLE_EARTH_ENGINE': 'categoryGoogleEarthEngine',
       },
     ),
     'BigqueryAnalyticsHubListingDiscoveryType': MigrateEnum(
@@ -328979,6 +329990,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DISCOVERY_TYPE_PRIVATE': 'privateDiscovery',
         'DISCOVERY_TYPE_PUBLIC': 'publicDiscovery',
       },
+    ),
+    'BigqueryAnalyticsHubQueryTemplateRoutineType': MigrateEnum(
+      name: 'BigqueryAnalyticsHubQueryTemplateRoutineType',
+      members: <String, String>{'TABLE_VALUED_FUNCTION': 'tableValuedFunction'},
     ),
     'BigqueryCapacityCommitmentEdition': MigrateEnum(
       name: 'BigqueryCapacityCommitmentEdition',
@@ -328996,6 +330011,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MONTHLY': 'monthly',
         'ANNUAL': 'annual',
         'THREE_YEAR': 'threeYear',
+        'FLEX_FLAT_RATE': 'flexFlatRate',
+        'MONTHLY_FLAT_RATE': 'monthlyFlatRate',
+        'ANNUAL_FLAT_RATE': 'annualFlatRate',
+        'NONE': 'none',
       },
     ),
     'BigqueryCapacityCommitmentRenewalPlan': MigrateEnum(
@@ -329006,6 +330025,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MONTHLY': 'monthly',
         'ANNUAL': 'annual',
         'THREE_YEAR': 'threeYear',
+        'FLEX_FLAT_RATE': 'flexFlatRate',
+        'TRIAL': 'trial',
+        'MONTHLY_FLAT_RATE': 'monthlyFlatRate',
+        'ANNUAL_FLAT_RATE': 'annualFlatRate',
       },
     ),
     'BigqueryConnectionCloudSqlType': MigrateEnum(
@@ -329058,10 +330081,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'BigqueryDatasetAccessDatasetTargetType': MigrateEnum(
       name: 'BigqueryDatasetAccessDatasetTargetType',
-      members: <String, String>{'VIEWS': 'views'},
+      members: <String, String>{'VIEWS': 'views', 'ROUTINES': 'routines'},
     ),
     'BigqueryDatasetAccessPredefinedGroup': MigrateEnum(
       name: 'BigqueryDatasetAccessPredefinedGroup',
+      members: <String, String>{
+        'projectOwners': 'projectOwners',
+        'projectReaders': 'projectReaders',
+        'projectWriters': 'projectWriters',
+        'allAuthenticatedUsers': 'allAuthenticatedUsers',
+      },
+    ),
+    'BigqueryDatasetAccessTargetType': MigrateEnum(
+      name: 'BigqueryDatasetAccessTargetType',
+      members: <String, String>{'VIEWS': 'views', 'ROUTINES': 'routines'},
+    ),
+    'BigqueryDatasetSpecialGroup': MigrateEnum(
+      name: 'BigqueryDatasetSpecialGroup',
       members: <String, String>{
         'projectOwners': 'projectOwners',
         'projectReaders': 'projectReaders',
@@ -329075,6 +330111,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CREATE_IF_NEEDED': 'createIfNeeded',
         'CREATE_NEVER': 'createNever',
       },
+    ),
+    'BigqueryJobEncoding': MigrateEnum(
+      name: 'BigqueryJobEncoding',
+      members: <String, String>{'UTF-8': 'utf8', 'ISO-8859-1': 'iso88591'},
     ),
     'BigqueryJobExtractCompression': MigrateEnum(
       name: 'BigqueryJobExtractCompression',
@@ -329093,6 +330133,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'AVRO': 'avro',
         'SAVED_MODEL': 'savedModel',
       },
+    ),
+    'BigqueryJobJsonExtension': MigrateEnum(
+      name: 'BigqueryJobJsonExtension',
+      members: <String, String>{'GEOJSON': 'geojson'},
     ),
     'BigqueryJobKeyResultStatement': MigrateEnum(
       name: 'BigqueryJobKeyResultStatement',
@@ -329118,6 +330162,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'BigqueryJobPriority',
       members: <String, String>{'INTERACTIVE': 'interactive', 'BATCH': 'batch'},
     ),
+    'BigqueryJobSchemaUpdateOptions': MigrateEnum(
+      name: 'BigqueryJobSchemaUpdateOptions',
+      members: <String, String>{
+        'ALLOW_FIELD_ADDITION': 'allowFieldAddition',
+        'ALLOW_FIELD_RELAXATION': 'allowFieldRelaxation',
+      },
+    ),
     'BigqueryJobWriteDisposition': MigrateEnum(
       name: 'BigqueryJobWriteDisposition',
       members: <String, String>{
@@ -329129,10 +330180,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'BigqueryReservationAssignmentJobType': MigrateEnum(
       name: 'BigqueryReservationAssignmentJobType',
       members: <String, String>{
-        'JOB_TYPE_UNSPECIFIED': 'unspecified',
         'PIPELINE': 'pipeline',
         'QUERY': 'query',
         'CONTINUOUS': 'continuous',
+        'ML_EXTERNAL': 'mlExternal',
+        'BACKGROUND': 'background',
+        'BACKGROUND_CHANGE_DATA_CAPTURE': 'backgroundChangeDataCapture',
+        'BACKGROUND_COLUMN_METADATA_INDEX': 'backgroundColumnMetadataIndex',
+        'BACKGROUND_SEARCH_INDEX_REFRESH': 'backgroundSearchIndexRefresh',
+        'AUTOMATIC_MATERIALIZED_VIEW_REFRESH':
+            'automaticMaterializedViewRefresh',
       },
     ),
     'BigqueryReservationEdition': MigrateEnum(
@@ -329148,6 +330205,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'FIXED_TYPE': 'fixedType',
         'ANY_TYPE': 'anyType',
+        'FIXED_TABLE': 'fixedTable',
       },
     ),
     'BigqueryRoutineArgumentMode': MigrateEnum(
@@ -329192,6 +330250,63 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TABLE_VALUED_FUNCTION': 'tableValuedFunction',
       },
     ),
+    'BigqueryTableColumnFamilyEncoding': MigrateEnum(
+      name: 'BigqueryTableColumnFamilyEncoding',
+      members: <String, String>{'TEXT': 'text', 'BINARY': 'binary'},
+    ),
+    'BigqueryTableColumnFamilyType': MigrateEnum(
+      name: 'BigqueryTableColumnFamilyType',
+      members: <String, String>{
+        'BYTES': 'bytes',
+        'STRING': 'string',
+        'INTEGER': 'integer',
+        'FLOAT': 'float',
+        'BOOLEAN': 'boolean',
+        'JSON': 'json',
+      },
+    ),
+    'BigqueryTableDecimalTargetTypes': MigrateEnum(
+      name: 'BigqueryTableDecimalTargetTypes',
+      members: <String, String>{
+        'NUMERIC': 'numeric',
+        'BIGNUMERIC': 'bignumeric',
+        'STRING': 'string',
+      },
+    ),
+    'BigqueryTableEncoding': MigrateEnum(
+      name: 'BigqueryTableEncoding',
+      members: <String, String>{'UTF-8': 'utf8', 'ISO-8859-1': 'iso88591'},
+    ),
+    'BigqueryTableFileFormat': MigrateEnum(
+      name: 'BigqueryTableFileFormat',
+      members: <String, String>{'PARQUET': 'parquet'},
+    ),
+    'BigqueryTableFormat': MigrateEnum(
+      name: 'BigqueryTableFormat',
+      members: <String, String>{'ICEBERG': 'iceberg'},
+    ),
+    'BigqueryTableJsonExtension': MigrateEnum(
+      name: 'BigqueryTableJsonExtension',
+      members: <String, String>{'GEOJSON': 'geojson'},
+    ),
+    'BigqueryTableJsonOptionsEncoding': MigrateEnum(
+      name: 'BigqueryTableJsonOptionsEncoding',
+      members: <String, String>{
+        'UTF-8': 'utf8',
+        'UTF-16BE': 'utf16be',
+        'UTF-16LE': 'utf16le',
+        'UTF-32BE': 'utf32be',
+        'UTF-32LE': 'utf32le',
+      },
+    ),
+    'BigqueryTableSourceColumnMatch': MigrateEnum(
+      name: 'BigqueryTableSourceColumnMatch',
+      members: <String, String>{'POSITION': 'position', 'NAME': 'name'},
+    ),
+    'BigqueryTableTypeSystem': MigrateEnum(
+      name: 'BigqueryTableTypeSystem',
+      members: <String, String>{'HIVE': 'hive'},
+    ),
     'BigtableAppProfileComputeBillingOwner': MigrateEnum(
       name: 'BigtableAppProfileComputeBillingOwner',
       members: <String, String>{'HOST_PAYS': 'hostPays'},
@@ -329213,6 +330328,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ENTERPRISE': 'enterprise',
         'ENTERPRISE_PLUS': 'enterprisePlus',
+      },
+    ),
+    'BigtableInstanceNodeScalingFactor': MigrateEnum(
+      name: 'BigtableInstanceNodeScalingFactor',
+      members: <String, String>{
+        'NodeScalingFactor1X': 'nodescalingfactor1x',
+        'NodeScalingFactor2X': 'nodescalingfactor2x',
       },
     ),
     'BigtableInstanceType': MigrateEnum(
@@ -329254,6 +330376,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'FORECASTED_SPEND': 'forecastedSpend',
       },
     ),
+    'BinaryAuthorizationAttestorSignatureAlgorithm': MigrateEnum(
+      name: 'BinaryAuthorizationAttestorSignatureAlgorithm',
+      members: <String, String>{
+        'RSA_PSS_2048_SHA256': 'rsaPss2048Sha256',
+        'RSA_SIGN_PSS_2048_SHA256': 'rsaSignPss2048Sha256',
+        'RSA_PSS_3072_SHA256': 'rsaPss3072Sha256',
+        'RSA_SIGN_PSS_3072_SHA256': 'rsaSignPss3072Sha256',
+        'RSA_PSS_4096_SHA256': 'rsaPss4096Sha256',
+        'RSA_SIGN_PSS_4096_SHA256': 'rsaSignPss4096Sha256',
+        'RSA_PSS_4096_SHA512': 'rsaPss4096Sha512',
+        'RSA_SIGN_PSS_4096_SHA512': 'rsaSignPss4096Sha512',
+        'RSA_SIGN_PKCS1_2048_SHA256': 'rsaSignPkcs12048Sha256',
+        'RSA_SIGN_PKCS1_3072_SHA256': 'rsaSignPkcs13072Sha256',
+        'RSA_SIGN_PKCS1_4096_SHA256': 'rsaSignPkcs14096Sha256',
+        'RSA_SIGN_PKCS1_4096_SHA512': 'rsaSignPkcs14096Sha512',
+        'ECDSA_P256_SHA256': 'ecdsaP256Sha256',
+        'EC_SIGN_P256_SHA256': 'ecSignP256Sha256',
+        'ECDSA_P384_SHA384': 'ecdsaP384Sha384',
+        'EC_SIGN_P384_SHA384': 'ecSignP384Sha384',
+        'ECDSA_P521_SHA512': 'ecdsaP521Sha512',
+        'EC_SIGN_P521_SHA512': 'ecSignP521Sha512',
+        'ML_DSA_65': 'mlDsa65',
+      },
+    ),
     'BinaryAuthorizationPolicyEnforcementMode': MigrateEnum(
       name: 'BinaryAuthorizationPolicyEnforcementMode',
       members: <String, String>{
@@ -329268,6 +330414,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'REQUIRE_ATTESTATION': 'requireAttestation',
         'ALWAYS_DENY': 'alwaysDeny',
       },
+    ),
+    'BinaryAuthorizationPolicyGlobalPolicyEvaluationMode': MigrateEnum(
+      name: 'BinaryAuthorizationPolicyGlobalPolicyEvaluationMode',
+      members: <String, String>{'ENABLE': 'enable', 'DISABLE': 'disable'},
     ),
     'BlockchainNodeEngineBlockchainNodesBlockchainType': MigrateEnum(
       name: 'BlockchainNodeEngineBlockchainNodesBlockchainType',
@@ -329339,6 +330489,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ECDSA_P256': 'ecdsaP256',
       },
     ),
+    'CertificateManagerCertificateMapEntryMatcher': MigrateEnum(
+      name: 'CertificateManagerCertificateMapEntryMatcher',
+      members: <String, String>{'PRIMARY': 'primary'},
+    ),
     'CertificateManagerCertificateScope': MigrateEnum(
       name: 'CertificateManagerCertificateScope',
       members: <String, String>{
@@ -329362,6 +330516,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CHILD_TO_PARENT': 'childToParent',
       },
     ),
+    'CesAgentOauthGrantType': MigrateEnum(
+      name: 'CesAgentOauthGrantType',
+      members: <String, String>{'CLIENT_CREDENTIAL': 'clientCredential'},
+    ),
+    'CesAgentRequestLocation': MigrateEnum(
+      name: 'CesAgentRequestLocation',
+      members: <String, String>{
+        'HEADER': 'header',
+        'QUERY_STRING': 'queryString',
+      },
+    ),
     'CesAgentThinkingLevel': MigrateEnum(
       name: 'CesAgentThinkingLevel',
       members: <String, String>{
@@ -329369,6 +330534,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LOW': 'low',
         'MEDIUM': 'medium',
         'HIGH': 'high',
+      },
+    ),
+    'CesAppChannelType': MigrateEnum(
+      name: 'CesAppChannelType',
+      members: <String, String>{
+        'UNKNOWN': 'unknown',
+        'WEB_UI': 'webUi',
+        'API': 'api',
+        'TWILIO': 'twilio',
+        'GOOGLE_TELEPHONY_PLATFORM': 'googleTelephonyPlatform',
+        'CONTACT_CENTER_AS_A_SERVICE': 'contactCenterAsAService',
+        'CONTACT_CENTER_AS_A_SERVICE_CHAT': 'contactCenterAsAServiceChat',
+        'FIVE9': 'five9',
+        'CONTACT_CENTER_INTEGRATION': 'contactCenterIntegration',
+        'WHATSAPP': 'whatsapp',
+        'INSTAGRAM': 'instagram',
+      },
+    ),
+    'CesAppErrorHandlingStrategy': MigrateEnum(
+      name: 'CesAppErrorHandlingStrategy',
+      members: <String, String>{
+        'NONE': 'none',
+        'FALLBACK_RESPONSE': 'fallbackResponse',
+        'END_SESSION': 'endSession',
       },
     ),
     'CesAppExtraToolCallBehavior': MigrateEnum(
@@ -329379,9 +330568,52 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'CesAppGoldenHallucinationMetricBehavior',
       members: <String, String>{'DISABLED': 'disabled', 'ENABLED': 'enabled'},
     ),
+    'CesAppModality': MigrateEnum(
+      name: 'CesAppModality',
+      members: <String, String>{
+        'CHAT_AND_VOICE': 'chatAndVoice',
+        'VOICE_ONLY': 'voiceOnly',
+        'CHAT_ONLY': 'chatOnly',
+        'CHAT_VOICE_AND_VIDEO': 'chatVoiceAndVideo',
+      },
+    ),
+    'CesAppPersona': MigrateEnum(
+      name: 'CesAppPersona',
+      members: <String, String>{
+        'UNKNOWN': 'unknown',
+        'CONCISE': 'concise',
+        'CHATTY': 'chatty',
+      },
+    ),
+    'CesAppPrebuiltAmbientSound': MigrateEnum(
+      name: 'CesAppPrebuiltAmbientSound',
+      members: <String, String>{
+        'coffee_shop': 'coffeeShop',
+        'keyboard': 'keyboard',
+        'keypad': 'keypad',
+        'hum': 'hum',
+        'office_1': 'office1',
+        'office_2': 'office2',
+        'office_3': 'office3',
+        'room_1': 'room1',
+        'room_2': 'room2',
+        'room_3': 'room3',
+        'room_4': 'room4',
+        'room_5': 'room5',
+        'air_conditioner': 'airConditioner',
+      },
+    ),
     'CesAppScenarioHallucinationMetricBehavior': MigrateEnum(
       name: 'CesAppScenarioHallucinationMetricBehavior',
       members: <String, String>{'DISABLED': 'disabled', 'ENABLED': 'enabled'},
+    ),
+    'CesAppSemanticSimilarityChannel': MigrateEnum(
+      name: 'CesAppSemanticSimilarityChannel',
+      members: <String, String>{'TEXT': 'text', 'AUDIO': 'audio'},
+    ),
+    'CesAppTheme': MigrateEnum(
+      name: 'CesAppTheme',
+      members: <String, String>{'LIGHT': 'light', 'DARK': 'dark'},
     ),
     'CesAppThinkingLevel': MigrateEnum(
       name: 'CesAppThinkingLevel',
@@ -329392,6 +330624,61 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HIGH': 'high',
       },
     ),
+    'CesAppToolExecutionMode': MigrateEnum(
+      name: 'CesAppToolExecutionMode',
+      members: <String, String>{
+        'PARALLEL': 'parallel',
+        'SEQUENTIAL': 'sequential',
+      },
+    ),
+    'CesAppType': MigrateEnum(
+      name: 'CesAppType',
+      members: <String, String>{
+        'STRING': 'string',
+        'INTEGER': 'integer',
+        'NUMBER': 'number',
+        'BOOLEAN': 'boolean',
+        'OBJECT': 'object',
+        'ARRAY': 'array',
+      },
+    ),
+    'CesDeploymentChannelType': MigrateEnum(
+      name: 'CesDeploymentChannelType',
+      members: <String, String>{
+        'UNKNOWN': 'unknown',
+        'WEB_UI': 'webUi',
+        'API': 'api',
+        'TWILIO': 'twilio',
+        'GOOGLE_TELEPHONY_PLATFORM': 'googleTelephonyPlatform',
+        'CONTACT_CENTER_AS_A_SERVICE': 'contactCenterAsAService',
+        'CONTACT_CENTER_AS_A_SERVICE_CHAT': 'contactCenterAsAServiceChat',
+        'FIVE9': 'five9',
+        'CONTACT_CENTER_INTEGRATION': 'contactCenterIntegration',
+        'WHATSAPP': 'whatsapp',
+        'INSTAGRAM': 'instagram',
+      },
+    ),
+    'CesDeploymentModality': MigrateEnum(
+      name: 'CesDeploymentModality',
+      members: <String, String>{
+        'CHAT_AND_VOICE': 'chatAndVoice',
+        'VOICE_ONLY': 'voiceOnly',
+        'CHAT_ONLY': 'chatOnly',
+        'CHAT_VOICE_AND_VIDEO': 'chatVoiceAndVideo',
+      },
+    ),
+    'CesDeploymentPersona': MigrateEnum(
+      name: 'CesDeploymentPersona',
+      members: <String, String>{
+        'UNKNOWN': 'unknown',
+        'CONCISE': 'concise',
+        'CHATTY': 'chatty',
+      },
+    ),
+    'CesDeploymentTheme': MigrateEnum(
+      name: 'CesDeploymentTheme',
+      members: <String, String>{'LIGHT': 'light', 'DARK': 'dark'},
+    ),
     'CesGuardrailCategory': MigrateEnum(
       name: 'CesGuardrailCategory',
       members: <String, String>{
@@ -329399,6 +330686,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HARM_CATEGORY_DANGEROUS_CONTENT': 'harmCategoryDangerousContent',
         'HARM_CATEGORY_HARASSMENT': 'harmCategoryHarassment',
         'HARM_CATEGORY_SEXUALLY_EXPLICIT': 'harmCategorySexuallyExplicit',
+      },
+    ),
+    'CesGuardrailMatchType': MigrateEnum(
+      name: 'CesGuardrailMatchType',
+      members: <String, String>{
+        'SIMPLE_STRING_MATCH': 'simpleStringMatch',
+        'WORD_BOUNDARY_STRING_MATCH': 'wordBoundaryStringMatch',
+        'REGEXP_MATCH': 'regexpMatch',
+        'SENSITIVE_WORDS': 'sensitiveWords',
       },
     ),
     'CesGuardrailPolicyScope': MigrateEnum(
@@ -329428,12 +330724,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'OFF': 'off',
       },
     ),
+    'CesToolAttributeType': MigrateEnum(
+      name: 'CesToolAttributeType',
+      members: <String, String>{
+        'NUMERICAL': 'numerical',
+        'FRESHNESS': 'freshness',
+      },
+    ),
     'CesToolCorpusType': MigrateEnum(
       name: 'CesToolCorpusType',
       members: <String, String>{
         'CORPUS_TYPE_UNSPECIFIED': 'corpusTypeUnspecified',
         'USER_OWNED': 'userOwned',
         'FULLY_MANAGED': 'fullyManaged',
+      },
+    ),
+    'CesToolExecutionType': MigrateEnum(
+      name: 'CesToolExecutionType',
+      members: <String, String>{
+        'SYNCHRONOUS': 'synchronous',
+        'ASYNCHRONOUS': 'asynchronous',
       },
     ),
     'CesToolFilterParameterBehavior': MigrateEnum(
@@ -329445,12 +330755,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NEVER_INCLUDE': 'neverInclude',
       },
     ),
+    'CesToolInterpolationType': MigrateEnum(
+      name: 'CesToolInterpolationType',
+      members: <String, String>{'LINEAR': 'linear'},
+    ),
+    'CesToolModalityType': MigrateEnum(
+      name: 'CesToolModalityType',
+      members: <String, String>{'TEXT': 'text', 'AUDIO': 'audio'},
+    ),
     'CesToolMode': MigrateEnum(
       name: 'CesToolMode',
       members: <String, String>{
         'MODE_UNSPECIFIED': 'modeUnspecified',
         'FIELD_MAPPING': 'fieldMapping',
         'PYTHON_SCRIPT': 'pythonScript',
+      },
+    ),
+    'CesToolParametersType': MigrateEnum(
+      name: 'CesToolParametersType',
+      members: <String, String>{
+        'STRING': 'string',
+        'INTEGER': 'integer',
+        'NUMBER': 'number',
+        'BOOLEAN': 'boolean',
+        'OBJECT': 'object',
+        'ARRAY': 'array',
       },
     ),
     'CesToolThinkingLevel': MigrateEnum(
@@ -329487,6 +330816,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'APPOINTMENT_DETAILS': 'appointmentDetails',
         'APPOINTMENT_SCHEDULER': 'appointmentScheduler',
         'CONTACT_FORM': 'contactForm',
+      },
+    ),
+    'CesToolsetExecutionType': MigrateEnum(
+      name: 'CesToolsetExecutionType',
+      members: <String, String>{
+        'SYNCHRONOUS': 'synchronous',
+        'ASYNCHRONOUS': 'asynchronous',
+      },
+    ),
+    'CesToolsetOauthGrantType': MigrateEnum(
+      name: 'CesToolsetOauthGrantType',
+      members: <String, String>{'CLIENT_CREDENTIAL': 'clientCredential'},
+    ),
+    'CesToolsetOperation': MigrateEnum(
+      name: 'CesToolsetOperation',
+      members: <String, String>{
+        'LIST': 'list',
+        'GET': 'get',
+        'CREATE': 'create',
+        'UPDATE': 'update',
+        'DELETE': 'delete',
+      },
+    ),
+    'CesToolsetRequestLocation': MigrateEnum(
+      name: 'CesToolsetRequestLocation',
+      members: <String, String>{
+        'HEADER': 'header',
+        'QUERY_STRING': 'queryString',
       },
     ),
     'ChronicleBigQueryExportPackage': MigrateEnum(
@@ -329727,6 +331084,112 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SEARCH': 'search',
       },
     ),
+    'ChronicleFeedAmazonS3SettingsSourceDeletionOption': MigrateEnum(
+      name: 'ChronicleFeedAmazonS3SettingsSourceDeletionOption',
+      members: <String, String>{
+        'SOURCE_DELETION_NEVER': 'sourceDeletionNever',
+        'SOURCE_DELETION_ON_SUCCESS': 'sourceDeletionOnSuccess',
+        'SOURCE_DELETION_ON_SUCCESS_FILES_ONLY':
+            'sourceDeletionOnSuccessFilesOnly',
+      },
+    ),
+    'ChronicleFeedAmazonS3SettingsSourceType': MigrateEnum(
+      name: 'ChronicleFeedAmazonS3SettingsSourceType',
+      members: <String, String>{
+        'FILES': 'files',
+        'FOLDERS': 'folders',
+        'FOLDERS_RECURSIVE': 'foldersRecursive',
+      },
+    ),
+    'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption': MigrateEnum(
+      name: 'ChronicleFeedAmazonS3V2SettingsSourceDeletionOption',
+      members: <String, String>{'NEVER': 'never', 'ON_SUCCESS': 'onSuccess'},
+    ),
+    'ChronicleFeedAwsIamSettingsApiType': MigrateEnum(
+      name: 'ChronicleFeedAwsIamSettingsApiType',
+      members: <String, String>{
+        'USERS': 'users',
+        'ROLES': 'roles',
+        'GROUPS': 'groups',
+      },
+    ),
+    'ChronicleFeedContentType': MigrateEnum(
+      name: 'ChronicleFeedContentType',
+      members: <String, String>{
+        'AUDIT_AZURE_ACTIVE_DIRECTORY': 'auditAzureActiveDirectory',
+        'AUDIT_EXCHANGE': 'auditExchange',
+        'AUDIT_SHARE_POINT': 'auditSharePoint',
+        'AUDIT_GENERAL': 'auditGeneral',
+        'DLP_ALL': 'dlpAll',
+      },
+    ),
+    'ChronicleFeedCrowdstrikeAlertsSettingsIngestionType': MigrateEnum(
+      name: 'ChronicleFeedCrowdstrikeAlertsSettingsIngestionType',
+      members: <String, String>{
+        'BRING_ALL_ALERTS': 'bringAllAlerts',
+        'BRING_ONLY_NEW_ALERTS': 'bringOnlyNewAlerts',
+      },
+    ),
+    'ChronicleFeedCrowdstrikeDetectsSettingsIngestionType': MigrateEnum(
+      name: 'ChronicleFeedCrowdstrikeDetectsSettingsIngestionType',
+      members: <String, String>{
+        'BRING_ONLY_NEW_DETECTIONS': 'bringOnlyNewDetections',
+        'BRING_ALL_DETECTIONS': 'bringAllDetections',
+      },
+    ),
+    'ChronicleFeedProjectionType': MigrateEnum(
+      name: 'ChronicleFeedProjectionType',
+      members: <String, String>{
+        'BASIC_PROJECTION': 'basicProjection',
+        'FULL_PROJECTION': 'fullProjection',
+      },
+    ),
+    'ChronicleFeedQualysScanSettingsApiType': MigrateEnum(
+      name: 'ChronicleFeedQualysScanSettingsApiType',
+      members: <String, String>{
+        'SCAN_SUMMARY_OUTPUT': 'scanSummaryOutput',
+        'SCAN_COMPLIANCE_OUTPUT': 'scanComplianceOutput',
+        'SCAN_COMPLIANCE_CONTROL_OUTPUT': 'scanComplianceControlOutput',
+      },
+    ),
+    'ChronicleFeedRegion': MigrateEnum(
+      name: 'ChronicleFeedRegion',
+      members: <String, String>{
+        'US_EAST_1': 'usEast1',
+        'US_EAST_2': 'usEast2',
+        'US_WEST_1': 'usWest1',
+        'US_WEST_2': 'usWest2',
+        'US_GOV_CLOUD': 'usGovCloud',
+        'US_GOV_EAST_1': 'usGovEast1',
+        'EU_WEST_1': 'euWest1',
+        'EU_WEST_2': 'euWest2',
+        'EU_WEST_3': 'euWest3',
+        'EU_CENTRAL_1': 'euCentral1',
+        'EU_NORTH_1': 'euNorth1',
+        'EU_SOUTH_1': 'euSouth1',
+        'AP_SOUTH_1': 'apSouth1',
+        'AP_SOUTHEAST_1': 'apSoutheast1',
+        'AP_SOUTHEAST_2': 'apSoutheast2',
+        'AP_SOUTHEAST_3': 'apSoutheast3',
+        'AP_NORTHEAST_1': 'apNortheast1',
+        'AP_NORTHEAST_2': 'apNortheast2',
+        'AP_NORTHEAST_3': 'apNortheast3',
+        'AP_EAST_1': 'apEast1',
+        'SA_EAST_1': 'saEast1',
+        'CN_NORTH_1': 'cnNorth1',
+        'CN_NORTHWEST_1': 'cnNorthwest1',
+        'CA_CENTRAL_1': 'caCentral1',
+        'AF_SOUTH_1': 'afSouth1',
+        'ME_SOUTH_1': 'meSouth1',
+        'AP_SOUTH_2': 'apSouth2',
+        'AP_SOUTHEAST_4': 'apSoutheast4',
+        'CA_WEST_1': 'caWest1',
+        'EU_SOUTH_2': 'euSouth2',
+        'EU_CENTRAL_2': 'euCentral2',
+        'IL_CENTRAL_1': 'ilCentral1',
+        'ME_CENTRAL_1': 'meCentral1',
+      },
+    ),
     'ChronicleFeedSourceType': MigrateEnum(
       name: 'ChronicleFeedSourceType',
       members: <String, String>{
@@ -329750,6 +331213,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'AZURE_BLOBSTORE_V2': 'azureBlobstoreV2',
         'GOOGLE_CLOUD_STORAGE_EVENT_DRIVEN': 'googleCloudStorageEventDriven',
       },
+    ),
+    'ChronicleFindingsRefinementOutcomeFilterOperator': MigrateEnum(
+      name: 'ChronicleFindingsRefinementOutcomeFilterOperator',
+      members: <String, String>{
+        'EQUAL': 'equal',
+        'CONTAINS': 'contains',
+        'MATCHES_REGEX': 'matchesRegex',
+        'MATCHES_CIDR': 'matchesCidr',
+      },
+    ),
+    'ChronicleFindingsRefinementType': MigrateEnum(
+      name: 'ChronicleFindingsRefinementType',
+      members: <String, String>{'DETECTION_EXCLUSION': 'detectionExclusion'},
     ),
     'ChronicleNativeDashboardAccess': MigrateEnum(
       name: 'ChronicleNativeDashboardAccess',
@@ -329816,6 +331292,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PUBLIC': 'publicType',
         'CUSTOM': 'custom',
         'MARKETPLACE': 'marketplace',
+      },
+    ),
+    'ChronicleParserExtensionLogFormat': MigrateEnum(
+      name: 'ChronicleParserExtensionLogFormat',
+      members: <String, String>{'JSON': 'json', 'CSV': 'csv', 'XML': 'xml'},
+    ),
+    'ChronicleParserExtensionPreconditionOp': MigrateEnum(
+      name: 'ChronicleParserExtensionPreconditionOp',
+      members: <String, String>{'EQUALS': 'equals', 'NOT_EQUALS': 'notEquals'},
+    ),
+    'ChronicleParserLogFormat': MigrateEnum(
+      name: 'ChronicleParserLogFormat',
+      members: <String, String>{'JSON': 'json', 'CSV': 'csv', 'XML': 'xml'},
+    ),
+    'ChronicleParserPreconditionOp': MigrateEnum(
+      name: 'ChronicleParserPreconditionOp',
+      members: <String, String>{'EQUALS': 'equals', 'NOT_EQUALS': 'notEquals'},
+    ),
+    'ChronicleReferenceListSyntaxType': MigrateEnum(
+      name: 'ChronicleReferenceListSyntaxType',
+      members: <String, String>{
+        'REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING':
+            'referenceListSyntaxTypePlainTextString',
+        'REFERENCE_LIST_SYNTAX_TYPE_REGEX': 'referenceListSyntaxTypeRegex',
+        'REFERENCE_LIST_SYNTAX_TYPE_CIDR': 'referenceListSyntaxTypeCidr',
+      },
+    ),
+    'ChronicleRuleDeploymentRunFrequency': MigrateEnum(
+      name: 'ChronicleRuleDeploymentRunFrequency',
+      members: <String, String>{
+        'LIVE': 'live',
+        'HOURLY': 'hourly',
+        'DAILY': 'daily',
+        'LIVE_CUSTOMIZABLE': 'liveCustomizable',
+        'HOURLY_CUSTOMIZABLE': 'hourlyCustomizable',
       },
     ),
     'CloudAssetFolderFeedContentType': MigrateEnum(
@@ -329908,9 +331419,59 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'CloudRunDomainMappingCertificateMode',
       members: <String, String>{'NONE': 'none', 'AUTOMATIC': 'automatic'},
     ),
+    'CloudRunServiceDriver': MigrateEnum(
+      name: 'CloudRunServiceDriver',
+      members: <String, String>{
+        'gcsfuse.run.googleapis.com': 'gcsfuseRunGoogleapisCom',
+      },
+    ),
+    'CloudRunServicePortsName': MigrateEnum(
+      name: 'CloudRunServicePortsName',
+      members: <String, String>{'http1': 'http1', 'h2c': 'h2c'},
+    ),
+    'CloudRunV2InstanceEncryptionKeyRevocationAction': MigrateEnum(
+      name: 'CloudRunV2InstanceEncryptionKeyRevocationAction',
+      members: <String, String>{
+        'PREVENT_NEW': 'preventNew',
+        'SHUTDOWN': 'shutdown',
+      },
+    ),
+    'CloudRunV2InstanceIngress': MigrateEnum(
+      name: 'CloudRunV2InstanceIngress',
+      members: <String, String>{
+        'INGRESS_TRAFFIC_ALL': 'ingressTrafficAll',
+        'INGRESS_TRAFFIC_INTERNAL_ONLY': 'ingressTrafficInternalOnly',
+        'INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER':
+            'ingressTrafficInternalLoadBalancer',
+      },
+    ),
+    'CloudRunV2InstanceLaunchStage': MigrateEnum(
+      name: 'CloudRunV2InstanceLaunchStage',
+      members: <String, String>{
+        'UNIMPLEMENTED': 'unimplemented',
+        'PRELAUNCH': 'prelaunch',
+        'EARLY_ACCESS': 'earlyAccess',
+        'ALPHA': 'alpha',
+        'BETA': 'beta',
+        'GA': 'ga',
+        'DEPRECATED': 'deprecated',
+      },
+    ),
     'CloudRunV2InstanceMedium': MigrateEnum(
       name: 'CloudRunV2InstanceMedium',
       members: <String, String>{'MEMORY': 'memory', 'DISK': 'disk'},
+    ),
+    'CloudRunV2InstancePortsName': MigrateEnum(
+      name: 'CloudRunV2InstancePortsName',
+      members: <String, String>{'http1': 'http1', 'h2c': 'h2c'},
+    ),
+    'CloudRunV2InstanceRestartPolicy': MigrateEnum(
+      name: 'CloudRunV2InstanceRestartPolicy',
+      members: <String, String>{
+        'ALWAYS': 'always',
+        'ON_FAILURE': 'onFailure',
+        'NEVER': 'never',
+      },
     ),
     'CloudRunV2JobEmptyDirMedium': MigrateEnum(
       name: 'CloudRunV2JobEmptyDirMedium',
@@ -329935,12 +331496,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DEPRECATED': 'deprecatedStage',
       },
     ),
+    'CloudRunV2JobPortsName': MigrateEnum(
+      name: 'CloudRunV2JobPortsName',
+      members: <String, String>{'http1': 'http1', 'h2c': 'h2c'},
+    ),
     'CloudRunV2JobVpcAccessEgress': MigrateEnum(
       name: 'CloudRunV2JobVpcAccessEgress',
       members: <String, String>{
         'ALL_TRAFFIC': 'allTraffic',
         'PRIVATE_RANGES_ONLY': 'privateRangesOnly',
       },
+    ),
+    'CloudRunV2ServicePortsName': MigrateEnum(
+      name: 'CloudRunV2ServicePortsName',
+      members: <String, String>{'http1': 'http1', 'h2c': 'h2c'},
     ),
     'CloudRunV2ServiceWorkloadIdentityType': MigrateEnum(
       name: 'CloudRunV2ServiceWorkloadIdentityType',
@@ -329981,6 +331550,45 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BETA': 'beta',
         'GA': 'ga',
         'DEPRECATED': 'deprecatedStage',
+      },
+    ),
+    'CloudSchedulerJobHttpMethod': MigrateEnum(
+      name: 'CloudSchedulerJobHttpMethod',
+      members: <String, String>{
+        'POST': 'post',
+        'GET': 'get',
+        'HEAD': 'head',
+        'PUT': 'put',
+        'DELETE': 'delete',
+        'PATCH': 'patch',
+        'OPTIONS': 'options',
+      },
+    ),
+    'CloudSecurityComplianceCloudControlSeverity': MigrateEnum(
+      name: 'CloudSecurityComplianceCloudControlSeverity',
+      members: <String, String>{
+        'CRITICAL': 'critical',
+        'HIGH': 'high',
+        'MEDIUM': 'medium',
+        'LOW': 'low',
+      },
+    ),
+    'CloudSecurityComplianceCloudControlValueType': MigrateEnum(
+      name: 'CloudSecurityComplianceCloudControlValueType',
+      members: <String, String>{
+        'STRING': 'string',
+        'BOOLEAN': 'boolean',
+        'STRINGLIST': 'stringlist',
+        'NUMBER': 'number',
+        'ONEOF': 'oneof',
+      },
+    ),
+    'CloudSecurityComplianceFrameworkDeploymentEnforcementMode': MigrateEnum(
+      name: 'CloudSecurityComplianceFrameworkDeploymentEnforcementMode',
+      members: <String, String>{
+        'PREVENTIVE': 'preventive',
+        'DETECTIVE': 'detective',
+        'AUDIT': 'audit',
       },
     ),
     'CloudTasksQueueDesiredState': MigrateEnum(
@@ -330037,6 +331645,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'STACKDRIVER_ONLY': 'stackdriverOnly',
         'CLOUD_LOGGING_ONLY': 'cloudLoggingOnly',
         'NONE': 'none',
+      },
+    ),
+    'CloudbuildTriggerMachineType': MigrateEnum(
+      name: 'CloudbuildTriggerMachineType',
+      members: <String, String>{
+        'N1_HIGHCPU_8': 'n1Highcpu8',
+        'N1_HIGHCPU_32': 'n1Highcpu32',
+        'E2_HIGHCPU_8': 'e2Highcpu8',
+        'E2_HIGHCPU_32': 'e2Highcpu32',
+        'E2_MEDIUM': 'e2Medium',
+        'E2_STANDARD_2': 'e2Standard2',
       },
     ),
     'CloudbuildTriggerRepoType': MigrateEnum(
@@ -330110,9 +331729,150 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DEPLOY_AUTOMATION': 'deployAutomation',
       },
     ),
+    'ClouddeployTargetUsages': MigrateEnum(
+      name: 'ClouddeployTargetUsages',
+      members: <String, String>{
+        'RENDER': 'render',
+        'DEPLOY': 'deploy',
+        'VERIFY': 'verify',
+        'PREDEPLOY': 'predeploy',
+        'POSTDEPLOY': 'postdeploy',
+        'ANALYSIS': 'analysis',
+      },
+    ),
+    'ClouddomainsRegistrationAlgorithm': MigrateEnum(
+      name: 'ClouddomainsRegistrationAlgorithm',
+      members: <String, String>{
+        'RSAMD5': 'rsamd5',
+        'DH': 'dh',
+        'DSA': 'dsa',
+        'ECC': 'ecc',
+        'RSASHA1': 'rsasha1',
+        'DSANSEC3SHA1': 'dsansec3sha1',
+        'RSASHA1NSEC3SHA1': 'rsasha1nsec3sha1',
+        'RSASHA256': 'rsasha256',
+        'RSASHA512': 'rsasha512',
+        'ECCGOST': 'eccgost',
+        'ECDSAP256SHA256': 'ecdsap256sha256',
+        'ECDSAP384SHA384': 'ecdsap384sha384',
+        'ED25519': 'ed25519',
+        'ED448': 'ed448',
+        'INDIRECT': 'indirect',
+        'PRIVATEDNS': 'privatedns',
+        'PRIVATEOID': 'privateoid',
+      },
+    ),
+    'ClouddomainsRegistrationDigestType': MigrateEnum(
+      name: 'ClouddomainsRegistrationDigestType',
+      members: <String, String>{
+        'SHA1': 'sha1',
+        'SHA256': 'sha256',
+        'GOST3411': 'gost3411',
+        'SHA384': 'sha384',
+      },
+    ),
+    'ClouddomainsRegistrationPreferredRenewalMethod': MigrateEnum(
+      name: 'ClouddomainsRegistrationPreferredRenewalMethod',
+      members: <String, String>{
+        'AUTOMATIC_RENEWAL': 'automaticRenewal',
+        'MANUAL_RENEWAL': 'manualRenewal',
+        'RENEWAL_DISABLED': 'renewalDisabled',
+      },
+    ),
+    'ClouddomainsRegistrationPrivacy': MigrateEnum(
+      name: 'ClouddomainsRegistrationPrivacy',
+      members: <String, String>{
+        'PUBLIC_CONTACT_DATA': 'publicContactData',
+        'PRIVATE_CONTACT_DATA': 'privateContactData',
+        'REDACTED_CONTACT_DATA': 'redactedContactData',
+      },
+    ),
+    'ClouddomainsRegistrationTransferLockState': MigrateEnum(
+      name: 'ClouddomainsRegistrationTransferLockState',
+      members: <String, String>{'UNLOCKED': 'unlocked', 'LOCKED': 'locked'},
+    ),
+    'CloudfunctionsFunctionDockerRegistry': MigrateEnum(
+      name: 'CloudfunctionsFunctionDockerRegistry',
+      members: <String, String>{
+        'CONTAINER_REGISTRY': 'containerRegistry',
+        'ARTIFACT_REGISTRY': 'artifactRegistry',
+      },
+    ),
+    'CloudfunctionsFunctionIngressSettings': MigrateEnum(
+      name: 'CloudfunctionsFunctionIngressSettings',
+      members: <String, String>{
+        'ALLOW_ALL': 'allowAll',
+        'ALLOW_INTERNAL_ONLY': 'allowInternalOnly',
+        'ALLOW_INTERNAL_AND_GCLB': 'allowInternalAndGclb',
+      },
+    ),
+    'CloudfunctionsFunctionStatus': MigrateEnum(
+      name: 'CloudfunctionsFunctionStatus',
+      members: <String, String>{
+        'CLOUD_FUNCTION_STATUS_UNSPECIFIED': 'cloudFunctionStatusUnspecified',
+        'ACTIVE': 'active',
+        'OFFLINE': 'offline',
+        'DEPLOY_IN_PROGRESS': 'deployInProgress',
+        'DELETE_IN_PROGRESS': 'deleteInProgress',
+        'UNKNOWN': 'unknown',
+      },
+    ),
+    'CloudfunctionsFunctionVpcConnectorEgressSettings': MigrateEnum(
+      name: 'CloudfunctionsFunctionVpcConnectorEgressSettings',
+      members: <String, String>{
+        'PRIVATE_RANGES_ONLY': 'privateRangesOnly',
+        'ALL_TRAFFIC': 'allTraffic',
+      },
+    ),
+    'ColabNotebookExecutionAcceleratorType': MigrateEnum(
+      name: 'ColabNotebookExecutionAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
+    ),
     'ColabRuntimeDesiredState': MigrateEnum(
       name: 'ColabRuntimeDesiredState',
       members: <String, String>{'RUNNING': 'running', 'STOPPED': 'stopped'},
+    ),
+    'ColabRuntimeTemplateAcceleratorType': MigrateEnum(
+      name: 'ColabRuntimeTemplateAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
     ),
     'ColabRuntimeTemplatePostStartupScriptBehavior': MigrateEnum(
       name: 'ColabRuntimeTemplatePostStartupScriptBehavior',
@@ -330122,9 +331882,56 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DOWNLOAD_AND_RUN_EVERY_START': 'downloadAndRunEveryStart',
       },
     ),
+    'ColabScheduleAcceleratorType': MigrateEnum(
+      name: 'ColabScheduleAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
+    ),
     'ColabScheduleDesiredState': MigrateEnum(
       name: 'ColabScheduleDesiredState',
       members: <String, String>{'ACTIVE': 'active', 'PAUSED': 'paused'},
+    ),
+    'ColabScheduleDiskType': MigrateEnum(
+      name: 'ColabScheduleDiskType',
+      members: <String, String>{
+        'pd-ssd': 'pdSsd',
+        'pd-standard': 'pdStandard',
+        'pd-balanced': 'pdBalanced',
+        'pd-extreme': 'pdExtreme',
+      },
+    ),
+    'ColabScheduleFailurePolicy': MigrateEnum(
+      name: 'ColabScheduleFailurePolicy',
+      members: <String, String>{
+        'PIPELINE_FAILURE_POLICY_FAIL_SLOW': 'pipelineFailurePolicyFailSlow',
+        'PIPELINE_FAILURE_POLICY_FAIL_FAST': 'pipelineFailurePolicyFailFast',
+      },
+    ),
+    'ColabScheduleReservationAffinityType': MigrateEnum(
+      name: 'ColabScheduleReservationAffinityType',
+      members: <String, String>{
+        'NO_RESERVATION': 'noReservation',
+        'ANY_RESERVATION': 'anyReservation',
+        'SPECIFIC_RESERVATION': 'specificReservation',
+      },
     ),
     'Comparison': MigrateEnum(
       name: 'Comparison',
@@ -330135,6 +331942,96 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'COMPARISON_LE': 'lessThanOrEqual',
         'COMPARISON_EQ': 'equalTo',
         'COMPARISON_NE': 'notEqualTo',
+      },
+    ),
+    'ComposerEnvironmentConnectionType': MigrateEnum(
+      name: 'ComposerEnvironmentConnectionType',
+      members: <String, String>{
+        'VPC_PEERING': 'vpcPeering',
+        'PRIVATE_SERVICE_CONNECT': 'privateServiceConnect',
+      },
+    ),
+    'ComposerEnvironmentDatabaseConfigMachineType': MigrateEnum(
+      name: 'ComposerEnvironmentDatabaseConfigMachineType',
+      members: <String, String>{
+        'db-n1-standard-2': 'dbN1Standard2',
+        'db-n1-standard-4': 'dbN1Standard4',
+        'db-n1-standard-8': 'dbN1Standard8',
+        'db-n1-standard-16': 'dbN1Standard16',
+      },
+    ),
+    'ComposerEnvironmentResilienceMode': MigrateEnum(
+      name: 'ComposerEnvironmentResilienceMode',
+      members: <String, String>{'HIGH_RESILIENCE': 'highResilience'},
+    ),
+    'ComposerEnvironmentRetentionMode': MigrateEnum(
+      name: 'ComposerEnvironmentRetentionMode',
+      members: <String, String>{
+        'RETENTION_MODE_ENABLED': 'retentionModeEnabled',
+        'RETENTION_MODE_DISABLED': 'retentionModeDisabled',
+      },
+    ),
+    'ComposerEnvironmentSize': MigrateEnum(
+      name: 'ComposerEnvironmentSize',
+      members: <String, String>{
+        'ENVIRONMENT_SIZE_SMALL': 'environmentSizeSmall',
+        'ENVIRONMENT_SIZE_MEDIUM': 'environmentSizeMedium',
+        'ENVIRONMENT_SIZE_LARGE': 'environmentSizeLarge',
+        'ENVIRONMENT_SIZE_EXTRA_LARGE': 'environmentSizeExtraLarge',
+      },
+    ),
+    'ComposerEnvironmentStorageMode': MigrateEnum(
+      name: 'ComposerEnvironmentStorageMode',
+      members: <String, String>{
+        'CLOUD_LOGGING_AND_CLOUD_STORAGE': 'cloudLoggingAndCloudStorage',
+        'CLOUD_LOGGING_ONLY': 'cloudLoggingOnly',
+      },
+    ),
+    'ComposerEnvironmentWebServerConfigMachineType': MigrateEnum(
+      name: 'ComposerEnvironmentWebServerConfigMachineType',
+      members: <String, String>{
+        'composer-n1-webserver-2': 'composerN1Webserver2',
+        'composer-n1-webserver-4': 'composerN1Webserver4',
+        'composer-n1-webserver-8': 'composerN1Webserver8',
+      },
+    ),
+    'ComposerEnvironmentWebServerPluginsMode': MigrateEnum(
+      name: 'ComposerEnvironmentWebServerPluginsMode',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'ComputeAddressPurpose': MigrateEnum(
+      name: 'ComputeAddressPurpose',
+      members: <String, String>{
+        'DNS_RESOLVER': 'dnsResolver',
+        'GCE_ENDPOINT': 'gceEndpoint',
+        'IPSEC_INTERCONNECT': 'ipsecInterconnect',
+        'NAT_AUTO': 'natAuto',
+        'PRIVATE_SERVICE_CONNECT': 'privateServiceConnect',
+        'SERVERLESS': 'serverless',
+        'SHARED_LOADBALANCER_VIP': 'sharedLoadbalancerVip',
+        'VPC_PEERING': 'vpcPeering',
+      },
+    ),
+    'ComputeAttachedDiskInterface': MigrateEnum(
+      name: 'ComputeAttachedDiskInterface',
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeAttachedDiskMode': MigrateEnum(
+      name: 'ComputeAttachedDiskMode',
+      members: <String, String>{
+        'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
+      },
+    ),
+    'ComputeBackendServicePolicyName': MigrateEnum(
+      name: 'ComputeBackendServicePolicyName',
+      members: <String, String>{
+        'ROUND_ROBIN': 'roundRobin',
+        'LEAST_REQUEST': 'leastRequest',
+        'RING_HASH': 'ringHash',
+        'RANDOM': 'random',
+        'ORIGINAL_DESTINATION': 'originalDestination',
+        'MAGLEV': 'maglev',
       },
     ),
     'ComputeDiskGuestOsFeatureType': MigrateEnum(
@@ -330149,10 +332046,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GVNIC': 'gVnic',
         'SEV_LIVE_MIGRATABLE': 'sevLiveMigratable',
         'SEV_SNP_CAPABLE': 'sevSnpCapable',
-        'SUSPEND_RESUME_COMPATIBLE': 'suspendResumeCompatible',
         'TDX_CAPABLE': 'tdxCapable',
         'SEV_LIVE_MIGRATABLE_V2': 'sevLiveMigratableV2',
         'SNP_SVSM_CAPABLE': 'snpSvsmCapable',
+        'BARE_METAL_LINUX_COMPATIBLE': 'bareMetalLinuxCompatible',
+        'BMSAI_CAPABLE': 'bmsaiCapable',
+        'CCA_CAPABLE': 'ccaCapable',
+        'IDPF': 'idpf',
+        'SUSPEND_SAFE_FPR': 'suspendSafeFpr',
       },
     ),
     'ComputeExternalVpnGatewayRedundancyType': MigrateEnum(
@@ -330187,9 +332088,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VPC_NETWORKS': 'vpcNetworks',
       },
     ),
+    'ComputeFirewallPolicyWithRulesAction': MigrateEnum(
+      name: 'ComputeFirewallPolicyWithRulesAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny': 'deny',
+        'apply_security_profile_group': 'applySecurityProfileGroup',
+        'goto_next': 'gotoNext',
+      },
+    ),
     'ComputeFirewallPolicyWithRulesDirection': MigrateEnum(
       name: 'ComputeFirewallPolicyWithRulesDirection',
       members: <String, String>{'INGRESS': 'ingress', 'EGRESS': 'egress'},
+    ),
+    'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan': MigrateEnum(
+      name: 'ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan',
+      members: <String, String>{
+        'FAST_ROLLOUT': 'fastRollout',
+        'SLOW_ROLLOUT': 'slowRollout',
+      },
     ),
     'ComputeHaVpnGatewayIpVersion': MigrateEnum(
       name: 'ComputeHaVpnGatewayIpVersion',
@@ -330201,6 +332118,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'IPV4_ONLY': 'ipv4Only',
         'IPV4_IPV6': 'ipv4Ipv6',
         'IPV6_ONLY': 'ipv6Only',
+      },
+    ),
+    'ComputeImageContainerType': MigrateEnum(
+      name: 'ComputeImageContainerType',
+      members: <String, String>{'TAR': 'tar'},
+    ),
+    'ComputeImageFileType': MigrateEnum(
+      name: 'ComputeImageFileType',
+      members: <String, String>{
+        'BIN': 'bin',
+        'UNDEFINED': 'undefined',
+        'X509': 'x509',
       },
     ),
     'ComputeImageType': MigrateEnum(
@@ -330222,19 +332151,150 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SNP_SVSM_CAPABLE': 'snpSvsmCapable',
       },
     ),
+    'ComputeInstanceArchitecture': MigrateEnum(
+      name: 'ComputeInstanceArchitecture',
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
+    ),
+    'ComputeInstanceDesiredStatus': MigrateEnum(
+      name: 'ComputeInstanceDesiredStatus',
+      members: <String, String>{
+        'RUNNING': 'running',
+        'SUSPENDED': 'suspended',
+        'TERMINATED': 'terminated',
+      },
+    ),
+    'ComputeInstanceFromTemplateArchitecture': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateArchitecture',
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
+    ),
+    'ComputeInstanceFromTemplateConfidentialInstanceType': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateConfidentialInstanceType',
+      members: <String, String>{
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'ComputeInstanceFromTemplateDesiredStatus': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateDesiredStatus',
+      members: <String, String>{
+        'RUNNING': 'running',
+        'SUSPENDED': 'suspended',
+        'TERMINATED': 'terminated',
+      },
+    ),
+    'ComputeInstanceFromTemplateIgmpQuery': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateIgmpQuery',
+      members: <String, String>{
+        'IGMP_QUERY_DISABLED': 'igmpQueryDisabled',
+        'IGMP_QUERY_V2': 'igmpQueryV2',
+      },
+    ),
+    'ComputeInstanceFromTemplateInstanceTerminationAction': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateInstanceTerminationAction',
+      members: <String, String>{'DELETE': 'delete', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceFromTemplateInterface': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateInterface',
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeInstanceFromTemplateKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceFromTemplateMode': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateMode',
+      members: <String, String>{
+        'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
+      },
+    ),
+    'ComputeInstanceFromTemplateNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateNetworkTier',
+      members: <String, String>{
+        'FIXED_STANDARD': 'fixedStandard',
+        'PREMIUM': 'premium',
+        'STANDARD': 'standard',
+        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
+      },
+    ),
     'ComputeInstanceFromTemplateNicType': MigrateEnum(
       name: 'ComputeInstanceFromTemplateNicType',
       members: <String, String>{
         'GVNIC': 'gvnic',
-        'VIRTIO_NET': 'virtioNet',
         'IDPF': 'idpf',
-        'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'MRDMA': 'mrdma',
+        'VIRTIO_NET': 'virtioNet',
+      },
+    ),
+    'ComputeInstanceFromTemplateOnHostMaintenance': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateOnHostMaintenance',
+      members: <String, String>{'MIGRATE': 'migrate', 'TERMINATE': 'terminate'},
+    ),
+    'ComputeInstanceFromTemplateOperator': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ComputeInstanceFromTemplatePerformanceMonitoringUnit': MigrateEnum(
+      name: 'ComputeInstanceFromTemplatePerformanceMonitoringUnit',
+      members: <String, String>{
+        'ARCHITECTURAL': 'architectural',
+        'ENHANCED': 'enhanced',
+        'STANDARD': 'standard',
+      },
+    ),
+    'ComputeInstanceFromTemplateProvisioningModel': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateProvisioningModel',
+      members: <String, String>{
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+        'SPOT': 'spot',
+        'STANDARD': 'standard',
+      },
+    ),
+    'ComputeInstanceFromTemplateStackType': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateStackType',
+      members: <String, String>{
+        'IPV4_IPV6': 'ipv4Ipv6',
+        'IPV4_ONLY': 'ipv4Only',
+        'IPV6_ONLY': 'ipv6Only',
       },
     ),
     'ComputeInstanceFromTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeInstanceFromTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
+    ),
+    'ComputeInstanceGroupManagerStatefulDeleteRule': MigrateEnum(
+      name: 'ComputeInstanceGroupManagerStatefulDeleteRule',
+      members: <String, String>{
+        'NEVER': 'never',
+        'ON_PERMANENT_INSTANCE_DELETION': 'onPermanentInstanceDeletion',
+      },
+    ),
+    'ComputeInstanceIgmpQuery': MigrateEnum(
+      name: 'ComputeInstanceIgmpQuery',
+      members: <String, String>{
+        'IGMP_QUERY_DISABLED': 'igmpQueryDisabled',
+        'IGMP_QUERY_V2': 'igmpQueryV2',
+      },
+    ),
+    'ComputeInstanceInterface': MigrateEnum(
+      name: 'ComputeInstanceInterface',
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeInstanceKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeInstanceKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceMode': MigrateEnum(
+      name: 'ComputeInstanceMode',
+      members: <String, String>{
+        'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
+      },
     ),
     'ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier':
         MigrateEnum(
@@ -330245,9 +332305,59 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'DEFAULT': 'platformDefault',
           },
         ),
+    'ComputeInstanceOperator': MigrateEnum(
+      name: 'ComputeInstanceOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ComputeInstanceStackType': MigrateEnum(
+      name: 'ComputeInstanceStackType',
+      members: <String, String>{
+        'IPV4_IPV6': 'ipv4Ipv6',
+        'IPV4_ONLY': 'ipv4Only',
+        'IPV6_ONLY': 'ipv6Only',
+      },
+    ),
+    'ComputeInstanceTemplateArchitecture': MigrateEnum(
+      name: 'ComputeInstanceTemplateArchitecture',
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
+    ),
+    'ComputeInstanceTemplateIgmpQuery': MigrateEnum(
+      name: 'ComputeInstanceTemplateIgmpQuery',
+      members: <String, String>{
+        'IGMP_QUERY_DISABLED': 'igmpQueryDisabled',
+        'IGMP_QUERY_V2': 'igmpQueryV2',
+      },
+    ),
+    'ComputeInstanceTemplateInterface': MigrateEnum(
+      name: 'ComputeInstanceTemplateInterface',
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeInstanceTemplateKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeInstanceTemplateKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceTemplateOperator': MigrateEnum(
+      name: 'ComputeInstanceTemplateOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ComputeInstanceTemplateStackType': MigrateEnum(
+      name: 'ComputeInstanceTemplateStackType',
+      members: <String, String>{
+        'IPV4_IPV6': 'ipv4Ipv6',
+        'IPV4_ONLY': 'ipv4Only',
+        'IPV6_ONLY': 'ipv6Only',
+      },
+    ),
     'ComputeInstanceTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeInstanceTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
+    ),
+    'ComputeInstanceTemplateType': MigrateEnum(
+      name: 'ComputeInstanceTemplateType',
+      members: <String, String>{
+        'PERSISTENT': 'persistent',
+        'SCRATCH': 'scratch',
+      },
     ),
     'ComputeInterconnectAttachmentBandwidth': MigrateEnum(
       name: 'ComputeInterconnectAttachmentBandwidth',
@@ -330268,6 +332378,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BPS_400G': 'bps400g',
       },
     ),
+    'ComputeInterconnectAttachmentEdgeAvailabilityDomain': MigrateEnum(
+      name: 'ComputeInterconnectAttachmentEdgeAvailabilityDomain',
+      members: <String, String>{
+        'AVAILABILITY_DOMAIN_1': 'availabilityDomain1',
+        'AVAILABILITY_DOMAIN_2': 'availabilityDomain2',
+        'AVAILABILITY_DOMAIN_ANY': 'availabilityDomainAny',
+      },
+    ),
     'ComputeInterconnectAttachmentEncryption': MigrateEnum(
       name: 'ComputeInterconnectAttachmentEncryption',
       members: <String, String>{'NONE': 'none', 'IPSEC': 'ipsec'},
@@ -330279,6 +332397,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PRODUCTION_CRITICAL': 'productionCritical',
         'NO_SLA': 'noSla',
         'AVAILABILITY_SLA_UNSPECIFIED': 'availabilitySlaUnspecified',
+      },
+    ),
+    'ComputeInterconnectAttachmentMtu': MigrateEnum(
+      name: 'ComputeInterconnectAttachmentMtu',
+      members: <String, String>{
+        '1440': 'v1440',
+        '1460': 'v1460',
+        '1500': 'v1500',
+        '8896': 'v8896',
       },
     ),
     'ComputeInterconnectAttachmentStackType': MigrateEnum(
@@ -330308,6 +332435,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'L2_DEDICATED': 'l2Dedicated',
       },
     ),
+    'ComputeInterconnectAvailableFeatures': MigrateEnum(
+      name: 'ComputeInterconnectAvailableFeatures',
+      members: <String, String>{
+        'IF_CROSS_SITE_NETWORK': 'ifCrossSiteNetwork',
+        'IF_MACSEC': 'ifMacsec',
+        'MACSEC': 'macsec',
+        'IF_L2_FORWARDING': 'ifL2Forwarding',
+      },
+    ),
     'ComputeInterconnectGroupTopologyCapability': MigrateEnum(
       name: 'ComputeInterconnectGroupTopologyCapability',
       members: <String, String>{
@@ -330331,6 +332467,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'OS_ACTIVE': 'osActive',
         'OS_UNPROVISIONED': 'osUnprovisioned',
         'OS_UNDER_MAINTENANCE': 'osUnderMaintenance',
+      },
+    ),
+    'ComputeInterconnectRequestedFeatures': MigrateEnum(
+      name: 'ComputeInterconnectRequestedFeatures',
+      members: <String, String>{
+        'MACSEC': 'macsec',
+        'CROSS_SITE_NETWORK': 'crossSiteNetwork',
+        'IF_MACSEC': 'ifMacsec',
+        'IF_L2_FORWARDING': 'ifL2Forwarding',
       },
     ),
     'ComputeInterconnectState': MigrateEnum(
@@ -330388,6 +332533,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INTERNAL_MANAGED_LB': 'internalManagedLb',
       },
     ),
+    'ComputeNetworkFirewallPolicyType': MigrateEnum(
+      name: 'ComputeNetworkFirewallPolicyType',
+      members: <String, String>{'VPC_POLICY': 'vpcPolicy'},
+    ),
+    'ComputeNetworkFirewallPolicyWithRulesAction': MigrateEnum(
+      name: 'ComputeNetworkFirewallPolicyWithRulesAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny': 'deny',
+        'apply_security_profile_group': 'applySecurityProfileGroup',
+        'goto_next': 'gotoNext',
+      },
+    ),
     'ComputeNetworkFirewallPolicyWithRulesDirection': MigrateEnum(
       name: 'ComputeNetworkFirewallPolicyWithRulesDirection',
       members: <String, String>{'INGRESS': 'ingress', 'EGRESS': 'egress'},
@@ -330408,6 +332566,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'INDEPENDENT': 'independent',
         'CONSENSUS': 'consensus',
+      },
+    ),
+    'ComputeNodeGroupMaintenancePolicy': MigrateEnum(
+      name: 'ComputeNodeGroupMaintenancePolicy',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'MIGRATE_WITHIN_NODE_GROUP': 'migrateWithinNodeGroup',
+        'RESTART_IN_PLACE': 'restartInPlace',
       },
     ),
     'ComputeNodeGroupMode': MigrateEnum(
@@ -330459,6 +332625,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         '64KB': 'v64kb',
       },
     ),
+    'ComputeOrganizationSecurityPolicyRuleOperator': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleOperator',
+      members: <String, String>{
+        'CONTAINS': 'contains',
+        'ENDS_WITH': 'endsWith',
+        'EQUALS': 'equals',
+        'EQUALS_ANY': 'equalsAny',
+        'STARTS_WITH': 'startsWith',
+      },
+    ),
+    'ComputeOrganizationSecurityPolicyRuleType': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleType',
+      members: <String, String>{
+        'EXTERNAL_302': 'external302',
+        'GOOGLE_RECAPTCHA': 'googleRecaptcha',
+      },
+    ),
+    'ComputeOrganizationSecurityPolicyRuleVersionedExpr': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleVersionedExpr',
+      members: <String, String>{'SRC_IPS_V1': 'srcIpsV1'},
+    ),
+    'ComputeOrganizationSecurityPolicyType': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyType',
+      members: <String, String>{
+        'FIREWALL': 'firewall',
+        'CLOUD_ARMOR': 'cloudArmor',
+        'CLOUD_ARMOR_EDGE': 'cloudArmorEdge',
+        'CLOUD_ARMOR_INTERNAL_SERVICE': 'cloudArmorInternalService',
+        'CLOUD_ARMOR_NETWORK': 'cloudArmorNetwork',
+      },
+    ),
     'ComputePacketMirroringDirection': MigrateEnum(
       name: 'ComputePacketMirroringDirection',
       members: <String, String>{
@@ -330485,6 +332682,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ON_PERMANENT_INSTANCE_DELETION': 'onPermanentInstanceDeletion',
       },
     ),
+    'ComputePerInstanceConfigMinimalAction': MigrateEnum(
+      name: 'ComputePerInstanceConfigMinimalAction',
+      members: <String, String>{
+        'REPLACE': 'replace',
+        'RESTART': 'restart',
+        'REFRESH': 'refresh',
+        'NONE': 'none',
+      },
+    ),
     'ComputePerInstanceConfigMode': MigrateEnum(
       name: 'ComputePerInstanceConfigMode',
       members: <String, String>{
@@ -330492,11 +332698,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'READ_WRITE': 'readWrite',
       },
     ),
+    'ComputePerInstanceConfigMostDisruptiveAllowedAction': MigrateEnum(
+      name: 'ComputePerInstanceConfigMostDisruptiveAllowedAction',
+      members: <String, String>{
+        'REPLACE': 'replace',
+        'RESTART': 'restart',
+        'REFRESH': 'refresh',
+        'NONE': 'none',
+      },
+    ),
     'ComputePreviewFeatureActivationStatus': MigrateEnum(
       name: 'ComputePreviewFeatureActivationStatus',
       members: <String, String>{
         'ENABLED': 'enabled',
         'ACTIVATION_STATE_UNSPECIFIED': 'activationStateUnspecified',
+      },
+    ),
+    'ComputePreviewFeaturePredefinedRolloutPlan': MigrateEnum(
+      name: 'ComputePreviewFeaturePredefinedRolloutPlan',
+      members: <String, String>{
+        'ROLLOUT_PLAN_FAST_ROLLOUT': 'rolloutPlanFastRollout',
       },
     ),
     'ComputeProjectCloudArmorTier': MigrateEnum(
@@ -330544,12 +332765,72 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'THIRTY_SIX_MONTH': 'thirtySixMonth',
       },
     ),
+    'ComputeRegionCommitmentResourcesType': MigrateEnum(
+      name: 'ComputeRegionCommitmentResourcesType',
+      members: <String, String>{
+        'ACCELERATOR': 'accelerator',
+        'LOCAL_SSD': 'localSsd',
+        'MEMORY': 'memory',
+        'VCPU': 'vcpu',
+      },
+    ),
     'ComputeRegionCommitmentStatus': MigrateEnum(
       name: 'ComputeRegionCommitmentStatus',
       members: <String, String>{
         'NOT_YET_ACTIVE': 'notYetActive',
         'ACTIVE': 'active',
         'EXPIRED': 'expired',
+      },
+    ),
+    'ComputeRegionCommitmentType': MigrateEnum(
+      name: 'ComputeRegionCommitmentType',
+      members: <String, String>{
+        'ACCELERATOR_OPTIMIZED': 'acceleratorOptimized',
+        'ACCELERATOR_OPTIMIZED_A3': 'acceleratorOptimizedA3',
+        'ACCELERATOR_OPTIMIZED_A3_MEGA': 'acceleratorOptimizedA3Mega',
+        'ACCELERATOR_OPTIMIZED_A3_ULTRA': 'acceleratorOptimizedA3Ultra',
+        'ACCELERATOR_OPTIMIZED_A4': 'acceleratorOptimizedA4',
+        'COMPUTE_OPTIMIZED': 'computeOptimized',
+        'COMPUTE_OPTIMIZED_C2D': 'computeOptimizedC2d',
+        'COMPUTE_OPTIMIZED_C3': 'computeOptimizedC3',
+        'COMPUTE_OPTIMIZED_C3D': 'computeOptimizedC3d',
+        'COMPUTE_OPTIMIZED_H3': 'computeOptimizedH3',
+        'COMPUTE_OPTIMIZED_H4D': 'computeOptimizedH4d',
+        'GENERAL_PURPOSE': 'generalPurpose',
+        'GENERAL_PURPOSE_C4': 'generalPurposeC4',
+        'GENERAL_PURPOSE_C4A': 'generalPurposeC4a',
+        'GENERAL_PURPOSE_C4D': 'generalPurposeC4d',
+        'GENERAL_PURPOSE_E2': 'generalPurposeE2',
+        'GENERAL_PURPOSE_N2': 'generalPurposeN2',
+        'GENERAL_PURPOSE_N2D': 'generalPurposeN2d',
+        'GENERAL_PURPOSE_N4': 'generalPurposeN4',
+        'GENERAL_PURPOSE_N4A': 'generalPurposeN4a',
+        'GENERAL_PURPOSE_N4D': 'generalPurposeN4d',
+        'GENERAL_PURPOSE_T2D': 'generalPurposeT2d',
+        'GRAPHICS_OPTIMIZED': 'graphicsOptimized',
+        'GRAPHICS_OPTIMIZED_G4': 'graphicsOptimizedG4',
+        'GRAPHICS_OPTIMIZED_G4_VGPU': 'graphicsOptimizedG4Vgpu',
+        'MEMORY_OPTIMIZED': 'memoryOptimized',
+        'MEMORY_OPTIMIZED_M3': 'memoryOptimizedM3',
+        'MEMORY_OPTIMIZED_M4': 'memoryOptimizedM4',
+        'MEMORY_OPTIMIZED_M4_6TB': 'memoryOptimizedM46tb',
+        'MEMORY_OPTIMIZED_X4_1440_24T': 'memoryOptimizedX4144024t',
+        'MEMORY_OPTIMIZED_X4_16TB': 'memoryOptimizedX416tb',
+        'MEMORY_OPTIMIZED_X4_1920_32T': 'memoryOptimizedX4192032t',
+        'MEMORY_OPTIMIZED_X4_24TB': 'memoryOptimizedX424tb',
+        'MEMORY_OPTIMIZED_X4_32TB': 'memoryOptimizedX432tb',
+        'MEMORY_OPTIMIZED_X4_480_6T': 'memoryOptimizedX44806t',
+        'MEMORY_OPTIMIZED_X4_480_8T': 'memoryOptimizedX44808t',
+        'MEMORY_OPTIMIZED_X4_960_12T': 'memoryOptimizedX496012t',
+        'MEMORY_OPTIMIZED_X4_960_16T': 'memoryOptimizedX496016t',
+        'NETWORK_OPTIMIZED_C4N': 'networkOptimizedC4n',
+        'NETWORK_OPTIMIZED_U4C': 'networkOptimizedU4c',
+        'NETWORK_OPTIMIZED_U4P': 'networkOptimizedU4p',
+        'NETWORK_OPTIMIZED_U4S': 'networkOptimizedU4s',
+        'STORAGE_OPTIMIZED_Z3': 'storageOptimizedZ3',
+        'STORAGE_OPTIMIZED_Z4D4T': 'storageOptimizedZ4d4t',
+        'STORAGE_OPTIMIZED_Z4DH': 'storageOptimizedZ4dh',
+        'STORAGE_OPTIMIZED_Z4DS': 'storageOptimizedZ4ds',
       },
     ),
     'ComputeRegionDiskGuestOsFeatureType': MigrateEnum(
@@ -330581,18 +332862,115 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeRegionHealthSourceType',
       members: <String, String>{'BACKEND_SERVICE': 'backendService'},
     ),
+    'ComputeRegionInstanceGroupManagerStatefulDeleteRule': MigrateEnum(
+      name: 'ComputeRegionInstanceGroupManagerStatefulDeleteRule',
+      members: <String, String>{
+        'NEVER': 'never',
+        'ON_PERMANENT_INSTANCE_DELETION': 'onPermanentInstanceDeletion',
+      },
+    ),
+    'ComputeRegionInstanceTemplateArchitecture': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateArchitecture',
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
+    ),
+    'ComputeRegionInstanceTemplateConfidentialInstanceType': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateConfidentialInstanceType',
+      members: <String, String>{
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'ComputeRegionInstanceTemplateIgmpQuery': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateIgmpQuery',
+      members: <String, String>{
+        'IGMP_QUERY_DISABLED': 'igmpQueryDisabled',
+        'IGMP_QUERY_V2': 'igmpQueryV2',
+      },
+    ),
+    'ComputeRegionInstanceTemplateInstanceTerminationAction': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateInstanceTerminationAction',
+      members: <String, String>{'DELETE': 'delete', 'STOP': 'stop'},
+    ),
+    'ComputeRegionInstanceTemplateInterface': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateInterface',
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeRegionInstanceTemplateKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
+    'ComputeRegionInstanceTemplateMode': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateMode',
+      members: <String, String>{
+        'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
+      },
+    ),
+    'ComputeRegionInstanceTemplateNetworkTier': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateNetworkTier',
+      members: <String, String>{
+        'FIXED_STANDARD': 'fixedStandard',
+        'PREMIUM': 'premium',
+        'STANDARD': 'standard',
+        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
+      },
+    ),
     'ComputeRegionInstanceTemplateNicType': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateNicType',
       members: <String, String>{
         'GVNIC': 'gvnic',
-        'VIRTIO_NET': 'virtioNet',
-        'MRDMA': 'mrdma',
+        'IDPF': 'idpf',
         'IRDMA': 'irdma',
+        'MRDMA': 'mrdma',
+        'VIRTIO_NET': 'virtioNet',
+      },
+    ),
+    'ComputeRegionInstanceTemplateOnHostMaintenance': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateOnHostMaintenance',
+      members: <String, String>{'MIGRATE': 'migrate', 'TERMINATE': 'terminate'},
+    ),
+    'ComputeRegionInstanceTemplateOperator': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ComputeRegionInstanceTemplatePerformanceMonitoringUnit': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplatePerformanceMonitoringUnit',
+      members: <String, String>{
+        'ARCHITECTURAL': 'architectural',
+        'ENHANCED': 'enhanced',
+        'STANDARD': 'standard',
+      },
+    ),
+    'ComputeRegionInstanceTemplateProvisioningModel': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateProvisioningModel',
+      members: <String, String>{
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+        'SPOT': 'spot',
+        'STANDARD': 'standard',
+      },
+    ),
+    'ComputeRegionInstanceTemplateStackType': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateStackType',
+      members: <String, String>{
+        'IPV4_IPV6': 'ipv4Ipv6',
+        'IPV4_ONLY': 'ipv4Only',
+        'IPV6_ONLY': 'ipv6Only',
       },
     ),
     'ComputeRegionInstanceTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
+    ),
+    'ComputeRegionInstanceTemplateType': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateType',
+      members: <String, String>{
+        'PERSISTENT': 'persistent',
+        'SCRATCH': 'scratch',
+      },
     ),
     'ComputeRegionInstantSnapshotDeletionPolicy': MigrateEnum(
       name: 'ComputeRegionInstantSnapshotDeletionPolicy',
@@ -330642,6 +333020,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ULL_POLICY': 'ullPolicy',
       },
     ),
+    'ComputeRegionNetworkFirewallPolicyWithRulesAction': MigrateEnum(
+      name: 'ComputeRegionNetworkFirewallPolicyWithRulesAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny': 'deny',
+        'apply_security_profile_group': 'applySecurityProfileGroup',
+        'goto_next': 'gotoNext',
+      },
+    ),
     'ComputeRegionNetworkFirewallPolicyWithRulesDirection': MigrateEnum(
       name: 'ComputeRegionNetworkFirewallPolicyWithRulesDirection',
       members: <String, String>{'INGRESS': 'ingress', 'EGRESS': 'egress'},
@@ -330676,11 +333063,84 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ON_PERMANENT_INSTANCE_DELETION': 'onPermanentInstanceDeletion',
       },
     ),
+    'ComputeRegionPerInstanceConfigMinimalAction': MigrateEnum(
+      name: 'ComputeRegionPerInstanceConfigMinimalAction',
+      members: <String, String>{
+        'REPLACE': 'replace',
+        'RESTART': 'restart',
+        'REFRESH': 'refresh',
+        'NONE': 'none',
+      },
+    ),
     'ComputeRegionPerInstanceConfigMode': MigrateEnum(
       name: 'ComputeRegionPerInstanceConfigMode',
       members: <String, String>{
         'READ_ONLY': 'readOnly',
         'READ_WRITE': 'readWrite',
+      },
+    ),
+    'ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction': MigrateEnum(
+      name: 'ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction',
+      members: <String, String>{
+        'REPLACE': 'replace',
+        'RESTART': 'restart',
+        'REFRESH': 'refresh',
+        'NONE': 'none',
+      },
+    ),
+    'ComputeRegionSecurityPolicyExceedAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyExceedAction',
+      members: <String, String>{
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeRegionSecurityPolicyRuleAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyRuleAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(502)': 'deny502',
+        'rate_based_ban': 'rateBasedBan',
+        'throttle': 'throttle',
+      },
+    ),
+    'ComputeRegionSecurityPolicyRuleExceedAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyRuleExceedAction',
+      members: <String, String>{
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeRegionSecurityPolicyRulesAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyRulesAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(502)': 'deny502',
+        'rate_based_ban': 'rateBasedBan',
+        'throttle': 'throttle',
+      },
+    ),
+    'ComputeRegionUrlMapRetryConditions': MigrateEnum(
+      name: 'ComputeRegionUrlMapRetryConditions',
+      members: <String, String>{
+        '5xx': 'v5xx',
+        'gateway-error': 'gatewayError',
+        'connect-failure': 'connectFailure',
+        'retriable-4xx': 'retriable4xx',
+        'refused-stream': 'refusedStream',
+        'cancelled': 'cancelled',
+        'deadline-exceeded': 'deadlineExceeded',
+        'internal': 'internal',
+        'resource-exhausted': 'resourceExhausted',
+        'unavailable': 'unavailable',
       },
     ),
     'ComputeReservationInterface': MigrateEnum(
@@ -330700,6 +333160,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LOCAL': 'local',
         'SPECIFIC_PROJECTS': 'specificProjects',
       },
+    ),
+    'ComputeResourcePolicyCollocation': MigrateEnum(
+      name: 'ComputeResourcePolicyCollocation',
+      members: <String, String>{'COLLOCATED': 'collocated'},
     ),
     'ComputeResourcePolicyMaxTopologyDistance': MigrateEnum(
       name: 'ComputeResourcePolicyMaxTopologyDistance',
@@ -330759,9 +333223,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TYPE_MINIMUM': 'typeMinimum',
       },
     ),
+    'ComputeRolloutPlanValidationType': MigrateEnum(
+      name: 'ComputeRolloutPlanValidationType',
+      members: <String, String>{'manual': 'manual', 'time': 'time'},
+    ),
     'ComputeRouterBgpAdvertiseMode': MigrateEnum(
       name: 'ComputeRouterBgpAdvertiseMode',
       members: <String, String>{'DEFAULT': 'defaultMode', 'CUSTOM': 'custom'},
+    ),
+    'ComputeRouterBgpAdvertisedGroup': MigrateEnum(
+      name: 'ComputeRouterBgpAdvertisedGroup',
+      members: <String, String>{'ALL_SUBNETS': 'allSubnets'},
     ),
     'ComputeRouterNamedSetType': MigrateEnum(
       name: 'ComputeRouterNamedSetType',
@@ -330773,6 +333245,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRouterNatAutoNetworkTier': MigrateEnum(
       name: 'ComputeRouterNatAutoNetworkTier',
       members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
+    ),
+    'ComputeRouterNatEndpointTypes': MigrateEnum(
+      name: 'ComputeRouterNatEndpointTypes',
+      members: <String, String>{
+        'ENDPOINT_TYPE_MANAGED_PROXY_LB': 'endpointTypeManagedProxyLb',
+        'ENDPOINT_TYPE_SWG': 'endpointTypeSwg',
+        'ENDPOINT_TYPE_VM': 'endpointTypeVm',
+      },
     ),
     'ComputeRouterNatFilter': MigrateEnum(
       name: 'ComputeRouterNatFilter',
@@ -330787,6 +333267,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'MANUAL_ONLY': 'manualOnly',
         'AUTO_ONLY': 'autoOnly',
+      },
+    ),
+    'ComputeRouterNatSourceIpRangesToNat': MigrateEnum(
+      name: 'ComputeRouterNatSourceIpRangesToNat',
+      members: <String, String>{
+        'ALL_IP_RANGES': 'allIpRanges',
+        'LIST_OF_SECONDARY_IP_RANGES': 'listOfSecondaryIpRanges',
+        'PRIMARY_IP_RANGE': 'primaryIpRange',
       },
     ),
     'ComputeRouterNatSourceSubnetworkIpRangesToNat': MigrateEnum(
@@ -330813,6 +333301,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeRouterPeerAdvertiseMode',
       members: <String, String>{'DEFAULT': 'defaultMode', 'CUSTOM': 'custom'},
     ),
+    'ComputeRouterPeerAdvertisedGroups': MigrateEnum(
+      name: 'ComputeRouterPeerAdvertisedGroups',
+      members: <String, String>{'ALL_SUBNETS': 'allSubnets'},
+    ),
     'ComputeRouterPeerSessionInitializationMode': MigrateEnum(
       name: 'ComputeRouterPeerSessionInitializationMode',
       members: <String, String>{
@@ -330826,6 +333318,55 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ROUTE_POLICY_TYPE_IMPORT': 'routePolicyTypeImport',
         'ROUTE_POLICY_TYPE_EXPORT': 'routePolicyTypeExport',
+      },
+    ),
+    'ComputeSecurityPolicyExceedAction': MigrateEnum(
+      name: 'ComputeSecurityPolicyExceedAction',
+      members: <String, String>{
+        'redirect': 'redirect',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeSecurityPolicyRequestBodyInspectionSize': MigrateEnum(
+      name: 'ComputeSecurityPolicyRequestBodyInspectionSize',
+      members: <String, String>{
+        '8KB': 'v8kb',
+        '16KB': 'v16kb',
+        '32KB': 'v32kb',
+        '48KB': 'v48kb',
+        '64KB': 'v64kb',
+      },
+    ),
+    'ComputeSecurityPolicyRuleAction': MigrateEnum(
+      name: 'ComputeSecurityPolicyRuleAction',
+      members: <String, String>{
+        'allow': 'allow',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(502)': 'deny502',
+        'rate_based_ban': 'rateBasedBan',
+        'redirect': 'redirect',
+        'throttle': 'throttle',
+      },
+    ),
+    'ComputeSecurityPolicyRuleExceedAction': MigrateEnum(
+      name: 'ComputeSecurityPolicyRuleExceedAction',
+      members: <String, String>{
+        'redirect': 'redirect',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeSecurityPolicyRuleType': MigrateEnum(
+      name: 'ComputeSecurityPolicyRuleType',
+      members: <String, String>{
+        'EXTERNAL_302': 'external302',
+        'GOOGLE_RECAPTCHA': 'googleRecaptcha',
       },
     ),
     'ComputeSnapshotSettingsPolicy': MigrateEnum(
@@ -330848,9 +333389,62 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeStoragePoolPerformanceProvisioningType',
       members: <String, String>{'STANDARD': 'standard', 'ADVANCED': 'advanced'},
     ),
+    'ComputeSubnetworkIpv6GceEndpoint': MigrateEnum(
+      name: 'ComputeSubnetworkIpv6GceEndpoint',
+      members: <String, String>{'VM_AND_FR': 'vmAndFr', 'VM_ONLY': 'vmOnly'},
+    ),
+    'ComputeSubnetworkPrivateIpv6GoogleAccess': MigrateEnum(
+      name: 'ComputeSubnetworkPrivateIpv6GoogleAccess',
+      members: <String, String>{
+        'DISABLE_GOOGLE_ACCESS': 'disableGoogleAccess',
+        'ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE':
+            'enableBidirectionalAccessToGoogle',
+        'ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE': 'enableOutboundVmAccessToGoogle',
+      },
+    ),
     'ComputeTargetInstanceNatPolicy': MigrateEnum(
       name: 'ComputeTargetInstanceNatPolicy',
       members: <String, String>{'NO_NAT': 'noNat'},
+    ),
+    'ComputeTargetPoolSessionAffinity': MigrateEnum(
+      name: 'ComputeTargetPoolSessionAffinity',
+      members: <String, String>{
+        'CLIENT_IP': 'clientIp',
+        'CLIENT_IP_NO_DESTINATION': 'clientIpNoDestination',
+        'CLIENT_IP_PORT_PROTO': 'clientIpPortProto',
+        'CLIENT_IP_PROTO': 'clientIpProto',
+        'GENERATED_COOKIE': 'generatedCookie',
+        'HEADER_FIELD': 'headerField',
+        'HTTP_COOKIE': 'httpCookie',
+        'NONE': 'none',
+        'STRONG_COOKIE_AFFINITY': 'strongCookieAffinity',
+      },
+    ),
+    'ComputeUrlMapRetryConditions': MigrateEnum(
+      name: 'ComputeUrlMapRetryConditions',
+      members: <String, String>{
+        '5xx': 'v5xx',
+        'gateway-error': 'gatewayError',
+        'connect-failure': 'connectFailure',
+        'retriable-4xx': 'retriable4xx',
+        'refused-stream': 'refusedStream',
+        'cancelled': 'cancelled',
+        'deadline-exceeded': 'deadlineExceeded',
+        'internal': 'internal',
+        'resource-exhausted': 'resourceExhausted',
+        'unavailable': 'unavailable',
+      },
+    ),
+    'ComputeWireGroupBandwidthAllocation': MigrateEnum(
+      name: 'ComputeWireGroupBandwidthAllocation',
+      members: <String, String>{
+        'ALLOCATE_PER_WIRE': 'allocatePerWire',
+        'SHARED_WITH_WIRE_GROUP': 'sharedWithWireGroup',
+      },
+    ),
+    'ComputeWireGroupFaultResponse': MigrateEnum(
+      name: 'ComputeWireGroupFaultResponse',
+      members: <String, String>{'DISABLE_PORT': 'disablePort', 'NONE': 'none'},
     ),
     'ConcurrencyMode': MigrateEnum(
       name: 'ConcurrencyMode',
@@ -330894,11 +333488,50 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LABEL_KEY_TYPE_CUSTOM': 'labelKeyTypeCustom',
       },
     ),
+    'ContactCenterInsightsQaQuestionDatasetValidationWarnings': MigrateEnum(
+      name: 'ContactCenterInsightsQaQuestionDatasetValidationWarnings',
+      members: <String, String>{
+        'TOO_MANY_INVALID_FEEDBACK_LABELS': 'tooManyInvalidFeedbackLabels',
+        'INSUFFICIENT_FEEDBACK_LABELS': 'insufficientFeedbackLabels',
+        'INSUFFICIENT_FEEDBACK_LABELS_PER_ANSWER':
+            'insufficientFeedbackLabelsPerAnswer',
+        'ALL_FEEDBACK_LABELS_HAVE_THE_SAME_ANSWER':
+            'allFeedbackLabelsHaveTheSameAnswer',
+      },
+    ),
+    'ContactCenterInsightsQaQuestionPredefinedQuestionConfigType': MigrateEnum(
+      name: 'ContactCenterInsightsQaQuestionPredefinedQuestionConfigType',
+      members: <String, String>{
+        'CONVERSATION_OUTCOME': 'conversationOutcome',
+        'CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE':
+            'conversationOutcomeEscalationInitiatorRole',
+        'CONVERSATION_OUTCOME_AI_AVERSION': 'conversationOutcomeAiAversion',
+        'CONVERSATION_OUTCOME_ESCALATION_REASON':
+            'conversationOutcomeEscalationReason',
+      },
+    ),
+    'ContactCenterInsightsQaQuestionType': MigrateEnum(
+      name: 'ContactCenterInsightsQaQuestionType',
+      members: <String, String>{
+        'CUSTOMIZABLE': 'customizable',
+        'PREDEFINED': 'predefined',
+      },
+    ),
     'ContactCenterInsightsQaScorecardSource': MigrateEnum(
       name: 'ContactCenterInsightsQaScorecardSource',
       members: <String, String>{
         'QA_SCORECARD_SOURCE_CUSTOMER_DEFINED': 'customerDefined',
         'QA_SCORECARD_SOURCE_DISCOVERY_ENGINE': 'discoveryEngine',
+        'QA_SCORECARD_SOURCE_INTENT_TAXONOMY':
+            'qaScorecardSourceIntentTaxonomy',
+      },
+    ),
+    'ContainerAttachedClusterDistribution': MigrateEnum(
+      name: 'ContainerAttachedClusterDistribution',
+      members: <String, String>{
+        'eks': 'eks',
+        'aks': 'aks',
+        'generic': 'generic',
       },
     ),
     'ContainerAttachedClusterEnableComponents': MigrateEnum(
@@ -330954,6 +333587,565 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GP3': 'gp3',
       },
     ),
+    'ContainerClusterAnonymousAuthenticationConfigMode': MigrateEnum(
+      name: 'ContainerClusterAnonymousAuthenticationConfigMode',
+      members: <String, String>{'ENABLED': 'enabled', 'LIMITED': 'limited'},
+    ),
+    'ContainerClusterArchitectureTaintBehavior': MigrateEnum(
+      name: 'ContainerClusterArchitectureTaintBehavior',
+      members: <String, String>{'NONE': 'none', 'ARM': 'arm'},
+    ),
+    'ContainerClusterAutoMonitoringConfigScope': MigrateEnum(
+      name: 'ContainerClusterAutoMonitoringConfigScope',
+      members: <String, String>{'ALL': 'all', 'NONE': 'none'},
+    ),
+    'ContainerClusterAutoscalingProfile': MigrateEnum(
+      name: 'ContainerClusterAutoscalingProfile',
+      members: <String, String>{
+        'OPTIMIZE_UTILIZATION': 'optimizeUtilization',
+        'BALANCED': 'balanced',
+      },
+    ),
+    'ContainerClusterCapabilities': MigrateEnum(
+      name: 'ContainerClusterCapabilities',
+      members: <String, String>{
+        'HOST_CAPABILITY_PULL': 'hostCapabilityPull',
+        'HOST_CAPABILITY_RESOLVE': 'hostCapabilityResolve',
+        'HOST_CAPABILITY_PUSH': 'hostCapabilityPush',
+      },
+    ),
+    'ContainerClusterCgroupMode': MigrateEnum(
+      name: 'ContainerClusterCgroupMode',
+      members: <String, String>{
+        'CGROUP_MODE_V1': 'cgroupModeV1',
+        'CGROUP_MODE_V2': 'cgroupModeV2',
+      },
+    ),
+    'ContainerClusterConfidentialInstanceType': MigrateEnum(
+      name: 'ContainerClusterConfidentialInstanceType',
+      members: <String, String>{
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'ContainerClusterConsumeReservationType': MigrateEnum(
+      name: 'ContainerClusterConsumeReservationType',
+      members: <String, String>{
+        'NO_RESERVATION': 'noReservation',
+        'ANY_RESERVATION': 'anyReservation',
+        'SPECIFIC_RESERVATION': 'specificReservation',
+        'ANY_RESERVATION_THEN_FAIL': 'anyReservationThenFail',
+      },
+    ),
+    'ContainerClusterDatapathProvider': MigrateEnum(
+      name: 'ContainerClusterDatapathProvider',
+      members: <String, String>{
+        'LEGACY_DATAPATH': 'legacyDatapath',
+        'ADVANCED_DATAPATH': 'advancedDatapath',
+        'MIGRATE_TO_ADVANCED_DATAPATH': 'migrateToAdvancedDatapath',
+        'MIGRATE_TO_LEGACY_DATAPATH': 'migrateToLegacyDatapath',
+      },
+    ),
+    'ContainerClusterDesiredTier': MigrateEnum(
+      name: 'ContainerClusterDesiredTier',
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'ENTERPRISE': 'enterprise',
+      },
+    ),
+    'ContainerClusterDns': MigrateEnum(
+      name: 'ContainerClusterDns',
+      members: <String, String>{
+        'PLATFORM_DEFAULT': 'platformDefault',
+        'CLOUD_DNS': 'cloudDns',
+        'KUBE_DNS': 'kubeDns',
+      },
+    ),
+    'ContainerClusterDnsScope': MigrateEnum(
+      name: 'ContainerClusterDnsScope',
+      members: <String, String>{
+        'CLUSTER_SCOPE': 'clusterScope',
+        'VPC_SCOPE': 'vpcScope',
+      },
+    ),
+    'ContainerClusterEffect': MigrateEnum(
+      name: 'ContainerClusterEffect',
+      members: <String, String>{
+        'NO_SCHEDULE': 'noSchedule',
+        'PREFER_NO_SCHEDULE': 'preferNoSchedule',
+        'NO_EXECUTE': 'noExecute',
+      },
+    ),
+    'ContainerClusterEndTimeBehavior': MigrateEnum(
+      name: 'ContainerClusterEndTimeBehavior',
+      members: <String, String>{'UNTIL_END_OF_SUPPORT': 'untilEndOfSupport'},
+    ),
+    'ContainerClusterEvaluationMode': MigrateEnum(
+      name: 'ContainerClusterEvaluationMode',
+      members: <String, String>{
+        'DISABLED': 'disabled',
+        'PROJECT_SINGLETON_POLICY_ENFORCE': 'projectSingletonPolicyEnforce',
+      },
+    ),
+    'ContainerClusterEventType': MigrateEnum(
+      name: 'ContainerClusterEventType',
+      members: <String, String>{
+        'UPGRADE_AVAILABLE_EVENT': 'upgradeAvailableEvent',
+        'UPGRADE_EVENT': 'upgradeEvent',
+        'SECURITY_BULLETIN_EVENT': 'securityBulletinEvent',
+        'UPGRADE_INFO_EVENT': 'upgradeInfoEvent',
+      },
+    ),
+    'ContainerClusterExclusionOptionsScope': MigrateEnum(
+      name: 'ContainerClusterExclusionOptionsScope',
+      members: <String, String>{
+        'NO_UPGRADES': 'noUpgrades',
+        'NO_MINOR_UPGRADES': 'noMinorUpgrades',
+        'NO_MINOR_OR_NODE_UPGRADES': 'noMinorOrNodeUpgrades',
+      },
+    ),
+    'ContainerClusterGatewayApiConfigChannel': MigrateEnum(
+      name: 'ContainerClusterGatewayApiConfigChannel',
+      members: <String, String>{
+        'CHANNEL_DISABLED': 'channelDisabled',
+        'CHANNEL_EXPERIMENTAL': 'channelExperimental',
+        'CHANNEL_STANDARD': 'channelStandard',
+      },
+    ),
+    'ContainerClusterGpuDriverVersion': MigrateEnum(
+      name: 'ContainerClusterGpuDriverVersion',
+      members: <String, String>{
+        'INSTALLATION_DISABLED': 'installationDisabled',
+        'DEFAULT': 'defaultCase',
+        'LATEST': 'latest',
+        'SPECIFIC': 'specific',
+      },
+    ),
+    'ContainerClusterGpuSharingStrategy': MigrateEnum(
+      name: 'ContainerClusterGpuSharingStrategy',
+      members: <String, String>{'TIME_SHARING': 'timeSharing', 'MPS': 'mps'},
+    ),
+    'ContainerClusterGpudirectStrategy': MigrateEnum(
+      name: 'ContainerClusterGpudirectStrategy',
+      members: <String, String>{'RDMA': 'rdma'},
+    ),
+    'ContainerClusterHpaProfile': MigrateEnum(
+      name: 'ContainerClusterHpaProfile',
+      members: <String, String>{'NONE': 'none', 'PERFORMANCE': 'performance'},
+    ),
+    'ContainerClusterInTransitEncryptionConfig': MigrateEnum(
+      name: 'ContainerClusterInTransitEncryptionConfig',
+      members: <String, String>{
+        'IN_TRANSIT_ENCRYPTION_DISABLED': 'inTransitEncryptionDisabled',
+        'IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT':
+            'inTransitEncryptionInterNodeTransparent',
+      },
+    ),
+    'ContainerClusterInsecureKubeletReadonlyPortEnabled': MigrateEnum(
+      name: 'ContainerClusterInsecureKubeletReadonlyPortEnabled',
+      members: <String, String>{'TRUE': 'trueCase', 'FALSE': 'falseCase'},
+    ),
+    'ContainerClusterLoadBalancerType': MigrateEnum(
+      name: 'ContainerClusterLoadBalancerType',
+      members: <String, String>{
+        'LOAD_BALANCER_TYPE_EXTERNAL': 'loadBalancerTypeExternal',
+        'LOAD_BALANCER_TYPE_INTERNAL': 'loadBalancerTypeInternal',
+      },
+    ),
+    'ContainerClusterLocalSsdEncryptionMode': MigrateEnum(
+      name: 'ContainerClusterLocalSsdEncryptionMode',
+      members: <String, String>{
+        'STANDARD_ENCRYPTION': 'standardEncryption',
+        'EPHEMERAL_KEY_ENCRYPTION': 'ephemeralKeyEncryption',
+      },
+    ),
+    'ContainerClusterLocationPolicy': MigrateEnum(
+      name: 'ContainerClusterLocationPolicy',
+      members: <String, String>{'BALANCED': 'balanced', 'ANY': 'any'},
+    ),
+    'ContainerClusterLoggingConfigEnableComponents': MigrateEnum(
+      name: 'ContainerClusterLoggingConfigEnableComponents',
+      members: <String, String>{
+        'SYSTEM_COMPONENTS': 'systemComponents',
+        'WORKLOADS': 'workloads',
+        'APISERVER': 'apiserver',
+        'SCHEDULER': 'scheduler',
+        'CONTROLLER_MANAGER': 'controllerManager',
+        'KCP_SSHD': 'kcpSshd',
+        'KCP_CONNECTION': 'kcpConnection',
+        'KCP_HPA': 'kcpHpa',
+        'KCP_VPA': 'kcpVpa',
+      },
+    ),
+    'ContainerClusterLoggingVariant': MigrateEnum(
+      name: 'ContainerClusterLoggingVariant',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'MAX_THROUGHPUT': 'maxThroughput',
+      },
+    ),
+    'ContainerClusterMembershipType': MigrateEnum(
+      name: 'ContainerClusterMembershipType',
+      members: <String, String>{'LIGHTWEIGHT': 'lightweight'},
+    ),
+    'ContainerClusterMonitoringConfigEnableComponents': MigrateEnum(
+      name: 'ContainerClusterMonitoringConfigEnableComponents',
+      members: <String, String>{
+        'SYSTEM_COMPONENTS': 'systemComponents',
+        'APISERVER': 'apiserver',
+        'SCHEDULER': 'scheduler',
+        'CONTROLLER_MANAGER': 'controllerManager',
+        'STORAGE': 'storage',
+        'HPA': 'hpa',
+        'POD': 'pod',
+        'DAEMONSET': 'daemonset',
+        'DEPLOYMENT': 'deployment',
+        'STATEFULSET': 'statefulset',
+        'CADVISOR': 'cadvisor',
+        'KUBELET': 'kubelet',
+        'DCGM': 'dcgm',
+        'JOBSET': 'jobset',
+      },
+    ),
+    'ContainerClusterNetworkTier': MigrateEnum(
+      name: 'ContainerClusterNetworkTier',
+      members: <String, String>{
+        'NETWORK_TIER_DEFAULT': 'networkTierDefault',
+        'NETWORK_TIER_PREMIUM': 'networkTierPremium',
+        'NETWORK_TIER_STANDARD': 'networkTierStandard',
+      },
+    ),
+    'ContainerClusterNodeCreationMode': MigrateEnum(
+      name: 'ContainerClusterNodeCreationMode',
+      members: <String, String>{
+        'VIA_KUBELET': 'viaKubelet',
+        'VIA_CONTROL_PLANE': 'viaControlPlane',
+      },
+    ),
+    'ContainerClusterOperator': MigrateEnum(
+      name: 'ContainerClusterOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ContainerClusterOsversion': MigrateEnum(
+      name: 'ContainerClusterOsversion',
+      members: <String, String>{
+        'OS_VERSION_LTSC2019': 'osVersionLtsc2019',
+        'OS_VERSION_LTSC2022': 'osVersionLtsc2022',
+      },
+    ),
+    'ContainerClusterPatchMode': MigrateEnum(
+      name: 'ContainerClusterPatchMode',
+      members: <String, String>{'ACCELERATED': 'accelerated'},
+    ),
+    'ContainerClusterPerformanceMonitoringUnit': MigrateEnum(
+      name: 'ContainerClusterPerformanceMonitoringUnit',
+      members: <String, String>{
+        'ARCHITECTURAL': 'architectural',
+        'STANDARD': 'standard',
+        'ENHANCED': 'enhanced',
+      },
+    ),
+    'ContainerClusterPlacementPolicyType': MigrateEnum(
+      name: 'ContainerClusterPlacementPolicyType',
+      members: <String, String>{'COMPACT': 'compact'},
+    ),
+    'ContainerClusterPolicy': MigrateEnum(
+      name: 'ContainerClusterPolicy',
+      members: <String, String>{
+        'ENFORCE_SIGNED_MODULES': 'enforceSignedModules',
+        'DO_NOT_ENFORCE_SIGNED_MODULES': 'doNotEnforceSignedModules',
+      },
+    ),
+    'ContainerClusterPrivateIpv6GoogleAccess': MigrateEnum(
+      name: 'ContainerClusterPrivateIpv6GoogleAccess',
+      members: <String, String>{
+        'PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED':
+            'privateIpv6GoogleAccessDisabled',
+        'PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE':
+            'privateIpv6GoogleAccessToGoogle',
+        'PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL':
+            'privateIpv6GoogleAccessBidirectional',
+      },
+    ),
+    'ContainerClusterProvider': MigrateEnum(
+      name: 'ContainerClusterProvider',
+      members: <String, String>{'CALICO': 'calico'},
+    ),
+    'ContainerClusterReleaseChannelChannel': MigrateEnum(
+      name: 'ContainerClusterReleaseChannelChannel',
+      members: <String, String>{
+        'UNSPECIFIED': 'unspecified',
+        'RAPID': 'rapid',
+        'REGULAR': 'regular',
+        'STABLE': 'stable',
+        'EXTENDED': 'extended',
+      },
+    ),
+    'ContainerClusterSandboxConfigType': MigrateEnum(
+      name: 'ContainerClusterSandboxConfigType',
+      members: <String, String>{'GVISOR': 'gvisor', 'MICROVM': 'microvm'},
+    ),
+    'ContainerClusterScope': MigrateEnum(
+      name: 'ContainerClusterScope',
+      members: <String, String>{
+        'NONE': 'none',
+        'COLLECTION_AND_INSTRUMENTATION_COMPONENTS':
+            'collectionAndInstrumentationComponents',
+      },
+    ),
+    'ContainerClusterSecondaryBootDisksMode': MigrateEnum(
+      name: 'ContainerClusterSecondaryBootDisksMode',
+      members: <String, String>{'CONTAINER_IMAGE_CACHE': 'containerImageCache'},
+    ),
+    'ContainerClusterSecurityPostureConfigMode': MigrateEnum(
+      name: 'ContainerClusterSecurityPostureConfigMode',
+      members: <String, String>{
+        'DISABLED': 'disabled',
+        'BASIC': 'basic',
+        'ENTERPRISE': 'enterprise',
+      },
+    ),
+    'ContainerClusterStackType': MigrateEnum(
+      name: 'ContainerClusterStackType',
+      members: <String, String>{'IPV4': 'ipv4', 'IPV4_IPV6': 'ipv4Ipv6'},
+    ),
+    'ContainerClusterState': MigrateEnum(
+      name: 'ContainerClusterState',
+      members: <String, String>{
+        'UNKNOWN': 'unknown',
+        'ENCRYPTED': 'encrypted',
+        'DECRYPTED': 'decrypted',
+        'ALL_OBJECTS_ENCRYPTION_ENABLED': 'allObjectsEncryptionEnabled',
+      },
+    ),
+    'ContainerClusterStatus': MigrateEnum(
+      name: 'ContainerClusterStatus',
+      members: <String, String>{'ACTIVE': 'active', 'DRAINING': 'draining'},
+    ),
+    'ContainerClusterStrategy': MigrateEnum(
+      name: 'ContainerClusterStrategy',
+      members: <String, String>{
+        'BLUE_GREEN': 'blueGreen',
+        'SURGE': 'surge',
+        'SHORT_LIVED': 'shortLived',
+      },
+    ),
+    'ContainerClusterTopologyManagerScope': MigrateEnum(
+      name: 'ContainerClusterTopologyManagerScope',
+      members: <String, String>{'container': 'container', 'pod': 'pod'},
+    ),
+    'ContainerClusterTotalEgressBandwidthTier': MigrateEnum(
+      name: 'ContainerClusterTotalEgressBandwidthTier',
+      members: <String, String>{'TIER_1': 'tier1'},
+    ),
+    'ContainerClusterTransparentHugepageDefrag': MigrateEnum(
+      name: 'ContainerClusterTransparentHugepageDefrag',
+      members: <String, String>{
+        'TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS': 'transparentHugepageDefragAlways',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_DEFER': 'transparentHugepageDefragDefer',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE':
+            'transparentHugepageDefragDeferWithMadvise',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE':
+            'transparentHugepageDefragMadvise',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_NEVER': 'transparentHugepageDefragNever',
+      },
+    ),
+    'ContainerClusterTransparentHugepageEnabled': MigrateEnum(
+      name: 'ContainerClusterTransparentHugepageEnabled',
+      members: <String, String>{
+        'TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS':
+            'transparentHugepageEnabledAlways',
+        'TRANSPARENT_HUGEPAGE_ENABLED_MADVISE':
+            'transparentHugepageEnabledMadvise',
+        'TRANSPARENT_HUGEPAGE_ENABLED_NEVER': 'transparentHugepageEnabledNever',
+      },
+    ),
+    'ContainerClusterVulnerabilityMode': MigrateEnum(
+      name: 'ContainerClusterVulnerabilityMode',
+      members: <String, String>{
+        'VULNERABILITY_DISABLED': 'vulnerabilityDisabled',
+        'VULNERABILITY_BASIC': 'vulnerabilityBasic',
+        'VULNERABILITY_ENTERPRISE': 'vulnerabilityEnterprise',
+      },
+    ),
+    'ContainerClusterWorkloadMetadataConfigMode': MigrateEnum(
+      name: 'ContainerClusterWorkloadMetadataConfigMode',
+      members: <String, String>{
+        'GCE_METADATA': 'gceMetadata',
+        'GKE_METADATA': 'gkeMetadata',
+      },
+    ),
+    'ContainerNodePoolArchitectureTaintBehavior': MigrateEnum(
+      name: 'ContainerNodePoolArchitectureTaintBehavior',
+      members: <String, String>{'NONE': 'none', 'ARM': 'arm'},
+    ),
+    'ContainerNodePoolCapabilities': MigrateEnum(
+      name: 'ContainerNodePoolCapabilities',
+      members: <String, String>{
+        'HOST_CAPABILITY_PULL': 'hostCapabilityPull',
+        'HOST_CAPABILITY_RESOLVE': 'hostCapabilityResolve',
+        'HOST_CAPABILITY_PUSH': 'hostCapabilityPush',
+      },
+    ),
+    'ContainerNodePoolCgroupMode': MigrateEnum(
+      name: 'ContainerNodePoolCgroupMode',
+      members: <String, String>{
+        'CGROUP_MODE_V1': 'cgroupModeV1',
+        'CGROUP_MODE_V2': 'cgroupModeV2',
+      },
+    ),
+    'ContainerNodePoolConfidentialInstanceType': MigrateEnum(
+      name: 'ContainerNodePoolConfidentialInstanceType',
+      members: <String, String>{
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'ContainerNodePoolConsumeReservationType': MigrateEnum(
+      name: 'ContainerNodePoolConsumeReservationType',
+      members: <String, String>{
+        'NO_RESERVATION': 'noReservation',
+        'ANY_RESERVATION': 'anyReservation',
+        'SPECIFIC_RESERVATION': 'specificReservation',
+        'ANY_RESERVATION_THEN_FAIL': 'anyReservationThenFail',
+      },
+    ),
+    'ContainerNodePoolEffect': MigrateEnum(
+      name: 'ContainerNodePoolEffect',
+      members: <String, String>{
+        'NO_SCHEDULE': 'noSchedule',
+        'PREFER_NO_SCHEDULE': 'preferNoSchedule',
+        'NO_EXECUTE': 'noExecute',
+      },
+    ),
+    'ContainerNodePoolGpuDriverVersion': MigrateEnum(
+      name: 'ContainerNodePoolGpuDriverVersion',
+      members: <String, String>{
+        'INSTALLATION_DISABLED': 'installationDisabled',
+        'DEFAULT': 'defaultCase',
+        'LATEST': 'latest',
+        'SPECIFIC': 'specific',
+      },
+    ),
+    'ContainerNodePoolGpuSharingStrategy': MigrateEnum(
+      name: 'ContainerNodePoolGpuSharingStrategy',
+      members: <String, String>{'TIME_SHARING': 'timeSharing', 'MPS': 'mps'},
+    ),
+    'ContainerNodePoolGpudirectStrategy': MigrateEnum(
+      name: 'ContainerNodePoolGpudirectStrategy',
+      members: <String, String>{'RDMA': 'rdma'},
+    ),
+    'ContainerNodePoolInsecureKubeletReadonlyPortEnabled': MigrateEnum(
+      name: 'ContainerNodePoolInsecureKubeletReadonlyPortEnabled',
+      members: <String, String>{'TRUE': 'trueCase', 'FALSE': 'falseCase'},
+    ),
+    'ContainerNodePoolLocalSsdEncryptionMode': MigrateEnum(
+      name: 'ContainerNodePoolLocalSsdEncryptionMode',
+      members: <String, String>{
+        'STANDARD_ENCRYPTION': 'standardEncryption',
+        'EPHEMERAL_KEY_ENCRYPTION': 'ephemeralKeyEncryption',
+      },
+    ),
+    'ContainerNodePoolLocationPolicy': MigrateEnum(
+      name: 'ContainerNodePoolLocationPolicy',
+      members: <String, String>{'BALANCED': 'balanced', 'ANY': 'any'},
+    ),
+    'ContainerNodePoolLoggingVariant': MigrateEnum(
+      name: 'ContainerNodePoolLoggingVariant',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'MAX_THROUGHPUT': 'maxThroughput',
+      },
+    ),
+    'ContainerNodePoolOperator': MigrateEnum(
+      name: 'ContainerNodePoolOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
+    ),
+    'ContainerNodePoolOsversion': MigrateEnum(
+      name: 'ContainerNodePoolOsversion',
+      members: <String, String>{
+        'OS_VERSION_LTSC2019': 'osVersionLtsc2019',
+        'OS_VERSION_LTSC2022': 'osVersionLtsc2022',
+      },
+    ),
+    'ContainerNodePoolPerformanceMonitoringUnit': MigrateEnum(
+      name: 'ContainerNodePoolPerformanceMonitoringUnit',
+      members: <String, String>{
+        'ARCHITECTURAL': 'architectural',
+        'STANDARD': 'standard',
+        'ENHANCED': 'enhanced',
+      },
+    ),
+    'ContainerNodePoolPolicy': MigrateEnum(
+      name: 'ContainerNodePoolPolicy',
+      members: <String, String>{
+        'ENFORCE_SIGNED_MODULES': 'enforceSignedModules',
+        'DO_NOT_ENFORCE_SIGNED_MODULES': 'doNotEnforceSignedModules',
+      },
+    ),
+    'ContainerNodePoolSandboxConfigType': MigrateEnum(
+      name: 'ContainerNodePoolSandboxConfigType',
+      members: <String, String>{'GVISOR': 'gvisor', 'MICROVM': 'microvm'},
+    ),
+    'ContainerNodePoolScope': MigrateEnum(
+      name: 'ContainerNodePoolScope',
+      members: <String, String>{'container': 'container', 'pod': 'pod'},
+    ),
+    'ContainerNodePoolSecondaryBootDisksMode': MigrateEnum(
+      name: 'ContainerNodePoolSecondaryBootDisksMode',
+      members: <String, String>{'CONTAINER_IMAGE_CACHE': 'containerImageCache'},
+    ),
+    'ContainerNodePoolStrategy': MigrateEnum(
+      name: 'ContainerNodePoolStrategy',
+      members: <String, String>{
+        'BLUE_GREEN': 'blueGreen',
+        'SURGE': 'surge',
+        'SHORT_LIVED': 'shortLived',
+      },
+    ),
+    'ContainerNodePoolTotalEgressBandwidthTier': MigrateEnum(
+      name: 'ContainerNodePoolTotalEgressBandwidthTier',
+      members: <String, String>{'TIER_1': 'tier1'},
+    ),
+    'ContainerNodePoolTransparentHugepageDefrag': MigrateEnum(
+      name: 'ContainerNodePoolTransparentHugepageDefrag',
+      members: <String, String>{
+        'TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS': 'transparentHugepageDefragAlways',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_DEFER': 'transparentHugepageDefragDefer',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE':
+            'transparentHugepageDefragDeferWithMadvise',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE':
+            'transparentHugepageDefragMadvise',
+        'TRANSPARENT_HUGEPAGE_DEFRAG_NEVER': 'transparentHugepageDefragNever',
+      },
+    ),
+    'ContainerNodePoolTransparentHugepageEnabled': MigrateEnum(
+      name: 'ContainerNodePoolTransparentHugepageEnabled',
+      members: <String, String>{
+        'TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS':
+            'transparentHugepageEnabledAlways',
+        'TRANSPARENT_HUGEPAGE_ENABLED_MADVISE':
+            'transparentHugepageEnabledMadvise',
+        'TRANSPARENT_HUGEPAGE_ENABLED_NEVER': 'transparentHugepageEnabledNever',
+      },
+    ),
+    'ContainerNodePoolType': MigrateEnum(
+      name: 'ContainerNodePoolType',
+      members: <String, String>{'COMPACT': 'compact'},
+    ),
+    'ContainerNodePoolWorkloadMetadataConfigMode': MigrateEnum(
+      name: 'ContainerNodePoolWorkloadMetadataConfigMode',
+      members: <String, String>{
+        'GCE_METADATA': 'gceMetadata',
+        'GKE_METADATA': 'gkeMetadata',
+      },
+    ),
+    'ContainerRegistryLocation': MigrateEnum(
+      name: 'ContainerRegistryLocation',
+      members: <String, String>{'ASIA': 'asia', 'EU': 'eu', 'US': 'us'},
+    ),
     'CustomRoleStage': MigrateEnum(
       name: 'CustomRoleStage',
       members: <String, String>{
@@ -330962,6 +334154,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GA': 'ga',
         'DEPRECATED': 'deprecated',
         'DISABLED': 'disabled',
+        'EAP': 'eap',
       },
     ),
     'DataCatalogTagTemplatePrimitiveType': MigrateEnum(
@@ -330974,9 +334167,24 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'RICHTEXT': 'richtext',
       },
     ),
+    'DataCatalogTaxonomyActivatedPolicyTypes': MigrateEnum(
+      name: 'DataCatalogTaxonomyActivatedPolicyTypes',
+      members: <String, String>{
+        'POLICY_TYPE_UNSPECIFIED': 'policyTypeUnspecified',
+        'FINE_GRAINED_ACCESS_CONTROL': 'fineGrainedAccessControl',
+      },
+    ),
     'DataConnectDeletionPolicy': MigrateEnum(
       name: 'DataConnectDeletionPolicy',
       members: <String, String>{'DEFAULT': 'defaultPolicy', 'FORCE': 'force'},
+    ),
+    'DataDiscoveryEngineDataStoreLocation': MigrateEnum(
+      name: 'DataDiscoveryEngineDataStoreLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DataDiscoveryEngineDataStoresLocation': MigrateEnum(
+      name: 'DataDiscoveryEngineDataStoresLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
     ),
     'DataFusionInstanceAcceleratorType': MigrateEnum(
       name: 'DataFusionInstanceAcceleratorType',
@@ -331038,6 +334246,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'CONTENT_TEXT': 'contentText',
         'CONTENT_IMAGE': 'contentImage',
+      },
+    ),
+    'DataLossPreventionContentPolicyExclusionType': MigrateEnum(
+      name: 'DataLossPreventionContentPolicyExclusionType',
+      members: <String, String>{
+        'EXCLUSION_TYPE_EXCLUDE': 'exclusionTypeExclude',
       },
     ),
     'DataLossPreventionContentPolicyFixedLikelihood': MigrateEnum(
@@ -331134,6 +334348,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SATURDAY': 'saturday',
         'SUNDAY': 'sunday',
       },
+    ),
+    'DataLossPreventionDeidentifyTemplateLogicalOperator': MigrateEnum(
+      name: 'DataLossPreventionDeidentifyTemplateLogicalOperator',
+      members: <String, String>{'AND': 'and'},
     ),
     'DataLossPreventionDeidentifyTemplateOperator': MigrateEnum(
       name: 'DataLossPreventionDeidentifyTemplateOperator',
@@ -331304,6 +334522,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'DataLossPreventionDiscoveryConfigStatus',
       members: <String, String>{'RUNNING': 'running', 'PAUSED': 'paused'},
     ),
+    'DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes': MigrateEnum(
+      name: 'DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes',
+      members: <String, String>{
+        'TABLE_MODIFIED_TIMESTAMP': 'tableModifiedTimestamp',
+      },
+    ),
     'DataLossPreventionDiscoveryConfigTypeCollection': MigrateEnum(
       name: 'DataLossPreventionDiscoveryConfigTypeCollection',
       members: <String, String>{
@@ -331325,6 +334549,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'CONTENT_TEXT': 'contentText',
         'CONTENT_IMAGE': 'contentImage',
+      },
+    ),
+    'DataLossPreventionInspectTemplateExclusionType': MigrateEnum(
+      name: 'DataLossPreventionInspectTemplateExclusionType',
+      members: <String, String>{
+        'EXCLUSION_TYPE_EXCLUDE': 'exclusionTypeExclude',
       },
     ),
     'DataLossPreventionInspectTemplateFixedLikelihood': MigrateEnum(
@@ -331371,6 +334601,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SENSITIVITY_LOW': 'sensitivityLow',
         'SENSITIVITY_MODERATE': 'sensitivityModerate',
         'SENSITIVITY_HIGH': 'sensitivityHigh',
+      },
+    ),
+    'DataLossPreventionJobTriggerExclusionType': MigrateEnum(
+      name: 'DataLossPreventionJobTriggerExclusionType',
+      members: <String, String>{
+        'EXCLUSION_TYPE_EXCLUDE': 'exclusionTypeExclude',
       },
     ),
     'DataLossPreventionJobTriggerFileTypes': MigrateEnum(
@@ -331500,6 +334736,112 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PIPELINE_TYPE_STREAMING': 'pipelineTypeStreaming',
       },
     ),
+    'DataSiteVerificationTokenType': MigrateEnum(
+      name: 'DataSiteVerificationTokenType',
+      members: <String, String>{'INET_DOMAIN': 'inetDomain', 'SITE': 'site'},
+    ),
+    'DataSiteVerificationTokenVerificationMethod': MigrateEnum(
+      name: 'DataSiteVerificationTokenVerificationMethod',
+      members: <String, String>{
+        'ANALYTICS': 'analytics',
+        'DNS_CNAME': 'dnsCname',
+        'DNS_TXT': 'dnsTxt',
+        'FILE': 'file',
+        'META': 'meta',
+        'TAG_MANAGER': 'tagManager',
+      },
+    ),
+    'DataSqlDatabaseInstancesDatabaseVersion': MigrateEnum(
+      name: 'DataSqlDatabaseInstancesDatabaseVersion',
+      members: <String, String>{
+        'MYSQL_5_1': 'mysql51',
+        'MYSQL_5_5': 'mysql55',
+        'MYSQL_5_6': 'mysql56',
+        'MYSQL_5_7': 'mysql57',
+        'MYSQL_8_0': 'mysql80',
+        'MYSQL_8_0_18': 'mysql8018',
+        'MYSQL_8_0_26': 'mysql8026',
+        'MYSQL_8_0_27': 'mysql8027',
+        'MYSQL_8_0_28': 'mysql8028',
+        'MYSQL_8_0_29': 'mysql8029',
+        'MYSQL_8_0_30': 'mysql8030',
+        'MYSQL_8_0_31': 'mysql8031',
+        'MYSQL_8_0_32': 'mysql8032',
+        'MYSQL_8_0_33': 'mysql8033',
+        'MYSQL_8_0_34': 'mysql8034',
+        'MYSQL_8_0_35': 'mysql8035',
+        'MYSQL_8_0_36': 'mysql8036',
+        'MYSQL_8_0_37': 'mysql8037',
+        'MYSQL_8_0_39': 'mysql8039',
+        'MYSQL_8_0_40': 'mysql8040',
+        'MYSQL_8_0_41': 'mysql8041',
+        'MYSQL_8_0_42': 'mysql8042',
+        'MYSQL_8_0_43': 'mysql8043',
+        'MYSQL_8_0_44': 'mysql8044',
+        'MYSQL_8_0_45': 'mysql8045',
+        'MYSQL_8_0_46': 'mysql8046',
+        'MYSQL_8_4': 'mysql84',
+        'MYSQL_9_7': 'mysql97',
+        'SQLSERVER_2017_STANDARD': 'sqlserver2017Standard',
+        'SQLSERVER_2017_ENTERPRISE': 'sqlserver2017Enterprise',
+        'SQLSERVER_2017_EXPRESS': 'sqlserver2017Express',
+        'SQLSERVER_2017_WEB': 'sqlserver2017Web',
+        'POSTGRES_9_6': 'postgres96',
+        'POSTGRES_10': 'postgres10',
+        'POSTGRES_11': 'postgres11',
+        'POSTGRES_12': 'postgres12',
+        'POSTGRES_13': 'postgres13',
+        'POSTGRES_14': 'postgres14',
+        'POSTGRES_15': 'postgres15',
+        'POSTGRES_16': 'postgres16',
+        'POSTGRES_17': 'postgres17',
+        'POSTGRES_18': 'postgres18',
+        'POSTGRES_19': 'postgres19',
+        'POSTGRES_20': 'postgres20',
+        'SQLSERVER_2019_STANDARD': 'sqlserver2019Standard',
+        'SQLSERVER_2019_ENTERPRISE': 'sqlserver2019Enterprise',
+        'SQLSERVER_2019_EXPRESS': 'sqlserver2019Express',
+        'SQLSERVER_2019_WEB': 'sqlserver2019Web',
+        'SQLSERVER_2022_STANDARD': 'sqlserver2022Standard',
+        'SQLSERVER_2022_ENTERPRISE': 'sqlserver2022Enterprise',
+        'SQLSERVER_2022_EXPRESS': 'sqlserver2022Express',
+        'SQLSERVER_2022_WEB': 'sqlserver2022Web',
+        'SQLSERVER_2025_STANDARD': 'sqlserver2025Standard',
+        'SQLSERVER_2025_ENTERPRISE': 'sqlserver2025Enterprise',
+        'SQLSERVER_2025_EXPRESS': 'sqlserver2025Express',
+      },
+    ),
+    'DataSqlDatabaseInstancesState': MigrateEnum(
+      name: 'DataSqlDatabaseInstancesState',
+      members: <String, String>{
+        'RUNNABLE': 'runnable',
+        'SUSPENDED': 'suspended',
+        'PENDING_DELETE': 'pendingDelete',
+        'PENDING_CREATE': 'pendingCreate',
+        'MAINTENANCE': 'maintenance',
+        'FAILED': 'failed',
+        'ONLINE_MAINTENANCE': 'onlineMaintenance',
+        'REPAIRING': 'repairing',
+      },
+    ),
+    'DataStorageControlFolderIntelligenceFindingsSummaryResourceScope':
+        MigrateEnum(
+          name:
+              'DataStorageControlFolderIntelligenceFindingsSummaryResourceScope',
+          members: <String, String>{'PARENT': 'parent', 'PROJECT': 'project'},
+        ),
+    'DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope':
+        MigrateEnum(
+          name:
+              'DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope',
+          members: <String, String>{'PARENT': 'parent', 'PROJECT': 'project'},
+        ),
+    'DataStorageControlProjectIntelligenceFindingsSummaryResourceScope':
+        MigrateEnum(
+          name:
+              'DataStorageControlProjectIntelligenceFindingsSummaryResourceScope',
+          members: <String, String>{'PARENT': 'parent', 'PROJECT': 'project'},
+        ),
     'DatabaseEdition': MigrateEnum(
       name: 'DatabaseEdition',
       members: <String, String>{
@@ -331515,11 +334857,64 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'DatabaseMigrationServiceConnectionProfileDataDiskType',
       members: <String, String>{'PD_SSD': 'pdSsd', 'PD_HDD': 'pdHdd'},
     ),
+    'DatabaseMigrationServiceConnectionProfileDatabaseVersion': MigrateEnum(
+      name: 'DatabaseMigrationServiceConnectionProfileDatabaseVersion',
+      members: <String, String>{
+        'MYSQL_5_6': 'mysql56',
+        'MYSQL_5_7': 'mysql57',
+        'MYSQL_8_0': 'mysql80',
+        'MYSQL_8_0_18': 'mysql8018',
+        'MYSQL_8_0_26': 'mysql8026',
+        'MYSQL_8_0_27': 'mysql8027',
+        'MYSQL_8_0_28': 'mysql8028',
+        'MYSQL_8_0_30': 'mysql8030',
+        'MYSQL_8_0_31': 'mysql8031',
+        'MYSQL_8_0_32': 'mysql8032',
+        'MYSQL_8_0_33': 'mysql8033',
+        'MYSQL_8_0_34': 'mysql8034',
+        'MYSQL_8_0_35': 'mysql8035',
+        'MYSQL_8_0_36': 'mysql8036',
+        'MYSQL_8_0_37': 'mysql8037',
+        'MYSQL_8_4': 'mysql84',
+        'POSTGRES_9_6': 'postgres96',
+        'POSTGRES_11': 'postgres11',
+        'POSTGRES_10': 'postgres10',
+        'POSTGRES_12': 'postgres12',
+        'POSTGRES_13': 'postgres13',
+        'POSTGRES_14': 'postgres14',
+        'POSTGRES_15': 'postgres15',
+        'POSTGRES_16': 'postgres16',
+      },
+    ),
+    'DatabaseMigrationServiceConnectionProfileDbprovider': MigrateEnum(
+      name: 'DatabaseMigrationServiceConnectionProfileDbprovider',
+      members: <String, String>{
+        'CLOUDSQL': 'cloudsql',
+        'RDS': 'rds',
+        'AURORA': 'aurora',
+        'ALLOYDB': 'alloydb',
+      },
+    ),
     'DatabaseMigrationServiceConnectionProfileEdition': MigrateEnum(
       name: 'DatabaseMigrationServiceConnectionProfileEdition',
       members: <String, String>{
         'ENTERPRISE': 'enterprise',
         'ENTERPRISE_PLUS': 'enterprisePlus',
+      },
+    ),
+    'DatabaseMigrationServiceConnectionProfileRole': MigrateEnum(
+      name: 'DatabaseMigrationServiceConnectionProfileRole',
+      members: <String, String>{
+        'SOURCE': 'source',
+        'DESTINATION': 'destination',
+      },
+    ),
+    'DatabaseMigrationServiceConnectionProfileState': MigrateEnum(
+      name: 'DatabaseMigrationServiceConnectionProfileState',
+      members: <String, String>{
+        'DRAFT': 'draft',
+        'READY': 'ready',
+        'FAILED': 'failed',
       },
     ),
     'DatabaseMigrationServiceConnectionProfileType': MigrateEnum(
@@ -331529,6 +334924,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SERVER_CLIENT': 'serverClient',
         'REQUIRED': 'required',
         'NONE': 'none',
+      },
+    ),
+    'DatabaseMigrationServiceMigrationJobDesiredState': MigrateEnum(
+      name: 'DatabaseMigrationServiceMigrationJobDesiredState',
+      members: <String, String>{
+        'NOT_STARTED': 'notStarted',
+        'RUNNING': 'running',
       },
     ),
     'DatabaseMigrationServiceMigrationJobDumpParallelLevel': MigrateEnum(
@@ -331572,8 +334974,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DatabaseMigrationServiceMigrationJobState': MigrateEnum(
       name: 'DatabaseMigrationServiceMigrationJobState',
       members: <String, String>{
+        'DRAFT': 'draft',
         'NOT_STARTED': 'notStarted',
         'RUNNING': 'running',
+        'COMPLETED': 'completed',
+        'STOPPED': 'stopped',
+        'FAILED': 'failed',
       },
     ),
     'DatabaseMigrationServiceMigrationJobType': MigrateEnum(
@@ -331607,8 +335013,52 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SQLSERVER_2025_STANDARD': 'sqlserver2025Standard',
         'SQLSERVER_2025_ENTERPRISE': 'sqlserver2025Enterprise',
         'SQLSERVER_2025_EXPRESS': 'sqlserver2025Express',
-        'SQLSERVER_2025_WEB': 'sqlserver2025Web',
+        'MYSQL_5_1': 'mysql51',
+        'MYSQL_5_5': 'mysql55',
+        'MYSQL_8_0_18': 'mysql8018',
+        'MYSQL_8_0_26': 'mysql8026',
+        'MYSQL_8_0_27': 'mysql8027',
+        'MYSQL_8_0_28': 'mysql8028',
+        'MYSQL_8_0_29': 'mysql8029',
+        'MYSQL_8_0_30': 'mysql8030',
+        'MYSQL_8_0_31': 'mysql8031',
+        'MYSQL_8_0_32': 'mysql8032',
+        'MYSQL_8_0_33': 'mysql8033',
+        'MYSQL_8_0_34': 'mysql8034',
+        'MYSQL_8_0_35': 'mysql8035',
+        'MYSQL_8_0_36': 'mysql8036',
+        'MYSQL_8_0_37': 'mysql8037',
+        'MYSQL_8_0_39': 'mysql8039',
+        'MYSQL_8_0_40': 'mysql8040',
+        'MYSQL_8_0_41': 'mysql8041',
+        'MYSQL_8_0_42': 'mysql8042',
+        'MYSQL_8_0_43': 'mysql8043',
+        'MYSQL_8_0_44': 'mysql8044',
+        'MYSQL_8_0_45': 'mysql8045',
+        'MYSQL_8_0_46': 'mysql8046',
+        'MYSQL_9_7': 'mysql97',
+        'SQLSERVER_2017_STANDARD': 'sqlserver2017Standard',
+        'SQLSERVER_2017_ENTERPRISE': 'sqlserver2017Enterprise',
+        'SQLSERVER_2017_EXPRESS': 'sqlserver2017Express',
+        'SQLSERVER_2017_WEB': 'sqlserver2017Web',
+        'POSTGRES_19': 'postgres19',
+        'POSTGRES_20': 'postgres20',
+        'SQLSERVER_2019_STANDARD': 'sqlserver2019Standard',
+        'SQLSERVER_2019_ENTERPRISE': 'sqlserver2019Enterprise',
+        'SQLSERVER_2019_EXPRESS': 'sqlserver2019Express',
+        'SQLSERVER_2019_WEB': 'sqlserver2019Web',
       },
+    ),
+    'DataflowJobIpConfiguration': MigrateEnum(
+      name: 'DataflowJobIpConfiguration',
+      members: <String, String>{
+        'WORKER_IP_PUBLIC': 'workerIpPublic',
+        'WORKER_IP_PRIVATE': 'workerIpPrivate',
+      },
+    ),
+    'DataflowJobOnDelete': MigrateEnum(
+      name: 'DataflowJobOnDelete',
+      members: <String, String>{'drain': 'drain', 'cancel': 'cancel'},
     ),
     'DataplexAspectTypeDataClassification': MigrateEnum(
       name: 'DataplexAspectTypeDataClassification',
@@ -331676,6 +335126,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'DataplexEntryLinkEntryReferencesType',
       members: <String, String>{'SOURCE': 'source', 'TARGET': 'target'},
     ),
+    'DataplexMetadataFeedChangeTypes': MigrateEnum(
+      name: 'DataplexMetadataFeedChangeTypes',
+      members: <String, String>{
+        'CREATE': 'create',
+        'UPDATE': 'update',
+        'DELETE': 'delete',
+      },
+    ),
     'DataplexTaskType': MigrateEnum(
       name: 'DataplexTaskType',
       members: <String, String>{
@@ -331686,18 +335144,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataplexZoneLocationType': MigrateEnum(
       name: 'DataplexZoneLocationType',
       members: <String, String>{
-        'LOCATION_TYPE_UNSPECIFIED': 'locationTypeUnspecified',
         'SINGLE_REGION': 'singleRegion',
         'MULTI_REGION': 'multiRegion',
       },
     ),
     'DataplexZoneType': MigrateEnum(
       name: 'DataplexZoneType',
-      members: <String, String>{
-        'TYPE_UNSPECIFIED': 'typeUnspecified',
-        'RAW': 'raw',
-        'CURATED': 'curated',
-      },
+      members: <String, String>{'RAW': 'raw', 'CURATED': 'curated'},
     ),
     'DataprocBatchScenarios': MigrateEnum(
       name: 'DataprocBatchScenarios',
@@ -331715,13 +335168,121 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'END_USER_CREDENTIALS': 'endUserCredentials',
       },
     ),
+    'DataprocClusterConfidentialInstanceType': MigrateEnum(
+      name: 'DataprocClusterConfidentialInstanceType',
+      members: <String, String>{
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'DataprocClusterConsumeReservationType': MigrateEnum(
+      name: 'DataprocClusterConsumeReservationType',
+      members: <String, String>{
+        'NO_RESERVATION': 'noReservation',
+        'ANY_RESERVATION': 'anyReservation',
+        'SPECIFIC_RESERVATION': 'specificReservation',
+      },
+    ),
+    'DataprocClusterDiskType': MigrateEnum(
+      name: 'DataprocClusterDiskType',
+      members: <String, String>{
+        'HYPERDISK_BALANCED': 'hyperdiskBalanced',
+        'HYPERDISK_EXTREME': 'hyperdiskExtreme',
+        'HYPERDISK_ML': 'hyperdiskMl',
+        'HYPERDISK_THROUGHPUT': 'hyperdiskThroughput',
+      },
+    ),
+    'DataprocClusterEngine': MigrateEnum(
+      name: 'DataprocClusterEngine',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'LIGHTNING': 'lightning',
+      },
+    ),
+    'DataprocClusterLocalSsdInterface': MigrateEnum(
+      name: 'DataprocClusterLocalSsdInterface',
+      members: <String, String>{'scsi': 'scsi', 'nvme': 'nvme'},
+    ),
+    'DataprocClusterMetricSource': MigrateEnum(
+      name: 'DataprocClusterMetricSource',
+      members: <String, String>{
+        'MONITORING_AGENT_DEFAULTS': 'monitoringAgentDefaults',
+        'HDFS': 'hdfs',
+        'SPARK': 'spark',
+        'YARN': 'yarn',
+        'SPARK_HISTORY_SERVER': 'sparkHistoryServer',
+        'HIVESERVER2': 'hiveserver2',
+        'HIVEMETASTORE': 'hivemetastore',
+        'FLINK': 'flink',
+      },
+    ),
+    'DataprocClusterNodePoolTargetRoles': MigrateEnum(
+      name: 'DataprocClusterNodePoolTargetRoles',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'CONTROLLER': 'controller',
+        'SPARK_DRIVER': 'sparkDriver',
+        'SPARK_EXECUTOR': 'sparkExecutor',
+      },
+    ),
+    'DataprocClusterOptionalComponents': MigrateEnum(
+      name: 'DataprocClusterOptionalComponents',
+      members: <String, String>{
+        'ALLOYDB_CONNECTOR': 'alloydbConnector',
+        'ANACONDA': 'anaconda',
+        'DELTA': 'delta',
+        'DOCKER': 'docker',
+        'DRUID': 'druid',
+        'FLINK': 'flink',
+        'HBASE': 'hbase',
+        'HIVE_WEBHCAT': 'hiveWebhcat',
+        'HUDI': 'hudi',
+        'ICEBERG': 'iceberg',
+        'JUPYTER': 'jupyter',
+        'PIG': 'pig',
+        'PRESTO': 'presto',
+        'TRINO': 'trino',
+        'RANGER': 'ranger',
+        'SOLR': 'solr',
+        'ZEPPELIN': 'zeppelin',
+        'ZOOKEEPER': 'zookeeper',
+        'JUPYTER_KERNEL_GATEWAY': 'jupyterKernelGateway',
+      },
+    ),
+    'DataprocClusterPreemptibility': MigrateEnum(
+      name: 'DataprocClusterPreemptibility',
+      members: <String, String>{
+        'NON_PREEMPTIBLE': 'nonPreemptible',
+        'PREEMPTIBLE': 'preemptible',
+        'SPOT': 'spot',
+      },
+    ),
+    'DataprocClusterRoles': MigrateEnum(
+      name: 'DataprocClusterRoles',
+      members: <String, String>{'DRIVER': 'driver'},
+    ),
+    'DataprocClusterTier': MigrateEnum(
+      name: 'DataprocClusterTier',
+      members: <String, String>{
+        'CLUSTER_TIER_STANDARD': 'clusterTierStandard',
+        'CLUSTER_TIER_PREMIUM': 'clusterTierPremium',
+      },
+    ),
+    'DataprocClusterType': MigrateEnum(
+      name: 'DataprocClusterType',
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SINGLE_NODE': 'singleNode',
+        'ZERO_SCALE': 'zeroScale',
+      },
+    ),
     'DataprocMetastoreFederationBackendType': MigrateEnum(
       name: 'DataprocMetastoreFederationBackendType',
       members: <String, String>{
         'METASTORE_TYPE_UNSPECIFIED': 'unspecified',
         'DATAPROC_METASTORE': 'dataprocMetastore',
         'BIGQUERY': 'bigquery',
-        'DATAPLEX': 'dataplex',
       },
     ),
     'DataprocMetastoreFederationDeletionPolicy': MigrateEnum(
@@ -331796,28 +335357,70 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'END_USER_CREDENTIALS': 'endUserCredentials',
       },
     ),
+    'DataprocWorkflowTemplateBootDiskType': MigrateEnum(
+      name: 'DataprocWorkflowTemplateBootDiskType',
+      members: <String, String>{
+        'pd-balanced': 'pdBalanced',
+        'pd-ssd': 'pdSsd',
+        'pd-standard': 'pdStandard',
+      },
+    ),
     'DataprocWorkflowTemplateConsumeReservationType': MigrateEnum(
       name: 'DataprocWorkflowTemplateConsumeReservationType',
       members: <String, String>{
-        'TYPE_UNSPECIFIED': 'typeUnspecified',
         'NO_RESERVATION': 'noReservation',
         'ANY_RESERVATION': 'anyReservation',
         'SPECIFIC_RESERVATION': 'specificReservation',
       },
     ),
+    'DataprocWorkflowTemplateDiskType': MigrateEnum(
+      name: 'DataprocWorkflowTemplateDiskType',
+      members: <String, String>{
+        'HYPERDISK_BALANCED': 'hyperdiskBalanced',
+        'HYPERDISK_EXTREME': 'hyperdiskExtreme',
+        'HYPERDISK_ML': 'hyperdiskMl',
+        'HYPERDISK_THROUGHPUT': 'hyperdiskThroughput',
+      },
+    ),
+    'DataprocWorkflowTemplateLocalSsdInterface': MigrateEnum(
+      name: 'DataprocWorkflowTemplateLocalSsdInterface',
+      members: <String, String>{'scsi': 'scsi', 'nvme': 'nvme'},
+    ),
+    'DataprocWorkflowTemplateOptionalComponents': MigrateEnum(
+      name: 'DataprocWorkflowTemplateOptionalComponents',
+      members: <String, String>{
+        'ALLOYDB_CONNECTOR': 'alloydbConnector',
+        'ANACONDA': 'anaconda',
+        'DELTA': 'delta',
+        'DOCKER': 'docker',
+        'DRUID': 'druid',
+        'FLINK': 'flink',
+        'HBASE': 'hbase',
+        'HIVE_WEBHCAT': 'hiveWebhcat',
+        'HUDI': 'hudi',
+        'ICEBERG': 'iceberg',
+        'JUPYTER': 'jupyter',
+        'PIG': 'pig',
+        'PRESTO': 'presto',
+        'TRINO': 'trino',
+        'RANGER': 'ranger',
+        'SOLR': 'solr',
+        'ZEPPELIN': 'zeppelin',
+        'ZOOKEEPER': 'zookeeper',
+        'JUPYTER_KERNEL_GATEWAY': 'jupyterKernelGateway',
+      },
+    ),
     'DataprocWorkflowTemplatePreemptibility': MigrateEnum(
       name: 'DataprocWorkflowTemplatePreemptibility',
       members: <String, String>{
-        'PREEMPTIBILITY_UNSPECIFIED': 'preemptibilityUnspecified',
         'NON_PREEMPTIBLE': 'nonPreemptible',
         'PREEMPTIBLE': 'preemptible',
+        'SPOT': 'spot',
       },
     ),
     'DataprocWorkflowTemplatePrivateIpv6GoogleAccess': MigrateEnum(
       name: 'DataprocWorkflowTemplatePrivateIpv6GoogleAccess',
       members: <String, String>{
-        'PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED':
-            'privateIpv6GoogleAccessUnspecified',
         'INHERIT_FROM_SUBNETWORK': 'inheritFromSubnetwork',
         'OUTBOUND': 'outbound',
         'BIDIRECTIONAL': 'bidirectional',
@@ -331826,6 +335429,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DatasetStorageBillingModel': MigrateEnum(
       name: 'DatasetStorageBillingModel',
       members: <String, String>{'LOGICAL': 'logical', 'PHYSICAL': 'physical'},
+    ),
+    'DatastreamStreamBlmtConfigFileFormat': MigrateEnum(
+      name: 'DatastreamStreamBlmtConfigFileFormat',
+      members: <String, String>{
+        'FILE_FORMAT_UNSPECIFIED': 'fileFormatUnspecified',
+        'PARQUET': 'parquet',
+      },
     ),
     'DatastreamStreamCompression': MigrateEnum(
       name: 'DatastreamStreamCompression',
@@ -331869,6 +335479,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HIGH': 'high',
       },
     ),
+    'DatastreamStreamTableFormat': MigrateEnum(
+      name: 'DatastreamStreamTableFormat',
+      members: <String, String>{
+        'TABLE_FORMAT_UNSPECIFIED': 'tableFormatUnspecified',
+        'ICEBERG': 'iceberg',
+      },
+    ),
     'DeleteProtectionState': MigrateEnum(
       name: 'DeleteProtectionState',
       members: <String, String>{
@@ -331887,6 +335504,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DeploymentManagerDeploymentDeletePolicy': MigrateEnum(
       name: 'DeploymentManagerDeploymentDeletePolicy',
       members: <String, String>{'ABANDON': 'abandon', 'DELETE': 'delete'},
+    ),
+    'DeveloperConnectAccountConnectorScmProvider': MigrateEnum(
+      name: 'DeveloperConnectAccountConnectorScmProvider',
+      members: <String, String>{
+        'SCM_PROVIDER_UNKNOWN': 'scmProviderUnknown',
+        'GITHUB_ENTERPRISE': 'githubEnterprise',
+        'GITLAB_ENTERPRISE': 'gitlabEnterprise',
+        'BITBUCKET_DATA_CENTER': 'bitbucketDataCenter',
+      },
+    ),
+    'DeveloperConnectAccountConnectorSystemProviderId': MigrateEnum(
+      name: 'DeveloperConnectAccountConnectorSystemProviderId',
+      members: <String, String>{
+        'GITHUB': 'github',
+        'GITLAB': 'gitlab',
+        'GOOGLE': 'google',
+        'SENTRY': 'sentry',
+        'ROVO': 'rovo',
+        'NEW_RELIC': 'newRelic',
+        'DATASTAX': 'datastax',
+        'DYNATRACE': 'dynatrace',
+        'BITBUCKET_CLOUD': 'bitbucketCloud',
+      },
+    ),
+    'DeveloperConnectConnectionGithubApp': MigrateEnum(
+      name: 'DeveloperConnectConnectionGithubApp',
+      members: <String, String>{
+        'DEVELOPER_CONNECT': 'developerConnect',
+        'FIREBASE': 'firebase',
+        'GEMINI_CODE_ASSIST': 'geminiCodeAssist',
+        'DATAFORM': 'dataform',
+      },
     ),
     'DialogflowAgentApiVersion': MigrateEnum(
       name: 'DialogflowAgentApiVersion',
@@ -331977,6 +335626,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'START_SENSITIVITY_LOW': 'startSensitivityLow',
       },
     ),
+    'DialogflowConversationProfileType': MigrateEnum(
+      name: 'DialogflowConversationProfileType',
+      members: <String, String>{
+        'ARTICLE_SUGGESTION': 'articleSuggestion',
+        'FAQ': 'faq',
+        'SMART_REPLY': 'smartReply',
+        'CONVERSATION_SUMMARIZATION': 'conversationSummarization',
+        'KNOWLEDGE_SEARCH': 'knowledgeSearch',
+        'KNOWLEDGE_ASSIST': 'knowledgeAssist',
+      },
+    ),
     'DialogflowCxEntityTypeAutoExpansionMode': MigrateEnum(
       name: 'DialogflowCxEntityTypeAutoExpansionMode',
       members: <String, String>{
@@ -332018,6 +335678,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MODEL_TYPE_ADVANCED': 'modelTypeAdvanced',
       },
     ),
+    'DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy':
+        MigrateEnum(
+          name:
+              'DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy',
+          members: <String, String>{
+            'PARTIAL_MATCH': 'partialMatch',
+            'WORD_MATCH': 'wordMatch',
+          },
+        ),
     'DialogflowCxPageDataStoreType': MigrateEnum(
       name: 'DialogflowCxPageDataStoreType',
       members: <String, String>{
@@ -332042,6 +335711,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'DialogflowCxSecuritySettingsAudioFormat',
       members: <String, String>{'MULAW': 'mulaw', 'MP3': 'mp3', 'OGG': 'ogg'},
     ),
+    'DialogflowCxSecuritySettingsPurgeDataTypes': MigrateEnum(
+      name: 'DialogflowCxSecuritySettingsPurgeDataTypes',
+      members: <String, String>{'DIALOGFLOW_HISTORY': 'dialogflowHistory'},
+    ),
     'DialogflowCxSecuritySettingsRedactionScope': MigrateEnum(
       name: 'DialogflowCxSecuritySettingsRedactionScope',
       members: <String, String>{'REDACT_DISK_STORAGE': 'redactDiskStorage'},
@@ -332054,6 +335727,66 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'DialogflowCxSecuritySettingsRetentionStrategy',
       members: <String, String>{
         'REMOVE_AFTER_CONVERSATION': 'removeAfterConversation',
+      },
+    ),
+    'DialogflowCxToolDataStoreType': MigrateEnum(
+      name: 'DialogflowCxToolDataStoreType',
+      members: <String, String>{
+        'PUBLIC_WEB': 'publicWeb',
+        'UNSTRUCTURED': 'unstructured',
+        'STRUCTURED': 'structured',
+      },
+    ),
+    'DialogflowCxToolDocumentProcessingMode': MigrateEnum(
+      name: 'DialogflowCxToolDocumentProcessingMode',
+      members: <String, String>{'DOCUMENTS': 'documents', 'CHUNKS': 'chunks'},
+    ),
+    'DialogflowCxToolOauthGrantType': MigrateEnum(
+      name: 'DialogflowCxToolOauthGrantType',
+      members: <String, String>{'CLIENT_CREDENTIAL': 'clientCredential'},
+    ),
+    'DialogflowCxToolRequestLocation': MigrateEnum(
+      name: 'DialogflowCxToolRequestLocation',
+      members: <String, String>{
+        'HEADER': 'header',
+        'QUERY_STRING': 'queryString',
+      },
+    ),
+    'DialogflowCxToolServiceAgentAuth': MigrateEnum(
+      name: 'DialogflowCxToolServiceAgentAuth',
+      members: <String, String>{
+        'ID_TOKEN': 'idToken',
+        'ACCESS_TOKEN': 'accessToken',
+      },
+    ),
+    'DialogflowCxToolVersionDataStoreType': MigrateEnum(
+      name: 'DialogflowCxToolVersionDataStoreType',
+      members: <String, String>{
+        'PUBLIC_WEB': 'publicWeb',
+        'UNSTRUCTURED': 'unstructured',
+        'STRUCTURED': 'structured',
+      },
+    ),
+    'DialogflowCxToolVersionDocumentProcessingMode': MigrateEnum(
+      name: 'DialogflowCxToolVersionDocumentProcessingMode',
+      members: <String, String>{'DOCUMENTS': 'documents', 'CHUNKS': 'chunks'},
+    ),
+    'DialogflowCxToolVersionOauthGrantType': MigrateEnum(
+      name: 'DialogflowCxToolVersionOauthGrantType',
+      members: <String, String>{'CLIENT_CREDENTIAL': 'clientCredential'},
+    ),
+    'DialogflowCxToolVersionRequestLocation': MigrateEnum(
+      name: 'DialogflowCxToolVersionRequestLocation',
+      members: <String, String>{
+        'HEADER': 'header',
+        'QUERY_STRING': 'queryString',
+      },
+    ),
+    'DialogflowCxToolVersionServiceAgentAuth': MigrateEnum(
+      name: 'DialogflowCxToolVersionServiceAgentAuth',
+      members: <String, String>{
+        'ID_TOKEN': 'idToken',
+        'ACCESS_TOKEN': 'accessToken',
       },
     ),
     'DialogflowCxVersionState': MigrateEnum(
@@ -332132,6 +335865,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SMALLTALK': 'smalltalk',
       },
     ),
+    'DialogflowFulfillmentType': MigrateEnum(
+      name: 'DialogflowFulfillmentType',
+      members: <String, String>{'SMALLTALK': 'smalltalk'},
+    ),
     'DialogflowGeneratorTriggerEvent': MigrateEnum(
       name: 'DialogflowGeneratorTriggerEvent',
       members: <String, String>{
@@ -332149,6 +335886,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CUSTOMER_MESSAGE': 'customerMessage',
         'AGENT_MESSAGE': 'agentMessage',
         'TOOL_CALL_COMPLETION': 'toolCallCompletion',
+      },
+    ),
+    'DialogflowIntentDefaultResponsePlatforms': MigrateEnum(
+      name: 'DialogflowIntentDefaultResponsePlatforms',
+      members: <String, String>{
+        'FACEBOOK': 'facebook',
+        'SLACK': 'slack',
+        'TELEGRAM': 'telegram',
+        'KIK': 'kik',
+        'SKYPE': 'skype',
+        'LINE': 'line',
+        'VIBER': 'viber',
+        'ACTIONS_ON_GOOGLE': 'actionsOnGoogle',
+        'GOOGLE_HANGOUTS': 'googleHangouts',
       },
     ),
     'DialogflowIntentWebhookState': MigrateEnum(
@@ -332176,6 +335927,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DELETE': 'delete',
         'PATCH': 'patch',
       },
+    ),
+    'DialogflowToolOauthGrantType': MigrateEnum(
+      name: 'DialogflowToolOauthGrantType',
+      members: <String, String>{'CLIENT_CREDENTIAL': 'clientCredential'},
     ),
     'DialogflowToolOperation': MigrateEnum(
       name: 'DialogflowToolOperation',
@@ -332215,9 +335970,48 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'THIRD_PARTY': 'thirdParty',
       },
     ),
+    'DiscoveryEngineAclConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineAclConfigLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineAssistantFailureMode': MigrateEnum(
+      name: 'DiscoveryEngineAssistantFailureMode',
+      members: <String, String>{
+        'FAIL_OPEN': 'failOpen',
+        'FAIL_CLOSED': 'failClosed',
+      },
+    ),
+    'DiscoveryEngineAssistantLocation': MigrateEnum(
+      name: 'DiscoveryEngineAssistantLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineAssistantMatchType': MigrateEnum(
+      name: 'DiscoveryEngineAssistantMatchType',
+      members: <String, String>{
+        'SIMPLE_STRING_MATCH': 'simpleStringMatch',
+        'WORD_BOUNDARY_STRING_MATCH': 'wordBoundaryStringMatch',
+      },
+    ),
+    'DiscoveryEngineAssistantWebGroundingType': MigrateEnum(
+      name: 'DiscoveryEngineAssistantWebGroundingType',
+      members: <String, String>{
+        'WEB_GROUNDING_TYPE_DISABLED': 'webGroundingTypeDisabled',
+        'WEB_GROUNDING_TYPE_GOOGLE_SEARCH': 'webGroundingTypeGoogleSearch',
+        'WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH':
+            'webGroundingTypeEnterpriseWebSearch',
+      },
+    ),
+    'DiscoveryEngineChatEngineAgentCreationConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineChatEngineAgentCreationConfigLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
     'DiscoveryEngineChatEngineIndustryVertical': MigrateEnum(
       name: 'DiscoveryEngineChatEngineIndustryVertical',
       members: <String, String>{'GENERIC': 'generic'},
+    ),
+    'DiscoveryEngineCmekConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineCmekConfigLocation',
+      members: <String, String>{'us': 'us', 'eu': 'eu'},
     ),
     'DiscoveryEngineControlAttributeType': MigrateEnum(
       name: 'DiscoveryEngineControlAttributeType',
@@ -332226,6 +336020,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'FRESHNESS': 'freshness',
       },
     ),
+    'DiscoveryEngineControlInterpolationType': MigrateEnum(
+      name: 'DiscoveryEngineControlInterpolationType',
+      members: <String, String>{'LINEAR': 'linear'},
+    ),
+    'DiscoveryEngineControlLocation': MigrateEnum(
+      name: 'DiscoveryEngineControlLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
     'DiscoveryEngineControlSolutionType': MigrateEnum(
       name: 'DiscoveryEngineControlSolutionType',
       members: <String, String>{
@@ -332233,6 +336035,72 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SOLUTION_TYPE_SEARCH': 'solutionTypeSearch',
         'SOLUTION_TYPE_CHAT': 'solutionTypeChat',
         'SOLUTION_TYPE_GENERATIVE_CHAT': 'solutionTypeGenerativeChat',
+      },
+    ),
+    'DiscoveryEngineControlUseCases': MigrateEnum(
+      name: 'DiscoveryEngineControlUseCases',
+      members: <String, String>{
+        'SEARCH_USE_CASE_SEARCH': 'searchUseCaseSearch',
+        'SEARCH_USE_CASE_BROWSE': 'searchUseCaseBrowse',
+      },
+    ),
+    'DiscoveryEngineDataConnectorEnabledActions': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorEnabledActions',
+      members: <String, String>{
+        'create_issue': 'createIssue',
+        'update_issue': 'updateIssue',
+        'change_issue_status': 'changeIssueStatus',
+        'create_comment': 'createComment',
+        'update_comment': 'updateComment',
+        'upload_attachment': 'uploadAttachment',
+      },
+    ),
+    'DiscoveryEngineDataConnectorEntityName': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorEntityName',
+      members: <String, String>{
+        'Lead': 'lead',
+        'Opportunity': 'opportunity',
+        'Contact': 'contact',
+        'Account': 'account',
+        'Case': 'caseCase',
+        'Contract': 'contract',
+        'Campaign': 'campaign',
+        'project': 'project',
+        'issue': 'issue',
+        'attachment': 'attachment',
+        'comment': 'comment',
+        'worklog': 'worklog',
+        'Content': 'content',
+        'Space': 'space',
+      },
+    ),
+    'DiscoveryEngineDataConnectorLocation': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineDataConnectorModes': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorModes',
+      members: <String, String>{
+        'DATA_INGESTION': 'dataIngestion',
+        'ACTIONS': 'actions',
+        'FEDERATED': 'federated',
+        'EUA': 'eua',
+        'FEDERATED_AND_EUA': 'federatedAndEua',
+      },
+    ),
+    'DiscoveryEngineDataConnectorSupportedConnectorModes': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorSupportedConnectorModes',
+      members: <String, String>{
+        'DATA_INGESTION': 'dataIngestion',
+        'ACTIONS': 'actions',
+        'END_USER_AUTHENTICATION': 'endUserAuthentication',
+      },
+    ),
+    'DiscoveryEngineDataConnectorSyncMode': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorSyncMode',
+      members: <String, String>{
+        'PERIODIC': 'periodic',
+        'STREAMING': 'streaming',
       },
     ),
     'DiscoveryEngineDataStoreContentConfig': MigrateEnum(
@@ -332250,6 +336118,29 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MEDIA': 'media',
         'HEALTHCARE_FHIR': 'healthcareFhir',
       },
+    ),
+    'DiscoveryEngineDataStoreLocation': MigrateEnum(
+      name: 'DiscoveryEngineDataStoreLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineDataStoreSolutionTypes': MigrateEnum(
+      name: 'DiscoveryEngineDataStoreSolutionTypes',
+      members: <String, String>{
+        'SOLUTION_TYPE_RECOMMENDATION': 'solutionTypeRecommendation',
+        'SOLUTION_TYPE_SEARCH': 'solutionTypeSearch',
+        'SOLUTION_TYPE_CHAT': 'solutionTypeChat',
+        'SOLUTION_TYPE_GENERATIVE_CHAT': 'solutionTypeGenerativeChat',
+      },
+    ),
+    'DiscoveryEngineDataStoreStructuredContentTypes': MigrateEnum(
+      name: 'DiscoveryEngineDataStoreStructuredContentTypes',
+      members: <String, String>{
+        'shareholder-structure': 'shareholderStructure',
+      },
+    ),
+    'DiscoveryEngineLicenseConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineLicenseConfigLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
     ),
     'DiscoveryEngineLicenseConfigSubscriptionTerm': MigrateEnum(
       name: 'DiscoveryEngineLicenseConfigSubscriptionTerm',
@@ -332281,13 +336172,56 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SUBSCRIPTION_TIER_EDU_PRO': 'subscriptionTierEduPro',
       },
     ),
+    'DiscoveryEngineRecommendationEngineContextEventType': MigrateEnum(
+      name: 'DiscoveryEngineRecommendationEngineContextEventType',
+      members: <String, String>{
+        'view-home-page': 'viewHomePage',
+        'generic': 'generic',
+      },
+    ),
     'DiscoveryEngineRecommendationEngineIndustryVertical': MigrateEnum(
       name: 'DiscoveryEngineRecommendationEngineIndustryVertical',
       members: <String, String>{'GENERIC': 'generic', 'MEDIA': 'media'},
     ),
+    'DiscoveryEngineRecommendationEngineLocation': MigrateEnum(
+      name: 'DiscoveryEngineRecommendationEngineLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineRecommendationEngineOptimizationObjective': MigrateEnum(
+      name: 'DiscoveryEngineRecommendationEngineOptimizationObjective',
+      members: <String, String>{'ctr': 'ctr', 'cvr': 'cvr'},
+    ),
+    'DiscoveryEngineRecommendationEngineTargetField': MigrateEnum(
+      name: 'DiscoveryEngineRecommendationEngineTargetField',
+      members: <String, String>{
+        'watch-percentage': 'watchPercentage',
+        'watch-time': 'watchTime',
+      },
+    ),
     'DiscoveryEngineRecommendationEngineTrainingState': MigrateEnum(
       name: 'DiscoveryEngineRecommendationEngineTrainingState',
       members: <String, String>{'PAUSED': 'paused', 'TRAINING': 'training'},
+    ),
+    'DiscoveryEngineRecommendationEngineType': MigrateEnum(
+      name: 'DiscoveryEngineRecommendationEngineType',
+      members: <String, String>{
+        'recommended-for-you': 'recommendedForYou',
+        'others-you-may-like': 'othersYouMayLike',
+        'more-like-this': 'moreLikeThis',
+        'most-popular-items': 'mostPopularItems',
+      },
+    ),
+    'DiscoveryEngineSchemaLocation': MigrateEnum(
+      name: 'DiscoveryEngineSchemaLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineSearchEngineAppType': MigrateEnum(
+      name: 'DiscoveryEngineSearchEngineAppType',
+      members: <String, String>{'APP_TYPE_INTRANET': 'appTypeIntranet'},
+    ),
+    'DiscoveryEngineSearchEngineConfigSearchAddOns': MigrateEnum(
+      name: 'DiscoveryEngineSearchEngineConfigSearchAddOns',
+      members: <String, String>{'SEARCH_ADD_ON_LLM': 'searchAddOnLlm'},
     ),
     'DiscoveryEngineSearchEngineIndustryVertical': MigrateEnum(
       name: 'DiscoveryEngineSearchEngineIndustryVertical',
@@ -332327,6 +336261,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SEARCH_TIER_ENTERPRISE': 'searchTierEnterprise',
       },
     ),
+    'DiscoveryEngineServingConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineServingConfigLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
+    'DiscoveryEngineSitemapLocation': MigrateEnum(
+      name: 'DiscoveryEngineSitemapLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
     'DiscoveryEngineTargetSiteIndexingStatus': MigrateEnum(
       name: 'DiscoveryEngineTargetSiteIndexingStatus',
       members: <String, String>{
@@ -332336,9 +336278,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DELETING': 'deleting',
       },
     ),
+    'DiscoveryEngineTargetSiteLocation': MigrateEnum(
+      name: 'DiscoveryEngineTargetSiteLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
+    ),
     'DiscoveryEngineTargetSiteType': MigrateEnum(
       name: 'DiscoveryEngineTargetSiteType',
       members: <String, String>{'INCLUDE': 'include', 'EXCLUDE': 'exclude'},
+    ),
+    'DiscoveryEngineUserStoreLocation': MigrateEnum(
+      name: 'DiscoveryEngineUserStoreLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
     ),
     'DiscoveryEngineWidgetConfigDeviceVisibility': MigrateEnum(
       name: 'DiscoveryEngineWidgetConfigDeviceVisibility',
@@ -332359,6 +336309,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SEARCH_WITH_ANSWER': 'searchWithAnswer',
         'SEARCH_WITH_FOLLOW_UPS': 'searchWithFollowUps',
       },
+    ),
+    'DiscoveryEngineWidgetConfigLocation': MigrateEnum(
+      name: 'DiscoveryEngineWidgetConfigLocation',
+      members: <String, String>{'global': 'global', 'us': 'us', 'eu': 'eu'},
     ),
     'DiscoveryEngineWidgetConfigResultDescriptionType': MigrateEnum(
       name: 'DiscoveryEngineWidgetConfigResultDescriptionType',
@@ -332535,6 +336489,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'EmptyDirMedium',
       members: <String, String>{'MEMORY': 'memory', 'DISK': 'disk'},
     ),
+    'EssentialContactsContactNotificationCategorySubscriptions': MigrateEnum(
+      name: 'EssentialContactsContactNotificationCategorySubscriptions',
+      members: <String, String>{
+        'ALL': 'all',
+        'SUSPENSION': 'suspension',
+        'SECURITY': 'security',
+        'TECHNICAL': 'technical',
+        'BILLING': 'billing',
+        'LEGAL': 'legal',
+        'PRODUCT_UPDATES': 'productUpdates',
+        'TECHNICAL_INCIDENTS': 'technicalIncidents',
+      },
+    ),
     'EvaluationMissingData': MigrateEnum(
       name: 'EvaluationMissingData',
       members: <String, String>{
@@ -332702,6 +336669,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DATASTORE_MODE': 'datastoreMode',
       },
     ),
+    'FirestoreFieldArrayConfig': MigrateEnum(
+      name: 'FirestoreFieldArrayConfig',
+      members: <String, String>{'CONTAINS': 'contains'},
+    ),
     'FirestoreFieldOrder': MigrateEnum(
       name: 'FirestoreFieldOrder',
       members: <String, String>{
@@ -332751,6 +336722,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'COLLECTION_RECURSIVE': 'collectionRecursive',
       },
     ),
+    'FirestoreIndexTextIndexType': MigrateEnum(
+      name: 'FirestoreIndexTextIndexType',
+      members: <String, String>{'TOKENIZED': 'tokenized'},
+    ),
+    'FirestoreIndexTextMatchType': MigrateEnum(
+      name: 'FirestoreIndexTextMatchType',
+      members: <String, String>{'MATCH_GLOBALLY': 'matchGlobally'},
+    ),
     'FirewallDirection': MigrateEnum(
       name: 'FirewallDirection',
       members: <String, String>{'INGRESS': 'ingress', 'EGRESS': 'egress'},
@@ -332760,6 +336739,161 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'INCLUDE_ALL_METADATA': 'includeAllMetadata',
         'EXCLUDE_ALL_METADATA': 'excludeAllMetadata',
+      },
+    ),
+    'FolderAccessApprovalSettingsCloudProduct': MigrateEnum(
+      name: 'FolderAccessApprovalSettingsCloudProduct',
+      members: <String, String>{
+        'all': 'all',
+        'GA': 'ga',
+        'Access Context Manager': 'accessContextManager',
+        'Anthos Identity Service': 'anthosIdentityService',
+        'AlloyDB for PostgreSQL': 'alloydbForPostgresql',
+        'Apigee': 'apigee',
+        'Application Integration': 'applicationIntegration',
+        'App Hub': 'appHub',
+        'Artifact Registry': 'artifactRegistry',
+        'Anthos Service Mesh': 'anthosServiceMesh',
+        'Access Transparency': 'accessTransparency',
+        'BigQuery': 'bigquery',
+        'Certificate Authority Service': 'certificateAuthorityService',
+        'Cloud Bigtable': 'cloudBigtable',
+        'CCAI Assist and Knowledge': 'ccaiAssistAndKnowledge',
+        'Cloud Dataflow': 'cloudDataflow',
+        'Cloud Dataproc': 'cloudDataproc',
+        'CEP Security Gateway': 'cepSecurityGateway',
+        'Compliance Evaluation Service': 'complianceEvaluationService',
+        'Cloud Firestore': 'cloudFirestore',
+        'Cloud Healthcare API': 'cloudHealthcareApi',
+        'Chronicle': 'chronicle',
+        'Cloud AI Companion Gateway - Titan': 'cloudAiCompanionGatewayTitan',
+        'Google Cloud Armor': 'googleCloudArmor',
+        'Cloud Asset Inventory': 'cloudAssetInventory',
+        'Cloud Asset Search': 'cloudAssetSearch',
+        'Cloud Deploy': 'cloudDeploy',
+        'Cloud DNS': 'cloudDns',
+        'Cloud Latency': 'cloudLatency',
+        'Cloud Memorystore for Redis': 'cloudMemorystoreForRedis',
+        'CloudNet Control': 'cloudnetControl',
+        'Cloud Riptide': 'cloudRiptide',
+        'Cloud Tasks': 'cloudTasks',
+        'Cloud Trace': 'cloudTrace',
+        'Cloud Data Transfer': 'cloudDataTransfer',
+        'Cloud Composer': 'cloudComposer',
+        'Integration Connectors': 'integrationConnectors',
+        'Contact Center AI Insights': 'contactCenterAiInsights',
+        'Cloud Pub/Sub': 'cloudPubSub',
+        'Cloud Run': 'cloudRun',
+        'Resource Manager': 'resourceManager',
+        'Cloud Spanner': 'cloudSpanner',
+        'Database Center': 'databaseCenter',
+        'Cloud Dataform': 'cloudDataform',
+        'Cloud Data Fusion': 'cloudDataFusion',
+        'Dataplex': 'dataplex',
+        'Dialogflow Customer Experience Edition':
+            'dialogflowCustomerExperienceEdition',
+        'Cloud DLP': 'cloudDlp',
+        'Document AI': 'documentAi',
+        'Edge Container': 'edgeContainer',
+        'Edge Network': 'edgeNetwork',
+        'Cloud EKM': 'cloudEkm',
+        'Eventarc': 'eventarc',
+        'Firebase Data Connect': 'firebaseDataConnect',
+        'Firebase Rules': 'firebaseRules',
+        'App Engine': 'appEngine',
+        'Cloud Build': 'cloudBuild',
+        'Compute Engine': 'computeEngine',
+        'Cloud Functions (2nd Gen)': 'cloudFunctions2ndGen',
+        'Cloud Filestore': 'cloudFilestore',
+        'Cloud Interconnect': 'cloudInterconnect',
+        'Cloud NetApp Volumes': 'cloudNetappVolumes',
+        'Cloud Storage': 'cloudStorage',
+        'Generative AI App Builder': 'generativeAiAppBuilder',
+        'Google Kubernetes Engine': 'googleKubernetesEngine',
+        'Backup for GKE API': 'backupForGkeApi',
+        'GKE Connect': 'gkeConnect',
+        'GKE Hub': 'gkeHub',
+        'Hoverboard': 'hoverboard',
+        'Cloud HSM': 'cloudHsm',
+        'Cloud Identity and Access Management':
+            'cloudIdentityAndAccessManagement',
+        'Cloud Identity-Aware Proxy': 'cloudIdentityAwareProxy',
+        'Infrastructure Manager': 'infrastructureManager',
+        'Identity Storage Service': 'identityStorageService',
+        'Key Access Justifications': 'keyAccessJustifications',
+        'Cloud Key Management Service': 'cloudKeyManagementService',
+        'Cloud Logging': 'cloudLogging',
+        'Looker (Google Cloud core)': 'lookerGoogleCloudCore',
+        'Looker Studio': 'lookerStudio',
+        'Management Hub': 'managementHub',
+        'Model Armor': 'modelArmor',
+        'Cloud Monitoring': 'cloudMonitoring',
+        'Cloud NAT': 'cloudNat',
+        'Connectivity Hub': 'connectivityHub',
+        'External passthrough Network Load Balancer':
+            'externalPassthroughNetworkLoadBalancer',
+        'OIDC One': 'oidcOne',
+        'Organization Policy Service': 'organizationPolicyService',
+        'Org Lifecycle': 'orgLifecycle',
+        'Persistent Disk': 'persistentDisk',
+        'Parameter Manager': 'parameterManager',
+        'Private Services Access': 'privateServicesAccess',
+        'Regional Internal Application Load Balancer':
+            'regionalInternalApplicationLoadBalancer',
+        'Storage Batch Operations': 'storageBatchOperations',
+        'Cloud Security Command Center': 'cloudSecurityCommandCenter',
+        'Secure Source Manager': 'secureSourceManager',
+        'Seeker': 'seeker',
+        'Service Provisioning': 'serviceProvisioning',
+        'Speaker ID': 'speakerId',
+        'Secret Manager': 'secretManager',
+        'Cloud SQL': 'cloudSql',
+        'Cloud Speech-to-Text': 'cloudSpeechToText',
+        'Traffic Director': 'trafficDirector',
+        'Cloud Text-to-Speech': 'cloudTextToSpeech',
+        'USPS Andromeda': 'uspsAndromeda',
+        'Vertex AI': 'vertexAi',
+        'Virtual Private Cloud (VPC)': 'virtualPrivateCloudVpc',
+        'VPC Access': 'vpcAccess',
+        'VPC Service Controls Troubleshooter':
+            'vpcServiceControlsTroubleshooter',
+        'VPC virtnet': 'vpcVirtnet',
+        'Cloud Workstations': 'cloudWorkstations',
+        'Web Risk': 'webRisk',
+        'ga-only': 'gaOnly',
+        'appengine.googleapis.com': 'appengineGoogleapisCom',
+        'artifactregistry.googleapis.com': 'artifactregistryGoogleapisCom',
+        'bigquery.googleapis.com': 'bigqueryGoogleapisCom',
+        'bigtable.googleapis.com': 'bigtableGoogleapisCom',
+        'container.googleapis.com': 'containerGoogleapisCom',
+        'cloudkms.googleapis.com': 'cloudkmsGoogleapisCom',
+        'cloudresourcemanager.googleapis.com':
+            'cloudresourcemanagerGoogleapisCom',
+        'cloudsql.googleapis.com': 'cloudsqlGoogleapisCom',
+        'compute.googleapis.com': 'computeGoogleapisCom',
+        'dataflow.googleapis.com': 'dataflowGoogleapisCom',
+        'dataproc.googleapis.com': 'dataprocGoogleapisCom',
+        'dlp.googleapis.com': 'dlpGoogleapisCom',
+        'iam.googleapis.com': 'iamGoogleapisCom',
+        'logging.googleapis.com': 'loggingGoogleapisCom',
+        'orgpolicy.googleapis.com': 'orgpolicyGoogleapisCom',
+        'pubsub.googleapis.com': 'pubsubGoogleapisCom',
+        'spanner.googleapis.com': 'spannerGoogleapisCom',
+        'secretmanager.googleapis.com': 'secretmanagerGoogleapisCom',
+        'speakerid.googleapis.com': 'speakeridGoogleapisCom',
+        'storage.googleapis.com': 'storageGoogleapisCom',
+      },
+    ),
+    'FolderAccessApprovalSettingsEnrollmentLevel': MigrateEnum(
+      name: 'FolderAccessApprovalSettingsEnrollmentLevel',
+      members: <String, String>{'BLOCK_ALL': 'blockAll'},
+    ),
+    'FolderIamAuditConfigLogType': MigrateEnum(
+      name: 'FolderIamAuditConfigLogType',
+      members: <String, String>{
+        'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
       },
     ),
     'ForwardingPath': MigrateEnum(
@@ -332807,6 +336941,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BIGQUERY_TABLE_CONSTRAINTS': 'bigqueryTableConstraints',
       },
     ),
+    'GeminiGeminiGcpEnablementSettingReleaseChannel': MigrateEnum(
+      name: 'GeminiGeminiGcpEnablementSettingReleaseChannel',
+      members: <String, String>{
+        'STABLE': 'stable',
+        'EXPERIMENTAL': 'experimental',
+      },
+    ),
+    'GeminiGeminiGcpEnablementSettingWebGroundingType': MigrateEnum(
+      name: 'GeminiGeminiGcpEnablementSettingWebGroundingType',
+      members: <String, String>{
+        'GROUNDING_WITH_GOOGLE_SEARCH': 'groundingWithGoogleSearch',
+        'WEB_GROUNDING_FOR_ENTERPRISE': 'webGroundingForEnterprise',
+      },
+    ),
     'GeminiLoggingSettingBindingProduct': MigrateEnum(
       name: 'GeminiLoggingSettingBindingProduct',
       members: <String, String>{'GEMINI_CODE_ASSIST': 'geminiCodeAssist'},
@@ -332816,6 +336964,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'GEMINI_CLOUD_ASSIST': 'geminiCloudAssist',
         'GEMINI_CODE_ASSIST': 'geminiCodeAssist',
+      },
+    ),
+    'GeminiReleaseChannelSettingReleaseChannel': MigrateEnum(
+      name: 'GeminiReleaseChannelSettingReleaseChannel',
+      members: <String, String>{
+        'STABLE': 'stable',
+        'EXPERIMENTAL': 'experimental',
       },
     ),
     'GkeBackupBackupPlanDayOfWeek': MigrateEnum(
@@ -332874,6 +337029,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_VOLUME_DATA_RESTORATION': 'noVolumeDataRestoration',
       },
     ),
+    'GkeBackupRestorePlanVolumeType': MigrateEnum(
+      name: 'GkeBackupRestorePlanVolumeType',
+      members: <String, String>{'GCE_PERSISTENT_DISK': 'gcePersistentDisk'},
+    ),
     'GkeHubFeatureBackends': MigrateEnum(
       name: 'GkeHubFeatureBackends',
       members: <String, String>{
@@ -332908,19 +337067,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MANAGEMENT_MANUAL': 'managementManual',
       },
     ),
+    'GkeHubFeatureMembershipBackends': MigrateEnum(
+      name: 'GkeHubFeatureMembershipBackends',
+      members: <String, String>{
+        'PROMETHEUS': 'prometheus',
+        'CLOUD_MONITORING': 'cloudMonitoring',
+      },
+    ),
+    'GkeHubFeatureMembershipConfigmanagementManagement': MigrateEnum(
+      name: 'GkeHubFeatureMembershipConfigmanagementManagement',
+      members: <String, String>{
+        'MANAGEMENT_AUTOMATIC': 'managementAutomatic',
+        'MANAGEMENT_MANUAL': 'managementManual',
+      },
+    ),
     'GkeHubFeatureMembershipControlPlane': MigrateEnum(
       name: 'GkeHubFeatureMembershipControlPlane',
+      members: <String, String>{'AUTOMATIC': 'automatic', 'MANUAL': 'manual'},
+    ),
+    'GkeHubFeatureMembershipGitSecretType': MigrateEnum(
+      name: 'GkeHubFeatureMembershipGitSecretType',
       members: <String, String>{
-        'CONTROL_PLANE_MANAGEMENT_UNSPECIFIED':
-            'controlPlaneManagementUnspecified',
-        'AUTOMATIC': 'automatic',
-        'MANUAL': 'manual',
+        'ssh': 'ssh',
+        'cookiefile': 'cookiefile',
+        'gcenode': 'gcenode',
+        'token': 'token',
+        'gcpserviceaccount': 'gcpserviceaccount',
+        'none': 'none',
       },
     ),
     'GkeHubFeatureMembershipInstallSpec': MigrateEnum(
       name: 'GkeHubFeatureMembershipInstallSpec',
       members: <String, String>{
-        'INSTALL_SPEC_UNSPECIFIED': 'installSpecUnspecified',
         'INSTALL_SPEC_NOT_INSTALLED': 'installSpecNotInstalled',
         'INSTALL_SPEC_ENABLED': 'installSpecEnabled',
         'INSTALL_SPEC_SUSPENDED': 'installSpecSuspended',
@@ -332929,24 +337107,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'GkeHubFeatureMembershipInstallation': MigrateEnum(
       name: 'GkeHubFeatureMembershipInstallation',
-      members: <String, String>{
-        'INSTALLATION_UNSPECIFIED': 'installationUnspecified',
-        'NOT_INSTALLED': 'notInstalled',
-        'ALL': 'all',
-      },
+      members: <String, String>{'NOT_INSTALLED': 'notInstalled', 'ALL': 'all'},
     ),
-    'GkeHubFeatureMembershipManagement': MigrateEnum(
-      name: 'GkeHubFeatureMembershipManagement',
+    'GkeHubFeatureMembershipMeshManagement': MigrateEnum(
+      name: 'GkeHubFeatureMembershipMeshManagement',
       members: <String, String>{
-        'MANAGEMENT_UNSPECIFIED': 'managementUnspecified',
         'MANAGEMENT_AUTOMATIC': 'managementAutomatic',
         'MANAGEMENT_MANUAL': 'managementManual',
+        'MANAGEMENT_NOT_INSTALLED': 'managementNotInstalled',
+      },
+    ),
+    'GkeHubFeatureMembershipOciSecretType': MigrateEnum(
+      name: 'GkeHubFeatureMembershipOciSecretType',
+      members: <String, String>{
+        'gcenode': 'gcenode',
+        'gcpserviceaccount': 'gcpserviceaccount',
+        'none': 'none',
       },
     ),
     'GkeHubFeatureMembershipPodAffinity': MigrateEnum(
       name: 'GkeHubFeatureMembershipPodAffinity',
       members: <String, String>{
-        'AFFINITY_UNSPECIFIED': 'affinityUnspecified',
         'NO_AFFINITY': 'noAffinity',
         'ANTI_AFFINITY': 'antiAffinity',
       },
@@ -332990,6 +337171,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VULNERABILITY_ENTERPRISE': 'vulnerabilityEnterprise',
       },
     ),
+    'GkeHubRolloutSequenceUpgradeTypes': MigrateEnum(
+      name: 'GkeHubRolloutSequenceUpgradeTypes',
+      members: <String, String>{
+        'CONTROL_PLANE_MINOR': 'controlPlaneMinor',
+        'CONTROL_PLANE_PATCH': 'controlPlanePatch',
+        'NODE_MINOR': 'nodeMinor',
+        'NODE_PATCH': 'nodePatch',
+      },
+    ),
     'GkeHubScopeRbacRoleBindingPredefinedRole': MigrateEnum(
       name: 'GkeHubScopeRbacRoleBindingPredefinedRole',
       members: <String, String>{
@@ -333007,6 +337197,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_EXECUTE': 'noExecute',
       },
     ),
+    'GkeonpremBareMetalAdminClusterOperatingSystem': MigrateEnum(
+      name: 'GkeonpremBareMetalAdminClusterOperatingSystem',
+      members: <String, String>{'LINUX': 'linux'},
+    ),
     'GkeonpremBareMetalAdminClusterState': MigrateEnum(
       name: 'GkeonpremBareMetalAdminClusterState',
       members: <String, String>{
@@ -333017,6 +337211,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'STOPPING': 'stopping',
         'ERROR': 'error',
         'DEGRADED': 'degraded',
+      },
+    ),
+    'GkeonpremBareMetalAdminClusterTaintsEffect': MigrateEnum(
+      name: 'GkeonpremBareMetalAdminClusterTaintsEffect',
+      members: <String, String>{
+        'NO_SCHEDULE': 'noSchedule',
+        'PREFER_NO_SCHEDULE': 'preferNoSchedule',
+        'NO_EXECUTE': 'noExecute',
       },
     ),
     'GkeonpremBareMetalClusterContainerRuntime': MigrateEnum(
@@ -333042,6 +337244,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PROJECT_SINGLETON_POLICY_ENFORCE': 'projectSingletonPolicyEnforce',
       },
     ),
+    'GkeonpremBareMetalClusterOperatingSystem': MigrateEnum(
+      name: 'GkeonpremBareMetalClusterOperatingSystem',
+      members: <String, String>{'LINUX': 'linux'},
+    ),
     'GkeonpremBareMetalClusterPolicy': MigrateEnum(
       name: 'GkeonpremBareMetalClusterPolicy',
       members: <String, String>{'SERIAL': 'serial', 'CONCURRENT': 'concurrent'},
@@ -333066,6 +337272,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_EXECUTE': 'noExecute',
       },
     ),
+    'GkeonpremBareMetalNodePoolOperatingSystem': MigrateEnum(
+      name: 'GkeonpremBareMetalNodePoolOperatingSystem',
+      members: <String, String>{'LINUX': 'linux'},
+    ),
     'GkeonpremBareMetalNodePoolState': MigrateEnum(
       name: 'GkeonpremBareMetalNodePoolState',
       members: <String, String>{
@@ -333076,6 +337286,42 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'STOPPING': 'stopping',
         'ERROR': 'error',
         'DEGRADED': 'degraded',
+      },
+    ),
+    'GkeonpremVmwareClusterSkipValidations': MigrateEnum(
+      name: 'GkeonpremVmwareClusterSkipValidations',
+      members: <String, String>{
+        'VALIDATION_SKIP_UNSPECIFIED': 'validationSkipUnspecified',
+        'ALL': 'all',
+        'WORKSTATION': 'workstation',
+        'CONFIG': 'config',
+        'DOCKER': 'docker',
+        'INFRA': 'infra',
+        'LOAD_BALANCER': 'loadBalancer',
+        'VIPS': 'vips',
+        'NODE_IPS': 'nodeIps',
+        'DNS': 'dns',
+        'TOD': 'tod',
+        'NET_CONFIG': 'netConfig',
+        'STORAGE_DRIVER': 'storageDriver',
+        'PROXY': 'proxy',
+        'INTERNET': 'internet',
+        'GCP': 'gcp',
+        'GKEHUB': 'gkehub',
+        'RESERVED_IPS': 'reservedIps',
+        'STACKDRIVER': 'stackdriver',
+        'NODEPOOL_AUTOSCALING': 'nodepoolAutoscaling',
+        'OS_IMAGES': 'osImages',
+        'CLUSTER_VERSION': 'clusterVersion',
+        'CLUSTER_HEALTH': 'clusterHealth',
+        'WINDOWS': 'windows',
+        'HSM_SECRET_ENCRYPTION': 'hsmSecretEncryption',
+        'BACKUP_ADMIN': 'backupAdmin',
+        'CONNECTIVITY': 'connectivity',
+        'CLUSTER_SECRETS_CONFIG': 'clusterSecretsConfig',
+        'CSI_WORKLOAD': 'csiWorkload',
+        'VSPHERE_VERSION': 'vsphereVersion',
+        'MIGRATION': 'migration',
       },
     ),
     'GkeonpremVmwareClusterState': MigrateEnum(
@@ -333176,6 +337422,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INTERNET_IP_PORT': 'internetIpPort',
       },
     ),
+    'GoogleNetappVolumeProtocols': MigrateEnum(
+      name: 'GoogleNetappVolumeProtocols',
+      members: <String, String>{
+        'NFSV3': 'nfsv3',
+        'NFSV4': 'nfsv4',
+        'SMB': 'smb',
+        'ISCSI': 'iscsi',
+      },
+    ),
     'HealthCheckPortSpecification': MigrateEnum(
       name: 'HealthCheckPortSpecification',
       members: <String, String>{
@@ -333235,6 +337490,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'HealthcareHl7V2StoreParserConfigVersion',
       members: <String, String>{'V1': 'v1', 'V2': 'v2', 'V3': 'v3'},
     ),
+    'HypercomputeclusterClusterPerUnitStorageThroughput': MigrateEnum(
+      name: 'HypercomputeclusterClusterPerUnitStorageThroughput',
+      members: <String, String>{
+        '125': 'v125',
+        '250': 'v250',
+        '500': 'v500',
+        '1000': 'v1000',
+      },
+    ),
     'HypercomputeclusterClusterProtocol': MigrateEnum(
       name: 'HypercomputeclusterClusterProtocol',
       members: <String, String>{
@@ -333242,6 +337506,24 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NFSV3': 'nfsv3',
         'NFSV41': 'nfsv41',
       },
+    ),
+    'HypercomputeclusterClusterStorageClass': MigrateEnum(
+      name: 'HypercomputeclusterClusterStorageClass',
+      members: <String, String>{
+        'STORAGE_CLASS_UNSPECIFIED': 'storageClassUnspecified',
+        'STANDARD': 'standard',
+        'NEARLINE': 'nearline',
+        'COLDLINE': 'coldline',
+        'ARCHIVE': 'archive',
+      },
+    ),
+    'HypercomputeclusterClusterTerminalStorageClass': MigrateEnum(
+      name: 'HypercomputeclusterClusterTerminalStorageClass',
+      members: <String, String>{'NEARLINE': 'nearline', 'ARCHIVE': 'archive'},
+    ),
+    'HypercomputeclusterClusterTerminationAction': MigrateEnum(
+      name: 'HypercomputeclusterClusterTerminationAction',
+      members: <String, String>{'STOP': 'stop', 'DELETE': 'delete'},
     ),
     'HypercomputeclusterClusterTier': MigrateEnum(
       name: 'HypercomputeclusterClusterTier',
@@ -333255,13 +337537,52 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'IamFolderAccessPolicyEffect',
       members: <String, String>{'DENY': 'deny', 'ALLOW': 'allow'},
     ),
+    'IamFoldersPolicyBindingPolicyKind': MigrateEnum(
+      name: 'IamFoldersPolicyBindingPolicyKind',
+      members: <String, String>{
+        'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
+        'ACCESS': 'access',
+      },
+    ),
+    'IamOauthClientAllowedGrantTypes': MigrateEnum(
+      name: 'IamOauthClientAllowedGrantTypes',
+      members: <String, String>{
+        'AUTHORIZATION_CODE_GRANT': 'authorizationCodeGrant',
+        'REFRESH_TOKEN_GRANT': 'refreshTokenGrant',
+      },
+    ),
+    'IamOauthClientType': MigrateEnum(
+      name: 'IamOauthClientType',
+      members: <String, String>{
+        'PUBLIC_CLIENT': 'publicClient',
+        'CONFIDENTIAL_CLIENT': 'confidentialClient',
+      },
+    ),
     'IamOrganizationAccessPolicyEffect': MigrateEnum(
       name: 'IamOrganizationAccessPolicyEffect',
       members: <String, String>{'DENY': 'deny', 'ALLOW': 'allow'},
     ),
+    'IamOrganizationsPolicyBindingPolicyKind': MigrateEnum(
+      name: 'IamOrganizationsPolicyBindingPolicyKind',
+      members: <String, String>{
+        'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
+        'ACCESS': 'access',
+      },
+    ),
+    'IamPrincipalAccessBoundaryPolicyEffect': MigrateEnum(
+      name: 'IamPrincipalAccessBoundaryPolicyEffect',
+      members: <String, String>{'ALLOW': 'allow'},
+    ),
     'IamProjectAccessPolicyEffect': MigrateEnum(
       name: 'IamProjectAccessPolicyEffect',
       members: <String, String>{'DENY': 'deny', 'ALLOW': 'allow'},
+    ),
+    'IamProjectsPolicyBindingPolicyKind': MigrateEnum(
+      name: 'IamProjectsPolicyBindingPolicyKind',
+      members: <String, String>{
+        'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
+        'ACCESS': 'access',
+      },
     ),
     'IamWorkforcePoolProviderAssertionClaimsBehavior': MigrateEnum(
       name: 'IamWorkforcePoolProviderAssertionClaimsBehavior',
@@ -333279,6 +337600,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'AZURE_AD_GROUPS_DISPLAY_NAME': 'azureAdGroupsDisplayName',
       },
     ),
+    'IamWorkforcePoolProviderExtendedAttributesType': MigrateEnum(
+      name: 'IamWorkforcePoolProviderExtendedAttributesType',
+      members: <String, String>{'AZURE_AD_GROUPS_ID': 'azureAdGroupsId'},
+    ),
     'IamWorkforcePoolProviderKeySpec': MigrateEnum(
       name: 'IamWorkforcePoolProviderKeySpec',
       members: <String, String>{
@@ -333286,6 +337611,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'RSA_3072': 'rsa3072',
         'RSA_4096': 'rsa4096',
       },
+    ),
+    'IamWorkforcePoolProviderKeyState': MigrateEnum(
+      name: 'IamWorkforcePoolProviderKeyState',
+      members: <String, String>{
+        'STATE_UNSPECIFIED': 'stateUnspecified',
+        'ACTIVE': 'active',
+        'DELETED': 'deleted',
+      },
+    ),
+    'IamWorkforcePoolProviderKeyUse': MigrateEnum(
+      name: 'IamWorkforcePoolProviderKeyUse',
+      members: <String, String>{'ENCRYPTION': 'encryption'},
     ),
     'IamWorkforcePoolProviderResponseType': MigrateEnum(
       name: 'IamWorkforcePoolProviderResponseType',
@@ -333308,6 +337645,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ECDSA_P384': 'ecdsaP384',
       },
     ),
+    'IapSettingsIdentitySources': MigrateEnum(
+      name: 'IapSettingsIdentitySources',
+      members: <String, String>{
+        'WORKFORCE_IDENTITY_FEDERATION': 'workforceIdentityFederation',
+      },
+    ),
     'IapSettingsMethod': MigrateEnum(
       name: 'IapSettingsMethod',
       members: <String, String>{
@@ -333328,12 +337671,46 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'IapSettingsPolicyType',
       members: <String, String>{'MINIMUM': 'minimum', 'DEFAULT': 'defaultCase'},
     ),
+    'IdentityPlatformConfigEnabledProviders': MigrateEnum(
+      name: 'IdentityPlatformConfigEnabledProviders',
+      members: <String, String>{'PHONE_SMS': 'phoneSms'},
+    ),
     'IdentityPlatformConfigState': MigrateEnum(
       name: 'IdentityPlatformConfigState',
       members: <String, String>{
         'DISABLED': 'disabled',
         'ENABLED': 'enabled',
         'MANDATORY': 'mandatory',
+      },
+    ),
+    'IdentityPlatformDefaultSupportedIdpConfigIdpId': MigrateEnum(
+      name: 'IdentityPlatformDefaultSupportedIdpConfigIdpId',
+      members: <String, String>{
+        'apple.com': 'appleCom',
+        'facebook.com': 'facebookCom',
+        'gc.apple.com': 'gcAppleCom',
+        'github.com': 'githubCom',
+        'google.com': 'googleCom',
+        'linkedin.com': 'linkedinCom',
+        'microsoft.com': 'microsoftCom',
+        'playgames.google.com': 'playgamesGoogleCom',
+        'twitter.com': 'twitterCom',
+        'yahoo.com': 'yahooCom',
+      },
+    ),
+    'IdentityPlatformTenantDefaultSupportedIdpConfigIdpId': MigrateEnum(
+      name: 'IdentityPlatformTenantDefaultSupportedIdpConfigIdpId',
+      members: <String, String>{
+        'apple.com': 'appleCom',
+        'facebook.com': 'facebookCom',
+        'gc.apple.com': 'gcAppleCom',
+        'github.com': 'githubCom',
+        'google.com': 'googleCom',
+        'linkedin.com': 'linkedinCom',
+        'microsoft.com': 'microsoftCom',
+        'playgames.google.com': 'playgamesGoogleCom',
+        'twitter.com': 'twitterCom',
+        'yahoo.com': 'yahooCom',
       },
     ),
     'IdentityPlatformTenantDeletionPolicy': MigrateEnum(
@@ -333360,12 +337737,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ALLOW_INTERNAL_AND_GCLB': 'allowInternalAndGclb',
       },
     ),
+    'InstanceGroupManagerDefaultActionOnFailure': MigrateEnum(
+      name: 'InstanceGroupManagerDefaultActionOnFailure',
+      members: <String, String>{'REPAIR': 'repair', 'DO_NOTHING': 'doNothing'},
+    ),
+    'InstanceGroupManagerForceUpdateOnRepair': MigrateEnum(
+      name: 'InstanceGroupManagerForceUpdateOnRepair',
+      members: <String, String>{'YES': 'yes', 'NO': 'no'},
+    ),
     'InstanceGroupManagerListManagedInstancesResults': MigrateEnum(
       name: 'InstanceGroupManagerListManagedInstancesResults',
       members: <String, String>{
         'PAGELESS': 'pageless',
         'PAGINATED': 'paginated',
       },
+    ),
+    'InstanceGroupManagerOnFailedHealthCheck': MigrateEnum(
+      name: 'InstanceGroupManagerOnFailedHealthCheck',
+      members: <String, String>{
+        'DEFAULT_ACTION': 'defaultAction',
+        'DO_NOTHING': 'doNothing',
+        'REPAIR': 'repair',
+      },
+    ),
+    'InstanceGroupManagerStandbyPolicyMode': MigrateEnum(
+      name: 'InstanceGroupManagerStandbyPolicyMode',
+      members: <String, String>{
+        'MANUAL': 'manual',
+        'SCALE_OUT_POOL': 'scaleOutPool',
+      },
+    ),
+    'InstanceGroupManagerTargetSizePolicyMode': MigrateEnum(
+      name: 'InstanceGroupManagerTargetSizePolicyMode',
+      members: <String, String>{'BULK': 'bulk', 'INDIVIDUAL': 'individual'},
     ),
     'InstanceGroupManagerUpdatePolicyAction': MigrateEnum(
       name: 'InstanceGroupManagerUpdatePolicyAction',
@@ -333404,6 +337808,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SEV': 'sev',
         'SEV_SNP': 'sevSnp',
         'TDX': 'tdx',
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
       },
     ),
     'InstanceTemplateDiskMode': MigrateEnum(
@@ -333424,6 +337830,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VIRTIO_NET': 'virtioNet',
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'IDPF': 'idpf',
       },
     ),
     'InstanceTemplateOnHostMaintenance': MigrateEnum(
@@ -333440,7 +337847,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'InstanceTemplateProvisioningModel': MigrateEnum(
       name: 'InstanceTemplateProvisioningModel',
-      members: <String, String>{'STANDARD': 'standard', 'SPOT': 'spot'},
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SPOT': 'spot',
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+      },
     ),
     'InstanceTemplateReservationAffinityType': MigrateEnum(
       name: 'InstanceTemplateReservationAffinityType',
@@ -333454,6 +337866,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'InstanceTerminationAction',
       members: <String, String>{'STOP': 'stop', 'DELETE': 'delete'},
     ),
+    'IntegrationConnectorsConnectionAuthConfigAuthType': MigrateEnum(
+      name: 'IntegrationConnectorsConnectionAuthConfigAuthType',
+      members: <String, String>{'USER_PASSWORD': 'userPassword'},
+    ),
     'IntegrationConnectorsConnectionAuthType': MigrateEnum(
       name: 'IntegrationConnectorsConnectionAuthType',
       members: <String, String>{
@@ -333464,6 +337880,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SSH_PUBLIC_KEY': 'sshPublicKey',
         'OAUTH2_AUTH_CODE_FLOW': 'oauth2AuthCodeFlow',
       },
+    ),
+    'IntegrationConnectorsConnectionClientCertType': MigrateEnum(
+      name: 'IntegrationConnectorsConnectionClientCertType',
+      members: <String, String>{'PEM': 'pem'},
     ),
     'IntegrationConnectorsConnectionEncryptionKeyValueType': MigrateEnum(
       name: 'IntegrationConnectorsConnectionEncryptionKeyValueType',
@@ -333487,6 +337907,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INFO': 'info',
         'DEBUG': 'debug',
       },
+    ),
+    'IntegrationConnectorsConnectionServerCertType': MigrateEnum(
+      name: 'IntegrationConnectorsConnectionServerCertType',
+      members: <String, String>{'PEM': 'pem'},
     ),
     'IntegrationConnectorsConnectionTrustModel': MigrateEnum(
       name: 'IntegrationConnectorsConnectionTrustModel',
@@ -333561,7 +337985,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'KeyAlgorithm': MigrateEnum(
       name: 'KeyAlgorithm',
       members: <String, String>{
-        'KEY_ALG_UNSPECIFIED': 'unspecified',
         'KEY_ALG_RSA_1024': 'rsa1024',
         'KEY_ALG_RSA_2048': 'rsa2048',
       },
@@ -333574,6 +337997,61 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DISABLED': 'disabled',
       },
     ),
+    'KmsCryptoKeyVersionAlgorithm': MigrateEnum(
+      name: 'KmsCryptoKeyVersionAlgorithm',
+      members: <String, String>{
+        'GOOGLE_SYMMETRIC_ENCRYPTION': 'googleSymmetricEncryption',
+        'AES_128_GCM': 'aes128Gcm',
+        'AES_256_GCM': 'aes256Gcm',
+        'AES_128_CBC': 'aes128Cbc',
+        'AES_256_CBC': 'aes256Cbc',
+        'AES_128_CTR': 'aes128Ctr',
+        'AES_256_CTR': 'aes256Ctr',
+        'RSA_SIGN_PSS_2048_SHA256': 'rsaSignPss2048Sha256',
+        'RSA_SIGN_PSS_3072_SHA256': 'rsaSignPss3072Sha256',
+        'RSA_SIGN_PSS_4096_SHA256': 'rsaSignPss4096Sha256',
+        'RSA_SIGN_PSS_4096_SHA512': 'rsaSignPss4096Sha512',
+        'RSA_SIGN_PKCS1_2048_SHA256': 'rsaSignPkcs12048Sha256',
+        'RSA_SIGN_PKCS1_3072_SHA256': 'rsaSignPkcs13072Sha256',
+        'RSA_SIGN_PKCS1_4096_SHA256': 'rsaSignPkcs14096Sha256',
+        'RSA_SIGN_PKCS1_4096_SHA512': 'rsaSignPkcs14096Sha512',
+        'RSA_SIGN_RAW_PKCS1_2048': 'rsaSignRawPkcs12048',
+        'RSA_SIGN_RAW_PKCS1_3072': 'rsaSignRawPkcs13072',
+        'RSA_SIGN_RAW_PKCS1_4096': 'rsaSignRawPkcs14096',
+        'RSA_DECRYPT_OAEP_2048_SHA256': 'rsaDecryptOaep2048Sha256',
+        'RSA_DECRYPT_OAEP_3072_SHA256': 'rsaDecryptOaep3072Sha256',
+        'RSA_DECRYPT_OAEP_4096_SHA256': 'rsaDecryptOaep4096Sha256',
+        'RSA_DECRYPT_OAEP_4096_SHA512': 'rsaDecryptOaep4096Sha512',
+        'RSA_DECRYPT_OAEP_2048_SHA1': 'rsaDecryptOaep2048Sha1',
+        'RSA_DECRYPT_OAEP_3072_SHA1': 'rsaDecryptOaep3072Sha1',
+        'RSA_DECRYPT_OAEP_4096_SHA1': 'rsaDecryptOaep4096Sha1',
+        'EC_SIGN_P256_SHA256': 'ecSignP256Sha256',
+        'EC_SIGN_P384_SHA384': 'ecSignP384Sha384',
+        'EC_SIGN_SECP256K1_SHA256': 'ecSignSecp256k1Sha256',
+        'EC_SIGN_ED25519': 'ecSignEd25519',
+        'HMAC_SHA256': 'hmacSha256',
+        'HMAC_SHA1': 'hmacSha1',
+        'HMAC_SHA384': 'hmacSha384',
+        'HMAC_SHA512': 'hmacSha512',
+        'HMAC_SHA224': 'hmacSha224',
+        'EXTERNAL_SYMMETRIC_ENCRYPTION': 'externalSymmetricEncryption',
+        'ML_KEM_768': 'mlKem768',
+        'ML_KEM_1024': 'mlKem1024',
+        'KEM_XWING': 'kemXwing',
+        'PQ_SIGN_ML_DSA_44': 'pqSignMlDsa44',
+        'PQ_SIGN_ML_DSA_65': 'pqSignMlDsa65',
+        'PQ_SIGN_ML_DSA_87': 'pqSignMlDsa87',
+        'PQ_SIGN_SLH_DSA_SHA2_128S': 'pqSignSlhDsaSha2128s',
+        'PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256':
+            'pqSignHashSlhDsaSha2128sSha256',
+        'PQ_SIGN_ML_DSA_44_EXTERNAL_MU': 'pqSignMlDsa44ExternalMu',
+        'PQ_SIGN_ML_DSA_65_EXTERNAL_MU': 'pqSignMlDsa65ExternalMu',
+        'PQ_SIGN_ML_DSA_87_EXTERNAL_MU': 'pqSignMlDsa87ExternalMu',
+        'KEM_ECDH_P256': 'kemEcdhP256',
+        'KEM_ECDH_P384': 'kemEcdhP384',
+        'AES_256_KWP': 'aes256Kwp',
+      },
+    ),
     'KmsCryptoKeyVersionState': MigrateEnum(
       name: 'KmsCryptoKeyVersionState',
       members: <String, String>{
@@ -333582,6 +338060,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DISABLED': 'disabled',
         'DESTROYED': 'destroyed',
         'DESTROY_SCHEDULED': 'destroyScheduled',
+        'PENDING_IMPORT': 'pendingImport',
+        'IMPORT_FAILED': 'importFailed',
       },
     ),
     'KmsEkmConnectionKeyManagementMode': MigrateEnum(
@@ -333596,6 +338076,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ASYMMETRIC_DECRYPT': 'asymmetricDecrypt',
         'MAC': 'mac',
         'RAW_ENCRYPT_DECRYPT': 'rawEncryptDecrypt',
+        'KEY_ENCAPSULATION': 'keyEncapsulation',
+        'AES_WRAPPING': 'aesWrapping',
       },
     ),
     'KmsKeyRingImportJobImportMethod': MigrateEnum(
@@ -333631,6 +338113,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HSM': 'hsm',
         'EXTERNAL': 'external',
         'EXTERNAL_VPC': 'externalVpc',
+        'HSM_SINGLE_TENANT': 'hsmSingleTenant',
       },
     ),
     'LaunchStage': MigrateEnum(
@@ -333743,6 +338226,75 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LOOKER_CORE_TRIAL_EMBED': 'lookerCoreTrialEmbed',
       },
     ),
+    'LustreInstanceDayOfWeek': MigrateEnum(
+      name: 'LustreInstanceDayOfWeek',
+      members: <String, String>{
+        'MONDAY': 'monday',
+        'TUESDAY': 'tuesday',
+        'WEDNESDAY': 'wednesday',
+        'THURSDAY': 'thursday',
+        'FRIDAY': 'friday',
+        'SATURDAY': 'saturday',
+        'SUNDAY': 'sunday',
+      },
+    ),
+    'LustreInstanceDefaultSquashMode': MigrateEnum(
+      name: 'LustreInstanceDefaultSquashMode',
+      members: <String, String>{
+        'NO_SQUASH': 'noSquash',
+        'ROOT_SQUASH': 'rootSquash',
+      },
+    ),
+    'LustreInstanceMode': MigrateEnum(
+      name: 'LustreInstanceMode',
+      members: <String, String>{
+        'DISABLED': 'disabled',
+        'DEFAULT_CACHE': 'defaultCache',
+      },
+    ),
+    'LustreInstancePerUnitStorageThroughput': MigrateEnum(
+      name: 'LustreInstancePerUnitStorageThroughput',
+      members: <String, String>{
+        '125': 'v125',
+        '250': 'v250',
+        '500': 'v500',
+        '1000': 'v1000',
+      },
+    ),
+    'LustreInstanceSquashMode': MigrateEnum(
+      name: 'LustreInstanceSquashMode',
+      members: <String, String>{
+        'NO_SQUASH': 'noSquash',
+        'ROOT_SQUASH': 'rootSquash',
+      },
+    ),
+    'ManagedKafkaAclOperation': MigrateEnum(
+      name: 'ManagedKafkaAclOperation',
+      members: <String, String>{
+        'ALL': 'all',
+        'READ': 'read',
+        'WRITE': 'write',
+        'CREATE': 'create',
+        'DELETE': 'delete',
+        'ALTER': 'alter',
+        'DESCRIBE': 'describe',
+        'CLUSTER_ACTION': 'clusterAction',
+        'DESCRIBE_CONFIGS': 'describeConfigs',
+        'ALTER_CONFIGS': 'alterConfigs',
+        'IDEMPOTENT_WRITE': 'idempotentWrite',
+      },
+    ),
+    'ManagedKafkaAclPermissionType': MigrateEnum(
+      name: 'ManagedKafkaAclPermissionType',
+      members: <String, String>{'ALLOW': 'allow', 'DENY': 'deny'},
+    ),
+    'ManagedKafkaClusterMode': MigrateEnum(
+      name: 'ManagedKafkaClusterMode',
+      members: <String, String>{
+        'NO_REBALANCE': 'noRebalance',
+        'AUTO_REBALANCE_ON_SCALE_UP': 'autoRebalanceOnScaleUp',
+      },
+    ),
     'ManagedSslCertificateType': MigrateEnum(
       name: 'ManagedSslCertificateType',
       members: <String, String>{'MANAGED': 'managed'},
@@ -333767,6 +338319,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SUNDAY': 'sunday',
       },
     ),
+    'MemorystoreInstanceAppendFsync': MigrateEnum(
+      name: 'MemorystoreInstanceAppendFsync',
+      members: <String, String>{
+        'NEVER': 'never',
+        'EVERY_SEC': 'everySec',
+        'ALWAYS': 'always',
+      },
+    ),
+    'MemorystoreInstanceAuthorizationMode': MigrateEnum(
+      name: 'MemorystoreInstanceAuthorizationMode',
+      members: <String, String>{
+        'AUTH_DISABLED': 'authDisabled',
+        'IAM_AUTH': 'iamAuth',
+        'TOKEN_AUTH': 'tokenAuth',
+      },
+    ),
     'MemorystoreInstanceDay': MigrateEnum(
       name: 'MemorystoreInstanceDay',
       members: <String, String>{
@@ -333787,12 +338355,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CLUSTER_DISABLED': 'clusterDisabled',
       },
     ),
+    'MemorystoreInstanceNodeType': MigrateEnum(
+      name: 'MemorystoreInstanceNodeType',
+      members: <String, String>{
+        'SHARED_CORE_NANO': 'sharedCoreNano',
+        'CUSTOM_PICO': 'customPico',
+        'CUSTOM_MICRO': 'customMicro',
+        'CUSTOM_MINI': 'customMini',
+        'HIGHMEM_MEDIUM': 'highmemMedium',
+        'HIGHCPU_MEDIUM': 'highcpuMedium',
+        'HIGHMEM_XLARGE': 'highmemXlarge',
+        'STANDARD_SMALL': 'standardSmall',
+        'STANDARD_LARGE': 'standardLarge',
+        'HIGHMEM_2XLARGE': 'highmem2xlarge',
+      },
+    ),
     'MemorystoreInstancePersistenceConfigMode': MigrateEnum(
       name: 'MemorystoreInstancePersistenceConfigMode',
       members: <String, String>{
         'DISABLED': 'disabled',
         'RDB': 'rdb',
         'AOF': 'aof',
+      },
+    ),
+    'MemorystoreInstanceRdbSnapshotPeriod': MigrateEnum(
+      name: 'MemorystoreInstanceRdbSnapshotPeriod',
+      members: <String, String>{
+        'ONE_HOUR': 'oneHour',
+        'SIX_HOURS': 'sixHours',
+        'TWELVE_HOURS': 'twelveHours',
+        'TWENTY_FOUR_HOURS': 'twentyFourHours',
       },
     ),
     'MemorystoreInstanceRole': MigrateEnum(
@@ -333811,6 +338403,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GOOGLE_MANAGED_SHARED_CA': 'googleManagedSharedCa',
         'CUSTOMER_MANAGED_CAS_CA': 'customerManagedCasCa',
         'SERVER_CA_MODE_UNSPECIFIED': 'serverCaModeUnspecified',
+      },
+    ),
+    'MemorystoreInstanceTransitEncryptionMode': MigrateEnum(
+      name: 'MemorystoreInstanceTransitEncryptionMode',
+      members: <String, String>{
+        'TRANSIT_ENCRYPTION_DISABLED': 'transitEncryptionDisabled',
+        'SERVER_AUTHENTICATION': 'serverAuthentication',
       },
     ),
     'MemorystoreInstanceZoneDistributionConfigMode': MigrateEnum(
@@ -333834,11 +338433,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'MigrationCenterAssetsExportJobFileFormat': MigrateEnum(
       name: 'MigrationCenterAssetsExportJobFileFormat',
-      members: <String, String>{
-        'FILE_FORMAT_UNSPECIFIED': 'fileFormatUnspecified',
-        'FILE_FORMAT_CSV': 'fileFormatCsv',
-        'FILE_FORMAT_JSON': 'fileFormatJson',
-      },
+      members: <String, String>{'CSV': 'csv', 'XLSX': 'xlsx'},
     ),
     'MigrationCenterDiscoveryClientDeletionPolicy': MigrateEnum(
       name: 'MigrationCenterDiscoveryClientDeletionPolicy',
@@ -333883,12 +338478,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'MigrationCenterPreferenceSetCommitmentPlan': MigrateEnum(
+      name: 'MigrationCenterPreferenceSetCommitmentPlan',
+      members: <String, String>{
+        'COMMITMENT_PLAN_NONE': 'commitmentPlanNone',
+        'COMMITMENT_PLAN_ONE_YEAR': 'commitmentPlanOneYear',
+        'COMMITMENT_PLAN_THREE_YEARS': 'commitmentPlanThreeYears',
+      },
+    ),
     'MigrationCenterPreferenceSetDeletionPolicy': MigrateEnum(
       name: 'MigrationCenterPreferenceSetDeletionPolicy',
       members: <String, String>{
         'DELETE': 'delete',
         'PREVENT': 'prevent',
         'ABANDON': 'abandon',
+      },
+    ),
+    'MigrationCenterPreferenceSetHostMaintenancePolicy': MigrateEnum(
+      name: 'MigrationCenterPreferenceSetHostMaintenancePolicy',
+      members: <String, String>{
+        'HOST_MAINTENANCE_POLICY_DEFAULT': 'hostMaintenancePolicyDefault',
+        'HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE':
+            'hostMaintenancePolicyRestartInPlace',
+        'HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP':
+            'hostMaintenancePolicyMigrateWithinNodeGroup',
+      },
+    ),
+    'MigrationCenterPreferenceSetLicenseType': MigrateEnum(
+      name: 'MigrationCenterPreferenceSetLicenseType',
+      members: <String, String>{
+        'LICENSE_TYPE_DEFAULT': 'licenseTypeDefault',
+        'LICENSE_TYPE_BRING_YOUR_OWN_LICENSE': 'licenseTypeBringYourOwnLicense',
       },
     ),
     'MigrationCenterPreferenceSetPersistentDiskType': MigrateEnum(
@@ -333899,6 +338519,54 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PERSISTENT_DISK_TYPE_SSD': 'persistentDiskTypeSsd',
       },
     ),
+    'MigrationCenterPreferenceSetSizingOptimizationStrategy': MigrateEnum(
+      name: 'MigrationCenterPreferenceSetSizingOptimizationStrategy',
+      members: <String, String>{
+        'SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE':
+            'sizingOptimizationStrategySameAsSource',
+        'SIZING_OPTIMIZATION_STRATEGY_MODERATE':
+            'sizingOptimizationStrategyModerate',
+        'SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE':
+            'sizingOptimizationStrategyAggressive',
+      },
+    ),
+    'MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan':
+        MigrateEnum(
+          name:
+              'MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan',
+          members: <String, String>{
+            'ON_DEMAND': 'onDemand',
+            'COMMITMENT_1_YEAR': 'commitment1Year',
+            'COMMITMENT_3_YEAR': 'commitment3Year',
+          },
+        ),
+    'MigrationCenterPreferenceSetTargetProduct': MigrateEnum(
+      name: 'MigrationCenterPreferenceSetTargetProduct',
+      members: <String, String>{
+        'COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE':
+            'computeMigrationTargetProductComputeEngine',
+        'COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE':
+            'computeMigrationTargetProductVmwareEngine',
+        'COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY':
+            'computeMigrationTargetProductSoleTenancy',
+      },
+    ),
+    'MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan':
+        MigrateEnum(
+          name:
+              'MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan',
+          members: <String, String>{
+            'ON_DEMAND': 'onDemand',
+            'COMMITMENT_1_YEAR_MONTHLY_PAYMENTS':
+                'commitment1YearMonthlyPayments',
+            'COMMITMENT_3_YEAR_MONTHLY_PAYMENTS':
+                'commitment3YearMonthlyPayments',
+            'COMMITMENT_1_YEAR_UPFRONT_PAYMENT':
+                'commitment1YearUpfrontPayment',
+            'COMMITMENT_3_YEAR_UPFRONT_PAYMENT':
+                'commitment3YearUpfrontPayment',
+          },
+        ),
     'MigrationCenterReportConfigDeletionPolicy': MigrateEnum(
       name: 'MigrationCenterReportConfigDeletionPolicy',
       members: <String, String>{
@@ -333946,6 +338614,78 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SOURCE_TYPE_INVENTORY_SCAN': 'sourceTypeInventoryScan',
         'SOURCE_TYPE_CUSTOM': 'sourceTypeCustom',
         'SOURCE_TYPE_DISCOVERY_CLIENT': 'sourceTypeDiscoveryClient',
+      },
+    ),
+    'ModelArmorFloorsettingConfidenceLevel': MigrateEnum(
+      name: 'ModelArmorFloorsettingConfidenceLevel',
+      members: <String, String>{
+        'LOW_AND_ABOVE': 'lowAndAbove',
+        'MEDIUM_AND_ABOVE': 'mediumAndAbove',
+        'HIGH': 'high',
+      },
+    ),
+    'ModelArmorFloorsettingFilterEnforcement': MigrateEnum(
+      name: 'ModelArmorFloorsettingFilterEnforcement',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'ModelArmorFloorsettingFilterType': MigrateEnum(
+      name: 'ModelArmorFloorsettingFilterType',
+      members: <String, String>{
+        'SEXUALLY_EXPLICIT': 'sexuallyExplicit',
+        'HATE_SPEECH': 'hateSpeech',
+        'HARASSMENT': 'harassment',
+        'DANGEROUS': 'dangerous',
+      },
+    ),
+    'ModelArmorFloorsettingIntegratedServices': MigrateEnum(
+      name: 'ModelArmorFloorsettingIntegratedServices',
+      members: <String, String>{
+        'AI_PLATFORM': 'aiPlatform',
+        'GOOGLE_MCP_SERVER': 'googleMcpServer',
+      },
+    ),
+    'ModelArmorTemplateAlias': MigrateEnum(
+      name: 'ModelArmorTemplateAlias',
+      members: <String, String>{
+        'FILTER_VERSION_ALIAS_STABLE': 'filterVersionAliasStable',
+        'FILTER_VERSION_ALIAS_LATEST': 'filterVersionAliasLatest',
+        'FILTER_VERSION_ALIAS_LEGACY': 'filterVersionAliasLegacy',
+        'FILTER_VERSION_ALIAS_RETIRED': 'filterVersionAliasRetired',
+      },
+    ),
+    'ModelArmorTemplateConfidenceLevel': MigrateEnum(
+      name: 'ModelArmorTemplateConfidenceLevel',
+      members: <String, String>{
+        'LOW_AND_ABOVE': 'lowAndAbove',
+        'MEDIUM_AND_ABOVE': 'mediumAndAbove',
+        'HIGH': 'high',
+      },
+    ),
+    'ModelArmorTemplateEnforcementType': MigrateEnum(
+      name: 'ModelArmorTemplateEnforcementType',
+      members: <String, String>{
+        'INSPECT_ONLY': 'inspectOnly',
+        'INSPECT_AND_BLOCK': 'inspectAndBlock',
+      },
+    ),
+    'ModelArmorTemplateFilterEnforcement': MigrateEnum(
+      name: 'ModelArmorTemplateFilterEnforcement',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'ModelArmorTemplateFilterType': MigrateEnum(
+      name: 'ModelArmorTemplateFilterType',
+      members: <String, String>{
+        'SEXUALLY_EXPLICIT': 'sexuallyExplicit',
+        'HATE_SPEECH': 'hateSpeech',
+        'HARASSMENT': 'harassment',
+        'DANGEROUS': 'dangerous',
+      },
+    ),
+    'ModelArmorTemplateModalities': MigrateEnum(
+      name: 'ModelArmorTemplateModalities',
+      members: <String, String>{
+        'MODALITY_TEXT': 'modalityText',
+        'MODALITY_IMAGE': 'modalityImage',
       },
     ),
     'MongodbCompatibleDataAccessMode': MigrateEnum(
@@ -334007,6 +338747,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'STATIC_IP_CHECKERS': 'staticIpCheckers',
         'VPC_CHECKERS': 'vpcCheckers',
+      },
+    ),
+    'MonitoringUptimeCheckConfigPeriod': MigrateEnum(
+      name: 'MonitoringUptimeCheckConfigPeriod',
+      members: <String, String>{
+        '60s': 'v60s',
+        '300s': 'v300s',
+        '600s': 'v600s',
+        '900s': 'v900s',
       },
     ),
     'MonitoringUptimeCheckContentType': MigrateEnum(
@@ -334217,9 +338966,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'NetappVolumeReplicationTierAction',
       members: <String, String>{'ENABLED': 'enabled', 'PAUSED': 'paused'},
     ),
+    'NetappVolumeRestrictedActions': MigrateEnum(
+      name: 'NetappVolumeRestrictedActions',
+      members: <String, String>{'DELETE': 'delete'},
+    ),
     'NetappVolumeSecurityStyle': MigrateEnum(
       name: 'NetappVolumeSecurityStyle',
       members: <String, String>{'NTFS': 'ntfs', 'UNIX': 'unix'},
+    ),
+    'NetappVolumeSmbSettings': MigrateEnum(
+      name: 'NetappVolumeSmbSettings',
+      members: <String, String>{
+        'ENCRYPT_DATA': 'encryptData',
+        'BROWSABLE': 'browsable',
+        'CHANGE_NOTIFY': 'changeNotify',
+        'NON_BROWSABLE': 'nonBrowsable',
+        'OPLOCKS': 'oplocks',
+        'SHOW_SNAPSHOT': 'showSnapshot',
+        'SHOW_PREVIOUS_VERSIONS': 'showPreviousVersions',
+        'ACCESS_BASED_ENUMERATION': 'accessBasedEnumeration',
+        'CONTINUOUSLY_AVAILABLE': 'continuouslyAvailable',
+      },
     ),
     'NetappVolumeSquashMode': MigrateEnum(
       name: 'NetappVolumeSquashMode',
@@ -334264,6 +339031,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'edge': 'edge',
       },
     ),
+    'NetworkConnectivityHubPolicyMode': MigrateEnum(
+      name: 'NetworkConnectivityHubPolicyMode',
+      members: <String, String>{'CUSTOM': 'custom', 'PRESET': 'preset'},
+    ),
+    'NetworkConnectivityHubPresetTopology': MigrateEnum(
+      name: 'NetworkConnectivityHubPresetTopology',
+      members: <String, String>{
+        'MESH': 'mesh',
+        'STAR': 'star',
+        'HYBRID_INSPECTION': 'hybridInspection',
+      },
+    ),
     'NetworkConnectivityInternalRangeAllocationStrategy': MigrateEnum(
       name: 'NetworkConnectivityInternalRangeAllocationStrategy',
       members: <String, String>{
@@ -334271,6 +339050,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'FIRST_AVAILABLE': 'firstAvailable',
         'RANDOM_FIRST_N_AVAILABLE': 'randomFirstNAvailable',
         'FIRST_SMALLEST_FITTING': 'firstSmallestFitting',
+      },
+    ),
+    'NetworkConnectivityInternalRangeOverlaps': MigrateEnum(
+      name: 'NetworkConnectivityInternalRangeOverlaps',
+      members: <String, String>{
+        'OVERLAP_ROUTE_RANGE': 'overlapRouteRange',
+        'OVERLAP_EXISTING_SUBNET_RANGE': 'overlapExistingSubnetRange',
       },
     ),
     'NetworkConnectivityInternalRangePeering': MigrateEnum(
@@ -334288,6 +339074,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'EXTERNAL_TO_VPC': 'externalToVpc',
         'FOR_MIGRATION': 'forMigration',
       },
+    ),
+    'NetworkConnectivityPolicyBasedRouteIpProtocol': MigrateEnum(
+      name: 'NetworkConnectivityPolicyBasedRouteIpProtocol',
+      members: <String, String>{'TCP': 'tcp', 'UDP': 'udp', 'ALL': 'all'},
     ),
     'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes': MigrateEnum(
       name: 'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes',
@@ -334319,6 +339109,24 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CAPACITY_100_GBPS': 'capacity100Gbps',
       },
     ),
+    'NetworkConnectivityTransportBandwidth': MigrateEnum(
+      name: 'NetworkConnectivityTransportBandwidth',
+      members: <String, String>{
+        'BPS_50M': 'bps50m',
+        'BPS_100M': 'bps100m',
+        'BPS_200M': 'bps200m',
+        'BPS_300M': 'bps300m',
+        'BPS_400M': 'bps400m',
+        'BPS_500M': 'bps500m',
+        'BPS_1G': 'bps1g',
+        'BPS_2G': 'bps2g',
+        'BPS_5G': 'bps5g',
+        'BPS_10G': 'bps10g',
+        'BPS_20G': 'bps20g',
+        'BPS_50G': 'bps50g',
+        'BPS_100G': 'bps100g',
+      },
+    ),
     'NetworkConnectivityTransportDeletionPolicy': MigrateEnum(
       name: 'NetworkConnectivityTransportDeletionPolicy',
       members: <String, String>{
@@ -334332,6 +339140,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'IPV4_IPV6': 'ipv4Ipv6',
         'IPV4_ONLY': 'ipv4Only',
+      },
+    ),
+    'NetworkConnectivityTransportState': MigrateEnum(
+      name: 'NetworkConnectivityTransportState',
+      members: <String, String>{
+        'CREATING': 'creating',
+        'PENDING_CONFIG': 'pendingConfig',
+        'PENDING_KEY': 'pendingKey',
+        'ACTIVE': 'active',
+        'DELETING': 'deleting',
+        'DEPROVISIONED': 'deprovisioned',
       },
     ),
     'NetworkEndpointGroupType': MigrateEnum(
@@ -334369,10 +339188,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NON_GCP_NETWORK': 'nonGcpNetwork',
       },
     ),
+    'NetworkManagementNetworkMonitoringProviderType': MigrateEnum(
+      name: 'NetworkManagementNetworkMonitoringProviderType',
+      members: <String, String>{'EXTERNAL': 'external'},
+    ),
+    'NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval':
+        MigrateEnum(
+          name:
+              'NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval',
+          members: <String, String>{
+            'INTERVAL_5_SEC': 'interval5Sec',
+            'INTERVAL_30_SEC': 'interval30Sec',
+            'INTERVAL_1_MIN': 'interval1Min',
+            'INTERVAL_5_MIN': 'interval5Min',
+            'INTERVAL_10_MIN': 'interval10Min',
+            'INTERVAL_15_MIN': 'interval15Min',
+          },
+        ),
+    'NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata':
+        MigrateEnum(
+          name:
+              'NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata',
+          members: <String, String>{
+            'CROSS_PROJECT_METADATA_ENABLED': 'crossProjectMetadataEnabled',
+            'CROSS_PROJECT_METADATA_DISABLED': 'crossProjectMetadataDisabled',
+          },
+        ),
+    'NetworkManagementOrganizationVpcFlowLogsConfigMetadata': MigrateEnum(
+      name: 'NetworkManagementOrganizationVpcFlowLogsConfigMetadata',
+      members: <String, String>{
+        'INCLUDE_ALL_METADATA': 'includeAllMetadata',
+        'EXCLUDE_ALL_METADATA': 'excludeAllMetadata',
+        'CUSTOM_METADATA': 'customMetadata',
+      },
+    ),
+    'NetworkManagementOrganizationVpcFlowLogsConfigState': MigrateEnum(
+      name: 'NetworkManagementOrganizationVpcFlowLogsConfigState',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
     'NetworkManagementVpcFlowLogsConfigAggregationInterval': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigAggregationInterval',
       members: <String, String>{
-        'AGGREGATION_INTERVAL_UNSPECIFIED': 'aggregationIntervalUnspecified',
         'INTERVAL_5_SEC': 'interval5Sec',
         'INTERVAL_30_SEC': 'interval30Sec',
         'INTERVAL_1_MIN': 'interval1Min',
@@ -334384,7 +339240,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'NetworkManagementVpcFlowLogsConfigMetadata': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigMetadata',
       members: <String, String>{
-        'METADATA_UNSPECIFIED': 'metadataUnspecified',
         'INCLUDE_ALL_METADATA': 'includeAllMetadata',
         'EXCLUDE_ALL_METADATA': 'excludeAllMetadata',
         'CUSTOM_METADATA': 'customMetadata',
@@ -334392,11 +339247,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'NetworkManagementVpcFlowLogsConfigState': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigState',
-      members: <String, String>{
-        'STATE_UNSPECIFIED': 'stateUnspecified',
-        'ENABLED': 'enabled',
-        'DISABLED': 'disabled',
-      },
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
     ),
     'NetworkSecurityAddressGroupType': MigrateEnum(
       name: 'NetworkSecurityAddressGroupType',
@@ -334423,6 +339274,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INTERNAL_MANAGED': 'internalManaged',
         'EXTERNAL_MANAGED': 'externalManaged',
         'INTERNAL_SELF_MANAGED': 'internalSelfManaged',
+      },
+    ),
+    'NetworkSecurityAuthzPolicyMethodsName': MigrateEnum(
+      name: 'NetworkSecurityAuthzPolicyMethodsName',
+      members: <String, String>{
+        'tools': 'tools',
+        'prompts': 'prompts',
+        'resources': 'resources',
+        'prompts/list': 'promptsList',
+        'tools/list': 'toolsList',
+        'resources/list': 'resourcesList',
+        'resources/templates/list': 'resourcesTemplatesList',
+        'prompts/get': 'promptsGet',
+        'tools/call': 'toolsCall',
+        'resources/subscribe': 'resourcesSubscribe',
+        'resources/unsubscribe': 'resourcesUnsubscribe',
+        'resources/read': 'resourcesRead',
       },
     ),
     'NetworkSecurityAuthzPolicyPrincipalSelector': MigrateEnum(
@@ -334465,6 +339333,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ALLOW': 'allow',
         'DENY': 'deny',
       },
+    ),
+    'NetworkSecurityMirroringEndpointGroupType': MigrateEnum(
+      name: 'NetworkSecurityMirroringEndpointGroupType',
+      members: <String, String>{'DIRECT': 'direct', 'BROKER': 'broker'},
     ),
     'NetworkSecuritySecurityProfileAction': MigrateEnum(
       name: 'NetworkSecuritySecurityProfileAction',
@@ -334575,11 +339447,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'AGENT_TO_ANYWHERE': 'agentToAnywhere',
       },
     ),
+    'NetworkServicesAgentConnectivityTemplateAccessTypes': MigrateEnum(
+      name: 'NetworkServicesAgentConnectivityTemplateAccessTypes',
+      members: <String, String>{'PUBLIC': 'public', 'PRIVATE': 'private'},
+    ),
     'NetworkServicesAgentConnectivityTemplateAdditionalRoots': MigrateEnum(
       name: 'NetworkServicesAgentConnectivityTemplateAdditionalRoots',
       members: <String, String>{
         'NO_ADDITIONAL_ROOTS': 'noAdditionalRoots',
         'PUBLICLY_TRUSTED_ROOTS': 'publiclyTrustedRoots',
+      },
+    ),
+    'NetworkServicesAgentConnectivityTemplateAgentCompute': MigrateEnum(
+      name: 'NetworkServicesAgentConnectivityTemplateAgentCompute',
+      members: <String, String>{
+        'GKE': 'gke',
+        'CLOUD_RUN': 'cloudRun',
+        'BORG': 'borg',
+        'GCE_VM': 'gceVm',
+      },
+    ),
+    'NetworkServicesAgentConnectivityTemplateDeploymentModel': MigrateEnum(
+      name: 'NetworkServicesAgentConnectivityTemplateDeploymentModel',
+      members: <String, String>{
+        'CENTRALIZED': 'centralized',
+        'AMBIENT': 'ambient',
       },
     ),
     'NetworkServicesAgentConnectivityTemplateVpcEgress': MigrateEnum(
@@ -334595,6 +339487,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'AGENT_TO_ANYWHERE': 'agentToAnywhere',
         'CLIENT_TO_AGENT': 'clientToAgent',
       },
+    ),
+    'NetworkServicesAgentGatewayProtocols': MigrateEnum(
+      name: 'NetworkServicesAgentGatewayProtocols',
+      members: <String, String>{'MCP': 'mcp'},
     ),
     'NetworkServicesAuthzExtensionLoadBalancingScheme': MigrateEnum(
       name: 'NetworkServicesAuthzExtensionLoadBalancingScheme',
@@ -334617,6 +339513,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HTTP2': 'http2',
         'HTTPS': 'https',
         'HTTP': 'http',
+      },
+    ),
+    'NetworkServicesEdgeCacheOriginRedirectConditions': MigrateEnum(
+      name: 'NetworkServicesEdgeCacheOriginRedirectConditions',
+      members: <String, String>{
+        'MOVED_PERMANENTLY': 'movedPermanently',
+        'FOUND': 'found',
+        'SEE_OTHER': 'seeOther',
+        'TEMPORARY_REDIRECT': 'temporaryRedirect',
+        'PERMANENT_REDIRECT': 'permanentRedirect',
+      },
+    ),
+    'NetworkServicesEdgeCacheOriginRetryConditions': MigrateEnum(
+      name: 'NetworkServicesEdgeCacheOriginRetryConditions',
+      members: <String, String>{
+        'CONNECT_FAILURE': 'connectFailure',
+        'HTTP_5XX': 'http5xx',
+        'GATEWAY_ERROR': 'gatewayError',
+        'RETRIABLE_4XX': 'retriable4xx',
+        'NOT_FOUND': 'notFound',
+        'FORBIDDEN': 'forbidden',
       },
     ),
     'NetworkServicesEdgeCacheServiceActions': MigrateEnum(
@@ -334727,9 +339644,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'REGULAR_EXPRESSION': 'regularExpression',
       },
     ),
+    'NetworkServicesHttpRouteResponseCode': MigrateEnum(
+      name: 'NetworkServicesHttpRouteResponseCode',
+      members: <String, String>{
+        'MOVED_PERMANENTLY_DEFAULT': 'movedPermanentlyDefault',
+        'FOUND': 'found',
+        'SEE_OTHER': 'seeOther',
+        'TEMPORARY_REDIRECT': 'temporaryRedirect',
+        'PERMANENT_REDIRECT': 'permanentRedirect',
+      },
+    ),
     'NetworkServicesLbEdgeExtensionLoadBalancingScheme': MigrateEnum(
       name: 'NetworkServicesLbEdgeExtensionLoadBalancingScheme',
       members: <String, String>{'EXTERNAL_MANAGED': 'externalManaged'},
+    ),
+    'NetworkServicesLbEdgeExtensionSupportedEvents': MigrateEnum(
+      name: 'NetworkServicesLbEdgeExtensionSupportedEvents',
+      members: <String, String>{
+        'REQUEST_HEADERS': 'requestHeaders',
+        'REQUEST_BODY': 'requestBody',
+        'RESPONSE_HEADERS': 'responseHeaders',
+        'RESPONSE_BODY': 'responseBody',
+        'REQUEST_TRAILERS': 'requestTrailers',
+        'RESPONSE_TRAILERS': 'responseTrailers',
+      },
     ),
     'NetworkServicesLbRouteExtensionLoadBalancingScheme': MigrateEnum(
       name: 'NetworkServicesLbRouteExtensionLoadBalancingScheme',
@@ -334746,11 +339684,44 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BODY_SEND_MODE_FULL_DUPLEX_STREAMED': 'bodySendModeFullDuplexStreamed',
       },
     ),
+    'NetworkServicesLbRouteExtensionSupportedEvents': MigrateEnum(
+      name: 'NetworkServicesLbRouteExtensionSupportedEvents',
+      members: <String, String>{
+        'REQUEST_HEADERS': 'requestHeaders',
+        'REQUEST_BODY': 'requestBody',
+        'RESPONSE_HEADERS': 'responseHeaders',
+        'RESPONSE_BODY': 'responseBody',
+        'REQUEST_TRAILERS': 'requestTrailers',
+        'RESPONSE_TRAILERS': 'responseTrailers',
+      },
+    ),
     'NetworkServicesLbTrafficExtensionLoadBalancingScheme': MigrateEnum(
       name: 'NetworkServicesLbTrafficExtensionLoadBalancingScheme',
       members: <String, String>{
         'INTERNAL_MANAGED': 'internalManaged',
         'EXTERNAL_MANAGED': 'externalManaged',
+      },
+    ),
+    'NetworkServicesLbTrafficExtensionSupportedEvents': MigrateEnum(
+      name: 'NetworkServicesLbTrafficExtensionSupportedEvents',
+      members: <String, String>{
+        'REQUEST_HEADERS': 'requestHeaders',
+        'REQUEST_BODY': 'requestBody',
+        'RESPONSE_HEADERS': 'responseHeaders',
+        'RESPONSE_BODY': 'responseBody',
+        'REQUEST_TRAILERS': 'requestTrailers',
+        'RESPONSE_TRAILERS': 'responseTrailers',
+      },
+    ),
+    'NetworkServicesMulticastDomainConnectionType': MigrateEnum(
+      name: 'NetworkServicesMulticastDomainConnectionType',
+      members: <String, String>{'NCC': 'ncc', 'SAME_VPC': 'sameVpc'},
+    ),
+    'NetworkServicesMulticastGroupRangeDistributionScope': MigrateEnum(
+      name: 'NetworkServicesMulticastGroupRangeDistributionScope',
+      members: <String, String>{
+        'INTRA_ZONE': 'intraZone',
+        'INTRA_REGION': 'intraRegion',
       },
     ),
     'NetworkServicesWasmPluginMinLogLevel': MigrateEnum(
@@ -334776,14 +339747,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VIRTIO_NET': 'virtioNet',
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
-      },
-    ),
-    'NotificationPrompt': MigrateEnum(
-      name: 'NotificationPrompt',
-      members: <String, String>{
-        'NOTIFICATION_PROMPT_UNSPECIFIED': 'unspecified',
-        'OPENED': 'opened',
-        'CLOSED': 'closed',
+        'IDPF': 'idpf',
       },
     ),
     'ObjectMetadata': MigrateEnum(
@@ -334794,14 +339758,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'OnHostMaintenance',
       members: <String, String>{'MIGRATE': 'migrate', 'TERMINATE': 'terminate'},
     ),
+    'OracleDatabaseAutonomousDatabaseDbEdition': MigrateEnum(
+      name: 'OracleDatabaseAutonomousDatabaseDbEdition',
+      members: <String, String>{
+        'STANDARD_EDITION': 'standardEdition',
+        'ENTERPRISE_EDITION': 'enterpriseEdition',
+      },
+    ),
     'OracleDatabaseAutonomousDatabaseDbWorkload': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseDbWorkload',
       members: <String, String>{
-        'DB_WORKLOAD_UNSPECIFIED': 'dbWorkloadUnspecified',
         'OLTP': 'oltp',
         'DW': 'dw',
         'AJD': 'ajd',
         'APEX': 'apex',
+        'LH': 'lh',
       },
     ),
     'OracleDatabaseAutonomousDatabaseDeletionPolicy': MigrateEnum(
@@ -334815,9 +339786,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseAutonomousDatabaseLicenseType': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseLicenseType',
       members: <String, String>{
-        'LICENSE_TYPE_UNSPECIFIED': 'licenseTypeUnspecified',
         'LICENSE_INCLUDED': 'licenseIncluded',
         'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
+      },
+    ),
+    'OracleDatabaseAutonomousDatabaseMaintenanceScheduleType': MigrateEnum(
+      name: 'OracleDatabaseAutonomousDatabaseMaintenanceScheduleType',
+      members: <String, String>{'EARLY': 'early', 'REGULAR': 'regular'},
+    ),
+    'OracleDatabaseAutonomousDatabaseOperationsInsightsState': MigrateEnum(
+      name: 'OracleDatabaseAutonomousDatabaseOperationsInsightsState',
+      members: <String, String>{
+        'ENABLING': 'enabling',
+        'ENABLED': 'enabled',
+        'DISABLING': 'disabling',
+        'NOT_ENABLED': 'notEnabled',
+        'FAILED_ENABLING': 'failedEnabling',
+        'FAILED_DISABLING': 'failedDisabling',
+      },
+    ),
+    'OracleDatabaseCloudExadataInfrastructureDaysOfWeek': MigrateEnum(
+      name: 'OracleDatabaseCloudExadataInfrastructureDaysOfWeek',
+      members: <String, String>{
+        'MONDAY': 'monday',
+        'TUESDAY': 'tuesday',
+        'WEDNESDAY': 'wednesday',
+        'THURSDAY': 'thursday',
+        'FRIDAY': 'friday',
+        'SATURDAY': 'saturday',
+        'SUNDAY': 'sunday',
       },
     ),
     'OracleDatabaseCloudExadataInfrastructureDeletionPolicy': MigrateEnum(
@@ -334828,6 +339825,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'OracleDatabaseCloudExadataInfrastructureMonths': MigrateEnum(
+      name: 'OracleDatabaseCloudExadataInfrastructureMonths',
+      members: <String, String>{
+        'JANUARY': 'january',
+        'FEBRUARY': 'february',
+        'MARCH': 'march',
+        'APRIL': 'april',
+        'MAY': 'may',
+        'JUNE': 'june',
+        'JULY': 'july',
+        'AUGUST': 'august',
+        'SEPTEMBER': 'september',
+        'OCTOBER': 'october',
+        'NOVEMBER': 'november',
+        'DECEMBER': 'december',
+      },
+    ),
+    'OracleDatabaseCloudExadataInfrastructurePatchingMode': MigrateEnum(
+      name: 'OracleDatabaseCloudExadataInfrastructurePatchingMode',
+      members: <String, String>{
+        'ROLLING': 'rolling',
+        'NON_ROLLING': 'nonRolling',
+      },
+    ),
+    'OracleDatabaseCloudExadataInfrastructurePreference': MigrateEnum(
+      name: 'OracleDatabaseCloudExadataInfrastructurePreference',
+      members: <String, String>{
+        'CUSTOM_PREFERENCE': 'customPreference',
+        'NO_PREFERENCE': 'noPreference',
+      },
+    ),
     'OracleDatabaseCloudVmClusterDeletionPolicy': MigrateEnum(
       name: 'OracleDatabaseCloudVmClusterDeletionPolicy',
       members: <String, String>{
@@ -334836,11 +339864,96 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'OracleDatabaseCloudVmClusterDiskRedundancy': MigrateEnum(
+      name: 'OracleDatabaseCloudVmClusterDiskRedundancy',
+      members: <String, String>{'HIGH': 'high', 'NORMAL': 'normal'},
+    ),
+    'OracleDatabaseCloudVmClusterLicenseType': MigrateEnum(
+      name: 'OracleDatabaseCloudVmClusterLicenseType',
+      members: <String, String>{
+        'LICENSE_INCLUDED': 'licenseIncluded',
+        'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
+      },
+    ),
+    'OracleDatabaseCloudVmClusterVmBackupStorageType': MigrateEnum(
+      name: 'OracleDatabaseCloudVmClusterVmBackupStorageType',
+      members: <String, String>{
+        'VM_BACKUP_STORAGE_TYPE_LOCAL': 'vmBackupStorageTypeLocal',
+        'VM_BACKUP_STORAGE_TYPE_EXASCALE': 'vmBackupStorageTypeExascale',
+      },
+    ),
+    'OracleDatabaseCloudVmClusterVmFileSystemStorageType': MigrateEnum(
+      name: 'OracleDatabaseCloudVmClusterVmFileSystemStorageType',
+      members: <String, String>{
+        'VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL': 'vmFileSystemStorageTypeLocal',
+        'VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE':
+            'vmFileSystemStorageTypeExascale',
+      },
+    ),
+    'OracleDatabaseDbSystemAutoFullBackupDay': MigrateEnum(
+      name: 'OracleDatabaseDbSystemAutoFullBackupDay',
+      members: <String, String>{
+        'MONDAY': 'monday',
+        'TUESDAY': 'tuesday',
+        'WEDNESDAY': 'wednesday',
+        'THURSDAY': 'thursday',
+        'FRIDAY': 'friday',
+        'SATURDAY': 'saturday',
+        'SUNDAY': 'sunday',
+      },
+    ),
+    'OracleDatabaseDbSystemAutoFullBackupWindow': MigrateEnum(
+      name: 'OracleDatabaseDbSystemAutoFullBackupWindow',
+      members: <String, String>{
+        'SLOT_ONE': 'slotOne',
+        'SLOT_TWO': 'slotTwo',
+        'SLOT_THREE': 'slotThree',
+        'SLOT_FOUR': 'slotFour',
+        'SLOT_FIVE': 'slotFive',
+        'SLOT_SIX': 'slotSix',
+        'SLOT_SEVEN': 'slotSeven',
+        'SLOT_EIGHT': 'slotEight',
+        'SLOT_NINE': 'slotNine',
+        'SLOT_TEN': 'slotTen',
+        'SLOT_ELEVEN': 'slotEleven',
+        'SLOT_TWELVE': 'slotTwelve',
+      },
+    ),
+    'OracleDatabaseDbSystemAutoIncrementalBackupWindow': MigrateEnum(
+      name: 'OracleDatabaseDbSystemAutoIncrementalBackupWindow',
+      members: <String, String>{
+        'SLOT_ONE': 'slotOne',
+        'SLOT_TWO': 'slotTwo',
+        'SLOT_THREE': 'slotThree',
+        'SLOT_FOUR': 'slotFour',
+        'SLOT_FIVE': 'slotFive',
+        'SLOT_SIX': 'slotSix',
+        'SLOT_SEVEN': 'slotSeven',
+        'SLOT_EIGHT': 'slotEight',
+        'SLOT_NINE': 'slotNine',
+        'SLOT_TEN': 'slotTen',
+        'SLOT_ELEVEN': 'slotEleven',
+        'SLOT_TWELVE': 'slotTwelve',
+      },
+    ),
+    'OracleDatabaseDbSystemBackupDeletionPolicy': MigrateEnum(
+      name: 'OracleDatabaseDbSystemBackupDeletionPolicy',
+      members: <String, String>{
+        'DELETE_IMMEDIATELY': 'deleteImmediately',
+        'DELETE_AFTER_RETENTION_PERIOD': 'deleteAfterRetentionPeriod',
+      },
+    ),
+    'OracleDatabaseDbSystemComputeModel': MigrateEnum(
+      name: 'OracleDatabaseDbSystemComputeModel',
+      members: <String, String>{'ECPU': 'ecpu', 'OCPU': 'ocpu'},
+    ),
     'OracleDatabaseDbSystemDatabaseEdition': MigrateEnum(
       name: 'OracleDatabaseDbSystemDatabaseEdition',
       members: <String, String>{
         'STANDARD_EDITION': 'standardEdition',
         'ENTERPRISE_EDITION': 'enterpriseEdition',
+        'ENTERPRISE_EDITION_HIGH_PERFORMANCE':
+            'enterpriseEditionHighPerformance',
       },
     ),
     'OracleDatabaseDbSystemDeletionPolicy': MigrateEnum(
@@ -334858,12 +339971,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
       },
     ),
+    'OracleDatabaseDbSystemStorageManagement': MigrateEnum(
+      name: 'OracleDatabaseDbSystemStorageManagement',
+      members: <String, String>{'ASM': 'asm', 'LVM': 'lvm'},
+    ),
+    'OracleDatabaseDbSystemType': MigrateEnum(
+      name: 'OracleDatabaseDbSystemType',
+      members: <String, String>{
+        'NFS': 'nfs',
+        'RECOVERY_APPLIANCE': 'recoveryAppliance',
+        'OBJECT_STORE': 'objectStore',
+        'LOCAL': 'local',
+        'DBRS': 'dbrs',
+      },
+    ),
     'OracleDatabaseExadbVmClusterDeletionPolicy': MigrateEnum(
       name: 'OracleDatabaseExadbVmClusterDeletionPolicy',
       members: <String, String>{
         'DELETE': 'delete',
         'PREVENT': 'prevent',
         'ABANDON': 'abandon',
+      },
+    ),
+    'OracleDatabaseExadbVmClusterLicenseModel': MigrateEnum(
+      name: 'OracleDatabaseExadbVmClusterLicenseModel',
+      members: <String, String>{
+        'LICENSE_INCLUDED': 'licenseIncluded',
+        'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
+      },
+    ),
+    'OracleDatabaseExadbVmClusterShapeAttribute': MigrateEnum(
+      name: 'OracleDatabaseExadbVmClusterShapeAttribute',
+      members: <String, String>{
+        'SMART_STORAGE': 'smartStorage',
+        'BLOCK_STORAGE': 'blockStorage',
       },
     ),
     'OracleDatabaseExascaleDbStorageVaultDeletionPolicy': MigrateEnum(
@@ -334882,6 +340023,43 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'OracleDatabaseGoldengateConnectionAuthenticationMode': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionAuthenticationMode',
+      members: <String, String>{'TLS': 'tls', 'MTLS': 'mtls'},
+    ),
+    'OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType',
+          members: <String, String>{
+            'SHARED_KEY': 'sharedKey',
+            'SHARED_ACCESS_SIGNATURE': 'sharedAccessSignature',
+            'AZURE_ACTIVE_DIRECTORY': 'azureActiveDirectory',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionCatalogType': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionCatalogType',
+      members: <String, String>{
+        'GLUE': 'glue',
+        'HADOOP': 'hadoop',
+        'NESSIE': 'nessie',
+        'POLARIS': 'polaris',
+        'REST': 'rest',
+      },
+    ),
+    'OracleDatabaseGoldengateConnectionDatabricksAuthenticationType':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionDatabricksAuthenticationType',
+          members: <String, String>{
+            'PERSONAL_ACCESS_TOKEN': 'personalAccessToken',
+            'OAUTH_M2M': 'oauthM2m',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionDb2SecurityProtocol': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionDb2SecurityProtocol',
+      members: <String, String>{'PLAIN': 'plain', 'TLS': 'tls'},
+    ),
     'OracleDatabaseGoldengateConnectionDeletionPolicy': MigrateEnum(
       name: 'OracleDatabaseGoldengateConnectionDeletionPolicy',
       members: <String, String>{
@@ -334890,12 +340068,151 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType',
+          members: <String, String>{'NONE': 'none', 'BASIC': 'basic'},
+        ),
+    'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol',
+          members: <String, String>{
+            'PLAIN': 'plain',
+            'TLS': 'tls',
+            'MTLS': 'mtls',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType',
+          members: <String, String>{
+            'NONE': 'none',
+            'BASIC': 'basic',
+            'MUTUAL': 'mutual',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionKafkaSecurityProtocol': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionKafkaSecurityProtocol',
+      members: <String, String>{
+        'SSL': 'ssl',
+        'SASL_SSL': 'saslSsl',
+        'PLAINTEXT': 'plaintext',
+        'SASL_PLAINTEXT': 'saslPlaintext',
+      },
+    ),
+    'OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode',
+          members: <String, String>{
+            'DISABLED': 'disabled',
+            'PREFERRED': 'preferred',
+            'REQUIRED': 'required',
+            'VERIFY_CA': 'verifyCa',
+            'VERIFY_IDENTITY': 'verifyIdentity',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode':
+        MigrateEnum(
+          name:
+              'OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode',
+          members: <String, String>{
+            'PREFER': 'prefer',
+            'REQUIRE': 'require',
+            'VERIFY_CA': 'verifyCa',
+            'VERIFY_FULL': 'verifyFull',
+          },
+        ),
+    'OracleDatabaseGoldengateConnectionRoutingMethod': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionRoutingMethod',
+      members: <String, String>{
+        'SHARED_DEPLOYMENT_ENDPOINT': 'sharedDeploymentEndpoint',
+        'DEDICATED_ENDPOINT': 'dedicatedEndpoint',
+      },
+    ),
+    'OracleDatabaseGoldengateConnectionSchemeType': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionSchemeType',
+      members: <String, String>{'S3': 's3', 'S3A': 's3a'},
+    ),
+    'OracleDatabaseGoldengateConnectionSessionMode': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionSessionMode',
+      members: <String, String>{'DIRECT': 'direct', 'REDIRECT': 'redirect'},
+    ),
+    'OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType':
+        MigrateEnum(
+          name: 'OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType',
+          members: <String, String>{'BASIC': 'basic', 'KEY_PAIR': 'keyPair'},
+        ),
+    'OracleDatabaseGoldengateConnectionStorageType': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionStorageType',
+      members: <String, String>{
+        'AMAZON_S3': 'amazonS3',
+        'GOOGLE_CLOUD_STORAGE': 'googleCloudStorage',
+        'AZURE_DATA_LAKE_STORAGE': 'azureDataLakeStorage',
+      },
+    ),
+    'OracleDatabaseGoldengateConnectionType': MigrateEnum(
+      name: 'OracleDatabaseGoldengateConnectionType',
+      members: <String, String>{
+        'GOLDENGATE': 'goldengate',
+        'KAFKA': 'kafka',
+        'KAFKA_SCHEMA_REGISTRY': 'kafkaSchemaRegistry',
+        'MYSQL': 'mysql',
+        'JAVA_MESSAGE_SERVICE': 'javaMessageService',
+        'MICROSOFT_SQLSERVER': 'microsoftSqlserver',
+        'OCI_OBJECT_STORAGE': 'ociObjectStorage',
+        'ORACLE': 'oracle',
+        'AZURE_DATA_LAKE_STORAGE': 'azureDataLakeStorage',
+        'POSTGRESQL': 'postgresql',
+        'AZURE_SYNAPSE_ANALYTICS': 'azureSynapseAnalytics',
+        'SNOWFLAKE': 'snowflake',
+        'AMAZON_S3': 'amazonS3',
+        'HDFS': 'hdfs',
+        'ORACLE_AI_DATA_PLATFORM': 'oracleAiDataPlatform',
+        'ORACLE_NOSQL': 'oracleNosql',
+        'MONGODB': 'mongodb',
+        'AMAZON_KINESIS': 'amazonKinesis',
+        'AMAZON_REDSHIFT': 'amazonRedshift',
+        'DB2': 'db2',
+        'REDIS': 'redis',
+        'ELASTICSEARCH': 'elasticsearch',
+        'GENERIC': 'generic',
+        'GOOGLE_CLOUD_STORAGE': 'googleCloudStorage',
+        'GOOGLE_BIGQUERY': 'googleBigquery',
+        'DATABRICKS': 'databricks',
+        'GOOGLE_PUBSUB': 'googlePubsub',
+        'MICROSOFT_FABRIC': 'microsoftFabric',
+        'ICEBERG': 'iceberg',
+      },
+    ),
+    'OracleDatabaseGoldengateDeploymentDay': MigrateEnum(
+      name: 'OracleDatabaseGoldengateDeploymentDay',
+      members: <String, String>{
+        'MONDAY': 'monday',
+        'TUESDAY': 'tuesday',
+        'WEDNESDAY': 'wednesday',
+        'THURSDAY': 'thursday',
+        'FRIDAY': 'friday',
+        'SATURDAY': 'saturday',
+        'SUNDAY': 'sunday',
+      },
+    ),
     'OracleDatabaseGoldengateDeploymentDeletionPolicy': MigrateEnum(
       name: 'OracleDatabaseGoldengateDeploymentDeletionPolicy',
       members: <String, String>{
         'DELETE': 'delete',
         'PREVENT': 'prevent',
         'ABANDON': 'abandon',
+      },
+    ),
+    'OracleDatabaseGoldengateDeploymentLicenseModel': MigrateEnum(
+      name: 'OracleDatabaseGoldengateDeploymentLicenseModel',
+      members: <String, String>{
+        'LICENSE_INCLUDED': 'licenseIncluded',
+        'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
       },
     ),
     'OracleDatabaseOdbNetworkDeletionPolicy': MigrateEnum(
@@ -334925,26 +340242,186 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'OrgPolicyCustomConstraintActionType',
       members: <String, String>{'ALLOW': 'allow', 'DENY': 'deny'},
     ),
+    'OrgPolicyCustomConstraintMethodTypes': MigrateEnum(
+      name: 'OrgPolicyCustomConstraintMethodTypes',
+      members: <String, String>{
+        'CREATE': 'create',
+        'UPDATE': 'update',
+        'DELETE': 'delete',
+        'REMOVE_GRANT': 'removeGrant',
+        'GOVERN_TAGS': 'governTags',
+      },
+    ),
+    'OrgPolicyPolicyAllowAll': MigrateEnum(
+      name: 'OrgPolicyPolicyAllowAll',
+      members: <String, String>{'TRUE': 'trueCase', 'FALSE': 'falseCase'},
+    ),
+    'OrganizationAccessApprovalSettingsCloudProduct': MigrateEnum(
+      name: 'OrganizationAccessApprovalSettingsCloudProduct',
+      members: <String, String>{
+        'all': 'all',
+        'GA': 'ga',
+        'Access Context Manager': 'accessContextManager',
+        'Anthos Identity Service': 'anthosIdentityService',
+        'AlloyDB for PostgreSQL': 'alloydbForPostgresql',
+        'Apigee': 'apigee',
+        'Application Integration': 'applicationIntegration',
+        'App Hub': 'appHub',
+        'Artifact Registry': 'artifactRegistry',
+        'Anthos Service Mesh': 'anthosServiceMesh',
+        'Access Transparency': 'accessTransparency',
+        'BigQuery': 'bigquery',
+        'Certificate Authority Service': 'certificateAuthorityService',
+        'Cloud Bigtable': 'cloudBigtable',
+        'CCAI Assist and Knowledge': 'ccaiAssistAndKnowledge',
+        'Cloud Dataflow': 'cloudDataflow',
+        'Cloud Dataproc': 'cloudDataproc',
+        'CEP Security Gateway': 'cepSecurityGateway',
+        'Compliance Evaluation Service': 'complianceEvaluationService',
+        'Cloud Firestore': 'cloudFirestore',
+        'Cloud Healthcare API': 'cloudHealthcareApi',
+        'Chronicle': 'chronicle',
+        'Cloud AI Companion Gateway - Titan': 'cloudAiCompanionGatewayTitan',
+        'Google Cloud Armor': 'googleCloudArmor',
+        'Cloud Asset Inventory': 'cloudAssetInventory',
+        'Cloud Asset Search': 'cloudAssetSearch',
+        'Cloud Deploy': 'cloudDeploy',
+        'Cloud DNS': 'cloudDns',
+        'Cloud Latency': 'cloudLatency',
+        'Cloud Memorystore for Redis': 'cloudMemorystoreForRedis',
+        'CloudNet Control': 'cloudnetControl',
+        'Cloud Riptide': 'cloudRiptide',
+        'Cloud Tasks': 'cloudTasks',
+        'Cloud Trace': 'cloudTrace',
+        'Cloud Data Transfer': 'cloudDataTransfer',
+        'Cloud Composer': 'cloudComposer',
+        'Integration Connectors': 'integrationConnectors',
+        'Contact Center AI Insights': 'contactCenterAiInsights',
+        'Cloud Pub/Sub': 'cloudPubSub',
+        'Cloud Run': 'cloudRun',
+        'Resource Manager': 'resourceManager',
+        'Cloud Spanner': 'cloudSpanner',
+        'Database Center': 'databaseCenter',
+        'Cloud Dataform': 'cloudDataform',
+        'Cloud Data Fusion': 'cloudDataFusion',
+        'Dataplex': 'dataplex',
+        'Dialogflow Customer Experience Edition':
+            'dialogflowCustomerExperienceEdition',
+        'Cloud DLP': 'cloudDlp',
+        'Document AI': 'documentAi',
+        'Edge Container': 'edgeContainer',
+        'Edge Network': 'edgeNetwork',
+        'Cloud EKM': 'cloudEkm',
+        'Eventarc': 'eventarc',
+        'Firebase Data Connect': 'firebaseDataConnect',
+        'Firebase Rules': 'firebaseRules',
+        'App Engine': 'appEngine',
+        'Cloud Build': 'cloudBuild',
+        'Compute Engine': 'computeEngine',
+        'Cloud Functions (2nd Gen)': 'cloudFunctions2ndGen',
+        'Cloud Filestore': 'cloudFilestore',
+        'Cloud Interconnect': 'cloudInterconnect',
+        'Cloud NetApp Volumes': 'cloudNetappVolumes',
+        'Cloud Storage': 'cloudStorage',
+        'Generative AI App Builder': 'generativeAiAppBuilder',
+        'Google Kubernetes Engine': 'googleKubernetesEngine',
+        'Backup for GKE API': 'backupForGkeApi',
+        'GKE Connect': 'gkeConnect',
+        'GKE Hub': 'gkeHub',
+        'Hoverboard': 'hoverboard',
+        'Cloud HSM': 'cloudHsm',
+        'Cloud Identity and Access Management':
+            'cloudIdentityAndAccessManagement',
+        'Cloud Identity-Aware Proxy': 'cloudIdentityAwareProxy',
+        'Infrastructure Manager': 'infrastructureManager',
+        'Identity Storage Service': 'identityStorageService',
+        'Key Access Justifications': 'keyAccessJustifications',
+        'Cloud Key Management Service': 'cloudKeyManagementService',
+        'Cloud Logging': 'cloudLogging',
+        'Looker (Google Cloud core)': 'lookerGoogleCloudCore',
+        'Looker Studio': 'lookerStudio',
+        'Management Hub': 'managementHub',
+        'Model Armor': 'modelArmor',
+        'Cloud Monitoring': 'cloudMonitoring',
+        'Cloud NAT': 'cloudNat',
+        'Connectivity Hub': 'connectivityHub',
+        'External passthrough Network Load Balancer':
+            'externalPassthroughNetworkLoadBalancer',
+        'OIDC One': 'oidcOne',
+        'Organization Policy Service': 'organizationPolicyService',
+        'Org Lifecycle': 'orgLifecycle',
+        'Persistent Disk': 'persistentDisk',
+        'Parameter Manager': 'parameterManager',
+        'Private Services Access': 'privateServicesAccess',
+        'Regional Internal Application Load Balancer':
+            'regionalInternalApplicationLoadBalancer',
+        'Storage Batch Operations': 'storageBatchOperations',
+        'Cloud Security Command Center': 'cloudSecurityCommandCenter',
+        'Secure Source Manager': 'secureSourceManager',
+        'Seeker': 'seeker',
+        'Service Provisioning': 'serviceProvisioning',
+        'Speaker ID': 'speakerId',
+        'Secret Manager': 'secretManager',
+        'Cloud SQL': 'cloudSql',
+        'Cloud Speech-to-Text': 'cloudSpeechToText',
+        'Traffic Director': 'trafficDirector',
+        'Cloud Text-to-Speech': 'cloudTextToSpeech',
+        'USPS Andromeda': 'uspsAndromeda',
+        'Vertex AI': 'vertexAi',
+        'Virtual Private Cloud (VPC)': 'virtualPrivateCloudVpc',
+        'VPC Access': 'vpcAccess',
+        'VPC Service Controls Troubleshooter':
+            'vpcServiceControlsTroubleshooter',
+        'VPC virtnet': 'vpcVirtnet',
+        'Cloud Workstations': 'cloudWorkstations',
+        'Web Risk': 'webRisk',
+        'ga-only': 'gaOnly',
+        'appengine.googleapis.com': 'appengineGoogleapisCom',
+        'artifactregistry.googleapis.com': 'artifactregistryGoogleapisCom',
+        'bigquery.googleapis.com': 'bigqueryGoogleapisCom',
+        'bigtable.googleapis.com': 'bigtableGoogleapisCom',
+        'container.googleapis.com': 'containerGoogleapisCom',
+        'cloudkms.googleapis.com': 'cloudkmsGoogleapisCom',
+        'cloudresourcemanager.googleapis.com':
+            'cloudresourcemanagerGoogleapisCom',
+        'cloudsql.googleapis.com': 'cloudsqlGoogleapisCom',
+        'compute.googleapis.com': 'computeGoogleapisCom',
+        'dataflow.googleapis.com': 'dataflowGoogleapisCom',
+        'dataproc.googleapis.com': 'dataprocGoogleapisCom',
+        'dlp.googleapis.com': 'dlpGoogleapisCom',
+        'iam.googleapis.com': 'iamGoogleapisCom',
+        'logging.googleapis.com': 'loggingGoogleapisCom',
+        'orgpolicy.googleapis.com': 'orgpolicyGoogleapisCom',
+        'pubsub.googleapis.com': 'pubsubGoogleapisCom',
+        'spanner.googleapis.com': 'spannerGoogleapisCom',
+        'secretmanager.googleapis.com': 'secretmanagerGoogleapisCom',
+        'speakerid.googleapis.com': 'speakeridGoogleapisCom',
+        'storage.googleapis.com': 'storageGoogleapisCom',
+      },
+    ),
+    'OrganizationAccessApprovalSettingsEnrollmentLevel': MigrateEnum(
+      name: 'OrganizationAccessApprovalSettingsEnrollmentLevel',
+      members: <String, String>{'BLOCK_ALL': 'blockAll'},
+    ),
+    'OrganizationIamAuditConfigLogType': MigrateEnum(
+      name: 'OrganizationIamAuditConfigLogType',
+      members: <String, String>{
+        'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
+      },
+    ),
     'OsConfigOsPolicyAssignmentArchiveType': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentArchiveType',
-      members: <String, String>{
-        'ARCHIVE_TYPE_UNSPECIFIED': 'archiveTypeUnspecified',
-        'DEB': 'deb',
-        'DEB_SRC': 'debSrc',
-      },
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
     ),
     'OsConfigOsPolicyAssignmentDesiredState': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentDesiredState',
-      members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
-        'INSTALLED': 'installed',
-        'REMOVED': 'removed',
-      },
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
     ),
     'OsConfigOsPolicyAssignmentInterpreter': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentInterpreter',
       members: <String, String>{
-        'INTERPRETER_UNSPECIFIED': 'interpreterUnspecified',
         'NONE': 'none',
         'SHELL': 'shell',
         'POWERSHELL': 'powershell',
@@ -334953,7 +340430,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigOsPolicyAssignmentMode': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentMode',
       members: <String, String>{
-        'MODE_UNSPECIFIED': 'modeUnspecified',
         'VALIDATION': 'validation',
         'ENFORCEMENT': 'enforcement',
       },
@@ -334961,7 +340437,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigOsPolicyAssignmentState': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentState',
       members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
         'PRESENT': 'present',
         'ABSENT': 'absent',
         'CONTENTS_MATCH': 'contentsMatch',
@@ -335016,6 +340491,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'OsConfigPatchDeploymentType',
       members: <String, String>{'DIST': 'dist', 'UPGRADE': 'upgrade'},
     ),
+    'OsConfigV2PolicyOrchestratorAction': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorAction',
+      members: <String, String>{'UPSERT': 'upsert', 'DELETE': 'delete'},
+    ),
+    'OsConfigV2PolicyOrchestratorArchiveType': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorArchiveType',
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
+    ),
+    'OsConfigV2PolicyOrchestratorDesiredState': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorDesiredState',
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
+    ),
+    'OsConfigV2PolicyOrchestratorFileState': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorFileState',
+      members: <String, String>{
+        'PRESENT': 'present',
+        'ABSENT': 'absent',
+        'CONTENTS_MATCH': 'contentsMatch',
+      },
+    ),
+    'OsConfigV2PolicyOrchestratorForFolderAction': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForFolderAction',
+      members: <String, String>{'UPSERT': 'upsert', 'DELETE': 'delete'},
+    ),
     'OsConfigV2PolicyOrchestratorForFolderArchiveType': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForFolderArchiveType',
       members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
@@ -335047,12 +340546,77 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ENFORCEMENT': 'enforcement',
       },
     ),
+    'OsConfigV2PolicyOrchestratorForOrganizationAction': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationAction',
+      members: <String, String>{'UPSERT': 'upsert', 'DELETE': 'delete'},
+    ),
+    'OsConfigV2PolicyOrchestratorForOrganizationArchiveType': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationArchiveType',
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
+    ),
+    'OsConfigV2PolicyOrchestratorForOrganizationDesiredState': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationDesiredState',
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
+    ),
+    'OsConfigV2PolicyOrchestratorForOrganizationFileState': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationFileState',
+      members: <String, String>{
+        'PRESENT': 'present',
+        'ABSENT': 'absent',
+        'CONTENTS_MATCH': 'contentsMatch',
+      },
+    ),
+    'OsConfigV2PolicyOrchestratorForOrganizationInterpreter': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationInterpreter',
+      members: <String, String>{
+        'NONE': 'none',
+        'SHELL': 'shell',
+        'POWERSHELL': 'powershell',
+      },
+    ),
+    'OsConfigV2PolicyOrchestratorForOrganizationMode': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorForOrganizationMode',
+      members: <String, String>{
+        'VALIDATION': 'validation',
+        'ENFORCEMENT': 'enforcement',
+      },
+    ),
+    'OsConfigV2PolicyOrchestratorInterpreter': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorInterpreter',
+      members: <String, String>{
+        'NONE': 'none',
+        'SHELL': 'shell',
+        'POWERSHELL': 'powershell',
+      },
+    ),
+    'OsConfigV2PolicyOrchestratorMode': MigrateEnum(
+      name: 'OsConfigV2PolicyOrchestratorMode',
+      members: <String, String>{
+        'VALIDATION': 'validation',
+        'ENFORCEMENT': 'enforcement',
+      },
+    ),
     'ParallelstoreInstanceDeploymentType': MigrateEnum(
       name: 'ParallelstoreInstanceDeploymentType',
       members: <String, String>{
-        'DEPLOYMENT_TYPE_UNSPECIFIED': 'unspecified',
         'SCRATCH': 'scratch',
         'PERSISTENT': 'persistent',
+      },
+    ),
+    'ParallelstoreInstanceDirectoryStripeLevel': MigrateEnum(
+      name: 'ParallelstoreInstanceDirectoryStripeLevel',
+      members: <String, String>{
+        'DIRECTORY_STRIPE_LEVEL_MIN': 'directoryStripeLevelMin',
+        'DIRECTORY_STRIPE_LEVEL_BALANCED': 'directoryStripeLevelBalanced',
+        'DIRECTORY_STRIPE_LEVEL_MAX': 'directoryStripeLevelMax',
+      },
+    ),
+    'ParallelstoreInstanceFileStripeLevel': MigrateEnum(
+      name: 'ParallelstoreInstanceFileStripeLevel',
+      members: <String, String>{
+        'FILE_STRIPE_LEVEL_MIN': 'fileStripeLevelMin',
+        'FILE_STRIPE_LEVEL_BALANCED': 'fileStripeLevelBalanced',
+        'FILE_STRIPE_LEVEL_MAX': 'fileStripeLevelMax',
       },
     ),
     'ParameterManagerParameterFormat': MigrateEnum(
@@ -335089,7 +340653,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'PrivateKeyType': MigrateEnum(
       name: 'PrivateKeyType',
       members: <String, String>{
-        'TYPE_UNSPECIFIED': 'unspecified',
         'TYPE_PKCS12_FILE': 'pkcs12File',
         'TYPE_GOOGLE_CREDENTIALS_FILE': 'googleCredentialsFile',
       },
@@ -335146,17 +340709,196 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PEM': 'pem',
       },
     ),
+    'PrivatecaCertificateTemplateKnownExtensions': MigrateEnum(
+      name: 'PrivatecaCertificateTemplateKnownExtensions',
+      members: <String, String>{
+        'BASE_KEY_USAGE': 'baseKeyUsage',
+        'EXTENDED_KEY_USAGE': 'extendedKeyUsage',
+        'CA_OPTIONS': 'caOptions',
+        'POLICY_IDS': 'policyIds',
+        'AIA_OCSP_SERVERS': 'aiaOcspServers',
+        'NAME_CONSTRAINTS': 'nameConstraints',
+      },
+    ),
+    'ProjectAccessApprovalSettingsCloudProduct': MigrateEnum(
+      name: 'ProjectAccessApprovalSettingsCloudProduct',
+      members: <String, String>{
+        'all': 'all',
+        'GA': 'ga',
+        'Access Context Manager': 'accessContextManager',
+        'Anthos Identity Service': 'anthosIdentityService',
+        'AlloyDB for PostgreSQL': 'alloydbForPostgresql',
+        'Apigee': 'apigee',
+        'Application Integration': 'applicationIntegration',
+        'App Hub': 'appHub',
+        'Artifact Registry': 'artifactRegistry',
+        'Anthos Service Mesh': 'anthosServiceMesh',
+        'Access Transparency': 'accessTransparency',
+        'BigQuery': 'bigquery',
+        'Certificate Authority Service': 'certificateAuthorityService',
+        'Cloud Bigtable': 'cloudBigtable',
+        'CCAI Assist and Knowledge': 'ccaiAssistAndKnowledge',
+        'Cloud Dataflow': 'cloudDataflow',
+        'Cloud Dataproc': 'cloudDataproc',
+        'CEP Security Gateway': 'cepSecurityGateway',
+        'Compliance Evaluation Service': 'complianceEvaluationService',
+        'Cloud Firestore': 'cloudFirestore',
+        'Cloud Healthcare API': 'cloudHealthcareApi',
+        'Chronicle': 'chronicle',
+        'Cloud AI Companion Gateway - Titan': 'cloudAiCompanionGatewayTitan',
+        'Google Cloud Armor': 'googleCloudArmor',
+        'Cloud Asset Inventory': 'cloudAssetInventory',
+        'Cloud Asset Search': 'cloudAssetSearch',
+        'Cloud Deploy': 'cloudDeploy',
+        'Cloud DNS': 'cloudDns',
+        'Cloud Latency': 'cloudLatency',
+        'Cloud Memorystore for Redis': 'cloudMemorystoreForRedis',
+        'CloudNet Control': 'cloudnetControl',
+        'Cloud Riptide': 'cloudRiptide',
+        'Cloud Tasks': 'cloudTasks',
+        'Cloud Trace': 'cloudTrace',
+        'Cloud Data Transfer': 'cloudDataTransfer',
+        'Cloud Composer': 'cloudComposer',
+        'Integration Connectors': 'integrationConnectors',
+        'Contact Center AI Insights': 'contactCenterAiInsights',
+        'Cloud Pub/Sub': 'cloudPubSub',
+        'Cloud Run': 'cloudRun',
+        'Resource Manager': 'resourceManager',
+        'Cloud Spanner': 'cloudSpanner',
+        'Database Center': 'databaseCenter',
+        'Cloud Dataform': 'cloudDataform',
+        'Cloud Data Fusion': 'cloudDataFusion',
+        'Dataplex': 'dataplex',
+        'Dialogflow Customer Experience Edition':
+            'dialogflowCustomerExperienceEdition',
+        'Cloud DLP': 'cloudDlp',
+        'Document AI': 'documentAi',
+        'Edge Container': 'edgeContainer',
+        'Edge Network': 'edgeNetwork',
+        'Cloud EKM': 'cloudEkm',
+        'Eventarc': 'eventarc',
+        'Firebase Data Connect': 'firebaseDataConnect',
+        'Firebase Rules': 'firebaseRules',
+        'App Engine': 'appEngine',
+        'Cloud Build': 'cloudBuild',
+        'Compute Engine': 'computeEngine',
+        'Cloud Functions (2nd Gen)': 'cloudFunctions2ndGen',
+        'Cloud Filestore': 'cloudFilestore',
+        'Cloud Interconnect': 'cloudInterconnect',
+        'Cloud NetApp Volumes': 'cloudNetappVolumes',
+        'Cloud Storage': 'cloudStorage',
+        'Generative AI App Builder': 'generativeAiAppBuilder',
+        'Google Kubernetes Engine': 'googleKubernetesEngine',
+        'Backup for GKE API': 'backupForGkeApi',
+        'GKE Connect': 'gkeConnect',
+        'GKE Hub': 'gkeHub',
+        'Hoverboard': 'hoverboard',
+        'Cloud HSM': 'cloudHsm',
+        'Cloud Identity and Access Management':
+            'cloudIdentityAndAccessManagement',
+        'Cloud Identity-Aware Proxy': 'cloudIdentityAwareProxy',
+        'Infrastructure Manager': 'infrastructureManager',
+        'Identity Storage Service': 'identityStorageService',
+        'Key Access Justifications': 'keyAccessJustifications',
+        'Cloud Key Management Service': 'cloudKeyManagementService',
+        'Cloud Logging': 'cloudLogging',
+        'Looker (Google Cloud core)': 'lookerGoogleCloudCore',
+        'Looker Studio': 'lookerStudio',
+        'Management Hub': 'managementHub',
+        'Model Armor': 'modelArmor',
+        'Cloud Monitoring': 'cloudMonitoring',
+        'Cloud NAT': 'cloudNat',
+        'Connectivity Hub': 'connectivityHub',
+        'External passthrough Network Load Balancer':
+            'externalPassthroughNetworkLoadBalancer',
+        'OIDC One': 'oidcOne',
+        'Organization Policy Service': 'organizationPolicyService',
+        'Org Lifecycle': 'orgLifecycle',
+        'Persistent Disk': 'persistentDisk',
+        'Parameter Manager': 'parameterManager',
+        'Private Services Access': 'privateServicesAccess',
+        'Regional Internal Application Load Balancer':
+            'regionalInternalApplicationLoadBalancer',
+        'Storage Batch Operations': 'storageBatchOperations',
+        'Cloud Security Command Center': 'cloudSecurityCommandCenter',
+        'Secure Source Manager': 'secureSourceManager',
+        'Seeker': 'seeker',
+        'Service Provisioning': 'serviceProvisioning',
+        'Speaker ID': 'speakerId',
+        'Secret Manager': 'secretManager',
+        'Cloud SQL': 'cloudSql',
+        'Cloud Speech-to-Text': 'cloudSpeechToText',
+        'Traffic Director': 'trafficDirector',
+        'Cloud Text-to-Speech': 'cloudTextToSpeech',
+        'USPS Andromeda': 'uspsAndromeda',
+        'Vertex AI': 'vertexAi',
+        'Virtual Private Cloud (VPC)': 'virtualPrivateCloudVpc',
+        'VPC Access': 'vpcAccess',
+        'VPC Service Controls Troubleshooter':
+            'vpcServiceControlsTroubleshooter',
+        'VPC virtnet': 'vpcVirtnet',
+        'Cloud Workstations': 'cloudWorkstations',
+        'Web Risk': 'webRisk',
+        'ga-only': 'gaOnly',
+        'appengine.googleapis.com': 'appengineGoogleapisCom',
+        'artifactregistry.googleapis.com': 'artifactregistryGoogleapisCom',
+        'bigquery.googleapis.com': 'bigqueryGoogleapisCom',
+        'bigtable.googleapis.com': 'bigtableGoogleapisCom',
+        'container.googleapis.com': 'containerGoogleapisCom',
+        'cloudkms.googleapis.com': 'cloudkmsGoogleapisCom',
+        'cloudresourcemanager.googleapis.com':
+            'cloudresourcemanagerGoogleapisCom',
+        'cloudsql.googleapis.com': 'cloudsqlGoogleapisCom',
+        'compute.googleapis.com': 'computeGoogleapisCom',
+        'dataflow.googleapis.com': 'dataflowGoogleapisCom',
+        'dataproc.googleapis.com': 'dataprocGoogleapisCom',
+        'dlp.googleapis.com': 'dlpGoogleapisCom',
+        'iam.googleapis.com': 'iamGoogleapisCom',
+        'logging.googleapis.com': 'loggingGoogleapisCom',
+        'orgpolicy.googleapis.com': 'orgpolicyGoogleapisCom',
+        'pubsub.googleapis.com': 'pubsubGoogleapisCom',
+        'spanner.googleapis.com': 'spannerGoogleapisCom',
+        'secretmanager.googleapis.com': 'secretmanagerGoogleapisCom',
+        'speakerid.googleapis.com': 'speakeridGoogleapisCom',
+        'storage.googleapis.com': 'storageGoogleapisCom',
+      },
+    ),
+    'ProjectAccessApprovalSettingsEnrollmentLevel': MigrateEnum(
+      name: 'ProjectAccessApprovalSettingsEnrollmentLevel',
+      members: <String, String>{'BLOCK_ALL': 'blockAll'},
+    ),
+    'ProjectDefaultServiceAccountsAction': MigrateEnum(
+      name: 'ProjectDefaultServiceAccountsAction',
+      members: <String, String>{
+        'DEPRIVILEGE': 'deprivilege',
+        'DELETE': 'delete',
+        'DISABLE': 'disable',
+      },
+    ),
+    'ProjectDefaultServiceAccountsRestorePolicy': MigrateEnum(
+      name: 'ProjectDefaultServiceAccountsRestorePolicy',
+      members: <String, String>{
+        'NONE': 'none',
+        'REVERT': 'revert',
+        'REVERT_AND_IGNORE_FAILURE': 'revertAndIgnoreFailure',
+      },
+    ),
     'ProjectIamAuditConfigAuditLogConfigLogType': MigrateEnum(
       name: 'ProjectIamAuditConfigAuditLogConfigLogType',
       members: <String, String>{
-        'DATA_READ': 'dataRead',
-        'DATA_WRITE': 'dataWrite',
         'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
       },
     ),
     'ProvisioningModel': MigrateEnum(
       name: 'ProvisioningModel',
-      members: <String, String>{'STANDARD': 'standard', 'SPOT': 'spot'},
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SPOT': 'spot',
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+      },
     ),
     'PublicKeyType': MigrateEnum(
       name: 'PublicKeyType',
@@ -335219,8 +340961,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'RecaptchaEnterpriseKeyChallengeSecurityPreference': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyChallengeSecurityPreference',
       members: <String, String>{
-        'CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED':
-            'challengeSecurityPreferenceUnspecified',
         'USABILITY': 'usability',
         'BALANCE': 'balance',
         'SECURITY': 'security',
@@ -335238,7 +340978,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'RecaptchaEnterpriseKeyTestingChallenge': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyTestingChallenge',
       members: <String, String>{
-        'TESTING_CHALLENGE_UNSPECIFIED': 'testingChallengeUnspecified',
         'NOCAPTCHA': 'nocaptcha',
         'UNSOLVABLE_CHALLENGE': 'unsolvableChallenge',
       },
@@ -335254,7 +340993,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'RecaptchaEnterpriseKeyWafService': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyWafService',
-      members: <String, String>{'CA': 'ca', 'FASTLY': 'fastly'},
+      members: <String, String>{
+        'CA': 'ca',
+        'FASTLY': 'fastly',
+        'CLOUDFLARE': 'cloudflare',
+        'AKAMAI': 'akamai',
+      },
     ),
     'RedisClusterAppendFsync': MigrateEnum(
       name: 'RedisClusterAppendFsync',
@@ -335467,6 +341211,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'RATE': 'rate',
         'CONNECTION': 'connection',
         'CUSTOM_METRICS': 'customMetrics',
+        'IN_FLIGHT': 'inFlight',
       },
     ),
     'RegionBackendServiceCacheMode': MigrateEnum(
@@ -335595,6 +341340,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GRPC_WITH_TLS': 'grpcWithTls',
       },
     ),
+    'RegionInstanceGroupManagerDefaultActionOnFailure': MigrateEnum(
+      name: 'RegionInstanceGroupManagerDefaultActionOnFailure',
+      members: <String, String>{'REPAIR': 'repair', 'DO_NOTHING': 'doNothing'},
+    ),
     'RegionInstanceGroupManagerDistributionPolicyTargetShape': MigrateEnum(
       name: 'RegionInstanceGroupManagerDistributionPolicyTargetShape',
       members: <String, String>{
@@ -335603,6 +341352,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ANY': 'any',
         'ANY_SINGLE_ZONE': 'anySingleZone',
       },
+    ),
+    'RegionInstanceGroupManagerForceUpdateOnRepair': MigrateEnum(
+      name: 'RegionInstanceGroupManagerForceUpdateOnRepair',
+      members: <String, String>{'YES': 'yes', 'NO': 'no'},
     ),
     'RegionInstanceGroupManagerInstanceRedistributionType': MigrateEnum(
       name: 'RegionInstanceGroupManagerInstanceRedistributionType',
@@ -335614,6 +341367,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PAGELESS': 'pageless',
         'PAGINATED': 'paginated',
       },
+    ),
+    'RegionInstanceGroupManagerOnFailedHealthCheck': MigrateEnum(
+      name: 'RegionInstanceGroupManagerOnFailedHealthCheck',
+      members: <String, String>{
+        'DEFAULT_ACTION': 'defaultAction',
+        'DO_NOTHING': 'doNothing',
+        'REPAIR': 'repair',
+      },
+    ),
+    'RegionInstanceGroupManagerStandbyPolicyMode': MigrateEnum(
+      name: 'RegionInstanceGroupManagerStandbyPolicyMode',
+      members: <String, String>{
+        'MANUAL': 'manual',
+        'SCALE_OUT_POOL': 'scaleOutPool',
+      },
+    ),
+    'RegionInstanceGroupManagerTargetSizePolicyMode': MigrateEnum(
+      name: 'RegionInstanceGroupManagerTargetSizePolicyMode',
+      members: <String, String>{'BULK': 'bulk', 'INDIVIDUAL': 'individual'},
     ),
     'RegionInstanceGroupManagerUpdatePolicyAction': MigrateEnum(
       name: 'RegionInstanceGroupManagerUpdatePolicyAction',
@@ -335754,6 +341526,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_RESERVATION': 'noReservation',
       },
     ),
+    'ResourceManagerCapabilityConfigTypes': MigrateEnum(
+      name: 'ResourceManagerCapabilityConfigTypes',
+      members: <String, String>{
+        'APP_MANAGEMENT': 'appManagement',
+        'AGENT_MANAGEMENT': 'agentManagement',
+      },
+    ),
     'RoutingMode': MigrateEnum(
       name: 'RoutingMode',
       members: <String, String>{'REGIONAL': 'regional', 'GLOBAL': 'global'},
@@ -335882,9 +341661,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LOW': 'low',
       },
     ),
+    'SccV2FolderMuteConfigType': MigrateEnum(
+      name: 'SccV2FolderMuteConfigType',
+      members: <String, String>{'STATIC': 'static', 'DYNAMIC': 'dynamic'},
+    ),
+    'SccV2OrganizationMuteConfigType': MigrateEnum(
+      name: 'SccV2OrganizationMuteConfigType',
+      members: <String, String>{'STATIC': 'static', 'DYNAMIC': 'dynamic'},
+    ),
+    'SccV2ProjectMuteConfigType': MigrateEnum(
+      name: 'SccV2ProjectMuteConfigType',
+      members: <String, String>{'STATIC': 'static', 'DYNAMIC': 'dynamic'},
+    ),
     'ScratchDiskInterface': MigrateEnum(
       name: 'ScratchDiskInterface',
       members: <String, String>{'SCSI': 'scsi', 'NVME': 'nvme'},
+    ),
+    'SecretManagerRegionalSecretType': MigrateEnum(
+      name: 'SecretManagerRegionalSecretType',
+      members: <String, String>{
+        'CLOUD_SQL_DB_CREDENTIALS': 'cloudSqlDbCredentials',
+        'ACCESS_KEY': 'accessKey',
+        'CERTIFICATE': 'certificate',
+        'OTHER_DB_CREDENTIALS': 'otherDbCredentials',
+        'OTHER': 'other',
+      },
+    ),
+    'SecretManagerSecretType': MigrateEnum(
+      name: 'SecretManagerSecretType',
+      members: <String, String>{
+        'CLOUD_SQL_DB_CREDENTIALS': 'cloudSqlDbCredentials',
+        'ACCESS_KEY': 'accessKey',
+        'CERTIFICATE': 'certificate',
+        'OTHER_DB_CREDENTIALS': 'otherDbCredentials',
+        'OTHER': 'other',
+      },
     ),
     'SecretManagerSecretVersionDeletionPolicy': MigrateEnum(
       name: 'SecretManagerSecretVersionDeletionPolicy',
@@ -335892,6 +341703,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DELETE': 'delete',
         'DISABLE': 'disable',
         'ABANDON': 'abandon',
+      },
+    ),
+    'SecureSourceManagerHookEvents': MigrateEnum(
+      name: 'SecureSourceManagerHookEvents',
+      members: <String, String>{
+        'PUSH': 'push',
+        'PULL_REQUEST': 'pullRequest',
+        'PULL_REQUEST_COMMENT': 'pullRequestComment',
       },
     ),
     'SecureSourceManagerInstanceState': MigrateEnum(
@@ -335912,13 +341731,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INSTANCE_RESUMING': 'instanceResuming',
       },
     ),
+    'SecureSourceManagerRepositoryReadme': MigrateEnum(
+      name: 'SecureSourceManagerRepositoryReadme',
+      members: <String, String>{'default': 'defaultCase'},
+    ),
     'SecurityPolicyJsonParsing': MigrateEnum(
       name: 'SecurityPolicyJsonParsing',
-      members: <String, String>{'DISABLED': 'disabled', 'STANDARD': 'standard'},
+      members: <String, String>{
+        'DISABLED': 'disabled',
+        'STANDARD': 'standard',
+        'STANDARD_WITH_GRAPHQL': 'standardWithGraphql',
+      },
     ),
     'SecurityPolicyLogLevel': MigrateEnum(
       name: 'SecurityPolicyLogLevel',
       members: <String, String>{'NORMAL': 'normal', 'VERBOSE': 'verbose'},
+    ),
+    'SecurityPolicyRedirectType': MigrateEnum(
+      name: 'SecurityPolicyRedirectType',
+      members: <String, String>{
+        'EXTERNAL_302': 'external302',
+        'GOOGLE_RECAPTCHA': 'googleRecaptcha',
+      },
     ),
     'SecurityPolicyRuleAction': MigrateEnum(
       name: 'SecurityPolicyRuleAction',
@@ -335952,6 +341786,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'USER_IP': 'userIp',
       },
     ),
+    'SecurityPolicyRuleVisibility': MigrateEnum(
+      name: 'SecurityPolicyRuleVisibility',
+      members: <String, String>{'STANDARD': 'standard', 'PREMIUM': 'premium'},
+    ),
+    'SecurityPolicyTrafficGranularityType': MigrateEnum(
+      name: 'SecurityPolicyTrafficGranularityType',
+      members: <String, String>{
+        'HTTP_HEADER_HOST': 'httpHeaderHost',
+        'HTTP_PATH': 'httpPath',
+      },
+    ),
     'SecurityPolicyType': MigrateEnum(
       name: 'SecurityPolicyType',
       members: <String, String>{
@@ -335973,6 +341818,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'SecurityposturePostureActionType': MigrateEnum(
       name: 'SecurityposturePostureActionType',
       members: <String, String>{'ALLOW': 'allow', 'DENY': 'deny'},
+    ),
+    'SecurityposturePostureMethodTypes': MigrateEnum(
+      name: 'SecurityposturePostureMethodTypes',
+      members: <String, String>{
+        'CREATE': 'create',
+        'UPDATE': 'update',
+        'DELETE': 'delete',
+      },
     ),
     'SecurityposturePostureModuleEnablementState': MigrateEnum(
       name: 'SecurityposturePostureModuleEnablementState',
@@ -336102,6 +341955,83 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'SqlAvailabilityType',
       members: <String, String>{'REGIONAL': 'regional', 'ZONAL': 'zonal'},
     ),
+    'SqlDatabaseInstanceComplexity': MigrateEnum(
+      name: 'SqlDatabaseInstanceComplexity',
+      members: <String, String>{'COMPLEXITY_DEFAULT': 'complexityDefault'},
+    ),
+    'SqlDatabaseInstanceConnectorEnforcement': MigrateEnum(
+      name: 'SqlDatabaseInstanceConnectorEnforcement',
+      members: <String, String>{
+        'NOT_REQUIRED': 'notRequired',
+        'REQUIRED': 'required',
+      },
+    ),
+    'SqlDatabaseInstanceDataApiAccess': MigrateEnum(
+      name: 'SqlDatabaseInstanceDataApiAccess',
+      members: <String, String>{
+        'DISALLOW_DATA_API': 'disallowDataApi',
+        'ALLOW_DATA_API': 'allowDataApi',
+      },
+    ),
+    'SqlDatabaseInstanceMode': MigrateEnum(
+      name: 'SqlDatabaseInstanceMode',
+      members: <String, String>{
+        'MANAGED_ACTIVE_DIRECTORY': 'managedActiveDirectory',
+        'SELF_MANAGED_ACTIVE_DIRECTORY': 'selfManagedActiveDirectory',
+        'CUSTOMER_MANAGED_ACTIVE_DIRECTORY': 'customerManagedActiveDirectory',
+      },
+    ),
+    'SqlDatabaseInstancePricingPlan': MigrateEnum(
+      name: 'SqlDatabaseInstancePricingPlan',
+      members: <String, String>{'PACKAGE': 'package', 'PER_USE': 'perUse'},
+    ),
+    'SqlDatabaseInstanceRetentionUnit': MigrateEnum(
+      name: 'SqlDatabaseInstanceRetentionUnit',
+      members: <String, String>{'COUNT': 'count'},
+    ),
+    'SqlDatabaseInstanceServerCaMode': MigrateEnum(
+      name: 'SqlDatabaseInstanceServerCaMode',
+      members: <String, String>{
+        'GOOGLE_MANAGED_INTERNAL_CA': 'googleManagedInternalCa',
+        'GOOGLE_MANAGED_CAS_CA': 'googleManagedCasCa',
+        'CUSTOMER_MANAGED_CAS_CA': 'customerManagedCasCa',
+      },
+    ),
+    'SqlDatabaseInstanceServerCertificateRotationMode': MigrateEnum(
+      name: 'SqlDatabaseInstanceServerCertificateRotationMode',
+      members: <String, String>{
+        'NO_AUTOMATIC_ROTATION': 'noAutomaticRotation',
+        'AUTOMATIC_ROTATION_DURING_MAINTENANCE':
+            'automaticRotationDuringMaintenance',
+      },
+    ),
+    'SqlDatabaseInstanceSslMode': MigrateEnum(
+      name: 'SqlDatabaseInstanceSslMode',
+      members: <String, String>{
+        'ALLOW_UNENCRYPTED_AND_ENCRYPTED': 'allowUnencryptedAndEncrypted',
+        'ENCRYPTED_ONLY': 'encryptedOnly',
+        'TRUSTED_CLIENT_CERTIFICATE_REQUIRED':
+            'trustedClientCertificateRequired',
+      },
+    ),
+    'SqlDatabaseInstanceType': MigrateEnum(
+      name: 'SqlDatabaseInstanceType',
+      members: <String, String>{
+        'CLOUD_SQL_INSTANCE': 'cloudSqlInstance',
+        'ON_PREMISES_INSTANCE': 'onPremisesInstance',
+        'READ_REPLICA_INSTANCE': 'readReplicaInstance',
+        'READ_POOL_INSTANCE': 'readPoolInstance',
+        'GREEN_INSTANCE': 'greenInstance',
+      },
+    ),
+    'SqlDatabaseInstanceUpdateTrack': MigrateEnum(
+      name: 'SqlDatabaseInstanceUpdateTrack',
+      members: <String, String>{
+        'canary': 'canary',
+        'stable': 'stable',
+        'week5': 'week5',
+      },
+    ),
     'SqlDiskType': MigrateEnum(
       name: 'SqlDiskType',
       members: <String, String>{
@@ -336115,6 +342045,67 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ENTERPRISE': 'enterprise',
         'ENTERPRISE_PLUS': 'enterprisePlus',
+        'DEVELOPER': 'developer',
+      },
+    ),
+    'SqlSourceRepresentationInstanceDatabaseVersion': MigrateEnum(
+      name: 'SqlSourceRepresentationInstanceDatabaseVersion',
+      members: <String, String>{
+        'MYSQL_5_1': 'mysql51',
+        'MYSQL_5_5': 'mysql55',
+        'MYSQL_5_6': 'mysql56',
+        'MYSQL_5_7': 'mysql57',
+        'MYSQL_8_0': 'mysql80',
+        'MYSQL_8_0_18': 'mysql8018',
+        'MYSQL_8_0_26': 'mysql8026',
+        'MYSQL_8_0_27': 'mysql8027',
+        'MYSQL_8_0_28': 'mysql8028',
+        'MYSQL_8_0_29': 'mysql8029',
+        'MYSQL_8_0_30': 'mysql8030',
+        'MYSQL_8_0_31': 'mysql8031',
+        'MYSQL_8_0_32': 'mysql8032',
+        'MYSQL_8_0_33': 'mysql8033',
+        'MYSQL_8_0_34': 'mysql8034',
+        'MYSQL_8_0_35': 'mysql8035',
+        'MYSQL_8_0_36': 'mysql8036',
+        'MYSQL_8_0_37': 'mysql8037',
+        'MYSQL_8_0_39': 'mysql8039',
+        'MYSQL_8_0_40': 'mysql8040',
+        'MYSQL_8_0_41': 'mysql8041',
+        'MYSQL_8_0_42': 'mysql8042',
+        'MYSQL_8_0_43': 'mysql8043',
+        'MYSQL_8_0_44': 'mysql8044',
+        'MYSQL_8_0_45': 'mysql8045',
+        'MYSQL_8_0_46': 'mysql8046',
+        'MYSQL_8_4': 'mysql84',
+        'MYSQL_9_7': 'mysql97',
+        'SQLSERVER_2017_STANDARD': 'sqlserver2017Standard',
+        'SQLSERVER_2017_ENTERPRISE': 'sqlserver2017Enterprise',
+        'SQLSERVER_2017_EXPRESS': 'sqlserver2017Express',
+        'SQLSERVER_2017_WEB': 'sqlserver2017Web',
+        'POSTGRES_9_6': 'postgres96',
+        'POSTGRES_10': 'postgres10',
+        'POSTGRES_11': 'postgres11',
+        'POSTGRES_12': 'postgres12',
+        'POSTGRES_13': 'postgres13',
+        'POSTGRES_14': 'postgres14',
+        'POSTGRES_15': 'postgres15',
+        'POSTGRES_16': 'postgres16',
+        'POSTGRES_17': 'postgres17',
+        'POSTGRES_18': 'postgres18',
+        'POSTGRES_19': 'postgres19',
+        'POSTGRES_20': 'postgres20',
+        'SQLSERVER_2019_STANDARD': 'sqlserver2019Standard',
+        'SQLSERVER_2019_ENTERPRISE': 'sqlserver2019Enterprise',
+        'SQLSERVER_2019_EXPRESS': 'sqlserver2019Express',
+        'SQLSERVER_2019_WEB': 'sqlserver2019Web',
+        'SQLSERVER_2022_STANDARD': 'sqlserver2022Standard',
+        'SQLSERVER_2022_ENTERPRISE': 'sqlserver2022Enterprise',
+        'SQLSERVER_2022_EXPRESS': 'sqlserver2022Express',
+        'SQLSERVER_2022_WEB': 'sqlserver2022Web',
+        'SQLSERVER_2025_STANDARD': 'sqlserver2025Standard',
+        'SQLSERVER_2025_ENTERPRISE': 'sqlserver2025Enterprise',
+        'SQLSERVER_2025_EXPRESS': 'sqlserver2025Express',
       },
     ),
     'SqlUserDeletionPolicy': MigrateEnum(
@@ -336128,6 +342119,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CLOUD_IAM_USER': 'cloudIamUser',
         'CLOUD_IAM_SERVICE_ACCOUNT': 'cloudIamServiceAccount',
         'CLOUD_IAM_GROUP': 'cloudIamGroup',
+        'CLOUD_IAM_GROUP_USER': 'cloudIamGroupUser',
+        'CLOUD_IAM_GROUP_SERVICE_ACCOUNT': 'cloudIamGroupServiceAccount',
+        'CLOUD_IAM_WORKFORCE_IDENTITY': 'cloudIamWorkforceIdentity',
+        'ENTRAID_USER': 'entraidUser',
       },
     ),
     'SslPolicyMinTlsVersion': MigrateEnum(
@@ -336156,12 +342151,77 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'admit-on-second-miss': 'admitOnSecondMiss',
       },
     ),
+    'StorageBatchOperationsJobEventBasedHold': MigrateEnum(
+      name: 'StorageBatchOperationsJobEventBasedHold',
+      members: <String, String>{'SET': 'set', 'UNSET': 'unset'},
+    ),
+    'StorageBatchOperationsJobTemporaryHold': MigrateEnum(
+      name: 'StorageBatchOperationsJobTemporaryHold',
+      members: <String, String>{'SET': 'set', 'UNSET': 'unset'},
+    ),
     'StorageBucketAccessControlRole': MigrateEnum(
       name: 'StorageBucketAccessControlRole',
       members: <String, String>{
         'OWNER': 'owner',
         'READER': 'reader',
         'WRITER': 'writer',
+      },
+    ),
+    'StorageBucketMatchesStorageClass': MigrateEnum(
+      name: 'StorageBucketMatchesStorageClass',
+      members: <String, String>{
+        'MULTI_REGIONAL': 'multiRegional',
+        'REGIONAL': 'regional',
+        'NEARLINE': 'nearline',
+        'COLDLINE': 'coldline',
+        'ARCHIVE': 'archive',
+        'STANDARD': 'standard',
+        'DURABLE_REDUCED_AVAILABILITY': 'durableReducedAvailability',
+      },
+    ),
+    'StorageBucketMode': MigrateEnum(
+      name: 'StorageBucketMode',
+      members: <String, String>{'Enabled': 'enabled', 'Disabled': 'disabled'},
+    ),
+    'StorageBucketObjectRetentionMode': MigrateEnum(
+      name: 'StorageBucketObjectRetentionMode',
+      members: <String, String>{'Unlocked': 'unlocked', 'Locked': 'locked'},
+    ),
+    'StorageBucketRestrictionMode': MigrateEnum(
+      name: 'StorageBucketRestrictionMode',
+      members: <String, String>{
+        'NotRestricted': 'notrestricted',
+        'FullyRestricted': 'fullyrestricted',
+      },
+    ),
+    'StorageBucketTerminalStorageClass': MigrateEnum(
+      name: 'StorageBucketTerminalStorageClass',
+      members: <String, String>{'NEARLINE': 'nearline', 'ARCHIVE': 'archive'},
+    ),
+    'StorageBucketWithState': MigrateEnum(
+      name: 'StorageBucketWithState',
+      members: <String, String>{
+        'LIVE': 'live',
+        'ARCHIVED': 'archived',
+        'ANY': 'any',
+      },
+    ),
+    'StorageControlFolderIntelligenceConfigEditionConfig': MigrateEnum(
+      name: 'StorageControlFolderIntelligenceConfigEditionConfig',
+      members: <String, String>{
+        'INHERIT': 'inherit',
+        'TRIAL': 'trial',
+        'DISABLED': 'disabled',
+        'STANDARD': 'standard',
+      },
+    ),
+    'StorageControlOrganizationIntelligenceConfigEditionConfig': MigrateEnum(
+      name: 'StorageControlOrganizationIntelligenceConfigEditionConfig',
+      members: <String, String>{
+        'INHERIT': 'inherit',
+        'DISABLED': 'disabled',
+        'TRIAL': 'trial',
+        'STANDARD': 'standard',
       },
     ),
     'StorageControlProjectIntelligenceConfigEditionConfig': MigrateEnum(
@@ -336180,6 +342240,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'StorageFtpServerAccessType': MigrateEnum(
       name: 'StorageFtpServerAccessType',
       members: <String, String>{'INTERNAL': 'internal', 'EXTERNAL': 'external'},
+    ),
+    'StorageFtpUserCredentialType': MigrateEnum(
+      name: 'StorageFtpUserCredentialType',
+      members: <String, String>{'PUBLIC_KEY': 'publicKey'},
     ),
     'StorageFtpUserPermission': MigrateEnum(
       name: 'StorageFtpUserPermission',
@@ -336239,6 +342303,147 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DELETING': 'deleting',
       },
     ),
+    'StorageTransferJobAcl': MigrateEnum(
+      name: 'StorageTransferJobAcl',
+      members: <String, String>{
+        'ACL_DESTINATION_BUCKET_DEFAULT': 'aclDestinationBucketDefault',
+        'ACL_PRESERVE': 'aclPreserve',
+      },
+    ),
+    'StorageTransferJobAuthMethod': MigrateEnum(
+      name: 'StorageTransferJobAuthMethod',
+      members: <String, String>{
+        'AUTH_METHOD_AWS_SIGNATURE_V4': 'authMethodAwsSignatureV4',
+        'AUTH_METHOD_AWS_SIGNATURE_V2': 'authMethodAwsSignatureV2',
+      },
+    ),
+    'StorageTransferJobEventTypes': MigrateEnum(
+      name: 'StorageTransferJobEventTypes',
+      members: <String, String>{
+        'TRANSFER_OPERATION_SUCCESS': 'transferOperationSuccess',
+        'TRANSFER_OPERATION_FAILED': 'transferOperationFailed',
+        'TRANSFER_OPERATION_ABORTED': 'transferOperationAborted',
+      },
+    ),
+    'StorageTransferJobGid': MigrateEnum(
+      name: 'StorageTransferJobGid',
+      members: <String, String>{
+        'GID_SKIP': 'gidSkip',
+        'GID_NUMBER': 'gidNumber',
+      },
+    ),
+    'StorageTransferJobKmsKey': MigrateEnum(
+      name: 'StorageTransferJobKmsKey',
+      members: <String, String>{
+        'KMS_KEY_DESTINATION_BUCKET_DEFAULT': 'kmsKeyDestinationBucketDefault',
+        'KMS_KEY_PRESERVE': 'kmsKeyPreserve',
+      },
+    ),
+    'StorageTransferJobListApi': MigrateEnum(
+      name: 'StorageTransferJobListApi',
+      members: <String, String>{
+        'LIST_OBJECTS_V2': 'listObjectsV2',
+        'LIST_OBJECTS': 'listObjects',
+      },
+    ),
+    'StorageTransferJobLogActionStates': MigrateEnum(
+      name: 'StorageTransferJobLogActionStates',
+      members: <String, String>{
+        'SUCCEEDED': 'succeeded',
+        'FAILED': 'failed',
+        'SKIPPED': 'skipped',
+      },
+    ),
+    'StorageTransferJobLogActions': MigrateEnum(
+      name: 'StorageTransferJobLogActions',
+      members: <String, String>{
+        'FIND': 'find',
+        'DELETE': 'delete',
+        'COPY': 'copy',
+      },
+    ),
+    'StorageTransferJobMode': MigrateEnum(
+      name: 'StorageTransferJobMode',
+      members: <String, String>{
+        'MODE_SKIP': 'modeSkip',
+        'MODE_PRESERVE': 'modePreserve',
+      },
+    ),
+    'StorageTransferJobOverwriteWhen': MigrateEnum(
+      name: 'StorageTransferJobOverwriteWhen',
+      members: <String, String>{
+        'DIFFERENT': 'different',
+        'NEVER': 'never',
+        'ALWAYS': 'always',
+      },
+    ),
+    'StorageTransferJobPayloadFormat': MigrateEnum(
+      name: 'StorageTransferJobPayloadFormat',
+      members: <String, String>{'NONE': 'none', 'JSON': 'json'},
+    ),
+    'StorageTransferJobProtocol': MigrateEnum(
+      name: 'StorageTransferJobProtocol',
+      members: <String, String>{
+        'NETWORK_PROTOCOL_HTTPS': 'networkProtocolHttps',
+        'NETWORK_PROTOCOL_HTTP': 'networkProtocolHttp',
+      },
+    ),
+    'StorageTransferJobRequestModel': MigrateEnum(
+      name: 'StorageTransferJobRequestModel',
+      members: <String, String>{
+        'REQUEST_MODEL_VIRTUAL_HOSTED_STYLE': 'requestModelVirtualHostedStyle',
+        'REQUEST_MODEL_PATH_STYLE': 'requestModelPathStyle',
+      },
+    ),
+    'StorageTransferJobStatus': MigrateEnum(
+      name: 'StorageTransferJobStatus',
+      members: <String, String>{
+        'ENABLED': 'enabled',
+        'DISABLED': 'disabled',
+        'DELETED': 'deleted',
+      },
+    ),
+    'StorageTransferJobStorageClass': MigrateEnum(
+      name: 'StorageTransferJobStorageClass',
+      members: <String, String>{
+        'STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT':
+            'storageClassDestinationBucketDefault',
+        'STORAGE_CLASS_PRESERVE': 'storageClassPreserve',
+        'STORAGE_CLASS_STANDARD': 'storageClassStandard',
+        'STORAGE_CLASS_NEARLINE': 'storageClassNearline',
+        'STORAGE_CLASS_COLDLINE': 'storageClassColdline',
+        'STORAGE_CLASS_ARCHIVE': 'storageClassArchive',
+      },
+    ),
+    'StorageTransferJobSymlink': MigrateEnum(
+      name: 'StorageTransferJobSymlink',
+      members: <String, String>{
+        'SYMLINK_SKIP': 'symlinkSkip',
+        'SYMLINK_PRESERVE': 'symlinkPreserve',
+      },
+    ),
+    'StorageTransferJobTemporaryHold': MigrateEnum(
+      name: 'StorageTransferJobTemporaryHold',
+      members: <String, String>{
+        'TEMPORARY_HOLD_SKIP': 'temporaryHoldSkip',
+        'TEMPORARY_HOLD_PRESERVE': 'temporaryHoldPreserve',
+      },
+    ),
+    'StorageTransferJobTimeCreated': MigrateEnum(
+      name: 'StorageTransferJobTimeCreated',
+      members: <String, String>{
+        'TIME_CREATED_SKIP': 'timeCreatedSkip',
+        'TIME_CREATED_PRESERVE_AS_CUSTOM_TIME':
+            'timeCreatedPreserveAsCustomTime',
+      },
+    ),
+    'StorageTransferJobUid': MigrateEnum(
+      name: 'StorageTransferJobUid',
+      members: <String, String>{
+        'UID_SKIP': 'uidSkip',
+        'UID_NUMBER': 'uidNumber',
+      },
+    ),
     'SubnetworkIpv6AccessType': MigrateEnum(
       name: 'SubnetworkIpv6AccessType',
       members: <String, String>{'INTERNAL': 'internal', 'EXTERNAL': 'external'},
@@ -336271,6 +342476,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PRIVATE_SERVICE_CONNECT': 'privateServiceConnect',
         'PEER_MIGRATION': 'peerMigration',
         'PRIVATE_NAT': 'privateNat',
+        'INTERNAL_HTTPS_LOAD_BALANCER': 'internalHttpsLoadBalancer',
+        'PRIVATE_RFC_1918': 'privateRfc1918',
       },
     ),
     'SubnetworkResolveSubnetMask': MigrateEnum(
@@ -336401,6 +342608,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TEMPORARY_REDIRECT': 'temporaryRedirect',
       },
     ),
+    'VectorSearchCollectionTaskType': MigrateEnum(
+      name: 'VectorSearchCollectionTaskType',
+      members: <String, String>{
+        'RETRIEVAL_QUERY': 'retrievalQuery',
+        'RETRIEVAL_DOCUMENT': 'retrievalDocument',
+        'SEMANTIC_SIMILARITY': 'semanticSimilarity',
+        'CLASSIFICATION': 'classification',
+        'CLUSTERING': 'clustering',
+        'QUESTION_ANSWERING': 'questionAnswering',
+        'FACT_VERIFICATION': 'factVerification',
+        'CODE_RETRIEVAL_QUERY': 'codeRetrievalQuery',
+      },
+    ),
     'VectorSearchIndexDistanceMetric': MigrateEnum(
       name: 'VectorSearchIndexDistanceMetric',
       members: <String, String>{
@@ -336424,6 +342644,167 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PERFORMANCE_OPTIMIZED': 'performanceOptimized',
       },
     ),
+    'VertexAiDeploymentResourcePoolAcceleratorType': MigrateEnum(
+      name: 'VertexAiDeploymentResourcePoolAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
+    ),
+    'VertexAiEndpointWithModelGardenDeploymentAcceleratorType': MigrateEnum(
+      name: 'VertexAiEndpointWithModelGardenDeploymentAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
+    ),
+    'VertexAiEndpointWithModelGardenDeploymentReservationAffinityType':
+        MigrateEnum(
+          name:
+              'VertexAiEndpointWithModelGardenDeploymentReservationAffinityType',
+          members: <String, String>{
+            'NO_RESERVATION': 'noReservation',
+            'ANY_RESERVATION': 'anyReservation',
+            'SPECIFIC_RESERVATION': 'specificReservation',
+          },
+        ),
+    'VertexAiEndpointWithModelGardenDeploymentScheme': MigrateEnum(
+      name: 'VertexAiEndpointWithModelGardenDeploymentScheme',
+      members: <String, String>{'HTTP': 'http', 'HTTPS': 'https'},
+    ),
+    'VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline': MigrateEnum(
+      name: 'VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline',
+      members: <String, String>{
+        'LATEST_STATS': 'latestStats',
+        'MOST_RECENT_SNAPSHOT_STATS': 'mostRecentSnapshotStats',
+        'PREVIOUS_IMPORT_FEATURES_STATS': 'previousImportFeaturesStats',
+      },
+    ),
+    'VertexAiFeaturestoreEntitytypeFeatureValueType': MigrateEnum(
+      name: 'VertexAiFeaturestoreEntitytypeFeatureValueType',
+      members: <String, String>{
+        'BOOL': 'bool',
+        'BOOL_ARRAY': 'boolArray',
+        'DOUBLE': 'double',
+        'DOUBLE_ARRAY': 'doubleArray',
+        'INT64': 'int64',
+        'INT64_ARRAY': 'int64Array',
+        'STRING': 'string',
+        'STRING_ARRAY': 'stringArray',
+        'BYTES': 'bytes',
+        'STRUCT': 'struct',
+      },
+    ),
+    'VertexAiFeaturestoreEntitytypeState': MigrateEnum(
+      name: 'VertexAiFeaturestoreEntitytypeState',
+      members: <String, String>{
+        'DEFAULT': 'defaultCase',
+        'ENABLED': 'enabled',
+        'DISABLED': 'disabled',
+      },
+    ),
+    'VertexAiIndexDistanceMeasureType': MigrateEnum(
+      name: 'VertexAiIndexDistanceMeasureType',
+      members: <String, String>{
+        'SQUARED_L2_DISTANCE': 'squaredL2Distance',
+        'L1_DISTANCE': 'l1Distance',
+        'COSINE_DISTANCE': 'cosineDistance',
+        'DOT_PRODUCT_DISTANCE': 'dotProductDistance',
+      },
+    ),
+    'VertexAiIndexFeatureNormType': MigrateEnum(
+      name: 'VertexAiIndexFeatureNormType',
+      members: <String, String>{'UNIT_L2_NORM': 'unitL2Norm', 'NONE': 'none'},
+    ),
+    'VertexAiIndexShardSize': MigrateEnum(
+      name: 'VertexAiIndexShardSize',
+      members: <String, String>{
+        'SHARD_SIZE_SMALL': 'shardSizeSmall',
+        'SHARD_SIZE_MEDIUM': 'shardSizeMedium',
+        'SHARD_SIZE_LARGE': 'shardSizeLarge',
+      },
+    ),
+    'VertexAiIndexUpdateMethod': MigrateEnum(
+      name: 'VertexAiIndexUpdateMethod',
+      members: <String, String>{
+        'BATCH_UPDATE': 'batchUpdate',
+        'STREAM_UPDATE': 'streamUpdate',
+      },
+    ),
+    'VertexAiOnlineEvaluatorComparisonOperator': MigrateEnum(
+      name: 'VertexAiOnlineEvaluatorComparisonOperator',
+      members: <String, String>{
+        'LESS': 'less',
+        'LESS_OR_EQUAL': 'lessOrEqual',
+        'EQUAL': 'equal',
+        'NOT_EQUAL': 'notEqual',
+        'GREATER_OR_EQUAL': 'greaterOrEqual',
+        'GREATER': 'greater',
+      },
+    ),
+    'VertexAiPersistentResourceAcceleratorType': MigrateEnum(
+      name: 'VertexAiPersistentResourceAcceleratorType',
+      members: <String, String>{
+        'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
+        'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
+        'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
+        'NVIDIA_TESLA_P4': 'nvidiaTeslaP4',
+        'NVIDIA_TESLA_T4': 'nvidiaTeslaT4',
+        'NVIDIA_TESLA_A100': 'nvidiaTeslaA100',
+        'NVIDIA_A100_80GB': 'nvidiaA10080gb',
+        'NVIDIA_L4': 'nvidiaL4',
+        'NVIDIA_H100_80GB': 'nvidiaH10080gb',
+        'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
+        'NVIDIA_H200_141GB': 'nvidiaH200141gb',
+        'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
+        'TPU_V2': 'tpuV2',
+        'TPU_V3': 'tpuV3',
+        'TPU_V4_POD': 'tpuV4Pod',
+        'TPU_V5_LITEPOD': 'tpuV5Litepod',
+      },
+    ),
+    'VertexAiPersistentResourceBootDiskType': MigrateEnum(
+      name: 'VertexAiPersistentResourceBootDiskType',
+      members: <String, String>{
+        'pd-ssd': 'pdSsd',
+        'pd-standard': 'pdStandard',
+        'hyperdisk-balanced': 'hyperdiskBalanced',
+      },
+    ),
     'VertexAiReasoningEngineIdentityType': MigrateEnum(
       name: 'VertexAiReasoningEngineIdentityType',
       members: <String, String>{
@@ -336433,20 +342814,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'VertexAiReasoningEngineLanguage': MigrateEnum(
       name: 'VertexAiReasoningEngineLanguage',
+      members: <String, String>{'PYTHON': 'python'},
+    ),
+    'VertexAiReasoningEngineManagedTopicEnum': MigrateEnum(
+      name: 'VertexAiReasoningEngineManagedTopicEnum',
       members: <String, String>{
-        'LANGUAGE_UNSPECIFIED': 'languageUnspecified',
-        'PYTHON': 'python',
-        'BASH': 'bash',
+        'USER_PERSONAL_INFO': 'userPersonalInfo',
+        'USER_PREFERENCES': 'userPreferences',
+        'KEY_CONVERSATION_DETAILS': 'keyConversationDetails',
+        'EXPLICIT_INSTRUCTIONS': 'explicitInstructions',
       },
     ),
     'VertexAiReasoningEngineOutcome': MigrateEnum(
       name: 'VertexAiReasoningEngineOutcome',
       members: <String, String>{
-        'OUTCOME_UNSPECIFIED': 'outcomeUnspecified',
         'OUTCOME_OK': 'outcomeOk',
         'OUTCOME_FAILED': 'outcomeFailed',
         'OUTCOME_DEADLINE_EXCEEDED': 'outcomeDeadlineExceeded',
       },
+    ),
+    'VertexAiReasoningEngineRole': MigrateEnum(
+      name: 'VertexAiReasoningEngineRole',
+      members: <String, String>{'user': 'user', 'model': 'model'},
     ),
     'VertexAiReasoningEngineTopicsManagedMemoryTopic': MigrateEnum(
       name: 'VertexAiReasoningEngineTopicsManagedMemoryTopic',
@@ -336456,6 +342845,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'KEY_CONVERSATION_DETAILS': 'keyConversationDetails',
         'EXPLICIT_INSTRUCTIONS': 'explicitInstructions',
       },
+    ),
+    'VmwareengineClusterAccessMode': MigrateEnum(
+      name: 'VmwareengineClusterAccessMode',
+      members: <String, String>{
+        'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
+      },
+    ),
+    'VmwareengineClusterNfsVersion': MigrateEnum(
+      name: 'VmwareengineClusterNfsVersion',
+      members: <String, String>{'NFS_V3': 'nfsV3'},
     ),
     'VmwareengineClusterState': MigrateEnum(
       name: 'VmwareengineClusterState',
@@ -336542,6 +342942,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'hyperdiskBalancedHighAvailability',
         'HYPERDISK_ML': 'hyperdiskMl',
       },
+    ),
+    'WorkbenchInstanceConfidentialInstanceType': MigrateEnum(
+      name: 'WorkbenchInstanceConfidentialInstanceType',
+      members: <String, String>{'SEV': 'sev'},
     ),
     'WorkbenchInstanceConsumeReservationType': MigrateEnum(
       name: 'WorkbenchInstanceConsumeReservationType',

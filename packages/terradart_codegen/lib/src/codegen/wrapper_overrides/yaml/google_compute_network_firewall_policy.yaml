@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveEnums: true
 
 paramOrder:
   - name

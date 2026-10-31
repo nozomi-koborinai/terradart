@@ -41,11 +41,11 @@ final class ComposerEnvironmentConfig {
 
   final TfArg<bool>? enablePrivateEnvironment;
 
-  final TfArg<String>? environmentSize;
+  final ComposerEnvironmentSize? environmentSize;
 
   final TfArg<num>? nodeCount;
 
-  final TfArg<String>? resilienceMode;
+  final ComposerEnvironmentResilienceMode? resilienceMode;
 
   final ComposerEnvironmentDataRetentionConfig? dataRetentionConfig;
 
@@ -97,6 +97,53 @@ final class ComposerEnvironmentConfig {
   };
 }
 
+/// `environment_size` — derived from the provider schema description.
+extension type const ComposerEnvironmentSize._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentSize.variable(String name) : this._(TfArg.variable(name));
+  ComposerEnvironmentSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentSize.arg(TfArg<String> arg) : this._(arg);
+
+  static const environmentSizeSmall = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_SMALL'),
+  );
+  static const environmentSizeMedium = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_MEDIUM'),
+  );
+  static const environmentSizeLarge = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_LARGE'),
+  );
+  static const environmentSizeExtraLarge = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_EXTRA_LARGE'),
+  );
+
+  static const List<ComposerEnvironmentSize> values = [
+    environmentSizeSmall,
+    environmentSizeMedium,
+    environmentSizeLarge,
+    environmentSizeExtraLarge,
+  ];
+}
+
+/// `resilience_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentResilienceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentResilienceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentResilienceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentResilienceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const highResilience = ComposerEnvironmentResilienceMode._(
+    TfArgLiteral('HIGH_RESILIENCE'),
+  );
+
+  static const List<ComposerEnvironmentResilienceMode> values = [
+    highResilience,
+  ];
+}
+
 /// Typed helper for the `config.data_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
@@ -136,7 +183,7 @@ final class ComposerEnvironmentAirflowMetadataRetentionConfig {
 
   final TfArg<num>? retentionDays;
 
-  final TfArg<String>? retentionMode;
+  final ComposerEnvironmentRetentionMode? retentionMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -145,16 +192,60 @@ final class ComposerEnvironmentAirflowMetadataRetentionConfig {
   };
 }
 
+/// `retention_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentRetentionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentRetentionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentRetentionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentRetentionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const retentionModeEnabled = ComposerEnvironmentRetentionMode._(
+    TfArgLiteral('RETENTION_MODE_ENABLED'),
+  );
+  static const retentionModeDisabled = ComposerEnvironmentRetentionMode._(
+    TfArgLiteral('RETENTION_MODE_DISABLED'),
+  );
+
+  static const List<ComposerEnvironmentRetentionMode> values = [
+    retentionModeEnabled,
+    retentionModeDisabled,
+  ];
+}
+
 /// Typed helper for the `config.data_retention_config.task_logs_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
 final class ComposerEnvironmentTaskLogsRetentionConfig {
   const ComposerEnvironmentTaskLogsRetentionConfig({this.storageMode});
 
-  final TfArg<String>? storageMode;
+  final ComposerEnvironmentStorageMode? storageMode;
 
   @internal
   Map<String, Object?> encode() => {'storage_mode': ?storageMode?.toTfJson()};
+}
+
+/// `storage_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentStorageMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentStorageMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentStorageMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentStorageMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudLoggingAndCloudStorage = ComposerEnvironmentStorageMode._(
+    TfArgLiteral('CLOUD_LOGGING_AND_CLOUD_STORAGE'),
+  );
+  static const cloudLoggingOnly = ComposerEnvironmentStorageMode._(
+    TfArgLiteral('CLOUD_LOGGING_ONLY'),
+  );
+
+  static const List<ComposerEnvironmentStorageMode> values = [
+    cloudLoggingAndCloudStorage,
+    cloudLoggingOnly,
+  ];
 }
 
 /// Typed helper for the `config.database_config` block of
@@ -163,7 +254,7 @@ final class ComposerEnvironmentTaskLogsRetentionConfig {
 final class ComposerEnvironmentDatabaseConfig {
   const ComposerEnvironmentDatabaseConfig({this.machineType, this.zone});
 
-  final TfArg<String>? machineType;
+  final ComposerEnvironmentDatabaseConfigMachineType? machineType;
 
   final TfArg<String>? zone;
 
@@ -172,6 +263,38 @@ final class ComposerEnvironmentDatabaseConfig {
     'machine_type': ?machineType?.toTfJson(),
     'zone': ?zone?.toTfJson(),
   };
+}
+
+/// `machine_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentDatabaseConfigMachineType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComposerEnvironmentDatabaseConfigMachineType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentDatabaseConfigMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentDatabaseConfigMachineType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dbN1Standard2 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-2'),
+  );
+  static const dbN1Standard4 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-4'),
+  );
+  static const dbN1Standard8 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-8'),
+  );
+  static const dbN1Standard16 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-16'),
+  );
+
+  static const List<ComposerEnvironmentDatabaseConfigMachineType> values = [
+    dbN1Standard2,
+    dbN1Standard4,
+    dbN1Standard8,
+    dbN1Standard16,
+  ];
 }
 
 /// Typed helper for the `config.encryption_config` block of
@@ -367,7 +490,7 @@ final class ComposerEnvironmentPrivateEnvironmentConfig {
 
   final TfArg<String>? cloudSqlIpv4CidrBlock;
 
-  final TfArg<String>? connectionType;
+  final ComposerEnvironmentConnectionType? connectionType;
 
   final TfArg<bool>? enablePrivateEndpoint;
 
@@ -391,6 +514,28 @@ final class ComposerEnvironmentPrivateEnvironmentConfig {
     'master_ipv4_cidr_block': ?masterIpv4CidrBlock?.toTfJson(),
     'web_server_ipv4_cidr_block': ?webServerIpv4CidrBlock?.toTfJson(),
   };
+}
+
+/// `connection_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentConnectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const vpcPeering = ComposerEnvironmentConnectionType._(
+    TfArgLiteral('VPC_PEERING'),
+  );
+  static const privateServiceConnect = ComposerEnvironmentConnectionType._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+
+  static const List<ComposerEnvironmentConnectionType> values = [
+    vpcPeering,
+    privateServiceConnect,
+  ];
 }
 
 /// Typed helper for the `config.recovery_config` block of
@@ -462,7 +607,7 @@ final class ComposerEnvironmentSoftwareConfig {
 
   final TfArg<num>? schedulerCount;
 
-  final TfArg<String>? webServerPluginsMode;
+  final ComposerEnvironmentWebServerPluginsMode? webServerPluginsMode;
 
   final ComposerEnvironmentCloudDataLineageIntegration?
   cloudDataLineageIntegration;
@@ -478,6 +623,29 @@ final class ComposerEnvironmentSoftwareConfig {
     'web_server_plugins_mode': ?webServerPluginsMode?.toTfJson(),
     'cloud_data_lineage_integration': ?cloudDataLineageIntegration?.encode(),
   };
+}
+
+/// `web_server_plugins_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentWebServerPluginsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentWebServerPluginsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentWebServerPluginsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentWebServerPluginsMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = ComposerEnvironmentWebServerPluginsMode._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ComposerEnvironmentWebServerPluginsMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ComposerEnvironmentWebServerPluginsMode> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `config.software_config.cloud_data_lineage_integration` block of
@@ -498,10 +666,41 @@ final class ComposerEnvironmentCloudDataLineageIntegration {
 final class ComposerEnvironmentWebServerConfig {
   const ComposerEnvironmentWebServerConfig({required this.machineType});
 
-  final TfArg<String> machineType;
+  final ComposerEnvironmentWebServerConfigMachineType machineType;
 
   @internal
   Map<String, Object?> encode() => {'machine_type': machineType.toTfJson()};
+}
+
+/// `machine_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentWebServerConfigMachineType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComposerEnvironmentWebServerConfigMachineType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentWebServerConfigMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentWebServerConfigMachineType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const composerN1Webserver2 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-2'),
+      );
+  static const composerN1Webserver4 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-4'),
+      );
+  static const composerN1Webserver8 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-8'),
+      );
+
+  static const List<ComposerEnvironmentWebServerConfigMachineType> values = [
+    composerN1Webserver2,
+    composerN1Webserver4,
+    composerN1Webserver8,
+  ];
 }
 
 /// Typed helper for the `config.web_server_network_access_control` block of
@@ -738,7 +937,7 @@ final class ComposerEnvironmentStorageConfig {
 ///   name: TfArg.literal('terradart-composer'),
 ///   region: TfArg.literal('us-central1'),
 ///   config: ComposerEnvironmentConfig(
-///     environmentSize: TfArg.literal('ENVIRONMENT_SIZE_SMALL'),
+///     environmentSize: .environmentSizeSmall,
 ///   ),
 /// );
 /// ```

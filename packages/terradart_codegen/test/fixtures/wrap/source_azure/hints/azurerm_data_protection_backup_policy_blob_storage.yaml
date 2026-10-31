@@ -21,3 +21,8 @@ properties:
               - "Last"
               - "Second"
               - "Third"
+      - api_name: life_cycle
+        properties:
+          - api_name: data_store_type
+            enum_values:
+              - "VaultStore"

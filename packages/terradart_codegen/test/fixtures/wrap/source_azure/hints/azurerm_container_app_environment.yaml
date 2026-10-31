@@ -3,7 +3,29 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: logs_destination
+    enum_values:
+      - "azure-monitor"
+      - "log-analytics"
   - api_name: public_network_access
     enum_values:
       - "Disabled"
       - "Enabled"
+  - api_name: workload_profile
+    properties:
+      - api_name: workload_profile_type
+        enum_values:
+          - "Consumption"
+          - "Consumption-GPU-NC24-A100"
+          - "Consumption-GPU-NC8as-T4"
+          - "D4"
+          - "D8"
+          - "D16"
+          - "D32"
+          - "E4"
+          - "E8"
+          - "E16"
+          - "E32"
+          - "NC24-A100"
+          - "NC48-A100"
+          - "NC96-A100"

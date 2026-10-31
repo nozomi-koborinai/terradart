@@ -11,6 +11,22 @@ const Set<String> _googleComputeRouterPeerSensitive = <String>{
   'md5_authentication_key.key',
 };
 
+/// Compute Router Peer Advertised enum for `advertised_groups`.
+extension type const ComputeRouterPeerAdvertisedGroups._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterPeerAdvertisedGroups.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterPeerAdvertisedGroups.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterPeerAdvertisedGroups.arg(TfArg<String> arg) : this._(arg);
+
+  static const allSubnets = ComputeRouterPeerAdvertisedGroups._(
+    TfArgLiteral('ALL_SUBNETS'),
+  );
+
+  static const List<ComputeRouterPeerAdvertisedGroups> values = [allSubnets];
+}
+
 /// `advertise_mode` — BGP prefix advertisement mode of this peer.
 /// Default (when unset) is [ComputeRouterPeerAdvertiseMode.defaultMode].
 extension type const ComputeRouterPeerAdvertiseMode._(TfArg<String> _)
@@ -155,7 +171,7 @@ final class GoogleComputeRouterPeer extends Resource {
     TfArg<String>? region,
     TfArg<String>? peerIpAddress,
     ComputeRouterPeerAdvertiseMode? advertiseMode,
-    TfArg<List<String>>? advertisedGroups,
+    EnumList<ComputeRouterPeerAdvertisedGroups>? advertisedGroups,
     TfArg<num>? advertisedRoutePriority,
     TfArg<bool>? enable,
     TfArg<bool>? enableIpv4,

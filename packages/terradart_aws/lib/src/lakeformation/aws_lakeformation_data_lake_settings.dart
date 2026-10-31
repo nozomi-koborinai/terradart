@@ -16,14 +16,13 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
     this.principal,
   });
 
-  final List<LakeformationDataLakeSettingsPermissions>? permissions;
+  final EnumList<LakeformationDataLakeSettingsPermissions>? permissions;
 
   final TfArg<String>? principal;
 
   @internal
   Map<String, Object?> encode() => {
-    if (permissions != null)
-      'permissions': [for (final e in permissions!) e.toTfJson()],
+    'permissions': ?permissions?.toTfJson(),
     'principal': ?principal?.toTfJson(),
   };
 }
@@ -118,14 +117,13 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
     this.principal,
   });
 
-  final List<LakeformationDataLakeSettingsPermissions>? permissions;
+  final EnumList<LakeformationDataLakeSettingsPermissions>? permissions;
 
   final TfArg<String>? principal;
 
   @internal
   Map<String, Object?> encode() => {
-    if (permissions != null)
-      'permissions': [for (final e in permissions!) e.toTfJson()],
+    'permissions': ?permissions?.toTfJson(),
     'principal': ?principal?.toTfJson(),
   };
 }

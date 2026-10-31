@@ -16,14 +16,13 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
     this.principal,
   });
 
-  final List<GlueCatalogDatabasePermissions>? permissions;
+  final EnumList<GlueCatalogDatabasePermissions>? permissions;
 
   final GlueCatalogDatabasePrincipal? principal;
 
   @internal
   Map<String, Object?> encode() => {
-    if (permissions != null)
-      'permissions': [for (final e in permissions!) e.toTfJson()],
+    'permissions': ?permissions?.toTfJson(),
     'principal': ?principal?.encode(),
   };
 }

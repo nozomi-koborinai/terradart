@@ -32,19 +32,19 @@ final class ClouddeployDeployPolicyRolloutRestriction {
     this.timeWindows,
   });
 
-  final List<ClouddeployDeployPolicyActions>? actions;
+  final EnumList<ClouddeployDeployPolicyActions>? actions;
 
   final TfArg<String> id;
 
-  final List<ClouddeployDeployPolicyInvokers>? invokers;
+  final EnumList<ClouddeployDeployPolicyInvokers>? invokers;
 
   final ClouddeployDeployPolicyTimeWindows? timeWindows;
 
   @internal
   Map<String, Object?> encode() => {
-    if (actions != null) 'actions': [for (final e in actions!) e.toTfJson()],
+    'actions': ?actions?.toTfJson(),
     'id': id.toTfJson(),
-    if (invokers != null) 'invokers': [for (final e in invokers!) e.toTfJson()],
+    'invokers': ?invokers?.toTfJson(),
     'time_windows': ?timeWindows?.encode(),
   };
 }
@@ -277,7 +277,7 @@ final class ClouddeployDeployPolicyWeeklyWindows {
     this.startTime,
   });
 
-  final List<ClouddeployDeployPolicyDaysOfWeek>? daysOfWeek;
+  final EnumList<ClouddeployDeployPolicyDaysOfWeek>? daysOfWeek;
 
   final ClouddeployDeployPolicyEndTime? endTime;
 
@@ -285,8 +285,7 @@ final class ClouddeployDeployPolicyWeeklyWindows {
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'end_time': ?endTime?.encode(),
     'start_time': ?startTime?.encode(),
   };
@@ -417,7 +416,7 @@ final class ClouddeployDeployPolicyTarget {
 ///     ClouddeployDeployPolicyRules(
 ///       rolloutRestriction: .new(
 ///         id: TfArg.literal('no-automation'),
-///         invokers: [.deployAutomation],
+///         invokers: .literal([.deployAutomation]),
 ///       ),
 ///     ),
 ///   ],

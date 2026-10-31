@@ -5,6 +5,12 @@ provider_version: "5.12.0"
 properties:
   - api_name: custom_rules
     properties:
+      - api_name: action
+        enum_values:
+          - "Allow"
+          - "Block"
+          - "Log"
+          - "JSChallenge"
       - api_name: group_rate_limit_by
         enum_values:
           - "ClientAddr"

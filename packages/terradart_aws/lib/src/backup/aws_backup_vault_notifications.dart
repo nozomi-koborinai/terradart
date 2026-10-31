@@ -167,7 +167,8 @@ final class AwsBackupVaultNotifications extends Resource {
 
   AwsBackupVaultNotifications(
     super.localName, {
-    required List<BackupVaultNotificationsBackupVaultEvents> backupVaultEvents,
+    required EnumList<BackupVaultNotificationsBackupVaultEvents>
+    backupVaultEvents,
     required TfArg<String> backupVaultName,
     TfArg<String>? region,
     required RefTo<AwsSnsTopic> snsTopicArn,
@@ -178,9 +179,7 @@ final class AwsBackupVaultNotifications extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backup_vault_events': TfArg.literal([
-             for (final e in backupVaultEvents) e.toTfJson(),
-           ]),
+           'backup_vault_events': backupVaultEvents,
            'backup_vault_name': backupVaultName,
            'region': ?region,
            'sns_topic_arn': snsTopicArn.encodeAs('arn'),

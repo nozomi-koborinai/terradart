@@ -1,10 +1,12 @@
 outputDir: ces
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+
+typeNames:
+  widget_tool.text_response_config.type: CesToolType
 
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -24,6 +24,55 @@ const Set<String> _googleComputeInstanceSensitive = <String>{
   'metadata_startup_script',
 };
 
+/// Compute Instance Desired enum for `desired_status`.
+extension type const ComputeInstanceDesiredStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceDesiredStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceDesiredStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceDesiredStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const running = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const suspended = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const terminated = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('TERMINATED'),
+  );
+
+  static const List<ComputeInstanceDesiredStatus> values = [
+    running,
+    suspended,
+    terminated,
+  ];
+}
+
+/// Compute Instance Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceKeyRevocationActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceKeyRevocationActionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ComputeInstanceKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceKeyRevocationActionType> values = [
+    none,
+    stop,
+  ];
+}
+
 // ===========================================================================
 // Enums
 // ===========================================================================
@@ -38,8 +87,9 @@ extension type const NicType._(TfArg<String> _) implements TfArg<String> {
   static const virtioNet = NicType._(TfArgLiteral('VIRTIO_NET'));
   static const mrdma = NicType._(TfArgLiteral('MRDMA'));
   static const irdma = NicType._(TfArgLiteral('IRDMA'));
+  static const idpf = NicType._(TfArgLiteral('IDPF'));
 
-  static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma];
+  static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma, idpf];
 }
 
 /// `network_interface.access_config.network_tier` -- service tier for the
@@ -107,8 +157,17 @@ extension type const ProvisioningModel._(TfArg<String> _)
 
   static const standard = ProvisioningModel._(TfArgLiteral('STANDARD'));
   static const spot = ProvisioningModel._(TfArgLiteral('SPOT'));
+  static const flexStart = ProvisioningModel._(TfArgLiteral('FLEX_START'));
+  static const reservationBound = ProvisioningModel._(
+    TfArgLiteral('RESERVATION_BOUND'),
+  );
 
-  static const List<ProvisioningModel> values = [standard, spot];
+  static const List<ProvisioningModel> values = [
+    standard,
+    spot,
+    flexStart,
+    reservationBound,
+  ];
 }
 
 /// `scheduling.instance_termination_action` -- action when a SPOT VM is
@@ -295,7 +354,7 @@ final class ComputeInstanceAttachedDisk {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceMode? mode;
 
   final TfArg<String> source;
 
@@ -311,6 +370,20 @@ final class ComputeInstanceAttachedDisk {
     'mode': ?mode?.toTfJson(),
     'source': source.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ComputeInstanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceMode.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const readOnly = ComputeInstanceMode._(TfArgLiteral('READ_ONLY'));
+  static const readWrite = ComputeInstanceMode._(TfArgLiteral('READ_WRITE'));
+
+  static const List<ComputeInstanceMode> values = [readOnly, readWrite];
 }
 
 /// Typed helper for the `boot_disk` block of
@@ -346,11 +419,11 @@ final class ComputeInstanceBootDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceInterface? interface;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceMode? mode;
 
   final TfArg<String>? source;
 
@@ -372,6 +445,20 @@ final class ComputeInstanceBootDisk {
     'source': ?source?.toTfJson(),
     'initialize_params': ?initializeParams?.encode(),
   };
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceInterface.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const nvme = ComputeInstanceInterface._(TfArgLiteral('NVME'));
+  static const scsi = ComputeInstanceInterface._(TfArgLiteral('SCSI'));
+
+  static const List<ComputeInstanceInterface> values = [nvme, scsi];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -396,7 +483,7 @@ final class ComputeInstanceInitializeParams {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeInstanceArchitecture? architecture;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -444,6 +531,21 @@ final class ComputeInstanceInitializeParams {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeInstanceArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceArchitecture.arg(TfArg<String> arg) : this._(arg);
+
+  static const arm64 = ComputeInstanceArchitecture._(TfArgLiteral('ARM64'));
+  static const x8664 = ComputeInstanceArchitecture._(TfArgLiteral('X86_64'));
+
+  static const List<ComputeInstanceArchitecture> values = [arm64, x8664];
 }
 
 /// Typed helper for the `boot_disk.initialize_params.source_image_encryption_key` block of
@@ -588,7 +690,7 @@ final class ComputeInstanceNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -606,7 +708,7 @@ final class ComputeInstanceNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -643,6 +745,46 @@ final class ComputeInstanceNetworkInterface {
     if (ipv6AccessConfig != null)
       'ipv6_access_config': [for (final e in ipv6AccessConfig!) e.encode()],
   };
+}
+
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceIgmpQuery.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceIgmpQuery.arg(TfArg<String> arg) : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceStackType.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceStackType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceStackType._(TfArgLiteral('IPV4_IPV6'));
+  static const ipv4Only = ComputeInstanceStackType._(TfArgLiteral('IPV4_ONLY'));
+  static const ipv6Only = ComputeInstanceStackType._(TfArgLiteral('IPV6_ONLY'));
+
+  static const List<ComputeInstanceStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -910,7 +1052,7 @@ final class ComputeInstanceNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -920,6 +1062,20 @@ final class ComputeInstanceNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceOperator.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ComputeInstanceOperator._(TfArgLiteral('IN'));
+  static const notIn = ComputeInstanceOperator._(TfArgLiteral('NOT_IN'));
+
+  static const List<ComputeInstanceOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -1093,11 +1249,11 @@ final class GoogleComputeInstance extends Resource {
     TfArg<bool>? canIpForward,
     TfArg<bool>? deletionProtection,
     TfArg<bool>? allowStoppingForUpdate,
-    TfArg<String>? desiredStatus,
+    ComputeInstanceDesiredStatus? desiredStatus,
     TfArg<String>? minCpuPlatform,
     TfArg<bool>? enableDisplay,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceKeyRevocationActionType? keyRevocationActionType,
     required ComputeInstanceBootDisk bootDisk,
     required List<ComputeInstanceNetworkInterface> networkInterface,
     List<ComputeInstanceAttachedDisk>? attachedDisk,

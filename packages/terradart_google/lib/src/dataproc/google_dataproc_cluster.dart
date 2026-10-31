@@ -38,11 +38,11 @@ final class DataprocClusterConfig {
     this.workerConfig,
   });
 
-  final TfArg<String>? clusterTier;
+  final DataprocClusterTier? clusterTier;
 
-  final TfArg<String>? clusterType;
+  final DataprocClusterType? clusterType;
 
-  final TfArg<String>? engine;
+  final DataprocClusterEngine? engine;
 
   final TfArg<String>? stagingBucket;
 
@@ -106,6 +106,60 @@ final class DataprocClusterConfig {
   };
 }
 
+/// `cluster_tier` — derived from the provider schema description.
+extension type const DataprocClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterTier.variable(String name) : this._(TfArg.variable(name));
+  DataprocClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const clusterTierStandard = DataprocClusterTier._(
+    TfArgLiteral('CLUSTER_TIER_STANDARD'),
+  );
+  static const clusterTierPremium = DataprocClusterTier._(
+    TfArgLiteral('CLUSTER_TIER_PREMIUM'),
+  );
+
+  static const List<DataprocClusterTier> values = [
+    clusterTierStandard,
+    clusterTierPremium,
+  ];
+}
+
+/// `cluster_type` — derived from the provider schema description.
+extension type const DataprocClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterType.variable(String name) : this._(TfArg.variable(name));
+  DataprocClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterType.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = DataprocClusterType._(TfArgLiteral('STANDARD'));
+  static const singleNode = DataprocClusterType._(TfArgLiteral('SINGLE_NODE'));
+  static const zeroScale = DataprocClusterType._(TfArgLiteral('ZERO_SCALE'));
+
+  static const List<DataprocClusterType> values = [
+    standard,
+    singleNode,
+    zeroScale,
+  ];
+}
+
+/// `engine` — derived from the provider schema description.
+extension type const DataprocClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  DataprocClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterEngine.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = DataprocClusterEngine._(TfArgLiteral('DEFAULT'));
+  static const lightning = DataprocClusterEngine._(TfArgLiteral('LIGHTNING'));
+
+  static const List<DataprocClusterEngine> values = [defaultCase, lightning];
+}
+
 /// Typed helper for the `cluster_config.autoscaling_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
@@ -144,7 +198,7 @@ final class DataprocClusterAuxiliaryNodeGroups {
 final class DataprocClusterNodeGroup {
   const DataprocClusterNodeGroup({required this.roles, this.nodeGroupConfig});
 
-  final TfArg<List<String>> roles;
+  final EnumList<DataprocClusterRoles> roles;
 
   final DataprocClusterNodeGroupConfig? nodeGroupConfig;
 
@@ -153,6 +207,19 @@ final class DataprocClusterNodeGroup {
     'roles': roles.toTfJson(),
     'node_group_config': ?nodeGroupConfig?.encode(),
   };
+}
+
+/// `roles` — derived from the provider schema description.
+extension type const DataprocClusterRoles._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterRoles.variable(String name) : this._(TfArg.variable(name));
+  DataprocClusterRoles.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterRoles.arg(TfArg<String> arg) : this._(arg);
+
+  static const driver = DataprocClusterRoles._(TfArgLiteral('DRIVER'));
+
+  static const List<DataprocClusterRoles> values = [driver];
 }
 
 /// Typed helper for the `cluster_config.auxiliary_node_groups.node_group.node_group_config` block of
@@ -230,7 +297,7 @@ final class DataprocClusterNodeGroupConfigDiskConfig {
 
   final TfArg<String>? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocClusterLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 
@@ -244,6 +311,21 @@ final class DataprocClusterNodeGroupConfigDiskConfig {
     'local_ssd_interface': ?localSsdInterface?.toTfJson(),
     'num_local_ssds': ?numLocalSsds?.toTfJson(),
   };
+}
+
+/// `local_ssd_interface` — derived from the provider schema description.
+extension type const DataprocClusterLocalSsdInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterLocalSsdInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterLocalSsdInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterLocalSsdInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const scsi = DataprocClusterLocalSsdInterface._(TfArgLiteral('scsi'));
+  static const nvme = DataprocClusterLocalSsdInterface._(TfArgLiteral('nvme'));
+
+  static const List<DataprocClusterLocalSsdInterface> values = [scsi, nvme];
 }
 
 /// Typed helper for the `cluster_config.dataproc_metric_config` block of
@@ -271,13 +353,51 @@ final class DataprocClusterMetrics {
 
   final TfArg<List<String>>? metricOverrides;
 
-  final TfArg<String> metricSource;
+  final DataprocClusterMetricSource metricSource;
 
   @internal
   Map<String, Object?> encode() => {
     'metric_overrides': ?metricOverrides?.toTfJson(),
     'metric_source': metricSource.toTfJson(),
   };
+}
+
+/// `metric_source` — derived from the provider schema description.
+extension type const DataprocClusterMetricSource._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterMetricSource.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterMetricSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterMetricSource.arg(TfArg<String> arg) : this._(arg);
+
+  static const monitoringAgentDefaults = DataprocClusterMetricSource._(
+    TfArgLiteral('MONITORING_AGENT_DEFAULTS'),
+  );
+  static const hdfs = DataprocClusterMetricSource._(TfArgLiteral('HDFS'));
+  static const spark = DataprocClusterMetricSource._(TfArgLiteral('SPARK'));
+  static const yarn = DataprocClusterMetricSource._(TfArgLiteral('YARN'));
+  static const sparkHistoryServer = DataprocClusterMetricSource._(
+    TfArgLiteral('SPARK_HISTORY_SERVER'),
+  );
+  static const hiveserver2 = DataprocClusterMetricSource._(
+    TfArgLiteral('HIVESERVER2'),
+  );
+  static const hivemetastore = DataprocClusterMetricSource._(
+    TfArgLiteral('HIVEMETASTORE'),
+  );
+  static const flink = DataprocClusterMetricSource._(TfArgLiteral('FLINK'));
+
+  static const List<DataprocClusterMetricSource> values = [
+    monitoringAgentDefaults,
+    hdfs,
+    spark,
+    yarn,
+    sparkHistoryServer,
+    hiveserver2,
+    hivemetastore,
+    flink,
+  ];
 }
 
 /// Typed helper for the `cluster_config.encryption_config` block of
@@ -381,7 +501,7 @@ final class DataprocClusterConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final DataprocClusterConfidentialInstanceType? confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -390,6 +510,33 @@ final class DataprocClusterConfidentialInstanceConfig {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const DataprocClusterConfidentialInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterConfidentialInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterConfidentialInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sev = DataprocClusterConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = DataprocClusterConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = DataprocClusterConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<DataprocClusterConfidentialInstanceType> values = [
+    sev,
+    sevSnp,
+    tdx,
+  ];
 }
 
 /// Typed helper for the `cluster_config.gce_cluster_config.node_group_affinity` block of
@@ -414,7 +561,7 @@ final class DataprocClusterReservationAffinity {
     this.values,
   });
 
-  final TfArg<String>? consumeReservationType;
+  final DataprocClusterConsumeReservationType? consumeReservationType;
 
   final TfArg<String>? key;
 
@@ -426,6 +573,33 @@ final class DataprocClusterReservationAffinity {
     'key': ?key?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `consume_reservation_type` — derived from the provider schema description.
+extension type const DataprocClusterConsumeReservationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterConsumeReservationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterConsumeReservationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterConsumeReservationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noReservation = DataprocClusterConsumeReservationType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+  static const anyReservation = DataprocClusterConsumeReservationType._(
+    TfArgLiteral('ANY_RESERVATION'),
+  );
+  static const specificReservation = DataprocClusterConsumeReservationType._(
+    TfArgLiteral('SPECIFIC_RESERVATION'),
+  );
+
+  static const List<DataprocClusterConsumeReservationType> values = [
+    noReservation,
+    anyReservation,
+    specificReservation,
+  ];
 }
 
 /// Typed helper for the `cluster_config.gce_cluster_config.shielded_instance_config` block of
@@ -565,7 +739,7 @@ final class DataprocClusterDiskConfig {
 
   final TfArg<String>? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocClusterLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 
@@ -600,7 +774,7 @@ final class DataprocClusterAttachedDiskConfig {
 
   final TfArg<num>? diskSizeGb;
 
-  final TfArg<String>? diskType;
+  final DataprocClusterDiskType? diskType;
 
   final TfArg<num>? provisionedIops;
 
@@ -616,6 +790,35 @@ final class DataprocClusterAttachedDiskConfig {
     'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `disk_type` — derived from the provider schema description.
+extension type const DataprocClusterDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterDiskType.variable(String name) : this._(TfArg.variable(name));
+  DataprocClusterDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterDiskType.arg(TfArg<String> arg) : this._(arg);
+
+  static const hyperdiskBalanced = DataprocClusterDiskType._(
+    TfArgLiteral('HYPERDISK_BALANCED'),
+  );
+  static const hyperdiskExtreme = DataprocClusterDiskType._(
+    TfArgLiteral('HYPERDISK_EXTREME'),
+  );
+  static const hyperdiskMl = DataprocClusterDiskType._(
+    TfArgLiteral('HYPERDISK_ML'),
+  );
+  static const hyperdiskThroughput = DataprocClusterDiskType._(
+    TfArgLiteral('HYPERDISK_THROUGHPUT'),
+  );
+
+  static const List<DataprocClusterDiskType> values = [
+    hyperdiskBalanced,
+    hyperdiskExtreme,
+    hyperdiskMl,
+    hyperdiskThroughput,
+  ];
 }
 
 /// Typed helper for the `cluster_config.master_config.instance_flexibility_policy` block of
@@ -692,7 +895,7 @@ final class DataprocClusterPreemptibleWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<String>? preemptibility;
+  final DataprocClusterPreemptibility? preemptibility;
 
   final DataprocClusterDiskConfig? diskConfig;
 
@@ -706,6 +909,30 @@ final class DataprocClusterPreemptibleWorkerConfig {
     'disk_config': ?diskConfig?.encode(),
     'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
+}
+
+/// `preemptibility` — derived from the provider schema description.
+extension type const DataprocClusterPreemptibility._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterPreemptibility.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterPreemptibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterPreemptibility.arg(TfArg<String> arg) : this._(arg);
+
+  static const nonPreemptible = DataprocClusterPreemptibility._(
+    TfArgLiteral('NON_PREEMPTIBLE'),
+  );
+  static const preemptible = DataprocClusterPreemptibility._(
+    TfArgLiteral('PREEMPTIBLE'),
+  );
+  static const spot = DataprocClusterPreemptibility._(TfArgLiteral('SPOT'));
+
+  static const List<DataprocClusterPreemptibility> values = [
+    nonPreemptible,
+    preemptible,
+    spot,
+  ];
 }
 
 /// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy` block of
@@ -873,7 +1100,7 @@ final class DataprocClusterSoftwareConfig {
 
   final TfArg<String>? imageVersion;
 
-  final TfArg<List<String>>? optionalComponents;
+  final EnumList<DataprocClusterOptionalComponents>? optionalComponents;
 
   final TfArg<Map<String, String>>? overrideProperties;
 
@@ -883,6 +1110,90 @@ final class DataprocClusterSoftwareConfig {
     'optional_components': ?optionalComponents?.toTfJson(),
     'override_properties': ?overrideProperties?.toTfJson(),
   };
+}
+
+/// `optional_components` — derived from the provider schema description.
+extension type const DataprocClusterOptionalComponents._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterOptionalComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterOptionalComponents.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterOptionalComponents.arg(TfArg<String> arg) : this._(arg);
+
+  static const alloydbConnector = DataprocClusterOptionalComponents._(
+    TfArgLiteral('ALLOYDB_CONNECTOR'),
+  );
+  static const anaconda = DataprocClusterOptionalComponents._(
+    TfArgLiteral('ANACONDA'),
+  );
+  static const delta = DataprocClusterOptionalComponents._(
+    TfArgLiteral('DELTA'),
+  );
+  static const docker = DataprocClusterOptionalComponents._(
+    TfArgLiteral('DOCKER'),
+  );
+  static const druid = DataprocClusterOptionalComponents._(
+    TfArgLiteral('DRUID'),
+  );
+  static const flink = DataprocClusterOptionalComponents._(
+    TfArgLiteral('FLINK'),
+  );
+  static const hbase = DataprocClusterOptionalComponents._(
+    TfArgLiteral('HBASE'),
+  );
+  static const hiveWebhcat = DataprocClusterOptionalComponents._(
+    TfArgLiteral('HIVE_WEBHCAT'),
+  );
+  static const hudi = DataprocClusterOptionalComponents._(TfArgLiteral('HUDI'));
+  static const iceberg = DataprocClusterOptionalComponents._(
+    TfArgLiteral('ICEBERG'),
+  );
+  static const jupyter = DataprocClusterOptionalComponents._(
+    TfArgLiteral('JUPYTER'),
+  );
+  static const pig = DataprocClusterOptionalComponents._(TfArgLiteral('PIG'));
+  static const presto = DataprocClusterOptionalComponents._(
+    TfArgLiteral('PRESTO'),
+  );
+  static const trino = DataprocClusterOptionalComponents._(
+    TfArgLiteral('TRINO'),
+  );
+  static const ranger = DataprocClusterOptionalComponents._(
+    TfArgLiteral('RANGER'),
+  );
+  static const solr = DataprocClusterOptionalComponents._(TfArgLiteral('SOLR'));
+  static const zeppelin = DataprocClusterOptionalComponents._(
+    TfArgLiteral('ZEPPELIN'),
+  );
+  static const zookeeper = DataprocClusterOptionalComponents._(
+    TfArgLiteral('ZOOKEEPER'),
+  );
+  static const jupyterKernelGateway = DataprocClusterOptionalComponents._(
+    TfArgLiteral('JUPYTER_KERNEL_GATEWAY'),
+  );
+
+  static const List<DataprocClusterOptionalComponents> values = [
+    alloydbConnector,
+    anaconda,
+    delta,
+    docker,
+    druid,
+    flink,
+    hbase,
+    hiveWebhcat,
+    hudi,
+    iceberg,
+    jupyter,
+    pig,
+    presto,
+    trino,
+    ranger,
+    solr,
+    zeppelin,
+    zookeeper,
+    jupyterKernelGateway,
+  ];
 }
 
 /// Typed helper for the `cluster_config.worker_config` block of
@@ -1062,7 +1373,7 @@ final class DataprocClusterNodePoolTarget {
 
   final TfArg<String> nodePool;
 
-  final TfArg<List<String>> roles;
+  final EnumList<DataprocClusterNodePoolTargetRoles> roles;
 
   final DataprocClusterNodePoolConfig? nodePoolConfig;
 
@@ -1072,6 +1383,36 @@ final class DataprocClusterNodePoolTarget {
     'roles': roles.toTfJson(),
     'node_pool_config': ?nodePoolConfig?.encode(),
   };
+}
+
+/// `roles` — derived from the provider schema description.
+extension type const DataprocClusterNodePoolTargetRoles._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterNodePoolTargetRoles.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterNodePoolTargetRoles.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterNodePoolTargetRoles.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = DataprocClusterNodePoolTargetRoles._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const controller = DataprocClusterNodePoolTargetRoles._(
+    TfArgLiteral('CONTROLLER'),
+  );
+  static const sparkDriver = DataprocClusterNodePoolTargetRoles._(
+    TfArgLiteral('SPARK_DRIVER'),
+  );
+  static const sparkExecutor = DataprocClusterNodePoolTargetRoles._(
+    TfArgLiteral('SPARK_EXECUTOR'),
+  );
+
+  static const List<DataprocClusterNodePoolTargetRoles> values = [
+    defaultCase,
+    controller,
+    sparkDriver,
+    sparkExecutor,
+  ];
 }
 
 /// Typed helper for the `virtual_cluster_config.kubernetes_cluster_config.gke_cluster_config.node_pool_target.node_pool_config` block of

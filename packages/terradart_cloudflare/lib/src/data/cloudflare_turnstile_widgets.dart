@@ -7,6 +7,49 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_turnstile_widgets`.
 const Set<String> _cloudflareTurnstileWidgetsSensitive = <String>{};
 
+/// Data Turnstile Widgets enum for `direction`.
+extension type const DataTurnstileWidgetsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTurnstileWidgetsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataTurnstileWidgetsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTurnstileWidgetsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataTurnstileWidgetsDirection._(TfArgLiteral('asc'));
+  static const desc = DataTurnstileWidgetsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataTurnstileWidgetsDirection> values = [asc, desc];
+}
+
+/// Data Turnstile Widgets enum for `order`.
+extension type const DataTurnstileWidgetsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTurnstileWidgetsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataTurnstileWidgetsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTurnstileWidgetsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const id = DataTurnstileWidgetsOrder._(TfArgLiteral('id'));
+  static const sitekey = DataTurnstileWidgetsOrder._(TfArgLiteral('sitekey'));
+  static const name = DataTurnstileWidgetsOrder._(TfArgLiteral('name'));
+  static const createdOn = DataTurnstileWidgetsOrder._(
+    TfArgLiteral('created_on'),
+  );
+  static const modifiedOn = DataTurnstileWidgetsOrder._(
+    TfArgLiteral('modified_on'),
+  );
+
+  static const List<DataTurnstileWidgetsOrder> values = [
+    id,
+    sitekey,
+    name,
+    createdOn,
+    modifiedOn,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_turnstile_widgets`.
 ///
 /// Accepted Permissions
@@ -19,10 +62,10 @@ final class DataCloudflareTurnstileWidgets extends Data {
   DataCloudflareTurnstileWidgets(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataTurnstileWidgetsDirection? direction,
     TfArg<String>? filter,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataTurnstileWidgetsOrder? order,
     super.provider,
     super.timeouts,
   }) : super(

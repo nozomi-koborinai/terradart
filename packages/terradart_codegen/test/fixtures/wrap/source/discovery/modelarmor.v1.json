@@ -1,0 +1,234 @@
+{
+  "name": "modelarmor",
+  "version": "v1",
+  "revision": "20261028",
+  "sourceUrl": "https://modelarmor.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CsamFilterSettings": {
+      "properties": {
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
+          ]
+        },
+        "filterEnforcement": {
+          "enum": [
+            "CSAM_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "ExclusionRule": {
+      "properties": {
+        "matchingScope": {
+          "enum": [
+            "MATCHING_SCOPE_UNSPECIFIED",
+            "MATCHING_SCOPE_FULL_MATCH",
+            "MATCHING_SCOPE_PARTIAL_MATCH"
+          ]
+        }
+      }
+    },
+    "FilterConfig": {
+      "properties": {
+        "piAndJailbreakFilterSettings": {
+          "$ref": "PiAndJailbreakFilterSettings"
+        },
+        "filterRuleSettings": {
+          "$ref": "FilterRuleSettings"
+        },
+        "csamFilterSettings": {
+          "$ref": "CsamFilterSettings"
+        },
+        "raiSettings": {
+          "$ref": "RaiFilterSettings"
+        },
+        "maliciousUriFilterSettings": {
+          "$ref": "MaliciousUriFilterSettings"
+        },
+        "sdpSettings": {
+          "$ref": "SdpFilterSettings"
+        }
+      }
+    },
+    "FilterRule": {
+      "properties": {
+        "exclusionRule": {
+          "$ref": "ExclusionRule"
+        }
+      }
+    },
+    "FilterRuleSet": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "FilterRule"
+          }
+        },
+        "filterTypes": {
+          "items": {
+            "enum": [
+              "RULE_FILTER_TYPE_UNSPECIFIED",
+              "PROMPT_INJECTION_AND_JAILBREAK",
+              "RESPONSIBLE_AI"
+            ]
+          }
+        }
+      }
+    },
+    "FilterRuleSettings": {
+      "properties": {
+        "ruleSets": {
+          "items": {
+            "$ref": "FilterRuleSet"
+          }
+        }
+      }
+    },
+    "FilterVersionSelector": {
+      "properties": {
+        "alias": {
+          "enum": [
+            "FILTER_VERSION_ALIAS_UNSPECIFIED",
+            "FILTER_VERSION_ALIAS_STABLE",
+            "FILTER_VERSION_ALIAS_LATEST",
+            "FILTER_VERSION_ALIAS_LEGACY",
+            "FILTER_VERSION_ALIAS_RETIRED"
+          ]
+        }
+      }
+    },
+    "FloorSetting": {
+      "properties": {
+        "integratedServices": {
+          "items": {
+            "enum": [
+              "INTEGRATED_SERVICE_UNSPECIFIED",
+              "AI_PLATFORM",
+              "GOOGLE_MCP_SERVER"
+            ]
+          }
+        },
+        "filterConfig": {
+          "$ref": "FilterConfig"
+        }
+      }
+    },
+    "MaliciousUriFilterSettings": {
+      "properties": {
+        "filterEnforcement": {
+          "enum": [
+            "MALICIOUS_URI_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "PiAndJailbreakFilterSettings": {
+      "properties": {
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
+          ]
+        },
+        "filterEnforcement": {
+          "enum": [
+            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "RaiFilter": {
+      "properties": {
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
+          ]
+        },
+        "filterType": {
+          "enum": [
+            "RAI_FILTER_TYPE_UNSPECIFIED",
+            "SEXUALLY_EXPLICIT",
+            "HATE_SPEECH",
+            "HARASSMENT",
+            "DANGEROUS"
+          ]
+        }
+      }
+    },
+    "RaiFilterSettings": {
+      "properties": {
+        "raiFilters": {
+          "items": {
+            "$ref": "RaiFilter"
+          }
+        }
+      }
+    },
+    "SdpBasicConfig": {
+      "properties": {
+        "filterEnforcement": {
+          "enum": [
+            "SDP_BASIC_CONFIG_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "SdpFilterSettings": {
+      "properties": {
+        "basicConfig": {
+          "$ref": "SdpBasicConfig"
+        }
+      }
+    },
+    "Template": {
+      "properties": {
+        "templateMetadata": {
+          "$ref": "TemplateMetadata"
+        },
+        "filterConfig": {
+          "$ref": "FilterConfig"
+        }
+      }
+    },
+    "TemplateMetadata": {
+      "properties": {
+        "enforcementType": {
+          "enum": [
+            "ENFORCEMENT_TYPE_UNSPECIFIED",
+            "INSPECT_ONLY",
+            "INSPECT_AND_BLOCK"
+          ]
+        },
+        "modalities": {
+          "items": {
+            "enum": [
+              "MODALITY_UNSPECIFIED",
+              "MODALITY_TEXT",
+              "MODALITY_IMAGE"
+            ]
+          }
+        },
+        "filterVersionSelector": {
+          "$ref": "FilterVersionSelector"
+        }
+      }
+    }
+  }
+}

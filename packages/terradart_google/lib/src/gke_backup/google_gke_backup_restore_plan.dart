@@ -705,7 +705,7 @@ final class GkeBackupRestorePlanVolumeDataRestorePolicyBindings {
 
   final GkeBackupRestorePlanPolicy policy;
 
-  final TfArg<String> volumeType;
+  final GkeBackupRestorePlanVolumeType volumeType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -737,6 +737,24 @@ extension type const GkeBackupRestorePlanPolicy._(TfArg<String> _)
     restoreVolumeDataFromBackup,
     reuseVolumeHandleFromBackup,
     noVolumeDataRestoration,
+  ];
+}
+
+/// `volume_type` — derived from the provider schema description.
+extension type const GkeBackupRestorePlanVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeBackupRestorePlanVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeBackupRestorePlanVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanVolumeType.arg(TfArg<String> arg) : this._(arg);
+
+  static const gcePersistentDisk = GkeBackupRestorePlanVolumeType._(
+    TfArgLiteral('GCE_PERSISTENT_DISK'),
+  );
+
+  static const List<GkeBackupRestorePlanVolumeType> values = [
+    gcePersistentDisk,
   ];
 }
 

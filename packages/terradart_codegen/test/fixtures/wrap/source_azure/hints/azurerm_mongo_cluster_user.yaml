@@ -3,7 +3,15 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: identity_provider_type
+    enum_values:
+      - "MicrosoftEntraID"
   - api_name: principal_type
     enum_values:
       - "servicePrincipal"
       - "user"
+  - api_name: role
+    properties:
+      - api_name: name
+        enum_values:
+          - "root"

@@ -101,7 +101,7 @@ final class AwsOamLink extends Resource {
     super.localName, {
     required TfArg<String> labelTemplate,
     TfArg<String>? region,
-    required List<OamLinkResourceTypes> resourceTypes,
+    required EnumList<OamLinkResourceTypes> resourceTypes,
     required TfArg<String> sinkIdentifier,
     TfArg<Map<String, String>>? tags,
     OamLinkConfiguration? linkConfiguration,
@@ -114,9 +114,7 @@ final class AwsOamLink extends Resource {
          argMap: {
            'label_template': labelTemplate,
            'region': ?region,
-           'resource_types': TfArg.literal([
-             for (final e in resourceTypes) e.toTfJson(),
-           ]),
+           'resource_types': resourceTypes,
            'sink_identifier': sinkIdentifier,
            'tags': ?tags,
            if (linkConfiguration != null)

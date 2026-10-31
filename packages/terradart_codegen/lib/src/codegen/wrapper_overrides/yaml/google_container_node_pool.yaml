@@ -1,5 +1,4 @@
 outputDir: container
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true

@@ -1,0 +1,169 @@
+{
+  "name": "transcoder",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Animation": {
+      "properties": {
+        "animationFade": {
+          "$ref": "AnimationFade"
+        }
+      }
+    },
+    "AnimationFade": {
+      "properties": {
+        "fadeType": {
+          "enum": [
+            "FADE_TYPE_UNSPECIFIED",
+            "FADE_IN",
+            "FADE_OUT"
+          ]
+        }
+      }
+    },
+    "DashConfig": {
+      "properties": {
+        "segmentReferenceScheme": {
+          "enum": [
+            "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
+            "SEGMENT_LIST",
+            "SEGMENT_TEMPLATE_NUMBER"
+          ]
+        }
+      }
+    },
+    "ElementaryStream": {
+      "properties": {
+        "videoStream": {
+          "$ref": "VideoStream"
+        }
+      }
+    },
+    "H264CodecSettings": {
+      "properties": {
+        "frameRateConversionStrategy": {
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ]
+        }
+      }
+    },
+    "H265CodecSettings": {
+      "properties": {
+        "frameRateConversionStrategy": {
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ]
+        }
+      }
+    },
+    "Job": {
+      "properties": {
+        "state": {
+          "enum": [
+            "PROCESSING_STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        },
+        "optimization": {
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "AUTODETECT",
+            "DISABLED"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "PROCESSING_MODE_UNSPECIFIED",
+            "PROCESSING_MODE_INTERACTIVE",
+            "PROCESSING_MODE_BATCH"
+          ]
+        },
+        "config": {
+          "$ref": "JobConfig"
+        }
+      }
+    },
+    "JobConfig": {
+      "properties": {
+        "manifests": {
+          "items": {
+            "$ref": "Manifest"
+          }
+        },
+        "elementaryStreams": {
+          "items": {
+            "$ref": "ElementaryStream"
+          }
+        },
+        "overlays": {
+          "items": {
+            "$ref": "Overlay"
+          }
+        }
+      }
+    },
+    "JobTemplate": {
+      "properties": {
+        "config": {
+          "$ref": "JobConfig"
+        }
+      }
+    },
+    "Manifest": {
+      "properties": {
+        "dash": {
+          "$ref": "DashConfig"
+        },
+        "type": {
+          "enum": [
+            "MANIFEST_TYPE_UNSPECIFIED",
+            "HLS",
+            "DASH"
+          ]
+        }
+      }
+    },
+    "Overlay": {
+      "properties": {
+        "animations": {
+          "items": {
+            "$ref": "Animation"
+          }
+        }
+      }
+    },
+    "VideoStream": {
+      "properties": {
+        "vp9": {
+          "$ref": "Vp9CodecSettings"
+        },
+        "h265": {
+          "$ref": "H265CodecSettings"
+        },
+        "h264": {
+          "$ref": "H264CodecSettings"
+        }
+      }
+    },
+    "Vp9CodecSettings": {
+      "properties": {
+        "frameRateConversionStrategy": {
+          "enum": [
+            "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED",
+            "DOWNSAMPLE",
+            "DROP_DUPLICATE"
+          ]
+        }
+      }
+    }
+  }
+}

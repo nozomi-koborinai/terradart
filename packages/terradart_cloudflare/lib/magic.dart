@@ -20,7 +20,9 @@ export 'src/data/cloudflare_magic_transit_connector.dart'
         DataMagicTransitConnectorDeviceType,
         DataMagicTransitConnectorFilter;
 export 'src/data/cloudflare_magic_transit_connectors.dart'
-    show DataCloudflareMagicTransitConnectors;
+    show
+        DataCloudflareMagicTransitConnectors,
+        DataMagicTransitConnectorsDeviceType;
 export 'src/data/cloudflare_magic_transit_site.dart'
     show DataCloudflareMagicTransitSite, DataMagicTransitSiteFilter;
 export 'src/data/cloudflare_magic_transit_site_acl.dart'

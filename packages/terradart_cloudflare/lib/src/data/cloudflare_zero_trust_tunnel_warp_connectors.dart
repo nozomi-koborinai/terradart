@@ -8,6 +8,37 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustTunnelWarpConnectorsSensitive =
     <String>{};
 
+/// Data Zero Trust Tunnel Warp Connectors enum for `status`.
+extension type const DataZeroTrustTunnelWarpConnectorsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustTunnelWarpConnectorsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustTunnelWarpConnectorsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustTunnelWarpConnectorsStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inactive = DataZeroTrustTunnelWarpConnectorsStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const degraded = DataZeroTrustTunnelWarpConnectorsStatus._(
+    TfArgLiteral('degraded'),
+  );
+  static const healthy = DataZeroTrustTunnelWarpConnectorsStatus._(
+    TfArgLiteral('healthy'),
+  );
+  static const down = DataZeroTrustTunnelWarpConnectorsStatus._(
+    TfArgLiteral('down'),
+  );
+
+  static const List<DataZeroTrustTunnelWarpConnectorsStatus> values = [
+    inactive,
+    degraded,
+    healthy,
+    down,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_tunnel_warp_connectors`.
 ///
 /// Accepted Permissions
@@ -27,7 +58,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
     TfArg<bool>? isDeleted,
     TfArg<num>? maxItems,
     TfArg<String>? name,
-    TfArg<String>? status,
+    DataZeroTrustTunnelWarpConnectorsStatus? status,
     TfArg<String>? uuid,
     TfArg<String>? wasActiveAt,
     TfArg<String>? wasInactiveAt,

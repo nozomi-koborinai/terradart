@@ -127,7 +127,7 @@ final class HypercomputeclusterClusterNewSpotInstances {
 
   final TfArg<String> machineType;
 
-  final TfArg<String>? terminationAction;
+  final HypercomputeclusterClusterTerminationAction? terminationAction;
 
   final TfArg<String> zone;
 
@@ -137,6 +137,30 @@ final class HypercomputeclusterClusterNewSpotInstances {
     'termination_action': ?terminationAction?.toTfJson(),
     'zone': zone.toTfJson(),
   };
+}
+
+/// `termination_action` — derived from the provider schema description.
+extension type const HypercomputeclusterClusterTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HypercomputeclusterClusterTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterTerminationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterTerminationAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const stop = HypercomputeclusterClusterTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+  static const delete = HypercomputeclusterClusterTerminationAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<HypercomputeclusterClusterTerminationAction> values = [
+    stop,
+    delete,
+  ];
 }
 
 /// Typed helper for the `network_resources` block of
@@ -546,7 +570,7 @@ final class HypercomputeclusterClusterNewBucket {
 
   final TfArg<String> bucket;
 
-  final TfArg<String>? storageClass;
+  final HypercomputeclusterClusterStorageClass? storageClass;
 
   final HypercomputeclusterClusterAutoclass? autoclass;
 
@@ -561,6 +585,42 @@ final class HypercomputeclusterClusterNewBucket {
   };
 }
 
+/// `storage_class` — derived from the provider schema description.
+extension type const HypercomputeclusterClusterStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  HypercomputeclusterClusterStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const storageClassUnspecified =
+      HypercomputeclusterClusterStorageClass._(
+        TfArgLiteral('STORAGE_CLASS_UNSPECIFIED'),
+      );
+  static const standard = HypercomputeclusterClusterStorageClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const nearline = HypercomputeclusterClusterStorageClass._(
+    TfArgLiteral('NEARLINE'),
+  );
+  static const coldline = HypercomputeclusterClusterStorageClass._(
+    TfArgLiteral('COLDLINE'),
+  );
+  static const archive = HypercomputeclusterClusterStorageClass._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<HypercomputeclusterClusterStorageClass> values = [
+    storageClassUnspecified,
+    standard,
+    nearline,
+    coldline,
+    archive,
+  ];
+}
+
 /// Typed helper for the `storage_resources.config.new_bucket.autoclass` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
@@ -572,13 +632,37 @@ final class HypercomputeclusterClusterAutoclass {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? terminalStorageClass;
+  final HypercomputeclusterClusterTerminalStorageClass? terminalStorageClass;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
   };
+}
+
+/// `terminal_storage_class` — derived from the provider schema description.
+extension type const HypercomputeclusterClusterTerminalStorageClass._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HypercomputeclusterClusterTerminalStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterTerminalStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterTerminalStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nearline = HypercomputeclusterClusterTerminalStorageClass._(
+    TfArgLiteral('NEARLINE'),
+  );
+  static const archive = HypercomputeclusterClusterTerminalStorageClass._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<HypercomputeclusterClusterTerminalStorageClass> values = [
+    nearline,
+    archive,
+  ];
 }
 
 /// Typed helper for the `storage_resources.config.new_bucket.hierarchical_namespace` block of
@@ -715,7 +799,8 @@ final class HypercomputeclusterClusterNewLustre {
 
   final TfArg<String> lustre;
 
-  final TfArg<String>? perUnitStorageThroughput;
+  final HypercomputeclusterClusterPerUnitStorageThroughput?
+  perUnitStorageThroughput;
 
   @internal
   Map<String, Object?> encode() => {
@@ -725,6 +810,35 @@ final class HypercomputeclusterClusterNewLustre {
     'lustre': lustre.toTfJson(),
     'per_unit_storage_throughput': ?perUnitStorageThroughput?.toTfJson(),
   };
+}
+
+/// `per_unit_storage_throughput` — derived from the provider schema description.
+extension type const HypercomputeclusterClusterPerUnitStorageThroughput._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HypercomputeclusterClusterPerUnitStorageThroughput.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterPerUnitStorageThroughput.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterPerUnitStorageThroughput.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const v125 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('125'),
+  );
+  static const v250 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('250'),
+  );
+  static const v500 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('500'),
+  );
+  static const v1000 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('1000'),
+  );
+
+  static const List<HypercomputeclusterClusterPerUnitStorageThroughput> values =
+      [v125, v250, v500, v1000];
 }
 
 /// Factory wrapper for `google_hypercomputecluster_cluster`.

@@ -22,7 +22,7 @@ final class ApihubApiHubInstanceConfig {
 
   final TfArg<bool>? disableSearch;
 
-  final TfArg<String>? encryptionType;
+  final ApihubApiHubInstanceEncryptionType? encryptionType;
 
   final TfArg<String>? vertexLocation;
 
@@ -33,6 +33,25 @@ final class ApihubApiHubInstanceConfig {
     'encryption_type': ?encryptionType?.toTfJson(),
     'vertex_location': ?vertexLocation?.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+extension type const ApihubApiHubInstanceEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubApiHubInstanceEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubApiHubInstanceEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubApiHubInstanceEncryptionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const gmek = ApihubApiHubInstanceEncryptionType._(
+    TfArgLiteral('GMEK'),
+  );
+  static const cmek = ApihubApiHubInstanceEncryptionType._(
+    TfArgLiteral('CMEK'),
+  );
+
+  static const List<ApihubApiHubInstanceEncryptionType> values = [gmek, cmek];
 }
 
 /// Factory wrapper for `google_apihub_api_hub_instance`.

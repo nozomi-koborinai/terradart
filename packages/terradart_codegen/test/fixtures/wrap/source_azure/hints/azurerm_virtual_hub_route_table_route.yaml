@@ -8,3 +8,6 @@ properties:
       - "CIDR"
       - "ResourceId"
       - "Service"
+  - api_name: next_hop_type
+    enum_values:
+      - "ResourceId"

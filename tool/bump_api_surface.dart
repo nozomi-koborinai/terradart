@@ -91,7 +91,6 @@ Map<String, Map<String, Object?>> _readSurface(String path) {
 
 /// The generated manifests of [lanes] (tool/providers.yaml names), found by
 /// each lane's `outputPackage`.
-@visibleForTesting
 List<MigrateManifest> laneManifests(String providersYaml, List<String> lanes) {
   final providers =
       (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;

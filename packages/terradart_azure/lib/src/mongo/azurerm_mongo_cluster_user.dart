@@ -7,6 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_mongo_cluster_user`.
 const Set<String> _azurermMongoClusterUserSensitive = <String>{};
 
+/// Mongo Cluster User Identity Provider enum for `identity_provider_type`.
+extension type const MongoClusterUserIdentityProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoClusterUserIdentityProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  MongoClusterUserIdentityProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoClusterUserIdentityProviderType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const microsoftentraid = MongoClusterUserIdentityProviderType._(
+    TfArgLiteral('MicrosoftEntraID'),
+  );
+
+  static const List<MongoClusterUserIdentityProviderType> values = [
+    microsoftentraid,
+  ];
+}
+
 /// Mongo Cluster User Principal enum for `principal_type`.
 extension type const MongoClusterUserPrincipalType._(TfArg<String> _)
     implements TfArg<String> {
@@ -35,7 +54,7 @@ final class MongoClusterUserRole {
 
   final TfArg<String> database;
 
-  final TfArg<String> name;
+  final MongoClusterUserName name;
 
   @internal
   Map<String, Object?> encode() => {
@@ -44,13 +63,26 @@ final class MongoClusterUserRole {
   };
 }
 
+/// `name` — derived from the provider schema description.
+extension type const MongoClusterUserName._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoClusterUserName.variable(String name) : this._(TfArg.variable(name));
+  MongoClusterUserName.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoClusterUserName.arg(TfArg<String> arg) : this._(arg);
+
+  static const root = MongoClusterUserName._(TfArgLiteral('root'));
+
+  static const List<MongoClusterUserName> values = [root];
+}
+
 /// Factory wrapper for `azurerm_mongo_cluster_user`.
 final class AzurermMongoClusterUser extends Resource {
   static const String tfType = 'azurerm_mongo_cluster_user';
 
   AzurermMongoClusterUser(
     super.localName, {
-    required TfArg<String> identityProviderType,
+    required MongoClusterUserIdentityProviderType identityProviderType,
     required TfArg<String> mongoClusterId,
     required TfArg<String> objectId,
     required MongoClusterUserPrincipalType principalType,

@@ -156,7 +156,7 @@ final class ApiManagementApiImport {
     this.wsdlSelector,
   });
 
-  final TfArg<String> contentFormat;
+  final ApiManagementApiContentFormat contentFormat;
 
   final TfArg<String> contentValue;
 
@@ -168,6 +168,58 @@ final class ApiManagementApiImport {
     'content_value': contentValue.toTfJson(),
     'wsdl_selector': ?wsdlSelector?.encode(),
   };
+}
+
+/// `content_format` — derived from the provider schema description.
+extension type const ApiManagementApiContentFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementApiContentFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementApiContentFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementApiContentFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const openapi = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi'),
+  );
+  static const openapiJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi+json'),
+  );
+  static const openapiJsonLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi+json-link'),
+  );
+  static const openapiLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi-link'),
+  );
+  static const swaggerJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('swagger-json'),
+  );
+  static const swaggerLinkJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('swagger-link-json'),
+  );
+  static const wadlLinkJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('wadl-link-json'),
+  );
+  static const wadlXml = ApiManagementApiContentFormat._(
+    TfArgLiteral('wadl-xml'),
+  );
+  static const wsdl = ApiManagementApiContentFormat._(TfArgLiteral('wsdl'));
+  static const wsdlLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('wsdl-link'),
+  );
+
+  static const List<ApiManagementApiContentFormat> values = [
+    openapi,
+    openapiJson,
+    openapiJsonLink,
+    openapiLink,
+    swaggerJson,
+    swaggerLinkJson,
+    wadlLinkJson,
+    wadlXml,
+    wsdl,
+    wsdlLink,
+  ];
 }
 
 /// Typed helper for the `import.wsdl_selector` block of
@@ -236,17 +288,14 @@ final class ApiManagementApiOpenidAuthentication {
     required this.openidProviderName,
   });
 
-  final List<ApiManagementApiBearerTokenSendingMethods>?
+  final EnumList<ApiManagementApiBearerTokenSendingMethods>?
   bearerTokenSendingMethods;
 
   final TfArg<String> openidProviderName;
 
   @internal
   Map<String, Object?> encode() => {
-    if (bearerTokenSendingMethods != null)
-      'bearer_token_sending_methods': [
-        for (final e in bearerTokenSendingMethods!) e.toTfJson(),
-      ],
+    'bearer_token_sending_methods': ?bearerTokenSendingMethods?.toTfJson(),
     'openid_provider_name': openidProviderName.toTfJson(),
   };
 }
@@ -308,7 +357,7 @@ final class AzurermApiManagementApi extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> name,
     TfArg<String>? path,
-    List<ApiManagementApiProtocols>? protocols,
+    EnumList<ApiManagementApiProtocols>? protocols,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> revision,
     TfArg<String>? revisionDescription,
@@ -338,10 +387,7 @@ final class AzurermApiManagementApi extends Resource {
            'display_name': ?displayName,
            'name': name,
            'path': ?path,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'revision': revision,
            'revision_description': ?revisionDescription,

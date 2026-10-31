@@ -128,7 +128,7 @@ final class GoogleNetappBackupVault extends Resource {
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? backupRegion,
-    TfArg<String>? backupVaultType,
+    NetappBackupVaultType? backupVaultType,
     NetappBackupVaultBackupRetentionPolicy? backupRetentionPolicy,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

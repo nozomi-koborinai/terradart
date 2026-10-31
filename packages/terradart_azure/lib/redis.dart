@@ -11,6 +11,7 @@ export 'src/redis/azurerm_redis_cache.dart'
         RedisCacheDataPersistenceAuthenticationMethod,
         RedisCacheFamily,
         RedisCacheIdentity,
+        RedisCacheMinimumTlsVersion,
         RedisCachePatchSchedule,
         RedisCacheRedisConfiguration,
         RedisCacheRedisVersion,

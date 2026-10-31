@@ -62,11 +62,11 @@ final class ComputeWireGroupWireProperties {
     this.faultResponse,
   });
 
-  final TfArg<String> bandwidthAllocation;
+  final ComputeWireGroupBandwidthAllocation bandwidthAllocation;
 
   final TfArg<num>? bandwidthUnmetered;
 
-  final TfArg<String>? faultResponse;
+  final ComputeWireGroupFaultResponse? faultResponse;
 
   @internal
   Map<String, Object?> encode() => {
@@ -74,6 +74,46 @@ final class ComputeWireGroupWireProperties {
     'bandwidth_unmetered': ?bandwidthUnmetered?.toTfJson(),
     'fault_response': ?faultResponse?.toTfJson(),
   };
+}
+
+/// `bandwidth_allocation` — derived from the provider schema description.
+extension type const ComputeWireGroupBandwidthAllocation._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeWireGroupBandwidthAllocation.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeWireGroupBandwidthAllocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeWireGroupBandwidthAllocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allocatePerWire = ComputeWireGroupBandwidthAllocation._(
+    TfArgLiteral('ALLOCATE_PER_WIRE'),
+  );
+  static const sharedWithWireGroup = ComputeWireGroupBandwidthAllocation._(
+    TfArgLiteral('SHARED_WITH_WIRE_GROUP'),
+  );
+
+  static const List<ComputeWireGroupBandwidthAllocation> values = [
+    allocatePerWire,
+    sharedWithWireGroup,
+  ];
+}
+
+/// `fault_response` — derived from the provider schema description.
+extension type const ComputeWireGroupFaultResponse._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeWireGroupFaultResponse.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeWireGroupFaultResponse.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeWireGroupFaultResponse.arg(TfArg<String> arg) : this._(arg);
+
+  static const disablePort = ComputeWireGroupFaultResponse._(
+    TfArgLiteral('DISABLE_PORT'),
+  );
+  static const none = ComputeWireGroupFaultResponse._(TfArgLiteral('NONE'));
+
+  static const List<ComputeWireGroupFaultResponse> values = [disablePort, none];
 }
 
 /// Factory wrapper for `google_compute_wire_group`.

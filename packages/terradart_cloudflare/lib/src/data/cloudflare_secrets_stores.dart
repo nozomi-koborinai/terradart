@@ -7,6 +7,36 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_secrets_stores`.
 const Set<String> _cloudflareSecretsStoresSensitive = <String>{};
 
+/// Data Secrets Stores enum for `direction`.
+extension type const DataSecretsStoresDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoresDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoresDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoresDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataSecretsStoresDirection._(TfArgLiteral('asc'));
+  static const desc = DataSecretsStoresDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSecretsStoresDirection> values = [asc, desc];
+}
+
+/// Data Secrets Stores enum for `order`.
+extension type const DataSecretsStoresOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoresOrder.variable(String name) : this._(TfArg.variable(name));
+  DataSecretsStoresOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoresOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataSecretsStoresOrder._(TfArgLiteral('name'));
+  static const created = DataSecretsStoresOrder._(TfArgLiteral('created'));
+  static const modified = DataSecretsStoresOrder._(TfArgLiteral('modified'));
+
+  static const List<DataSecretsStoresOrder> values = [name, created, modified];
+}
+
 /// Factory wrapper for `cloudflare_secrets_stores`.
 ///
 /// Accepted Permissions
@@ -18,9 +48,9 @@ final class DataCloudflareSecretsStores extends Data {
   DataCloudflareSecretsStores(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataSecretsStoresDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataSecretsStoresOrder? order,
     super.provider,
     super.timeouts,
   }) : super(

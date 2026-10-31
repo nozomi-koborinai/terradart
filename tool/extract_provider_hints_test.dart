@@ -827,4 +827,28 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       });
     });
   }
+
+  test('an unresolved value-set validator needs a ledger reason', () {
+    expect(
+      unresolvedSiteErrors(
+        ['azurerm_a x', 'azurerm_a x', 'azurerm_b y'],
+        {'azurerm_a x': 'computed at run time', 'azurerm_c z': 'gone'},
+      ),
+      [
+        contains('unresolved value-set validator: azurerm_b y'),
+        contains(
+          'stale tool/provider_hints_unresolved.yaml entry: azurerm_c z',
+        ),
+      ],
+    );
+    expect(
+      unresolvedSiteErrors(['azurerm_a x'], {'azurerm_a x': 'r'}),
+      isEmpty,
+    );
+  });
+
+  test('the azurerm unresolved ledger gives every entry a reason', () {
+    final ledger = readUnresolvedLedger('azurerm');
+    expect(ledger.values.where((r) => r.trim().length < 20), isEmpty);
+  });
 }

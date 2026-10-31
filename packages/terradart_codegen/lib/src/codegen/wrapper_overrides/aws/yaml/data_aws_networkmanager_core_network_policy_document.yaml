@@ -1,6 +1,10 @@
 kind: data_source
 outputDir: data
 schemaStubBodyMode: bare
+deriveEnums: true
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+typeNames:
+  attachment_policies.conditions: DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions
+  attachment_routing_policy_rules.conditions: DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions

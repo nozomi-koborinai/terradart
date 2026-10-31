@@ -245,12 +245,47 @@ final class ManagedDevopsPoolAutomaticResourcePrediction {
     this.predictionPreference,
   });
 
-  final TfArg<String>? predictionPreference;
+  final ManagedDevopsPoolPredictionPreference? predictionPreference;
 
   @internal
   Map<String, Object?> encode() => {
     'prediction_preference': ?predictionPreference?.toTfJson(),
   };
+}
+
+/// `prediction_preference` — derived from the provider schema description.
+extension type const ManagedDevopsPoolPredictionPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDevopsPoolPredictionPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDevopsPoolPredictionPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDevopsPoolPredictionPreference.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const balanced = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('Balanced'),
+  );
+  static const bestperformance = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('BestPerformance'),
+  );
+  static const morecosteffective = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MoreCostEffective'),
+  );
+  static const moreperformance = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MorePerformance'),
+  );
+  static const mostcosteffective = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MostCostEffective'),
+  );
+
+  static const List<ManagedDevopsPoolPredictionPreference> values = [
+    balanced,
+    bestperformance,
+    morecosteffective,
+    moreperformance,
+    mostcosteffective,
+  ];
 }
 
 /// Typed helper for the `stateful_agent.manual_resource_prediction` block of
@@ -646,7 +681,7 @@ final class ManagedDevopsPoolStorage {
     this.storageAccountType,
   });
 
-  final TfArg<String>? caching;
+  final ManagedDevopsPoolCaching? caching;
 
   final TfArg<num> diskSizeInGb;
 
@@ -661,6 +696,22 @@ final class ManagedDevopsPoolStorage {
     'drive_letter': ?driveLetter?.toTfJson(),
     'storage_account_type': ?storageAccountType?.toTfJson(),
   };
+}
+
+/// `caching` — derived from the provider schema description.
+extension type const ManagedDevopsPoolCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDevopsPoolCaching.variable(String name) : this._(TfArg.variable(name));
+  ManagedDevopsPoolCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDevopsPoolCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const readonly = ManagedDevopsPoolCaching._(TfArgLiteral('ReadOnly'));
+  static const readwrite = ManagedDevopsPoolCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<ManagedDevopsPoolCaching> values = [readonly, readwrite];
 }
 
 /// `storage_account_type` — derived from the provider schema description.

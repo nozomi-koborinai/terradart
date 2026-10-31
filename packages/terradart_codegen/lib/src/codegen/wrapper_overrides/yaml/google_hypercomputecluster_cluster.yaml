@@ -1,4 +1,10 @@
 outputDir: hypercomputecluster
+enumValues:
+  storage_resources.config.new_lustre.per_unit_storage_throughput:
+    - '125'
+    - '250'
+    - '500'
+    - '1000'
 
 deriveClassDoc: true
 deriveExactlyOne: true

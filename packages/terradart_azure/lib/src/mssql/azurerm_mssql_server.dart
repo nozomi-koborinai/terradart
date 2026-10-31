@@ -36,6 +36,20 @@ extension type const MssqlServerConnectionPolicy._(TfArg<String> _)
   ];
 }
 
+/// Mssql Server Minimum Tls enum for `minimum_tls_version`.
+extension type const MssqlServerMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlServerMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlServerMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlServerMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = MssqlServerMinimumTlsVersion._(TfArgLiteral('1.2'));
+
+  static const List<MssqlServerMinimumTlsVersion> values = [v1p2];
+}
+
 /// Mssql Server enum for `version`.
 extension type const MssqlServerVersion._(TfArg<String> _)
     implements TfArg<String> {
@@ -190,7 +204,7 @@ final class AzurermMssqlServer extends Resource {
     MssqlServerConnectionPolicy? connectionPolicy,
     TfArg<bool>? expressVulnerabilityAssessmentEnabled,
     required TfArg<String> location,
-    TfArg<String>? minimumTlsVersion,
+    MssqlServerMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
     TfArg<bool>? outboundNetworkRestrictionEnabled,
     TfArg<String>? primaryUserAssignedIdentityId,

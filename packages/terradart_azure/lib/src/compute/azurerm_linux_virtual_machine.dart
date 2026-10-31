@@ -160,6 +160,47 @@ extension type const LinuxVirtualMachinePatchMode._(TfArg<String> _)
   ];
 }
 
+/// Linux Virtual Machine enum for `priority`.
+extension type const LinuxVirtualMachinePriority._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachinePriority.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachinePriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachinePriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const regular = LinuxVirtualMachinePriority._(TfArgLiteral('Regular'));
+  static const spot = LinuxVirtualMachinePriority._(TfArgLiteral('Spot'));
+
+  static const List<LinuxVirtualMachinePriority> values = [regular, spot];
+}
+
+/// Linux Virtual Machine Reboot enum for `reboot_setting`.
+extension type const LinuxVirtualMachineRebootSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineRebootSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineRebootSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineRebootSetting.arg(TfArg<String> arg) : this._(arg);
+
+  static const always = LinuxVirtualMachineRebootSetting._(
+    TfArgLiteral('Always'),
+  );
+  static const ifrequired = LinuxVirtualMachineRebootSetting._(
+    TfArgLiteral('IfRequired'),
+  );
+  static const never = LinuxVirtualMachineRebootSetting._(
+    TfArgLiteral('Never'),
+  );
+
+  static const List<LinuxVirtualMachineRebootSetting> values = [
+    always,
+    ifrequired,
+    never,
+  ];
+}
+
 /// Exactly one of these input sets on `azurerm_linux_virtual_machine`. The provider rejects any other mix of them.
 ///
 /// - `.image` sets `admin_username` and one of `source_image_id` or `source_image_reference`.
@@ -519,29 +560,26 @@ final class LinuxVirtualMachineIdentity {
 final class LinuxVirtualMachineOsDisk {
   const LinuxVirtualMachineOsDisk({
     required this.caching,
-    this.diskEncryptionSetId,
+    this.encryptionSet,
     this.diskSizeGb,
     this.name,
-    this.secureVmDiskEncryptionSetId,
     this.securityEncryptionType,
     this.storageAccountType,
     this.writeAcceleratorEnabled,
     this.diffDiskSettings,
   });
 
-  final TfArg<String> caching;
+  final LinuxVirtualMachineCaching caching;
 
-  final TfArg<String>? diskEncryptionSetId;
+  final LinuxVirtualMachineEncryptionSet? encryptionSet;
 
   final TfArg<num>? diskSizeGb;
 
   final TfArg<String>? name;
 
-  final TfArg<String>? secureVmDiskEncryptionSetId;
+  final LinuxVirtualMachineSecurityEncryptionType? securityEncryptionType;
 
-  final TfArg<String>? securityEncryptionType;
-
-  final TfArg<String>? storageAccountType;
+  final LinuxVirtualMachineStorageAccountType? storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -550,16 +588,164 @@ final class LinuxVirtualMachineOsDisk {
   @internal
   Map<String, Object?> encode() => {
     'caching': caching.toTfJson(),
-    'disk_encryption_set_id': ?diskEncryptionSetId?.toTfJson(),
+    ...?encryptionSet?.encode(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'name': ?name?.toTfJson(),
-    'secure_vm_disk_encryption_set_id': ?secureVmDiskEncryptionSetId
-        ?.toTfJson(),
     'security_encryption_type': ?securityEncryptionType?.toTfJson(),
     'storage_account_type': ?storageAccountType?.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
     'diff_disk_settings': ?diffDiskSettings?.encode(),
   };
+}
+
+/// At most one of `disk_encryption_set_id`, `secure_vm_disk_encryption_set_id` on the `os_disk` block of `azurerm_linux_virtual_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.diskEncryptionSetId(...)`.
+sealed class LinuxVirtualMachineEncryptionSet {
+  const LinuxVirtualMachineEncryptionSet();
+
+  /// Sets `disk_encryption_set_id`.
+  const factory LinuxVirtualMachineEncryptionSet.diskEncryptionSetId(
+    TfArg<String> diskEncryptionSetId,
+  ) = LinuxVirtualMachineEncryptionSetDiskEncryptionSetId;
+
+  /// Sets `secure_vm_disk_encryption_set_id`.
+  const factory LinuxVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId(
+    TfArg<String> secureVmDiskEncryptionSetId,
+  ) = LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxVirtualMachineEncryptionSet.diskEncryptionSetId] choice: sets `disk_encryption_set_id`.
+final class LinuxVirtualMachineEncryptionSetDiskEncryptionSetId
+    extends LinuxVirtualMachineEncryptionSet {
+  const LinuxVirtualMachineEncryptionSetDiskEncryptionSetId(
+    this.diskEncryptionSetId,
+  );
+
+  final TfArg<String> diskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'disk_encryption_set_id': diskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// The [LinuxVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId] choice: sets `secure_vm_disk_encryption_set_id`.
+final class LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId
+    extends LinuxVirtualMachineEncryptionSet {
+  const LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId(
+    this.secureVmDiskEncryptionSetId,
+  );
+
+  final TfArg<String> secureVmDiskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'secure_vm_disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// `caching` — derived from the provider schema description.
+extension type const LinuxVirtualMachineCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = LinuxVirtualMachineCaching._(TfArgLiteral('None'));
+  static const readonly = LinuxVirtualMachineCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = LinuxVirtualMachineCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<LinuxVirtualMachineCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
+}
+
+/// `security_encryption_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineSecurityEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineSecurityEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineSecurityEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineSecurityEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vmgueststateonly = LinuxVirtualMachineSecurityEncryptionType._(
+    TfArgLiteral('VMGuestStateOnly'),
+  );
+  static const diskwithvmgueststate =
+      LinuxVirtualMachineSecurityEncryptionType._(
+        TfArgLiteral('DiskWithVMGuestState'),
+      );
+
+  static const List<LinuxVirtualMachineSecurityEncryptionType> values = [
+    vmgueststateonly,
+    diskwithvmgueststate,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = LinuxVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = LinuxVirtualMachineStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = LinuxVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const standardssdZrs = LinuxVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_ZRS'),
+  );
+  static const premiumZrs = LinuxVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_ZRS'),
+  );
+
+  static const List<LinuxVirtualMachineStorageAccountType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    premiumZrs,
+  ];
 }
 
 /// Typed helper for the `os_disk.diff_disk_settings` block of
@@ -571,9 +757,9 @@ final class LinuxVirtualMachineDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final LinuxVirtualMachineOption option;
 
-  final TfArg<String>? placement;
+  final LinuxVirtualMachinePlacement? placement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -582,16 +768,70 @@ final class LinuxVirtualMachineDiffDiskSettings {
   };
 }
 
+/// `option` — derived from the provider schema description.
+extension type const LinuxVirtualMachineOption._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineOption.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const local = LinuxVirtualMachineOption._(TfArgLiteral('Local'));
+
+  static const List<LinuxVirtualMachineOption> values = [local];
+}
+
+/// `placement` — derived from the provider schema description.
+extension type const LinuxVirtualMachinePlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachinePlacement.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachinePlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachinePlacement.arg(TfArg<String> arg) : this._(arg);
+
+  static const cachedisk = LinuxVirtualMachinePlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+  static const nvmedisk = LinuxVirtualMachinePlacement._(
+    TfArgLiteral('NvmeDisk'),
+  );
+  static const resourcedisk = LinuxVirtualMachinePlacement._(
+    TfArgLiteral('ResourceDisk'),
+  );
+
+  static const List<LinuxVirtualMachinePlacement> values = [
+    cachedisk,
+    nvmedisk,
+    resourcedisk,
+  ];
+}
+
 /// Typed helper for the `os_image_notification` block of
 /// `azurerm_linux_virtual_machine` (derived from provider schema).
 @immutable
 final class LinuxVirtualMachineOsImageNotification {
   const LinuxVirtualMachineOsImageNotification({this.timeout});
 
-  final TfArg<String>? timeout;
+  final LinuxVirtualMachineTimeout? timeout;
 
   @internal
   Map<String, Object?> encode() => {'timeout': ?timeout?.toTfJson()};
+}
+
+/// `timeout` — derived from the provider schema description.
+extension type const LinuxVirtualMachineTimeout._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineTimeout.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineTimeout.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineTimeout.arg(TfArg<String> arg) : this._(arg);
+
+  static const pt15m = LinuxVirtualMachineTimeout._(TfArgLiteral('PT15M'));
+
+  static const List<LinuxVirtualMachineTimeout> values = [pt15m];
 }
 
 /// Typed helper for the `plan` block of
@@ -727,10 +967,10 @@ final class AzurermLinuxVirtualMachine extends Resource {
     LinuxVirtualMachinePatchAssessmentMode? patchAssessmentMode,
     LinuxVirtualMachinePatchMode? patchMode,
     TfArg<num>? platformFaultDomain,
-    TfArg<String>? priority,
+    LinuxVirtualMachinePriority? priority,
     TfArg<bool>? provisionVmAgent,
     TfArg<String>? proximityPlacementGroupId,
-    TfArg<String>? rebootSetting,
+    LinuxVirtualMachineRebootSetting? rebootSetting,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     required TfArg<String> size,

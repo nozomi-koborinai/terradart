@@ -33,7 +33,7 @@ final class AwsControltowerLandingZone extends Resource {
     super.localName, {
     required TfArg<String> manifestJson,
     TfArg<String>? region,
-    List<ControltowerLandingZoneRemediationTypes>? remediationTypes,
+    EnumList<ControltowerLandingZoneRemediationTypes>? remediationTypes,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> version,
     super.lifecycle,
@@ -45,10 +45,7 @@ final class AwsControltowerLandingZone extends Resource {
          argMap: {
            'manifest_json': manifestJson,
            'region': ?region,
-           if (remediationTypes != null)
-             'remediation_types': TfArg.literal([
-               for (final e in remediationTypes) e.toTfJson(),
-             ]),
+           'remediation_types': ?remediationTypes,
            'tags': ?tags,
            'version': version,
          },

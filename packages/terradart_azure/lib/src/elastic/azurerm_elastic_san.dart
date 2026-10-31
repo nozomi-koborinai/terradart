@@ -17,7 +17,7 @@ final class ElasticSanSku {
 
   final ElasticSanSkuName name;
 
-  final TfArg<String>? tier;
+  final ElasticSanTier? tier;
 
   @internal
   Map<String, Object?> encode() => {
@@ -38,6 +38,19 @@ extension type const ElasticSanSkuName._(TfArg<String> _)
   static const premiumZrs = ElasticSanSkuName._(TfArgLiteral('Premium_ZRS'));
 
   static const List<ElasticSanSkuName> values = [premiumLrs, premiumZrs];
+}
+
+/// `tier` — derived from the provider schema description.
+extension type const ElasticSanTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticSanTier.variable(String name) : this._(TfArg.variable(name));
+  ElasticSanTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticSanTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = ElasticSanTier._(TfArgLiteral('Premium'));
+
+  static const List<ElasticSanTier> values = [premium];
 }
 
 /// Factory wrapper for `azurerm_elastic_san`.

@@ -11,6 +11,33 @@ const Set<String> _azurermStreamAnalyticsJobSensitive = <String>{
   'job_storage_account.account_key',
 };
 
+/// Stream Analytics Job Compatibility enum for `compatibility_level`.
+extension type const StreamAnalyticsJobCompatibilityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsJobCompatibilityLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsJobCompatibilityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsJobCompatibilityLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = StreamAnalyticsJobCompatibilityLevel._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = StreamAnalyticsJobCompatibilityLevel._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = StreamAnalyticsJobCompatibilityLevel._(
+    TfArgLiteral('1.2'),
+  );
+
+  static const List<StreamAnalyticsJobCompatibilityLevel> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+  ];
+}
+
 /// Stream Analytics Job Content Storage enum for `content_storage_policy`.
 extension type const StreamAnalyticsJobContentStoragePolicy._(TfArg<String> _)
     implements TfArg<String> {
@@ -77,6 +104,23 @@ extension type const StreamAnalyticsJobOutputErrorPolicy._(TfArg<String> _)
   static const List<StreamAnalyticsJobOutputErrorPolicy> values = [drop, stop];
 }
 
+/// Stream Analytics Job Sku enum for `sku_name`.
+extension type const StreamAnalyticsJobSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsJobSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsJobSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsJobSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = StreamAnalyticsJobSkuName._(TfArgLiteral('Standard'));
+  static const standardv2 = StreamAnalyticsJobSkuName._(
+    TfArgLiteral('StandardV2'),
+  );
+
+  static const List<StreamAnalyticsJobSkuName> values = [standard, standardv2];
+}
+
 /// Stream Analytics Job enum for `type`.
 extension type const StreamAnalyticsJobType._(TfArg<String> _)
     implements TfArg<String> {
@@ -122,7 +166,7 @@ final class StreamAnalyticsJobStorageAccount {
 
   final TfArg<String> accountName;
 
-  final TfArg<String>? authenticationMode;
+  final StreamAnalyticsJobAuthenticationMode? authenticationMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -132,13 +176,36 @@ final class StreamAnalyticsJobStorageAccount {
   };
 }
 
+/// `authentication_mode` — derived from the provider schema description.
+extension type const StreamAnalyticsJobAuthenticationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsJobAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsJobAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsJobAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectionstring = StreamAnalyticsJobAuthenticationMode._(
+    TfArgLiteral('ConnectionString'),
+  );
+  static const msi = StreamAnalyticsJobAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+
+  static const List<StreamAnalyticsJobAuthenticationMode> values = [
+    connectionstring,
+    msi,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_job`.
 final class AzurermStreamAnalyticsJob extends Resource {
   static const String tfType = 'azurerm_stream_analytics_job';
 
   AzurermStreamAnalyticsJob(
     super.localName, {
-    TfArg<String>? compatibilityLevel,
+    StreamAnalyticsJobCompatibilityLevel? compatibilityLevel,
     StreamAnalyticsJobContentStoragePolicy? contentStoragePolicy,
     TfArg<String>? dataLocale,
     TfArg<num>? eventsLateArrivalMaxDelayInSeconds,
@@ -148,7 +215,7 @@ final class AzurermStreamAnalyticsJob extends Resource {
     required TfArg<String> name,
     StreamAnalyticsJobOutputErrorPolicy? outputErrorPolicy,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? skuName,
+    StreamAnalyticsJobSkuName? skuName,
     TfArg<String>? streamAnalyticsClusterId,
     TfArg<num>? streamingUnits,
     TfArg<Map<String, String>>? tags,

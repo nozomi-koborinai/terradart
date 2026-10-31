@@ -199,14 +199,13 @@ final class CodebuildWebhookPullRequestBuildPolicy {
     required this.requiresCommentApproval,
   });
 
-  final List<CodebuildWebhookApproverRoles>? approverRoles;
+  final EnumList<CodebuildWebhookApproverRoles>? approverRoles;
 
   final CodebuildWebhookRequiresCommentApproval requiresCommentApproval;
 
   @internal
   Map<String, Object?> encode() => {
-    if (approverRoles != null)
-      'approver_roles': [for (final e in approverRoles!) e.toTfJson()],
+    'approver_roles': ?approverRoles?.toTfJson(),
     'requires_comment_approval': requiresCommentApproval.toTfJson(),
   };
 }

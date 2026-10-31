@@ -10,13 +10,38 @@ const Set<String> _azurermStreamAnalyticsOutputMssqlSensitive = <String>{
   'password',
 };
 
+/// Stream Analytics Output Mssql Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputMssqlAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputMssqlAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputMssqlAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputMssqlAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const msi = StreamAnalyticsOutputMssqlAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsOutputMssqlAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsOutputMssqlAuthenticationMode> values = [
+    msi,
+    connectionstring,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_mssql`.
 final class AzurermStreamAnalyticsOutputMssql extends Resource {
   static const String tfType = 'azurerm_stream_analytics_output_mssql';
 
   AzurermStreamAnalyticsOutputMssql(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputMssqlAuthenticationMode? authenticationMode,
     required TfArg<String> database,
     TfArg<num>? maxBatchCount,
     TfArg<num>? maxWriterCount,

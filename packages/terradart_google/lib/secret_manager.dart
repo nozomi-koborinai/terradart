@@ -29,7 +29,8 @@ export 'src/secret_manager/google_secret_manager_regional_secret.dart'
         GoogleSecretManagerRegionalSecret,
         SecretManagerRegionalSecretCustomerManagedEncryption,
         SecretManagerRegionalSecretRotation,
-        SecretManagerRegionalSecretTopics;
+        SecretManagerRegionalSecretTopics,
+        SecretManagerRegionalSecretType;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_binding.dart'
     show
         GoogleSecretManagerRegionalSecretIamBinding,
@@ -57,6 +58,7 @@ export 'src/secret_manager/google_secret_manager_secret.dart'
         SecretManagerSecretReplicationUserManaged,
         SecretManagerSecretRotation,
         SecretManagerSecretTopics,
+        SecretManagerSecretType,
         SecretManagerSecretUserManaged;
 export 'src/secret_manager/google_secret_manager_secret_iam_binding.dart'
     show

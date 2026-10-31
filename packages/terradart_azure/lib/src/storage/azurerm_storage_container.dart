@@ -8,13 +8,35 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_storage_container`.
 const Set<String> _azurermStorageContainerSensitive = <String>{};
 
+/// Storage Container Access enum for `container_access_type`.
+extension type const StorageContainerAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageContainerAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageContainerAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageContainerAccessType.arg(TfArg<String> arg) : this._(arg);
+
+  static const blob = StorageContainerAccessType._(TfArgLiteral('blob'));
+  static const container = StorageContainerAccessType._(
+    TfArgLiteral('container'),
+  );
+  static const private = StorageContainerAccessType._(TfArgLiteral('private'));
+
+  static const List<StorageContainerAccessType> values = [
+    blob,
+    container,
+    private,
+  ];
+}
+
 /// Factory wrapper for `azurerm_storage_container`.
 final class AzurermStorageContainer extends Resource {
   static const String tfType = 'azurerm_storage_container';
 
   AzurermStorageContainer(
     super.localName, {
-    TfArg<String>? containerAccessType,
+    StorageContainerAccessType? containerAccessType,
     TfArg<String>? defaultEncryptionScope,
     TfArg<bool>? encryptionScopeOverrideEnabled,
     TfArg<Map<String, String>>? metadata,

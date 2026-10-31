@@ -55,7 +55,6 @@ export 'src/monitoring/google_monitoring_alert_policy.dart'
         MonitoringAlertPolicyScheduleMinutes,
         MonitoringAlertPolicyTest,
         MonitoringAlertPolicyTrigger,
-        NotificationPrompt,
         Reducer;
 export 'src/monitoring/google_monitoring_custom_service.dart'
     show GoogleMonitoringCustomService, MonitoringCustomServiceTelemetry;
@@ -150,6 +149,7 @@ export 'src/monitoring/google_monitoring_uptime_check_config.dart'
         MonitoringUptimeCheckConfigPassword,
         MonitoringUptimeCheckConfigPasswordChoice,
         MonitoringUptimeCheckConfigPasswordWo,
+        MonitoringUptimeCheckConfigPeriod,
         MonitoringUptimeCheckConfigPingConfig,
         MonitoringUptimeCheckConfigResourceGroup,
         MonitoringUptimeCheckConfigServiceAgentAuthentication,

@@ -257,8 +257,9 @@ final class AwsLambdaLayerVersion extends Resource {
 
   AwsLambdaLayerVersion(
     super.localName, {
-    List<LambdaLayerVersionCompatibleArchitectures>? compatibleArchitectures,
-    List<LambdaLayerVersionCompatibleRuntimes>? compatibleRuntimes,
+    EnumList<LambdaLayerVersionCompatibleArchitectures>?
+    compatibleArchitectures,
+    EnumList<LambdaLayerVersionCompatibleRuntimes>? compatibleRuntimes,
     TfArg<String>? description,
     TfArg<String>? filename,
     required TfArg<String> layerName,
@@ -276,14 +277,8 @@ final class AwsLambdaLayerVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (compatibleArchitectures != null)
-             'compatible_architectures': TfArg.literal([
-               for (final e in compatibleArchitectures) e.toTfJson(),
-             ]),
-           if (compatibleRuntimes != null)
-             'compatible_runtimes': TfArg.literal([
-               for (final e in compatibleRuntimes) e.toTfJson(),
-             ]),
+           'compatible_architectures': ?compatibleArchitectures,
+           'compatible_runtimes': ?compatibleRuntimes,
            'description': ?description,
            'filename': ?filename,
            'layer_name': layerName,

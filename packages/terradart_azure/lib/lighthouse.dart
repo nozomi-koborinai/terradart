@@ -13,4 +13,5 @@ export 'src/lighthouse/azurerm_lighthouse_definition.dart'
         LighthouseDefinitionAuthorization,
         LighthouseDefinitionEligibleAuthorization,
         LighthouseDefinitionJustInTimeAccessPolicy,
+        LighthouseDefinitionMultiFactorAuthProvider,
         LighthouseDefinitionPlan;

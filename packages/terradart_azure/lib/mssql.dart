@@ -28,6 +28,8 @@ export 'src/mssql/azurerm_mssql_database.dart'
         MssqlDatabaseImport,
         MssqlDatabaseLicenseType,
         MssqlDatabaseLongTermRetentionPolicy,
+        MssqlDatabaseMaintenanceConfigurationName,
+        MssqlDatabaseSampleName,
         MssqlDatabaseSecondaryType,
         MssqlDatabaseServiceConfiguration,
         MssqlDatabaseServiceConfigurationElasticPoolId,
@@ -35,6 +37,7 @@ export 'src/mssql/azurerm_mssql_database.dart'
         MssqlDatabaseShortTermRetentionPolicy,
         MssqlDatabaseState,
         MssqlDatabaseStorageAccountType,
+        MssqlDatabaseStorageKeyType,
         MssqlDatabaseThreatDetectionPolicy;
 export 'src/mssql/azurerm_mssql_database_extended_auditing_policy.dart'
     show AzurermMssqlDatabaseExtendedAuditingPolicy;
@@ -49,6 +52,7 @@ export 'src/mssql/azurerm_mssql_elasticpool.dart'
         MssqlElasticpoolEnclaveType,
         MssqlElasticpoolFamily,
         MssqlElasticpoolLicenseType,
+        MssqlElasticpoolMaintenanceConfigurationName,
         MssqlElasticpoolMaxSize,
         MssqlElasticpoolMaxSizeBytes,
         MssqlElasticpoolMaxSizeGb,
@@ -66,7 +70,7 @@ export 'src/mssql/azurerm_mssql_firewall_rule.dart'
     show AzurermMssqlFirewallRule;
 export 'src/mssql/azurerm_mssql_job.dart' show AzurermMssqlJob;
 export 'src/mssql/azurerm_mssql_job_agent.dart'
-    show AzurermMssqlJobAgent, MssqlJobAgentIdentity;
+    show AzurermMssqlJobAgent, MssqlJobAgentIdentity, MssqlJobAgentSku;
 export 'src/mssql/azurerm_mssql_job_credential.dart'
     show
         AzurermMssqlJobCredential,
@@ -98,8 +102,12 @@ export 'src/mssql/azurerm_mssql_managed_instance.dart'
         MssqlManagedInstanceHybridSecondaryUsage,
         MssqlManagedInstanceIdentity,
         MssqlManagedInstanceLicenseType,
+        MssqlManagedInstanceMinimumTlsVersion,
         MssqlManagedInstancePrincipalType,
-        MssqlManagedInstanceSkuName;
+        MssqlManagedInstanceProxyOverride,
+        MssqlManagedInstanceServicePrincipalType,
+        MssqlManagedInstanceSkuName,
+        MssqlManagedInstanceStorageAccountType;
 export 'src/mssql/azurerm_mssql_managed_instance_active_directory_administrator.dart'
     show AzurermMssqlManagedInstanceActiveDirectoryAdministrator;
 export 'src/mssql/azurerm_mssql_managed_instance_failover_group.dart'
@@ -135,6 +143,7 @@ export 'src/mssql/azurerm_mssql_server.dart'
         MssqlServerAzureadAdministrator,
         MssqlServerConnectionPolicy,
         MssqlServerIdentity,
+        MssqlServerMinimumTlsVersion,
         MssqlServerVersion;
 export 'src/mssql/azurerm_mssql_server_dns_alias.dart'
     show AzurermMssqlServerDnsAlias;
@@ -168,6 +177,7 @@ export 'src/mssql/azurerm_mssql_virtual_machine.dart'
         MssqlVirtualMachineLogSettings,
         MssqlVirtualMachineManualSchedule,
         MssqlVirtualMachineSchedule,
+        MssqlVirtualMachineScheduleDayOfWeek,
         MssqlVirtualMachineSqlConnectivityType,
         MssqlVirtualMachineSqlInstance,
         MssqlVirtualMachineSqlLicenseType,

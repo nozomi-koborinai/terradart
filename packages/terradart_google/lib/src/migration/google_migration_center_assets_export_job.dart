@@ -35,34 +35,6 @@ extension type const MigrationCenterAssetsExportJobDeletionPolicy._(
   ];
 }
 
-/// Export file format for `signed_uri_destination.file_format`.
-extension type const MigrationCenterAssetsExportJobFileFormat._(TfArg<String> _)
-    implements TfArg<String> {
-  MigrationCenterAssetsExportJobFileFormat.variable(String name)
-    : this._(TfArg.variable(name));
-  MigrationCenterAssetsExportJobFileFormat.expression(String template)
-    : this._(TfArg.expression(template));
-  const MigrationCenterAssetsExportJobFileFormat.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const fileFormatUnspecified =
-      MigrationCenterAssetsExportJobFileFormat._(
-        TfArgLiteral('FILE_FORMAT_UNSPECIFIED'),
-      );
-  static const fileFormatCsv = MigrationCenterAssetsExportJobFileFormat._(
-    TfArgLiteral('FILE_FORMAT_CSV'),
-  );
-  static const fileFormatJson = MigrationCenterAssetsExportJobFileFormat._(
-    TfArgLiteral('FILE_FORMAT_JSON'),
-  );
-
-  static const List<MigrationCenterAssetsExportJobFileFormat> values = [
-    fileFormatUnspecified,
-    fileFormatCsv,
-    fileFormatJson,
-  ];
-}
-
 /// Typed helper for the `condition` block of
 /// `google_migration_center_assets_export_job` (derived from provider schema).
 @immutable
@@ -99,6 +71,29 @@ final class MigrationCenterAssetsExportJobSignedUriDestination {
 
   @internal
   Map<String, Object?> encode() => {'file_format': fileFormat.toTfJson()};
+}
+
+/// `file_format` — derived from the provider schema description.
+extension type const MigrationCenterAssetsExportJobFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterAssetsExportJobFileFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterAssetsExportJobFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterAssetsExportJobFileFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const csv = MigrationCenterAssetsExportJobFileFormat._(
+    TfArgLiteral('CSV'),
+  );
+  static const xlsx = MigrationCenterAssetsExportJobFileFormat._(
+    TfArgLiteral('XLSX'),
+  );
+
+  static const List<MigrationCenterAssetsExportJobFileFormat> values = [
+    csv,
+    xlsx,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_assets_export_job`.

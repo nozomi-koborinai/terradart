@@ -1,0 +1,254 @@
+{
+  "name": "firestore",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://firestore.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Document": {
+      "properties": {
+        "fields": {
+          "additionalProperties": {
+            "$ref": "Value"
+          }
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1BackupSchedule": {
+      "properties": {
+        "weeklyRecurrence": {
+          "$ref": "GoogleFirestoreAdminV1WeeklyRecurrence"
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1ChangeStream": {
+      "properties": {}
+    },
+    "GoogleFirestoreAdminV1Database": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "FIRESTORE_NATIVE",
+            "DATASTORE_MODE"
+          ]
+        },
+        "deleteProtectionState": {
+          "enum": [
+            "DELETE_PROTECTION_STATE_UNSPECIFIED",
+            "DELETE_PROTECTION_DISABLED",
+            "DELETE_PROTECTION_ENABLED"
+          ]
+        },
+        "appEngineIntegrationMode": {
+          "enum": [
+            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "concurrencyMode": {
+          "enum": [
+            "CONCURRENCY_MODE_UNSPECIFIED",
+            "OPTIMISTIC",
+            "PESSIMISTIC",
+            "OPTIMISTIC_WITH_ENTITY_GROUPS"
+          ]
+        },
+        "firestoreDataAccessMode": {
+          "enum": [
+            "DATA_ACCESS_MODE_UNSPECIFIED",
+            "DATA_ACCESS_MODE_ENABLED",
+            "DATA_ACCESS_MODE_DISABLED"
+          ]
+        },
+        "pointInTimeRecoveryEnablement": {
+          "enum": [
+            "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
+            "POINT_IN_TIME_RECOVERY_ENABLED",
+            "POINT_IN_TIME_RECOVERY_DISABLED"
+          ]
+        },
+        "mongodbCompatibleDataAccessMode": {
+          "enum": [
+            "DATA_ACCESS_MODE_UNSPECIFIED",
+            "DATA_ACCESS_MODE_ENABLED",
+            "DATA_ACCESS_MODE_DISABLED"
+          ]
+        },
+        "realtimeUpdatesMode": {
+          "enum": [
+            "REALTIME_UPDATES_MODE_UNSPECIFIED",
+            "REALTIME_UPDATES_MODE_ENABLED",
+            "REALTIME_UPDATES_MODE_DISABLED"
+          ]
+        },
+        "databaseEdition": {
+          "enum": [
+            "DATABASE_EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1Field": {
+      "properties": {
+        "ttlConfig": {
+          "$ref": "GoogleFirestoreAdminV1TtlConfig"
+        },
+        "indexConfig": {
+          "$ref": "GoogleFirestoreAdminV1IndexConfig"
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1Index": {
+      "properties": {
+        "fields": {
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1IndexField"
+          }
+        },
+        "queryScope": {
+          "enum": [
+            "QUERY_SCOPE_UNSPECIFIED",
+            "COLLECTION",
+            "COLLECTION_GROUP",
+            "COLLECTION_RECURSIVE"
+          ]
+        },
+        "density": {
+          "enum": [
+            "DENSITY_UNSPECIFIED",
+            "SPARSE_ALL",
+            "SPARSE_ANY",
+            "DENSE"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "NEEDS_REPAIR"
+          ]
+        },
+        "apiScope": {
+          "enum": [
+            "ANY_API",
+            "DATASTORE_MODE_API",
+            "MONGODB_COMPATIBLE_API"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1IndexConfig": {
+      "properties": {
+        "indexes": {
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1Index"
+          }
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1IndexField": {
+      "properties": {
+        "arrayConfig": {
+          "enum": [
+            "ARRAY_CONFIG_UNSPECIFIED",
+            "CONTAINS"
+          ]
+        },
+        "searchConfig": {
+          "$ref": "GoogleFirestoreAdminV1SearchConfig"
+        },
+        "order": {
+          "enum": [
+            "ORDER_UNSPECIFIED",
+            "ASCENDING",
+            "DESCENDING"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1SearchConfig": {
+      "properties": {
+        "textSpec": {
+          "$ref": "GoogleFirestoreAdminV1SearchTextSpec"
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1SearchTextIndexSpec": {
+      "properties": {
+        "matchType": {
+          "enum": [
+            "TEXT_MATCH_TYPE_UNSPECIFIED",
+            "MATCH_GLOBALLY"
+          ]
+        },
+        "indexType": {
+          "enum": [
+            "TEXT_INDEX_TYPE_UNSPECIFIED",
+            "TOKENIZED"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1SearchTextSpec": {
+      "properties": {
+        "indexSpecs": {
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1SearchTextIndexSpec"
+          }
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1TtlConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "NEEDS_REPAIR"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1UserCreds": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "GoogleFirestoreAdminV1WeeklyRecurrence": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "Value": {
+      "properties": {
+        "nullValue": {
+          "enum": [
+            "NULL_VALUE"
+          ]
+        }
+      }
+    }
+  }
+}

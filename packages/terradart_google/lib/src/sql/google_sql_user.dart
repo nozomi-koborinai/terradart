@@ -48,12 +48,26 @@ extension type const SqlUserType._(TfArg<String> _) implements TfArg<String> {
     TfArgLiteral('CLOUD_IAM_SERVICE_ACCOUNT'),
   );
   static const cloudIamGroup = SqlUserType._(TfArgLiteral('CLOUD_IAM_GROUP'));
+  static const cloudIamGroupUser = SqlUserType._(
+    TfArgLiteral('CLOUD_IAM_GROUP_USER'),
+  );
+  static const cloudIamGroupServiceAccount = SqlUserType._(
+    TfArgLiteral('CLOUD_IAM_GROUP_SERVICE_ACCOUNT'),
+  );
+  static const cloudIamWorkforceIdentity = SqlUserType._(
+    TfArgLiteral('CLOUD_IAM_WORKFORCE_IDENTITY'),
+  );
+  static const entraidUser = SqlUserType._(TfArgLiteral('ENTRAID_USER'));
 
   static const List<SqlUserType> values = [
     builtIn,
     cloudIamUser,
     cloudIamServiceAccount,
     cloudIamGroup,
+    cloudIamGroupUser,
+    cloudIamGroupServiceAccount,
+    cloudIamWorkforceIdentity,
+    entraidUser,
   ];
 }
 

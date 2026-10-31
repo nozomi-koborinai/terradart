@@ -12,12 +12,16 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/compute/google_compute_address.dart'
     show
         AddressType,
+        ComputeAddressPurpose,
         GoogleComputeAddress,
         IpVersion,
         Ipv6EndpointType,
         NetworkTier;
 export 'src/compute/google_compute_attached_disk.dart'
-    show GoogleComputeAttachedDisk;
+    show
+        ComputeAttachedDiskInterface,
+        ComputeAttachedDiskMode,
+        GoogleComputeAttachedDisk;
 export 'src/compute/google_compute_autoscaler.dart'
     show
         AutoscalerCpuPredictiveMethod,
@@ -81,6 +85,7 @@ export 'src/compute/google_compute_backend_service.dart'
         ComputeBackendServiceOutlierDetection,
         ComputeBackendServiceParams,
         ComputeBackendServicePolicy,
+        ComputeBackendServicePolicyName,
         ComputeBackendServiceRequestHeaders,
         ComputeBackendServiceResponseHeaders,
         ComputeBackendServiceSecuritySettings,
@@ -176,6 +181,7 @@ export 'src/compute/google_compute_firewall_policy_rule.dart'
         GoogleComputeFirewallPolicyRule;
 export 'src/compute/google_compute_firewall_policy_with_rules.dart'
     show
+        ComputeFirewallPolicyWithRulesAction,
         ComputeFirewallPolicyWithRulesDirection,
         ComputeFirewallPolicyWithRulesLayer4Config,
         ComputeFirewallPolicyWithRulesMatch,
@@ -223,6 +229,7 @@ export 'src/compute/google_compute_global_vm_extension_policy.dart'
         ComputeGlobalVmExtensionPolicyPlan,
         ComputeGlobalVmExtensionPolicyPlanName,
         ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan,
+        ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice,
         ComputeGlobalVmExtensionPolicyRolloutInput,
         ComputeGlobalVmExtensionPolicyRolloutOperation,
         GoogleComputeGlobalVmExtensionPolicy;
@@ -254,9 +261,11 @@ export 'src/compute/google_compute_https_health_check.dart'
     show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
+        ComputeImageContainerType,
         ComputeImageDbs,
         ComputeImageDbxs,
         ComputeImageEncryptionKey,
+        ComputeImageFileType,
         ComputeImageGuestOsFeatures,
         ComputeImageKeks,
         ComputeImageParams,
@@ -285,20 +294,27 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceAccessConfig,
         ComputeInstanceAdvancedMachineFeatures,
         ComputeInstanceAliasIpRange,
+        ComputeInstanceArchitecture,
         ComputeInstanceAttachedDisk,
         ComputeInstanceBootDisk,
         ComputeInstanceConfidentialInstanceConfig,
+        ComputeInstanceDesiredStatus,
         ComputeInstanceEncryptionKey,
         ComputeInstanceGuestAccelerator,
+        ComputeInstanceIgmpQuery,
         ComputeInstanceInitializeParams,
+        ComputeInstanceInterface,
         ComputeInstanceIpv6AccessConfig,
+        ComputeInstanceKeyRevocationActionType,
         ComputeInstanceLocalSsdRecoveryTimeout,
         ComputeInstanceMaxRunDuration,
+        ComputeInstanceMode,
         ComputeInstanceNetworkInterface,
         ComputeInstanceNetworkPerformanceConfig,
         ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier,
         ComputeInstanceNodeAffinities,
         ComputeInstanceOnInstanceStopAction,
+        ComputeInstanceOperator,
         ComputeInstanceParams,
         ComputeInstancePreemptionNoticeDuration,
         ComputeInstanceReservationAffinity,
@@ -309,6 +325,7 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceSourceImageEncryptionKey,
         ComputeInstanceSourceSnapshotEncryptionKey,
         ComputeInstanceSpecificReservation,
+        ComputeInstanceStackType,
         ComputeInstanceWorkloadIdentityConfig,
         ConfidentialInstanceType,
         GoogleComputeInstance,
@@ -324,22 +341,35 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateAccessConfig,
         ComputeInstanceFromTemplateAdvancedMachineFeatures,
         ComputeInstanceFromTemplateAliasIpRange,
+        ComputeInstanceFromTemplateArchitecture,
         ComputeInstanceFromTemplateAttachedDisk,
         ComputeInstanceFromTemplateBootDisk,
         ComputeInstanceFromTemplateConfidentialInstanceConfig,
+        ComputeInstanceFromTemplateConfidentialInstanceType,
+        ComputeInstanceFromTemplateDesiredStatus,
         ComputeInstanceFromTemplateGuestAccelerator,
+        ComputeInstanceFromTemplateIgmpQuery,
         ComputeInstanceFromTemplateInitializeParams,
         ComputeInstanceFromTemplateInstanceEncryptionKey,
+        ComputeInstanceFromTemplateInstanceTerminationAction,
+        ComputeInstanceFromTemplateInterface,
         ComputeInstanceFromTemplateIpv6AccessConfig,
+        ComputeInstanceFromTemplateKeyRevocationActionType,
         ComputeInstanceFromTemplateLocalSsdRecoveryTimeout,
         ComputeInstanceFromTemplateMaxRunDuration,
+        ComputeInstanceFromTemplateMode,
         ComputeInstanceFromTemplateNetworkInterface,
         ComputeInstanceFromTemplateNetworkPerformanceConfig,
+        ComputeInstanceFromTemplateNetworkTier,
         ComputeInstanceFromTemplateNicType,
         ComputeInstanceFromTemplateNodeAffinities,
+        ComputeInstanceFromTemplateOnHostMaintenance,
         ComputeInstanceFromTemplateOnInstanceStopAction,
+        ComputeInstanceFromTemplateOperator,
         ComputeInstanceFromTemplateParams,
+        ComputeInstanceFromTemplatePerformanceMonitoringUnit,
         ComputeInstanceFromTemplatePreemptionNoticeDuration,
+        ComputeInstanceFromTemplateProvisioningModel,
         ComputeInstanceFromTemplateReservationAffinity,
         ComputeInstanceFromTemplateScheduling,
         ComputeInstanceFromTemplateScratchDisk,
@@ -348,6 +378,7 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateSourceImageEncryptionKey,
         ComputeInstanceFromTemplateSourceSnapshotEncryptionKey,
         ComputeInstanceFromTemplateSpecificReservation,
+        ComputeInstanceFromTemplateStackType,
         ComputeInstanceFromTemplateTotalEgressBandwidthTier,
         ComputeInstanceFromTemplateWorkloadIdentityConfig,
         GoogleComputeInstanceFromTemplate;
@@ -361,6 +392,7 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         ComputeInstanceGroupManagerNamedPort,
         ComputeInstanceGroupManagerResourcePolicies,
         ComputeInstanceGroupManagerStandbyPolicy,
+        ComputeInstanceGroupManagerStatefulDeleteRule,
         ComputeInstanceGroupManagerStatefulDisk,
         ComputeInstanceGroupManagerStatefulIp,
         ComputeInstanceGroupManagerTargetSizePolicy,
@@ -368,7 +400,12 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         ComputeInstanceGroupManagerVersion,
         ComputeInstanceGroupManagerVersionTargetSize,
         GoogleComputeInstanceGroupManager,
+        InstanceGroupManagerDefaultActionOnFailure,
+        InstanceGroupManagerForceUpdateOnRepair,
         InstanceGroupManagerListManagedInstancesResults,
+        InstanceGroupManagerOnFailedHealthCheck,
+        InstanceGroupManagerStandbyPolicyMode,
+        InstanceGroupManagerTargetSizePolicyMode,
         InstanceGroupManagerUpdatePolicyAction,
         InstanceGroupManagerUpdatePolicyReplacementMethod,
         InstanceGroupManagerUpdatePolicyType;
@@ -389,17 +426,22 @@ export 'src/compute/google_compute_instance_template.dart'
         ComputeInstanceTemplateAccessConfig,
         ComputeInstanceTemplateAdvancedMachineFeatures,
         ComputeInstanceTemplateAliasIpRange,
+        ComputeInstanceTemplateArchitecture,
         ComputeInstanceTemplateConfidentialInstanceConfig,
         ComputeInstanceTemplateDisk,
         ComputeInstanceTemplateDiskEncryptionKey,
         ComputeInstanceTemplateGuestAccelerator,
+        ComputeInstanceTemplateIgmpQuery,
+        ComputeInstanceTemplateInterface,
         ComputeInstanceTemplateIpv6AccessConfig,
+        ComputeInstanceTemplateKeyRevocationActionType,
         ComputeInstanceTemplateLocalSsdRecoveryTimeout,
         ComputeInstanceTemplateMaxRunDuration,
         ComputeInstanceTemplateNetworkInterface,
         ComputeInstanceTemplateNetworkPerformanceConfig,
         ComputeInstanceTemplateNodeAffinities,
         ComputeInstanceTemplateOnInstanceStopAction,
+        ComputeInstanceTemplateOperator,
         ComputeInstanceTemplatePreemptionNoticeDuration,
         ComputeInstanceTemplateReservationAffinity,
         ComputeInstanceTemplateScheduling,
@@ -408,7 +450,9 @@ export 'src/compute/google_compute_instance_template.dart'
         ComputeInstanceTemplateSourceImageEncryptionKey,
         ComputeInstanceTemplateSourceSnapshotEncryptionKey,
         ComputeInstanceTemplateSpecificReservation,
+        ComputeInstanceTemplateStackType,
         ComputeInstanceTemplateTotalEgressBandwidthTier,
+        ComputeInstanceTemplateType,
         ComputeInstanceTemplateWorkloadIdentityConfig,
         GoogleComputeInstanceTemplate,
         InstanceTemplateAccessConfigNetworkTier,
@@ -444,11 +488,13 @@ export 'src/compute/google_compute_instant_snapshot_iam_policy.dart'
     show GoogleComputeInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
+        ComputeInterconnectAvailableFeatures,
         ComputeInterconnectLinkType,
         ComputeInterconnectMacsec,
         ComputeInterconnectOperationalStatus,
         ComputeInterconnectParams,
         ComputeInterconnectPreSharedKeys,
+        ComputeInterconnectRequestedFeatures,
         ComputeInterconnectState,
         ComputeInterconnectType,
         GoogleComputeInterconnect;
@@ -456,10 +502,12 @@ export 'src/compute/google_compute_interconnect_attachment.dart'
     show
         ComputeInterconnectAttachmentApplianceMappings,
         ComputeInterconnectAttachmentBandwidth,
+        ComputeInterconnectAttachmentEdgeAvailabilityDomain,
         ComputeInterconnectAttachmentEncryption,
         ComputeInterconnectAttachmentGeneveHeader,
         ComputeInterconnectAttachmentInnerVlanToApplianceMappings,
         ComputeInterconnectAttachmentL2Forwarding,
+        ComputeInterconnectAttachmentMtu,
         ComputeInterconnectAttachmentParams,
         ComputeInterconnectAttachmentStackType,
         ComputeInterconnectAttachmentState,
@@ -503,7 +551,7 @@ export 'src/compute/google_compute_network_endpoint_group.dart'
 export 'src/compute/google_compute_network_endpoints.dart'
     show ComputeNetworkEndpoints, GoogleComputeNetworkEndpoints;
 export 'src/compute/google_compute_network_firewall_policy.dart'
-    show GoogleComputeNetworkFirewallPolicy;
+    show ComputeNetworkFirewallPolicyType, GoogleComputeNetworkFirewallPolicy;
 export 'src/compute/google_compute_network_firewall_policy_association.dart'
     show GoogleComputeNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_network_firewall_policy_iam_binding.dart'
@@ -529,6 +577,7 @@ export 'src/compute/google_compute_network_firewall_policy_rule.dart'
         GoogleComputeNetworkFirewallPolicyRule;
 export 'src/compute/google_compute_network_firewall_policy_with_rules.dart'
     show
+        ComputeNetworkFirewallPolicyWithRulesAction,
         ComputeNetworkFirewallPolicyWithRulesDirection,
         ComputeNetworkFirewallPolicyWithRulesLayer4Config,
         ComputeNetworkFirewallPolicyWithRulesMatch,
@@ -547,6 +596,7 @@ export 'src/compute/google_compute_network_peering_routes_config.dart'
 export 'src/compute/google_compute_node_group.dart'
     show
         ComputeNodeGroupAutoscalingPolicy,
+        ComputeNodeGroupMaintenancePolicy,
         ComputeNodeGroupMaintenanceWindow,
         ComputeNodeGroupMode,
         ComputeNodeGroupProjectMap,
@@ -572,6 +622,7 @@ export 'src/compute/google_compute_organization_security_policy.dart'
         ComputeOrganizationSecurityPolicyJsonParsing,
         ComputeOrganizationSecurityPolicyLogLevel,
         ComputeOrganizationSecurityPolicyRequestBodyInspectionSize,
+        ComputeOrganizationSecurityPolicyType,
         GoogleComputeOrganizationSecurityPolicy;
 export 'src/compute/google_compute_organization_security_policy_association.dart'
     show GoogleComputeOrganizationSecurityPolicyAssociation;
@@ -582,6 +633,7 @@ export 'src/compute/google_compute_organization_security_policy_rule.dart'
         ComputeOrganizationSecurityPolicyRuleExpr,
         ComputeOrganizationSecurityPolicyRuleHeaderAction,
         ComputeOrganizationSecurityPolicyRuleMatch,
+        ComputeOrganizationSecurityPolicyRuleOperator,
         ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig,
         ComputeOrganizationSecurityPolicyRuleRedirectOptions,
         ComputeOrganizationSecurityPolicyRuleRequestCookie,
@@ -589,6 +641,8 @@ export 'src/compute/google_compute_organization_security_policy_rule.dart'
         ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds,
         ComputeOrganizationSecurityPolicyRuleRequestQueryParam,
         ComputeOrganizationSecurityPolicyRuleRequestUri,
+        ComputeOrganizationSecurityPolicyRuleType,
+        ComputeOrganizationSecurityPolicyRuleVersionedExpr,
         GoogleComputeOrganizationSecurityPolicyRule;
 export 'src/compute/google_compute_packet_mirroring.dart'
     show
@@ -609,12 +663,15 @@ export 'src/compute/google_compute_per_instance_config.dart'
         ComputePerInstanceConfigExternalIp,
         ComputePerInstanceConfigInternalIp,
         ComputePerInstanceConfigIpAddress,
+        ComputePerInstanceConfigMinimalAction,
         ComputePerInstanceConfigMode,
+        ComputePerInstanceConfigMostDisruptiveAllowedAction,
         ComputePerInstanceConfigPreservedState,
         GoogleComputePerInstanceConfig;
 export 'src/compute/google_compute_preview_feature.dart'
     show
         ComputePreviewFeatureActivationStatus,
+        ComputePreviewFeaturePredefinedRolloutPlan,
         ComputePreviewFeatureRolloutInput,
         ComputePreviewFeatureRolloutOperation,
         GoogleComputePreviewFeature;
@@ -703,7 +760,9 @@ export 'src/compute/google_compute_region_commitment.dart'
         ComputeRegionCommitmentParams,
         ComputeRegionCommitmentPlan,
         ComputeRegionCommitmentResources,
+        ComputeRegionCommitmentResourcesType,
         ComputeRegionCommitmentStatus,
+        ComputeRegionCommitmentType,
         GoogleComputeRegionCommitment;
 export 'src/compute/google_compute_region_composite_health_check.dart'
     show GoogleComputeRegionCompositeHealthCheck;
@@ -763,6 +822,7 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         ComputeRegionInstanceGroupManagerNamedPort,
         ComputeRegionInstanceGroupManagerResourcePolicies,
         ComputeRegionInstanceGroupManagerStandbyPolicy,
+        ComputeRegionInstanceGroupManagerStatefulDeleteRule,
         ComputeRegionInstanceGroupManagerStatefulDisk,
         ComputeRegionInstanceGroupManagerStatefulIp,
         ComputeRegionInstanceGroupManagerTargetSizePolicy,
@@ -770,9 +830,14 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         ComputeRegionInstanceGroupManagerVersion,
         ComputeRegionInstanceGroupManagerVersionTargetSize,
         GoogleComputeRegionInstanceGroupManager,
+        RegionInstanceGroupManagerDefaultActionOnFailure,
         RegionInstanceGroupManagerDistributionPolicyTargetShape,
+        RegionInstanceGroupManagerForceUpdateOnRepair,
         RegionInstanceGroupManagerInstanceRedistributionType,
         RegionInstanceGroupManagerListManagedInstancesResults,
+        RegionInstanceGroupManagerOnFailedHealthCheck,
+        RegionInstanceGroupManagerStandbyPolicyMode,
+        RegionInstanceGroupManagerTargetSizePolicyMode,
         RegionInstanceGroupManagerUpdatePolicyAction,
         RegionInstanceGroupManagerUpdatePolicyReplacementMethod,
         RegionInstanceGroupManagerUpdatePolicyType;
@@ -781,19 +846,31 @@ export 'src/compute/google_compute_region_instance_template.dart'
         ComputeRegionInstanceTemplateAccessConfig,
         ComputeRegionInstanceTemplateAdvancedMachineFeatures,
         ComputeRegionInstanceTemplateAliasIpRange,
+        ComputeRegionInstanceTemplateArchitecture,
         ComputeRegionInstanceTemplateConfidentialInstanceConfig,
+        ComputeRegionInstanceTemplateConfidentialInstanceType,
         ComputeRegionInstanceTemplateDisk,
         ComputeRegionInstanceTemplateDiskEncryptionKey,
         ComputeRegionInstanceTemplateGuestAccelerator,
+        ComputeRegionInstanceTemplateIgmpQuery,
+        ComputeRegionInstanceTemplateInstanceTerminationAction,
+        ComputeRegionInstanceTemplateInterface,
         ComputeRegionInstanceTemplateIpv6AccessConfig,
+        ComputeRegionInstanceTemplateKeyRevocationActionType,
         ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout,
         ComputeRegionInstanceTemplateMaxRunDuration,
+        ComputeRegionInstanceTemplateMode,
         ComputeRegionInstanceTemplateNetworkInterface,
         ComputeRegionInstanceTemplateNetworkPerformanceConfig,
+        ComputeRegionInstanceTemplateNetworkTier,
         ComputeRegionInstanceTemplateNicType,
         ComputeRegionInstanceTemplateNodeAffinities,
+        ComputeRegionInstanceTemplateOnHostMaintenance,
         ComputeRegionInstanceTemplateOnInstanceStopAction,
+        ComputeRegionInstanceTemplateOperator,
+        ComputeRegionInstanceTemplatePerformanceMonitoringUnit,
         ComputeRegionInstanceTemplatePreemptionNoticeDuration,
+        ComputeRegionInstanceTemplateProvisioningModel,
         ComputeRegionInstanceTemplateReservationAffinity,
         ComputeRegionInstanceTemplateScheduling,
         ComputeRegionInstanceTemplateServiceAccount,
@@ -801,7 +878,9 @@ export 'src/compute/google_compute_region_instance_template.dart'
         ComputeRegionInstanceTemplateSourceImageEncryptionKey,
         ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey,
         ComputeRegionInstanceTemplateSpecificReservation,
+        ComputeRegionInstanceTemplateStackType,
         ComputeRegionInstanceTemplateTotalEgressBandwidthTier,
+        ComputeRegionInstanceTemplateType,
         ComputeRegionInstanceTemplateWorkloadIdentityConfig,
         GoogleComputeRegionInstanceTemplate;
 export 'src/compute/google_compute_region_instant_snapshot.dart'
@@ -862,6 +941,7 @@ export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
         GoogleComputeRegionNetworkFirewallPolicyRule;
 export 'src/compute/google_compute_region_network_firewall_policy_with_rules.dart'
     show
+        ComputeRegionNetworkFirewallPolicyWithRulesAction,
         ComputeRegionNetworkFirewallPolicyWithRulesDirection,
         ComputeRegionNetworkFirewallPolicyWithRulesLayer4Config,
         ComputeRegionNetworkFirewallPolicyWithRulesMatch,
@@ -879,7 +959,9 @@ export 'src/compute/google_compute_region_per_instance_config.dart'
         ComputeRegionPerInstanceConfigExternalIp,
         ComputeRegionPerInstanceConfigInternalIp,
         ComputeRegionPerInstanceConfigIpAddress,
+        ComputeRegionPerInstanceConfigMinimalAction,
         ComputeRegionPerInstanceConfigMode,
+        ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction,
         ComputeRegionPerInstanceConfigPreservedState,
         GoogleComputeRegionPerInstanceConfig;
 export 'src/compute/google_compute_region_resize_request.dart'
@@ -890,8 +972,10 @@ export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyAdvancedOptionsConfig,
         ComputeRegionSecurityPolicyDdosProtectionConfig,
+        ComputeRegionSecurityPolicyExceedAction,
         ComputeRegionSecurityPolicyJsonCustomConfig,
         ComputeRegionSecurityPolicyRules,
+        ComputeRegionSecurityPolicyRulesAction,
         ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig,
         ComputeRegionSecurityPolicyRulesMatch,
         ComputeRegionSecurityPolicyRulesMatchConfig,
@@ -909,6 +993,8 @@ export 'src/compute/google_compute_region_security_policy.dart'
         RegionSecurityPolicyUserDefinedFieldBase;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
     show
+        ComputeRegionSecurityPolicyRuleAction,
+        ComputeRegionSecurityPolicyRuleExceedAction,
         ComputeRegionSecurityPolicyRuleMatch,
         ComputeRegionSecurityPolicyRuleMatchConfig,
         ComputeRegionSecurityPolicyRuleNetworkMatch,
@@ -981,6 +1067,7 @@ export 'src/compute/google_compute_region_url_map.dart'
         ComputeRegionUrlMapRequestHeadersToAdd,
         ComputeRegionUrlMapRequestMirrorPolicy,
         ComputeRegionUrlMapResponseHeadersToAdd,
+        ComputeRegionUrlMapRetryConditions,
         ComputeRegionUrlMapRetryPolicy,
         ComputeRegionUrlMapRetryPolicyPerTryTimeout,
         ComputeRegionUrlMapRouteActionCorsPolicy,
@@ -1024,6 +1111,7 @@ export 'src/compute/google_compute_resize_request.dart'
     show ComputeResizeRequestRequestedRunDuration, GoogleComputeResizeRequest;
 export 'src/compute/google_compute_resource_policy.dart'
     show
+        ComputeResourcePolicyCollocation,
         ComputeResourcePolicyDailySchedule,
         ComputeResourcePolicyDailyScheduleChoice,
         ComputeResourcePolicyDayOfWeeks,
@@ -1065,6 +1153,7 @@ export 'src/compute/google_compute_rollout_plan.dart'
         ComputeRolloutPlanTimeBasedValidationMetadata,
         ComputeRolloutPlanType,
         ComputeRolloutPlanValidation,
+        ComputeRolloutPlanValidationType,
         ComputeRolloutPlanWaves,
         GoogleComputeRolloutPlan;
 export 'src/compute/google_compute_route.dart'
@@ -1081,6 +1170,7 @@ export 'src/compute/google_compute_router.dart'
     show
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
+        ComputeRouterBgpAdvertisedGroup,
         ComputeRouterMd5AuthenticationKeys,
         ComputeRouterNetwork,
         ComputeRouterNetworkChoice,
@@ -1098,11 +1188,13 @@ export 'src/compute/google_compute_router_nat.dart'
     show
         ComputeRouterNatAction,
         ComputeRouterNatAutoNetworkTier,
+        ComputeRouterNatEndpointTypes,
         ComputeRouterNatFilter,
         ComputeRouterNatIpAllocateOption,
         ComputeRouterNatLogConfig,
         ComputeRouterNatNat64Subnetwork,
         ComputeRouterNatRules,
+        ComputeRouterNatSourceIpRangesToNat,
         ComputeRouterNatSourceSubnetworkIpRangesToNat,
         ComputeRouterNatSourceSubnetworkIpRangesToNat64,
         ComputeRouterNatSubnetwork,
@@ -1113,6 +1205,7 @@ export 'src/compute/google_compute_router_nat_address.dart'
 export 'src/compute/google_compute_router_peer.dart'
     show
         ComputeRouterPeerAdvertiseMode,
+        ComputeRouterPeerAdvertisedGroups,
         ComputeRouterPeerAdvertisedIpRanges,
         ComputeRouterPeerBfd,
         ComputeRouterPeerCustomLearnedIpRanges,
@@ -1131,9 +1224,11 @@ export 'src/compute/google_compute_security_policy.dart'
         ComputeSecurityPolicyAdaptiveProtectionConfig,
         ComputeSecurityPolicyAdaptiveProtectionThresholdConfig,
         ComputeSecurityPolicyAdvancedOptionsConfig,
+        ComputeSecurityPolicyExceedAction,
         ComputeSecurityPolicyJsonCustomConfig,
         ComputeSecurityPolicyLayer7DdosDefenseConfig,
         ComputeSecurityPolicyRecaptchaOptionsConfig,
+        ComputeSecurityPolicyRequestBodyInspectionSize,
         ComputeSecurityPolicyRules,
         ComputeSecurityPolicyRulesEnforceOnKeyConfig,
         ComputeSecurityPolicyRulesHeaderAction,
@@ -1148,13 +1243,18 @@ export 'src/compute/google_compute_security_policy.dart'
         GoogleComputeSecurityPolicy,
         SecurityPolicyJsonParsing,
         SecurityPolicyLogLevel,
+        SecurityPolicyRedirectType,
         SecurityPolicyRuleAction,
         SecurityPolicyRuleMatchVersionedExpr,
         SecurityPolicyRuleRateLimitEnforceOnKey,
+        SecurityPolicyRuleVisibility,
+        SecurityPolicyTrafficGranularityType,
         SecurityPolicyType,
         SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_security_policy_rule.dart'
     show
+        ComputeSecurityPolicyRuleAction,
+        ComputeSecurityPolicyRuleExceedAction,
         ComputeSecurityPolicyRuleHeaderAction,
         ComputeSecurityPolicyRuleMatch,
         ComputeSecurityPolicyRuleMatchConfig,
@@ -1165,6 +1265,7 @@ export 'src/compute/google_compute_security_policy_rule.dart'
         ComputeSecurityPolicyRuleRateLimitOptions,
         ComputeSecurityPolicyRuleRedirectOptions,
         ComputeSecurityPolicyRuleRequestHeadersToAdds,
+        ComputeSecurityPolicyRuleType,
         GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
     show
@@ -1223,8 +1324,10 @@ export 'src/compute/google_compute_storage_pool_iam_policy.dart'
     show GoogleComputeStoragePoolIamPolicy;
 export 'src/compute/google_compute_subnetwork.dart'
     show
+        ComputeSubnetworkIpv6GceEndpoint,
         ComputeSubnetworkLogConfig,
         ComputeSubnetworkParams,
+        ComputeSubnetworkPrivateIpv6GoogleAccess,
         ComputeSubnetworkSecondaryIpRange,
         GoogleComputeSubnetwork,
         SubnetworkIpv6AccessType,
@@ -1257,7 +1360,7 @@ export 'src/compute/google_compute_target_https_proxy.dart'
 export 'src/compute/google_compute_target_instance.dart'
     show ComputeTargetInstanceNatPolicy, GoogleComputeTargetInstance;
 export 'src/compute/google_compute_target_pool.dart'
-    show GoogleComputeTargetPool;
+    show ComputeTargetPoolSessionAffinity, GoogleComputeTargetPool;
 export 'src/compute/google_compute_target_ssl_proxy.dart'
     show GoogleComputeTargetSslProxy, TargetSslProxyProxyHeader;
 export 'src/compute/google_compute_target_tcp_proxy.dart'
@@ -1315,6 +1418,7 @@ export 'src/compute/google_compute_url_map.dart'
         ComputeUrlMapRequestHeadersToAdd,
         ComputeUrlMapRequestMirrorPolicy,
         ComputeUrlMapResponseHeadersToAdd,
+        ComputeUrlMapRetryConditions,
         ComputeUrlMapRetryPolicy,
         ComputeUrlMapRetryPolicyPerTryTimeout,
         ComputeUrlMapRouteActionCorsPolicy,
@@ -1355,7 +1459,9 @@ export 'src/compute/google_compute_vpn_tunnel.dart'
         GoogleComputeVpnTunnel;
 export 'src/compute/google_compute_wire_group.dart'
     show
+        ComputeWireGroupBandwidthAllocation,
         ComputeWireGroupEndpoints,
+        ComputeWireGroupFaultResponse,
         ComputeWireGroupInterconnects,
         ComputeWireGroupWireProperties,
         GoogleComputeWireGroup;

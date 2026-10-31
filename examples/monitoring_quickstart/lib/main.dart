@@ -71,7 +71,7 @@ final class LatencyAlertStack extends Stack {
         'api_uptime',
         displayName: .literal('Public API healthz'),
         timeout: .literal('10s'),
-        period: .literal('60s'),
+        period: .v60s,
         httpCheck: MonitoringUptimeCheckConfigHttpCheck(
           path: .literal('/healthz'),
           port: .literal(443),
@@ -234,7 +234,7 @@ final class LatencyAlertStack extends Stack {
         parent: .literal('projects/$projectId'),
         email: .literal('platform-notices@example.com'),
         languageTag: .literal('en-US'),
-        notificationCategorySubscriptions: .literal(const ['TECHNICAL']),
+        notificationCategorySubscriptions: .literal([.technical]),
         dependsOn: [apiEssentialContacts],
       ),
     );

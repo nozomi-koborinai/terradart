@@ -8,22 +8,21 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_hostname_tls_setting`.
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
-/// Hostname Tls Setting Setting enum for `setting_id`.
-extension type const HostnameTlsSettingSettingId._(TfArg<String> _)
+/// Hostname Tls Setting enum for `setting_id`.
+extension type const HostnameTlsSettingName._(TfArg<String> _)
     implements TfArg<String> {
-  HostnameTlsSettingSettingId.variable(String name)
-    : this._(TfArg.variable(name));
-  HostnameTlsSettingSettingId.expression(String template)
+  HostnameTlsSettingName.variable(String name) : this._(TfArg.variable(name));
+  HostnameTlsSettingName.expression(String template)
     : this._(TfArg.expression(template));
-  const HostnameTlsSettingSettingId.arg(TfArg<String> arg) : this._(arg);
+  const HostnameTlsSettingName.arg(TfArg<String> arg) : this._(arg);
 
-  static const ciphers = HostnameTlsSettingSettingId._(TfArgLiteral('ciphers'));
-  static const minTlsVersion = HostnameTlsSettingSettingId._(
+  static const ciphers = HostnameTlsSettingName._(TfArgLiteral('ciphers'));
+  static const minTlsVersion = HostnameTlsSettingName._(
     TfArgLiteral('min_tls_version'),
   );
-  static const http2 = HostnameTlsSettingSettingId._(TfArgLiteral('http2'));
+  static const http2 = HostnameTlsSettingName._(TfArgLiteral('http2'));
 
-  static const List<HostnameTlsSettingSettingId> values = [
+  static const List<HostnameTlsSettingName> values = [
     ciphers,
     minTlsVersion,
     http2,
@@ -41,7 +40,7 @@ final class CloudflareHostnameTlsSetting extends Resource {
   CloudflareHostnameTlsSetting(
     super.localName, {
     required TfArg<String> hostname,
-    required HostnameTlsSettingSettingId settingId,
+    required HostnameTlsSettingName settingId,
     required TfArg<Object?> value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

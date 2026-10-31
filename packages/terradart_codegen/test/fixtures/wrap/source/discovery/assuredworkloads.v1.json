@@ -1,0 +1,188 @@
+{
+  "name": "assuredworkloads",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://assuredworkloads.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudAssuredworkloadsV1Workload": {
+      "properties": {
+        "resourceSettings": {
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
+          }
+        },
+        "kajEnrollmentState": {
+          "enum": [
+            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+            "KAJ_ENROLLMENT_STATE_PENDING",
+            "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ]
+        },
+        "complianceRegime": {
+          "enum": [
+            "COMPLIANCE_REGIME_UNSPECIFIED",
+            "ASSURED_WORKLOADS_FOR_PARTNERS",
+            "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT",
+            "CANADA_DATA_BOUNDARY_AND_SUPPORT",
+            "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS",
+            "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B",
+            "DATA_BOUNDARY_FOR_CJIS",
+            "DATA_BOUNDARY_FOR_FEDRAMP_HIGH",
+            "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE",
+            "DATA_BOUNDARY_FOR_IL2",
+            "DATA_BOUNDARY_FOR_IL4",
+            "DATA_BOUNDARY_FOR_IL5",
+            "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075",
+            "DATA_BOUNDARY_FOR_ITAR",
+            "EU_DATA_BOUNDARY_AND_SUPPORT",
+            "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
+            "JAPAN_DATA_BOUNDARY",
+            "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
+            "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
+            "REGIONAL_DATA_BOUNDARY",
+            "US_DATA_BOUNDARY_AND_SUPPORT",
+            "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES",
+            "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT",
+            "AU_REGIONS_AND_US_SUPPORT",
+            "CA_PROTECTED_B",
+            "CA_REGIONS_AND_SUPPORT",
+            "CANADA_CONTROLLED_GOODS",
+            "CJIS",
+            "EU_REGIONS_AND_SUPPORT",
+            "FEDRAMP_HIGH",
+            "FEDRAMP_MODERATE",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
+            "HIPAA",
+            "HITRUST",
+            "IL2",
+            "IL4",
+            "IL5",
+            "IRS_1075",
+            "ISR_REGIONS",
+            "ISR_REGIONS_AND_SUPPORT",
+            "ITAR",
+            "JP_REGIONS_AND_SUPPORT",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
+            "REGIONAL_CONTROLS",
+            "US_REGIONAL_ACCESS"
+          ]
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse"
+        },
+        "partner": {
+          "enum": [
+            "PARTNER_UNSPECIFIED",
+            "LOCAL_CONTROLS_BY_S3NS",
+            "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+            "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
+            "SOVEREIGN_CONTROLS_BY_PSN",
+            "SOVEREIGN_CONTROLS_BY_CNTXT",
+            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+            "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
+          ]
+        },
+        "workloadOptions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions"
+        },
+        "resources": {
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
+          }
+        },
+        "ekmProvisioningResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse"
+        }
+      }
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse": {
+      "properties": {
+        "ekmProvisioningState": {
+          "enum": [
+            "EKM_PROVISIONING_STATE_UNSPECIFIED",
+            "EKM_PROVISIONING_STATE_PENDING",
+            "EKM_PROVISIONING_STATE_FAILED",
+            "EKM_PROVISIONING_STATE_COMPLETED"
+          ]
+        },
+        "ekmProvisioningErrorDomain": {
+          "enum": [
+            "EKM_PROVISIONING_ERROR_DOMAIN_UNSPECIFIED",
+            "UNSPECIFIED_ERROR",
+            "GOOGLE_SERVER_ERROR",
+            "EXTERNAL_USER_ERROR",
+            "EXTERNAL_PARTNER_ERROR",
+            "TIMEOUT_ERROR"
+          ]
+        },
+        "ekmProvisioningErrorMapping": {
+          "enum": [
+            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
+            "INVALID_SERVICE_ACCOUNT",
+            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
+            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
+          ]
+        }
+      }
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo": {
+      "properties": {
+        "resourceType": {
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings": {
+      "properties": {
+        "resourceType": {
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse": {
+      "properties": {
+        "setupErrors": {
+          "items": {
+            "enum": [
+              "SETUP_ERROR_UNSPECIFIED",
+              "ERROR_INVALID_BASE_SETUP",
+              "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+              "ERROR_NOT_ALL_SERVICES_ENROLLED",
+              "ERROR_SETUP_CHECK_FAILED"
+            ]
+          }
+        },
+        "setupStatus": {
+          "enum": [
+            "SETUP_STATE_UNSPECIFIED",
+            "STATUS_PENDING",
+            "STATUS_COMPLETE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions": {
+      "properties": {
+        "kajEnrollmentType": {
+          "enum": [
+            "KAJ_ENROLLMENT_TYPE_UNSPECIFIED",
+            "KEY_ACCESS_TRANSPARENCY_OFF"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,16 @@
 outputDir: monitoring
+enumValues:
+  period:
+    - '60s'
+    - '300s'
+    - '600s'
+    - '900s'
 
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
 
 curatedDoc: |-
   /// An uptime check is a periodic probe (HTTP / HTTPS, plain TCP, or a
@@ -54,7 +61,7 @@ curatedDoc: |-
   ///   'api_uptime',
   ///   displayName: TfArg.literal('Public API healthz'),
   ///   timeout: TfArg.literal('10s'),
-  ///   period: TfArg.literal('60s'),
+  ///   period: .v60s,
   ///   httpCheck: MonitoringUptimeCheckConfigHttpCheck(
   ///     path: .literal('/healthz'),
   ///     port: .literal(443),

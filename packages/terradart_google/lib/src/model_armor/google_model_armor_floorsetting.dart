@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_model_armor_floorsetting`.
 const Set<String> _googleModelArmorFloorsettingSensitive = <String>{};
 
+/// Model Armor Floorsetting Integrated enum for `integrated_services`.
+extension type const ModelArmorFloorsettingIntegratedServices._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorFloorsettingIntegratedServices.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorFloorsettingIntegratedServices.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorFloorsettingIntegratedServices.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const aiPlatform = ModelArmorFloorsettingIntegratedServices._(
+    TfArgLiteral('AI_PLATFORM'),
+  );
+  static const googleMcpServer = ModelArmorFloorsettingIntegratedServices._(
+    TfArgLiteral('GOOGLE_MCP_SERVER'),
+  );
+
+  static const List<ModelArmorFloorsettingIntegratedServices> values = [
+    aiPlatform,
+    googleMcpServer,
+  ];
+}
+
 /// Typed helper for the `ai_platform_floor_setting` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
@@ -69,12 +92,35 @@ final class ModelArmorFloorsettingMaliciousUriFilterSettings {
     this.filterEnforcement,
   });
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorFloorsettingFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
+}
+
+/// `filter_enforcement` — derived from the provider schema description.
+extension type const ModelArmorFloorsettingFilterEnforcement._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorFloorsettingFilterEnforcement.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorFloorsettingFilterEnforcement.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorFloorsettingFilterEnforcement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = ModelArmorFloorsettingFilterEnforcement._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ModelArmorFloorsettingFilterEnforcement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ModelArmorFloorsettingFilterEnforcement> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `filter_config.pi_and_jailbreak_filter_settings` block of
@@ -86,15 +132,42 @@ final class ModelArmorFloorsettingPiAndJailbreakFilterSettings {
     this.filterEnforcement,
   });
 
-  final TfArg<String>? confidenceLevel;
+  final ModelArmorFloorsettingConfidenceLevel? confidenceLevel;
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorFloorsettingFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
+}
+
+/// `confidence_level` — derived from the provider schema description.
+extension type const ModelArmorFloorsettingConfidenceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorFloorsettingConfidenceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorFloorsettingConfidenceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorFloorsettingConfidenceLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const lowAndAbove = ModelArmorFloorsettingConfidenceLevel._(
+    TfArgLiteral('LOW_AND_ABOVE'),
+  );
+  static const mediumAndAbove = ModelArmorFloorsettingConfidenceLevel._(
+    TfArgLiteral('MEDIUM_AND_ABOVE'),
+  );
+  static const high = ModelArmorFloorsettingConfidenceLevel._(
+    TfArgLiteral('HIGH'),
+  );
+
+  static const List<ModelArmorFloorsettingConfidenceLevel> values = [
+    lowAndAbove,
+    mediumAndAbove,
+    high,
+  ];
 }
 
 /// Typed helper for the `filter_config.rai_settings` block of
@@ -120,15 +193,45 @@ final class ModelArmorFloorsettingRaiFilters {
     required this.filterType,
   });
 
-  final TfArg<String>? confidenceLevel;
+  final ModelArmorFloorsettingConfidenceLevel? confidenceLevel;
 
-  final TfArg<String> filterType;
+  final ModelArmorFloorsettingFilterType filterType;
 
   @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+extension type const ModelArmorFloorsettingFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorFloorsettingFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorFloorsettingFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorFloorsettingFilterType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sexuallyExplicit = ModelArmorFloorsettingFilterType._(
+    TfArgLiteral('SEXUALLY_EXPLICIT'),
+  );
+  static const hateSpeech = ModelArmorFloorsettingFilterType._(
+    TfArgLiteral('HATE_SPEECH'),
+  );
+  static const harassment = ModelArmorFloorsettingFilterType._(
+    TfArgLiteral('HARASSMENT'),
+  );
+  static const dangerous = ModelArmorFloorsettingFilterType._(
+    TfArgLiteral('DANGEROUS'),
+  );
+
+  static const List<ModelArmorFloorsettingFilterType> values = [
+    sexuallyExplicit,
+    hateSpeech,
+    harassment,
+    dangerous,
+  ];
 }
 
 /// Typed helper for the `filter_config.sdp_settings` block of
@@ -177,7 +280,7 @@ final class ModelArmorFloorsettingAdvancedConfig {
 final class ModelArmorFloorsettingBasicConfig {
   const ModelArmorFloorsettingBasicConfig({this.filterEnforcement});
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorFloorsettingFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -255,7 +358,7 @@ final class GoogleModelArmorFloorsetting extends Resource {
   GoogleModelArmorFloorsetting(
     super.localName, {
     TfArg<bool>? enableFloorSettingEnforcement,
-    TfArg<List<String>>? integratedServices,
+    EnumList<ModelArmorFloorsettingIntegratedServices>? integratedServices,
     required TfArg<String> location,
     required TfArg<String> parent,
     ModelArmorFloorsettingAiPlatformFloorSetting? aiPlatformFloorSetting,

@@ -10,6 +10,10 @@ properties:
           - "None"
           - "ReadOnly"
           - "ReadWrite"
+      - api_name: storage_account_type
+        enum_values:
+          - "Standard_LRS"
+          - "Premium_LRS"
   - api_name: disk_encryption
     properties:
       - api_name: disk_encryption_target
@@ -57,6 +61,9 @@ properties:
         enum_values:
           - "Regional"
           - "Zonal"
+  - api_name: os_disk_placement
+    enum_values:
+      - "CacheDisk"
   - api_name: security_profile
     properties:
       - api_name: security_type

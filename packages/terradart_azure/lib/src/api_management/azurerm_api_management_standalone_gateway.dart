@@ -9,6 +9,30 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_api_management_standalone_gateway`.
 const Set<String> _azurermApiManagementStandaloneGatewaySensitive = <String>{};
 
+/// Api Management Standalone Gateway Virtual Network enum for `virtual_network_type`.
+extension type const ApiManagementStandaloneGatewayVirtualNetworkType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiManagementStandaloneGatewayVirtualNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementStandaloneGatewayVirtualNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementStandaloneGatewayVirtualNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const external = ApiManagementStandaloneGatewayVirtualNetworkType._(
+    TfArgLiteral('External'),
+  );
+  static const internal = ApiManagementStandaloneGatewayVirtualNetworkType._(
+    TfArgLiteral('Internal'),
+  );
+
+  static const List<ApiManagementStandaloneGatewayVirtualNetworkType> values = [
+    external,
+    internal,
+  ];
+}
+
 /// Typed helper for the `sku` block of
 /// `azurerm_api_management_standalone_gateway` (derived from provider schema).
 @immutable
@@ -17,13 +41,33 @@ final class ApiManagementStandaloneGatewaySku {
 
   final TfArg<num>? capacity;
 
-  final TfArg<String> name;
+  final ApiManagementStandaloneGatewaySkuName name;
 
   @internal
   Map<String, Object?> encode() => {
     'capacity': ?capacity?.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const ApiManagementStandaloneGatewaySkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementStandaloneGatewaySkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementStandaloneGatewaySkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementStandaloneGatewaySkuName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const workspacegatewaypremium =
+      ApiManagementStandaloneGatewaySkuName._(
+        TfArgLiteral('WorkspaceGatewayPremium'),
+      );
+
+  static const List<ApiManagementStandaloneGatewaySkuName> values = [
+    workspacegatewaypremium,
+  ];
 }
 
 /// Factory wrapper for `azurerm_api_management_standalone_gateway`.
@@ -37,7 +81,7 @@ final class AzurermApiManagementStandaloneGateway extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? virtualNetworkType,
+    ApiManagementStandaloneGatewayVirtualNetworkType? virtualNetworkType,
     required ApiManagementStandaloneGatewaySku sku,
     super.lifecycle,
     super.dependsOn,

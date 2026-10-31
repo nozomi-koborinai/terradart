@@ -23,7 +23,7 @@ sealed class WorkspaceswebSessionLoggerEventFilter {
 
   /// Sets `include`.
   const factory WorkspaceswebSessionLoggerEventFilter.include(
-    List<WorkspaceswebSessionLoggerInclude> include,
+    EnumList<WorkspaceswebSessionLoggerInclude> include,
   ) = WorkspaceswebSessionLoggerEventFilterInclude;
 
   /// The Terraform argument this choice sets.
@@ -57,7 +57,7 @@ final class WorkspaceswebSessionLoggerEventFilterInclude
     extends WorkspaceswebSessionLoggerEventFilter {
   const WorkspaceswebSessionLoggerEventFilterInclude(this.include);
 
-  final List<WorkspaceswebSessionLoggerInclude> include;
+  final EnumList<WorkspaceswebSessionLoggerInclude> include;
 
   @internal
   @override
@@ -65,9 +65,7 @@ final class WorkspaceswebSessionLoggerEventFilterInclude
 
   @internal
   @override
-  Map<String, Object?> encode() => {
-    'include': [for (final e in include) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'include': include.toTfJson()};
 }
 
 /// `include` — derived from the provider schema description.

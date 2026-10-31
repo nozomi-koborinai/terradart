@@ -1,0 +1,119 @@
+{
+  "name": "datafusion",
+  "version": "v1",
+  "revision": "20261015",
+  "sourceUrl": "https://datafusion.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Accelerator": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "UNKNOWN"
+          ]
+        },
+        "acceleratorType": {
+          "enum": [
+            "ACCELERATOR_TYPE_UNSPECIFIED",
+            "CDC",
+            "HEALTHCARE",
+            "CCAI_INSIGHTS",
+            "CLOUDSEARCH"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "disabledReason": {
+          "items": {
+            "enum": [
+              "DISABLED_REASON_UNSPECIFIED",
+              "KMS_KEY_ISSUE",
+              "PROJECT_STATE_OFF"
+            ]
+          }
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BASIC",
+            "ENTERPRISE",
+            "DEVELOPER"
+          ]
+        },
+        "maintenanceEvents": {
+          "items": {
+            "$ref": "MaintenanceEvent"
+          }
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING",
+            "UPGRADING",
+            "RESTARTING",
+            "UPDATING",
+            "AUTO_UPDATING",
+            "AUTO_UPGRADING",
+            "DISABLED",
+            "ENABLING"
+          ]
+        },
+        "accelerators": {
+          "items": {
+            "$ref": "Accelerator"
+          }
+        },
+        "availableVersion": {
+          "items": {
+            "$ref": "Version"
+          }
+        }
+      }
+    },
+    "MaintenanceEvent": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SCHEDULED",
+            "STARTED",
+            "COMPLETED"
+          ]
+        }
+      }
+    },
+    "NetworkConfig": {
+      "properties": {
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "VPC_PEERING",
+            "PRIVATE_SERVICE_CONNECT_INTERFACES"
+          ]
+        }
+      }
+    },
+    "Version": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PREVIEW",
+            "TYPE_GENERAL_AVAILABILITY",
+            "TYPE_DEPRECATED"
+          ]
+        }
+      }
+    }
+  }
+}

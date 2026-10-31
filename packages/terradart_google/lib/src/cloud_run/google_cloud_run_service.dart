@@ -461,7 +461,7 @@ final class CloudRunServicePorts {
 
   final TfArg<num>? containerPort;
 
-  final TfArg<String>? name;
+  final CloudRunServicePortsName? name;
 
   final TfArg<String>? protocol;
 
@@ -471,6 +471,20 @@ final class CloudRunServicePorts {
     'name': ?name?.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const CloudRunServicePortsName._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunServicePortsName.variable(String name) : this._(TfArg.variable(name));
+  CloudRunServicePortsName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunServicePortsName.arg(TfArg<String> arg) : this._(arg);
+
+  static const http1 = CloudRunServicePortsName._(TfArgLiteral('http1'));
+  static const h2c = CloudRunServicePortsName._(TfArgLiteral('h2c'));
+
+  static const List<CloudRunServicePortsName> values = [http1, h2c];
 }
 
 /// Typed helper for the `template.spec.containers.readiness_probe` block of
@@ -784,7 +798,7 @@ final class CloudRunServiceCsi {
     this.volumeAttributes,
   });
 
-  final TfArg<String> driver;
+  final CloudRunServiceDriver driver;
 
   final TfArg<bool>? readOnly;
 
@@ -796,6 +810,21 @@ final class CloudRunServiceCsi {
     'read_only': ?readOnly?.toTfJson(),
     'volume_attributes': ?volumeAttributes?.toTfJson(),
   };
+}
+
+/// `driver` — derived from the provider schema description.
+extension type const CloudRunServiceDriver._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunServiceDriver.variable(String name) : this._(TfArg.variable(name));
+  CloudRunServiceDriver.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunServiceDriver.arg(TfArg<String> arg) : this._(arg);
+
+  static const gcsfuseRunGoogleapisCom = CloudRunServiceDriver._(
+    TfArgLiteral('gcsfuse.run.googleapis.com'),
+  );
+
+  static const List<CloudRunServiceDriver> values = [gcsfuseRunGoogleapisCom];
 }
 
 /// Typed helper for the `template.spec.volumes.empty_dir` block of

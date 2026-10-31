@@ -49,6 +49,32 @@ extension type const ApigeeApiProductQuotaCounterScope._(TfArg<String> _)
   ];
 }
 
+/// Apigee Api Product Quota Time enum for `quota_time_unit`.
+extension type const ApigeeApiProductQuotaTimeUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductQuotaTimeUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeApiProductQuotaTimeUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductQuotaTimeUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const second = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('second'));
+  static const minute = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('minute'));
+  static const hour = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('hour'));
+  static const day = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('day'));
+  static const month = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('month'));
+  static const year = ApigeeApiProductQuotaTimeUnit._(TfArgLiteral('year'));
+
+  static const List<ApigeeApiProductQuotaTimeUnit> values = [
+    second,
+    minute,
+    hour,
+    day,
+    month,
+    year,
+  ];
+}
+
 /// Typed helper for the `attributes` block of
 /// `google_apigee_api_product` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -153,13 +179,30 @@ final class ApigeeApiProductGraphqlOperationGroupOperations {
 
   final TfArg<String>? operation;
 
-  final TfArg<List<String>>? operationTypes;
+  final EnumList<ApigeeApiProductOperationTypes>? operationTypes;
 
   @internal
   Map<String, Object?> encode() => {
     'operation': ?operation?.toTfJson(),
     'operation_types': ?operationTypes?.toTfJson(),
   };
+}
+
+/// `operation_types` — derived from the provider schema description.
+extension type const ApigeeApiProductOperationTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductOperationTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeApiProductOperationTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductOperationTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const query = ApigeeApiProductOperationTypes._(TfArgLiteral('query'));
+  static const mutation = ApigeeApiProductOperationTypes._(
+    TfArgLiteral('mutation'),
+  );
+
+  static const List<ApigeeApiProductOperationTypes> values = [query, mutation];
 }
 
 /// Typed helper for the `graphql_operation_group.operation_configs.quota` block of
@@ -177,7 +220,7 @@ final class ApigeeApiProductOperationConfigsQuota {
 
   final TfArg<String>? limit;
 
-  final TfArg<String>? timeUnit;
+  final ApigeeApiProductTimeUnit? timeUnit;
 
   @internal
   Map<String, Object?> encode() => {
@@ -185,6 +228,31 @@ final class ApigeeApiProductOperationConfigsQuota {
     'limit': ?limit?.toTfJson(),
     'time_unit': ?timeUnit?.toTfJson(),
   };
+}
+
+/// `time_unit` — derived from the provider schema description.
+extension type const ApigeeApiProductTimeUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductTimeUnit.variable(String name) : this._(TfArg.variable(name));
+  ApigeeApiProductTimeUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductTimeUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const second = ApigeeApiProductTimeUnit._(TfArgLiteral('second'));
+  static const minute = ApigeeApiProductTimeUnit._(TfArgLiteral('minute'));
+  static const hour = ApigeeApiProductTimeUnit._(TfArgLiteral('hour'));
+  static const day = ApigeeApiProductTimeUnit._(TfArgLiteral('day'));
+  static const month = ApigeeApiProductTimeUnit._(TfArgLiteral('month'));
+  static const year = ApigeeApiProductTimeUnit._(TfArgLiteral('year'));
+
+  static const List<ApigeeApiProductTimeUnit> values = [
+    second,
+    minute,
+    hour,
+    day,
+    month,
+    year,
+  ];
 }
 
 /// Typed helper for the `grpc_operation_group` block of
@@ -333,7 +401,7 @@ final class GoogleApigeeApiProduct extends Resource {
     TfArg<String>? space,
     TfArg<String>? quota,
     TfArg<String>? quotaInterval,
-    TfArg<String>? quotaTimeUnit,
+    ApigeeApiProductQuotaTimeUnit? quotaTimeUnit,
     ApigeeApiProductQuotaCounterScope? quotaCounterScope,
     List<ApigeeApiProductAttributes>? attributes,
     ApigeeApiProductOperationGroup? operationGroup,

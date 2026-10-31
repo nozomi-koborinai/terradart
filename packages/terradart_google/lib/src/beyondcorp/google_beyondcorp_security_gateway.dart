@@ -63,7 +63,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
 
   final TfArg<bool>? clientIp;
 
-  final TfArg<String>? gatewayIdentity;
+  final BeyondcorpSecurityGatewayIdentity? gatewayIdentity;
 
   final TfArg<Map<String, String>>? metadataHeaders;
 
@@ -77,6 +77,22 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
     'metadata_headers': ?metadataHeaders?.toTfJson(),
     'contextual_headers': ?contextualHeaders?.encode(),
   };
+}
+
+/// `gateway_identity` — derived from the provider schema description.
+extension type const BeyondcorpSecurityGatewayIdentity._(TfArg<String> _)
+    implements TfArg<String> {
+  BeyondcorpSecurityGatewayIdentity.variable(String name)
+    : this._(TfArg.variable(name));
+  BeyondcorpSecurityGatewayIdentity.expression(String template)
+    : this._(TfArg.expression(template));
+  const BeyondcorpSecurityGatewayIdentity.arg(TfArg<String> arg) : this._(arg);
+
+  static const resourceName = BeyondcorpSecurityGatewayIdentity._(
+    TfArgLiteral('RESOURCE_NAME'),
+  );
+
+  static const List<BeyondcorpSecurityGatewayIdentity> values = [resourceName];
 }
 
 /// Typed helper for the `proxy_protocol_config.contextual_headers` block of

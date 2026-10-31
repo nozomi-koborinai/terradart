@@ -113,7 +113,7 @@ final class AwsOrganizationsOrganization extends Resource {
   AwsOrganizationsOrganization(
     super.localName, {
     TfArg<List<String>>? awsServiceAccessPrincipals,
-    List<OrganizationsOrganizationEnabledPolicyTypes>? enabledPolicyTypes,
+    EnumList<OrganizationsOrganizationEnabledPolicyTypes>? enabledPolicyTypes,
     OrganizationsOrganizationFeatureSet? featureSet,
     TfArg<bool>? returnOrganizationOnly,
     super.lifecycle,
@@ -124,10 +124,7 @@ final class AwsOrganizationsOrganization extends Resource {
          terraformType: tfType,
          argMap: {
            'aws_service_access_principals': ?awsServiceAccessPrincipals,
-           if (enabledPolicyTypes != null)
-             'enabled_policy_types': TfArg.literal([
-               for (final e in enabledPolicyTypes) e.toTfJson(),
-             ]),
+           'enabled_policy_types': ?enabledPolicyTypes,
            'feature_set': ?featureSet,
            'return_organization_only': ?returnOrganizationOnly,
          },

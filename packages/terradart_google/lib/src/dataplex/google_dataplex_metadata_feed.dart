@@ -21,7 +21,7 @@ final class DataplexMetadataFeedFilters {
 
   final TfArg<List<String>>? aspectTypes;
 
-  final TfArg<List<String>>? changeTypes;
+  final EnumList<DataplexMetadataFeedChangeTypes>? changeTypes;
 
   final TfArg<List<String>>? entryTypes;
 
@@ -31,6 +31,32 @@ final class DataplexMetadataFeedFilters {
     'change_types': ?changeTypes?.toTfJson(),
     'entry_types': ?entryTypes?.toTfJson(),
   };
+}
+
+/// `change_types` — derived from the provider schema description.
+extension type const DataplexMetadataFeedChangeTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexMetadataFeedChangeTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexMetadataFeedChangeTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexMetadataFeedChangeTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const create = DataplexMetadataFeedChangeTypes._(
+    TfArgLiteral('CREATE'),
+  );
+  static const update = DataplexMetadataFeedChangeTypes._(
+    TfArgLiteral('UPDATE'),
+  );
+  static const delete = DataplexMetadataFeedChangeTypes._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<DataplexMetadataFeedChangeTypes> values = [
+    create,
+    update,
+    delete,
+  ];
 }
 
 /// Typed helper for the `scope` block of

@@ -245,7 +245,7 @@ final class GeminiDataAnalyticsDataAgentSchemaRelationships {
 
   final TfArg<num>? confidenceScore;
 
-  final List<GeminiDataAnalyticsDataAgentSources>? sources;
+  final EnumList<GeminiDataAnalyticsDataAgentSources>? sources;
 
   final GeminiDataAnalyticsDataAgentLeftSchemaPaths leftSchemaPaths;
 
@@ -254,7 +254,7 @@ final class GeminiDataAnalyticsDataAgentSchemaRelationships {
   @internal
   Map<String, Object?> encode() => {
     'confidence_score': ?confidenceScore?.toTfJson(),
-    if (sources != null) 'sources': [for (final e in sources!) e.toTfJson()],
+    'sources': ?sources?.toTfJson(),
     'left_schema_paths': leftSchemaPaths.encode(),
     'right_schema_paths': rightSchemaPaths.encode(),
   };

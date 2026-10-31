@@ -11,6 +11,19 @@ const Set<String> _azurermIothubSensitive = <String>{
   'file_upload.connection_string',
 };
 
+/// Iothub Min Tls enum for `min_tls_version`.
+extension type const IothubMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  IothubMinTlsVersion.variable(String name) : this._(TfArg.variable(name));
+  IothubMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const IothubMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = IothubMinTlsVersion._(TfArgLiteral('1.2'));
+
+  static const List<IothubMinTlsVersion> values = [v1p2];
+}
+
 /// Typed helper for the `cloud_to_device` block of
 /// `azurerm_iothub` (derived from provider schema).
 @immutable
@@ -76,7 +89,7 @@ final class IothubFallbackRoute {
 
   final TfArg<List<String>>? endpointNames;
 
-  final TfArg<String>? source;
+  final IothubSource? source;
 
   @internal
   Map<String, Object?> encode() => {
@@ -85,6 +98,41 @@ final class IothubFallbackRoute {
     'endpoint_names': ?endpointNames?.toTfJson(),
     'source': ?source?.toTfJson(),
   };
+}
+
+/// `source` — derived from the provider schema description.
+extension type const IothubSource._(TfArg<String> _) implements TfArg<String> {
+  IothubSource.variable(String name) : this._(TfArg.variable(name));
+  IothubSource.expression(String template) : this._(TfArg.expression(template));
+  const IothubSource.arg(TfArg<String> arg) : this._(arg);
+
+  static const deviceconnectionstateevents = IothubSource._(
+    TfArgLiteral('DeviceConnectionStateEvents'),
+  );
+  static const devicejoblifecycleevents = IothubSource._(
+    TfArgLiteral('DeviceJobLifecycleEvents'),
+  );
+  static const devicelifecycleevents = IothubSource._(
+    TfArgLiteral('DeviceLifecycleEvents'),
+  );
+  static const devicemessages = IothubSource._(TfArgLiteral('DeviceMessages'));
+  static const digitaltwinchangeevents = IothubSource._(
+    TfArgLiteral('DigitalTwinChangeEvents'),
+  );
+  static const invalid = IothubSource._(TfArgLiteral('Invalid'));
+  static const twinchangeevents = IothubSource._(
+    TfArgLiteral('TwinChangeEvents'),
+  );
+
+  static const List<IothubSource> values = [
+    deviceconnectionstateevents,
+    devicejoblifecycleevents,
+    devicelifecycleevents,
+    devicemessages,
+    digitaltwinchangeevents,
+    invalid,
+    twinchangeevents,
+  ];
 }
 
 /// Typed helper for the `file_upload` block of
@@ -226,7 +274,7 @@ final class AzurermIothub extends Resource {
     TfArg<num>? eventHubRetentionInDays,
     TfArg<bool>? localAuthenticationEnabled,
     required TfArg<String> location,
-    TfArg<String>? minTlsVersion,
+    IothubMinTlsVersion? minTlsVersion,
     required TfArg<String> name,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,

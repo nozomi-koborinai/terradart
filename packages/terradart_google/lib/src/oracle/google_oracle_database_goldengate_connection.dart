@@ -82,13 +82,13 @@ final class OracleDatabaseGoldengateConnectionProperties {
     this.snowflakeConnectionProperties,
   });
 
-  final TfArg<String> connectionType;
+  final OracleDatabaseGoldengateConnectionType connectionType;
 
   final TfArg<String>? description;
 
   final TfArg<String> displayName;
 
-  final TfArg<String>? routingMethod;
+  final OracleDatabaseGoldengateConnectionRoutingMethod? routingMethod;
 
   final OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties?
   amazonKinesisConnectionProperties;
@@ -233,6 +233,163 @@ final class OracleDatabaseGoldengateConnectionProperties {
   };
 }
 
+/// `connection_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const goldengate = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('GOLDENGATE'),
+  );
+  static const kafka = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('KAFKA'),
+  );
+  static const kafkaSchemaRegistry = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('KAFKA_SCHEMA_REGISTRY'),
+  );
+  static const mysql = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('MYSQL'),
+  );
+  static const javaMessageService = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('JAVA_MESSAGE_SERVICE'),
+  );
+  static const microsoftSqlserver = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('MICROSOFT_SQLSERVER'),
+  );
+  static const ociObjectStorage = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('OCI_OBJECT_STORAGE'),
+  );
+  static const oracle = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('ORACLE'),
+  );
+  static const azureDataLakeStorage = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('AZURE_DATA_LAKE_STORAGE'),
+  );
+  static const postgresql = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('POSTGRESQL'),
+  );
+  static const azureSynapseAnalytics = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('AZURE_SYNAPSE_ANALYTICS'),
+  );
+  static const snowflake = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('SNOWFLAKE'),
+  );
+  static const amazonS3 = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('AMAZON_S3'),
+  );
+  static const hdfs = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('HDFS'),
+  );
+  static const oracleAiDataPlatform = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('ORACLE_AI_DATA_PLATFORM'),
+  );
+  static const oracleNosql = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('ORACLE_NOSQL'),
+  );
+  static const mongodb = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('MONGODB'),
+  );
+  static const amazonKinesis = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('AMAZON_KINESIS'),
+  );
+  static const amazonRedshift = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('AMAZON_REDSHIFT'),
+  );
+  static const db2 = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('DB2'),
+  );
+  static const redis = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('REDIS'),
+  );
+  static const elasticsearch = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('ELASTICSEARCH'),
+  );
+  static const generic = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('GENERIC'),
+  );
+  static const googleCloudStorage = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('GOOGLE_CLOUD_STORAGE'),
+  );
+  static const googleBigquery = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('GOOGLE_BIGQUERY'),
+  );
+  static const databricks = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('DATABRICKS'),
+  );
+  static const googlePubsub = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('GOOGLE_PUBSUB'),
+  );
+  static const microsoftFabric = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('MICROSOFT_FABRIC'),
+  );
+  static const iceberg = OracleDatabaseGoldengateConnectionType._(
+    TfArgLiteral('ICEBERG'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionType> values = [
+    goldengate,
+    kafka,
+    kafkaSchemaRegistry,
+    mysql,
+    javaMessageService,
+    microsoftSqlserver,
+    ociObjectStorage,
+    oracle,
+    azureDataLakeStorage,
+    postgresql,
+    azureSynapseAnalytics,
+    snowflake,
+    amazonS3,
+    hdfs,
+    oracleAiDataPlatform,
+    oracleNosql,
+    mongodb,
+    amazonKinesis,
+    amazonRedshift,
+    db2,
+    redis,
+    elasticsearch,
+    generic,
+    googleCloudStorage,
+    googleBigquery,
+    databricks,
+    googlePubsub,
+    microsoftFabric,
+    iceberg,
+  ];
+}
+
+/// `routing_method` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionRoutingMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionRoutingMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionRoutingMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionRoutingMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sharedDeploymentEndpoint =
+      OracleDatabaseGoldengateConnectionRoutingMethod._(
+        TfArgLiteral('SHARED_DEPLOYMENT_ENDPOINT'),
+      );
+  static const dedicatedEndpoint =
+      OracleDatabaseGoldengateConnectionRoutingMethod._(
+        TfArgLiteral('DEDICATED_ENDPOINT'),
+      );
+
+  static const List<OracleDatabaseGoldengateConnectionRoutingMethod> values = [
+    sharedDeploymentEndpoint,
+    dedicatedEndpoint,
+  ];
+}
+
 /// Typed helper for the `properties.amazon_kinesis_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
@@ -350,7 +507,8 @@ final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProp
 
   final TfArg<String>? accountKeySecret;
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? azureAuthorityHost;
 
@@ -379,6 +537,39 @@ final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProp
     'sas_token_secret': ?sasTokenSecret?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const sharedKey =
+      OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType._(
+        TfArgLiteral('SHARED_KEY'),
+      );
+  static const sharedAccessSignature =
+      OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType._(
+        TfArgLiteral('SHARED_ACCESS_SIGNATURE'),
+      );
+  static const azureActiveDirectory =
+      OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType._(
+        TfArgLiteral('AZURE_ACTIVE_DIRECTORY'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType
+  >
+  values = [sharedKey, sharedAccessSignature, azureActiveDirectory];
 }
 
 /// Typed helper for the `properties.azure_synapse_analytics_connection_properties` block of
@@ -428,7 +619,8 @@ final class OracleDatabaseGoldengateConnectionDatabricksConnectionProperties {
     this.technologyType,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionDatabricksAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? clientId;
 
@@ -455,6 +647,35 @@ final class OracleDatabaseGoldengateConnectionDatabricksConnectionProperties {
     'storage_credential': ?storageCredential?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionDatabricksAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionDatabricksAuthenticationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionDatabricksAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionDatabricksAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const personalAccessToken =
+      OracleDatabaseGoldengateConnectionDatabricksAuthenticationType._(
+        TfArgLiteral('PERSONAL_ACCESS_TOKEN'),
+      );
+  static const oauthM2m =
+      OracleDatabaseGoldengateConnectionDatabricksAuthenticationType._(
+        TfArgLiteral('OAUTH_M2M'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionDatabricksAuthenticationType
+  >
+  values = [personalAccessToken, oauthM2m];
 }
 
 /// Typed helper for the `properties.db2_connection_properties` block of
@@ -486,7 +707,7 @@ final class OracleDatabaseGoldengateConnectionDb2ConnectionProperties {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionDb2SecurityProtocol? securityProtocol;
 
   final TfArg<String>? sslClientKeystashFile;
 
@@ -519,6 +740,30 @@ final class OracleDatabaseGoldengateConnectionDb2ConnectionProperties {
         for (final e in additionalAttributes!) e.encode(),
       ],
   };
+}
+
+/// `security_protocol` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionDb2SecurityProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionDb2SecurityProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionDb2SecurityProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionDb2SecurityProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const plain = OracleDatabaseGoldengateConnectionDb2SecurityProtocol._(
+    TfArgLiteral('PLAIN'),
+  );
+  static const tls = OracleDatabaseGoldengateConnectionDb2SecurityProtocol._(
+    TfArgLiteral('TLS'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionDb2SecurityProtocol>
+  values = [plain, tls];
 }
 
 /// Typed helper for the `properties.db2_connection_properties.additional_attributes` block of
@@ -557,7 +802,8 @@ final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties 
     this.username,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? fingerprint;
 
@@ -565,7 +811,7 @@ final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties 
 
   final TfArg<String>? passwordSecretVersion;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionDb2SecurityProtocol? securityProtocol;
 
   final TfArg<String>? servers;
 
@@ -584,6 +830,35 @@ final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties 
     'technology_type': ?technologyType?.toTfJson(),
     'username': ?username?.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none =
+      OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType._(
+        TfArgLiteral('NONE'),
+      );
+  static const basic =
+      OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType._(
+        TfArgLiteral('BASIC'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType
+  >
+  values = [none, basic];
 }
 
 /// Typed helper for the `properties.generic_connection_properties` block of
@@ -762,7 +1037,7 @@ final class OracleDatabaseGoldengateConnectionCatalog {
     this.restIcebergCatalog,
   });
 
-  final TfArg<String> catalogType;
+  final OracleDatabaseGoldengateConnectionCatalogType catalogType;
 
   final OracleDatabaseGoldengateConnectionGlueIcebergCatalog?
   glueIcebergCatalog;
@@ -784,6 +1059,42 @@ final class OracleDatabaseGoldengateConnectionCatalog {
     'polaris_iceberg_catalog': ?polarisIcebergCatalog?.encode(),
     'rest_iceberg_catalog': ?restIcebergCatalog?.encode(),
   };
+}
+
+/// `catalog_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionCatalogType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionCatalogType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionCatalogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionCatalogType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const glue = OracleDatabaseGoldengateConnectionCatalogType._(
+    TfArgLiteral('GLUE'),
+  );
+  static const hadoop = OracleDatabaseGoldengateConnectionCatalogType._(
+    TfArgLiteral('HADOOP'),
+  );
+  static const nessie = OracleDatabaseGoldengateConnectionCatalogType._(
+    TfArgLiteral('NESSIE'),
+  );
+  static const polaris = OracleDatabaseGoldengateConnectionCatalogType._(
+    TfArgLiteral('POLARIS'),
+  );
+  static const rest = OracleDatabaseGoldengateConnectionCatalogType._(
+    TfArgLiteral('REST'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionCatalogType> values = [
+    glue,
+    hadoop,
+    nessie,
+    polaris,
+    rest,
+  ];
 }
 
 /// Typed helper for the `properties.iceberg_connection_properties.catalog.glue_iceberg_catalog` block of
@@ -883,7 +1194,7 @@ final class OracleDatabaseGoldengateConnectionStorage {
     this.googleCloudStorageIcebergStorage,
   });
 
-  final TfArg<String> storageType;
+  final OracleDatabaseGoldengateConnectionStorageType storageType;
 
   final OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage?
   amazonS3IcebergStorage;
@@ -903,6 +1214,36 @@ final class OracleDatabaseGoldengateConnectionStorage {
     'google_cloud_storage_iceberg_storage': ?googleCloudStorageIcebergStorage
         ?.encode(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionStorageType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionStorageType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const amazonS3 = OracleDatabaseGoldengateConnectionStorageType._(
+    TfArgLiteral('AMAZON_S3'),
+  );
+  static const googleCloudStorage =
+      OracleDatabaseGoldengateConnectionStorageType._(
+        TfArgLiteral('GOOGLE_CLOUD_STORAGE'),
+      );
+  static const azureDataLakeStorage =
+      OracleDatabaseGoldengateConnectionStorageType._(
+        TfArgLiteral('AZURE_DATA_LAKE_STORAGE'),
+      );
+
+  static const List<OracleDatabaseGoldengateConnectionStorageType> values = [
+    amazonS3,
+    googleCloudStorage,
+    azureDataLakeStorage,
+  ];
 }
 
 /// Typed helper for the `properties.iceberg_connection_properties.storage.amazon_s3_iceberg_storage` block of
@@ -926,7 +1267,7 @@ final class OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage {
 
   final TfArg<String> region;
 
-  final TfArg<String> schemeType;
+  final OracleDatabaseGoldengateConnectionSchemeType schemeType;
 
   final TfArg<String>? secretAccessKeySecret;
 
@@ -939,6 +1280,30 @@ final class OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage {
     'scheme_type': schemeType.toTfJson(),
     'secret_access_key_secret': ?secretAccessKeySecret?.toTfJson(),
   };
+}
+
+/// `scheme_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionSchemeType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionSchemeType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionSchemeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionSchemeType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const s3 = OracleDatabaseGoldengateConnectionSchemeType._(
+    TfArgLiteral('S3'),
+  );
+  static const s3a = OracleDatabaseGoldengateConnectionSchemeType._(
+    TfArgLiteral('S3A'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionSchemeType> values = [
+    s3,
+    s3a,
+  ];
 }
 
 /// Typed helper for the `properties.iceberg_connection_properties.storage.azure_data_lake_storage_iceberg_storage` block of
@@ -1022,7 +1387,8 @@ final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProper
     this.username,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? connectionFactory;
 
@@ -1048,7 +1414,8 @@ final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProper
 
   final TfArg<String>? passwordSecretVersion;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? sslKeyPassword;
 
@@ -1096,6 +1463,39 @@ final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProper
   };
 }
 
+/// `security_protocol` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const plain =
+      OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol._(
+        TfArgLiteral('PLAIN'),
+      );
+  static const tls =
+      OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol._(
+        TfArgLiteral('TLS'),
+      );
+  static const mtls =
+      OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol._(
+        TfArgLiteral('MTLS'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol
+  >
+  values = [plain, tls, mtls];
+}
+
 /// Typed helper for the `properties.kafka_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
@@ -1138,7 +1538,8 @@ final class OracleDatabaseGoldengateConnectionKafkaConnectionProperties {
 
   final TfArg<String>? producerPropertiesFile;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionKafkaSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? sslKeyPassword;
 
@@ -1188,6 +1589,39 @@ final class OracleDatabaseGoldengateConnectionKafkaConnectionProperties {
   };
 }
 
+/// `security_protocol` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionKafkaSecurityProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionKafkaSecurityProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionKafkaSecurityProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const ssl = OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
+    TfArgLiteral('SSL'),
+  );
+  static const saslSsl =
+      OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
+        TfArgLiteral('SASL_SSL'),
+      );
+  static const plaintext =
+      OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
+        TfArgLiteral('PLAINTEXT'),
+      );
+  static const saslPlaintext =
+      OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
+        TfArgLiteral('SASL_PLAINTEXT'),
+      );
+
+  static const List<OracleDatabaseGoldengateConnectionKafkaSecurityProtocol>
+  values = [ssl, saslSsl, plaintext, saslPlaintext];
+}
+
 /// Typed helper for the `properties.kafka_connection_properties.bootstrap_servers` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
@@ -1233,7 +1667,8 @@ final class OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionPrope
     this.username,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? keyStoreFile;
 
@@ -1280,6 +1715,39 @@ final class OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionPrope
     'url': ?url?.toTfJson(),
     'username': ?username?.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none =
+      OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType._(
+        TfArgLiteral('NONE'),
+      );
+  static const basic =
+      OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType._(
+        TfArgLiteral('BASIC'),
+      );
+  static const mutual =
+      OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType._(
+        TfArgLiteral('MUTUAL'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType
+  >
+  values = [none, basic, mutual];
 }
 
 /// Typed helper for the `properties.microsoft_fabric_connection_properties` block of
@@ -1342,7 +1810,7 @@ final class OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProper
 
   final TfArg<num>? port;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionDb2SecurityProtocol? securityProtocol;
 
   final TfArg<bool>? serverCertificateValidationRequired;
 
@@ -1401,7 +1869,8 @@ final class OracleDatabaseGoldengateConnectionMongodbConnectionProperties {
 
   final TfArg<String>? passwordSecretVersion;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? technologyType;
 
@@ -1467,7 +1936,8 @@ final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? sslCaFile;
 
@@ -1477,7 +1947,8 @@ final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
 
   final TfArg<String>? sslKeyFile;
 
-  final TfArg<String>? sslMode;
+  final OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode?
+  sslMode;
 
   final TfArg<String>? technologyType;
 
@@ -1507,6 +1978,47 @@ final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
         for (final e in additionalAttributes!) e.encode(),
       ],
   };
+}
+
+/// `ssl_mode` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const disabled =
+      OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+        TfArgLiteral('DISABLED'),
+      );
+  static const preferred =
+      OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+        TfArgLiteral('PREFERRED'),
+      );
+  static const required =
+      OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+        TfArgLiteral('REQUIRED'),
+      );
+  static const verifyCa =
+      OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+        TfArgLiteral('VERIFY_CA'),
+      );
+  static const verifyIdentity =
+      OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
+        TfArgLiteral('VERIFY_IDENTITY'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode
+  >
+  values = [disabled, preferred, required, verifyCa, verifyIdentity];
 }
 
 /// Typed helper for the `properties.oci_object_storage_connection_properties` block of
@@ -1617,7 +2129,8 @@ final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
     this.walletFile,
   });
 
-  final TfArg<String>? authenticationMode;
+  final OracleDatabaseGoldengateConnectionAuthenticationMode?
+  authenticationMode;
 
   final TfArg<String>? connectionString;
 
@@ -1627,7 +2140,7 @@ final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
 
   final TfArg<String>? passwordSecretVersion;
 
-  final TfArg<String>? sessionMode;
+  final OracleDatabaseGoldengateConnectionSessionMode? sessionMode;
 
   final TfArg<String>? technologyType;
 
@@ -1647,6 +2160,54 @@ final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
     'username': ?username?.toTfJson(),
     'wallet_file': ?walletFile?.toTfJson(),
   };
+}
+
+/// `authentication_mode` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionAuthenticationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionAuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tls = OracleDatabaseGoldengateConnectionAuthenticationMode._(
+    TfArgLiteral('TLS'),
+  );
+  static const mtls = OracleDatabaseGoldengateConnectionAuthenticationMode._(
+    TfArgLiteral('MTLS'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionAuthenticationMode>
+  values = [tls, mtls];
+}
+
+/// `session_mode` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionSessionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionSessionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionSessionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionSessionMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const direct = OracleDatabaseGoldengateConnectionSessionMode._(
+    TfArgLiteral('DIRECT'),
+  );
+  static const redirect = OracleDatabaseGoldengateConnectionSessionMode._(
+    TfArgLiteral('REDIRECT'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionSessionMode> values = [
+    direct,
+    redirect,
+  ];
 }
 
 /// Typed helper for the `properties.oracle_nosql_connection_properties` block of
@@ -1727,7 +2288,8 @@ final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? sslCaFile;
 
@@ -1737,7 +2299,8 @@ final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
 
   final TfArg<String>? sslKeyFile;
 
-  final TfArg<String>? sslMode;
+  final OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode?
+  sslMode;
 
   final TfArg<String>? technologyType;
 
@@ -1769,6 +2332,43 @@ final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
   };
 }
 
+/// `ssl_mode` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const prefer =
+      OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
+        TfArgLiteral('PREFER'),
+      );
+  static const require =
+      OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
+        TfArgLiteral('REQUIRE'),
+      );
+  static const verifyCa =
+      OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
+        TfArgLiteral('VERIFY_CA'),
+      );
+  static const verifyFull =
+      OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
+        TfArgLiteral('VERIFY_FULL'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode
+  >
+  values = [prefer, require, verifyCa, verifyFull];
+}
+
 /// Typed helper for the `properties.redis_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
@@ -1790,7 +2390,8 @@ final class OracleDatabaseGoldengateConnectionRedisConnectionProperties {
     this.username,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? keyStoreFile;
 
@@ -1804,7 +2405,8 @@ final class OracleDatabaseGoldengateConnectionRedisConnectionProperties {
 
   final TfArg<String>? redisClusterId;
 
-  final TfArg<String>? securityProtocol;
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol?
+  securityProtocol;
 
   final TfArg<String>? servers;
 
@@ -1854,7 +2456,8 @@ final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
     this.username,
   });
 
-  final TfArg<String>? authenticationType;
+  final OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType?
+  authenticationType;
 
   final TfArg<String>? connectionUrl;
 
@@ -1881,6 +2484,35 @@ final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
     'technology_type': ?technologyType?.toTfJson(),
     'username': ?username?.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const basic =
+      OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType._(
+        TfArgLiteral('BASIC'),
+      );
+  static const keyPair =
+      OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType._(
+        TfArgLiteral('KEY_PAIR'),
+      );
+
+  static const List<
+    OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType
+  >
+  values = [basic, keyPair];
 }
 
 /// Factory wrapper for `google_oracle_database_goldengate_connection`.

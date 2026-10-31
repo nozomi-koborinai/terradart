@@ -17,7 +17,7 @@ final class VirtualHubRoutingIntentRoutingPolicy {
     required this.nextHop,
   });
 
-  final List<VirtualHubRoutingIntentDestinations> destinations;
+  final EnumList<VirtualHubRoutingIntentDestinations> destinations;
 
   final TfArg<String> name;
 
@@ -25,7 +25,7 @@ final class VirtualHubRoutingIntentRoutingPolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    'destinations': [for (final e in destinations) e.toTfJson()],
+    'destinations': destinations.toTfJson(),
     'name': name.toTfJson(),
     'next_hop': nextHop.toTfJson(),
   };

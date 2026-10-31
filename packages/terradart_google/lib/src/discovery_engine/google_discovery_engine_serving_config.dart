@@ -9,6 +9,29 @@ import '../discovery_engine/google_discovery_engine_search_engine.dart'
 /// Sensitive field paths for `google_discovery_engine_serving_config`.
 const Set<String> _googleDiscoveryEngineServingConfigSensitive = <String>{};
 
+/// Discovery Engine Serving Config enum for `location`.
+extension type const DiscoveryEngineServingConfigLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineServingConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineServingConfigLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineServingConfigLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineServingConfigLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineServingConfigLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineServingConfigLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineServingConfigLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Factory wrapper for `google_discovery_engine_serving_config`.
 ///
 /// Represents a serving config which is a singleton resource under engine. A
@@ -29,7 +52,7 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
 
   GoogleDiscoveryEngineServingConfig(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineServingConfigLocation location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     TfArg<String>? servingConfigId,

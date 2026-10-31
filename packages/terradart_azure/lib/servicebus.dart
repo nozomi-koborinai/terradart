@@ -24,6 +24,7 @@ export 'src/servicebus/azurerm_servicebus_namespace.dart'
         ServicebusNamespaceCustomerManagedKey,
         ServicebusNamespaceDefaultAction,
         ServicebusNamespaceIdentity,
+        ServicebusNamespaceMinimumTlsVersion,
         ServicebusNamespaceNetworkRuleSet,
         ServicebusNamespaceNetworkRules,
         ServicebusNamespaceSku;
@@ -34,13 +35,14 @@ export 'src/servicebus/azurerm_servicebus_namespace_customer_managed_key.dart'
 export 'src/servicebus/azurerm_servicebus_namespace_disaster_recovery_config.dart'
     show AzurermServicebusNamespaceDisasterRecoveryConfig;
 export 'src/servicebus/azurerm_servicebus_queue.dart'
-    show AzurermServicebusQueue;
+    show AzurermServicebusQueue, ServicebusQueueStatus;
 export 'src/servicebus/azurerm_servicebus_queue_authorization_rule.dart'
     show AzurermServicebusQueueAuthorizationRule;
 export 'src/servicebus/azurerm_servicebus_subscription.dart'
     show
         AzurermServicebusSubscription,
-        ServicebusSubscriptionClientScopedSubscription;
+        ServicebusSubscriptionClientScopedSubscription,
+        ServicebusSubscriptionStatus;
 export 'src/servicebus/azurerm_servicebus_subscription_rule.dart'
     show
         AzurermServicebusSubscriptionRule,
@@ -50,6 +52,6 @@ export 'src/servicebus/azurerm_servicebus_subscription_rule.dart'
         ServicebusSubscriptionRuleFilterType,
         ServicebusSubscriptionRuleSqlFilter;
 export 'src/servicebus/azurerm_servicebus_topic.dart'
-    show AzurermServicebusTopic;
+    show AzurermServicebusTopic, ServicebusTopicStatus;
 export 'src/servicebus/azurerm_servicebus_topic_authorization_rule.dart'
     show AzurermServicebusTopicAuthorizationRule;

@@ -51,12 +51,33 @@ final class ComputePreviewFeatureRolloutInput {
     required this.predefinedRolloutPlan,
   });
 
-  final TfArg<String> predefinedRolloutPlan;
+  final ComputePreviewFeaturePredefinedRolloutPlan predefinedRolloutPlan;
 
   @internal
   Map<String, Object?> encode() => {
     'predefined_rollout_plan': predefinedRolloutPlan.toTfJson(),
   };
+}
+
+/// `predefined_rollout_plan` — derived from the provider schema description.
+extension type const ComputePreviewFeaturePredefinedRolloutPlan._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputePreviewFeaturePredefinedRolloutPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePreviewFeaturePredefinedRolloutPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePreviewFeaturePredefinedRolloutPlan.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rolloutPlanFastRollout =
+      ComputePreviewFeaturePredefinedRolloutPlan._(
+        TfArgLiteral('ROLLOUT_PLAN_FAST_ROLLOUT'),
+      );
+
+  static const List<ComputePreviewFeaturePredefinedRolloutPlan> values = [
+    rolloutPlanFastRollout,
+  ];
 }
 
 /// Factory wrapper for `google_compute_preview_feature`.
@@ -83,7 +104,7 @@ final class ComputePreviewFeatureRolloutInput {
 ///   activationStatus: ComputePreviewFeatureActivationStatus.activationStateUnspecified,
 ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
 ///     rolloutInput: .new(
-///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
+///       predefinedRolloutPlan: .rolloutPlanFastRollout,
 ///     ),
 ///   ),
 /// );

@@ -1,0 +1,146 @@
+{
+  "name": "cloudfunctions",
+  "version": "v2",
+  "revision": "20261022",
+  "sourceUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "BuildConfig": {
+      "properties": {
+        "dockerRegistry": {
+          "enum": [
+            "DOCKER_REGISTRY_UNSPECIFIED",
+            "CONTAINER_REGISTRY",
+            "ARTIFACT_REGISTRY"
+          ]
+        }
+      }
+    },
+    "EventTrigger": {
+      "properties": {
+        "retryPolicy": {
+          "enum": [
+            "RETRY_POLICY_UNSPECIFIED",
+            "RETRY_POLICY_DO_NOT_RETRY",
+            "RETRY_POLICY_RETRY"
+          ]
+        }
+      }
+    },
+    "Function": {
+      "properties": {
+        "buildConfig": {
+          "$ref": "BuildConfig"
+        },
+        "environment": {
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "GEN_1",
+            "GEN_2"
+          ]
+        },
+        "upgradeInfo": {
+          "$ref": "UpgradeInfo"
+        },
+        "stateMessages": {
+          "items": {
+            "$ref": "GoogleCloudFunctionsV2StateMessage"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "DEPLOYING",
+            "DELETING",
+            "UNKNOWN",
+            "DETACHING",
+            "DETACH_FAILED"
+          ]
+        },
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
+        },
+        "eventTrigger": {
+          "$ref": "EventTrigger"
+        }
+      }
+    },
+    "GoogleCloudFunctionsV2StateMessage": {
+      "properties": {
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        }
+      }
+    },
+    "ServiceConfig": {
+      "properties": {
+        "securityLevel": {
+          "enum": [
+            "SECURITY_LEVEL_UNSPECIFIED",
+            "SECURE_ALWAYS",
+            "SECURE_OPTIONAL"
+          ]
+        },
+        "directVpcEgress": {
+          "enum": [
+            "DIRECT_VPC_EGRESS_UNSPECIFIED",
+            "VPC_EGRESS_PRIVATE_RANGES_ONLY",
+            "VPC_EGRESS_ALL_TRAFFIC"
+          ]
+        },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
+          ]
+        },
+        "ingressSettings": {
+          "enum": [
+            "INGRESS_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL",
+            "ALLOW_INTERNAL_ONLY",
+            "ALLOW_INTERNAL_AND_GCLB"
+          ]
+        }
+      }
+    },
+    "UpgradeInfo": {
+      "properties": {
+        "buildConfig": {
+          "$ref": "BuildConfig"
+        },
+        "eventTrigger": {
+          "$ref": "EventTrigger"
+        },
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
+        },
+        "upgradeState": {
+          "enum": [
+            "UPGRADE_STATE_UNSPECIFIED",
+            "ELIGIBLE_FOR_2ND_GEN_UPGRADE",
+            "INELIGIBLE_FOR_UPGRADE_UNTIL_REDEPLOYMENT",
+            "UPGRADE_OPERATION_IN_PROGRESS",
+            "SETUP_FUNCTION_UPGRADE_CONFIG_SUCCESSFUL",
+            "SETUP_FUNCTION_UPGRADE_CONFIG_ERROR",
+            "ABORT_FUNCTION_UPGRADE_ERROR",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
+            "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
+            "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
+            "COMMIT_FUNCTION_UPGRADE_ERROR",
+            "COMMIT_FUNCTION_UPGRADE_ERROR_ROLLBACK_SAFE",
+            "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
+            "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR"
+          ]
+        }
+      }
+    }
+  }
+}

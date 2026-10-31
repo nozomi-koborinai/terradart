@@ -60,6 +60,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -138,6 +140,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -168,6 +172,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -177,6 +183,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -196,6 +204,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -214,6 +224,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -233,6 +245,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -251,6 +265,8 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -275,6 +291,8 @@ void main() {
       'wrap',
       '--provider',
       'hashicorp/google',
+      '--mm-groups',
+      '--discovery-enums',
       '--source',
       p.join('test', 'fixtures', 'wrap', 'source'),
       '--output',
@@ -514,6 +532,8 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -538,6 +558,8 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -562,6 +584,8 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -600,6 +624,8 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -632,6 +658,8 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -675,6 +703,7 @@ paramOrder:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             tmpSrc.path,
             '--output',
@@ -732,6 +761,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           tmpSrc.path,
           '--output',
@@ -758,6 +788,73 @@ paramOrder:
     });
   });
 
+  group('WrapCommand --discovery-enums', () {
+    late Directory tmpSrc;
+    late Directory tmpOut;
+    setUp(() async {
+      tmpSrc = await Directory.systemTemp.createTemp('wrap_discovery_src_');
+      tmpOut = await Directory.systemTemp.createTemp('wrap_discovery_out_');
+      File(p.join(tmpSrc.path, 'schema.json')).writeAsStringSync(
+        File(
+          p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
+        ).readAsStringSync(),
+      );
+    });
+    tearDown(() async {
+      await tmpSrc.delete(recursive: true);
+      await tmpOut.delete(recursive: true);
+    });
+
+    Future<(int?, String)> wrap(List<String> flags) async {
+      final errBuf = StringBuffer();
+      final code = await IOOverrides.runZoned(
+        () => buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          ...flags,
+          '--discovery-enums',
+          '--source',
+          tmpSrc.path,
+          '--output',
+          _libSrcOut(tmpOut),
+          '--only',
+          'google_pubsub_schema',
+        ]),
+        stderr: () => _BufferSink(errBuf),
+      );
+      return (code, errBuf.toString());
+    }
+
+    test('needs --mm-groups or --mm-hints', () async {
+      final (code, err) = await wrap(const []);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('needs --mm-groups or --mm-hints'));
+    });
+
+    test('fails closed without a Discovery copy (E405)', () async {
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, allOf(contains('[E405]'), contains('roots.yaml')));
+    });
+
+    test('fails on a malformed Discovery copy (E405)', () async {
+      final dir = Directory(p.join(tmpSrc.path, 'discovery'))..createSync();
+      File(p.join(dir.path, 'roots.yaml')).writeAsStringSync('{}');
+      File(p.join(dir.path, 'pubsub.v1.json')).writeAsStringSync('{}');
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, allOf(contains('[E405]'), contains('malformed Discovery')));
+    });
+
+    test('wraps against a valid copy', () async {
+      final dir = Directory(p.join(tmpSrc.path, 'discovery'))..createSync();
+      File(p.join(dir.path, 'roots.yaml')).writeAsStringSync('{}');
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.success, reason: err);
+    });
+  });
+
   group('WrapCommand fixture-driven', () {
     // Fixture files are stored with a `.dart.golden` suffix (matching the
     // project-wide golden naming convention under `test/golden/`) so they
@@ -772,20 +869,29 @@ paramOrder:
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('phase4_fix_');
         try {
-          final code = await buildCliRunner().run([
-            'wrap',
-            '--provider',
-            'hashicorp/google',
-            '--source',
-            p.join('test', 'fixtures', 'wrap', 'source'),
-            '--output',
-            _libSrcOut(tmpOut),
-          ]);
-          expect(code, 0);
-
           final fixtureDir = Directory(
             p.join('test', 'fixtures', 'wrap', 'expected_output'),
           );
+          // The goldens freeze the emitter without the lane's --mm-groups,
+          // and a full-catalog run without it fails on typeNames entries
+          // that name Magic Modules enums, so wrap only the golden types.
+          for (final fixFile
+              in fixtureDir.listSync(recursive: true).whereType<File>()) {
+            final stem = p.basename(fixFile.path).split('.').first;
+            final code = await buildCliRunner().run([
+              'wrap',
+              '--provider',
+              'hashicorp/google',
+              '--source',
+              p.join('test', 'fixtures', 'wrap', 'source'),
+              '--output',
+              _libSrcOut(tmpOut),
+              '--only',
+              stem,
+            ]);
+            expect(code, 0, reason: stem);
+          }
+
           var checked = 0;
           for (final fixFile
               in fixtureDir.listSync(recursive: true).whereType<File>()) {
@@ -1133,6 +1239,8 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
+            '--discovery-enums',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1179,6 +1287,8 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
+            '--discovery-enums',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1196,6 +1306,8 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
+            '--discovery-enums',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1229,6 +1341,8 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
+            '--discovery-enums',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1256,6 +1370,8 @@ barrels:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
+          '--discovery-enums',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -1280,6 +1396,8 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
+            '--discovery-enums',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1432,29 +1550,15 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       },
     );
 
-    test('on: a list of strings takes one enum per element', () async {
+    test('on: a list of strings takes an EnumList', () async {
       final (code, _) = await wrap(providerEnums: true);
       expect(code, CliExitCodes.success);
       final src = emitted();
-      expect(src, contains('List<XThingRegions>? regions'));
-      expect(src, contains('required List<XThingGrants> grants'));
+      expect(src, contains('EnumList<XThingRegions>? regions'));
+      expect(src, contains('required EnumList<XThingGrants> grants'));
       expect(src, contains("TfArgLiteral('WNAM')"));
-      expect(
-        src,
-        matches(
-          RegExp(
-            r"if \(regions != null\)\s+'regions': "
-            r'TfArg\.literal\(\[for \(final e in regions\) e\.toTfJson\(\)\]\)',
-          ),
-        ),
-      );
-      expect(
-        src,
-        contains(
-          "'grants': "
-          'TfArg.literal([for (final e in grants) e.toTfJson()])',
-        ),
-      );
+      expect(src, contains("'regions': ?regions,"));
+      expect(src, contains("'grants': grants,"));
     });
 
     test('a hint file at another release fails closed (E405)', () async {
@@ -2066,7 +2170,7 @@ deriveExactlyOne: true
     });
     tearDown(() => tmp.deleteSync(recursive: true));
 
-    Future<(int, String)> wrap(List<String> flags) async {
+    Future<(int?, String)> wrap(List<String> flags) async {
       final err = StringBuffer();
       final code = await IOOverrides.runZoned(
         () => buildCliRunner().run([

@@ -20,9 +20,9 @@ final class CdnFrontdoorCustomDomainTls {
 
   final TfArg<String>? cdnFrontdoorSecretId;
 
-  final TfArg<String>? certificateType;
+  final CdnFrontdoorCustomDomainCertificateType? certificateType;
 
-  final TfArg<String>? minimumVersion;
+  final CdnFrontdoorCustomDomainMinimumVersion? minimumVersion;
 
   final CdnFrontdoorCustomDomainCipherSuite? cipherSuite;
 
@@ -35,6 +35,46 @@ final class CdnFrontdoorCustomDomainTls {
   };
 }
 
+/// `certificate_type` — derived from the provider schema description.
+extension type const CdnFrontdoorCustomDomainCertificateType._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorCustomDomainCertificateType.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorCustomDomainCertificateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorCustomDomainCertificateType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const customercertificate = CdnFrontdoorCustomDomainCertificateType._(
+    TfArgLiteral('CustomerCertificate'),
+  );
+  static const managedcertificate = CdnFrontdoorCustomDomainCertificateType._(
+    TfArgLiteral('ManagedCertificate'),
+  );
+
+  static const List<CdnFrontdoorCustomDomainCertificateType> values = [
+    customercertificate,
+    managedcertificate,
+  ];
+}
+
+/// `minimum_version` — derived from the provider schema description.
+extension type const CdnFrontdoorCustomDomainMinimumVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorCustomDomainMinimumVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorCustomDomainMinimumVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorCustomDomainMinimumVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tls12 = CdnFrontdoorCustomDomainMinimumVersion._(
+    TfArgLiteral('TLS12'),
+  );
+
+  static const List<CdnFrontdoorCustomDomainMinimumVersion> values = [tls12];
+}
+
 /// Typed helper for the `tls.cipher_suite` block of
 /// `azurerm_cdn_frontdoor_custom_domain` (derived from provider schema).
 @immutable
@@ -44,7 +84,7 @@ final class CdnFrontdoorCustomDomainCipherSuite {
     this.customCiphers,
   });
 
-  final TfArg<String> type;
+  final CdnFrontdoorCustomDomainType type;
 
   final CdnFrontdoorCustomDomainCustomCiphers? customCiphers;
 
@@ -55,21 +95,77 @@ final class CdnFrontdoorCustomDomainCipherSuite {
   };
 }
 
+/// `type` — derived from the provider schema description.
+extension type const CdnFrontdoorCustomDomainType._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorCustomDomainType.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorCustomDomainType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorCustomDomainType.arg(TfArg<String> arg) : this._(arg);
+
+  static const customized = CdnFrontdoorCustomDomainType._(
+    TfArgLiteral('Customized'),
+  );
+  static const tls122023 = CdnFrontdoorCustomDomainType._(
+    TfArgLiteral('TLS12_2023'),
+  );
+  static const tls122022 = CdnFrontdoorCustomDomainType._(
+    TfArgLiteral('TLS12_2022'),
+  );
+
+  static const List<CdnFrontdoorCustomDomainType> values = [
+    customized,
+    tls122023,
+    tls122022,
+  ];
+}
+
 /// Typed helper for the `tls.cipher_suite.custom_ciphers` block of
 /// `azurerm_cdn_frontdoor_custom_domain` (derived from provider schema).
 @immutable
 final class CdnFrontdoorCustomDomainCustomCiphers {
   const CdnFrontdoorCustomDomainCustomCiphers({this.tls12, this.tls13});
 
-  final TfArg<List<String>>? tls12;
+  final EnumList<CdnFrontdoorCustomDomainTls12>? tls12;
 
-  final List<CdnFrontdoorCustomDomainTls13>? tls13;
+  final EnumList<CdnFrontdoorCustomDomainTls13>? tls13;
 
   @internal
   Map<String, Object?> encode() => {
     'tls12': ?tls12?.toTfJson(),
-    if (tls13 != null) 'tls13': [for (final e in tls13!) e.toTfJson()],
+    'tls13': ?tls13?.toTfJson(),
   };
+}
+
+/// `tls12` — derived from the provider schema description.
+extension type const CdnFrontdoorCustomDomainTls12._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorCustomDomainTls12.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorCustomDomainTls12.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorCustomDomainTls12.arg(TfArg<String> arg) : this._(arg);
+
+  static const ecdheRsaAes128GcmSha256 = CdnFrontdoorCustomDomainTls12._(
+    TfArgLiteral('ECDHE_RSA_AES128_GCM_SHA256'),
+  );
+  static const ecdheRsaAes256GcmSha384 = CdnFrontdoorCustomDomainTls12._(
+    TfArgLiteral('ECDHE_RSA_AES256_GCM_SHA384'),
+  );
+  static const ecdheRsaAes128Sha256 = CdnFrontdoorCustomDomainTls12._(
+    TfArgLiteral('ECDHE_RSA_AES128_SHA256'),
+  );
+  static const ecdheRsaAes256Sha384 = CdnFrontdoorCustomDomainTls12._(
+    TfArgLiteral('ECDHE_RSA_AES256_SHA384'),
+  );
+
+  static const List<CdnFrontdoorCustomDomainTls12> values = [
+    ecdheRsaAes128GcmSha256,
+    ecdheRsaAes256GcmSha384,
+    ecdheRsaAes128Sha256,
+    ecdheRsaAes256Sha384,
+  ];
 }
 
 /// `tls13` — derived from the provider schema description.

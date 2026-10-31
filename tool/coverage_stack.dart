@@ -701,3 +701,12 @@ Future<void> main(List<String> args) async {
       'coverage stack ${verdict.slug}: fails ${stage.name}\n$logExcerpt',
   });
 }
+
+final _enumListType = RegExp(r'\bEnumList<\s*(\w+)\s*>');
+
+/// [file], a generated wrapper, with each `EnumList<E>` written as the type
+/// it aliases, `TfArg<List<E>>`, so a generator reads one list shape.
+String readWrapperSource(File file) => file.readAsStringSync().replaceAllMapped(
+  _enumListType,
+  (m) => 'TfArg<List<${m[1]}>>',
+);

@@ -3,6 +3,10 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: license_type
+    enum_values:
+      - "Windows_Server_Hybrid"
+      - "Windows_Server_Perpetual"
   - api_name: sku_name
     enum_values:
       - "DADSv5-Type1"

@@ -108,8 +108,8 @@ sealed class ComputeGlobalVmExtensionPolicyPlan {
 
   /// Sets `predefined_rollout_plan`.
   const factory ComputeGlobalVmExtensionPolicyPlan.predefinedRolloutPlan(
-    TfArg<String> predefinedRolloutPlan,
-  ) = ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan;
+    ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan predefinedRolloutPlan,
+  ) = ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -136,13 +136,14 @@ final class ComputeGlobalVmExtensionPolicyPlanName
 }
 
 /// The [ComputeGlobalVmExtensionPolicyPlan.predefinedRolloutPlan] choice: sets `predefined_rollout_plan`.
-final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
+final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice
     extends ComputeGlobalVmExtensionPolicyPlan {
-  const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan(
+  const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice(
     this.predefinedRolloutPlan,
   );
 
-  final TfArg<String> predefinedRolloutPlan;
+  final ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
+  predefinedRolloutPlan;
 
   @internal
   @override
@@ -153,6 +154,32 @@ final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
   Map<String, Object?> encode() => {
     'predefined_rollout_plan': predefinedRolloutPlan.toTfJson(),
   };
+}
+
+/// `predefined_rollout_plan` — derived from the provider schema description.
+extension type const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const fastRollout =
+      ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan._(
+        TfArgLiteral('FAST_ROLLOUT'),
+      );
+  static const slowRollout =
+      ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan._(
+        TfArgLiteral('SLOW_ROLLOUT'),
+      );
+
+  static const List<ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan>
+  values = [fastRollout, slowRollout];
 }
 
 /// Factory wrapper for `google_compute_global_vm_extension_policy`.

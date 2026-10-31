@@ -9,6 +9,192 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
 const Set<String> _googleAppEngineStandardAppVersionSensitive = <String>{};
 
+/// App Engine Standard App Version App Engine Bundled enum for `app_engine_bundled_services`.
+extension type const AppEngineStandardAppVersionAppEngineBundledServices._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionAppEngineBundledServices.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionAppEngineBundledServices.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionAppEngineBundledServices.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bundledServiceTypeAppIdentityService =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE'),
+      );
+  static const bundledServiceTypeBlobstore =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_BLOBSTORE'),
+      );
+  static const bundledServiceTypeCapabilityService =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE'),
+      );
+  static const bundledServiceTypeDatastoreV3 =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_DATASTORE_V3'),
+      );
+  static const bundledServiceTypeImages =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_IMAGES'),
+      );
+  static const bundledServiceTypeMail =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MAIL'),
+      );
+  static const bundledServiceTypeMemcache =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MEMCACHE'),
+      );
+  static const bundledServiceTypeModules =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MODULES'),
+      );
+  static const bundledServiceTypeSearch =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_SEARCH'),
+      );
+  static const bundledServiceTypeTaskqueues =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_TASKQUEUES'),
+      );
+  static const bundledServiceTypeUrlfetch =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_URLFETCH'),
+      );
+  static const bundledServiceTypeUsers =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_USERS'),
+      );
+
+  static const List<AppEngineStandardAppVersionAppEngineBundledServices>
+  values = [
+    bundledServiceTypeAppIdentityService,
+    bundledServiceTypeBlobstore,
+    bundledServiceTypeCapabilityService,
+    bundledServiceTypeDatastoreV3,
+    bundledServiceTypeImages,
+    bundledServiceTypeMail,
+    bundledServiceTypeMemcache,
+    bundledServiceTypeModules,
+    bundledServiceTypeSearch,
+    bundledServiceTypeTaskqueues,
+    bundledServiceTypeUrlfetch,
+    bundledServiceTypeUsers,
+  ];
+}
+
+/// App Engine Standard App Version Inbound enum for `inbound_services`.
+extension type const AppEngineStandardAppVersionInboundServices._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionInboundServices.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionInboundServices.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionInboundServices.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inboundServiceMail =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL'),
+      );
+  static const inboundServiceMailBounce =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL_BOUNCE'),
+      );
+  static const inboundServiceXmppError =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_ERROR'),
+      );
+  static const inboundServiceXmppMessage =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_MESSAGE'),
+      );
+  static const inboundServiceXmppSubscribe =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_SUBSCRIBE'),
+      );
+  static const inboundServiceXmppPresence =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_PRESENCE'),
+      );
+  static const inboundServiceChannelPresence =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_CHANNEL_PRESENCE'),
+      );
+  static const inboundServiceWarmup =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_WARMUP'),
+      );
+
+  static const List<AppEngineStandardAppVersionInboundServices> values = [
+    inboundServiceMail,
+    inboundServiceMailBounce,
+    inboundServiceXmppError,
+    inboundServiceXmppMessage,
+    inboundServiceXmppSubscribe,
+    inboundServiceXmppPresence,
+    inboundServiceChannelPresence,
+    inboundServiceWarmup,
+  ];
+}
+
+/// App Engine Standard App Version Instance enum for `instance_class`.
+extension type const AppEngineStandardAppVersionInstanceClass._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionInstanceClass.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionInstanceClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionInstanceClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const f1 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F1'),
+  );
+  static const f2 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F2'),
+  );
+  static const f4 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F4'),
+  );
+  static const f41g = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F4_1G'),
+  );
+  static const b1 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B1'),
+  );
+  static const b2 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B2'),
+  );
+  static const b4 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B4'),
+  );
+  static const b8 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B8'),
+  );
+  static const b41g = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B4_1G'),
+  );
+
+  static const List<AppEngineStandardAppVersionInstanceClass> values = [
+    f1,
+    f2,
+    f4,
+    f41g,
+    b1,
+    b2,
+    b4,
+    b8,
+    b41g,
+  ];
+}
+
 /// At most one of `app_engine_apis`, `app_engine_bundled_services` on `google_app_engine_standard_app_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -24,7 +210,8 @@ sealed class AppEngineStandardAppVersionLegacyServices {
 
   /// Sets `app_engine_bundled_services`.
   const factory AppEngineStandardAppVersionLegacyServices.appEngineBundledServices(
-    TfArg<List<String>> appEngineBundledServices,
+    EnumList<AppEngineStandardAppVersionAppEngineBundledServices>
+    appEngineBundledServices,
   ) = AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices;
 
   /// The Terraform argument this choice sets.
@@ -71,7 +258,8 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
     this.appEngineBundledServices,
   );
 
-  final TfArg<List<String>> appEngineBundledServices;
+  final EnumList<AppEngineStandardAppVersionAppEngineBundledServices>
+  appEngineBundledServices;
 
   @internal
   @override
@@ -607,7 +795,7 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
     required this.name,
   });
 
-  final TfArg<String>? egressSetting;
+  final AppEngineStandardAppVersionEgressSetting? egressSetting;
 
   final TfArg<String> name;
 
@@ -616,6 +804,29 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
     'egress_setting': ?egressSetting?.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `egress_setting` — derived from the provider schema description.
+extension type const AppEngineStandardAppVersionEgressSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionEgressSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionEgressSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionEgressSetting.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allTraffic = AppEngineStandardAppVersionEgressSetting._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateIpRanges = AppEngineStandardAppVersionEgressSetting._(
+    TfArgLiteral('PRIVATE_IP_RANGES'),
+  );
+
+  static const List<AppEngineStandardAppVersionEgressSetting> values = [
+    allTraffic,
+    privateIpRanges,
+  ];
 }
 
 /// Factory wrapper for `google_app_engine_standard_app_version`.
@@ -634,7 +845,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<String>? versionId,
     required TfArg<String> runtime,
     TfArg<String>? runtimeApiVersion,
-    TfArg<String>? instanceClass,
+    AppEngineStandardAppVersionInstanceClass? instanceClass,
     TfArg<Map<String, String>>? envVariables,
     List<AppEngineStandardAppVersionHandlers>? handlers,
     required AppEngineStandardAppVersionDeployment deployment,
@@ -647,7 +858,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<bool>? noopOnDestroy,
     RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<bool>? threadsafe,
-    TfArg<List<String>>? inboundServices,
+    EnumList<AppEngineStandardAppVersionInboundServices>? inboundServices,
     TfArg<String>? project,
     List<AppEngineStandardAppVersionLibraries>? libraries,
     super.lifecycle,

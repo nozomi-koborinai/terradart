@@ -8,6 +8,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_app_service_custom_hostname_binding`.
 const Set<String> _azurermAppServiceCustomHostnameBindingSensitive = <String>{};
 
+/// App Service Custom Hostname Binding Ssl enum for `ssl_state`.
+extension type const AppServiceCustomHostnameBindingSslState._(TfArg<String> _)
+    implements TfArg<String> {
+  AppServiceCustomHostnameBindingSslState.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceCustomHostnameBindingSslState.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceCustomHostnameBindingSslState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipbasedenabled = AppServiceCustomHostnameBindingSslState._(
+    TfArgLiteral('IpBasedEnabled'),
+  );
+  static const snienabled = AppServiceCustomHostnameBindingSslState._(
+    TfArgLiteral('SniEnabled'),
+  );
+
+  static const List<AppServiceCustomHostnameBindingSslState> values = [
+    ipbasedenabled,
+    snienabled,
+  ];
+}
+
 /// Factory wrapper for `azurerm_app_service_custom_hostname_binding`.
 final class AzurermAppServiceCustomHostnameBinding extends Resource {
   static const String tfType = 'azurerm_app_service_custom_hostname_binding';
@@ -17,7 +40,7 @@ final class AzurermAppServiceCustomHostnameBinding extends Resource {
     required TfArg<String> appServiceName,
     required TfArg<String> hostname,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? sslState,
+    AppServiceCustomHostnameBindingSslState? sslState,
     TfArg<String>? thumbprint,
     super.lifecycle,
     super.dependsOn,

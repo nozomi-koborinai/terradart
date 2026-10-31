@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_logic_app_action_http`.
 const Set<String> _azurermLogicAppActionHttpSensitive = <String>{};
 
+/// Logic App Action Http enum for `method`.
+extension type const LogicAppActionHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppActionHttpMethod.variable(String name) : this._(TfArg.variable(name));
+  LogicAppActionHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppActionHttpMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const delete = LogicAppActionHttpMethod._(TfArgLiteral('DELETE'));
+  static const get = LogicAppActionHttpMethod._(TfArgLiteral('GET'));
+  static const patch = LogicAppActionHttpMethod._(TfArgLiteral('PATCH'));
+  static const post = LogicAppActionHttpMethod._(TfArgLiteral('POST'));
+  static const put = LogicAppActionHttpMethod._(TfArgLiteral('PUT'));
+
+  static const List<LogicAppActionHttpMethod> values = [
+    delete,
+    get,
+    patch,
+    post,
+    put,
+  ];
+}
+
 /// Typed helper for the `run_after` block of
 /// `azurerm_logic_app_action_http` (derived from provider schema).
 @immutable
@@ -18,13 +41,43 @@ final class LogicAppActionHttpRunAfter {
 
   final TfArg<String> actionName;
 
-  final TfArg<String> actionResult;
+  final LogicAppActionHttpActionResult actionResult;
 
   @internal
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
     'action_result': actionResult.toTfJson(),
   };
+}
+
+/// `action_result` — derived from the provider schema description.
+extension type const LogicAppActionHttpActionResult._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppActionHttpActionResult.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppActionHttpActionResult.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppActionHttpActionResult.arg(TfArg<String> arg) : this._(arg);
+
+  static const succeeded = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Succeeded'),
+  );
+  static const failed = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Failed'),
+  );
+  static const skipped = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Skipped'),
+  );
+  static const timedout = LogicAppActionHttpActionResult._(
+    TfArgLiteral('TimedOut'),
+  );
+
+  static const List<LogicAppActionHttpActionResult> values = [
+    succeeded,
+    failed,
+    skipped,
+    timedout,
+  ];
 }
 
 /// Factory wrapper for `azurerm_logic_app_action_http`.
@@ -36,7 +89,7 @@ final class AzurermLogicAppActionHttp extends Resource {
     TfArg<String>? body,
     TfArg<Map<String, String>>? headers,
     required TfArg<String> logicAppId,
-    required TfArg<String> method,
+    required LogicAppActionHttpMethod method,
     required TfArg<String> name,
     TfArg<Map<String, String>>? queries,
     required TfArg<String> uri,

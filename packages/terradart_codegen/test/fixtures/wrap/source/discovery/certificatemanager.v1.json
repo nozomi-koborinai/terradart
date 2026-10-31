@@ -1,0 +1,156 @@
+{
+  "name": "certificatemanager",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://certificatemanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AuthorizationAttemptInfo": {
+      "properties": {
+        "troubleshooting": {
+          "$ref": "Troubleshooting"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AUTHORIZING",
+            "AUTHORIZED",
+            "FAILED"
+          ]
+        },
+        "failureReason": {
+          "enum": [
+            "FAILURE_REASON_UNSPECIFIED",
+            "CONFIG",
+            "CAA",
+            "RATE_LIMITED"
+          ]
+        }
+      }
+    },
+    "Certificate": {
+      "properties": {
+        "scope": {
+          "enum": [
+            "DEFAULT",
+            "EDGE_CACHE",
+            "ALL_REGIONS",
+            "CLIENT_AUTH"
+          ]
+        },
+        "managedIdentity": {
+          "$ref": "ManagedIdentityCertificate"
+        },
+        "managed": {
+          "$ref": "ManagedCertificate"
+        }
+      }
+    },
+    "CertificateIssuanceConfig": {
+      "properties": {
+        "keyAlgorithm": {
+          "enum": [
+            "KEY_ALGORITHM_UNSPECIFIED",
+            "RSA_2048",
+            "ECDSA_P256"
+          ]
+        }
+      }
+    },
+    "CertificateMap": {
+      "properties": {}
+    },
+    "CertificateMapEntry": {
+      "properties": {
+        "matcher": {
+          "enum": [
+            "MATCHER_UNSPECIFIED",
+            "PRIMARY"
+          ]
+        },
+        "state": {
+          "enum": [
+            "SERVING_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "DnsAuthorization": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "FIXED_RECORD",
+            "PER_PROJECT_RECORD"
+          ]
+        }
+      }
+    },
+    "ManagedCertificate": {
+      "properties": {
+        "authorizationAttemptInfo": {
+          "items": {
+            "$ref": "AuthorizationAttemptInfo"
+          }
+        },
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "FAILED",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "ManagedIdentityCertificate": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "FAILED",
+            "ACTIVE"
+          ]
+        },
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
+        }
+      }
+    },
+    "ProvisioningIssue": {
+      "properties": {
+        "reason": {
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "AUTHORIZATION_ISSUE",
+            "RATE_LIMITED"
+          ]
+        }
+      }
+    },
+    "Troubleshooting": {
+      "properties": {
+        "issues": {
+          "items": {
+            "enum": [
+              "ISSUE_UNSPECIFIED",
+              "CNAME_MISMATCH",
+              "RESOLVED_TO_NOT_SERVING",
+              "RESOLVED_TO_SERVING_ON_ALT_PORTS",
+              "NO_RESOLVED_IPS",
+              "CERTIFICATE_NOT_ATTACHED"
+            ]
+          }
+        }
+      }
+    },
+    "TrustConfig": {
+      "properties": {}
+    }
+  }
+}

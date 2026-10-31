@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+typeNames:
+  settings.block_page.mode: ZeroTrustGatewaySettingsBlockPageMode
+  settings.body_scanning.inspection_mode: ZeroTrustGatewaySettingsBodyScanningInspectionMode
+  settings.inspection.mode: ZeroTrustGatewaySettingsProxyInspectionMode

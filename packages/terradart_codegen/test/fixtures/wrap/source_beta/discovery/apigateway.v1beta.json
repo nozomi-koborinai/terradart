@@ -1,0 +1,64 @@
+{
+  "name": "apigateway",
+  "version": "v1beta",
+  "revision": "20261021",
+  "sourceUrl": "https://apigateway.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "ApigatewayApi": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "ApigatewayApiConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING",
+            "UPDATING",
+            "ACTIVATING"
+          ]
+        }
+      }
+    },
+    "ApigatewayGateway": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING",
+            "UPDATING"
+          ]
+        },
+        "effectiveStreamingMode": {
+          "enum": [
+            "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
+            "EFFECTIVE_STREAMING_MODE_DISABLED",
+            "EFFECTIVE_STREAMING_MODE_ENABLED"
+          ]
+        },
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_ENABLED"
+          ]
+        }
+      }
+    }
+  }
+}

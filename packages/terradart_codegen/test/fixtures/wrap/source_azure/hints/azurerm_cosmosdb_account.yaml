@@ -57,6 +57,18 @@ properties:
           - "Eventual"
           - "Session"
           - "Strong"
+  - api_name: cors_rule
+    properties:
+      - api_name: allowed_methods
+        enum_values:
+          - "DELETE"
+          - "GET"
+          - "HEAD"
+          - "MERGE"
+          - "POST"
+          - "OPTIONS"
+          - "PUT"
+          - "PATCH"
   - api_name: create_mode
     enum_values:
       - "Default"
@@ -66,6 +78,9 @@ properties:
       - "GlobalDocumentDB"
       - "MongoDB"
       - "Parse"
+  - api_name: minimal_tls_version
+    enum_values:
+      - "Tls12"
   - api_name: mongo_server_version
     enum_values:
       - "5.0"
@@ -75,3 +90,6 @@ properties:
       - "6.0"
       - "3.6"
       - "3.2"
+  - api_name: offer_type
+    enum_values:
+      - "Standard"

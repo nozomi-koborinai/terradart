@@ -477,7 +477,7 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
     required TfArg<String> eventDestinationName,
-    required List<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>
+    required EnumList<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>
     matchingEventTypes,
     TfArg<String>? region,
     required Pinpointsmsvoicev2EventDestinationTarget target,
@@ -491,9 +491,7 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
            'configuration_set_name': configurationSetName,
            'enabled': ?enabled,
            'event_destination_name': eventDestinationName,
-           'matching_event_types': TfArg.literal([
-             for (final e in matchingEventTypes) e.toTfJson(),
-           ]),
+           'matching_event_types': matchingEventTypes,
            'region': ?region,
            ...target.argMap,
          },

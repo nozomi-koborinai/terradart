@@ -449,9 +449,13 @@ export 'src/data/google_dataproc_metastore_table_iam_policy.dart'
 export 'src/data/google_datastream_static_ips.dart'
     show DataGoogleDatastreamStaticIps;
 export 'src/data/google_discovery_engine_data_store.dart'
-    show DataGoogleDiscoveryEngineDataStore;
+    show
+        DataDiscoveryEngineDataStoreLocation,
+        DataGoogleDiscoveryEngineDataStore;
 export 'src/data/google_discovery_engine_data_stores.dart'
-    show DataGoogleDiscoveryEngineDataStores;
+    show
+        DataDiscoveryEngineDataStoresLocation,
+        DataGoogleDiscoveryEngineDataStores;
 export 'src/data/google_discovery_engine_search_engine_iam_policy.dart'
     show DataGoogleDiscoveryEngineSearchEngineIamPolicy;
 export 'src/data/google_dns_keys.dart' show DataGoogleDnsKeys;
@@ -773,7 +777,10 @@ export 'src/data/google_service_directory_service_iam_policy.dart'
 export 'src/data/google_service_networking_peered_dns_domain.dart'
     show DataGoogleServiceNetworkingPeeredDnsDomain;
 export 'src/data/google_site_verification_token.dart'
-    show DataGoogleSiteVerificationToken;
+    show
+        DataGoogleSiteVerificationToken,
+        DataSiteVerificationTokenType,
+        DataSiteVerificationTokenVerificationMethod;
 export 'src/data/google_sourcerepo_repository.dart'
     show DataGoogleSourcerepoRepository;
 export 'src/data/google_sourcerepo_repository_iam_policy.dart'
@@ -792,7 +799,10 @@ export 'src/data/google_sql_database_instance.dart'
 export 'src/data/google_sql_database_instance_latest_recovery_time.dart'
     show DataGoogleSqlDatabaseInstanceLatestRecoveryTime;
 export 'src/data/google_sql_database_instances.dart'
-    show DataGoogleSqlDatabaseInstances;
+    show
+        DataGoogleSqlDatabaseInstances,
+        DataSqlDatabaseInstancesDatabaseVersion,
+        DataSqlDatabaseInstancesState;
 export 'src/data/google_sql_databases.dart' show DataGoogleSqlDatabases;
 export 'src/data/google_sql_tiers.dart' show DataGoogleSqlTiers;
 export 'src/data/google_storage_bucket.dart' show DataGoogleStorageBucket;
@@ -810,11 +820,15 @@ export 'src/data/google_storage_buckets.dart' show DataGoogleStorageBuckets;
 export 'src/data/google_storage_control_folder_intelligence_config.dart'
     show DataGoogleStorageControlFolderIntelligenceConfig;
 export 'src/data/google_storage_control_folder_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlFolderIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlFolderIntelligenceFindingsSummary,
+        DataStorageControlFolderIntelligenceFindingsSummaryResourceScope;
 export 'src/data/google_storage_control_organization_intelligence_config.dart'
     show DataGoogleStorageControlOrganizationIntelligenceConfig;
 export 'src/data/google_storage_control_organization_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlOrganizationIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlOrganizationIntelligenceFindingsSummary,
+        DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope;
 export 'src/data/google_storage_control_project_intelligence_config.dart'
     show DataGoogleStorageControlProjectIntelligenceConfig;
 export 'src/data/google_storage_control_project_intelligence_finding.dart'
@@ -826,7 +840,9 @@ export 'src/data/google_storage_control_project_intelligence_finding_revisions.d
 export 'src/data/google_storage_control_project_intelligence_findings.dart'
     show DataGoogleStorageControlProjectIntelligenceFindings;
 export 'src/data/google_storage_control_project_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlProjectIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlProjectIntelligenceFindingsSummary,
+        DataStorageControlProjectIntelligenceFindingsSummaryResourceScope;
 export 'src/data/google_storage_insights_dataset_config.dart'
     show DataGoogleStorageInsightsDatasetConfig;
 export 'src/data/google_storage_managed_folder_iam_policy.dart'

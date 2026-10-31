@@ -6,6 +6,63 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_site_verification_token`.
 const Set<String> _googleSiteVerificationTokenSensitive = <String>{};
 
+/// Data Site Verification Token enum for `type`.
+extension type const DataSiteVerificationTokenType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSiteVerificationTokenType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSiteVerificationTokenType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSiteVerificationTokenType.arg(TfArg<String> arg) : this._(arg);
+
+  static const inetDomain = DataSiteVerificationTokenType._(
+    TfArgLiteral('INET_DOMAIN'),
+  );
+  static const site = DataSiteVerificationTokenType._(TfArgLiteral('SITE'));
+
+  static const List<DataSiteVerificationTokenType> values = [inetDomain, site];
+}
+
+/// Data Site Verification Token Verification enum for `verification_method`.
+extension type const DataSiteVerificationTokenVerificationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataSiteVerificationTokenVerificationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSiteVerificationTokenVerificationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSiteVerificationTokenVerificationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const analytics = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('ANALYTICS'),
+  );
+  static const dnsCname = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('DNS_CNAME'),
+  );
+  static const dnsTxt = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('DNS_TXT'),
+  );
+  static const file = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('FILE'),
+  );
+  static const meta = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('META'),
+  );
+  static const tagManager = DataSiteVerificationTokenVerificationMethod._(
+    TfArgLiteral('TAG_MANAGER'),
+  );
+
+  static const List<DataSiteVerificationTokenVerificationMethod> values = [
+    analytics,
+    dnsCname,
+    dnsTxt,
+    file,
+    meta,
+    tagManager,
+  ];
+}
+
 /// Factory wrapper for `google_site_verification_token`.
 ///
 /// Read-only data source on the apply-excluded leftover path
@@ -16,8 +73,8 @@ final class DataGoogleSiteVerificationToken extends Data {
   DataGoogleSiteVerificationToken(
     super.localName, {
     required TfArg<String> identifier,
-    required TfArg<String> type,
-    required TfArg<String> verificationMethod,
+    required DataSiteVerificationTokenType type,
+    required DataSiteVerificationTokenVerificationMethod verificationMethod,
     super.provider,
     super.timeouts,
   }) : super(

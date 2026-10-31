@@ -64,7 +64,7 @@ final class HealthcareServiceCorsConfiguration {
 
   final TfArg<List<String>>? allowedHeaders;
 
-  final List<HealthcareServiceAllowedMethods>? allowedMethods;
+  final EnumList<HealthcareServiceAllowedMethods>? allowedMethods;
 
   final TfArg<List<String>>? allowedOrigins;
 
@@ -74,8 +74,7 @@ final class HealthcareServiceCorsConfiguration {
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allowed_headers': ?allowedHeaders?.toTfJson(),
-    if (allowedMethods != null)
-      'allowed_methods': [for (final e in allowedMethods!) e.toTfJson()],
+    'allowed_methods': ?allowedMethods?.toTfJson(),
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'max_age_in_seconds': ?maxAgeInSeconds?.toTfJson(),
   };

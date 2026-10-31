@@ -152,12 +152,12 @@ final class ApiGatewayDomainNameEndpointConfiguration {
 
   final ApiGatewayDomainNameIpAddressType? ipAddressType;
 
-  final List<ApiGatewayDomainNameTypes> types;
+  final EnumList<ApiGatewayDomainNameTypes> types;
 
   @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
-    'types': [for (final e in types) e.toTfJson()],
+    'types': types.toTfJson(),
   };
 }
 

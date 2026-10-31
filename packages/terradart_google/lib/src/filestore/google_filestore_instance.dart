@@ -328,7 +328,7 @@ final class FilestoreInstanceNetworks {
 
   final FilestoreInstanceConnectMode? connectMode;
 
-  final List<FilestoreInstanceModes> modes;
+  final EnumList<FilestoreInstanceModes> modes;
 
   final RefTo<GoogleComputeNetwork> network;
 
@@ -339,7 +339,7 @@ final class FilestoreInstanceNetworks {
   @internal
   Map<String, Object?> encode() => {
     'connect_mode': ?connectMode?.toTfJson(),
-    'modes': [for (final e in modes) e.toTfJson()],
+    'modes': modes.toTfJson(),
     'network': network.encodeAs('name').toTfJson(),
     'reserved_ip_range': ?reservedIpRange?.toTfJson(),
     'psc_config': ?pscConfig?.encode(),
@@ -453,7 +453,7 @@ final class FilestoreInstanceIopsPerTb {
 ///   networks: [
 ///     FilestoreInstanceNetworks(
 ///       network: vpc.ref,
-///       modes: [.modeIpv4],
+///       modes: .literal([.modeIpv4]),
 ///     ),
 ///   ],
 /// );

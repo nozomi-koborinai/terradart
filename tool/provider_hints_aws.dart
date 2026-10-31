@@ -838,6 +838,10 @@ final class AwsHintsScan {
   final unsealed = <String>[];
   var validators = 0;
   var unresolved = 0;
+
+  /// Each value-set validator not evaluated, as `<type> <path>`
+  /// (`data.<type>` for a data source). Only the azurerm scanner fills it.
+  final unresolvedSites = <String>[];
   var groupValidators = 0;
   var unresolvedGroups = 0;
 

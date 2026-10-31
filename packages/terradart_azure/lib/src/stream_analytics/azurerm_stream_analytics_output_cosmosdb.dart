@@ -8,13 +8,38 @@ const Set<String> _azurermStreamAnalyticsOutputCosmosdbSensitive = <String>{
   'cosmosdb_account_key',
 };
 
+/// Stream Analytics Output Cosmosdb Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputCosmosdbAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputCosmosdbAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputCosmosdbAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputCosmosdbAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectionstring =
+      StreamAnalyticsOutputCosmosdbAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+  static const msi = StreamAnalyticsOutputCosmosdbAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+
+  static const List<StreamAnalyticsOutputCosmosdbAuthenticationMode> values = [
+    connectionstring,
+    msi,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_cosmosdb`.
 final class AzurermStreamAnalyticsOutputCosmosdb extends Resource {
   static const String tfType = 'azurerm_stream_analytics_output_cosmosdb';
 
   AzurermStreamAnalyticsOutputCosmosdb(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputCosmosdbAuthenticationMode? authenticationMode,
     required TfArg<String> containerName,
     required Sensitive<String> cosmosdbAccountKey,
     required TfArg<String> cosmosdbSqlDatabaseId,

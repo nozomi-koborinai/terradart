@@ -3,6 +3,10 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+typeNames:
+  deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation: DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation
+  deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config: DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig
+  deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config: DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig
 
 curatedDoc: |-
   /// DLP de-identify template — reusable transforms that redact or replace

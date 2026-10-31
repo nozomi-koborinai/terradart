@@ -12,6 +12,30 @@ const Set<String> _azurermStreamAnalyticsOutputBlobSensitive = <String>{
   'storage_account_key',
 };
 
+/// Stream Analytics Output Blob Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputBlobAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputBlobAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectionstring = StreamAnalyticsOutputBlobAuthenticationMode._(
+    TfArgLiteral('ConnectionString'),
+  );
+  static const msi = StreamAnalyticsOutputBlobAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobAuthenticationMode> values = [
+    connectionstring,
+    msi,
+  ];
+}
+
 /// Stream Analytics Output Blob Write enum for `blob_write_mode`.
 extension type const StreamAnalyticsOutputBlobWriteMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -42,13 +66,13 @@ final class StreamAnalyticsOutputBlobSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsOutputBlobEncoding? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputBlobFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputBlobFormat? format;
 
-  final TfArg<String> type;
+  final StreamAnalyticsOutputBlobType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -59,13 +83,106 @@ final class StreamAnalyticsOutputBlobSerialization {
   };
 }
 
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = StreamAnalyticsOutputBlobEncoding._(TfArgLiteral('UTF8'));
+
+  static const List<StreamAnalyticsOutputBlobEncoding> values = [utf8];
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobFieldDelimiter._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const array = StreamAnalyticsOutputBlobFormat._(TfArgLiteral('Array'));
+  static const lineseparated = StreamAnalyticsOutputBlobFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobFormat> values = [
+    array,
+    lineseparated,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobType.arg(TfArg<String> arg) : this._(arg);
+
+  static const avro = StreamAnalyticsOutputBlobType._(TfArgLiteral('Avro'));
+  static const csv = StreamAnalyticsOutputBlobType._(TfArgLiteral('Csv'));
+  static const json = StreamAnalyticsOutputBlobType._(TfArgLiteral('Json'));
+  static const parquet = StreamAnalyticsOutputBlobType._(
+    TfArgLiteral('Parquet'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobType> values = [
+    avro,
+    csv,
+    json,
+    parquet,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_blob`.
 final class AzurermStreamAnalyticsOutputBlob extends Resource {
   static const String tfType = 'azurerm_stream_analytics_output_blob';
 
   AzurermStreamAnalyticsOutputBlob(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputBlobAuthenticationMode? authenticationMode,
     TfArg<String>? batchMaxWaitTime,
     TfArg<num>? batchMinRows,
     StreamAnalyticsOutputBlobWriteMode? blobWriteMode,

@@ -11,6 +11,7 @@ export 'src/backup/azurerm_backup_policy_file_share.dart'
         AzurermBackupPolicyFileShare,
         BackupPolicyFileShareBackup,
         BackupPolicyFileShareBackupTier,
+        BackupPolicyFileShareFrequency,
         BackupPolicyFileShareHourly,
         BackupPolicyFileShareRetentionDaily,
         BackupPolicyFileShareRetentionMonthly,
@@ -18,29 +19,41 @@ export 'src/backup/azurerm_backup_policy_file_share.dart'
         BackupPolicyFileShareRetentionYearly,
         BackupPolicyFileShareSchedule,
         BackupPolicyFileShareScheduleHourly,
-        BackupPolicyFileShareScheduleTime;
+        BackupPolicyFileShareScheduleTime,
+        BackupPolicyFileShareWeeks;
 export 'src/backup/azurerm_backup_policy_vm.dart'
     show
         AzurermBackupPolicyVm,
         BackupPolicyVmArchivedRestorePoint,
         BackupPolicyVmBackup,
+        BackupPolicyVmConsistencyType,
+        BackupPolicyVmDurationType,
+        BackupPolicyVmFrequency,
         BackupPolicyVmInstantRestoreResourceGroup,
+        BackupPolicyVmMode,
+        BackupPolicyVmPolicyType,
         BackupPolicyVmRetentionDaily,
         BackupPolicyVmRetentionMonthly,
         BackupPolicyVmRetentionWeekly,
         BackupPolicyVmRetentionYearly,
-        BackupPolicyVmTieringPolicy;
+        BackupPolicyVmTieringPolicy,
+        BackupPolicyVmWeeks;
 export 'src/backup/azurerm_backup_policy_vm_workload.dart'
     show
         AzurermBackupPolicyVmWorkload,
         BackupPolicyVmWorkloadBackup,
+        BackupPolicyVmWorkloadFormatType,
+        BackupPolicyVmWorkloadFrequency,
+        BackupPolicyVmWorkloadPolicyType,
         BackupPolicyVmWorkloadProtectionPolicy,
         BackupPolicyVmWorkloadRetentionDaily,
         BackupPolicyVmWorkloadRetentionMonthly,
         BackupPolicyVmWorkloadRetentionWeekly,
         BackupPolicyVmWorkloadRetentionYearly,
         BackupPolicyVmWorkloadSettings,
-        BackupPolicyVmWorkloadSimpleRetention;
+        BackupPolicyVmWorkloadSimpleRetention,
+        BackupPolicyVmWorkloadType,
+        BackupPolicyVmWorkloadWeeks;
 export 'src/backup/azurerm_backup_protected_file_share.dart'
     show AzurermBackupProtectedFileShare;
 export 'src/backup/azurerm_backup_protected_vm.dart'
@@ -48,7 +61,8 @@ export 'src/backup/azurerm_backup_protected_vm.dart'
         AzurermBackupProtectedVm,
         BackupProtectedVmDiskLuns,
         BackupProtectedVmExcludeDiskLuns,
-        BackupProtectedVmIncludeDiskLuns;
+        BackupProtectedVmIncludeDiskLuns,
+        BackupProtectedVmProtectionState;
 export 'src/data/azurerm_backup_policy_file_share.dart'
     show DataAzurermBackupPolicyFileShare;
 export 'src/data/azurerm_backup_policy_vm.dart' show DataAzurermBackupPolicyVm;

@@ -1,0 +1,119 @@
+{
+  "name": "aiplatform",
+  "version": "v1beta1",
+  "revision": "20261027",
+  "sourceUrl": "https://aiplatform.googleapis.com/$discovery/rest?version=v1beta1",
+  "schemas": {
+    "GoogleCloudAiplatformV1beta1DedicatedResources": {
+      "properties": {
+        "machineSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1MachineSpec"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1MachineSpec": {
+      "properties": {
+        "acceleratorType": {
+          "enum": [
+            "ACCELERATOR_TYPE_UNSPECIFIED",
+            "NVIDIA_TESLA_K80",
+            "NVIDIA_TESLA_P100",
+            "NVIDIA_TESLA_V100",
+            "NVIDIA_TESLA_P4",
+            "NVIDIA_TESLA_T4",
+            "NVIDIA_TESLA_A100",
+            "NVIDIA_A100_80GB",
+            "NVIDIA_L4",
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
+            "NVIDIA_H200_141GB",
+            "NVIDIA_B200",
+            "NVIDIA_GB200",
+            "NVIDIA_RTX_PRO_6000",
+            "TPU_V2",
+            "TPU_V3",
+            "TPU_V4_POD",
+            "TPU_V5_LITEPOD"
+          ]
+        },
+        "reservationAffinity": {
+          "$ref": "GoogleCloudAiplatformV1beta1ReservationAffinity"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1MetadataStore": {
+      "properties": {}
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModel": {
+      "properties": {
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "EXPERIMENTAL",
+            "PRIVATE_PREVIEW",
+            "PUBLIC_PREVIEW",
+            "GA"
+          ]
+        },
+        "openSourceCategory": {
+          "enum": [
+            "OPEN_SOURCE_CATEGORY_UNSPECIFIED",
+            "PROPRIETARY",
+            "GOOGLE_OWNED_OSS_WITH_GOOGLE_CHECKPOINT",
+            "THIRD_PARTY_OWNED_OSS_WITH_GOOGLE_CHECKPOINT",
+            "GOOGLE_OWNED_OSS",
+            "THIRD_PARTY_OWNED_OSS"
+          ]
+        },
+        "versionState": {
+          "enum": [
+            "VERSION_STATE_UNSPECIFIED",
+            "VERSION_STATE_STABLE",
+            "VERSION_STATE_UNSTABLE"
+          ]
+        },
+        "supportedActions": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToAction"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModelCallToAction": {
+      "properties": {
+        "deploy": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy"
+        },
+        "multiDeployVertex": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy": {
+      "properties": {
+        "dedicatedResources": {
+          "$ref": "GoogleCloudAiplatformV1beta1DedicatedResources"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex": {
+      "properties": {
+        "multiDeployVertex": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy"
+          }
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1beta1ReservationAffinity": {
+      "properties": {
+        "reservationAffinityType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_RESERVATION",
+            "ANY_RESERVATION",
+            "SPECIFIC_RESERVATION"
+          ]
+        }
+      }
+    }
+  }
+}

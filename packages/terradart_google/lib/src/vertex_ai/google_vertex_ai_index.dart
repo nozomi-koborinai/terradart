@@ -9,6 +9,28 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_vertex_ai_index`.
 const Set<String> _googleVertexAiIndexSensitive = <String>{};
 
+/// Vertex Ai Index Update enum for `index_update_method`.
+extension type const VertexAiIndexUpdateMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiIndexUpdateMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiIndexUpdateMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiIndexUpdateMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const batchUpdate = VertexAiIndexUpdateMethod._(
+    TfArgLiteral('BATCH_UPDATE'),
+  );
+  static const streamUpdate = VertexAiIndexUpdateMethod._(
+    TfArgLiteral('STREAM_UPDATE'),
+  );
+
+  static const List<VertexAiIndexUpdateMethod> values = [
+    batchUpdate,
+    streamUpdate,
+  ];
+}
+
 /// Typed helper for the `encryption_spec` block of
 /// `google_vertex_ai_index` (derived from provider schema).
 @immutable
@@ -64,11 +86,11 @@ final class VertexAiIndexConfig {
 
   final TfArg<num> dimensions;
 
-  final TfArg<String>? distanceMeasureType;
+  final VertexAiIndexDistanceMeasureType? distanceMeasureType;
 
-  final TfArg<String>? featureNormType;
+  final VertexAiIndexFeatureNormType? featureNormType;
 
-  final TfArg<String>? shardSize;
+  final VertexAiIndexShardSize? shardSize;
 
   final VertexAiIndexAlgorithmConfig? algorithmConfig;
 
@@ -81,6 +103,78 @@ final class VertexAiIndexConfig {
     'shard_size': ?shardSize?.toTfJson(),
     'algorithm_config': ?algorithmConfig?.encode(),
   };
+}
+
+/// `distance_measure_type` — derived from the provider schema description.
+extension type const VertexAiIndexDistanceMeasureType._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiIndexDistanceMeasureType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiIndexDistanceMeasureType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiIndexDistanceMeasureType.arg(TfArg<String> arg) : this._(arg);
+
+  static const squaredL2Distance = VertexAiIndexDistanceMeasureType._(
+    TfArgLiteral('SQUARED_L2_DISTANCE'),
+  );
+  static const l1Distance = VertexAiIndexDistanceMeasureType._(
+    TfArgLiteral('L1_DISTANCE'),
+  );
+  static const cosineDistance = VertexAiIndexDistanceMeasureType._(
+    TfArgLiteral('COSINE_DISTANCE'),
+  );
+  static const dotProductDistance = VertexAiIndexDistanceMeasureType._(
+    TfArgLiteral('DOT_PRODUCT_DISTANCE'),
+  );
+
+  static const List<VertexAiIndexDistanceMeasureType> values = [
+    squaredL2Distance,
+    l1Distance,
+    cosineDistance,
+    dotProductDistance,
+  ];
+}
+
+/// `feature_norm_type` — derived from the provider schema description.
+extension type const VertexAiIndexFeatureNormType._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiIndexFeatureNormType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiIndexFeatureNormType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiIndexFeatureNormType.arg(TfArg<String> arg) : this._(arg);
+
+  static const unitL2Norm = VertexAiIndexFeatureNormType._(
+    TfArgLiteral('UNIT_L2_NORM'),
+  );
+  static const none = VertexAiIndexFeatureNormType._(TfArgLiteral('NONE'));
+
+  static const List<VertexAiIndexFeatureNormType> values = [unitL2Norm, none];
+}
+
+/// `shard_size` — derived from the provider schema description.
+extension type const VertexAiIndexShardSize._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiIndexShardSize.variable(String name) : this._(TfArg.variable(name));
+  VertexAiIndexShardSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiIndexShardSize.arg(TfArg<String> arg) : this._(arg);
+
+  static const shardSizeSmall = VertexAiIndexShardSize._(
+    TfArgLiteral('SHARD_SIZE_SMALL'),
+  );
+  static const shardSizeMedium = VertexAiIndexShardSize._(
+    TfArgLiteral('SHARD_SIZE_MEDIUM'),
+  );
+  static const shardSizeLarge = VertexAiIndexShardSize._(
+    TfArgLiteral('SHARD_SIZE_LARGE'),
+  );
+
+  static const List<VertexAiIndexShardSize> values = [
+    shardSizeSmall,
+    shardSizeMedium,
+    shardSizeLarge,
+  ];
 }
 
 /// Exactly one of `tree_ah_config`, `brute_force_config` on the `metadata.config.algorithm_config` block of `google_vertex_ai_index`: the provider rejects
@@ -202,12 +296,12 @@ final class VertexAiIndexTreeAhConfig {
 ///   'idx',
 ///   displayName: TfArg.literal('terradart-idx'),
 ///   region: TfArg.literal('us-central1'),
-///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
+///   indexUpdateMethod: .streamUpdate,
 ///   metadata: VertexAiIndexMetadata(
 ///     config: .new(
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
-///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
+///       distanceMeasureType: .dotProductDistance,
 ///       algorithmConfig: .treeAhConfig(
 ///         .new(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),
@@ -227,7 +321,7 @@ final class GoogleVertexAiIndex extends Resource {
     TfArg<String>? region,
     TfArg<String>? description,
     required VertexAiIndexMetadata metadata,
-    TfArg<String>? indexUpdateMethod,
+    VertexAiIndexUpdateMethod? indexUpdateMethod,
     VertexAiIndexEncryptionSpec? encryptionSpec,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

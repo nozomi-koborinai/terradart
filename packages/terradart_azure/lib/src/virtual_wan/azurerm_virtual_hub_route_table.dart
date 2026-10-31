@@ -27,7 +27,7 @@ final class VirtualHubRouteTableRoute {
 
   final TfArg<String> nextHop;
 
-  final TfArg<String>? nextHopType;
+  final VirtualHubRouteTableNextHopType? nextHopType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -64,6 +64,22 @@ extension type const VirtualHubRouteTableDestinationsType._(TfArg<String> _)
     resourceid,
     service,
   ];
+}
+
+/// `next_hop_type` — derived from the provider schema description.
+extension type const VirtualHubRouteTableNextHopType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualHubRouteTableNextHopType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualHubRouteTableNextHopType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualHubRouteTableNextHopType.arg(TfArg<String> arg) : this._(arg);
+
+  static const resourceid = VirtualHubRouteTableNextHopType._(
+    TfArgLiteral('ResourceId'),
+  );
+
+  static const List<VirtualHubRouteTableNextHopType> values = [resourceid];
 }
 
 /// Factory wrapper for `azurerm_virtual_hub_route_table`.

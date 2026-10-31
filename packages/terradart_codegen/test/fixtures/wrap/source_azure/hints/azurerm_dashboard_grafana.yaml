@@ -3,10 +3,16 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: auto_generated_domain_name_label_scope
+    enum_values:
+      - "TenantReuse"
   - api_name: grafana_major_version
     enum_values:
       - "12"
       - "13"
+  - api_name: sku
+    enum_values:
+      - "Standard"
   - api_name: sku_size
     enum_values:
       - "X1"

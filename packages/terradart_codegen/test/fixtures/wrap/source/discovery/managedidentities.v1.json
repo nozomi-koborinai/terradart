@@ -1,0 +1,58 @@
+{
+  "name": "managedidentities",
+  "version": "v1",
+  "revision": "20261019",
+  "sourceUrl": "https://managedidentities.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Domain": {
+      "properties": {
+        "trusts": {
+          "items": {
+            "$ref": "Trust"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "REPAIRING",
+            "PERFORMING_MAINTENANCE",
+            "UNAVAILABLE"
+          ]
+        }
+      }
+    },
+    "Trust": {
+      "properties": {
+        "trustType": {
+          "enum": [
+            "TRUST_TYPE_UNSPECIFIED",
+            "FOREST",
+            "EXTERNAL"
+          ]
+        },
+        "trustDirection": {
+          "enum": [
+            "TRUST_DIRECTION_UNSPECIFIED",
+            "INBOUND",
+            "OUTBOUND",
+            "BIDIRECTIONAL"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "CONNECTED",
+            "DISCONNECTED"
+          ]
+        }
+      }
+    }
+  }
+}

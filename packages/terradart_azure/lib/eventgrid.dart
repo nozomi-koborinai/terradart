@@ -32,8 +32,11 @@ export 'src/eventgrid/azurerm_eventgrid_event_subscription.dart'
         EventgridEventSubscriptionAzureFunctionEndpoint,
         EventgridEventSubscriptionBoolEquals,
         EventgridEventSubscriptionDeadLetterIdentity,
+        EventgridEventSubscriptionDeadLetterIdentityType,
         EventgridEventSubscriptionDeliveryIdentity,
         EventgridEventSubscriptionDeliveryProperty,
+        EventgridEventSubscriptionDeliveryPropertyType,
+        EventgridEventSubscriptionEventDeliverySchema,
         EventgridEventSubscriptionIsNotNull,
         EventgridEventSubscriptionIsNullOrUndefined,
         EventgridEventSubscriptionNumberGreaterThan,
@@ -60,10 +63,13 @@ export 'src/eventgrid/azurerm_eventgrid_event_subscription.dart'
 export 'src/eventgrid/azurerm_eventgrid_namespace.dart'
     show
         AzurermEventgridNamespace,
+        EventgridNamespaceAction,
         EventgridNamespaceAlternativeAuthenticationNameSource,
         EventgridNamespaceDynamicRoutingEnrichment,
         EventgridNamespaceIdentity,
         EventgridNamespaceInboundIpRule,
+        EventgridNamespacePublicNetworkAccess,
+        EventgridNamespaceSku,
         EventgridNamespaceStaticRoutingEnrichment,
         EventgridNamespaceTopicSpacesConfiguration;
 export 'src/eventgrid/azurerm_eventgrid_namespace_topic.dart'
@@ -75,6 +81,7 @@ export 'src/eventgrid/azurerm_eventgrid_partner_configuration.dart'
 export 'src/eventgrid/azurerm_eventgrid_partner_namespace.dart'
     show
         AzurermEventgridPartnerNamespace,
+        EventgridPartnerNamespaceAction,
         EventgridPartnerNamespaceInboundIpRule,
         EventgridPartnerNamespacePartnerTopicRoutingMode,
         EventgridPartnerNamespacePublicNetworkAccess;
@@ -89,8 +96,11 @@ export 'src/eventgrid/azurerm_eventgrid_system_topic_event_subscription.dart'
         EventgridSystemTopicEventSubscriptionAzureFunctionEndpoint,
         EventgridSystemTopicEventSubscriptionBoolEquals,
         EventgridSystemTopicEventSubscriptionDeadLetterIdentity,
+        EventgridSystemTopicEventSubscriptionDeadLetterIdentityType,
         EventgridSystemTopicEventSubscriptionDeliveryIdentity,
         EventgridSystemTopicEventSubscriptionDeliveryProperty,
+        EventgridSystemTopicEventSubscriptionDeliveryPropertyType,
+        EventgridSystemTopicEventSubscriptionEventDeliverySchema,
         EventgridSystemTopicEventSubscriptionIsNotNull,
         EventgridSystemTopicEventSubscriptionIsNullOrUndefined,
         EventgridSystemTopicEventSubscriptionNumberGreaterThan,

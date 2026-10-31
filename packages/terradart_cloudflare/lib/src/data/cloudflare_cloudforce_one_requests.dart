@@ -7,6 +7,59 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_cloudforce_one_requests`.
 const Set<String> _cloudflareCloudforceOneRequestsSensitive = <String>{};
 
+/// Data Cloudforce One Requests Sort enum for `sort_order`.
+extension type const DataCloudforceOneRequestsSortOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCloudforceOneRequestsSortOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCloudforceOneRequestsSortOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCloudforceOneRequestsSortOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataCloudforceOneRequestsSortOrder._(TfArgLiteral('asc'));
+  static const desc = DataCloudforceOneRequestsSortOrder._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataCloudforceOneRequestsSortOrder> values = [asc, desc];
+}
+
+/// Data Cloudforce One Requests enum for `status`.
+extension type const DataCloudforceOneRequestsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCloudforceOneRequestsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCloudforceOneRequestsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCloudforceOneRequestsStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const open = DataCloudforceOneRequestsStatus._(TfArgLiteral('open'));
+  static const accepted = DataCloudforceOneRequestsStatus._(
+    TfArgLiteral('accepted'),
+  );
+  static const reported = DataCloudforceOneRequestsStatus._(
+    TfArgLiteral('reported'),
+  );
+  static const approved = DataCloudforceOneRequestsStatus._(
+    TfArgLiteral('approved'),
+  );
+  static const completed = DataCloudforceOneRequestsStatus._(
+    TfArgLiteral('completed'),
+  );
+  static const declined = DataCloudforceOneRequestsStatus._(
+    TfArgLiteral('declined'),
+  );
+
+  static const List<DataCloudforceOneRequestsStatus> values = [
+    open,
+    accepted,
+    reported,
+    approved,
+    completed,
+    declined,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_cloudforce_one_requests`.
 ///
 /// Accepted Permissions
@@ -27,8 +80,8 @@ final class DataCloudflareCloudforceOneRequests extends Data {
     required TfArg<num> perPage,
     TfArg<String>? requestType,
     TfArg<String>? sortBy,
-    TfArg<String>? sortOrder,
-    TfArg<String>? status,
+    DataCloudforceOneRequestsSortOrder? sortOrder,
+    DataCloudforceOneRequestsStatus? status,
     super.provider,
     super.timeouts,
   }) : super(

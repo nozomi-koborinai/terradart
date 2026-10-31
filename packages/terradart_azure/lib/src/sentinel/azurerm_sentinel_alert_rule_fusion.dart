@@ -45,13 +45,13 @@ final class SentinelAlertRuleFusionSubType {
 
   final TfArg<String> name;
 
-  final List<SentinelAlertRuleFusionSeveritiesAllowed> severitiesAllowed;
+  final EnumList<SentinelAlertRuleFusionSeveritiesAllowed> severitiesAllowed;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'name': name.toTfJson(),
-    'severities_allowed': [for (final e in severitiesAllowed) e.toTfJson()],
+    'severities_allowed': severitiesAllowed.toTfJson(),
   };
 }
 

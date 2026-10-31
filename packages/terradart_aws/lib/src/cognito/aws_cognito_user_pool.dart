@@ -148,12 +148,12 @@ sealed class CognitoUserPoolSignInAttributes {
 
   /// Sets `alias_attributes`.
   const factory CognitoUserPoolSignInAttributes.aliasAttributes(
-    List<CognitoUserPoolAliasAttributes> aliasAttributes,
+    EnumList<CognitoUserPoolAliasAttributes> aliasAttributes,
   ) = CognitoUserPoolSignInAttributesAliasAttributes;
 
   /// Sets `username_attributes`.
   const factory CognitoUserPoolSignInAttributes.usernameAttributes(
-    List<CognitoUserPoolUsernameAttributes> usernameAttributes,
+    EnumList<CognitoUserPoolUsernameAttributes> usernameAttributes,
   ) = CognitoUserPoolSignInAttributesUsernameAttributes;
 
   /// The Terraform argument this choice sets.
@@ -174,7 +174,7 @@ final class CognitoUserPoolSignInAttributesAliasAttributes
     extends CognitoUserPoolSignInAttributes {
   const CognitoUserPoolSignInAttributesAliasAttributes(this.aliasAttributes);
 
-  final List<CognitoUserPoolAliasAttributes> aliasAttributes;
+  final EnumList<CognitoUserPoolAliasAttributes> aliasAttributes;
 
   @internal
   @override
@@ -183,15 +183,13 @@ final class CognitoUserPoolSignInAttributesAliasAttributes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'alias_attributes': [for (final e in aliasAttributes) e.toTfJson()],
+    'alias_attributes': aliasAttributes.toTfJson(),
   };
 
   @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'alias_attributes': TfArg.literal([
-      for (final e in aliasAttributes) e.toTfJson(),
-    ]),
+    'alias_attributes': aliasAttributes,
   };
 }
 
@@ -202,7 +200,7 @@ final class CognitoUserPoolSignInAttributesUsernameAttributes
     this.usernameAttributes,
   );
 
-  final List<CognitoUserPoolUsernameAttributes> usernameAttributes;
+  final EnumList<CognitoUserPoolUsernameAttributes> usernameAttributes;
 
   @internal
   @override
@@ -211,15 +209,13 @@ final class CognitoUserPoolSignInAttributesUsernameAttributes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'username_attributes': [for (final e in usernameAttributes) e.toTfJson()],
+    'username_attributes': usernameAttributes.toTfJson(),
   };
 
   @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'username_attributes': TfArg.literal([
-      for (final e in usernameAttributes) e.toTfJson(),
-    ]),
+    'username_attributes': usernameAttributes,
   };
 }
 
@@ -754,14 +750,12 @@ final class CognitoUserPoolStringAttributeConstraints {
 final class CognitoUserPoolSignInPolicy {
   const CognitoUserPoolSignInPolicy({this.allowedFirstAuthFactors});
 
-  final List<CognitoUserPoolAllowedFirstAuthFactors>? allowedFirstAuthFactors;
+  final EnumList<CognitoUserPoolAllowedFirstAuthFactors>?
+  allowedFirstAuthFactors;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedFirstAuthFactors != null)
-      'allowed_first_auth_factors': [
-        for (final e in allowedFirstAuthFactors!) e.toTfJson(),
-      ],
+    'allowed_first_auth_factors': ?allowedFirstAuthFactors?.toTfJson(),
   };
 }
 
@@ -844,14 +838,13 @@ final class CognitoUserPoolUserAttributeUpdateSettings {
     required this.attributesRequireVerificationBeforeUpdate,
   });
 
-  final List<CognitoUserPoolAttributesRequireVerificationBeforeUpdate>
+  final EnumList<CognitoUserPoolAttributesRequireVerificationBeforeUpdate>
   attributesRequireVerificationBeforeUpdate;
 
   @internal
   Map<String, Object?> encode() => {
-    'attributes_require_verification_before_update': [
-      for (final e in attributesRequireVerificationBeforeUpdate) e.toTfJson(),
-    ],
+    'attributes_require_verification_before_update':
+        attributesRequireVerificationBeforeUpdate.toTfJson(),
   };
 }
 
@@ -1080,7 +1073,7 @@ final class AwsCognitoUserPool extends Resource {
   AwsCognitoUserPool(
     super.localName, {
     CognitoUserPoolSignInAttributes? signInAttributes,
-    List<CognitoUserPoolAutoVerifiedAttributes>? autoVerifiedAttributes,
+    EnumList<CognitoUserPoolAutoVerifiedAttributes>? autoVerifiedAttributes,
     CognitoUserPoolDeletionProtection? deletionProtection,
     TfArg<String>? emailVerificationMessage,
     TfArg<String>? emailVerificationSubject,
@@ -1115,10 +1108,7 @@ final class AwsCognitoUserPool extends Resource {
          terraformType: tfType,
          argMap: {
            ...?signInAttributes?.argMap,
-           if (autoVerifiedAttributes != null)
-             'auto_verified_attributes': TfArg.literal([
-               for (final e in autoVerifiedAttributes) e.toTfJson(),
-             ]),
+           'auto_verified_attributes': ?autoVerifiedAttributes,
            'deletion_protection': ?deletionProtection,
            'email_verification_message': ?emailVerificationMessage,
            'email_verification_subject': ?emailVerificationSubject,

@@ -77,10 +77,6 @@ extension type const RecaptchaEnterpriseKeyTestingChallenge._(TfArg<String> _)
   const RecaptchaEnterpriseKeyTestingChallenge.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const testingChallengeUnspecified =
-      RecaptchaEnterpriseKeyTestingChallenge._(
-        TfArgLiteral('TESTING_CHALLENGE_UNSPECIFIED'),
-      );
   static const nocaptcha = RecaptchaEnterpriseKeyTestingChallenge._(
     TfArgLiteral('NOCAPTCHA'),
   );
@@ -89,7 +85,6 @@ extension type const RecaptchaEnterpriseKeyTestingChallenge._(TfArg<String> _)
   );
 
   static const List<RecaptchaEnterpriseKeyTestingChallenge> values = [
-    testingChallengeUnspecified,
     nocaptcha,
     unsolvableChallenge,
   ];
@@ -158,8 +153,19 @@ extension type const RecaptchaEnterpriseKeyWafService._(TfArg<String> _)
   static const fastly = RecaptchaEnterpriseKeyWafService._(
     TfArgLiteral('FASTLY'),
   );
+  static const cloudflare = RecaptchaEnterpriseKeyWafService._(
+    TfArgLiteral('CLOUDFLARE'),
+  );
+  static const akamai = RecaptchaEnterpriseKeyWafService._(
+    TfArgLiteral('AKAMAI'),
+  );
 
-  static const List<RecaptchaEnterpriseKeyWafService> values = [ca, fastly];
+  static const List<RecaptchaEnterpriseKeyWafService> values = [
+    ca,
+    fastly,
+    cloudflare,
+    akamai,
+  ];
 }
 
 /// Typed helper for the `web_settings` block of
@@ -210,10 +216,6 @@ extension type const RecaptchaEnterpriseKeyChallengeSecurityPreference._(
   const RecaptchaEnterpriseKeyChallengeSecurityPreference.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const challengeSecurityPreferenceUnspecified =
-      RecaptchaEnterpriseKeyChallengeSecurityPreference._(
-        TfArgLiteral('CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED'),
-      );
   static const usability = RecaptchaEnterpriseKeyChallengeSecurityPreference._(
     TfArgLiteral('USABILITY'),
   );
@@ -225,7 +227,7 @@ extension type const RecaptchaEnterpriseKeyChallengeSecurityPreference._(
   );
 
   static const List<RecaptchaEnterpriseKeyChallengeSecurityPreference> values =
-      [challengeSecurityPreferenceUnspecified, usability, balance, security];
+      [usability, balance, security];
 }
 
 /// `integration_type` — derived from the provider schema description.

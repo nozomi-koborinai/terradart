@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_widget_config`.
 const Set<String> _googleDiscoveryEngineWidgetConfigSensitive = <String>{};
 
+/// Discovery Engine Widget Config enum for `location`.
+extension type const DiscoveryEngineWidgetConfigLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineWidgetConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineWidgetConfigLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineWidgetConfigLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineWidgetConfigLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineWidgetConfigLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineWidgetConfigLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineWidgetConfigLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Typed helper for the `access_settings` block of
 /// `google_discovery_engine_widget_config` (derived from provider schema).
 @immutable
@@ -306,7 +329,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
     required this.uiComponent,
   });
 
-  final List<DiscoveryEngineWidgetConfigDeviceVisibility>? deviceVisibility;
+  final EnumList<DiscoveryEngineWidgetConfigDeviceVisibility>? deviceVisibility;
 
   final TfArg<String>? displayTemplate;
 
@@ -316,8 +339,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
 
   @internal
   Map<String, Object?> encode() => {
-    if (deviceVisibility != null)
-      'device_visibility': [for (final e in deviceVisibility!) e.toTfJson()],
+    'device_visibility': ?deviceVisibility?.toTfJson(),
     'display_template': ?displayTemplate?.toTfJson(),
     'field': field.toTfJson(),
     'ui_component': uiComponent.toTfJson(),
@@ -471,7 +493,7 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
 
   GoogleDiscoveryEngineWidgetConfig(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineWidgetConfigLocation location,
     required TfArg<String> engineId,
     TfArg<String>? collectionId,
     TfArg<String>? widgetConfigId,

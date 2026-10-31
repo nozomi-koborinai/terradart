@@ -91,7 +91,8 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
     TfArg<List<String>>? resourceTypesScope,
     TfArg<String>? tagKeyScope,
     TfArg<String>? tagValueScope,
-    required List<ConfigOrganizationCustomPolicyRuleTriggerTypes> triggerTypes,
+    required EnumList<ConfigOrganizationCustomPolicyRuleTriggerTypes>
+    triggerTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -112,9 +113,7 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
            'resource_types_scope': ?resourceTypesScope,
            'tag_key_scope': ?tagKeyScope,
            'tag_value_scope': ?tagValueScope,
-           'trigger_types': TfArg.literal([
-             for (final e in triggerTypes) e.toTfJson(),
-           ]),
+           'trigger_types': triggerTypes,
          },
        );
 

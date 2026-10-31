@@ -131,7 +131,8 @@ final class LogicAppIntegrationAccountBatchConfigurationSchedule {
 
   final TfArg<List<num>>? monthDays;
 
-  final List<LogicAppIntegrationAccountBatchConfigurationWeekDays>? weekDays;
+  final EnumList<LogicAppIntegrationAccountBatchConfigurationWeekDays>?
+  weekDays;
 
   final List<LogicAppIntegrationAccountBatchConfigurationMonthly>? monthly;
 
@@ -140,8 +141,7 @@ final class LogicAppIntegrationAccountBatchConfigurationSchedule {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
     'month_days': ?monthDays?.toTfJson(),
-    if (weekDays != null)
-      'week_days': [for (final e in weekDays!) e.toTfJson()],
+    'week_days': ?weekDays?.toTfJson(),
     if (monthly != null) 'monthly': [for (final e in monthly!) e.encode()],
   };
 }

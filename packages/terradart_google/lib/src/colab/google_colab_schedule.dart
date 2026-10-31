@@ -410,7 +410,7 @@ final class ColabScheduleMachineSpec {
 
   final TfArg<num>? acceleratorCount;
 
-  final TfArg<String>? acceleratorType;
+  final ColabScheduleAcceleratorType? acceleratorType;
 
   final TfArg<String>? gpuPartitionSize;
 
@@ -431,6 +431,88 @@ final class ColabScheduleMachineSpec {
   };
 }
 
+/// `accelerator_type` — derived from the provider schema description.
+extension type const ColabScheduleAcceleratorType._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabScheduleAcceleratorType.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabScheduleAcceleratorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabScheduleAcceleratorType.arg(TfArg<String> arg) : this._(arg);
+
+  static const nvidiaTeslaK80 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_K80'),
+  );
+  static const nvidiaTeslaP100 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_P100'),
+  );
+  static const nvidiaTeslaV100 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_V100'),
+  );
+  static const nvidiaTeslaP4 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_P4'),
+  );
+  static const nvidiaTeslaT4 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_T4'),
+  );
+  static const nvidiaTeslaA100 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_A100'),
+  );
+  static const nvidiaA10080gb = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_A100_80GB'),
+  );
+  static const nvidiaL4 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_L4'),
+  );
+  static const nvidiaH10080gb = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_H100_80GB'),
+  );
+  static const nvidiaH100Mega80gb = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_H100_MEGA_80GB'),
+  );
+  static const nvidiaH200141gb = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_H200_141GB'),
+  );
+  static const nvidiaB200 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_B200'),
+  );
+  static const nvidiaGb200 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_GB200'),
+  );
+  static const nvidiaRtxPro6000 = ColabScheduleAcceleratorType._(
+    TfArgLiteral('NVIDIA_RTX_PRO_6000'),
+  );
+  static const tpuV2 = ColabScheduleAcceleratorType._(TfArgLiteral('TPU_V2'));
+  static const tpuV3 = ColabScheduleAcceleratorType._(TfArgLiteral('TPU_V3'));
+  static const tpuV4Pod = ColabScheduleAcceleratorType._(
+    TfArgLiteral('TPU_V4_POD'),
+  );
+  static const tpuV5Litepod = ColabScheduleAcceleratorType._(
+    TfArgLiteral('TPU_V5_LITEPOD'),
+  );
+
+  static const List<ColabScheduleAcceleratorType> values = [
+    nvidiaTeslaK80,
+    nvidiaTeslaP100,
+    nvidiaTeslaV100,
+    nvidiaTeslaP4,
+    nvidiaTeslaT4,
+    nvidiaTeslaA100,
+    nvidiaA10080gb,
+    nvidiaL4,
+    nvidiaH10080gb,
+    nvidiaH100Mega80gb,
+    nvidiaH200141gb,
+    nvidiaB200,
+    nvidiaGb200,
+    nvidiaRtxPro6000,
+    tpuV2,
+    tpuV3,
+    tpuV4Pod,
+    tpuV5Litepod,
+  ];
+}
+
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.machine_spec.reservation_affinity` block of
 /// `google_colab_schedule` (derived from provider schema).
 @immutable
@@ -444,7 +526,7 @@ final class ColabScheduleReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<String> reservationAffinityType;
+  final ColabScheduleReservationAffinityType reservationAffinityType;
 
   final TfArg<bool>? useReservationPool;
 
@@ -457,6 +539,33 @@ final class ColabScheduleReservationAffinity {
     'use_reservation_pool': ?useReservationPool?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `reservation_affinity_type` — derived from the provider schema description.
+extension type const ColabScheduleReservationAffinityType._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabScheduleReservationAffinityType.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabScheduleReservationAffinityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabScheduleReservationAffinityType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noReservation = ColabScheduleReservationAffinityType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+  static const anyReservation = ColabScheduleReservationAffinityType._(
+    TfArgLiteral('ANY_RESERVATION'),
+  );
+  static const specificReservation = ColabScheduleReservationAffinityType._(
+    TfArgLiteral('SPECIFIC_RESERVATION'),
+  );
+
+  static const List<ColabScheduleReservationAffinityType> values = [
+    noReservation,
+    anyReservation,
+    specificReservation,
+  ];
 }
 
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.network_spec` block of
@@ -491,13 +600,38 @@ final class ColabSchedulePersistentDiskSpec {
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<String>? diskType;
+  final ColabScheduleDiskType? diskType;
 
   @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
   };
+}
+
+/// `disk_type` — derived from the provider schema description.
+extension type const ColabScheduleDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabScheduleDiskType.variable(String name) : this._(TfArg.variable(name));
+  ColabScheduleDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabScheduleDiskType.arg(TfArg<String> arg) : this._(arg);
+
+  static const pdSsd = ColabScheduleDiskType._(TfArgLiteral('pd-ssd'));
+  static const pdStandard = ColabScheduleDiskType._(
+    TfArgLiteral('pd-standard'),
+  );
+  static const pdBalanced = ColabScheduleDiskType._(
+    TfArgLiteral('pd-balanced'),
+  );
+  static const pdExtreme = ColabScheduleDiskType._(TfArgLiteral('pd-extreme'));
+
+  static const List<ColabScheduleDiskType> values = [
+    pdSsd,
+    pdStandard,
+    pdBalanced,
+    pdExtreme,
+  ];
 }
 
 /// Typed helper for the `create_notebook_execution_job_request.notebook_execution_job.dataform_repository_source` block of
@@ -694,7 +828,7 @@ final class ColabScheduleRuntimeConfig {
     this.parameterValues,
   });
 
-  final TfArg<String>? failurePolicy;
+  final ColabScheduleFailurePolicy? failurePolicy;
 
   final TfArg<String> gcsOutputDirectory;
 
@@ -706,6 +840,28 @@ final class ColabScheduleRuntimeConfig {
     'gcs_output_directory': gcsOutputDirectory.toTfJson(),
     'parameter_values': ?parameterValues?.toTfJson(),
   };
+}
+
+/// `failure_policy` — derived from the provider schema description.
+extension type const ColabScheduleFailurePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabScheduleFailurePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabScheduleFailurePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabScheduleFailurePolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const pipelineFailurePolicyFailSlow = ColabScheduleFailurePolicy._(
+    TfArgLiteral('PIPELINE_FAILURE_POLICY_FAIL_SLOW'),
+  );
+  static const pipelineFailurePolicyFailFast = ColabScheduleFailurePolicy._(
+    TfArgLiteral('PIPELINE_FAILURE_POLICY_FAIL_FAST'),
+  );
+
+  static const List<ColabScheduleFailurePolicy> values = [
+    pipelineFailurePolicyFailSlow,
+    pipelineFailurePolicyFailFast,
+  ];
 }
 
 /// Factory wrapper for `google_colab_schedule`.

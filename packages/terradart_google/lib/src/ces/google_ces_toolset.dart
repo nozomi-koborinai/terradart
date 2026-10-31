@@ -10,6 +10,27 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_ces_toolset`.
 const Set<String> _googleCesToolsetSensitive = <String>{};
 
+/// Ces Toolset Execution enum for `execution_type`.
+extension type const CesToolsetExecutionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetExecutionType.variable(String name) : this._(TfArg.variable(name));
+  CesToolsetExecutionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetExecutionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const synchronous = CesToolsetExecutionType._(
+    TfArgLiteral('SYNCHRONOUS'),
+  );
+  static const asynchronous = CesToolsetExecutionType._(
+    TfArgLiteral('ASYNCHRONOUS'),
+  );
+
+  static const List<CesToolsetExecutionType> values = [
+    synchronous,
+    asynchronous,
+  ];
+}
+
 /// Typed helper for the `connector_toolset` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
@@ -129,13 +150,36 @@ final class CesToolsetEntityOperation {
 
   final TfArg<String> entityId;
 
-  final TfArg<String> operation;
+  final CesToolsetOperation operation;
 
   @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+extension type const CesToolsetOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetOperation.variable(String name) : this._(TfArg.variable(name));
+  CesToolsetOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetOperation.arg(TfArg<String> arg) : this._(arg);
+
+  static const list = CesToolsetOperation._(TfArgLiteral('LIST'));
+  static const get = CesToolsetOperation._(TfArgLiteral('GET'));
+  static const create = CesToolsetOperation._(TfArgLiteral('CREATE'));
+  static const update = CesToolsetOperation._(TfArgLiteral('UPDATE'));
+  static const delete = CesToolsetOperation._(TfArgLiteral('DELETE'));
+
+  static const List<CesToolsetOperation> values = [
+    list,
+    get,
+    create,
+    update,
+    delete,
+  ];
 }
 
 /// Typed helper for the `mcp_toolset` block of
@@ -224,7 +268,7 @@ final class CesToolsetApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final TfArg<String> requestLocation;
+  final CesToolsetRequestLocation requestLocation;
 
   @internal
   Map<String, Object?> encode() => {
@@ -232,6 +276,23 @@ final class CesToolsetApiKeyConfig {
     'key_name': keyName.toTfJson(),
     'request_location': requestLocation.toTfJson(),
   };
+}
+
+/// `request_location` — derived from the provider schema description.
+extension type const CesToolsetRequestLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetRequestLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  CesToolsetRequestLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetRequestLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const header = CesToolsetRequestLocation._(TfArgLiteral('HEADER'));
+  static const queryString = CesToolsetRequestLocation._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+
+  static const List<CesToolsetRequestLocation> values = [header, queryString];
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.bearer_token_config` block of
@@ -264,7 +325,7 @@ final class CesToolsetOauthConfig {
 
   final TfArg<String> clientSecretVersion;
 
-  final TfArg<String> oauthGrantType;
+  final CesToolsetOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -278,6 +339,21 @@ final class CesToolsetOauthConfig {
     'scopes': ?scopes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
+}
+
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const CesToolsetOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetOauthGrantType.variable(String name) : this._(TfArg.variable(name));
+  CesToolsetOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetOauthGrantType.arg(TfArg<String> arg) : this._(arg);
+
+  static const clientCredential = CesToolsetOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<CesToolsetOauthGrantType> values = [clientCredential];
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.service_account_auth_config` block of
@@ -484,7 +560,7 @@ final class GoogleCesToolset extends Resource {
     required TfArg<String> toolsetId,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<String>? executionType,
+    CesToolsetExecutionType? executionType,
     CesToolsetOpenApiToolset? openApiToolset,
     CesToolsetMcpToolset? mcpToolset,
     CesToolsetToolFakeConfig? toolFakeConfig,

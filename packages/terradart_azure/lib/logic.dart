@@ -15,14 +15,19 @@ export 'src/logic/azurerm_api_connection.dart' show AzurermApiConnection;
 export 'src/logic/azurerm_logic_app_action_custom.dart'
     show AzurermLogicAppActionCustom;
 export 'src/logic/azurerm_logic_app_action_http.dart'
-    show AzurermLogicAppActionHttp, LogicAppActionHttpRunAfter;
+    show
+        AzurermLogicAppActionHttp,
+        LogicAppActionHttpActionResult,
+        LogicAppActionHttpMethod,
+        LogicAppActionHttpRunAfter;
 export 'src/logic/azurerm_logic_app_integration_account.dart'
-    show AzurermLogicAppIntegrationAccount;
+    show AzurermLogicAppIntegrationAccount, LogicAppIntegrationAccountSkuName;
 export 'src/logic/azurerm_logic_app_integration_account_agreement.dart'
     show
         AzurermLogicAppIntegrationAccountAgreement,
         LogicAppIntegrationAccountAgreementGuestIdentity,
-        LogicAppIntegrationAccountAgreementHostIdentity;
+        LogicAppIntegrationAccountAgreementHostIdentity,
+        LogicAppIntegrationAccountAgreementType;
 export 'src/logic/azurerm_logic_app_integration_account_assembly.dart'
     show AzurermLogicAppIntegrationAccountAssembly;
 export 'src/logic/azurerm_logic_app_integration_account_batch_configuration.dart'
@@ -54,12 +59,21 @@ export 'src/logic/azurerm_logic_app_integration_account_session.dart'
 export 'src/logic/azurerm_logic_app_standard.dart'
     show
         AzurermLogicAppStandard,
+        LogicAppStandardAction,
         LogicAppStandardClientCertificateMode,
         LogicAppStandardConnectionString,
         LogicAppStandardCors,
+        LogicAppStandardDotnetFrameworkVersion,
+        LogicAppStandardFtpsState,
         LogicAppStandardIdentity,
         LogicAppStandardIpRestriction,
+        LogicAppStandardIpRestrictionDefaultAction,
+        LogicAppStandardMinTlsVersion,
+        LogicAppStandardPublicNetworkAccess,
         LogicAppStandardScmIpRestriction,
+        LogicAppStandardScmIpRestrictionDefaultAction,
+        LogicAppStandardScmMinTlsVersion,
+        LogicAppStandardScmType,
         LogicAppStandardSiteConfig,
         LogicAppStandardStorage,
         LogicAppStandardStorageAccountName,
@@ -68,7 +82,7 @@ export 'src/logic/azurerm_logic_app_standard.dart'
 export 'src/logic/azurerm_logic_app_trigger_custom.dart'
     show AzurermLogicAppTriggerCustom;
 export 'src/logic/azurerm_logic_app_trigger_http_request.dart'
-    show AzurermLogicAppTriggerHttpRequest;
+    show AzurermLogicAppTriggerHttpRequest, LogicAppTriggerHttpRequestMethod;
 export 'src/logic/azurerm_logic_app_trigger_recurrence.dart'
     show
         AzurermLogicAppTriggerRecurrence,

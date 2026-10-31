@@ -54,6 +54,7 @@ export 'src/dialogflow/google_dialogflow_conversation_profile.dart'
         DialogflowConversationProfileSuggestionFeature,
         DialogflowConversationProfileSuggestionTriggerSettings,
         DialogflowConversationProfileTtsConfig,
+        DialogflowConversationProfileType,
         DialogflowConversationProfileVoice,
         GoogleDialogflowConversationProfile;
 export 'src/dialogflow/google_dialogflow_cx_agent.dart'
@@ -117,6 +118,7 @@ export 'src/dialogflow/google_dialogflow_cx_flow.dart'
 export 'src/dialogflow/google_dialogflow_cx_generative_settings.dart'
     show
         DialogflowCxGenerativeSettingsBannedPhrases,
+        DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy,
         DialogflowCxGenerativeSettingsFallbackSettings,
         DialogflowCxGenerativeSettingsGenerativeSafetySettings,
         DialogflowCxGenerativeSettingsKnowledgeConnectorSettings,
@@ -182,6 +184,7 @@ export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
         DialogflowCxSecuritySettingsAudioExportSettings,
         DialogflowCxSecuritySettingsAudioFormat,
         DialogflowCxSecuritySettingsInsightsExportSettings,
+        DialogflowCxSecuritySettingsPurgeDataTypes,
         DialogflowCxSecuritySettingsRedactionScope,
         DialogflowCxSecuritySettingsRedactionStrategy,
         DialogflowCxSecuritySettingsRetention,
@@ -214,10 +217,15 @@ export 'src/dialogflow/google_dialogflow_cx_tool.dart'
         DialogflowCxToolCaCerts,
         DialogflowCxToolDataStoreConnections,
         DialogflowCxToolDataStoreSpec,
+        DialogflowCxToolDataStoreType,
+        DialogflowCxToolDocumentProcessingMode,
         DialogflowCxToolFallbackPrompt,
         DialogflowCxToolFunctionSpec,
         DialogflowCxToolOauthConfig,
+        DialogflowCxToolOauthGrantType,
         DialogflowCxToolOpenApiSpec,
+        DialogflowCxToolRequestLocation,
+        DialogflowCxToolServiceAgentAuth,
         DialogflowCxToolServiceAgentAuthConfig,
         DialogflowCxToolServiceDirectoryConfig,
         DialogflowCxToolTlsConfig,
@@ -230,10 +238,15 @@ export 'src/dialogflow/google_dialogflow_cx_tool_version.dart'
         DialogflowCxToolVersionCaCerts,
         DialogflowCxToolVersionDataStoreConnections,
         DialogflowCxToolVersionDataStoreSpec,
+        DialogflowCxToolVersionDataStoreType,
+        DialogflowCxToolVersionDocumentProcessingMode,
         DialogflowCxToolVersionFallbackPrompt,
         DialogflowCxToolVersionFunctionSpec,
         DialogflowCxToolVersionOauthConfig,
+        DialogflowCxToolVersionOauthGrantType,
         DialogflowCxToolVersionOpenApiSpec,
+        DialogflowCxToolVersionRequestLocation,
+        DialogflowCxToolVersionServiceAgentAuth,
         DialogflowCxToolVersionServiceAgentAuthConfig,
         DialogflowCxToolVersionServiceDirectoryConfig,
         DialogflowCxToolVersionTlsConfig,
@@ -276,6 +289,7 @@ export 'src/dialogflow/google_dialogflow_fulfillment.dart'
     show
         DialogflowFulfillmentFeatures,
         DialogflowFulfillmentGenericWebService,
+        DialogflowFulfillmentType,
         GoogleDialogflowFulfillment;
 export 'src/dialogflow/google_dialogflow_generator.dart'
     show
@@ -292,7 +306,10 @@ export 'src/dialogflow/google_dialogflow_generator.dart'
         DialogflowGeneratorTriggeringEvent,
         GoogleDialogflowGenerator;
 export 'src/dialogflow/google_dialogflow_intent.dart'
-    show DialogflowIntentWebhookState, GoogleDialogflowIntent;
+    show
+        DialogflowIntentDefaultResponsePlatforms,
+        DialogflowIntentWebhookState,
+        GoogleDialogflowIntent;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;
 export 'src/dialogflow/google_dialogflow_tool.dart'
@@ -307,6 +324,7 @@ export 'src/dialogflow/google_dialogflow_tool.dart'
         DialogflowToolFunctionSpec,
         DialogflowToolMethodType,
         DialogflowToolOauthConfig,
+        DialogflowToolOauthGrantType,
         DialogflowToolOpenApiSpec,
         DialogflowToolOperation,
         DialogflowToolRequestLocation,

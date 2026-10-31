@@ -113,6 +113,7 @@ export 'src/iap/google_iap_settings.dart'
         IapSettingsCorsSettings,
         IapSettingsCsmSettings,
         IapSettingsGcipSettings,
+        IapSettingsIdentitySources,
         IapSettingsMethod,
         IapSettingsOauth2,
         IapSettingsOauthSettings,

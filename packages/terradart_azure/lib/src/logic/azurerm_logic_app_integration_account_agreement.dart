@@ -10,6 +10,33 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermLogicAppIntegrationAccountAgreementSensitive =
     <String>{};
 
+/// Logic App Integration Account Agreement enum for `agreement_type`.
+extension type const LogicAppIntegrationAccountAgreementType._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppIntegrationAccountAgreementType.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppIntegrationAccountAgreementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppIntegrationAccountAgreementType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const as2 = LogicAppIntegrationAccountAgreementType._(
+    TfArgLiteral('AS2'),
+  );
+  static const x12 = LogicAppIntegrationAccountAgreementType._(
+    TfArgLiteral('X12'),
+  );
+  static const edifact = LogicAppIntegrationAccountAgreementType._(
+    TfArgLiteral('Edifact'),
+  );
+
+  static const List<LogicAppIntegrationAccountAgreementType> values = [
+    as2,
+    x12,
+    edifact,
+  ];
+}
+
 /// Typed helper for the `guest_identity` block of
 /// `azurerm_logic_app_integration_account_agreement` (derived from provider schema).
 @immutable
@@ -57,7 +84,7 @@ final class AzurermLogicAppIntegrationAccountAgreement extends Resource {
 
   AzurermLogicAppIntegrationAccountAgreement(
     super.localName, {
-    required TfArg<String> agreementType,
+    required LogicAppIntegrationAccountAgreementType agreementType,
     required TfArg<String> content,
     required TfArg<String> guestPartnerName,
     required TfArg<String> hostPartnerName,

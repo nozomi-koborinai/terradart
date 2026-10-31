@@ -30,10 +30,15 @@ export 'src/lb/azurerm_lb_backend_address_pool_address.dart'
         LbBackendAddressPoolAddressAttachment,
         LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId,
         LbBackendAddressPoolAddressAttachmentVirtualNetworkId;
-export 'src/lb/azurerm_lb_nat_pool.dart' show AzurermLbNatPool;
-export 'src/lb/azurerm_lb_nat_rule.dart' show AzurermLbNatRule;
+export 'src/lb/azurerm_lb_nat_pool.dart'
+    show AzurermLbNatPool, LbNatPoolProtocol;
+export 'src/lb/azurerm_lb_nat_rule.dart'
+    show AzurermLbNatRule, LbNatRuleProtocol;
 export 'src/lb/azurerm_lb_outbound_rule.dart'
-    show AzurermLbOutboundRule, LbOutboundRuleFrontendIpConfiguration;
+    show
+        AzurermLbOutboundRule,
+        LbOutboundRuleFrontendIpConfiguration,
+        LbOutboundRuleProtocol;
 export 'src/lb/azurerm_lb_probe.dart'
     show AzurermLbProbe, LbProbeNoHealthyBackendsBehavior, LbProbeProtocol;
-export 'src/lb/azurerm_lb_rule.dart' show AzurermLbRule;
+export 'src/lb/azurerm_lb_rule.dart' show AzurermLbRule, LbRuleProtocol;

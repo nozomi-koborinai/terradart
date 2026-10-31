@@ -22,6 +22,7 @@ export 'src/cloud_security_compliance/google_cloud_security_compliance_cloud_con
         CloudSecurityComplianceCloudControlRegexpPattern,
         CloudSecurityComplianceCloudControlResourceTypesValues,
         CloudSecurityComplianceCloudControlRules,
+        CloudSecurityComplianceCloudControlSeverity,
         CloudSecurityComplianceCloudControlStringListValue,
         CloudSecurityComplianceCloudControlSubParameters,
         CloudSecurityComplianceCloudControlSubParametersDefaultValue,
@@ -30,6 +31,7 @@ export 'src/cloud_security_compliance/google_cloud_security_compliance_cloud_con
         CloudSecurityComplianceCloudControlSubstitutionRules,
         CloudSecurityComplianceCloudControlValidation,
         CloudSecurityComplianceCloudControlValidationAllowedValues,
+        CloudSecurityComplianceCloudControlValueType,
         CloudSecurityComplianceCloudControlValues,
         GoogleCloudSecurityComplianceCloudControl;
 export 'src/cloud_security_compliance/google_cloud_security_compliance_framework.dart'
@@ -45,6 +47,7 @@ export 'src/cloud_security_compliance/google_cloud_security_compliance_framework
     show
         CloudSecurityComplianceFrameworkDeploymentCloudControlDetails,
         CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata,
+        CloudSecurityComplianceFrameworkDeploymentEnforcementMode,
         CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig,
         CloudSecurityComplianceFrameworkDeploymentFramework,
         CloudSecurityComplianceFrameworkDeploymentOneofValue,

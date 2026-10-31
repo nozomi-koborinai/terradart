@@ -21,6 +21,43 @@ const Set<String> _azurermHdinsightSparkClusterSensitive = <String>{
   'storage_account.storage_account_key',
 };
 
+/// Hdinsight Spark Cluster enum for `tier`.
+extension type const HdinsightSparkClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightSparkClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightSparkClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightSparkClusterTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = HdinsightSparkClusterTier._(TfArgLiteral('Premium'));
+  static const standard = HdinsightSparkClusterTier._(TfArgLiteral('Standard'));
+
+  static const List<HdinsightSparkClusterTier> values = [premium, standard];
+}
+
+/// Hdinsight Spark Cluster Tls Min enum for `tls_min_version`.
+extension type const HdinsightSparkClusterTlsMinVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightSparkClusterTlsMinVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightSparkClusterTlsMinVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightSparkClusterTlsMinVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p0 = HdinsightSparkClusterTlsMinVersion._(TfArgLiteral('1.0'));
+  static const v1p1 = HdinsightSparkClusterTlsMinVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = HdinsightSparkClusterTlsMinVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = HdinsightSparkClusterTlsMinVersion._(TfArgLiteral('1.3'));
+
+  static const List<HdinsightSparkClusterTlsMinVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `component_version` block of
 /// `azurerm_hdinsight_spark_cluster` (derived from provider schema).
 @immutable
@@ -64,7 +101,7 @@ final class HdinsightSparkClusterDiskEncryption {
     this.keyVaultManagedIdentityId,
   });
 
-  final TfArg<String>? encryptionAlgorithm;
+  final HdinsightSparkClusterEncryptionAlgorithm? encryptionAlgorithm;
 
   final TfArg<bool>? encryptionAtHostEnabled;
 
@@ -79,6 +116,33 @@ final class HdinsightSparkClusterDiskEncryption {
     'key_vault_key_id': ?keyVaultKeyId?.toTfJson(),
     'key_vault_managed_identity_id': ?keyVaultManagedIdentityId?.toTfJson(),
   };
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+extension type const HdinsightSparkClusterEncryptionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightSparkClusterEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightSparkClusterEncryptionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightSparkClusterEncryptionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsaOaep = HdinsightSparkClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 = HdinsightSparkClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP-256'),
+  );
+  static const rsa15 = HdinsightSparkClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+
+  static const List<HdinsightSparkClusterEncryptionAlgorithm> values = [
+    rsaOaep,
+    rsaOaep256,
+    rsa15,
+  ];
 }
 
 /// Typed helper for the `extension` block of
@@ -254,7 +318,7 @@ final class HdinsightSparkClusterNetwork {
     this.privateLinkEnabled,
   });
 
-  final TfArg<String>? connectionDirection;
+  final HdinsightSparkClusterConnectionDirection? connectionDirection;
 
   final TfArg<bool>? privateLinkEnabled;
 
@@ -263,6 +327,29 @@ final class HdinsightSparkClusterNetwork {
     'connection_direction': ?connectionDirection?.toTfJson(),
     'private_link_enabled': ?privateLinkEnabled?.toTfJson(),
   };
+}
+
+/// `connection_direction` — derived from the provider schema description.
+extension type const HdinsightSparkClusterConnectionDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightSparkClusterConnectionDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightSparkClusterConnectionDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightSparkClusterConnectionDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inbound = HdinsightSparkClusterConnectionDirection._(
+    TfArgLiteral('Inbound'),
+  );
+  static const outbound = HdinsightSparkClusterConnectionDirection._(
+    TfArgLiteral('Outbound'),
+  );
+
+  static const List<HdinsightSparkClusterConnectionDirection> values = [
+    inbound,
+    outbound,
+  ];
 }
 
 /// Typed helper for the `private_link_configuration` block of
@@ -307,7 +394,8 @@ final class HdinsightSparkClusterIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAllocationMethod;
+  final HdinsightSparkClusterPrivateIpAllocationMethod?
+  privateIpAllocationMethod;
 
   final TfArg<String>? subnetId;
 
@@ -319,6 +407,30 @@ final class HdinsightSparkClusterIpConfiguration {
     'private_ip_allocation_method': ?privateIpAllocationMethod?.toTfJson(),
     'subnet_id': ?subnetId?.toTfJson(),
   };
+}
+
+/// `private_ip_allocation_method` — derived from the provider schema description.
+extension type const HdinsightSparkClusterPrivateIpAllocationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightSparkClusterPrivateIpAllocationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightSparkClusterPrivateIpAllocationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightSparkClusterPrivateIpAllocationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dynamic = HdinsightSparkClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('dynamic'),
+  );
+  static const static = HdinsightSparkClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('static'),
+  );
+
+  static const List<HdinsightSparkClusterPrivateIpAllocationMethod> values = [
+    dynamic,
+    static,
+  ];
 }
 
 /// Typed helper for the `roles` block of
@@ -690,8 +802,8 @@ final class AzurermHdinsightSparkCluster extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
-    required TfArg<String> tlsMinVersion,
+    required HdinsightSparkClusterTier tier,
+    required HdinsightSparkClusterTlsMinVersion tlsMinVersion,
     TfArg<List<String>>? zones,
     required HdinsightSparkClusterComponentVersion componentVersion,
     HdinsightSparkClusterComputeIsolation? computeIsolation,

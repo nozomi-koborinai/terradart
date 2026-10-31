@@ -7,6 +7,47 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_api_shield_operations`.
 const Set<String> _cloudflareApiShieldOperationsSensitive = <String>{};
 
+/// Data Api Shield Operations enum for `direction`.
+extension type const DataApiShieldOperationsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldOperationsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldOperationsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldOperationsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataApiShieldOperationsDirection._(TfArgLiteral('asc'));
+  static const desc = DataApiShieldOperationsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataApiShieldOperationsDirection> values = [asc, desc];
+}
+
+/// Data Api Shield Operations enum for `order`.
+extension type const DataApiShieldOperationsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldOperationsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldOperationsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldOperationsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const method = DataApiShieldOperationsOrder._(TfArgLiteral('method'));
+  static const host = DataApiShieldOperationsOrder._(TfArgLiteral('host'));
+  static const endpoint = DataApiShieldOperationsOrder._(
+    TfArgLiteral('endpoint'),
+  );
+  static const thresholdsKey = DataApiShieldOperationsOrder._(
+    TfArgLiteral('thresholds.\$key'),
+  );
+
+  static const List<DataApiShieldOperationsOrder> values = [
+    method,
+    host,
+    endpoint,
+    thresholdsKey,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_api_shield_operations`.
 ///
 /// Accepted Permissions
@@ -18,13 +59,13 @@ final class DataCloudflareApiShieldOperations extends Data {
 
   DataCloudflareApiShieldOperations(
     super.localName, {
-    TfArg<String>? direction,
+    DataApiShieldOperationsDirection? direction,
     TfArg<String>? endpoint,
     TfArg<List<String>>? feature,
     TfArg<List<String>>? host,
     TfArg<num>? maxItems,
     TfArg<List<String>>? method,
-    TfArg<String>? order,
+    DataApiShieldOperationsOrder? order,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

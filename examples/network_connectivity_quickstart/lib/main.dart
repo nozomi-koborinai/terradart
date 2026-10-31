@@ -41,7 +41,7 @@ final class NetworkConnectivityStack extends Stack {
         remoteProfile: .literal(
           'https://networkconnectivity.googleapis.com/v1/projects/$projectId/locations/$region/remoteTransportProfiles/aws-us-east-1',
         ),
-        bandwidth: .literal('BPS_1G'),
+        bandwidth: .bps1g,
         remoteAccountId: .literal('123'),
         dependsOn: [...apiDeps, vpc],
       ),

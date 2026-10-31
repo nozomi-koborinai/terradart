@@ -1,0 +1,134 @@
+{
+  "name": "storagebatchoperations",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://storagebatchoperations.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ErrorSummary": {
+      "properties": {
+        "errorCode": {
+          "enum": [
+            "OK",
+            "CANCELLED",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS"
+          ]
+        }
+      }
+    },
+    "Job": {
+      "properties": {
+        "errorSummaries": {
+          "items": {
+            "$ref": "ErrorSummary"
+          }
+        },
+        "putObjectHold": {
+          "$ref": "PutObjectHold"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED",
+            "CANCELED",
+            "FAILED",
+            "QUEUED"
+          ]
+        },
+        "putMetadata": {
+          "$ref": "PutMetadata"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
+        "rewriteObject": {
+          "$ref": "RewriteObject"
+        }
+      }
+    },
+    "LoggingConfig": {
+      "properties": {
+        "logActions": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_UNSPECIFIED",
+              "TRANSFORM"
+            ]
+          }
+        },
+        "logActionStates": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_STATE_UNSPECIFIED",
+              "SUCCEEDED",
+              "FAILED"
+            ]
+          }
+        }
+      }
+    },
+    "ObjectRetention": {
+      "properties": {
+        "retentionMode": {
+          "enum": [
+            "RETENTION_MODE_UNSPECIFIED",
+            "LOCKED",
+            "UNLOCKED"
+          ]
+        }
+      }
+    },
+    "PutMetadata": {
+      "properties": {
+        "objectRetention": {
+          "$ref": "ObjectRetention"
+        }
+      }
+    },
+    "PutObjectHold": {
+      "properties": {
+        "temporaryHold": {
+          "enum": [
+            "HOLD_STATUS_UNSPECIFIED",
+            "SET",
+            "UNSET"
+          ]
+        },
+        "eventBasedHold": {
+          "enum": [
+            "HOLD_STATUS_UNSPECIFIED",
+            "SET",
+            "UNSET"
+          ]
+        }
+      }
+    },
+    "RewriteObject": {
+      "properties": {
+        "storageClass": {
+          "enum": [
+            "STORAGE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "NEARLINE",
+            "COLDLINE",
+            "ARCHIVE"
+          ]
+        }
+      }
+    }
+  }
+}

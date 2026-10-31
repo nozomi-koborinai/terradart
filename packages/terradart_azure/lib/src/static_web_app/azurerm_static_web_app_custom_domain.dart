@@ -8,6 +8,29 @@ const Set<String> _azurermStaticWebAppCustomDomainSensitive = <String>{
   'validation_token',
 };
 
+/// Static Web App Custom Domain Validation enum for `validation_type`.
+extension type const StaticWebAppCustomDomainValidationType._(TfArg<String> _)
+    implements TfArg<String> {
+  StaticWebAppCustomDomainValidationType.variable(String name)
+    : this._(TfArg.variable(name));
+  StaticWebAppCustomDomainValidationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StaticWebAppCustomDomainValidationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dnsTxtToken = StaticWebAppCustomDomainValidationType._(
+    TfArgLiteral('dns-txt-token'),
+  );
+  static const cnameDelegation = StaticWebAppCustomDomainValidationType._(
+    TfArgLiteral('cname-delegation'),
+  );
+
+  static const List<StaticWebAppCustomDomainValidationType> values = [
+    dnsTxtToken,
+    cnameDelegation,
+  ];
+}
+
 /// Factory wrapper for `azurerm_static_web_app_custom_domain`.
 final class AzurermStaticWebAppCustomDomain extends Resource {
   static const String tfType = 'azurerm_static_web_app_custom_domain';
@@ -16,7 +39,7 @@ final class AzurermStaticWebAppCustomDomain extends Resource {
     super.localName, {
     required TfArg<String> domainName,
     required TfArg<String> staticWebAppId,
-    required TfArg<String> validationType,
+    required StaticWebAppCustomDomainValidationType validationType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

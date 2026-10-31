@@ -3,6 +3,11 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: access_tier
+    enum_values:
+      - "Archive"
+      - "Cool"
+      - "Hot"
   - api_name: type
     enum_values:
       - "Append"

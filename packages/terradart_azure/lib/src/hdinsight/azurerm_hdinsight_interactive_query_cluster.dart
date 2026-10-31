@@ -21,6 +21,61 @@ const Set<String> _azurermHdinsightInteractiveQueryClusterSensitive = <String>{
   'storage_account.storage_account_key',
 };
 
+/// Hdinsight Interactive Query Cluster enum for `tier`.
+extension type const HdinsightInteractiveQueryClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightInteractiveQueryClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = HdinsightInteractiveQueryClusterTier._(
+    TfArgLiteral('Premium'),
+  );
+  static const standard = HdinsightInteractiveQueryClusterTier._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<HdinsightInteractiveQueryClusterTier> values = [
+    premium,
+    standard,
+  ];
+}
+
+/// Hdinsight Interactive Query Cluster Tls Min enum for `tls_min_version`.
+extension type const HdinsightInteractiveQueryClusterTlsMinVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightInteractiveQueryClusterTlsMinVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterTlsMinVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterTlsMinVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = HdinsightInteractiveQueryClusterTlsMinVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = HdinsightInteractiveQueryClusterTlsMinVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = HdinsightInteractiveQueryClusterTlsMinVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p3 = HdinsightInteractiveQueryClusterTlsMinVersion._(
+    TfArgLiteral('1.3'),
+  );
+
+  static const List<HdinsightInteractiveQueryClusterTlsMinVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `component_version` block of
 /// `azurerm_hdinsight_interactive_query_cluster` (derived from provider schema).
 @immutable
@@ -68,7 +123,8 @@ final class HdinsightInteractiveQueryClusterDiskEncryption {
     this.keyVaultManagedIdentityId,
   });
 
-  final TfArg<String>? encryptionAlgorithm;
+  final HdinsightInteractiveQueryClusterEncryptionAlgorithm?
+  encryptionAlgorithm;
 
   final TfArg<bool>? encryptionAtHostEnabled;
 
@@ -83,6 +139,34 @@ final class HdinsightInteractiveQueryClusterDiskEncryption {
     'key_vault_key_id': ?keyVaultKeyId?.toTfJson(),
     'key_vault_managed_identity_id': ?keyVaultManagedIdentityId?.toTfJson(),
   };
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+extension type const HdinsightInteractiveQueryClusterEncryptionAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightInteractiveQueryClusterEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterEncryptionAlgorithm.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterEncryptionAlgorithm.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const rsaOaep = HdinsightInteractiveQueryClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 =
+      HdinsightInteractiveQueryClusterEncryptionAlgorithm._(
+        TfArgLiteral('RSA-OAEP-256'),
+      );
+  static const rsa15 = HdinsightInteractiveQueryClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+
+  static const List<HdinsightInteractiveQueryClusterEncryptionAlgorithm>
+  values = [rsaOaep, rsaOaep256, rsa15];
 }
 
 /// Typed helper for the `extension` block of
@@ -262,7 +346,8 @@ final class HdinsightInteractiveQueryClusterNetwork {
     this.privateLinkEnabled,
   });
 
-  final TfArg<String>? connectionDirection;
+  final HdinsightInteractiveQueryClusterConnectionDirection?
+  connectionDirection;
 
   final TfArg<bool>? privateLinkEnabled;
 
@@ -271,6 +356,30 @@ final class HdinsightInteractiveQueryClusterNetwork {
     'connection_direction': ?connectionDirection?.toTfJson(),
     'private_link_enabled': ?privateLinkEnabled?.toTfJson(),
   };
+}
+
+/// `connection_direction` — derived from the provider schema description.
+extension type const HdinsightInteractiveQueryClusterConnectionDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightInteractiveQueryClusterConnectionDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterConnectionDirection.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterConnectionDirection.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const inbound = HdinsightInteractiveQueryClusterConnectionDirection._(
+    TfArgLiteral('Inbound'),
+  );
+  static const outbound = HdinsightInteractiveQueryClusterConnectionDirection._(
+    TfArgLiteral('Outbound'),
+  );
+
+  static const List<HdinsightInteractiveQueryClusterConnectionDirection>
+  values = [inbound, outbound];
 }
 
 /// Typed helper for the `private_link_configuration` block of
@@ -315,7 +424,8 @@ final class HdinsightInteractiveQueryClusterIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAllocationMethod;
+  final HdinsightInteractiveQueryClusterPrivateIpAllocationMethod?
+  privateIpAllocationMethod;
 
   final TfArg<String>? subnetId;
 
@@ -327,6 +437,33 @@ final class HdinsightInteractiveQueryClusterIpConfiguration {
     'private_ip_allocation_method': ?privateIpAllocationMethod?.toTfJson(),
     'subnet_id': ?subnetId?.toTfJson(),
   };
+}
+
+/// `private_ip_allocation_method` — derived from the provider schema description.
+extension type const HdinsightInteractiveQueryClusterPrivateIpAllocationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightInteractiveQueryClusterPrivateIpAllocationMethod.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterPrivateIpAllocationMethod.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterPrivateIpAllocationMethod.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const dynamic =
+      HdinsightInteractiveQueryClusterPrivateIpAllocationMethod._(
+        TfArgLiteral('dynamic'),
+      );
+  static const static =
+      HdinsightInteractiveQueryClusterPrivateIpAllocationMethod._(
+        TfArgLiteral('static'),
+      );
+
+  static const List<HdinsightInteractiveQueryClusterPrivateIpAllocationMethod>
+  values = [dynamic, static];
 }
 
 /// Typed helper for the `roles` block of
@@ -673,8 +810,8 @@ final class AzurermHdinsightInteractiveQueryCluster extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
-    required TfArg<String> tlsMinVersion,
+    required HdinsightInteractiveQueryClusterTier tier,
+    required HdinsightInteractiveQueryClusterTlsMinVersion tlsMinVersion,
     required HdinsightInteractiveQueryClusterComponentVersion componentVersion,
     HdinsightInteractiveQueryClusterComputeIsolation? computeIsolation,
     List<HdinsightInteractiveQueryClusterDiskEncryption>? diskEncryption,

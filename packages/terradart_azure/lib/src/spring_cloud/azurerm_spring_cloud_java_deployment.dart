@@ -7,6 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_java_deployment`.
 const Set<String> _azurermSpringCloudJavaDeploymentSensitive = <String>{};
 
+/// Spring Cloud Java Deployment Runtime enum for `runtime_version`.
+extension type const SpringCloudJavaDeploymentRuntimeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudJavaDeploymentRuntimeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudJavaDeploymentRuntimeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudJavaDeploymentRuntimeVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const java8 = SpringCloudJavaDeploymentRuntimeVersion._(
+    TfArgLiteral('Java_8'),
+  );
+  static const java11 = SpringCloudJavaDeploymentRuntimeVersion._(
+    TfArgLiteral('Java_11'),
+  );
+  static const java17 = SpringCloudJavaDeploymentRuntimeVersion._(
+    TfArgLiteral('Java_17'),
+  );
+
+  static const List<SpringCloudJavaDeploymentRuntimeVersion> values = [
+    java8,
+    java11,
+    java17,
+  ];
+}
+
 /// Typed helper for the `quota` block of
 /// `azurerm_spring_cloud_java_deployment` (derived from provider schema).
 @immutable
@@ -34,7 +61,7 @@ final class AzurermSpringCloudJavaDeployment extends Resource {
     TfArg<num>? instanceCount,
     TfArg<String>? jvmOptions,
     required TfArg<String> name,
-    TfArg<String>? runtimeVersion,
+    SpringCloudJavaDeploymentRuntimeVersion? runtimeVersion,
     required TfArg<String> springCloudAppId,
     SpringCloudJavaDeploymentQuota? quota,
     super.lifecycle,

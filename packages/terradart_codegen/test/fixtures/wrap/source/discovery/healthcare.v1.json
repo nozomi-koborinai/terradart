@@ -1,0 +1,294 @@
+{
+  "name": "healthcare",
+  "version": "v1",
+  "revision": "20261013",
+  "sourceUrl": "https://healthcare.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AccessDeterminationLogConfig": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "DISABLED",
+            "MINIMUM",
+            "VERBOSE"
+          ]
+        }
+      }
+    },
+    "ConsentConfig": {
+      "properties": {
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig"
+        },
+        "version": {
+          "enum": [
+            "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
+            "V1"
+          ]
+        },
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling"
+        }
+      }
+    },
+    "ConsentHeaderHandling": {
+      "properties": {
+        "profile": {
+          "enum": [
+            "SCOPE_PROFILE_UNSPECIFIED",
+            "PERMIT_EMPTY_SCOPE",
+            "REQUIRED_ON_READ"
+          ]
+        }
+      }
+    },
+    "ConsentStore": {
+      "properties": {}
+    },
+    "Dataset": {
+      "properties": {}
+    },
+    "DeidentifiedStoreDestination": {
+      "properties": {
+        "config": {
+          "$ref": "DeidentifyConfig"
+        }
+      }
+    },
+    "DeidentifyConfig": {
+      "properties": {
+        "dicom": {
+          "$ref": "DicomConfig"
+        },
+        "image": {
+          "$ref": "ImageConfig"
+        },
+        "fhir": {
+          "$ref": "FhirConfig"
+        }
+      }
+    },
+    "DicomConfig": {
+      "properties": {
+        "filterProfile": {
+          "enum": [
+            "TAG_FILTER_PROFILE_UNSPECIFIED",
+            "MINIMAL_KEEP_LIST_PROFILE",
+            "ATTRIBUTE_CONFIDENTIALITY_BASIC_PROFILE",
+            "KEEP_ALL_PROFILE",
+            "DEIDENTIFY_TAG_CONTENTS"
+          ]
+        }
+      }
+    },
+    "DicomStore": {
+      "properties": {
+        "streamConfigs": {
+          "items": {
+            "$ref": "GoogleCloudHealthcareV1DicomStreamConfig"
+          }
+        }
+      }
+    },
+    "FhirConfig": {
+      "properties": {
+        "fieldMetadataList": {
+          "items": {
+            "$ref": "FieldMetadata"
+          }
+        }
+      }
+    },
+    "FhirStore": {
+      "properties": {
+        "complexDataTypeReferenceParsing": {
+          "enum": [
+            "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "version": {
+          "enum": [
+            "VERSION_UNSPECIFIED",
+            "DSTU2",
+            "STU3",
+            "R4",
+            "R5"
+          ]
+        },
+        "consentConfig": {
+          "$ref": "ConsentConfig"
+        },
+        "streamConfigs": {
+          "items": {
+            "$ref": "StreamConfig"
+          }
+        }
+      }
+    },
+    "FieldMetadata": {
+      "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "TRANSFORM",
+            "INSPECT_AND_TRANSFORM",
+            "DO_NOT_TRANSFORM"
+          ]
+        }
+      }
+    },
+    "GoogleCloudHealthcareV1DicomBigQueryDestination": {
+      "properties": {
+        "writeDisposition": {
+          "enum": [
+            "WRITE_DISPOSITION_UNSPECIFIED",
+            "WRITE_EMPTY",
+            "WRITE_TRUNCATE",
+            "WRITE_APPEND"
+          ]
+        }
+      }
+    },
+    "GoogleCloudHealthcareV1DicomStreamConfig": {
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudHealthcareV1DicomBigQueryDestination"
+        }
+      }
+    },
+    "GoogleCloudHealthcareV1FhirBigQueryDestination": {
+      "properties": {
+        "schemaConfig": {
+          "$ref": "SchemaConfig"
+        },
+        "writeDisposition": {
+          "enum": [
+            "WRITE_DISPOSITION_UNSPECIFIED",
+            "WRITE_EMPTY",
+            "WRITE_TRUNCATE",
+            "WRITE_APPEND"
+          ]
+        }
+      }
+    },
+    "Hl7TypesConfig": {
+      "properties": {
+        "type": {
+          "items": {
+            "$ref": "Type"
+          }
+        }
+      }
+    },
+    "Hl7V2Store": {
+      "properties": {
+        "parserConfig": {
+          "$ref": "ParserConfig"
+        }
+      }
+    },
+    "ImageConfig": {
+      "properties": {
+        "textRedactionMode": {
+          "enum": [
+            "TEXT_REDACTION_MODE_UNSPECIFIED",
+            "REDACT_ALL_TEXT",
+            "REDACT_SENSITIVE_TEXT",
+            "REDACT_NO_TEXT"
+          ]
+        }
+      }
+    },
+    "ParserConfig": {
+      "properties": {
+        "version": {
+          "enum": [
+            "PARSER_VERSION_UNSPECIFIED",
+            "V1",
+            "V2",
+            "V3"
+          ]
+        },
+        "schema": {
+          "$ref": "SchemaPackage"
+        }
+      }
+    },
+    "SchemaConfig": {
+      "properties": {
+        "schemaType": {
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "ANALYTICS",
+            "ANALYTICS_V2"
+          ]
+        },
+        "lastUpdatedPartitionConfig": {
+          "$ref": "TimePartitioning"
+        }
+      }
+    },
+    "SchemaPackage": {
+      "properties": {
+        "schematizedParsingType": {
+          "enum": [
+            "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
+            "SOFT_FAIL",
+            "HARD_FAIL"
+          ]
+        },
+        "types": {
+          "items": {
+            "$ref": "Hl7TypesConfig"
+          }
+        },
+        "unexpectedSegmentHandling": {
+          "enum": [
+            "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
+            "FAIL",
+            "SKIP",
+            "PARSE"
+          ]
+        }
+      }
+    },
+    "StreamConfig": {
+      "properties": {
+        "deidentifiedStoreDestination": {
+          "$ref": "DeidentifiedStoreDestination"
+        },
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudHealthcareV1FhirBigQueryDestination"
+        }
+      }
+    },
+    "TimePartitioning": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PARTITION_TYPE_UNSPECIFIED",
+            "HOUR",
+            "DAY",
+            "MONTH",
+            "YEAR"
+          ]
+        }
+      }
+    },
+    "Type": {
+      "properties": {
+        "primitive": {
+          "enum": [
+            "PRIMITIVE_UNSPECIFIED",
+            "STRING",
+            "VARIES",
+            "UNESCAPED_STRING"
+          ]
+        }
+      }
+    }
+  }
+}

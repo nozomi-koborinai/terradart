@@ -14,3 +14,10 @@ properties:
           - "AllowInternetOutbound"
           - "AllowOnlyApprovedOutbound"
           - "Disabled"
+  - api_name: sku_name
+    enum_values:
+      - "Basic"
+  - api_name: storage_account_access_type
+    enum_values:
+      - "AccessKey"
+      - "Identity"

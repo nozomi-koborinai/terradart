@@ -14,19 +14,30 @@ export 'src/cognitive/azurerm_cognitive_account.dart'
         CognitiveAccountKind,
         CognitiveAccountNetworkAcls,
         CognitiveAccountNetworkInjection,
+        CognitiveAccountScenario,
         CognitiveAccountSkuName,
         CognitiveAccountStorage,
         CognitiveAccountVirtualNetworkRules;
 export 'src/cognitive/azurerm_cognitive_account_connection_account_key.dart'
-    show AzurermCognitiveAccountConnectionAccountKey;
+    show
+        AzurermCognitiveAccountConnectionAccountKey,
+        CognitiveAccountConnectionAccountKeyCategory;
 export 'src/cognitive/azurerm_cognitive_account_connection_account_managed_identity.dart'
-    show AzurermCognitiveAccountConnectionAccountManagedIdentity;
+    show
+        AzurermCognitiveAccountConnectionAccountManagedIdentity,
+        CognitiveAccountConnectionAccountManagedIdentityCategory;
 export 'src/cognitive/azurerm_cognitive_account_connection_api_key.dart'
-    show AzurermCognitiveAccountConnectionApiKey;
+    show
+        AzurermCognitiveAccountConnectionApiKey,
+        CognitiveAccountConnectionApiKeyCategory;
 export 'src/cognitive/azurerm_cognitive_account_connection_custom_keys.dart'
-    show AzurermCognitiveAccountConnectionCustomKeys;
+    show
+        AzurermCognitiveAccountConnectionCustomKeys,
+        CognitiveAccountConnectionCustomKeysCategory;
 export 'src/cognitive/azurerm_cognitive_account_connection_entra_id.dart'
-    show AzurermCognitiveAccountConnectionEntraId;
+    show
+        AzurermCognitiveAccountConnectionEntraId,
+        CognitiveAccountConnectionEntraIdCategory;
 export 'src/cognitive/azurerm_cognitive_account_customer_managed_key.dart'
     show AzurermCognitiveAccountCustomerManagedKey;
 export 'src/cognitive/azurerm_cognitive_account_project.dart'

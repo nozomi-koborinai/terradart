@@ -7,6 +7,45 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_custom_ssls`.
 const Set<String> _cloudflareCustomSslsSensitive = <String>{};
 
+/// Data Custom Ssls enum for `match`.
+extension type const DataCustomSslsMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomSslsMatch.variable(String name) : this._(TfArg.variable(name));
+  DataCustomSslsMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomSslsMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = DataCustomSslsMatch._(TfArgLiteral('any'));
+  static const all = DataCustomSslsMatch._(TfArgLiteral('all'));
+
+  static const List<DataCustomSslsMatch> values = [any, all];
+}
+
+/// Data Custom Ssls enum for `status`.
+extension type const DataCustomSslsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomSslsStatus.variable(String name) : this._(TfArg.variable(name));
+  DataCustomSslsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomSslsStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = DataCustomSslsStatus._(TfArgLiteral('active'));
+  static const expired = DataCustomSslsStatus._(TfArgLiteral('expired'));
+  static const deleted = DataCustomSslsStatus._(TfArgLiteral('deleted'));
+  static const pending = DataCustomSslsStatus._(TfArgLiteral('pending'));
+  static const initializing = DataCustomSslsStatus._(
+    TfArgLiteral('initializing'),
+  );
+
+  static const List<DataCustomSslsStatus> values = [
+    active,
+    expired,
+    deleted,
+    pending,
+    initializing,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_custom_ssls`.
 ///
 /// Accepted Permissions
@@ -18,9 +57,9 @@ final class DataCloudflareCustomSsls extends Data {
 
   DataCloudflareCustomSsls(
     super.localName, {
-    TfArg<String>? match,
+    DataCustomSslsMatch? match,
     TfArg<num>? maxItems,
-    TfArg<String>? status,
+    DataCustomSslsStatus? status,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

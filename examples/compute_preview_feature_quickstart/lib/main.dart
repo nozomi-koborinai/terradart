@@ -29,11 +29,8 @@ final class ComputePreviewFeatureStack extends Stack {
         'alpha',
         name: .literal('alpha-api-access'),
         activationStatus: .activationStateUnspecified,
-        // API currently accepts only FAST_ROLLOUT (provider basic example).
         rolloutOperation: ComputePreviewFeatureRolloutOperation(
-          rolloutInput: .new(
-            predefinedRolloutPlan: .literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
-          ),
+          rolloutInput: .new(predefinedRolloutPlan: .rolloutPlanFastRollout),
         ),
         dependsOn: [apiCompute],
       ),

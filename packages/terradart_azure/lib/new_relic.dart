@@ -12,6 +12,7 @@ export 'src/new_relic/azurerm_new_relic_monitor.dart'
         NewRelicMonitorIdentity,
         NewRelicMonitorOrgCreationSource,
         NewRelicMonitorPlan,
+        NewRelicMonitorPlanId,
         NewRelicMonitorUsageType,
         NewRelicMonitorUser;
 export 'src/new_relic/azurerm_new_relic_tag_rule.dart'

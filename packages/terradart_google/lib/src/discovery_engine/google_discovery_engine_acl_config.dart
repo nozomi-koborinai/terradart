@@ -7,6 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_acl_config`.
 const Set<String> _googleDiscoveryEngineAclConfigSensitive = <String>{};
 
+/// Discovery Engine Acl Config enum for `location`.
+extension type const DiscoveryEngineAclConfigLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAclConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAclConfigLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAclConfigLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineAclConfigLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineAclConfigLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineAclConfigLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineAclConfigLocation> values = [global, us, eu];
+}
+
 /// Typed helper for the `idp_config` block of
 /// `google_discovery_engine_acl_config` (derived from provider schema).
 @immutable
@@ -82,7 +100,7 @@ final class GoogleDiscoveryEngineAclConfig extends Resource {
 
   GoogleDiscoveryEngineAclConfig(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineAclConfigLocation location,
     DiscoveryEngineAclConfigIdpConfig? idpConfig,
     TfArg<String>? project,
     super.lifecycle,

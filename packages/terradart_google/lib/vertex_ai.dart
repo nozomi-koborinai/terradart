@@ -22,6 +22,7 @@ export 'src/vertex_ai/google_vertex_ai_dataset.dart'
 export 'src/vertex_ai/google_vertex_ai_deployment_resource_pool.dart'
     show
         GoogleVertexAiDeploymentResourcePool,
+        VertexAiDeploymentResourcePoolAcceleratorType,
         VertexAiDeploymentResourcePoolAutoscalingMetricSpecs,
         VertexAiDeploymentResourcePoolDedicatedResources,
         VertexAiDeploymentResourcePoolMachineSpec;
@@ -36,6 +37,7 @@ export 'src/vertex_ai/google_vertex_ai_endpoint.dart'
 export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dart'
     show
         GoogleVertexAiEndpointWithModelGardenDeployment,
+        VertexAiEndpointWithModelGardenDeploymentAcceleratorType,
         VertexAiEndpointWithModelGardenDeploymentAutoscalingMetricSpecs,
         VertexAiEndpointWithModelGardenDeploymentContainerSpec,
         VertexAiEndpointWithModelGardenDeploymentDedicatedResources,
@@ -58,6 +60,8 @@ export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dar
         VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs,
         VertexAiEndpointWithModelGardenDeploymentPublisherModel,
         VertexAiEndpointWithModelGardenDeploymentReservationAffinity,
+        VertexAiEndpointWithModelGardenDeploymentReservationAffinityType,
+        VertexAiEndpointWithModelGardenDeploymentScheme,
         VertexAiEndpointWithModelGardenDeploymentStartupProbe,
         VertexAiEndpointWithModelGardenDeploymentTcpSocket;
 export 'src/vertex_ai/google_vertex_ai_evaluation_metric.dart'
@@ -102,13 +106,17 @@ export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype.dart'
     show
         GoogleVertexAiFeaturestoreEntitytype,
+        VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline,
         VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig,
         VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis,
         VertexAiFeaturestoreEntitytypeMonitoringConfig,
         VertexAiFeaturestoreEntitytypeNumericalThresholdConfig,
-        VertexAiFeaturestoreEntitytypeSnapshotAnalysis;
+        VertexAiFeaturestoreEntitytypeSnapshotAnalysis,
+        VertexAiFeaturestoreEntitytypeState;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_feature.dart'
-    show GoogleVertexAiFeaturestoreEntitytypeFeature;
+    show
+        GoogleVertexAiFeaturestoreEntitytypeFeature,
+        VertexAiFeaturestoreEntitytypeFeatureValueType;
 export 'src/vertex_ai/google_vertex_ai_index.dart'
     show
         GoogleVertexAiIndex,
@@ -117,9 +125,13 @@ export 'src/vertex_ai/google_vertex_ai_index.dart'
         VertexAiIndexAlgorithmConfigTreeAhConfig,
         VertexAiIndexBruteForceConfig,
         VertexAiIndexConfig,
+        VertexAiIndexDistanceMeasureType,
         VertexAiIndexEncryptionSpec,
+        VertexAiIndexFeatureNormType,
         VertexAiIndexMetadata,
-        VertexAiIndexTreeAhConfig;
+        VertexAiIndexShardSize,
+        VertexAiIndexTreeAhConfig,
+        VertexAiIndexUpdateMethod;
 export 'src/vertex_ai/google_vertex_ai_index_endpoint.dart'
     show
         GoogleVertexAiIndexEndpoint,
@@ -138,11 +150,32 @@ export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
         VertexAiIndexEndpointDeployedIndexDedicatedResources,
         VertexAiIndexEndpointDeployedIndexMachineSpec;
 export 'src/vertex_ai/google_vertex_ai_online_evaluator.dart'
-    show GoogleVertexAiOnlineEvaluator;
+    show
+        GoogleVertexAiOnlineEvaluator,
+        VertexAiOnlineEvaluatorCloudObservability,
+        VertexAiOnlineEvaluatorComparisonOperator,
+        VertexAiOnlineEvaluatorConfig,
+        VertexAiOnlineEvaluatorDuration,
+        VertexAiOnlineEvaluatorInactivityTrigger,
+        VertexAiOnlineEvaluatorMetricSources,
+        VertexAiOnlineEvaluatorModelCallErrors,
+        VertexAiOnlineEvaluatorModelCalls,
+        VertexAiOnlineEvaluatorOpenTelemetry,
+        VertexAiOnlineEvaluatorRandomSampling,
+        VertexAiOnlineEvaluatorSessionScope,
+        VertexAiOnlineEvaluatorSessionScopeFilter,
+        VertexAiOnlineEvaluatorToolCallErrors,
+        VertexAiOnlineEvaluatorToolCalls,
+        VertexAiOnlineEvaluatorTotalTokenUsage,
+        VertexAiOnlineEvaluatorTraceScope,
+        VertexAiOnlineEvaluatorTraceScopeFilter,
+        VertexAiOnlineEvaluatorUserTurns;
 export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
     show
         GoogleVertexAiPersistentResource,
+        VertexAiPersistentResourceAcceleratorType,
         VertexAiPersistentResourceAutoscalingSpec,
+        VertexAiPersistentResourceBootDiskType,
         VertexAiPersistentResourceDiskSpec,
         VertexAiPersistentResourceDnsPeeringConfigs,
         VertexAiPersistentResourceEncryptionSpec,
@@ -233,6 +266,7 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineInlineSource,
         VertexAiReasoningEngineLanguage,
         VertexAiReasoningEngineManagedMemoryTopic,
+        VertexAiReasoningEngineManagedTopicEnum,
         VertexAiReasoningEngineMemoryBankConfig,
         VertexAiReasoningEngineMemoryTopics,
         VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic,
@@ -245,6 +279,7 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEnginePolicyGranularTtlConfig,
         VertexAiReasoningEnginePscInterfaceConfig,
         VertexAiReasoningEnginePythonSpec,
+        VertexAiReasoningEngineRole,
         VertexAiReasoningEngineRuntime,
         VertexAiReasoningEngineRuntimeImageSpec,
         VertexAiReasoningEngineRuntimePythonSpec,

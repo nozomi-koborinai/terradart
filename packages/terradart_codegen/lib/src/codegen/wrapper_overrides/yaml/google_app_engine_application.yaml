@@ -2,6 +2,7 @@ outputDir: app
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -41,7 +42,11 @@ prelude: |
     static const cloudFirestore = AppEngineDatabaseType._(TfArgLiteral('CLOUD_FIRESTORE'));
     static const cloudDatastore = AppEngineDatabaseType._(TfArgLiteral('CLOUD_DATASTORE_COMPATIBILITY'));
 
-    static const List<AppEngineDatabaseType> values = [cloudFirestore, cloudDatastore];
+    /// The mode of an application created before
+    /// `CLOUD_DATASTORE_COMPATIBILITY`; a new application cannot take it.
+    static const legacyCloudDatastore = AppEngineDatabaseType._(TfArgLiteral('CLOUD_DATASTORE'));
+
+    static const List<AppEngineDatabaseType> values = [cloudFirestore, cloudDatastore, legacyCloudDatastore];
   }
 
   /// Serving status for an [GoogleAppEngineApplication].

@@ -63,7 +63,7 @@ final class ElastictranscoderPipelineContentConfigPermissions {
     this.granteeType,
   });
 
-  final List<ElastictranscoderPipelineAccess>? access;
+  final EnumList<ElastictranscoderPipelineAccess>? access;
 
   final TfArg<String>? grantee;
 
@@ -71,7 +71,7 @@ final class ElastictranscoderPipelineContentConfigPermissions {
 
   @internal
   Map<String, Object?> encode() => {
-    if (access != null) 'access': [for (final e in access!) e.toTfJson()],
+    'access': ?access?.toTfJson(),
     'grantee': ?grantee?.toTfJson(),
     'grantee_type': ?granteeType?.toTfJson(),
   };
@@ -190,7 +190,7 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
     this.granteeType,
   });
 
-  final List<ElastictranscoderPipelineAccess>? access;
+  final EnumList<ElastictranscoderPipelineAccess>? access;
 
   final TfArg<String>? grantee;
 
@@ -198,7 +198,7 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
 
   @internal
   Map<String, Object?> encode() => {
-    if (access != null) 'access': [for (final e in access!) e.toTfJson()],
+    'access': ?access?.toTfJson(),
     'grantee': ?grantee?.toTfJson(),
     'grantee_type': ?granteeType?.toTfJson(),
   };

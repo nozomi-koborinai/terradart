@@ -3,7 +3,6 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
-
 extraImports:
   - "import 'package:meta/meta.dart';"
 

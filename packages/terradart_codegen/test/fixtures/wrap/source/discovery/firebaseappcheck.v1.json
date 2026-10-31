@@ -1,0 +1,69 @@
+{
+  "name": "firebaseappcheck",
+  "version": "v1",
+  "revision": "20261024",
+  "sourceUrl": "https://firebaseappcheck.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleFirebaseAppcheckV1AppAttestConfig": {
+      "properties": {}
+    },
+    "GoogleFirebaseAppcheckV1DebugToken": {
+      "properties": {}
+    },
+    "GoogleFirebaseAppcheckV1DeviceCheckConfig": {
+      "properties": {}
+    },
+    "GoogleFirebaseAppcheckV1PlayIntegrityConfig": {
+      "properties": {
+        "deviceIntegrity": {
+          "$ref": "GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity"
+        }
+      }
+    },
+    "GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity": {
+      "properties": {
+        "minDeviceRecognitionLevel": {
+          "enum": [
+            "DEVICE_RECOGNITION_LEVEL_UNSPECIFIED",
+            "NO_INTEGRITY",
+            "MEETS_BASIC_INTEGRITY",
+            "MEETS_DEVICE_INTEGRITY",
+            "MEETS_STRONG_INTEGRITY"
+          ]
+        }
+      }
+    },
+    "GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig": {
+      "properties": {}
+    },
+    "GoogleFirebaseAppcheckV1ResourcePolicy": {
+      "properties": {
+        "enforcementMode": {
+          "enum": [
+            "OFF",
+            "UNENFORCED",
+            "ENFORCED"
+          ]
+        }
+      }
+    },
+    "GoogleFirebaseAppcheckV1Service": {
+      "properties": {
+        "enforcementMode": {
+          "enum": [
+            "OFF",
+            "UNENFORCED",
+            "ENFORCED"
+          ]
+        },
+        "replayProtection": {
+          "enum": [
+            "OFF",
+            "UNENFORCED",
+            "ENFORCED"
+          ]
+        }
+      }
+    }
+  }
+}

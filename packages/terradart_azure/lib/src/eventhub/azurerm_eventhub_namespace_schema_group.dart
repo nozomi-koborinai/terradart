@@ -34,6 +34,33 @@ extension type const EventhubNamespaceSchemaGroupSchemaCompatibility._(
   ];
 }
 
+/// Eventhub Namespace Schema Group Schema enum for `schema_type`.
+extension type const EventhubNamespaceSchemaGroupSchemaType._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubNamespaceSchemaGroupSchemaType.variable(String name)
+    : this._(TfArg.variable(name));
+  EventhubNamespaceSchemaGroupSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubNamespaceSchemaGroupSchemaType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const unknown = EventhubNamespaceSchemaGroupSchemaType._(
+    TfArgLiteral('Unknown'),
+  );
+  static const avro = EventhubNamespaceSchemaGroupSchemaType._(
+    TfArgLiteral('Avro'),
+  );
+  static const json = EventhubNamespaceSchemaGroupSchemaType._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<EventhubNamespaceSchemaGroupSchemaType> values = [
+    unknown,
+    avro,
+    json,
+  ];
+}
+
 /// Factory wrapper for `azurerm_eventhub_namespace_schema_group`.
 final class AzurermEventhubNamespaceSchemaGroup extends Resource {
   static const String tfType = 'azurerm_eventhub_namespace_schema_group';
@@ -44,7 +71,7 @@ final class AzurermEventhubNamespaceSchemaGroup extends Resource {
     required TfArg<String> namespaceId,
     required EventhubNamespaceSchemaGroupSchemaCompatibility
     schemaCompatibility,
-    required TfArg<String> schemaType,
+    required EventhubNamespaceSchemaGroupSchemaType schemaType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

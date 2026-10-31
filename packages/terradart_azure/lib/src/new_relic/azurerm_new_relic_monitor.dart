@@ -81,7 +81,7 @@ final class NewRelicMonitorPlan {
 
   final TfArg<String> effectiveDate;
 
-  final TfArg<String>? planId;
+  final NewRelicMonitorPlanId? planId;
 
   final NewRelicMonitorUsageType? usageType;
 
@@ -111,6 +111,23 @@ extension type const NewRelicMonitorBillingCycle._(TfArg<String> _)
     monthly,
     weekly,
     yearly,
+  ];
+}
+
+/// `plan_id` — derived from the provider schema description.
+extension type const NewRelicMonitorPlanId._(TfArg<String> _)
+    implements TfArg<String> {
+  NewRelicMonitorPlanId.variable(String name) : this._(TfArg.variable(name));
+  NewRelicMonitorPlanId.expression(String template)
+    : this._(TfArg.expression(template));
+  const NewRelicMonitorPlanId.arg(TfArg<String> arg) : this._(arg);
+
+  static const newrelicPayAsYouGoFreeLive = NewRelicMonitorPlanId._(
+    TfArgLiteral('newrelic-pay-as-you-go-free-live'),
+  );
+
+  static const List<NewRelicMonitorPlanId> values = [
+    newrelicPayAsYouGoFreeLive,
   ];
 }
 

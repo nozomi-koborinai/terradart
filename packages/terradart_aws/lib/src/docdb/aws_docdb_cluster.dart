@@ -474,7 +474,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? dbClusterParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
     TfArg<bool>? deletionProtection,
-    List<DocdbClusterEnabledCloudwatchLogsExports>?
+    EnumList<DocdbClusterEnabledCloudwatchLogsExports>?
     enabledCloudwatchLogsExports,
     DocdbClusterEngine? engine,
     TfArg<String>? engineVersion,
@@ -513,10 +513,7 @@ final class AwsDocdbCluster extends Resource {
            'db_cluster_parameter_group_name': ?dbClusterParameterGroupName,
            'db_subnet_group_name': ?dbSubnetGroupName,
            'deletion_protection': ?deletionProtection,
-           if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': TfArg.literal([
-               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
-             ]),
+           'enabled_cloudwatch_logs_exports': ?enabledCloudwatchLogsExports,
            'engine': ?engine,
            'engine_version': ?engineVersion,
            'final_snapshot_identifier': ?finalSnapshotIdentifier,

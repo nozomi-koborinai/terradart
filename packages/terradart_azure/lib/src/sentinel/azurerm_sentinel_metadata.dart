@@ -309,7 +309,7 @@ final class AzurermSentinelMetadata extends Resource {
     TfArg<List<String>>? previewImages,
     TfArg<List<String>>? previewImagesDark,
     TfArg<List<String>>? providers,
-    List<SentinelMetadataThreatAnalysisTactics>? threatAnalysisTactics,
+    EnumList<SentinelMetadataThreatAnalysisTactics>? threatAnalysisTactics,
     TfArg<List<String>>? threatAnalysisTechniques,
     TfArg<String>? version,
     required TfArg<String> workspaceId,
@@ -337,10 +337,7 @@ final class AzurermSentinelMetadata extends Resource {
            'preview_images': ?previewImages,
            'preview_images_dark': ?previewImagesDark,
            'providers': ?providers,
-           if (threatAnalysisTactics != null)
-             'threat_analysis_tactics': TfArg.literal([
-               for (final e in threatAnalysisTactics) e.toTfJson(),
-             ]),
+           'threat_analysis_tactics': ?threatAnalysisTactics,
            'threat_analysis_techniques': ?threatAnalysisTechniques,
            'version': ?version,
            'workspace_id': workspaceId,

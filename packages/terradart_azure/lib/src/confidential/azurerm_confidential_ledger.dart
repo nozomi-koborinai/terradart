@@ -9,6 +9,20 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_confidential_ledger`.
 const Set<String> _azurermConfidentialLedgerSensitive = <String>{};
 
+/// Confidential Ledger enum for `ledger_type`.
+extension type const ConfidentialLedgerType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfidentialLedgerType.variable(String name) : this._(TfArg.variable(name));
+  ConfidentialLedgerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfidentialLedgerType.arg(TfArg<String> arg) : this._(arg);
+
+  static const private = ConfidentialLedgerType._(TfArgLiteral('Private'));
+  static const public = ConfidentialLedgerType._(TfArgLiteral('Public'));
+
+  static const List<ConfidentialLedgerType> values = [private, public];
+}
+
 /// Typed helper for the `azuread_based_service_principal` block of
 /// `azurerm_confidential_ledger` (derived from provider schema).
 @immutable
@@ -83,7 +97,7 @@ final class AzurermConfidentialLedger extends Resource {
 
   AzurermConfidentialLedger(
     super.localName, {
-    required TfArg<String> ledgerType,
+    required ConfidentialLedgerType ledgerType,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,

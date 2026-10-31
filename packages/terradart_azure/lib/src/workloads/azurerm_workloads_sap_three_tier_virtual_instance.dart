@@ -615,13 +615,39 @@ final class WorkloadsSapThreeTierVirtualInstanceApplicationServerDataDisk {
 
   final TfArg<List<String>> names;
 
-  final TfArg<String> volumeName;
+  final WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName
+  volumeName;
 
   @internal
   Map<String, Object?> encode() => {
     'names': names.toTfJson(),
     'volume_name': volumeName.toTfJson(),
   };
+}
+
+/// `volume_name` — derived from the provider schema description.
+extension type const WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const defaultCase =
+      WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName._(
+        TfArgLiteral('default'),
+      );
+
+  static const List<
+    WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName
+  >
+  values = [defaultCase];
 }
 
 /// Typed helper for the `three_tier_configuration.resource_names.central_server` block of
@@ -752,7 +778,7 @@ final class WorkloadsSapThreeTierVirtualInstanceDatabaseServerDataDisk {
 
   final TfArg<List<String>> names;
 
-  final WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName volumeName;
+  final WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName volumeName;
 
   @internal
   Map<String, Object?> encode() => {
@@ -762,36 +788,39 @@ final class WorkloadsSapThreeTierVirtualInstanceDatabaseServerDataDisk {
 }
 
 /// `volume_name` — derived from the provider schema description.
-extension type const WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName._(
+extension type const WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
   TfArg<String> _
 ) implements TfArg<String> {
-  WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName.variable(String name)
-    : this._(TfArg.variable(name));
-  WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName.expression(
+  WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName.expression(
     String template,
   ) : this._(TfArg.expression(template));
-  const WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName.arg(
+  const WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName.arg(
     TfArg<String> arg,
   ) : this._(arg);
 
   static const hanadata =
-      WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName._(
+      WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
         TfArgLiteral('hanaData'),
       );
   static const hanalog =
-      WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName._(
+      WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
         TfArgLiteral('hanaLog'),
       );
   static const hanashared =
-      WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName._(
+      WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
         TfArgLiteral('hanaShared'),
       );
   static const usrsap =
-      WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName._(
+      WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
         TfArgLiteral('usrSap'),
       );
 
-  static const List<WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName>
+  static const List<
+    WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName
+  >
   values = [hanadata, hanalog, hanashared, usrsap];
 }
 

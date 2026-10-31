@@ -24,7 +24,7 @@ final class ContainerNodePoolAutoscaling {
     this.totalMinNodeCount,
   });
 
-  final TfArg<String>? locationPolicy;
+  final ContainerNodePoolLocationPolicy? locationPolicy;
 
   final TfArg<num>? maxNodeCount;
 
@@ -42,6 +42,23 @@ final class ContainerNodePoolAutoscaling {
     'total_max_node_count': ?totalMaxNodeCount?.toTfJson(),
     'total_min_node_count': ?totalMinNodeCount?.toTfJson(),
   };
+}
+
+/// `location_policy` — derived from the provider schema description.
+extension type const ContainerNodePoolLocationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolLocationPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolLocationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolLocationPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const balanced = ContainerNodePoolLocationPolicy._(
+    TfArgLiteral('BALANCED'),
+  );
+  static const any = ContainerNodePoolLocationPolicy._(TfArgLiteral('ANY'));
+
+  static const List<ContainerNodePoolLocationPolicy> values = [balanced, any];
 }
 
 /// Typed helper for the `best_effort_provisioning` block of
@@ -223,12 +240,30 @@ final class ContainerNodePoolNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<String> totalEgressBandwidthTier;
+  final ContainerNodePoolTotalEgressBandwidthTier totalEgressBandwidthTier;
 
   @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
+}
+
+/// `total_egress_bandwidth_tier` — derived from the provider schema description.
+extension type const ContainerNodePoolTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolTotalEgressBandwidthTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolTotalEgressBandwidthTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tier1 = ContainerNodePoolTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
+
+  static const List<ContainerNodePoolTotalEgressBandwidthTier> values = [tier1];
 }
 
 /// Typed helper for the `network_config.pod_cidr_overprovision_config` block of
@@ -306,7 +341,7 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<bool>? flexStart;
 
-  final TfArg<String>? gpudirectStrategy;
+  final ContainerNodePoolGpudirectStrategy? gpudirectStrategy;
 
   final TfArg<String>? imageType;
 
@@ -314,9 +349,9 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<num>? localSsdCount;
 
-  final TfArg<String>? localSsdEncryptionMode;
+  final ContainerNodePoolLocalSsdEncryptionMode? localSsdEncryptionMode;
 
-  final TfArg<String>? loggingVariant;
+  final ContainerNodePoolLoggingVariant? loggingVariant;
 
   final TfArg<String>? machineType;
 
@@ -444,6 +479,68 @@ final class ContainerNodePoolNodeConfig {
   };
 }
 
+/// `gpudirect_strategy` — derived from the provider schema description.
+extension type const ContainerNodePoolGpudirectStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpudirectStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpudirectStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpudirectStrategy.arg(TfArg<String> arg) : this._(arg);
+
+  static const rdma = ContainerNodePoolGpudirectStrategy._(
+    TfArgLiteral('RDMA'),
+  );
+
+  static const List<ContainerNodePoolGpudirectStrategy> values = [rdma];
+}
+
+/// `local_ssd_encryption_mode` — derived from the provider schema description.
+extension type const ContainerNodePoolLocalSsdEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolLocalSsdEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolLocalSsdEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolLocalSsdEncryptionMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standardEncryption = ContainerNodePoolLocalSsdEncryptionMode._(
+    TfArgLiteral('STANDARD_ENCRYPTION'),
+  );
+  static const ephemeralKeyEncryption =
+      ContainerNodePoolLocalSsdEncryptionMode._(
+        TfArgLiteral('EPHEMERAL_KEY_ENCRYPTION'),
+      );
+
+  static const List<ContainerNodePoolLocalSsdEncryptionMode> values = [
+    standardEncryption,
+    ephemeralKeyEncryption,
+  ];
+}
+
+/// `logging_variant` — derived from the provider schema description.
+extension type const ContainerNodePoolLoggingVariant._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolLoggingVariant.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolLoggingVariant.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolLoggingVariant.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = ContainerNodePoolLoggingVariant._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const maxThroughput = ContainerNodePoolLoggingVariant._(
+    TfArgLiteral('MAX_THROUGHPUT'),
+  );
+
+  static const List<ContainerNodePoolLoggingVariant> values = [
+    defaultCase,
+    maxThroughput,
+  ];
+}
+
 /// Typed helper for the `node_config.advanced_machine_features` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
@@ -456,7 +553,7 @@ final class ContainerNodePoolAdvancedMachineFeatures {
 
   final TfArg<bool>? enableNestedVirtualization;
 
-  final TfArg<String>? performanceMonitoringUnit;
+  final ContainerNodePoolPerformanceMonitoringUnit? performanceMonitoringUnit;
 
   final TfArg<num> threadsPerCore;
 
@@ -466,6 +563,34 @@ final class ContainerNodePoolAdvancedMachineFeatures {
     'performance_monitoring_unit': ?performanceMonitoringUnit?.toTfJson(),
     'threads_per_core': threadsPerCore.toTfJson(),
   };
+}
+
+/// `performance_monitoring_unit` — derived from the provider schema description.
+extension type const ContainerNodePoolPerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolPerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolPerformanceMonitoringUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolPerformanceMonitoringUnit.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const architectural = ContainerNodePoolPerformanceMonitoringUnit._(
+    TfArgLiteral('ARCHITECTURAL'),
+  );
+  static const standard = ContainerNodePoolPerformanceMonitoringUnit._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const enhanced = ContainerNodePoolPerformanceMonitoringUnit._(
+    TfArgLiteral('ENHANCED'),
+  );
+
+  static const List<ContainerNodePoolPerformanceMonitoringUnit> values = [
+    architectural,
+    standard,
+    enhanced,
+  ];
 }
 
 /// Typed helper for the `node_config.boot_disk` block of
@@ -505,7 +630,7 @@ final class ContainerNodePoolConfidentialNodes {
     required this.enabled,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final ContainerNodePoolConfidentialInstanceType? confidentialInstanceType;
 
   final TfArg<bool> enabled;
 
@@ -514,6 +639,34 @@ final class ContainerNodePoolConfidentialNodes {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const ContainerNodePoolConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolConfidentialInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolConfidentialInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sev = ContainerNodePoolConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = ContainerNodePoolConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = ContainerNodePoolConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<ContainerNodePoolConfidentialInstanceType> values = [
+    sev,
+    sevSnp,
+    tdx,
+  ];
 }
 
 /// Typed helper for the `node_config.containerd_config` block of
@@ -633,7 +786,7 @@ final class ContainerNodePoolHosts {
     this.header,
   });
 
-  final TfArg<List<String>>? capabilities;
+  final EnumList<ContainerNodePoolCapabilities>? capabilities;
 
   final TfArg<String>? dialTimeout;
 
@@ -657,6 +810,32 @@ final class ContainerNodePoolHosts {
     if (client != null) 'client': [for (final e in client!) e.encode()],
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
+}
+
+/// `capabilities` — derived from the provider schema description.
+extension type const ContainerNodePoolCapabilities._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolCapabilities.arg(TfArg<String> arg) : this._(arg);
+
+  static const hostCapabilityPull = ContainerNodePoolCapabilities._(
+    TfArgLiteral('HOST_CAPABILITY_PULL'),
+  );
+  static const hostCapabilityResolve = ContainerNodePoolCapabilities._(
+    TfArgLiteral('HOST_CAPABILITY_RESOLVE'),
+  );
+  static const hostCapabilityPush = ContainerNodePoolCapabilities._(
+    TfArgLiteral('HOST_CAPABILITY_PUSH'),
+  );
+
+  static const List<ContainerNodePoolCapabilities> values = [
+    hostCapabilityPull,
+    hostCapabilityResolve,
+    hostCapabilityPush,
+  ];
 }
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.ca` block of
@@ -832,12 +1011,42 @@ final class ContainerNodePoolGpuDriverInstallationConfig {
     required this.gpuDriverVersion,
   });
 
-  final TfArg<String> gpuDriverVersion;
+  final ContainerNodePoolGpuDriverVersion gpuDriverVersion;
 
   @internal
   Map<String, Object?> encode() => {
     'gpu_driver_version': gpuDriverVersion.toTfJson(),
   };
+}
+
+/// `gpu_driver_version` — derived from the provider schema description.
+extension type const ContainerNodePoolGpuDriverVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpuDriverVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpuDriverVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpuDriverVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const installationDisabled = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('INSTALLATION_DISABLED'),
+  );
+  static const defaultCase = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const latest = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('LATEST'),
+  );
+  static const specific = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('SPECIFIC'),
+  );
+
+  static const List<ContainerNodePoolGpuDriverVersion> values = [
+    installationDisabled,
+    defaultCase,
+    latest,
+    specific,
+  ];
 }
 
 /// Typed helper for the `node_config.guest_accelerator.gpu_sharing_config` block of
@@ -849,7 +1058,7 @@ final class ContainerNodePoolGpuSharingConfig {
     required this.maxSharedClientsPerGpu,
   });
 
-  final TfArg<String> gpuSharingStrategy;
+  final ContainerNodePoolGpuSharingStrategy gpuSharingStrategy;
 
   final TfArg<num> maxSharedClientsPerGpu;
 
@@ -858,6 +1067,27 @@ final class ContainerNodePoolGpuSharingConfig {
     'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
     'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
   };
+}
+
+/// `gpu_sharing_strategy` — derived from the provider schema description.
+extension type const ContainerNodePoolGpuSharingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpuSharingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpuSharingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpuSharingStrategy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const timeSharing = ContainerNodePoolGpuSharingStrategy._(
+    TfArgLiteral('TIME_SHARING'),
+  );
+  static const mps = ContainerNodePoolGpuSharingStrategy._(TfArgLiteral('MPS'));
+
+  static const List<ContainerNodePoolGpuSharingStrategy> values = [
+    timeSharing,
+    mps,
+  ];
 }
 
 /// Typed helper for the `node_config.gvnic` block of
@@ -924,7 +1154,8 @@ final class ContainerNodePoolKubeletConfig {
 
   final TfArg<String>? imageMinimumGcAge;
 
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
+  final ContainerNodePoolInsecureKubeletReadonlyPortEnabled?
+  insecureKubeletReadonlyPortEnabled;
 
   final TfArg<num>? maxParallelImagePulls;
 
@@ -977,6 +1208,31 @@ final class ContainerNodePoolKubeletConfig {
     'memory_manager': ?memoryManager?.encode(),
     'topology_manager': ?topologyManager?.encode(),
   };
+}
+
+/// `insecure_kubelet_readonly_port_enabled` — derived from the provider schema description.
+extension type const ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolInsecureKubeletReadonlyPortEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolInsecureKubeletReadonlyPortEnabled.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContainerNodePoolInsecureKubeletReadonlyPortEnabled.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const trueCase = ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+    TfArgLiteral('TRUE'),
+  );
+  static const falseCase =
+      ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+        TfArgLiteral('FALSE'),
+      );
+
+  static const List<ContainerNodePoolInsecureKubeletReadonlyPortEnabled>
+  values = [trueCase, falseCase];
 }
 
 /// Typed helper for the `node_config.kubelet_config.crash_loop_back_off` block of
@@ -1121,13 +1377,27 @@ final class ContainerNodePoolTopologyManager {
 
   final TfArg<String>? policy;
 
-  final TfArg<String>? scope;
+  final ContainerNodePoolScope? scope;
 
   @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     'scope': ?scope?.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+extension type const ContainerNodePoolScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolScope.variable(String name) : this._(TfArg.variable(name));
+  ContainerNodePoolScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const container = ContainerNodePoolScope._(TfArgLiteral('container'));
+  static const pod = ContainerNodePoolScope._(TfArgLiteral('pod'));
+
+  static const List<ContainerNodePoolScope> values = [container, pod];
 }
 
 /// Typed helper for the `node_config.linux_node_config` block of
@@ -1146,13 +1416,13 @@ final class ContainerNodePoolLinuxNodeConfig {
     this.swapConfig,
   });
 
-  final TfArg<String>? cgroupMode;
+  final ContainerNodePoolCgroupMode? cgroupMode;
 
   final TfArg<Map<String, String>>? sysctls;
 
-  final TfArg<String>? transparentHugepageDefrag;
+  final ContainerNodePoolTransparentHugepageDefrag? transparentHugepageDefrag;
 
-  final TfArg<String>? transparentHugepageEnabled;
+  final ContainerNodePoolTransparentHugepageEnabled? transparentHugepageEnabled;
 
   final ContainerNodePoolAccurateTimeConfig? accurateTimeConfig;
 
@@ -1176,6 +1446,100 @@ final class ContainerNodePoolLinuxNodeConfig {
     'node_kernel_module_loading': ?nodeKernelModuleLoading?.encode(),
     'swap_config': ?swapConfig?.encode(),
   };
+}
+
+/// `cgroup_mode` — derived from the provider schema description.
+extension type const ContainerNodePoolCgroupMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolCgroupMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolCgroupMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolCgroupMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const cgroupModeV1 = ContainerNodePoolCgroupMode._(
+    TfArgLiteral('CGROUP_MODE_V1'),
+  );
+  static const cgroupModeV2 = ContainerNodePoolCgroupMode._(
+    TfArgLiteral('CGROUP_MODE_V2'),
+  );
+
+  static const List<ContainerNodePoolCgroupMode> values = [
+    cgroupModeV1,
+    cgroupModeV2,
+  ];
+}
+
+/// `transparent_hugepage_defrag` — derived from the provider schema description.
+extension type const ContainerNodePoolTransparentHugepageDefrag._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolTransparentHugepageDefrag.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolTransparentHugepageDefrag.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolTransparentHugepageDefrag.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const transparentHugepageDefragAlways =
+      ContainerNodePoolTransparentHugepageDefrag._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS'),
+      );
+  static const transparentHugepageDefragDefer =
+      ContainerNodePoolTransparentHugepageDefrag._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_DEFRAG_DEFER'),
+      );
+  static const transparentHugepageDefragDeferWithMadvise =
+      ContainerNodePoolTransparentHugepageDefrag._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE'),
+      );
+  static const transparentHugepageDefragMadvise =
+      ContainerNodePoolTransparentHugepageDefrag._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE'),
+      );
+  static const transparentHugepageDefragNever =
+      ContainerNodePoolTransparentHugepageDefrag._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_DEFRAG_NEVER'),
+      );
+
+  static const List<ContainerNodePoolTransparentHugepageDefrag> values = [
+    transparentHugepageDefragAlways,
+    transparentHugepageDefragDefer,
+    transparentHugepageDefragDeferWithMadvise,
+    transparentHugepageDefragMadvise,
+    transparentHugepageDefragNever,
+  ];
+}
+
+/// `transparent_hugepage_enabled` — derived from the provider schema description.
+extension type const ContainerNodePoolTransparentHugepageEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolTransparentHugepageEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolTransparentHugepageEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolTransparentHugepageEnabled.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const transparentHugepageEnabledAlways =
+      ContainerNodePoolTransparentHugepageEnabled._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS'),
+      );
+  static const transparentHugepageEnabledMadvise =
+      ContainerNodePoolTransparentHugepageEnabled._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_ENABLED_MADVISE'),
+      );
+  static const transparentHugepageEnabledNever =
+      ContainerNodePoolTransparentHugepageEnabled._(
+        TfArgLiteral('TRANSPARENT_HUGEPAGE_ENABLED_NEVER'),
+      );
+
+  static const List<ContainerNodePoolTransparentHugepageEnabled> values = [
+    transparentHugepageEnabledAlways,
+    transparentHugepageEnabledMadvise,
+    transparentHugepageEnabledNever,
+  ];
 }
 
 /// Typed helper for the `node_config.linux_node_config.accurate_time_config` block of
@@ -1254,10 +1618,31 @@ final class ContainerNodePoolHugepagesConfig {
 final class ContainerNodePoolNodeKernelModuleLoading {
   const ContainerNodePoolNodeKernelModuleLoading({this.policy});
 
-  final TfArg<String>? policy;
+  final ContainerNodePoolPolicy? policy;
 
   @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
+}
+
+/// `policy` — derived from the provider schema description.
+extension type const ContainerNodePoolPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolPolicy.variable(String name) : this._(TfArg.variable(name));
+  ContainerNodePoolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const enforceSignedModules = ContainerNodePoolPolicy._(
+    TfArgLiteral('ENFORCE_SIGNED_MODULES'),
+  );
+  static const doNotEnforceSignedModules = ContainerNodePoolPolicy._(
+    TfArgLiteral('DO_NOT_ENFORCE_SIGNED_MODULES'),
+  );
+
+  static const List<ContainerNodePoolPolicy> values = [
+    enforceSignedModules,
+    doNotEnforceSignedModules,
+  ];
 }
 
 /// Typed helper for the `node_config.linux_node_config.swap_config` block of
@@ -1397,7 +1782,7 @@ final class ContainerNodePoolReservationAffinity {
     this.values,
   });
 
-  final TfArg<String> consumeReservationType;
+  final ContainerNodePoolConsumeReservationType consumeReservationType;
 
   final TfArg<String>? key;
 
@@ -1411,16 +1796,70 @@ final class ContainerNodePoolReservationAffinity {
   };
 }
 
+/// `consume_reservation_type` — derived from the provider schema description.
+extension type const ContainerNodePoolConsumeReservationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolConsumeReservationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolConsumeReservationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolConsumeReservationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noReservation = ContainerNodePoolConsumeReservationType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+  static const anyReservation = ContainerNodePoolConsumeReservationType._(
+    TfArgLiteral('ANY_RESERVATION'),
+  );
+  static const specificReservation = ContainerNodePoolConsumeReservationType._(
+    TfArgLiteral('SPECIFIC_RESERVATION'),
+  );
+  static const anyReservationThenFail =
+      ContainerNodePoolConsumeReservationType._(
+        TfArgLiteral('ANY_RESERVATION_THEN_FAIL'),
+      );
+
+  static const List<ContainerNodePoolConsumeReservationType> values = [
+    noReservation,
+    anyReservation,
+    specificReservation,
+    anyReservationThenFail,
+  ];
+}
+
 /// Typed helper for the `node_config.sandbox_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
 final class ContainerNodePoolSandboxConfig {
   const ContainerNodePoolSandboxConfig({required this.type});
 
-  final TfArg<String> type;
+  final ContainerNodePoolSandboxConfigType type;
 
   @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ContainerNodePoolSandboxConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolSandboxConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolSandboxConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolSandboxConfigType.arg(TfArg<String> arg) : this._(arg);
+
+  static const gvisor = ContainerNodePoolSandboxConfigType._(
+    TfArgLiteral('GVISOR'),
+  );
+  static const microvm = ContainerNodePoolSandboxConfigType._(
+    TfArgLiteral('MICROVM'),
+  );
+
+  static const List<ContainerNodePoolSandboxConfigType> values = [
+    gvisor,
+    microvm,
+  ];
 }
 
 /// Typed helper for the `node_config.secondary_boot_disks` block of
@@ -1434,13 +1873,32 @@ final class ContainerNodePoolSecondaryBootDisks {
 
   final TfArg<String> diskImage;
 
-  final TfArg<String>? mode;
+  final ContainerNodePoolSecondaryBootDisksMode? mode;
 
   @internal
   Map<String, Object?> encode() => {
     'disk_image': diskImage.toTfJson(),
     'mode': ?mode?.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ContainerNodePoolSecondaryBootDisksMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolSecondaryBootDisksMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolSecondaryBootDisksMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolSecondaryBootDisksMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const containerImageCache = ContainerNodePoolSecondaryBootDisksMode._(
+    TfArgLiteral('CONTAINER_IMAGE_CACHE'),
+  );
+
+  static const List<ContainerNodePoolSecondaryBootDisksMode> values = [
+    containerImageCache,
+  ];
 }
 
 /// Typed helper for the `node_config.shielded_instance_config` block of
@@ -1495,7 +1953,7 @@ final class ContainerNodePoolNodeAffinity {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ContainerNodePoolOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -1505,6 +1963,21 @@ final class ContainerNodePoolNodeAffinity {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ContainerNodePoolOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ContainerNodePoolOperator._(TfArgLiteral('IN'));
+  static const notIn = ContainerNodePoolOperator._(TfArgLiteral('NOT_IN'));
+
+  static const List<ContainerNodePoolOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `node_config.taint` block of
@@ -1517,7 +1990,7 @@ final class ContainerNodePoolTaint {
     required this.value,
   });
 
-  final TfArg<String> effect;
+  final ContainerNodePoolEffect effect;
 
   final TfArg<String> key;
 
@@ -1531,18 +2004,67 @@ final class ContainerNodePoolTaint {
   };
 }
 
+/// `effect` — derived from the provider schema description.
+extension type const ContainerNodePoolEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolEffect.variable(String name) : this._(TfArg.variable(name));
+  ContainerNodePoolEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolEffect.arg(TfArg<String> arg) : this._(arg);
+
+  static const noSchedule = ContainerNodePoolEffect._(
+    TfArgLiteral('NO_SCHEDULE'),
+  );
+  static const preferNoSchedule = ContainerNodePoolEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = ContainerNodePoolEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<ContainerNodePoolEffect> values = [
+    noSchedule,
+    preferNoSchedule,
+    noExecute,
+  ];
+}
+
 /// Typed helper for the `node_config.taint_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
 final class ContainerNodePoolTaintConfig {
   const ContainerNodePoolTaintConfig({required this.architectureTaintBehavior});
 
-  final TfArg<String> architectureTaintBehavior;
+  final ContainerNodePoolArchitectureTaintBehavior architectureTaintBehavior;
 
   @internal
   Map<String, Object?> encode() => {
     'architecture_taint_behavior': architectureTaintBehavior.toTfJson(),
   };
+}
+
+/// `architecture_taint_behavior` — derived from the provider schema description.
+extension type const ContainerNodePoolArchitectureTaintBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolArchitectureTaintBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolArchitectureTaintBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolArchitectureTaintBehavior.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ContainerNodePoolArchitectureTaintBehavior._(
+    TfArgLiteral('NONE'),
+  );
+  static const arm = ContainerNodePoolArchitectureTaintBehavior._(
+    TfArgLiteral('ARM'),
+  );
+
+  static const List<ContainerNodePoolArchitectureTaintBehavior> values = [
+    none,
+    arm,
+  ];
 }
 
 /// Typed helper for the `node_config.windows_node_config` block of
@@ -1551,10 +2073,32 @@ final class ContainerNodePoolTaintConfig {
 final class ContainerNodePoolWindowsNodeConfig {
   const ContainerNodePoolWindowsNodeConfig({this.osversion});
 
-  final TfArg<String>? osversion;
+  final ContainerNodePoolOsversion? osversion;
 
   @internal
   Map<String, Object?> encode() => {'osversion': ?osversion?.toTfJson()};
+}
+
+/// `osversion` — derived from the provider schema description.
+extension type const ContainerNodePoolOsversion._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolOsversion.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolOsversion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolOsversion.arg(TfArg<String> arg) : this._(arg);
+
+  static const osVersionLtsc2019 = ContainerNodePoolOsversion._(
+    TfArgLiteral('OS_VERSION_LTSC2019'),
+  );
+  static const osVersionLtsc2022 = ContainerNodePoolOsversion._(
+    TfArgLiteral('OS_VERSION_LTSC2022'),
+  );
+
+  static const List<ContainerNodePoolOsversion> values = [
+    osVersionLtsc2019,
+    osVersionLtsc2022,
+  ];
 }
 
 /// Typed helper for the `node_config.workload_metadata_config` block of
@@ -1563,10 +2107,34 @@ final class ContainerNodePoolWindowsNodeConfig {
 final class ContainerNodePoolWorkloadMetadataConfig {
   const ContainerNodePoolWorkloadMetadataConfig({required this.mode});
 
-  final TfArg<String> mode;
+  final ContainerNodePoolWorkloadMetadataConfigMode mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ContainerNodePoolWorkloadMetadataConfigMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolWorkloadMetadataConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolWorkloadMetadataConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolWorkloadMetadataConfigMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const gceMetadata = ContainerNodePoolWorkloadMetadataConfigMode._(
+    TfArgLiteral('GCE_METADATA'),
+  );
+  static const gkeMetadata = ContainerNodePoolWorkloadMetadataConfigMode._(
+    TfArgLiteral('GKE_METADATA'),
+  );
+
+  static const List<ContainerNodePoolWorkloadMetadataConfigMode> values = [
+    gceMetadata,
+    gkeMetadata,
+  ];
 }
 
 /// Typed helper for the `node_drain_config` block of
@@ -1608,7 +2176,7 @@ final class ContainerNodePoolPlacementPolicy {
 
   final TfArg<String>? tpuTopology;
 
-  final TfArg<String> type;
+  final ContainerNodePoolType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1616,6 +2184,19 @@ final class ContainerNodePoolPlacementPolicy {
     'tpu_topology': ?tpuTopology?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ContainerNodePoolType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolType.variable(String name) : this._(TfArg.variable(name));
+  ContainerNodePoolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolType.arg(TfArg<String> arg) : this._(arg);
+
+  static const compact = ContainerNodePoolType._(TfArgLiteral('COMPACT'));
+
+  static const List<ContainerNodePoolType> values = [compact];
 }
 
 /// Typed helper for the `queued_provisioning` block of
@@ -1645,7 +2226,7 @@ final class ContainerNodePoolUpgradeSettings {
 
   final TfArg<num>? maxUnavailable;
 
-  final TfArg<String>? strategy;
+  final ContainerNodePoolStrategy? strategy;
 
   final ContainerNodePoolBlueGreenSettings? blueGreenSettings;
 
@@ -1656,6 +2237,30 @@ final class ContainerNodePoolUpgradeSettings {
     'strategy': ?strategy?.toTfJson(),
     'blue_green_settings': ?blueGreenSettings?.encode(),
   };
+}
+
+/// `strategy` — derived from the provider schema description.
+extension type const ContainerNodePoolStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolStrategy.arg(TfArg<String> arg) : this._(arg);
+
+  static const blueGreen = ContainerNodePoolStrategy._(
+    TfArgLiteral('BLUE_GREEN'),
+  );
+  static const surge = ContainerNodePoolStrategy._(TfArgLiteral('SURGE'));
+  static const shortLived = ContainerNodePoolStrategy._(
+    TfArgLiteral('SHORT_LIVED'),
+  );
+
+  static const List<ContainerNodePoolStrategy> values = [
+    blueGreen,
+    surge,
+    shortLived,
+  ];
 }
 
 /// Typed helper for the `upgrade_settings.blue_green_settings` block of

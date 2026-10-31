@@ -248,7 +248,7 @@ final class CesGuardrailContentFilter {
 
   final TfArg<bool>? disregardDiacritics;
 
-  final TfArg<String> matchType;
+  final CesGuardrailMatchType matchType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -259,6 +259,35 @@ final class CesGuardrailContentFilter {
     'disregard_diacritics': ?disregardDiacritics?.toTfJson(),
     'match_type': matchType.toTfJson(),
   };
+}
+
+/// `match_type` — derived from the provider schema description.
+extension type const CesGuardrailMatchType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesGuardrailMatchType.variable(String name) : this._(TfArg.variable(name));
+  CesGuardrailMatchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesGuardrailMatchType.arg(TfArg<String> arg) : this._(arg);
+
+  static const simpleStringMatch = CesGuardrailMatchType._(
+    TfArgLiteral('SIMPLE_STRING_MATCH'),
+  );
+  static const wordBoundaryStringMatch = CesGuardrailMatchType._(
+    TfArgLiteral('WORD_BOUNDARY_STRING_MATCH'),
+  );
+  static const regexpMatch = CesGuardrailMatchType._(
+    TfArgLiteral('REGEXP_MATCH'),
+  );
+  static const sensitiveWords = CesGuardrailMatchType._(
+    TfArgLiteral('SENSITIVE_WORDS'),
+  );
+
+  static const List<CesGuardrailMatchType> values = [
+    simpleStringMatch,
+    wordBoundaryStringMatch,
+    regexpMatch,
+    sensitiveWords,
+  ];
 }
 
 /// Typed helper for the `llm_policy` block of
@@ -414,7 +443,7 @@ final class CesGuardrailCustomPolicy {
 
   final TfArg<num>? maxConversationMessages;
 
-  final TfArg<String> policyScope;
+  final CesGuardrailPolicyScope policyScope;
 
   final TfArg<String> prompt;
 

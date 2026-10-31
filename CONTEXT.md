@@ -32,6 +32,14 @@ _Avoid_: Wrapper override, schema.json
 Enum value sets a provider enforces in its own source rather than in Magic Modules metadata, extracted at the fixture's pin into a Magic Modules YAML subset beside the schema fixture. With the provider's `Available values:` descriptions, they enrich the merged IR only on a lane that opts into `wrap --provider-enums`. The same files carry the provider's exactly-one groups (`exactly_one_of_groups`) and at-most-one groups (`at_most_one_of_groups`, mutually exclusive inputs it also accepts none of), which an override with `deriveExactlyOne` seals into a required and a nullable sealed argument respectively.
 _Avoid_: MM YAML, override enum
 
+**Discovery copy**:
+A google lane's checked-in copy of the Google API Discovery enums (`<schemaDir>/discovery/`), pruned to the properties that lead to an enum, with each document's API, version, revision and source URL, and the record of which Discovery schema each wrapped type is. It types the inputs Magic Modules leaves as plain strings, and every google enum is checked against it or against Magic Modules. A checked-in tool refreshes it, never a hand edit.
+_Avoid_: Discovery cache, API schema
+
+**Prose enum source**:
+An enum whose values no machine source has, so they come from a description, an override `enumValues` entry or a `prelude` enum. Each one has an entry in `tool/enum_prose_sources.yaml` with its exact values and why no Discovery document or enum covers it, or a reviewed note on why the provider accepts a value the source lacks.
+_Avoid_: enum debt
+
 **Sealed concept name**:
 The name of a sealed argument, like a protobuf `oneof`: what its members are alternatives *of* (`code` for `filename` / `image_uri` / `s3_bucket`), not the members joined together. The slot takes it (`code:`), the sealed type is `<ResourceStem><Concept>` (`LambdaFunctionCode`), and each member is a factory constructor on that type (`.filename(...)`). It comes from the override's `sealedNames`, else is derived from the members, else falls back to the members joined with `Or` and waits in the sealed-name ledger (`tool/sealed_name_debt.yaml`, reason `awaiting-name:`).
 _Avoid_: Or name, option type

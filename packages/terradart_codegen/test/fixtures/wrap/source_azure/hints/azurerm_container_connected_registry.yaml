@@ -16,3 +16,10 @@ properties:
       - "ReadOnly"
       - "ReadWrite"
       - "Registry"
+  - api_name: notification
+    properties:
+      - api_name: action
+        enum_values:
+          - "push"
+          - "delete"
+          - "*"

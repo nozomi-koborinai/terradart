@@ -1,0 +1,17 @@
+{
+  "name": "observability",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://observability.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Bucket": {
+      "properties": {}
+    },
+    "Link": {
+      "properties": {}
+    },
+    "TraceScope": {
+      "properties": {}
+    }
+  }
+}

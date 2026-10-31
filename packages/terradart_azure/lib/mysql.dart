@@ -19,8 +19,11 @@ export 'src/mysql/azurerm_mysql_flexible_server.dart'
         MysqlFlexibleServerHighAvailability,
         MysqlFlexibleServerIdentity,
         MysqlFlexibleServerMaintenanceWindow,
+        MysqlFlexibleServerMode,
         MysqlFlexibleServerPublicNetworkAccess,
-        MysqlFlexibleServerStorage;
+        MysqlFlexibleServerReplicationRole,
+        MysqlFlexibleServerStorage,
+        MysqlFlexibleServerVersion;
 export 'src/mysql/azurerm_mysql_flexible_server_active_directory_administrator.dart'
     show AzurermMysqlFlexibleServerActiveDirectoryAdministrator;
 export 'src/mysql/azurerm_mysql_flexible_server_configuration.dart'

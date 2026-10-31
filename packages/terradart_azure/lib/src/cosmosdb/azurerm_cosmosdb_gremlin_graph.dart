@@ -37,7 +37,7 @@ final class CosmosdbGremlinGraphConflictResolutionPolicy {
 
   final TfArg<String>? conflictResolutionProcedure;
 
-  final TfArg<String> mode;
+  final CosmosdbGremlinGraphMode mode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -45,6 +45,22 @@ final class CosmosdbGremlinGraphConflictResolutionPolicy {
     'conflict_resolution_procedure': ?conflictResolutionProcedure?.toTfJson(),
     'mode': mode.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const CosmosdbGremlinGraphMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbGremlinGraphMode.variable(String name) : this._(TfArg.variable(name));
+  CosmosdbGremlinGraphMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbGremlinGraphMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = CosmosdbGremlinGraphMode._(TfArgLiteral('Custom'));
+  static const lastwriterwins = CosmosdbGremlinGraphMode._(
+    TfArgLiteral('LastWriterWins'),
+  );
+
+  static const List<CosmosdbGremlinGraphMode> values = [custom, lastwriterwins];
 }
 
 /// Typed helper for the `index_policy` block of
@@ -127,7 +143,7 @@ final class CosmosdbGremlinGraphCompositeIndex {
 final class CosmosdbGremlinGraphIndex {
   const CosmosdbGremlinGraphIndex({required this.order, required this.path});
 
-  final TfArg<String> order;
+  final CosmosdbGremlinGraphOrder order;
 
   final TfArg<String> path;
 
@@ -136,6 +152,25 @@ final class CosmosdbGremlinGraphIndex {
     'order': order.toTfJson(),
     'path': path.toTfJson(),
   };
+}
+
+/// `order` — derived from the provider schema description.
+extension type const CosmosdbGremlinGraphOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbGremlinGraphOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbGremlinGraphOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbGremlinGraphOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const ascending = CosmosdbGremlinGraphOrder._(
+    TfArgLiteral('ascending'),
+  );
+  static const descending = CosmosdbGremlinGraphOrder._(
+    TfArgLiteral('descending'),
+  );
+
+  static const List<CosmosdbGremlinGraphOrder> values = [ascending, descending];
 }
 
 /// Typed helper for the `index_policy.spatial_index` block of

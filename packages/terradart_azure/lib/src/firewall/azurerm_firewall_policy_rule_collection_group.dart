@@ -19,7 +19,7 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollection {
     required this.rule,
   });
 
-  final FirewallPolicyRuleCollectionGroupAction action;
+  final FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction action;
 
   final TfArg<String> name;
 
@@ -38,26 +38,32 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollection {
 }
 
 /// `action` — derived from the provider schema description.
-extension type const FirewallPolicyRuleCollectionGroupAction._(TfArg<String> _)
-    implements TfArg<String> {
-  FirewallPolicyRuleCollectionGroupAction.variable(String name)
-    : this._(TfArg.variable(name));
-  FirewallPolicyRuleCollectionGroupAction.expression(String template)
-    : this._(TfArg.expression(template));
-  const FirewallPolicyRuleCollectionGroupAction.arg(TfArg<String> arg)
-    : this._(arg);
+extension type const FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const allow = FirewallPolicyRuleCollectionGroupAction._(
-    TfArgLiteral('Allow'),
-  );
-  static const deny = FirewallPolicyRuleCollectionGroupAction._(
-    TfArgLiteral('Deny'),
-  );
+  static const allow =
+      FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction._(
+        TfArgLiteral('Allow'),
+      );
+  static const deny =
+      FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction._(
+        TfArgLiteral('Deny'),
+      );
 
-  static const List<FirewallPolicyRuleCollectionGroupAction> values = [
-    allow,
-    deny,
-  ];
+  static const List<
+    FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction
+  >
+  values = [allow, deny];
 }
 
 /// Typed helper for the `application_rule_collection.rule` block of
@@ -156,13 +162,40 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols 
 
   final TfArg<num> port;
 
-  final TfArg<String> type;
+  final FirewallPolicyRuleCollectionGroupType type;
 
   @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const FirewallPolicyRuleCollectionGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = FirewallPolicyRuleCollectionGroupType._(
+    TfArgLiteral('Http'),
+  );
+  static const https = FirewallPolicyRuleCollectionGroupType._(
+    TfArgLiteral('Https'),
+  );
+  static const mssql = FirewallPolicyRuleCollectionGroupType._(
+    TfArgLiteral('Mssql'),
+  );
+
+  static const List<FirewallPolicyRuleCollectionGroupType> values = [
+    http,
+    https,
+    mssql,
+  ];
 }
 
 /// Typed helper for the `nat_rule_collection` block of
@@ -176,7 +209,7 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollection {
     required this.rule,
   });
 
-  final TfArg<String> action;
+  final FirewallPolicyRuleCollectionGroupNatRuleCollectionAction action;
 
   final TfArg<String> name;
 
@@ -191,6 +224,28 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollection {
     'priority': priority.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const FirewallPolicyRuleCollectionGroupNatRuleCollectionAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupNatRuleCollectionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupNatRuleCollectionAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupNatRuleCollectionAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const dnat =
+      FirewallPolicyRuleCollectionGroupNatRuleCollectionAction._(
+        TfArgLiteral('Dnat'),
+      );
+
+  static const List<FirewallPolicyRuleCollectionGroupNatRuleCollectionAction>
+  values = [dnat];
 }
 
 /// Typed helper for the `nat_rule_collection.rule` block of
@@ -218,7 +273,8 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final TfArg<List<String>> protocols;
+  final EnumList<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>
+  protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -245,6 +301,33 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollectionRule {
   };
 }
 
+/// `protocols` — derived from the provider schema description.
+extension type const FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tcp =
+      FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols._(
+        TfArgLiteral('TCP'),
+      );
+  static const udp =
+      FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols._(
+        TfArgLiteral('UDP'),
+      );
+
+  static const List<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>
+  values = [tcp, udp];
+}
+
 /// Typed helper for the `network_rule_collection` block of
 /// `azurerm_firewall_policy_rule_collection_group` (derived from provider schema).
 @immutable
@@ -256,7 +339,7 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollection {
     required this.rule,
   });
 
-  final FirewallPolicyRuleCollectionGroupAction action;
+  final FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction action;
 
   final TfArg<String> name;
 
@@ -301,7 +384,9 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final List<FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols>
+  final EnumList<
+    FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols
+  >
   protocols;
 
   final TfArg<List<String>>? sourceAddresses;
@@ -316,7 +401,7 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
     'destination_ip_groups': ?destinationIpGroups?.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };

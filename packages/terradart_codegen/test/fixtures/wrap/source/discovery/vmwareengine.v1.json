@@ -1,0 +1,270 @@
+{
+  "name": "vmwareengine",
+  "version": "v1",
+  "revision": "20261012",
+  "sourceUrl": "https://vmwareengine.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Cluster": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "REPAIRING"
+          ]
+        },
+        "datastoreMountConfig": {
+          "items": {
+            "$ref": "DatastoreMountConfig"
+          }
+        }
+      }
+    },
+    "Datastore": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "DatastoreMountConfig": {
+      "properties": {
+        "nfsVersion": {
+          "enum": [
+            "NFS_VERSION_UNSPECIFIED",
+            "NFS_V3"
+          ]
+        },
+        "accessMode": {
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE"
+          ]
+        }
+      }
+    },
+    "EncryptionConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CMEK",
+            "LEGACY_CMEK",
+            "OTHER"
+          ]
+        }
+      }
+    },
+    "ExternalAccessRule": {
+      "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "UPDATING",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "ExternalAddress": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "UPDATING",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "Hcx": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "ACTIVATING"
+          ]
+        }
+      }
+    },
+    "NetworkPeering": {
+      "properties": {
+        "peerNetworkType": {
+          "enum": [
+            "PEER_NETWORK_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "VMWARE_ENGINE_NETWORK",
+            "PRIVATE_SERVICES_ACCESS",
+            "NETAPP_CLOUD_VOLUMES",
+            "THIRD_PARTY_SERVICE",
+            "DELL_POWERSCALE",
+            "GOOGLE_CLOUD_NETAPP_VOLUMES",
+            "GOOGLE_CLOUD_FILESTORE_INSTANCES"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "NetworkPolicy": {
+      "properties": {
+        "internetAccess": {
+          "$ref": "NetworkService"
+        },
+        "externalIp": {
+          "$ref": "NetworkService"
+        }
+      }
+    },
+    "NetworkService": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UNPROVISIONED",
+            "RECONCILING",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "Nsx": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING"
+          ]
+        }
+      }
+    },
+    "PrivateCloud": {
+      "properties": {
+        "type": {
+          "enum": [
+            "STANDARD",
+            "TIME_LIMITED",
+            "STRETCHED"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "UPDATING",
+            "FAILED",
+            "DELETED",
+            "PURGING"
+          ]
+        },
+        "vcenter": {
+          "$ref": "Vcenter"
+        },
+        "nsx": {
+          "$ref": "Nsx"
+        },
+        "hcx": {
+          "$ref": "Hcx"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        }
+      }
+    },
+    "Subnet": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "RECONCILING",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Vcenter": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING"
+          ]
+        }
+      }
+    },
+    "VmwareEngineNetwork": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LEGACY",
+            "STANDARD"
+          ]
+        },
+        "vpcNetworks": {
+          "items": {
+            "$ref": "VpcNetwork"
+          }
+        }
+      }
+    },
+    "VpcNetwork": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTRANET",
+            "INTERNET",
+            "GOOGLE_CLOUD"
+          ]
+        }
+      }
+    }
+  }
+}

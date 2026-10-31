@@ -9,6 +9,56 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_artifact_registry_repository`.
 const Set<String> _googleArtifactRegistryRepositorySensitive = <String>{};
 
+/// Artifact Registry Repository enum for `format`.
+extension type const ArtifactRegistryRepositoryFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryRepositoryFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryRepositoryFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryRepositoryFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const docker = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('DOCKER'),
+  );
+  static const maven = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('MAVEN'),
+  );
+  static const npm = ArtifactRegistryRepositoryFormat._(TfArgLiteral('NPM'));
+  static const apt = ArtifactRegistryRepositoryFormat._(TfArgLiteral('APT'));
+  static const yum = ArtifactRegistryRepositoryFormat._(TfArgLiteral('YUM'));
+  static const googet = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('GOOGET'),
+  );
+  static const python = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('PYTHON'),
+  );
+  static const kfp = ArtifactRegistryRepositoryFormat._(TfArgLiteral('KFP'));
+  static const go = ArtifactRegistryRepositoryFormat._(TfArgLiteral('GO'));
+  static const generic = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('GENERIC'),
+  );
+  static const ruby = ArtifactRegistryRepositoryFormat._(TfArgLiteral('RUBY'));
+  static const conda = ArtifactRegistryRepositoryFormat._(
+    TfArgLiteral('CONDA'),
+  );
+
+  static const List<ArtifactRegistryRepositoryFormat> values = [
+    docker,
+    maven,
+    npm,
+    apt,
+    yum,
+    googet,
+    python,
+    kfp,
+    go,
+    generic,
+    ruby,
+    conda,
+  ];
+}
+
 // ===========================================================================
 // Top-level enums
 // ===========================================================================
@@ -974,7 +1024,7 @@ sealed class ArtifactRegistryRepositoryPythonRepository {
 
   /// Sets `public_repository`.
   const factory ArtifactRegistryRepositoryPythonRepository.publicRepository(
-    TfArg<String> publicRepository,
+    ArtifactRegistryPythonPublicRepository publicRepository,
   ) = ArtifactRegistryRepositoryPythonRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
@@ -997,7 +1047,7 @@ final class ArtifactRegistryRepositoryPythonRepositoryPublicRepository
     this.publicRepository,
   );
 
-  final TfArg<String> publicRepository;
+  final ArtifactRegistryPythonPublicRepository publicRepository;
 
   @internal
   @override
@@ -1028,6 +1078,23 @@ final class ArtifactRegistryRepositoryPythonRepositoryCustomRepository
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
   };
+}
+
+/// `public_repository` — derived from the provider schema description.
+extension type const ArtifactRegistryPythonPublicRepository._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryPythonPublicRepository.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryPythonPublicRepository.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryPythonPublicRepository.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pypi = ArtifactRegistryPythonPublicRepository._(
+    TfArgLiteral('PYPI'),
+  );
+
+  static const List<ArtifactRegistryPythonPublicRepository> values = [pypi];
 }
 
 /// Typed helper for the `remote_repository_config.upstream_credentials` block of
@@ -1168,7 +1235,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
   GoogleArtifactRegistryRepository(
     super.localName, {
     required TfArg<String> repositoryId,
-    required TfArg<String> format,
+    required ArtifactRegistryRepositoryFormat format,
     ArtifactRegistryMode? mode,
     TfArg<String>? description,
     TfArg<String>? location,

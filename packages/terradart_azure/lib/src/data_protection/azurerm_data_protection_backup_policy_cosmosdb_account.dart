@@ -8,6 +8,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermDataProtectionBackupPolicyCosmosdbAccountSensitive =
     <String>{};
 
+/// Data Protection Backup Policy Cosmosdb Account Backup enum for `backup_frequency`.
+extension type const DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const daily =
+      DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+        TfArgLiteral('Daily'),
+      );
+  static const weekly =
+      DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+        TfArgLiteral('Weekly'),
+      );
+
+  static const List<DataProtectionBackupPolicyCosmosdbAccountBackupFrequency>
+  values = [daily, weekly];
+}
+
 /// Typed helper for the `monthly_retention_rule` block of
 /// `azurerm_data_protection_backup_policy_cosmosdb_account` (derived from provider schema).
 @immutable
@@ -18,20 +44,19 @@ final class DataProtectionBackupPolicyCosmosdbAccountMonthlyRetentionRule {
     this.weeksOfMonth,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 
@@ -117,14 +142,14 @@ final class DataProtectionBackupPolicyCosmosdbAccountWeeklyRetentionRule {
     required this.duration,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
   };
 }
@@ -140,25 +165,23 @@ final class DataProtectionBackupPolicyCosmosdbAccountYearlyRetentionRule {
     this.weeksOfMonth,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear>?
   monthsOfYear;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'months_of_year': ?monthsOfYear?.toTfJson(),
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 
@@ -242,7 +265,7 @@ final class AzurermDataProtectionBackupPolicyCosmosdbAccount extends Resource {
 
   AzurermDataProtectionBackupPolicyCosmosdbAccount(
     super.localName, {
-    TfArg<String>? backupFrequency,
+    DataProtectionBackupPolicyCosmosdbAccountBackupFrequency? backupFrequency,
     required TfArg<String> backupSchedule,
     required TfArg<String> dataProtectionBackupVaultId,
     required TfArg<String> defaultRetentionDuration,

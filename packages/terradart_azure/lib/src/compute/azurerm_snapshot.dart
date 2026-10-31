@@ -10,6 +10,21 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_snapshot`.
 const Set<String> _azurermSnapshotSensitive = <String>{};
 
+/// Snapshot Create enum for `create_option`.
+extension type const SnapshotCreateOption._(TfArg<String> _)
+    implements TfArg<String> {
+  SnapshotCreateOption.variable(String name) : this._(TfArg.variable(name));
+  SnapshotCreateOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const SnapshotCreateOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const copy = SnapshotCreateOption._(TfArgLiteral('Copy'));
+  static const copystart = SnapshotCreateOption._(TfArgLiteral('CopyStart'));
+  static const import = SnapshotCreateOption._(TfArgLiteral('Import'));
+
+  static const List<SnapshotCreateOption> values = [copy, copystart, import];
+}
+
 /// Snapshot Network Access enum for `network_access_policy`.
 extension type const SnapshotNetworkAccessPolicy._(TfArg<String> _)
     implements TfArg<String> {
@@ -100,7 +115,7 @@ final class AzurermSnapshot extends Resource {
 
   AzurermSnapshot(
     super.localName, {
-    required TfArg<String> createOption,
+    required SnapshotCreateOption createOption,
     TfArg<String>? diskAccessId,
     TfArg<num>? diskSizeGb,
     TfArg<bool>? incrementalEnabled,

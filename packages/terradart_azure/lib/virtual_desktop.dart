@@ -27,7 +27,8 @@ export 'src/virtual_desktop/azurerm_virtual_desktop_host_pool.dart'
         VirtualDesktopHostPoolPreferredAppGroupType,
         VirtualDesktopHostPoolPublicNetworkAccess,
         VirtualDesktopHostPoolSchedule,
-        VirtualDesktopHostPoolScheduledAgentUpdates;
+        VirtualDesktopHostPoolScheduledAgentUpdates,
+        VirtualDesktopHostPoolType;
 export 'src/virtual_desktop/azurerm_virtual_desktop_host_pool_registration_info.dart'
     show AzurermVirtualDesktopHostPoolRegistrationInfo;
 export 'src/virtual_desktop/azurerm_virtual_desktop_scaling_plan.dart'

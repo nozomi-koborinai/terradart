@@ -36,7 +36,7 @@ final class ContainerAppDapr {
 
   final TfArg<num>? appPort;
 
-  final TfArg<String>? appProtocol;
+  final ContainerAppProtocol? appProtocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -44,6 +44,20 @@ final class ContainerAppDapr {
     'app_port': ?appPort?.toTfJson(),
     'app_protocol': ?appProtocol?.toTfJson(),
   };
+}
+
+/// `app_protocol` — derived from the provider schema description.
+extension type const ContainerAppProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppProtocol.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const grpc = ContainerAppProtocol._(TfArgLiteral('grpc'));
+  static const http = ContainerAppProtocol._(TfArgLiteral('http'));
+
+  static const List<ContainerAppProtocol> values = [grpc, http];
 }
 
 /// Typed helper for the `identity` block of
@@ -81,7 +95,7 @@ final class ContainerAppIngress {
 
   final TfArg<bool>? allowInsecureConnections;
 
-  final TfArg<String>? clientCertificateMode;
+  final ContainerAppClientCertificateMode? clientCertificateMode;
 
   final TfArg<num>? exposedPort;
 
@@ -89,7 +103,7 @@ final class ContainerAppIngress {
 
   final TfArg<num> targetPort;
 
-  final TfArg<String>? transport;
+  final ContainerAppTransport? transport;
 
   final ContainerAppCors? cors;
 
@@ -112,6 +126,48 @@ final class ContainerAppIngress {
       ],
     'traffic_weight': [for (final e in trafficWeight) e.encode()],
   };
+}
+
+/// `client_certificate_mode` — derived from the provider schema description.
+extension type const ContainerAppClientCertificateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppClientCertificateMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppClientCertificateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppClientCertificateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const accept = ContainerAppClientCertificateMode._(
+    TfArgLiteral('accept'),
+  );
+  static const ignore = ContainerAppClientCertificateMode._(
+    TfArgLiteral('ignore'),
+  );
+  static const require = ContainerAppClientCertificateMode._(
+    TfArgLiteral('require'),
+  );
+
+  static const List<ContainerAppClientCertificateMode> values = [
+    accept,
+    ignore,
+    require,
+  ];
+}
+
+/// `transport` — derived from the provider schema description.
+extension type const ContainerAppTransport._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppTransport.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppTransport.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppTransport.arg(TfArg<String> arg) : this._(arg);
+
+  static const auto = ContainerAppTransport._(TfArgLiteral('auto'));
+  static const http = ContainerAppTransport._(TfArgLiteral('http'));
+  static const http2 = ContainerAppTransport._(TfArgLiteral('http2'));
+  static const tcp = ContainerAppTransport._(TfArgLiteral('tcp'));
+
+  static const List<ContainerAppTransport> values = [auto, http, http2, tcp];
 }
 
 /// Typed helper for the `ingress.cors` block of
@@ -161,7 +217,7 @@ final class ContainerAppIpSecurityRestriction {
     required this.name,
   });
 
-  final TfArg<String> action;
+  final ContainerAppAction action;
 
   final TfArg<String>? description;
 
@@ -176,6 +232,20 @@ final class ContainerAppIpSecurityRestriction {
     'ip_address_range': ipAddressRange.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const ContainerAppAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppAction.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = ContainerAppAction._(TfArgLiteral('Allow'));
+  static const deny = ContainerAppAction._(TfArgLiteral('Deny'));
+
+  static const List<ContainerAppAction> values = [allow, deny];
 }
 
 /// Typed helper for the `ingress.traffic_weight` block of
@@ -494,7 +564,7 @@ final class ContainerAppLivenessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -510,6 +580,30 @@ final class ContainerAppLivenessProbe {
     'transport': transport.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
+}
+
+/// `transport` — derived from the provider schema description.
+extension type const ContainerAppLivenessProbeTransport._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppLivenessProbeTransport.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppLivenessProbeTransport.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppLivenessProbeTransport.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = ContainerAppLivenessProbeTransport._(TfArgLiteral('TCP'));
+  static const http = ContainerAppLivenessProbeTransport._(
+    TfArgLiteral('HTTP'),
+  );
+  static const https = ContainerAppLivenessProbeTransport._(
+    TfArgLiteral('HTTPS'),
+  );
+
+  static const List<ContainerAppLivenessProbeTransport> values = [
+    tcp,
+    http,
+    https,
+  ];
 }
 
 /// Typed helper for the `template.container.liveness_probe.header` block of
@@ -563,7 +657,7 @@ final class ContainerAppReadinessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -612,7 +706,7 @@ final class ContainerAppStartupProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -667,7 +761,7 @@ final class ContainerAppCustomScaleRule {
     this.authentication,
   });
 
-  final TfArg<String> customRuleType;
+  final ContainerAppCustomRuleType customRuleType;
 
   final TfArg<String>? identityId;
 
@@ -686,6 +780,230 @@ final class ContainerAppCustomScaleRule {
     if (authentication != null)
       'authentication': [for (final e in authentication!) e.encode()],
   };
+}
+
+/// `custom_rule_type` — derived from the provider schema description.
+extension type const ContainerAppCustomRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppCustomRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppCustomRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppCustomRuleType.arg(TfArg<String> arg) : this._(arg);
+
+  static const activemq = ContainerAppCustomRuleType._(
+    TfArgLiteral('activemq'),
+  );
+  static const artemisQueue = ContainerAppCustomRuleType._(
+    TfArgLiteral('artemis-queue'),
+  );
+  static const kafka = ContainerAppCustomRuleType._(TfArgLiteral('kafka'));
+  static const pulsar = ContainerAppCustomRuleType._(TfArgLiteral('pulsar'));
+  static const awsCloudwatch = ContainerAppCustomRuleType._(
+    TfArgLiteral('aws-cloudwatch'),
+  );
+  static const awsDynamodb = ContainerAppCustomRuleType._(
+    TfArgLiteral('aws-dynamodb'),
+  );
+  static const awsDynamodbStreams = ContainerAppCustomRuleType._(
+    TfArgLiteral('aws-dynamodb-streams'),
+  );
+  static const awsKinesisStream = ContainerAppCustomRuleType._(
+    TfArgLiteral('aws-kinesis-stream'),
+  );
+  static const awsSqsQueue = ContainerAppCustomRuleType._(
+    TfArgLiteral('aws-sqs-queue'),
+  );
+  static const azureAppInsights = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-app-insights'),
+  );
+  static const azureBlob = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-blob'),
+  );
+  static const azureDataExplorer = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-data-explorer'),
+  );
+  static const azureDurabletaskScheduler = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-durabletask-scheduler'),
+  );
+  static const azureEventhub = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-eventhub'),
+  );
+  static const azureLogAnalytics = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-log-analytics'),
+  );
+  static const azureMonitor = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-monitor'),
+  );
+  static const azurePipelines = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-pipelines'),
+  );
+  static const azureServicebus = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-servicebus'),
+  );
+  static const azureQueue = ContainerAppCustomRuleType._(
+    TfArgLiteral('azure-queue'),
+  );
+  static const cassandra = ContainerAppCustomRuleType._(
+    TfArgLiteral('cassandra'),
+  );
+  static const cpu = ContainerAppCustomRuleType._(TfArgLiteral('cpu'));
+  static const cron = ContainerAppCustomRuleType._(TfArgLiteral('cron'));
+  static const datadog = ContainerAppCustomRuleType._(TfArgLiteral('datadog'));
+  static const elasticsearch = ContainerAppCustomRuleType._(
+    TfArgLiteral('elasticsearch'),
+  );
+  static const external = ContainerAppCustomRuleType._(
+    TfArgLiteral('external'),
+  );
+  static const externalPush = ContainerAppCustomRuleType._(
+    TfArgLiteral('external-push'),
+  );
+  static const gcpStackdriver = ContainerAppCustomRuleType._(
+    TfArgLiteral('gcp-stackdriver'),
+  );
+  static const gcpStorage = ContainerAppCustomRuleType._(
+    TfArgLiteral('gcp-storage'),
+  );
+  static const gcpPubsub = ContainerAppCustomRuleType._(
+    TfArgLiteral('gcp-pubsub'),
+  );
+  static const graphite = ContainerAppCustomRuleType._(
+    TfArgLiteral('graphite'),
+  );
+  static const http = ContainerAppCustomRuleType._(TfArgLiteral('http'));
+  static const huaweiCloudeye = ContainerAppCustomRuleType._(
+    TfArgLiteral('huawei-cloudeye'),
+  );
+  static const ibmmq = ContainerAppCustomRuleType._(TfArgLiteral('ibmmq'));
+  static const influxdb = ContainerAppCustomRuleType._(
+    TfArgLiteral('influxdb'),
+  );
+  static const kubernetesWorkload = ContainerAppCustomRuleType._(
+    TfArgLiteral('kubernetes-workload'),
+  );
+  static const liiklus = ContainerAppCustomRuleType._(TfArgLiteral('liiklus'));
+  static const memory = ContainerAppCustomRuleType._(TfArgLiteral('memory'));
+  static const metricsApi = ContainerAppCustomRuleType._(
+    TfArgLiteral('metrics-api'),
+  );
+  static const mongodb = ContainerAppCustomRuleType._(TfArgLiteral('mongodb'));
+  static const mssql = ContainerAppCustomRuleType._(TfArgLiteral('mssql'));
+  static const mysql = ContainerAppCustomRuleType._(TfArgLiteral('mysql'));
+  static const natsJetstream = ContainerAppCustomRuleType._(
+    TfArgLiteral('nats-jetstream'),
+  );
+  static const stan = ContainerAppCustomRuleType._(TfArgLiteral('stan'));
+  static const tcp = ContainerAppCustomRuleType._(TfArgLiteral('tcp'));
+  static const newRelic = ContainerAppCustomRuleType._(
+    TfArgLiteral('new-relic'),
+  );
+  static const openstackMetric = ContainerAppCustomRuleType._(
+    TfArgLiteral('openstack-metric'),
+  );
+  static const openstackSwift = ContainerAppCustomRuleType._(
+    TfArgLiteral('openstack-swift'),
+  );
+  static const postgresql = ContainerAppCustomRuleType._(
+    TfArgLiteral('postgresql'),
+  );
+  static const predictkube = ContainerAppCustomRuleType._(
+    TfArgLiteral('predictkube'),
+  );
+  static const prometheus = ContainerAppCustomRuleType._(
+    TfArgLiteral('prometheus'),
+  );
+  static const rabbitmq = ContainerAppCustomRuleType._(
+    TfArgLiteral('rabbitmq'),
+  );
+  static const redis = ContainerAppCustomRuleType._(TfArgLiteral('redis'));
+  static const redisCluster = ContainerAppCustomRuleType._(
+    TfArgLiteral('redis-cluster'),
+  );
+  static const redisSentinel = ContainerAppCustomRuleType._(
+    TfArgLiteral('redis-sentinel'),
+  );
+  static const redisStreams = ContainerAppCustomRuleType._(
+    TfArgLiteral('redis-streams'),
+  );
+  static const redisClusterStreams = ContainerAppCustomRuleType._(
+    TfArgLiteral('redis-cluster-streams'),
+  );
+  static const redisSentinelStreams = ContainerAppCustomRuleType._(
+    TfArgLiteral('redis-sentinel-streams'),
+  );
+  static const seleniumGrid = ContainerAppCustomRuleType._(
+    TfArgLiteral('selenium-grid'),
+  );
+  static const solaceEventQueue = ContainerAppCustomRuleType._(
+    TfArgLiteral('solace-event-queue'),
+  );
+  static const githubRunner = ContainerAppCustomRuleType._(
+    TfArgLiteral('github-runner'),
+  );
+
+  static const List<ContainerAppCustomRuleType> values = [
+    activemq,
+    artemisQueue,
+    kafka,
+    pulsar,
+    awsCloudwatch,
+    awsDynamodb,
+    awsDynamodbStreams,
+    awsKinesisStream,
+    awsSqsQueue,
+    azureAppInsights,
+    azureBlob,
+    azureDataExplorer,
+    azureDurabletaskScheduler,
+    azureEventhub,
+    azureLogAnalytics,
+    azureMonitor,
+    azurePipelines,
+    azureServicebus,
+    azureQueue,
+    cassandra,
+    cpu,
+    cron,
+    datadog,
+    elasticsearch,
+    external,
+    externalPush,
+    gcpStackdriver,
+    gcpStorage,
+    gcpPubsub,
+    graphite,
+    http,
+    huaweiCloudeye,
+    ibmmq,
+    influxdb,
+    kubernetesWorkload,
+    liiklus,
+    memory,
+    metricsApi,
+    mongodb,
+    mssql,
+    mysql,
+    natsJetstream,
+    stan,
+    tcp,
+    newRelic,
+    openstackMetric,
+    openstackSwift,
+    postgresql,
+    predictkube,
+    prometheus,
+    rabbitmq,
+    redis,
+    redisCluster,
+    redisSentinel,
+    redisStreams,
+    redisClusterStreams,
+    redisSentinelStreams,
+    seleniumGrid,
+    solaceEventQueue,
+    githubRunner,
+  ];
 }
 
 /// Typed helper for the `template.http_scale_rule` block of
@@ -821,7 +1139,7 @@ final class ContainerAppVolume {
 
   final TfArg<String>? storageName;
 
-  final TfArg<String>? storageType;
+  final ContainerAppStorageType? storageType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -830,6 +1148,29 @@ final class ContainerAppVolume {
     'storage_name': ?storageName?.toTfJson(),
     'storage_type': ?storageType?.toTfJson(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+extension type const ContainerAppStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppStorageType.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppStorageType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurefile = ContainerAppStorageType._(TfArgLiteral('AzureFile'));
+  static const emptydir = ContainerAppStorageType._(TfArgLiteral('EmptyDir'));
+  static const nfsazurefile = ContainerAppStorageType._(
+    TfArgLiteral('NfsAzureFile'),
+  );
+  static const secret = ContainerAppStorageType._(TfArgLiteral('Secret'));
+
+  static const List<ContainerAppStorageType> values = [
+    azurefile,
+    emptydir,
+    nfsazurefile,
+    secret,
+  ];
 }
 
 /// Factory wrapper for `azurerm_container_app`.

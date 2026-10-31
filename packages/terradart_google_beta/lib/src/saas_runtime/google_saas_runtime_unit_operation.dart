@@ -46,7 +46,7 @@ final class SaasRuntimeUnitOperationInputVariables {
     required this.variable,
   });
 
-  final TfArg<String>? type;
+  final SaasRuntimeUnitOperationType? type;
 
   final TfArg<String>? value;
 
@@ -58,6 +58,30 @@ final class SaasRuntimeUnitOperationInputVariables {
     'value': ?value?.toTfJson(),
     'variable': variable.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const SaasRuntimeUnitOperationType._(TfArg<String> _)
+    implements TfArg<String> {
+  SaasRuntimeUnitOperationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SaasRuntimeUnitOperationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeUnitOperationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const string = SaasRuntimeUnitOperationType._(TfArgLiteral('STRING'));
+  static const int = SaasRuntimeUnitOperationType._(TfArgLiteral('INT'));
+  static const bool = SaasRuntimeUnitOperationType._(TfArgLiteral('BOOL'));
+  static const struct = SaasRuntimeUnitOperationType._(TfArgLiteral('STRUCT'));
+  static const list = SaasRuntimeUnitOperationType._(TfArgLiteral('LIST'));
+
+  static const List<SaasRuntimeUnitOperationType> values = [
+    string,
+    int,
+    bool,
+    struct,
+    list,
+  ];
 }
 
 /// Typed helper for the `upgrade` block of

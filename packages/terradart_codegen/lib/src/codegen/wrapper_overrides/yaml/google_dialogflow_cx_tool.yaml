@@ -1,5 +1,4 @@
 outputDir: dialogflow
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

@@ -1,0 +1,19 @@
+{
+  "name": "agentidentity",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://agentidentity.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AuthProvider": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    }
+  }
+}

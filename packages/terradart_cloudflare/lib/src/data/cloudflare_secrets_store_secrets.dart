@@ -7,6 +7,51 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_secrets_store_secrets`.
 const Set<String> _cloudflareSecretsStoreSecretsSensitive = <String>{};
 
+/// Data Secrets Store Secrets enum for `direction`.
+extension type const DataSecretsStoreSecretsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreSecretsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoreSecretsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreSecretsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataSecretsStoreSecretsDirection._(TfArgLiteral('asc'));
+  static const desc = DataSecretsStoreSecretsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSecretsStoreSecretsDirection> values = [asc, desc];
+}
+
+/// Data Secrets Store Secrets enum for `order`.
+extension type const DataSecretsStoreSecretsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreSecretsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoreSecretsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreSecretsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataSecretsStoreSecretsOrder._(TfArgLiteral('name'));
+  static const comment = DataSecretsStoreSecretsOrder._(
+    TfArgLiteral('comment'),
+  );
+  static const created = DataSecretsStoreSecretsOrder._(
+    TfArgLiteral('created'),
+  );
+  static const modified = DataSecretsStoreSecretsOrder._(
+    TfArgLiteral('modified'),
+  );
+  static const status = DataSecretsStoreSecretsOrder._(TfArgLiteral('status'));
+
+  static const List<DataSecretsStoreSecretsOrder> values = [
+    name,
+    comment,
+    created,
+    modified,
+    status,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_secrets_store_secrets`.
 ///
 /// Accepted Permissions
@@ -18,9 +63,9 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
   DataCloudflareSecretsStoreSecrets(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataSecretsStoreSecretsDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataSecretsStoreSecretsOrder? order,
     TfArg<List<String>>? scopes,
     TfArg<String>? search,
     required TfArg<String> storeId,

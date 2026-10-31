@@ -11,6 +11,30 @@ const Set<String> _azurermCosmosdbCassandraClusterSensitive = <String>{
   'default_admin_password',
 };
 
+/// Cosmosdb Cassandra Cluster Authentication enum for `authentication_method`.
+extension type const CosmosdbCassandraClusterAuthenticationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CosmosdbCassandraClusterAuthenticationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbCassandraClusterAuthenticationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbCassandraClusterAuthenticationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = CosmosdbCassandraClusterAuthenticationMethod._(
+    TfArgLiteral('None'),
+  );
+  static const cassandra = CosmosdbCassandraClusterAuthenticationMethod._(
+    TfArgLiteral('Cassandra'),
+  );
+
+  static const List<CosmosdbCassandraClusterAuthenticationMethod> values = [
+    none,
+    cassandra,
+  ];
+}
+
 /// Cosmosdb Cassandra Cluster enum for `version`.
 extension type const CosmosdbCassandraClusterVersion._(TfArg<String> _)
     implements TfArg<String> {
@@ -51,7 +75,7 @@ final class AzurermCosmosdbCassandraCluster extends Resource {
 
   AzurermCosmosdbCassandraCluster(
     super.localName, {
-    TfArg<String>? authenticationMethod,
+    CosmosdbCassandraClusterAuthenticationMethod? authenticationMethod,
     TfArg<List<String>>? clientCertificatePems,
     required Sensitive<String> defaultAdminPassword,
     required TfArg<String> delegatedManagementSubnetId,

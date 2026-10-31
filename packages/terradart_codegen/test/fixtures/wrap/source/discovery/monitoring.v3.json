@@ -1,0 +1,445 @@
+{
+  "name": "monitoring",
+  "version": "v3",
+  "revision": "20261022",
+  "sourceUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3",
+  "schemas": {
+    "Aggregation": {
+      "properties": {
+        "perSeriesAligner": {
+          "enum": [
+            "ALIGN_NONE",
+            "ALIGN_DELTA",
+            "ALIGN_RATE",
+            "ALIGN_INTERPOLATE",
+            "ALIGN_NEXT_OLDER",
+            "ALIGN_MIN",
+            "ALIGN_MAX",
+            "ALIGN_MEAN",
+            "ALIGN_COUNT",
+            "ALIGN_SUM",
+            "ALIGN_STDDEV",
+            "ALIGN_COUNT_TRUE",
+            "ALIGN_COUNT_FALSE",
+            "ALIGN_FRACTION_TRUE",
+            "ALIGN_PERCENTILE_99",
+            "ALIGN_PERCENTILE_95",
+            "ALIGN_PERCENTILE_50",
+            "ALIGN_PERCENTILE_05",
+            "ALIGN_PERCENT_CHANGE"
+          ]
+        },
+        "crossSeriesReducer": {
+          "enum": [
+            "REDUCE_NONE",
+            "REDUCE_MEAN",
+            "REDUCE_MIN",
+            "REDUCE_MAX",
+            "REDUCE_SUM",
+            "REDUCE_STDDEV",
+            "REDUCE_COUNT",
+            "REDUCE_COUNT_TRUE",
+            "REDUCE_COUNT_FALSE",
+            "REDUCE_FRACTION_TRUE",
+            "REDUCE_PERCENTILE_99",
+            "REDUCE_PERCENTILE_95",
+            "REDUCE_PERCENTILE_50",
+            "REDUCE_PERCENTILE_05"
+          ]
+        }
+      }
+    },
+    "AlertPolicy": {
+      "properties": {
+        "alertStrategy": {
+          "$ref": "AlertStrategy"
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "ERROR",
+            "WARNING"
+          ]
+        },
+        "conditions": {
+          "items": {
+            "$ref": "Condition"
+          }
+        },
+        "combiner": {
+          "enum": [
+            "COMBINE_UNSPECIFIED",
+            "AND",
+            "OR",
+            "AND_WITH_MATCHING_RESOURCE"
+          ]
+        }
+      }
+    },
+    "AlertStrategy": {
+      "properties": {
+        "notificationPrompts": {
+          "items": {
+            "enum": [
+              "NOTIFICATION_PROMPT_UNSPECIFIED",
+              "OPENED",
+              "CLOSED"
+            ]
+          }
+        }
+      }
+    },
+    "Condition": {
+      "properties": {
+        "conditionThreshold": {
+          "$ref": "MetricThreshold"
+        },
+        "conditionMonitoringQueryLanguage": {
+          "$ref": "MonitoringQueryLanguageCondition"
+        },
+        "conditionAbsent": {
+          "$ref": "MetricAbsence"
+        },
+        "conditionSql": {
+          "$ref": "SqlCondition"
+        }
+      }
+    },
+    "ContentMatcher": {
+      "properties": {
+        "jsonPathMatcher": {
+          "$ref": "JsonPathMatcher"
+        },
+        "matcher": {
+          "enum": [
+            "CONTENT_MATCHER_OPTION_UNSPECIFIED",
+            "CONTAINS_STRING",
+            "NOT_CONTAINS_STRING",
+            "MATCHES_REGEX",
+            "NOT_MATCHES_REGEX",
+            "MATCHES_JSON_PATH",
+            "NOT_MATCHES_JSON_PATH"
+          ]
+        }
+      }
+    },
+    "Group": {
+      "properties": {}
+    },
+    "HttpCheck": {
+      "properties": {
+        "requestMethod": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "GET",
+            "POST"
+          ]
+        },
+        "contentType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "URL_ENCODED",
+            "USER_PROVIDED"
+          ]
+        },
+        "acceptedResponseStatusCodes": {
+          "items": {
+            "$ref": "ResponseStatusCode"
+          }
+        },
+        "serviceAgentAuthentication": {
+          "$ref": "ServiceAgentAuthentication"
+        }
+      }
+    },
+    "InternalChecker": {
+      "properties": {
+        "state": {
+          "enum": [
+            "UNSPECIFIED",
+            "CREATING",
+            "RUNNING"
+          ]
+        }
+      }
+    },
+    "JsonPathMatcher": {
+      "properties": {
+        "jsonMatcher": {
+          "enum": [
+            "JSON_PATH_MATCHER_OPTION_UNSPECIFIED",
+            "EXACT_MATCH",
+            "REGEX_MATCH"
+          ]
+        }
+      }
+    },
+    "LabelDescriptor": {
+      "properties": {
+        "valueType": {
+          "enum": [
+            "STRING",
+            "BOOL",
+            "INT64"
+          ]
+        }
+      }
+    },
+    "MetricAbsence": {
+      "properties": {
+        "aggregations": {
+          "items": {
+            "$ref": "Aggregation"
+          }
+        }
+      }
+    },
+    "MetricDescriptor": {
+      "properties": {
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "valueType": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
+          ]
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
+        }
+      }
+    },
+    "MetricDescriptorMetadata": {
+      "properties": {
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
+        }
+      }
+    },
+    "MetricThreshold": {
+      "properties": {
+        "aggregations": {
+          "items": {
+            "$ref": "Aggregation"
+          }
+        },
+        "evaluationMissingData": {
+          "enum": [
+            "EVALUATION_MISSING_DATA_UNSPECIFIED",
+            "EVALUATION_MISSING_DATA_INACTIVE",
+            "EVALUATION_MISSING_DATA_ACTIVE",
+            "EVALUATION_MISSING_DATA_NO_OP"
+          ]
+        },
+        "denominatorAggregations": {
+          "items": {
+            "$ref": "Aggregation"
+          }
+        },
+        "comparison": {
+          "enum": [
+            "COMPARISON_UNSPECIFIED",
+            "COMPARISON_GT",
+            "COMPARISON_GE",
+            "COMPARISON_LT",
+            "COMPARISON_LE",
+            "COMPARISON_EQ",
+            "COMPARISON_NE"
+          ]
+        }
+      }
+    },
+    "MonitoringQueryLanguageCondition": {
+      "properties": {
+        "evaluationMissingData": {
+          "enum": [
+            "EVALUATION_MISSING_DATA_UNSPECIFIED",
+            "EVALUATION_MISSING_DATA_INACTIVE",
+            "EVALUATION_MISSING_DATA_ACTIVE",
+            "EVALUATION_MISSING_DATA_NO_OP"
+          ]
+        }
+      }
+    },
+    "NotificationChannel": {
+      "properties": {
+        "verificationStatus": {
+          "enum": [
+            "VERIFICATION_STATUS_UNSPECIFIED",
+            "UNVERIFIED",
+            "VERIFIED"
+          ]
+        }
+      }
+    },
+    "ResourceGroup": {
+      "properties": {
+        "resourceType": {
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "INSTANCE",
+            "AWS_ELB_LOAD_BALANCER"
+          ]
+        }
+      }
+    },
+    "ResponseStatusCode": {
+      "properties": {
+        "statusClass": {
+          "enum": [
+            "STATUS_CLASS_UNSPECIFIED",
+            "STATUS_CLASS_1XX",
+            "STATUS_CLASS_2XX",
+            "STATUS_CLASS_3XX",
+            "STATUS_CLASS_4XX",
+            "STATUS_CLASS_5XX",
+            "STATUS_CLASS_ANY"
+          ]
+        }
+      }
+    },
+    "RowCountTest": {
+      "properties": {
+        "comparison": {
+          "enum": [
+            "COMPARISON_UNSPECIFIED",
+            "COMPARISON_GT",
+            "COMPARISON_GE",
+            "COMPARISON_LT",
+            "COMPARISON_LE",
+            "COMPARISON_EQ",
+            "COMPARISON_NE"
+          ]
+        }
+      }
+    },
+    "Service": {
+      "properties": {}
+    },
+    "ServiceAgentAuthentication": {
+      "properties": {
+        "type": {
+          "enum": [
+            "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "OIDC_TOKEN"
+          ]
+        }
+      }
+    },
+    "ServiceLevelObjective": {
+      "properties": {
+        "calendarPeriod": {
+          "enum": [
+            "CALENDAR_PERIOD_UNSPECIFIED",
+            "DAY",
+            "WEEK",
+            "FORTNIGHT",
+            "MONTH",
+            "QUARTER",
+            "HALF",
+            "YEAR"
+          ]
+        }
+      }
+    },
+    "Snooze": {
+      "properties": {}
+    },
+    "SqlCondition": {
+      "properties": {
+        "rowCountTest": {
+          "$ref": "RowCountTest"
+        }
+      }
+    },
+    "UptimeCheckConfig": {
+      "properties": {
+        "resourceGroup": {
+          "$ref": "ResourceGroup"
+        },
+        "contentMatchers": {
+          "items": {
+            "$ref": "ContentMatcher"
+          }
+        },
+        "httpCheck": {
+          "$ref": "HttpCheck"
+        },
+        "internalCheckers": {
+          "items": {
+            "$ref": "InternalChecker"
+          }
+        },
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
+        },
+        "selectedRegions": {
+          "items": {
+            "enum": [
+              "REGION_UNSPECIFIED",
+              "USA",
+              "EUROPE",
+              "SOUTH_AMERICA",
+              "ASIA_PACIFIC",
+              "USA_OREGON",
+              "USA_IOWA",
+              "USA_VIRGINIA"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

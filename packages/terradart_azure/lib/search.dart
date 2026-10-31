@@ -12,6 +12,7 @@ export 'src/search/azurerm_search_service.dart'
         SearchServiceHostingMode,
         SearchServiceIdentity,
         SearchServiceNetworkRuleBypassOption,
+        SearchServiceSemanticSearchSku,
         SearchServiceSku;
 export 'src/search/azurerm_search_shared_private_link_service.dart'
     show AzurermSearchSharedPrivateLinkService;

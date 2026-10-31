@@ -9,9 +9,23 @@ properties:
       - "GeoRestore"
       - "PointInTimeRestore"
       - "Replica"
+  - api_name: high_availability
+    properties:
+      - api_name: mode
+        enum_values:
+          - "ZoneRedundant"
+          - "SameZone"
   - api_name: public_network_access
     enum_values:
       - "Disabled"
       - "Enabled"
+  - api_name: replication_role
+    enum_values:
+      - "None"
+  - api_name: version
+    enum_values:
+      - "5.7"
+      - "8.0.21"
+      - "8.4"
 at_most_one_of_groups:
   - ["administrator_password", "administrator_password_wo"]

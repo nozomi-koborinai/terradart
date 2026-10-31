@@ -11,6 +11,42 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_dataflow_job`.
 const Set<String> _googleDataflowJobSensitive = <String>{};
 
+/// Dataflow Job Ip enum for `ip_configuration`.
+extension type const DataflowJobIpConfiguration._(TfArg<String> _)
+    implements TfArg<String> {
+  DataflowJobIpConfiguration.variable(String name)
+    : this._(TfArg.variable(name));
+  DataflowJobIpConfiguration.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataflowJobIpConfiguration.arg(TfArg<String> arg) : this._(arg);
+
+  static const workerIpPublic = DataflowJobIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PUBLIC'),
+  );
+  static const workerIpPrivate = DataflowJobIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PRIVATE'),
+  );
+
+  static const List<DataflowJobIpConfiguration> values = [
+    workerIpPublic,
+    workerIpPrivate,
+  ];
+}
+
+/// Dataflow Job On enum for `on_delete`.
+extension type const DataflowJobOnDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  DataflowJobOnDelete.variable(String name) : this._(TfArg.variable(name));
+  DataflowJobOnDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataflowJobOnDelete.arg(TfArg<String> arg) : this._(arg);
+
+  static const drain = DataflowJobOnDelete._(TfArgLiteral('drain'));
+  static const cancel = DataflowJobOnDelete._(TfArgLiteral('cancel'));
+
+  static const List<DataflowJobOnDelete> values = [drain, cancel];
+}
+
 /// Factory wrapper for `google_dataflow_job`.
 ///
 /// Cloud Dataflow **job** — launches a batch or streaming pipeline from a
@@ -39,14 +75,14 @@ final class GoogleDataflowJob extends Resource {
     TfArg<String>? machineType,
     RefTo<GoogleComputeNetwork>? network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
-    TfArg<String>? ipConfiguration,
+    DataflowJobIpConfiguration? ipConfiguration,
     RefTo<GoogleServiceAccount>? serviceAccountEmail,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<bool>? enableStreamingEngine,
     TfArg<Map<String, String>>? parameters,
     TfArg<Map<String, String>>? transformNameMapping,
     TfArg<List<String>>? additionalExperiments,
-    TfArg<String>? onDelete,
+    DataflowJobOnDelete? onDelete,
     TfArg<bool>? skipWaitOnJobTermination,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

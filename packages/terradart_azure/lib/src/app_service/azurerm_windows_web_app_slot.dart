@@ -75,7 +75,7 @@ final class WindowsWebAppSlotAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final WindowsWebAppSlotDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -87,7 +87,8 @@ final class WindowsWebAppSlotAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final WindowsWebAppSlotUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final WindowsWebAppSlotActiveDirectory? activeDirectory;
 
@@ -121,6 +122,69 @@ final class WindowsWebAppSlotAuthSettings {
   };
 }
 
+/// `default_provider` — derived from the provider schema description.
+extension type const WindowsWebAppSlotDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const github = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+  static const google = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+
+  static const List<WindowsWebAppSlotDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    github,
+    google,
+    microsoftaccount,
+    twitter,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous = WindowsWebAppSlotUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage =
+      WindowsWebAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+
+  static const List<WindowsWebAppSlotUnauthenticatedClientAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+  ];
+}
+
 /// Typed helper for the `auth_settings.active_directory` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -129,23 +193,81 @@ final class WindowsWebAppSlotActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppSlotActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppSlotActiveDirectoryClientSecret {
+  const WindowsWebAppSlotActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppSlotActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppSlotActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppSlotActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppSlotActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppSlotActiveDirectoryClientSecretChoice
+    extends WindowsWebAppSlotActiveDirectoryClientSecret {
+  const WindowsWebAppSlotActiveDirectoryClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSlotActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotActiveDirectoryClientSecretSettingName
+    extends WindowsWebAppSlotActiveDirectoryClientSecret {
+  const WindowsWebAppSlotActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -155,25 +277,80 @@ final class WindowsWebAppSlotActiveDirectory {
 final class WindowsWebAppSlotFacebook {
   const WindowsWebAppSlotFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final WindowsWebAppSlotAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class WindowsWebAppSlotAppSecret {
+  const WindowsWebAppSlotAppSecret();
+
+  /// Sets `app_secret`.
+  const factory WindowsWebAppSlotAppSecret.appSecret(
+    Sensitive<String> appSecret,
+  ) = WindowsWebAppSlotAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory WindowsWebAppSlotAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = WindowsWebAppSlotAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotAppSecret.appSecret] choice: sets `app_secret`.
+final class WindowsWebAppSlotAppSecretChoice
+    extends WindowsWebAppSlotAppSecret {
+  const WindowsWebAppSlotAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSlotAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class WindowsWebAppSlotAppSecretSettingName
+    extends WindowsWebAppSlotAppSecret {
+  const WindowsWebAppSlotAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -183,25 +360,82 @@ final class WindowsWebAppSlotFacebook {
 final class WindowsWebAppSlotGithub {
   const WindowsWebAppSlotGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppSlotGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppSlotGithubClientSecret {
+  const WindowsWebAppSlotGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppSlotGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppSlotGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppSlotGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppSlotGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppSlotGithubClientSecretChoice
+    extends WindowsWebAppSlotGithubClientSecret {
+  const WindowsWebAppSlotGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSlotGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotGithubClientSecretSettingName
+    extends WindowsWebAppSlotGithubClientSecret {
+  const WindowsWebAppSlotGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -211,25 +445,82 @@ final class WindowsWebAppSlotGithub {
 final class WindowsWebAppSlotGoogle {
   const WindowsWebAppSlotGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppSlotGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppSlotGoogleClientSecret {
+  const WindowsWebAppSlotGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppSlotGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppSlotGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppSlotGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppSlotGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppSlotGoogleClientSecretChoice
+    extends WindowsWebAppSlotGoogleClientSecret {
+  const WindowsWebAppSlotGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSlotGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotGoogleClientSecretSettingName
+    extends WindowsWebAppSlotGoogleClientSecret {
+  const WindowsWebAppSlotGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -239,25 +530,82 @@ final class WindowsWebAppSlotGoogle {
 final class WindowsWebAppSlotMicrosoft {
   const WindowsWebAppSlotMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppSlotMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppSlotMicrosoftClientSecret {
+  const WindowsWebAppSlotMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppSlotMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppSlotMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppSlotMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppSlotMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppSlotMicrosoftClientSecretChoice
+    extends WindowsWebAppSlotMicrosoftClientSecret {
+  const WindowsWebAppSlotMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSlotMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotMicrosoftClientSecretSettingName
+    extends WindowsWebAppSlotMicrosoftClientSecret {
+  const WindowsWebAppSlotMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -267,21 +615,80 @@ final class WindowsWebAppSlotMicrosoft {
 final class WindowsWebAppSlotTwitter {
   const WindowsWebAppSlotTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final WindowsWebAppSlotConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class WindowsWebAppSlotConsumerSecret {
+  const WindowsWebAppSlotConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory WindowsWebAppSlotConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = WindowsWebAppSlotConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory WindowsWebAppSlotConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = WindowsWebAppSlotConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class WindowsWebAppSlotConsumerSecretChoice
+    extends WindowsWebAppSlotConsumerSecret {
+  const WindowsWebAppSlotConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppSlotConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class WindowsWebAppSlotConsumerSecretSettingName
+    extends WindowsWebAppSlotConsumerSecret {
+  const WindowsWebAppSlotConsumerSecretSettingName(
+    this.consumerSecretSettingName,
+  );
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -322,7 +729,7 @@ final class WindowsWebAppSlotAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final WindowsWebAppSlotForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -336,7 +743,7 @@ final class WindowsWebAppSlotAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final WindowsWebAppSlotUnauthenticatedAction? unauthenticatedAction;
 
   final WindowsWebAppSlotActiveDirectoryV2? activeDirectoryV2;
 
@@ -388,6 +795,64 @@ final class WindowsWebAppSlotAuthSettingsV2 {
   };
 }
 
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const WindowsWebAppSlotForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = WindowsWebAppSlotForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = WindowsWebAppSlotForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = WindowsWebAppSlotForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<WindowsWebAppSlotForwardProxyConvention> values = [
+    custom,
+    noproxy,
+    standard,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowanonymous = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const return401 = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<WindowsWebAppSlotUnauthenticatedAction> values = [
+    allowanonymous,
+    redirecttologinpage,
+    return401,
+    return403,
+  ];
+}
+
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -398,8 +863,7 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -417,9 +881,7 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -438,15 +900,80 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredential();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory WindowsWebAppSlotClientCredential.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppSlotClientCredential.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppSlotClientCredentialClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotClientCredentialClientSecretSettingName
+    extends WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredentialClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -607,14 +1134,13 @@ final class WindowsWebAppSlotLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final WindowsWebAppSlotCookieExpirationConvention? cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -628,9 +1154,7 @@ final class WindowsWebAppSlotLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final WindowsWebAppSlotTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -645,10 +1169,98 @@ final class WindowsWebAppSlotLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class WindowsWebAppSlotTokenStore {
+  const WindowsWebAppSlotTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory WindowsWebAppSlotTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = WindowsWebAppSlotTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory WindowsWebAppSlotTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = WindowsWebAppSlotTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class WindowsWebAppSlotTokenStorePath
+    extends WindowsWebAppSlotTokenStore {
+  const WindowsWebAppSlotTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppSlotTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class WindowsWebAppSlotTokenStoreSasSettingName
+    extends WindowsWebAppSlotTokenStore {
+  const WindowsWebAppSlotTokenStoreSasSettingName(
+    this.tokenStoreSasSettingName,
+  );
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
+  };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const WindowsWebAppSlotCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = WindowsWebAppSlotCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      WindowsWebAppSlotCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<WindowsWebAppSlotCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -741,7 +1353,7 @@ final class WindowsWebAppSlotSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final WindowsWebAppSlotFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -759,6 +1371,21 @@ final class WindowsWebAppSlotSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const WindowsWebAppSlotFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = WindowsWebAppSlotFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = WindowsWebAppSlotFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<WindowsWebAppSlotFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -771,7 +1398,7 @@ final class WindowsWebAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final WindowsWebAppSlotConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -781,6 +1408,65 @@ final class WindowsWebAppSlotConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsWebAppSlotConnectionStringType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotConnectionStringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const apihub = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const postgresql = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
+
+  static const List<WindowsWebAppSlotConnectionStringType> values = [
+    apihub,
+    custom,
+    docdb,
+    eventhub,
+    mysql,
+    notificationhub,
+    postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -837,7 +1523,7 @@ final class WindowsWebAppSlotApplicationLogs {
     this.azureBlobStorage,
   });
 
-  final TfArg<String> fileSystemLevel;
+  final WindowsWebAppSlotFileSystemLevel fileSystemLevel;
 
   final WindowsWebAppSlotApplicationLogsAzureBlobStorage? azureBlobStorage;
 
@@ -846,6 +1532,38 @@ final class WindowsWebAppSlotApplicationLogs {
     'file_system_level': fileSystemLevel.toTfJson(),
     'azure_blob_storage': ?azureBlobStorage?.encode(),
   };
+}
+
+/// `file_system_level` — derived from the provider schema description.
+extension type const WindowsWebAppSlotFileSystemLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotFileSystemLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotFileSystemLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotFileSystemLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = WindowsWebAppSlotFileSystemLevel._(
+    TfArgLiteral('Error'),
+  );
+  static const information = WindowsWebAppSlotFileSystemLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const off = WindowsWebAppSlotFileSystemLevel._(TfArgLiteral('Off'));
+  static const verbose = WindowsWebAppSlotFileSystemLevel._(
+    TfArgLiteral('Verbose'),
+  );
+  static const warning = WindowsWebAppSlotFileSystemLevel._(
+    TfArgLiteral('Warning'),
+  );
+
+  static const List<WindowsWebAppSlotFileSystemLevel> values = [
+    error,
+    information,
+    off,
+    verbose,
+    warning,
+  ];
 }
 
 /// Typed helper for the `logs.application_logs.azure_blob_storage` block of
@@ -858,7 +1576,7 @@ final class WindowsWebAppSlotApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final WindowsWebAppSlotLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -872,21 +1590,87 @@ final class WindowsWebAppSlotApplicationLogsAzureBlobStorage {
   };
 }
 
-/// Typed helper for the `logs.http_logs` block of
-/// `azurerm_windows_web_app_slot` (derived from provider schema).
-@immutable
-final class WindowsWebAppSlotHttpLogs {
-  const WindowsWebAppSlotHttpLogs({this.azureBlobStorage, this.fileSystem});
+/// `level` — derived from the provider schema description.
+extension type const WindowsWebAppSlotLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotLevel.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppSlotLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotLevel.arg(TfArg<String> arg) : this._(arg);
 
-  final WindowsWebAppSlotHttpLogsAzureBlobStorage? azureBlobStorage;
+  static const error = WindowsWebAppSlotLevel._(TfArgLiteral('Error'));
+  static const information = WindowsWebAppSlotLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const verbose = WindowsWebAppSlotLevel._(TfArgLiteral('Verbose'));
+  static const warning = WindowsWebAppSlotLevel._(TfArgLiteral('Warning'));
 
-  final WindowsWebAppSlotFileSystem? fileSystem;
+  static const List<WindowsWebAppSlotLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
+}
+
+/// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_windows_web_app_slot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.azureBlobStorage(...)`.
+sealed class WindowsWebAppSlotHttpLogs {
+  const WindowsWebAppSlotHttpLogs();
+
+  /// Sets `azure_blob_storage`.
+  const factory WindowsWebAppSlotHttpLogs.azureBlobStorage(
+    WindowsWebAppSlotHttpLogsAzureBlobStorage azureBlobStorage,
+  ) = WindowsWebAppSlotHttpLogsAzureBlobStorageChoice;
+
+  /// Sets `file_system`.
+  const factory WindowsWebAppSlotHttpLogs.fileSystem(
+    WindowsWebAppSlotFileSystem fileSystem,
+  ) = WindowsWebAppSlotHttpLogsFileSystem;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSlotHttpLogs.azureBlobStorage] choice: sets `azure_blob_storage`.
+final class WindowsWebAppSlotHttpLogsAzureBlobStorageChoice
+    extends WindowsWebAppSlotHttpLogs {
+  const WindowsWebAppSlotHttpLogsAzureBlobStorageChoice(this.azureBlobStorage);
+
+  final WindowsWebAppSlotHttpLogsAzureBlobStorage azureBlobStorage;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {
-    'azure_blob_storage': ?azureBlobStorage?.encode(),
-    'file_system': ?fileSystem?.encode(),
+    'azure_blob_storage': azureBlobStorage.encode(),
   };
+}
+
+/// The [WindowsWebAppSlotHttpLogs.fileSystem] choice: sets `file_system`.
+final class WindowsWebAppSlotHttpLogsFileSystem
+    extends WindowsWebAppSlotHttpLogs {
+  const WindowsWebAppSlotHttpLogsFileSystem(this.fileSystem);
+
+  final WindowsWebAppSlotFileSystem fileSystem;
+
+  @internal
+  @override
+  String get blockKey => 'file_system';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'file_system': fileSystem.encode()};
 }
 
 /// Typed helper for the `logs.http_logs.azure_blob_storage` block of
@@ -986,7 +1770,7 @@ final class WindowsWebAppSlotSiteConfig {
 
   final TfArg<List<String>>? defaultDocuments;
 
-  final TfArg<String>? ftpsState;
+  final WindowsWebAppSlotFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -994,25 +1778,26 @@ final class WindowsWebAppSlotSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final WindowsWebAppSlotIpRestrictionDefaultAction? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final WindowsWebAppSlotLoadBalancingMode? loadBalancingMode;
 
   final TfArg<bool>? localMysqlEnabled;
 
-  final TfArg<String>? managedPipelineMode;
+  final WindowsWebAppSlotManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final WindowsWebAppSlotMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final WindowsWebAppSlotMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final WindowsWebAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final WindowsWebAppSlotScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final WindowsWebAppSlotScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1085,6 +1870,309 @@ final class WindowsWebAppSlotSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const WindowsWebAppSlotFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = WindowsWebAppSlotFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const disabled = WindowsWebAppSlotFtpsState._(
+    TfArgLiteral('Disabled'),
+  );
+  static const ftpsonly = WindowsWebAppSlotFtpsState._(
+    TfArgLiteral('FtpsOnly'),
+  );
+
+  static const List<WindowsWebAppSlotFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppSlotIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppSlotIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const WindowsWebAppSlotLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotLoadBalancingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const leastrequests = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const leastresponsetime = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const persiteroundrobin = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+  static const requesthash = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const weightedroundrobin = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const weightedtotaltraffic = WindowsWebAppSlotLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+
+  static const List<WindowsWebAppSlotLoadBalancingMode> values = [
+    leastrequests,
+    leastresponsetime,
+    persiteroundrobin,
+    requesthash,
+    weightedroundrobin,
+    weightedtotaltraffic,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const WindowsWebAppSlotManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const classic = WindowsWebAppSlotManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const integrated = WindowsWebAppSlotManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+
+  static const List<WindowsWebAppSlotManagedPipelineMode> values = [
+    classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const WindowsWebAppSlotMinimumTlsCipherSuite._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotMinimumTlsCipherSuite.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsAes128GcmSha256 = WindowsWebAppSlotMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = WindowsWebAppSlotMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsRsaWithAes128CbcSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes128GcmSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsRsaWithAes256CbcSha =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsRsaWithAes256CbcSha256 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes256GcmSha384 =
+      WindowsWebAppSlotMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+
+  static const List<WindowsWebAppSlotMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = WindowsWebAppSlotMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = WindowsWebAppSlotMinimumTlsVersion._(TfArgLiteral('1.3'));
+  static const v1p2 = WindowsWebAppSlotMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = WindowsWebAppSlotMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<WindowsWebAppSlotMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = WindowsWebAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<WindowsWebAppSlotRemoteDebuggingVersion> values = [vs2022];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppSlotScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppSlotScmIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p1 = WindowsWebAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p3 = WindowsWebAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+  static const v1p2 = WindowsWebAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = WindowsWebAppSlotScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+
+  static const List<WindowsWebAppSlotScmMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `site_config.application_stack` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -1107,7 +2195,7 @@ final class WindowsWebAppSlotApplicationStack {
     this.tomcatVersion,
   });
 
-  final TfArg<String>? currentStack;
+  final WindowsWebAppSlotCurrentStack? currentStack;
 
   final TfArg<String>? dockerImageName;
 
@@ -1117,11 +2205,11 @@ final class WindowsWebAppSlotApplicationStack {
 
   final TfArg<String>? dockerRegistryUsername;
 
-  final TfArg<String>? dotnetCoreVersion;
+  final WindowsWebAppSlotDotnetCoreVersion? dotnetCoreVersion;
 
-  final TfArg<String>? dotnetVersion;
+  final WindowsWebAppSlotDotnetVersion? dotnetVersion;
 
-  final TfArg<String>? javaContainer;
+  final WindowsWebAppSlotJavaContainer? javaContainer;
 
   final TfArg<String>? javaContainerVersion;
 
@@ -1129,9 +2217,9 @@ final class WindowsWebAppSlotApplicationStack {
 
   final TfArg<String>? javaVersion;
 
-  final TfArg<String>? nodeVersion;
+  final WindowsWebAppSlotNodeVersion? nodeVersion;
 
-  final TfArg<String>? phpVersion;
+  final WindowsWebAppSlotPhpVersion? phpVersion;
 
   final TfArg<bool>? python;
 
@@ -1155,6 +2243,146 @@ final class WindowsWebAppSlotApplicationStack {
     'python': ?python?.toTfJson(),
     'tomcat_version': ?tomcatVersion?.toTfJson(),
   };
+}
+
+/// `current_stack` — derived from the provider schema description.
+extension type const WindowsWebAppSlotCurrentStack._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotCurrentStack.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotCurrentStack.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotCurrentStack.arg(TfArg<String> arg) : this._(arg);
+
+  static const dotnet = WindowsWebAppSlotCurrentStack._(TfArgLiteral('dotnet'));
+  static const dotnetcore = WindowsWebAppSlotCurrentStack._(
+    TfArgLiteral('dotnetcore'),
+  );
+  static const node = WindowsWebAppSlotCurrentStack._(TfArgLiteral('node'));
+  static const python = WindowsWebAppSlotCurrentStack._(TfArgLiteral('python'));
+  static const php = WindowsWebAppSlotCurrentStack._(TfArgLiteral('php'));
+  static const java = WindowsWebAppSlotCurrentStack._(TfArgLiteral('java'));
+
+  static const List<WindowsWebAppSlotCurrentStack> values = [
+    dotnet,
+    dotnetcore,
+    node,
+    python,
+    php,
+    java,
+  ];
+}
+
+/// `dotnet_core_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotDotnetCoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotDotnetCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotDotnetCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotDotnetCoreVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v4p0 = WindowsWebAppSlotDotnetCoreVersion._(
+    TfArgLiteral('v4.0'),
+  );
+
+  static const List<WindowsWebAppSlotDotnetCoreVersion> values = [v4p0];
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v2p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v2.0'));
+  static const v3p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v3.0'));
+  static const v4p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v4.0'));
+  static const v5p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v5.0'));
+  static const v6p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v6.0'));
+  static const v7p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v7.0'));
+  static const v8p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v8.0'));
+  static const v9p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v9.0'));
+  static const v10p0 = WindowsWebAppSlotDotnetVersion._(TfArgLiteral('v10.0'));
+
+  static const List<WindowsWebAppSlotDotnetVersion> values = [
+    v2p0,
+    v3p0,
+    v4p0,
+    v5p0,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `java_container` — derived from the provider schema description.
+extension type const WindowsWebAppSlotJavaContainer._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotJavaContainer.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotJavaContainer.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotJavaContainer.arg(TfArg<String> arg) : this._(arg);
+
+  static const java = WindowsWebAppSlotJavaContainer._(TfArgLiteral('JAVA'));
+  static const jetty = WindowsWebAppSlotJavaContainer._(TfArgLiteral('JETTY'));
+  static const tomcat = WindowsWebAppSlotJavaContainer._(
+    TfArgLiteral('TOMCAT'),
+  );
+
+  static const List<WindowsWebAppSlotJavaContainer> values = [
+    java,
+    jetty,
+    tomcat,
+  ];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotNodeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v14 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~14'));
+  static const v16 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~16'));
+  static const v18 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~18'));
+  static const v20 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~20'));
+  static const v22 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~22'));
+  static const v24 = WindowsWebAppSlotNodeVersion._(TfArgLiteral('~24'));
+
+  static const List<WindowsWebAppSlotNodeVersion> values = [
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
+}
+
+/// `php_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotPhpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotPhpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotPhpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotPhpVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v7p1 = WindowsWebAppSlotPhpVersion._(TfArgLiteral('7.1'));
+  static const v7p4 = WindowsWebAppSlotPhpVersion._(TfArgLiteral('7.4'));
+  static const off = WindowsWebAppSlotPhpVersion._(TfArgLiteral('Off'));
+
+  static const List<WindowsWebAppSlotPhpVersion> values = [v7p1, v7p4, off];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting` block of
@@ -1187,7 +2415,7 @@ final class WindowsWebAppSlotAction {
     this.customAction,
   });
 
-  final TfArg<String> actionType;
+  final WindowsWebAppSlotActionType actionType;
 
   final TfArg<String>? minimumProcessExecutionTime;
 
@@ -1199,6 +2427,30 @@ final class WindowsWebAppSlotAction {
     'minimum_process_execution_time': ?minimumProcessExecutionTime?.toTfJson(),
     'custom_action': ?customAction?.encode(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const WindowsWebAppSlotActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const customaction = WindowsWebAppSlotActionType._(
+    TfArgLiteral('CustomAction'),
+  );
+  static const logevent = WindowsWebAppSlotActionType._(
+    TfArgLiteral('LogEvent'),
+  );
+  static const recycle = WindowsWebAppSlotActionType._(TfArgLiteral('Recycle'));
+
+  static const List<WindowsWebAppSlotActionType> values = [
+    customaction,
+    logevent,
+    recycle,
+  ];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting.action.custom_action` block of
@@ -1421,7 +2673,7 @@ final class WindowsWebAppSlotIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1450,6 +2702,29 @@ final class WindowsWebAppSlotIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotIpRestrictionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotIpRestrictionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotIpRestrictionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotIpRestrictionAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppSlotIpRestrictionAction> values = [
+    allow,
+    deny,
+  ];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -1465,7 +2740,7 @@ final class WindowsWebAppSlotScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1566,7 +2841,7 @@ final class WindowsWebAppSlotStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final WindowsWebAppSlotStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1577,6 +2852,23 @@ final class WindowsWebAppSlotStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsWebAppSlotStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurefiles = WindowsWebAppSlotStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<WindowsWebAppSlotStorageAccountType> values = [azurefiles];
 }
 
 /// Factory wrapper for `azurerm_windows_web_app_slot`.

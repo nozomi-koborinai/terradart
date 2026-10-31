@@ -10,8 +10,9 @@ export 'src/data/cloudflare_user_agent_blocking_rules.dart'
 export 'src/data/cloudflare_user_group.dart'
     show DataCloudflareUserGroup, DataUserGroupDirection, DataUserGroupFilter;
 export 'src/data/cloudflare_user_group_members.dart'
-    show DataCloudflareUserGroupMembers;
-export 'src/data/cloudflare_user_groups.dart' show DataCloudflareUserGroups;
+    show DataCloudflareUserGroupMembers, DataUserGroupMembersDirection;
+export 'src/data/cloudflare_user_groups.dart'
+    show DataCloudflareUserGroups, DataUserGroupsDirection;
 export 'src/user/cloudflare_user.dart' show CloudflareUser;
 export 'src/user/cloudflare_user_group.dart'
     show

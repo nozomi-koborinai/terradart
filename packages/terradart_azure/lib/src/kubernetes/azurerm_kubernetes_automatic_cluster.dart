@@ -195,7 +195,8 @@ final class KubernetesAutomaticClusterWebAppRoutingIngress {
     this.istioEnabled,
   });
 
-  final TfArg<String>? defaultNginxController;
+  final KubernetesAutomaticClusterDefaultNginxController?
+  defaultNginxController;
 
   final TfArg<List<String>>? dnsZoneIds;
 
@@ -207,6 +208,35 @@ final class KubernetesAutomaticClusterWebAppRoutingIngress {
     'dns_zone_ids': ?dnsZoneIds?.toTfJson(),
     'istio_enabled': ?istioEnabled?.toTfJson(),
   };
+}
+
+/// `default_nginx_controller` — derived from the provider schema description.
+extension type const KubernetesAutomaticClusterDefaultNginxController._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesAutomaticClusterDefaultNginxController.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesAutomaticClusterDefaultNginxController.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesAutomaticClusterDefaultNginxController.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const annotationcontrolled =
+      KubernetesAutomaticClusterDefaultNginxController._(
+        TfArgLiteral('AnnotationControlled'),
+      );
+  static const internal = KubernetesAutomaticClusterDefaultNginxController._(
+    TfArgLiteral('Internal'),
+  );
+  static const external = KubernetesAutomaticClusterDefaultNginxController._(
+    TfArgLiteral('External'),
+  );
+
+  static const List<KubernetesAutomaticClusterDefaultNginxController> values = [
+    annotationcontrolled,
+    internal,
+    external,
+  ];
 }
 
 /// Factory wrapper for `azurerm_kubernetes_automatic_cluster`.

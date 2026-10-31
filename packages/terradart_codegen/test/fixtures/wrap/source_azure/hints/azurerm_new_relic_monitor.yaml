@@ -18,6 +18,9 @@ properties:
           - "MONTHLY"
           - "WEEKLY"
           - "YEARLY"
+      - api_name: plan_id
+        enum_values:
+          - "newrelic-pay-as-you-go-free-live"
       - api_name: usage_type
         enum_values:
           - "COMMITTED"

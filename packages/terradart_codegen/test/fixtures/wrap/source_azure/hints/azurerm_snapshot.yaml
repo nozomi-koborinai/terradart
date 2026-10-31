@@ -3,6 +3,11 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: create_option
+    enum_values:
+      - "Copy"
+      - "CopyStart"
+      - "Import"
   - api_name: network_access_policy
     enum_values:
       - "AllowAll"

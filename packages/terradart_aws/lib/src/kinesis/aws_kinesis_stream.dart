@@ -184,7 +184,7 @@ final class AwsKinesisStream extends Resource {
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,
     KinesisStreamCapacity? capacity,
-    List<KinesisStreamShardLevelMetrics>? shardLevelMetrics,
+    EnumList<KinesisStreamShardLevelMetrics>? shardLevelMetrics,
     TfArg<Map<String, String>>? tags,
     KinesisStreamModeDetails? streamModeDetails,
     super.lifecycle,
@@ -203,10 +203,7 @@ final class AwsKinesisStream extends Resource {
            'region': ?region,
            'retention_period': ?retentionPeriod,
            ...?capacity?.argMap,
-           if (shardLevelMetrics != null)
-             'shard_level_metrics': TfArg.literal([
-               for (final e in shardLevelMetrics) e.toTfJson(),
-             ]),
+           'shard_level_metrics': ?shardLevelMetrics,
            'tags': ?tags,
            if (streamModeDetails != null)
              'stream_mode_details': TfArg.literal(streamModeDetails.encode()),

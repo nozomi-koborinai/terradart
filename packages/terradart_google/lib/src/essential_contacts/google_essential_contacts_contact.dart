@@ -6,6 +6,66 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_essential_contacts_contact`.
 const Set<String> _googleEssentialContactsContactSensitive = <String>{};
 
+/// Essential Contacts Contact Notification Category enum for `notification_category_subscriptions`.
+extension type const EssentialContactsContactNotificationCategorySubscriptions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EssentialContactsContactNotificationCategorySubscriptions.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  EssentialContactsContactNotificationCategorySubscriptions.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const EssentialContactsContactNotificationCategorySubscriptions.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const all =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('ALL'),
+      );
+  static const suspension =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('SUSPENSION'),
+      );
+  static const security =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('SECURITY'),
+      );
+  static const technical =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('TECHNICAL'),
+      );
+  static const billing =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('BILLING'),
+      );
+  static const legal =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('LEGAL'),
+      );
+  static const productUpdates =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('PRODUCT_UPDATES'),
+      );
+  static const technicalIncidents =
+      EssentialContactsContactNotificationCategorySubscriptions._(
+        TfArgLiteral('TECHNICAL_INCIDENTS'),
+      );
+
+  static const List<EssentialContactsContactNotificationCategorySubscriptions>
+  values = [
+    all,
+    suspension,
+    security,
+    technical,
+    billing,
+    legal,
+    productUpdates,
+    technicalIncidents,
+  ];
+}
+
 /// Factory wrapper for `google_essential_contacts_contact`.
 ///
 /// A contact that will receive notifications from Google Cloud.
@@ -17,7 +77,8 @@ final class GoogleEssentialContactsContact extends Resource {
     required TfArg<String> parent,
     required TfArg<String> email,
     required TfArg<String> languageTag,
-    required TfArg<List<String>> notificationCategorySubscriptions,
+    required EnumList<EssentialContactsContactNotificationCategorySubscriptions>
+    notificationCategorySubscriptions,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

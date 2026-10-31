@@ -6,13 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_application_live_view`.
 const Set<String> _azurermSpringCloudApplicationLiveViewSensitive = <String>{};
 
+/// Spring Cloud Application Live View enum for `name`.
+extension type const SpringCloudApplicationLiveViewName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudApplicationLiveViewName.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudApplicationLiveViewName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudApplicationLiveViewName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudApplicationLiveViewName._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpringCloudApplicationLiveViewName> values = [defaultCase];
+}
+
 /// Factory wrapper for `azurerm_spring_cloud_application_live_view`.
 final class AzurermSpringCloudApplicationLiveView extends Resource {
   static const String tfType = 'azurerm_spring_cloud_application_live_view';
 
   AzurermSpringCloudApplicationLiveView(
     super.localName, {
-    required TfArg<String> name,
+    required SpringCloudApplicationLiveViewName name,
     required TfArg<String> springCloudServiceId,
     super.lifecycle,
     super.dependsOn,

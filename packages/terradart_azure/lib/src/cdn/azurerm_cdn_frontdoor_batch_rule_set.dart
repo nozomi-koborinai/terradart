@@ -116,7 +116,7 @@ final class CdnFrontdoorBatchRuleSetModifyRequestHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -124,6 +124,34 @@ final class CdnFrontdoorBatchRuleSetModifyRequestHeader {
     'header_value': ?headerValue?.toTfJson(),
     'operator': operator.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const append = CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator._(
+    TfArgLiteral('Append'),
+  );
+  static const delete = CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator._(
+    TfArgLiteral('Delete'),
+  );
+  static const overwrite =
+      CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator._(
+        TfArgLiteral('Overwrite'),
+      );
+
+  static const List<CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator>
+  values = [append, delete, overwrite];
 }
 
 /// Typed helper for the `rule.actions.modify_response_header` block of
@@ -140,7 +168,7 @@ final class CdnFrontdoorBatchRuleSetModifyResponseHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -182,7 +210,7 @@ final class CdnFrontdoorBatchRuleSetCaching {
     this.queryStringParameters,
   });
 
-  final TfArg<String> behaviour;
+  final CdnFrontdoorBatchRuleSetBehaviour behaviour;
 
   final TfArg<bool>? compressionEnabled;
 
@@ -200,6 +228,36 @@ final class CdnFrontdoorBatchRuleSetCaching {
     'query_string_behaviour': ?queryStringBehaviour?.toTfJson(),
     'query_string_parameters': ?queryStringParameters?.toTfJson(),
   };
+}
+
+/// `behaviour` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetBehaviour._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetBehaviour.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetBehaviour.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetBehaviour.arg(TfArg<String> arg) : this._(arg);
+
+  static const honororigin = CdnFrontdoorBatchRuleSetBehaviour._(
+    TfArgLiteral('HonorOrigin'),
+  );
+  static const overridealways = CdnFrontdoorBatchRuleSetBehaviour._(
+    TfArgLiteral('OverrideAlways'),
+  );
+  static const overrideiforiginmissing = CdnFrontdoorBatchRuleSetBehaviour._(
+    TfArgLiteral('OverrideIfOriginMissing'),
+  );
+  static const disabled = CdnFrontdoorBatchRuleSetBehaviour._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetBehaviour> values = [
+    honororigin,
+    overridealways,
+    overrideiforiginmissing,
+    disabled,
+  ];
 }
 
 /// `query_string_behaviour` — derived from the provider schema description.
@@ -522,7 +580,7 @@ final class CdnFrontdoorBatchRuleSetClientPort {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
   final TfArg<List<String>>? values;
 
@@ -531,6 +589,105 @@ final class CdnFrontdoorBatchRuleSetClientPort {
     'operator': operator.toTfJson(),
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetClientPortOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetClientPortOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetClientPortOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetClientPortOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const any = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('Any'),
+  );
+  static const notany = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotAny'),
+  );
+  static const beginswith = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('BeginsWith'),
+  );
+  static const notbeginswith = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotBeginsWith'),
+  );
+  static const contains = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const notcontains = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotContains'),
+  );
+  static const endswith = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+  static const notendswith = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotEndsWith'),
+  );
+  static const equal = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('Equal'),
+  );
+  static const notequal = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotEqual'),
+  );
+  static const greaterthan = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const notgreaterthan = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotGreaterThan'),
+  );
+  static const greaterthanorequal =
+      CdnFrontdoorBatchRuleSetClientPortOperator._(
+        TfArgLiteral('GreaterThanOrEqual'),
+      );
+  static const notgreaterthanorequal =
+      CdnFrontdoorBatchRuleSetClientPortOperator._(
+        TfArgLiteral('NotGreaterThanOrEqual'),
+      );
+  static const lessthan = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const notlessthan = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotLessThan'),
+  );
+  static const lessthanorequal = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('LessThanOrEqual'),
+  );
+  static const notlessthanorequal =
+      CdnFrontdoorBatchRuleSetClientPortOperator._(
+        TfArgLiteral('NotLessThanOrEqual'),
+      );
+  static const regex = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('RegEx'),
+  );
+  static const notregex = CdnFrontdoorBatchRuleSetClientPortOperator._(
+    TfArgLiteral('NotRegEx'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetClientPortOperator> values = [
+    any,
+    notany,
+    beginswith,
+    notbeginswith,
+    contains,
+    notcontains,
+    endswith,
+    notendswith,
+    equal,
+    notequal,
+    greaterthan,
+    notgreaterthan,
+    greaterthanorequal,
+    notgreaterthanorequal,
+    lessthan,
+    notlessthan,
+    lessthanorequal,
+    notlessthanorequal,
+    regex,
+    notregex,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.device_type` block of
@@ -542,15 +699,39 @@ final class CdnFrontdoorBatchRuleSetDeviceType {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorBatchRuleSetDeviceTypeValues> values;
+  final EnumList<CdnFrontdoorBatchRuleSetDeviceTypeValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetDeviceTypeOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetDeviceTypeOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetDeviceTypeOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetDeviceTypeOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equal = CdnFrontdoorBatchRuleSetDeviceTypeOperator._(
+    TfArgLiteral('Equal'),
+  );
+  static const notequal = CdnFrontdoorBatchRuleSetDeviceTypeOperator._(
+    TfArgLiteral('NotEqual'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetDeviceTypeOperator> values = [
+    equal,
+    notequal,
+  ];
 }
 
 /// `values` — derived from the provider schema description.
@@ -586,9 +767,9 @@ final class CdnFrontdoorBatchRuleSetHostName {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -600,6 +781,44 @@ final class CdnFrontdoorBatchRuleSetHostName {
   };
 }
 
+/// `transforms` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetTransforms._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetTransforms.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetTransforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetTransforms.arg(TfArg<String> arg) : this._(arg);
+
+  static const lowercase = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Lowercase'),
+  );
+  static const removenulls = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('RemoveNulls'),
+  );
+  static const trim = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Trim'),
+  );
+  static const urldecode = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('UrlDecode'),
+  );
+  static const urlencode = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('UrlEncode'),
+  );
+  static const uppercase = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Uppercase'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetTransforms> values = [
+    lowercase,
+    removenulls,
+    trim,
+    urldecode,
+    urlencode,
+    uppercase,
+  ];
+}
+
 /// Typed helper for the `rule.conditions.http_version` block of
 /// `azurerm_cdn_frontdoor_batch_rule_set` (derived from provider schema).
 @immutable
@@ -609,15 +828,47 @@ final class CdnFrontdoorBatchRuleSetHttpVersion {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetDeviceTypeOperator operator;
 
-  final TfArg<List<String>> values;
+  final EnumList<CdnFrontdoorBatchRuleSetHttpVersionValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetHttpVersionValues._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetHttpVersionValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetHttpVersionValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetHttpVersionValues.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v2p0 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('2.0'),
+  );
+  static const v1p1 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p0 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('1.0'),
+  );
+  static const v0p9 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('0.9'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetHttpVersionValues> values = [
+    v2p0,
+    v1p1,
+    v1p0,
+    v0p9,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.post_argument` block of
@@ -633,9 +884,9 @@ final class CdnFrontdoorBatchRuleSetPostArgument {
 
   final TfArg<String> name;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -658,9 +909,9 @@ final class CdnFrontdoorBatchRuleSetQueryString {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -681,7 +932,7 @@ final class CdnFrontdoorBatchRuleSetRemoteAddress {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetRemoteAddressOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -690,6 +941,38 @@ final class CdnFrontdoorBatchRuleSetRemoteAddress {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetRemoteAddressOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetRemoteAddressOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetRemoteAddressOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const geomatch = CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
+    TfArgLiteral('GeoMatch'),
+  );
+  static const notgeomatch = CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
+    TfArgLiteral('NotGeoMatch'),
+  );
+  static const ipmatch = CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const notipmatch = CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
+    TfArgLiteral('NotIPMatch'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetRemoteAddressOperator> values = [
+    geomatch,
+    notgeomatch,
+    ipmatch,
+    notipmatch,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.request_body` block of
@@ -702,9 +985,9 @@ final class CdnFrontdoorBatchRuleSetRequestBody {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -729,9 +1012,9 @@ final class CdnFrontdoorBatchRuleSetRequestCookies {
 
   final TfArg<String> name;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -754,9 +1037,9 @@ final class CdnFrontdoorBatchRuleSetRequestFileExtension {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -778,9 +1061,9 @@ final class CdnFrontdoorBatchRuleSetRequestFilename {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -805,9 +1088,9 @@ final class CdnFrontdoorBatchRuleSetRequestHeader {
 
   final TfArg<String> name;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -829,14 +1112,14 @@ final class CdnFrontdoorBatchRuleSetRequestMethod {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorBatchRuleSetRequestMethodValues> values;
+  final EnumList<CdnFrontdoorBatchRuleSetRequestMethodValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -894,9 +1177,9 @@ final class CdnFrontdoorBatchRuleSetRequestPath {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetRequestPathOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -908,6 +1191,113 @@ final class CdnFrontdoorBatchRuleSetRequestPath {
   };
 }
 
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetRequestPathOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetRequestPathOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetRequestPathOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetRequestPathOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const any = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('Any'),
+  );
+  static const notany = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotAny'),
+  );
+  static const beginswith = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('BeginsWith'),
+  );
+  static const notbeginswith = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotBeginsWith'),
+  );
+  static const contains = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const notcontains = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotContains'),
+  );
+  static const endswith = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+  static const notendswith = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotEndsWith'),
+  );
+  static const equal = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('Equal'),
+  );
+  static const notequal = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotEqual'),
+  );
+  static const greaterthan = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const notgreaterthan = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotGreaterThan'),
+  );
+  static const greaterthanorequal =
+      CdnFrontdoorBatchRuleSetRequestPathOperator._(
+        TfArgLiteral('GreaterThanOrEqual'),
+      );
+  static const notgreaterthanorequal =
+      CdnFrontdoorBatchRuleSetRequestPathOperator._(
+        TfArgLiteral('NotGreaterThanOrEqual'),
+      );
+  static const lessthan = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const notlessthan = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotLessThan'),
+  );
+  static const lessthanorequal = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('LessThanOrEqual'),
+  );
+  static const notlessthanorequal =
+      CdnFrontdoorBatchRuleSetRequestPathOperator._(
+        TfArgLiteral('NotLessThanOrEqual'),
+      );
+  static const regex = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('RegEx'),
+  );
+  static const notregex = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotRegEx'),
+  );
+  static const wildcard = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('Wildcard'),
+  );
+  static const notwildcard = CdnFrontdoorBatchRuleSetRequestPathOperator._(
+    TfArgLiteral('NotWildcard'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetRequestPathOperator> values = [
+    any,
+    notany,
+    beginswith,
+    notbeginswith,
+    contains,
+    notcontains,
+    endswith,
+    notendswith,
+    equal,
+    notequal,
+    greaterthan,
+    notgreaterthan,
+    greaterthanorequal,
+    notgreaterthanorequal,
+    lessthan,
+    notlessthan,
+    lessthanorequal,
+    notlessthanorequal,
+    regex,
+    notregex,
+    wildcard,
+    notwildcard,
+  ];
+}
+
 /// Typed helper for the `rule.conditions.request_scheme` block of
 /// `azurerm_cdn_frontdoor_batch_rule_set` (derived from provider schema).
 @immutable
@@ -917,14 +1307,14 @@ final class CdnFrontdoorBatchRuleSetRequestScheme {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorBatchRuleSetRequestSchemeValues> values;
+  final EnumList<CdnFrontdoorBatchRuleSetRequestSchemeValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -962,9 +1352,9 @@ final class CdnFrontdoorBatchRuleSetRequestUrl {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? transforms;
+  final EnumList<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -985,15 +1375,38 @@ final class CdnFrontdoorBatchRuleSetServerPort {
     this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetClientPortOperator operator;
 
-  final TfArg<List<String>>? values;
+  final EnumList<CdnFrontdoorBatchRuleSetServerPortValues>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetServerPortValues._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetServerPortValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetServerPortValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetServerPortValues.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v80 = CdnFrontdoorBatchRuleSetServerPortValues._(
+    TfArgLiteral('80'),
+  );
+  static const v443 = CdnFrontdoorBatchRuleSetServerPortValues._(
+    TfArgLiteral('443'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetServerPortValues> values = [
+    v80,
+    v443,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.socket_address` block of
@@ -1005,7 +1418,7 @@ final class CdnFrontdoorBatchRuleSetSocketAddress {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetSocketAddressOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -1014,6 +1427,30 @@ final class CdnFrontdoorBatchRuleSetSocketAddress {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetSocketAddressOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetSocketAddressOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetSocketAddressOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetSocketAddressOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipmatch = CdnFrontdoorBatchRuleSetSocketAddressOperator._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const notipmatch = CdnFrontdoorBatchRuleSetSocketAddressOperator._(
+    TfArgLiteral('NotIPMatch'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetSocketAddressOperator> values = [
+    ipmatch,
+    notipmatch,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.ssl_protocol` block of
@@ -1025,14 +1462,14 @@ final class CdnFrontdoorBatchRuleSetSslProtocol {
     required this.values,
   });
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorBatchRuleSetSslProtocolValues> values;
+  final EnumList<CdnFrontdoorBatchRuleSetSslProtocolValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 

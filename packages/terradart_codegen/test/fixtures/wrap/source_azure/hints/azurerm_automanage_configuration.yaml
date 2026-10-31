@@ -19,8 +19,30 @@ properties:
           - "DeployAndAutoCorrect"
   - api_name: backup
     properties:
+      - api_name: retention_policy
+        properties:
+          - api_name: daily_schedule
+            properties:
+              - api_name: retention_duration
+                properties:
+                  - api_name: duration_type
+                    enum_values:
+                      - "Days"
+          - api_name: retention_policy_type
+            enum_values:
+              - "LongTermRetentionPolicy"
+          - api_name: weekly_schedule
+            properties:
+              - api_name: retention_duration
+                properties:
+                  - api_name: duration_type
+                    enum_values:
+                      - "Weeks"
       - api_name: schedule_policy
         properties:
+          - api_name: schedule_policy_type
+            enum_values:
+              - "SimpleSchedulePolicy"
           - api_name: schedule_run_days
             enum_values:
               - "Sunday"

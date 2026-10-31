@@ -3,6 +3,7 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
 
 curatedDoc: |-
@@ -130,8 +131,9 @@ prelude: |
     static const virtioNet = InstanceTemplateNicType._(TfArgLiteral('VIRTIO_NET'));
     static const mrdma = InstanceTemplateNicType._(TfArgLiteral('MRDMA'));
     static const irdma = InstanceTemplateNicType._(TfArgLiteral('IRDMA'));
+    static const idpf = InstanceTemplateNicType._(TfArgLiteral('IDPF'));
 
-    static const List<InstanceTemplateNicType> values = [gvnic, virtioNet, mrdma, irdma];
+    static const List<InstanceTemplateNicType> values = [gvnic, virtioNet, mrdma, irdma, idpf];
   }
 
   /// `network_interface.access_config.network_tier` -- service tier for the
@@ -172,8 +174,10 @@ prelude: |
 
     static const standard = InstanceTemplateProvisioningModel._(TfArgLiteral('STANDARD'));
     static const spot = InstanceTemplateProvisioningModel._(TfArgLiteral('SPOT'));
+    static const flexStart = InstanceTemplateProvisioningModel._(TfArgLiteral('FLEX_START'));
+    static const reservationBound = InstanceTemplateProvisioningModel._(TfArgLiteral('RESERVATION_BOUND'));
 
-    static const List<InstanceTemplateProvisioningModel> values = [standard, spot];
+    static const List<InstanceTemplateProvisioningModel> values = [standard, spot, flexStart, reservationBound];
   }
 
   /// `scheduling.instance_termination_action` -- action when a SPOT VM is
@@ -200,8 +204,10 @@ prelude: |
     static const sev = InstanceTemplateConfidentialInstanceType._(TfArgLiteral('SEV'));
     static const sevSnp = InstanceTemplateConfidentialInstanceType._(TfArgLiteral('SEV_SNP'));
     static const tdx = InstanceTemplateConfidentialInstanceType._(TfArgLiteral('TDX'));
+    static const bmsai = InstanceTemplateConfidentialInstanceType._(TfArgLiteral('BMSAI'));
+    static const cca = InstanceTemplateConfidentialInstanceType._(TfArgLiteral('CCA'));
 
-    static const List<InstanceTemplateConfidentialInstanceType> values = [sev, sevSnp, tdx];
+    static const List<InstanceTemplateConfidentialInstanceType> values = [sev, sevSnp, tdx, bmsai, cca];
   }
 
   /// `advanced_machine_features.performance_monitoring_unit` -- PMU level

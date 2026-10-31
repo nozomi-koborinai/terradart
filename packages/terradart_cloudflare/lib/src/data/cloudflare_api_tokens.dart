@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_tokens`.
 const Set<String> _cloudflareApiTokensSensitive = <String>{};
 
+/// Data Api Tokens enum for `direction`.
+extension type const DataApiTokensDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiTokensDirection.variable(String name) : this._(TfArg.variable(name));
+  DataApiTokensDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiTokensDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataApiTokensDirection._(TfArgLiteral('asc'));
+  static const desc = DataApiTokensDirection._(TfArgLiteral('desc'));
+
+  static const List<DataApiTokensDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_api_tokens`.
 ///
 /// Accepted Permissions
@@ -16,7 +30,7 @@ final class DataCloudflareApiTokens extends Data {
 
   DataCloudflareApiTokens(
     super.localName, {
-    TfArg<String>? direction,
+    DataApiTokensDirection? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
     super.provider,

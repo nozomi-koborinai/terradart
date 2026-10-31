@@ -9,6 +9,11 @@ properties:
         enum_values:
           - "Private"
           - "Public"
+  - api_name: identity
+    properties:
+      - api_name: type
+        enum_values:
+          - "UserAssigned"
   - api_name: ingress_profile
     properties:
       - api_name: visibility

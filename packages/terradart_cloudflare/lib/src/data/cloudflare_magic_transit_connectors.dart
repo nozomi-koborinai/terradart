@@ -7,6 +7,29 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_magic_transit_connectors`.
 const Set<String> _cloudflareMagicTransitConnectorsSensitive = <String>{};
 
+/// Data Magic Transit Connectors Device enum for `device_type`.
+extension type const DataMagicTransitConnectorsDeviceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataMagicTransitConnectorsDeviceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataMagicTransitConnectorsDeviceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataMagicTransitConnectorsDeviceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const managed = DataMagicTransitConnectorsDeviceType._(
+    TfArgLiteral('MANAGED'),
+  );
+  static const licensed = DataMagicTransitConnectorsDeviceType._(
+    TfArgLiteral('LICENSED'),
+  );
+
+  static const List<DataMagicTransitConnectorsDeviceType> values = [
+    managed,
+    licensed,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_magic_transit_connectors`.
 ///
 /// Accepted Permissions
@@ -18,7 +41,7 @@ final class DataCloudflareMagicTransitConnectors extends Data {
   DataCloudflareMagicTransitConnectors(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? deviceType,
+    DataMagicTransitConnectorsDeviceType? deviceType,
     TfArg<num>? maxItems,
     super.provider,
     super.timeouts,

@@ -83,6 +83,64 @@ extension type const MssqlManagedInstanceLicenseType._(TfArg<String> _)
   ];
 }
 
+/// Mssql Managed Instance Minimum Tls enum for `minimum_tls_version`.
+extension type const MssqlManagedInstanceMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlManagedInstanceMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlManagedInstanceMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlManagedInstanceMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p2 = MssqlManagedInstanceMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+
+  static const List<MssqlManagedInstanceMinimumTlsVersion> values = [v1p2];
+}
+
+/// Mssql Managed Instance Proxy enum for `proxy_override`.
+extension type const MssqlManagedInstanceProxyOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlManagedInstanceProxyOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlManagedInstanceProxyOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlManagedInstanceProxyOverride.arg(TfArg<String> arg) : this._(arg);
+
+  static const redirect = MssqlManagedInstanceProxyOverride._(
+    TfArgLiteral('Redirect'),
+  );
+  static const proxy = MssqlManagedInstanceProxyOverride._(
+    TfArgLiteral('Proxy'),
+  );
+
+  static const List<MssqlManagedInstanceProxyOverride> values = [
+    redirect,
+    proxy,
+  ];
+}
+
+/// Mssql Managed Instance Service Principal enum for `service_principal_type`.
+extension type const MssqlManagedInstanceServicePrincipalType._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlManagedInstanceServicePrincipalType.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlManagedInstanceServicePrincipalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlManagedInstanceServicePrincipalType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const systemassigned = MssqlManagedInstanceServicePrincipalType._(
+    TfArgLiteral('SystemAssigned'),
+  );
+
+  static const List<MssqlManagedInstanceServicePrincipalType> values = [
+    systemassigned,
+  ];
+}
+
 /// Mssql Managed Instance Sku enum for `sku_name`.
 extension type const MssqlManagedInstanceSkuName._(TfArg<String> _)
     implements TfArg<String> {
@@ -118,6 +176,37 @@ extension type const MssqlManagedInstanceSkuName._(TfArg<String> _)
     gpGen5,
     gpGen8ih,
     gpGen8im,
+  ];
+}
+
+/// Mssql Managed Instance Storage Account enum for `storage_account_type`.
+extension type const MssqlManagedInstanceStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlManagedInstanceStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlManagedInstanceStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlManagedInstanceStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const grs = MssqlManagedInstanceStorageAccountType._(
+    TfArgLiteral('GRS'),
+  );
+  static const lrs = MssqlManagedInstanceStorageAccountType._(
+    TfArgLiteral('LRS'),
+  );
+  static const zrs = MssqlManagedInstanceStorageAccountType._(
+    TfArgLiteral('ZRS'),
+  );
+  static const gzrs = MssqlManagedInstanceStorageAccountType._(
+    TfArgLiteral('GZRS'),
+  );
+
+  static const List<MssqlManagedInstanceStorageAccountType> values = [
+    grs,
+    lrs,
+    zrs,
+    gzrs,
   ];
 }
 
@@ -211,14 +300,14 @@ final class AzurermMssqlManagedInstance extends Resource {
     required MssqlManagedInstanceLicenseType licenseType,
     required TfArg<String> location,
     TfArg<String>? maintenanceConfigurationName,
-    TfArg<String>? minimumTlsVersion,
+    MssqlManagedInstanceMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
-    TfArg<String>? proxyOverride,
+    MssqlManagedInstanceProxyOverride? proxyOverride,
     TfArg<bool>? publicDataEndpointEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? servicePrincipalType,
+    MssqlManagedInstanceServicePrincipalType? servicePrincipalType,
     required MssqlManagedInstanceSkuName skuName,
-    TfArg<String>? storageAccountType,
+    MssqlManagedInstanceStorageAccountType? storageAccountType,
     TfArg<num>? storageIops,
     required TfArg<num> storageSizeInGb,
     required RefTo<AzurermSubnet> subnetId,

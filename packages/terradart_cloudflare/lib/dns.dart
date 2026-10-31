@@ -24,8 +24,13 @@ export 'src/data/cloudflare_dns_records.dart'
         DataCloudflareDnsRecords,
         DataDnsRecordsComment,
         DataDnsRecordsContent,
+        DataDnsRecordsDirection,
+        DataDnsRecordsMatch,
         DataDnsRecordsName,
-        DataDnsRecordsTag;
+        DataDnsRecordsOrder,
+        DataDnsRecordsTag,
+        DataDnsRecordsTagMatch,
+        DataDnsRecordsType;
 export 'src/data/cloudflare_dns_zone_transfers_acl.dart'
     show DataCloudflareDnsZoneTransfersAcl;
 export 'src/data/cloudflare_dns_zone_transfers_acls.dart'

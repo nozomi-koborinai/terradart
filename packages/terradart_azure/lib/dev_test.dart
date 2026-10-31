@@ -17,9 +17,10 @@ export 'src/dev_test/azurerm_dev_test_linux_virtual_machine.dart'
         AzurermDevTestLinuxVirtualMachine,
         DevTestLinuxVirtualMachineGalleryImageReference,
         DevTestLinuxVirtualMachineInboundNatRule,
+        DevTestLinuxVirtualMachineProtocol,
         DevTestLinuxVirtualMachineStorageType;
 export 'src/dev_test/azurerm_dev_test_policy.dart'
-    show AzurermDevTestPolicy, DevTestPolicyEvaluatorType;
+    show AzurermDevTestPolicy, DevTestPolicyEvaluatorType, DevTestPolicyName;
 export 'src/dev_test/azurerm_dev_test_schedule.dart'
     show
         AzurermDevTestSchedule,
@@ -42,4 +43,5 @@ export 'src/dev_test/azurerm_dev_test_windows_virtual_machine.dart'
         AzurermDevTestWindowsVirtualMachine,
         DevTestWindowsVirtualMachineGalleryImageReference,
         DevTestWindowsVirtualMachineInboundNatRule,
+        DevTestWindowsVirtualMachineProtocol,
         DevTestWindowsVirtualMachineStorageType;

@@ -37,6 +37,7 @@ curatedDoc: |-
   /// ```
 
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
 
 paramOrder:
@@ -90,8 +91,10 @@ prelude: |
     static const privateServiceConnect = SubnetworkPurpose._(TfArgLiteral('PRIVATE_SERVICE_CONNECT'));
     static const peerMigration = SubnetworkPurpose._(TfArgLiteral('PEER_MIGRATION'));
     static const privateNat = SubnetworkPurpose._(TfArgLiteral('PRIVATE_NAT'));
+    static const internalHttpsLoadBalancer = SubnetworkPurpose._(TfArgLiteral('INTERNAL_HTTPS_LOAD_BALANCER'));
+    static const privateRfc1918 = SubnetworkPurpose._(TfArgLiteral('PRIVATE_RFC_1918'));
 
-    static const List<SubnetworkPurpose> values = [private, regionalManagedProxy, globalManagedProxy, privateServiceConnect, peerMigration, privateNat];
+    static const List<SubnetworkPurpose> values = [private, regionalManagedProxy, globalManagedProxy, privateServiceConnect, peerMigration, privateNat, internalHttpsLoadBalancer, privateRfc1918];
   }
 
   /// Role of a managed-proxy subnetwork. Only meaningful when `purpose` is

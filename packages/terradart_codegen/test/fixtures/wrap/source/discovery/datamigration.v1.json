@@ -1,0 +1,377 @@
+{
+  "name": "datamigration",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://datamigration.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AlloyDbConnectionProfile": {
+      "properties": {
+        "settings": {
+          "$ref": "AlloyDbSettings"
+        }
+      }
+    },
+    "AlloyDbSettings": {
+      "properties": {
+        "databaseVersion": {
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "POSTGRES_18",
+            "POSTGRES_19"
+          ]
+        }
+      }
+    },
+    "CloudSqlConnectionProfile": {
+      "properties": {
+        "settings": {
+          "$ref": "CloudSqlSettings"
+        }
+      }
+    },
+    "CloudSqlSettings": {
+      "properties": {
+        "availabilityType": {
+          "enum": [
+            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "databaseVersion": {
+          "enum": [
+            "SQL_DATABASE_VERSION_UNSPECIFIED",
+            "MYSQL_5_6",
+            "MYSQL_5_7",
+            "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
+            "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
+            "MYSQL_8_0_32",
+            "MYSQL_8_0_33",
+            "MYSQL_8_0_34",
+            "MYSQL_8_0_35",
+            "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_4",
+            "POSTGRES_9_6",
+            "POSTGRES_11",
+            "POSTGRES_10",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16"
+          ]
+        },
+        "dataDiskType": {
+          "enum": [
+            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+            "PD_SSD",
+            "PD_HDD",
+            "HYPERDISK_BALANCED"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
+        "activationPolicy": {
+          "enum": [
+            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ]
+        }
+      }
+    },
+    "ConnectionProfile": {
+      "properties": {
+        "cloudsql": {
+          "$ref": "CloudSqlConnectionProfile"
+        },
+        "provider": {
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ]
+        },
+        "mysql": {
+          "$ref": "MySqlConnectionProfile"
+        },
+        "alloydb": {
+          "$ref": "AlloyDbConnectionProfile"
+        },
+        "sqlserver": {
+          "$ref": "SqlServerConnectionProfile"
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlConnectionProfile"
+        },
+        "role": {
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "SOURCE",
+            "DESTINATION"
+          ]
+        },
+        "oracle": {
+          "$ref": "OracleConnectionProfile"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "DELETED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "DatabaseType": {
+      "properties": {
+        "provider": {
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ]
+        },
+        "engine": {
+          "enum": [
+            "DATABASE_ENGINE_UNSPECIFIED",
+            "MYSQL",
+            "POSTGRESQL",
+            "SQLSERVER",
+            "ORACLE"
+          ]
+        }
+      }
+    },
+    "MigrationJob": {
+      "properties": {
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "MIGRATE",
+            "FAILBACK"
+          ]
+        },
+        "sourceDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "objectsConfig": {
+          "$ref": "MigrationJobObjectsConfig"
+        },
+        "destinationDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "MAINTENANCE",
+            "DRAFT",
+            "CREATING",
+            "NOT_STARTED",
+            "RUNNING",
+            "FAILED",
+            "COMPLETED",
+            "DELETING",
+            "STOPPING",
+            "STOPPED",
+            "DELETED",
+            "UPDATING",
+            "STARTING",
+            "RESTARTING",
+            "RESUMING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ONE_TIME",
+            "CONTINUOUS"
+          ]
+        },
+        "dumpType": {
+          "enum": [
+            "DUMP_TYPE_UNSPECIFIED",
+            "LOGICAL",
+            "PHYSICAL"
+          ]
+        },
+        "performanceConfig": {
+          "$ref": "PerformanceConfig"
+        },
+        "phase": {
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "FULL_DUMP",
+            "CDC",
+            "PROMOTE_IN_PROGRESS",
+            "WAITING_FOR_SOURCE_WRITES_TO_STOP",
+            "PREPARING_THE_DUMP",
+            "READY_FOR_PROMOTE",
+            "PHASE_FAILBACK"
+          ]
+        }
+      }
+    },
+    "MigrationJobObjectsConfig": {
+      "properties": {
+        "sourceObjectsConfig": {
+          "$ref": "SourceObjectsConfig"
+        }
+      }
+    },
+    "MySqlConnectionProfile": {
+      "properties": {
+        "ssl": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "OracleAsmConfig": {
+      "properties": {
+        "ssl": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "OracleConnectionProfile": {
+      "properties": {
+        "oracleAsmConfig": {
+          "$ref": "OracleAsmConfig"
+        },
+        "ssl": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "PerformanceConfig": {
+      "properties": {
+        "loadParallelLevel": {
+          "enum": [
+            "LOAD_PARALLEL_LEVEL_UNSPECIFIED",
+            "LOAD_MIN",
+            "LOAD_OPTIMAL",
+            "LOAD_MAX"
+          ]
+        },
+        "dumpParallelLevel": {
+          "enum": [
+            "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
+            "MIN",
+            "OPTIMAL",
+            "MAX"
+          ]
+        }
+      }
+    },
+    "PostgreSqlConnectionProfile": {
+      "properties": {
+        "networkArchitecture": {
+          "enum": [
+            "NETWORK_ARCHITECTURE_UNSPECIFIED",
+            "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
+            "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER"
+          ]
+        },
+        "ssl": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "PrivateConnection": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "CREATED",
+            "FAILED",
+            "DELETING",
+            "FAILED_TO_DELETE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "SourceObjectConfig": {
+      "properties": {
+        "objectIdentifier": {
+          "$ref": "SourceObjectIdentifier"
+        }
+      }
+    },
+    "SourceObjectIdentifier": {
+      "properties": {
+        "type": {
+          "enum": [
+            "MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED",
+            "DATABASE",
+            "SCHEMA",
+            "TABLE"
+          ]
+        }
+      }
+    },
+    "SourceObjectsConfig": {
+      "properties": {
+        "objectConfigs": {
+          "items": {
+            "$ref": "SourceObjectConfig"
+          }
+        },
+        "objectsSelectionType": {
+          "enum": [
+            "OBJECTS_SELECTION_TYPE_UNSPECIFIED",
+            "ALL_OBJECTS",
+            "SPECIFIED_OBJECTS"
+          ]
+        }
+      }
+    },
+    "SqlServerConnectionProfile": {
+      "properties": {
+        "ssl": {
+          "$ref": "SslConfig"
+        }
+      }
+    },
+    "SslConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "SERVER_ONLY",
+            "SERVER_CLIENT",
+            "REQUIRED",
+            "NONE"
+          ]
+        }
+      }
+    }
+  }
+}

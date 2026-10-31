@@ -10,6 +10,50 @@ const Set<String> _azurermAppServiceConnectionSensitive = <String>{
   'authentication.secret',
 };
 
+/// App Service Connection Client enum for `client_type`.
+extension type const AppServiceConnectionClientType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppServiceConnectionClientType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceConnectionClientType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceConnectionClientType.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = AppServiceConnectionClientType._(TfArgLiteral('none'));
+  static const dotnet = AppServiceConnectionClientType._(
+    TfArgLiteral('dotnet'),
+  );
+  static const java = AppServiceConnectionClientType._(TfArgLiteral('java'));
+  static const python = AppServiceConnectionClientType._(
+    TfArgLiteral('python'),
+  );
+  static const go = AppServiceConnectionClientType._(TfArgLiteral('go'));
+  static const php = AppServiceConnectionClientType._(TfArgLiteral('php'));
+  static const ruby = AppServiceConnectionClientType._(TfArgLiteral('ruby'));
+  static const django = AppServiceConnectionClientType._(
+    TfArgLiteral('django'),
+  );
+  static const nodejs = AppServiceConnectionClientType._(
+    TfArgLiteral('nodejs'),
+  );
+  static const springboot = AppServiceConnectionClientType._(
+    TfArgLiteral('springBoot'),
+  );
+
+  static const List<AppServiceConnectionClientType> values = [
+    none,
+    dotnet,
+    java,
+    python,
+    go,
+    php,
+    ruby,
+    django,
+    nodejs,
+    springboot,
+  ];
+}
+
 /// App Service Connection Vnet enum for `vnet_solution`.
 extension type const AppServiceConnectionVnetSolution._(TfArg<String> _)
     implements TfArg<String> {
@@ -58,7 +102,7 @@ final class AppServiceConnectionAuthentication {
 
   final TfArg<String>? subscriptionId;
 
-  final TfArg<String> type;
+  final AppServiceConnectionType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -70,6 +114,37 @@ final class AppServiceConnectionAuthentication {
     'subscription_id': ?subscriptionId?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const AppServiceConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppServiceConnectionType.variable(String name) : this._(TfArg.variable(name));
+  AppServiceConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceConnectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const secret = AppServiceConnectionType._(TfArgLiteral('secret'));
+  static const serviceprincipalsecret = AppServiceConnectionType._(
+    TfArgLiteral('servicePrincipalSecret'),
+  );
+  static const serviceprincipalcertificate = AppServiceConnectionType._(
+    TfArgLiteral('servicePrincipalCertificate'),
+  );
+  static const systemassignedidentity = AppServiceConnectionType._(
+    TfArgLiteral('systemAssignedIdentity'),
+  );
+  static const userassignedidentity = AppServiceConnectionType._(
+    TfArgLiteral('userAssignedIdentity'),
+  );
+
+  static const List<AppServiceConnectionType> values = [
+    secret,
+    serviceprincipalsecret,
+    serviceprincipalcertificate,
+    systemassignedidentity,
+    userassignedidentity,
+  ];
 }
 
 /// Typed helper for the `secret_store` block of
@@ -91,7 +166,7 @@ final class AzurermAppServiceConnection extends Resource {
   AzurermAppServiceConnection(
     super.localName, {
     required TfArg<String> appServiceId,
-    TfArg<String>? clientType,
+    AppServiceConnectionClientType? clientType,
     required TfArg<String> name,
     required TfArg<String> targetResourceId,
     AppServiceConnectionVnetSolution? vnetSolution,

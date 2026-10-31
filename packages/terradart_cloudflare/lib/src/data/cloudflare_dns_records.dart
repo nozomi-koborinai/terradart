@@ -8,6 +8,126 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_dns_records`.
 const Set<String> _cloudflareDnsRecordsSensitive = <String>{};
 
+/// Data Dns Records enum for `direction`.
+extension type const DataDnsRecordsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordsDirection.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataDnsRecordsDirection._(TfArgLiteral('asc'));
+  static const desc = DataDnsRecordsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataDnsRecordsDirection> values = [asc, desc];
+}
+
+/// Data Dns Records enum for `match`.
+extension type const DataDnsRecordsMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordsMatch.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordsMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordsMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = DataDnsRecordsMatch._(TfArgLiteral('any'));
+  static const all = DataDnsRecordsMatch._(TfArgLiteral('all'));
+
+  static const List<DataDnsRecordsMatch> values = [any, all];
+}
+
+/// Data Dns Records enum for `order`.
+extension type const DataDnsRecordsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordsOrder.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const type = DataDnsRecordsOrder._(TfArgLiteral('type'));
+  static const name = DataDnsRecordsOrder._(TfArgLiteral('name'));
+  static const content = DataDnsRecordsOrder._(TfArgLiteral('content'));
+  static const ttl = DataDnsRecordsOrder._(TfArgLiteral('ttl'));
+  static const proxied = DataDnsRecordsOrder._(TfArgLiteral('proxied'));
+
+  static const List<DataDnsRecordsOrder> values = [
+    type,
+    name,
+    content,
+    ttl,
+    proxied,
+  ];
+}
+
+/// Data Dns Records Tag enum for `tag_match`.
+extension type const DataDnsRecordsTagMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordsTagMatch.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordsTagMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordsTagMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = DataDnsRecordsTagMatch._(TfArgLiteral('any'));
+  static const all = DataDnsRecordsTagMatch._(TfArgLiteral('all'));
+
+  static const List<DataDnsRecordsTagMatch> values = [any, all];
+}
+
+/// Data Dns Records enum for `type`.
+extension type const DataDnsRecordsType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordsType.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const a = DataDnsRecordsType._(TfArgLiteral('A'));
+  static const aaaa = DataDnsRecordsType._(TfArgLiteral('AAAA'));
+  static const caa = DataDnsRecordsType._(TfArgLiteral('CAA'));
+  static const cert = DataDnsRecordsType._(TfArgLiteral('CERT'));
+  static const cname = DataDnsRecordsType._(TfArgLiteral('CNAME'));
+  static const dnskey = DataDnsRecordsType._(TfArgLiteral('DNSKEY'));
+  static const ds = DataDnsRecordsType._(TfArgLiteral('DS'));
+  static const https = DataDnsRecordsType._(TfArgLiteral('HTTPS'));
+  static const loc = DataDnsRecordsType._(TfArgLiteral('LOC'));
+  static const mx = DataDnsRecordsType._(TfArgLiteral('MX'));
+  static const naptr = DataDnsRecordsType._(TfArgLiteral('NAPTR'));
+  static const ns = DataDnsRecordsType._(TfArgLiteral('NS'));
+  static const openpgpkey = DataDnsRecordsType._(TfArgLiteral('OPENPGPKEY'));
+  static const ptr = DataDnsRecordsType._(TfArgLiteral('PTR'));
+  static const smimea = DataDnsRecordsType._(TfArgLiteral('SMIMEA'));
+  static const srv = DataDnsRecordsType._(TfArgLiteral('SRV'));
+  static const sshfp = DataDnsRecordsType._(TfArgLiteral('SSHFP'));
+  static const svcb = DataDnsRecordsType._(TfArgLiteral('SVCB'));
+  static const tlsa = DataDnsRecordsType._(TfArgLiteral('TLSA'));
+  static const txt = DataDnsRecordsType._(TfArgLiteral('TXT'));
+  static const uri = DataDnsRecordsType._(TfArgLiteral('URI'));
+
+  static const List<DataDnsRecordsType> values = [
+    a,
+    aaaa,
+    caa,
+    cert,
+    cname,
+    dnskey,
+    ds,
+    https,
+    loc,
+    mx,
+    naptr,
+    ns,
+    openpgpkey,
+    ptr,
+    smimea,
+    srv,
+    sshfp,
+    svcb,
+    tlsa,
+    txt,
+    uri,
+  ];
+}
+
 /// Typed helper for the `comment` block of
 /// `cloudflare_dns_records` (derived from provider schema).
 @immutable
@@ -146,17 +266,17 @@ final class DataCloudflareDnsRecords extends Data {
 
   DataCloudflareDnsRecords(
     super.localName, {
-    TfArg<String>? direction,
+    DataDnsRecordsDirection? direction,
     TfArg<bool>? includeShadowMetadata,
-    TfArg<String>? match,
+    DataDnsRecordsMatch? match,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataDnsRecordsOrder? order,
     TfArg<bool>? proxied,
     TfArg<String>? search,
     TfArg<String>? shadowedByName,
     TfArg<String>? shadowingName,
-    TfArg<String>? tagMatch,
-    TfArg<String>? type,
+    DataDnsRecordsTagMatch? tagMatch,
+    DataDnsRecordsType? type,
     RefTo<CloudflareZone>? zoneId,
     DataDnsRecordsComment? comment,
     DataDnsRecordsContent? content,

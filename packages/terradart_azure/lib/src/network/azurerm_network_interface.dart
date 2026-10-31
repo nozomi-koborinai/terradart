@@ -9,6 +9,49 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_network_interface`.
 const Set<String> _azurermNetworkInterfaceSensitive = <String>{};
 
+/// Network Interface Auxiliary enum for `auxiliary_mode`.
+extension type const NetworkInterfaceAuxiliaryMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkInterfaceAuxiliaryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkInterfaceAuxiliaryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkInterfaceAuxiliaryMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const acceleratedconnections = NetworkInterfaceAuxiliaryMode._(
+    TfArgLiteral('AcceleratedConnections'),
+  );
+  static const floating = NetworkInterfaceAuxiliaryMode._(
+    TfArgLiteral('Floating'),
+  );
+  static const maxconnections = NetworkInterfaceAuxiliaryMode._(
+    TfArgLiteral('MaxConnections'),
+  );
+
+  static const List<NetworkInterfaceAuxiliaryMode> values = [
+    acceleratedconnections,
+    floating,
+    maxconnections,
+  ];
+}
+
+/// Network Interface Auxiliary enum for `auxiliary_sku`.
+extension type const NetworkInterfaceAuxiliarySku._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkInterfaceAuxiliarySku.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkInterfaceAuxiliarySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkInterfaceAuxiliarySku.arg(TfArg<String> arg) : this._(arg);
+
+  static const a8 = NetworkInterfaceAuxiliarySku._(TfArgLiteral('A8'));
+  static const a4 = NetworkInterfaceAuxiliarySku._(TfArgLiteral('A4'));
+  static const a1 = NetworkInterfaceAuxiliarySku._(TfArgLiteral('A1'));
+  static const a2 = NetworkInterfaceAuxiliarySku._(TfArgLiteral('A2'));
+
+  static const List<NetworkInterfaceAuxiliarySku> values = [a8, a4, a1, a2];
+}
+
 /// Typed helper for the `ip_configuration` block of
 /// `azurerm_network_interface` (derived from provider schema).
 @immutable
@@ -108,8 +151,8 @@ final class AzurermNetworkInterface extends Resource {
   AzurermNetworkInterface(
     super.localName, {
     TfArg<bool>? acceleratedNetworkingEnabled,
-    TfArg<String>? auxiliaryMode,
-    TfArg<String>? auxiliarySku,
+    NetworkInterfaceAuxiliaryMode? auxiliaryMode,
+    NetworkInterfaceAuxiliarySku? auxiliarySku,
     TfArg<List<String>>? dnsServers,
     TfArg<String>? edgeZone,
     TfArg<String>? internalDnsNameLabel,

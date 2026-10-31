@@ -14,3 +14,15 @@ properties:
           - "Thursday"
           - "Tuesday"
           - "Wednesday"
+  - api_name: root_squash
+    properties:
+      - api_name: mode
+        enum_values:
+          - "All"
+          - "RootOnly"
+  - api_name: sku_name
+    enum_values:
+      - "AMLFS-Durable-Premium-40"
+      - "AMLFS-Durable-Premium-125"
+      - "AMLFS-Durable-Premium-250"
+      - "AMLFS-Durable-Premium-500"

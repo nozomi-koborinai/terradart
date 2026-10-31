@@ -8,11 +8,14 @@ export 'src/data/azurerm_spring_cloud_app.dart' show DataAzurermSpringCloudApp;
 export 'src/data/azurerm_spring_cloud_service.dart'
     show DataAzurermSpringCloudService;
 export 'src/spring_cloud/azurerm_spring_cloud_accelerator.dart'
-    show AzurermSpringCloudAccelerator;
+    show AzurermSpringCloudAccelerator, SpringCloudAcceleratorName;
 export 'src/spring_cloud/azurerm_spring_cloud_active_deployment.dart'
     show AzurermSpringCloudActiveDeployment;
 export 'src/spring_cloud/azurerm_spring_cloud_api_portal.dart'
-    show AzurermSpringCloudApiPortal, SpringCloudApiPortalSso;
+    show
+        AzurermSpringCloudApiPortal,
+        SpringCloudApiPortalName,
+        SpringCloudApiPortalSso;
 export 'src/spring_cloud/azurerm_spring_cloud_api_portal_custom_domain.dart'
     show AzurermSpringCloudApiPortalCustomDomain;
 export 'src/spring_cloud/azurerm_spring_cloud_app.dart'
@@ -23,7 +26,9 @@ export 'src/spring_cloud/azurerm_spring_cloud_app.dart'
         SpringCloudAppIngressSettings,
         SpringCloudAppPersistentDisk;
 export 'src/spring_cloud/azurerm_spring_cloud_app_cosmosdb_association.dart'
-    show AzurermSpringCloudAppCosmosdbAssociation;
+    show
+        AzurermSpringCloudAppCosmosdbAssociation,
+        SpringCloudAppCosmosdbAssociationApiType;
 export 'src/spring_cloud/azurerm_spring_cloud_app_dynamics_application_performance_monitoring.dart'
     show AzurermSpringCloudAppDynamicsApplicationPerformanceMonitoring;
 export 'src/spring_cloud/azurerm_spring_cloud_app_mysql_association.dart'
@@ -33,11 +38,16 @@ export 'src/spring_cloud/azurerm_spring_cloud_app_redis_association.dart'
 export 'src/spring_cloud/azurerm_spring_cloud_application_insights_application_performance_monitoring.dart'
     show AzurermSpringCloudApplicationInsightsApplicationPerformanceMonitoring;
 export 'src/spring_cloud/azurerm_spring_cloud_application_live_view.dart'
-    show AzurermSpringCloudApplicationLiveView;
+    show
+        AzurermSpringCloudApplicationLiveView,
+        SpringCloudApplicationLiveViewName;
 export 'src/spring_cloud/azurerm_spring_cloud_build_deployment.dart'
     show AzurermSpringCloudBuildDeployment, SpringCloudBuildDeploymentQuota;
 export 'src/spring_cloud/azurerm_spring_cloud_build_pack_binding.dart'
-    show AzurermSpringCloudBuildPackBinding, SpringCloudBuildPackBindingLaunch;
+    show
+        AzurermSpringCloudBuildPackBinding,
+        SpringCloudBuildPackBindingLaunch,
+        SpringCloudBuildPackBindingType;
 export 'src/spring_cloud/azurerm_spring_cloud_builder.dart'
     show
         AzurermSpringCloudBuilder,
@@ -49,16 +59,20 @@ export 'src/spring_cloud/azurerm_spring_cloud_configuration_service.dart'
     show
         AzurermSpringCloudConfigurationService,
         SpringCloudConfigurationServiceGeneration,
+        SpringCloudConfigurationServiceName,
         SpringCloudConfigurationServiceRepository;
 export 'src/spring_cloud/azurerm_spring_cloud_connection.dart'
     show
         AzurermSpringCloudConnection,
         SpringCloudConnectionAuthentication,
+        SpringCloudConnectionClientType,
         SpringCloudConnectionSecretStore,
+        SpringCloudConnectionType,
         SpringCloudConnectionVnetSolution;
 export 'src/spring_cloud/azurerm_spring_cloud_container_deployment.dart'
     show
         AzurermSpringCloudContainerDeployment,
+        SpringCloudContainerDeploymentLanguageFramework,
         SpringCloudContainerDeploymentQuota;
 export 'src/spring_cloud/azurerm_spring_cloud_custom_domain.dart'
     show AzurermSpringCloudCustomDomain;
@@ -77,7 +91,10 @@ export 'src/spring_cloud/azurerm_spring_cloud_customized_accelerator.dart'
         SpringCloudCustomizedAcceleratorSshAuthChoice,
         SpringCloudCustomizedAcceleratorType;
 export 'src/spring_cloud/azurerm_spring_cloud_dev_tool_portal.dart'
-    show AzurermSpringCloudDevToolPortal, SpringCloudDevToolPortalSso;
+    show
+        AzurermSpringCloudDevToolPortal,
+        SpringCloudDevToolPortalName,
+        SpringCloudDevToolPortalSso;
 export 'src/spring_cloud/azurerm_spring_cloud_dynatrace_application_performance_monitoring.dart'
     show AzurermSpringCloudDynatraceApplicationPerformanceMonitoring;
 export 'src/spring_cloud/azurerm_spring_cloud_elastic_application_performance_monitoring.dart'
@@ -95,6 +112,7 @@ export 'src/spring_cloud/azurerm_spring_cloud_gateway.dart'
         SpringCloudGatewayLocalResponseCachePerInstanceChoice,
         SpringCloudGatewayLocalResponseCachePerRoute,
         SpringCloudGatewayLocalResponseCachePerRouteChoice,
+        SpringCloudGatewayName,
         SpringCloudGatewayQuota,
         SpringCloudGatewaySso;
 export 'src/spring_cloud/azurerm_spring_cloud_gateway_custom_domain.dart'
@@ -105,7 +123,10 @@ export 'src/spring_cloud/azurerm_spring_cloud_gateway_route_config.dart'
         SpringCloudGatewayRouteConfigOpenApi,
         SpringCloudGatewayRouteConfigRoute;
 export 'src/spring_cloud/azurerm_spring_cloud_java_deployment.dart'
-    show AzurermSpringCloudJavaDeployment, SpringCloudJavaDeploymentQuota;
+    show
+        AzurermSpringCloudJavaDeployment,
+        SpringCloudJavaDeploymentQuota,
+        SpringCloudJavaDeploymentRuntimeVersion;
 export 'src/spring_cloud/azurerm_spring_cloud_new_relic_application_performance_monitoring.dart'
     show AzurermSpringCloudNewRelicApplicationPerformanceMonitoring;
 export 'src/spring_cloud/azurerm_spring_cloud_service.dart'
@@ -115,6 +136,7 @@ export 'src/spring_cloud/azurerm_spring_cloud_service.dart'
         SpringCloudServiceConfigServerGitSetting,
         SpringCloudServiceContainerRegistry,
         SpringCloudServiceDefaultBuildService,
+        SpringCloudServiceHostKeyAlgorithm,
         SpringCloudServiceHttpBasicAuth,
         SpringCloudServiceMarketplace,
         SpringCloudServiceNetwork,

@@ -688,13 +688,10 @@ final class ZeroTrustGatewayPolicyPayloadLog {
 final class ZeroTrustGatewayPolicyQuarantine {
   const ZeroTrustGatewayPolicyQuarantine({this.fileTypes});
 
-  final List<ZeroTrustGatewayPolicyFileTypes>? fileTypes;
+  final EnumList<ZeroTrustGatewayPolicyFileTypes>? fileTypes;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (fileTypes != null)
-      'file_types': [for (final e in fileTypes!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'file_types': ?fileTypes?.toTfJson()};
 }
 
 /// `file_types` — derived from the provider schema description.
@@ -893,7 +890,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
     TfArg<String>? description,
     TfArg<String>? devicePosture,
     TfArg<bool>? enabled,
-    List<ZeroTrustGatewayPolicyFilters>? filters,
+    EnumList<ZeroTrustGatewayPolicyFilters>? filters,
     TfArg<String>? identity,
     required TfArg<String> name,
     TfArg<num>? precedence,
@@ -913,8 +910,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
            'description': ?description,
            'device_posture': ?devicePosture,
            'enabled': ?enabled,
-           if (filters != null)
-             'filters': TfArg.literal([for (final e in filters) e.toTfJson()]),
+           'filters': ?filters,
            'identity': ?identity,
            'name': name,
            'precedence': ?precedence,

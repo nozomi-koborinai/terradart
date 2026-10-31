@@ -30,7 +30,7 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
   AwsEc2TrafficMirrorFilter(
     super.localName, {
     TfArg<String>? description,
-    List<Ec2TrafficMirrorFilterNetworkServices>? networkServices,
+    EnumList<Ec2TrafficMirrorFilterNetworkServices>? networkServices,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -41,10 +41,7 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
          terraformType: tfType,
          argMap: {
            'description': ?description,
-           if (networkServices != null)
-             'network_services': TfArg.literal([
-               for (final e in networkServices) e.toTfJson(),
-             ]),
+           'network_services': ?networkServices,
            'region': ?region,
            'tags': ?tags,
          },

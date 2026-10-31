@@ -10,7 +10,7 @@ export 'src/data/cloudflare_web_analytics_site.dart'
         DataWebAnalyticsSiteFilter,
         DataWebAnalyticsSiteOrderBy;
 export 'src/data/cloudflare_web_analytics_sites.dart'
-    show DataCloudflareWebAnalyticsSites;
+    show DataCloudflareWebAnalyticsSites, DataWebAnalyticsSitesOrderBy;
 export 'src/web_analytics/cloudflare_web_analytics_rule.dart'
     show CloudflareWebAnalyticsRule;
 export 'src/web_analytics/cloudflare_web_analytics_site.dart'

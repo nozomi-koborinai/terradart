@@ -9,34 +9,6 @@ import '../iam/iam_principal.dart' show IamPrincipal;
 /// Sensitive field paths for `google_project_iam_audit_config`.
 const Set<String> _googleProjectIamAuditConfigSensitive = <String>{};
 
-/// Permission type for which IAM audit logging is configured.
-extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ProjectIamAuditConfigAuditLogConfigLogType.variable(String name)
-    : this._(TfArg.variable(name));
-  ProjectIamAuditConfigAuditLogConfigLogType.expression(String template)
-    : this._(TfArg.expression(template));
-  const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(
-    TfArgLiteral('DATA_READ'),
-  );
-  static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(
-    TfArgLiteral('DATA_WRITE'),
-  );
-  static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(
-    TfArgLiteral('ADMIN_READ'),
-  );
-
-  static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [
-    dataRead,
-    dataWrite,
-    adminRead,
-  ];
-}
-
 /// Typed helper for the `audit_log_config` block of
 /// `google_project_iam_audit_config` (derived from provider schema).
 @immutable
@@ -48,13 +20,41 @@ final class ProjectIamAuditConfigAuditLogConfig {
 
   final TfArg<List<IamPrincipal>>? exemptedMembers;
 
-  final TfArg<String> logType;
+  final ProjectIamAuditConfigAuditLogConfigLogType logType;
 
   @internal
   Map<String, Object?> encode() => {
     'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ProjectIamAuditConfigAuditLogConfigLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectIamAuditConfigAuditLogConfigLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
+  );
+  static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('DATA_WRITE'),
+  );
+  static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('DATA_READ'),
+  );
+
+  static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [
+    adminRead,
+    dataWrite,
+    dataRead,
+  ];
 }
 
 /// Factory wrapper for `google_project_iam_audit_config`.

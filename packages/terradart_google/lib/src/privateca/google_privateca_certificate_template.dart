@@ -59,7 +59,7 @@ final class PrivatecaCertificateTemplatePassthroughExtensions {
     this.additionalExtensions,
   });
 
-  final TfArg<List<String>>? knownExtensions;
+  final EnumList<PrivatecaCertificateTemplateKnownExtensions>? knownExtensions;
 
   final List<
     PrivatecaCertificateTemplatePassthroughExtensionsAdditionalExtensions
@@ -74,6 +74,46 @@ final class PrivatecaCertificateTemplatePassthroughExtensions {
         for (final e in additionalExtensions!) e.encode(),
       ],
   };
+}
+
+/// `known_extensions` — derived from the provider schema description.
+extension type const PrivatecaCertificateTemplateKnownExtensions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivatecaCertificateTemplateKnownExtensions.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCertificateTemplateKnownExtensions.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCertificateTemplateKnownExtensions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const baseKeyUsage = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('BASE_KEY_USAGE'),
+  );
+  static const extendedKeyUsage = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('EXTENDED_KEY_USAGE'),
+  );
+  static const caOptions = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('CA_OPTIONS'),
+  );
+  static const policyIds = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('POLICY_IDS'),
+  );
+  static const aiaOcspServers = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('AIA_OCSP_SERVERS'),
+  );
+  static const nameConstraints = PrivatecaCertificateTemplateKnownExtensions._(
+    TfArgLiteral('NAME_CONSTRAINTS'),
+  );
+
+  static const List<PrivatecaCertificateTemplateKnownExtensions> values = [
+    baseKeyUsage,
+    extendedKeyUsage,
+    caOptions,
+    policyIds,
+    aiaOcspServers,
+    nameConstraints,
+  ];
 }
 
 /// Typed helper for the `passthrough_extensions.additional_extensions` block of

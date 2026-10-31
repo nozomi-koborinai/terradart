@@ -579,13 +579,13 @@ final class BigqueryJobLoad {
 
   final BigqueryJobCreateDisposition? createDisposition;
 
-  final TfArg<String>? encoding;
+  final BigqueryJobEncoding? encoding;
 
   final TfArg<String>? fieldDelimiter;
 
   final TfArg<bool>? ignoreUnknownValues;
 
-  final TfArg<String>? jsonExtension;
+  final BigqueryJobJsonExtension? jsonExtension;
 
   final TfArg<num>? maxBadRecords;
 
@@ -595,7 +595,7 @@ final class BigqueryJobLoad {
 
   final TfArg<String>? quote;
 
-  final TfArg<List<String>>? schemaUpdateOptions;
+  final EnumList<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<num>? skipLeadingRows;
 
@@ -639,6 +639,55 @@ final class BigqueryJobLoad {
     'parquet_options': ?parquetOptions?.encode(),
     'time_partitioning': ?timePartitioning?.encode(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryJobEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobEncoding.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryJobEncoding._(TfArgLiteral('UTF-8'));
+  static const iso88591 = BigqueryJobEncoding._(TfArgLiteral('ISO-8859-1'));
+
+  static const List<BigqueryJobEncoding> values = [utf8, iso88591];
+}
+
+/// `json_extension` — derived from the provider schema description.
+extension type const BigqueryJobJsonExtension._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobJsonExtension.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobJsonExtension.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobJsonExtension.arg(TfArg<String> arg) : this._(arg);
+
+  static const geojson = BigqueryJobJsonExtension._(TfArgLiteral('GEOJSON'));
+
+  static const List<BigqueryJobJsonExtension> values = [geojson];
+}
+
+/// `schema_update_options` — derived from the provider schema description.
+extension type const BigqueryJobSchemaUpdateOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobSchemaUpdateOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobSchemaUpdateOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobSchemaUpdateOptions.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowFieldAddition = BigqueryJobSchemaUpdateOptions._(
+    TfArgLiteral('ALLOW_FIELD_ADDITION'),
+  );
+  static const allowFieldRelaxation = BigqueryJobSchemaUpdateOptions._(
+    TfArgLiteral('ALLOW_FIELD_RELAXATION'),
+  );
+
+  static const List<BigqueryJobSchemaUpdateOptions> values = [
+    allowFieldAddition,
+    allowFieldRelaxation,
+  ];
 }
 
 /// Typed helper for the `load.parquet_options` block of
@@ -726,7 +775,7 @@ final class BigqueryJobQuery {
 
   final TfArg<String> query;
 
-  final TfArg<List<String>>? schemaUpdateOptions;
+  final EnumList<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<bool>? useLegacySql;
 

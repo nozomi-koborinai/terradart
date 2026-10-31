@@ -23,7 +23,7 @@ final class Sesv2ConfigurationSetEventDestination {
 
   final TfArg<bool>? enabled;
 
-  final List<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>
+  final EnumList<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>
   matchingEventTypes;
 
   final Sesv2ConfigurationSetEventDestinationTarget target;
@@ -31,7 +31,7 @@ final class Sesv2ConfigurationSetEventDestination {
   @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
-    'matching_event_types': [for (final e in matchingEventTypes) e.toTfJson()],
+    'matching_event_types': matchingEventTypes.toTfJson(),
     ...target.encode(),
   };
 }

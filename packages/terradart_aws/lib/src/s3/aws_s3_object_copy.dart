@@ -365,7 +365,7 @@ final class S3ObjectCopyGrant {
 
   final TfArg<String>? id;
 
-  final List<S3ObjectCopyPermissions> permissions;
+  final EnumList<S3ObjectCopyPermissions> permissions;
 
   final S3ObjectCopyType type;
 
@@ -375,7 +375,7 @@ final class S3ObjectCopyGrant {
   Map<String, Object?> encode() => {
     'email': ?email?.toTfJson(),
     'id': ?id?.toTfJson(),
-    'permissions': [for (final e in permissions) e.toTfJson()],
+    'permissions': permissions.toTfJson(),
     'type': type.toTfJson(),
     'uri': ?uri?.toTfJson(),
   };

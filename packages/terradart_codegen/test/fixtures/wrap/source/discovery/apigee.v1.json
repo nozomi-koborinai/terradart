@@ -1,0 +1,455 @@
+{
+  "name": "apigee",
+  "version": "v1",
+  "revision": "20261019",
+  "sourceUrl": "https://apigee.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudApigeeV1AddonsConfig": {
+      "properties": {
+        "analyticsConfig": {
+          "$ref": "GoogleCloudApigeeV1AnalyticsConfig"
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Alias": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ALIAS_TYPE_UNSPECIFIED",
+            "CERT",
+            "KEY_CERT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1AnalyticsConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "ADDON_STATE_UNSPECIFIED",
+            "ENABLING",
+            "ENABLED",
+            "DISABLING",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1ApiProduct": {
+      "properties": {
+        "quotaCounterScope": {
+          "enum": [
+            "QUOTA_COUNTER_SCOPE_UNSPECIFIED",
+            "PROXY",
+            "OPERATION",
+            "PRODUCT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1AppGroup": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray": {
+      "properties": {
+        "resources": {
+          "items": {
+            "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource"
+          }
+        }
+      }
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource": {
+      "properties": {
+        "type": {
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "API_PROXY",
+            "API_HUB_DEPLOYMENT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1ControlPlaneAccess": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1DataCollector": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "BOOLEAN",
+            "DATETIME"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Datastore": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1Developer": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1DeveloperApp": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1DnsZone": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1EndpointAttachment": {
+      "properties": {
+        "connectionState": {
+          "enum": [
+            "CONNECTION_STATE_UNSPECIFIED",
+            "UNAVAILABLE",
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED",
+            "CLOSED",
+            "FROZEN",
+            "NEEDS_ATTENTION",
+            "ACCEPTED_LIMITED_CAPACITY"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Environment": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "BASE",
+            "INTERMEDIATE",
+            "COMPREHENSIVE"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        },
+        "apiProxyType": {
+          "enum": [
+            "API_PROXY_TYPE_UNSPECIFIED",
+            "PROGRAMMABLE",
+            "CONFIGURABLE"
+          ]
+        },
+        "deploymentType": {
+          "enum": [
+            "DEPLOYMENT_TYPE_UNSPECIFIED",
+            "PROXY",
+            "ARCHIVE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1EnvironmentGroup": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1EnvironmentGroupAttachment": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1Instance": {
+      "properties": {
+        "maintenanceUpdatePolicy": {
+          "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicy"
+        },
+        "peeringCidrRange": {
+          "enum": [
+            "CIDR_RANGE_UNSPECIFIED",
+            "SLASH_16",
+            "SLASH_17",
+            "SLASH_18",
+            "SLASH_19",
+            "SLASH_20",
+            "SLASH_22",
+            "SLASH_23"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1InstanceAttachment": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1KeyValueEntry": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1KeyValueMap": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1Keystore": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1MaintenanceUpdatePolicy": {
+      "properties": {
+        "maintenanceWindows": {
+          "items": {
+            "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow"
+          }
+        },
+        "maintenanceChannel": {
+          "enum": [
+            "MAINTENANCE_CHANNEL_UNSPECIFIED",
+            "WEEK1",
+            "WEEK2"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1NatAddress": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "RESERVED",
+            "ACTIVE",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Organization": {
+      "properties": {
+        "runtimeType": {
+          "enum": [
+            "RUNTIME_TYPE_UNSPECIFIED",
+            "CLOUD",
+            "HYBRID"
+          ]
+        },
+        "billingType": {
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "SUBSCRIPTION",
+            "EVALUATION",
+            "PAYG"
+          ]
+        },
+        "addonsConfig": {
+          "$ref": "GoogleCloudApigeeV1AddonsConfig"
+        },
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAID",
+            "TRIAL"
+          ]
+        },
+        "subscriptionPlan": {
+          "enum": [
+            "SUBSCRIPTION_PLAN_UNSPECIFIED",
+            "SUBSCRIPTION_2021",
+            "SUBSCRIPTION_2024"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_TRIAL",
+            "TYPE_PAID",
+            "TYPE_INTERNAL"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Reference": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1SecurityAction": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityFeedback": {
+      "properties": {
+        "reason": {
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "INTERNAL_SYSTEM",
+            "NON_RISK_CLIENT",
+            "NAT",
+            "PENETRATION_TEST",
+            "OTHER"
+          ]
+        },
+        "feedbackContexts": {
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext"
+          }
+        },
+        "feedbackType": {
+          "enum": [
+            "FEEDBACK_TYPE_UNSPECIFIED",
+            "EXCLUDED_DETECTION"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext": {
+      "properties": {
+        "attribute": {
+          "enum": [
+            "ATTRIBUTE_UNSPECIFIED",
+            "ATTRIBUTE_ENVIRONMENTS",
+            "ATTRIBUTE_IP_ADDRESS_RANGES"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityMonitoringCondition": {
+      "properties": {
+        "include": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray"
+        },
+        "riskAssessmentType": {
+          "enum": [
+            "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+            "APIGEE",
+            "API_HUB"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2": {
+      "properties": {
+        "profileAssessmentConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig"
+          }
+        },
+        "riskAssessmentType": {
+          "enum": [
+            "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+            "APIGEE",
+            "API_HUB"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig": {
+      "properties": {
+        "include": {
+          "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray"
+        },
+        "weight": {
+          "enum": [
+            "WEIGHT_UNSPECIFIED",
+            "MINOR",
+            "MODERATE",
+            "MAJOR"
+          ]
+        }
+      }
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray": {
+      "properties": {
+        "gatewayTypes": {
+          "items": {
+            "enum": [
+              "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+              "APIGEE_X",
+              "APIGEE_HYBRID",
+              "APIGEE_EDGE",
+              "APIGEE_OPDK"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudApigeeV1Space": {
+      "properties": {}
+    },
+    "GoogleCloudApigeeV1TargetServer": {
+      "properties": {
+        "protocol": {
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "HTTP",
+            "HTTP2",
+            "GRPC_TARGET",
+            "GRPC",
+            "EXTERNAL_CALLOUT"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,10 @@ deriveEnums: true
 dartTypeOverrides:
   location_scope: ComputeRolloutPlanLocationScope
 
+typeNames:
+  waves.orchestration_options.delays.type: ComputeRolloutPlanType
+  waves.validation.type: ComputeRolloutPlanValidationType
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

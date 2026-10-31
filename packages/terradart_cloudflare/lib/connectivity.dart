@@ -19,4 +19,6 @@ export 'src/data/cloudflare_connectivity_directory_service.dart'
         DataConnectivityDirectoryServiceFilter,
         DataConnectivityDirectoryServiceFilterType;
 export 'src/data/cloudflare_connectivity_directory_services.dart'
-    show DataCloudflareConnectivityDirectoryServices;
+    show
+        DataCloudflareConnectivityDirectoryServices,
+        DataConnectivityDirectoryServicesType;

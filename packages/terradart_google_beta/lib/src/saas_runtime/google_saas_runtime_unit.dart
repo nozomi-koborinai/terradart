@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_saas_runtime_unit`.
 const Set<String> _googleSaasRuntimeUnitSensitive = <String>{};
 
+/// Saas Runtime Unit Management enum for `management_mode`.
+extension type const SaasRuntimeUnitManagementMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SaasRuntimeUnitManagementMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SaasRuntimeUnitManagementMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeUnitManagementMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const managementModeUser = SaasRuntimeUnitManagementMode._(
+    TfArgLiteral('MANAGEMENT_MODE_USER'),
+  );
+  static const managementModeSystem = SaasRuntimeUnitManagementMode._(
+    TfArgLiteral('MANAGEMENT_MODE_SYSTEM'),
+  );
+
+  static const List<SaasRuntimeUnitManagementMode> values = [
+    managementModeUser,
+    managementModeSystem,
+  ];
+}
+
 /// Typed helper for the `maintenance` block of
 /// `google_saas_runtime_unit` (derived from provider schema).
 @immutable
@@ -38,7 +60,7 @@ final class GoogleSaasRuntimeUnit extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
-    TfArg<String>? managementMode,
+    SaasRuntimeUnitManagementMode? managementMode,
     TfArg<String>? project,
     TfArg<String>? tenant,
     required TfArg<String> unitId,

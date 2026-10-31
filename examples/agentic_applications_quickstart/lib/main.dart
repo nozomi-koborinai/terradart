@@ -194,7 +194,7 @@ final class AnalystPersonaStack extends Stack {
         // Document export accepts PDF, DOCX or GOOGLE_DOCS; the schema types
         // it as a plain string, so an invalid value only fails at apply.
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
-          documentGenerationOptions: .new(exportFormat: .literal('PDF')),
+          documentGenerationOptions: .new(exportFormat: .pdf),
         ),
         dependsOn: [...apiDeps, positions],
       ),

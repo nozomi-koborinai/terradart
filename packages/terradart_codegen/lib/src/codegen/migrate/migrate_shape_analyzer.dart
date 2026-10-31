@@ -81,6 +81,8 @@ bool _isPlainValueType(DartTypeShape type) {
 /// - `Sealed` → sealed with its block-key variants, or manual when a variant
 ///   has no `blockKey` (a curator hint is needed to describe it).
 /// - an enum (itself a `TfArg<String>`) → enum, wrapped.
+/// - `EnumList<E>` → enum, `repeated` and wrapped: one `TfArg` holding the
+///   list. A bare `List<E>` is `repeated` and not wrapped.
 /// - a bare primitive / plain collection → unwrapped scalar (the
 ///   hand-written helpers' occasional `Map<String, String>? labels`).
 /// - anything else → manual with the reason.
@@ -138,6 +140,17 @@ SlotShape _classify(
     }
     return _payload(payload, repeated: repeated);
   }
+  if (type.name == 'EnumList' && type.args.length == 1 && !repeated) {
+    final element = type.args.single;
+    if (element.args.isEmpty && ctx.enumNames.contains(element.name)) {
+      return SlotShape(
+        kind: MigrateSlotKind.enumValue,
+        dartType: element.name,
+        repeated: true,
+      );
+    }
+    return SlotShape.manual('enum list of a non-enum `${type.render()}`');
+  }
   if (type.name == 'List' && type.args.length == 1) {
     if (repeated) {
       return SlotShape.manual('nested list type `${type.render()}`');
@@ -191,6 +204,7 @@ SlotShape _classify(
         kind: MigrateSlotKind.enumValue,
         dartType: name,
         repeated: repeated,
+        wrapped: !repeated,
       );
     }
   }

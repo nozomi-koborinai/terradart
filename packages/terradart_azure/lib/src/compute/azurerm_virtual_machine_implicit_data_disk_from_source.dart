@@ -7,6 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermVirtualMachineImplicitDataDiskFromSourceSensitive =
     <String>{};
 
+/// Virtual Machine Implicit Data Disk From Source enum for `caching`.
+extension type const VirtualMachineImplicitDataDiskFromSourceCaching._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VirtualMachineImplicitDataDiskFromSourceCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineImplicitDataDiskFromSourceCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineImplicitDataDiskFromSourceCaching.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const readonly = VirtualMachineImplicitDataDiskFromSourceCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = VirtualMachineImplicitDataDiskFromSourceCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<VirtualMachineImplicitDataDiskFromSourceCaching> values = [
+    readonly,
+    readwrite,
+  ];
+}
+
+/// Virtual Machine Implicit Data Disk From Source Create enum for `create_option`.
+extension type const VirtualMachineImplicitDataDiskFromSourceCreateOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VirtualMachineImplicitDataDiskFromSourceCreateOption.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineImplicitDataDiskFromSourceCreateOption.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VirtualMachineImplicitDataDiskFromSourceCreateOption.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const copy = VirtualMachineImplicitDataDiskFromSourceCreateOption._(
+    TfArgLiteral('Copy'),
+  );
+
+  static const List<VirtualMachineImplicitDataDiskFromSourceCreateOption>
+  values = [copy];
+}
+
 /// Factory wrapper for `azurerm_virtual_machine_implicit_data_disk_from_source`.
 final class AzurermVirtualMachineImplicitDataDiskFromSource extends Resource {
   static const String tfType =
@@ -14,8 +59,8 @@ final class AzurermVirtualMachineImplicitDataDiskFromSource extends Resource {
 
   AzurermVirtualMachineImplicitDataDiskFromSource(
     super.localName, {
-    TfArg<String>? caching,
-    required TfArg<String> createOption,
+    VirtualMachineImplicitDataDiskFromSourceCaching? caching,
+    required VirtualMachineImplicitDataDiskFromSourceCreateOption createOption,
     required TfArg<num> diskSizeGb,
     required TfArg<num> lun,
     required TfArg<String> name,

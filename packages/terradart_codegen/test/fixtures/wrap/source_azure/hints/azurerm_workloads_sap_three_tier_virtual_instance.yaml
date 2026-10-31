@@ -77,6 +77,24 @@ properties:
           - "AvailabilityZone"
       - api_name: resource_names
         properties:
+          - api_name: application_server
+            properties:
+              - api_name: virtual_machine
+                properties:
+                  - api_name: data_disk
+                    properties:
+                      - api_name: volume_name
+                        enum_values:
+                          - "default"
+          - api_name: central_server
+            properties:
+              - api_name: virtual_machine
+                properties:
+                  - api_name: data_disk
+                    properties:
+                      - api_name: volume_name
+                        enum_values:
+                          - "default"
           - api_name: database_server
             properties:
               - api_name: virtual_machine

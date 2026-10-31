@@ -3,11 +3,17 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: database_system_shape
+    enum_values:
+      - "VM.Standard.x86"
   - api_name: shape_family
     enum_values:
       - "EXADATA"
       - "EXADB_XS"
       - "SINGLENODE"
       - "VIRTUALMACHINE"
+  - api_name: storage_management
+    enum_values:
+      - "LVM"
 at_most_one_of_groups:
   - ["database_system_shape", "shape_family"]

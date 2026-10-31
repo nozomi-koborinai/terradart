@@ -1,0 +1,1184 @@
+{
+  "name": "container",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://container.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AcceleratorConfig": {
+      "properties": {
+        "gpuDriverInstallationConfig": {
+          "$ref": "GPUDriverInstallationConfig"
+        },
+        "gpuSharingConfig": {
+          "$ref": "GPUSharingConfig"
+        }
+      }
+    },
+    "AdditionalIPRangesConfig": {
+      "properties": {
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "DRAINING"
+          ]
+        }
+      }
+    },
+    "AddonsConfig": {
+      "properties": {
+        "cloudRunConfig": {
+          "$ref": "CloudRunConfig"
+        }
+      }
+    },
+    "AdvancedDatapathObservabilityConfig": {
+      "properties": {
+        "relayMode": {
+          "enum": [
+            "RELAY_MODE_UNSPECIFIED",
+            "DISABLED",
+            "INTERNAL_VPC_LB",
+            "EXTERNAL_LB"
+          ]
+        }
+      }
+    },
+    "AdvancedMachineFeatures": {
+      "properties": {
+        "performanceMonitoringUnit": {
+          "enum": [
+            "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED",
+            "ARCHITECTURAL",
+            "STANDARD",
+            "ENHANCED"
+          ]
+        }
+      }
+    },
+    "AnonymousAuthenticationConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "ENABLED",
+            "LIMITED"
+          ]
+        }
+      }
+    },
+    "AutoMonitoringConfig": {
+      "properties": {
+        "scope": {
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "ALL",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "AutoprovisioningNodePoolDefaults": {
+      "properties": {
+        "upgradeSettings": {
+          "$ref": "UpgradeSettings"
+        }
+      }
+    },
+    "AutoprovisioningRestrictionConfig": {
+      "properties": {
+        "serviceAccountPermissionCheck": {
+          "enum": [
+            "PERMISSION_CHECK_MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "BinaryAuthorization": {
+      "properties": {
+        "evaluationMode": {
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "PROJECT_SINGLETON_POLICY_ENFORCE"
+          ]
+        }
+      }
+    },
+    "BlueGreenInfo": {
+      "properties": {
+        "phase": {
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "UPDATE_STARTED",
+            "CREATING_GREEN_POOL",
+            "CORDONING_BLUE_POOL",
+            "DRAINING_BLUE_POOL",
+            "NODE_POOL_SOAKING",
+            "DELETING_BLUE_POOL",
+            "ROLLBACK_STARTED"
+          ]
+        }
+      }
+    },
+    "CloudRunConfig": {
+      "properties": {
+        "loadBalancerType": {
+          "enum": [
+            "LOAD_BALANCER_TYPE_UNSPECIFIED",
+            "LOAD_BALANCER_TYPE_EXTERNAL",
+            "LOAD_BALANCER_TYPE_INTERNAL"
+          ]
+        }
+      }
+    },
+    "Cluster": {
+      "properties": {
+        "anonymousAuthenticationConfig": {
+          "$ref": "AnonymousAuthenticationConfig"
+        },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "StatusCondition"
+          }
+        },
+        "confidentialNodes": {
+          "$ref": "ConfidentialNodes"
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig"
+        },
+        "notificationConfig": {
+          "$ref": "NotificationConfig"
+        },
+        "nodeConfig": {
+          "$ref": "NodeConfig"
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        },
+        "podAutoscaling": {
+          "$ref": "PodAutoscaling"
+        },
+        "ipAllocationPolicy": {
+          "$ref": "IPAllocationPolicy"
+        },
+        "compliancePostureConfig": {
+          "$ref": "CompliancePostureConfig"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
+        "addonsConfig": {
+          "$ref": "AddonsConfig"
+        },
+        "nodePoolAutoConfig": {
+          "$ref": "NodePoolAutoConfig"
+        },
+        "nodeCreationConfig": {
+          "$ref": "NodeCreationConfig"
+        },
+        "gkeAutoUpgradeConfig": {
+          "$ref": "GkeAutoUpgradeConfig"
+        },
+        "autoscaling": {
+          "$ref": "ClusterAutoscaling"
+        },
+        "releaseChannel": {
+          "$ref": "ReleaseChannel"
+        },
+        "monitoringConfig": {
+          "$ref": "MonitoringConfig"
+        },
+        "managedOpentelemetryConfig": {
+          "$ref": "ManagedOpenTelemetryConfig"
+        },
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        },
+        "fleet": {
+          "$ref": "Fleet"
+        },
+        "controlPlaneEgress": {
+          "$ref": "ControlPlaneEgress"
+        },
+        "enterpriseConfig": {
+          "$ref": "EnterpriseConfig"
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig"
+        },
+        "networkPolicy": {
+          "$ref": "NetworkPolicy"
+        },
+        "nodePoolDefaults": {
+          "$ref": "NodePoolDefaults"
+        },
+        "nodePools": {
+          "items": {
+            "$ref": "NodePool"
+          }
+        },
+        "databaseEncryption": {
+          "$ref": "DatabaseEncryption"
+        }
+      }
+    },
+    "ClusterAutoscaling": {
+      "properties": {
+        "autoprovisioningNodePoolDefaults": {
+          "$ref": "AutoprovisioningNodePoolDefaults"
+        },
+        "autoprovisioningRestrictionConfig": {
+          "$ref": "AutoprovisioningRestrictionConfig"
+        },
+        "autopilotGeneralProfile": {
+          "enum": [
+            "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED",
+            "NO_PERFORMANCE",
+            "NONE"
+          ]
+        },
+        "autoscalingProfile": {
+          "enum": [
+            "PROFILE_UNSPECIFIED",
+            "OPTIMIZE_UTILIZATION",
+            "BALANCED"
+          ]
+        }
+      }
+    },
+    "ClusterNetworkPerformanceConfig": {
+      "properties": {
+        "totalEgressBandwidthTier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "TIER_1"
+          ]
+        }
+      }
+    },
+    "CompliancePostureConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "ConfidentialNodes": {
+      "properties": {
+        "confidentialInstanceType": {
+          "enum": [
+            "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+            "SEV",
+            "SEV_SNP",
+            "TDX"
+          ]
+        }
+      }
+    },
+    "ContainerdConfig": {
+      "properties": {
+        "registryHosts": {
+          "items": {
+            "$ref": "RegistryHostConfig"
+          }
+        }
+      }
+    },
+    "ControlPlaneEgress": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VIA_CONTROL_PLANE",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "DNSConfig": {
+      "properties": {
+        "clusterDns": {
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "PLATFORM_DEFAULT",
+            "CLOUD_DNS",
+            "KUBE_DNS"
+          ]
+        },
+        "clusterDnsScope": {
+          "enum": [
+            "DNS_SCOPE_UNSPECIFIED",
+            "CLUSTER_SCOPE",
+            "VPC_SCOPE"
+          ]
+        }
+      }
+    },
+    "DatabaseEncryption": {
+      "properties": {
+        "state": {
+          "enum": [
+            "UNKNOWN",
+            "ENCRYPTED",
+            "DECRYPTED",
+            "ALL_OBJECTS_ENCRYPTION_ENABLED"
+          ]
+        },
+        "currentState": {
+          "enum": [
+            "CURRENT_STATE_UNSPECIFIED",
+            "CURRENT_STATE_ENCRYPTED",
+            "CURRENT_STATE_DECRYPTED",
+            "CURRENT_STATE_ENCRYPTION_PENDING",
+            "CURRENT_STATE_ENCRYPTION_ERROR",
+            "CURRENT_STATE_DECRYPTION_PENDING",
+            "CURRENT_STATE_DECRYPTION_ERROR",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR"
+          ]
+        }
+      }
+    },
+    "DataplaneV2Config": {
+      "properties": {
+        "scalabilityMode": {
+          "enum": [
+            "SCALABILITY_MODE_UNSPECIFIED",
+            "DISABLED",
+            "SCALE_OPTIMIZED"
+          ]
+        }
+      }
+    },
+    "EnterpriseConfig": {
+      "properties": {
+        "clusterTier": {
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ]
+        },
+        "desiredTier": {
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ]
+        }
+      }
+    },
+    "Filter": {
+      "properties": {
+        "eventType": {
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "UPGRADE_AVAILABLE_EVENT",
+              "UPGRADE_EVENT",
+              "SECURITY_BULLETIN_EVENT",
+              "UPGRADE_INFO_EVENT"
+            ]
+          }
+        }
+      }
+    },
+    "Fleet": {
+      "properties": {
+        "membershipType": {
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ]
+        }
+      }
+    },
+    "GPUDirectConfig": {
+      "properties": {
+        "gpuDirectStrategy": {
+          "enum": [
+            "GPU_DIRECT_STRATEGY_UNSPECIFIED",
+            "RDMA"
+          ]
+        }
+      }
+    },
+    "GPUDriverInstallationConfig": {
+      "properties": {
+        "gpuDriverVersion": {
+          "enum": [
+            "GPU_DRIVER_VERSION_UNSPECIFIED",
+            "INSTALLATION_DISABLED",
+            "DEFAULT",
+            "LATEST",
+            "SPECIFIC"
+          ]
+        }
+      }
+    },
+    "GPUSharingConfig": {
+      "properties": {
+        "gpuSharingStrategy": {
+          "enum": [
+            "GPU_SHARING_STRATEGY_UNSPECIFIED",
+            "TIME_SHARING",
+            "MPS"
+          ]
+        }
+      }
+    },
+    "GatewayAPIConfig": {
+      "properties": {
+        "channel": {
+          "enum": [
+            "CHANNEL_UNSPECIFIED",
+            "CHANNEL_DISABLED",
+            "CHANNEL_EXPERIMENTAL",
+            "CHANNEL_STANDARD"
+          ]
+        }
+      }
+    },
+    "GkeAutoUpgradeConfig": {
+      "properties": {
+        "patchMode": {
+          "enum": [
+            "PATCH_MODE_UNSPECIFIED",
+            "ACCELERATED"
+          ]
+        }
+      }
+    },
+    "HostConfig": {
+      "properties": {
+        "capabilities": {
+          "items": {
+            "enum": [
+              "HOST_CAPABILITY_UNSPECIFIED",
+              "HOST_CAPABILITY_PULL",
+              "HOST_CAPABILITY_RESOLVE",
+              "HOST_CAPABILITY_PUSH"
+            ]
+          }
+        }
+      }
+    },
+    "IPAllocationPolicy": {
+      "properties": {
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig"
+        },
+        "additionalIpRangesConfigs": {
+          "items": {
+            "$ref": "AdditionalIPRangesConfig"
+          }
+        },
+        "stackType": {
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV4_IPV6"
+          ]
+        },
+        "ipv6AccessType": {
+          "enum": [
+            "IPV6_ACCESS_TYPE_UNSPECIFIED",
+            "INTERNAL",
+            "EXTERNAL"
+          ]
+        }
+      }
+    },
+    "LinuxNodeConfig": {
+      "properties": {
+        "cgroupMode": {
+          "enum": [
+            "CGROUP_MODE_UNSPECIFIED",
+            "CGROUP_MODE_V1",
+            "CGROUP_MODE_V2"
+          ]
+        },
+        "transparentHugepageDefrag": {
+          "enum": [
+            "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED",
+            "TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS",
+            "TRANSPARENT_HUGEPAGE_DEFRAG_DEFER",
+            "TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE",
+            "TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE",
+            "TRANSPARENT_HUGEPAGE_DEFRAG_NEVER"
+          ]
+        },
+        "nodeKernelModuleLoading": {
+          "$ref": "NodeKernelModuleLoading"
+        },
+        "transparentHugepageEnabled": {
+          "enum": [
+            "TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED",
+            "TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS",
+            "TRANSPARENT_HUGEPAGE_ENABLED_MADVISE",
+            "TRANSPARENT_HUGEPAGE_ENABLED_NEVER"
+          ]
+        }
+      }
+    },
+    "LoggingComponentConfig": {
+      "properties": {
+        "enableComponents": {
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS",
+              "WORKLOADS",
+              "APISERVER",
+              "SCHEDULER",
+              "CONTROLLER_MANAGER",
+              "KCP_SSHD",
+              "KCP_CONNECTION",
+              "KCP_HPA",
+              "KCP_VPA"
+            ]
+          }
+        }
+      }
+    },
+    "LoggingConfig": {
+      "properties": {
+        "componentConfig": {
+          "$ref": "LoggingComponentConfig"
+        }
+      }
+    },
+    "LoggingVariantConfig": {
+      "properties": {
+        "variant": {
+          "enum": [
+            "VARIANT_UNSPECIFIED",
+            "DEFAULT",
+            "MAX_THROUGHPUT"
+          ]
+        }
+      }
+    },
+    "MaintenanceExclusionOptions": {
+      "properties": {
+        "scope": {
+          "enum": [
+            "NO_UPGRADES",
+            "NO_MINOR_UPGRADES",
+            "NO_MINOR_OR_NODE_UPGRADES"
+          ]
+        },
+        "endTimeBehavior": {
+          "enum": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED",
+            "UNTIL_END_OF_SUPPORT"
+          ]
+        }
+      }
+    },
+    "MaintenancePolicy": {
+      "properties": {
+        "window": {
+          "$ref": "MaintenanceWindow"
+        }
+      }
+    },
+    "MaintenanceWindow": {
+      "properties": {
+        "maintenanceExclusions": {
+          "additionalProperties": {
+            "$ref": "TimeWindow"
+          }
+        },
+        "recurringWindow": {
+          "$ref": "RecurringTimeWindow"
+        }
+      }
+    },
+    "ManagedOpenTelemetryConfig": {
+      "properties": {
+        "scope": {
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "NONE",
+            "COLLECTION_AND_INSTRUMENTATION_COMPONENTS"
+          ]
+        }
+      }
+    },
+    "ManagedPrometheusConfig": {
+      "properties": {
+        "autoMonitoringConfig": {
+          "$ref": "AutoMonitoringConfig"
+        }
+      }
+    },
+    "MonitoringComponentConfig": {
+      "properties": {
+        "enableComponents": {
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS",
+              "APISERVER",
+              "SCHEDULER",
+              "CONTROLLER_MANAGER",
+              "STORAGE",
+              "HPA",
+              "POD",
+              "DAEMONSET",
+              "DEPLOYMENT",
+              "STATEFULSET",
+              "CADVISOR",
+              "KUBELET",
+              "DCGM",
+              "JOBSET"
+            ]
+          }
+        }
+      }
+    },
+    "MonitoringConfig": {
+      "properties": {
+        "componentConfig": {
+          "$ref": "MonitoringComponentConfig"
+        },
+        "managedPrometheusConfig": {
+          "$ref": "ManagedPrometheusConfig"
+        },
+        "advancedDatapathObservabilityConfig": {
+          "$ref": "AdvancedDatapathObservabilityConfig"
+        }
+      }
+    },
+    "NetworkConfig": {
+      "properties": {
+        "privateIpv6GoogleAccess": {
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
+          ]
+        },
+        "gatewayApiConfig": {
+          "$ref": "GatewayAPIConfig"
+        },
+        "dnsConfig": {
+          "$ref": "DNSConfig"
+        },
+        "inTransitEncryptionConfig": {
+          "enum": [
+            "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
+            "IN_TRANSIT_ENCRYPTION_DISABLED",
+            "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT"
+          ]
+        },
+        "datapathProvider": {
+          "enum": [
+            "DATAPATH_PROVIDER_UNSPECIFIED",
+            "LEGACY_DATAPATH",
+            "ADVANCED_DATAPATH",
+            "MIGRATE_TO_ADVANCED_DATAPATH",
+            "MIGRATE_TO_LEGACY_DATAPATH"
+          ]
+        },
+        "networkPerformanceConfig": {
+          "$ref": "ClusterNetworkPerformanceConfig"
+        },
+        "dataplaneV2Config": {
+          "$ref": "DataplaneV2Config"
+        }
+      }
+    },
+    "NetworkPerformanceConfig": {
+      "properties": {
+        "totalEgressBandwidthTier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "TIER_1"
+          ]
+        }
+      }
+    },
+    "NetworkPolicy": {
+      "properties": {
+        "provider": {
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "CALICO"
+          ]
+        }
+      }
+    },
+    "NetworkTierConfig": {
+      "properties": {
+        "networkTier": {
+          "enum": [
+            "NETWORK_TIER_UNSPECIFIED",
+            "NETWORK_TIER_DEFAULT",
+            "NETWORK_TIER_PREMIUM",
+            "NETWORK_TIER_STANDARD"
+          ]
+        }
+      }
+    },
+    "NodeAffinity": {
+      "properties": {
+        "operator": {
+          "enum": [
+            "OPERATOR_UNSPECIFIED",
+            "IN",
+            "NOT_IN"
+          ]
+        }
+      }
+    },
+    "NodeConfig": {
+      "properties": {
+        "windowsNodeConfig": {
+          "$ref": "WindowsNodeConfig"
+        },
+        "taints": {
+          "items": {
+            "$ref": "NodeTaint"
+          }
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
+        },
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig"
+        },
+        "localSsdEncryptionMode": {
+          "enum": [
+            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+            "STANDARD_ENCRYPTION",
+            "EPHEMERAL_KEY_ENCRYPTION"
+          ]
+        },
+        "gpuDirectConfig": {
+          "$ref": "GPUDirectConfig"
+        },
+        "confidentialNodes": {
+          "$ref": "ConfidentialNodes"
+        },
+        "effectiveCgroupMode": {
+          "enum": [
+            "EFFECTIVE_CGROUP_MODE_UNSPECIFIED",
+            "EFFECTIVE_CGROUP_MODE_V1",
+            "EFFECTIVE_CGROUP_MODE_V2"
+          ]
+        },
+        "secondaryBootDisks": {
+          "items": {
+            "$ref": "SecondaryBootDisk"
+          }
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig"
+        },
+        "taintConfig": {
+          "$ref": "TaintConfig"
+        },
+        "accelerators": {
+          "items": {
+            "$ref": "AcceleratorConfig"
+          }
+        },
+        "containerdConfig": {
+          "$ref": "ContainerdConfig"
+        },
+        "soleTenantConfig": {
+          "$ref": "SoleTenantConfig"
+        },
+        "sandboxConfig": {
+          "$ref": "SandboxConfig"
+        },
+        "workloadMetadataConfig": {
+          "$ref": "WorkloadMetadataConfig"
+        }
+      }
+    },
+    "NodeConfigDefaults": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig"
+        },
+        "containerdConfig": {
+          "$ref": "ContainerdConfig"
+        }
+      }
+    },
+    "NodeCreationConfig": {
+      "properties": {
+        "nodeCreationMode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VIA_KUBELET",
+            "VIA_CONTROL_PLANE"
+          ]
+        }
+      }
+    },
+    "NodeKernelModuleLoading": {
+      "properties": {
+        "policy": {
+          "enum": [
+            "POLICY_UNSPECIFIED",
+            "ENFORCE_SIGNED_MODULES",
+            "DO_NOT_ENFORCE_SIGNED_MODULES"
+          ]
+        }
+      }
+    },
+    "NodeNetworkConfig": {
+      "properties": {
+        "datapathProvider": {
+          "enum": [
+            "DATAPATH_PROVIDER_UNSPECIFIED",
+            "LEGACY_DATAPATH",
+            "ADVANCED_DATAPATH",
+            "MIGRATE_TO_ADVANCED_DATAPATH",
+            "MIGRATE_TO_LEGACY_DATAPATH"
+          ]
+        },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig"
+        },
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
+        }
+      }
+    },
+    "NodePool": {
+      "properties": {
+        "placementPolicy": {
+          "$ref": "PlacementPolicy"
+        },
+        "autoscaling": {
+          "$ref": "NodePoolAutoscaling"
+        },
+        "config": {
+          "$ref": "NodeConfig"
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RUNNING_WITH_ERROR",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR"
+          ]
+        },
+        "networkConfig": {
+          "$ref": "NodeNetworkConfig"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "StatusCondition"
+          }
+        },
+        "upgradeSettings": {
+          "$ref": "UpgradeSettings"
+        },
+        "updateInfo": {
+          "$ref": "UpdateInfo"
+        }
+      }
+    },
+    "NodePoolAutoConfig": {
+      "properties": {
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig"
+        }
+      }
+    },
+    "NodePoolAutoscaling": {
+      "properties": {
+        "locationPolicy": {
+          "enum": [
+            "LOCATION_POLICY_UNSPECIFIED",
+            "BALANCED",
+            "ANY"
+          ]
+        }
+      }
+    },
+    "NodePoolDefaults": {
+      "properties": {
+        "nodeConfigDefaults": {
+          "$ref": "NodeConfigDefaults"
+        }
+      }
+    },
+    "NodePoolLoggingConfig": {
+      "properties": {
+        "variantConfig": {
+          "$ref": "LoggingVariantConfig"
+        }
+      }
+    },
+    "NodeTaint": {
+      "properties": {
+        "effect": {
+          "enum": [
+            "EFFECT_UNSPECIFIED",
+            "NO_SCHEDULE",
+            "PREFER_NO_SCHEDULE",
+            "NO_EXECUTE"
+          ]
+        }
+      }
+    },
+    "NotificationConfig": {
+      "properties": {
+        "pubsub": {
+          "$ref": "PubSub"
+        }
+      }
+    },
+    "PlacementPolicy": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "COMPACT"
+          ]
+        }
+      }
+    },
+    "PodAutoscaling": {
+      "properties": {
+        "hpaProfile": {
+          "enum": [
+            "HPA_PROFILE_UNSPECIFIED",
+            "NONE",
+            "PERFORMANCE"
+          ]
+        }
+      }
+    },
+    "PubSub": {
+      "properties": {
+        "filter": {
+          "$ref": "Filter"
+        }
+      }
+    },
+    "RecurringTimeWindow": {
+      "properties": {
+        "window": {
+          "$ref": "TimeWindow"
+        }
+      }
+    },
+    "RegistryHostConfig": {
+      "properties": {
+        "hosts": {
+          "items": {
+            "$ref": "HostConfig"
+          }
+        }
+      }
+    },
+    "ReleaseChannel": {
+      "properties": {
+        "channel": {
+          "enum": [
+            "UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE",
+            "EXTENDED"
+          ]
+        }
+      }
+    },
+    "ReservationAffinity": {
+      "properties": {
+        "consumeReservationType": {
+          "enum": [
+            "UNSPECIFIED",
+            "NO_RESERVATION",
+            "ANY_RESERVATION",
+            "SPECIFIC_RESERVATION",
+            "ANY_RESERVATION_THEN_FAIL"
+          ]
+        }
+      }
+    },
+    "SandboxConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "UNSPECIFIED",
+            "GVISOR",
+            "MICROVM"
+          ]
+        }
+      }
+    },
+    "SecondaryBootDisk": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "CONTAINER_IMAGE_CACHE"
+          ]
+        }
+      }
+    },
+    "SecurityPostureConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC",
+            "ENTERPRISE"
+          ]
+        },
+        "vulnerabilityMode": {
+          "enum": [
+            "VULNERABILITY_MODE_UNSPECIFIED",
+            "VULNERABILITY_DISABLED",
+            "VULNERABILITY_BASIC",
+            "VULNERABILITY_ENTERPRISE"
+          ]
+        }
+      }
+    },
+    "SoleTenantConfig": {
+      "properties": {
+        "nodeAffinities": {
+          "items": {
+            "$ref": "NodeAffinity"
+          }
+        }
+      }
+    },
+    "StatusCondition": {
+      "properties": {
+        "code": {
+          "enum": [
+            "UNKNOWN",
+            "GCE_STOCKOUT",
+            "GKE_SERVICE_ACCOUNT_DELETED",
+            "GCE_QUOTA_EXCEEDED",
+            "SET_BY_OPERATOR",
+            "CLOUD_KMS_KEY_ERROR",
+            "CA_EXPIRING",
+            "NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS",
+            "CLOUD_KMS_KEY_DESTROYED"
+          ]
+        },
+        "canonicalCode": {
+          "enum": [
+            "OK",
+            "CANCELLED",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS"
+          ]
+        }
+      }
+    },
+    "TaintConfig": {
+      "properties": {
+        "architectureTaintBehavior": {
+          "enum": [
+            "ARCHITECTURE_TAINT_BEHAVIOR_UNSPECIFIED",
+            "NONE",
+            "ARM"
+          ]
+        }
+      }
+    },
+    "TimeWindow": {
+      "properties": {
+        "maintenanceExclusionOptions": {
+          "$ref": "MaintenanceExclusionOptions"
+        }
+      }
+    },
+    "UpdateInfo": {
+      "properties": {
+        "blueGreenInfo": {
+          "$ref": "BlueGreenInfo"
+        }
+      }
+    },
+    "UpgradeSettings": {
+      "properties": {
+        "strategy": {
+          "enum": [
+            "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED",
+            "BLUE_GREEN",
+            "SURGE",
+            "SHORT_LIVED"
+          ]
+        }
+      }
+    },
+    "WindowsNodeConfig": {
+      "properties": {
+        "osVersion": {
+          "enum": [
+            "OS_VERSION_UNSPECIFIED",
+            "OS_VERSION_LTSC2019",
+            "OS_VERSION_LTSC2022"
+          ]
+        }
+      }
+    },
+    "WorkloadMetadataConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "GCE_METADATA",
+            "GKE_METADATA"
+          ]
+        }
+      }
+    }
+  }
+}

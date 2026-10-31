@@ -690,7 +690,7 @@ final class CdnEndpointGeoFilter {
     required this.relativePath,
   });
 
-  final TfArg<String> action;
+  final CdnEndpointAction action;
 
   final TfArg<List<String>> countryCodes;
 
@@ -702,6 +702,20 @@ final class CdnEndpointGeoFilter {
     'country_codes': countryCodes.toTfJson(),
     'relative_path': relativePath.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const CdnEndpointAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnEndpointAction.variable(String name) : this._(TfArg.variable(name));
+  CdnEndpointAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnEndpointAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = CdnEndpointAction._(TfArgLiteral('Allow'));
+  static const block = CdnEndpointAction._(TfArgLiteral('Block'));
+
+  static const List<CdnEndpointAction> values = [allow, block];
 }
 
 /// Typed helper for the `global_delivery_rule` block of

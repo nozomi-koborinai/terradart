@@ -137,8 +137,15 @@ extension type const SecurityPolicyJsonParsing._(TfArg<String> _)
 
   static const disabled = SecurityPolicyJsonParsing._(TfArgLiteral('DISABLED'));
   static const standard = SecurityPolicyJsonParsing._(TfArgLiteral('STANDARD'));
+  static const standardWithGraphql = SecurityPolicyJsonParsing._(
+    TfArgLiteral('STANDARD_WITH_GRAPHQL'),
+  );
 
-  static const List<SecurityPolicyJsonParsing> values = [disabled, standard];
+  static const List<SecurityPolicyJsonParsing> values = [
+    disabled,
+    standard,
+    standardWithGraphql,
+  ];
 }
 
 /// `advanced_options_config.log_level` -- verbosity of Cloud Armor's
@@ -405,6 +412,40 @@ class ComputeSecurityPolicyRulesMatchExpr {
   Map<String, Object?> toArgMap() => {'expression': expression.toTfJson()};
 }
 
+/// Action for requests over a `rule.rate_limit_options` threshold.
+extension type const ComputeSecurityPolicyExceedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSecurityPolicyExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyExceedAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const redirect = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('redirect'),
+  );
+  static const deny403 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeSecurityPolicyExceedAction> values = [
+    redirect,
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 /// `rule.rate_limit_options` -- threshold + action plumbing for
 /// [SecurityPolicyRuleAction.throttle] and
 /// [SecurityPolicyRuleAction.rateBasedBan]. Throttle simply rejects
@@ -429,10 +470,10 @@ class ComputeSecurityPolicyRulesRateLimitOptions {
   /// `'allow'` today.
   final TfArg<String> conformAction;
 
-  /// Action for over-threshold requests. Valid values are `'deny(403)'`,
-  /// `'deny(404)'`, `'deny(429)'`, `'deny(502)'`, and `'redirect'`
-  /// (paired with [exceedRedirectOptions]).
-  final TfArg<String> exceedAction;
+  /// Action for over-threshold requests: deny with a status code, or
+  /// [ComputeSecurityPolicyExceedAction.redirect] (paired with
+  /// [exceedRedirectOptions]).
+  final ComputeSecurityPolicyExceedAction exceedAction;
 
   /// Required rate-limit threshold (counts per interval).
   final ComputeSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
@@ -458,7 +499,8 @@ class ComputeSecurityPolicyRulesRateLimitOptions {
   /// with the single-attribute [enforceOnKey] / [enforceOnKeyName].
   final List<ComputeSecurityPolicyRulesEnforceOnKeyConfig>? enforceOnKeyConfigs;
 
-  /// Redirect target when [exceedAction] is `'redirect'`.
+  /// Redirect target when [exceedAction] is
+  /// [ComputeSecurityPolicyExceedAction.redirect].
   final ComputeSecurityPolicyRulesRedirectOptions? exceedRedirectOptions;
 
   Map<String, Object?> toArgMap() => {
@@ -521,6 +563,32 @@ class ComputeSecurityPolicyRulesEnforceOnKeyConfig {
   };
 }
 
+/// `redirect_options.type` / `exceed_redirect_options.type` -- where a
+/// redirect action sends the request.
+extension type const SecurityPolicyRedirectType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyRedirectType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyRedirectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyRedirectType.arg(TfArg<String> arg) : this._(arg);
+
+  /// A 302 to [ComputeSecurityPolicyRulesRedirectOptions.target].
+  static const external302 = SecurityPolicyRedirectType._(
+    TfArgLiteral('EXTERNAL_302'),
+  );
+
+  /// A Google-hosted reCAPTCHA challenge; set no target.
+  static const googleRecaptcha = SecurityPolicyRedirectType._(
+    TfArgLiteral('GOOGLE_RECAPTCHA'),
+  );
+
+  static const List<SecurityPolicyRedirectType> values = [
+    external302,
+    googleRecaptcha,
+  ];
+}
+
 /// `rule.redirect_options` -- redirect target shape, also reused as
 /// `rate_limit_options.exceed_redirect_options`. Two flavors:
 /// `'EXTERNAL_302'` requires [target] (an HTTPS URL Cloud Armor 302s
@@ -533,13 +601,12 @@ class ComputeSecurityPolicyRulesRedirectOptions {
     this.target,
   });
 
-  /// `'EXTERNAL_302'` or `'GOOGLE_RECAPTCHA'`. Surfaced as a raw
-  /// string to avoid yet another enum for a binary choice; validate
-  /// with a comment at the call site.
-  final TfArg<String> type;
+  /// The redirect flavor.
+  final SecurityPolicyRedirectType type;
 
-  /// HTTPS redirect target. Required for `EXTERNAL_302`; rejected for
-  /// `GOOGLE_RECAPTCHA`.
+  /// HTTPS redirect target. Required for
+  /// [SecurityPolicyRedirectType.external302]; rejected for
+  /// [SecurityPolicyRedirectType.googleRecaptcha].
   final TfArg<String>? target;
 
   Map<String, Object?> toArgMap() => {
@@ -595,6 +662,43 @@ class ComputeSecurityPolicyRulesHeaderAdd {
 // advanced_options_config (single block, max_items=1)
 // ===========================================================================
 
+/// `advanced_options_config.request_body_inspection_size`. The provider
+/// compares it case-insensitively; these are the canonical spellings.
+extension type const ComputeSecurityPolicyRequestBodyInspectionSize._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeSecurityPolicyRequestBodyInspectionSize.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyRequestBodyInspectionSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyRequestBodyInspectionSize.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v8kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('8KB'),
+  );
+  static const v16kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('16KB'),
+  );
+  static const v32kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('32KB'),
+  );
+  static const v48kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('48KB'),
+  );
+  static const v64kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('64KB'),
+  );
+
+  static const List<ComputeSecurityPolicyRequestBodyInspectionSize> values = [
+    v8kb,
+    v16kb,
+    v32kb,
+    v48kb,
+    v64kb,
+  ];
+}
+
 /// `advanced_options_config` -- knobs that apply across the whole
 /// policy: JSON-body inspection for preconfigured WAF rules, log
 /// verbosity, and client-IP resolution headers.
@@ -615,10 +719,10 @@ class ComputeSecurityPolicyAdvancedOptionsConfig {
   /// Cloud Logging verbosity for this policy.
   final SecurityPolicyLogLevel? logLevel;
 
-  /// Max request body size to inspect with WAF (`'8KB'`, `'16KB'`,
-  /// `'32KB'`, `'48KB'`, `'64KB'` -- case-insensitive). Larger values
-  /// catch more attacks at the cost of latency / cost.
-  final TfArg<String>? requestBodyInspectionSize;
+  /// Max request body size to inspect with WAF. Larger values catch
+  /// more attacks at the cost of latency / cost.
+  final ComputeSecurityPolicyRequestBodyInspectionSize?
+  requestBodyInspectionSize;
 
   /// Headers Cloud Armor consults to derive the client IP (in addition
   /// to the L4 source). Case-insensitive header names; typically
@@ -675,8 +779,27 @@ class ComputeSecurityPolicyAdaptiveProtectionConfig {
   };
 }
 
+/// `adaptive_protection_config.layer_7_ddos_defense_config.rule_visibility`.
+extension type const SecurityPolicyRuleVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyRuleVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyRuleVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyRuleVisibility.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = SecurityPolicyRuleVisibility._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const premium = SecurityPolicyRuleVisibility._(
+    TfArgLiteral('PREMIUM'),
+  );
+
+  static const List<SecurityPolicyRuleVisibility> values = [standard, premium];
+}
+
 /// `layer_7_ddos_defense_config` block. Pair [enable] with [ruleVisibility]
-/// (typically `'STANDARD'`); per-segment thresholds can be tuned via
+/// (typically `.standard`); per-segment thresholds can be tuned via
 /// [thresholdConfigs] for tenants with predictable traffic shape.
 @immutable
 class ComputeSecurityPolicyLayer7DdosDefenseConfig {
@@ -689,10 +812,10 @@ class ComputeSecurityPolicyLayer7DdosDefenseConfig {
   /// Master switch for L7 adaptive protection on this policy.
   final TfArg<bool>? enable;
 
-  /// Which rule details are surfaced in attack alerts: `'STANDARD'`
-  /// (anonymised) or `'PREMIUM'` (full rule body). Premium requires
+  /// Which rule details are surfaced in attack alerts: `standard`
+  /// (anonymised) or `premium` (full rule body). Premium requires
   /// Managed Protection Plus.
-  final TfArg<String>? ruleVisibility;
+  final SecurityPolicyRuleVisibility? ruleVisibility;
 
   /// Per-named-config threshold overrides. Each entry must have a
   /// unique [ComputeSecurityPolicyAdaptiveProtectionThresholdConfig.name].
@@ -766,6 +889,33 @@ class ComputeSecurityPolicyAdaptiveProtectionThresholdConfig {
   };
 }
 
+/// `traffic_granularity_configs.type` -- the request attribute a
+/// granular traffic unit is keyed on.
+extension type const SecurityPolicyTrafficGranularityType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyTrafficGranularityType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyTrafficGranularityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyTrafficGranularityType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  /// The `Host` header.
+  static const httpHeaderHost = SecurityPolicyTrafficGranularityType._(
+    TfArgLiteral('HTTP_HEADER_HOST'),
+  );
+
+  /// The URL path.
+  static const httpPath = SecurityPolicyTrafficGranularityType._(
+    TfArgLiteral('HTTP_PATH'),
+  );
+
+  static const List<SecurityPolicyTrafficGranularityType> values = [
+    httpHeaderHost,
+    httpPath,
+  ];
+}
+
 /// One entry in `traffic_granularity_configs`. [enableEachUniqueValue]
 /// (true) and [value] (non-empty string) are mutually exclusive: the
 /// schema rejects setting both.
@@ -777,9 +927,8 @@ class ComputeSecurityPolicyTrafficGranularityConfig {
     this.value,
   });
 
-  /// Granularity dimension (`'HTTP_HEADER_HOST'`, `'HTTP_PATH'`, ...).
-  /// See the Cloud Armor docs for the supported types.
-  final TfArg<String> type;
+  /// Granularity dimension.
+  final SecurityPolicyTrafficGranularityType type;
 
   /// When true, each unique value of [type] constitutes a separate
   /// traffic unit. Mutually exclusive with [value].
@@ -893,13 +1042,13 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///   ),
 ///   rateLimitOptions: .new(
 ///     conformAction: TfArg.literal('allow'),
-///     exceedAction: TfArg.literal('redirect'),
+///     exceedAction: .redirect,
 ///     rateLimitThreshold: .new(
 ///       count: TfArg.literal(100),
 ///       intervalSec: TfArg.literal(60),
 ///     ),
 ///     exceedRedirectOptions: .new(
-///       type: TfArg.literal('GOOGLE_RECAPTCHA'),
+///       type: .googleRecaptcha,
 ///     ),
 ///   ),
 /// );

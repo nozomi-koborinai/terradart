@@ -139395,9 +139395,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_model',
           dartName: 'licenseModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OdbCloudAutonomousVmClusterLicenseModel',
         ),
         MigrateSlot(
           tfName: 'memory_per_oracle_compute_unit_in_gbs',
@@ -143384,9 +143384,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'standby_replicas',
           dartName: 'standbyReplicas',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OpensearchserverlessCollectionStandbyReplicas',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -143398,9 +143398,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OpensearchserverlessCollectionType',
         ),
         MigrateSlot(
           tfName: 'vector_options',
@@ -144068,9 +144068,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataOpensearchserverlessSecurityPolicyType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -209984,7 +209984,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleRuleLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'statement',
@@ -233752,34 +233752,31 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration',
+          helper: 'BedrockagentDataSourceContextEnrichmentModelConfiguration',
         ),
       ],
     ),
-    'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration':
-        MigrateHelper(
-          className:
-              'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'model_arn',
-              dartName: 'modelArn',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'enrichment_strategy_configuration',
-              dartName: 'enrichmentStrategyConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper: 'BedrockagentDataSourceEnrichmentStrategyConfiguration',
-            ),
-          ],
+    'BedrockagentDataSourceContextEnrichmentModelConfiguration': MigrateHelper(
+      className: 'BedrockagentDataSourceContextEnrichmentModelConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'model_arn',
+          dartName: 'modelArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'enrichment_strategy_configuration',
+          dartName: 'enrichmentStrategyConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceEnrichmentStrategyConfiguration',
+        ),
+      ],
+    ),
     'BedrockagentDataSourceCrawlerLimits': MigrateHelper(
       className: 'BedrockagentDataSourceCrawlerLimits',
       slots: <MigrateSlot>[
@@ -263789,6 +263786,41 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions':
+        MigrateHelper(
+          className:
+              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'operator',
+              dartName: 'operator',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'type',
+              dartName: 'type',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies': MigrateHelper(
       className:
           'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies',
@@ -263831,7 +263863,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper:
-              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions',
+              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions',
         ),
       ],
     ),
@@ -263877,25 +263909,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions':
+    'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions':
         MigrateHelper(
           className:
-              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions',
+              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions',
           slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key',
-              dartName: 'key',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'operator',
-              dartName: 'operator',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
             MigrateSlot(
               tfName: 'type',
               dartName: 'type',
@@ -263907,7 +263925,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               tfName: 'value',
               dartName: 'value',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'String',
             ),
           ],
@@ -263955,7 +263973,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               repeated: true,
               wrapped: false,
               helper:
-                  'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions',
+                  'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions',
             ),
           ],
         ),
@@ -263970,27 +263988,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'List<String>',
-            ),
-          ],
-        ),
-    'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions':
-        MigrateHelper(
-          className:
-              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'type',
-              dartName: 'type',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'value',
-              dartName: 'value',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
             ),
           ],
         ),
@@ -319689,7 +319686,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper:
-              'ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration',
+              'ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration',
         ),
         MigrateSlot(
           tfName: 'log_group_name_configuration',
@@ -319723,10 +319720,41 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration':
+    'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration':
         MigrateHelper(
           className:
-              'ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration',
+              'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'backup_configuration',
+              dartName: 'backupConfiguration',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration',
+            ),
+          ],
+        ),
+    'ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration':
+        MigrateHelper(
+          className:
+              'ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'log_group_name_pattern',
+              dartName: 'logGroupNamePattern',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration':
+        MigrateHelper(
+          className:
+              'ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'kms_key_arn',
@@ -319741,51 +319769,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               dartName: 'region',
               kind: MigrateSlotKind.scalar,
               required: false,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration':
-        MigrateHelper(
-          className:
-              'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'backup_configuration',
-              dartName: 'backupConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper:
-                  'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration',
-            ),
-          ],
-        ),
-    'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration':
-        MigrateHelper(
-          className:
-              'ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'region',
-              dartName: 'region',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration':
-        MigrateHelper(
-          className:
-              'ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'log_group_name_pattern',
-              dartName: 'logGroupNamePattern',
-              kind: MigrateSlotKind.scalar,
-              required: true,
               dartType: 'String',
             ),
           ],
@@ -319828,6 +319811,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration':
+        MigrateHelper(
+          className:
+              'ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'region',
+              dartName: 'region',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'ObservabilityadminCentralizationRuleForOrganizationRule': MigrateHelper(
       className: 'ObservabilityadminCentralizationRuleForOrganizationRule',
       slots: <MigrateSlot>[
@@ -368692,7 +368689,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'ResiliencehubResiliencyPolicyPolicyRegion',
+          helper: 'ResiliencehubResiliencyPolicyRegional',
         ),
         MigrateSlot(
           tfName: 'software',
@@ -368743,8 +368740,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ResiliencehubResiliencyPolicyPolicyRegion': MigrateHelper(
-      className: 'ResiliencehubResiliencyPolicyPolicyRegion',
+    'ResiliencehubResiliencyPolicyRegional': MigrateHelper(
+      className: 'ResiliencehubResiliencyPolicyRegional',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'rpo',
@@ -403252,7 +403249,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleRuleLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'single_query_argument',
@@ -403261,7 +403258,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleRuleLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'uri_fragment',
@@ -403452,9 +403449,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'payload_type',
               dartName: 'payloadType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'Wafv2WebAclRuleGroupAssociationPayloadType',
             ),
             MigrateSlot(
               tfName: 'address_fields',
@@ -403572,9 +403569,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'payload_type',
               dartName: 'payloadType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'Wafv2WebAclRuleGroupAssociationPayloadType',
             ),
             MigrateSlot(
               tfName: 'password_field',
@@ -404456,9 +404453,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleScope',
         ),
       ],
     ),
@@ -404621,6 +404618,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Wafv2WebAclRuleNamed': MigrateHelper(
+      className: 'Wafv2WebAclRuleNamed',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'Wafv2WebAclRuleOverrideAction': MigrateHelper(
       className: 'Wafv2WebAclRuleOverrideAction',
       slots: <MigrateSlot>[
@@ -404676,9 +404685,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'aggregate_key_type',
           dartName: 'aggregateKeyType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleAggregateKeyType',
         ),
         MigrateSlot(
           tfName: 'evaluation_window_sec',
@@ -404824,18 +404833,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Wafv2WebAclRuleRuleLabel': MigrateHelper(
-      className: 'Wafv2WebAclRuleRuleLabel',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-      ],
-    ),
     'Wafv2WebAclRuleScopeDownStatement': MigrateHelper(
       className: 'Wafv2WebAclRuleScopeDownStatement',
       slots: <MigrateSlot>[
@@ -404974,9 +404971,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sensitivity_level',
           dartName: 'sensitivityLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleSensitivityLevel',
         ),
         MigrateSlot(
           tfName: 'field_to_match',
@@ -405300,7 +405297,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleRuleLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'rule_action_override',
@@ -413007,6 +413004,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'PENDING': 'pending',
         'IN_PROGRESS': 'inProgress',
         'ACTIVE': 'active',
+      },
+    ),
+    'DataOpensearchserverlessSecurityPolicyType': MigrateEnum(
+      name: 'DataOpensearchserverlessSecurityPolicyType',
+      members: <String, String>{
+        'encryption': 'encryption',
+        'network': 'network',
       },
     ),
     'DataexchangeDataSetAssetType': MigrateEnum(
@@ -420982,6 +420986,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'YEARLY': 'yearly',
       },
     ),
+    'OdbCloudAutonomousVmClusterLicenseModel': MigrateEnum(
+      name: 'OdbCloudAutonomousVmClusterLicenseModel',
+      members: <String, String>{
+        'LICENSE_INCLUDED': 'licenseIncluded',
+        'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
+      },
+    ),
     'OdbCloudAutonomousVmClusterPreference': MigrateEnum(
       name: 'OdbCloudAutonomousVmClusterPreference',
       members: <String, String>{
@@ -421126,6 +421137,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     'OpensearchserverlessCollectionGroupStandbyReplicas': MigrateEnum(
       name: 'OpensearchserverlessCollectionGroupStandbyReplicas',
       members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'OpensearchserverlessCollectionStandbyReplicas': MigrateEnum(
+      name: 'OpensearchserverlessCollectionStandbyReplicas',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'OpensearchserverlessCollectionType': MigrateEnum(
+      name: 'OpensearchserverlessCollectionType',
+      members: <String, String>{
+        'SEARCH': 'search',
+        'TIMESERIES': 'timeseries',
+        'VECTORSEARCH': 'vectorsearch',
+      },
     ),
     'OpensearchserverlessLifecyclePolicyType': MigrateEnum(
       name: 'OpensearchserverlessLifecyclePolicyType',
@@ -430188,9 +430211,30 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'MEETS_ANY': 'meetsAny',
       },
     ),
+    'Wafv2WebAclRuleAggregateKeyType': MigrateEnum(
+      name: 'Wafv2WebAclRuleAggregateKeyType',
+      members: <String, String>{
+        'IP': 'ip',
+        'FORWARDED_IP': 'forwardedIp',
+        'CUSTOM_KEYS': 'customKeys',
+        'CONSTANT': 'constant',
+      },
+    ),
     'Wafv2WebAclRuleGroupAssociationOverrideAction': MigrateEnum(
       name: 'Wafv2WebAclRuleGroupAssociationOverrideAction',
       members: <String, String>{'none': 'none', 'count': 'count'},
+    ),
+    'Wafv2WebAclRuleGroupAssociationPayloadType': MigrateEnum(
+      name: 'Wafv2WebAclRuleGroupAssociationPayloadType',
+      members: <String, String>{'JSON': 'json', 'FORM_ENCODED': 'formEncoded'},
+    ),
+    'Wafv2WebAclRuleScope': MigrateEnum(
+      name: 'Wafv2WebAclRuleScope',
+      members: <String, String>{'LABEL': 'label', 'NAMESPACE': 'namespace'},
+    ),
+    'Wafv2WebAclRuleSensitivityLevel': MigrateEnum(
+      name: 'Wafv2WebAclRuleSensitivityLevel',
+      members: <String, String>{'HIGH': 'high', 'LOW': 'low'},
     ),
     'Wafv2WebAclScope': MigrateEnum(
       name: 'Wafv2WebAclScope',

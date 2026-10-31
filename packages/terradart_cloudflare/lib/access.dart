@@ -23,5 +23,9 @@ export 'src/data/cloudflare_access_rule.dart'
 export 'src/data/cloudflare_access_rules.dart'
     show
         DataAccessRulesConfiguration,
+        DataAccessRulesDirection,
+        DataAccessRulesMatch,
+        DataAccessRulesMode,
+        DataAccessRulesOrder,
         DataAccessRulesTarget,
         DataCloudflareAccessRules;

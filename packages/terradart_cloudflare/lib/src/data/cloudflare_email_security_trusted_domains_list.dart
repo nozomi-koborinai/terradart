@@ -8,6 +8,53 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailSecurityTrustedDomainsListSensitive =
     <String>{};
 
+/// Data Email Security Trusted Domains List enum for `direction`.
+extension type const DataEmailSecurityTrustedDomainsListDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityTrustedDomainsListDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityTrustedDomainsListDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityTrustedDomainsListDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataEmailSecurityTrustedDomainsListDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityTrustedDomainsListDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityTrustedDomainsListDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Email Security Trusted Domains List enum for `order`.
+extension type const DataEmailSecurityTrustedDomainsListOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityTrustedDomainsListOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityTrustedDomainsListOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityTrustedDomainsListOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pattern = DataEmailSecurityTrustedDomainsListOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityTrustedDomainsListOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityTrustedDomainsListOrder> values = [
+    pattern,
+    createdAt,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_email_security_trusted_domains_list`.
 ///
 /// Accepted Permissions
@@ -19,11 +66,11 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
   DataCloudflareEmailSecurityTrustedDomainsList(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataEmailSecurityTrustedDomainsListDirection? direction,
     TfArg<bool>? isRecent,
     TfArg<bool>? isSimilarity,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataEmailSecurityTrustedDomainsListOrder? order,
     TfArg<String>? pattern,
     TfArg<String>? search,
     super.provider,

@@ -1,0 +1,33 @@
+{
+  "name": "dataform",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://dataform.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Folder": {
+      "properties": {}
+    },
+    "GitRemoteSettings": {
+      "properties": {
+        "tokenStatus": {
+          "enum": [
+            "TOKEN_STATUS_UNSPECIFIED",
+            "NOT_FOUND",
+            "INVALID",
+            "VALID"
+          ]
+        }
+      }
+    },
+    "Repository": {
+      "properties": {
+        "gitRemoteSettings": {
+          "$ref": "GitRemoteSettings"
+        }
+      }
+    },
+    "TeamFolder": {
+      "properties": {}
+    }
+  }
+}

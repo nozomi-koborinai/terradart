@@ -62,9 +62,7 @@ final class ConstructorSlots {
           ),
           appliedDeprecations[attr.name],
         ),
-        argMapEntry: isEnumListType(typeOverride ?? '')
-            ? schema.elementwiseArgMapEntry(attr.name, isRequired: isRequired)
-            : _argMapEntry(attr.name, isRequired),
+        argMapEntry: _argMapEntry(attr.name, isRequired),
       );
     }
     for (final nested in def.root.nestedBlocks) {
@@ -151,9 +149,11 @@ final class ConstructorSlots {
         null => _helperMember(
           dartName: attr.dartName,
           tfName: attr.tfName,
-          elementType: attr.dartType,
+          elementType: _enumList(attr)
+              ? 'List<${attr.dartType}>'
+              : attr.dartType,
           required: attr.required,
-          repeated: attr.repeated,
+          repeated: attr.repeated && !_enumList(attr),
           keyed: false,
           wrapInTfArg: true,
           sensitive: attr.sensitive,
@@ -408,3 +408,8 @@ WrapperSlot _absorbedSlot({
       "'$tfName': ?($dartName ?? $from${fromRequired ? '' : '?'}"
       ".alsoAs('$tfName')),",
 );
+
+/// Whether [attr] is a list of enum members, which a helper field takes as
+/// one `EnumList` rather than element by element.
+bool _enumList(NestedAttrSpec attr) =>
+    attr.repeated && isEnumTypeName(attr.dartType);

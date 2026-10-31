@@ -1339,9 +1339,7 @@ final class BedrockagentDataSourceContextEnrichmentConfiguration {
 
   final BedrockagentDataSourceContextEnrichmentConfigurationType type;
 
-  final List<
-    BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration
-  >?
+  final List<BedrockagentDataSourceContextEnrichmentModelConfiguration>?
   bedrockFoundationModelConfiguration;
 
   @internal
@@ -1379,8 +1377,8 @@ extension type const BedrockagentDataSourceContextEnrichmentConfigurationType._(
 /// Typed helper for the `vector_ingestion_configuration.context_enrichment_configuration.bedrock_foundation_model_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration {
-  const BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration({
+final class BedrockagentDataSourceContextEnrichmentModelConfiguration {
+  const BedrockagentDataSourceContextEnrichmentModelConfiguration({
     required this.modelArn,
     this.enrichmentStrategyConfiguration,
   });

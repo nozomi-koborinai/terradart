@@ -8,6 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDatabaseMigrationServiceMigrationJobSensitive =
     <String>{};
 
+/// Database Migration Service Migration Job Desired enum for `desired_state`.
+extension type const DatabaseMigrationServiceMigrationJobDesiredState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const notStarted = DatabaseMigrationServiceMigrationJobDesiredState._(
+    TfArgLiteral('NOT_STARTED'),
+  );
+  static const running = DatabaseMigrationServiceMigrationJobDesiredState._(
+    TfArgLiteral('RUNNING'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobDesiredState> values = [
+    notStarted,
+    running,
+  ];
+}
+
 /// Database Migration Service Migration Job Dump enum for `dump_type`.
 extension type const DatabaseMigrationServiceMigrationJobDumpType._(
   TfArg<String> _
@@ -84,16 +108,32 @@ extension type const DatabaseMigrationServiceMigrationJobState._(
   const DatabaseMigrationServiceMigrationJobState.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const draft = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('DRAFT'),
+  );
   static const notStarted = DatabaseMigrationServiceMigrationJobState._(
     TfArgLiteral('NOT_STARTED'),
   );
   static const running = DatabaseMigrationServiceMigrationJobState._(
     TfArgLiteral('RUNNING'),
   );
+  static const completed = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('COMPLETED'),
+  );
+  static const stopped = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('STOPPED'),
+  );
+  static const failed = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('FAILED'),
+  );
 
   static const List<DatabaseMigrationServiceMigrationJobState> values = [
+    draft,
     notStarted,
     running,
+    completed,
+    stopped,
+    failed,
   ];
 }
 
@@ -547,7 +587,7 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   GoogleDatabaseMigrationServiceMigrationJob(
     super.localName, {
     TfArg<String>? deletionPolicy,
-    TfArg<String>? desiredState,
+    DatabaseMigrationServiceMigrationJobDesiredState? desiredState,
     required TfArg<String> destination,
     TfArg<String>? displayName,
     TfArg<String>? dumpPath,

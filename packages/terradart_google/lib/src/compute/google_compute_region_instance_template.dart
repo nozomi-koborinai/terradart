@@ -17,6 +17,30 @@ const Set<String> _googleComputeRegionInstanceTemplateSensitive = <String>{
   'disk.source_snapshot_encryption_key.rsa_encrypted_key',
 };
 
+/// Compute Region Instance Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeRegionInstanceTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateKeyRevocationActionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateKeyRevocationActionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none = ComputeRegionInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeRegionInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateKeyRevocationActionType>
+  values = [none, stop];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
@@ -34,7 +58,8 @@ final class ComputeRegionInstanceTemplateAdvancedMachineFeatures {
 
   final TfArg<bool>? enableUefiNetworking;
 
-  final TfArg<String>? performanceMonitoringUnit;
+  final ComputeRegionInstanceTemplatePerformanceMonitoringUnit?
+  performanceMonitoringUnit;
 
   final TfArg<num>? threadsPerCore;
 
@@ -53,6 +78,36 @@ final class ComputeRegionInstanceTemplateAdvancedMachineFeatures {
   };
 }
 
+/// `performance_monitoring_unit` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplatePerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplatePerformanceMonitoringUnit.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplatePerformanceMonitoringUnit.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const architectural =
+      ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ARCHITECTURAL'),
+      );
+  static const enhanced =
+      ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ENHANCED'),
+      );
+  static const standard =
+      ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('STANDARD'),
+      );
+
+  static const List<ComputeRegionInstanceTemplatePerformanceMonitoringUnit>
+  values = [architectural, enhanced, standard];
+}
+
 /// Typed helper for the `confidential_instance_config` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
@@ -62,7 +117,8 @@ final class ComputeRegionInstanceTemplateConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final ComputeRegionInstanceTemplateConfidentialInstanceType?
+  confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -71,6 +127,39 @@ final class ComputeRegionInstanceTemplateConfidentialInstanceConfig {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateConfidentialInstanceType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateConfidentialInstanceType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bmsai = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
+  static const sev = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateConfidentialInstanceType>
+  values = [bmsai, cca, sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `disk` block of
@@ -103,7 +192,7 @@ final class ComputeRegionInstanceTemplateDisk {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeRegionInstanceTemplateArchitecture? architecture;
 
   final TfArg<bool>? autoDelete;
 
@@ -119,11 +208,11 @@ final class ComputeRegionInstanceTemplateDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeRegionInstanceTemplateInterface? interface;
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? mode;
+  final ComputeRegionInstanceTemplateMode? mode;
 
   final TfArg<num>? provisionedIops;
 
@@ -141,7 +230,7 @@ final class ComputeRegionInstanceTemplateDisk {
 
   final TfArg<String>? storagePool;
 
-  final TfArg<String>? type;
+  final ComputeRegionInstanceTemplateType? type;
 
   final ComputeRegionInstanceTemplateDiskEncryptionKey? diskEncryptionKey;
 
@@ -177,6 +266,97 @@ final class ComputeRegionInstanceTemplateDisk {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateArchitecture._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const arm64 = ComputeRegionInstanceTemplateArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+  static const x8664 = ComputeRegionInstanceTemplateArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateArchitecture> values = [
+    arm64,
+    x8664,
+  ];
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateInterface.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvme = ComputeRegionInstanceTemplateInterface._(
+    TfArgLiteral('NVME'),
+  );
+  static const scsi = ComputeRegionInstanceTemplateInterface._(
+    TfArgLiteral('SCSI'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateInterface> values = [
+    nvme,
+    scsi,
+  ];
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const readOnly = ComputeRegionInstanceTemplateMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = ComputeRegionInstanceTemplateMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateMode> values = [
+    readOnly,
+    readWrite,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateType.arg(TfArg<String> arg) : this._(arg);
+
+  static const persistent = ComputeRegionInstanceTemplateType._(
+    TfArgLiteral('PERSISTENT'),
+  );
+  static const scratch = ComputeRegionInstanceTemplateType._(
+    TfArgLiteral('SCRATCH'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateType> values = [
+    persistent,
+    scratch,
+  ];
 }
 
 /// Typed helper for the `disk.disk_encryption_key` block of
@@ -301,7 +481,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeRegionInstanceTemplateIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -319,7 +499,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeRegionInstanceTemplateStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -358,6 +538,29 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
   };
 }
 
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateIgmpQuery.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateIgmpQuery.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const igmpQueryDisabled = ComputeRegionInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeRegionInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
 /// `nic_type` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateNicType._(TfArg<String> _)
     implements TfArg<String> {
@@ -371,21 +574,52 @@ extension type const ComputeRegionInstanceTemplateNicType._(TfArg<String> _)
   static const gvnic = ComputeRegionInstanceTemplateNicType._(
     TfArgLiteral('GVNIC'),
   );
-  static const virtioNet = ComputeRegionInstanceTemplateNicType._(
-    TfArgLiteral('VIRTIO_NET'),
-  );
-  static const mrdma = ComputeRegionInstanceTemplateNicType._(
-    TfArgLiteral('MRDMA'),
+  static const idpf = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('IDPF'),
   );
   static const irdma = ComputeRegionInstanceTemplateNicType._(
     TfArgLiteral('IRDMA'),
   );
+  static const mrdma = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const virtioNet = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
 
   static const List<ComputeRegionInstanceTemplateNicType> values = [
     gvnic,
-    virtioNet,
-    mrdma,
+    idpf,
     irdma,
+    mrdma,
+    virtioNet,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateStackType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipv4Ipv6 = ComputeRegionInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeRegionInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = ComputeRegionInstanceTemplateStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
   ];
 }
 
@@ -400,13 +634,45 @@ final class ComputeRegionInstanceTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<String>? networkTier;
+  final ComputeRegionInstanceTemplateNetworkTier? networkTier;
 
   @internal
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
     'network_tier': ?networkTier?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedStandard = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+  static const premium = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardOverridesFixedStandard =
+      ComputeRegionInstanceTemplateNetworkTier._(
+        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
+      );
+
+  static const List<ComputeRegionInstanceTemplateNetworkTier> values = [
+    fixedStandard,
+    premium,
+    standard,
+    standardOverridesFixedStandard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -437,7 +703,7 @@ final class ComputeRegionInstanceTemplateIpv6AccessConfig {
     required this.networkTier,
   });
 
-  final TfArg<String> networkTier;
+  final ComputeRegionInstanceTemplateNetworkTier networkTier;
 
   @internal
   Map<String, Object?> encode() => {'network_tier': networkTier.toTfJson()};
@@ -473,16 +739,16 @@ extension type const ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const tier1 = ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase =
       ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
         TfArgLiteral('DEFAULT'),
       );
+  static const tier1 = ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeRegionInstanceTemplateTotalEgressBandwidthTier>
-  values = [tier1, defaultCase];
+  values = [defaultCase, tier1];
 }
 
 /// Typed helper for the `reservation_affinity` block of
@@ -552,15 +818,16 @@ final class ComputeRegionInstanceTemplateScheduling {
 
   final TfArg<num>? hostErrorTimeoutSeconds;
 
-  final TfArg<String>? instanceTerminationAction;
+  final ComputeRegionInstanceTemplateInstanceTerminationAction?
+  instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<String>? onHostMaintenance;
+  final ComputeRegionInstanceTemplateOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<String>? provisioningModel;
+  final ComputeRegionInstanceTemplateProvisioningModel? provisioningModel;
 
   final TfArg<String>? terminationTime;
 
@@ -597,6 +864,88 @@ final class ComputeRegionInstanceTemplateScheduling {
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
     'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
+}
+
+/// `instance_termination_action` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateInstanceTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateInstanceTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateInstanceTerminationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateInstanceTerminationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const delete =
+      ComputeRegionInstanceTemplateInstanceTerminationAction._(
+        TfArgLiteral('DELETE'),
+      );
+  static const stop = ComputeRegionInstanceTemplateInstanceTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateInstanceTerminationAction>
+  values = [delete, stop];
+}
+
+/// `on_host_maintenance` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateOnHostMaintenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateOnHostMaintenance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const migrate = ComputeRegionInstanceTemplateOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+  static const terminate = ComputeRegionInstanceTemplateOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateOnHostMaintenance> values = [
+    migrate,
+    terminate,
+  ];
+}
+
+/// `provisioning_model` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateProvisioningModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateProvisioningModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const flexStart = ComputeRegionInstanceTemplateProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound =
+      ComputeRegionInstanceTemplateProvisioningModel._(
+        TfArgLiteral('RESERVATION_BOUND'),
+      );
+  static const spot = ComputeRegionInstanceTemplateProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const standard = ComputeRegionInstanceTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateProvisioningModel> values = [
+    flexStart,
+    reservationBound,
+    spot,
+    standard,
+  ];
 }
 
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
@@ -651,7 +1000,7 @@ final class ComputeRegionInstanceTemplateNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeRegionInstanceTemplateOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -661,6 +1010,29 @@ final class ComputeRegionInstanceTemplateNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inCase = ComputeRegionInstanceTemplateOperator._(
+    TfArgLiteral('IN'),
+  );
+  static const notIn = ComputeRegionInstanceTemplateOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateOperator> values = [
+    inCase,
+    notIn,
+  ];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -787,7 +1159,8 @@ final class GoogleComputeRegionInstanceTemplate extends Resource {
     TfArg<String>? minCpuPlatform,
     TfArg<Map<String, String>>? resourceManagerTags,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeRegionInstanceTemplateKeyRevocationActionType?
+    keyRevocationActionType,
     TfArg<String>? instanceDescription,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

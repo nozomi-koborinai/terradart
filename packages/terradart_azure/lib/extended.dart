@@ -11,4 +11,5 @@ export 'src/data/azurerm_extended_locations.dart'
 export 'src/extended/azurerm_extended_location_custom_location.dart'
     show
         AzurermExtendedLocationCustomLocation,
-        ExtendedLocationCustomLocationAuthentication;
+        ExtendedLocationCustomLocationAuthentication,
+        ExtendedLocationCustomLocationHostType;

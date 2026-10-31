@@ -1,0 +1,213 @@
+{
+  "name": "tpu",
+  "version": "v2alpha1",
+  "revision": "20261023",
+  "sourceUrl": "https://tpu.googleapis.com/$discovery/rest?version=v2alpha1",
+  "schemas": {
+    "AcceleratorConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "V2",
+            "V3",
+            "V4",
+            "V5LITE_POD",
+            "V5P",
+            "V6E"
+          ]
+        }
+      }
+    },
+    "AttachedDisk": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "DISK_MODE_UNSPECIFIED",
+            "READ_WRITE",
+            "READ_ONLY"
+          ]
+        }
+      }
+    },
+    "MultiNodeParams": {
+      "properties": {
+        "workloadType": {
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "THROUGHPUT_OPTIMIZED",
+            "AVAILABILITY_OPTIMIZED"
+          ]
+        }
+      }
+    },
+    "Node": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "RESTARTING",
+            "REIMAGING",
+            "DELETING",
+            "REPAIRING",
+            "STOPPED",
+            "STOPPING",
+            "STARTING",
+            "PREEMPTED",
+            "TERMINATED",
+            "HIDING",
+            "HIDDEN",
+            "UNHIDING",
+            "UNKNOWN"
+          ]
+        },
+        "apiVersion": {
+          "enum": [
+            "API_VERSION_UNSPECIFIED",
+            "V1_ALPHA1",
+            "V1",
+            "V2_ALPHA1"
+          ]
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        },
+        "health": {
+          "enum": [
+            "HEALTH_UNSPECIFIED",
+            "HEALTHY",
+            "TIMEOUT",
+            "UNHEALTHY_TENSORFLOW",
+            "UNHEALTHY_MAINTENANCE"
+          ]
+        },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig"
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
+        },
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        }
+      }
+    },
+    "NodeSpec": {
+      "properties": {
+        "multiNodeParams": {
+          "$ref": "MultiNodeParams"
+        },
+        "node": {
+          "$ref": "Node"
+        }
+      }
+    },
+    "QueuedResource": {
+      "properties": {
+        "provisioningModel": {
+          "enum": [
+            "PROVISIONING_MODEL_UNSPECIFIED",
+            "STANDARD",
+            "SPOT",
+            "RESERVATION_BOUND",
+            "FLEX_START"
+          ]
+        },
+        "tpu": {
+          "$ref": "Tpu"
+        },
+        "state": {
+          "$ref": "QueuedResourceState"
+        }
+      }
+    },
+    "QueuedResourceState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACCEPTED",
+            "PROVISIONING",
+            "FAILED",
+            "DELETING",
+            "ACTIVE",
+            "SUSPENDING",
+            "SUSPENDED",
+            "WAITING_FOR_RESOURCES"
+          ]
+        },
+        "stateInitiator": {
+          "enum": [
+            "STATE_INITIATOR_UNSPECIFIED",
+            "USER",
+            "SERVICE"
+          ]
+        }
+      }
+    },
+    "SchedulingConfig": {
+      "properties": {
+        "provisioningModel": {
+          "enum": [
+            "PROVISIONING_MODEL_UNSPECIFIED",
+            "STANDARD",
+            "SPOT",
+            "RESERVATION_BOUND"
+          ]
+        }
+      }
+    },
+    "Symptom": {
+      "properties": {
+        "symptomType": {
+          "enum": [
+            "SYMPTOM_TYPE_UNSPECIFIED",
+            "LOW_MEMORY",
+            "OUT_OF_MEMORY",
+            "EXECUTE_TIMED_OUT",
+            "MESH_BUILD_FAIL",
+            "HBM_OUT_OF_MEMORY",
+            "PROJECT_ABUSE"
+          ]
+        }
+      }
+    },
+    "Tpu": {
+      "properties": {
+        "nodeSpec": {
+          "items": {
+            "$ref": "NodeSpec"
+          }
+        }
+      }
+    },
+    "UpcomingMaintenance": {
+      "properties": {
+        "maintenanceStatus": {
+          "enum": [
+            "UNKNOWN",
+            "PENDING",
+            "ONGOING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "UNKNOWN_TYPE",
+            "SCHEDULED",
+            "UNSCHEDULED"
+          ]
+        }
+      }
+    }
+  }
+}

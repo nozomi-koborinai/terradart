@@ -47,6 +47,19 @@ extension type const SpringCloudGatewayApplicationPerformanceMonitoringTypes._(
   values = [appdynamics, applicationinsights, dynatrace, elasticapm, newrelic];
 }
 
+/// Spring Cloud Gateway enum for `name`.
+extension type const SpringCloudGatewayName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudGatewayName.variable(String name) : this._(TfArg.variable(name));
+  SpringCloudGatewayName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudGatewayName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudGatewayName._(TfArgLiteral('default'));
+
+  static const List<SpringCloudGatewayName> values = [defaultCase];
+}
+
 /// At most one of `local_response_cache_per_instance`, `local_response_cache_per_route` on `azurerm_spring_cloud_gateway`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -204,7 +217,7 @@ final class SpringCloudGatewayCors {
 
   final TfArg<List<String>>? allowedHeaders;
 
-  final List<SpringCloudGatewayAllowedMethods>? allowedMethods;
+  final EnumList<SpringCloudGatewayAllowedMethods>? allowedMethods;
 
   final TfArg<List<String>>? allowedOriginPatterns;
 
@@ -219,8 +232,7 @@ final class SpringCloudGatewayCors {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': ?allowedHeaders?.toTfJson(),
-    if (allowedMethods != null)
-      'allowed_methods': [for (final e in allowedMethods!) e.toTfJson()],
+    'allowed_methods': ?allowedMethods?.toTfJson(),
     'allowed_origin_patterns': ?allowedOriginPatterns?.toTfJson(),
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'credentials_allowed': ?credentialsAllowed?.toTfJson(),
@@ -355,12 +367,12 @@ final class AzurermSpringCloudGateway extends Resource {
   AzurermSpringCloudGateway(
     super.localName, {
     TfArg<List<String>>? applicationPerformanceMonitoringIds,
-    List<SpringCloudGatewayApplicationPerformanceMonitoringTypes>?
+    EnumList<SpringCloudGatewayApplicationPerformanceMonitoringTypes>?
     applicationPerformanceMonitoringTypes,
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<bool>? httpsOnly,
     TfArg<num>? instanceCount,
-    required TfArg<String> name,
+    required SpringCloudGatewayName name,
     TfArg<bool>? publicNetworkAccessEnabled,
     Sensitive<Map<String, String>>? sensitiveEnvironmentVariables,
     required TfArg<String> springCloudServiceId,
@@ -379,11 +391,8 @@ final class AzurermSpringCloudGateway extends Resource {
          argMap: {
            'application_performance_monitoring_ids':
                ?applicationPerformanceMonitoringIds,
-           if (applicationPerformanceMonitoringTypes != null)
-             'application_performance_monitoring_types': TfArg.literal([
-               for (final e in applicationPerformanceMonitoringTypes)
-                 e.toTfJson(),
-             ]),
+           'application_performance_monitoring_types':
+               ?applicationPerformanceMonitoringTypes,
            'environment_variables': ?environmentVariables,
            'https_only': ?httpsOnly,
            'instance_count': ?instanceCount,

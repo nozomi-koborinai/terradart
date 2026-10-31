@@ -172,13 +172,29 @@ final class TpuV2VmAcceleratorConfig {
 
   final TfArg<String> topology;
 
-  final TfArg<String> type;
+  final TpuV2VmType type;
 
   @internal
   Map<String, Object?> encode() => {
     'topology': topology.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const TpuV2VmType._(TfArg<String> _) implements TfArg<String> {
+  TpuV2VmType.variable(String name) : this._(TfArg.variable(name));
+  TpuV2VmType.expression(String template) : this._(TfArg.expression(template));
+  const TpuV2VmType.arg(TfArg<String> arg) : this._(arg);
+
+  static const v2 = TpuV2VmType._(TfArgLiteral('V2'));
+  static const v3 = TpuV2VmType._(TfArgLiteral('V3'));
+  static const v4 = TpuV2VmType._(TfArgLiteral('V4'));
+  static const v5litePod = TpuV2VmType._(TfArgLiteral('V5LITE_POD'));
+  static const v5p = TpuV2VmType._(TfArgLiteral('V5P'));
+  static const v6e = TpuV2VmType._(TfArgLiteral('V6E'));
+
+  static const List<TpuV2VmType> values = [v2, v3, v4, v5litePod, v5p, v6e];
 }
 
 /// Typed helper for the `data_disks` block of

@@ -3,6 +3,14 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: default_retention_rule
+    properties:
+      - api_name: life_cycle
+        properties:
+          - api_name: data_store_type
+            enum_values:
+              - "OperationalStore"
+              - "VaultStore"
   - api_name: retention_rule
     properties:
       - api_name: criteria
@@ -21,3 +29,9 @@ properties:
               - "Last"
               - "Second"
               - "Third"
+      - api_name: life_cycle
+        properties:
+          - api_name: data_store_type
+            enum_values:
+              - "OperationalStore"
+              - "VaultStore"

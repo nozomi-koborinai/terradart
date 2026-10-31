@@ -16,6 +16,20 @@ const Set<String> _azurermEventhubNamespaceSensitive = <String>{
   'default_secondary_key',
 };
 
+/// Eventhub Namespace Minimum Tls enum for `minimum_tls_version`.
+extension type const EventhubNamespaceMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubNamespaceMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  EventhubNamespaceMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubNamespaceMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = EventhubNamespaceMinimumTlsVersion._(TfArgLiteral('1.2'));
+
+  static const List<EventhubNamespaceMinimumTlsVersion> values = [v1p2];
+}
+
 /// Eventhub Namespace enum for `sku`.
 extension type const EventhubNamespaceSku._(TfArg<String> _)
     implements TfArg<String> {
@@ -60,7 +74,7 @@ final class AzurermEventhubNamespace extends Resource {
     TfArg<bool>? localAuthenticationEnabled,
     required TfArg<String> location,
     TfArg<num>? maximumThroughputUnits,
-    TfArg<String>? minimumTlsVersion,
+    EventhubNamespaceMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
     TfArg<List<Map<String, Object?>>>? networkRulesets,
     TfArg<bool>? publicNetworkAccessEnabled,

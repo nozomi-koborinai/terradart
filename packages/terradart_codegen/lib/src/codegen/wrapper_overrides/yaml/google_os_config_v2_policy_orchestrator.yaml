@@ -1,4 +1,8 @@
 outputDir: os_config
+enumValues:
+  action:
+    - UPSERT
+    - DELETE
 
 deriveClassDoc: true
 deriveExactlyOne: true
@@ -24,14 +28,14 @@ curatedDoc: |-
   /// GoogleOsConfigV2PolicyOrchestrator(
   ///   'stopped',
   ///   policyOrchestratorId: TfArg.literal('terradart-po'),
-  ///   action: TfArg.literal('UPSERT'),
+  ///   action: .upsert,
   ///   state: TfArg.literal('STOPPED'),
   ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
   ///     osPolicyAssignmentV1Payload: .new(
   ///       osPolicies: [
   ///         .new(
   ///           id: TfArg.literal('test-os-policy'),
-  ///           mode: TfArg.literal('VALIDATION'),
+  ///           mode: .validation,
   ///           resourceGroups: [
   ///             .new(
   ///               resources: [
@@ -40,7 +44,7 @@ curatedDoc: |-
   ///                   file: .new(
   ///                     content: .literal('file-content-tf'),
   ///                     path: .literal('file-path-tf-1'),
-  ///                     state: .literal('PRESENT'),
+  ///                     state: .present,
   ///                   ),
   ///                 ),
   ///               ],

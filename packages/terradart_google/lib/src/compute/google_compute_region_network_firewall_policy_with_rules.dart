@@ -63,7 +63,7 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
     this.targetSecureTag,
   });
 
-  final TfArg<String> action;
+  final ComputeRegionNetworkFirewallPolicyWithRulesAction action;
 
   final TfArg<String>? description;
 
@@ -110,6 +110,35 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
     if (targetSecureTag != null)
       'target_secure_tag': [for (final e in targetSecureTag!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const ComputeRegionNetworkFirewallPolicyWithRulesAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkFirewallPolicyWithRulesAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkFirewallPolicyWithRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionNetworkFirewallPolicyWithRulesAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = ComputeRegionNetworkFirewallPolicyWithRulesAction._(
+    TfArgLiteral('allow'),
+  );
+  static const deny = ComputeRegionNetworkFirewallPolicyWithRulesAction._(
+    TfArgLiteral('deny'),
+  );
+  static const applySecurityProfileGroup =
+      ComputeRegionNetworkFirewallPolicyWithRulesAction._(
+        TfArgLiteral('apply_security_profile_group'),
+      );
+  static const gotoNext = ComputeRegionNetworkFirewallPolicyWithRulesAction._(
+    TfArgLiteral('goto_next'),
+  );
+
+  static const List<ComputeRegionNetworkFirewallPolicyWithRulesAction> values =
+      [allow, deny, applySecurityProfileGroup, gotoNext];
 }
 
 /// `direction` — derived from the provider schema description.
@@ -287,7 +316,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyWithRules extends Resource {
     TfArg<String>? region,
     required List<ComputeRegionNetworkFirewallPolicyWithRulesRule> rule,
     TfArg<String>? description,
-    TfArg<String>? policyType,
+    ComputeRegionNetworkFirewallPolicyWithRulesPolicyType? policyType,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

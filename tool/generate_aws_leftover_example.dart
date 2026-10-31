@@ -310,7 +310,7 @@ Set<String> _parseSensitiveLeaves(String src) {
 final _sealedVariants = <String, List<String>>{};
 
 _ParsedFile _parseFile(File file) {
-  final src = file.readAsStringSync();
+  final src = readWrapperSource(file);
   final classes = <String, _ClassInfo>{};
   for (final m in RegExp(r'sealed class (\w+)').allMatches(src)) {
     _sealedVariants[m.group(1)!] = [];
@@ -1166,6 +1166,18 @@ String? _fitInner(DummyValue value, String type) {
   if (t == 'bool') return json is bool ? dart : null;
   if (t.startsWith('List<') && t.endsWith('>')) {
     final element = t.substring(5, t.length - 1).trim().replaceAll('?', '');
+    if (_enums.containsKey(element)) {
+      final members = switch (json) {
+        final List<Object?> list when list.every((e) => e is String) => [
+          for (final e in list) "'$e'",
+        ],
+        String() => [dart],
+        _ => null,
+      };
+      return members == null
+          ? null
+          : '[${members.map((m) => _enumFor(element, m)).join(', ')},]';
+    }
     if (json is List) {
       if (!element.startsWith('RefTo<')) return dart;
       return dart.replaceAllMapped(
@@ -1317,6 +1329,9 @@ String _literalInner(
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (listInner.startsWith('RefTo<')) {
       return '[RefTo.literal(${_stringValue(name, owner: owner)})]';
+    }
+    if (_enums.containsKey(listInner)) {
+      return '[${_enumMember(listInner, name, owner: owner)},]';
     }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';

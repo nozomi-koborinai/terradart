@@ -1,0 +1,99 @@
+{
+  "name": "bigtableadmin",
+  "version": "v2",
+  "revision": "20261017",
+  "sourceUrl": "https://bigtableadmin.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "AppProfile": {
+      "properties": {
+        "dataBoostIsolationReadOnly": {
+          "$ref": "DataBoostIsolationReadOnly"
+        },
+        "standardIsolation": {
+          "$ref": "StandardIsolation"
+        },
+        "priority": {
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ]
+        }
+      }
+    },
+    "DataBoostIsolationReadOnly": {
+      "properties": {
+        "computeBillingOwner": {
+          "enum": [
+            "COMPUTE_BILLING_OWNER_UNSPECIFIED",
+            "HOST_PAYS"
+          ]
+        }
+      }
+    },
+    "GoogleBigtableAdminV2MaterializedViewClusterState": {
+      "properties": {
+        "replicationState": {
+          "enum": [
+            "STATE_NOT_KNOWN",
+            "INITIALIZING",
+            "READY"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "DEVELOPMENT"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_NOT_KNOWN",
+            "READY",
+            "CREATING"
+          ]
+        }
+      }
+    },
+    "LogicalView": {
+      "properties": {}
+    },
+    "MaterializedView": {
+      "properties": {
+        "clusterStates": {
+          "additionalProperties": {
+            "$ref": "GoogleBigtableAdminV2MaterializedViewClusterState"
+          }
+        }
+      }
+    },
+    "SchemaBundle": {
+      "properties": {}
+    },
+    "StandardIsolation": {
+      "properties": {
+        "priority": {
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "PRIORITY_LOW",
+            "PRIORITY_MEDIUM",
+            "PRIORITY_HIGH"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -360,7 +360,7 @@ final class CloudflareZeroTrustCasbIntegration extends Resource {
     required TfArg<String> name,
     required TfArg<bool> paused,
     TfArg<List<String>>? permissions,
-    List<ZeroTrustCasbIntegrationUseCases>? useCases,
+    EnumList<ZeroTrustCasbIntegrationUseCases>? useCases,
     ZeroTrustCasbIntegrationAnthropic? anthropic,
     ZeroTrustCasbIntegrationAws? aws,
     ZeroTrustCasbIntegrationBox? box,
@@ -379,10 +379,7 @@ final class CloudflareZeroTrustCasbIntegration extends Resource {
            'name': name,
            'paused': paused,
            'permissions': ?permissions,
-           if (useCases != null)
-             'use_cases': TfArg.literal([
-               for (final e in useCases) e.toTfJson(),
-             ]),
+           'use_cases': ?useCases,
            if (anthropic != null)
              'anthropic': TfArg.literal(anthropic.encode()),
            if (aws != null) 'aws': TfArg.literal(aws.encode()),

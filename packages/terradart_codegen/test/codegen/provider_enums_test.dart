@@ -12,6 +12,7 @@ import 'package:terradart_codegen/src/ir/nested_block.dart';
 import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
+import 'package:terradart_codegen/src/parser/discovery_enums.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
@@ -314,6 +315,139 @@ properties:
     expect(overridesOnly.hasGroupSource, isFalse);
   });
 
+  group('an override enumValues entry', () {
+    final ir = ProviderSchemaIR(
+      providerName: 'x',
+      providerSource: 'example/x',
+      providerVersion: '1.0.0',
+      resources: {
+        'x_thing': ResourceDef(
+          terraformType: 'x_thing',
+          root: BlockDef(
+            attributes: [
+              const Attribute(
+                name: 'status',
+                type: StringType(),
+                constraints: Constraints(
+                  computed: true,
+                  enumValues: ['ACTOVE', 'OFFLINE'],
+                ),
+              ),
+              _attr('size', type: const NumberType()),
+            ],
+            nestedBlocks: [
+              NestedBlockDef(
+                name: 'entities',
+                nesting: NestingMode.list,
+                constraints: const Constraints(optional: true),
+                block: BlockDef(
+                  attributes: [_attr('entity_name', description: available)],
+                ),
+              ),
+            ],
+          ),
+        ),
+      },
+      dataSources: const {},
+    );
+    LoadedOverrides lane(Map<String, List<String>> values) => LoadedOverrides(
+      resources: {
+        'x_thing': WrapperOverride(outputDir: 'thing', enumValues: values),
+      },
+      dataSources: const {},
+    );
+
+    test('replaces a top-level set, outputs included', () {
+      final out = const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['ACTIVE', 'OFFLINE'],
+        }),
+        ir,
+        error: fail,
+      );
+      expect(_values(out, 'status'), ['ACTIVE', 'OFFLINE']);
+    });
+
+    test('wins over the derived set of a nested input', () {
+      const enums = ProviderEnums.on();
+      final override = lane({
+        'entities.entity_name': ['Lead', 'issue'],
+      }).resources['x_thing']!;
+      enums.withOverrideEnums(lane(override.enumValues!), ir, error: fail);
+      final resolve = enums.nestedHints('x_thing', override).enumValues;
+      expect(resolve(['entities', 'entity_name'], available), [
+        'Lead',
+        'issue',
+      ]);
+      expect(resolve(['other'], available), ['a', 'b']);
+    });
+
+    test('fails on a path that names no string attribute', () {
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'gone': ['a', 'b'],
+          'size': ['1', '2'],
+        }),
+        ir,
+        error: errors.add,
+      );
+      expect(errors, [
+        contains('enumValues gone: names no string attribute'),
+        contains('enumValues size: names no string attribute'),
+      ]);
+    });
+
+    test('fails on an entry the derivation already gives', () {
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['OFFLINE', 'ACTOVE'],
+          'entities.entity_name': ['b', 'a'],
+        }),
+        ir,
+        error: errors.add,
+      );
+      expect(errors, hasLength(2));
+      expect(errors, everyElement(contains('remove the entry')));
+    });
+
+    test('fails once upstream fixes the value and adds another', () {
+      final fixed = ProviderSchemaIR(
+        providerName: ir.providerName,
+        providerSource: ir.providerSource,
+        providerVersion: ir.providerVersion,
+        resources: {
+          'x_thing': const ResourceDef(
+            terraformType: 'x_thing',
+            root: BlockDef(
+              attributes: [
+                Attribute(
+                  name: 'status',
+                  type: StringType(),
+                  constraints: Constraints(
+                    computed: true,
+                    enumValues: ['ACTIVE', 'OFFLINE', 'NEW_STATUS'],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        },
+        dataSources: const {},
+      );
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['ACTIVE', 'OFFLINE'],
+        }),
+        fixed,
+        error: errors.add,
+      );
+      expect(errors, [contains('enumValues status: the derivation already')]);
+    });
+  });
+
   test('top-level string and list-of-string inputs are enriched', () {
     final ir = const ProviderEnums.on().enrich(
       _ir([
@@ -415,6 +549,95 @@ properties:
       'mode': 'DataXThingMode',
     });
     expect(typed.resources['x_thing']!.dartTypeOverrides, isNull);
+  });
+
+  group('withDiscovery', () {
+    DiscoveryEnums discovery() => DiscoveryEnums(
+      docs: {
+        'x.v1': {
+          'Thing': {
+            'properties': {
+              'tier': {
+                'enum': ['TIER_UNSPECIFIED', 'STANDARD', 'PREMIUM'],
+              },
+              'settings': {r'$ref': 'Settings'},
+            },
+          },
+          'Settings': {
+            'properties': {
+              'level': {
+                'enum': ['LOW', 'HIGH'],
+              },
+            },
+          },
+        },
+      },
+      resources: {'x_thing': (doc: 'x.v1', schema: 'Thing', paths: const {})},
+      dataSources: const {},
+    );
+    const mmYaml = MmResourceOverrides(fieldOverrides: {});
+    List<String>? resolve(
+      ProviderEnums enums,
+      List<String> path, [
+      String? description,
+    ]) => enums.nestedHints('x_thing', _resource).enumValues(path, description);
+
+    test('types an input no description lists, sentinel dropped', () {
+      final enums = ProviderEnums.mmGroups(
+        const {},
+      ).withDiscovery(discovery(), const {});
+      expect(resolve(enums, ['tier']), ['STANDARD', 'PREMIUM']);
+      expect(resolve(enums, ['settings', 'level']), ['LOW', 'HIGH']);
+      expect(resolve(enums, ['name']), isNull);
+    });
+
+    test('a Magic Modules value set wins over Discovery', () {
+      final enums = ProviderEnums.mmGroups(const {
+        'x_thing': MmResourceOverrides(
+          fieldOverrides: {},
+          enumValuesByPath: {
+            'tier': ['BASIC'],
+          },
+        ),
+      }).withDiscovery(discovery(), const {});
+      expect(resolve(enums, ['tier']), ['BASIC']);
+    });
+
+    for (final (label, enums) in [
+      (
+        'an MM resource',
+        ProviderEnums.mmGroups(const {
+          'x_thing': mmYaml,
+        }).withDiscovery(discovery(), const {'x_thing': mmYaml}),
+      ),
+      (
+        'a hand-written resource',
+        ProviderEnums.mmGroups(const {}).withDiscovery(discovery(), const {}),
+      ),
+    ]) {
+      test('$label takes Discovery over a description it contradicts', () {
+        expect(
+          resolve(enums, ['tier'], 'Possible values: ["STANDARD", "GOLD"]'),
+          ['STANDARD', 'PREMIUM'],
+        );
+      });
+
+      test('$label takes Discovery over a description it covers', () {
+        expect(
+          resolve(enums, [
+            'tier',
+          ], 'Possible values: ["TIER_UNSPECIFIED", "PREMIUM"]'),
+          ['STANDARD', 'PREMIUM'],
+        );
+      });
+
+      test('$label keeps a description where Discovery has no enum', () {
+        expect(resolve(enums, ['name'], 'Possible values: ["A", "B"]'), [
+          'A',
+          'B',
+        ]);
+      });
+    }
   });
 
   group('ProviderEnums.load', () {

@@ -91,6 +91,323 @@ extension type const MssqlDatabaseLicenseType._(TfArg<String> _)
   ];
 }
 
+/// Mssql Database Maintenance Configuration enum for `maintenance_configuration_name`.
+extension type const MssqlDatabaseMaintenanceConfigurationName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MssqlDatabaseMaintenanceConfigurationName.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlDatabaseMaintenanceConfigurationName.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlDatabaseMaintenanceConfigurationName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sqlDefault = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_Default'),
+  );
+  static const sqlEastusDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS_DB_1'),
+  );
+  static const sqlEastus2Db1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS2_DB_1'),
+  );
+  static const sqlSoutheastasiaDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SoutheastAsia_DB_1'),
+      );
+  static const sqlAustraliaeastDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaEast_DB_1'),
+      );
+  static const sqlNortheuropeDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_NorthEurope_DB_1'),
+  );
+  static const sqlSouthcentralusDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthCentralUS_DB_1'),
+      );
+  static const sqlWestus2Db1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS2_DB_1'),
+  );
+  static const sqlUksouthDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKSouth_DB_1'),
+  );
+  static const sqlWesteuropeDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestEurope_DB_1'),
+  );
+  static const sqlEastusDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS_DB_2'),
+  );
+  static const sqlEastus2Db2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastUS2_DB_2'),
+  );
+  static const sqlWestus2Db2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS2_DB_2'),
+  );
+  static const sqlSoutheastasiaDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SoutheastAsia_DB_2'),
+      );
+  static const sqlAustraliaeastDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaEast_DB_2'),
+      );
+  static const sqlNortheuropeDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_NorthEurope_DB_2'),
+  );
+  static const sqlSouthcentralusDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthCentralUS_DB_2'),
+      );
+  static const sqlUksouthDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKSouth_DB_2'),
+  );
+  static const sqlWesteuropeDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestEurope_DB_2'),
+  );
+  static const sqlAustraliasoutheastDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaSoutheast_DB_1'),
+      );
+  static const sqlBrazilsouthDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_BrazilSouth_DB_1'),
+  );
+  static const sqlCanadacentralDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaCentral_DB_1'),
+      );
+  static const sqlCanadaeastDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CanadaEast_DB_1'),
+  );
+  static const sqlCentralusDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralUS_DB_1'),
+  );
+  static const sqlEastasiaDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastAsia_DB_1'),
+  );
+  static const sqlFrancecentralDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceCentral_DB_1'),
+      );
+  static const sqlGermanywestcentralDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_GermanyWestCentral_DB_1'),
+      );
+  static const sqlCentralindiaDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralIndia_DB_1'),
+  );
+  static const sqlSouthindiaDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_SouthIndia_DB_1'),
+  );
+  static const sqlJapaneastDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanEast_DB_1'),
+  );
+  static const sqlJapanwestDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanWest_DB_1'),
+  );
+  static const sqlNorthcentralusDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthCentralUS_DB_1'),
+      );
+  static const sqlUkwestDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKWest_DB_1'),
+  );
+  static const sqlWestusDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS_DB_1'),
+  );
+  static const sqlAustraliasoutheastDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_AustraliaSoutheast_DB_2'),
+      );
+  static const sqlBrazilsouthDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_BrazilSouth_DB_2'),
+  );
+  static const sqlCanadacentralDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_CanadaCentral_DB_2'),
+      );
+  static const sqlCanadaeastDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CanadaEast_DB_2'),
+  );
+  static const sqlCentralusDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralUS_DB_2'),
+  );
+  static const sqlEastasiaDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_EastAsia_DB_2'),
+  );
+  static const sqlFrancecentralDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_FranceCentral_DB_2'),
+      );
+  static const sqlGermanywestcentralDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_GermanyWestCentral_DB_2'),
+      );
+  static const sqlCentralindiaDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_CentralIndia_DB_2'),
+  );
+  static const sqlSouthindiaDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_SouthIndia_DB_2'),
+  );
+  static const sqlJapaneastDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanEast_DB_2'),
+  );
+  static const sqlJapanwestDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_JapanWest_DB_2'),
+  );
+  static const sqlNorthcentralusDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_NorthCentralUS_DB_2'),
+      );
+  static const sqlUkwestDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UKWest_DB_2'),
+  );
+  static const sqlWestusDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS_DB_2'),
+  );
+  static const sqlWestcentralusDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestCentralUS_DB_1'),
+      );
+  static const sqlFrancesouthDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_FranceSouth_DB_1'),
+  );
+  static const sqlWestcentralusDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_WestCentralUS_DB_2'),
+      );
+  static const sqlFrancesouthDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_FranceSouth_DB_2'),
+  );
+  static const sqlSwitzerlandnorthDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwitzerlandNorth_DB_1'),
+      );
+  static const sqlSwitzerlandnorthDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwitzerlandNorth_DB_2'),
+      );
+  static const sqlBrazilsoutheastDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSoutheast_DB_1'),
+      );
+  static const sqlUaenorthDb1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UAENorth_DB_1'),
+  );
+  static const sqlBrazilsoutheastDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_BrazilSoutheast_DB_2'),
+      );
+  static const sqlUaenorthDb2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_UAENorth_DB_2'),
+  );
+  static const sqlSouthafricanorthDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthAfricaNorth_DB_1'),
+      );
+  static const sqlSouthafricanorthDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SouthAfricaNorth_DB_2'),
+      );
+  static const sqlWestus3Db1 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS3_DB_1'),
+  );
+  static const sqlWestus3Db2 = MssqlDatabaseMaintenanceConfigurationName._(
+    TfArgLiteral('SQL_WestUS3_DB_2'),
+  );
+  static const sqlSwedencentralDb1 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwedenCentral_DB_1'),
+      );
+  static const sqlSwedencentralDb2 =
+      MssqlDatabaseMaintenanceConfigurationName._(
+        TfArgLiteral('SQL_SwedenCentral_DB_2'),
+      );
+
+  static const List<MssqlDatabaseMaintenanceConfigurationName> values = [
+    sqlDefault,
+    sqlEastusDb1,
+    sqlEastus2Db1,
+    sqlSoutheastasiaDb1,
+    sqlAustraliaeastDb1,
+    sqlNortheuropeDb1,
+    sqlSouthcentralusDb1,
+    sqlWestus2Db1,
+    sqlUksouthDb1,
+    sqlWesteuropeDb1,
+    sqlEastusDb2,
+    sqlEastus2Db2,
+    sqlWestus2Db2,
+    sqlSoutheastasiaDb2,
+    sqlAustraliaeastDb2,
+    sqlNortheuropeDb2,
+    sqlSouthcentralusDb2,
+    sqlUksouthDb2,
+    sqlWesteuropeDb2,
+    sqlAustraliasoutheastDb1,
+    sqlBrazilsouthDb1,
+    sqlCanadacentralDb1,
+    sqlCanadaeastDb1,
+    sqlCentralusDb1,
+    sqlEastasiaDb1,
+    sqlFrancecentralDb1,
+    sqlGermanywestcentralDb1,
+    sqlCentralindiaDb1,
+    sqlSouthindiaDb1,
+    sqlJapaneastDb1,
+    sqlJapanwestDb1,
+    sqlNorthcentralusDb1,
+    sqlUkwestDb1,
+    sqlWestusDb1,
+    sqlAustraliasoutheastDb2,
+    sqlBrazilsouthDb2,
+    sqlCanadacentralDb2,
+    sqlCanadaeastDb2,
+    sqlCentralusDb2,
+    sqlEastasiaDb2,
+    sqlFrancecentralDb2,
+    sqlGermanywestcentralDb2,
+    sqlCentralindiaDb2,
+    sqlSouthindiaDb2,
+    sqlJapaneastDb2,
+    sqlJapanwestDb2,
+    sqlNorthcentralusDb2,
+    sqlUkwestDb2,
+    sqlWestusDb2,
+    sqlWestcentralusDb1,
+    sqlFrancesouthDb1,
+    sqlWestcentralusDb2,
+    sqlFrancesouthDb2,
+    sqlSwitzerlandnorthDb1,
+    sqlSwitzerlandnorthDb2,
+    sqlBrazilsoutheastDb1,
+    sqlUaenorthDb1,
+    sqlBrazilsoutheastDb2,
+    sqlUaenorthDb2,
+    sqlSouthafricanorthDb1,
+    sqlSouthafricanorthDb2,
+    sqlWestus3Db1,
+    sqlWestus3Db2,
+    sqlSwedencentralDb1,
+    sqlSwedencentralDb2,
+  ];
+}
+
+/// Mssql Database Sample enum for `sample_name`.
+extension type const MssqlDatabaseSampleName._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlDatabaseSampleName.variable(String name) : this._(TfArg.variable(name));
+  MssqlDatabaseSampleName.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlDatabaseSampleName.arg(TfArg<String> arg) : this._(arg);
+
+  static const adventureworkslt = MssqlDatabaseSampleName._(
+    TfArgLiteral('AdventureWorksLT'),
+  );
+
+  static const List<MssqlDatabaseSampleName> values = [adventureworkslt];
+}
+
 /// Mssql Database Secondary enum for `secondary_type`.
 extension type const MssqlDatabaseSecondaryType._(TfArg<String> _)
     implements TfArg<String> {
@@ -216,7 +533,7 @@ sealed class MssqlDatabaseServiceConfiguration {
 
   /// Sets `maintenance_configuration_name`.
   const factory MssqlDatabaseServiceConfiguration.maintenanceConfigurationName(
-    TfArg<String> maintenanceConfigurationName,
+    MssqlDatabaseMaintenanceConfigurationName maintenanceConfigurationName,
   ) = MssqlDatabaseServiceConfigurationMaintenanceConfigurationName;
 
   /// The Terraform argument this choice sets.
@@ -261,7 +578,7 @@ final class MssqlDatabaseServiceConfigurationMaintenanceConfigurationName
     this.maintenanceConfigurationName,
   );
 
-  final TfArg<String> maintenanceConfigurationName;
+  final MssqlDatabaseMaintenanceConfigurationName maintenanceConfigurationName;
 
   @internal
   @override
@@ -321,7 +638,7 @@ final class MssqlDatabaseImport {
 
   final Sensitive<String> storageKey;
 
-  final TfArg<String> storageKeyType;
+  final MssqlDatabaseStorageKeyType storageKeyType;
 
   final TfArg<String> storageUri;
 
@@ -352,6 +669,28 @@ extension type const MssqlDatabaseAuthenticationType._(TfArg<String> _)
   static const sql = MssqlDatabaseAuthenticationType._(TfArgLiteral('Sql'));
 
   static const List<MssqlDatabaseAuthenticationType> values = [adpassword, sql];
+}
+
+/// `storage_key_type` — derived from the provider schema description.
+extension type const MssqlDatabaseStorageKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlDatabaseStorageKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlDatabaseStorageKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlDatabaseStorageKeyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sharedaccesskey = MssqlDatabaseStorageKeyType._(
+    TfArgLiteral('SharedAccessKey'),
+  );
+  static const storageaccesskey = MssqlDatabaseStorageKeyType._(
+    TfArgLiteral('StorageAccessKey'),
+  );
+
+  static const List<MssqlDatabaseStorageKeyType> values = [
+    sharedaccesskey,
+    storageaccesskey,
+  ];
 }
 
 /// Typed helper for the `long_term_retention_policy` block of
@@ -416,7 +755,7 @@ final class MssqlDatabaseThreatDetectionPolicy {
     this.storageEndpoint,
   });
 
-  final List<MssqlDatabaseDisabledAlerts>? disabledAlerts;
+  final EnumList<MssqlDatabaseDisabledAlerts>? disabledAlerts;
 
   final TfArg<bool>? emailAccountAdminsEnabled;
 
@@ -432,8 +771,7 @@ final class MssqlDatabaseThreatDetectionPolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    if (disabledAlerts != null)
-      'disabled_alerts': [for (final e in disabledAlerts!) e.toTfJson()],
+    'disabled_alerts': ?disabledAlerts?.toTfJson(),
     'email_account_admins_enabled': ?emailAccountAdminsEnabled?.toTfJson(),
     'email_addresses': ?emailAddresses?.toTfJson(),
     'retention_days': ?retentionDays?.toTfJson(),
@@ -508,7 +846,7 @@ final class AzurermMssqlDatabase extends Resource {
     TfArg<String>? restoreDroppedDatabaseId,
     TfArg<String>? restoreLongTermRetentionBackupId,
     TfArg<String>? restorePointInTime,
-    TfArg<String>? sampleName,
+    MssqlDatabaseSampleName? sampleName,
     MssqlDatabaseSecondaryType? secondaryType,
     required TfArg<String> serverId,
     TfArg<String>? skuName,

@@ -11,3 +11,8 @@ properties:
     enum_values:
       - "AbacRepositoryPermissions"
       - "LegacyRegistryPermissions"
+  - api_name: sku
+    enum_values:
+      - "Basic"
+      - "Standard"
+      - "Premium"

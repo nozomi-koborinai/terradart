@@ -8,6 +8,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAgenticApplicationsAnalystAgentPersonaSensitive =
     <String>{'mcp_data_sources.api_key', 'mcp_data_sources.client_secret'};
 
+/// Agentic Applications Analyst Agent Persona Math Rendering enum for `math_rendering_mode`.
+extension type const AgenticApplicationsAnalystAgentPersonaMathRenderingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaMathRenderingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaMathRenderingMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaMathRenderingMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const mathRenderingModeLatex =
+      AgenticApplicationsAnalystAgentPersonaMathRenderingMode._(
+        TfArgLiteral('MATH_RENDERING_MODE_LATEX'),
+      );
+  static const mathRenderingModePlainText =
+      AgenticApplicationsAnalystAgentPersonaMathRenderingMode._(
+        TfArgLiteral('MATH_RENDERING_MODE_PLAIN_TEXT'),
+      );
+
+  static const List<AgenticApplicationsAnalystAgentPersonaMathRenderingMode>
+  values = [mathRenderingModeLatex, mathRenderingModePlainText];
+}
+
 /// `role` for [GoogleAgenticApplicationsAnalystAgentPersona].
 extension type const AgenticApplicationsAnalystAgentPersonaRole._(
   TfArg<String> _
@@ -358,7 +384,8 @@ final class AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions {
     this.documentExamples,
   });
 
-  final TfArg<String>? exportFormat;
+  final AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat?
+  exportFormat;
 
   final List<AgenticApplicationsAnalystAgentPersonaDocumentExamples>?
   documentExamples;
@@ -369,6 +396,39 @@ final class AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions {
     if (documentExamples != null)
       'document_examples': [for (final e in documentExamples!) e.encode()],
   };
+}
+
+/// `export_format` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const pdf =
+      AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat._(
+        TfArgLiteral('PDF'),
+      );
+  static const docx =
+      AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat._(
+        TfArgLiteral('DOCX'),
+      );
+  static const googleDocs =
+      AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat._(
+        TfArgLiteral('GOOGLE_DOCS'),
+      );
+
+  static const List<
+    AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat
+  >
+  values = [pdf, docx, googleDocs];
 }
 
 /// Typed helper for the `artifacts_config.document_generation_options.document_examples` block of
@@ -397,7 +457,8 @@ final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
 
   final TfArg<bool>? appendMethodology;
 
-  final TfArg<String>? exportFormat;
+  final AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat?
+  exportFormat;
 
   final TfArg<bool>? exportMethodologyArtifact;
 
@@ -409,6 +470,39 @@ final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
   };
 }
 
+/// `export_format` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const markdown =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('MARKDOWN'),
+      );
+  static const html =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('HTML'),
+      );
+  static const pdf =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('PDF'),
+      );
+
+  static const List<
+    AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat
+  >
+  values = [markdown, html, pdf];
+}
+
 /// Typed helper for the `artifacts_config.slide_generation_options` block of
 /// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
 @immutable
@@ -418,7 +512,8 @@ final class AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions {
     this.slideExamples,
   });
 
-  final TfArg<String>? exportFormat;
+  final AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat?
+  exportFormat;
 
   final List<AgenticApplicationsAnalystAgentPersonaSlideExamples>?
   slideExamples;
@@ -429,6 +524,43 @@ final class AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions {
     if (slideExamples != null)
       'slide_examples': [for (final e in slideExamples!) e.encode()],
   };
+}
+
+/// `export_format` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const pdf =
+      AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
+        TfArgLiteral('PDF'),
+      );
+  static const png =
+      AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
+        TfArgLiteral('PNG'),
+      );
+  static const pptx =
+      AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
+        TfArgLiteral('PPTX'),
+      );
+  static const googleSlides =
+      AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
+        TfArgLiteral('GOOGLE_SLIDES'),
+      );
+
+  static const List<
+    AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat
+  >
+  values = [pdf, png, pptx, googleSlides];
 }
 
 /// Typed helper for the `artifacts_config.slide_generation_options.slide_examples` block of
@@ -454,7 +586,8 @@ final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
     this.visualizationExamples,
   });
 
-  final TfArg<String>? visualizationMode;
+  final AgenticApplicationsAnalystAgentPersonaVisualizationMode?
+  visualizationMode;
 
   final List<AgenticApplicationsAnalystAgentPersonaVisualizationExamples>?
   visualizationExamples;
@@ -467,6 +600,45 @@ final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
         for (final e in visualizationExamples!) e.encode(),
       ],
   };
+}
+
+/// `visualization_mode` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaVisualizationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaVisualizationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaVisualizationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const visualizationModeExplicitOnly =
+      AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
+        TfArgLiteral('VISUALIZATION_MODE_EXPLICIT_ONLY'),
+      );
+  static const visualizationModeWhenNecessary =
+      AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
+        TfArgLiteral('VISUALIZATION_MODE_WHEN_NECESSARY'),
+      );
+  static const visualizationModeWhenHelpful =
+      AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
+        TfArgLiteral('VISUALIZATION_MODE_WHEN_HELPFUL'),
+      );
+  static const visualizationModeAlways =
+      AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
+        TfArgLiteral('VISUALIZATION_MODE_ALWAYS'),
+      );
+
+  static const List<AgenticApplicationsAnalystAgentPersonaVisualizationMode>
+  values = [
+    visualizationModeExplicitOnly,
+    visualizationModeWhenNecessary,
+    visualizationModeWhenHelpful,
+    visualizationModeAlways,
+  ];
 }
 
 /// Typed helper for the `artifacts_config.visualization_options.visualization_examples` block of

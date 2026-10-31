@@ -5,6 +5,14 @@ provider_version: "5.12.0"
 properties:
   - api_name: custom_rule
     properties:
+      - api_name: action
+        enum_values:
+          - "Allow"
+          - "Block"
+          - "Log"
+          - "Redirect"
+          - "JSChallenge"
+          - "CAPTCHA"
       - api_name: match_condition
         properties:
           - api_name: match_variable
@@ -63,6 +71,12 @@ properties:
               - "EqualsAny"
   - api_name: managed_rule
     properties:
+      - api_name: action
+        enum_values:
+          - "Allow"
+          - "Log"
+          - "Block"
+          - "Redirect"
       - api_name: exclusion
         properties:
           - api_name: match_variable
@@ -128,3 +142,7 @@ properties:
     enum_values:
       - "Detection"
       - "Prevention"
+  - api_name: sku_name
+    enum_values:
+      - "Standard_AzureFrontDoor"
+      - "Premium_AzureFrontDoor"

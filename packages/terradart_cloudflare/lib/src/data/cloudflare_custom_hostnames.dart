@@ -10,6 +10,238 @@ const Set<String> _cloudflareCustomHostnamesSensitive = <String>{
   'result.ssl.custom_key',
 };
 
+/// Data Custom Hostnames Certificate enum for `certificate_authority`.
+extension type const DataCustomHostnamesCertificateAuthority._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnamesCertificateAuthority.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnamesCertificateAuthority.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnamesCertificateAuthority.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const google = DataCustomHostnamesCertificateAuthority._(
+    TfArgLiteral('google'),
+  );
+  static const letsEncrypt = DataCustomHostnamesCertificateAuthority._(
+    TfArgLiteral('lets_encrypt'),
+  );
+  static const sslCom = DataCustomHostnamesCertificateAuthority._(
+    TfArgLiteral('ssl_com'),
+  );
+
+  static const List<DataCustomHostnamesCertificateAuthority> values = [
+    google,
+    letsEncrypt,
+    sslCom,
+  ];
+}
+
+/// Data Custom Hostnames enum for `direction`.
+extension type const DataCustomHostnamesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnamesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnamesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnamesDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataCustomHostnamesDirection._(TfArgLiteral('asc'));
+  static const desc = DataCustomHostnamesDirection._(TfArgLiteral('desc'));
+
+  static const List<DataCustomHostnamesDirection> values = [asc, desc];
+}
+
+/// Data Custom Hostnames Hostname enum for `hostname_status`.
+extension type const DataCustomHostnamesHostnameStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnamesHostnameStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnamesHostnameStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnamesHostnameStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('active'),
+  );
+  static const pending = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('pending'),
+  );
+  static const activeRedeploying = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('active_redeploying'),
+  );
+  static const moved = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('moved'),
+  );
+  static const pendingDeletion = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('pending_deletion'),
+  );
+  static const deleted = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('deleted'),
+  );
+  static const pendingBlocked = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('pending_blocked'),
+  );
+  static const pendingMigration = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('pending_migration'),
+  );
+  static const pendingProvisioned = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('pending_provisioned'),
+  );
+  static const testPending = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('test_pending'),
+  );
+  static const testActive = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('test_active'),
+  );
+  static const testActiveApex = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('test_active_apex'),
+  );
+  static const testBlocked = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('test_blocked'),
+  );
+  static const testFailed = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('test_failed'),
+  );
+  static const provisioned = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('provisioned'),
+  );
+  static const blocked = DataCustomHostnamesHostnameStatus._(
+    TfArgLiteral('blocked'),
+  );
+
+  static const List<DataCustomHostnamesHostnameStatus> values = [
+    active,
+    pending,
+    activeRedeploying,
+    moved,
+    pendingDeletion,
+    deleted,
+    pendingBlocked,
+    pendingMigration,
+    pendingProvisioned,
+    testPending,
+    testActive,
+    testActiveApex,
+    testBlocked,
+    testFailed,
+    provisioned,
+    blocked,
+  ];
+}
+
+/// Data Custom Hostnames enum for `order`.
+extension type const DataCustomHostnamesOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnamesOrder.variable(String name) : this._(TfArg.variable(name));
+  DataCustomHostnamesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnamesOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const ssl = DataCustomHostnamesOrder._(TfArgLiteral('ssl'));
+  static const sslStatus = DataCustomHostnamesOrder._(
+    TfArgLiteral('ssl_status'),
+  );
+
+  static const List<DataCustomHostnamesOrder> values = [ssl, sslStatus];
+}
+
+/// Data Custom Hostnames Ssl enum for `ssl_status`.
+extension type const DataCustomHostnamesSslStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnamesSslStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnamesSslStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnamesSslStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const initializing = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('initializing'),
+  );
+  static const pendingValidation = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_validation'),
+  );
+  static const deleted = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('deleted'),
+  );
+  static const pendingIssuance = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_issuance'),
+  );
+  static const pendingDeployment = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_deployment'),
+  );
+  static const pendingDeletion = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_deletion'),
+  );
+  static const pendingExpiration = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_expiration'),
+  );
+  static const expired = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('expired'),
+  );
+  static const active = DataCustomHostnamesSslStatus._(TfArgLiteral('active'));
+  static const initializingTimedOut = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('initializing_timed_out'),
+  );
+  static const validationTimedOut = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('validation_timed_out'),
+  );
+  static const issuanceTimedOut = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('issuance_timed_out'),
+  );
+  static const deploymentTimedOut = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('deployment_timed_out'),
+  );
+  static const deletionTimedOut = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('deletion_timed_out'),
+  );
+  static const pendingCleanup = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('pending_cleanup'),
+  );
+  static const stagingDeployment = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('staging_deployment'),
+  );
+  static const stagingActive = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('staging_active'),
+  );
+  static const deactivating = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('deactivating'),
+  );
+  static const inactive = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const backupIssued = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('backup_issued'),
+  );
+  static const holdingDeployment = DataCustomHostnamesSslStatus._(
+    TfArgLiteral('holding_deployment'),
+  );
+
+  static const List<DataCustomHostnamesSslStatus> values = [
+    initializing,
+    pendingValidation,
+    deleted,
+    pendingIssuance,
+    pendingDeployment,
+    pendingDeletion,
+    pendingExpiration,
+    expired,
+    active,
+    initializingTimedOut,
+    validationTimedOut,
+    issuanceTimedOut,
+    deploymentTimedOut,
+    deletionTimedOut,
+    pendingCleanup,
+    stagingDeployment,
+    stagingActive,
+    deactivating,
+    inactive,
+    backupIssued,
+    holdingDeployment,
+  ];
+}
+
 /// Typed helper for the `hostname` block of
 /// `cloudflare_custom_hostnames` (derived from provider schema).
 @immutable
@@ -44,14 +276,14 @@ final class DataCloudflareCustomHostnames extends Data {
 
   DataCloudflareCustomHostnames(
     super.localName, {
-    TfArg<String>? certificateAuthority,
+    DataCustomHostnamesCertificateAuthority? certificateAuthority,
     TfArg<String>? customOriginServer,
-    TfArg<String>? direction,
-    TfArg<String>? hostnameStatus,
+    DataCustomHostnamesDirection? direction,
+    DataCustomHostnamesHostnameStatus? hostnameStatus,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataCustomHostnamesOrder? order,
     TfArg<num>? ssl,
-    TfArg<String>? sslStatus,
+    DataCustomHostnamesSslStatus? sslStatus,
     TfArg<bool>? wildcard,
     RefTo<CloudflareZone>? zoneId,
     DataCustomHostnamesHostname? hostname,

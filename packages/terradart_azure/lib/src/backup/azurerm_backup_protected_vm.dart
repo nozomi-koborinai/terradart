@@ -9,6 +9,32 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_backup_protected_vm`.
 const Set<String> _azurermBackupProtectedVmSensitive = <String>{};
 
+/// Backup Protected Vm Protection enum for `protection_state`.
+extension type const BackupProtectedVmProtectionState._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupProtectedVmProtectionState.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupProtectedVmProtectionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupProtectedVmProtectionState.arg(TfArg<String> arg) : this._(arg);
+
+  static const protected = BackupProtectedVmProtectionState._(
+    TfArgLiteral('Protected'),
+  );
+  static const backupssuspended = BackupProtectedVmProtectionState._(
+    TfArgLiteral('BackupsSuspended'),
+  );
+  static const protectionstopped = BackupProtectedVmProtectionState._(
+    TfArgLiteral('ProtectionStopped'),
+  );
+
+  static const List<BackupProtectedVmProtectionState> values = [
+    protected,
+    backupssuspended,
+    protectionstopped,
+  ];
+}
+
 /// At most one of `exclude_disk_luns`, `include_disk_luns` on `azurerm_backup_protected_vm`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -94,7 +120,7 @@ final class AzurermBackupProtectedVm extends Resource {
     super.localName, {
     TfArg<String>? backupPolicyId,
     BackupProtectedVmDiskLuns? diskLuns,
-    TfArg<String>? protectionState,
+    BackupProtectedVmProtectionState? protectionState,
     required TfArg<String> recoveryVaultName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? sourceVmId,

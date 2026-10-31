@@ -694,13 +694,28 @@ final class CloudRunV2ServicePorts {
 
   final TfArg<num>? containerPort;
 
-  final TfArg<String>? name;
+  final CloudRunV2ServicePortsName? name;
 
   @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
     'name': ?name?.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const CloudRunV2ServicePortsName._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2ServicePortsName.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2ServicePortsName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2ServicePortsName.arg(TfArg<String> arg) : this._(arg);
+
+  static const http1 = CloudRunV2ServicePortsName._(TfArgLiteral('http1'));
+  static const h2c = CloudRunV2ServicePortsName._(TfArgLiteral('h2c'));
+
+  static const List<CloudRunV2ServicePortsName> values = [http1, h2c];
 }
 
 /// Typed helper for the `template.containers.readiness_probe` block of

@@ -131,7 +131,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsAcmpcaPermission(
         'acmpca_permission',
-        actions: [.issuecertificate],
+        actions: .literal([.issuecertificate]),
         certificateAuthorityArn: .literal(arn),
         principal: .acmAmazonawsCom,
       ),
@@ -1449,7 +1449,7 @@ final class AwsLeftoverStack extends Stack {
           BackupRestoreTestingPlanRecoveryPointSelection(
             algorithm: .latestWithinWindow,
             includeVaults: .literal(['*']),
-            recoveryPointTypes: [.continuous],
+            recoveryPointTypes: .literal([.continuous]),
           ),
         ],
       ),
@@ -1487,7 +1487,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsBackupVaultNotifications(
         'backup_vault_notifications',
-        backupVaultEvents: [.backupJobStarted],
+        backupVaultEvents: .literal([.backupJobStarted]),
         backupVaultName: .literal(leftover),
         snsTopicArn: .literal(arn),
       ),
@@ -2462,7 +2462,7 @@ final class AwsLeftoverStack extends Stack {
             targetOriginId: .literal(leftover),
             viewerProtocolPolicy: .allowAll,
             allowedMethods: [
-              .new(cachedMethods: [.get], items: .literal(['GET'])),
+              .new(cachedMethods: .literal([.get]), items: .literal(['GET'])),
             ],
           ),
         ],
@@ -2999,7 +2999,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsCloudwatchomniDomain(
         'cloudwatchomni_domain',
-        identityProviders: [.iam],
+        identityProviders: .literal([.iam]),
         name: .literal(leftover),
       ),
     );
@@ -3164,7 +3164,7 @@ final class AwsLeftoverStack extends Stack {
         trigger: [
           CodecommitTrigger(
             destinationArn: .literal(arn),
-            events: [.all],
+            events: .literal([.all]),
             name: .literal(leftover),
           ),
         ],
@@ -3598,7 +3598,7 @@ final class AwsLeftoverStack extends Stack {
         name: .literal(leftover),
         policyRuntime: .literal(leftover),
         policyText: .literal(leftover),
-        triggerTypes: [.configurationitemchangenotification],
+        triggerTypes: .literal([.configurationitemchangenotification]),
       ),
     );
 
@@ -3607,7 +3607,7 @@ final class AwsLeftoverStack extends Stack {
         'config_organization_custom_rule',
         lambdaFunctionArn: .literal(arn),
         name: .literal(leftover),
-        triggerTypes: [.configurationitemchangenotification],
+        triggerTypes: .literal([.configurationitemchangenotification]),
       ),
     );
 
@@ -3837,7 +3837,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsCurReportDefinition(
         'cur_report_definition',
-        additionalSchemaElements: [.resources],
+        additionalSchemaElements: .literal([.resources]),
         compression: .zip,
         format: .textorcsv,
         reportName: .literal(leftover),
@@ -5568,7 +5568,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsEcrRepositoryCreationTemplate(
         'ecr_repository_creation_template',
-        appliedFor: [.replication],
+        appliedFor: .literal([.replication]),
         prefix: .literal(leftover),
       ),
     );
@@ -6479,7 +6479,7 @@ final class AwsLeftoverStack extends Stack {
         destinationConfiguration: [
           GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration(
             fromPort: .literal(200),
-            protocols: [.tcp],
+            protocols: .literal([.tcp]),
             toPort: .literal(200),
           ),
         ],
@@ -6755,7 +6755,7 @@ final class AwsLeftoverStack extends Stack {
       AwsGrafanaWorkspace(
         'grafana_workspace',
         accountAccessType: .currentAccount,
-        authenticationProviders: [.awsSso],
+        authenticationProviders: .literal([.awsSso]),
         permissionType: .customerManaged,
       ),
     );
@@ -6979,7 +6979,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsIamOrganizationsFeatures(
         'iam_organizations_features',
-        enabledFeatures: [.rootcredentialsmanagement],
+        enabledFeatures: .literal([.rootcredentialsmanagement]),
       ),
     );
 
@@ -7283,7 +7283,7 @@ final class AwsLeftoverStack extends Stack {
       AwsInspector2Enabler(
         'inspector2_enabler',
         accountIds: .literal(['123456789012']),
-        resourceTypes: [.ec2],
+        resourceTypes: .literal([.ec2]),
       ),
     );
 
@@ -7698,7 +7698,7 @@ final class AwsLeftoverStack extends Stack {
         'kms_grant',
         granteePrincipal: .literal(arn),
         keyId: .literal(leftover),
-        operations: [.decrypt],
+        operations: .literal([.decrypt]),
       ),
     );
 
@@ -7785,7 +7785,7 @@ final class AwsLeftoverStack extends Stack {
       AwsLakeformationPermissions(
         'lakeformation_permissions',
         resource: .catalogResource(.literal(true)),
-        permissions: [.all],
+        permissions: .literal([.all]),
         principal: .literal(arn),
       ),
     );
@@ -7947,7 +7947,7 @@ final class AwsLeftoverStack extends Stack {
           LambdacoreNetworkConnectorConfiguration(
             vpcEgressConfiguration: [
               .new(
-                associatedComputeResourceTypes: [.microvm],
+                associatedComputeResourceTypes: .literal([.microvm]),
                 securityGroupIds: .literal([.literal(leftover)]),
                 subnetIds: .literal([.literal(leftover)]),
               ),
@@ -8195,7 +8195,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsLicensemanagerGrant(
         'licensemanager_grant',
-        allowedOperations: [.creategrant],
+        allowedOperations: .literal([.creategrant]),
         licenseArn: .literal(arn),
         name: .literal(leftover),
         principal: .literal(arn),
@@ -9535,7 +9535,7 @@ final class AwsLeftoverStack extends Stack {
       AwsOamLink(
         'oam_link',
         labelTemplate: .literal(leftover),
-        resourceTypes: [.awsCloudwatchMetric],
+        resourceTypes: .literal([.awsCloudwatchMetric]),
         sinkIdentifier: .literal(leftover),
       ),
     );
@@ -10089,7 +10089,7 @@ final class AwsLeftoverStack extends Stack {
         'pinpointsmsvoicev2_event_destination',
         configurationSetName: .literal(leftover),
         eventDestinationName: .literal(leftover),
-        matchingEventTypes: [.all],
+        matchingEventTypes: .literal([.all]),
         target: .cloudwatchLogsDestination([
           .new(iamRoleArn: .literal(arn), logGroupArn: .literal(arn)),
         ]),
@@ -10117,7 +10117,7 @@ final class AwsLeftoverStack extends Stack {
         'pinpointsmsvoicev2_phone_number',
         isoCountryCode: .literal('US'),
         messageType: .transactional,
-        numberCapabilities: [.sms],
+        numberCapabilities: .literal([.sms]),
         numberType: .longCode,
       ),
     );
@@ -11019,7 +11019,7 @@ final class AwsLeftoverStack extends Stack {
         ],
         settings: [
           .connectedHome([
-            .new(labels: [.person]),
+            .new(labels: .literal([.person])),
           ]),
         ],
       ),
@@ -11684,7 +11684,7 @@ final class AwsLeftoverStack extends Stack {
         bucket: .literal(leftover),
         rule: [
           S3BucketServerSideEncryptionConfigurationRule(
-            blockedEncryptionTypes: [.none],
+            blockedEncryptionTypes: .literal([.none]),
           ),
         ],
       ),
@@ -11803,7 +11803,9 @@ final class AwsLeftoverStack extends Stack {
         accountId: .literal('123456789012'),
         name: .literal('leftover--use1-az4--xa-s3'),
         scope: [
-          S3controlDirectoryBucketAccessPointScope(permissions: [.getobject]),
+          S3controlDirectoryBucketAccessPointScope(
+            permissions: .literal([.getobject]),
+          ),
         ],
       ),
     );
@@ -11850,7 +11852,7 @@ final class AwsLeftoverStack extends Stack {
           supportingAccessPoint: .literal(arn),
           transformationConfiguration: [
             .new(
-              actions: [.getobject],
+              actions: .literal([.getobject]),
               contentTransformation: .new(
                 awsLambda: .new(functionArn: .literal(arn)),
               ),
@@ -12016,13 +12018,13 @@ final class AwsLeftoverStack extends Stack {
         algorithmName: .literal(leftover),
         trainingSpecification: [
           SagemakerAlgorithmTrainingSpecification(
-            supportedTrainingInstanceTypes: [.mlM4Xlarge],
+            supportedTrainingInstanceTypes: .literal([.mlM4Xlarge]),
             trainingImage: .literal(leftover),
             trainingChannels: [
               .new(
                 name: .literal(leftover),
                 supportedContentTypes: .literal([leftover]),
-                supportedInputModes: [.pipe],
+                supportedInputModes: .literal([.pipe]),
               ),
             ],
           ),
@@ -13030,7 +13032,7 @@ final class AwsLeftoverStack extends Stack {
       AwsSesEventDestination(
         'ses_event_destination',
         configurationSetName: .literal(leftover),
-        matchingTypes: [.send],
+        matchingTypes: .literal([.send]),
         name: .literal(leftover),
       ),
     );
@@ -13081,7 +13083,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsSesv2AccountSuppressionAttributes(
         'sesv2_account_suppression_attributes',
-        suppressedReasons: [.bounce],
+        suppressedReasons: .literal([.bounce]),
       ),
     );
 
@@ -13105,7 +13107,7 @@ final class AwsLeftoverStack extends Stack {
         configurationSetName: .literal(leftover),
         eventDestinationName: .literal(leftover),
         eventDestination: Sesv2ConfigurationSetEventDestination(
-          matchingEventTypes: [.send],
+          matchingEventTypes: .literal([.send]),
           target: .cloudWatchDestination(
             .new(
               dimensionConfiguration: [
@@ -15122,7 +15124,7 @@ final class AwsLeftoverStack extends Stack {
           ),
         ],
         eventFilter: [
-          .include([.websiteinteract]),
+          .include(.literal([.websiteinteract])),
         ],
       ),
     );
@@ -17609,7 +17611,7 @@ final class AwsLeftoverStack extends Stack {
       DataAwsOpensearchserverlessSecurityPolicy(
         'd_opensearchserverless_security_policy',
         name: .literal(leftover),
-        type: .literal('encryption'),
+        type: .encryption,
       ),
     );
 

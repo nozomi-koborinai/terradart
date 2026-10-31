@@ -123,7 +123,7 @@ final class DataLossPreventionJobTriggerDeidentify {
 
   final TfArg<String> cloudStorageOutput;
 
-  final List<DataLossPreventionJobTriggerFileTypesToTransform>?
+  final EnumList<DataLossPreventionJobTriggerFileTypesToTransform>?
   fileTypesToTransform;
 
   final DataLossPreventionJobTriggerTransformationConfig? transformationConfig;
@@ -134,10 +134,7 @@ final class DataLossPreventionJobTriggerDeidentify {
   @internal
   Map<String, Object?> encode() => {
     'cloud_storage_output': cloudStorageOutput.toTfJson(),
-    if (fileTypesToTransform != null)
-      'file_types_to_transform': [
-        for (final e in fileTypesToTransform!) e.toTfJson(),
-      ],
+    'file_types_to_transform': ?fileTypesToTransform?.toTfJson(),
     'transformation_config': ?transformationConfig?.encode(),
     'transformation_details_storage_config': ?transformationDetailsStorageConfig
         ?.encode(),
@@ -467,7 +464,7 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
     this.surrogateType,
   });
 
-  final TfArg<String>? exclusionType;
+  final DataLossPreventionJobTriggerExclusionType? exclusionType;
 
   final DataLossPreventionJobTriggerLikelihood? likelihood;
 
@@ -494,6 +491,27 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
     'stored_type': ?storedType?.encode(),
     'surrogate_type': ?surrogateType?.encode(),
   };
+}
+
+/// `exclusion_type` — derived from the provider schema description.
+extension type const DataLossPreventionJobTriggerExclusionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionJobTriggerExclusionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerExclusionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerExclusionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const exclusionTypeExclude =
+      DataLossPreventionJobTriggerExclusionType._(
+        TfArgLiteral('EXCLUSION_TYPE_EXCLUDE'),
+      );
+
+  static const List<DataLossPreventionJobTriggerExclusionType> values = [
+    exclusionTypeExclude,
+  ];
 }
 
 /// `likelihood` — derived from the provider schema description.
@@ -1193,7 +1211,7 @@ final class DataLossPreventionJobTriggerCloudStorageOptions {
 
   final TfArg<num>? bytesLimitPerFilePercent;
 
-  final List<DataLossPreventionJobTriggerFileTypes>? fileTypes;
+  final EnumList<DataLossPreventionJobTriggerFileTypes>? fileTypes;
 
   final TfArg<num>? filesLimitPercent;
 
@@ -1205,8 +1223,7 @@ final class DataLossPreventionJobTriggerCloudStorageOptions {
   Map<String, Object?> encode() => {
     'bytes_limit_per_file': ?bytesLimitPerFile?.toTfJson(),
     'bytes_limit_per_file_percent': ?bytesLimitPerFilePercent?.toTfJson(),
-    if (fileTypes != null)
-      'file_types': [for (final e in fileTypes!) e.toTfJson()],
+    'file_types': ?fileTypes?.toTfJson(),
     'files_limit_percent': ?filesLimitPercent?.toTfJson(),
     'sample_method': ?sampleMethod?.toTfJson(),
     'file_set': fileSet.encode(),

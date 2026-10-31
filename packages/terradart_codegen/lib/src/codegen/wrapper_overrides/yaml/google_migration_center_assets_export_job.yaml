@@ -34,20 +34,5 @@ prelude: |
     static const List<MigrationCenterAssetsExportJobDeletionPolicy> values = [delete, prevent, abandon];
   }
 
-  /// Export file format for `signed_uri_destination.file_format`.
-  extension type const MigrationCenterAssetsExportJobFileFormat._(TfArg<String> _) implements TfArg<String> {
-    MigrationCenterAssetsExportJobFileFormat.variable(String name) : this._(TfArg.variable(name));
-    MigrationCenterAssetsExportJobFileFormat.expression(String template) : this._(TfArg.expression(template));
-    const MigrationCenterAssetsExportJobFileFormat.arg(TfArg<String> arg) : this._(arg);
-
-    static const fileFormatUnspecified = MigrationCenterAssetsExportJobFileFormat._(TfArgLiteral('FILE_FORMAT_UNSPECIFIED'));
-    static const fileFormatCsv = MigrationCenterAssetsExportJobFileFormat._(TfArgLiteral('FILE_FORMAT_CSV'));
-    static const fileFormatJson = MigrationCenterAssetsExportJobFileFormat._(TfArgLiteral('FILE_FORMAT_JSON'));
-
-    static const List<MigrationCenterAssetsExportJobFileFormat> values = [fileFormatUnspecified, fileFormatCsv, fileFormatJson];
-  }
-
 dartTypeOverrides:
   deletion_policy: MigrationCenterAssetsExportJobDeletionPolicy
-
-  signed_uri_destination.file_format: MigrationCenterAssetsExportJobFileFormat

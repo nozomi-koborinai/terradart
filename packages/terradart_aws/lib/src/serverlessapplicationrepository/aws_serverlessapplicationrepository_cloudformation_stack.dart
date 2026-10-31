@@ -58,7 +58,7 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   AwsServerlessapplicationrepositoryCloudformationStack(
     super.localName, {
     required TfArg<String> applicationId,
-    List<ServerlessapplicationrepositoryCloudformationStackCapabilities>?
+    EnumList<ServerlessapplicationrepositoryCloudformationStackCapabilities>?
     capabilities,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
@@ -73,10 +73,7 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (capabilities != null)
-             'capabilities': TfArg.literal([
-               for (final e in capabilities) e.toTfJson(),
-             ]),
+           'capabilities': ?capabilities,
            'name': name,
            'parameters': ?parameters,
            'region': ?region,

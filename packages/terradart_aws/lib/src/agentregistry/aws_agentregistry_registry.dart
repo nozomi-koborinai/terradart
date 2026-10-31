@@ -17,12 +17,11 @@ const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 final class AgentregistryRegistryApprovalConfiguration {
   const AgentregistryRegistryApprovalConfiguration({this.autoApprovalRules});
 
-  final List<AgentregistryRegistryAutoApprovalRules>? autoApprovalRules;
+  final EnumList<AgentregistryRegistryAutoApprovalRules>? autoApprovalRules;
 
   @internal
   Map<String, Object?> encode() => {
-    if (autoApprovalRules != null)
-      'auto_approval_rules': [for (final e in autoApprovalRules!) e.toTfJson()],
+    'auto_approval_rules': ?autoApprovalRules?.toTfJson(),
   };
 }
 

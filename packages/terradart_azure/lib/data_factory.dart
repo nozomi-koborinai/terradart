@@ -62,7 +62,8 @@ export 'src/data_factory/azurerm_data_factory_dataset_binary.dart'
         DataFactoryDatasetBinaryLevel,
         DataFactoryDatasetBinaryLocation,
         DataFactoryDatasetBinarySftpServerLocation,
-        DataFactoryDatasetBinarySftpServerLocationChoice;
+        DataFactoryDatasetBinarySftpServerLocationChoice,
+        DataFactoryDatasetBinaryType;
 export 'src/data_factory/azurerm_data_factory_dataset_cosmosdb_sqlapi.dart'
     show
         AzurermDataFactoryDatasetCosmosdbSqlapi,
@@ -322,6 +323,7 @@ export 'src/data_factory/azurerm_data_factory_trigger_schedule.dart'
     show
         AzurermDataFactoryTriggerSchedule,
         DataFactoryTriggerSchedule,
+        DataFactoryTriggerScheduleFrequency,
         DataFactoryTriggerScheduleMonthly,
         DataFactoryTriggerSchedulePipeline,
         DataFactoryTriggerSchedulePipelineTarget,

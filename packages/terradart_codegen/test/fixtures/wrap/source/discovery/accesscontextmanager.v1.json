@@ -1,0 +1,251 @@
+{
+  "name": "accesscontextmanager",
+  "version": "v1",
+  "revision": "20261011",
+  "sourceUrl": "https://accesscontextmanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AccessLevel": {
+      "properties": {
+        "basic": {
+          "$ref": "BasicLevel"
+        }
+      }
+    },
+    "AccessPolicy": {
+      "properties": {}
+    },
+    "AccessSettings": {
+      "properties": {
+        "sessionSettings": {
+          "$ref": "SessionSettings"
+        }
+      }
+    },
+    "AuthorizedOrgsDesc": {
+      "properties": {
+        "authorizationDirection": {
+          "enum": [
+            "AUTHORIZATION_DIRECTION_UNSPECIFIED",
+            "AUTHORIZATION_DIRECTION_TO",
+            "AUTHORIZATION_DIRECTION_FROM"
+          ]
+        },
+        "authorizationType": {
+          "enum": [
+            "AUTHORIZATION_TYPE_UNSPECIFIED",
+            "AUTHORIZATION_TYPE_TRUST"
+          ]
+        },
+        "assetType": {
+          "enum": [
+            "ASSET_TYPE_UNSPECIFIED",
+            "ASSET_TYPE_DEVICE",
+            "ASSET_TYPE_CREDENTIAL_STRENGTH"
+          ]
+        }
+      }
+    },
+    "BasicLevel": {
+      "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "Condition"
+          }
+        },
+        "combiningFunction": {
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        }
+      }
+    },
+    "Condition": {
+      "properties": {
+        "devicePolicy": {
+          "$ref": "DevicePolicy"
+        }
+      }
+    },
+    "DevicePolicy": {
+      "properties": {
+        "allowedDeviceManagementLevels": {
+          "items": {
+            "enum": [
+              "MANAGEMENT_UNSPECIFIED",
+              "NONE",
+              "BASIC",
+              "COMPLETE"
+            ]
+          }
+        },
+        "allowedEncryptionStatuses": {
+          "items": {
+            "enum": [
+              "ENCRYPTION_UNSPECIFIED",
+              "ENCRYPTION_UNSUPPORTED",
+              "UNENCRYPTED",
+              "ENCRYPTED"
+            ]
+          }
+        },
+        "osConstraints": {
+          "items": {
+            "$ref": "OsConstraint"
+          }
+        }
+      }
+    },
+    "EgressFrom": {
+      "properties": {
+        "identityType": {
+          "enum": [
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "ANY_IDENTITY",
+            "ANY_USER_ACCOUNT",
+            "ANY_SERVICE_ACCOUNT"
+          ]
+        },
+        "sourceRestriction": {
+          "enum": [
+            "SOURCE_RESTRICTION_UNSPECIFIED",
+            "SOURCE_RESTRICTION_ENABLED",
+            "SOURCE_RESTRICTION_DISABLED"
+          ]
+        }
+      }
+    },
+    "EgressPolicy": {
+      "properties": {
+        "egressFrom": {
+          "$ref": "EgressFrom"
+        }
+      }
+    },
+    "GcpUserAccessBinding": {
+      "properties": {
+        "scopedAccessSettings": {
+          "items": {
+            "$ref": "ScopedAccessSettings"
+          }
+        },
+        "sessionSettings": {
+          "$ref": "SessionSettings"
+        }
+      }
+    },
+    "IngressFrom": {
+      "properties": {
+        "identityType": {
+          "enum": [
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "ANY_IDENTITY",
+            "ANY_USER_ACCOUNT",
+            "ANY_SERVICE_ACCOUNT"
+          ]
+        }
+      }
+    },
+    "IngressPolicy": {
+      "properties": {
+        "ingressFrom": {
+          "$ref": "IngressFrom"
+        }
+      }
+    },
+    "OsConstraint": {
+      "properties": {
+        "osType": {
+          "enum": [
+            "OS_UNSPECIFIED",
+            "DESKTOP_MAC",
+            "DESKTOP_WINDOWS",
+            "DESKTOP_LINUX",
+            "DESKTOP_CHROME_OS",
+            "GOOGLEBOOK_OS",
+            "ANDROID",
+            "IOS"
+          ]
+        }
+      }
+    },
+    "ScopedAccessSettings": {
+      "properties": {
+        "activeSettings": {
+          "$ref": "AccessSettings"
+        },
+        "dryRunSettings": {
+          "$ref": "AccessSettings"
+        }
+      }
+    },
+    "ServicePerimeter": {
+      "properties": {
+        "status": {
+          "$ref": "ServicePerimeterConfig"
+        },
+        "perimeterType": {
+          "enum": [
+            "PERIMETER_TYPE_REGULAR",
+            "PERIMETER_TYPE_BRIDGE"
+          ]
+        },
+        "spec": {
+          "$ref": "ServicePerimeterConfig"
+        }
+      }
+    },
+    "ServicePerimeterConfig": {
+      "properties": {
+        "egressPolicies": {
+          "items": {
+            "$ref": "EgressPolicy"
+          }
+        },
+        "vpcAccessibleServices": {
+          "$ref": "VpcAccessibleServices"
+        },
+        "ingressPolicies": {
+          "items": {
+            "$ref": "IngressPolicy"
+          }
+        }
+      }
+    },
+    "SessionSettings": {
+      "properties": {
+        "sessionReauthMethod": {
+          "enum": [
+            "SESSION_REAUTH_METHOD_UNSPECIFIED",
+            "LOGIN",
+            "SECURITY_KEY",
+            "PASSWORD"
+          ]
+        }
+      }
+    },
+    "VpcAccessibleServices": {
+      "properties": {
+        "servicePatternsEnforcementScopes": {
+          "items": {
+            "enum": [
+              "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED",
+              "GOOGLE_APIS_VIA_PRIVATE_PATH"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "ServicePerimeter": {
+      "deletedPrincipalSyntax": {
+        "enum": [
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_UNSPECIFIED",
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED",
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED"
+        ]
+      }
+    }
+  }
+}

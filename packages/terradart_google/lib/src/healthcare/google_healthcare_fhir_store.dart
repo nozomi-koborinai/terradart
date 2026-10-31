@@ -292,7 +292,8 @@ final class GoogleHealthcareFhirStore extends Resource {
     TfArg<bool>? disableResourceVersioning,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
-    TfArg<String>? complexDataTypeReferenceParsing,
+    HealthcareFhirStoreComplexDataTypeReferenceParsing?
+    complexDataTypeReferenceParsing,
     TfArg<bool>? defaultSearchHandlingStrict,
     TfArg<bool>? enableHistoryImport,
     HealthcareFhirStoreNotificationConfig? notificationConfig,

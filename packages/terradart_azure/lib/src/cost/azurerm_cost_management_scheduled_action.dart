@@ -119,7 +119,7 @@ final class AzurermCostManagementScheduledAction extends Resource {
   AzurermCostManagementScheduledAction(
     super.localName, {
     TfArg<num>? dayOfMonth,
-    List<CostManagementScheduledActionDaysOfWeek>? daysOfWeek,
+    EnumList<CostManagementScheduledActionDaysOfWeek>? daysOfWeek,
     required TfArg<String> displayName,
     required TfArg<String> emailAddressSender,
     required TfArg<List<String>> emailAddresses,
@@ -131,7 +131,7 @@ final class AzurermCostManagementScheduledAction extends Resource {
     required TfArg<String> name,
     required TfArg<String> startDate,
     required TfArg<String> viewId,
-    List<CostManagementScheduledActionWeeksOfMonth>? weeksOfMonth,
+    EnumList<CostManagementScheduledActionWeeksOfMonth>? weeksOfMonth,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -140,10 +140,7 @@ final class AzurermCostManagementScheduledAction extends Resource {
          terraformType: tfType,
          argMap: {
            'day_of_month': ?dayOfMonth,
-           if (daysOfWeek != null)
-             'days_of_week': TfArg.literal([
-               for (final e in daysOfWeek) e.toTfJson(),
-             ]),
+           'days_of_week': ?daysOfWeek,
            'display_name': displayName,
            'email_address_sender': emailAddressSender,
            'email_addresses': emailAddresses,
@@ -155,10 +152,7 @@ final class AzurermCostManagementScheduledAction extends Resource {
            'name': name,
            'start_date': startDate,
            'view_id': viewId,
-           if (weeksOfMonth != null)
-             'weeks_of_month': TfArg.literal([
-               for (final e in weeksOfMonth) e.toTfJson(),
-             ]),
+           'weeks_of_month': ?weeksOfMonth,
          },
        );
 

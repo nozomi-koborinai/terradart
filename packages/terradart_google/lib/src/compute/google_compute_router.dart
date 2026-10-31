@@ -30,6 +30,23 @@ extension type const ComputeRouterBgpAdvertiseMode._(TfArg<String> _)
   ];
 }
 
+/// `bgp.advertised_groups` — a prefix group a custom-mode router advertises.
+extension type const ComputeRouterBgpAdvertisedGroup._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterBgpAdvertisedGroup.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterBgpAdvertisedGroup.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterBgpAdvertisedGroup.arg(TfArg<String> arg) : this._(arg);
+
+  /// Every subnet of the router's VPC network.
+  static const allSubnets = ComputeRouterBgpAdvertisedGroup._(
+    TfArgLiteral('ALL_SUBNETS'),
+  );
+
+  static const List<ComputeRouterBgpAdvertisedGroup> values = [allSubnets];
+}
+
 /// `bgp` block — local BGP session parameters for a Cloud Router.
 @immutable
 class ComputeRouterBgp {
@@ -47,7 +64,7 @@ class ComputeRouterBgp {
 
   /// Prefix groups to advertise when [advertiseMode] is
   /// [ComputeRouterBgpAdvertiseMode.custom].
-  final List<String>? advertisedGroups;
+  final EnumList<ComputeRouterBgpAdvertisedGroup>? advertisedGroups;
 
   /// Local BGP ASN (RFC6996 private range).
   final TfArg<int>? asn;
@@ -61,7 +78,7 @@ class ComputeRouterBgp {
   @internal
   Map<String, Object?> encode() => {
     if (advertiseMode != null) 'advertise_mode': advertiseMode!.toTfJson(),
-    if (advertisedGroups != null) 'advertised_groups': advertisedGroups,
+    'advertised_groups': ?advertisedGroups?.toTfJson(),
     if (asn != null) 'asn': asn!.toTfJson(),
     if (identifierRange != null)
       'identifier_range': identifierRange!.toTfJson(),

@@ -46,7 +46,7 @@ final class ApihubPluginInstanceCurationConfig {
     this.customCuration,
   });
 
-  final TfArg<String>? curationType;
+  final ApihubPluginInstanceCurationType? curationType;
 
   final ApihubPluginInstanceCustomCuration? customCuration;
 
@@ -55,6 +55,30 @@ final class ApihubPluginInstanceCurationConfig {
     'curation_type': ?curationType?.toTfJson(),
     'custom_curation': ?customCuration?.encode(),
   };
+}
+
+/// `curation_type` — derived from the provider schema description.
+extension type const ApihubPluginInstanceCurationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginInstanceCurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubPluginInstanceCurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginInstanceCurationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCurationForApiMetadata =
+      ApihubPluginInstanceCurationType._(
+        TfArgLiteral('DEFAULT_CURATION_FOR_API_METADATA'),
+      );
+  static const customCurationForApiMetadata =
+      ApihubPluginInstanceCurationType._(
+        TfArgLiteral('CUSTOM_CURATION_FOR_API_METADATA'),
+      );
+
+  static const List<ApihubPluginInstanceCurationType> values = [
+    defaultCurationForApiMetadata,
+    customCurationForApiMetadata,
+  ];
 }
 
 /// Typed helper for the `actions.curation_config.custom_curation` block of
@@ -81,7 +105,7 @@ final class ApihubPluginInstanceAuthConfig {
     this.userPasswordConfig,
   });
 
-  final TfArg<String> authType;
+  final ApihubPluginInstanceAuthType authType;
 
   final ApihubPluginInstanceApiKeyConfig? apiKeyConfig;
 
@@ -104,6 +128,36 @@ final class ApihubPluginInstanceAuthConfig {
   };
 }
 
+/// `auth_type` — derived from the provider schema description.
+extension type const ApihubPluginInstanceAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginInstanceAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubPluginInstanceAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginInstanceAuthType.arg(TfArg<String> arg) : this._(arg);
+
+  static const noAuth = ApihubPluginInstanceAuthType._(TfArgLiteral('NO_AUTH'));
+  static const googleServiceAccount = ApihubPluginInstanceAuthType._(
+    TfArgLiteral('GOOGLE_SERVICE_ACCOUNT'),
+  );
+  static const userPassword = ApihubPluginInstanceAuthType._(
+    TfArgLiteral('USER_PASSWORD'),
+  );
+  static const apiKey = ApihubPluginInstanceAuthType._(TfArgLiteral('API_KEY'));
+  static const oauth2ClientCredentials = ApihubPluginInstanceAuthType._(
+    TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+  );
+
+  static const List<ApihubPluginInstanceAuthType> values = [
+    noAuth,
+    googleServiceAccount,
+    userPassword,
+    apiKey,
+    oauth2ClientCredentials,
+  ];
+}
+
 /// Typed helper for the `auth_config.api_key_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
@@ -114,7 +168,7 @@ final class ApihubPluginInstanceApiKeyConfig {
     required this.apiKey,
   });
 
-  final TfArg<String> httpElementLocation;
+  final ApihubPluginInstanceHttpElementLocation httpElementLocation;
 
   final TfArg<String> name;
 
@@ -126,6 +180,41 @@ final class ApihubPluginInstanceApiKeyConfig {
     'name': name.toTfJson(),
     'api_key': apiKey.encode(),
   };
+}
+
+/// `http_element_location` — derived from the provider schema description.
+extension type const ApihubPluginInstanceHttpElementLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginInstanceHttpElementLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubPluginInstanceHttpElementLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginInstanceHttpElementLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const query = ApihubPluginInstanceHttpElementLocation._(
+    TfArgLiteral('QUERY'),
+  );
+  static const header = ApihubPluginInstanceHttpElementLocation._(
+    TfArgLiteral('HEADER'),
+  );
+  static const path = ApihubPluginInstanceHttpElementLocation._(
+    TfArgLiteral('PATH'),
+  );
+  static const body = ApihubPluginInstanceHttpElementLocation._(
+    TfArgLiteral('BODY'),
+  );
+  static const cookie = ApihubPluginInstanceHttpElementLocation._(
+    TfArgLiteral('COOKIE'),
+  );
+
+  static const List<ApihubPluginInstanceHttpElementLocation> values = [
+    query,
+    header,
+    path,
+    body,
+    cookie,
+  ];
 }
 
 /// Typed helper for the `auth_config.api_key_config.api_key` block of

@@ -287,6 +287,30 @@ prelude: |
     };
   }
 
+  /// `text_spec.index_specs.index_type` — how a text index stores the field.
+  extension type const FirestoreIndexTextIndexType._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexTextIndexType.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexTextIndexType.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexTextIndexType.arg(TfArg<String> arg) : this._(arg);
+
+    /// The field is split into tokens.
+    static const tokenized = FirestoreIndexTextIndexType._(TfArgLiteral('TOKENIZED'));
+
+    static const List<FirestoreIndexTextIndexType> values = [tokenized];
+  }
+
+  /// `text_spec.index_specs.match_type` — how a text index matches queries.
+  extension type const FirestoreIndexTextMatchType._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexTextMatchType.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexTextMatchType.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexTextMatchType.arg(TfArg<String> arg) : this._(arg);
+
+    /// A query matches anywhere in the field.
+    static const matchGlobally = FirestoreIndexTextMatchType._(TfArgLiteral('MATCH_GLOBALLY'));
+
+    static const List<FirestoreIndexTextMatchType> values = [matchGlobally];
+  }
+
   /// One entry in `text_spec.index_specs`. Both fields are
   /// schema-optional; combinations are documented in
   /// https://firebase.google.com/docs/firestore/text-search.
@@ -294,12 +318,11 @@ prelude: |
   class FirestoreIndexFieldTextSpecEntry {
     const FirestoreIndexFieldTextSpecEntry({this.indexType, this.matchType});
 
-    /// Index strategy (`TOKEN`, `NGRAM`, etc.). Forward the literal
-    /// string -- the schema does not expose a typed enum here.
-    final TfArg<String>? indexType;
+    /// Index strategy.
+    final FirestoreIndexTextIndexType? indexType;
 
-    /// Match strategy (`EXACT`, `PREFIX`). Forward the literal string.
-    final TfArg<String>? matchType;
+    /// Match strategy.
+    final FirestoreIndexTextMatchType? matchType;
 
     @internal
     Map<String, Object?> encode() => {

@@ -292,7 +292,7 @@ final class TransferServerProtocolDetails {
     this.tlsSessionResumptionMode,
   });
 
-  final List<TransferServerAs2Transports>? as2Transports;
+  final EnumList<TransferServerAs2Transports>? as2Transports;
 
   final TfArg<String>? passiveIp;
 
@@ -302,8 +302,7 @@ final class TransferServerProtocolDetails {
 
   @internal
   Map<String, Object?> encode() => {
-    if (as2Transports != null)
-      'as2_transports': [for (final e in as2Transports!) e.toTfJson()],
+    'as2_transports': ?as2Transports?.toTfJson(),
     'passive_ip': ?passiveIp?.toTfJson(),
     'set_stat_option': ?setStatOption?.toTfJson(),
     'tls_session_resumption_mode': ?tlsSessionResumptionMode?.toTfJson(),
@@ -488,7 +487,7 @@ final class AwsTransferServer extends Resource {
     TfArg<String>? loggingRole,
     Sensitive<String>? postAuthenticationLoginBanner,
     Sensitive<String>? preAuthenticationLoginBanner,
-    List<TransferServerProtocols>? protocols,
+    EnumList<TransferServerProtocols>? protocols,
     TfArg<String>? region,
     TransferServerSecurityPolicyName? securityPolicyName,
     TransferServerSftpAuthenticationMethods? sftpAuthenticationMethods,
@@ -519,10 +518,7 @@ final class AwsTransferServer extends Resource {
            'logging_role': ?loggingRole,
            'post_authentication_login_banner': ?postAuthenticationLoginBanner,
            'pre_authentication_login_banner': ?preAuthenticationLoginBanner,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'region': ?region,
            'security_policy_name': ?securityPolicyName,
            'sftp_authentication_methods': ?sftpAuthenticationMethods,

@@ -86,7 +86,7 @@ final class AzurermStorageAccountNetworkRules extends Resource {
 
   AzurermStorageAccountNetworkRules(
     super.localName, {
-    List<StorageAccountNetworkRulesBypass>? bypass,
+    EnumList<StorageAccountNetworkRulesBypass>? bypass,
     required StorageAccountNetworkRulesDefaultAction defaultAction,
     TfArg<List<String>>? ipRules,
     required RefTo<AzurermStorageAccount> storageAccountId,
@@ -99,8 +99,7 @@ final class AzurermStorageAccountNetworkRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypass != null)
-             'bypass': TfArg.literal([for (final e in bypass) e.toTfJson()]),
+           'bypass': ?bypass,
            'default_action': defaultAction,
            'ip_rules': ?ipRules,
            'storage_account_id': storageAccountId.encodeAs('id'),

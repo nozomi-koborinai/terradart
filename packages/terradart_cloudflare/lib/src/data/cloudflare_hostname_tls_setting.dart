@@ -8,6 +8,28 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_hostname_tls_setting`.
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
+/// Data Hostname Tls Setting enum for `setting_id`.
+extension type const DataHostnameTlsSettingName._(TfArg<String> _)
+    implements TfArg<String> {
+  DataHostnameTlsSettingName.variable(String name)
+    : this._(TfArg.variable(name));
+  DataHostnameTlsSettingName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataHostnameTlsSettingName.arg(TfArg<String> arg) : this._(arg);
+
+  static const ciphers = DataHostnameTlsSettingName._(TfArgLiteral('ciphers'));
+  static const minTlsVersion = DataHostnameTlsSettingName._(
+    TfArgLiteral('min_tls_version'),
+  );
+  static const http2 = DataHostnameTlsSettingName._(TfArgLiteral('http2'));
+
+  static const List<DataHostnameTlsSettingName> values = [
+    ciphers,
+    minTlsVersion,
+    http2,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_hostname_tls_setting`.
 final class DataCloudflareHostnameTlsSetting extends Data {
   static const String tfType = 'cloudflare_hostname_tls_setting';
@@ -15,7 +37,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
   DataCloudflareHostnameTlsSetting(
     super.localName, {
     required TfArg<String> hostname,
-    required TfArg<String> settingId,
+    required DataHostnameTlsSettingName settingId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -112,7 +112,7 @@ export 'src/scc/google_scc_source_iam_member.dart'
 export 'src/scc/google_scc_source_iam_policy.dart'
     show GoogleSccSourceIamPolicy;
 export 'src/scc/google_scc_v2_folder_mute_config.dart'
-    show GoogleSccV2FolderMuteConfig;
+    show GoogleSccV2FolderMuteConfig, SccV2FolderMuteConfigType;
 export 'src/scc/google_scc_v2_folder_notification_config.dart'
     show
         GoogleSccV2FolderNotificationConfig,
@@ -120,7 +120,7 @@ export 'src/scc/google_scc_v2_folder_notification_config.dart'
 export 'src/scc/google_scc_v2_folder_scc_big_query_export.dart'
     show GoogleSccV2FolderSccBigQueryExport;
 export 'src/scc/google_scc_v2_organization_mute_config.dart'
-    show GoogleSccV2OrganizationMuteConfig;
+    show GoogleSccV2OrganizationMuteConfig, SccV2OrganizationMuteConfigType;
 export 'src/scc/google_scc_v2_organization_notification_config.dart'
     show
         GoogleSccV2OrganizationNotificationConfig,
@@ -142,7 +142,7 @@ export 'src/scc/google_scc_v2_organization_source_iam_member.dart'
 export 'src/scc/google_scc_v2_organization_source_iam_policy.dart'
     show GoogleSccV2OrganizationSourceIamPolicy;
 export 'src/scc/google_scc_v2_project_mute_config.dart'
-    show GoogleSccV2ProjectMuteConfig;
+    show GoogleSccV2ProjectMuteConfig, SccV2ProjectMuteConfigType;
 export 'src/scc/google_scc_v2_project_notification_config.dart'
     show
         GoogleSccV2ProjectNotificationConfig,

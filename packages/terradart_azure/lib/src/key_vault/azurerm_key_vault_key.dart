@@ -9,6 +9,63 @@ import '../key_vault/azurerm_key_vault.dart' show AzurermKeyVault;
 /// Sensitive field paths for `azurerm_key_vault_key`.
 const Set<String> _azurermKeyVaultKeySensitive = <String>{};
 
+/// Key Vault Key enum for `curve`.
+extension type const KeyVaultKeyCurve._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyVaultKeyCurve.variable(String name) : this._(TfArg.variable(name));
+  KeyVaultKeyCurve.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultKeyCurve.arg(TfArg<String> arg) : this._(arg);
+
+  static const p256 = KeyVaultKeyCurve._(TfArgLiteral('P-256'));
+  static const p256k = KeyVaultKeyCurve._(TfArgLiteral('P-256K'));
+  static const p384 = KeyVaultKeyCurve._(TfArgLiteral('P-384'));
+  static const p521 = KeyVaultKeyCurve._(TfArgLiteral('P-521'));
+
+  static const List<KeyVaultKeyCurve> values = [p256, p256k, p384, p521];
+}
+
+/// Key Vault Key enum for `key_opts`.
+extension type const KeyVaultKeyOpts._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyVaultKeyOpts.variable(String name) : this._(TfArg.variable(name));
+  KeyVaultKeyOpts.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultKeyOpts.arg(TfArg<String> arg) : this._(arg);
+
+  static const decrypt = KeyVaultKeyOpts._(TfArgLiteral('decrypt'));
+  static const encrypt = KeyVaultKeyOpts._(TfArgLiteral('encrypt'));
+  static const sign = KeyVaultKeyOpts._(TfArgLiteral('sign'));
+  static const unwrapkey = KeyVaultKeyOpts._(TfArgLiteral('unwrapKey'));
+  static const verify = KeyVaultKeyOpts._(TfArgLiteral('verify'));
+  static const wrapkey = KeyVaultKeyOpts._(TfArgLiteral('wrapKey'));
+
+  static const List<KeyVaultKeyOpts> values = [
+    decrypt,
+    encrypt,
+    sign,
+    unwrapkey,
+    verify,
+    wrapkey,
+  ];
+}
+
+/// Key Vault Key enum for `key_type`.
+extension type const KeyVaultKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyVaultKeyType.variable(String name) : this._(TfArg.variable(name));
+  KeyVaultKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultKeyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ec = KeyVaultKeyType._(TfArgLiteral('EC'));
+  static const ecHsm = KeyVaultKeyType._(TfArgLiteral('EC-HSM'));
+  static const rsa = KeyVaultKeyType._(TfArgLiteral('RSA'));
+  static const rsaHsm = KeyVaultKeyType._(TfArgLiteral('RSA-HSM'));
+
+  static const List<KeyVaultKeyType> values = [ec, ecHsm, rsa, rsaHsm];
+}
+
 /// At most one of `curve`, `key_size` on `azurerm_key_vault_key`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -18,7 +75,7 @@ sealed class KeyVaultKeyParameter {
   const KeyVaultKeyParameter();
 
   /// Sets `curve`.
-  const factory KeyVaultKeyParameter.curve(TfArg<String> curve) =
+  const factory KeyVaultKeyParameter.curve(KeyVaultKeyCurve curve) =
       KeyVaultKeyParameterCurve;
 
   /// Sets `key_size`.
@@ -42,7 +99,7 @@ sealed class KeyVaultKeyParameter {
 final class KeyVaultKeyParameterCurve extends KeyVaultKeyParameter {
   const KeyVaultKeyParameterCurve(this.curve);
 
-  final TfArg<String> curve;
+  final KeyVaultKeyCurve curve;
 
   @internal
   @override
@@ -142,8 +199,8 @@ final class AzurermKeyVaultKey extends Resource {
     super.localName, {
     KeyVaultKeyParameter? keyParameter,
     TfArg<String>? expirationDate,
-    required TfArg<List<String>> keyOpts,
-    required TfArg<String> keyType,
+    required EnumList<KeyVaultKeyOpts> keyOpts,
+    required KeyVaultKeyType keyType,
     required RefTo<AzurermKeyVault> keyVaultId,
     required TfArg<String> name,
     TfArg<String>? notBeforeDate,

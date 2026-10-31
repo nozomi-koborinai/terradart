@@ -27,7 +27,7 @@ final class ComputeFirewallPolicyWithRulesRule {
     this.targetSecureTag,
   });
 
-  final TfArg<String> action;
+  final ComputeFirewallPolicyWithRulesAction action;
 
   final TfArg<String>? description;
 
@@ -70,6 +70,38 @@ final class ComputeFirewallPolicyWithRulesRule {
     if (targetSecureTag != null)
       'target_secure_tag': [for (final e in targetSecureTag!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const ComputeFirewallPolicyWithRulesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFirewallPolicyWithRulesAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFirewallPolicyWithRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFirewallPolicyWithRulesAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = ComputeFirewallPolicyWithRulesAction._(
+    TfArgLiteral('allow'),
+  );
+  static const deny = ComputeFirewallPolicyWithRulesAction._(
+    TfArgLiteral('deny'),
+  );
+  static const applySecurityProfileGroup =
+      ComputeFirewallPolicyWithRulesAction._(
+        TfArgLiteral('apply_security_profile_group'),
+      );
+  static const gotoNext = ComputeFirewallPolicyWithRulesAction._(
+    TfArgLiteral('goto_next'),
+  );
+
+  static const List<ComputeFirewallPolicyWithRulesAction> values = [
+    allow,
+    deny,
+    applySecurityProfileGroup,
+    gotoNext,
+  ];
 }
 
 /// `direction` — derived from the provider schema description.

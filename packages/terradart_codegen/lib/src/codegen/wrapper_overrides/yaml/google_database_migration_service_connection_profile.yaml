@@ -2,8 +2,8 @@ outputDir: database_migration
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
-
 extraImports:
   - "import 'package:meta/meta.dart';"
 

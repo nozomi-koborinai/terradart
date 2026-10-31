@@ -87,7 +87,10 @@ export 'src/data/cloudflare_account_dns_settings_internal_view.dart'
         DataCloudflareAccountDnsSettingsInternalView;
 export 'src/data/cloudflare_account_dns_settings_internal_views.dart'
     show
+        DataAccountDnsSettingsInternalViewsDirection,
+        DataAccountDnsSettingsInternalViewsMatch,
         DataAccountDnsSettingsInternalViewsName,
+        DataAccountDnsSettingsInternalViewsOrder,
         DataCloudflareAccountDnsSettingsInternalViews;
 export 'src/data/cloudflare_account_member.dart'
     show
@@ -97,7 +100,11 @@ export 'src/data/cloudflare_account_member.dart'
         DataAccountMemberOrder,
         DataCloudflareAccountMember;
 export 'src/data/cloudflare_account_members.dart'
-    show DataCloudflareAccountMembers;
+    show
+        DataAccountMembersDirection,
+        DataAccountMembersOrder,
+        DataAccountMembersStatus,
+        DataCloudflareAccountMembers;
 export 'src/data/cloudflare_account_permission_group.dart'
     show DataCloudflareAccountPermissionGroup;
 export 'src/data/cloudflare_account_permission_groups.dart'
@@ -112,7 +119,7 @@ export 'src/data/cloudflare_account_token.dart'
         DataAccountTokenFilter,
         DataCloudflareAccountToken;
 export 'src/data/cloudflare_account_tokens.dart'
-    show DataCloudflareAccountTokens;
+    show DataAccountTokensDirection, DataCloudflareAccountTokens;
 export 'src/data/cloudflare_api_token.dart'
     show DataApiTokenDirection, DataApiTokenFilter, DataCloudflareApiToken;
 export 'src/data/cloudflare_api_token_permission_groups_list.dart'

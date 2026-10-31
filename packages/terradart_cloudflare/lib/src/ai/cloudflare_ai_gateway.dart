@@ -144,7 +144,7 @@ final class AiGatewayPolicies {
 
   final AiGatewayPoliciesAction action;
 
-  final List<AiGatewayCheck> check;
+  final EnumList<AiGatewayCheck> check;
 
   final TfArg<bool> enabled;
 
@@ -155,7 +155,7 @@ final class AiGatewayPolicies {
   @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    'check': [for (final e in check) e.toTfJson()],
+    'check': check.toTfJson(),
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
     'profiles': profiles.toTfJson(),

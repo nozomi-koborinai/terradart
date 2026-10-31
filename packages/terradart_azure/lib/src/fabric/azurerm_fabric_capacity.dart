@@ -17,7 +17,7 @@ final class FabricCapacitySku {
 
   final FabricCapacitySkuName name;
 
-  final TfArg<String> tier;
+  final FabricCapacityTier tier;
 
   @internal
   Map<String, Object?> encode() => {
@@ -59,6 +59,19 @@ extension type const FabricCapacitySkuName._(TfArg<String> _)
     f1024,
     f2048,
   ];
+}
+
+/// `tier` — derived from the provider schema description.
+extension type const FabricCapacityTier._(TfArg<String> _)
+    implements TfArg<String> {
+  FabricCapacityTier.variable(String name) : this._(TfArg.variable(name));
+  FabricCapacityTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const FabricCapacityTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const fabric = FabricCapacityTier._(TfArgLiteral('Fabric'));
+
+  static const List<FabricCapacityTier> values = [fabric];
 }
 
 /// Factory wrapper for `azurerm_fabric_capacity`.

@@ -1,0 +1,1393 @@
+{
+  "name": "gkehub",
+  "version": "v1",
+  "revision": "20261017",
+  "sourceUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AppDevExperienceFeatureState": {
+      "properties": {
+        "networkingInstallSucceeded": {
+          "$ref": "Status"
+        }
+      }
+    },
+    "AutoUpgradeConfig": {
+      "properties": {
+        "rolloutCreationScope": {
+          "$ref": "RolloutCreationScope"
+        }
+      }
+    },
+    "BinaryAuthorizationConfig": {
+      "properties": {
+        "evaluationMode": {
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "POLICY_BINDINGS"
+          ]
+        }
+      }
+    },
+    "ClusterUpgradeFleetState": {
+      "properties": {
+        "gkeState": {
+          "$ref": "ClusterUpgradeGKEUpgradeFeatureState"
+        }
+      }
+    },
+    "ClusterUpgradeGKEUpgradeFeatureState": {
+      "properties": {
+        "upgradeState": {
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeState"
+          }
+        }
+      }
+    },
+    "ClusterUpgradeGKEUpgradeState": {
+      "properties": {
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus"
+        }
+      }
+    },
+    "ClusterUpgradeMembershipGKEUpgradeState": {
+      "properties": {
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus"
+        }
+      }
+    },
+    "ClusterUpgradeMembershipState": {
+      "properties": {
+        "upgrades": {
+          "items": {
+            "$ref": "ClusterUpgradeMembershipGKEUpgradeState"
+          }
+        }
+      }
+    },
+    "ClusterUpgradeUpgradeStatus": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "INELIGIBLE",
+            "PENDING",
+            "IN_PROGRESS",
+            "SOAKING",
+            "FORCED_SOAKING",
+            "COMPLETE"
+          ]
+        }
+      }
+    },
+    "CommonFeatureSpec": {
+      "properties": {
+        "mesh": {
+          "$ref": "ServiceMeshFeatureSpec"
+        },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityFeatureSpec"
+        }
+      }
+    },
+    "CommonFeatureState": {
+      "properties": {
+        "servicemesh": {
+          "$ref": "ServiceMeshFeatureState"
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityFeatureState"
+        },
+        "appdevexperience": {
+          "$ref": "AppDevExperienceFeatureState"
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeFleetState"
+        },
+        "state": {
+          "$ref": "FeatureState"
+        },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityFeatureState"
+        }
+      }
+    },
+    "CommonFleetDefaultMemberConfigSpec": {
+      "properties": {
+        "policycontroller": {
+          "$ref": "PolicyControllerMembershipSpec"
+        },
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipSpec"
+        },
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec"
+        }
+      }
+    },
+    "CompliancePostureConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "ConfigManagementConfigSyncDeploymentState": {
+      "properties": {
+        "syncer": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "otelCollector": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "admissionWebhook": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "monitor": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "importer": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "resourceGroupControllerManager": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "gitSync": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "rootReconciler": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "reconcilerManager": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "ConfigManagementConfigSyncState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIG_SYNC_NOT_INSTALLED",
+            "CONFIG_SYNC_INSTALLED",
+            "CONFIG_SYNC_ERROR",
+            "CONFIG_SYNC_PENDING"
+          ]
+        },
+        "rootsyncCrd": {
+          "enum": [
+            "CRD_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "TERMINATING",
+            "INSTALLING"
+          ]
+        },
+        "syncState": {
+          "$ref": "ConfigManagementSyncState"
+        },
+        "clusterLevelStopSyncingState": {
+          "enum": [
+            "STOP_SYNCING_STATE_UNSPECIFIED",
+            "NOT_STOPPED",
+            "PENDING",
+            "STOPPED"
+          ]
+        },
+        "reposyncCrd": {
+          "enum": [
+            "CRD_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "TERMINATING",
+            "INSTALLING"
+          ]
+        },
+        "deploymentState": {
+          "$ref": "ConfigManagementConfigSyncDeploymentState"
+        }
+      }
+    },
+    "ConfigManagementGatekeeperDeploymentState": {
+      "properties": {
+        "gatekeeperMutation": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "gatekeeperAudit": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "gatekeeperControllerManagerState": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "ConfigManagementHierarchyControllerDeploymentState": {
+      "properties": {
+        "hnc": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "extension": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "ConfigManagementHierarchyControllerState": {
+      "properties": {
+        "state": {
+          "$ref": "ConfigManagementHierarchyControllerDeploymentState"
+        }
+      }
+    },
+    "ConfigManagementMembershipSpec": {
+      "properties": {
+        "management": {
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL"
+          ]
+        },
+        "policyController": {
+          "$ref": "ConfigManagementPolicyController"
+        }
+      }
+    },
+    "ConfigManagementMembershipState": {
+      "properties": {
+        "configSyncState": {
+          "$ref": "ConfigManagementConfigSyncState"
+        },
+        "operatorState": {
+          "$ref": "ConfigManagementOperatorState"
+        },
+        "membershipSpec": {
+          "$ref": "ConfigManagementMembershipSpec"
+        },
+        "hierarchyControllerState": {
+          "$ref": "ConfigManagementHierarchyControllerState"
+        },
+        "policyControllerState": {
+          "$ref": "ConfigManagementPolicyControllerState"
+        }
+      }
+    },
+    "ConfigManagementOperatorState": {
+      "properties": {
+        "deploymentState": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "ConfigManagementPolicyController": {
+      "properties": {
+        "monitoring": {
+          "$ref": "ConfigManagementPolicyControllerMonitoring"
+        }
+      }
+    },
+    "ConfigManagementPolicyControllerMigration": {
+      "properties": {
+        "stage": {
+          "enum": [
+            "STAGE_UNSPECIFIED",
+            "ACM_MANAGED",
+            "POCO_MANAGED"
+          ]
+        }
+      }
+    },
+    "ConfigManagementPolicyControllerMonitoring": {
+      "properties": {
+        "backends": {
+          "items": {
+            "enum": [
+              "MONITORING_BACKEND_UNSPECIFIED",
+              "PROMETHEUS",
+              "CLOUD_MONITORING"
+            ]
+          }
+        }
+      }
+    },
+    "ConfigManagementPolicyControllerState": {
+      "properties": {
+        "migration": {
+          "$ref": "ConfigManagementPolicyControllerMigration"
+        },
+        "deploymentState": {
+          "$ref": "ConfigManagementGatekeeperDeploymentState"
+        }
+      }
+    },
+    "ConfigManagementSyncState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "SYNC_CODE_UNSPECIFIED",
+            "SYNCED",
+            "PENDING",
+            "ERROR",
+            "NOT_CONFIGURED",
+            "NOT_INSTALLED",
+            "UNAUTHORIZED",
+            "UNREACHABLE"
+          ]
+        }
+      }
+    },
+    "DefaultClusterConfig": {
+      "properties": {
+        "compliancePostureConfig": {
+          "$ref": "CompliancePostureConfig"
+        },
+        "binaryAuthorizationConfig": {
+          "$ref": "BinaryAuthorizationConfig"
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig"
+        }
+      }
+    },
+    "Feature": {
+      "properties": {
+        "fleetDefaultMemberConfig": {
+          "$ref": "CommonFleetDefaultMemberConfigSpec"
+        },
+        "membershipSpecs": {
+          "additionalProperties": {
+            "$ref": "MembershipFeatureSpec"
+          }
+        },
+        "resourceState": {
+          "$ref": "FeatureResourceState"
+        },
+        "membershipStates": {
+          "additionalProperties": {
+            "$ref": "MembershipFeatureState"
+          }
+        },
+        "spec": {
+          "$ref": "CommonFeatureSpec"
+        },
+        "state": {
+          "$ref": "CommonFeatureState"
+        },
+        "scopeStates": {
+          "additionalProperties": {
+            "$ref": "ScopeFeatureState"
+          }
+        }
+      }
+    },
+    "FeatureResourceState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLING",
+            "ACTIVE",
+            "DISABLING",
+            "UPDATING",
+            "SERVICE_UPDATING"
+          ]
+        }
+      }
+    },
+    "FeatureState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "OK",
+            "WARNING",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "Fleet": {
+      "properties": {
+        "defaultClusterConfig": {
+          "$ref": "DefaultClusterConfig"
+        },
+        "state": {
+          "$ref": "FleetLifecycleState"
+        }
+      }
+    },
+    "FleetLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "FleetObservabilityFeatureSpec": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "FleetObservabilityLoggingConfig"
+        }
+      }
+    },
+    "FleetObservabilityFeatureState": {
+      "properties": {
+        "monitoring": {
+          "$ref": "FleetObservabilityFleetObservabilityMonitoringState"
+        },
+        "logging": {
+          "$ref": "FleetObservabilityFleetObservabilityLoggingState"
+        }
+      }
+    },
+    "FleetObservabilityFleetObservabilityBaseFeatureState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "OK",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "FleetObservabilityFleetObservabilityLoggingState": {
+      "properties": {
+        "scopeLog": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState"
+        },
+        "defaultLog": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState"
+        }
+      }
+    },
+    "FleetObservabilityFleetObservabilityMonitoringState": {
+      "properties": {
+        "state": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState"
+        }
+      }
+    },
+    "FleetObservabilityLoggingConfig": {
+      "properties": {
+        "fleetScopeLogsConfig": {
+          "$ref": "FleetObservabilityRoutingConfig"
+        },
+        "defaultConfig": {
+          "$ref": "FleetObservabilityRoutingConfig"
+        }
+      }
+    },
+    "FleetObservabilityRoutingConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "COPY",
+            "MOVE"
+          ]
+        }
+      }
+    },
+    "IdentityServiceMembershipState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "OK",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "Membership": {
+      "properties": {
+        "state": {
+          "$ref": "MembershipState"
+        },
+        "endpoint": {
+          "$ref": "MembershipEndpoint"
+        },
+        "membershipType": {
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ]
+        },
+        "clusterTier": {
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ]
+        }
+      }
+    },
+    "MembershipBinding": {
+      "properties": {
+        "state": {
+          "$ref": "MembershipBindingLifecycleState"
+        }
+      }
+    },
+    "MembershipBindingLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "MembershipEndpoint": {
+      "properties": {
+        "onPremCluster": {
+          "$ref": "OnPremCluster"
+        }
+      }
+    },
+    "MembershipFeatureSpec": {
+      "properties": {
+        "origin": {
+          "$ref": "Origin"
+        },
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipSpec"
+        },
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec"
+        },
+        "policycontroller": {
+          "$ref": "PolicyControllerMembershipSpec"
+        }
+      }
+    },
+    "MembershipFeatureState": {
+      "properties": {
+        "identityservice": {
+          "$ref": "IdentityServiceMembershipState"
+        },
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipState"
+        },
+        "state": {
+          "$ref": "FeatureState"
+        },
+        "servicemesh": {
+          "$ref": "ServiceMeshMembershipState"
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityMembershipState"
+        },
+        "appdevexperience": {
+          "$ref": "AppDevExperienceFeatureState"
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeMembershipState"
+        },
+        "policycontroller": {
+          "$ref": "PolicyControllerMembershipState"
+        }
+      }
+    },
+    "MembershipState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING",
+            "SERVICE_UPDATING"
+          ]
+        }
+      }
+    },
+    "Namespace": {
+      "properties": {
+        "state": {
+          "$ref": "NamespaceLifecycleState"
+        }
+      }
+    },
+    "NamespaceLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "OnPremCluster": {
+      "properties": {
+        "clusterType": {
+          "enum": [
+            "CLUSTERTYPE_UNSPECIFIED",
+            "BOOTSTRAP",
+            "HYBRID",
+            "STANDALONE",
+            "USER"
+          ]
+        }
+      }
+    },
+    "OperationalState": {
+      "properties": {
+        "reasons": {
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "FLEET_FEATURE_DELETED_ERROR",
+              "FLEET_DELETED_ERROR",
+              "EMPTY_STAGE_WARNING",
+              "MIXED_RELEASE_CHANNELS_WARNING",
+              "INTERNAL_ERROR",
+              "NO_CLUSTERS_IN_SEQUENCE"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_CODE_UNSPECIFIED",
+            "ACTIVE",
+            "WARNING",
+            "ERROR",
+            "INITIALIZING"
+          ]
+        }
+      }
+    },
+    "Origin": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "FLEET",
+            "FLEET_OUT_OF_SYNC",
+            "USER"
+          ]
+        }
+      }
+    },
+    "PolicyControllerHubConfig": {
+      "properties": {
+        "monitoring": {
+          "$ref": "PolicyControllerMonitoringConfig"
+        },
+        "deploymentConfigs": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerPolicyControllerDeploymentConfig"
+          }
+        },
+        "policyContent": {
+          "$ref": "PolicyControllerPolicyContentSpec"
+        },
+        "installSpec": {
+          "enum": [
+            "INSTALL_SPEC_UNSPECIFIED",
+            "INSTALL_SPEC_NOT_INSTALLED",
+            "INSTALL_SPEC_ENABLED",
+            "INSTALL_SPEC_SUSPENDED",
+            "INSTALL_SPEC_DETACHED"
+          ]
+        }
+      }
+    },
+    "PolicyControllerMembershipSpec": {
+      "properties": {
+        "policyControllerHubConfig": {
+          "$ref": "PolicyControllerHubConfig"
+        }
+      }
+    },
+    "PolicyControllerMembershipState": {
+      "properties": {
+        "policyContentState": {
+          "$ref": "PolicyControllerPolicyContentState"
+        },
+        "componentStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          }
+        },
+        "state": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLING",
+            "ACTIVE",
+            "UPDATING",
+            "DECOMMISSIONING",
+            "CLUSTER_ERROR",
+            "HUB_ERROR",
+            "SUSPENDED",
+            "DETACHED"
+          ]
+        }
+      }
+    },
+    "PolicyControllerMonitoringConfig": {
+      "properties": {
+        "backends": {
+          "items": {
+            "enum": [
+              "MONITORING_BACKEND_UNSPECIFIED",
+              "PROMETHEUS",
+              "CLOUD_MONITORING"
+            ]
+          }
+        }
+      }
+    },
+    "PolicyControllerOnClusterState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLING",
+            "ACTIVE",
+            "UPDATING",
+            "DECOMMISSIONING",
+            "CLUSTER_ERROR",
+            "HUB_ERROR",
+            "SUSPENDED",
+            "DETACHED"
+          ]
+        }
+      }
+    },
+    "PolicyControllerPolicyContentSpec": {
+      "properties": {
+        "templateLibrary": {
+          "$ref": "PolicyControllerTemplateLibraryConfig"
+        }
+      }
+    },
+    "PolicyControllerPolicyContentState": {
+      "properties": {
+        "referentialSyncConfigState": {
+          "$ref": "PolicyControllerOnClusterState"
+        },
+        "bundleStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          }
+        },
+        "templateLibraryState": {
+          "$ref": "PolicyControllerOnClusterState"
+        }
+      }
+    },
+    "PolicyControllerPolicyControllerDeploymentConfig": {
+      "properties": {
+        "podAffinity": {
+          "enum": [
+            "AFFINITY_UNSPECIFIED",
+            "NO_AFFINITY",
+            "ANTI_AFFINITY"
+          ]
+        }
+      }
+    },
+    "PolicyControllerTemplateLibraryConfig": {
+      "properties": {
+        "installation": {
+          "enum": [
+            "INSTALLATION_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "ALL"
+          ]
+        }
+      }
+    },
+    "RBACRoleBinding": {
+      "properties": {
+        "role": {
+          "$ref": "Role"
+        },
+        "state": {
+          "$ref": "RBACRoleBindingLifecycleState"
+        }
+      }
+    },
+    "RBACRoleBindingLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "Role": {
+      "properties": {
+        "predefinedRole": {
+          "enum": [
+            "UNKNOWN",
+            "ADMIN",
+            "EDIT",
+            "VIEW",
+            "ANTHOS_SUPPORT"
+          ]
+        }
+      }
+    },
+    "RolloutCreationScope": {
+      "properties": {
+        "upgradeTypes": {
+          "items": {
+            "enum": [
+              "UPGRADE_TYPE_UNSPECIFIED",
+              "CONTROL_PLANE_MINOR",
+              "CONTROL_PLANE_PATCH",
+              "NODE_MINOR",
+              "NODE_PATCH"
+            ]
+          }
+        }
+      }
+    },
+    "RolloutSequence": {
+      "properties": {
+        "effectiveAutoUpgradeConfig": {
+          "$ref": "AutoUpgradeConfig"
+        },
+        "computedReleaseChannel": {
+          "enum": [
+            "GKE_RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE",
+            "EXTENDED",
+            "NO_CHANNEL"
+          ]
+        },
+        "operationalState": {
+          "$ref": "OperationalState"
+        },
+        "autoUpgradeConfig": {
+          "$ref": "AutoUpgradeConfig"
+        }
+      }
+    },
+    "Scope": {
+      "properties": {
+        "state": {
+          "$ref": "ScopeLifecycleState"
+        }
+      }
+    },
+    "ScopeFeatureState": {
+      "properties": {
+        "state": {
+          "$ref": "FeatureState"
+        }
+      }
+    },
+    "ScopeLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "SecurityPostureConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC",
+            "ENTERPRISE"
+          ]
+        },
+        "vulnerabilityMode": {
+          "enum": [
+            "VULNERABILITY_MODE_UNSPECIFIED",
+            "VULNERABILITY_DISABLED",
+            "VULNERABILITY_BASIC",
+            "VULNERABILITY_ENTERPRISE"
+          ]
+        }
+      }
+    },
+    "ServiceMeshCondition": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "MESH_IAM_PERMISSION_DENIED",
+            "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+            "CNI_CONFIG_UNSUPPORTED",
+            "GKE_SANDBOX_UNSUPPORTED",
+            "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+            "CNI_INSTALLATION_FAILED",
+            "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
+            "CANONICAL_SERVICE_ERROR",
+            "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+            "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+            "CONFIG_APPLY_INTERNAL_ERROR",
+            "CONFIG_VALIDATION_ERROR",
+            "CONFIG_VALIDATION_WARNING",
+            "QUOTA_EXCEEDED_BACKEND_SERVICES",
+            "QUOTA_EXCEEDED_HEALTH_CHECKS",
+            "QUOTA_EXCEEDED_HTTP_ROUTES",
+            "QUOTA_EXCEEDED_TCP_ROUTES",
+            "QUOTA_EXCEEDED_TLS_ROUTES",
+            "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+            "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+            "QUOTA_EXCEEDED_GATEWAYS",
+            "QUOTA_EXCEEDED_MESHES",
+            "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+            "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+            "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+            "QUOTA_EXCEEDED_HTTP_FILTERS",
+            "QUOTA_EXCEEDED_TCP_FILTERS",
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "CONFIG_APPLY_BLOCKED",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
+            "MISSING_CONTROL_PLANE_CONFIG",
+            "SHARED_VPC_MISSING_PERMISSIONS",
+            "REQUIRED_ORG_POLICY_DISABLED",
+            "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+            "MODERNIZATION_INCOMPATIBLE_CONFIG",
+            "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+            "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_PREPARING",
+            "MODERNIZATION_STALLED",
+            "MODERNIZATION_PREPARED",
+            "MODERNIZATION_MIGRATING_WORKLOADS",
+            "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_AWAITING_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_WILL_BE_SCHEDULED",
+            "MODERNIZATION_MANUAL",
+            "MODERNIZATION_ELIGIBLE",
+            "MODERNIZATION_MODERNIZING",
+            "MODERNIZATION_MODERNIZED_SOAKING",
+            "MODERNIZATION_FINALIZED",
+            "MODERNIZATION_ROLLING_BACK_FLEET",
+            "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_REQUIRES_CUSTOMER_TRIGGER",
+            "MODERNIZATION_COMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        }
+      }
+    },
+    "ServiceMeshControlPlaneManagement": {
+      "properties": {
+        "implementation": {
+          "enum": [
+            "IMPLEMENTATION_UNSPECIFIED",
+            "ISTIOD",
+            "TRAFFIC_DIRECTOR",
+            "UPDATING"
+          ]
+        },
+        "state": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "DISABLED",
+            "FAILED_PRECONDITION",
+            "PROVISIONING",
+            "ACTIVE",
+            "STALLED",
+            "NEEDS_ATTENTION",
+            "DEGRADED",
+            "DEPROVISIONING"
+          ]
+        }
+      }
+    },
+    "ServiceMeshDataPlaneManagement": {
+      "properties": {
+        "state": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "DISABLED",
+            "FAILED_PRECONDITION",
+            "PROVISIONING",
+            "ACTIVE",
+            "STALLED",
+            "NEEDS_ATTENTION",
+            "DEGRADED",
+            "DEPROVISIONING"
+          ]
+        }
+      }
+    },
+    "ServiceMeshFeatureCondition": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "MESH_IAM_PERMISSION_DENIED",
+            "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+            "CNI_CONFIG_UNSUPPORTED",
+            "GKE_SANDBOX_UNSUPPORTED",
+            "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+            "CNI_INSTALLATION_FAILED",
+            "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
+            "CANONICAL_SERVICE_ERROR",
+            "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+            "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+            "CONFIG_APPLY_INTERNAL_ERROR",
+            "CONFIG_VALIDATION_ERROR",
+            "CONFIG_VALIDATION_WARNING",
+            "QUOTA_EXCEEDED_BACKEND_SERVICES",
+            "QUOTA_EXCEEDED_HEALTH_CHECKS",
+            "QUOTA_EXCEEDED_HTTP_ROUTES",
+            "QUOTA_EXCEEDED_TCP_ROUTES",
+            "QUOTA_EXCEEDED_TLS_ROUTES",
+            "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+            "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+            "QUOTA_EXCEEDED_GATEWAYS",
+            "QUOTA_EXCEEDED_MESHES",
+            "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+            "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+            "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+            "QUOTA_EXCEEDED_HTTP_FILTERS",
+            "QUOTA_EXCEEDED_TCP_FILTERS",
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "CONFIG_APPLY_BLOCKED",
+            "LEGACY_MC_SECRETS",
+            "WORKLOAD_IDENTITY_REQUIRED",
+            "NON_STANDARD_BINARY_USAGE",
+            "UNSUPPORTED_GATEWAY_CLASS",
+            "MANAGED_CNI_NOT_ENABLED",
+            "MISSING_CONTROL_PLANE_CONFIG",
+            "SHARED_VPC_MISSING_PERMISSIONS",
+            "REQUIRED_ORG_POLICY_DISABLED",
+            "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+            "MODERNIZATION_INCOMPATIBLE_CONFIG",
+            "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+            "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED",
+            "MODERNIZATION_PREPARING",
+            "MODERNIZATION_STALLED",
+            "MODERNIZATION_PREPARED",
+            "MODERNIZATION_MIGRATING_WORKLOADS",
+            "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_AWAITING_MANUAL_WORKLOAD_RESTART",
+            "MODERNIZATION_WILL_BE_SCHEDULED",
+            "MODERNIZATION_MANUAL",
+            "MODERNIZATION_ELIGIBLE",
+            "MODERNIZATION_MODERNIZING",
+            "MODERNIZATION_MODERNIZED_SOAKING",
+            "MODERNIZATION_FINALIZED",
+            "MODERNIZATION_ROLLING_BACK_FLEET",
+            "MODERNIZATION_MODERNIZED",
+            "MODERNIZATION_REQUIRES_CUSTOMER_TRIGGER",
+            "MODERNIZATION_COMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+            "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        }
+      }
+    },
+    "ServiceMeshFeatureSpec": {
+      "properties": {
+        "modernizationCompatibility": {
+          "enum": [
+            "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
+            "VALIDATION_ENABLED",
+            "VALIDATION_DISABLED"
+          ]
+        },
+        "modernizationStrategy": {
+          "enum": [
+            "MODERNIZATION_STRATEGY_UNSPECIFIED",
+            "AUTOMATIC",
+            "DEFERRED"
+          ]
+        }
+      }
+    },
+    "ServiceMeshFeatureState": {
+      "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "ServiceMeshFeatureCondition"
+          }
+        }
+      }
+    },
+    "ServiceMeshMembershipSpec": {
+      "properties": {
+        "configApi": {
+          "enum": [
+            "CONFIG_API_UNSPECIFIED",
+            "CONFIG_API_ISTIO",
+            "CONFIG_API_GATEWAY"
+          ]
+        },
+        "controlPlane": {
+          "enum": [
+            "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ]
+        },
+        "management": {
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL",
+            "MANAGEMENT_NOT_INSTALLED"
+          ]
+        }
+      }
+    },
+    "ServiceMeshMembershipState": {
+      "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "ServiceMeshCondition"
+          }
+        },
+        "controlPlaneManagement": {
+          "$ref": "ServiceMeshControlPlaneManagement"
+        },
+        "dataPlaneManagement": {
+          "$ref": "ServiceMeshDataPlaneManagement"
+        }
+      }
+    },
+    "Status": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "OK",
+            "FAILED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityFeatureState": {
+      "properties": {
+        "namespaceStates": {
+          "additionalProperties": {
+            "enum": [
+              "NAMESPACE_STATE_UNSPECIFIED",
+              "NAMESPACE_STATE_OK",
+              "NAMESPACE_STATE_ERROR"
+            ]
+          }
+        },
+        "workloadIdentityPoolStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityWorkloadIdentityPoolStateDetail"
+          }
+        },
+        "namespaceStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityNamespaceStateDetail"
+          }
+        }
+      }
+    },
+    "WorkloadIdentityIdentityProviderStateDetail": {
+      "properties": {
+        "code": {
+          "enum": [
+            "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
+            "IDENTITY_PROVIDER_STATE_OK",
+            "IDENTITY_PROVIDER_STATE_ERROR"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityMembershipState": {
+      "properties": {
+        "identityProviderStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityIdentityProviderStateDetail"
+          }
+        }
+      }
+    },
+    "WorkloadIdentityNamespaceStateDetail": {
+      "properties": {
+        "code": {
+          "enum": [
+            "NAMESPACE_STATE_UNSPECIFIED",
+            "NAMESPACE_STATE_OK",
+            "NAMESPACE_STATE_ERROR"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityWorkloadIdentityPoolStateDetail": {
+      "properties": {
+        "code": {
+          "enum": [
+            "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
+            "WORKLOAD_IDENTITY_POOL_STATE_OK",
+            "WORKLOAD_IDENTITY_POOL_STATE_ERROR"
+          ]
+        }
+      }
+    }
+  }
+}

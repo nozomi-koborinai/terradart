@@ -11,14 +11,69 @@ properties:
     enum_values:
       - "Install"
       - "None"
+  - api_name: gpu_instance
+    enum_values:
+      - "MIG1g"
+      - "MIG2g"
+      - "MIG3g"
+      - "MIG4g"
+      - "MIG7g"
+  - api_name: kubelet_config
+    properties:
+      - api_name: cpu_manager_policy
+        enum_values:
+          - "none"
+          - "static"
+      - api_name: topology_manager_policy
+        enum_values:
+          - "none"
+          - "best-effort"
+          - "restricted"
+          - "single-numa-node"
   - api_name: kubelet_disk_type
     enum_values:
       - "OS"
       - "Temporary"
+  - api_name: linux_os_config
+    properties:
+      - api_name: transparent_huge_page
+        enum_values:
+          - "always"
+          - "madvise"
+          - "never"
+      - api_name: transparent_huge_page_defrag
+        enum_values:
+          - "always"
+          - "defer"
+          - "defer+madvise"
+          - "madvise"
+          - "never"
+  - api_name: mode
+    enum_values:
+      - "System"
+      - "User"
+  - api_name: node_network_profile
+    properties:
+      - api_name: allowed_host_ports
+        properties:
+          - api_name: protocol
+            enum_values:
+              - "TCP"
+              - "UDP"
   - api_name: os_disk_type
     enum_values:
       - "Ephemeral"
       - "Managed"
+  - api_name: os_sku
+    enum_values:
+      - "AzureLinux"
+      - "AzureLinux3"
+      - "Ubuntu"
+      - "Ubuntu2204"
+      - "Ubuntu2404"
+      - "Windows2019"
+      - "Windows2022"
+      - "Windows2025"
   - api_name: os_type
     enum_values:
       - "Linux"
@@ -31,8 +86,16 @@ properties:
     enum_values:
       - "Deallocate"
       - "Delete"
+  - api_name: upgrade_settings
+    properties:
+      - api_name: undrainable_node_behavior
+        enum_values:
+          - "Cordon"
+          - "Schedule"
   - api_name: workload_runtime
     enum_values:
       - "KataVmIsolation"
       - "OCIContainer"
       - "WasmWasi"
+at_most_one_of_groups:
+  - ["upgrade_settings.max_surge", "upgrade_settings.max_unavailable"]

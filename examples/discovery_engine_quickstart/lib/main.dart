@@ -44,12 +44,12 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final dataStore = add(
       GoogleDiscoveryEngineDataStore(
         'docs_store',
-        location: .literal('global'),
+        location: .global,
         dataStoreId: .literal('terradart-search-docs'),
         displayName: .literal('Quickstart documents'),
         industryVertical: .generic,
         contentConfig: .noContent,
-        solutionTypes: .literal(['SOLUTION_TYPE_SEARCH']),
+        solutionTypes: .literal([.solutionTypeSearch]),
         dependsOn: apiDeps,
       ),
     );
@@ -107,12 +107,12 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final schemaStore = add(
       GoogleDiscoveryEngineDataStore(
         'schema_store',
-        location: .literal('global'),
+        location: .global,
         dataStoreId: .literal('terradart-search-schema'),
         displayName: .literal('Quickstart schema store'),
         industryVertical: .generic,
         contentConfig: .noContent,
-        solutionTypes: .literal(['SOLUTION_TYPE_SEARCH']),
+        solutionTypes: .literal([.solutionTypeSearch]),
         skipDefaultSchemaCreation: .literal(true),
         dependsOn: apiDeps,
       ),
@@ -121,7 +121,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineSchema(
         'docs_schema',
-        location: .literal('global'),
+        location: .global,
         dataStoreId: schemaStore.ref,
         schemaId: .literal('terradart-docs'),
         jsonSchema: .literal(
@@ -134,13 +134,13 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final synonyms = add(
       GoogleDiscoveryEngineControl(
         'synonyms',
-        location: .literal('global'),
+        location: .global,
         collectionId: .literal('default_collection'),
         engineId: searchEngine.ref,
         controlId: .literal('terradart-synonyms'),
         displayName: .literal('terradart synonyms'),
         solutionType: .solutionTypeSearch,
-        useCases: .literal(['SEARCH_USE_CASE_SEARCH']),
+        useCases: .literal([.searchUseCaseSearch]),
         action: .synonymsAction(
           .new(synonyms: .literal(['quickstart', 'demo'])),
         ),
@@ -151,7 +151,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineServingConfig(
         'default_search',
-        location: .literal('global'),
+        location: .global,
         collectionId: .literal('default_collection'),
         engineId: searchEngine.ref,
         servingConfigId: .literal('default_search'),
@@ -165,7 +165,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineCmekConfig(
         'cmek',
-        location: .literal('us'),
+        location: .us,
         cmekConfigId: .literal('terradart-cmek'),
         kmsKey: .literal(
           'projects/$projectId/locations/us/keyRings/terradart/cryptoKeys/discovery',
@@ -179,7 +179,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineDataConnector(
         'jira',
-        location: .literal('global'),
+        location: .global,
         collectionId: .literal('terradart-jira'),
         collectionDisplayName: .literal('terradart jira'),
         dataSource: .literal('jira'),

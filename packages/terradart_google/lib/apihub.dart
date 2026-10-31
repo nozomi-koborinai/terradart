@@ -7,7 +7,10 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/apihub/google_apihub_api_hub_instance.dart'
-    show ApihubApiHubInstanceConfig, GoogleApihubApiHubInstance;
+    show
+        ApihubApiHubInstanceConfig,
+        ApihubApiHubInstanceEncryptionType,
+        GoogleApihubApiHubInstance;
 export 'src/apihub/google_apihub_curation.dart'
     show
         ApihubCurationApplicationIntegrationEndpointDetails,
@@ -20,12 +23,16 @@ export 'src/apihub/google_apihub_plugin.dart'
         ApihubPluginActionsConfig,
         ApihubPluginAdditionalConfigTemplate,
         ApihubPluginAuthConfigTemplate,
+        ApihubPluginCategory,
         ApihubPluginConfigTemplate,
         ApihubPluginDocumentation,
         ApihubPluginEnumOptions,
         ApihubPluginHostingService,
         ApihubPluginMultiSelectOptions,
         ApihubPluginServiceAccount,
+        ApihubPluginSupportedAuthTypes,
+        ApihubPluginTriggerMode,
+        ApihubPluginValueType,
         GoogleApihubPlugin;
 export 'src/apihub/google_apihub_plugin_instance.dart'
     show
@@ -33,10 +40,13 @@ export 'src/apihub/google_apihub_plugin_instance.dart'
         ApihubPluginInstanceApiKey,
         ApihubPluginInstanceApiKeyConfig,
         ApihubPluginInstanceAuthConfig,
+        ApihubPluginInstanceAuthType,
         ApihubPluginInstanceClientSecret,
         ApihubPluginInstanceCurationConfig,
+        ApihubPluginInstanceCurationType,
         ApihubPluginInstanceCustomCuration,
         ApihubPluginInstanceGoogleServiceAccountConfig,
+        ApihubPluginInstanceHttpElementLocation,
         ApihubPluginInstanceOauth2ClientCredentialsConfig,
         ApihubPluginInstancePassword,
         ApihubPluginInstanceUserPasswordConfig,

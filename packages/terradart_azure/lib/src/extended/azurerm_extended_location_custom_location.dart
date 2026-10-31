@@ -9,6 +9,25 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_extended_location_custom_location`.
 const Set<String> _azurermExtendedLocationCustomLocationSensitive = <String>{};
 
+/// Extended Location Custom Location Host enum for `host_type`.
+extension type const ExtendedLocationCustomLocationHostType._(TfArg<String> _)
+    implements TfArg<String> {
+  ExtendedLocationCustomLocationHostType.variable(String name)
+    : this._(TfArg.variable(name));
+  ExtendedLocationCustomLocationHostType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExtendedLocationCustomLocationHostType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const kubernetes = ExtendedLocationCustomLocationHostType._(
+    TfArgLiteral('Kubernetes'),
+  );
+
+  static const List<ExtendedLocationCustomLocationHostType> values = [
+    kubernetes,
+  ];
+}
+
 /// Typed helper for the `authentication` block of
 /// `azurerm_extended_location_custom_location` (derived from provider schema).
 @immutable
@@ -38,7 +57,7 @@ final class AzurermExtendedLocationCustomLocation extends Resource {
     required TfArg<List<String>> clusterExtensionIds,
     TfArg<String>? displayName,
     required TfArg<String> hostResourceId,
-    TfArg<String>? hostType,
+    ExtendedLocationCustomLocationHostType? hostType,
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<String> namespace,

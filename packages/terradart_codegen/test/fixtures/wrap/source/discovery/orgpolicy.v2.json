@@ -1,0 +1,34 @@
+{
+  "name": "orgpolicy",
+  "version": "v2",
+  "revision": "20261022",
+  "sourceUrl": "https://orgpolicy.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "GoogleCloudOrgpolicyV2CustomConstraint": {
+      "properties": {
+        "actionType": {
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
+        "methodTypes": {
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudOrgpolicyV2Policy": {
+      "properties": {}
+    }
+  }
+}

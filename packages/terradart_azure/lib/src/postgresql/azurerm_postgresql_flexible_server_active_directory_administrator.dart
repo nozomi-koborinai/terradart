@@ -10,6 +10,39 @@ const Set<String>
 _azurermPostgresqlFlexibleServerActiveDirectoryAdministratorSensitive =
     <String>{};
 
+/// Postgresql Flexible Server Active Directory Administrator Principal enum for `principal_type`.
+extension type const PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const group =
+      PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType._(
+        TfArgLiteral('Group'),
+      );
+  static const serviceprincipal =
+      PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType._(
+        TfArgLiteral('ServicePrincipal'),
+      );
+  static const user =
+      PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType._(
+        TfArgLiteral('User'),
+      );
+
+  static const List<
+    PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType
+  >
+  values = [group, serviceprincipal, user];
+}
+
 /// Factory wrapper for `azurerm_postgresql_flexible_server_active_directory_administrator`.
 final class AzurermPostgresqlFlexibleServerActiveDirectoryAdministrator
     extends Resource {
@@ -20,7 +53,8 @@ final class AzurermPostgresqlFlexibleServerActiveDirectoryAdministrator
     super.localName, {
     required TfArg<String> objectId,
     required TfArg<String> principalName,
-    required TfArg<String> principalType,
+    required PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType
+    principalType,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> serverName,
     required TfArg<String> tenantId,

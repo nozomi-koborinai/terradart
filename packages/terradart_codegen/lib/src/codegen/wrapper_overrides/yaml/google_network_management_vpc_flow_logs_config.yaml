@@ -18,7 +18,6 @@ prelude: |
     NetworkManagementVpcFlowLogsConfigAggregationInterval.expression(String template) : this._(TfArg.expression(template));
     const NetworkManagementVpcFlowLogsConfigAggregationInterval.arg(TfArg<String> arg) : this._(arg);
 
-    static const aggregationIntervalUnspecified = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('AGGREGATION_INTERVAL_UNSPECIFIED'));
     static const interval5Sec = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_5_SEC'));
     static const interval30Sec = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_30_SEC'));
     static const interval1Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_1_MIN'));
@@ -26,7 +25,7 @@ prelude: |
     static const interval10Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_10_MIN'));
     static const interval15Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_15_MIN'));
 
-    static const List<NetworkManagementVpcFlowLogsConfigAggregationInterval> values = [aggregationIntervalUnspecified, interval5Sec, interval30Sec, interval1Min, interval5Min, interval10Min, interval15Min];
+    static const List<NetworkManagementVpcFlowLogsConfigAggregationInterval> values = [interval5Sec, interval30Sec, interval1Min, interval5Min, interval10Min, interval15Min];
   }
 
   /// `metadata` for `google_network_management_vpc_flow_logs_config`.
@@ -35,12 +34,11 @@ prelude: |
     NetworkManagementVpcFlowLogsConfigMetadata.expression(String template) : this._(TfArg.expression(template));
     const NetworkManagementVpcFlowLogsConfigMetadata.arg(TfArg<String> arg) : this._(arg);
 
-    static const metadataUnspecified = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('METADATA_UNSPECIFIED'));
     static const includeAllMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('INCLUDE_ALL_METADATA'));
     static const excludeAllMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('EXCLUDE_ALL_METADATA'));
     static const customMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('CUSTOM_METADATA'));
 
-    static const List<NetworkManagementVpcFlowLogsConfigMetadata> values = [metadataUnspecified, includeAllMetadata, excludeAllMetadata, customMetadata];
+    static const List<NetworkManagementVpcFlowLogsConfigMetadata> values = [includeAllMetadata, excludeAllMetadata, customMetadata];
   }
 
   /// `state` for `google_network_management_vpc_flow_logs_config`.
@@ -49,11 +47,10 @@ prelude: |
     NetworkManagementVpcFlowLogsConfigState.expression(String template) : this._(TfArg.expression(template));
     const NetworkManagementVpcFlowLogsConfigState.arg(TfArg<String> arg) : this._(arg);
 
-    static const stateUnspecified = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('STATE_UNSPECIFIED'));
     static const enabled = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('ENABLED'));
     static const disabled = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('DISABLED'));
 
-    static const List<NetworkManagementVpcFlowLogsConfigState> values = [stateUnspecified, enabled, disabled];
+    static const List<NetworkManagementVpcFlowLogsConfigState> values = [enabled, disabled];
   }
 
 curatedDoc: |-

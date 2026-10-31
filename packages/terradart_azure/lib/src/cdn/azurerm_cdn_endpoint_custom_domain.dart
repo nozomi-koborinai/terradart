@@ -100,7 +100,7 @@ final class CdnEndpointCustomDomainCdnManagedHttps {
 
   final TfArg<String> protocolType;
 
-  final TfArg<String>? tlsVersion;
+  final CdnEndpointCustomDomainTlsVersion? tlsVersion;
 
   @internal
   Map<String, Object?> encode() => {
@@ -108,6 +108,22 @@ final class CdnEndpointCustomDomainCdnManagedHttps {
     'protocol_type': protocolType.toTfJson(),
     'tls_version': ?tlsVersion?.toTfJson(),
   };
+}
+
+/// `tls_version` — derived from the provider schema description.
+extension type const CdnEndpointCustomDomainTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnEndpointCustomDomainTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnEndpointCustomDomainTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnEndpointCustomDomainTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const tls12 = CdnEndpointCustomDomainTlsVersion._(
+    TfArgLiteral('TLS12'),
+  );
+
+  static const List<CdnEndpointCustomDomainTlsVersion> values = [tls12];
 }
 
 /// Typed helper for the `user_managed_https` block of
@@ -121,7 +137,7 @@ final class CdnEndpointCustomDomainUserManagedHttps {
 
   final TfArg<String> keyVaultSecretId;
 
-  final TfArg<String>? tlsVersion;
+  final CdnEndpointCustomDomainTlsVersion? tlsVersion;
 
   @internal
   Map<String, Object?> encode() => {

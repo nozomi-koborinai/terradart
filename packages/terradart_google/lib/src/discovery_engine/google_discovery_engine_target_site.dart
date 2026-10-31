@@ -40,6 +40,28 @@ extension type const DiscoveryEngineTargetSiteIndexingStatus._(TfArg<String> _)
   ];
 }
 
+/// Discovery Engine Target Site enum for `location`.
+extension type const DiscoveryEngineTargetSiteLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineTargetSiteLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineTargetSiteLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineTargetSiteLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineTargetSiteLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineTargetSiteLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineTargetSiteLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineTargetSiteLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Discovery Engine Target Site enum for `type`.
 extension type const DiscoveryEngineTargetSiteType._(TfArg<String> _)
     implements TfArg<String> {
@@ -78,7 +100,7 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
 
   GoogleDiscoveryEngineTargetSite(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineTargetSiteLocation location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> providedUriPattern,
     DiscoveryEngineTargetSiteType? type,

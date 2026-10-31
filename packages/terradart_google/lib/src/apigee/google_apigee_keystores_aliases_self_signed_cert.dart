@@ -8,6 +8,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeKeystoresAliasesSelfSignedCertSensitive =
     <String>{};
 
+/// Apigee Keystores Aliases Self Signed Cert Sig enum for `sig_alg`.
+extension type const ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApigeeKeystoresAliasesSelfSignedCertSigAlg.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeKeystoresAliasesSelfSignedCertSigAlg.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeKeystoresAliasesSelfSignedCertSigAlg.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sha512withrsa = ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
+    TfArgLiteral('SHA512withRSA'),
+  );
+  static const sha384withrsa = ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
+    TfArgLiteral('SHA384withRSA'),
+  );
+  static const sha256withrsa = ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
+    TfArgLiteral('SHA256withRSA'),
+  );
+
+  static const List<ApigeeKeystoresAliasesSelfSignedCertSigAlg> values = [
+    sha512withrsa,
+    sha384withrsa,
+    sha256withrsa,
+  ];
+}
+
 /// Apigee Keystores Aliases Self Signed Cert enum for `type`.
 extension type const ApigeeKeystoresAliasesSelfSignedCertType._(TfArg<String> _)
     implements TfArg<String> {
@@ -114,7 +142,7 @@ final class GoogleApigeeKeystoresAliasesSelfSignedCert extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> environment,
     required TfArg<String> keystore,
-    required TfArg<String> sigAlg,
+    required ApigeeKeystoresAliasesSelfSignedCertSigAlg sigAlg,
     TfArg<String>? keySize,
     TfArg<num>? certValidityInDays,
     required ApigeeKeystoresAliasesSelfSignedCertSubject subject,

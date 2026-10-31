@@ -99,7 +99,7 @@ final class MssqlVirtualMachineSchedule {
     this.weeklyInterval,
   });
 
-  final MssqlVirtualMachineDayOfWeek dayOfWeek;
+  final MssqlVirtualMachineScheduleDayOfWeek dayOfWeek;
 
   final TfArg<num>? monthlyOccurrence;
 
@@ -117,31 +117,38 @@ final class MssqlVirtualMachineSchedule {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-extension type const MssqlVirtualMachineDayOfWeek._(TfArg<String> _)
+extension type const MssqlVirtualMachineScheduleDayOfWeek._(TfArg<String> _)
     implements TfArg<String> {
-  MssqlVirtualMachineDayOfWeek.variable(String name)
+  MssqlVirtualMachineScheduleDayOfWeek.variable(String name)
     : this._(TfArg.variable(name));
-  MssqlVirtualMachineDayOfWeek.expression(String template)
+  MssqlVirtualMachineScheduleDayOfWeek.expression(String template)
     : this._(TfArg.expression(template));
-  const MssqlVirtualMachineDayOfWeek.arg(TfArg<String> arg) : this._(arg);
+  const MssqlVirtualMachineScheduleDayOfWeek.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const friday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Friday'));
-  static const monday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Monday'));
-  static const saturday = MssqlVirtualMachineDayOfWeek._(
+  static const friday = MssqlVirtualMachineScheduleDayOfWeek._(
+    TfArgLiteral('Friday'),
+  );
+  static const monday = MssqlVirtualMachineScheduleDayOfWeek._(
+    TfArgLiteral('Monday'),
+  );
+  static const saturday = MssqlVirtualMachineScheduleDayOfWeek._(
     TfArgLiteral('Saturday'),
   );
-  static const sunday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Sunday'));
-  static const thursday = MssqlVirtualMachineDayOfWeek._(
+  static const sunday = MssqlVirtualMachineScheduleDayOfWeek._(
+    TfArgLiteral('Sunday'),
+  );
+  static const thursday = MssqlVirtualMachineScheduleDayOfWeek._(
     TfArgLiteral('Thursday'),
   );
-  static const tuesday = MssqlVirtualMachineDayOfWeek._(
+  static const tuesday = MssqlVirtualMachineScheduleDayOfWeek._(
     TfArgLiteral('Tuesday'),
   );
-  static const wednesday = MssqlVirtualMachineDayOfWeek._(
+  static const wednesday = MssqlVirtualMachineScheduleDayOfWeek._(
     TfArgLiteral('Wednesday'),
   );
 
-  static const List<MssqlVirtualMachineDayOfWeek> values = [
+  static const List<MssqlVirtualMachineScheduleDayOfWeek> values = [
     friday,
     monday,
     saturday,
@@ -201,7 +208,7 @@ final class MssqlVirtualMachineManualSchedule {
     required this.logBackupFrequencyInMinutes,
   });
 
-  final List<MssqlVirtualMachineDaysOfWeek>? daysOfWeek;
+  final EnumList<MssqlVirtualMachineDaysOfWeek>? daysOfWeek;
 
   final MssqlVirtualMachineFullBackupFrequency fullBackupFrequency;
 
@@ -213,8 +220,7 @@ final class MssqlVirtualMachineManualSchedule {
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'full_backup_frequency': fullBackupFrequency.toTfJson(),
     'full_backup_start_hour': fullBackupStartHour.toTfJson(),
     'full_backup_window_in_hours': fullBackupWindowInHours.toTfJson(),
@@ -291,7 +297,7 @@ final class MssqlVirtualMachineAutoPatching {
     required this.maintenanceWindowStartingHour,
   });
 
-  final TfArg<String> dayOfWeek;
+  final MssqlVirtualMachineDayOfWeek dayOfWeek;
 
   final TfArg<num> maintenanceWindowDurationInMinutes;
 
@@ -305,6 +311,42 @@ final class MssqlVirtualMachineAutoPatching {
     'maintenance_window_starting_hour': maintenanceWindowStartingHour
         .toTfJson(),
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+extension type const MssqlVirtualMachineDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlVirtualMachineDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  MssqlVirtualMachineDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlVirtualMachineDayOfWeek.arg(TfArg<String> arg) : this._(arg);
+
+  static const monday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Monday'));
+  static const tuesday = MssqlVirtualMachineDayOfWeek._(
+    TfArgLiteral('Tuesday'),
+  );
+  static const wednesday = MssqlVirtualMachineDayOfWeek._(
+    TfArgLiteral('Wednesday'),
+  );
+  static const thursday = MssqlVirtualMachineDayOfWeek._(
+    TfArgLiteral('Thursday'),
+  );
+  static const friday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Friday'));
+  static const saturday = MssqlVirtualMachineDayOfWeek._(
+    TfArgLiteral('Saturday'),
+  );
+  static const sunday = MssqlVirtualMachineDayOfWeek._(TfArgLiteral('Sunday'));
+
+  static const List<MssqlVirtualMachineDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `key_vault_credential` block of

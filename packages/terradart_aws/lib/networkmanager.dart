@@ -13,12 +13,12 @@ export 'src/data/aws_networkmanager_core_network.dart'
 export 'src/data/aws_networkmanager_core_network_policy_document.dart'
     show
         DataAwsNetworkmanagerCoreNetworkPolicyDocument,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions,
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies,
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction,
-        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions,
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRules,
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesAction,
-        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions,
         DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration,
         DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation,
         DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations,

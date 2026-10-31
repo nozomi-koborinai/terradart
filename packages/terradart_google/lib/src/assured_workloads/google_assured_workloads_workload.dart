@@ -17,10 +17,6 @@ extension type const AssuredWorkloadsWorkloadComplianceRegime._(TfArg<String> _)
   const AssuredWorkloadsWorkloadComplianceRegime.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const complianceRegimeUnspecified =
-      AssuredWorkloadsWorkloadComplianceRegime._(
-        TfArgLiteral('COMPLIANCE_REGIME_UNSPECIFIED'),
-      );
   static const il4ComplianceRegime = AssuredWorkloadsWorkloadComplianceRegime._(
     TfArgLiteral('IL4'),
   );
@@ -96,9 +92,92 @@ extension type const AssuredWorkloadsWorkloadComplianceRegime._(TfArg<String> _)
   static const irs1075 = AssuredWorkloadsWorkloadComplianceRegime._(
     TfArgLiteral('IRS_1075'),
   );
+  static const australiaDataBoundaryAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT'),
+      );
+  static const canadaDataBoundaryAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('CANADA_DATA_BOUNDARY_AND_SUPPORT'),
+      );
+  static const dataBoundaryForCanadaControlledGoods =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS'),
+      );
+  static const dataBoundaryForCanadaProtectedB =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('DATA_BOUNDARY_FOR_CANADA_PROTECTED_B'),
+      );
+  static const dataBoundaryForCjis = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('DATA_BOUNDARY_FOR_CJIS'),
+  );
+  static const dataBoundaryForFedrampHigh =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('DATA_BOUNDARY_FOR_FEDRAMP_HIGH'),
+      );
+  static const dataBoundaryForFedrampModerate =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('DATA_BOUNDARY_FOR_FEDRAMP_MODERATE'),
+      );
+  static const dataBoundaryForIl2 = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('DATA_BOUNDARY_FOR_IL2'),
+  );
+  static const dataBoundaryForIl4 = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('DATA_BOUNDARY_FOR_IL4'),
+  );
+  static const dataBoundaryForIl5 = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('DATA_BOUNDARY_FOR_IL5'),
+  );
+  static const dataBoundaryForIrsPublication1075 =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075'),
+      );
+  static const dataBoundaryForItar = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('DATA_BOUNDARY_FOR_ITAR'),
+  );
+  static const euDataBoundaryAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('EU_DATA_BOUNDARY_AND_SUPPORT'),
+      );
+  static const israelDataBoundaryAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('ISRAEL_DATA_BOUNDARY_AND_SUPPORT'),
+      );
+  static const japanDataBoundary = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('JAPAN_DATA_BOUNDARY'),
+  );
+  static const switzerlandDataBoundaryWithAccessJustifications =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS'),
+      );
+  static const ksaDataBoundaryWithAccessJustifications =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS'),
+      );
+  static const regionalDataBoundary =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('REGIONAL_DATA_BOUNDARY'),
+      );
+  static const usDataBoundaryAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('US_DATA_BOUNDARY_AND_SUPPORT'),
+      );
+  static const usDataBoundaryForHealthcareAndLifeSciences =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES'),
+      );
+  static const usDataBoundaryForHealthcareAndLifeSciencesWithSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral(
+          'US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT',
+        ),
+      );
+  static const canadaControlledGoods =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('CANADA_CONTROLLED_GOODS'),
+      );
 
   static const List<AssuredWorkloadsWorkloadComplianceRegime> values = [
-    complianceRegimeUnspecified,
     il4ComplianceRegime,
     cjis,
     fedrampHigh,
@@ -122,6 +201,28 @@ extension type const AssuredWorkloadsWorkloadComplianceRegime._(TfArg<String> _)
     healthcareAndLifeSciencesControls,
     healthcareAndLifeSciencesControlsUsSupport,
     irs1075,
+    australiaDataBoundaryAndSupport,
+    canadaDataBoundaryAndSupport,
+    dataBoundaryForCanadaControlledGoods,
+    dataBoundaryForCanadaProtectedB,
+    dataBoundaryForCjis,
+    dataBoundaryForFedrampHigh,
+    dataBoundaryForFedrampModerate,
+    dataBoundaryForIl2,
+    dataBoundaryForIl4,
+    dataBoundaryForIl5,
+    dataBoundaryForIrsPublication1075,
+    dataBoundaryForItar,
+    euDataBoundaryAndSupport,
+    israelDataBoundaryAndSupport,
+    japanDataBoundary,
+    switzerlandDataBoundaryWithAccessJustifications,
+    ksaDataBoundaryWithAccessJustifications,
+    regionalDataBoundary,
+    usDataBoundaryAndSupport,
+    usDataBoundaryForHealthcareAndLifeSciences,
+    usDataBoundaryForHealthcareAndLifeSciencesWithSupport,
+    canadaControlledGoods,
   ];
 }
 
@@ -134,9 +235,6 @@ extension type const AssuredWorkloadsWorkloadPartner._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const AssuredWorkloadsWorkloadPartner.arg(TfArg<String> arg) : this._(arg);
 
-  static const partnerUnspecified = AssuredWorkloadsWorkloadPartner._(
-    TfArgLiteral('PARTNER_UNSPECIFIED'),
-  );
   static const localControlsByS3ns = AssuredWorkloadsWorkloadPartner._(
     TfArgLiteral('LOCAL_CONTROLS_BY_S3NS'),
   );
@@ -163,7 +261,6 @@ extension type const AssuredWorkloadsWorkloadPartner._(TfArg<String> _)
       );
 
   static const List<AssuredWorkloadsWorkloadPartner> values = [
-    partnerUnspecified,
     localControlsByS3ns,
     sovereignControlsByTSystems,
     sovereignControlsBySiaMinsait,
@@ -252,11 +349,11 @@ extension type const AssuredWorkloadsWorkloadResourceType._(TfArg<String> _)
   const AssuredWorkloadsWorkloadResourceType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const resourceTypeUnspecified = AssuredWorkloadsWorkloadResourceType._(
-    TfArgLiteral('RESOURCE_TYPE_UNSPECIFIED'),
-  );
   static const consumerProject = AssuredWorkloadsWorkloadResourceType._(
     TfArgLiteral('CONSUMER_PROJECT'),
+  );
+  static const consumerFolder = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('CONSUMER_FOLDER'),
   );
   static const encryptionKeysProject = AssuredWorkloadsWorkloadResourceType._(
     TfArgLiteral('ENCRYPTION_KEYS_PROJECT'),
@@ -264,16 +361,12 @@ extension type const AssuredWorkloadsWorkloadResourceType._(TfArg<String> _)
   static const keyring = AssuredWorkloadsWorkloadResourceType._(
     TfArgLiteral('KEYRING'),
   );
-  static const consumerFolder = AssuredWorkloadsWorkloadResourceType._(
-    TfArgLiteral('CONSUMER_FOLDER'),
-  );
 
   static const List<AssuredWorkloadsWorkloadResourceType> values = [
-    resourceTypeUnspecified,
     consumerProject,
+    consumerFolder,
     encryptionKeysProject,
     keyring,
-    consumerFolder,
   ];
 }
 
@@ -302,25 +395,12 @@ extension type const AssuredWorkloadsWorkloadKajEnrollmentType._(
   const AssuredWorkloadsWorkloadKajEnrollmentType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const kajEnrollmentTypeUnspecified =
-      AssuredWorkloadsWorkloadKajEnrollmentType._(
-        TfArgLiteral('KAJ_ENROLLMENT_TYPE_UNSPECIFIED'),
-      );
-  static const fullKaj = AssuredWorkloadsWorkloadKajEnrollmentType._(
-    TfArgLiteral('FULL_KAJ'),
-  );
-  static const ekmOnly = AssuredWorkloadsWorkloadKajEnrollmentType._(
-    TfArgLiteral('EKM_ONLY'),
-  );
   static const keyAccessTransparencyOff =
       AssuredWorkloadsWorkloadKajEnrollmentType._(
         TfArgLiteral('KEY_ACCESS_TRANSPARENCY_OFF'),
       );
 
   static const List<AssuredWorkloadsWorkloadKajEnrollmentType> values = [
-    kajEnrollmentTypeUnspecified,
-    fullKaj,
-    ekmOnly,
     keyAccessTransparencyOff,
   ];
 }

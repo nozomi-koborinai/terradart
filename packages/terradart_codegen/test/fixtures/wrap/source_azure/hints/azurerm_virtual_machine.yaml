@@ -11,6 +11,12 @@ properties:
     properties:
       - api_name: additional_unattend_config
         properties:
+          - api_name: component
+            enum_values:
+              - "Microsoft-Windows-Shell-Setup"
+          - api_name: pass
+            enum_values:
+              - "oobeSystem"
           - api_name: setting_name
             enum_values:
               - "AutoLogon"
@@ -21,8 +27,21 @@ properties:
             enum_values:
               - "HTTP"
               - "HTTPS"
+  - api_name: storage_data_disk
+    properties:
+      - api_name: managed_disk_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
+          - "UltraSSD_LRS"
   - api_name: storage_os_disk
     properties:
+      - api_name: managed_disk_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
       - api_name: os_type
         enum_values:
           - "Linux"

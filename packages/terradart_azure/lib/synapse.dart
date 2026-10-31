@@ -42,6 +42,7 @@ export 'src/synapse/azurerm_synapse_spark_pool.dart'
 export 'src/synapse/azurerm_synapse_sql_pool.dart'
     show
         AzurermSynapseSqlPool,
+        SynapseSqlPoolCreateMode,
         SynapseSqlPoolRecovery,
         SynapseSqlPoolRecoveryDatabaseId,
         SynapseSqlPoolRecoveryRestore,

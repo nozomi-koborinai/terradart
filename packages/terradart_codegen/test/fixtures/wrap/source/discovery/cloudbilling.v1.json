@@ -1,0 +1,11 @@
+{
+  "name": "cloudbilling",
+  "version": "v1",
+  "revision": "20261016",
+  "sourceUrl": "https://cloudbilling.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ProjectBillingInfo": {
+      "properties": {}
+    }
+  }
+}

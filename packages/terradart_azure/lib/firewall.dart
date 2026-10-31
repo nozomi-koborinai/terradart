@@ -55,13 +55,16 @@ export 'src/firewall/azurerm_firewall_policy.dart'
 export 'src/firewall/azurerm_firewall_policy_rule_collection_group.dart'
     show
         AzurermFirewallPolicyRuleCollectionGroup,
-        FirewallPolicyRuleCollectionGroupAction,
         FirewallPolicyRuleCollectionGroupApplicationRuleCollection,
+        FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction,
         FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols,
         FirewallPolicyRuleCollectionGroupApplicationRuleCollectionRule,
         FirewallPolicyRuleCollectionGroupHttpHeaders,
         FirewallPolicyRuleCollectionGroupNatRuleCollection,
+        FirewallPolicyRuleCollectionGroupNatRuleCollectionAction,
+        FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols,
         FirewallPolicyRuleCollectionGroupNatRuleCollectionRule,
         FirewallPolicyRuleCollectionGroupNetworkRuleCollection,
         FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols,
-        FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule;
+        FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule,
+        FirewallPolicyRuleCollectionGroupType;

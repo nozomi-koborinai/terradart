@@ -303,7 +303,7 @@ final class ComputeResourcePolicyGroupPlacementPolicy {
 
   final TfArg<num>? availabilityDomainCount;
 
-  final TfArg<String>? collocation;
+  final ComputeResourcePolicyCollocation? collocation;
 
   final TfArg<String>? gpuTopology;
 
@@ -316,6 +316,22 @@ final class ComputeResourcePolicyGroupPlacementPolicy {
     'gpu_topology': ?gpuTopology?.toTfJson(),
     'vm_count': ?vmCount?.toTfJson(),
   };
+}
+
+/// `collocation` — derived from the provider schema description.
+extension type const ComputeResourcePolicyCollocation._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeResourcePolicyCollocation.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeResourcePolicyCollocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeResourcePolicyCollocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const collocated = ComputeResourcePolicyCollocation._(
+    TfArgLiteral('COLLOCATED'),
+  );
+
+  static const List<ComputeResourcePolicyCollocation> values = [collocated];
 }
 
 /// Typed helper for the `instance_schedule_policy` block of

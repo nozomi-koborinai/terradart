@@ -542,11 +542,11 @@ final class ZeroTrustAccessGroupServiceToken {
 final class ZeroTrustAccessGroupUserRiskScore {
   const ZeroTrustAccessGroupUserRiskScore({required this.userRiskScore});
 
-  final List<ZeroTrustAccessGroupUserRiskScoreUserRiskScore> userRiskScore;
+  final EnumList<ZeroTrustAccessGroupUserRiskScoreUserRiskScore> userRiskScore;
 
   @internal
   Map<String, Object?> encode() => {
-    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
+    'user_risk_score': userRiskScore.toTfJson(),
   };
 }
 

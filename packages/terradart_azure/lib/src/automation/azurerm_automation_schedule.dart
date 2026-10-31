@@ -88,7 +88,7 @@ sealed class AutomationScheduleDays {
 
   /// Sets `week_days`.
   const factory AutomationScheduleDays.weekDays(
-    List<AutomationScheduleWeekDays> weekDays,
+    EnumList<AutomationScheduleWeekDays> weekDays,
   ) = AutomationScheduleWeekDaysChoice;
 
   /// The Terraform argument this choice sets.
@@ -151,7 +151,7 @@ final class AutomationScheduleDaysMonthlyOccurrence
 final class AutomationScheduleWeekDaysChoice extends AutomationScheduleDays {
   const AutomationScheduleWeekDaysChoice(this.weekDays);
 
-  final List<AutomationScheduleWeekDays> weekDays;
+  final EnumList<AutomationScheduleWeekDays> weekDays;
 
   @internal
   @override
@@ -159,15 +159,11 @@ final class AutomationScheduleWeekDaysChoice extends AutomationScheduleDays {
 
   @internal
   @override
-  Map<String, Object?> encode() => {
-    'week_days': [for (final e in weekDays) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'week_days': weekDays.toTfJson()};
 
   @internal
   @override
-  Map<String, TfArg<Object?>> get argMap => {
-    'week_days': TfArg.literal([for (final e in weekDays) e.toTfJson()]),
-  };
+  Map<String, TfArg<Object?>> get argMap => {'week_days': weekDays};
 }
 
 /// Typed helper for the `monthly_occurrence` block of

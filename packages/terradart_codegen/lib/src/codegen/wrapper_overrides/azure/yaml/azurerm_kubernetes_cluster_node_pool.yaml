@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "upgrade_settings.max_surge, upgrade_settings.max_unavailable": upgrade_capacity

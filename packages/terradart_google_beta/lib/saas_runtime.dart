@@ -24,7 +24,10 @@ export 'src/saas_runtime/google_saas_runtime_saas.dart'
 export 'src/saas_runtime/google_saas_runtime_tenant.dart'
     show GoogleSaasRuntimeTenant;
 export 'src/saas_runtime/google_saas_runtime_unit.dart'
-    show GoogleSaasRuntimeUnit, SaasRuntimeUnitMaintenance;
+    show
+        GoogleSaasRuntimeUnit,
+        SaasRuntimeUnitMaintenance,
+        SaasRuntimeUnitManagementMode;
 export 'src/saas_runtime/google_saas_runtime_unit_kind.dart'
     show
         GoogleSaasRuntimeUnitKind,
@@ -36,11 +39,13 @@ export 'src/saas_runtime/google_saas_runtime_unit_kind.dart'
         SaasRuntimeUnitKindInputVariableMappings,
         SaasRuntimeUnitKindOutputVariableMappings,
         SaasRuntimeUnitKindScope,
-        SaasRuntimeUnitKindTo;
+        SaasRuntimeUnitKindTo,
+        SaasRuntimeUnitKindType;
 export 'src/saas_runtime/google_saas_runtime_unit_operation.dart'
     show
         GoogleSaasRuntimeUnitOperation,
         SaasRuntimeUnitOperationDeprovision,
         SaasRuntimeUnitOperationInputVariables,
         SaasRuntimeUnitOperationProvision,
+        SaasRuntimeUnitOperationType,
         SaasRuntimeUnitOperationUpgrade;

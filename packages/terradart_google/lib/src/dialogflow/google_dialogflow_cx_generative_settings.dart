@@ -61,7 +61,8 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
     this.bannedPhrases,
   });
 
-  final TfArg<String>? defaultBannedPhraseMatchStrategy;
+  final DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy?
+  defaultBannedPhraseMatchStrategy;
 
   final List<DialogflowCxGenerativeSettingsBannedPhrases>? bannedPhrases;
 
@@ -72,6 +73,35 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
     if (bannedPhrases != null)
       'banned_phrases': [for (final e in bannedPhrases!) e.encode()],
   };
+}
+
+/// `default_banned_phrase_match_strategy` — derived from the provider schema description.
+extension type const DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const partialMatch =
+      DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy._(
+        TfArgLiteral('PARTIAL_MATCH'),
+      );
+  static const wordMatch =
+      DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy._(
+        TfArgLiteral('WORD_MATCH'),
+      );
+
+  static const List<
+    DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy
+  >
+  values = [partialMatch, wordMatch];
 }
 
 /// Typed helper for the `generative_safety_settings.banned_phrases` block of

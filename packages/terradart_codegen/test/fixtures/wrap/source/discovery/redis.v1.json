@@ -1,0 +1,464 @@
+{
+  "name": "redis",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://redis.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AOFConfig": {
+      "properties": {
+        "appendFsync": {
+          "enum": [
+            "APPEND_FSYNC_UNSPECIFIED",
+            "NO",
+            "EVERYSEC",
+            "ALWAYS"
+          ]
+        }
+      }
+    },
+    "AclPolicy": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        },
+        "clusterAclPolicyAttachments": {
+          "items": {
+            "$ref": "ClusterAclPolicyAttachment"
+          }
+        }
+      }
+    },
+    "AclPolicyInfo": {
+      "properties": {
+        "aclPolicyRevisionStatuses": {
+          "items": {
+            "$ref": "AclPolicyRevisionStatus"
+          }
+        }
+      }
+    },
+    "AclPolicyRevisionStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPLYING",
+            "APPLIED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "AutomatedBackupConfig": {
+      "properties": {
+        "automatedBackupMode": {
+          "enum": [
+            "AUTOMATED_BACKUP_MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "Cluster": {
+      "properties": {
+        "pscConnections": {
+          "items": {
+            "$ref": "PscConnection"
+          }
+        },
+        "automatedBackupConfig": {
+          "$ref": "AutomatedBackupConfig"
+        },
+        "serverCaMode": {
+          "enum": [
+            "SERVER_CA_MODE_UNSPECIFIED",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
+            "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA"
+          ]
+        },
+        "transitEncryptionMode": {
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "TRANSIT_ENCRYPTION_MODE_DISABLED",
+            "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION"
+          ]
+        },
+        "nodeType": {
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "REDIS_SHARED_CORE_NANO",
+            "REDIS_HIGHMEM_MEDIUM",
+            "REDIS_HIGHMEM_XLARGE",
+            "REDIS_STANDARD_SMALL",
+            "REDIS_HIGHCPU_MEDIUM",
+            "REDIS_STANDARD_LARGE",
+            "REDIS_HIGHMEM_2XLARGE"
+          ]
+        },
+        "authorizationMode": {
+          "enum": [
+            "AUTH_MODE_UNSPECIFIED",
+            "AUTH_MODE_IAM_AUTH",
+            "AUTH_MODE_DISABLED",
+            "AUTH_MODE_TOKEN_AUTH"
+          ]
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "stateInfo": {
+          "$ref": "StateInfo"
+        },
+        "zoneDistributionConfig": {
+          "$ref": "ZoneDistributionConfig"
+        },
+        "crossClusterReplicationConfig": {
+          "$ref": "CrossClusterReplicationConfig"
+        },
+        "aclPolicyInfo": {
+          "$ref": "AclPolicyInfo"
+        },
+        "persistenceConfig": {
+          "$ref": "ClusterPersistenceConfig"
+        },
+        "clusterEndpoints": {
+          "items": {
+            "$ref": "ClusterEndpoint"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        },
+        "maintenancePolicy": {
+          "$ref": "ClusterMaintenancePolicy"
+        },
+        "pscServiceAttachments": {
+          "items": {
+            "$ref": "PscServiceAttachment"
+          }
+        }
+      }
+    },
+    "ClusterAclPolicyAttachment": {
+      "properties": {
+        "aclPolicyRevisionStatuses": {
+          "items": {
+            "$ref": "AclPolicyRevisionStatus"
+          }
+        }
+      }
+    },
+    "ClusterEndpoint": {
+      "properties": {
+        "connections": {
+          "items": {
+            "$ref": "ConnectionDetail"
+          }
+        }
+      }
+    },
+    "ClusterMaintenancePolicy": {
+      "properties": {
+        "weeklyMaintenanceWindow": {
+          "items": {
+            "$ref": "ClusterWeeklyMaintenanceWindow"
+          }
+        }
+      }
+    },
+    "ClusterPersistenceConfig": {
+      "properties": {
+        "rdbConfig": {
+          "$ref": "RDBConfig"
+        },
+        "aofConfig": {
+          "$ref": "AOFConfig"
+        },
+        "mode": {
+          "enum": [
+            "PERSISTENCE_MODE_UNSPECIFIED",
+            "DISABLED",
+            "RDB",
+            "AOF"
+          ]
+        }
+      }
+    },
+    "ClusterWeeklyMaintenanceWindow": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "ConnectionDetail": {
+      "properties": {
+        "pscConnection": {
+          "$ref": "PscConnection"
+        },
+        "pscAutoConnection": {
+          "$ref": "PscAutoConnection"
+        }
+      }
+    },
+    "CrossClusterReplicationConfig": {
+      "properties": {
+        "clusterRole": {
+          "enum": [
+            "CLUSTER_ROLE_UNSPECIFIED",
+            "NONE",
+            "PRIMARY",
+            "SECONDARY"
+          ]
+        }
+      }
+    },
+    "EncryptionInfo": {
+      "properties": {
+        "kmsKeyPrimaryState": {
+          "enum": [
+            "KMS_KEY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "PERMISSION_DENIED",
+            "DISABLED",
+            "DESTROYED",
+            "DESTROY_SCHEDULED",
+            "EKM_KEY_UNREACHABLE_DETECTED",
+            "BILLING_DISABLED",
+            "UNKNOWN_FAILURE"
+          ]
+        },
+        "encryptionType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "transitEncryptionMode": {
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "SERVER_AUTHENTICATION",
+            "DISABLED"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "BASIC",
+            "STANDARD_HA"
+          ]
+        },
+        "connectMode": {
+          "enum": [
+            "CONNECT_MODE_UNSPECIFIED",
+            "DIRECT_PEERING",
+            "PRIVATE_SERVICE_ACCESS"
+          ]
+        },
+        "persistenceConfig": {
+          "$ref": "PersistenceConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "REPAIRING",
+            "MAINTENANCE",
+            "IMPORTING",
+            "FAILING_OVER"
+          ]
+        },
+        "readReplicasMode": {
+          "enum": [
+            "READ_REPLICAS_MODE_UNSPECIFIED",
+            "READ_REPLICAS_DISABLED",
+            "READ_REPLICAS_ENABLED"
+          ]
+        },
+        "suspensionReasons": {
+          "items": {
+            "enum": [
+              "SUSPENSION_REASON_UNSPECIFIED",
+              "CUSTOMER_MANAGED_KEY_ISSUE"
+            ]
+          }
+        },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        }
+      }
+    },
+    "MaintenancePolicy": {
+      "properties": {
+        "weeklyMaintenanceWindow": {
+          "items": {
+            "$ref": "WeeklyMaintenanceWindow"
+          }
+        }
+      }
+    },
+    "PersistenceConfig": {
+      "properties": {
+        "rdbSnapshotPeriod": {
+          "enum": [
+            "SNAPSHOT_PERIOD_UNSPECIFIED",
+            "ONE_HOUR",
+            "SIX_HOURS",
+            "TWELVE_HOURS",
+            "TWENTY_FOUR_HOURS"
+          ]
+        },
+        "persistenceMode": {
+          "enum": [
+            "PERSISTENCE_MODE_UNSPECIFIED",
+            "DISABLED",
+            "RDB"
+          ]
+        }
+      }
+    },
+    "PscAutoConnection": {
+      "properties": {
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ]
+        },
+        "pscConnectionStatus": {
+          "enum": [
+            "PSC_CONNECTION_STATUS_UNSPECIFIED",
+            "PSC_CONNECTION_STATUS_ACTIVE",
+            "PSC_CONNECTION_STATUS_NOT_FOUND"
+          ]
+        }
+      }
+    },
+    "PscConnection": {
+      "properties": {
+        "pscConnectionStatus": {
+          "enum": [
+            "PSC_CONNECTION_STATUS_UNSPECIFIED",
+            "PSC_CONNECTION_STATUS_ACTIVE",
+            "PSC_CONNECTION_STATUS_NOT_FOUND"
+          ]
+        },
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ]
+        }
+      }
+    },
+    "PscServiceAttachment": {
+      "properties": {
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ]
+        }
+      }
+    },
+    "RDBConfig": {
+      "properties": {
+        "rdbSnapshotPeriod": {
+          "enum": [
+            "SNAPSHOT_PERIOD_UNSPECIFIED",
+            "ONE_HOUR",
+            "SIX_HOURS",
+            "TWELVE_HOURS",
+            "TWENTY_FOUR_HOURS"
+          ]
+        }
+      }
+    },
+    "StateInfo": {
+      "properties": {
+        "updateInfo": {
+          "$ref": "UpdateInfo"
+        }
+      }
+    },
+    "UpdateInfo": {
+      "properties": {
+        "targetNodeType": {
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "REDIS_SHARED_CORE_NANO",
+            "REDIS_HIGHMEM_MEDIUM",
+            "REDIS_HIGHMEM_XLARGE",
+            "REDIS_STANDARD_SMALL",
+            "REDIS_HIGHCPU_MEDIUM",
+            "REDIS_STANDARD_LARGE",
+            "REDIS_HIGHMEM_2XLARGE"
+          ]
+        }
+      }
+    },
+    "WeeklyMaintenanceWindow": {
+      "properties": {
+        "day": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "ZoneDistributionConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "ZONE_DISTRIBUTION_MODE_UNSPECIFIED",
+            "MULTI_ZONE",
+            "SINGLE_ZONE"
+          ]
+        }
+      }
+    }
+  }
+}

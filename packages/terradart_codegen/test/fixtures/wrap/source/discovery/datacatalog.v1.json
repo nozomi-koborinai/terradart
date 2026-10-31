@@ -1,0 +1,444 @@
+{
+  "name": "datacatalog",
+  "version": "v1",
+  "revision": "20261019",
+  "sourceUrl": "https://datacatalog.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDatacatalogV1BigQueryConnectionSpec": {
+      "properties": {
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CLOUD_SQL"
+          ]
+        },
+        "cloudSql": {
+          "$ref": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1BigQueryTableSpec": {
+      "properties": {
+        "tableSourceType": {
+          "enum": [
+            "TABLE_SOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_VIEW",
+            "BIGQUERY_TABLE",
+            "BIGQUERY_MATERIALIZED_VIEW"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "POSTGRES",
+            "MYSQL"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1ColumnSchema": {
+      "properties": {
+        "subcolumns": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
+          }
+        },
+        "highestIndexingType": {
+          "enum": [
+            "INDEXING_TYPE_UNSPECIFIED",
+            "INDEXING_TYPE_NONE",
+            "INDEXING_TYPE_NON_UNIQUE",
+            "INDEXING_TYPE_UNIQUE",
+            "INDEXING_TYPE_PRIMARY_KEY"
+          ]
+        },
+        "lookerColumnSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "LOOKER_COLUMN_TYPE_UNSPECIFIED",
+            "DIMENSION",
+            "DIMENSION_GROUP",
+            "FILTER",
+            "MEASURE",
+            "PARAMETER"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DataSource": {
+      "properties": {
+        "service": {
+          "enum": [
+            "SERVICE_UNSPECIFIED",
+            "CLOUD_STORAGE",
+            "BIGQUERY"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DataSourceConnectionSpec": {
+      "properties": {
+        "bigqueryConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1BigQueryConnectionSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DatabaseTableSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TABLE_TYPE_UNSPECIFIED",
+            "NATIVE",
+            "EXTERNAL"
+          ]
+        },
+        "dataplexTable": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
+        },
+        "databaseViewSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec": {
+      "properties": {
+        "viewType": {
+          "enum": [
+            "VIEW_TYPE_UNSPECIFIED",
+            "STANDARD_VIEW",
+            "MATERIALIZED_VIEW"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DataplexExternalTable": {
+      "properties": {
+        "system": {
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
+            "CLOUD_SQL",
+            "LOOKER",
+            "VERTEX_AI"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DataplexTableSpec": {
+      "properties": {
+        "externalTables": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1DataplexExternalTable"
+          }
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1DatasetSpec": {
+      "properties": {
+        "vertexDatasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1VertexDatasetSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1Entry": {
+      "properties": {
+        "datasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
+        },
+        "featureOnlineStoreSpec": {
+          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDatacatalogV1Schema"
+        },
+        "dataSource": {
+          "$ref": "GoogleCloudDatacatalogV1DataSource"
+        },
+        "databaseTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
+        },
+        "dataSourceConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
+        },
+        "integratedSystem": {
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
+            "CLOUD_SQL",
+            "LOOKER",
+            "VERTEX_AI"
+          ]
+        },
+        "type": {
+          "enum": [
+            "ENTRY_TYPE_UNSPECIFIED",
+            "TABLE",
+            "MODEL",
+            "DATA_STREAM",
+            "FILESET",
+            "CLUSTER",
+            "DATABASE",
+            "DATA_SOURCE_CONNECTION",
+            "ROUTINE",
+            "LAKE",
+            "ZONE",
+            "SERVICE",
+            "DATABASE_SCHEMA",
+            "DASHBOARD",
+            "EXPLORE",
+            "LOOK",
+            "FEATURE_ONLINE_STORE",
+            "FEATURE_VIEW",
+            "FEATURE_GROUP",
+            "GRAPH",
+            "NODE",
+            "EDGE"
+          ]
+        },
+        "bigqueryTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec"
+        },
+        "graphSpec": {
+          "$ref": "GoogleCloudDatacatalogV1GraphSpec"
+        },
+        "routineSpec": {
+          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1EntryGroup": {
+      "properties": {}
+    },
+    "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec": {
+      "properties": {
+        "storageType": {
+          "enum": [
+            "STORAGE_TYPE_UNSPECIFIED",
+            "BIGTABLE",
+            "OPTIMIZED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1FieldType": {
+      "properties": {
+        "primitiveType": {
+          "enum": [
+            "PRIMITIVE_TYPE_UNSPECIFIED",
+            "DOUBLE",
+            "STRING",
+            "BOOL",
+            "TIMESTAMP",
+            "RICHTEXT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1GraphSpec": {
+      "properties": {
+        "edgeTables": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
+          }
+        },
+        "nodeTables": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
+          }
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1GraphSpecGraphElementTable": {
+      "properties": {
+        "inputSource": {
+          "enum": [
+            "INPUT_SOURCE_UNSPECIFIED",
+            "TABLE",
+            "VIEW"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "KIND_UNSPECIFIED",
+            "NODE",
+            "EDGE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1ModelSpec": {
+      "properties": {
+        "vertexModelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1VertexModelSpec"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1PolicyTag": {
+      "properties": {}
+    },
+    "GoogleCloudDatacatalogV1RoutineSpec": {
+      "properties": {
+        "routineArguments": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1RoutineSpecArgument"
+          }
+        },
+        "routineType": {
+          "enum": [
+            "ROUTINE_TYPE_UNSPECIFIED",
+            "SCALAR_FUNCTION",
+            "PROCEDURE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1RoutineSpecArgument": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "IN",
+            "OUT",
+            "INOUT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1Schema": {
+      "properties": {
+        "columns": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
+          }
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1Tag": {
+      "properties": {
+        "dataplexTransferStatus": {
+          "enum": [
+            "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+            "MIGRATED",
+            "TRANSFERRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1TagTemplate": {
+      "properties": {
+        "fields": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDatacatalogV1TagTemplateField"
+          }
+        },
+        "dataplexTransferStatus": {
+          "enum": [
+            "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+            "MIGRATED",
+            "TRANSFERRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1TagTemplateField": {
+      "properties": {
+        "type": {
+          "$ref": "GoogleCloudDatacatalogV1FieldType"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1Taxonomy": {
+      "properties": {
+        "activatedPolicyTypes": {
+          "items": {
+            "enum": [
+              "POLICY_TYPE_UNSPECIFIED",
+              "FINE_GRAINED_ACCESS_CONTROL"
+            ]
+          }
+        },
+        "service": {
+          "$ref": "GoogleCloudDatacatalogV1TaxonomyService"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1TaxonomyService": {
+      "properties": {
+        "name": {
+          "enum": [
+            "MANAGING_SYSTEM_UNSPECIFIED",
+            "MANAGING_SYSTEM_DATAPLEX",
+            "MANAGING_SYSTEM_OTHER"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1VertexDatasetSpec": {
+      "properties": {
+        "dataType": {
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "TABLE",
+            "IMAGE",
+            "TEXT",
+            "VIDEO",
+            "CONVERSATION",
+            "TIME_SERIES",
+            "DOCUMENT",
+            "TEXT_TO_SPEECH",
+            "TRANSLATION",
+            "STORE_VISION",
+            "ENTERPRISE_KNOWLEDGE_GRAPH",
+            "TEXT_PROMPT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1VertexModelSourceInfo": {
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "MODEL_SOURCE_TYPE_UNSPECIFIED",
+            "AUTOML",
+            "CUSTOM",
+            "BQML",
+            "MODEL_GARDEN",
+            "GENIE",
+            "CUSTOM_TEXT_EMBEDDING",
+            "MARKETPLACE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatacatalogV1VertexModelSpec": {
+      "properties": {
+        "vertexModelSourceInfo": {
+          "$ref": "GoogleCloudDatacatalogV1VertexModelSourceInfo"
+        }
+      }
+    }
+  }
+}

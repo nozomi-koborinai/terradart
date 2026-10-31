@@ -5,10 +5,30 @@ provider_version: "5.12.0"
 properties:
   - api_name: actions
     properties:
+      - api_name: modify_request_header
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Append"
+              - "Delete"
+              - "Overwrite"
+      - api_name: modify_response_header
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Append"
+              - "Delete"
+              - "Overwrite"
       - api_name: route_configuration_override
         properties:
           - api_name: caching
             properties:
+              - api_name: behaviour
+                enum_values:
+                  - "HonorOrigin"
+                  - "OverrideAlways"
+                  - "OverrideIfOriginMissing"
+                  - "Disabled"
               - api_name: query_string_behaviour
                 enum_values:
                   - "IgnoreQueryString"
@@ -41,14 +61,322 @@ properties:
       - "Stop"
   - api_name: conditions
     properties:
+      - api_name: client_port
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
       - api_name: device_type
         properties:
+          - api_name: operator
+            enum_values:
+              - "Equal"
+              - "NotEqual"
           - api_name: values
             enum_values:
               - "Desktop"
               - "Mobile"
+      - api_name: host_name
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: http_version
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Equal"
+              - "NotEqual"
+          - api_name: values
+            enum_values:
+              - "2.0"
+              - "1.1"
+              - "1.0"
+              - "0.9"
+      - api_name: post_argument
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: query_string
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: remote_address
+        properties:
+          - api_name: operator
+            enum_values:
+              - "GeoMatch"
+              - "NotGeoMatch"
+              - "IPMatch"
+              - "NotIPMatch"
+      - api_name: request_body
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: request_cookies
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: request_file_extension
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: request_filename
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: request_header
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
       - api_name: request_method
         properties:
+          - api_name: operator
+            enum_values:
+              - "Equal"
+              - "NotEqual"
           - api_name: values
             enum_values:
               - "DELETE"
@@ -58,14 +386,122 @@ properties:
               - "POST"
               - "PUT"
               - "TRACE"
+      - api_name: request_path
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+              - "Wildcard"
+              - "NotWildcard"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
       - api_name: request_scheme
         properties:
+          - api_name: operator
+            enum_values:
+              - "Equal"
+              - "NotEqual"
           - api_name: values
             enum_values:
               - "HTTP"
               - "HTTPS"
+      - api_name: request_url
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: transforms
+            enum_values:
+              - "Lowercase"
+              - "RemoveNulls"
+              - "Trim"
+              - "UrlDecode"
+              - "UrlEncode"
+              - "Uppercase"
+      - api_name: server_port
+        properties:
+          - api_name: operator
+            enum_values:
+              - "Any"
+              - "NotAny"
+              - "BeginsWith"
+              - "NotBeginsWith"
+              - "Contains"
+              - "NotContains"
+              - "EndsWith"
+              - "NotEndsWith"
+              - "Equal"
+              - "NotEqual"
+              - "GreaterThan"
+              - "NotGreaterThan"
+              - "GreaterThanOrEqual"
+              - "NotGreaterThanOrEqual"
+              - "LessThan"
+              - "NotLessThan"
+              - "LessThanOrEqual"
+              - "NotLessThanOrEqual"
+              - "RegEx"
+              - "NotRegEx"
+          - api_name: values
+            enum_values:
+              - "80"
+              - "443"
+      - api_name: socket_address
+        properties:
+          - api_name: operator
+            enum_values:
+              - "IPMatch"
+              - "NotIPMatch"
       - api_name: ssl_protocol
         properties:
+          - api_name: operator
+            enum_values:
+              - "Equal"
+              - "NotEqual"
           - api_name: values
             enum_values:
               - "TLSv1"

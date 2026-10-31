@@ -1,0 +1,170 @@
+{
+  "name": "gkebackup",
+  "version": "v1",
+  "revision": "20261014",
+  "sourceUrl": "https://gkebackup.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BackupChannel": {
+      "properties": {}
+    },
+    "BackupPlan": {
+      "properties": {
+        "backupSchedule": {
+          "$ref": "Schedule"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CLUSTER_PENDING",
+            "PROVISIONING",
+            "READY",
+            "FAILED",
+            "DEACTIVATED",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "DayOfWeekList": {
+      "properties": {
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        }
+      }
+    },
+    "ExclusionWindow": {
+      "properties": {
+        "daysOfWeek": {
+          "$ref": "DayOfWeekList"
+        }
+      }
+    },
+    "RestoreChannel": {
+      "properties": {}
+    },
+    "RestoreConfig": {
+      "properties": {
+        "volumeDataRestorePolicyBindings": {
+          "items": {
+            "$ref": "VolumeDataRestorePolicyBinding"
+          }
+        },
+        "namespacedResourceRestoreMode": {
+          "enum": [
+            "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
+            "DELETE_AND_RESTORE",
+            "FAIL_ON_CONFLICT",
+            "MERGE_SKIP_ON_CONFLICT",
+            "MERGE_REPLACE_VOLUME_ON_CONFLICT",
+            "MERGE_REPLACE_ON_CONFLICT"
+          ]
+        },
+        "clusterResourceConflictPolicy": {
+          "enum": [
+            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
+            "USE_EXISTING_VERSION",
+            "USE_BACKUP_VERSION"
+          ]
+        },
+        "transformationRules": {
+          "items": {
+            "$ref": "TransformationRule"
+          }
+        },
+        "volumeDataRestorePolicy": {
+          "enum": [
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
+          ]
+        }
+      }
+    },
+    "RestorePlan": {
+      "properties": {
+        "restoreConfig": {
+          "$ref": "RestoreConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CLUSTER_PENDING",
+            "READY",
+            "FAILED",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "RpoConfig": {
+      "properties": {
+        "exclusionWindows": {
+          "items": {
+            "$ref": "ExclusionWindow"
+          }
+        }
+      }
+    },
+    "Schedule": {
+      "properties": {
+        "rpoConfig": {
+          "$ref": "RpoConfig"
+        }
+      }
+    },
+    "TransformationRule": {
+      "properties": {
+        "fieldActions": {
+          "items": {
+            "$ref": "TransformationRuleAction"
+          }
+        }
+      }
+    },
+    "TransformationRuleAction": {
+      "properties": {
+        "op": {
+          "enum": [
+            "OP_UNSPECIFIED",
+            "REMOVE",
+            "MOVE",
+            "COPY",
+            "ADD",
+            "TEST",
+            "REPLACE"
+          ]
+        }
+      }
+    },
+    "VolumeDataRestorePolicyBinding": {
+      "properties": {
+        "policy": {
+          "enum": [
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
+          ]
+        },
+        "volumeType": {
+          "enum": [
+            "VOLUME_TYPE_UNSPECIFIED",
+            "GCE_PERSISTENT_DISK"
+          ]
+        }
+      }
+    }
+  }
+}

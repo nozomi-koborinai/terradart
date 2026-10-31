@@ -45,6 +45,7 @@ export 'src/cloud_build/google_cloudbuild_trigger.dart'
         CloudbuildTriggerGithubEventPush,
         CloudbuildTriggerLogStreamingOption,
         CloudbuildTriggerLogging,
+        CloudbuildTriggerMachineType,
         CloudbuildTriggerMavenArtifacts,
         CloudbuildTriggerNpmPackages,
         CloudbuildTriggerObjects,

@@ -71,3 +71,8 @@ properties:
           - "PFS2"
           - "PFS24"
           - "PFS2048"
+  - api_name: type
+    enum_values:
+      - "ExpressRoute"
+      - "IPsec"
+      - "Vnet2Vnet"

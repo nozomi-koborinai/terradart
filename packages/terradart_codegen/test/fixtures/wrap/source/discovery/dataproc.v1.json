@@ -1,0 +1,647 @@
+{
+  "name": "dataproc",
+  "version": "v1",
+  "revision": "20261016",
+  "sourceUrl": "https://dataproc.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AttachedDiskConfig": {
+      "properties": {
+        "diskType": {
+          "enum": [
+            "DISK_TYPE_UNSPECIFIED",
+            "HYPERDISK_BALANCED",
+            "HYPERDISK_EXTREME",
+            "HYPERDISK_ML",
+            "HYPERDISK_THROUGHPUT"
+          ]
+        }
+      }
+    },
+    "AuthenticationConfig": {
+      "properties": {
+        "userWorkloadAuthenticationType": {
+          "enum": [
+            "AUTHENTICATION_TYPE_UNSPECIFIED",
+            "SERVICE_ACCOUNT",
+            "END_USER_CREDENTIALS"
+          ]
+        }
+      }
+    },
+    "AutoscalingPolicy": {
+      "properties": {
+        "clusterType": {
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "ZERO_SCALE"
+          ]
+        }
+      }
+    },
+    "AutotuningConfig": {
+      "properties": {
+        "scenarios": {
+          "items": {
+            "enum": [
+              "SCENARIO_UNSPECIFIED",
+              "SCALING",
+              "BROADCAST_HASH_JOIN",
+              "MEMORY",
+              "NONE",
+              "AUTO"
+            ]
+          }
+        }
+      }
+    },
+    "AuxiliaryNodeGroup": {
+      "properties": {
+        "nodeGroup": {
+          "$ref": "NodeGroup"
+        }
+      }
+    },
+    "Batch": {
+      "properties": {
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
+        },
+        "runtimeConfig": {
+          "$ref": "RuntimeConfig"
+        },
+        "stateHistory": {
+          "items": {
+            "$ref": "StateHistory"
+          }
+        },
+        "runtimeInfo": {
+          "$ref": "RuntimeInfo"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Cluster": {
+      "properties": {
+        "virtualClusterConfig": {
+          "$ref": "VirtualClusterConfig"
+        },
+        "status": {
+          "$ref": "ClusterStatus"
+        },
+        "statusHistory": {
+          "items": {
+            "$ref": "ClusterStatus"
+          }
+        },
+        "config": {
+          "$ref": "ClusterConfig"
+        }
+      }
+    },
+    "ClusterConfig": {
+      "properties": {
+        "masterConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "secondaryWorkerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "dataprocMetricConfig": {
+          "$ref": "DataprocMetricConfig"
+        },
+        "secondaryWorkerConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "softwareConfig": {
+          "$ref": "SoftwareConfig"
+        },
+        "clusterTier": {
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "CLUSTER_TIER_STANDARD",
+            "CLUSTER_TIER_PREMIUM"
+          ]
+        },
+        "auxiliaryNodeGroups": {
+          "items": {
+            "$ref": "AuxiliaryNodeGroup"
+          }
+        },
+        "clusterType": {
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "SINGLE_NODE",
+            "ZERO_SCALE"
+          ]
+        },
+        "workerConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "masterFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "engine": {
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "DEFAULT",
+            "LIGHTNING"
+          ]
+        },
+        "gceClusterConfig": {
+          "$ref": "GceClusterConfig"
+        },
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig"
+        },
+        "workerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        }
+      }
+    },
+    "ClusterStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "UNKNOWN",
+            "CREATING",
+            "RUNNING",
+            "ERROR",
+            "ERROR_DUE_TO_UPDATE",
+            "DELETING",
+            "UPDATING",
+            "STOPPING",
+            "STOPPED",
+            "STARTING",
+            "REPAIRING",
+            "SCHEDULED"
+          ]
+        },
+        "substate": {
+          "enum": [
+            "UNSPECIFIED",
+            "UNHEALTHY",
+            "STALE_STATUS"
+          ]
+        }
+      }
+    },
+    "CohortInfo": {
+      "properties": {
+        "cohortSource": {
+          "enum": [
+            "COHORT_SOURCE_UNSPECIFIED",
+            "USER_PROVIDED",
+            "AIRFLOW"
+          ]
+        }
+      }
+    },
+    "ConfidentialInstanceConfig": {
+      "properties": {
+        "confidentialInstanceType": {
+          "enum": [
+            "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+            "SEV",
+            "SEV_SNP",
+            "TDX"
+          ]
+        }
+      }
+    },
+    "DataprocMetricConfig": {
+      "properties": {
+        "metrics": {
+          "items": {
+            "$ref": "Metric"
+          }
+        }
+      }
+    },
+    "DiskConfig": {
+      "properties": {
+        "attachedDiskConfigs": {
+          "items": {
+            "$ref": "AttachedDiskConfig"
+          }
+        }
+      }
+    },
+    "EnvironmentConfig": {
+      "properties": {
+        "executionConfig": {
+          "$ref": "ExecutionConfig"
+        }
+      }
+    },
+    "ExecutionConfig": {
+      "properties": {
+        "authenticationConfig": {
+          "$ref": "AuthenticationConfig"
+        }
+      }
+    },
+    "FlexibleInstanceGroupConfig": {
+      "properties": {
+        "hardwareClass": {
+          "enum": [
+            "HARDWARE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "PERFORMANCE"
+          ]
+        }
+      }
+    },
+    "FlinkJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "GceClusterConfig": {
+      "properties": {
+        "privateIpv6GoogleAccess": {
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "INHERIT_FROM_SUBNETWORK",
+            "OUTBOUND",
+            "BIDIRECTIONAL"
+          ]
+        },
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "multiZoneConfig": {
+          "$ref": "MultiZoneConfig"
+        }
+      }
+    },
+    "GkeClusterConfig": {
+      "properties": {
+        "nodePoolTarget": {
+          "items": {
+            "$ref": "GkeNodePoolTarget"
+          }
+        }
+      }
+    },
+    "GkeNodePoolTarget": {
+      "properties": {
+        "roles": {
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "DEFAULT",
+              "CONTROLLER",
+              "SPARK_DRIVER",
+              "SPARK_EXECUTOR"
+            ]
+          }
+        }
+      }
+    },
+    "HadoopJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "InstanceFlexibilityPolicy": {
+      "properties": {
+        "instanceSelectionList": {
+          "items": {
+            "$ref": "InstanceSelection"
+          }
+        }
+      }
+    },
+    "InstanceGroupConfig": {
+      "properties": {
+        "diskConfig": {
+          "$ref": "DiskConfig"
+        },
+        "instanceFlexibilityPolicy": {
+          "$ref": "InstanceFlexibilityPolicy"
+        },
+        "preemptibility": {
+          "enum": [
+            "PREEMPTIBILITY_UNSPECIFIED",
+            "NON_PREEMPTIBLE",
+            "PREEMPTIBLE",
+            "SPOT"
+          ]
+        }
+      }
+    },
+    "InstanceSelection": {
+      "properties": {
+        "diskConfig": {
+          "$ref": "DiskConfig"
+        }
+      }
+    },
+    "JupyterConfig": {
+      "properties": {
+        "kernel": {
+          "enum": [
+            "KERNEL_UNSPECIFIED",
+            "PYTHON",
+            "SCALA"
+          ]
+        }
+      }
+    },
+    "KubernetesClusterConfig": {
+      "properties": {
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig"
+        }
+      }
+    },
+    "LoggingConfig": {
+      "properties": {
+        "driverLogLevels": {
+          "additionalProperties": {
+            "enum": [
+              "LEVEL_UNSPECIFIED",
+              "ALL",
+              "TRACE",
+              "DEBUG",
+              "INFO",
+              "WARN",
+              "ERROR",
+              "FATAL",
+              "OFF"
+            ]
+          }
+        }
+      }
+    },
+    "ManagedCluster": {
+      "properties": {
+        "config": {
+          "$ref": "ClusterConfig"
+        }
+      }
+    },
+    "Metric": {
+      "properties": {
+        "metricSource": {
+          "enum": [
+            "METRIC_SOURCE_UNSPECIFIED",
+            "MONITORING_AGENT_DEFAULTS",
+            "HDFS",
+            "SPARK",
+            "YARN",
+            "SPARK_HISTORY_SERVER",
+            "HIVESERVER2",
+            "HIVEMETASTORE",
+            "FLINK"
+          ]
+        }
+      }
+    },
+    "MultiZoneConfig": {
+      "properties": {
+        "targetShape": {
+          "enum": [
+            "TARGET_SHAPE_UNSPECIFIED",
+            "ANY"
+          ]
+        }
+      }
+    },
+    "NodeGroup": {
+      "properties": {
+        "nodeGroupConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "roles": {
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "DRIVER"
+            ]
+          }
+        }
+      }
+    },
+    "OrderedJob": {
+      "properties": {
+        "sparkJob": {
+          "$ref": "SparkJob"
+        },
+        "pigJob": {
+          "$ref": "PigJob"
+        },
+        "hadoopJob": {
+          "$ref": "HadoopJob"
+        },
+        "prestoJob": {
+          "$ref": "PrestoJob"
+        },
+        "trinoJob": {
+          "$ref": "TrinoJob"
+        },
+        "pysparkJob": {
+          "$ref": "PySparkJob"
+        },
+        "sparkSqlJob": {
+          "$ref": "SparkSqlJob"
+        },
+        "sparkRJob": {
+          "$ref": "SparkRJob"
+        },
+        "flinkJob": {
+          "$ref": "FlinkJob"
+        }
+      }
+    },
+    "PigJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "PrestoJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "PySparkJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "ReservationAffinity": {
+      "properties": {
+        "consumeReservationType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_RESERVATION",
+            "ANY_RESERVATION",
+            "SPECIFIC_RESERVATION"
+          ]
+        }
+      }
+    },
+    "RuntimeConfig": {
+      "properties": {
+        "autotuningConfig": {
+          "$ref": "AutotuningConfig"
+        }
+      }
+    },
+    "RuntimeInfo": {
+      "properties": {
+        "cohortInfo": {
+          "$ref": "CohortInfo"
+        }
+      }
+    },
+    "SessionTemplate": {
+      "properties": {
+        "jupyterSession": {
+          "$ref": "JupyterConfig"
+        },
+        "runtimeConfig": {
+          "$ref": "RuntimeConfig"
+        },
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
+        }
+      }
+    },
+    "SoftwareConfig": {
+      "properties": {
+        "optionalComponents": {
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "ALLOYDB_CONNECTOR",
+              "ANACONDA",
+              "DELTA",
+              "DOCKER",
+              "DRUID",
+              "FLINK",
+              "HBASE",
+              "HIVE_WEBHCAT",
+              "HUDI",
+              "ICEBERG",
+              "JUPYTER",
+              "PIG",
+              "PRESTO",
+              "TRINO",
+              "RANGER",
+              "SOLR",
+              "ZEPPELIN",
+              "ZOOKEEPER",
+              "JUPYTER_KERNEL_GATEWAY"
+            ]
+          }
+        }
+      }
+    },
+    "SparkJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "SparkRJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "SparkSqlJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "StateHistory": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "TrinoJob": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "VirtualClusterConfig": {
+      "properties": {
+        "kubernetesClusterConfig": {
+          "$ref": "KubernetesClusterConfig"
+        }
+      }
+    },
+    "WorkflowTemplate": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "$ref": "OrderedJob"
+          }
+        },
+        "placement": {
+          "$ref": "WorkflowTemplatePlacement"
+        }
+      }
+    },
+    "WorkflowTemplatePlacement": {
+      "properties": {
+        "managedCluster": {
+          "$ref": "ManagedCluster"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "Cluster": {
+      "actionOnFailedPrimaryWorkers": {
+        "enum": [
+          "FAILURE_ACTION_UNSPECIFIED",
+          "NO_ACTION",
+          "DELETE"
+        ]
+      }
+    }
+  }
+}

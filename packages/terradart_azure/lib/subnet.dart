@@ -17,7 +17,8 @@ export 'src/subnet/azurerm_subnet.dart'
         SubnetPrivateEndpointNetworkPolicies,
         SubnetServiceDelegation,
         SubnetServiceDelegationName,
-        SubnetServiceEndpoint;
+        SubnetServiceEndpoint,
+        SubnetSharingScope;
 export 'src/subnet/azurerm_subnet_nat_gateway_association.dart'
     show AzurermSubnetNatGatewayAssociation;
 export 'src/subnet/azurerm_subnet_network_security_group_association.dart'

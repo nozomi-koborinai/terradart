@@ -64,6 +64,38 @@ extension type const MysqlFlexibleServerPublicNetworkAccess._(TfArg<String> _)
   ];
 }
 
+/// Mysql Flexible Server Replication enum for `replication_role`.
+extension type const MysqlFlexibleServerReplicationRole._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlFlexibleServerReplicationRole.variable(String name)
+    : this._(TfArg.variable(name));
+  MysqlFlexibleServerReplicationRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlFlexibleServerReplicationRole.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = MysqlFlexibleServerReplicationRole._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<MysqlFlexibleServerReplicationRole> values = [none];
+}
+
+/// Mysql Flexible Server enum for `version`.
+extension type const MysqlFlexibleServerVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlFlexibleServerVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  MysqlFlexibleServerVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlFlexibleServerVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v5p7 = MysqlFlexibleServerVersion._(TfArgLiteral('5.7'));
+  static const v8p0p21 = MysqlFlexibleServerVersion._(TfArgLiteral('8.0.21'));
+  static const v8p4 = MysqlFlexibleServerVersion._(TfArgLiteral('8.4'));
+
+  static const List<MysqlFlexibleServerVersion> values = [v5p7, v8p0p21, v8p4];
+}
+
 /// At most one of `administrator_password`, `administrator_password_wo` on `azurerm_mysql_flexible_server`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -186,7 +218,7 @@ final class MysqlFlexibleServerHighAvailability {
     this.standbyAvailabilityZone,
   });
 
-  final TfArg<String> mode;
+  final MysqlFlexibleServerMode mode;
 
   final TfArg<String>? standbyAvailabilityZone;
 
@@ -195,6 +227,22 @@ final class MysqlFlexibleServerHighAvailability {
     'mode': mode.toTfJson(),
     'standby_availability_zone': ?standbyAvailabilityZone?.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const MysqlFlexibleServerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlFlexibleServerMode.variable(String name) : this._(TfArg.variable(name));
+  MysqlFlexibleServerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlFlexibleServerMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const zoneredundant = MysqlFlexibleServerMode._(
+    TfArgLiteral('ZoneRedundant'),
+  );
+  static const samezone = MysqlFlexibleServerMode._(TfArgLiteral('SameZone'));
+
+  static const List<MysqlFlexibleServerMode> values = [zoneredundant, samezone];
 }
 
 /// Typed helper for the `identity` block of
@@ -291,12 +339,12 @@ final class AzurermMysqlFlexibleServer extends Resource {
     TfArg<String>? pointInTimeRestoreTimeInUtc,
     TfArg<String>? privateDnsZoneId,
     MysqlFlexibleServerPublicNetworkAccess? publicNetworkAccess,
-    TfArg<String>? replicationRole,
+    MysqlFlexibleServerReplicationRole? replicationRole,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? skuName,
     TfArg<String>? sourceServerId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? version,
+    MysqlFlexibleServerVersion? version,
     TfArg<String>? zone,
     MysqlFlexibleServerCustomerManagedKey? customerManagedKey,
     MysqlFlexibleServerHighAvailability? highAvailability,

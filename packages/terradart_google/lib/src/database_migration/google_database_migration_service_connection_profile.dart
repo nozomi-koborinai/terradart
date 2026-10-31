@@ -27,6 +27,88 @@ const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
       'postgresql.ssl.client_key',
     };
 
+/// Database Migration Service Connection Profile enum for `dbprovider`.
+extension type const DatabaseMigrationServiceConnectionProfileDbprovider._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileDbprovider.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileDbprovider.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileDbprovider.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const cloudsql = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('CLOUDSQL'),
+  );
+  static const rds = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('RDS'),
+  );
+  static const aurora = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('AURORA'),
+  );
+  static const alloydb = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('ALLOYDB'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileDbprovider>
+  values = [cloudsql, rds, aurora, alloydb];
+}
+
+/// Database Migration Service Connection Profile enum for `role`.
+extension type const DatabaseMigrationServiceConnectionProfileRole._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileRole.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileRole.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const source = DatabaseMigrationServiceConnectionProfileRole._(
+    TfArgLiteral('SOURCE'),
+  );
+  static const destination = DatabaseMigrationServiceConnectionProfileRole._(
+    TfArgLiteral('DESTINATION'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileRole> values = [
+    source,
+    destination,
+  ];
+}
+
+/// Database Migration Service Connection Profile enum for `state`.
+extension type const DatabaseMigrationServiceConnectionProfileState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const draft = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('DRAFT'),
+  );
+  static const ready = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('READY'),
+  );
+  static const failed = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('FAILED'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileState> values = [
+    draft,
+    ready,
+    failed,
+  ];
+}
+
 /// Exactly one of `mysql`, `postgresql`, `oracle`, `cloudsql`, `alloydb` on `google_database_migration_service_connection_profile`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -345,7 +427,8 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final TfArg<Map<String, String>>? databaseFlags;
 
-  final TfArg<String>? databaseVersion;
+  final DatabaseMigrationServiceConnectionProfileDatabaseVersion?
+  databaseVersion;
 
   final DatabaseMigrationServiceConnectionProfileEdition? edition;
 
@@ -433,6 +516,145 @@ extension type const DatabaseMigrationServiceConnectionProfileDataDiskType._(
 
   static const List<DatabaseMigrationServiceConnectionProfileDataDiskType>
   values = [pdSsd, pdHdd];
+}
+
+/// `database_version` — derived from the provider schema description.
+extension type const DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileDatabaseVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileDatabaseVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileDatabaseVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const mysql56 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_5_6'),
+      );
+  static const mysql57 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_5_7'),
+      );
+  static const mysql80 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0'),
+      );
+  static const mysql8018 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_18'),
+      );
+  static const mysql8026 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_26'),
+      );
+  static const mysql8027 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_27'),
+      );
+  static const mysql8028 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_28'),
+      );
+  static const mysql8030 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_30'),
+      );
+  static const mysql8031 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_31'),
+      );
+  static const mysql8032 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_32'),
+      );
+  static const mysql8033 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_33'),
+      );
+  static const mysql8034 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_34'),
+      );
+  static const mysql8035 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_35'),
+      );
+  static const mysql8036 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_36'),
+      );
+  static const mysql8037 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_0_37'),
+      );
+  static const mysql84 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('MYSQL_8_4'),
+      );
+  static const postgres96 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_9_6'),
+      );
+  static const postgres11 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_11'),
+      );
+  static const postgres10 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_10'),
+      );
+  static const postgres12 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_12'),
+      );
+  static const postgres13 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_13'),
+      );
+  static const postgres14 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_14'),
+      );
+  static const postgres15 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_15'),
+      );
+  static const postgres16 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_16'),
+      );
+
+  static const List<DatabaseMigrationServiceConnectionProfileDatabaseVersion>
+  values = [
+    mysql56,
+    mysql57,
+    mysql80,
+    mysql8018,
+    mysql8026,
+    mysql8027,
+    mysql8028,
+    mysql8030,
+    mysql8031,
+    mysql8032,
+    mysql8033,
+    mysql8034,
+    mysql8035,
+    mysql8036,
+    mysql8037,
+    mysql84,
+    postgres96,
+    postgres11,
+    postgres10,
+    postgres12,
+    postgres13,
+    postgres14,
+    postgres15,
+    postgres16,
+  ];
 }
 
 /// `edition` — derived from the provider schema description.
@@ -1019,7 +1241,7 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? location,
     TfArg<String>? project,
-    TfArg<String>? role,
+    DatabaseMigrationServiceConnectionProfileRole? role,
     required DatabaseMigrationServiceConnectionProfileEngine engine,
     super.lifecycle,
     super.dependsOn,

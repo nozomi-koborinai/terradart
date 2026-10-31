@@ -167,13 +167,29 @@ final class RedhatOpenshiftClusterIdentity {
 
   final TfArg<List<String>> identityIds;
 
-  final TfArg<String> type;
+  final RedhatOpenshiftClusterType type;
 
   @internal
   Map<String, Object?> encode() => {
     'identity_ids': identityIds.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const RedhatOpenshiftClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedhatOpenshiftClusterType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedhatOpenshiftClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedhatOpenshiftClusterType.arg(TfArg<String> arg) : this._(arg);
+
+  static const userassigned = RedhatOpenshiftClusterType._(
+    TfArgLiteral('UserAssigned'),
+  );
+
+  static const List<RedhatOpenshiftClusterType> values = [userassigned];
 }
 
 /// Typed helper for the `ingress_profile` block of

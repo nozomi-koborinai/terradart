@@ -36,13 +36,32 @@ final class BackupDrManagementServerNetworks {
 
   final RefTo<GoogleComputeNetwork> network;
 
-  final TfArg<String>? peeringMode;
+  final BackupDrManagementServerPeeringMode? peeringMode;
 
   @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'peering_mode': ?peeringMode?.toTfJson(),
   };
+}
+
+/// `peering_mode` — derived from the provider schema description.
+extension type const BackupDrManagementServerPeeringMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrManagementServerPeeringMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrManagementServerPeeringMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrManagementServerPeeringMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const privateServiceAccess = BackupDrManagementServerPeeringMode._(
+    TfArgLiteral('PRIVATE_SERVICE_ACCESS'),
+  );
+
+  static const List<BackupDrManagementServerPeeringMode> values = [
+    privateServiceAccess,
+  ];
 }
 
 /// Factory wrapper for `google_backup_dr_management_server`.
@@ -71,7 +90,7 @@ final class BackupDrManagementServerNetworks {
 ///   networks: [
 ///     BackupDrManagementServerNetworks(
 ///       network: network.ref,
-///       peeringMode: TfArg.literal('PRIVATE_SERVICE_ACCESS'),
+///       peeringMode: .privateServiceAccess,
 ///     ),
 ///   ],
 /// );

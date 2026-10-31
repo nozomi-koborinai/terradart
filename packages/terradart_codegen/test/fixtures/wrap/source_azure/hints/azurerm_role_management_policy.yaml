@@ -91,5 +91,57 @@ properties:
                 enum_values:
                   - "All"
                   - "Critical"
+          - api_name: approver_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+          - api_name: assignee_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+      - api_name: eligible_activations
+        properties:
+          - api_name: admin_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+          - api_name: approver_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+          - api_name: assignee_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+      - api_name: eligible_assignments
+        properties:
+          - api_name: admin_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+          - api_name: approver_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
+          - api_name: assignee_notifications
+            properties:
+              - api_name: notification_level
+                enum_values:
+                  - "All"
+                  - "Critical"
 at_most_one_of_groups:
   - ["activation_rules.require_multifactor_authentication", "activation_rules.required_conditional_access_authentication_context"]

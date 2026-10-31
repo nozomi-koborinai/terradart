@@ -7,6 +7,42 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_ai_search_instances`.
 const Set<String> _cloudflareAiSearchInstancesSensitive = <String>{};
 
+/// Data Ai Search Instances Order enum for `order_by`.
+extension type const DataAiSearchInstancesOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAiSearchInstancesOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAiSearchInstancesOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAiSearchInstancesOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const createdAt = DataAiSearchInstancesOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataAiSearchInstancesOrderBy> values = [createdAt];
+}
+
+/// Data Ai Search Instances Order By enum for `order_by_direction`.
+extension type const DataAiSearchInstancesOrderByDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAiSearchInstancesOrderByDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAiSearchInstancesOrderByDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAiSearchInstancesOrderByDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataAiSearchInstancesOrderByDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataAiSearchInstancesOrderByDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataAiSearchInstancesOrderByDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_ai_search_instances`.
 final class DataCloudflareAiSearchInstances extends Data {
   static const String tfType = 'cloudflare_ai_search_instances';
@@ -17,8 +53,8 @@ final class DataCloudflareAiSearchInstances extends Data {
     TfArg<String>? hostname,
     TfArg<num>? maxItems,
     TfArg<String>? namespace,
-    TfArg<String>? orderBy,
-    TfArg<String>? orderByDirection,
+    DataAiSearchInstancesOrderBy? orderBy,
+    DataAiSearchInstancesOrderByDirection? orderByDirection,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

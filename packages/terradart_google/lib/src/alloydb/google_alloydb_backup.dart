@@ -10,6 +10,29 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_alloydb_backup`.
 const Set<String> _googleAlloydbBackupSensitive = <String>{};
 
+/// Alloydb Backup enum for `type`.
+extension type const AlloydbBackupType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbBackupType.variable(String name) : this._(TfArg.variable(name));
+  AlloydbBackupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbBackupType.arg(TfArg<String> arg) : this._(arg);
+
+  static const typeUnspecified = AlloydbBackupType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const onDemand = AlloydbBackupType._(TfArgLiteral('ON_DEMAND'));
+  static const automated = AlloydbBackupType._(TfArgLiteral('AUTOMATED'));
+  static const continuous = AlloydbBackupType._(TfArgLiteral('CONTINUOUS'));
+
+  static const List<AlloydbBackupType> values = [
+    typeUnspecified,
+    onDemand,
+    automated,
+    continuous,
+  ];
+}
+
 /// Typed helper for the `encryption_config` block of
 /// `google_alloydb_backup` (derived from provider schema).
 @immutable
@@ -58,7 +81,7 @@ final class GoogleAlloydbBackup extends Resource {
     TfArg<String>? description,
     TfArg<String>? displayName,
     TfArg<String>? project,
-    TfArg<String>? type,
+    AlloydbBackupType? type,
     AlloydbBackupEncryptionConfig? encryptionConfig,
     super.lifecycle,
     super.dependsOn,

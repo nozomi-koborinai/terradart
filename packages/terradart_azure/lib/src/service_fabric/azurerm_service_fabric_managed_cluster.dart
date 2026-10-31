@@ -115,7 +115,7 @@ final class ServiceFabricManagedClusterCertificate {
 
   final TfArg<String> thumbprint;
 
-  final TfArg<String> type;
+  final ServiceFabricManagedClusterType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -123,6 +123,28 @@ final class ServiceFabricManagedClusterCertificate {
     'thumbprint': thumbprint.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ServiceFabricManagedClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceFabricManagedClusterType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceFabricManagedClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceFabricManagedClusterType.arg(TfArg<String> arg) : this._(arg);
+
+  static const adminclient = ServiceFabricManagedClusterType._(
+    TfArgLiteral('AdminClient'),
+  );
+  static const readonlyclient = ServiceFabricManagedClusterType._(
+    TfArgLiteral('ReadOnlyClient'),
+  );
+
+  static const List<ServiceFabricManagedClusterType> values = [
+    adminclient,
+    readonlyclient,
+  ];
 }
 
 /// Typed helper for the `custom_fabric_setting` block of
@@ -165,11 +187,11 @@ final class ServiceFabricManagedClusterLbRule {
 
   final TfArg<num> frontendPort;
 
-  final TfArg<String> probeProtocol;
+  final ServiceFabricManagedClusterProbeProtocol probeProtocol;
 
   final TfArg<String>? probeRequestPath;
 
-  final TfArg<String> protocol;
+  final ServiceFabricManagedClusterProtocol protocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -179,6 +201,49 @@ final class ServiceFabricManagedClusterLbRule {
     'probe_request_path': ?probeRequestPath?.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `probe_protocol` — derived from the provider schema description.
+extension type const ServiceFabricManagedClusterProbeProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceFabricManagedClusterProbeProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceFabricManagedClusterProbeProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceFabricManagedClusterProbeProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = ServiceFabricManagedClusterProbeProtocol._(
+    TfArgLiteral('http'),
+  );
+  static const https = ServiceFabricManagedClusterProbeProtocol._(
+    TfArgLiteral('https'),
+  );
+  static const tcp = ServiceFabricManagedClusterProbeProtocol._(
+    TfArgLiteral('tcp'),
+  );
+
+  static const List<ServiceFabricManagedClusterProbeProtocol> values = [
+    http,
+    https,
+    tcp,
+  ];
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const ServiceFabricManagedClusterProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceFabricManagedClusterProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceFabricManagedClusterProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceFabricManagedClusterProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tcp = ServiceFabricManagedClusterProtocol._(TfArgLiteral('tcp'));
+  static const udp = ServiceFabricManagedClusterProtocol._(TfArgLiteral('udp'));
+
+  static const List<ServiceFabricManagedClusterProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `node_type` block of
@@ -211,7 +276,7 @@ final class ServiceFabricManagedClusterNodeType {
 
   final TfArg<num> dataDiskSizeGb;
 
-  final TfArg<String>? dataDiskType;
+  final ServiceFabricManagedClusterDataDiskType? dataDiskType;
 
   final TfArg<String> ephemeralPortRange;
 
@@ -261,6 +326,33 @@ final class ServiceFabricManagedClusterNodeType {
     if (vmSecrets != null)
       'vm_secrets': [for (final e in vmSecrets!) e.encode()],
   };
+}
+
+/// `data_disk_type` — derived from the provider schema description.
+extension type const ServiceFabricManagedClusterDataDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceFabricManagedClusterDataDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceFabricManagedClusterDataDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceFabricManagedClusterDataDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = ServiceFabricManagedClusterDataDiskType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = ServiceFabricManagedClusterDataDiskType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = ServiceFabricManagedClusterDataDiskType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+
+  static const List<ServiceFabricManagedClusterDataDiskType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+  ];
 }
 
 /// Typed helper for the `node_type.vm_secrets` block of

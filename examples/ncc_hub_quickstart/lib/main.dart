@@ -43,8 +43,8 @@ final class NccHubStack extends Stack {
         'hub',
         name: .literal('terradart-ncc-hub'),
         description: .literal('TerraDart NCC hub'),
-        policyMode: .literal('PRESET'),
-        presetTopology: .literal('STAR'),
+        policyMode: .preset,
+        presetTopology: .star,
         dependsOn: apiDeps,
       ),
     );

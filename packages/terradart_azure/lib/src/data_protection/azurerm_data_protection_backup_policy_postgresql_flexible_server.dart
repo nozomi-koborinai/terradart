@@ -36,7 +36,8 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType
+  dataStoreType;
 
   final TfArg<String> duration;
 
@@ -45,6 +46,31 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vaultstore =
+      DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType
+  >
+  values = [vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of
@@ -91,27 +117,28 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerCriteria {
   final DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteCriteria?
   absoluteCriteria;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek>?
+  final EnumList<DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek>?
   daysOfWeek;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear>?
+  final EnumList<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear
+  >?
   monthsOfYear;
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth>?
+  final EnumList<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth
+  >?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

@@ -7,6 +7,80 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_lists`.
 const Set<String> _cloudflareZeroTrustListsSensitive = <String>{};
 
+/// Data Zero Trust Lists enum for `direction`.
+extension type const DataZeroTrustListsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustListsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataZeroTrustListsDirection._(TfArgLiteral('asc'));
+  static const desc = DataZeroTrustListsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataZeroTrustListsDirection> values = [asc, desc];
+}
+
+/// Data Zero Trust Lists Order enum for `order_by`.
+extension type const DataZeroTrustListsOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListsOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustListsOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListsOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataZeroTrustListsOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustListsOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustListsOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+  static const itemCount = DataZeroTrustListsOrderBy._(
+    TfArgLiteral('item_count'),
+  );
+
+  static const List<DataZeroTrustListsOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+    itemCount,
+  ];
+}
+
+/// Data Zero Trust Lists enum for `type`.
+extension type const DataZeroTrustListsType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListsType.variable(String name) : this._(TfArg.variable(name));
+  DataZeroTrustListsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const serial = DataZeroTrustListsType._(TfArgLiteral('SERIAL'));
+  static const url = DataZeroTrustListsType._(TfArgLiteral('URL'));
+  static const domain = DataZeroTrustListsType._(TfArgLiteral('DOMAIN'));
+  static const email = DataZeroTrustListsType._(TfArgLiteral('EMAIL'));
+  static const ip = DataZeroTrustListsType._(TfArgLiteral('IP'));
+  static const category = DataZeroTrustListsType._(TfArgLiteral('CATEGORY'));
+  static const location = DataZeroTrustListsType._(TfArgLiteral('LOCATION'));
+  static const device = DataZeroTrustListsType._(TfArgLiteral('DEVICE'));
+  static const aaguid = DataZeroTrustListsType._(TfArgLiteral('AAGUID'));
+
+  static const List<DataZeroTrustListsType> values = [
+    serial,
+    url,
+    domain,
+    email,
+    ip,
+    category,
+    location,
+    device,
+    aaguid,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_lists`.
 final class DataCloudflareZeroTrustLists extends Data {
   static const String tfType = 'cloudflare_zero_trust_lists';
@@ -14,12 +88,12 @@ final class DataCloudflareZeroTrustLists extends Data {
   DataCloudflareZeroTrustLists(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataZeroTrustListsDirection? direction,
     TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataZeroTrustListsOrderBy? orderBy,
     TfArg<String>? search,
-    TfArg<String>? type,
+    DataZeroTrustListsType? type,
     super.provider,
     super.timeouts,
   }) : super(

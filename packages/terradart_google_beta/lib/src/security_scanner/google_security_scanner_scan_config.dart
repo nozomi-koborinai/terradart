@@ -191,7 +191,7 @@ final class GoogleSecurityScannerScanConfig extends Resource {
     TfArg<String>? project,
     required TfArg<List<String>> startingUrls,
     TfArg<bool>? staticIpScan,
-    List<SecurityScannerScanConfigTargetPlatforms>? targetPlatforms,
+    EnumList<SecurityScannerScanConfigTargetPlatforms>? targetPlatforms,
     SecurityScannerScanConfigUserAgent? userAgent,
     SecurityScannerScanConfigAuthentication? authentication,
     SecurityScannerScanConfigSchedule? schedule,
@@ -211,10 +211,7 @@ final class GoogleSecurityScannerScanConfig extends Resource {
            'project': ?project,
            'starting_urls': startingUrls,
            'static_ip_scan': ?staticIpScan,
-           if (targetPlatforms != null)
-             'target_platforms': TfArg.literal([
-               for (final e in targetPlatforms) e.toTfJson(),
-             ]),
+           'target_platforms': ?targetPlatforms,
            'user_agent': ?userAgent,
            if (authentication != null)
              'authentication': TfArg.literal(authentication.encode()),

@@ -1,0 +1,30 @@
+{
+  "name": "dataplex",
+  "version": "v1",
+  "revision": "20261027",
+  "sourceUrl": "https://dataplex.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDataplexV1DataAsset": {
+      "properties": {
+        "accessGroupConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDataplexV1DataAssetAccessGroupConfig"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataAssetAccessGroupConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPLYING",
+            "APPLIED",
+            "FAILED",
+            "UNSUPPORTED"
+          ]
+        }
+      }
+    }
+  }
+}

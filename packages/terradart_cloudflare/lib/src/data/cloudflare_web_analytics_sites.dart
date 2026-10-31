@@ -7,6 +7,23 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_web_analytics_sites`.
 const Set<String> _cloudflareWebAnalyticsSitesSensitive = <String>{};
 
+/// Data Web Analytics Sites Order enum for `order_by`.
+extension type const DataWebAnalyticsSitesOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWebAnalyticsSitesOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWebAnalyticsSitesOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWebAnalyticsSitesOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const host = DataWebAnalyticsSitesOrderBy._(TfArgLiteral('host'));
+  static const created = DataWebAnalyticsSitesOrderBy._(
+    TfArgLiteral('created'),
+  );
+
+  static const List<DataWebAnalyticsSitesOrderBy> values = [host, created];
+}
+
 /// Factory wrapper for `cloudflare_web_analytics_sites`.
 ///
 /// Accepted Permissions
@@ -19,7 +36,7 @@ final class DataCloudflareWebAnalyticsSites extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataWebAnalyticsSitesOrderBy? orderBy,
     super.provider,
     super.timeouts,
   }) : super(

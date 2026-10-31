@@ -41,6 +41,29 @@ extension type const LogicAppStandardClientCertificateMode._(TfArg<String> _)
   ];
 }
 
+/// Logic App Standard Public Network enum for `public_network_access`.
+extension type const LogicAppStandardPublicNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardPublicNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardPublicNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardPublicNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = LogicAppStandardPublicNetworkAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = LogicAppStandardPublicNetworkAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<LogicAppStandardPublicNetworkAccess> values = [
+    enabled,
+    disabled,
+  ];
+}
+
 /// Exactly one of `storage_account_name`, `storage_key_vault_secret_id` on `azurerm_logic_app_standard`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -229,31 +252,32 @@ final class LogicAppStandardSiteConfig {
 
   final TfArg<num>? appScaleLimit;
 
-  final TfArg<String>? dotnetFrameworkVersion;
+  final LogicAppStandardDotnetFrameworkVersion? dotnetFrameworkVersion;
 
   final TfArg<num>? elasticInstanceMinimum;
 
-  final TfArg<String>? ftpsState;
+  final LogicAppStandardFtpsState? ftpsState;
 
   final TfArg<String>? healthCheckPath;
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final LogicAppStandardIpRestrictionDefaultAction? ipRestrictionDefaultAction;
 
   final TfArg<String>? linuxFxVersion;
 
-  final TfArg<String>? minTlsVersion;
+  final LogicAppStandardMinTlsVersion? minTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final LogicAppStandardScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinTlsVersion;
+  final LogicAppStandardScmMinTlsVersion? scmMinTlsVersion;
 
-  final TfArg<String>? scmType;
+  final LogicAppStandardScmType? scmType;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -300,6 +324,194 @@ final class LogicAppStandardSiteConfig {
   };
 }
 
+/// `dotnet_framework_version` — derived from the provider schema description.
+extension type const LogicAppStandardDotnetFrameworkVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardDotnetFrameworkVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardDotnetFrameworkVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardDotnetFrameworkVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v4p0 = LogicAppStandardDotnetFrameworkVersion._(
+    TfArgLiteral('v4.0'),
+  );
+  static const v5p0 = LogicAppStandardDotnetFrameworkVersion._(
+    TfArgLiteral('v5.0'),
+  );
+  static const v6p0 = LogicAppStandardDotnetFrameworkVersion._(
+    TfArgLiteral('v6.0'),
+  );
+  static const v8p0 = LogicAppStandardDotnetFrameworkVersion._(
+    TfArgLiteral('v8.0'),
+  );
+  static const v10p0 = LogicAppStandardDotnetFrameworkVersion._(
+    TfArgLiteral('v10.0'),
+  );
+
+  static const List<LogicAppStandardDotnetFrameworkVersion> values = [
+    v4p0,
+    v5p0,
+    v6p0,
+    v8p0,
+    v10p0,
+  ];
+}
+
+/// `ftps_state` — derived from the provider schema description.
+extension type const LogicAppStandardFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = LogicAppStandardFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const disabled = LogicAppStandardFtpsState._(TfArgLiteral('Disabled'));
+  static const ftpsonly = LogicAppStandardFtpsState._(TfArgLiteral('FtpsOnly'));
+
+  static const List<LogicAppStandardFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const LogicAppStandardIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LogicAppStandardIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LogicAppStandardIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LogicAppStandardIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LogicAppStandardIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `min_tls_version` — derived from the provider schema description.
+extension type const LogicAppStandardMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = LogicAppStandardMinTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = LogicAppStandardMinTlsVersion._(TfArgLiteral('1.3'));
+
+  static const List<LogicAppStandardMinTlsVersion> values = [v1p2, v1p3];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const LogicAppStandardScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LogicAppStandardScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LogicAppStandardScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LogicAppStandardScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LogicAppStandardScmIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `scm_min_tls_version` — derived from the provider schema description.
+extension type const LogicAppStandardScmMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardScmMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardScmMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardScmMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = LogicAppStandardScmMinTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = LogicAppStandardScmMinTlsVersion._(TfArgLiteral('1.3'));
+
+  static const List<LogicAppStandardScmMinTlsVersion> values = [v1p2, v1p3];
+}
+
+/// `scm_type` — derived from the provider schema description.
+extension type const LogicAppStandardScmType._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardScmType.variable(String name) : this._(TfArg.variable(name));
+  LogicAppStandardScmType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardScmType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bitbucketgit = LogicAppStandardScmType._(
+    TfArgLiteral('BitbucketGit'),
+  );
+  static const bitbuckethg = LogicAppStandardScmType._(
+    TfArgLiteral('BitbucketHg'),
+  );
+  static const codeplexgit = LogicAppStandardScmType._(
+    TfArgLiteral('CodePlexGit'),
+  );
+  static const codeplexhg = LogicAppStandardScmType._(
+    TfArgLiteral('CodePlexHg'),
+  );
+  static const dropbox = LogicAppStandardScmType._(TfArgLiteral('Dropbox'));
+  static const externalgit = LogicAppStandardScmType._(
+    TfArgLiteral('ExternalGit'),
+  );
+  static const externalhg = LogicAppStandardScmType._(
+    TfArgLiteral('ExternalHg'),
+  );
+  static const github = LogicAppStandardScmType._(TfArgLiteral('GitHub'));
+  static const localgit = LogicAppStandardScmType._(TfArgLiteral('LocalGit'));
+  static const none = LogicAppStandardScmType._(TfArgLiteral('None'));
+  static const onedrive = LogicAppStandardScmType._(TfArgLiteral('OneDrive'));
+  static const tfs = LogicAppStandardScmType._(TfArgLiteral('Tfs'));
+  static const vso = LogicAppStandardScmType._(TfArgLiteral('VSO'));
+  static const vstsrm = LogicAppStandardScmType._(TfArgLiteral('VSTSRM'));
+
+  static const List<LogicAppStandardScmType> values = [
+    bitbucketgit,
+    bitbuckethg,
+    codeplexgit,
+    codeplexhg,
+    dropbox,
+    externalgit,
+    externalhg,
+    github,
+    localgit,
+    none,
+    onedrive,
+    tfs,
+    vso,
+    vstsrm,
+  ];
+}
+
 /// Typed helper for the `site_config.cors` block of
 /// `azurerm_logic_app_standard` (derived from provider schema).
 @immutable
@@ -332,7 +544,7 @@ final class LogicAppStandardIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LogicAppStandardAction? action;
 
   final TfArg<String>? description;
 
@@ -361,6 +573,20 @@ final class LogicAppStandardIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LogicAppStandardAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardAction.variable(String name) : this._(TfArg.variable(name));
+  LogicAppStandardAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LogicAppStandardAction._(TfArgLiteral('Allow'));
+  static const deny = LogicAppStandardAction._(TfArgLiteral('Deny'));
+
+  static const List<LogicAppStandardAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_logic_app_standard` (derived from provider schema).
 @immutable
@@ -376,7 +602,7 @@ final class LogicAppStandardScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LogicAppStandardAction? action;
 
   final TfArg<String>? description;
 
@@ -422,7 +648,7 @@ final class AzurermLogicAppStandard extends Resource {
     TfArg<String>? keyVaultReferenceIdentityId,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? publicNetworkAccess,
+    LogicAppStandardPublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? scmPublishBasicAuthenticationEnabled,
     Sensitive<String>? storageAccountAccessKey,

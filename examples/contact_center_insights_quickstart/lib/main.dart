@@ -89,7 +89,7 @@ final class ContactCenterInsightsStack extends Stack {
         qaScorecard: .literal(scorecardId),
         revision: revision.qaScorecardRevisionId,
         questionBody: .literal('Did the agent greet the customer?'),
-        questionType: .literal('CUSTOMIZABLE'),
+        questionType: .customizable,
         abbreviation: .literal('Greeting'),
         answerChoices: [
           // Scores must be non-zero doubles — the provider omits a 0 score

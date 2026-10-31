@@ -1,0 +1,83 @@
+{
+  "name": "blockchainnodeengine",
+  "version": "v1",
+  "revision": "20250507",
+  "sourceUrl": "https://blockchainnodeengine.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BlockchainNode": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "DELETING",
+            "RUNNING",
+            "ERROR",
+            "UPDATING",
+            "REPAIRING",
+            "RECONCILING",
+            "SYNCING"
+          ]
+        },
+        "ethereumDetails": {
+          "$ref": "EthereumDetails"
+        },
+        "blockchainType": {
+          "enum": [
+            "BLOCKCHAIN_TYPE_UNSPECIFIED",
+            "ETHEREUM"
+          ]
+        }
+      }
+    },
+    "EthereumDetails": {
+      "properties": {
+        "gethDetails": {
+          "$ref": "GethDetails"
+        },
+        "consensusClient": {
+          "enum": [
+            "CONSENSUS_CLIENT_UNSPECIFIED",
+            "LIGHTHOUSE",
+            "ERIGON_EMBEDDED_CONSENSUS_LAYER"
+          ]
+        },
+        "network": {
+          "enum": [
+            "NETWORK_UNSPECIFIED",
+            "MAINNET",
+            "TESTNET_GOERLI_PRATER",
+            "TESTNET_SEPOLIA",
+            "TESTNET_HOLESKY"
+          ]
+        },
+        "nodeType": {
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "LIGHT",
+            "FULL",
+            "ARCHIVE"
+          ]
+        },
+        "executionClient": {
+          "enum": [
+            "EXECUTION_CLIENT_UNSPECIFIED",
+            "GETH",
+            "ERIGON"
+          ]
+        }
+      }
+    },
+    "GethDetails": {
+      "properties": {
+        "garbageCollectionMode": {
+          "enum": [
+            "GARBAGE_COLLECTION_MODE_UNSPECIFIED",
+            "FULL",
+            "ARCHIVE"
+          ]
+        }
+      }
+    }
+  }
+}

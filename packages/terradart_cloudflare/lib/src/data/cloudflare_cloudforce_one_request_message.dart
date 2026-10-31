@@ -8,6 +8,29 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_cloudforce_one_request_message`.
 const Set<String> _cloudflareCloudforceOneRequestMessageSensitive = <String>{};
 
+/// Data Cloudforce One Request Message Sort enum for `sort_order`.
+extension type const DataCloudforceOneRequestMessageSortOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCloudforceOneRequestMessageSortOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCloudforceOneRequestMessageSortOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCloudforceOneRequestMessageSortOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataCloudforceOneRequestMessageSortOrder._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataCloudforceOneRequestMessageSortOrder._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataCloudforceOneRequestMessageSortOrder> values = [
+    asc,
+    desc,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_cloudforce_one_request_message`.
 ///
 /// Accepted Permissions
@@ -25,7 +48,7 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
     required TfArg<num> perPage,
     required TfArg<String> requestId,
     TfArg<String>? sortBy,
-    TfArg<String>? sortOrder,
+    DataCloudforceOneRequestMessageSortOrder? sortOrder,
     super.provider,
     super.timeouts,
   }) : super(

@@ -50,13 +50,13 @@ prelude: |
     OracleDatabaseAutonomousDatabaseDbWorkload.expression(String template) : this._(TfArg.expression(template));
     const OracleDatabaseAutonomousDatabaseDbWorkload.arg(TfArg<String> arg) : this._(arg);
 
-    static const dbWorkloadUnspecified = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('DB_WORKLOAD_UNSPECIFIED'));
     static const oltp = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('OLTP'));
     static const dw = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('DW'));
     static const ajd = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('AJD'));
     static const apex = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('APEX'));
+    static const lh = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('LH'));
 
-    static const List<OracleDatabaseAutonomousDatabaseDbWorkload> values = [dbWorkloadUnspecified, oltp, dw, ajd, apex];
+    static const List<OracleDatabaseAutonomousDatabaseDbWorkload> values = [oltp, dw, ajd, apex, lh];
   }
 
   /// Autonomous Database license type.
@@ -65,11 +65,10 @@ prelude: |
     OracleDatabaseAutonomousDatabaseLicenseType.expression(String template) : this._(TfArg.expression(template));
     const OracleDatabaseAutonomousDatabaseLicenseType.arg(TfArg<String> arg) : this._(arg);
 
-    static const licenseTypeUnspecified = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'));
     static const licenseIncluded = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('LICENSE_INCLUDED'));
     static const bringYourOwnLicense = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('BRING_YOUR_OWN_LICENSE'));
 
-    static const List<OracleDatabaseAutonomousDatabaseLicenseType> values = [licenseTypeUnspecified, licenseIncluded, bringYourOwnLicense];
+    static const List<OracleDatabaseAutonomousDatabaseLicenseType> values = [licenseIncluded, bringYourOwnLicense];
   }
 
 dartTypeOverrides:

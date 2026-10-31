@@ -31,7 +31,7 @@ curatedDoc: |-
   ///   activationStatus: ComputePreviewFeatureActivationStatus.activationStateUnspecified,
   ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
   ///     rolloutInput: .new(
-  ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
+  ///       predefinedRolloutPlan: .rolloutPlanFastRollout,
   ///     ),
   ///   ),
   /// );

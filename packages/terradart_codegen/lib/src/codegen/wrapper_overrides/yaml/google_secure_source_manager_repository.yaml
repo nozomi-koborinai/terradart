@@ -4,6 +4,9 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  initial_config.readme:
+    - default
 
 extraImports:
   - "import 'package:meta/meta.dart';"

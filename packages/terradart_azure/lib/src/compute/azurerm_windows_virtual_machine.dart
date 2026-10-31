@@ -132,6 +132,49 @@ extension type const WindowsVirtualMachinePatchMode._(TfArg<String> _)
   ];
 }
 
+/// Windows Virtual Machine enum for `priority`.
+extension type const WindowsVirtualMachinePriority._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePriority.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const regular = WindowsVirtualMachinePriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = WindowsVirtualMachinePriority._(TfArgLiteral('Spot'));
+
+  static const List<WindowsVirtualMachinePriority> values = [regular, spot];
+}
+
+/// Windows Virtual Machine Reboot enum for `reboot_setting`.
+extension type const WindowsVirtualMachineRebootSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineRebootSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineRebootSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineRebootSetting.arg(TfArg<String> arg) : this._(arg);
+
+  static const always = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('Always'),
+  );
+  static const ifrequired = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('IfRequired'),
+  );
+  static const never = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('Never'),
+  );
+
+  static const List<WindowsVirtualMachineRebootSetting> values = [
+    always,
+    ifrequired,
+    never,
+  ];
+}
+
 /// Exactly one of these input sets on `azurerm_windows_virtual_machine`. The provider rejects any other mix of them.
 ///
 /// - `.image` sets `admin_username` and one of `source_image_id` or `source_image_reference`.
@@ -408,13 +451,35 @@ final class WindowsVirtualMachineAdditionalUnattendContent {
 
   final Sensitive<String> content;
 
-  final TfArg<String> setting;
+  final WindowsVirtualMachineSetting setting;
 
   @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'setting': setting.toTfJson(),
   };
+}
+
+/// `setting` — derived from the provider schema description.
+extension type const WindowsVirtualMachineSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineSetting.arg(TfArg<String> arg) : this._(arg);
+
+  static const autologon = WindowsVirtualMachineSetting._(
+    TfArgLiteral('AutoLogon'),
+  );
+  static const firstlogoncommands = WindowsVirtualMachineSetting._(
+    TfArgLiteral('FirstLogonCommands'),
+  );
+
+  static const List<WindowsVirtualMachineSetting> values = [
+    autologon,
+    firstlogoncommands,
+  ];
 }
 
 /// Typed helper for the `boot_diagnostics` block of
@@ -491,29 +556,26 @@ final class WindowsVirtualMachineIdentity {
 final class WindowsVirtualMachineOsDisk {
   const WindowsVirtualMachineOsDisk({
     required this.caching,
-    this.diskEncryptionSetId,
+    this.encryptionSet,
     this.diskSizeGb,
     this.name,
-    this.secureVmDiskEncryptionSetId,
     this.securityEncryptionType,
     this.storageAccountType,
     this.writeAcceleratorEnabled,
     this.diffDiskSettings,
   });
 
-  final TfArg<String> caching;
+  final WindowsVirtualMachineCaching caching;
 
-  final TfArg<String>? diskEncryptionSetId;
+  final WindowsVirtualMachineEncryptionSet? encryptionSet;
 
   final TfArg<num>? diskSizeGb;
 
   final TfArg<String>? name;
 
-  final TfArg<String>? secureVmDiskEncryptionSetId;
+  final WindowsVirtualMachineSecurityEncryptionType? securityEncryptionType;
 
-  final TfArg<String>? securityEncryptionType;
-
-  final TfArg<String>? storageAccountType;
+  final WindowsVirtualMachineStorageAccountType? storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -522,16 +584,164 @@ final class WindowsVirtualMachineOsDisk {
   @internal
   Map<String, Object?> encode() => {
     'caching': caching.toTfJson(),
-    'disk_encryption_set_id': ?diskEncryptionSetId?.toTfJson(),
+    ...?encryptionSet?.encode(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'name': ?name?.toTfJson(),
-    'secure_vm_disk_encryption_set_id': ?secureVmDiskEncryptionSetId
-        ?.toTfJson(),
     'security_encryption_type': ?securityEncryptionType?.toTfJson(),
     'storage_account_type': ?storageAccountType?.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
     'diff_disk_settings': ?diffDiskSettings?.encode(),
   };
+}
+
+/// At most one of `disk_encryption_set_id`, `secure_vm_disk_encryption_set_id` on the `os_disk` block of `azurerm_windows_virtual_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.diskEncryptionSetId(...)`.
+sealed class WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSet();
+
+  /// Sets `disk_encryption_set_id`.
+  const factory WindowsVirtualMachineEncryptionSet.diskEncryptionSetId(
+    TfArg<String> diskEncryptionSetId,
+  ) = WindowsVirtualMachineEncryptionSetDiskEncryptionSetId;
+
+  /// Sets `secure_vm_disk_encryption_set_id`.
+  const factory WindowsVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId(
+    TfArg<String> secureVmDiskEncryptionSetId,
+  ) = WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsVirtualMachineEncryptionSet.diskEncryptionSetId] choice: sets `disk_encryption_set_id`.
+final class WindowsVirtualMachineEncryptionSetDiskEncryptionSetId
+    extends WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSetDiskEncryptionSetId(
+    this.diskEncryptionSetId,
+  );
+
+  final TfArg<String> diskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'disk_encryption_set_id': diskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// The [WindowsVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId] choice: sets `secure_vm_disk_encryption_set_id`.
+final class WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId
+    extends WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId(
+    this.secureVmDiskEncryptionSetId,
+  );
+
+  final TfArg<String> secureVmDiskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'secure_vm_disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// `caching` — derived from the provider schema description.
+extension type const WindowsVirtualMachineCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = WindowsVirtualMachineCaching._(TfArgLiteral('None'));
+  static const readonly = WindowsVirtualMachineCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = WindowsVirtualMachineCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<WindowsVirtualMachineCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
+}
+
+/// `security_encryption_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineSecurityEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineSecurityEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineSecurityEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineSecurityEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vmgueststateonly = WindowsVirtualMachineSecurityEncryptionType._(
+    TfArgLiteral('VMGuestStateOnly'),
+  );
+  static const diskwithvmgueststate =
+      WindowsVirtualMachineSecurityEncryptionType._(
+        TfArgLiteral('DiskWithVMGuestState'),
+      );
+
+  static const List<WindowsVirtualMachineSecurityEncryptionType> values = [
+    vmgueststateonly,
+    diskwithvmgueststate,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const standardssdZrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_ZRS'),
+  );
+  static const premiumZrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_ZRS'),
+  );
+
+  static const List<WindowsVirtualMachineStorageAccountType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    premiumZrs,
+  ];
 }
 
 /// Typed helper for the `os_disk.diff_disk_settings` block of
@@ -543,9 +753,9 @@ final class WindowsVirtualMachineDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final WindowsVirtualMachineOption option;
 
-  final TfArg<String>? placement;
+  final WindowsVirtualMachinePlacement? placement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -554,16 +764,70 @@ final class WindowsVirtualMachineDiffDiskSettings {
   };
 }
 
+/// `option` — derived from the provider schema description.
+extension type const WindowsVirtualMachineOption._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineOption.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const local = WindowsVirtualMachineOption._(TfArgLiteral('Local'));
+
+  static const List<WindowsVirtualMachineOption> values = [local];
+}
+
+/// `placement` — derived from the provider schema description.
+extension type const WindowsVirtualMachinePlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePlacement.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePlacement.arg(TfArg<String> arg) : this._(arg);
+
+  static const cachedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+  static const nvmedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('NvmeDisk'),
+  );
+  static const resourcedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('ResourceDisk'),
+  );
+
+  static const List<WindowsVirtualMachinePlacement> values = [
+    cachedisk,
+    nvmedisk,
+    resourcedisk,
+  ];
+}
+
 /// Typed helper for the `os_image_notification` block of
 /// `azurerm_windows_virtual_machine` (derived from provider schema).
 @immutable
 final class WindowsVirtualMachineOsImageNotification {
   const WindowsVirtualMachineOsImageNotification({this.timeout});
 
-  final TfArg<String>? timeout;
+  final WindowsVirtualMachineTimeout? timeout;
 
   @internal
   Map<String, Object?> encode() => {'timeout': ?timeout?.toTfJson()};
+}
+
+/// `timeout` — derived from the provider schema description.
+extension type const WindowsVirtualMachineTimeout._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineTimeout.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineTimeout.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineTimeout.arg(TfArg<String> arg) : this._(arg);
+
+  static const pt15m = WindowsVirtualMachineTimeout._(TfArgLiteral('PT15M'));
+
+  static const List<WindowsVirtualMachineTimeout> values = [pt15m];
 }
 
 /// Typed helper for the `plan` block of
@@ -689,13 +953,28 @@ final class WindowsVirtualMachineWinrmListener {
 
   final TfArg<String>? certificateUrl;
 
-  final TfArg<String> protocol;
+  final WindowsVirtualMachineProtocol protocol;
 
   @internal
   Map<String, Object?> encode() => {
     'certificate_url': ?certificateUrl?.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const WindowsVirtualMachineProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = WindowsVirtualMachineProtocol._(TfArgLiteral('Http'));
+  static const https = WindowsVirtualMachineProtocol._(TfArgLiteral('Https'));
+
+  static const List<WindowsVirtualMachineProtocol> values = [http, https];
 }
 
 /// Factory wrapper for `azurerm_windows_virtual_machine`.
@@ -728,10 +1007,10 @@ final class AzurermWindowsVirtualMachine extends Resource {
     WindowsVirtualMachinePatchAssessmentMode? patchAssessmentMode,
     WindowsVirtualMachinePatchMode? patchMode,
     TfArg<num>? platformFaultDomain,
-    TfArg<String>? priority,
+    WindowsVirtualMachinePriority? priority,
     TfArg<bool>? provisionVmAgent,
     TfArg<String>? proximityPlacementGroupId,
-    TfArg<String>? rebootSetting,
+    WindowsVirtualMachineRebootSetting? rebootSetting,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     required TfArg<String> size,

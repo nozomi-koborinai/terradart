@@ -63,7 +63,7 @@ final class GkeonpremBareMetalNodePoolConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? operatingSystem;
+  final GkeonpremBareMetalNodePoolOperatingSystem? operatingSystem;
 
   final List<GkeonpremBareMetalNodePoolNodeConfigs> nodeConfigs;
 
@@ -76,6 +76,24 @@ final class GkeonpremBareMetalNodePoolConfig {
     'node_configs': [for (final e in nodeConfigs) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
   };
+}
+
+/// `operating_system` — derived from the provider schema description.
+extension type const GkeonpremBareMetalNodePoolOperatingSystem._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeonpremBareMetalNodePoolOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalNodePoolOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalNodePoolOperatingSystem.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const linux = GkeonpremBareMetalNodePoolOperatingSystem._(
+    TfArgLiteral('LINUX'),
+  );
+
+  static const List<GkeonpremBareMetalNodePoolOperatingSystem> values = [linux];
 }
 
 /// Typed helper for the `node_pool_config.node_configs` block of

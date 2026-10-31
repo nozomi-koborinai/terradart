@@ -157,7 +157,7 @@ final class SagemakerEndpointConfigurationNotificationConfig {
 
   final TfArg<String>? errorTopic;
 
-  final List<SagemakerEndpointConfigurationIncludeInferenceResponseIn>?
+  final EnumList<SagemakerEndpointConfigurationIncludeInferenceResponseIn>?
   includeInferenceResponseIn;
 
   final TfArg<String>? successTopic;
@@ -165,10 +165,7 @@ final class SagemakerEndpointConfigurationNotificationConfig {
   @internal
   Map<String, Object?> encode() => {
     'error_topic': ?errorTopic?.toTfJson(),
-    if (includeInferenceResponseIn != null)
-      'include_inference_response_in': [
-        for (final e in includeInferenceResponseIn!) e.toTfJson(),
-      ],
+    'include_inference_response_in': ?includeInferenceResponseIn?.toTfJson(),
     'success_topic': ?successTopic?.toTfJson(),
   };
 }

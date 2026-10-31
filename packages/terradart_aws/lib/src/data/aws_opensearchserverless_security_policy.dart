@@ -7,6 +7,30 @@ import '../opensearchserverless/aws_opensearchserverless_security_policy.dart';
 /// Sensitive field paths for `aws_opensearchserverless_security_policy`.
 const Set<String> _awsOpensearchserverlessSecurityPolicySensitive = <String>{};
 
+/// Data Opensearchserverless Security Policy enum for `type`.
+extension type const DataOpensearchserverlessSecurityPolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataOpensearchserverlessSecurityPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataOpensearchserverlessSecurityPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataOpensearchserverlessSecurityPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const encryption = DataOpensearchserverlessSecurityPolicyType._(
+    TfArgLiteral('encryption'),
+  );
+  static const network = DataOpensearchserverlessSecurityPolicyType._(
+    TfArgLiteral('network'),
+  );
+
+  static const List<DataOpensearchserverlessSecurityPolicyType> values = [
+    encryption,
+    network,
+  ];
+}
+
 /// Factory wrapper for `aws_opensearchserverless_security_policy`.
 final class DataAwsOpensearchserverlessSecurityPolicy extends Data {
   static const String tfType = 'aws_opensearchserverless_security_policy';
@@ -15,7 +39,7 @@ final class DataAwsOpensearchserverlessSecurityPolicy extends Data {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required DataOpensearchserverlessSecurityPolicyType type,
     super.provider,
     super.timeouts,
   }) : super(

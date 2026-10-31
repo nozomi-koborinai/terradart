@@ -8,6 +8,45 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_iothub_route`.
 const Set<String> _azurermIothubRouteSensitive = <String>{};
 
+/// Iothub Route enum for `source`.
+extension type const IothubRouteSource._(TfArg<String> _)
+    implements TfArg<String> {
+  IothubRouteSource.variable(String name) : this._(TfArg.variable(name));
+  IothubRouteSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const IothubRouteSource.arg(TfArg<String> arg) : this._(arg);
+
+  static const deviceconnectionstateevents = IothubRouteSource._(
+    TfArgLiteral('DeviceConnectionStateEvents'),
+  );
+  static const devicejoblifecycleevents = IothubRouteSource._(
+    TfArgLiteral('DeviceJobLifecycleEvents'),
+  );
+  static const devicelifecycleevents = IothubRouteSource._(
+    TfArgLiteral('DeviceLifecycleEvents'),
+  );
+  static const devicemessages = IothubRouteSource._(
+    TfArgLiteral('DeviceMessages'),
+  );
+  static const digitaltwinchangeevents = IothubRouteSource._(
+    TfArgLiteral('DigitalTwinChangeEvents'),
+  );
+  static const invalid = IothubRouteSource._(TfArgLiteral('Invalid'));
+  static const twinchangeevents = IothubRouteSource._(
+    TfArgLiteral('TwinChangeEvents'),
+  );
+
+  static const List<IothubRouteSource> values = [
+    deviceconnectionstateevents,
+    devicejoblifecycleevents,
+    devicelifecycleevents,
+    devicemessages,
+    digitaltwinchangeevents,
+    invalid,
+    twinchangeevents,
+  ];
+}
+
 /// Factory wrapper for `azurerm_iothub_route`.
 final class AzurermIothubRoute extends Resource {
   static const String tfType = 'azurerm_iothub_route';
@@ -20,7 +59,7 @@ final class AzurermIothubRoute extends Resource {
     required TfArg<String> iothubName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> source,
+    required IothubRouteSource source,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -43,12 +43,16 @@ prelude: |
     static const gVnic = ComputeDiskGuestOsFeatureType._(TfArgLiteral('GVNIC'));
     static const sevLiveMigratable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SEV_LIVE_MIGRATABLE'));
     static const sevSnpCapable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SEV_SNP_CAPABLE'));
-    static const suspendResumeCompatible = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'));
     static const tdxCapable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('TDX_CAPABLE'));
     static const sevLiveMigratableV2 = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SEV_LIVE_MIGRATABLE_V2'));
     static const snpSvsmCapable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SNP_SVSM_CAPABLE'));
+    static const bareMetalLinuxCompatible = ComputeDiskGuestOsFeatureType._(TfArgLiteral('BARE_METAL_LINUX_COMPATIBLE'));
+    static const bmsaiCapable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('BMSAI_CAPABLE'));
+    static const ccaCapable = ComputeDiskGuestOsFeatureType._(TfArgLiteral('CCA_CAPABLE'));
+    static const idpf = ComputeDiskGuestOsFeatureType._(TfArgLiteral('IDPF'));
+    static const suspendSafeFpr = ComputeDiskGuestOsFeatureType._(TfArgLiteral('SUSPEND_SAFE_FPR'));
 
-    static const List<ComputeDiskGuestOsFeatureType> values = [multiIpSubnet, secureBoot, sevCapable, uefiCompatible, virtioScsiMultiqueue, windows, gVnic, sevLiveMigratable, sevSnpCapable, suspendResumeCompatible, tdxCapable, sevLiveMigratableV2, snpSvsmCapable];
+    static const List<ComputeDiskGuestOsFeatureType> values = [multiIpSubnet, secureBoot, sevCapable, uefiCompatible, virtioScsiMultiqueue, windows, gVnic, sevLiveMigratable, sevSnpCapable, tdxCapable, sevLiveMigratableV2, snpSvsmCapable, bareMetalLinuxCompatible, bmsaiCapable, ccaCapable, idpf, suspendSafeFpr];
   }
 
   /// One entry of the `guest_os_features` block (repeatable list).

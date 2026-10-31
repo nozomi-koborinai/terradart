@@ -38,7 +38,7 @@ final class ConfigTreeStack extends Stack {
       GoogleArtifactRegistryRepository(
         'images',
         repositoryId: .literal('app-images'),
-        format: .literal('DOCKER'),
+        format: .docker,
         location: region,
       ),
     );

@@ -10,6 +10,54 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_alloydb_instance`.
 const Set<String> _googleAlloydbInstanceSensitive = <String>{};
 
+/// Alloydb Instance Activation enum for `activation_policy`.
+extension type const AlloydbInstanceActivationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbInstanceActivationPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  AlloydbInstanceActivationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbInstanceActivationPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const activationPolicyUnspecified = AlloydbInstanceActivationPolicy._(
+    TfArgLiteral('ACTIVATION_POLICY_UNSPECIFIED'),
+  );
+  static const always = AlloydbInstanceActivationPolicy._(
+    TfArgLiteral('ALWAYS'),
+  );
+  static const never = AlloydbInstanceActivationPolicy._(TfArgLiteral('NEVER'));
+
+  static const List<AlloydbInstanceActivationPolicy> values = [
+    activationPolicyUnspecified,
+    always,
+    never,
+  ];
+}
+
+/// Alloydb Instance Availability enum for `availability_type`.
+extension type const AlloydbInstanceAvailabilityType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbInstanceAvailabilityType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlloydbInstanceAvailabilityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbInstanceAvailabilityType.arg(TfArg<String> arg) : this._(arg);
+
+  static const availabilityTypeUnspecified = AlloydbInstanceAvailabilityType._(
+    TfArgLiteral('AVAILABILITY_TYPE_UNSPECIFIED'),
+  );
+  static const zonal = AlloydbInstanceAvailabilityType._(TfArgLiteral('ZONAL'));
+  static const regional = AlloydbInstanceAvailabilityType._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<AlloydbInstanceAvailabilityType> values = [
+    availabilityTypeUnspecified,
+    zonal,
+    regional,
+  ];
+}
+
 /// `instance_type` — primary, read pool, or secondary.
 extension type const AlloydbInstanceType._(TfArg<String> _)
     implements TfArg<String> {
@@ -302,9 +350,9 @@ final class GoogleAlloydbInstance extends Resource {
     AlloydbInstanceMachineConfig? machineConfig,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? activationPolicy,
+    AlloydbInstanceActivationPolicy? activationPolicy,
     TfArg<Map<String, String>>? annotations,
-    TfArg<String>? availabilityType,
+    AlloydbInstanceAvailabilityType? availabilityType,
     TfArg<Map<String, String>>? databaseFlags,
     TfArg<String>? gceZone,
     AlloydbInstanceClientConnectionConfig? clientConnectionConfig,

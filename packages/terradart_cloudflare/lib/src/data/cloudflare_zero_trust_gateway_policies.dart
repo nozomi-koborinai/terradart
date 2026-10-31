@@ -7,6 +7,57 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_policies`.
 const Set<String> _cloudflareZeroTrustGatewayPoliciesSensitive = <String>{};
 
+/// Data Zero Trust Gateway Policies enum for `direction`.
+extension type const DataZeroTrustGatewayPoliciesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustGatewayPoliciesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayPoliciesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayPoliciesDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataZeroTrustGatewayPoliciesDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustGatewayPoliciesDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustGatewayPoliciesDirection> values = [asc, desc];
+}
+
+/// Data Zero Trust Gateway Policies Order enum for `order_by`.
+extension type const DataZeroTrustGatewayPoliciesOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustGatewayPoliciesOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayPoliciesOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayPoliciesOrderBy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const name = DataZeroTrustGatewayPoliciesOrderBy._(
+    TfArgLiteral('name'),
+  );
+  static const createdAt = DataZeroTrustGatewayPoliciesOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustGatewayPoliciesOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+  static const precedence = DataZeroTrustGatewayPoliciesOrderBy._(
+    TfArgLiteral('precedence'),
+  );
+
+  static const List<DataZeroTrustGatewayPoliciesOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+    precedence,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_gateway_policies`.
 final class DataCloudflareZeroTrustGatewayPolicies extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_policies';
@@ -14,10 +65,10 @@ final class DataCloudflareZeroTrustGatewayPolicies extends Data {
   DataCloudflareZeroTrustGatewayPolicies(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataZeroTrustGatewayPoliciesDirection? direction,
     TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataZeroTrustGatewayPoliciesOrderBy? orderBy,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

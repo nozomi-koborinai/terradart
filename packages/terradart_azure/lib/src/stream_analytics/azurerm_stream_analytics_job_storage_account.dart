@@ -10,13 +10,38 @@ const Set<String> _azurermStreamAnalyticsJobStorageAccountSensitive = <String>{
   'storage_account_key',
 };
 
+/// Stream Analytics Job Storage Account Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsJobStorageAccountAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsJobStorageAccountAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsJobStorageAccountAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsJobStorageAccountAuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const msi = StreamAnalyticsJobStorageAccountAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsJobStorageAccountAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsJobStorageAccountAuthenticationMode> values =
+      [msi, connectionstring];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_job_storage_account`.
 final class AzurermStreamAnalyticsJobStorageAccount extends Resource {
   static const String tfType = 'azurerm_stream_analytics_job_storage_account';
 
   AzurermStreamAnalyticsJobStorageAccount(
     super.localName, {
-    required TfArg<String> authenticationMode,
+    required StreamAnalyticsJobStorageAccountAuthenticationMode
+    authenticationMode,
     Sensitive<String>? storageAccountKey,
     required RefTo<AzurermStorageAccount> storageAccountName,
     required TfArg<String> streamAnalyticsJobId,

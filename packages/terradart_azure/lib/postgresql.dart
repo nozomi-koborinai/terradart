@@ -14,14 +14,20 @@ export 'src/postgresql/azurerm_postgresql_flexible_server.dart'
         PostgresqlFlexibleServerAdministratorPasswordWo,
         PostgresqlFlexibleServerAuthentication,
         PostgresqlFlexibleServerCluster,
+        PostgresqlFlexibleServerCreateMode,
         PostgresqlFlexibleServerCustomerManagedKey,
         PostgresqlFlexibleServerHighAvailability,
         PostgresqlFlexibleServerIdentity,
         PostgresqlFlexibleServerMaintenanceWindow,
         PostgresqlFlexibleServerMode,
+        PostgresqlFlexibleServerReplicationRole,
+        PostgresqlFlexibleServerStorageTier,
+        PostgresqlFlexibleServerStorageType,
         PostgresqlFlexibleServerVersion;
 export 'src/postgresql/azurerm_postgresql_flexible_server_active_directory_administrator.dart'
-    show AzurermPostgresqlFlexibleServerActiveDirectoryAdministrator;
+    show
+        AzurermPostgresqlFlexibleServerActiveDirectoryAdministrator,
+        PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType;
 export 'src/postgresql/azurerm_postgresql_flexible_server_backup.dart'
     show AzurermPostgresqlFlexibleServerBackup;
 export 'src/postgresql/azurerm_postgresql_flexible_server_configuration.dart'
@@ -31,4 +37,6 @@ export 'src/postgresql/azurerm_postgresql_flexible_server_database.dart'
 export 'src/postgresql/azurerm_postgresql_flexible_server_firewall_rule.dart'
     show AzurermPostgresqlFlexibleServerFirewallRule;
 export 'src/postgresql/azurerm_postgresql_flexible_server_virtual_endpoint.dart'
-    show AzurermPostgresqlFlexibleServerVirtualEndpoint;
+    show
+        AzurermPostgresqlFlexibleServerVirtualEndpoint,
+        PostgresqlFlexibleServerVirtualEndpointType;

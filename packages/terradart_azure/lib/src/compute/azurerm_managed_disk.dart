@@ -10,6 +10,35 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_managed_disk`.
 const Set<String> _azurermManagedDiskSensitive = <String>{};
 
+/// Managed Disk Create enum for `create_option`.
+extension type const ManagedDiskCreateOption._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskCreateOption.variable(String name) : this._(TfArg.variable(name));
+  ManagedDiskCreateOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskCreateOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const copy = ManagedDiskCreateOption._(TfArgLiteral('Copy'));
+  static const empty = ManagedDiskCreateOption._(TfArgLiteral('Empty'));
+  static const fromimage = ManagedDiskCreateOption._(TfArgLiteral('FromImage'));
+  static const import = ManagedDiskCreateOption._(TfArgLiteral('Import'));
+  static const importsecure = ManagedDiskCreateOption._(
+    TfArgLiteral('ImportSecure'),
+  );
+  static const restore = ManagedDiskCreateOption._(TfArgLiteral('Restore'));
+  static const upload = ManagedDiskCreateOption._(TfArgLiteral('Upload'));
+
+  static const List<ManagedDiskCreateOption> values = [
+    copy,
+    empty,
+    fromimage,
+    import,
+    importsecure,
+    restore,
+    upload,
+  ];
+}
+
 /// Managed Disk Hyper V enum for `hyper_v_generation`.
 extension type const ManagedDiskHyperVGeneration._(TfArg<String> _)
     implements TfArg<String> {
@@ -63,6 +92,34 @@ extension type const ManagedDiskOsType._(TfArg<String> _)
   static const windows = ManagedDiskOsType._(TfArgLiteral('Windows'));
 
   static const List<ManagedDiskOsType> values = [linux, windows];
+}
+
+/// Managed Disk Security enum for `security_type`.
+extension type const ManagedDiskSecurityType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskSecurityType.variable(String name) : this._(TfArg.variable(name));
+  ManagedDiskSecurityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskSecurityType.arg(TfArg<String> arg) : this._(arg);
+
+  static const confidentialvmVmgueststateonlyencryptedwithplatformkey =
+      ManagedDiskSecurityType._(
+        TfArgLiteral('ConfidentialVM_VMGuestStateOnlyEncryptedWithPlatformKey'),
+      );
+  static const confidentialvmDiskencryptedwithplatformkey =
+      ManagedDiskSecurityType._(
+        TfArgLiteral('ConfidentialVM_DiskEncryptedWithPlatformKey'),
+      );
+  static const confidentialvmDiskencryptedwithcustomerkey =
+      ManagedDiskSecurityType._(
+        TfArgLiteral('ConfidentialVM_DiskEncryptedWithCustomerKey'),
+      );
+
+  static const List<ManagedDiskSecurityType> values = [
+    confidentialvmVmgueststateonlyencryptedwithplatformkey,
+    confidentialvmDiskencryptedwithplatformkey,
+    confidentialvmDiskencryptedwithcustomerkey,
+  ];
 }
 
 /// Managed Disk Storage Account enum for `storage_account_type`.
@@ -330,7 +387,7 @@ final class AzurermManagedDisk extends Resource {
 
   AzurermManagedDisk(
     super.localName, {
-    required TfArg<String> createOption,
+    required ManagedDiskCreateOption createOption,
     TfArg<String>? diskAccessId,
     ManagedDiskEncryption? encryption,
     TfArg<num>? diskIopsReadOnly,
@@ -352,7 +409,7 @@ final class AzurermManagedDisk extends Resource {
     TfArg<bool>? performancePlusEnabled,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? securityType,
+    ManagedDiskSecurityType? securityType,
     TfArg<String>? sourceResourceId,
     TfArg<String>? sourceUri,
     RefTo<AzurermStorageAccount>? storageAccountId,

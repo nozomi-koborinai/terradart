@@ -49,6 +49,33 @@ extension type const RecoveryServicesVaultSku._(TfArg<String> _)
   static const List<RecoveryServicesVaultSku> values = [rs0, standard];
 }
 
+/// Recovery Services Vault Storage Mode enum for `storage_mode_type`.
+extension type const RecoveryServicesVaultStorageModeType._(TfArg<String> _)
+    implements TfArg<String> {
+  RecoveryServicesVaultStorageModeType.variable(String name)
+    : this._(TfArg.variable(name));
+  RecoveryServicesVaultStorageModeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecoveryServicesVaultStorageModeType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const georedundant = RecoveryServicesVaultStorageModeType._(
+    TfArgLiteral('GeoRedundant'),
+  );
+  static const locallyredundant = RecoveryServicesVaultStorageModeType._(
+    TfArgLiteral('LocallyRedundant'),
+  );
+  static const zoneredundant = RecoveryServicesVaultStorageModeType._(
+    TfArgLiteral('ZoneRedundant'),
+  );
+
+  static const List<RecoveryServicesVaultStorageModeType> values = [
+    georedundant,
+    locallyredundant,
+    zoneredundant,
+  ];
+}
+
 /// Typed helper for the `encryption` block of
 /// `azurerm_recovery_services_vault` (derived from provider schema).
 @immutable
@@ -146,7 +173,7 @@ final class AzurermRecoveryServicesVault extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required RecoveryServicesVaultSku sku,
-    TfArg<String>? storageModeType,
+    RecoveryServicesVaultStorageModeType? storageModeType,
     TfArg<Map<String, String>>? tags,
     RecoveryServicesVaultEncryption? encryption,
     RecoveryServicesVaultIdentity? identity,

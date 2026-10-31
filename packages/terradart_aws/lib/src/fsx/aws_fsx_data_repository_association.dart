@@ -33,12 +33,10 @@ final class FsxDataRepositoryAssociationS3 {
 final class FsxDataRepositoryAssociationAutoExportPolicy {
   const FsxDataRepositoryAssociationAutoExportPolicy({this.events});
 
-  final List<FsxDataRepositoryAssociationEvents>? events;
+  final EnumList<FsxDataRepositoryAssociationEvents>? events;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (events != null) 'events': [for (final e in events!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'events': ?events?.toTfJson()};
 }
 
 /// `events` — derived from the provider schema description.
@@ -73,12 +71,10 @@ extension type const FsxDataRepositoryAssociationEvents._(TfArg<String> _)
 final class FsxDataRepositoryAssociationAutoImportPolicy {
   const FsxDataRepositoryAssociationAutoImportPolicy({this.events});
 
-  final List<FsxDataRepositoryAssociationEvents>? events;
+  final EnumList<FsxDataRepositoryAssociationEvents>? events;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (events != null) 'events': [for (final e in events!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'events': ?events?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_fsx_data_repository_association`.

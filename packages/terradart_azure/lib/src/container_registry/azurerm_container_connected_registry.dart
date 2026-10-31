@@ -82,7 +82,7 @@ final class ContainerConnectedRegistryNotification {
     this.tag,
   });
 
-  final TfArg<String> action;
+  final ContainerConnectedRegistryAction action;
 
   final TfArg<String>? digest;
 
@@ -97,6 +97,28 @@ final class ContainerConnectedRegistryNotification {
     'name': name.toTfJson(),
     'tag': ?tag?.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const ContainerConnectedRegistryAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerConnectedRegistryAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerConnectedRegistryAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerConnectedRegistryAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const push = ContainerConnectedRegistryAction._(TfArgLiteral('push'));
+  static const delete = ContainerConnectedRegistryAction._(
+    TfArgLiteral('delete'),
+  );
+  static const value = ContainerConnectedRegistryAction._(TfArgLiteral('*'));
+
+  static const List<ContainerConnectedRegistryAction> values = [
+    push,
+    delete,
+    value,
+  ];
 }
 
 /// Factory wrapper for `azurerm_container_connected_registry`.

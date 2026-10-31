@@ -22,6 +22,43 @@ const Set<String> _azurermHdinsightKafkaClusterSensitive = <String>{
   'storage_account.storage_account_key',
 };
 
+/// Hdinsight Kafka Cluster enum for `tier`.
+extension type const HdinsightKafkaClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightKafkaClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightKafkaClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightKafkaClusterTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = HdinsightKafkaClusterTier._(TfArgLiteral('Premium'));
+  static const standard = HdinsightKafkaClusterTier._(TfArgLiteral('Standard'));
+
+  static const List<HdinsightKafkaClusterTier> values = [premium, standard];
+}
+
+/// Hdinsight Kafka Cluster Tls Min enum for `tls_min_version`.
+extension type const HdinsightKafkaClusterTlsMinVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightKafkaClusterTlsMinVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightKafkaClusterTlsMinVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightKafkaClusterTlsMinVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p0 = HdinsightKafkaClusterTlsMinVersion._(TfArgLiteral('1.0'));
+  static const v1p1 = HdinsightKafkaClusterTlsMinVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = HdinsightKafkaClusterTlsMinVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = HdinsightKafkaClusterTlsMinVersion._(TfArgLiteral('1.3'));
+
+  static const List<HdinsightKafkaClusterTlsMinVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `component_version` block of
 /// `azurerm_hdinsight_kafka_cluster` (derived from provider schema).
 @immutable
@@ -65,7 +102,7 @@ final class HdinsightKafkaClusterDiskEncryption {
     this.keyVaultManagedIdentityId,
   });
 
-  final TfArg<String>? encryptionAlgorithm;
+  final HdinsightKafkaClusterEncryptionAlgorithm? encryptionAlgorithm;
 
   final TfArg<bool>? encryptionAtHostEnabled;
 
@@ -80,6 +117,33 @@ final class HdinsightKafkaClusterDiskEncryption {
     'key_vault_key_id': ?keyVaultKeyId?.toTfJson(),
     'key_vault_managed_identity_id': ?keyVaultManagedIdentityId?.toTfJson(),
   };
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+extension type const HdinsightKafkaClusterEncryptionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightKafkaClusterEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightKafkaClusterEncryptionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightKafkaClusterEncryptionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsaOaep = HdinsightKafkaClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 = HdinsightKafkaClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP-256'),
+  );
+  static const rsa15 = HdinsightKafkaClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+
+  static const List<HdinsightKafkaClusterEncryptionAlgorithm> values = [
+    rsaOaep,
+    rsaOaep256,
+    rsa15,
+  ];
 }
 
 /// Typed helper for the `extension` block of
@@ -255,7 +319,7 @@ final class HdinsightKafkaClusterNetwork {
     this.privateLinkEnabled,
   });
 
-  final TfArg<String>? connectionDirection;
+  final HdinsightKafkaClusterConnectionDirection? connectionDirection;
 
   final TfArg<bool>? privateLinkEnabled;
 
@@ -264,6 +328,29 @@ final class HdinsightKafkaClusterNetwork {
     'connection_direction': ?connectionDirection?.toTfJson(),
     'private_link_enabled': ?privateLinkEnabled?.toTfJson(),
   };
+}
+
+/// `connection_direction` — derived from the provider schema description.
+extension type const HdinsightKafkaClusterConnectionDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightKafkaClusterConnectionDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightKafkaClusterConnectionDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightKafkaClusterConnectionDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inbound = HdinsightKafkaClusterConnectionDirection._(
+    TfArgLiteral('Inbound'),
+  );
+  static const outbound = HdinsightKafkaClusterConnectionDirection._(
+    TfArgLiteral('Outbound'),
+  );
+
+  static const List<HdinsightKafkaClusterConnectionDirection> values = [
+    inbound,
+    outbound,
+  ];
 }
 
 /// Typed helper for the `private_link_configuration` block of
@@ -308,7 +395,8 @@ final class HdinsightKafkaClusterIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAllocationMethod;
+  final HdinsightKafkaClusterPrivateIpAllocationMethod?
+  privateIpAllocationMethod;
 
   final TfArg<String>? subnetId;
 
@@ -320,6 +408,30 @@ final class HdinsightKafkaClusterIpConfiguration {
     'private_ip_allocation_method': ?privateIpAllocationMethod?.toTfJson(),
     'subnet_id': ?subnetId?.toTfJson(),
   };
+}
+
+/// `private_ip_allocation_method` — derived from the provider schema description.
+extension type const HdinsightKafkaClusterPrivateIpAllocationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightKafkaClusterPrivateIpAllocationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightKafkaClusterPrivateIpAllocationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightKafkaClusterPrivateIpAllocationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dynamic = HdinsightKafkaClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('dynamic'),
+  );
+  static const static = HdinsightKafkaClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('static'),
+  );
+
+  static const List<HdinsightKafkaClusterPrivateIpAllocationMethod> values = [
+    dynamic,
+    static,
+  ];
 }
 
 /// Typed helper for the `rest_proxy` block of
@@ -671,8 +783,8 @@ final class AzurermHdinsightKafkaCluster extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
-    required TfArg<String> tlsMinVersion,
+    required HdinsightKafkaClusterTier tier,
+    required HdinsightKafkaClusterTlsMinVersion tlsMinVersion,
     required HdinsightKafkaClusterComponentVersion componentVersion,
     HdinsightKafkaClusterComputeIsolation? computeIsolation,
     List<HdinsightKafkaClusterDiskEncryption>? diskEncryption,

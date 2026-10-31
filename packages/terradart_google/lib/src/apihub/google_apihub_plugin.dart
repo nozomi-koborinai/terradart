@@ -9,6 +9,22 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_apihub_plugin`.
 const Set<String> _googleApihubPluginSensitive = <String>{};
 
+/// Apihub Plugin enum for `plugin_category`.
+extension type const ApihubPluginCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginCategory.variable(String name) : this._(TfArg.variable(name));
+  ApihubPluginCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginCategory.arg(TfArg<String> arg) : this._(arg);
+
+  static const apiGateway = ApihubPluginCategory._(TfArgLiteral('API_GATEWAY'));
+  static const apiProducer = ApihubPluginCategory._(
+    TfArgLiteral('API_PRODUCER'),
+  );
+
+  static const List<ApihubPluginCategory> values = [apiGateway, apiProducer];
+}
+
 /// Typed helper for the `actions_config` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
@@ -26,7 +42,7 @@ final class ApihubPluginActionsConfig {
 
   final TfArg<String> id;
 
-  final TfArg<String> triggerMode;
+  final ApihubPluginTriggerMode triggerMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -35,6 +51,31 @@ final class ApihubPluginActionsConfig {
     'id': id.toTfJson(),
     'trigger_mode': triggerMode.toTfJson(),
   };
+}
+
+/// `trigger_mode` — derived from the provider schema description.
+extension type const ApihubPluginTriggerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginTriggerMode.variable(String name) : this._(TfArg.variable(name));
+  ApihubPluginTriggerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginTriggerMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const apiHubOnDemandTrigger = ApihubPluginTriggerMode._(
+    TfArgLiteral('API_HUB_ON_DEMAND_TRIGGER'),
+  );
+  static const apiHubScheduleTrigger = ApihubPluginTriggerMode._(
+    TfArgLiteral('API_HUB_SCHEDULE_TRIGGER'),
+  );
+  static const nonApiHubManaged = ApihubPluginTriggerMode._(
+    TfArgLiteral('NON_API_HUB_MANAGED'),
+  );
+
+  static const List<ApihubPluginTriggerMode> values = [
+    apiHubOnDemandTrigger,
+    apiHubScheduleTrigger,
+    nonApiHubManaged,
+  ];
 }
 
 /// Typed helper for the `config_template` block of
@@ -82,7 +123,7 @@ final class ApihubPluginAdditionalConfigTemplate {
 
   final TfArg<String>? validationRegex;
 
-  final TfArg<String> valueType;
+  final ApihubPluginValueType valueType;
 
   final List<ApihubPluginEnumOptions>? enumOptions;
 
@@ -100,6 +141,39 @@ final class ApihubPluginAdditionalConfigTemplate {
     if (multiSelectOptions != null)
       'multi_select_options': [for (final e in multiSelectOptions!) e.encode()],
   };
+}
+
+/// `value_type` — derived from the provider schema description.
+extension type const ApihubPluginValueType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginValueType.variable(String name) : this._(TfArg.variable(name));
+  ApihubPluginValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginValueType.arg(TfArg<String> arg) : this._(arg);
+
+  static const string = ApihubPluginValueType._(TfArgLiteral('STRING'));
+  static const int = ApihubPluginValueType._(TfArgLiteral('INT'));
+  static const bool = ApihubPluginValueType._(TfArgLiteral('BOOL'));
+  static const secret = ApihubPluginValueType._(TfArgLiteral('SECRET'));
+  static const enumCase = ApihubPluginValueType._(TfArgLiteral('ENUM'));
+  static const multiSelect = ApihubPluginValueType._(
+    TfArgLiteral('MULTI_SELECT'),
+  );
+  static const multiString = ApihubPluginValueType._(
+    TfArgLiteral('MULTI_STRING'),
+  );
+  static const multiInt = ApihubPluginValueType._(TfArgLiteral('MULTI_INT'));
+
+  static const List<ApihubPluginValueType> values = [
+    string,
+    int,
+    bool,
+    secret,
+    enumCase,
+    multiSelect,
+    multiString,
+    multiInt,
+  ];
 }
 
 /// Typed helper for the `config_template.additional_config_template.enum_options` block of
@@ -159,7 +233,7 @@ final class ApihubPluginAuthConfigTemplate {
     this.serviceAccount,
   });
 
-  final TfArg<List<String>> supportedAuthTypes;
+  final EnumList<ApihubPluginSupportedAuthTypes> supportedAuthTypes;
 
   final ApihubPluginServiceAccount? serviceAccount;
 
@@ -168,6 +242,40 @@ final class ApihubPluginAuthConfigTemplate {
     'supported_auth_types': supportedAuthTypes.toTfJson(),
     'service_account': ?serviceAccount?.encode(),
   };
+}
+
+/// `supported_auth_types` — derived from the provider schema description.
+extension type const ApihubPluginSupportedAuthTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginSupportedAuthTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubPluginSupportedAuthTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginSupportedAuthTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const noAuth = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('NO_AUTH'),
+  );
+  static const googleServiceAccount = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('GOOGLE_SERVICE_ACCOUNT'),
+  );
+  static const userPassword = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('USER_PASSWORD'),
+  );
+  static const apiKey = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('API_KEY'),
+  );
+  static const oauth2ClientCredentials = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+  );
+
+  static const List<ApihubPluginSupportedAuthTypes> values = [
+    noAuth,
+    googleServiceAccount,
+    userPassword,
+    apiKey,
+    oauth2ClientCredentials,
+  ];
 }
 
 /// Typed helper for the `config_template.auth_config_template.service_account` block of
@@ -231,7 +339,7 @@ final class GoogleApihubPlugin extends Resource {
     required TfArg<String> pluginId,
     required TfArg<String> displayName,
     TfArg<String>? description,
-    TfArg<String>? pluginCategory,
+    ApihubPluginCategory? pluginCategory,
     List<ApihubPluginActionsConfig>? actionsConfig,
     ApihubPluginConfigTemplate? configTemplate,
     ApihubPluginDocumentation? documentation,

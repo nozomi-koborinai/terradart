@@ -196,7 +196,7 @@ final class SpringCloudServiceSshAuth {
 
   final Sensitive<String>? hostKey;
 
-  final TfArg<String>? hostKeyAlgorithm;
+  final SpringCloudServiceHostKeyAlgorithm? hostKeyAlgorithm;
 
   final Sensitive<String> privateKey;
 
@@ -210,6 +210,40 @@ final class SpringCloudServiceSshAuth {
     'strict_host_key_checking_enabled': ?strictHostKeyCheckingEnabled
         ?.toTfJson(),
   };
+}
+
+/// `host_key_algorithm` — derived from the provider schema description.
+extension type const SpringCloudServiceHostKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudServiceHostKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudServiceHostKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudServiceHostKeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
+
+  static const sshDss = SpringCloudServiceHostKeyAlgorithm._(
+    TfArgLiteral('ssh-dss'),
+  );
+  static const sshRsa = SpringCloudServiceHostKeyAlgorithm._(
+    TfArgLiteral('ssh-rsa'),
+  );
+  static const ecdsaSha2Nistp256 = SpringCloudServiceHostKeyAlgorithm._(
+    TfArgLiteral('ecdsa-sha2-nistp256'),
+  );
+  static const ecdsaSha2Nistp384 = SpringCloudServiceHostKeyAlgorithm._(
+    TfArgLiteral('ecdsa-sha2-nistp384'),
+  );
+  static const ecdsaSha2Nistp521 = SpringCloudServiceHostKeyAlgorithm._(
+    TfArgLiteral('ecdsa-sha2-nistp521'),
+  );
+
+  static const List<SpringCloudServiceHostKeyAlgorithm> values = [
+    sshDss,
+    sshRsa,
+    ecdsaSha2Nistp256,
+    ecdsaSha2Nistp384,
+    ecdsaSha2Nistp521,
+  ];
 }
 
 /// Typed helper for the `container_registry` block of

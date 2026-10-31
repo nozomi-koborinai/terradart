@@ -1,0 +1,57 @@
+{
+  "name": "pubsublite",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://pubsublite.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "DeliveryConfig": {
+      "properties": {
+        "deliveryRequirement": {
+          "enum": [
+            "DELIVERY_REQUIREMENT_UNSPECIFIED",
+            "DELIVER_IMMEDIATELY",
+            "DELIVER_AFTER_STORED"
+          ]
+        }
+      }
+    },
+    "ExportConfig": {
+      "properties": {
+        "currentState": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED",
+            "PERMISSION_DENIED",
+            "NOT_FOUND"
+          ]
+        },
+        "desiredState": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED",
+            "PERMISSION_DENIED",
+            "NOT_FOUND"
+          ]
+        }
+      }
+    },
+    "Reservation": {
+      "properties": {}
+    },
+    "Subscription": {
+      "properties": {
+        "deliveryConfig": {
+          "$ref": "DeliveryConfig"
+        },
+        "exportConfig": {
+          "$ref": "ExportConfig"
+        }
+      }
+    },
+    "Topic": {
+      "properties": {}
+    }
+  }
+}

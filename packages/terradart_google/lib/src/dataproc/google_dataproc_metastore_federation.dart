@@ -54,15 +54,11 @@ extension type const DataprocMetastoreFederationBackendType._(TfArg<String> _)
   static const bigquery = DataprocMetastoreFederationBackendType._(
     TfArgLiteral('BIGQUERY'),
   );
-  static const dataplex = DataprocMetastoreFederationBackendType._(
-    TfArgLiteral('DATAPLEX'),
-  );
 
   static const List<DataprocMetastoreFederationBackendType> values = [
     unspecified,
     dataprocMetastore,
     bigquery,
-    dataplex,
   ];
 }
 

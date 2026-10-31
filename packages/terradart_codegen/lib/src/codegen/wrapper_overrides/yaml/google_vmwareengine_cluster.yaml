@@ -1,5 +1,4 @@
 outputDir: vmwareengine
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

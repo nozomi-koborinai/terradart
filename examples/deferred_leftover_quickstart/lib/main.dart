@@ -91,7 +91,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleAssuredWorkloadsWorkload(
         'assuredworkloadsworkload',
-        complianceRegime: .complianceRegimeUnspecified,
+        complianceRegime: .fedrampModerate,
         deletionPolicy: .literal('DELETE'),
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),
@@ -213,7 +213,7 @@ final class DeferredLeftoverStack extends Stack {
         parent: .literal('organizations/123456789'),
         cloudControlMetadata: [
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
-            enforcementMode: .literal('terradart-leftover'),
+            enforcementMode: .detective,
             cloudControlDetails: .new(
               majorRevisionId: .literal('terradart-leftover'),
               name: .literal('terradart-leftover'),
@@ -253,7 +253,7 @@ final class DeferredLeftoverStack extends Stack {
         domainName: .literal('example-leftover.test'),
         location: .literal('us-central1'),
         contactSettings: ClouddomainsRegistrationContactSettings(
-          privacy: .literal('REDACTED_CONTACT_DATA'),
+          privacy: .redactedContactData,
           adminContact: .new(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
@@ -492,9 +492,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         folderId: .literal('folders/123456789'),
         enrolledServices: [
-          FolderAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
-          ),
+          FolderAccessApprovalSettingsEnrolledServices(cloudProduct: .all),
         ],
       ),
     );
@@ -505,9 +503,7 @@ final class DeferredLeftoverStack extends Stack {
         folder: .literal('folders/123456789'),
         service: .literal('allServices'),
         auditLogConfig: [
-          FolderIamAuditConfigAuditLogConfig(
-            logType: .literal('terradart-leftover'),
-          ),
+          FolderIamAuditConfigAuditLogConfig(logType: .adminRead),
         ],
       ),
     );
@@ -647,7 +643,7 @@ final class DeferredLeftoverStack extends Stack {
         clientId: .literal('terradart-leftover'),
         clientSecret: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        idpId: .literal('google.com'),
+        idpId: .googleCom,
       ),
     );
 
@@ -672,7 +668,7 @@ final class DeferredLeftoverStack extends Stack {
         clientId: .literal('terradart-leftover'),
         clientSecret: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        idpId: .literal('google.com'),
+        idpId: .googleCom,
         tenant: .literal('terradart-leftover'),
       ),
     );
@@ -813,7 +809,7 @@ final class DeferredLeftoverStack extends Stack {
         actionType: .allow,
         condition: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        methodTypes: .literal(['terradart-leftover']),
+        methodTypes: .literal([.create]),
         name: .literal('terradart-leftover'),
         parent: .literal('organizations/123456789'),
         resourceTypes: .literal(['terradart-leftover']),
@@ -836,7 +832,7 @@ final class DeferredLeftoverStack extends Stack {
         organizationId: .literal('terradart-leftover'),
         enrolledServices: [
           OrganizationAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
+            cloudProduct: .all,
           ),
         ],
       ),
@@ -848,9 +844,7 @@ final class DeferredLeftoverStack extends Stack {
         orgId: .literal('organizations/123456789'),
         service: .literal('allServices'),
         auditLogConfig: [
-          OrganizationIamAuditConfigAuditLogConfig(
-            logType: .literal('terradart-leftover'),
-          ),
+          OrganizationIamAuditConfigAuditLogConfig(logType: .adminRead),
         ],
       ),
     );
@@ -878,7 +872,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestratorForFolder(
         'orchestratorforfolder',
-        action: .literal('DEPRIVILEGE'),
+        action: .upsert,
         deletionPolicy: .literal('DELETE'),
         folderId: .literal('folders/123456789'),
         policyOrchestratorId: .literal('terradart-leftover'),
@@ -890,7 +884,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestratorForOrganization(
         'orchestratorfororganization',
-        action: .literal('DEPRIVILEGE'),
+        action: .upsert,
         deletionPolicy: .literal('DELETE'),
         organizationId: .literal('terradart-leftover'),
         policyOrchestratorId: .literal('terradart-leftover'),
@@ -905,9 +899,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         projectId: .literal(projectId),
         enrolledServices: [
-          ProjectAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
-          ),
+          ProjectAccessApprovalSettingsEnrolledServices(cloudProduct: .all),
         ],
       ),
     );
@@ -915,7 +907,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectDefaultServiceAccounts(
         'projectdefaultserviceaccount',
-        action: .literal('DEPRIVILEGE'),
+        action: .deprivilege,
         project: .literal(projectId),
       ),
     );
@@ -1289,7 +1281,7 @@ final class DeferredLeftoverStack extends Stack {
         'network_monitoring_provider',
         location: .literal('global'),
         networkMonitoringProviderId: .literal('terradart-leftover'),
-        providerType: .literal('EXTERNAL'),
+        providerType: .external,
       ),
     );
 
@@ -1299,7 +1291,7 @@ final class DeferredLeftoverStack extends Stack {
         agentConnectivityTemplateId: .literal('terradart-leftover'),
         location: .literal('us-central1'),
         accessPath: .agentToAnywhere,
-        accessTypes: .literal(['PRIVATE']),
+        accessTypes: .literal([.private]),
         egressNetworkConfig:
             NetworkServicesAgentConnectivityTemplateEgressNetworkConfig(
               networkAttachment: .literal(

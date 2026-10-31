@@ -86,3 +86,7 @@ argMapOrder:
   - extra_attributes_oauth2_client
   - detailed_audit_logging
   - scim_usage
+
+typeNames:
+  extra_attributes_oauth2_client.attributes_type: IamWorkforcePoolProviderAttributesType
+  extended_attributes_oauth2_client.attributes_type: IamWorkforcePoolProviderExtendedAttributesType

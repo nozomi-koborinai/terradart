@@ -278,8 +278,8 @@ final class Wafv2WebAclRuleCount {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleRuleLabel {
-  const Wafv2WebAclRuleRuleLabel({required this.name});
+final class Wafv2WebAclRuleNamed {
+  const Wafv2WebAclRuleNamed({required this.name});
 
   final TfArg<String> name;
 
@@ -875,9 +875,9 @@ final class Wafv2WebAclRuleFieldToMatch {
 
   final List<Wafv2WebAclRuleCount>? queryString;
 
-  final List<Wafv2WebAclRuleRuleLabel>? singleHeader;
+  final List<Wafv2WebAclRuleNamed>? singleHeader;
 
-  final List<Wafv2WebAclRuleRuleLabel>? singleQueryArgument;
+  final List<Wafv2WebAclRuleNamed>? singleQueryArgument;
 
   final List<Wafv2WebAclRuleUriFragment>? uriFragment;
 
@@ -1226,13 +1226,27 @@ final class Wafv2WebAclRuleLabelMatchStatement {
 
   final TfArg<String> key;
 
-  final TfArg<String> scope;
+  final Wafv2WebAclRuleScope scope;
 
   @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'scope': scope.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+extension type const Wafv2WebAclRuleScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclRuleScope.variable(String name) : this._(TfArg.variable(name));
+  Wafv2WebAclRuleScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclRuleScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const label = Wafv2WebAclRuleScope._(TfArgLiteral('LABEL'));
+  static const namespace = Wafv2WebAclRuleScope._(TfArgLiteral('NAMESPACE'));
+
+  static const List<Wafv2WebAclRuleScope> values = [label, namespace];
 }
 
 /// Typed helper for the `statement.managed_rule_group_statement` block of
@@ -1922,7 +1936,7 @@ final class Wafv2WebAclRuleSqliMatchStatement {
     this.textTransformation,
   });
 
-  final TfArg<String>? sensitivityLevel;
+  final Wafv2WebAclRuleSensitivityLevel? sensitivityLevel;
 
   final List<Wafv2WebAclRuleFieldToMatch>? fieldToMatch;
 
@@ -1936,6 +1950,21 @@ final class Wafv2WebAclRuleSqliMatchStatement {
     if (textTransformation != null)
       'text_transformation': [for (final e in textTransformation!) e.encode()],
   };
+}
+
+/// `sensitivity_level` — derived from the provider schema description.
+extension type const Wafv2WebAclRuleSensitivityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclRuleSensitivityLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclRuleSensitivityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclRuleSensitivityLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const high = Wafv2WebAclRuleSensitivityLevel._(TfArgLiteral('HIGH'));
+  static const low = Wafv2WebAclRuleSensitivityLevel._(TfArgLiteral('LOW'));
+
+  static const List<Wafv2WebAclRuleSensitivityLevel> values = [high, low];
 }
 
 /// Typed helper for the `statement.xss_match_statement` block of
@@ -1975,7 +2004,7 @@ final class Wafv2WebAclRuleRateBasedStatement {
     this.scopeDownStatement,
   });
 
-  final TfArg<String> aggregateKeyType;
+  final Wafv2WebAclRuleAggregateKeyType aggregateKeyType;
 
   final TfArg<num>? evaluationWindowSec;
 
@@ -1999,6 +2028,34 @@ final class Wafv2WebAclRuleRateBasedStatement {
     if (scopeDownStatement != null)
       'scope_down_statement': [for (final e in scopeDownStatement!) e.encode()],
   };
+}
+
+/// `aggregate_key_type` — derived from the provider schema description.
+extension type const Wafv2WebAclRuleAggregateKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclRuleAggregateKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclRuleAggregateKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclRuleAggregateKeyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ip = Wafv2WebAclRuleAggregateKeyType._(TfArgLiteral('IP'));
+  static const forwardedIp = Wafv2WebAclRuleAggregateKeyType._(
+    TfArgLiteral('FORWARDED_IP'),
+  );
+  static const customKeys = Wafv2WebAclRuleAggregateKeyType._(
+    TfArgLiteral('CUSTOM_KEYS'),
+  );
+  static const constant = Wafv2WebAclRuleAggregateKeyType._(
+    TfArgLiteral('CONSTANT'),
+  );
+
+  static const List<Wafv2WebAclRuleAggregateKeyType> values = [
+    ip,
+    forwardedIp,
+    customKeys,
+    constant,
+  ];
 }
 
 /// Typed helper for the `statement.rate_based_statement.custom_keys` block of
@@ -2130,7 +2187,7 @@ final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
 
   final TfArg<String> arn;
 
-  final List<Wafv2WebAclRuleRuleLabel>? excludedRule;
+  final List<Wafv2WebAclRuleNamed>? excludedRule;
 
   final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
   ruleActionOverride;
@@ -2182,7 +2239,7 @@ final class AwsWafv2WebAclRule extends Resource {
     Wafv2WebAclRuleBehavior? behavior,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
-    List<Wafv2WebAclRuleRuleLabel>? ruleLabel,
+    List<Wafv2WebAclRuleNamed>? ruleLabel,
     List<Wafv2WebAclRuleStatement>? statement,
     List<Wafv2WebAclRuleVisibilityConfig>? visibilityConfig,
     super.lifecycle,

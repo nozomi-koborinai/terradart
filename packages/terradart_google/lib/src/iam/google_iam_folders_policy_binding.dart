@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_folders_policy_binding`.
 const Set<String> _googleIamFoldersPolicyBindingSensitive = <String>{};
 
+/// Iam Folders Policy Binding Policy enum for `policy_kind`.
+extension type const IamFoldersPolicyBindingPolicyKind._(TfArg<String> _)
+    implements TfArg<String> {
+  IamFoldersPolicyBindingPolicyKind.variable(String name)
+    : this._(TfArg.variable(name));
+  IamFoldersPolicyBindingPolicyKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamFoldersPolicyBindingPolicyKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const principalAccessBoundary = IamFoldersPolicyBindingPolicyKind._(
+    TfArgLiteral('PRINCIPAL_ACCESS_BOUNDARY'),
+  );
+  static const access = IamFoldersPolicyBindingPolicyKind._(
+    TfArgLiteral('ACCESS'),
+  );
+
+  static const List<IamFoldersPolicyBindingPolicyKind> values = [
+    principalAccessBoundary,
+    access,
+  ];
+}
+
 /// Typed helper for the `condition` block of
 /// `google_iam_folders_policy_binding` (derived from provider schema).
 @immutable
@@ -114,7 +136,7 @@ final class GoogleIamFoldersPolicyBinding extends Resource {
     required TfArg<String> location,
     required TfArg<String> policy,
     required TfArg<String> policyBindingId,
-    TfArg<String>? policyKind,
+    IamFoldersPolicyBindingPolicyKind? policyKind,
     IamFoldersPolicyBindingCondition? condition,
     required IamFoldersPolicyBindingTarget target,
     super.lifecycle,

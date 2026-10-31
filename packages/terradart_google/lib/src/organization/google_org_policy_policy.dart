@@ -45,7 +45,7 @@ final class OrgPolicyPolicyRules {
     this.values,
   });
 
-  final TfArg<String>? allowAll;
+  final OrgPolicyPolicyAllowAll? allowAll;
 
   final TfArg<String>? denyAll;
 
@@ -66,6 +66,20 @@ final class OrgPolicyPolicyRules {
     'condition': ?condition?.encode(),
     'values': ?values?.encode(),
   };
+}
+
+/// `allow_all` — derived from the provider schema description.
+extension type const OrgPolicyPolicyAllowAll._(TfArg<String> _)
+    implements TfArg<String> {
+  OrgPolicyPolicyAllowAll.variable(String name) : this._(TfArg.variable(name));
+  OrgPolicyPolicyAllowAll.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrgPolicyPolicyAllowAll.arg(TfArg<String> arg) : this._(arg);
+
+  static const trueCase = OrgPolicyPolicyAllowAll._(TfArgLiteral('TRUE'));
+  static const falseCase = OrgPolicyPolicyAllowAll._(TfArgLiteral('FALSE'));
+
+  static const List<OrgPolicyPolicyAllowAll> values = [trueCase, falseCase];
 }
 
 /// Typed helper for the `dry_run_spec.rules.condition` block of

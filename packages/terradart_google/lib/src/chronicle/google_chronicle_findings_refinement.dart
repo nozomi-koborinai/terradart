@@ -7,6 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_findings_refinement`.
 const Set<String> _googleChronicleFindingsRefinementSensitive = <String>{};
 
+/// Chronicle Findings Refinement enum for `type`.
+extension type const ChronicleFindingsRefinementType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFindingsRefinementType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFindingsRefinementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFindingsRefinementType.arg(TfArg<String> arg) : this._(arg);
+
+  static const detectionExclusion = ChronicleFindingsRefinementType._(
+    TfArgLiteral('DETECTION_EXCLUSION'),
+  );
+
+  static const List<ChronicleFindingsRefinementType> values = [
+    detectionExclusion,
+  ];
+}
+
 /// Typed helper for the `outcome_filters` block of
 /// `google_chronicle_findings_refinement` (derived from provider schema).
 @immutable
@@ -17,7 +35,7 @@ final class ChronicleFindingsRefinementOutcomeFilters {
     required this.outcomeVariable,
   });
 
-  final TfArg<String> outcomeFilterOperator;
+  final ChronicleFindingsRefinementOutcomeFilterOperator outcomeFilterOperator;
 
   final TfArg<String> outcomeValue;
 
@@ -29,6 +47,39 @@ final class ChronicleFindingsRefinementOutcomeFilters {
     'outcome_value': outcomeValue.toTfJson(),
     'outcome_variable': outcomeVariable.toTfJson(),
   };
+}
+
+/// `outcome_filter_operator` — derived from the provider schema description.
+extension type const ChronicleFindingsRefinementOutcomeFilterOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFindingsRefinementOutcomeFilterOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFindingsRefinementOutcomeFilterOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFindingsRefinementOutcomeFilterOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equal = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('EQUAL'),
+  );
+  static const contains = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const matchesRegex =
+      ChronicleFindingsRefinementOutcomeFilterOperator._(
+        TfArgLiteral('MATCHES_REGEX'),
+      );
+  static const matchesCidr = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('MATCHES_CIDR'),
+  );
+
+  static const List<ChronicleFindingsRefinementOutcomeFilterOperator> values = [
+    equal,
+    contains,
+    matchesRegex,
+    matchesCidr,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_findings_refinement`.
@@ -55,7 +106,7 @@ final class GoogleChronicleFindingsRefinement extends Resource {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
-    TfArg<String>? type,
+    ChronicleFindingsRefinementType? type,
     TfArg<String>? displayName,
     TfArg<String>? query,
     List<ChronicleFindingsRefinementOutcomeFilters>? outcomeFilters,

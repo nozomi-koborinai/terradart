@@ -10,6 +10,28 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleOsConfigV2PolicyOrchestratorForOrganizationSensitive =
     <String>{};
 
+/// Os Config V2 Policy Orchestrator For Organization enum for `action`.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const upsert = OsConfigV2PolicyOrchestratorForOrganizationAction._(
+    TfArgLiteral('UPSERT'),
+  );
+  static const delete = OsConfigV2PolicyOrchestratorForOrganizationAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationAction> values =
+      [upsert, delete];
+}
+
 /// Typed helper for the `orchestrated_resource` block of
 /// `google_os_config_v2_policy_orchestrator_for_organization` (derived from provider schema).
 @immutable
@@ -168,7 +190,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOsPolicies {
 
   final TfArg<String> id;
 
-  final TfArg<String> mode;
+  final OsConfigV2PolicyOrchestratorForOrganizationMode mode;
 
   final List<OsConfigV2PolicyOrchestratorForOrganizationResourceGroups>
   resourceGroups;
@@ -181,6 +203,30 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOsPolicies {
     'mode': mode.toTfJson(),
     'resource_groups': [for (final e in resourceGroups) e.encode()],
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const validation = OsConfigV2PolicyOrchestratorForOrganizationMode._(
+    TfArgLiteral('VALIDATION'),
+  );
+  static const enforcement = OsConfigV2PolicyOrchestratorForOrganizationMode._(
+    TfArgLiteral('ENFORCEMENT'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationMode> values = [
+    validation,
+    enforcement,
+  ];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups` block of
@@ -291,7 +337,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationEnforce {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<String> interpreter;
+  final OsConfigV2PolicyOrchestratorForOrganizationInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -307,6 +353,34 @@ final class OsConfigV2PolicyOrchestratorForOrganizationEnforce {
     'script': ?script?.toTfJson(),
     'file': ?file?.encode(),
   };
+}
+
+/// `interpreter` — derived from the provider schema description.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationInterpreter.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationInterpreter.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationInterpreter.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none = OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
+    TfArgLiteral('NONE'),
+  );
+  static const shell = OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
+    TfArgLiteral('SHELL'),
+  );
+  static const powershell =
+      OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
+        TfArgLiteral('POWERSHELL'),
+      );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationInterpreter>
+  values = [none, shell, powershell];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file` block of
@@ -398,7 +472,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationValidate {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<String> interpreter;
+  final OsConfigV2PolicyOrchestratorForOrganizationInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -434,7 +508,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationFile {
 
   final TfArg<String>? permissions;
 
-  final TfArg<String> state;
+  final OsConfigV2PolicyOrchestratorForOrganizationFileState state;
 
   final OsConfigV2PolicyOrchestratorForOrganizationFileFile? file;
 
@@ -446,6 +520,34 @@ final class OsConfigV2PolicyOrchestratorForOrganizationFile {
     'state': state.toTfJson(),
     'file': ?file?.encode(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationFileState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationFileState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationFileState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationFileState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const present = OsConfigV2PolicyOrchestratorForOrganizationFileState._(
+    TfArgLiteral('PRESENT'),
+  );
+  static const absent = OsConfigV2PolicyOrchestratorForOrganizationFileState._(
+    TfArgLiteral('ABSENT'),
+  );
+  static const contentsMatch =
+      OsConfigV2PolicyOrchestratorForOrganizationFileState._(
+        TfArgLiteral('CONTENTS_MATCH'),
+      );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationFileState>
+  values = [present, absent, contentsMatch];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg` block of
@@ -463,7 +565,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkg {
     this.zypper,
   });
 
-  final TfArg<String> desiredState;
+  final OsConfigV2PolicyOrchestratorForOrganizationDesiredState desiredState;
 
   final OsConfigV2PolicyOrchestratorForOrganizationPkgApt? apt;
 
@@ -490,6 +592,32 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkg {
     'yum': ?yum?.encode(),
     'zypper': ?zypper?.encode(),
   };
+}
+
+/// `desired_state` — derived from the provider schema description.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationDesiredState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationDesiredState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const installed =
+      OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
+        TfArgLiteral('INSTALLED'),
+      );
+  static const removed =
+      OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
+        TfArgLiteral('REMOVED'),
+      );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationDesiredState>
+  values = [installed, removed];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.apt` block of
@@ -671,7 +799,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryApt {
     required this.uri,
   });
 
-  final TfArg<String> archiveType;
+  final OsConfigV2PolicyOrchestratorForOrganizationArchiveType archiveType;
 
   final TfArg<List<String>> components;
 
@@ -689,6 +817,31 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryApt {
     'gpg_key': ?gpgKey?.toTfJson(),
     'uri': uri.toTfJson(),
   };
+}
+
+/// `archive_type` — derived from the provider schema description.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationArchiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationArchiveType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationArchiveType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const deb = OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
+    TfArgLiteral('DEB'),
+  );
+  static const debSrc =
+      OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
+        TfArgLiteral('DEB_SRC'),
+      );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationArchiveType>
+  values = [deb, debSrc];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.goo` block of
@@ -901,7 +1054,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
 
   GoogleOsConfigV2PolicyOrchestratorForOrganization(
     super.localName, {
-    required TfArg<String> action,
+    required OsConfigV2PolicyOrchestratorForOrganizationAction action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

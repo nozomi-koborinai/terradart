@@ -79,7 +79,7 @@ final class BigtableInstanceCluster {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<String>? nodeScalingFactor;
+  final BigtableInstanceNodeScalingFactor? nodeScalingFactor;
 
   final TfArg<num>? numNodes;
 
@@ -99,6 +99,28 @@ final class BigtableInstanceCluster {
     'zone': ?zone?.toTfJson(),
     'autoscaling_config': ?autoscalingConfig?.encode(),
   };
+}
+
+/// `node_scaling_factor` — derived from the provider schema description.
+extension type const BigtableInstanceNodeScalingFactor._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableInstanceNodeScalingFactor.variable(String name)
+    : this._(TfArg.variable(name));
+  BigtableInstanceNodeScalingFactor.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableInstanceNodeScalingFactor.arg(TfArg<String> arg) : this._(arg);
+
+  static const nodescalingfactor1x = BigtableInstanceNodeScalingFactor._(
+    TfArgLiteral('NodeScalingFactor1X'),
+  );
+  static const nodescalingfactor2x = BigtableInstanceNodeScalingFactor._(
+    TfArgLiteral('NodeScalingFactor2X'),
+  );
+
+  static const List<BigtableInstanceNodeScalingFactor> values = [
+    nodescalingfactor1x,
+    nodescalingfactor2x,
+  ];
 }
 
 /// Typed helper for the `cluster.autoscaling_config` block of

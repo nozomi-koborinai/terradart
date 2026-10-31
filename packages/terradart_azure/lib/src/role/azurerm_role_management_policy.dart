@@ -475,8 +475,7 @@ final class RoleManagementPolicyActiveAssignments {
     this.assigneeNotifications,
   });
 
-  final RoleManagementPolicyActiveAssignmentsAdminNotifications?
-  adminNotifications;
+  final RoleManagementPolicyAdminNotifications? adminNotifications;
 
   final RoleManagementPolicyApproverNotifications? approverNotifications;
 
@@ -492,9 +491,10 @@ final class RoleManagementPolicyActiveAssignments {
 
 /// Typed helper for the `notification_rules.active_assignments.admin_notifications` block of
 /// `azurerm_role_management_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class RoleManagementPolicyActiveAssignmentsAdminNotifications {
-  const RoleManagementPolicyActiveAssignmentsAdminNotifications({
+final class RoleManagementPolicyAdminNotifications {
+  const RoleManagementPolicyAdminNotifications({
     this.additionalRecipients,
     required this.defaultRecipients,
     required this.notificationLevel,
@@ -552,7 +552,7 @@ final class RoleManagementPolicyApproverNotifications {
 
   final TfArg<bool> defaultRecipients;
 
-  final TfArg<String> notificationLevel;
+  final RoleManagementPolicyNotificationLevel notificationLevel;
 
   @internal
   Map<String, Object?> encode() => {
@@ -577,7 +577,7 @@ final class RoleManagementPolicyAssigneeNotifications {
 
   final TfArg<bool> defaultRecipients;
 
-  final TfArg<String> notificationLevel;
+  final RoleManagementPolicyNotificationLevel notificationLevel;
 
   @internal
   Map<String, Object?> encode() => {
@@ -597,8 +597,7 @@ final class RoleManagementPolicyEligibleActivations {
     this.assigneeNotifications,
   });
 
-  final RoleManagementPolicyEligibleActivationsAdminNotifications?
-  adminNotifications;
+  final RoleManagementPolicyAdminNotifications? adminNotifications;
 
   final RoleManagementPolicyApproverNotifications? approverNotifications;
 
@@ -612,31 +611,6 @@ final class RoleManagementPolicyEligibleActivations {
   };
 }
 
-/// Typed helper for the `notification_rules.eligible_activations.admin_notifications` block of
-/// `azurerm_role_management_policy` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
-@immutable
-final class RoleManagementPolicyEligibleActivationsAdminNotifications {
-  const RoleManagementPolicyEligibleActivationsAdminNotifications({
-    this.additionalRecipients,
-    required this.defaultRecipients,
-    required this.notificationLevel,
-  });
-
-  final TfArg<List<String>>? additionalRecipients;
-
-  final TfArg<bool> defaultRecipients;
-
-  final TfArg<String> notificationLevel;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'additional_recipients': ?additionalRecipients?.toTfJson(),
-    'default_recipients': defaultRecipients.toTfJson(),
-    'notification_level': notificationLevel.toTfJson(),
-  };
-}
-
 /// Typed helper for the `notification_rules.eligible_assignments` block of
 /// `azurerm_role_management_policy` (derived from provider schema).
 @immutable
@@ -647,8 +621,7 @@ final class RoleManagementPolicyEligibleAssignments {
     this.assigneeNotifications,
   });
 
-  final RoleManagementPolicyEligibleActivationsAdminNotifications?
-  adminNotifications;
+  final RoleManagementPolicyAdminNotifications? adminNotifications;
 
   final RoleManagementPolicyApproverNotifications? approverNotifications;
 

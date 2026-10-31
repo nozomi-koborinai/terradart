@@ -1,0 +1,194 @@
+{
+  "name": "firebasehosting",
+  "version": "v1beta1",
+  "revision": "20261018",
+  "sourceUrl": "https://firebasehosting.googleapis.com/$discovery/rest?version=v1beta1",
+  "schemas": {
+    "CertVerification": {
+      "properties": {
+        "dns": {
+          "$ref": "DnsUpdates"
+        }
+      }
+    },
+    "Certificate": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "GROUPED",
+            "PROJECT_GROUPED",
+            "DEDICATED"
+          ]
+        },
+        "verification": {
+          "$ref": "CertVerification"
+        },
+        "state": {
+          "enum": [
+            "CERT_STATE_UNSPECIFIED",
+            "CERT_PREPARING",
+            "CERT_VALIDATING",
+            "CERT_PROPAGATING",
+            "CERT_ACTIVE",
+            "CERT_EXPIRING_SOON",
+            "CERT_EXPIRED"
+          ]
+        }
+      }
+    },
+    "Channel": {
+      "properties": {
+        "release": {
+          "$ref": "Release"
+        }
+      }
+    },
+    "CustomDomain": {
+      "properties": {
+        "cert": {
+          "$ref": "Certificate"
+        },
+        "ownershipState": {
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ]
+        },
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates"
+        },
+        "hostState": {
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_MISMATCH",
+            "HOST_CONFLICT",
+            "HOST_ACTIVE"
+          ]
+        },
+        "certPreference": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "GROUPED",
+            "PROJECT_GROUPED",
+            "DEDICATED"
+          ]
+        }
+      }
+    },
+    "DnsRecord": {
+      "properties": {
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A",
+            "CNAME",
+            "TXT",
+            "AAAA",
+            "CAA"
+          ]
+        }
+      }
+    },
+    "DnsRecordSet": {
+      "properties": {
+        "records": {
+          "items": {
+            "$ref": "DnsRecord"
+          }
+        }
+      }
+    },
+    "DnsUpdates": {
+      "properties": {
+        "desired": {
+          "items": {
+            "$ref": "DnsRecordSet"
+          }
+        },
+        "discovered": {
+          "items": {
+            "$ref": "DnsRecordSet"
+          }
+        }
+      }
+    },
+    "Release": {
+      "properties": {
+        "version": {
+          "$ref": "Version"
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DEPLOY",
+            "ROLLBACK",
+            "SITE_DISABLE"
+          ]
+        }
+      }
+    },
+    "ServingConfig": {
+      "properties": {
+        "appAssociation": {
+          "enum": [
+            "AUTO",
+            "NONE"
+          ]
+        },
+        "trailingSlashBehavior": {
+          "enum": [
+            "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED",
+            "ADD",
+            "REMOVE"
+          ]
+        }
+      }
+    },
+    "Site": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DEFAULT_SITE",
+            "USER_SITE"
+          ]
+        }
+      }
+    },
+    "Version": {
+      "properties": {
+        "config": {
+          "$ref": "ServingConfig"
+        },
+        "status": {
+          "enum": [
+            "VERSION_STATUS_UNSPECIFIED",
+            "CREATED",
+            "FINALIZED",
+            "DELETED",
+            "ABANDONED",
+            "EXPIRED",
+            "CLONING"
+          ]
+        }
+      }
+    }
+  }
+}

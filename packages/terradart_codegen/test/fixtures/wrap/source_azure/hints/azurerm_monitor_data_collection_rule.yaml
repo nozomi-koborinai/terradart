@@ -26,6 +26,16 @@ properties:
                       - "YYYY-MM-DD HH:MM:SS"
                       - "yyMMdd HH:mm:ss"
                       - "yyyy-MM-ddTHH:mm:ssK"
+      - api_name: prometheus_forwarder
+        properties:
+          - api_name: label_include_filter
+            properties:
+              - api_name: label
+                enum_values:
+                  - "microsoft_metrics_include_label"
+          - api_name: streams
+            enum_values:
+              - "Microsoft-PrometheusMetrics"
       - api_name: syslog
         properties:
           - api_name: facility_names

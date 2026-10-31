@@ -35,7 +35,7 @@ final class ObservabilityadminTelemetryRule {
 
   final TfArg<String>? selectionCriteria;
 
-  final List<ObservabilityadminTelemetryRuleTelemetrySourceTypes>?
+  final EnumList<ObservabilityadminTelemetryRuleTelemetrySourceTypes>?
   telemetrySourceTypes;
 
   final ObservabilityadminTelemetryRuleTelemetryType telemetryType;
@@ -51,10 +51,7 @@ final class ObservabilityadminTelemetryRule {
     'resource_type': ?resourceType?.toTfJson(),
     'scope': ?scope?.toTfJson(),
     'selection_criteria': ?selectionCriteria?.toTfJson(),
-    if (telemetrySourceTypes != null)
-      'telemetry_source_types': [
-        for (final e in telemetrySourceTypes!) e.toTfJson(),
-      ],
+    'telemetry_source_types': ?telemetrySourceTypes?.toTfJson(),
     'telemetry_type': telemetryType.toTfJson(),
     if (destinationConfiguration != null)
       'destination_configuration': [
@@ -497,13 +494,10 @@ extension type const ObservabilityadminTelemetryRuleOutputFormat._(
 final class ObservabilityadminTelemetryRuleLogDeliveryParameters {
   const ObservabilityadminTelemetryRuleLogDeliveryParameters({this.logTypes});
 
-  final List<ObservabilityadminTelemetryRuleLogTypes>? logTypes;
+  final EnumList<ObservabilityadminTelemetryRuleLogTypes>? logTypes;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (logTypes != null)
-      'log_types': [for (final e in logTypes!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'log_types': ?logTypes?.toTfJson()};
 }
 
 /// `log_types` — derived from the provider schema description.

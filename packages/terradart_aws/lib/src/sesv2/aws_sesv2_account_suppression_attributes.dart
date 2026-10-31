@@ -36,7 +36,7 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
   AwsSesv2AccountSuppressionAttributes(
     super.localName, {
     TfArg<String>? region,
-    required List<Sesv2AccountSuppressionAttributesSuppressedReasons>
+    required EnumList<Sesv2AccountSuppressionAttributesSuppressedReasons>
     suppressedReasons,
     super.lifecycle,
     super.dependsOn,
@@ -44,12 +44,7 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'region': ?region,
-           'suppressed_reasons': TfArg.literal([
-             for (final e in suppressedReasons) e.toTfJson(),
-           ]),
-         },
+         argMap: {'region': ?region, 'suppressed_reasons': suppressedReasons},
        );
 
   @override

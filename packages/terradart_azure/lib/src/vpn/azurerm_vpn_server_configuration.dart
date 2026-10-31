@@ -520,9 +520,9 @@ final class AzurermVpnServerConfiguration extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required List<VpnServerConfigurationVpnAuthenticationTypes>
+    required EnumList<VpnServerConfigurationVpnAuthenticationTypes>
     vpnAuthenticationTypes,
-    List<VpnServerConfigurationVpnProtocols>? vpnProtocols,
+    EnumList<VpnServerConfigurationVpnProtocols>? vpnProtocols,
     List<VpnServerConfigurationAzureActiveDirectoryAuthentication>?
     azureActiveDirectoryAuthentication,
     List<VpnServerConfigurationClientRevokedCertificate>?
@@ -541,13 +541,8 @@ final class AzurermVpnServerConfiguration extends Resource {
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'tags': ?tags,
-           'vpn_authentication_types': TfArg.literal([
-             for (final e in vpnAuthenticationTypes) e.toTfJson(),
-           ]),
-           if (vpnProtocols != null)
-             'vpn_protocols': TfArg.literal([
-               for (final e in vpnProtocols) e.toTfJson(),
-             ]),
+           'vpn_authentication_types': vpnAuthenticationTypes,
+           'vpn_protocols': ?vpnProtocols,
            if (azureActiveDirectoryAuthentication != null)
              'azure_active_directory_authentication': TfArg.literal([
                for (final e in azureActiveDirectoryAuthentication) e.encode(),

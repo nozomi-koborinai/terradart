@@ -45,7 +45,7 @@ final class R2BucketEventNotificationRules {
     this.suffix,
   });
 
-  final List<R2BucketEventNotificationActions> actions;
+  final EnumList<R2BucketEventNotificationActions> actions;
 
   final TfArg<String>? description;
 
@@ -55,7 +55,7 @@ final class R2BucketEventNotificationRules {
 
   @internal
   Map<String, Object?> encode() => {
-    'actions': [for (final e in actions) e.toTfJson()],
+    'actions': actions.toTfJson(),
     'description': ?description?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
     'suffix': ?suffix?.toTfJson(),

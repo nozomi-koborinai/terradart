@@ -1,0 +1,131 @@
+{
+  "name": "geminidataanalytics",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://geminidataanalytics.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudGeminidataanalyticsV1BigQueryTableReference": {
+      "properties": {
+        "schema": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Schema"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1BigQueryTableReferences": {
+      "properties": {
+        "tableReferences": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReference"
+          }
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1Context": {
+      "properties": {
+        "schemaRelationships": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
+          }
+        },
+        "options": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
+        },
+        "datasourceReferences": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1DatasourceReferences"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship": {
+      "properties": {
+        "sources": {
+          "items": {
+            "enum": [
+              "SOURCE_UNSPECIFIED",
+              "BIGQUERY_JOB_HISTORY",
+              "LLM_SUGGESTED",
+              "BIGQUERY_TABLE_CONSTRAINTS"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1ConversationOptions": {
+      "properties": {
+        "model": {
+          "enum": [
+            "MODEL_UNSPECIFIED",
+            "LATEST_GA_MODEL"
+          ]
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1DataAgent": {
+      "properties": {
+        "dataAnalyticsAgent": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent"
+        },
+        "bigqueryAgentAnalyticsTable": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReference"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent": {
+      "properties": {
+        "publishedContext": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Context"
+        },
+        "stagingContext": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Context"
+        },
+        "lastPublishedContext": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Context"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1DataFilter": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATA_FILTER_TYPE_UNSPECIFIED",
+            "ALWAYS_FILTER"
+          ]
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1DatasourceReferences": {
+      "properties": {
+        "bq": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReferences"
+        },
+        "looker": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1LookerExploreReferences"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1LookerExploreReference": {
+      "properties": {
+        "schema": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Schema"
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1LookerExploreReferences": {
+      "properties": {
+        "exploreReferences": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1LookerExploreReference"
+          }
+        }
+      }
+    },
+    "GoogleCloudGeminidataanalyticsV1Schema": {
+      "properties": {
+        "filters": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1DataFilter"
+          }
+        }
+      }
+    }
+  }
+}

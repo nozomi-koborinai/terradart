@@ -34,6 +34,30 @@ extension type const VirtualMachineDataDiskAttachmentCaching._(TfArg<String> _)
   ];
 }
 
+/// Virtual Machine Data Disk Attachment Create enum for `create_option`.
+extension type const VirtualMachineDataDiskAttachmentCreateOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VirtualMachineDataDiskAttachmentCreateOption.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineDataDiskAttachmentCreateOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineDataDiskAttachmentCreateOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const attach = VirtualMachineDataDiskAttachmentCreateOption._(
+    TfArgLiteral('Attach'),
+  );
+  static const empty = VirtualMachineDataDiskAttachmentCreateOption._(
+    TfArgLiteral('Empty'),
+  );
+
+  static const List<VirtualMachineDataDiskAttachmentCreateOption> values = [
+    attach,
+    empty,
+  ];
+}
+
 /// Factory wrapper for `azurerm_virtual_machine_data_disk_attachment`.
 final class AzurermVirtualMachineDataDiskAttachment extends Resource {
   static const String tfType = 'azurerm_virtual_machine_data_disk_attachment';
@@ -41,7 +65,7 @@ final class AzurermVirtualMachineDataDiskAttachment extends Resource {
   AzurermVirtualMachineDataDiskAttachment(
     super.localName, {
     required VirtualMachineDataDiskAttachmentCaching caching,
-    TfArg<String>? createOption,
+    VirtualMachineDataDiskAttachmentCreateOption? createOption,
     required TfArg<num> lun,
     required TfArg<String> managedDiskId,
     required TfArg<String> virtualMachineId,

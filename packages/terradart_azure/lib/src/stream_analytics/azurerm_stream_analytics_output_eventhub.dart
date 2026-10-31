@@ -11,6 +11,31 @@ const Set<String> _azurermStreamAnalyticsOutputEventhubSensitive = <String>{
   'shared_access_policy_key',
 };
 
+/// Stream Analytics Output Eventhub Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputEventhubAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputEventhubAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const msi = StreamAnalyticsOutputEventhubAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsOutputEventhubAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsOutputEventhubAuthenticationMode> values = [
+    msi,
+    connectionstring,
+  ];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_output_eventhub` (derived from provider schema).
 @immutable
@@ -22,13 +47,13 @@ final class StreamAnalyticsOutputEventhubSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsOutputEventhubEncoding? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputEventhubFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputEventhubFormat? format;
 
-  final TfArg<String> type;
+  final StreamAnalyticsOutputEventhubType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -39,13 +64,113 @@ final class StreamAnalyticsOutputEventhubSerialization {
   };
 }
 
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputEventhubEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsOutputEventhubEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubEncoding> values = [utf8];
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputEventhubFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputEventhubFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const array = StreamAnalyticsOutputEventhubFormat._(
+    TfArgLiteral('Array'),
+  );
+  static const lineseparated = StreamAnalyticsOutputEventhubFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubFormat> values = [
+    array,
+    lineseparated,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputEventhubType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubType.arg(TfArg<String> arg) : this._(arg);
+
+  static const avro = StreamAnalyticsOutputEventhubType._(TfArgLiteral('Avro'));
+  static const csv = StreamAnalyticsOutputEventhubType._(TfArgLiteral('Csv'));
+  static const json = StreamAnalyticsOutputEventhubType._(TfArgLiteral('Json'));
+  static const parquet = StreamAnalyticsOutputEventhubType._(
+    TfArgLiteral('Parquet'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubType> values = [
+    avro,
+    csv,
+    json,
+    parquet,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_eventhub`.
 final class AzurermStreamAnalyticsOutputEventhub extends Resource {
   static const String tfType = 'azurerm_stream_analytics_output_eventhub';
 
   AzurermStreamAnalyticsOutputEventhub(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputEventhubAuthenticationMode? authenticationMode,
     required TfArg<String> eventhubName,
     required TfArg<String> name,
     TfArg<String>? partitionKey,

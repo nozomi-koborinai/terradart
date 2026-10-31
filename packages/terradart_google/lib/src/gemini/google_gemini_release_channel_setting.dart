@@ -6,6 +6,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gemini_release_channel_setting`.
 const Set<String> _googleGeminiReleaseChannelSettingSensitive = <String>{};
 
+/// Gemini Release Channel Setting Release enum for `release_channel`.
+extension type const GeminiReleaseChannelSettingReleaseChannel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GeminiReleaseChannelSettingReleaseChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiReleaseChannelSettingReleaseChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiReleaseChannelSettingReleaseChannel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const stable = GeminiReleaseChannelSettingReleaseChannel._(
+    TfArgLiteral('STABLE'),
+  );
+  static const experimental = GeminiReleaseChannelSettingReleaseChannel._(
+    TfArgLiteral('EXPERIMENTAL'),
+  );
+
+  static const List<GeminiReleaseChannelSettingReleaseChannel> values = [
+    stable,
+    experimental,
+  ];
+}
+
 /// Factory wrapper for `google_gemini_release_channel_setting`.
 ///
 /// The resource for managing ReleaseChannel settings for Admin Control.
@@ -16,7 +40,7 @@ final class GoogleGeminiReleaseChannelSetting extends Resource {
     super.localName, {
     required TfArg<String> releaseChannelSettingId,
     required TfArg<String> location,
-    TfArg<String>? releaseChannel,
+    GeminiReleaseChannelSettingReleaseChannel? releaseChannel,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     super.lifecycle,

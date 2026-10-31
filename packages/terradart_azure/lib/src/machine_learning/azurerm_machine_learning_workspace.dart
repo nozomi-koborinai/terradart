@@ -33,6 +33,44 @@ extension type const MachineLearningWorkspaceKind._(TfArg<String> _)
   ];
 }
 
+/// Machine Learning Workspace Sku enum for `sku_name`.
+extension type const MachineLearningWorkspaceSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  MachineLearningWorkspaceSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  MachineLearningWorkspaceSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const MachineLearningWorkspaceSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = MachineLearningWorkspaceSkuName._(TfArgLiteral('Basic'));
+
+  static const List<MachineLearningWorkspaceSkuName> values = [basic];
+}
+
+/// Machine Learning Workspace Storage Account Access enum for `storage_account_access_type`.
+extension type const MachineLearningWorkspaceStorageAccountAccessType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MachineLearningWorkspaceStorageAccountAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  MachineLearningWorkspaceStorageAccountAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MachineLearningWorkspaceStorageAccountAccessType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const accesskey = MachineLearningWorkspaceStorageAccountAccessType._(
+    TfArgLiteral('AccessKey'),
+  );
+  static const identity = MachineLearningWorkspaceStorageAccountAccessType._(
+    TfArgLiteral('Identity'),
+  );
+
+  static const List<MachineLearningWorkspaceStorageAccountAccessType> values = [
+    accesskey,
+    identity,
+  ];
+}
+
 /// Typed helper for the `encryption` block of
 /// `azurerm_machine_learning_workspace` (derived from provider schema).
 @immutable
@@ -189,8 +227,8 @@ final class AzurermMachineLearningWorkspace extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? serviceSideEncryptionEnabled,
-    TfArg<String>? skuName,
-    TfArg<String>? storageAccountAccessType,
+    MachineLearningWorkspaceSkuName? skuName,
+    MachineLearningWorkspaceStorageAccountAccessType? storageAccountAccessType,
     required RefTo<AzurermStorageAccount> storageAccountId,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? v1LegacyModeEnabled,

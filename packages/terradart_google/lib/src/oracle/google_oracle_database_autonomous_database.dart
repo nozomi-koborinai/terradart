@@ -52,10 +52,6 @@ extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
   const OracleDatabaseAutonomousDatabaseDbWorkload.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const dbWorkloadUnspecified =
-      OracleDatabaseAutonomousDatabaseDbWorkload._(
-        TfArgLiteral('DB_WORKLOAD_UNSPECIFIED'),
-      );
   static const oltp = OracleDatabaseAutonomousDatabaseDbWorkload._(
     TfArgLiteral('OLTP'),
   );
@@ -68,13 +64,16 @@ extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
   static const apex = OracleDatabaseAutonomousDatabaseDbWorkload._(
     TfArgLiteral('APEX'),
   );
+  static const lh = OracleDatabaseAutonomousDatabaseDbWorkload._(
+    TfArgLiteral('LH'),
+  );
 
   static const List<OracleDatabaseAutonomousDatabaseDbWorkload> values = [
-    dbWorkloadUnspecified,
     oltp,
     dw,
     ajd,
     apex,
+    lh,
   ];
 }
 
@@ -89,10 +88,6 @@ extension type const OracleDatabaseAutonomousDatabaseLicenseType._(
   const OracleDatabaseAutonomousDatabaseLicenseType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const licenseTypeUnspecified =
-      OracleDatabaseAutonomousDatabaseLicenseType._(
-        TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'),
-      );
   static const licenseIncluded = OracleDatabaseAutonomousDatabaseLicenseType._(
     TfArgLiteral('LICENSE_INCLUDED'),
   );
@@ -102,7 +97,6 @@ extension type const OracleDatabaseAutonomousDatabaseLicenseType._(
       );
 
   static const List<OracleDatabaseAutonomousDatabaseLicenseType> values = [
-    licenseTypeUnspecified,
     licenseIncluded,
     bringYourOwnLicense,
   ];
@@ -148,7 +142,7 @@ final class OracleDatabaseAutonomousDatabaseProperties {
 
   final TfArg<num>? dataStorageSizeTb;
 
-  final TfArg<String>? dbEdition;
+  final OracleDatabaseAutonomousDatabaseDbEdition? dbEdition;
 
   final TfArg<String>? dbVersion;
 
@@ -160,13 +154,15 @@ final class OracleDatabaseAutonomousDatabaseProperties {
 
   final OracleDatabaseAutonomousDatabaseLicenseType licenseType;
 
-  final TfArg<String>? maintenanceScheduleType;
+  final OracleDatabaseAutonomousDatabaseMaintenanceScheduleType?
+  maintenanceScheduleType;
 
   final TfArg<bool>? mtlsConnectionRequired;
 
   final TfArg<String>? nCharacterSet;
 
-  final TfArg<String>? operationsInsightsState;
+  final OracleDatabaseAutonomousDatabaseOperationsInsightsState?
+  operationsInsightsState;
 
   final TfArg<String>? privateEndpointIp;
 
@@ -204,6 +200,105 @@ final class OracleDatabaseAutonomousDatabaseProperties {
     if (customerContacts != null)
       'customer_contacts': [for (final e in customerContacts!) e.encode()],
   };
+}
+
+/// `db_edition` — derived from the provider schema description.
+extension type const OracleDatabaseAutonomousDatabaseDbEdition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseAutonomousDatabaseDbEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseAutonomousDatabaseDbEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseAutonomousDatabaseDbEdition.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standardEdition = OracleDatabaseAutonomousDatabaseDbEdition._(
+    TfArgLiteral('STANDARD_EDITION'),
+  );
+  static const enterpriseEdition = OracleDatabaseAutonomousDatabaseDbEdition._(
+    TfArgLiteral('ENTERPRISE_EDITION'),
+  );
+
+  static const List<OracleDatabaseAutonomousDatabaseDbEdition> values = [
+    standardEdition,
+    enterpriseEdition,
+  ];
+}
+
+/// `maintenance_schedule_type` — derived from the provider schema description.
+extension type const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseAutonomousDatabaseMaintenanceScheduleType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseAutonomousDatabaseMaintenanceScheduleType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const early =
+      OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
+        TfArgLiteral('EARLY'),
+      );
+  static const regular =
+      OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
+        TfArgLiteral('REGULAR'),
+      );
+
+  static const List<OracleDatabaseAutonomousDatabaseMaintenanceScheduleType>
+  values = [early, regular];
+}
+
+/// `operations_insights_state` — derived from the provider schema description.
+extension type const OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseAutonomousDatabaseOperationsInsightsState.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseAutonomousDatabaseOperationsInsightsState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseAutonomousDatabaseOperationsInsightsState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const enabling =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('ENABLING'),
+      );
+  static const enabled =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabling =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('DISABLING'),
+      );
+  static const notEnabled =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('NOT_ENABLED'),
+      );
+  static const failedEnabling =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('FAILED_ENABLING'),
+      );
+  static const failedDisabling =
+      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
+        TfArgLiteral('FAILED_DISABLING'),
+      );
+
+  static const List<OracleDatabaseAutonomousDatabaseOperationsInsightsState>
+  values = [
+    enabling,
+    enabled,
+    disabling,
+    notEnabled,
+    failedEnabling,
+    failedDisabling,
+  ];
 }
 
 /// Typed helper for the `properties.customer_contacts` block of

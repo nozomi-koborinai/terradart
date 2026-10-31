@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "os_disk.disk_encryption_set_id, os_disk.secure_vm_disk_encryption_set_id": encryption_set

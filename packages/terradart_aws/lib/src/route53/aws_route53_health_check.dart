@@ -330,7 +330,7 @@ final class AwsRoute53HealthCheck extends Resource {
     TfArg<bool>? measureLatency,
     TfArg<num>? port,
     TfArg<String>? referenceName,
-    List<Route53HealthCheckRegions>? regions,
+    EnumList<Route53HealthCheckRegions>? regions,
     TfArg<num>? requestInterval,
     TfArg<String>? resourcePath,
     TfArg<String>? routingControlArn,
@@ -359,8 +359,7 @@ final class AwsRoute53HealthCheck extends Resource {
            'measure_latency': ?measureLatency,
            'port': ?port,
            'reference_name': ?referenceName,
-           if (regions != null)
-             'regions': TfArg.literal([for (final e in regions) e.toTfJson()]),
+           'regions': ?regions,
            'request_interval': ?requestInterval,
            'resource_path': ?resourcePath,
            'routing_control_arn': ?routingControlArn,

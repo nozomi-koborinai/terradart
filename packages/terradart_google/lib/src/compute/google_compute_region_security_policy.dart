@@ -150,9 +150,9 @@ class ComputeRegionSecurityPolicyRules {
 
   final TfArg<int> priority;
 
-  /// Provider action string (`allow`, `deny(403)`, `rate_based_ban`,
-  /// `throttle`, ...). `redirect` is not supported on regional policies.
-  final TfArg<String> action;
+  /// What Cloud Armor does when the rule matches. `redirect` is not
+  /// supported on regional policies.
+  final ComputeRegionSecurityPolicyRulesAction action;
 
   final ComputeRegionSecurityPolicyRulesMatch match;
 
@@ -228,6 +228,78 @@ class ComputeRegionSecurityPolicyRulesMatchExpr {
   Map<String, Object?> toArgMap() => {'expression': expression.toTfJson()};
 }
 
+/// `rules.action`. The `deny(NNN)` actions return a fixed HTTP status;
+/// `rateBasedBan` and `throttle` REQUIRE
+/// [ComputeRegionSecurityPolicyRules.rateLimitOptions].
+extension type const ComputeRegionSecurityPolicyRulesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionSecurityPolicyRulesAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionSecurityPolicyRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionSecurityPolicyRulesAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('allow'),
+  );
+  static const deny403 = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny502 = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('deny(502)'),
+  );
+  static const rateBasedBan = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('rate_based_ban'),
+  );
+  static const throttle = ComputeRegionSecurityPolicyRulesAction._(
+    TfArgLiteral('throttle'),
+  );
+
+  static const List<ComputeRegionSecurityPolicyRulesAction> values = [
+    allow,
+    deny403,
+    deny404,
+    deny502,
+    rateBasedBan,
+    throttle,
+  ];
+}
+
+/// Action for requests over a `rules.rate_limit_options` threshold.
+extension type const ComputeRegionSecurityPolicyExceedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionSecurityPolicyExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionSecurityPolicyExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionSecurityPolicyExceedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deny403 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeRegionSecurityPolicyExceedAction> values = [
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 /// `rules.rate_limit_options` -- required when [action] is
 /// `rate_based_ban` or `throttle`.
 @immutable
@@ -244,7 +316,7 @@ class ComputeRegionSecurityPolicyRulesRateLimitOptions {
   });
 
   final TfArg<String> conformAction;
-  final TfArg<String> exceedAction;
+  final ComputeRegionSecurityPolicyExceedAction exceedAction;
   final ComputeRegionSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
   final TfArg<int>? banDurationSec;
   final ComputeRegionSecurityPolicyRulesRateLimitThreshold? banThreshold;

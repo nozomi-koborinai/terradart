@@ -9,6 +9,22 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_storage_data_lake_gen2_path`.
 const Set<String> _azurermStorageDataLakeGen2PathSensitive = <String>{};
 
+/// Storage Data Lake Gen2 Path enum for `resource`.
+extension type const StorageDataLakeGen2PathResource._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageDataLakeGen2PathResource.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageDataLakeGen2PathResource.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageDataLakeGen2PathResource.arg(TfArg<String> arg) : this._(arg);
+
+  static const directory = StorageDataLakeGen2PathResource._(
+    TfArgLiteral('directory'),
+  );
+
+  static const List<StorageDataLakeGen2PathResource> values = [directory];
+}
+
 /// Typed helper for the `ace` block of
 /// `azurerm_storage_data_lake_gen2_path` (derived from provider schema).
 @immutable
@@ -89,7 +105,7 @@ final class AzurermStorageDataLakeGen2Path extends Resource {
     TfArg<String>? group,
     TfArg<String>? owner,
     required TfArg<String> path,
-    required TfArg<String> resource,
+    required StorageDataLakeGen2PathResource resource,
     required RefTo<AzurermStorageAccount> storageAccountId,
     List<StorageDataLakeGen2PathAce>? ace,
     super.lifecycle,

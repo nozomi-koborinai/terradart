@@ -9,6 +9,84 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_data_connector`.
 const Set<String> _googleDiscoveryEngineDataConnectorSensitive = <String>{};
 
+/// Discovery Engine Data Connector enum for `connector_modes`.
+extension type const DiscoveryEngineDataConnectorModes._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorModes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorModes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorModes.arg(TfArg<String> arg) : this._(arg);
+
+  static const dataIngestion = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('DATA_INGESTION'),
+  );
+  static const actions = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('ACTIONS'),
+  );
+  static const federated = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('FEDERATED'),
+  );
+  static const eua = DiscoveryEngineDataConnectorModes._(TfArgLiteral('EUA'));
+  static const federatedAndEua = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('FEDERATED_AND_EUA'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorModes> values = [
+    dataIngestion,
+    actions,
+    federated,
+    eua,
+    federatedAndEua,
+  ];
+}
+
+/// Discovery Engine Data Connector enum for `location`.
+extension type const DiscoveryEngineDataConnectorLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineDataConnectorLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineDataConnectorLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineDataConnectorLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineDataConnectorLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
+/// Discovery Engine Data Connector Sync enum for `sync_mode`.
+extension type const DiscoveryEngineDataConnectorSyncMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorSyncMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorSyncMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorSyncMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const periodic = DiscoveryEngineDataConnectorSyncMode._(
+    TfArgLiteral('PERIODIC'),
+  );
+  static const streaming = DiscoveryEngineDataConnectorSyncMode._(
+    TfArgLiteral('STREAMING'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorSyncMode> values = [
+    periodic,
+    streaming,
+  ];
+}
+
 /// Exactly one of `params`, `json_params` on `google_discovery_engine_data_connector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -108,15 +186,85 @@ final class DiscoveryEngineDataConnectorBapConfig {
     this.supportedConnectorModes,
   });
 
-  final TfArg<List<String>>? enabledActions;
+  final EnumList<DiscoveryEngineDataConnectorEnabledActions>? enabledActions;
 
-  final TfArg<List<String>>? supportedConnectorModes;
+  final EnumList<DiscoveryEngineDataConnectorSupportedConnectorModes>?
+  supportedConnectorModes;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled_actions': ?enabledActions?.toTfJson(),
     'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
   };
+}
+
+/// `enabled_actions` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorEnabledActions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataConnectorEnabledActions.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorEnabledActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorEnabledActions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const createIssue = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('create_issue'),
+  );
+  static const updateIssue = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('update_issue'),
+  );
+  static const changeIssueStatus = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('change_issue_status'),
+  );
+  static const createComment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('create_comment'),
+  );
+  static const updateComment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('update_comment'),
+  );
+  static const uploadAttachment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('upload_attachment'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorEnabledActions> values = [
+    createIssue,
+    updateIssue,
+    changeIssueStatus,
+    createComment,
+    updateComment,
+    uploadAttachment,
+  ];
+}
+
+/// `supported_connector_modes` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorSupportedConnectorModes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataConnectorSupportedConnectorModes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorSupportedConnectorModes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorSupportedConnectorModes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const dataIngestion =
+      DiscoveryEngineDataConnectorSupportedConnectorModes._(
+        TfArgLiteral('DATA_INGESTION'),
+      );
+  static const actions = DiscoveryEngineDataConnectorSupportedConnectorModes._(
+    TfArgLiteral('ACTIONS'),
+  );
+  static const endUserAuthentication =
+      DiscoveryEngineDataConnectorSupportedConnectorModes._(
+        TfArgLiteral('END_USER_AUTHENTICATION'),
+      );
+
+  static const List<DiscoveryEngineDataConnectorSupportedConnectorModes>
+  values = [dataIngestion, actions, endUserAuthentication];
 }
 
 /// Typed helper for the `destination_configs` block of
@@ -171,7 +319,7 @@ final class DiscoveryEngineDataConnectorEntities {
     this.params,
   });
 
-  final TfArg<String>? entityName;
+  final DiscoveryEngineDataConnectorEntityName? entityName;
 
   final TfArg<Map<String, String>>? keyPropertyMappings;
 
@@ -183,6 +331,77 @@ final class DiscoveryEngineDataConnectorEntities {
     'key_property_mappings': ?keyPropertyMappings?.toTfJson(),
     'params': ?params?.toTfJson(),
   };
+}
+
+/// `entity_name` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorEntityName._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorEntityName.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorEntityName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorEntityName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const lead = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Lead'),
+  );
+  static const opportunity = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Opportunity'),
+  );
+  static const contact = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Contact'),
+  );
+  static const account = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Account'),
+  );
+  static const caseCase = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Case'),
+  );
+  static const contract = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Contract'),
+  );
+  static const campaign = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Campaign'),
+  );
+  static const project = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('project'),
+  );
+  static const issue = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('issue'),
+  );
+  static const attachment = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('attachment'),
+  );
+  static const comment = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('comment'),
+  );
+  static const worklog = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('worklog'),
+  );
+  static const content = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Content'),
+  );
+  static const space = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Space'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorEntityName> values = [
+    lead,
+    opportunity,
+    contact,
+    account,
+    caseCase,
+    contract,
+    campaign,
+    project,
+    issue,
+    attachment,
+    comment,
+    worklog,
+    content,
+    space,
+  ];
 }
 
 /// Typed helper for the `metadata` block of
@@ -238,7 +457,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<bool>? autoRunDisabled,
     required TfArg<String> collectionDisplayName,
     required TfArg<String> collectionId,
-    TfArg<List<String>>? connectorModes,
+    EnumList<DiscoveryEngineDataConnectorModes>? connectorModes,
     required TfArg<String> dataSource,
     TfArg<num>? dataSourceVersion,
     TfArg<String>? deletionPolicy,
@@ -246,11 +465,11 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<bool>? incrementalSyncDisabled,
     required DiscoveryEngineDataConnectorParams params,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
-    required TfArg<String> location,
+    required DiscoveryEngineDataConnectorLocation location,
     TfArg<String>? project,
     required TfArg<String> refreshInterval,
     TfArg<bool>? staticIpEnabled,
-    TfArg<String>? syncMode,
+    DiscoveryEngineDataConnectorSyncMode? syncMode,
     DiscoveryEngineDataConnectorActionConfig? actionConfig,
     DiscoveryEngineDataConnectorBapConfig? bapConfig,
     List<DiscoveryEngineDataConnectorDestinationConfigs>? destinationConfigs,

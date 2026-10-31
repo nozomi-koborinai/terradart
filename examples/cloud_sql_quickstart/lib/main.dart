@@ -158,7 +158,7 @@ final class CloudSqlStack extends Stack {
         'legacy_mysql',
         name: .literal('legacy-mysql'),
         region: .literal('asia-northeast1'),
-        databaseVersion: .literal('MYSQL_8_0'),
+        databaseVersion: .mysql80,
         host: .literal('203.0.113.50'),
         port: .literal(3306),
         username: .literal('replica'),

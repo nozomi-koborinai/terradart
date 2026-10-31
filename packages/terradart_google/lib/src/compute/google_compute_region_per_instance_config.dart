@@ -10,6 +10,73 @@ import '../compute/google_compute_region_instance_group_manager.dart'
 /// Sensitive field paths for `google_compute_region_per_instance_config`.
 const Set<String> _googleComputeRegionPerInstanceConfigSensitive = <String>{};
 
+/// Compute Region Per Instance Config Minimal enum for `minimal_action`.
+extension type const ComputeRegionPerInstanceConfigMinimalAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionPerInstanceConfigMinimalAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionPerInstanceConfigMinimalAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionPerInstanceConfigMinimalAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const replace = ComputeRegionPerInstanceConfigMinimalAction._(
+    TfArgLiteral('REPLACE'),
+  );
+  static const restart = ComputeRegionPerInstanceConfigMinimalAction._(
+    TfArgLiteral('RESTART'),
+  );
+  static const refresh = ComputeRegionPerInstanceConfigMinimalAction._(
+    TfArgLiteral('REFRESH'),
+  );
+  static const none = ComputeRegionPerInstanceConfigMinimalAction._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<ComputeRegionPerInstanceConfigMinimalAction> values = [
+    replace,
+    restart,
+    refresh,
+    none,
+  ];
+}
+
+/// Compute Region Per Instance Config Most Disruptive Allowed enum for `most_disruptive_allowed_action`.
+extension type const ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const replace =
+      ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
+        TfArgLiteral('REPLACE'),
+      );
+  static const restart =
+      ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
+        TfArgLiteral('RESTART'),
+      );
+  static const refresh =
+      ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
+        TfArgLiteral('REFRESH'),
+      );
+  static const none =
+      ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
+        TfArgLiteral('NONE'),
+      );
+
+  static const List<ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction>
+  values = [replace, restart, refresh, none];
+}
+
 /// Typed helper for the `preserved_state` block of
 /// `google_compute_region_per_instance_config` (derived from provider schema).
 @immutable
@@ -219,8 +286,9 @@ final class GoogleComputeRegionPerInstanceConfig extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     ComputeRegionPerInstanceConfigPreservedState? preservedState,
-    TfArg<String>? minimalAction,
-    TfArg<String>? mostDisruptiveAllowedAction,
+    ComputeRegionPerInstanceConfigMinimalAction? minimalAction,
+    ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction?
+    mostDisruptiveAllowedAction,
     TfArg<bool>? removeInstanceOnDestroy,
     TfArg<bool>? removeInstanceStateOnDestroy,
     TfArg<String>? deletionPolicy,

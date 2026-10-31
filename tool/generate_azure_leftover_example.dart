@@ -254,7 +254,7 @@ Set<String> _parseSensitiveLeaves(String src) {
 final _sealedVariants = <String, List<String>>{};
 
 _ParsedFile _parseFile(File file) {
-  final src = file.readAsStringSync();
+  final src = readWrapperSource(file);
   final classes = <String, _ClassInfo>{};
   for (final m in RegExp(r'sealed class (\w+)').allMatches(src)) {
     _sealedVariants[m.group(1)!] = [];
@@ -635,6 +635,9 @@ String _literalInner(
     if (listInner.startsWith('RefTo<')) {
       return '[RefTo.literal(${_stringValue(name, owner: owner)})]';
     }
+    if (_enums.containsKey(listInner)) {
+      return '[${_enumMember(listInner, name, owner: owner)},]';
+    }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
     }
@@ -674,6 +677,23 @@ void _collectEnums(String source) {
   }
 }
 
+/// The enum element type of a `List<E>` type, if [t] is one.
+String? _listEnum(String t) {
+  final m = RegExp(r'^List<(\w+)\??>$').firstMatch(t);
+  final name = m?.group(1);
+  return name != null && _enums.containsKey(name) ? name : null;
+}
+
+/// The member of [enumName] whose wire value is [value], else the first.
+String _enumByValue(String enumName, String value) {
+  final members = _enums[enumName]!;
+  final pick = members.firstWhere(
+    (m) => m.$2 == value,
+    orElse: () => members.first,
+  );
+  return '$enumName.${pick.$1}';
+}
+
 String _enumMember(String enumName, String name, {required String owner}) {
   final members = _enums[enumName]!;
   final literal = _stringValue(name, owner: owner);
@@ -699,6 +719,11 @@ String? _fit(DummyValue value, String t) {
     DartDummy() => null,
   };
   if (value is DartDummy || t == 'Object' || t == 'dynamic') return value.dart;
+  if (_listEnum(t) case final enumName?) {
+    return json is List && json.every((e) => e is String)
+        ? '[${json.map((e) => _enumByValue(enumName, e! as String)).join(', ')},]'
+        : null;
+  }
   final fits = switch (t) {
     'String' => json is String,
     'num' || 'int' || 'double' => json is num,

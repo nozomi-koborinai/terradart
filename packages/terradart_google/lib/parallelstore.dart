@@ -5,4 +5,8 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/parallelstore/google_parallelstore_instance.dart'
-    show GoogleParallelstoreInstance, ParallelstoreInstanceDeploymentType;
+    show
+        GoogleParallelstoreInstance,
+        ParallelstoreInstanceDeploymentType,
+        ParallelstoreInstanceDirectoryStripeLevel,
+        ParallelstoreInstanceFileStripeLevel;

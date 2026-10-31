@@ -30,6 +30,10 @@ extension type const KmsKeyPurpose._(TfArg<String> _) implements TfArg<String> {
   static const rawEncryptDecrypt = KmsKeyPurpose._(
     TfArgLiteral('RAW_ENCRYPT_DECRYPT'),
   );
+  static const keyEncapsulation = KmsKeyPurpose._(
+    TfArgLiteral('KEY_ENCAPSULATION'),
+  );
+  static const aesWrapping = KmsKeyPurpose._(TfArgLiteral('AES_WRAPPING'));
 
   static const List<KmsKeyPurpose> values = [
     encryptDecrypt,
@@ -37,6 +41,8 @@ extension type const KmsKeyPurpose._(TfArg<String> _) implements TfArg<String> {
     asymmetricDecrypt,
     mac,
     rawEncryptDecrypt,
+    keyEncapsulation,
+    aesWrapping,
   ];
 }
 
@@ -54,28 +60,237 @@ extension type const KmsProtectionLevel._(TfArg<String> _)
   static const hsm = KmsProtectionLevel._(TfArgLiteral('HSM'));
   static const external = KmsProtectionLevel._(TfArgLiteral('EXTERNAL'));
   static const externalVpc = KmsProtectionLevel._(TfArgLiteral('EXTERNAL_VPC'));
+  static const hsmSingleTenant = KmsProtectionLevel._(
+    TfArgLiteral('HSM_SINGLE_TENANT'),
+  );
 
   static const List<KmsProtectionLevel> values = [
     software,
     hsm,
     external,
     externalVpc,
+    hsmSingleTenant,
+  ];
+}
+
+/// Algorithm for `version_template.algorithm`. See the
+/// [CryptoKeyVersionAlgorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm).
+extension type const KmsCryptoKeyVersionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsCryptoKeyVersionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsCryptoKeyVersionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsCryptoKeyVersionAlgorithm.arg(TfArg<String> arg) : this._(arg);
+
+  static const googleSymmetricEncryption = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('GOOGLE_SYMMETRIC_ENCRYPTION'),
+  );
+  static const aes128Gcm = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_128_GCM'),
+  );
+  static const aes256Gcm = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_256_GCM'),
+  );
+  static const aes128Cbc = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_128_CBC'),
+  );
+  static const aes256Cbc = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_256_CBC'),
+  );
+  static const aes128Ctr = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_128_CTR'),
+  );
+  static const aes256Ctr = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_256_CTR'),
+  );
+  static const rsaSignPss2048Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PSS_2048_SHA256'),
+  );
+  static const rsaSignPss3072Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PSS_3072_SHA256'),
+  );
+  static const rsaSignPss4096Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PSS_4096_SHA256'),
+  );
+  static const rsaSignPss4096Sha512 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PSS_4096_SHA512'),
+  );
+  static const rsaSignPkcs12048Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PKCS1_2048_SHA256'),
+  );
+  static const rsaSignPkcs13072Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PKCS1_3072_SHA256'),
+  );
+  static const rsaSignPkcs14096Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PKCS1_4096_SHA256'),
+  );
+  static const rsaSignPkcs14096Sha512 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_PKCS1_4096_SHA512'),
+  );
+  static const rsaSignRawPkcs12048 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_RAW_PKCS1_2048'),
+  );
+  static const rsaSignRawPkcs13072 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_RAW_PKCS1_3072'),
+  );
+  static const rsaSignRawPkcs14096 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_SIGN_RAW_PKCS1_4096'),
+  );
+  static const rsaDecryptOaep2048Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_2048_SHA256'),
+  );
+  static const rsaDecryptOaep3072Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_3072_SHA256'),
+  );
+  static const rsaDecryptOaep4096Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_4096_SHA256'),
+  );
+  static const rsaDecryptOaep4096Sha512 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_4096_SHA512'),
+  );
+  static const rsaDecryptOaep2048Sha1 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_2048_SHA1'),
+  );
+  static const rsaDecryptOaep3072Sha1 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_3072_SHA1'),
+  );
+  static const rsaDecryptOaep4096Sha1 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('RSA_DECRYPT_OAEP_4096_SHA1'),
+  );
+  static const ecSignP256Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('EC_SIGN_P256_SHA256'),
+  );
+  static const ecSignP384Sha384 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('EC_SIGN_P384_SHA384'),
+  );
+  static const ecSignSecp256k1Sha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('EC_SIGN_SECP256K1_SHA256'),
+  );
+  static const ecSignEd25519 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('EC_SIGN_ED25519'),
+  );
+  static const hmacSha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('HMAC_SHA256'),
+  );
+  static const hmacSha1 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('HMAC_SHA1'),
+  );
+  static const hmacSha384 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('HMAC_SHA384'),
+  );
+  static const hmacSha512 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('HMAC_SHA512'),
+  );
+  static const hmacSha224 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('HMAC_SHA224'),
+  );
+  static const externalSymmetricEncryption = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('EXTERNAL_SYMMETRIC_ENCRYPTION'),
+  );
+  static const mlKem768 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('ML_KEM_768'),
+  );
+  static const mlKem1024 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('ML_KEM_1024'),
+  );
+  static const kemXwing = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('KEM_XWING'),
+  );
+  static const pqSignMlDsa44 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_44'),
+  );
+  static const pqSignMlDsa65 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_65'),
+  );
+  static const pqSignMlDsa87 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_87'),
+  );
+  static const pqSignSlhDsaSha2128s = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_SLH_DSA_SHA2_128S'),
+  );
+  static const pqSignHashSlhDsaSha2128sSha256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256'),
+  );
+  static const pqSignMlDsa44ExternalMu = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_44_EXTERNAL_MU'),
+  );
+  static const pqSignMlDsa65ExternalMu = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_65_EXTERNAL_MU'),
+  );
+  static const pqSignMlDsa87ExternalMu = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('PQ_SIGN_ML_DSA_87_EXTERNAL_MU'),
+  );
+  static const kemEcdhP256 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('KEM_ECDH_P256'),
+  );
+  static const kemEcdhP384 = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('KEM_ECDH_P384'),
+  );
+  static const aes256Kwp = KmsCryptoKeyVersionAlgorithm._(
+    TfArgLiteral('AES_256_KWP'),
+  );
+
+  static const List<KmsCryptoKeyVersionAlgorithm> values = [
+    googleSymmetricEncryption,
+    aes128Gcm,
+    aes256Gcm,
+    aes128Cbc,
+    aes256Cbc,
+    aes128Ctr,
+    aes256Ctr,
+    rsaSignPss2048Sha256,
+    rsaSignPss3072Sha256,
+    rsaSignPss4096Sha256,
+    rsaSignPss4096Sha512,
+    rsaSignPkcs12048Sha256,
+    rsaSignPkcs13072Sha256,
+    rsaSignPkcs14096Sha256,
+    rsaSignPkcs14096Sha512,
+    rsaSignRawPkcs12048,
+    rsaSignRawPkcs13072,
+    rsaSignRawPkcs14096,
+    rsaDecryptOaep2048Sha256,
+    rsaDecryptOaep3072Sha256,
+    rsaDecryptOaep4096Sha256,
+    rsaDecryptOaep4096Sha512,
+    rsaDecryptOaep2048Sha1,
+    rsaDecryptOaep3072Sha1,
+    rsaDecryptOaep4096Sha1,
+    ecSignP256Sha256,
+    ecSignP384Sha384,
+    ecSignSecp256k1Sha256,
+    ecSignEd25519,
+    hmacSha256,
+    hmacSha1,
+    hmacSha384,
+    hmacSha512,
+    hmacSha224,
+    externalSymmetricEncryption,
+    mlKem768,
+    mlKem1024,
+    kemXwing,
+    pqSignMlDsa44,
+    pqSignMlDsa65,
+    pqSignMlDsa87,
+    pqSignSlhDsaSha2128s,
+    pqSignHashSlhDsaSha2128sSha256,
+    pqSignMlDsa44ExternalMu,
+    pqSignMlDsa65ExternalMu,
+    pqSignMlDsa87ExternalMu,
+    kemEcdhP256,
+    kemEcdhP384,
+    aes256Kwp,
   ];
 }
 
 /// `version_template` nested block (max=1) on `google_kms_crypto_key`.
-///
-/// `algorithm` is left as `String` because the
-/// [CryptoKeyVersionAlgorithm enum](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm)
-/// has ~30 entries (symmetric, asymmetric sign, asymmetric decrypt, MAC,
-/// raw encrypt/decrypt families). Pass the GCP enum literal as a string,
-/// e.g. `'GOOGLE_SYMMETRIC_ENCRYPTION'` or `'RSA_SIGN_PKCS1_2048_SHA256'`.
 class KmsCryptoKeyVersionTemplate {
   const KmsCryptoKeyVersionTemplate({
     required this.algorithm,
     this.protectionLevel,
   });
-  final TfArg<String> algorithm;
+  final KmsCryptoKeyVersionAlgorithm algorithm;
   final KmsProtectionLevel? protectionLevel;
   Map<String, Object?> toArgMap() => {
     'algorithm': algorithm.toTfJson(),
@@ -116,7 +331,7 @@ class KmsCryptoKeyVersionTemplate {
 ///   // Duration into the `"{seconds}s"` form Terraform expects.
 ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
 ///   versionTemplate: KmsCryptoKeyVersionTemplate(
-///     algorithm: .literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
+///     algorithm: .googleSymmetricEncryption,
 ///     protectionLevel: KmsProtectionLevel.software,
 ///   ),
 /// );

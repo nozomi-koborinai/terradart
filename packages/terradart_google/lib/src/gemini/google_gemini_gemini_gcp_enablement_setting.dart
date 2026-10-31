@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gemini_gemini_gcp_enablement_setting`.
 const Set<String> _googleGeminiGeminiGcpEnablementSettingSensitive = <String>{};
 
+/// Gemini Gemini Gcp Enablement Setting Release enum for `release_channel`.
+extension type const GeminiGeminiGcpEnablementSettingReleaseChannel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GeminiGeminiGcpEnablementSettingReleaseChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiGeminiGcpEnablementSettingReleaseChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiGeminiGcpEnablementSettingReleaseChannel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const stable = GeminiGeminiGcpEnablementSettingReleaseChannel._(
+    TfArgLiteral('STABLE'),
+  );
+  static const experimental = GeminiGeminiGcpEnablementSettingReleaseChannel._(
+    TfArgLiteral('EXPERIMENTAL'),
+  );
+
+  static const List<GeminiGeminiGcpEnablementSettingReleaseChannel> values = [
+    stable,
+    experimental,
+  ];
+}
+
+/// Gemini Gemini Gcp Enablement Setting Web Grounding enum for `web_grounding_type`.
+extension type const GeminiGeminiGcpEnablementSettingWebGroundingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GeminiGeminiGcpEnablementSettingWebGroundingType.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiGeminiGcpEnablementSettingWebGroundingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiGeminiGcpEnablementSettingWebGroundingType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const groundingWithGoogleSearch =
+      GeminiGeminiGcpEnablementSettingWebGroundingType._(
+        TfArgLiteral('GROUNDING_WITH_GOOGLE_SEARCH'),
+      );
+  static const webGroundingForEnterprise =
+      GeminiGeminiGcpEnablementSettingWebGroundingType._(
+        TfArgLiteral('WEB_GROUNDING_FOR_ENTERPRISE'),
+      );
+
+  static const List<GeminiGeminiGcpEnablementSettingWebGroundingType> values = [
+    groundingWithGoogleSearch,
+    webGroundingForEnterprise,
+  ];
+}
+
 /// Factory wrapper for `google_gemini_gemini_gcp_enablement_setting`.
 ///
 /// The resource for managing GeminiGcpEnablement settings for Admin Control.
@@ -18,7 +68,7 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
     required TfArg<String> location,
     TfArg<bool>? enableCustomerDataSharing,
     TfArg<bool>? disableWebGrounding,
-    TfArg<String>? webGroundingType,
+    GeminiGeminiGcpEnablementSettingWebGroundingType? webGroundingType,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     super.lifecycle,

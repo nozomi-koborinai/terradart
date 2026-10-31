@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_odb_cloud_autonomous_vm_cluster`.
 const Set<String> _awsOdbCloudAutonomousVmClusterSensitive = <String>{};
 
+/// Odb Cloud Autonomous Vm Cluster License enum for `license_model`.
+extension type const OdbCloudAutonomousVmClusterLicenseModel._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbCloudAutonomousVmClusterLicenseModel.variable(String name)
+    : this._(TfArg.variable(name));
+  OdbCloudAutonomousVmClusterLicenseModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbCloudAutonomousVmClusterLicenseModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const licenseIncluded = OdbCloudAutonomousVmClusterLicenseModel._(
+    TfArgLiteral('LICENSE_INCLUDED'),
+  );
+  static const bringYourOwnLicense = OdbCloudAutonomousVmClusterLicenseModel._(
+    TfArgLiteral('BRING_YOUR_OWN_LICENSE'),
+  );
+
+  static const List<OdbCloudAutonomousVmClusterLicenseModel> values = [
+    licenseIncluded,
+    bringYourOwnLicense,
+  ];
+}
+
 /// Typed helper for the `maintenance_window` block of
 /// `aws_odb_cloud_autonomous_vm_cluster` (derived from provider schema).
 @immutable
@@ -80,7 +103,7 @@ final class AwsOdbCloudAutonomousVmCluster extends Resource {
     TfArg<String>? description,
     required TfArg<String> displayName,
     TfArg<bool>? isMtlsEnabledVmCluster,
-    TfArg<String>? licenseModel,
+    OdbCloudAutonomousVmClusterLicenseModel? licenseModel,
     required TfArg<num> memoryPerOracleComputeUnitInGbs,
     TfArg<String>? odbNetworkArn,
     TfArg<String>? odbNetworkId,

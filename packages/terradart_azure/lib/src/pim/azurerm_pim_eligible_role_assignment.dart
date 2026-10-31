@@ -7,6 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_pim_eligible_role_assignment`.
 const Set<String> _azurermPimEligibleRoleAssignmentSensitive = <String>{};
 
+/// Pim Eligible Role Assignment Condition enum for `condition_version`.
+extension type const PimEligibleRoleAssignmentConditionVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PimEligibleRoleAssignmentConditionVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  PimEligibleRoleAssignmentConditionVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const PimEligibleRoleAssignmentConditionVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v2p0 = PimEligibleRoleAssignmentConditionVersion._(
+    TfArgLiteral('2.0'),
+  );
+
+  static const List<PimEligibleRoleAssignmentConditionVersion> values = [v2p0];
+}
+
 /// Typed helper for the `schedule` block of
 /// `azurerm_pim_eligible_role_assignment` (derived from provider schema).
 @immutable
@@ -130,7 +148,7 @@ final class AzurermPimEligibleRoleAssignment extends Resource {
   AzurermPimEligibleRoleAssignment(
     super.localName, {
     TfArg<String>? condition,
-    TfArg<String>? conditionVersion,
+    PimEligibleRoleAssignmentConditionVersion? conditionVersion,
     TfArg<String>? justification,
     required TfArg<String> principalId,
     required TfArg<String> roleDefinitionId,

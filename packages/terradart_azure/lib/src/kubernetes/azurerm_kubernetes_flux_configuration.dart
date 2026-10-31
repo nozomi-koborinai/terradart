@@ -539,7 +539,7 @@ final class KubernetesFluxConfigurationGitRepository {
 
   final KubernetesFluxConfigurationProvider? provider;
 
-  final TfArg<String> referenceType;
+  final KubernetesFluxConfigurationReferenceType referenceType;
 
   final TfArg<String> referenceValue;
 
@@ -594,6 +594,37 @@ extension type const KubernetesFluxConfigurationProvider._(TfArg<String> _)
     azure,
     generic,
     github,
+  ];
+}
+
+/// `reference_type` — derived from the provider schema description.
+extension type const KubernetesFluxConfigurationReferenceType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesFluxConfigurationReferenceType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesFluxConfigurationReferenceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesFluxConfigurationReferenceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const branch = KubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('branch'),
+  );
+  static const commit = KubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('commit'),
+  );
+  static const semver = KubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('semver'),
+  );
+  static const tag = KubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('tag'),
+  );
+
+  static const List<KubernetesFluxConfigurationReferenceType> values = [
+    branch,
+    commit,
+    semver,
+    tag,
   ];
 }
 
@@ -680,7 +711,7 @@ final class KubernetesFluxConfigurationSubstituteFrom {
     this.optional,
   });
 
-  final TfArg<String> kind;
+  final KubernetesFluxConfigurationKind kind;
 
   final TfArg<String> name;
 
@@ -692,6 +723,28 @@ final class KubernetesFluxConfigurationSubstituteFrom {
     'name': name.toTfJson(),
     'optional': ?optional?.toTfJson(),
   };
+}
+
+/// `kind` — derived from the provider schema description.
+extension type const KubernetesFluxConfigurationKind._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesFluxConfigurationKind.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesFluxConfigurationKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesFluxConfigurationKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const configmap = KubernetesFluxConfigurationKind._(
+    TfArgLiteral('ConfigMap'),
+  );
+  static const secret = KubernetesFluxConfigurationKind._(
+    TfArgLiteral('Secret'),
+  );
+
+  static const List<KubernetesFluxConfigurationKind> values = [
+    configmap,
+    secret,
+  ];
 }
 
 /// Factory wrapper for `azurerm_kubernetes_flux_configuration`.

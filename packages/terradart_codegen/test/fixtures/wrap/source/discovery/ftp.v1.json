@@ -1,0 +1,77 @@
+{
+  "name": "ftp",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://ftp.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Server": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "STARTING",
+            "ACTIVE",
+            "STOPPING",
+            "STOPPED",
+            "DELETING",
+            "ERROR",
+            "UPDATING"
+          ]
+        },
+        "accessType": {
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "EXTERNAL",
+            "INTERNAL"
+          ]
+        }
+      }
+    },
+    "StorageDirectoryMapping": {
+      "properties": {
+        "permission": {
+          "enum": [
+            "PERMISSION_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE"
+          ]
+        }
+      }
+    },
+    "User": {
+      "properties": {
+        "userCredentials": {
+          "items": {
+            "$ref": "UserCredential"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "ERROR",
+            "UPDATING",
+            "DELETING"
+          ]
+        },
+        "storageDirectoryMappings": {
+          "items": {
+            "$ref": "StorageDirectoryMapping"
+          }
+        }
+      }
+    },
+    "UserCredential": {
+      "properties": {
+        "credentialType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PUBLIC_KEY"
+          ]
+        }
+      }
+    }
+  }
+}

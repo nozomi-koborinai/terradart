@@ -8,6 +8,94 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailSecurityImpersonationRegistriesSensitive =
     <String>{};
 
+/// Data Email Security Impersonation Registries enum for `direction`.
+extension type const DataEmailSecurityImpersonationRegistriesDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistriesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistriesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistriesDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataEmailSecurityImpersonationRegistriesDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityImpersonationRegistriesDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityImpersonationRegistriesDirection> values =
+      [asc, desc];
+}
+
+/// Data Email Security Impersonation Registries enum for `order`.
+extension type const DataEmailSecurityImpersonationRegistriesOrder._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistriesOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistriesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistriesOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const name = DataEmailSecurityImpersonationRegistriesOrder._(
+    TfArgLiteral('name'),
+  );
+  static const email = DataEmailSecurityImpersonationRegistriesOrder._(
+    TfArgLiteral('email'),
+  );
+  static const createdAt = DataEmailSecurityImpersonationRegistriesOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityImpersonationRegistriesOrder> values = [
+    name,
+    email,
+    createdAt,
+  ];
+}
+
+/// Data Email Security Impersonation Registries enum for `provenance`.
+extension type const DataEmailSecurityImpersonationRegistriesProvenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistriesProvenance.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistriesProvenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistriesProvenance.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const a1sInternal =
+      DataEmailSecurityImpersonationRegistriesProvenance._(
+        TfArgLiteral('A1S_INTERNAL'),
+      );
+  static const snoopyCasbOffice365 =
+      DataEmailSecurityImpersonationRegistriesProvenance._(
+        TfArgLiteral('SNOOPY-CASB_OFFICE_365'),
+      );
+  static const snoopyOffice365 =
+      DataEmailSecurityImpersonationRegistriesProvenance._(
+        TfArgLiteral('SNOOPY-OFFICE_365'),
+      );
+  static const snoopyGoogleDirectory =
+      DataEmailSecurityImpersonationRegistriesProvenance._(
+        TfArgLiteral('SNOOPY-GOOGLE_DIRECTORY'),
+      );
+
+  static const List<DataEmailSecurityImpersonationRegistriesProvenance> values =
+      [
+        a1sInternal,
+        snoopyCasbOffice365,
+        snoopyOffice365,
+        snoopyGoogleDirectory,
+      ];
+}
+
 /// Factory wrapper for `cloudflare_email_security_impersonation_registries`.
 ///
 /// Accepted Permissions
@@ -20,10 +108,10 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
   DataCloudflareEmailSecurityImpersonationRegistries(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataEmailSecurityImpersonationRegistriesDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
-    TfArg<String>? provenance,
+    DataEmailSecurityImpersonationRegistriesOrder? order,
+    DataEmailSecurityImpersonationRegistriesProvenance? provenance,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

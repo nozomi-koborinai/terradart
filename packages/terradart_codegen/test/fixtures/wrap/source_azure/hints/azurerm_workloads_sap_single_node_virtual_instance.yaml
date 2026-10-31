@@ -49,3 +49,10 @@ properties:
                 enum_values:
                   - "RedHat"
                   - "SUSE"
+      - api_name: virtual_machine_resource_names
+        properties:
+          - api_name: data_disk
+            properties:
+              - api_name: volume_name
+                enum_values:
+                  - "default"

@@ -621,8 +621,9 @@ final class AwsLakeformationPermissions extends Resource {
     super.localName, {
     TfArg<String>? catalogId,
     required LakeformationPermissionsResource resource,
-    required List<LakeformationPermissions> permissions,
-    List<LakeformationPermissionsWithGrantOption>? permissionsWithGrantOption,
+    required EnumList<LakeformationPermissions> permissions,
+    EnumList<LakeformationPermissionsWithGrantOption>?
+    permissionsWithGrantOption,
     required TfArg<String> principal,
     TfArg<String>? region,
     super.lifecycle,
@@ -634,13 +635,8 @@ final class AwsLakeformationPermissions extends Resource {
          argMap: {
            'catalog_id': ?catalogId,
            ...resource.argMap,
-           'permissions': TfArg.literal([
-             for (final e in permissions) e.toTfJson(),
-           ]),
-           if (permissionsWithGrantOption != null)
-             'permissions_with_grant_option': TfArg.literal([
-               for (final e in permissionsWithGrantOption) e.toTfJson(),
-             ]),
+           'permissions': permissions,
+           'permissions_with_grant_option': ?permissionsWithGrantOption,
            'principal': principal,
            'region': ?region,
          },

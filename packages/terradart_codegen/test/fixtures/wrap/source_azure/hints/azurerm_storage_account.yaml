@@ -10,6 +10,11 @@ properties:
       - "Hot"
       - "Premium"
       - "Smart"
+  - api_name: account_kind
+    enum_values:
+      - "BlockBlobStorage"
+      - "FileStorage"
+      - "StorageV2"
   - api_name: account_replication_type
     enum_values:
       - "LRS"
@@ -35,6 +40,24 @@ properties:
           - "StorageFileDataSmbShareContributor"
           - "StorageFileDataSmbShareElevatedContributor"
           - "StorageFileDataSmbShareReader"
+      - api_name: directory_type
+        enum_values:
+          - "AADDS"
+          - "AADKERB"
+          - "AD"
+  - api_name: blob_properties
+    properties:
+      - api_name: cors_rule
+        properties:
+          - api_name: allowed_methods
+            enum_values:
+              - "DELETE"
+              - "GET"
+              - "HEAD"
+              - "MERGE"
+              - "POST"
+              - "OPTIONS"
+              - "PUT"
   - api_name: dns_endpoint_type
     enum_values:
       - "AzureDnsZone"
@@ -46,6 +69,9 @@ properties:
           - "Disabled"
           - "Locked"
           - "Unlocked"
+  - api_name: min_tls_version
+    enum_values:
+      - "TLS1_2"
   - api_name: network_rules
     properties:
       - api_name: bypass
@@ -58,6 +84,9 @@ properties:
         enum_values:
           - "Allow"
           - "Deny"
+  - api_name: provisioned_billing_model_version
+    enum_values:
+      - "V2"
   - api_name: public_network_access
     enum_values:
       - "Disabled"
@@ -81,6 +110,17 @@ properties:
           - "Log"
   - api_name: share_properties
     properties:
+      - api_name: cors_rule
+        properties:
+          - api_name: allowed_methods
+            enum_values:
+              - "DELETE"
+              - "GET"
+              - "HEAD"
+              - "MERGE"
+              - "POST"
+              - "OPTIONS"
+              - "PUT"
       - api_name: smb
         properties:
           - api_name: authentication_types

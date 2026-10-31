@@ -19,7 +19,7 @@ final class GkeHubFeatureMembershipConfigmanagement {
     this.policyController,
   });
 
-  final TfArg<String>? management;
+  final GkeHubFeatureMembershipConfigmanagementManagement? management;
 
   final TfArg<String>? version;
 
@@ -37,6 +37,30 @@ final class GkeHubFeatureMembershipConfigmanagement {
     'hierarchy_controller': ?hierarchyController?.encode(),
     'policy_controller': ?policyController?.encode(),
   };
+}
+
+/// `management` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipConfigmanagementManagement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeHubFeatureMembershipConfigmanagementManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipConfigmanagementManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipConfigmanagementManagement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const managementAutomatic =
+      GkeHubFeatureMembershipConfigmanagementManagement._(
+        TfArgLiteral('MANAGEMENT_AUTOMATIC'),
+      );
+  static const managementManual =
+      GkeHubFeatureMembershipConfigmanagementManagement._(
+        TfArgLiteral('MANAGEMENT_MANUAL'),
+      );
+
+  static const List<GkeHubFeatureMembershipConfigmanagementManagement> values =
+      [managementAutomatic, managementManual];
 }
 
 /// Typed helper for the `configmanagement.config_sync` block of
@@ -165,7 +189,7 @@ final class GkeHubFeatureMembershipGit {
 
   final TfArg<String>? policyDir;
 
-  final TfArg<String>? secretType;
+  final GkeHubFeatureMembershipGitSecretType? secretType;
 
   final TfArg<String>? syncBranch;
 
@@ -188,6 +212,45 @@ final class GkeHubFeatureMembershipGit {
   };
 }
 
+/// `secret_type` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipGitSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipGitSecretType.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipGitSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipGitSecretType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ssh = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('ssh'),
+  );
+  static const cookiefile = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('cookiefile'),
+  );
+  static const gcenode = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('gcenode'),
+  );
+  static const token = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('token'),
+  );
+  static const gcpserviceaccount = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('gcpserviceaccount'),
+  );
+  static const none = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<GkeHubFeatureMembershipGitSecretType> values = [
+    ssh,
+    cookiefile,
+    gcenode,
+    token,
+    gcpserviceaccount,
+    none,
+  ];
+}
+
 /// Typed helper for the `configmanagement.config_sync.oci` block of
 /// `google_gke_hub_feature_membership` (derived from provider schema).
 @immutable
@@ -204,7 +267,7 @@ final class GkeHubFeatureMembershipOci {
 
   final TfArg<String>? policyDir;
 
-  final TfArg<String>? secretType;
+  final GkeHubFeatureMembershipOciSecretType? secretType;
 
   final TfArg<String>? syncRepo;
 
@@ -218,6 +281,33 @@ final class GkeHubFeatureMembershipOci {
     'sync_repo': ?syncRepo?.toTfJson(),
     'sync_wait_secs': ?syncWaitSecs?.toTfJson(),
   };
+}
+
+/// `secret_type` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipOciSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipOciSecretType.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipOciSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipOciSecretType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const gcenode = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('gcenode'),
+  );
+  static const gcpserviceaccount = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('gcpserviceaccount'),
+  );
+  static const none = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<GkeHubFeatureMembershipOciSecretType> values = [
+    gcenode,
+    gcpserviceaccount,
+    none,
+  ];
 }
 
 /// Typed helper for the `configmanagement.hierarchy_controller` block of
@@ -296,10 +386,32 @@ final class GkeHubFeatureMembershipPolicyController {
 final class GkeHubFeatureMembershipMonitoring {
   const GkeHubFeatureMembershipMonitoring({this.backends});
 
-  final TfArg<List<String>>? backends;
+  final EnumList<GkeHubFeatureMembershipBackends>? backends;
 
   @internal
   Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
+}
+
+/// `backends` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipBackends._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipBackends.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipBackends.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipBackends.arg(TfArg<String> arg) : this._(arg);
+
+  static const prometheus = GkeHubFeatureMembershipBackends._(
+    TfArgLiteral('PROMETHEUS'),
+  );
+  static const cloudMonitoring = GkeHubFeatureMembershipBackends._(
+    TfArgLiteral('CLOUD_MONITORING'),
+  );
+
+  static const List<GkeHubFeatureMembershipBackends> values = [
+    prometheus,
+    cloudMonitoring,
+  ];
 }
 
 /// Typed helper for the `mesh` block of
@@ -310,7 +422,7 @@ final class GkeHubFeatureMembershipMesh {
 
   final GkeHubFeatureMembershipControlPlane? controlPlane;
 
-  final GkeHubFeatureMembershipManagement? management;
+  final GkeHubFeatureMembershipMeshManagement? management;
 
   @internal
   Map<String, Object?> encode() => {
@@ -329,10 +441,6 @@ extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
   const GkeHubFeatureMembershipControlPlane.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const controlPlaneManagementUnspecified =
-      GkeHubFeatureMembershipControlPlane._(
-        TfArgLiteral('CONTROL_PLANE_MANAGEMENT_UNSPECIFIED'),
-      );
   static const automatic = GkeHubFeatureMembershipControlPlane._(
     TfArgLiteral('AUTOMATIC'),
   );
@@ -341,35 +449,35 @@ extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipControlPlane> values = [
-    controlPlaneManagementUnspecified,
     automatic,
     manual,
   ];
 }
 
 /// `management` — derived from the provider schema description.
-extension type const GkeHubFeatureMembershipManagement._(TfArg<String> _)
+extension type const GkeHubFeatureMembershipMeshManagement._(TfArg<String> _)
     implements TfArg<String> {
-  GkeHubFeatureMembershipManagement.variable(String name)
+  GkeHubFeatureMembershipMeshManagement.variable(String name)
     : this._(TfArg.variable(name));
-  GkeHubFeatureMembershipManagement.expression(String template)
+  GkeHubFeatureMembershipMeshManagement.expression(String template)
     : this._(TfArg.expression(template));
-  const GkeHubFeatureMembershipManagement.arg(TfArg<String> arg) : this._(arg);
+  const GkeHubFeatureMembershipMeshManagement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const managementUnspecified = GkeHubFeatureMembershipManagement._(
-    TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
-  );
-  static const managementAutomatic = GkeHubFeatureMembershipManagement._(
+  static const managementAutomatic = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_AUTOMATIC'),
   );
-  static const managementManual = GkeHubFeatureMembershipManagement._(
+  static const managementManual = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_MANUAL'),
   );
+  static const managementNotInstalled = GkeHubFeatureMembershipMeshManagement._(
+    TfArgLiteral('MANAGEMENT_NOT_INSTALLED'),
+  );
 
-  static const List<GkeHubFeatureMembershipManagement> values = [
-    managementUnspecified,
+  static const List<GkeHubFeatureMembershipMeshManagement> values = [
     managementAutomatic,
     managementManual,
+    managementNotInstalled,
   ];
 }
 
@@ -456,9 +564,6 @@ extension type const GkeHubFeatureMembershipInstallSpec._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const GkeHubFeatureMembershipInstallSpec.arg(TfArg<String> arg) : this._(arg);
 
-  static const installSpecUnspecified = GkeHubFeatureMembershipInstallSpec._(
-    TfArgLiteral('INSTALL_SPEC_UNSPECIFIED'),
-  );
   static const installSpecNotInstalled = GkeHubFeatureMembershipInstallSpec._(
     TfArgLiteral('INSTALL_SPEC_NOT_INSTALLED'),
   );
@@ -473,7 +578,6 @@ extension type const GkeHubFeatureMembershipInstallSpec._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipInstallSpec> values = [
-    installSpecUnspecified,
     installSpecNotInstalled,
     installSpecEnabled,
     installSpecSuspended,
@@ -523,9 +627,6 @@ extension type const GkeHubFeatureMembershipPodAffinity._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const GkeHubFeatureMembershipPodAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  static const affinityUnspecified = GkeHubFeatureMembershipPodAffinity._(
-    TfArgLiteral('AFFINITY_UNSPECIFIED'),
-  );
   static const noAffinity = GkeHubFeatureMembershipPodAffinity._(
     TfArgLiteral('NO_AFFINITY'),
   );
@@ -534,7 +635,6 @@ extension type const GkeHubFeatureMembershipPodAffinity._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipPodAffinity> values = [
-    affinityUnspecified,
     noAffinity,
     antiAffinity,
   ];
@@ -681,16 +781,12 @@ extension type const GkeHubFeatureMembershipInstallation._(TfArg<String> _)
   const GkeHubFeatureMembershipInstallation.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const installationUnspecified = GkeHubFeatureMembershipInstallation._(
-    TfArgLiteral('INSTALLATION_UNSPECIFIED'),
-  );
   static const notInstalled = GkeHubFeatureMembershipInstallation._(
     TfArgLiteral('NOT_INSTALLED'),
   );
   static const all = GkeHubFeatureMembershipInstallation._(TfArgLiteral('ALL'));
 
   static const List<GkeHubFeatureMembershipInstallation> values = [
-    installationUnspecified,
     notInstalled,
     all,
   ];

@@ -10,13 +10,40 @@ const Set<String> _azurermKeyVaultEncryptedValueSensitive = <String>{
   'plain_text_value',
 };
 
+/// Data Key Vault Encrypted Value enum for `algorithm`.
+extension type const DataKeyVaultEncryptedValueAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  DataKeyVaultEncryptedValueAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  DataKeyVaultEncryptedValueAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataKeyVaultEncryptedValueAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsa15 = DataKeyVaultEncryptedValueAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+  static const rsaOaep = DataKeyVaultEncryptedValueAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 = DataKeyVaultEncryptedValueAlgorithm._(
+    TfArgLiteral('RSA-OAEP-256'),
+  );
+
+  static const List<DataKeyVaultEncryptedValueAlgorithm> values = [
+    rsa15,
+    rsaOaep,
+    rsaOaep256,
+  ];
+}
+
 /// Factory wrapper for `azurerm_key_vault_encrypted_value`.
 final class DataAzurermKeyVaultEncryptedValue extends Data {
   static const String tfType = 'azurerm_key_vault_encrypted_value';
 
   DataAzurermKeyVaultEncryptedValue(
     super.localName, {
-    required TfArg<String> algorithm,
+    required DataKeyVaultEncryptedValueAlgorithm algorithm,
     Sensitive<String>? encryptedData,
     required TfArg<String> keyVaultKeyId,
     Sensitive<String>? plainTextValue,

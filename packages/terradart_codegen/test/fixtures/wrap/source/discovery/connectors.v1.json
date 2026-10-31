@@ -1,0 +1,304 @@
+{
+  "name": "connectors",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://connectors.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AdminFilters": {
+      "properties": {
+        "filterType": {
+          "enum": [
+            "FILTER_TYPE_UNSPECIFIED",
+            "INCLUSION",
+            "EXCLUSION"
+          ]
+        }
+      }
+    },
+    "AuthConfig": {
+      "properties": {
+        "authType": {
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            "USER_PASSWORD",
+            "OAUTH2_JWT_BEARER",
+            "OAUTH2_CLIENT_CREDENTIALS",
+            "SSH_PUBLIC_KEY",
+            "OAUTH2_AUTH_CODE_FLOW",
+            "GOOGLE_AUTHENTICATION",
+            "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED"
+          ]
+        },
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        }
+      }
+    },
+    "BillingConfig": {
+      "properties": {
+        "billingCategory": {
+          "enum": [
+            "BILLING_CATEGORY_UNSPECIFIED",
+            "GCP_AND_TECHNICAL_CONNECTOR",
+            "NON_GCP_CONNECTOR"
+          ]
+        }
+      }
+    },
+    "ConfigVariable": {
+      "properties": {
+        "encryptionKeyValue": {
+          "$ref": "EncryptionKey"
+        }
+      }
+    },
+    "Connection": {
+      "properties": {
+        "configVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
+        "euaOauthAuthConfig": {
+          "$ref": "AuthConfig"
+        },
+        "logConfig": {
+          "$ref": "ConnectorsLogConfig"
+        },
+        "status": {
+          "$ref": "ConnectionStatus"
+        },
+        "eventingConfig": {
+          "$ref": "EventingConfig"
+        },
+        "eventingRuntimeData": {
+          "$ref": "EventingRuntimeData"
+        },
+        "billingConfig": {
+          "$ref": "BillingConfig"
+        },
+        "adminFilters": {
+          "items": {
+            "$ref": "AdminFilters"
+          }
+        },
+        "connectorVersionLaunchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED",
+            "TEST",
+            "PRIVATE_PREVIEW"
+          ]
+        },
+        "eventingEnablementType": {
+          "enum": [
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
+          ]
+        },
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAY_G",
+            "PAID"
+          ]
+        },
+        "connectorVersionInfraConfig": {
+          "$ref": "ConnectorVersionInfraConfig"
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
+        "authConfig": {
+          "$ref": "AuthConfig"
+        }
+      }
+    },
+    "ConnectionStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "INACTIVE",
+            "DELETING",
+            "UPDATING",
+            "ERROR",
+            "AUTHORIZATION_REQUIRED"
+          ]
+        }
+      }
+    },
+    "ConnectorVersionInfraConfig": {
+      "properties": {
+        "deploymentModelMigrationState": {
+          "enum": [
+            "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "ROLLEDBACK",
+            "ROLLBACK_IN_PROGRESS"
+          ]
+        },
+        "tlsMigrationState": {
+          "enum": [
+            "TLS_MIGRATION_STATE_UNSPECIFIED",
+            "TLS_MIGRATION_NOT_STARTED",
+            "TLS_MIGRATION_COMPLETED"
+          ]
+        },
+        "deploymentModel": {
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "GKE_MST",
+            "CLOUD_RUN_MST"
+          ]
+        }
+      }
+    },
+    "ConnectorsLogConfig": {
+      "properties": {
+        "level": {
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "ERROR",
+            "INFO",
+            "DEBUG"
+          ]
+        }
+      }
+    },
+    "EncryptionKey": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "CUSTOMER_MANAGED"
+          ]
+        }
+      }
+    },
+    "EndpointAttachment": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED",
+            "CLOSED",
+            "FROZEN",
+            "NEEDS_ATTENTION",
+            "ACCEPTED_NOT_PROGRAMMED"
+          ]
+        }
+      }
+    },
+    "EventingConfig": {
+      "properties": {
+        "authConfig": {
+          "$ref": "AuthConfig"
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
+        "listenerAuthConfig": {
+          "$ref": "AuthConfig"
+        },
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        }
+      }
+    },
+    "EventingRuntimeData": {
+      "properties": {
+        "webhookData": {
+          "$ref": "WebhookData"
+        },
+        "webhookSubscriptions": {
+          "$ref": "WebhookSubscriptions"
+        },
+        "status": {
+          "$ref": "EventingStatus"
+        }
+      }
+    },
+    "EventingStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ERROR",
+            "INGRESS_ENDPOINT_REQUIRED"
+          ]
+        }
+      }
+    },
+    "ManagedZone": {
+      "properties": {}
+    },
+    "SslConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ]
+        },
+        "clientCertType": {
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ]
+        },
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
+        "serverCertType": {
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ]
+        },
+        "trustModel": {
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "INSECURE"
+          ]
+        }
+      }
+    },
+    "WebhookData": {
+      "properties": {
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        }
+      }
+    },
+    "WebhookSubscriptions": {
+      "properties": {
+        "webhookData": {
+          "items": {
+            "$ref": "WebhookData"
+          }
+        }
+      }
+    }
+  }
+}

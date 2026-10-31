@@ -48,11 +48,11 @@ final class BackupDrBackupPlanStandardSchedule {
 
   final TfArg<List<num>>? daysOfMonth;
 
-  final List<BackupDrBackupPlanDaysOfWeek>? daysOfWeek;
+  final EnumList<BackupDrBackupPlanDaysOfWeek>? daysOfWeek;
 
   final TfArg<num>? hourlyFrequency;
 
-  final List<BackupDrBackupPlanMonths>? months;
+  final EnumList<BackupDrBackupPlanMonths>? months;
 
   final BackupDrBackupPlanRecurrenceType recurrenceType;
 
@@ -65,10 +65,9 @@ final class BackupDrBackupPlanStandardSchedule {
   @internal
   Map<String, Object?> encode() => {
     'days_of_month': ?daysOfMonth?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'hourly_frequency': ?hourlyFrequency?.toTfJson(),
-    if (months != null) 'months': [for (final e in months!) e.toTfJson()],
+    'months': ?months?.toTfJson(),
     'recurrence_type': recurrenceType.toTfJson(),
     'time_zone': timeZone.toTfJson(),
     'backup_window': ?backupWindow?.encode(),

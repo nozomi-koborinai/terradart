@@ -495,12 +495,10 @@ final class LambdaEventSourceMappingFilter {
 final class LambdaEventSourceMappingMetricsConfig {
   const LambdaEventSourceMappingMetricsConfig({required this.metrics});
 
-  final List<LambdaEventSourceMappingMetrics> metrics;
+  final EnumList<LambdaEventSourceMappingMetrics> metrics;
 
   @internal
-  Map<String, Object?> encode() => {
-    'metrics': [for (final e in metrics) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'metrics': metrics.toTfJson()};
 }
 
 /// `metrics` — derived from the provider schema description.
@@ -706,7 +704,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<bool>? enabled,
     required LambdaEventSourceMappingEventSource eventSource,
     required RefTo<AwsLambdaFunction> functionName,
-    List<LambdaEventSourceMappingFunctionResponseTypes>? functionResponseTypes,
+    EnumList<LambdaEventSourceMappingFunctionResponseTypes>?
+    functionResponseTypes,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<num>? maximumBatchingWindowInSeconds,
     TfArg<num>? maximumRecordAgeInSeconds,
@@ -743,10 +742,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
            'enabled': ?enabled,
            ...eventSource.argMap,
            'function_name': functionName.encodeAs('function_name'),
-           if (functionResponseTypes != null)
-             'function_response_types': TfArg.literal([
-               for (final e in functionResponseTypes) e.toTfJson(),
-             ]),
+           'function_response_types': ?functionResponseTypes,
            'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'maximum_batching_window_in_seconds':
                ?maximumBatchingWindowInSeconds,

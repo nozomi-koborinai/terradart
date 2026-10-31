@@ -406,11 +406,11 @@ final class SentinelAlertRuleNrtGrouping {
     this.reopenClosedIncidents,
   });
 
-  final List<SentinelAlertRuleNrtByAlertDetails>? byAlertDetails;
+  final EnumList<SentinelAlertRuleNrtByAlertDetails>? byAlertDetails;
 
   final TfArg<List<String>>? byCustomDetails;
 
-  final List<SentinelAlertRuleNrtByEntities>? byEntities;
+  final EnumList<SentinelAlertRuleNrtByEntities>? byEntities;
 
   final TfArg<bool>? enabled;
 
@@ -422,11 +422,9 @@ final class SentinelAlertRuleNrtGrouping {
 
   @internal
   Map<String, Object?> encode() => {
-    if (byAlertDetails != null)
-      'by_alert_details': [for (final e in byAlertDetails!) e.toTfJson()],
+    'by_alert_details': ?byAlertDetails?.toTfJson(),
     'by_custom_details': ?byCustomDetails?.toTfJson(),
-    if (byEntities != null)
-      'by_entities': [for (final e in byEntities!) e.toTfJson()],
+    'by_entities': ?byEntities?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
     'entity_matching_method': ?entityMatchingMethod?.toTfJson(),
     'lookback_duration': ?lookbackDuration?.toTfJson(),
@@ -589,7 +587,7 @@ final class AzurermSentinelAlertRuleNrt extends Resource {
     required SentinelAlertRuleNrtSeverity severity,
     TfArg<String>? suppressionDuration,
     TfArg<bool>? suppressionEnabled,
-    List<SentinelAlertRuleNrtTactics>? tactics,
+    EnumList<SentinelAlertRuleNrtTactics>? tactics,
     TfArg<List<String>>? techniques,
     List<SentinelAlertRuleNrtAlertDetailsOverride>? alertDetailsOverride,
     List<SentinelAlertRuleNrtEntityMapping>? entityMapping,
@@ -615,8 +613,7 @@ final class AzurermSentinelAlertRuleNrt extends Resource {
            'severity': severity,
            'suppression_duration': ?suppressionDuration,
            'suppression_enabled': ?suppressionEnabled,
-           if (tactics != null)
-             'tactics': TfArg.literal([for (final e in tactics) e.toTfJson()]),
+           'tactics': ?tactics,
            'techniques': ?techniques,
            if (alertDetailsOverride != null)
              'alert_details_override': TfArg.literal([

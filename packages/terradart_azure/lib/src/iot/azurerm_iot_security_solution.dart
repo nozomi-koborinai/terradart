@@ -9,6 +9,22 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_iot_security_solution`.
 const Set<String> _azurermIotSecuritySolutionSensitive = <String>{};
 
+/// Iot Security Solution Events To enum for `events_to_export`.
+extension type const IotSecuritySolutionEventsToExport._(TfArg<String> _)
+    implements TfArg<String> {
+  IotSecuritySolutionEventsToExport.variable(String name)
+    : this._(TfArg.variable(name));
+  IotSecuritySolutionEventsToExport.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotSecuritySolutionEventsToExport.arg(TfArg<String> arg) : this._(arg);
+
+  static const rawevents = IotSecuritySolutionEventsToExport._(
+    TfArgLiteral('RawEvents'),
+  );
+
+  static const List<IotSecuritySolutionEventsToExport> values = [rawevents];
+}
+
 /// Typed helper for the `additional_workspace` block of
 /// `azurerm_iot_security_solution` (derived from provider schema).
 @immutable
@@ -116,7 +132,7 @@ final class AzurermIotSecuritySolution extends Resource {
     TfArg<List<String>>? disabledDataSources,
     required TfArg<String> displayName,
     TfArg<bool>? enabled,
-    TfArg<List<String>>? eventsToExport,
+    EnumList<IotSecuritySolutionEventsToExport>? eventsToExport,
     required TfArg<List<String>> iothubIds,
     required TfArg<String> location,
     TfArg<String>? logAnalyticsWorkspaceId,

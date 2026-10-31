@@ -23,6 +23,28 @@ extension type const SharedImageArchitecture._(TfArg<String> _)
   static const List<SharedImageArchitecture> values = [arm64, x64];
 }
 
+/// Shared Image Disk Types Not enum for `disk_types_not_allowed`.
+extension type const SharedImageDiskTypesNotAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageDiskTypesNotAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageDiskTypesNotAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageDiskTypesNotAllowed.arg(TfArg<String> arg) : this._(arg);
+
+  static const standardLrs = SharedImageDiskTypesNotAllowed._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const premiumLrs = SharedImageDiskTypesNotAllowed._(
+    TfArgLiteral('Premium_LRS'),
+  );
+
+  static const List<SharedImageDiskTypesNotAllowed> values = [
+    standardLrs,
+    premiumLrs,
+  ];
+}
+
 /// Shared Image Hyper V enum for `hyper_v_generation`.
 extension type const SharedImageHyperVGeneration._(TfArg<String> _)
     implements TfArg<String> {
@@ -254,7 +276,7 @@ final class AzurermSharedImage extends Resource {
     SharedImageSecurityType? securityType,
     TfArg<String>? description,
     TfArg<bool>? diskControllerTypeNvmeEnabled,
-    TfArg<List<String>>? diskTypesNotAllowed,
+    EnumList<SharedImageDiskTypesNotAllowed>? diskTypesNotAllowed,
     TfArg<String>? endOfLifeDate,
     TfArg<String>? eula,
     required TfArg<String> galleryName,

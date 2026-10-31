@@ -1,0 +1,99 @@
+{
+  "name": "eventarc",
+  "version": "v1",
+  "revision": "20261023",
+  "sourceUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Channel": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      }
+    },
+    "Enrollment": {
+      "properties": {}
+    },
+    "GoogleApiSource": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "GoogleChannelConfig": {
+      "properties": {}
+    },
+    "LoggingConfig": {
+      "properties": {
+        "logSeverity": {
+          "enum": [
+            "LOG_SEVERITY_UNSPECIFIED",
+            "NONE",
+            "DEBUG",
+            "INFO",
+            "NOTICE",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+            "ALERT",
+            "EMERGENCY"
+          ]
+        }
+      }
+    },
+    "MessageBus": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "Pipeline": {
+      "properties": {
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        }
+      }
+    },
+    "StateCondition": {
+      "properties": {
+        "code": {
+          "enum": [
+            "OK",
+            "CANCELLED",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS"
+          ]
+        }
+      }
+    },
+    "Trigger": {
+      "properties": {
+        "conditions": {
+          "additionalProperties": {
+            "$ref": "StateCondition"
+          }
+        }
+      }
+    }
+  }
+}

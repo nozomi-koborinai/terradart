@@ -1,0 +1,208 @@
+{
+  "name": "domains",
+  "version": "v1",
+  "revision": "20260603",
+  "sourceUrl": "https://domains.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ContactSettings": {
+      "properties": {
+        "privacy": {
+          "enum": [
+            "CONTACT_PRIVACY_UNSPECIFIED",
+            "PUBLIC_CONTACT_DATA",
+            "PRIVATE_CONTACT_DATA",
+            "REDACTED_CONTACT_DATA"
+          ]
+        }
+      }
+    },
+    "CustomDns": {
+      "properties": {
+        "dsRecords": {
+          "items": {
+            "$ref": "DsRecord"
+          }
+        }
+      }
+    },
+    "DnsSettings": {
+      "properties": {
+        "customDns": {
+          "$ref": "CustomDns"
+        },
+        "googleDomainsDns": {
+          "$ref": "GoogleDomainsDns"
+        }
+      }
+    },
+    "DsRecord": {
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "ALGORITHM_UNSPECIFIED",
+            "RSAMD5",
+            "DH",
+            "DSA",
+            "ECC",
+            "RSASHA1",
+            "DSANSEC3SHA1",
+            "RSASHA1NSEC3SHA1",
+            "RSASHA256",
+            "RSASHA512",
+            "ECCGOST",
+            "ECDSAP256SHA256",
+            "ECDSAP384SHA384",
+            "ED25519",
+            "ED448",
+            "INDIRECT",
+            "PRIVATEDNS",
+            "PRIVATEOID"
+          ]
+        },
+        "digestType": {
+          "enum": [
+            "DIGEST_TYPE_UNSPECIFIED",
+            "SHA1",
+            "SHA256",
+            "GOST3411",
+            "SHA384"
+          ]
+        }
+      }
+    },
+    "GoogleDomainsDns": {
+      "properties": {
+        "dsState": {
+          "enum": [
+            "DS_STATE_UNSPECIFIED",
+            "DS_RECORDS_UNPUBLISHED",
+            "DS_RECORDS_PUBLISHED"
+          ]
+        },
+        "dsRecords": {
+          "items": {
+            "$ref": "DsRecord"
+          }
+        }
+      }
+    },
+    "ManagementSettings": {
+      "properties": {
+        "effectiveTransferLockState": {
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
+          ]
+        },
+        "preferredRenewalMethod": {
+          "enum": [
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ]
+        },
+        "transferLockState": {
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
+          ]
+        },
+        "renewalMethod": {
+          "enum": [
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ]
+        }
+      }
+    },
+    "Registration": {
+      "properties": {
+        "supportedPrivacy": {
+          "items": {
+            "enum": [
+              "CONTACT_PRIVACY_UNSPECIFIED",
+              "PUBLIC_CONTACT_DATA",
+              "PRIVATE_CONTACT_DATA",
+              "REDACTED_CONTACT_DATA"
+            ]
+          }
+        },
+        "issues": {
+          "items": {
+            "enum": [
+              "ISSUE_UNSPECIFIED",
+              "CONTACT_SUPPORT",
+              "UNVERIFIED_EMAIL",
+              "PROBLEM_WITH_BILLING",
+              "DNS_NOT_ACTIVATED",
+              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REGISTRATION_PENDING",
+            "REGISTRATION_FAILED",
+            "TRANSFER_PENDING",
+            "TRANSFER_FAILED",
+            "IMPORT_PENDING",
+            "ACTIVE",
+            "SUSPENDED",
+            "EXPORTED",
+            "EXPIRED"
+          ]
+        },
+        "transferFailureReason": {
+          "enum": [
+            "TRANSFER_FAILURE_REASON_UNSPECIFIED",
+            "TRANSFER_FAILURE_REASON_UNKNOWN",
+            "EMAIL_CONFIRMATION_FAILURE",
+            "DOMAIN_NOT_REGISTERED",
+            "DOMAIN_HAS_TRANSFER_LOCK",
+            "INVALID_AUTHORIZATION_CODE",
+            "TRANSFER_CANCELLED",
+            "TRANSFER_REJECTED",
+            "INVALID_REGISTRANT_EMAIL_ADDRESS",
+            "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER",
+            "TRANSFER_ALREADY_PENDING"
+          ]
+        },
+        "dnsSettings": {
+          "$ref": "DnsSettings"
+        },
+        "managementSettings": {
+          "$ref": "ManagementSettings"
+        },
+        "contactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "registerFailureReason": {
+          "enum": [
+            "REGISTER_FAILURE_REASON_UNSPECIFIED",
+            "REGISTER_FAILURE_REASON_UNKNOWN",
+            "DOMAIN_NOT_AVAILABLE",
+            "INVALID_CONTACTS"
+          ]
+        },
+        "pendingContactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "domainProperties": {
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,43 @@ const Set<String> _azurermHdinsightHbaseClusterSensitive = <String>{
   'storage_account.storage_account_key',
 };
 
+/// Hdinsight Hbase Cluster enum for `tier`.
+extension type const HdinsightHbaseClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHbaseClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHbaseClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHbaseClusterTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = HdinsightHbaseClusterTier._(TfArgLiteral('Premium'));
+  static const standard = HdinsightHbaseClusterTier._(TfArgLiteral('Standard'));
+
+  static const List<HdinsightHbaseClusterTier> values = [premium, standard];
+}
+
+/// Hdinsight Hbase Cluster Tls Min enum for `tls_min_version`.
+extension type const HdinsightHbaseClusterTlsMinVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHbaseClusterTlsMinVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHbaseClusterTlsMinVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHbaseClusterTlsMinVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p0 = HdinsightHbaseClusterTlsMinVersion._(TfArgLiteral('1.0'));
+  static const v1p1 = HdinsightHbaseClusterTlsMinVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = HdinsightHbaseClusterTlsMinVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = HdinsightHbaseClusterTlsMinVersion._(TfArgLiteral('1.3'));
+
+  static const List<HdinsightHbaseClusterTlsMinVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `component_version` block of
 /// `azurerm_hdinsight_hbase_cluster` (derived from provider schema).
 @immutable
@@ -64,7 +101,7 @@ final class HdinsightHbaseClusterDiskEncryption {
     this.keyVaultManagedIdentityId,
   });
 
-  final TfArg<String>? encryptionAlgorithm;
+  final HdinsightHbaseClusterEncryptionAlgorithm? encryptionAlgorithm;
 
   final TfArg<bool>? encryptionAtHostEnabled;
 
@@ -79,6 +116,33 @@ final class HdinsightHbaseClusterDiskEncryption {
     'key_vault_key_id': ?keyVaultKeyId?.toTfJson(),
     'key_vault_managed_identity_id': ?keyVaultManagedIdentityId?.toTfJson(),
   };
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+extension type const HdinsightHbaseClusterEncryptionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHbaseClusterEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHbaseClusterEncryptionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHbaseClusterEncryptionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsaOaep = HdinsightHbaseClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 = HdinsightHbaseClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP-256'),
+  );
+  static const rsa15 = HdinsightHbaseClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+
+  static const List<HdinsightHbaseClusterEncryptionAlgorithm> values = [
+    rsaOaep,
+    rsaOaep256,
+    rsa15,
+  ];
 }
 
 /// Typed helper for the `extension` block of
@@ -254,7 +318,7 @@ final class HdinsightHbaseClusterNetwork {
     this.privateLinkEnabled,
   });
 
-  final TfArg<String>? connectionDirection;
+  final HdinsightHbaseClusterConnectionDirection? connectionDirection;
 
   final TfArg<bool>? privateLinkEnabled;
 
@@ -263,6 +327,29 @@ final class HdinsightHbaseClusterNetwork {
     'connection_direction': ?connectionDirection?.toTfJson(),
     'private_link_enabled': ?privateLinkEnabled?.toTfJson(),
   };
+}
+
+/// `connection_direction` — derived from the provider schema description.
+extension type const HdinsightHbaseClusterConnectionDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHbaseClusterConnectionDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHbaseClusterConnectionDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHbaseClusterConnectionDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inbound = HdinsightHbaseClusterConnectionDirection._(
+    TfArgLiteral('Inbound'),
+  );
+  static const outbound = HdinsightHbaseClusterConnectionDirection._(
+    TfArgLiteral('Outbound'),
+  );
+
+  static const List<HdinsightHbaseClusterConnectionDirection> values = [
+    inbound,
+    outbound,
+  ];
 }
 
 /// Typed helper for the `private_link_configuration` block of
@@ -307,7 +394,8 @@ final class HdinsightHbaseClusterIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAllocationMethod;
+  final HdinsightHbaseClusterPrivateIpAllocationMethod?
+  privateIpAllocationMethod;
 
   final TfArg<String>? subnetId;
 
@@ -319,6 +407,30 @@ final class HdinsightHbaseClusterIpConfiguration {
     'private_ip_allocation_method': ?privateIpAllocationMethod?.toTfJson(),
     'subnet_id': ?subnetId?.toTfJson(),
   };
+}
+
+/// `private_ip_allocation_method` — derived from the provider schema description.
+extension type const HdinsightHbaseClusterPrivateIpAllocationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightHbaseClusterPrivateIpAllocationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHbaseClusterPrivateIpAllocationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHbaseClusterPrivateIpAllocationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dynamic = HdinsightHbaseClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('dynamic'),
+  );
+  static const static = HdinsightHbaseClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('static'),
+  );
+
+  static const List<HdinsightHbaseClusterPrivateIpAllocationMethod> values = [
+    dynamic,
+    static,
+  ];
 }
 
 /// Typed helper for the `roles` block of
@@ -664,8 +776,8 @@ final class AzurermHdinsightHbaseCluster extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
-    required TfArg<String> tlsMinVersion,
+    required HdinsightHbaseClusterTier tier,
+    required HdinsightHbaseClusterTlsMinVersion tlsMinVersion,
     required HdinsightHbaseClusterComponentVersion componentVersion,
     HdinsightHbaseClusterComputeIsolation? computeIsolation,
     List<HdinsightHbaseClusterDiskEncryption>? diskEncryption,

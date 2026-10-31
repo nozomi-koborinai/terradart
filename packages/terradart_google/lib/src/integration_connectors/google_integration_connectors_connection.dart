@@ -618,7 +618,7 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
 
   final TfArg<String>? authKey;
 
-  final TfArg<String> authType;
+  final IntegrationConnectorsConnectionAuthConfigAuthType authType;
 
   final List<IntegrationConnectorsConnectionEventingConfigAdditionalVariable>?
   additionalVariable;
@@ -633,6 +633,26 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
     'user_password': userPassword.encode(),
   };
+}
+
+/// `auth_type` — derived from the provider schema description.
+extension type const IntegrationConnectorsConnectionAuthConfigAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionAuthConfigAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionAuthConfigAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionAuthConfigAuthType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const userPassword =
+      IntegrationConnectorsConnectionAuthConfigAuthType._(
+        TfArgLiteral('USER_PASSWORD'),
+      );
+
+  static const List<IntegrationConnectorsConnectionAuthConfigAuthType> values =
+      [userPassword];
 }
 
 /// Typed helper for the `eventing_config.auth_config.user_password` block of
@@ -784,9 +804,9 @@ final class IntegrationConnectorsConnectionSslConfig {
     this.privateServerCertificate,
   });
 
-  final TfArg<String>? clientCertType;
+  final IntegrationConnectorsConnectionClientCertType? clientCertType;
 
-  final TfArg<String>? serverCertType;
+  final IntegrationConnectorsConnectionServerCertType? serverCertType;
 
   final IntegrationConnectorsConnectionTrustModel? trustModel;
 
@@ -821,6 +841,46 @@ final class IntegrationConnectorsConnectionSslConfig {
     'client_private_key_pass': ?clientPrivateKeyPass?.encode(),
     'private_server_certificate': ?privateServerCertificate?.encode(),
   };
+}
+
+/// `client_cert_type` — derived from the provider schema description.
+extension type const IntegrationConnectorsConnectionClientCertType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionClientCertType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionClientCertType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionClientCertType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pem = IntegrationConnectorsConnectionClientCertType._(
+    TfArgLiteral('PEM'),
+  );
+
+  static const List<IntegrationConnectorsConnectionClientCertType> values = [
+    pem,
+  ];
+}
+
+/// `server_cert_type` — derived from the provider schema description.
+extension type const IntegrationConnectorsConnectionServerCertType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionServerCertType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionServerCertType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionServerCertType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pem = IntegrationConnectorsConnectionServerCertType._(
+    TfArgLiteral('PEM'),
+  );
+
+  static const List<IntegrationConnectorsConnectionServerCertType> values = [
+    pem,
+  ];
 }
 
 /// `trust_model` — derived from the provider schema description.

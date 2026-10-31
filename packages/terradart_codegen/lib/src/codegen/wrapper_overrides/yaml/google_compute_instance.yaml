@@ -1,5 +1,6 @@
 outputDir: compute
 
+deriveEnums: true
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
@@ -108,8 +109,9 @@ prelude: |
     static const virtioNet = NicType._(TfArgLiteral('VIRTIO_NET'));
     static const mrdma = NicType._(TfArgLiteral('MRDMA'));
     static const irdma = NicType._(TfArgLiteral('IRDMA'));
+    static const idpf = NicType._(TfArgLiteral('IDPF'));
 
-    static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma];
+    static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma, idpf];
   }
 
   /// `network_interface.access_config.network_tier` -- service tier for the
@@ -163,8 +165,10 @@ prelude: |
 
     static const standard = ProvisioningModel._(TfArgLiteral('STANDARD'));
     static const spot = ProvisioningModel._(TfArgLiteral('SPOT'));
+    static const flexStart = ProvisioningModel._(TfArgLiteral('FLEX_START'));
+    static const reservationBound = ProvisioningModel._(TfArgLiteral('RESERVATION_BOUND'));
 
-    static const List<ProvisioningModel> values = [standard, spot];
+    static const List<ProvisioningModel> values = [standard, spot, flexStart, reservationBound];
   }
 
   /// `scheduling.instance_termination_action` -- action when a SPOT VM is

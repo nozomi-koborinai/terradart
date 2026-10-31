@@ -3,6 +3,10 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: backup_frequency
+    enum_values:
+      - "Daily"
+      - "Weekly"
   - api_name: monthly_retention_rule
     properties:
       - api_name: days_of_week

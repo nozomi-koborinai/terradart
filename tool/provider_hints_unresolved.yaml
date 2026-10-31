@@ -1,0 +1,12 @@
+# Value-set validators the azurerm hint extractor cannot evaluate statically.
+# tool/extract_provider_hints.dart fails on an unresolved validator not
+# listed here and on an entry that no longer names one, so a fixed set is
+# either a hint or a reviewed reason. Key: `<type> <path>` (`data.<type>`
+# for a data source).
+#
+# A set built in code from constants, slices, `append`, loops and filters is
+# not a reason: teach the scanner's evaluator the shape instead. An entry is
+# only for a set that depends on something no static reading can know (an
+# API call, the environment, a value outside the provider tree and the Go
+# standard library), and its reason says which.
+azurerm: {}

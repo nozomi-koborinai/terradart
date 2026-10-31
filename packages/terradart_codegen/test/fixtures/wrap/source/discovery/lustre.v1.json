@@ -1,0 +1,97 @@
+{
+  "name": "lustre",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://lustre.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AccessRule": {
+      "properties": {
+        "squashMode": {
+          "enum": [
+            "SQUASH_MODE_UNSPECIFIED",
+            "NO_SQUASH",
+            "ROOT_SQUASH"
+          ]
+        }
+      }
+    },
+    "AccessRulesOptions": {
+      "properties": {
+        "accessRules": {
+          "items": {
+            "$ref": "AccessRule"
+          }
+        },
+        "defaultSquashMode": {
+          "enum": [
+            "SQUASH_MODE_UNSPECIFIED",
+            "NO_SQUASH",
+            "ROOT_SQUASH"
+          ]
+        }
+      }
+    },
+    "DynamicTierOptions": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "DEFAULT_CACHE"
+          ]
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "UPGRADING",
+            "REPAIRING",
+            "STOPPED",
+            "UPDATING",
+            "SUSPENDED"
+          ]
+        },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        },
+        "dynamicTierOptions": {
+          "$ref": "DynamicTierOptions"
+        },
+        "accessRulesOptions": {
+          "$ref": "AccessRulesOptions"
+        }
+      }
+    },
+    "MaintenancePolicy": {
+      "properties": {
+        "weeklyMaintenanceWindows": {
+          "items": {
+            "$ref": "WeeklyMaintenanceWindow"
+          }
+        }
+      }
+    },
+    "WeeklyMaintenanceWindow": {
+      "properties": {
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    }
+  }
+}

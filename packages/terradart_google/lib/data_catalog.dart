@@ -77,7 +77,7 @@ export 'src/data_catalog/google_data_catalog_tag_template_iam_member.dart'
 export 'src/data_catalog/google_data_catalog_tag_template_iam_policy.dart'
     show GoogleDataCatalogTagTemplateIamPolicy;
 export 'src/data_catalog/google_data_catalog_taxonomy.dart'
-    show GoogleDataCatalogTaxonomy;
+    show DataCatalogTaxonomyActivatedPolicyTypes, GoogleDataCatalogTaxonomy;
 export 'src/data_catalog/google_data_catalog_taxonomy_iam_binding.dart'
     show
         DataCatalogTaxonomyIamBindingCondition,

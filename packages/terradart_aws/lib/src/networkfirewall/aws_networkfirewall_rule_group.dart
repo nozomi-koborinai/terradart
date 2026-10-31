@@ -280,14 +280,14 @@ final class NetworkfirewallRuleGroupRulesSourceList {
 
   final NetworkfirewallRuleGroupGeneratedRulesType generatedRulesType;
 
-  final List<NetworkfirewallRuleGroupTargetTypes> targetTypes;
+  final EnumList<NetworkfirewallRuleGroupTargetTypes> targetTypes;
 
   final TfArg<List<String>> targets;
 
   @internal
   Map<String, Object?> encode() => {
     'generated_rules_type': generatedRulesType.toTfJson(),
-    'target_types': [for (final e in targetTypes) e.toTfJson()],
+    'target_types': targetTypes.toTfJson(),
     'targets': targets.toTfJson(),
   };
 }
@@ -766,14 +766,14 @@ final class NetworkfirewallRuleGroupSourcePort {
 final class NetworkfirewallRuleGroupTcpFlag {
   const NetworkfirewallRuleGroupTcpFlag({required this.flags, this.masks});
 
-  final List<NetworkfirewallRuleGroupFlags> flags;
+  final EnumList<NetworkfirewallRuleGroupFlags> flags;
 
-  final List<NetworkfirewallRuleGroupMasks>? masks;
+  final EnumList<NetworkfirewallRuleGroupMasks>? masks;
 
   @internal
   Map<String, Object?> encode() => {
-    'flags': [for (final e in flags) e.toTfJson()],
-    if (masks != null) 'masks': [for (final e in masks!) e.toTfJson()],
+    'flags': flags.toTfJson(),
+    'masks': ?masks?.toTfJson(),
   };
 }
 

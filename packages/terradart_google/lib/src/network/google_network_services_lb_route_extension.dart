@@ -92,7 +92,8 @@ final class NetworkServicesLbRouteExtensionExtensions {
 
   final TfArg<String> service;
 
-  final TfArg<List<String>>? supportedEvents;
+  final EnumList<NetworkServicesLbRouteExtensionSupportedEvents>?
+  supportedEvents;
 
   final TfArg<String>? timeout;
 
@@ -143,6 +144,50 @@ extension type const NetworkServicesLbRouteExtensionRequestBodySendMode._(
         bodySendModeStreamed,
         bodySendModeFullDuplexStreamed,
       ];
+}
+
+/// `supported_events` — derived from the provider schema description.
+extension type const NetworkServicesLbRouteExtensionSupportedEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbRouteExtensionSupportedEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbRouteExtensionSupportedEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbRouteExtensionSupportedEvents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const requestHeaders =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_HEADERS'),
+      );
+  static const requestBody = NetworkServicesLbRouteExtensionSupportedEvents._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const responseHeaders =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_HEADERS'),
+      );
+  static const responseBody = NetworkServicesLbRouteExtensionSupportedEvents._(
+    TfArgLiteral('RESPONSE_BODY'),
+  );
+  static const requestTrailers =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_TRAILERS'),
+      );
+  static const responseTrailers =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_TRAILERS'),
+      );
+
+  static const List<NetworkServicesLbRouteExtensionSupportedEvents> values = [
+    requestHeaders,
+    requestBody,
+    responseHeaders,
+    responseBody,
+    requestTrailers,
+    responseTrailers,
+  ];
 }
 
 /// Typed helper for the `extension_chains.match_condition` block of

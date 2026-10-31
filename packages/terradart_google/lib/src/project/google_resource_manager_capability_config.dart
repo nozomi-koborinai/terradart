@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_resource_manager_capability_config`.
 const Set<String> _googleResourceManagerCapabilityConfigSensitive = <String>{};
 
+/// Resource Manager Capability Config enum for `types`.
+extension type const ResourceManagerCapabilityConfigTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ResourceManagerCapabilityConfigTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ResourceManagerCapabilityConfigTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ResourceManagerCapabilityConfigTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const appManagement = ResourceManagerCapabilityConfigTypes._(
+    TfArgLiteral('APP_MANAGEMENT'),
+  );
+  static const agentManagement = ResourceManagerCapabilityConfigTypes._(
+    TfArgLiteral('AGENT_MANAGEMENT'),
+  );
+
+  static const List<ResourceManagerCapabilityConfigTypes> values = [
+    appManagement,
+    agentManagement,
+  ];
+}
+
 /// Factory wrapper for `google_resource_manager_capability_config`.
 ///
 /// Capability configs define the enabled capabilities and their scope of
@@ -21,7 +44,7 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? managementProject,
     required TfArg<String> parent,
-    required TfArg<List<String>> types,
+    required EnumList<ResourceManagerCapabilityConfigTypes> types,
     super.lifecycle,
     super.dependsOn,
     super.provider,

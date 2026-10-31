@@ -767,10 +767,6 @@ extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
   const DataprocWorkflowTemplatePrivateIpv6GoogleAccess.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const privateIpv6GoogleAccessUnspecified =
-      DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
-        TfArgLiteral('PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
-      );
   static const inheritFromSubnetwork =
       DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
         TfArgLiteral('INHERIT_FROM_SUBNETWORK'),
@@ -784,7 +780,6 @@ extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
       );
 
   static const List<DataprocWorkflowTemplatePrivateIpv6GoogleAccess> values = [
-    privateIpv6GoogleAccessUnspecified,
     inheritFromSubnetwork,
     outbound,
     bidirectional,
@@ -838,10 +833,6 @@ extension type const DataprocWorkflowTemplateConsumeReservationType._(
   const DataprocWorkflowTemplateConsumeReservationType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const typeUnspecified =
-      DataprocWorkflowTemplateConsumeReservationType._(
-        TfArgLiteral('TYPE_UNSPECIFIED'),
-      );
   static const noReservation = DataprocWorkflowTemplateConsumeReservationType._(
     TfArgLiteral('NO_RESERVATION'),
   );
@@ -855,7 +846,6 @@ extension type const DataprocWorkflowTemplateConsumeReservationType._(
       );
 
   static const List<DataprocWorkflowTemplateConsumeReservationType> values = [
-    typeUnspecified,
     noReservation,
     anyReservation,
     specificReservation,
@@ -986,21 +976,20 @@ extension type const DataprocWorkflowTemplatePreemptibility._(TfArg<String> _)
   const DataprocWorkflowTemplatePreemptibility.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const preemptibilityUnspecified =
-      DataprocWorkflowTemplatePreemptibility._(
-        TfArgLiteral('PREEMPTIBILITY_UNSPECIFIED'),
-      );
   static const nonPreemptible = DataprocWorkflowTemplatePreemptibility._(
     TfArgLiteral('NON_PREEMPTIBLE'),
   );
   static const preemptible = DataprocWorkflowTemplatePreemptibility._(
     TfArgLiteral('PREEMPTIBLE'),
   );
+  static const spot = DataprocWorkflowTemplatePreemptibility._(
+    TfArgLiteral('SPOT'),
+  );
 
   static const List<DataprocWorkflowTemplatePreemptibility> values = [
-    preemptibilityUnspecified,
     nonPreemptible,
     preemptible,
+    spot,
   ];
 }
 
@@ -1046,9 +1035,9 @@ final class DataprocWorkflowTemplateDiskConfig {
 
   final TfArg<num>? bootDiskSizeGb;
 
-  final TfArg<String>? bootDiskType;
+  final DataprocWorkflowTemplateBootDiskType? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocWorkflowTemplateLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 
@@ -1068,6 +1057,57 @@ final class DataprocWorkflowTemplateDiskConfig {
   };
 }
 
+/// `boot_disk_type` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateBootDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplateBootDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateBootDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateBootDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pdBalanced = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-balanced'),
+  );
+  static const pdSsd = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-ssd'),
+  );
+  static const pdStandard = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-standard'),
+  );
+
+  static const List<DataprocWorkflowTemplateBootDiskType> values = [
+    pdBalanced,
+    pdSsd,
+    pdStandard,
+  ];
+}
+
+/// `local_ssd_interface` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateLocalSsdInterface._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocWorkflowTemplateLocalSsdInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateLocalSsdInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateLocalSsdInterface.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const scsi = DataprocWorkflowTemplateLocalSsdInterface._(
+    TfArgLiteral('scsi'),
+  );
+  static const nvme = DataprocWorkflowTemplateLocalSsdInterface._(
+    TfArgLiteral('nvme'),
+  );
+
+  static const List<DataprocWorkflowTemplateLocalSsdInterface> values = [
+    scsi,
+    nvme,
+  ];
+}
+
 /// Typed helper for the `placement.managed_cluster.config.master_config.disk_config.attached_disk_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -1083,7 +1123,7 @@ final class DataprocWorkflowTemplateAttachedDiskConfig {
 
   final TfArg<num>? diskSizeGb;
 
-  final TfArg<String>? diskType;
+  final DataprocWorkflowTemplateDiskType? diskType;
 
   final TfArg<num>? provisionedIops;
 
@@ -1099,6 +1139,36 @@ final class DataprocWorkflowTemplateAttachedDiskConfig {
     'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `disk_type` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplateDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateDiskType.arg(TfArg<String> arg) : this._(arg);
+
+  static const hyperdiskBalanced = DataprocWorkflowTemplateDiskType._(
+    TfArgLiteral('HYPERDISK_BALANCED'),
+  );
+  static const hyperdiskExtreme = DataprocWorkflowTemplateDiskType._(
+    TfArgLiteral('HYPERDISK_EXTREME'),
+  );
+  static const hyperdiskMl = DataprocWorkflowTemplateDiskType._(
+    TfArgLiteral('HYPERDISK_ML'),
+  );
+  static const hyperdiskThroughput = DataprocWorkflowTemplateDiskType._(
+    TfArgLiteral('HYPERDISK_THROUGHPUT'),
+  );
+
+  static const List<DataprocWorkflowTemplateDiskType> values = [
+    hyperdiskBalanced,
+    hyperdiskExtreme,
+    hyperdiskMl,
+    hyperdiskThroughput,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy` block of
@@ -1337,7 +1407,8 @@ final class DataprocWorkflowTemplateSoftwareConfig {
 
   final TfArg<String>? imageVersion;
 
-  final TfArg<List<String>>? optionalComponents;
+  final EnumList<DataprocWorkflowTemplateOptionalComponents>?
+  optionalComponents;
 
   final TfArg<Map<String, String>>? properties;
 
@@ -1347,6 +1418,99 @@ final class DataprocWorkflowTemplateSoftwareConfig {
     'optional_components': ?optionalComponents?.toTfJson(),
     'properties': ?properties?.toTfJson(),
   };
+}
+
+/// `optional_components` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateOptionalComponents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocWorkflowTemplateOptionalComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateOptionalComponents.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateOptionalComponents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const alloydbConnector = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('ALLOYDB_CONNECTOR'),
+  );
+  static const anaconda = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('ANACONDA'),
+  );
+  static const delta = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('DELTA'),
+  );
+  static const docker = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('DOCKER'),
+  );
+  static const druid = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('DRUID'),
+  );
+  static const flink = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('FLINK'),
+  );
+  static const hbase = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('HBASE'),
+  );
+  static const hiveWebhcat = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('HIVE_WEBHCAT'),
+  );
+  static const hudi = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('HUDI'),
+  );
+  static const iceberg = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('ICEBERG'),
+  );
+  static const jupyter = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('JUPYTER'),
+  );
+  static const pig = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('PIG'),
+  );
+  static const presto = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('PRESTO'),
+  );
+  static const trino = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('TRINO'),
+  );
+  static const ranger = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('RANGER'),
+  );
+  static const solr = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('SOLR'),
+  );
+  static const zeppelin = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('ZEPPELIN'),
+  );
+  static const zookeeper = DataprocWorkflowTemplateOptionalComponents._(
+    TfArgLiteral('ZOOKEEPER'),
+  );
+  static const jupyterKernelGateway =
+      DataprocWorkflowTemplateOptionalComponents._(
+        TfArgLiteral('JUPYTER_KERNEL_GATEWAY'),
+      );
+
+  static const List<DataprocWorkflowTemplateOptionalComponents> values = [
+    alloydbConnector,
+    anaconda,
+    delta,
+    docker,
+    druid,
+    flink,
+    hbase,
+    hiveWebhcat,
+    hudi,
+    iceberg,
+    jupyter,
+    pig,
+    presto,
+    trino,
+    ranger,
+    solr,
+    zeppelin,
+    zookeeper,
+    jupyterKernelGateway,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.worker_config` block of

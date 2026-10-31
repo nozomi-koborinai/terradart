@@ -187,7 +187,7 @@ final class AwsNeptuneCluster extends Resource {
     NeptuneClusterIdentifier? clusterIdentifier,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? deletionProtection,
-    List<NeptuneClusterEnableCloudwatchLogsExports>?
+    EnumList<NeptuneClusterEnableCloudwatchLogsExports>?
     enableCloudwatchLogsExports,
     NeptuneClusterEngine? engine,
     TfArg<String>? engineVersion,
@@ -227,10 +227,7 @@ final class AwsNeptuneCluster extends Resource {
            ...?clusterIdentifier?.argMap,
            'copy_tags_to_snapshot': ?copyTagsToSnapshot,
            'deletion_protection': ?deletionProtection,
-           if (enableCloudwatchLogsExports != null)
-             'enable_cloudwatch_logs_exports': TfArg.literal([
-               for (final e in enableCloudwatchLogsExports) e.toTfJson(),
-             ]),
+           'enable_cloudwatch_logs_exports': ?enableCloudwatchLogsExports,
            'engine': ?engine,
            'engine_version': ?engineVersion,
            'final_snapshot_identifier': ?finalSnapshotIdentifier,

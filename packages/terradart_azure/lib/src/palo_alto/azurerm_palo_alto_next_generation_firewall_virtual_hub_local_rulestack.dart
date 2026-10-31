@@ -24,7 +24,7 @@ final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDestinationNat
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol protocol;
 
   final PaloAltoNextGenerationFirewallVirtualHubLocalRulestackBackendConfig?
   backendConfig;
@@ -39,6 +39,35 @@ final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDestinationNat
     'backend_config': ?backendConfig?.encode(),
     'frontend_config': ?frontendConfig?.encode(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tcp =
+      PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol._(
+        TfArgLiteral('TCP'),
+      );
+  static const udp =
+      PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol._(
+        TfArgLiteral('UDP'),
+      );
+
+  static const List<
+    PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol
+  >
+  values = [tcp, udp];
 }
 
 /// Typed helper for the `destination_nat.backend_config` block of
@@ -81,24 +110,66 @@ final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackFrontendConfig
   };
 }
 
-/// Typed helper for the `dns_settings` block of
-/// `azurerm_palo_alto_next_generation_firewall_virtual_hub_local_rulestack` (derived from provider schema).
-@immutable
-final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings {
-  const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings({
-    this.dnsServers,
-    this.useAzureDns,
-  });
+/// At most one of `dns_servers`, `use_azure_dns` on the `dns_settings` block of `azurerm_palo_alto_next_generation_firewall_virtual_hub_local_rulestack`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dnsServers(...)`.
+sealed class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings();
 
-  final TfArg<List<String>>? dnsServers;
+  /// Sets `dns_servers`.
+  const factory PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings.dnsServers(
+    TfArg<List<String>> dnsServers,
+  ) = PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers;
 
-  final TfArg<bool>? useAzureDns;
+  /// Sets `use_azure_dns`.
+  const factory PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings.useAzureDns(
+    TfArg<bool> useAzureDns,
+  ) = PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
-  Map<String, Object?> encode() => {
-    'dns_servers': ?dnsServers?.toTfJson(),
-    'use_azure_dns': ?useAzureDns?.toTfJson(),
-  };
+  Map<String, Object?> encode();
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings.dnsServers] choice: sets `dns_servers`.
+final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers
+    extends PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers(
+    this.dnsServers,
+  );
+
+  final TfArg<List<String>> dnsServers;
+
+  @internal
+  @override
+  String get blockKey => 'dns_servers';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_servers': dnsServers.toTfJson()};
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings.useAzureDns] choice: sets `use_azure_dns`.
+final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns
+    extends PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns(
+    this.useAzureDns,
+  );
+
+  final TfArg<bool> useAzureDns;
+
+  @internal
+  @override
+  String get blockKey => 'use_azure_dns';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'use_azure_dns': useAzureDns.toTfJson()};
 }
 
 /// Typed helper for the `network_profile` block of

@@ -9,6 +9,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_cosmosdb_sql_container`.
 const Set<String> _azurermCosmosdbSqlContainerSensitive = <String>{};
 
+/// Cosmosdb Sql Container Partition Key enum for `partition_key_kind`.
+extension type const CosmosdbSqlContainerPartitionKeyKind._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerPartitionKeyKind.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerPartitionKeyKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerPartitionKeyKind.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const hash = CosmosdbSqlContainerPartitionKeyKind._(
+    TfArgLiteral('Hash'),
+  );
+  static const multihash = CosmosdbSqlContainerPartitionKeyKind._(
+    TfArgLiteral('MultiHash'),
+  );
+
+  static const List<CosmosdbSqlContainerPartitionKeyKind> values = [
+    hash,
+    multihash,
+  ];
+}
+
 /// Typed helper for the `autoscale_settings` block of
 /// `azurerm_cosmosdb_sql_container` (derived from provider schema).
 @immutable
@@ -37,7 +60,7 @@ final class CosmosdbSqlContainerConflictResolutionPolicy {
 
   final TfArg<String>? conflictResolutionProcedure;
 
-  final TfArg<String> mode;
+  final CosmosdbSqlContainerMode mode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -45,6 +68,22 @@ final class CosmosdbSqlContainerConflictResolutionPolicy {
     'conflict_resolution_procedure': ?conflictResolutionProcedure?.toTfJson(),
     'mode': mode.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerMode.variable(String name) : this._(TfArg.variable(name));
+  CosmosdbSqlContainerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = CosmosdbSqlContainerMode._(TfArgLiteral('Custom'));
+  static const lastwriterwins = CosmosdbSqlContainerMode._(
+    TfArgLiteral('LastWriterWins'),
+  );
+
+  static const List<CosmosdbSqlContainerMode> values = [custom, lastwriterwins];
 }
 
 /// Typed helper for the `indexing_policy` block of
@@ -59,7 +98,7 @@ final class CosmosdbSqlContainerIndexingPolicy {
     this.spatialIndex,
   });
 
-  final TfArg<String>? indexingMode;
+  final CosmosdbSqlContainerIndexingMode? indexingMode;
 
   final List<CosmosdbSqlContainerCompositeIndex>? compositeIndex;
 
@@ -83,6 +122,26 @@ final class CosmosdbSqlContainerIndexingPolicy {
   };
 }
 
+/// `indexing_mode` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerIndexingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerIndexingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const consistent = CosmosdbSqlContainerIndexingMode._(
+    TfArgLiteral('consistent'),
+  );
+  static const none = CosmosdbSqlContainerIndexingMode._(TfArgLiteral('none'));
+
+  static const List<CosmosdbSqlContainerIndexingMode> values = [
+    consistent,
+    none,
+  ];
+}
+
 /// Typed helper for the `indexing_policy.composite_index` block of
 /// `azurerm_cosmosdb_sql_container` (derived from provider schema).
 @immutable
@@ -103,7 +162,7 @@ final class CosmosdbSqlContainerCompositeIndex {
 final class CosmosdbSqlContainerIndex {
   const CosmosdbSqlContainerIndex({required this.order, required this.path});
 
-  final TfArg<String> order;
+  final CosmosdbSqlContainerOrder order;
 
   final TfArg<String> path;
 
@@ -112,6 +171,25 @@ final class CosmosdbSqlContainerIndex {
     'order': order.toTfJson(),
     'path': path.toTfJson(),
   };
+}
+
+/// `order` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const ascending = CosmosdbSqlContainerOrder._(
+    TfArgLiteral('ascending'),
+  );
+  static const descending = CosmosdbSqlContainerOrder._(
+    TfArgLiteral('descending'),
+  );
+
+  static const List<CosmosdbSqlContainerOrder> values = [ascending, descending];
 }
 
 /// Typed helper for the `indexing_policy.excluded_path` block of
@@ -173,7 +251,7 @@ final class AzurermCosmosdbSqlContainer extends Resource {
     required TfArg<String> databaseName,
     TfArg<num>? defaultTtl,
     required TfArg<String> name,
-    TfArg<String>? partitionKeyKind,
+    CosmosdbSqlContainerPartitionKeyKind? partitionKeyKind,
     required TfArg<List<String>> partitionKeyPaths,
     TfArg<num>? partitionKeyVersion,
     required RefTo<AzurermResourceGroup> resourceGroupName,

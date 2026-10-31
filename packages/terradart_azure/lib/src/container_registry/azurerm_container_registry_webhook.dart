@@ -68,7 +68,7 @@ final class AzurermContainerRegistryWebhook extends Resource {
 
   AzurermContainerRegistryWebhook(
     super.localName, {
-    required List<ContainerRegistryWebhookActions> actions,
+    required EnumList<ContainerRegistryWebhookActions> actions,
     TfArg<Map<String, String>>? customHeaders,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -85,7 +85,7 @@ final class AzurermContainerRegistryWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'actions': TfArg.literal([for (final e in actions) e.toTfJson()]),
+           'actions': actions,
            'custom_headers': ?customHeaders,
            'location': location,
            'name': name,

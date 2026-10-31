@@ -189,22 +189,15 @@ void main() {
       expect(slots.argMapEntry('location'), "'location': location,");
     });
 
-    test(
-      'an enum override is the enum type, and a list encodes element-wise',
-      () {
-        final slots = _slots(
-          typeOverrides: {'note': 'Status', 'colors': 'List<Color>'},
-        );
-        expect(slots.parameter('note'), 'Status? note');
-        expect(slots.argMapEntry('note'), "'note': ?note,");
-        expect(slots.parameter('colors'), 'List<Color>? colors');
-        expect(
-          slots.argMapEntry('colors'),
-          "if (colors != null) 'colors': "
-          'TfArg.literal([for (final e in colors) e.toTfJson()]),',
-        );
-      },
-    );
+    test('an enum override is the enum type, and a list takes an EnumList', () {
+      final slots = _slots(
+        typeOverrides: {'note': 'Status', 'colors': 'List<Color>'},
+      );
+      expect(slots.parameter('note'), 'Status? note');
+      expect(slots.argMapEntry('note'), "'note': ?note,");
+      expect(slots.parameter('colors'), 'EnumList<Color>? colors');
+      expect(slots.argMapEntry('colors'), "'colors': ?colors,");
+    });
 
     test('a resource deprecation escapes quotes and backslashes', () {
       final slots = _slots(deprecations: {'note': r"it's a \path"});

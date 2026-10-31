@@ -38,4 +38,7 @@ export 'src/web_pubsub/azurerm_web_pubsub_socketio.dart'
     show
         AzurermWebPubsubSocketio,
         WebPubsubSocketioIdentity,
-        WebPubsubSocketioSku;
+        WebPubsubSocketioPublicNetworkAccess,
+        WebPubsubSocketioServiceMode,
+        WebPubsubSocketioSku,
+        WebPubsubSocketioSkuName;

@@ -22,7 +22,14 @@
 // `mmSync` lane whose `<schemaDir>/mm_sources.yaml` no longer matches the
 // fixture ([staleMmSync]), regen first re-syncs the Magic Modules YAML
 // (tool/sync_lane_mm_yaml.dart, network); the wrap gate fails on a stale
-// sync instead, so a fixture change never ships without its MM hints.
+// sync instead, so a fixture change never ships without its MM hints. On a
+// `discovery` lane whose `<schemaDir>/discovery/roots.yaml` no longer
+// matches the fixture, its MM ref, its wrapped types or its
+// tool/discovery_sources.yaml entries (staleDiscovery), regen first
+// re-fetches the Google API Discovery copy (tool/fetch_discovery_enums.dart,
+// network) and the wrap gate fails instead. After a `discovery` lane's
+// regen, `tool/google_enum_sources.dart --fix` records the lane's new prose
+// enum sets; tool/google_enum_sources_test.dart fails on a new disagreement.
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
@@ -39,6 +46,7 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
 
+import 'fetch_discovery_enums.dart' show staleDiscovery;
 import 'migrate_fixture_pins.dart';
 import 'retire_removed_overrides.dart';
 import 'retire_stale_sealed_names.dart';
@@ -88,6 +96,7 @@ class WrapLane {
     this.providerEnums = false,
     this.mmHints = false,
     this.mmGroups = false,
+    this.discovery = false,
     this.mmSync,
     this.hintsRepo,
     this.references,
@@ -118,6 +127,11 @@ class WrapLane {
   /// `conflicts` / `at_least_one_of` groups; enum typing stays the merged
   /// IR's (google GA).
   final bool mmGroups;
+
+  /// `wrap --discovery-enums`: an input the Magic Modules YAML and its
+  /// description give no values takes the enum of the lane's Google API
+  /// Discovery copy, `<schemaDir>/discovery` (tool/fetch_discovery_enums.dart).
+  final bool discovery;
 
   /// `mmSync:`, or null when the lane's MM YAML (if any) is synced from a
   /// hand-kept manifest (google, tool/mm_yaml_sources.yaml).
@@ -157,6 +171,7 @@ class WrapLane {
     providerEnums: providerEnums,
     mmHints: mmHints,
     mmGroups: mmGroups,
+    discovery: discovery,
     mmSync: mmSync,
     hintsRepo: hintsRepo,
     references: references,
@@ -209,6 +224,7 @@ enum WrapGate {
         if (lane.providerEnums) '--provider-enums',
         if (lane.mmHints) '--mm-hints',
         if (lane.mmGroups) '--mm-groups',
+        if (lane.discovery) '--discovery-enums',
         if (lane.references case final mode?) ...[
           '--reference-targets',
           rel(referenceTargetsPath),
@@ -295,6 +311,12 @@ WrapLane _parseLane(String name, Object? entry) {
       'sources',
     );
   }
+  final discovery = entry['discovery'] ?? false;
+  if (discovery is! bool || (discovery && !mmHints && !mmGroups)) {
+    throw FormatException(
+      'lane $name: discovery must be a bool and needs mmHints or mmGroups',
+    );
+  }
   MmSync? mmSync;
   switch (entry['mmSync']) {
     case null:
@@ -336,6 +358,7 @@ WrapLane _parseLane(String name, Object? entry) {
     providerEnums: providerEnums,
     mmHints: mmHints,
     mmGroups: mmGroups,
+    discovery: discovery,
     mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
     references: references,
@@ -373,19 +396,26 @@ List<String> staleHints(String schemaDir) {
   return stale..sort();
 }
 
-/// Each data override under [overridesRoot] that lacks `deriveEnums: true`
-/// or `deriveExactlyOne: true` while [schemaDir] has data-source hints, as
-/// `file: flag`. Without both flags a data factory reads its hint file for
-/// neither enums nor sealed groups.
-List<String> dataSourceDerivationGaps(String schemaDir, String overridesRoot) {
-  if (!hasDataSourceHints(schemaDir)) return const [];
+/// Each data override under [overridesRoot] that lacks a derivation flag,
+/// as `file: flag`. `deriveEnums: true` is required on a [providerEnums]
+/// lane, whose description dialects type data-source inputs with no hint
+/// file, and on a lane whose [schemaDir] has data-source hints; those hints
+/// also require `deriveExactlyOne: true`. Without the flag a data factory
+/// takes a free string for a fixed value set.
+List<String> dataSourceDerivationGaps(
+  String schemaDir,
+  String overridesRoot, {
+  bool providerEnums = false,
+}) {
+  final hints = hasDataSourceHints(schemaDir);
+  if (!hints && !providerEnums) return const [];
   return [
     for (final MapEntry(key: type, value: o) in YamlOverrideLoader(
       rootDir: overridesRoot,
     ).load().dataSources.entries)
       for (final (flag, set) in [
         ('deriveEnums', o.deriveEnums),
-        ('deriveExactlyOne', o.deriveExactlyOne),
+        if (hints) ('deriveExactlyOne', o.deriveExactlyOne),
       ])
         if (!set)
           '${overrideFileStem(terraformType: type, kind: .dataSource)}.yaml: '
@@ -527,6 +557,28 @@ Future<int> _resyncMm(WrapLane lane, String repoRoot) async {
   return process.exitCode;
 }
 
+Future<int> _refetchDiscovery(WrapLane lane, String repoRoot) async {
+  print('>> fetch_discovery_enums (${lane.name})');
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    ['run', 'tool/fetch_discovery_enums.dart', '--lane=${lane.name}'],
+    workingDirectory: repoRoot,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
+}
+
+Future<int> _recordProseSources(String repoRoot) async {
+  print('>> google_enum_sources --fix');
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    ['run', 'tool/google_enum_sources.dart', '--fix'],
+    workingDirectory: repoRoot,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
+}
+
 Never _usage(String message) {
   print('wrap_lanes: $message');
   print(
@@ -622,6 +674,27 @@ Future<void> main(List<String> args) async {
           }
         }
       }
+      if (gate != WrapGate.lint && lane.discovery) {
+        final stale = staleDiscovery(lane, repoRoot);
+        if (stale.isNotEmpty && gate == WrapGate.wrap) {
+          for (final reason in stale) {
+            print('wrap_lanes: lane ${lane.name}: $reason');
+          }
+          print(
+            'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
+            'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+          );
+          failed.add('${lane.name} (discovery)');
+          continue;
+        }
+        if (stale.isNotEmpty) {
+          final code = await _refetchDiscovery(lane, repoRoot);
+          if (code != 0) {
+            failed.add('${lane.name} (discovery, exit $code)');
+            continue;
+          }
+        }
+      }
       if (gate == WrapGate.regen) {
         final schemaDir = p.join(repoRoot, lane.schemaDir);
         final retired = retireRemovedOverrides(
@@ -674,6 +747,10 @@ Future<void> main(List<String> args) async {
             '>> repin migrate lane fixtures (${lane.name}): '
             '${moved.join(', ')}',
           );
+        }
+        if (lane.discovery) {
+          final code = await _recordProseSources(repoRoot);
+          if (code != 0) failed.add('${lane.name} (prose sources, exit $code)');
         }
       }
     }

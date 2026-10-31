@@ -9,6 +9,24 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_search_engine`.
 const Set<String> _googleDiscoveryEngineSearchEngineSensitive = <String>{};
 
+/// Discovery Engine Search Engine App enum for `app_type`.
+extension type const DiscoveryEngineSearchEngineAppType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineSearchEngineAppType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineAppType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineAppType.arg(TfArg<String> arg) : this._(arg);
+
+  static const appTypeIntranet = DiscoveryEngineSearchEngineAppType._(
+    TfArgLiteral('APP_TYPE_INTRANET'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineAppType> values = [
+    appTypeIntranet,
+  ];
+}
+
 /// Discovery Engine Search Engine Industry enum for `industry_vertical`.
 extension type const DiscoveryEngineSearchEngineIndustryVertical._(
   TfArg<String> _
@@ -143,7 +161,7 @@ final class DiscoveryEngineSearchEngineConfig {
   final DiscoveryEngineSearchEngineRequiredSubscriptionTier?
   requiredSubscriptionTier;
 
-  final TfArg<List<String>>? searchAddOns;
+  final EnumList<DiscoveryEngineSearchEngineConfigSearchAddOns>? searchAddOns;
 
   final DiscoveryEngineSearchEngineTier? searchTier;
 
@@ -239,6 +257,26 @@ extension type const DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
   ];
 }
 
+/// `search_add_ons` — derived from the provider schema description.
+extension type const DiscoveryEngineSearchEngineConfigSearchAddOns._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineSearchEngineConfigSearchAddOns.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineConfigSearchAddOns.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineConfigSearchAddOns.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const searchAddOnLlm = DiscoveryEngineSearchEngineConfigSearchAddOns._(
+    TfArgLiteral('SEARCH_ADD_ON_LLM'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineConfigSearchAddOns> values = [
+    searchAddOnLlm,
+  ];
+}
+
 /// Factory wrapper for `google_discovery_engine_search_engine`.
 ///
 /// Vertex AI Search and Conversation can be used to create a search engine or a
@@ -256,7 +294,7 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
     required DiscoveryEngineSearchEngineConfig searchEngineConfig,
     DiscoveryEngineSearchEngineIndustryVertical? industryVertical,
     TfArg<String>? project,
-    TfArg<String>? appType,
+    DiscoveryEngineSearchEngineAppType? appType,
     TfArg<bool>? disableAnalytics,
     TfArg<Map<String, String>>? features,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,

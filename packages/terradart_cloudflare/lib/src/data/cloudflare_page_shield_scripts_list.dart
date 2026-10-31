@@ -7,6 +7,85 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_page_shield_scripts_list`.
 const Set<String> _cloudflarePageShieldScriptsListSensitive = <String>{};
 
+/// Data Page Shield Scripts List enum for `direction`.
+extension type const DataPageShieldScriptsListDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldScriptsListDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldScriptsListDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldScriptsListDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataPageShieldScriptsListDirection._(TfArgLiteral('asc'));
+  static const desc = DataPageShieldScriptsListDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataPageShieldScriptsListDirection> values = [asc, desc];
+}
+
+/// Data Page Shield Scripts List enum for `export`.
+extension type const DataPageShieldScriptsListExport._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldScriptsListExport.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldScriptsListExport.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldScriptsListExport.arg(TfArg<String> arg) : this._(arg);
+
+  static const csv = DataPageShieldScriptsListExport._(TfArgLiteral('csv'));
+
+  static const List<DataPageShieldScriptsListExport> values = [csv];
+}
+
+/// Data Page Shield Scripts List Order enum for `order_by`.
+extension type const DataPageShieldScriptsListOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldScriptsListOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldScriptsListOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldScriptsListOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const firstSeenAt = DataPageShieldScriptsListOrderBy._(
+    TfArgLiteral('first_seen_at'),
+  );
+  static const lastSeenAt = DataPageShieldScriptsListOrderBy._(
+    TfArgLiteral('last_seen_at'),
+  );
+
+  static const List<DataPageShieldScriptsListOrderBy> values = [
+    firstSeenAt,
+    lastSeenAt,
+  ];
+}
+
+/// Data Page Shield Scripts List enum for `status`.
+extension type const DataPageShieldScriptsListStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldScriptsListStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldScriptsListStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldScriptsListStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('active'),
+  );
+  static const infrequent = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('infrequent'),
+  );
+  static const inactive = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('inactive'),
+  );
+
+  static const List<DataPageShieldScriptsListStatus> values = [
+    active,
+    infrequent,
+    inactive,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_page_shield_scripts_list`.
 ///
 /// Accepted Permissions
@@ -18,19 +97,19 @@ final class DataCloudflarePageShieldScriptsList extends Data {
 
   DataCloudflarePageShieldScriptsList(
     super.localName, {
-    TfArg<String>? direction,
+    DataPageShieldScriptsListDirection? direction,
     TfArg<bool>? excludeCdnCgi,
     TfArg<bool>? excludeDuplicates,
     TfArg<String>? excludeUrls,
-    TfArg<String>? export,
+    DataPageShieldScriptsListExport? export,
     TfArg<String>? hosts,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataPageShieldScriptsListOrderBy? orderBy,
     TfArg<String>? page,
     TfArg<String>? pageUrl,
     TfArg<num>? perPage,
     TfArg<bool>? prioritizeMalicious,
-    TfArg<String>? status,
+    DataPageShieldScriptsListStatus? status,
     TfArg<String>? urls,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

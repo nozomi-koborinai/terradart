@@ -2,7 +2,16 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
+enumValues:
+  action:
+    - allow
+    - 'deny(403)'
+    - 'deny(404)'
+    - 'deny(502)'
+    - rate_based_ban
+    - throttle
 
 paramOrder:
   - action
@@ -48,20 +57,37 @@ prelude: |
     Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
   }
 
+  /// Action for requests over a `rate_limit_options` threshold.
+  extension type const ComputeRegionSecurityPolicyRuleExceedAction._(TfArg<String> _) implements TfArg<String> {
+    ComputeRegionSecurityPolicyRuleExceedAction.variable(String name) : this._(TfArg.variable(name));
+    ComputeRegionSecurityPolicyRuleExceedAction.expression(String template) : this._(TfArg.expression(template));
+    const ComputeRegionSecurityPolicyRuleExceedAction.arg(TfArg<String> arg) : this._(arg);
+
+    static const deny403 = ComputeRegionSecurityPolicyRuleExceedAction._(TfArgLiteral('deny(403)'));
+    static const deny404 = ComputeRegionSecurityPolicyRuleExceedAction._(TfArgLiteral('deny(404)'));
+    static const deny429 = ComputeRegionSecurityPolicyRuleExceedAction._(TfArgLiteral('deny(429)'));
+    static const deny502 = ComputeRegionSecurityPolicyRuleExceedAction._(TfArgLiteral('deny(502)'));
+
+    static const List<ComputeRegionSecurityPolicyRuleExceedAction> values = [deny403, deny404, deny429, deny502];
+  }
+
   @immutable
   class ComputeRegionSecurityPolicyRuleRateLimitOptions {
     const ComputeRegionSecurityPolicyRuleRateLimitOptions({
+      this.exceedAction,
       this.enforceOnKey,
       this.enforceOnKeyName,
       this.enforceOnKeyConfigs,
     });
 
+    final ComputeRegionSecurityPolicyRuleExceedAction? exceedAction;
     final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
     final TfArg<String>? enforceOnKeyName;
     final List<ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig>?
         enforceOnKeyConfigs;
 
     Map<String, Object?> toArgMap() => {
+      if (exceedAction != null) 'exceed_action': exceedAction!.toTfJson(),
       if (enforceOnKey != null)
         'enforce_on_key': enforceOnKey!.toTfJson(),
       if (enforceOnKeyName != null)

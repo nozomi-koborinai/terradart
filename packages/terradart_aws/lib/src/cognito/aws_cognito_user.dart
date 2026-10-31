@@ -121,7 +121,7 @@ final class AwsCognitoUser extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? attributes,
     TfArg<Map<String, String>>? clientMetadata,
-    List<CognitoUserDesiredDeliveryMediums>? desiredDeliveryMediums,
+    EnumList<CognitoUserDesiredDeliveryMediums>? desiredDeliveryMediums,
     TfArg<bool>? enabled,
     TfArg<bool>? forceAliasCreation,
     CognitoUserMessageAction? messageAction,
@@ -139,10 +139,7 @@ final class AwsCognitoUser extends Resource {
          argMap: {
            'attributes': ?attributes,
            'client_metadata': ?clientMetadata,
-           if (desiredDeliveryMediums != null)
-             'desired_delivery_mediums': TfArg.literal([
-               for (final e in desiredDeliveryMediums) e.toTfJson(),
-             ]),
+           'desired_delivery_mediums': ?desiredDeliveryMediums,
            'enabled': ?enabled,
            'force_alias_creation': ?forceAliasCreation,
            'message_action': ?messageAction,

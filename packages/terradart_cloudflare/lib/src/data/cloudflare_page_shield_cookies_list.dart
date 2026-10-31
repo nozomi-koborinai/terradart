@@ -7,6 +7,103 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_page_shield_cookies_list`.
 const Set<String> _cloudflarePageShieldCookiesListSensitive = <String>{};
 
+/// Data Page Shield Cookies List enum for `direction`.
+extension type const DataPageShieldCookiesListDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldCookiesListDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldCookiesListDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldCookiesListDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataPageShieldCookiesListDirection._(TfArgLiteral('asc'));
+  static const desc = DataPageShieldCookiesListDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataPageShieldCookiesListDirection> values = [asc, desc];
+}
+
+/// Data Page Shield Cookies List enum for `export`.
+extension type const DataPageShieldCookiesListExport._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldCookiesListExport.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldCookiesListExport.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldCookiesListExport.arg(TfArg<String> arg) : this._(arg);
+
+  static const csv = DataPageShieldCookiesListExport._(TfArgLiteral('csv'));
+
+  static const List<DataPageShieldCookiesListExport> values = [csv];
+}
+
+/// Data Page Shield Cookies List Order enum for `order_by`.
+extension type const DataPageShieldCookiesListOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldCookiesListOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldCookiesListOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldCookiesListOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const firstSeenAt = DataPageShieldCookiesListOrderBy._(
+    TfArgLiteral('first_seen_at'),
+  );
+  static const lastSeenAt = DataPageShieldCookiesListOrderBy._(
+    TfArgLiteral('last_seen_at'),
+  );
+
+  static const List<DataPageShieldCookiesListOrderBy> values = [
+    firstSeenAt,
+    lastSeenAt,
+  ];
+}
+
+/// Data Page Shield Cookies List Same enum for `same_site`.
+extension type const DataPageShieldCookiesListSameSite._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldCookiesListSameSite.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldCookiesListSameSite.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldCookiesListSameSite.arg(TfArg<String> arg) : this._(arg);
+
+  static const lax = DataPageShieldCookiesListSameSite._(TfArgLiteral('lax'));
+  static const strict = DataPageShieldCookiesListSameSite._(
+    TfArgLiteral('strict'),
+  );
+  static const none = DataPageShieldCookiesListSameSite._(TfArgLiteral('none'));
+
+  static const List<DataPageShieldCookiesListSameSite> values = [
+    lax,
+    strict,
+    none,
+  ];
+}
+
+/// Data Page Shield Cookies List enum for `type`.
+extension type const DataPageShieldCookiesListType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldCookiesListType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldCookiesListType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldCookiesListType.arg(TfArg<String> arg) : this._(arg);
+
+  static const firstParty = DataPageShieldCookiesListType._(
+    TfArgLiteral('first_party'),
+  );
+  static const unknown = DataPageShieldCookiesListType._(
+    TfArgLiteral('unknown'),
+  );
+
+  static const List<DataPageShieldCookiesListType> values = [
+    firstParty,
+    unknown,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_page_shield_cookies_list`.
 ///
 /// Accepted Permissions
@@ -18,21 +115,21 @@ final class DataCloudflarePageShieldCookiesList extends Data {
 
   DataCloudflarePageShieldCookiesList(
     super.localName, {
-    TfArg<String>? direction,
+    DataPageShieldCookiesListDirection? direction,
     TfArg<String>? domain,
-    TfArg<String>? export,
+    DataPageShieldCookiesListExport? export,
     TfArg<String>? hosts,
     TfArg<bool>? httpOnly,
     TfArg<num>? maxItems,
     TfArg<String>? name,
-    TfArg<String>? orderBy,
+    DataPageShieldCookiesListOrderBy? orderBy,
     TfArg<String>? page,
     TfArg<String>? pageUrl,
     TfArg<String>? path,
     TfArg<num>? perPage,
-    TfArg<String>? sameSite,
+    DataPageShieldCookiesListSameSite? sameSite,
     TfArg<bool>? secure,
-    TfArg<String>? type,
+    DataPageShieldCookiesListType? type,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -1,0 +1,44 @@
+{
+  "name": "cloudresourcemanager",
+  "version": "v3",
+  "revision": "20261021",
+  "sourceUrl": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v3",
+  "schemas": {
+    "CapabilityConfig": {
+      "properties": {
+        "types": {
+          "items": {
+            "enum": [
+              "TYPE_UNSPECIFIED",
+              "APP_MANAGEMENT",
+              "AGENT_MANAGEMENT"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "TagBinding": {
+      "properties": {}
+    },
+    "TagKey": {
+      "properties": {
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "GCE_FIREWALL",
+            "DATA_GOVERNANCE"
+          ]
+        }
+      }
+    },
+    "TagValue": {
+      "properties": {}
+    }
+  }
+}

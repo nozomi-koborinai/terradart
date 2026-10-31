@@ -11,6 +11,26 @@ import '../certificate_manager/google_certificate_manager_certificate_map.dart'
 const Set<String> _googleCertificateManagerCertificateMapEntrySensitive =
     <String>{};
 
+/// Certificate Manager Certificate Map Entry enum for `matcher`.
+extension type const CertificateManagerCertificateMapEntryMatcher._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CertificateManagerCertificateMapEntryMatcher.variable(String name)
+    : this._(TfArg.variable(name));
+  CertificateManagerCertificateMapEntryMatcher.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificateManagerCertificateMapEntryMatcher.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const primary = CertificateManagerCertificateMapEntryMatcher._(
+    TfArgLiteral('PRIMARY'),
+  );
+
+  static const List<CertificateManagerCertificateMapEntryMatcher> values = [
+    primary,
+  ];
+}
+
 /// Exactly one of `hostname`, `matcher` on `google_certificate_manager_certificate_map_entry`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -25,7 +45,7 @@ sealed class CertificateManagerCertificateMapEntryMatch {
 
   /// Sets `matcher`.
   const factory CertificateManagerCertificateMapEntryMatch.matcher(
-    TfArg<String> matcher,
+    CertificateManagerCertificateMapEntryMatcher matcher,
   ) = CertificateManagerCertificateMapEntryMatchMatcher;
 
   /// The Terraform argument this choice sets.
@@ -66,7 +86,7 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
     extends CertificateManagerCertificateMapEntryMatch {
   const CertificateManagerCertificateMapEntryMatchMatcher(this.matcher);
 
-  final TfArg<String> matcher;
+  final CertificateManagerCertificateMapEntryMatcher matcher;
 
   @internal
   @override

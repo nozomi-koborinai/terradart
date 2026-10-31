@@ -197,7 +197,7 @@ final class DeployStack extends Stack {
           ClouddeployDeployPolicyRules(
             rolloutRestriction: .new(
               id: .literal('no-automation'),
-              invokers: [.deployAutomation],
+              invokers: .literal([.deployAutomation]),
             ),
           ),
         ],

@@ -131,6 +131,7 @@ export 'src/monitor/azurerm_monitor_autoscale_setting.dart'
         MonitorAutoscaleSettingDays,
         MonitorAutoscaleSettingDimensions,
         MonitorAutoscaleSettingDimensionsOperator,
+        MonitorAutoscaleSettingDirection,
         MonitorAutoscaleSettingEmail,
         MonitorAutoscaleSettingFixedDate,
         MonitorAutoscaleSettingMetricTrigger,
@@ -141,6 +142,8 @@ export 'src/monitor/azurerm_monitor_autoscale_setting.dart'
         MonitorAutoscaleSettingRecurrence,
         MonitorAutoscaleSettingRule,
         MonitorAutoscaleSettingScaleAction,
+        MonitorAutoscaleSettingScaleMode,
+        MonitorAutoscaleSettingStatistic,
         MonitorAutoscaleSettingTimeAggregation,
         MonitorAutoscaleSettingType,
         MonitorAutoscaleSettingWebhook;
@@ -166,6 +169,7 @@ export 'src/monitor/azurerm_monitor_data_collection_rule.dart'
         MonitorDataCollectionRuleIdentity,
         MonitorDataCollectionRuleIisLog,
         MonitorDataCollectionRuleKind,
+        MonitorDataCollectionRuleLabel,
         MonitorDataCollectionRuleLabelIncludeFilter,
         MonitorDataCollectionRuleLogAnalytics,
         MonitorDataCollectionRuleLogFile,
@@ -180,6 +184,7 @@ export 'src/monitor/azurerm_monitor_data_collection_rule.dart'
         MonitorDataCollectionRuleStorageBlobDirect,
         MonitorDataCollectionRuleStorageTableDirect,
         MonitorDataCollectionRuleStreamDeclaration,
+        MonitorDataCollectionRuleStreams,
         MonitorDataCollectionRuleSyslog,
         MonitorDataCollectionRuleText,
         MonitorDataCollectionRuleType,
@@ -241,6 +246,7 @@ export 'src/monitor/azurerm_monitor_scheduled_query_rules_alert_v2.dart'
         MonitorScheduledQueryRulesAlertV2Action,
         MonitorScheduledQueryRulesAlertV2Criteria,
         MonitorScheduledQueryRulesAlertV2Dimension,
+        MonitorScheduledQueryRulesAlertV2DimensionOperator,
         MonitorScheduledQueryRulesAlertV2EvaluationFrequency,
         MonitorScheduledQueryRulesAlertV2FailingPeriods,
         MonitorScheduledQueryRulesAlertV2Identity,
@@ -253,7 +259,8 @@ export 'src/monitor/azurerm_monitor_scheduled_query_rules_log.dart'
     show
         AzurermMonitorScheduledQueryRulesLog,
         MonitorScheduledQueryRulesLogCriteria,
-        MonitorScheduledQueryRulesLogDimension;
+        MonitorScheduledQueryRulesLogDimension,
+        MonitorScheduledQueryRulesLogOperator;
 export 'src/monitor/azurerm_monitor_smart_detector_alert_rule.dart'
     show
         AzurermMonitorSmartDetectorAlertRule,

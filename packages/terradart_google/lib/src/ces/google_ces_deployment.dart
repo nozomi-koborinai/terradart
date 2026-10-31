@@ -28,7 +28,7 @@ final class CesDeploymentChannelProfile {
     this.whatsappConfig,
   });
 
-  final TfArg<String>? channelType;
+  final CesDeploymentChannelType? channelType;
 
   final TfArg<bool>? disableBargeInControl;
 
@@ -54,16 +54,76 @@ final class CesDeploymentChannelProfile {
   };
 }
 
+/// `channel_type` — derived from the provider schema description.
+extension type const CesDeploymentChannelType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentChannelType.variable(String name) : this._(TfArg.variable(name));
+  CesDeploymentChannelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentChannelType.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknown = CesDeploymentChannelType._(TfArgLiteral('UNKNOWN'));
+  static const webUi = CesDeploymentChannelType._(TfArgLiteral('WEB_UI'));
+  static const api = CesDeploymentChannelType._(TfArgLiteral('API'));
+  static const twilio = CesDeploymentChannelType._(TfArgLiteral('TWILIO'));
+  static const googleTelephonyPlatform = CesDeploymentChannelType._(
+    TfArgLiteral('GOOGLE_TELEPHONY_PLATFORM'),
+  );
+  static const contactCenterAsAService = CesDeploymentChannelType._(
+    TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE'),
+  );
+  static const contactCenterAsAServiceChat = CesDeploymentChannelType._(
+    TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE_CHAT'),
+  );
+  static const five9 = CesDeploymentChannelType._(TfArgLiteral('FIVE9'));
+  static const contactCenterIntegration = CesDeploymentChannelType._(
+    TfArgLiteral('CONTACT_CENTER_INTEGRATION'),
+  );
+  static const whatsapp = CesDeploymentChannelType._(TfArgLiteral('WHATSAPP'));
+  static const instagram = CesDeploymentChannelType._(
+    TfArgLiteral('INSTAGRAM'),
+  );
+
+  static const List<CesDeploymentChannelType> values = [
+    unknown,
+    webUi,
+    api,
+    twilio,
+    googleTelephonyPlatform,
+    contactCenterAsAService,
+    contactCenterAsAServiceChat,
+    five9,
+    contactCenterIntegration,
+    whatsapp,
+    instagram,
+  ];
+}
+
 /// Typed helper for the `channel_profile.persona_property` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
 final class CesDeploymentPersonaProperty {
   const CesDeploymentPersonaProperty({this.persona});
 
-  final TfArg<String>? persona;
+  final CesDeploymentPersona? persona;
 
   @internal
   Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
+}
+
+/// `persona` — derived from the provider schema description.
+extension type const CesDeploymentPersona._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentPersona.variable(String name) : this._(TfArg.variable(name));
+  CesDeploymentPersona.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentPersona.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknown = CesDeploymentPersona._(TfArgLiteral('UNKNOWN'));
+  static const concise = CesDeploymentPersona._(TfArgLiteral('CONCISE'));
+  static const chatty = CesDeploymentPersona._(TfArgLiteral('CHATTY'));
+
+  static const List<CesDeploymentPersona> values = [unknown, concise, chatty];
 }
 
 /// Typed helper for the `channel_profile.web_widget_config` block of
@@ -77,9 +137,9 @@ final class CesDeploymentWebWidgetConfig {
     this.securitySettings,
   });
 
-  final TfArg<String>? modality;
+  final CesDeploymentModality? modality;
 
-  final TfArg<String>? theme;
+  final CesDeploymentTheme? theme;
 
   final TfArg<String>? webWidgetTitle;
 
@@ -92,6 +152,45 @@ final class CesDeploymentWebWidgetConfig {
     'web_widget_title': ?webWidgetTitle?.toTfJson(),
     'security_settings': ?securitySettings?.encode(),
   };
+}
+
+/// `modality` — derived from the provider schema description.
+extension type const CesDeploymentModality._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentModality.variable(String name) : this._(TfArg.variable(name));
+  CesDeploymentModality.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentModality.arg(TfArg<String> arg) : this._(arg);
+
+  static const chatAndVoice = CesDeploymentModality._(
+    TfArgLiteral('CHAT_AND_VOICE'),
+  );
+  static const voiceOnly = CesDeploymentModality._(TfArgLiteral('VOICE_ONLY'));
+  static const chatOnly = CesDeploymentModality._(TfArgLiteral('CHAT_ONLY'));
+  static const chatVoiceAndVideo = CesDeploymentModality._(
+    TfArgLiteral('CHAT_VOICE_AND_VIDEO'),
+  );
+
+  static const List<CesDeploymentModality> values = [
+    chatAndVoice,
+    voiceOnly,
+    chatOnly,
+    chatVoiceAndVideo,
+  ];
+}
+
+/// `theme` — derived from the provider schema description.
+extension type const CesDeploymentTheme._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentTheme.variable(String name) : this._(TfArg.variable(name));
+  CesDeploymentTheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentTheme.arg(TfArg<String> arg) : this._(arg);
+
+  static const light = CesDeploymentTheme._(TfArgLiteral('LIGHT'));
+  static const dark = CesDeploymentTheme._(TfArgLiteral('DARK'));
+
+  static const List<CesDeploymentTheme> values = [light, dark];
 }
 
 /// Typed helper for the `channel_profile.web_widget_config.security_settings` block of
@@ -407,7 +506,7 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 ///   appVersion: version.ref,
 ///   displayName: TfArg.literal('terradart-ces-deploy'),
 ///   channelProfile: CesDeploymentChannelProfile(
-///     channelType: TfArg.literal('API'),
+///     channelType: .api,
 ///     profileId: TfArg.literal('terradart-ces-api'),
 ///   ),
 /// );

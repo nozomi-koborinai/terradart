@@ -21,6 +21,54 @@ const Set<String> _azurermHdinsightHadoopClusterSensitive = <String>{
   'storage_account.storage_account_key',
 };
 
+/// Hdinsight Hadoop Cluster enum for `tier`.
+extension type const HdinsightHadoopClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHadoopClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHadoopClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHadoopClusterTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = HdinsightHadoopClusterTier._(TfArgLiteral('Premium'));
+  static const standard = HdinsightHadoopClusterTier._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<HdinsightHadoopClusterTier> values = [premium, standard];
+}
+
+/// Hdinsight Hadoop Cluster Tls Min enum for `tls_min_version`.
+extension type const HdinsightHadoopClusterTlsMinVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightHadoopClusterTlsMinVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHadoopClusterTlsMinVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHadoopClusterTlsMinVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = HdinsightHadoopClusterTlsMinVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = HdinsightHadoopClusterTlsMinVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = HdinsightHadoopClusterTlsMinVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p3 = HdinsightHadoopClusterTlsMinVersion._(
+    TfArgLiteral('1.3'),
+  );
+
+  static const List<HdinsightHadoopClusterTlsMinVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `component_version` block of
 /// `azurerm_hdinsight_hadoop_cluster` (derived from provider schema).
 @immutable
@@ -64,7 +112,7 @@ final class HdinsightHadoopClusterDiskEncryption {
     this.keyVaultManagedIdentityId,
   });
 
-  final TfArg<String>? encryptionAlgorithm;
+  final HdinsightHadoopClusterEncryptionAlgorithm? encryptionAlgorithm;
 
   final TfArg<bool>? encryptionAtHostEnabled;
 
@@ -79,6 +127,34 @@ final class HdinsightHadoopClusterDiskEncryption {
     'key_vault_key_id': ?keyVaultKeyId?.toTfJson(),
     'key_vault_managed_identity_id': ?keyVaultManagedIdentityId?.toTfJson(),
   };
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+extension type const HdinsightHadoopClusterEncryptionAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightHadoopClusterEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHadoopClusterEncryptionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHadoopClusterEncryptionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsaOaep = HdinsightHadoopClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP'),
+  );
+  static const rsaOaep256 = HdinsightHadoopClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA-OAEP-256'),
+  );
+  static const rsa15 = HdinsightHadoopClusterEncryptionAlgorithm._(
+    TfArgLiteral('RSA1_5'),
+  );
+
+  static const List<HdinsightHadoopClusterEncryptionAlgorithm> values = [
+    rsaOaep,
+    rsaOaep256,
+    rsa15,
+  ];
 }
 
 /// Typed helper for the `extension` block of
@@ -254,7 +330,7 @@ final class HdinsightHadoopClusterNetwork {
     this.privateLinkEnabled,
   });
 
-  final TfArg<String>? connectionDirection;
+  final HdinsightHadoopClusterConnectionDirection? connectionDirection;
 
   final TfArg<bool>? privateLinkEnabled;
 
@@ -263,6 +339,30 @@ final class HdinsightHadoopClusterNetwork {
     'connection_direction': ?connectionDirection?.toTfJson(),
     'private_link_enabled': ?privateLinkEnabled?.toTfJson(),
   };
+}
+
+/// `connection_direction` — derived from the provider schema description.
+extension type const HdinsightHadoopClusterConnectionDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightHadoopClusterConnectionDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHadoopClusterConnectionDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHadoopClusterConnectionDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inbound = HdinsightHadoopClusterConnectionDirection._(
+    TfArgLiteral('Inbound'),
+  );
+  static const outbound = HdinsightHadoopClusterConnectionDirection._(
+    TfArgLiteral('Outbound'),
+  );
+
+  static const List<HdinsightHadoopClusterConnectionDirection> values = [
+    inbound,
+    outbound,
+  ];
 }
 
 /// Typed helper for the `private_link_configuration` block of
@@ -307,7 +407,8 @@ final class HdinsightHadoopClusterIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAllocationMethod;
+  final HdinsightHadoopClusterPrivateIpAllocationMethod?
+  privateIpAllocationMethod;
 
   final TfArg<String>? subnetId;
 
@@ -319,6 +420,30 @@ final class HdinsightHadoopClusterIpConfiguration {
     'private_ip_allocation_method': ?privateIpAllocationMethod?.toTfJson(),
     'subnet_id': ?subnetId?.toTfJson(),
   };
+}
+
+/// `private_ip_allocation_method` — derived from the provider schema description.
+extension type const HdinsightHadoopClusterPrivateIpAllocationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HdinsightHadoopClusterPrivateIpAllocationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightHadoopClusterPrivateIpAllocationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightHadoopClusterPrivateIpAllocationMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dynamic = HdinsightHadoopClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('dynamic'),
+  );
+  static const static = HdinsightHadoopClusterPrivateIpAllocationMethod._(
+    TfArgLiteral('static'),
+  );
+
+  static const List<HdinsightHadoopClusterPrivateIpAllocationMethod> values = [
+    dynamic,
+    static,
+  ];
 }
 
 /// Typed helper for the `roles` block of
@@ -1260,8 +1385,8 @@ final class AzurermHdinsightHadoopCluster extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
-    required TfArg<String> tlsMinVersion,
+    required HdinsightHadoopClusterTier tier,
+    required HdinsightHadoopClusterTlsMinVersion tlsMinVersion,
     required HdinsightHadoopClusterComponentVersion componentVersion,
     HdinsightHadoopClusterComputeIsolation? computeIsolation,
     List<HdinsightHadoopClusterDiskEncryption>? diskEncryption,

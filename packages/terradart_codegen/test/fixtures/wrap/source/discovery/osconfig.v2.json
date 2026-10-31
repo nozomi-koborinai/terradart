@@ -1,0 +1,171 @@
+{
+  "name": "osconfig",
+  "version": "v2",
+  "revision": "20261022",
+  "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROCESSING",
+            "COMPLETED",
+            "FAILED",
+            "CANCELLED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
+      "properties": {
+        "currentIterationState": {
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
+        },
+        "previousIterationState": {
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
+        }
+      }
+    },
+    "GoogleCloudOsconfigV2__OrchestratedResource": {
+      "properties": {
+        "osPolicyAssignmentV1Payload": {
+          "$ref": "OSPolicyAssignment"
+        }
+      }
+    },
+    "GoogleCloudOsconfigV2__PolicyOrchestrator": {
+      "properties": {
+        "orchestratedResource": {
+          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource"
+        },
+        "orchestrationState": {
+          "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState"
+        }
+      }
+    },
+    "OSPolicy": {
+      "properties": {
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VALIDATION",
+            "ENFORCEMENT"
+          ]
+        }
+      }
+    },
+    "OSPolicyAssignment": {
+      "properties": {
+        "rolloutState": {
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ]
+        },
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
+        }
+      }
+    },
+    "OSPolicyResource": {
+      "properties": {
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
+        },
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource"
+        },
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
+        }
+      }
+    },
+    "OSPolicyResourceExecResource": {
+      "properties": {
+        "enforce": {
+          "$ref": "OSPolicyResourceExecResourceExec"
+        },
+        "validate": {
+          "$ref": "OSPolicyResourceExecResourceExec"
+        }
+      }
+    },
+    "OSPolicyResourceExecResourceExec": {
+      "properties": {
+        "interpreter": {
+          "enum": [
+            "INTERPRETER_UNSPECIFIED",
+            "NONE",
+            "SHELL",
+            "POWERSHELL"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceFileResource": {
+      "properties": {
+        "state": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "PRESENT",
+            "ABSENT",
+            "CONTENTS_MATCH"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceGroup": {
+      "properties": {
+        "resources": {
+          "items": {
+            "$ref": "OSPolicyResource"
+          }
+        }
+      }
+    },
+    "OSPolicyResourcePackageResource": {
+      "properties": {
+        "desiredState": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "REMOVED"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceRepositoryResource": {
+      "properties": {
+        "apt": {
+          "$ref": "OSPolicyResourceRepositoryResourceAptRepository"
+        }
+      }
+    },
+    "OSPolicyResourceRepositoryResourceAptRepository": {
+      "properties": {
+        "archiveType": {
+          "enum": [
+            "ARCHIVE_TYPE_UNSPECIFIED",
+            "DEB",
+            "DEB_SRC"
+          ]
+        }
+      }
+    }
+  }
+}

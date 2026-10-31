@@ -403,7 +403,10 @@ final class AccessContextManagerServicePerimeterVpcAccessibleServices {
 
   final TfArg<bool>? enableRestriction;
 
-  final TfArg<List<String>>? servicePatternsEnforcementScopes;
+  final EnumList<
+    AccessContextManagerServicePerimeterServicePatternsEnforcementScopes
+  >?
+  servicePatternsEnforcementScopes;
 
   final List<AccessContextManagerServicePerimeterAllowedServicePatterns>?
   allowedServicePatterns;
@@ -419,6 +422,31 @@ final class AccessContextManagerServicePerimeterVpcAccessibleServices {
         for (final e in allowedServicePatterns!) e.encode(),
       ],
   };
+}
+
+/// `service_patterns_enforcement_scopes` — derived from the provider schema description.
+extension type const AccessContextManagerServicePerimeterServicePatternsEnforcementScopes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterServicePatternsEnforcementScopes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterServicePatternsEnforcementScopes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterServicePatternsEnforcementScopes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const googleApisViaPrivatePath =
+      AccessContextManagerServicePerimeterServicePatternsEnforcementScopes._(
+        TfArgLiteral('GOOGLE_APIS_VIA_PRIVATE_PATH'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterServicePatternsEnforcementScopes
+  >
+  values = [googleApisViaPrivatePath];
 }
 
 /// Typed helper for the `spec.vpc_accessible_services.allowed_service_patterns` block of

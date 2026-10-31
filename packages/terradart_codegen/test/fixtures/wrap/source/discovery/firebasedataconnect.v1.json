@@ -1,0 +1,66 @@
+{
+  "name": "firebasedataconnect",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://firebasedataconnect.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CloudSqlInstance": {
+      "properties": {
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS",
+            "EDITION_DEVELOPER"
+          ]
+        }
+      }
+    },
+    "Datasource": {
+      "properties": {
+        "postgresql": {
+          "$ref": "PostgreSql"
+        }
+      }
+    },
+    "PostgreSql": {
+      "properties": {
+        "schemaValidation": {
+          "enum": [
+            "SQL_SCHEMA_VALIDATION_UNSPECIFIED",
+            "NONE",
+            "STRICT",
+            "COMPATIBLE"
+          ]
+        },
+        "cloudSql": {
+          "$ref": "CloudSqlInstance"
+        },
+        "schemaMigration": {
+          "enum": [
+            "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
+            "MIGRATE_COMPATIBLE"
+          ]
+        }
+      }
+    },
+    "Schema": {
+      "properties": {
+        "datasources": {
+          "items": {
+            "$ref": "Datasource"
+          }
+        }
+      }
+    },
+    "Service": {
+      "properties": {
+        "schemas": {
+          "items": {
+            "$ref": "Schema"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "apikeys",
+  "version": "v2",
+  "revision": "20261022",
+  "sourceUrl": "https://apikeys.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "V2Key": {
+      "properties": {}
+    }
+  },
+  "parameters": {
+    "V2Key": {
+      "checkExistingUsage": {
+        "enum": [
+          "CHECK_EXISTING_USAGE_UNSPECIFIED",
+          "SKIP",
+          "CHECK"
+        ]
+      }
+    }
+  }
+}

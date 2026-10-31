@@ -5,11 +5,12 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/alloydb/google_alloydb_backup.dart'
-    show AlloydbBackupEncryptionConfig, GoogleAlloydbBackup;
+    show AlloydbBackupEncryptionConfig, AlloydbBackupType, GoogleAlloydbBackup;
 export 'src/alloydb/google_alloydb_cluster.dart'
     show
         AlloydbClusterAutomatedBackupPolicy,
         AlloydbClusterContinuousBackupConfig,
+        AlloydbClusterDatabaseVersion,
         AlloydbClusterDataplexConfig,
         AlloydbClusterDayOfWeek,
         AlloydbClusterDaysOfWeek,
@@ -37,6 +38,7 @@ export 'src/alloydb/google_alloydb_cluster.dart'
         AlloydbClusterSecondaryConfig,
         AlloydbClusterStartTime,
         AlloydbClusterStartTimes,
+        AlloydbClusterSubscriptionType,
         AlloydbClusterTimeBasedRetention,
         AlloydbClusterTimeBasedRetentionChoice,
         AlloydbClusterType,
@@ -44,7 +46,9 @@ export 'src/alloydb/google_alloydb_cluster.dart'
         GoogleAlloydbCluster;
 export 'src/alloydb/google_alloydb_instance.dart'
     show
+        AlloydbInstanceActivationPolicy,
         AlloydbInstanceAuthorizedExternalNetworks,
+        AlloydbInstanceAvailabilityType,
         AlloydbInstanceClientConnectionConfig,
         AlloydbInstanceConnectionPoolConfig,
         AlloydbInstanceMachineConfig,

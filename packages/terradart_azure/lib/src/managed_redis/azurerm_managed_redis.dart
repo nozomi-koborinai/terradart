@@ -34,6 +34,187 @@ extension type const ManagedRedisPublicNetworkAccess._(TfArg<String> _)
   ];
 }
 
+/// Managed Redis Sku enum for `sku_name`.
+extension type const ManagedRedisSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedRedisSkuName.variable(String name) : this._(TfArg.variable(name));
+  ManagedRedisSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedRedisSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const balancedB0 = ManagedRedisSkuName._(TfArgLiteral('Balanced_B0'));
+  static const balancedB1 = ManagedRedisSkuName._(TfArgLiteral('Balanced_B1'));
+  static const balancedB10 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B10'),
+  );
+  static const balancedB100 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B100'),
+  );
+  static const balancedB1000 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B1000'),
+  );
+  static const balancedB150 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B150'),
+  );
+  static const balancedB20 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B20'),
+  );
+  static const balancedB250 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B250'),
+  );
+  static const balancedB3 = ManagedRedisSkuName._(TfArgLiteral('Balanced_B3'));
+  static const balancedB350 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B350'),
+  );
+  static const balancedB5 = ManagedRedisSkuName._(TfArgLiteral('Balanced_B5'));
+  static const balancedB50 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B50'),
+  );
+  static const balancedB500 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B500'),
+  );
+  static const balancedB700 = ManagedRedisSkuName._(
+    TfArgLiteral('Balanced_B700'),
+  );
+  static const computeoptimizedX10 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X10'),
+  );
+  static const computeoptimizedX100 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X100'),
+  );
+  static const computeoptimizedX150 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X150'),
+  );
+  static const computeoptimizedX20 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X20'),
+  );
+  static const computeoptimizedX250 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X250'),
+  );
+  static const computeoptimizedX3 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X3'),
+  );
+  static const computeoptimizedX350 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X350'),
+  );
+  static const computeoptimizedX5 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X5'),
+  );
+  static const computeoptimizedX50 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X50'),
+  );
+  static const computeoptimizedX500 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X500'),
+  );
+  static const computeoptimizedX700 = ManagedRedisSkuName._(
+    TfArgLiteral('ComputeOptimized_X700'),
+  );
+  static const flashoptimizedA1000 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A1000'),
+  );
+  static const flashoptimizedA1500 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A1500'),
+  );
+  static const flashoptimizedA2000 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A2000'),
+  );
+  static const flashoptimizedA250 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A250'),
+  );
+  static const flashoptimizedA4500 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A4500'),
+  );
+  static const flashoptimizedA500 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A500'),
+  );
+  static const flashoptimizedA700 = ManagedRedisSkuName._(
+    TfArgLiteral('FlashOptimized_A700'),
+  );
+  static const memoryoptimizedM10 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M10'),
+  );
+  static const memoryoptimizedM100 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M100'),
+  );
+  static const memoryoptimizedM1000 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M1000'),
+  );
+  static const memoryoptimizedM150 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M150'),
+  );
+  static const memoryoptimizedM1500 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M1500'),
+  );
+  static const memoryoptimizedM20 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M20'),
+  );
+  static const memoryoptimizedM2000 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M2000'),
+  );
+  static const memoryoptimizedM250 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M250'),
+  );
+  static const memoryoptimizedM350 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M350'),
+  );
+  static const memoryoptimizedM50 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M50'),
+  );
+  static const memoryoptimizedM500 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M500'),
+  );
+  static const memoryoptimizedM700 = ManagedRedisSkuName._(
+    TfArgLiteral('MemoryOptimized_M700'),
+  );
+
+  static const List<ManagedRedisSkuName> values = [
+    balancedB0,
+    balancedB1,
+    balancedB10,
+    balancedB100,
+    balancedB1000,
+    balancedB150,
+    balancedB20,
+    balancedB250,
+    balancedB3,
+    balancedB350,
+    balancedB5,
+    balancedB50,
+    balancedB500,
+    balancedB700,
+    computeoptimizedX10,
+    computeoptimizedX100,
+    computeoptimizedX150,
+    computeoptimizedX20,
+    computeoptimizedX250,
+    computeoptimizedX3,
+    computeoptimizedX350,
+    computeoptimizedX5,
+    computeoptimizedX50,
+    computeoptimizedX500,
+    computeoptimizedX700,
+    flashoptimizedA1000,
+    flashoptimizedA1500,
+    flashoptimizedA2000,
+    flashoptimizedA250,
+    flashoptimizedA4500,
+    flashoptimizedA500,
+    flashoptimizedA700,
+    memoryoptimizedM10,
+    memoryoptimizedM100,
+    memoryoptimizedM1000,
+    memoryoptimizedM150,
+    memoryoptimizedM1500,
+    memoryoptimizedM20,
+    memoryoptimizedM2000,
+    memoryoptimizedM250,
+    memoryoptimizedM350,
+    memoryoptimizedM50,
+    memoryoptimizedM500,
+    memoryoptimizedM700,
+  ];
+}
+
 /// Typed helper for the `customer_managed_key` block of
 /// `azurerm_managed_redis` (derived from provider schema).
 @immutable
@@ -106,7 +287,8 @@ sealed class ManagedRedisDurability {
 
   /// Sets `persistence_append_only_file_backup_frequency`.
   const factory ManagedRedisDurability.persistenceAppendOnlyFileBackupFrequency(
-    TfArg<String> persistenceAppendOnlyFileBackupFrequency,
+    ManagedRedisPersistenceAppendOnlyFileBackupFrequency
+    persistenceAppendOnlyFileBackupFrequency,
   ) = ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency;
 
   /// Sets `persistence_redis_database_backup_frequency`.
@@ -150,7 +332,8 @@ final class ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency
     this.persistenceAppendOnlyFileBackupFrequency,
   );
 
-  final TfArg<String> persistenceAppendOnlyFileBackupFrequency;
+  final ManagedRedisPersistenceAppendOnlyFileBackupFrequency
+  persistenceAppendOnlyFileBackupFrequency;
 
   @internal
   @override
@@ -277,6 +460,27 @@ extension type const ManagedRedisEvictionPolicy._(TfArg<String> _)
   ];
 }
 
+/// `persistence_append_only_file_backup_frequency` — derived from the provider schema description.
+extension type const ManagedRedisPersistenceAppendOnlyFileBackupFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ManagedRedisPersistenceAppendOnlyFileBackupFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedRedisPersistenceAppendOnlyFileBackupFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ManagedRedisPersistenceAppendOnlyFileBackupFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const v1s = ManagedRedisPersistenceAppendOnlyFileBackupFrequency._(
+    TfArgLiteral('1s'),
+  );
+
+  static const List<ManagedRedisPersistenceAppendOnlyFileBackupFrequency>
+  values = [v1s];
+}
+
 /// `persistence_redis_database_backup_frequency` — derived from the provider schema description.
 extension type const ManagedRedisPersistenceRedisDatabaseBackupFrequency._(
   TfArg<String> _
@@ -376,7 +580,7 @@ final class AzurermManagedRedis extends Resource {
     required TfArg<String> name,
     ManagedRedisPublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required ManagedRedisSkuName skuName,
     TfArg<Map<String, String>>? tags,
     ManagedRedisCustomerManagedKey? customerManagedKey,
     ManagedRedisDefaultDatabase? defaultDatabase,

@@ -393,11 +393,11 @@ final class VirtualMachineAdditionalUnattendConfig {
     required this.settingName,
   });
 
-  final TfArg<String> component;
+  final VirtualMachineComponent component;
 
   final Sensitive<String> content;
 
-  final TfArg<String> pass;
+  final VirtualMachinePass pass;
 
   final VirtualMachineSettingName settingName;
 
@@ -408,6 +408,36 @@ final class VirtualMachineAdditionalUnattendConfig {
     'pass': pass.toTfJson(),
     'setting_name': settingName.toTfJson(),
   };
+}
+
+/// `component` — derived from the provider schema description.
+extension type const VirtualMachineComponent._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualMachineComponent.variable(String name) : this._(TfArg.variable(name));
+  VirtualMachineComponent.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineComponent.arg(TfArg<String> arg) : this._(arg);
+
+  static const microsoftWindowsShellSetup = VirtualMachineComponent._(
+    TfArgLiteral('Microsoft-Windows-Shell-Setup'),
+  );
+
+  static const List<VirtualMachineComponent> values = [
+    microsoftWindowsShellSetup,
+  ];
+}
+
+/// `pass` — derived from the provider schema description.
+extension type const VirtualMachinePass._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualMachinePass.variable(String name) : this._(TfArg.variable(name));
+  VirtualMachinePass.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachinePass.arg(TfArg<String> arg) : this._(arg);
+
+  static const oobesystem = VirtualMachinePass._(TfArgLiteral('oobeSystem'));
+
+  static const List<VirtualMachinePass> values = [oobesystem];
 }
 
 /// `setting_name` — derived from the provider schema description.
@@ -513,7 +543,7 @@ final class VirtualMachineStorageDataDisk {
 
   final TfArg<String>? managedDiskId;
 
-  final TfArg<String>? managedDiskType;
+  final VirtualMachineStorageDataDiskManagedDiskType? managedDiskType;
 
   final TfArg<String> name;
 
@@ -533,6 +563,38 @@ final class VirtualMachineStorageDataDisk {
     'vhd_uri': ?vhdUri?.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
   };
+}
+
+/// `managed_disk_type` — derived from the provider schema description.
+extension type const VirtualMachineStorageDataDiskManagedDiskType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VirtualMachineStorageDataDiskManagedDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineStorageDataDiskManagedDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineStorageDataDiskManagedDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = VirtualMachineStorageDataDiskManagedDiskType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = VirtualMachineStorageDataDiskManagedDiskType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = VirtualMachineStorageDataDiskManagedDiskType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const ultrassdLrs = VirtualMachineStorageDataDiskManagedDiskType._(
+    TfArgLiteral('UltraSSD_LRS'),
+  );
+
+  static const List<VirtualMachineStorageDataDiskManagedDiskType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+    ultrassdLrs,
+  ];
 }
 
 /// Typed helper for the `storage_image_reference` block of
@@ -594,7 +656,7 @@ final class VirtualMachineStorageOsDisk {
 
   final TfArg<String>? managedDiskId;
 
-  final TfArg<String>? managedDiskType;
+  final VirtualMachineStorageOsDiskManagedDiskType? managedDiskType;
 
   final TfArg<String> name;
 
@@ -617,6 +679,34 @@ final class VirtualMachineStorageOsDisk {
     'vhd_uri': ?vhdUri?.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
   };
+}
+
+/// `managed_disk_type` — derived from the provider schema description.
+extension type const VirtualMachineStorageOsDiskManagedDiskType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VirtualMachineStorageOsDiskManagedDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineStorageOsDiskManagedDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineStorageOsDiskManagedDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = VirtualMachineStorageOsDiskManagedDiskType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = VirtualMachineStorageOsDiskManagedDiskType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = VirtualMachineStorageOsDiskManagedDiskType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+
+  static const List<VirtualMachineStorageOsDiskManagedDiskType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+  ];
 }
 
 /// `os_type` — derived from the provider schema description.

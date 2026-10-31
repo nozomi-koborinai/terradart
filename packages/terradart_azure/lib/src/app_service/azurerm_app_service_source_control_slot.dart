@@ -43,7 +43,7 @@ final class AppServiceSourceControlSlotCodeConfiguration {
     required this.runtimeVersion,
   });
 
-  final TfArg<String> runtimeStack;
+  final AppServiceSourceControlSlotRuntimeStack runtimeStack;
 
   final TfArg<String> runtimeVersion;
 
@@ -52,6 +52,41 @@ final class AppServiceSourceControlSlotCodeConfiguration {
     'runtime_stack': runtimeStack.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
   };
+}
+
+/// `runtime_stack` — derived from the provider schema description.
+extension type const AppServiceSourceControlSlotRuntimeStack._(TfArg<String> _)
+    implements TfArg<String> {
+  AppServiceSourceControlSlotRuntimeStack.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceSourceControlSlotRuntimeStack.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceSourceControlSlotRuntimeStack.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dotnetcore = AppServiceSourceControlSlotRuntimeStack._(
+    TfArgLiteral('dotnetcore'),
+  );
+  static const spring = AppServiceSourceControlSlotRuntimeStack._(
+    TfArgLiteral('spring'),
+  );
+  static const tomcat = AppServiceSourceControlSlotRuntimeStack._(
+    TfArgLiteral('tomcat'),
+  );
+  static const node = AppServiceSourceControlSlotRuntimeStack._(
+    TfArgLiteral('node'),
+  );
+  static const python = AppServiceSourceControlSlotRuntimeStack._(
+    TfArgLiteral('python'),
+  );
+
+  static const List<AppServiceSourceControlSlotRuntimeStack> values = [
+    dotnetcore,
+    spring,
+    tomcat,
+    node,
+    python,
+  ];
 }
 
 /// Typed helper for the `github_action_configuration.container_configuration` block of

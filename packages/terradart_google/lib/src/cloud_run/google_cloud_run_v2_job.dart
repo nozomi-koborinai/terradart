@@ -504,13 +504,27 @@ final class CloudRunV2JobPorts {
 
   final TfArg<num>? containerPort;
 
-  final TfArg<String>? name;
+  final CloudRunV2JobPortsName? name;
 
   @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
     'name': ?name?.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const CloudRunV2JobPortsName._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2JobPortsName.variable(String name) : this._(TfArg.variable(name));
+  CloudRunV2JobPortsName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2JobPortsName.arg(TfArg<String> arg) : this._(arg);
+
+  static const http1 = CloudRunV2JobPortsName._(TfArgLiteral('http1'));
+  static const h2c = CloudRunV2JobPortsName._(TfArgLiteral('h2c'));
+
+  static const List<CloudRunV2JobPortsName> values = [http1, h2c];
 }
 
 /// Typed helper for the `template.template.containers.resources` block of

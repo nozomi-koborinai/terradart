@@ -1,3 +1,11 @@
+enumValues:
+  dry_run_spec.rules.allow_all:
+    - "TRUE"
+    - "FALSE"
+  spec.rules.allow_all:
+    - "TRUE"
+    - "FALSE"
+
 outputDir: organization
 deriveClassDoc: true
 deriveExactlyOne: true

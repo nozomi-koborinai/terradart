@@ -29,6 +29,12 @@ extension type const KmsCryptoKeyVersionState._(TfArg<String> _)
   static const destroyScheduled = KmsCryptoKeyVersionState._(
     TfArgLiteral('DESTROY_SCHEDULED'),
   );
+  static const pendingImport = KmsCryptoKeyVersionState._(
+    TfArgLiteral('PENDING_IMPORT'),
+  );
+  static const importFailed = KmsCryptoKeyVersionState._(
+    TfArgLiteral('IMPORT_FAILED'),
+  );
 
   static const List<KmsCryptoKeyVersionState> values = [
     pendingGeneration,
@@ -36,6 +42,8 @@ extension type const KmsCryptoKeyVersionState._(TfArg<String> _)
     disabled,
     destroyed,
     destroyScheduled,
+    pendingImport,
+    importFailed,
   ];
 }
 

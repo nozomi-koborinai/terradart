@@ -13,6 +13,19 @@ const Set<String> _azurermRelayNamespaceSensitive = <String>{
   'secondary_key',
 };
 
+/// Relay Namespace Sku enum for `sku_name`.
+extension type const RelayNamespaceSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  RelayNamespaceSkuName.variable(String name) : this._(TfArg.variable(name));
+  RelayNamespaceSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const RelayNamespaceSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = RelayNamespaceSkuName._(TfArgLiteral('Standard'));
+
+  static const List<RelayNamespaceSkuName> values = [standard];
+}
+
 /// Factory wrapper for `azurerm_relay_namespace`.
 final class AzurermRelayNamespace extends Resource {
   static const String tfType = 'azurerm_relay_namespace';
@@ -22,7 +35,7 @@ final class AzurermRelayNamespace extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required RelayNamespaceSkuName skuName,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

@@ -11,6 +11,29 @@ const Set<String> _azurermContainerAppEnvironmentSensitive = <String>{
   'dapr_application_insights_connection_string',
 };
 
+/// Container App Environment Logs enum for `logs_destination`.
+extension type const ContainerAppEnvironmentLogsDestination._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppEnvironmentLogsDestination.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppEnvironmentLogsDestination.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppEnvironmentLogsDestination.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureMonitor = ContainerAppEnvironmentLogsDestination._(
+    TfArgLiteral('azure-monitor'),
+  );
+  static const logAnalytics = ContainerAppEnvironmentLogsDestination._(
+    TfArgLiteral('log-analytics'),
+  );
+
+  static const List<ContainerAppEnvironmentLogsDestination> values = [
+    azureMonitor,
+    logAnalytics,
+  ];
+}
+
 /// Container App Environment Public Network enum for `public_network_access`.
 extension type const ContainerAppEnvironmentPublicNetworkAccess._(
   TfArg<String> _
@@ -69,7 +92,7 @@ final class ContainerAppEnvironmentWorkloadProfile {
 
   final TfArg<String> name;
 
-  final TfArg<String> workloadProfileType;
+  final ContainerAppEnvironmentWorkloadProfileType workloadProfileType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -78,6 +101,80 @@ final class ContainerAppEnvironmentWorkloadProfile {
     'name': name.toTfJson(),
     'workload_profile_type': workloadProfileType.toTfJson(),
   };
+}
+
+/// `workload_profile_type` — derived from the provider schema description.
+extension type const ContainerAppEnvironmentWorkloadProfileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerAppEnvironmentWorkloadProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppEnvironmentWorkloadProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppEnvironmentWorkloadProfileType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const consumption = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('Consumption'),
+  );
+  static const consumptionGpuNc24A100 =
+      ContainerAppEnvironmentWorkloadProfileType._(
+        TfArgLiteral('Consumption-GPU-NC24-A100'),
+      );
+  static const consumptionGpuNc8asT4 =
+      ContainerAppEnvironmentWorkloadProfileType._(
+        TfArgLiteral('Consumption-GPU-NC8as-T4'),
+      );
+  static const d4 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D4'),
+  );
+  static const d8 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D8'),
+  );
+  static const d16 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D16'),
+  );
+  static const d32 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D32'),
+  );
+  static const e4 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E4'),
+  );
+  static const e8 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E8'),
+  );
+  static const e16 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E16'),
+  );
+  static const e32 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E32'),
+  );
+  static const nc24A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC24-A100'),
+  );
+  static const nc48A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC48-A100'),
+  );
+  static const nc96A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC96-A100'),
+  );
+
+  static const List<ContainerAppEnvironmentWorkloadProfileType> values = [
+    consumption,
+    consumptionGpuNc24A100,
+    consumptionGpuNc8asT4,
+    d4,
+    d8,
+    d16,
+    d32,
+    e4,
+    e8,
+    e16,
+    e32,
+    nc24A100,
+    nc48A100,
+    nc96A100,
+  ];
 }
 
 /// Factory wrapper for `azurerm_container_app_environment`.
@@ -92,7 +189,7 @@ final class AzurermContainerAppEnvironment extends Resource {
     TfArg<bool>? internalLoadBalancerEnabled,
     required TfArg<String> location,
     TfArg<String>? logAnalyticsWorkspaceId,
-    TfArg<String>? logsDestination,
+    ContainerAppEnvironmentLogsDestination? logsDestination,
     TfArg<bool>? mutualTlsEnabled,
     required TfArg<String> name,
     ContainerAppEnvironmentPublicNetworkAccess? publicNetworkAccess,

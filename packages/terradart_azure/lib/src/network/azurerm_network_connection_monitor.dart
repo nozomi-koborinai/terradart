@@ -34,7 +34,7 @@ final class NetworkConnectionMonitorEndpoint {
 
   final TfArg<String>? targetResourceId;
 
-  final TfArg<String>? targetResourceType;
+  final NetworkConnectionMonitorTargetResourceType? targetResourceType;
 
   final NetworkConnectionMonitorFilter? filter;
 
@@ -90,13 +90,59 @@ extension type const NetworkConnectionMonitorCoverageLevel._(TfArg<String> _)
   ];
 }
 
+/// `target_resource_type` — derived from the provider schema description.
+extension type const NetworkConnectionMonitorTargetResourceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectionMonitorTargetResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectionMonitorTargetResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectionMonitorTargetResourceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurearcvm = NetworkConnectionMonitorTargetResourceType._(
+    TfArgLiteral('AzureArcVM'),
+  );
+  static const azuresubnet = NetworkConnectionMonitorTargetResourceType._(
+    TfArgLiteral('AzureSubnet'),
+  );
+  static const azurevm = NetworkConnectionMonitorTargetResourceType._(
+    TfArgLiteral('AzureVM'),
+  );
+  static const azurevnet = NetworkConnectionMonitorTargetResourceType._(
+    TfArgLiteral('AzureVNet'),
+  );
+  static const externaladdress = NetworkConnectionMonitorTargetResourceType._(
+    TfArgLiteral('ExternalAddress'),
+  );
+  static const mmaworkspacemachine =
+      NetworkConnectionMonitorTargetResourceType._(
+        TfArgLiteral('MMAWorkspaceMachine'),
+      );
+  static const mmaworkspacenetwork =
+      NetworkConnectionMonitorTargetResourceType._(
+        TfArgLiteral('MMAWorkspaceNetwork'),
+      );
+
+  static const List<NetworkConnectionMonitorTargetResourceType> values = [
+    azurearcvm,
+    azuresubnet,
+    azurevm,
+    azurevnet,
+    externaladdress,
+    mmaworkspacemachine,
+    mmaworkspacenetwork,
+  ];
+}
+
 /// Typed helper for the `endpoint.filter` block of
 /// `azurerm_network_connection_monitor` (derived from provider schema).
 @immutable
 final class NetworkConnectionMonitorFilter {
   const NetworkConnectionMonitorFilter({this.type, this.item});
 
-  final TfArg<String>? type;
+  final NetworkConnectionMonitorType? type;
 
   final List<NetworkConnectionMonitorItem>? item;
 
@@ -107,6 +153,22 @@ final class NetworkConnectionMonitorFilter {
   };
 }
 
+/// `type` — derived from the provider schema description.
+extension type const NetworkConnectionMonitorType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectionMonitorType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectionMonitorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectionMonitorType.arg(TfArg<String> arg) : this._(arg);
+
+  static const include = NetworkConnectionMonitorType._(
+    TfArgLiteral('Include'),
+  );
+
+  static const List<NetworkConnectionMonitorType> values = [include];
+}
+
 /// Typed helper for the `endpoint.filter.item` block of
 /// `azurerm_network_connection_monitor` (derived from provider schema).
 @immutable
@@ -115,13 +177,29 @@ final class NetworkConnectionMonitorItem {
 
   final TfArg<String>? address;
 
-  final TfArg<String>? type;
+  final NetworkConnectionMonitorItemType? type;
 
   @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const NetworkConnectionMonitorItemType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectionMonitorItemType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectionMonitorItemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectionMonitorItemType.arg(TfArg<String> arg) : this._(arg);
+
+  static const agentaddress = NetworkConnectionMonitorItemType._(
+    TfArgLiteral('AgentAddress'),
+  );
+
+  static const List<NetworkConnectionMonitorItemType> values = [agentaddress];
 }
 
 /// Typed helper for the `test_configuration` block of

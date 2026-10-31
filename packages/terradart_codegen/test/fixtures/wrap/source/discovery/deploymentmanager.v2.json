@@ -1,0 +1,219 @@
+{
+  "name": "deploymentmanager",
+  "version": "v2",
+  "revision": "20260827",
+  "sourceUrl": "https://www.googleapis.com/discovery/v1/apis/deploymentmanager/v2/rest",
+  "schemas": {
+    "BulkInsertOperationStatus": {
+      "properties": {
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "CREATING",
+            "ROLLING_BACK",
+            "DONE",
+            "PENDING"
+          ]
+        }
+      }
+    },
+    "Deployment": {
+      "properties": {
+        "operation": {
+          "$ref": "Operation"
+        }
+      }
+    },
+    "GetHealthOperationMetadata": {
+      "properties": {
+        "healthInfo": {
+          "$ref": "GetHealthOperationMetadataHealthInfo"
+        }
+      }
+    },
+    "GetHealthOperationMetadataHealthInfo": {
+      "properties": {
+        "repairCategory": {
+          "enum": [
+            "REPAIR_CATEGORY_UNSPECIFIED",
+            "REPAIR_CATEGORY_PLANNED_MAINTENANCE",
+            "REPAIR_CATEGORY_EMERGENT_MAINTENANCE",
+            "REPAIR_CATEGORY_USER_REPORTED_FAULT",
+            "REPAIR_CATEGORY_CRITICAL_FAILURE"
+          ]
+        },
+        "healthStatus": {
+          "enum": [
+            "HEALTH_STATUS_UNSPECIFIED",
+            "HEALTH_STATUS_HEALTHY",
+            "HEALTH_STATUS_UNHEALTHY"
+          ]
+        },
+        "unhealthyReason": {
+          "enum": [
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
+          ]
+        },
+        "availabilitySloStatus": {
+          "enum": [
+            "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
+            "AVAILABILITY_SLO_STATUS_IN_SLO",
+            "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+            "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
+          ]
+        }
+      }
+    },
+    "InstancesBulkInsertOperationMetadata": {
+      "properties": {
+        "perLocationStatus": {
+          "additionalProperties": {
+            "$ref": "BulkInsertOperationStatus"
+          }
+        }
+      }
+    },
+    "Operation": {
+      "properties": {
+        "getHealthOperationMetadata": {
+          "$ref": "GetHealthOperationMetadata"
+        },
+        "status": {
+          "enum": [
+            "PENDING",
+            "RUNNING",
+            "DONE"
+          ]
+        },
+        "setCommonInstanceMetadataOperationMetadata": {
+          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        },
+        "instancesBulkInsertOperationMetadata": {
+          "$ref": "InstancesBulkInsertOperationMetadata"
+        },
+        "warnings": {
+          "items": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "DEPRECATED_RESOURCE_USED",
+                  "NO_RESULTS_ON_PAGE",
+                  "UNREACHABLE",
+                  "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                  "NEXT_HOP_INSTANCE_NOT_FOUND",
+                  "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                  "NEXT_HOP_CANNOT_IP_FORWARD",
+                  "NEXT_HOP_NOT_RUNNING",
+                  "INJECTED_KERNELS_DEPRECATED",
+                  "REQUIRED_TOS_AGREEMENT",
+                  "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                  "RESOURCE_NOT_DELETED",
+                  "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                  "NOT_CRITICAL_ERROR",
+                  "CLEANUP_FAILED",
+                  "FIELD_VALUE_OVERRIDEN",
+                  "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                  "NETWORK_ENDPOINT_NOT_DETACHED",
+                  "PAGE_MISSING_RESULTS",
+                  "SSL_POLICY_ENABLED_FEATURES_NOT_FETCHED",
+                  "RESOURCE_NOT_FOUND_WARNING",
+                  "MISSING_TYPE_DEPENDENCY",
+                  "EXTERNAL_API_WARNING",
+                  "SCHEMA_VALIDATION_IGNORED",
+                  "UNDECLARED_PROPERTIES",
+                  "EXPERIMENTAL_TYPE_USED",
+                  "DEPRECATED_TYPE_USED",
+                  "PARTIAL_SUCCESS",
+                  "LARGE_DEPLOYMENT_WARNING",
+                  "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                  "LIST_OVERHEAD_QUOTA_EXCEED",
+                  "QUOTA_INFO_UNAVAILABLE",
+                  "RESOURCE_USES_GLOBAL_DNS",
+                  "RATE_LIMIT_EXCEEDED",
+                  "UPCOMING_MAINTENANCES_UNAVAILABLE",
+                  "RESERVED_ENTRY_136",
+                  "RESERVED_ENTRY_139",
+                  "RESERVED_ENTRY_141",
+                  "RESERVED_ENTRY_142",
+                  "RESERVED_ENTRY_143"
+                ]
+              }
+            }
+          }
+        },
+        "error": {
+          "properties": {
+            "errors": {
+              "items": {
+                "properties": {
+                  "errorDetails": {
+                    "items": {
+                      "properties": {
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "QuotaExceededInfo": {
+      "properties": {
+        "rolloutStatus": {
+          "enum": [
+            "ROLLOUT_STATUS_UNSPECIFIED",
+            "IN_PROGRESS"
+          ]
+        }
+      }
+    },
+    "SetCommonInstanceMetadataOperationMetadata": {
+      "properties": {
+        "perLocationOperations": {
+          "additionalProperties": {
+            "$ref": "SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo"
+          }
+        }
+      }
+    },
+    "SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo": {
+      "properties": {
+        "state": {
+          "enum": [
+            "UNSPECIFIED",
+            "PROPAGATING",
+            "PROPAGATED",
+            "ABANDONED",
+            "FAILED",
+            "DONE"
+          ]
+        }
+      }
+    }
+  },
+  "parameters": {
+    "Deployment": {
+      "createPolicy": {
+        "enum": [
+          "CREATE_OR_ACQUIRE",
+          "ACQUIRE"
+        ]
+      },
+      "deletePolicy": {
+        "enum": [
+          "DELETE",
+          "ABANDON"
+        ]
+      }
+    }
+  }
+}

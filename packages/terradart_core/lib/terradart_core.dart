@@ -9,6 +9,7 @@ export 'src/backends.dart'
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
+export 'src/enum_list.dart' show EnumList;
 export 'src/lifecycle.dart'
     show
         IgnoreAllChanges,

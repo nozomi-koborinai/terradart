@@ -88,7 +88,8 @@ final class NetworkServicesLbTrafficExtensionExtensions {
 
   final TfArg<String> service;
 
-  final TfArg<List<String>>? supportedEvents;
+  final EnumList<NetworkServicesLbTrafficExtensionSupportedEvents>?
+  supportedEvents;
 
   final TfArg<String>? timeout;
 
@@ -104,6 +105,51 @@ final class NetworkServicesLbTrafficExtensionExtensions {
     'supported_events': ?supportedEvents?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
   };
+}
+
+/// `supported_events` — derived from the provider schema description.
+extension type const NetworkServicesLbTrafficExtensionSupportedEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbTrafficExtensionSupportedEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbTrafficExtensionSupportedEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbTrafficExtensionSupportedEvents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const requestHeaders =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_HEADERS'),
+      );
+  static const requestBody = NetworkServicesLbTrafficExtensionSupportedEvents._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const responseHeaders =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_HEADERS'),
+      );
+  static const responseBody =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_BODY'),
+      );
+  static const requestTrailers =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_TRAILERS'),
+      );
+  static const responseTrailers =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_TRAILERS'),
+      );
+
+  static const List<NetworkServicesLbTrafficExtensionSupportedEvents> values = [
+    requestHeaders,
+    requestBody,
+    responseHeaders,
+    responseBody,
+    requestTrailers,
+    responseTrailers,
+  ];
 }
 
 /// Typed helper for the `extension_chains.match_condition` block of

@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_contact_center_insights_qa_question`.
 const Set<String> _googleContactCenterInsightsQaQuestionSensitive = <String>{};
 
+/// Contact Center Insights Qa Question enum for `question_type`.
+extension type const ContactCenterInsightsQaQuestionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContactCenterInsightsQaQuestionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsQaQuestionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContactCenterInsightsQaQuestionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const customizable = ContactCenterInsightsQaQuestionType._(
+    TfArgLiteral('CUSTOMIZABLE'),
+  );
+  static const predefined = ContactCenterInsightsQaQuestionType._(
+    TfArgLiteral('PREDEFINED'),
+  );
+
+  static const List<ContactCenterInsightsQaQuestionType> values = [
+    customizable,
+    predefined,
+  ];
+}
+
 /// Typed helper for the `answer_choices` block of
 /// `google_contact_center_insights_qa_question` (derived from provider schema).
 @immutable
@@ -49,10 +72,50 @@ final class ContactCenterInsightsQaQuestionAnswerChoices {
 final class ContactCenterInsightsQaQuestionPredefinedQuestionConfig {
   const ContactCenterInsightsQaQuestionPredefinedQuestionConfig({this.type});
 
-  final TfArg<String>? type;
+  final ContactCenterInsightsQaQuestionPredefinedQuestionConfigType? type;
 
   @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContactCenterInsightsQaQuestionPredefinedQuestionConfigType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ContactCenterInsightsQaQuestionPredefinedQuestionConfigType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContactCenterInsightsQaQuestionPredefinedQuestionConfigType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const conversationOutcome =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME'),
+      );
+  static const conversationOutcomeEscalationInitiatorRole =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE'),
+      );
+  static const conversationOutcomeAiAversion =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME_AI_AVERSION'),
+      );
+  static const conversationOutcomeEscalationReason =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME_ESCALATION_REASON'),
+      );
+
+  static const List<ContactCenterInsightsQaQuestionPredefinedQuestionConfigType>
+  values = [
+    conversationOutcome,
+    conversationOutcomeEscalationInitiatorRole,
+    conversationOutcomeAiAversion,
+    conversationOutcomeEscalationReason,
+  ];
 }
 
 /// Typed helper for the `qa_question_data_options` block of
@@ -99,7 +162,8 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
     this.tuningError,
   });
 
-  final TfArg<List<String>>? datasetValidationWarnings;
+  final EnumList<ContactCenterInsightsQaQuestionDatasetValidationWarnings>?
+  datasetValidationWarnings;
 
   final TfArg<String>? totalValidLabelCount;
 
@@ -111,6 +175,45 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
     'total_valid_label_count': ?totalValidLabelCount?.toTfJson(),
     'tuning_error': ?tuningError?.toTfJson(),
   };
+}
+
+/// `dataset_validation_warnings` — derived from the provider schema description.
+extension type const ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContactCenterInsightsQaQuestionDatasetValidationWarnings.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsQaQuestionDatasetValidationWarnings.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContactCenterInsightsQaQuestionDatasetValidationWarnings.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tooManyInvalidFeedbackLabels =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('TOO_MANY_INVALID_FEEDBACK_LABELS'),
+      );
+  static const insufficientFeedbackLabels =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('INSUFFICIENT_FEEDBACK_LABELS'),
+      );
+  static const insufficientFeedbackLabelsPerAnswer =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('INSUFFICIENT_FEEDBACK_LABELS_PER_ANSWER'),
+      );
+  static const allFeedbackLabelsHaveTheSameAnswer =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('ALL_FEEDBACK_LABELS_HAVE_THE_SAME_ANSWER'),
+      );
+
+  static const List<ContactCenterInsightsQaQuestionDatasetValidationWarnings>
+  values = [
+    tooManyInvalidFeedbackLabels,
+    insufficientFeedbackLabels,
+    insufficientFeedbackLabelsPerAnswer,
+    allFeedbackLabelsHaveTheSameAnswer,
+  ];
 }
 
 /// Factory wrapper for `google_contact_center_insights_qa_question`.
@@ -132,7 +235,7 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
     required TfArg<String> qaScorecard,
     required TfArg<String> revision,
     TfArg<String>? questionBody,
-    TfArg<String>? questionType,
+    ContactCenterInsightsQaQuestionType? questionType,
     TfArg<String>? abbreviation,
     TfArg<String>? answerInstructions,
     List<ContactCenterInsightsQaQuestionAnswerChoices>? answerChoices,

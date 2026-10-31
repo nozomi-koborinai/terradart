@@ -7,6 +7,63 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleIdentityPlatformDefaultSupportedIdpConfigSensitive =
     <String>{};
 
+/// Identity Platform Default Supported Idp Config Idp enum for `idp_id`.
+extension type const IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IdentityPlatformDefaultSupportedIdpConfigIdpId.variable(String name)
+    : this._(TfArg.variable(name));
+  IdentityPlatformDefaultSupportedIdpConfigIdpId.expression(String template)
+    : this._(TfArg.expression(template));
+  const IdentityPlatformDefaultSupportedIdpConfigIdpId.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const appleCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('apple.com'),
+  );
+  static const facebookCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('facebook.com'),
+  );
+  static const gcAppleCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('gc.apple.com'),
+  );
+  static const githubCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('github.com'),
+  );
+  static const googleCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('google.com'),
+  );
+  static const linkedinCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('linkedin.com'),
+  );
+  static const microsoftCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('microsoft.com'),
+  );
+  static const playgamesGoogleCom =
+      IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+        TfArgLiteral('playgames.google.com'),
+      );
+  static const twitterCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('twitter.com'),
+  );
+  static const yahooCom = IdentityPlatformDefaultSupportedIdpConfigIdpId._(
+    TfArgLiteral('yahoo.com'),
+  );
+
+  static const List<IdentityPlatformDefaultSupportedIdpConfigIdpId> values = [
+    appleCom,
+    facebookCom,
+    gcAppleCom,
+    githubCom,
+    googleCom,
+    linkedinCom,
+    microsoftCom,
+    playgamesGoogleCom,
+    twitterCom,
+    yahooCom,
+  ];
+}
+
 /// Factory wrapper for `google_identity_platform_default_supported_idp_config`.
 ///
 /// Configurations options for authenticating with a the standard set of
@@ -32,7 +89,7 @@ final class GoogleIdentityPlatformDefaultSupportedIdpConfig extends Resource {
     required TfArg<String> clientSecret,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? enabled,
-    required TfArg<String> idpId,
+    required IdentityPlatformDefaultSupportedIdpConfigIdpId idpId,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

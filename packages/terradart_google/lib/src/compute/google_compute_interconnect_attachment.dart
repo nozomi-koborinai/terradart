@@ -81,6 +81,36 @@ extension type const ComputeInterconnectAttachmentBandwidth._(TfArg<String> _)
   ];
 }
 
+/// Compute Interconnect Attachment Edge Availability enum for `edge_availability_domain`.
+extension type const ComputeInterconnectAttachmentEdgeAvailabilityDomain._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInterconnectAttachmentEdgeAvailabilityDomain.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentEdgeAvailabilityDomain.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentEdgeAvailabilityDomain.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const availabilityDomain1 =
+      ComputeInterconnectAttachmentEdgeAvailabilityDomain._(
+        TfArgLiteral('AVAILABILITY_DOMAIN_1'),
+      );
+  static const availabilityDomain2 =
+      ComputeInterconnectAttachmentEdgeAvailabilityDomain._(
+        TfArgLiteral('AVAILABILITY_DOMAIN_2'),
+      );
+  static const availabilityDomainAny =
+      ComputeInterconnectAttachmentEdgeAvailabilityDomain._(
+        TfArgLiteral('AVAILABILITY_DOMAIN_ANY'),
+      );
+
+  static const List<ComputeInterconnectAttachmentEdgeAvailabilityDomain>
+  values = [availabilityDomain1, availabilityDomain2, availabilityDomainAny];
+}
+
 /// Compute Interconnect Attachment enum for `encryption`.
 extension type const ComputeInterconnectAttachmentEncryption._(TfArg<String> _)
     implements TfArg<String> {
@@ -101,6 +131,28 @@ extension type const ComputeInterconnectAttachmentEncryption._(TfArg<String> _)
   static const List<ComputeInterconnectAttachmentEncryption> values = [
     none,
     ipsec,
+  ];
+}
+
+/// Compute Interconnect Attachment enum for `mtu`.
+extension type const ComputeInterconnectAttachmentMtu._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentMtu.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentMtu.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentMtu.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1440 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1440'));
+  static const v1460 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1460'));
+  static const v1500 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1500'));
+  static const v8896 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('8896'));
+
+  static const List<ComputeInterconnectAttachmentMtu> values = [
+    v1440,
+    v1460,
+    v1500,
+    v8896,
   ];
 }
 
@@ -320,12 +372,12 @@ final class GoogleComputeInterconnectAttachment extends Resource {
     TfArg<String>? interconnect,
     RefTo<GoogleComputeRouter>? router,
     TfArg<String>? region,
-    TfArg<String>? bandwidth,
+    ComputeInterconnectAttachmentBandwidth? bandwidth,
     TfArg<num>? vlanTag8021q,
-    TfArg<String>? mtu,
+    ComputeInterconnectAttachmentMtu? mtu,
     ComputeInterconnectAttachmentEncryption? encryption,
     ComputeInterconnectAttachmentStackType? stackType,
-    TfArg<String>? edgeAvailabilityDomain,
+    ComputeInterconnectAttachmentEdgeAvailabilityDomain? edgeAvailabilityDomain,
     TfArg<List<String>>? candidateSubnets,
     TfArg<String>? candidateCloudRouterIpAddress,
     TfArg<String>? candidateCustomerRouterIpAddress,

@@ -15,10 +15,15 @@ export 'src/data/google_folders.dart' show DataGoogleFolders;
 export 'src/folder/google_folder.dart' show GoogleFolder;
 export 'src/folder/google_folder_access_approval_settings.dart'
     show
+        FolderAccessApprovalSettingsCloudProduct,
         FolderAccessApprovalSettingsEnrolledServices,
+        FolderAccessApprovalSettingsEnrollmentLevel,
         GoogleFolderAccessApprovalSettings;
 export 'src/folder/google_folder_iam_audit_config.dart'
-    show FolderIamAuditConfigAuditLogConfig, GoogleFolderIamAuditConfig;
+    show
+        FolderIamAuditConfigAuditLogConfig,
+        FolderIamAuditConfigLogType,
+        GoogleFolderIamAuditConfig;
 export 'src/folder/google_folder_iam_binding.dart'
     show FolderIamBindingCondition, GoogleFolderIamBinding;
 export 'src/folder/google_folder_iam_member.dart'

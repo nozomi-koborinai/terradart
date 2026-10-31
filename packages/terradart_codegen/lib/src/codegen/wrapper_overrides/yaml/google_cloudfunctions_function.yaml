@@ -1,8 +1,18 @@
 outputDir: cloudfunctions
 deriveClassDoc: true
+deriveEnums: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+# Magic Modules lists `ACTOVE`; the API and the provider return `ACTIVE`.
+enumValues:
+  status:
+    - CLOUD_FUNCTION_STATUS_UNSPECIFIED
+    - ACTIVE
+    - OFFLINE
+    - DEPLOY_IN_PROGRESS
+    - DELETE_IN_PROGRESS
+    - UNKNOWN
 
 unsealedGroups:
   "source_archive_url, source_repository, source_upload_url": >-

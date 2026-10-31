@@ -30,6 +30,45 @@ extension type const DevTestPolicyEvaluatorType._(TfArg<String> _)
   ];
 }
 
+/// Dev Test Policy enum for `name`.
+extension type const DevTestPolicyName._(TfArg<String> _)
+    implements TfArg<String> {
+  DevTestPolicyName.variable(String name) : this._(TfArg.variable(name));
+  DevTestPolicyName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevTestPolicyName.arg(TfArg<String> arg) : this._(arg);
+
+  static const galleryimage = DevTestPolicyName._(TfArgLiteral('GalleryImage'));
+  static const labpremiumvmcount = DevTestPolicyName._(
+    TfArgLiteral('LabPremiumVmCount'),
+  );
+  static const labtargetcost = DevTestPolicyName._(
+    TfArgLiteral('LabTargetCost'),
+  );
+  static const labvmcount = DevTestPolicyName._(TfArgLiteral('LabVmCount'));
+  static const labvmsize = DevTestPolicyName._(TfArgLiteral('LabVmSize'));
+  static const userownedlabpremiumvmcount = DevTestPolicyName._(
+    TfArgLiteral('UserOwnedLabPremiumVmCount'),
+  );
+  static const userownedlabvmcount = DevTestPolicyName._(
+    TfArgLiteral('UserOwnedLabVmCount'),
+  );
+  static const userownedlabvmcountinsubnet = DevTestPolicyName._(
+    TfArgLiteral('UserOwnedLabVmCountInSubnet'),
+  );
+
+  static const List<DevTestPolicyName> values = [
+    galleryimage,
+    labpremiumvmcount,
+    labtargetcost,
+    labvmcount,
+    labvmsize,
+    userownedlabpremiumvmcount,
+    userownedlabvmcount,
+    userownedlabvmcountinsubnet,
+  ];
+}
+
 /// Factory wrapper for `azurerm_dev_test_policy`.
 final class AzurermDevTestPolicy extends Resource {
   static const String tfType = 'azurerm_dev_test_policy';
@@ -40,7 +79,7 @@ final class AzurermDevTestPolicy extends Resource {
     required DevTestPolicyEvaluatorType evaluatorType,
     TfArg<String>? factData,
     required TfArg<String> labName,
-    required TfArg<String> name,
+    required DevTestPolicyName name,
     required TfArg<String> policySetName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,

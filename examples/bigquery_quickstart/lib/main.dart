@@ -64,7 +64,7 @@ final class AnalyticsStack extends Stack {
         // identity once applied, not a placeholder address.
         .userByEmail(userByEmail: reader.email, role: .literal('OWNER')),
         .specialGroup(
-          specialGroup: .literal('allAuthenticatedUsers'),
+          specialGroup: .allAuthenticatedUsers,
           role: .literal('READER'),
         ),
       ],

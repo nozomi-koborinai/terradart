@@ -1,0 +1,330 @@
+{
+  "name": "migrationcenter",
+  "version": "v1",
+  "revision": "20261024",
+  "sourceUrl": "https://migrationcenter.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AssetsExportJob": {
+      "properties": {
+        "signedUriDestination": {
+          "$ref": "SignedUriDestination"
+        }
+      }
+    },
+    "ComputeEnginePreferences": {
+      "properties": {
+        "persistentDiskType": {
+          "enum": [
+            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+            "PERSISTENT_DISK_TYPE_STANDARD",
+            "PERSISTENT_DISK_TYPE_BALANCED",
+            "PERSISTENT_DISK_TYPE_SSD"
+          ]
+        },
+        "licenseType": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_TYPE_DEFAULT",
+            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
+          ]
+        }
+      }
+    },
+    "DiscoveryClient": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OFFLINE",
+            "DEGRADED",
+            "EXPIRED"
+          ]
+        }
+      }
+    },
+    "ExecutionReport": {
+      "properties": {
+        "executionErrors": {
+          "$ref": "ValidationReport"
+        }
+      }
+    },
+    "FileValidationReport": {
+      "properties": {
+        "fileErrors": {
+          "items": {
+            "$ref": "ImportError"
+          }
+        },
+        "rowErrors": {
+          "items": {
+            "$ref": "ImportRowError"
+          }
+        }
+      }
+    },
+    "Group": {
+      "properties": {}
+    },
+    "ImportDataFile": {
+      "properties": {
+        "format": {
+          "enum": [
+            "IMPORT_JOB_FORMAT_UNSPECIFIED",
+            "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
+            "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
+            "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
+            "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
+            "IMPORT_JOB_FORMAT_STRATOZONE_CSV",
+            "IMPORT_JOB_FORMAT_DATABASE_ZIP"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "ImportError": {
+      "properties": {
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        }
+      }
+    },
+    "ImportJob": {
+      "properties": {
+        "state": {
+          "enum": [
+            "IMPORT_JOB_STATE_UNSPECIFIED",
+            "IMPORT_JOB_STATE_PENDING",
+            "IMPORT_JOB_STATE_RUNNING",
+            "IMPORT_JOB_STATE_COMPLETED",
+            "IMPORT_JOB_STATE_FAILED",
+            "IMPORT_JOB_STATE_VALIDATING",
+            "IMPORT_JOB_STATE_FAILED_VALIDATION",
+            "IMPORT_JOB_STATE_READY"
+          ]
+        },
+        "executionReport": {
+          "$ref": "ExecutionReport"
+        },
+        "validationReport": {
+          "$ref": "ValidationReport"
+        }
+      }
+    },
+    "ImportRowError": {
+      "properties": {
+        "errors": {
+          "items": {
+            "$ref": "ImportError"
+          }
+        }
+      }
+    },
+    "PreferenceSet": {
+      "properties": {
+        "virtualMachinePreferences": {
+          "$ref": "VirtualMachinePreferences"
+        }
+      }
+    },
+    "Report": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TOTAL_COST_OF_OWNERSHIP"
+          ]
+        },
+        "summary": {
+          "$ref": "ReportSummary"
+        }
+      }
+    },
+    "ReportConfig": {
+      "properties": {}
+    },
+    "ReportSummary": {
+      "properties": {
+        "groupFindings": {
+          "items": {
+            "$ref": "ReportSummaryGroupFinding"
+          }
+        }
+      }
+    },
+    "ReportSummaryComputeEngineFinding": {
+      "properties": {
+        "allocatedDiskTypes": {
+          "items": {
+            "enum": [
+              "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+              "PERSISTENT_DISK_TYPE_STANDARD",
+              "PERSISTENT_DISK_TYPE_BALANCED",
+              "PERSISTENT_DISK_TYPE_SSD"
+            ]
+          }
+        }
+      }
+    },
+    "ReportSummaryGroupFinding": {
+      "properties": {
+        "preferenceSetFindings": {
+          "items": {
+            "$ref": "ReportSummaryGroupPreferenceSetFinding"
+          }
+        }
+      }
+    },
+    "ReportSummaryGroupPreferenceSetFinding": {
+      "properties": {
+        "computeEngineFinding": {
+          "$ref": "ReportSummaryComputeEngineFinding"
+        },
+        "machinePreferences": {
+          "$ref": "VirtualMachinePreferences"
+        }
+      }
+    },
+    "Settings": {
+      "properties": {}
+    },
+    "SignedUriDestination": {
+      "properties": {
+        "fileFormat": {
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "CSV",
+            "XLSX"
+          ]
+        }
+      }
+    },
+    "SoleTenancyPreferences": {
+      "properties": {
+        "commitmentPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "ON_DEMAND",
+            "COMMITMENT_1_YEAR",
+            "COMMITMENT_3_YEAR"
+          ]
+        },
+        "hostMaintenancePolicy": {
+          "enum": [
+            "HOST_MAINTENANCE_POLICY_UNSPECIFIED",
+            "HOST_MAINTENANCE_POLICY_DEFAULT",
+            "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE",
+            "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP"
+          ]
+        }
+      }
+    },
+    "Source": {
+      "properties": {
+        "type": {
+          "enum": [
+            "SOURCE_TYPE_UNKNOWN",
+            "SOURCE_TYPE_UPLOAD",
+            "SOURCE_TYPE_GUEST_OS_SCAN",
+            "SOURCE_TYPE_INVENTORY_SCAN",
+            "SOURCE_TYPE_CUSTOM",
+            "SOURCE_TYPE_DISCOVERY_CLIENT"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETING",
+            "INVALID"
+          ]
+        }
+      }
+    },
+    "ValidationReport": {
+      "properties": {
+        "jobErrors": {
+          "items": {
+            "$ref": "ImportError"
+          }
+        },
+        "fileValidations": {
+          "items": {
+            "$ref": "FileValidationReport"
+          }
+        }
+      }
+    },
+    "VirtualMachinePreferences": {
+      "properties": {
+        "commitmentPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "COMMITMENT_PLAN_NONE",
+            "COMMITMENT_PLAN_ONE_YEAR",
+            "COMMITMENT_PLAN_THREE_YEARS"
+          ]
+        },
+        "targetProduct": {
+          "enum": [
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
+          ]
+        },
+        "soleTenancyPreferences": {
+          "$ref": "SoleTenancyPreferences"
+        },
+        "computeEnginePreferences": {
+          "$ref": "ComputeEnginePreferences"
+        },
+        "sizingOptimizationStrategy": {
+          "enum": [
+            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
+            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
+            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
+          ]
+        },
+        "vmwareEnginePreferences": {
+          "$ref": "VmwareEnginePreferences"
+        }
+      }
+    },
+    "VmwareEnginePreferences": {
+      "properties": {
+        "commitmentPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "ON_DEMAND",
+            "COMMITMENT_1_YEAR_MONTHLY_PAYMENTS",
+            "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS",
+            "COMMITMENT_1_YEAR_UPFRONT_PAYMENT",
+            "COMMITMENT_3_YEAR_UPFRONT_PAYMENT"
+          ]
+        }
+      }
+    }
+  }
+}

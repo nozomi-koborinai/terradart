@@ -1,0 +1,273 @@
+{
+  "name": "logging",
+  "version": "v2",
+  "revision": "20261023",
+  "sourceUrl": "https://logging.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "DefaultSinkConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "FILTER_WRITE_MODE_UNSPECIFIED",
+            "APPEND",
+            "OVERWRITE"
+          ]
+        }
+      }
+    },
+    "FieldSource": {
+      "properties": {
+        "projectedField": {
+          "$ref": "ProjectedField"
+        }
+      }
+    },
+    "FilterExpression": {
+      "properties": {
+        "comparator": {
+          "enum": [
+            "COMPARATOR_UNSPECIFIED",
+            "EQUALS",
+            "MATCHES_REGEXP",
+            "GREATER_THAN",
+            "LESS_THAN",
+            "GREATER_THAN_EQUALS",
+            "LESS_THAN_EQUALS",
+            "IS_NULL",
+            "IN",
+            "LIKE"
+          ]
+        },
+        "fieldSourceValue": {
+          "$ref": "FieldSource"
+        },
+        "fieldSource": {
+          "$ref": "FieldSource"
+        }
+      }
+    },
+    "FilterPredicate": {
+      "properties": {
+        "childPredicates": {
+          "items": {
+            "$ref": "FilterPredicate"
+          }
+        },
+        "leafPredicate": {
+          "$ref": "FilterExpression"
+        },
+        "operatorType": {
+          "enum": [
+            "OPERATOR_TYPE_UNSPECIFIED",
+            "AND",
+            "OR",
+            "LEAF"
+          ]
+        }
+      }
+    },
+    "LabelDescriptor": {
+      "properties": {
+        "valueType": {
+          "enum": [
+            "STRING",
+            "BOOL",
+            "INT64"
+          ]
+        }
+      }
+    },
+    "Link": {
+      "properties": {
+        "lifecycleState": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETE_REQUESTED",
+            "UPDATING",
+            "CREATING",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "LogMetric": {
+      "properties": {
+        "version": {
+          "enum": [
+            "V2",
+            "V1"
+          ]
+        },
+        "metricDescriptor": {
+          "$ref": "MetricDescriptor"
+        }
+      }
+    },
+    "LogScope": {
+      "properties": {}
+    },
+    "LogView": {
+      "properties": {}
+    },
+    "MetricDescriptor": {
+      "properties": {
+        "valueType": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
+          ]
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
+        },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        }
+      }
+    },
+    "MetricDescriptorMetadata": {
+      "properties": {
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
+        }
+      }
+    },
+    "OpsAnalyticsQuery": {
+      "properties": {
+        "queryBuilder": {
+          "$ref": "QueryBuilderConfig"
+        }
+      }
+    },
+    "ProjectedField": {
+      "properties": {
+        "virtualField": {
+          "$ref": "VirtualField"
+        },
+        "operation": {
+          "enum": [
+            "FIELD_OPERATION_UNSPECIFIED",
+            "NO_SETTING",
+            "GROUP_BY",
+            "AGGREGATE"
+          ]
+        }
+      }
+    },
+    "QueryBuilderConfig": {
+      "properties": {
+        "fieldSources": {
+          "items": {
+            "$ref": "FieldSource"
+          }
+        },
+        "filter": {
+          "$ref": "FilterPredicate"
+        },
+        "orderBys": {
+          "items": {
+            "$ref": "SortOrderParameter"
+          }
+        }
+      }
+    },
+    "SavedQuery": {
+      "properties": {
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery"
+        },
+        "visibility": {
+          "enum": [
+            "VISIBILITY_UNSPECIFIED",
+            "PRIVATE",
+            "SHARED"
+          ]
+        }
+      }
+    },
+    "Settings": {
+      "properties": {
+        "defaultSinkConfig": {
+          "$ref": "DefaultSinkConfig"
+        }
+      }
+    },
+    "SortOrderParameter": {
+      "properties": {
+        "fieldSource": {
+          "$ref": "FieldSource"
+        },
+        "sortOrderDirection": {
+          "enum": [
+            "SORT_ORDER_UNSPECIFIED",
+            "SORT_ORDER_NONE",
+            "SORT_ORDER_ASCENDING",
+            "SORT_ORDER_DESCENDING"
+          ]
+        }
+      }
+    },
+    "VirtualField": {
+      "properties": {
+        "underlyingFieldSources": {
+          "items": {
+            "$ref": "FieldSource"
+          }
+        },
+        "virtualFieldType": {
+          "enum": [
+            "VIRTUAL_FIELD_TYPE_UNSPECIFIED",
+            "COALESCE"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_eventhub`.
 const Set<String> _azurermEventhubSensitive = <String>{};
 
+/// Eventhub enum for `status`.
+extension type const EventhubStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubStatus.variable(String name) : this._(TfArg.variable(name));
+  EventhubStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = EventhubStatus._(TfArgLiteral('Active'));
+  static const disabled = EventhubStatus._(TfArgLiteral('Disabled'));
+  static const senddisabled = EventhubStatus._(TfArgLiteral('SendDisabled'));
+
+  static const List<EventhubStatus> values = [active, disabled, senddisabled];
+}
+
 /// Exactly one of `message_retention`, `retention_description` on `azurerm_eventhub`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -150,13 +165,13 @@ final class EventhubDestination {
 
   final TfArg<String> blobContainerName;
 
-  final TfArg<String> name;
+  final EventhubDestinationName name;
 
   final TfArg<String> storageAccountId;
 
   final TfArg<String>? storageAuthenticationId;
 
-  final TfArg<String>? storageAuthenticationType;
+  final EventhubStorageAuthenticationType? storageAuthenticationType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -167,6 +182,49 @@ final class EventhubDestination {
     'storage_authentication_id': ?storageAuthenticationId?.toTfJson(),
     'storage_authentication_type': ?storageAuthenticationType?.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const EventhubDestinationName._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubDestinationName.variable(String name) : this._(TfArg.variable(name));
+  EventhubDestinationName.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubDestinationName.arg(TfArg<String> arg) : this._(arg);
+
+  static const eventhubarchiveAzureblockblob = EventhubDestinationName._(
+    TfArgLiteral('EventHubArchive.AzureBlockBlob'),
+  );
+
+  static const List<EventhubDestinationName> values = [
+    eventhubarchiveAzureblockblob,
+  ];
+}
+
+/// `storage_authentication_type` — derived from the provider schema description.
+extension type const EventhubStorageAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubStorageAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  EventhubStorageAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubStorageAuthenticationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const storagesas = EventhubStorageAuthenticationType._(
+    TfArgLiteral('StorageSAS'),
+  );
+  static const systemassigned = EventhubStorageAuthenticationType._(
+    TfArgLiteral('SystemAssigned'),
+  );
+  static const userassigned = EventhubStorageAuthenticationType._(
+    TfArgLiteral('UserAssigned'),
+  );
+
+  static const List<EventhubStorageAuthenticationType> values = [
+    storagesas,
+    systemassigned,
+    userassigned,
+  ];
 }
 
 /// Typed helper for the `retention_description` block of
@@ -276,7 +334,7 @@ final class AzurermEventhub extends Resource {
     required TfArg<String> name,
     required TfArg<String> namespaceId,
     required TfArg<num> partitionCount,
-    TfArg<String>? status,
+    EventhubStatus? status,
     EventhubCaptureDescription? captureDescription,
     super.lifecycle,
     super.dependsOn,

@@ -47,6 +47,26 @@ extension type const ApplicationInsightsApiKeyReadPermissions._(TfArg<String> _)
   ];
 }
 
+/// Application Insights Api Key Write enum for `write_permissions`.
+extension type const ApplicationInsightsApiKeyWritePermissions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApplicationInsightsApiKeyWritePermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsApiKeyWritePermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsApiKeyWritePermissions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const annotations = ApplicationInsightsApiKeyWritePermissions._(
+    TfArgLiteral('annotations'),
+  );
+
+  static const List<ApplicationInsightsApiKeyWritePermissions> values = [
+    annotations,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights_api_key`.
 final class AzurermApplicationInsightsApiKey extends Resource {
   static const String tfType = 'azurerm_application_insights_api_key';
@@ -55,8 +75,8 @@ final class AzurermApplicationInsightsApiKey extends Resource {
     super.localName, {
     required TfArg<String> applicationInsightsId,
     required TfArg<String> name,
-    List<ApplicationInsightsApiKeyReadPermissions>? readPermissions,
-    TfArg<List<String>>? writePermissions,
+    EnumList<ApplicationInsightsApiKeyReadPermissions>? readPermissions,
+    EnumList<ApplicationInsightsApiKeyWritePermissions>? writePermissions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -66,10 +86,7 @@ final class AzurermApplicationInsightsApiKey extends Resource {
          argMap: {
            'application_insights_id': applicationInsightsId,
            'name': name,
-           if (readPermissions != null)
-             'read_permissions': TfArg.literal([
-               for (final e in readPermissions) e.toTfJson(),
-             ]),
+           'read_permissions': ?readPermissions,
            'write_permissions': ?writePermissions,
          },
        );

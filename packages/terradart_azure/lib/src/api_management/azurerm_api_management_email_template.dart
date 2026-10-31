@@ -8,6 +8,83 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_api_management_email_template`.
 const Set<String> _azurermApiManagementEmailTemplateSensitive = <String>{};
 
+/// Api Management Email Template enum for `template_name`.
+extension type const ApiManagementEmailTemplateName._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementEmailTemplateName.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementEmailTemplateName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementEmailTemplateName.arg(TfArg<String> arg) : this._(arg);
+
+  static const accountcloseddeveloper = ApiManagementEmailTemplateName._(
+    TfArgLiteral('AccountClosedDeveloper'),
+  );
+  static const applicationapprovednotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('ApplicationApprovedNotificationMessage'),
+      );
+  static const confirmsignupidentitydefault = ApiManagementEmailTemplateName._(
+    TfArgLiteral('ConfirmSignUpIdentityDefault'),
+  );
+  static const emailchangeidentitydefault = ApiManagementEmailTemplateName._(
+    TfArgLiteral('EmailChangeIdentityDefault'),
+  );
+  static const inviteusernotificationmessage = ApiManagementEmailTemplateName._(
+    TfArgLiteral('InviteUserNotificationMessage'),
+  );
+  static const newcommentnotificationmessage = ApiManagementEmailTemplateName._(
+    TfArgLiteral('NewCommentNotificationMessage'),
+  );
+  static const newdevelopernotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('NewDeveloperNotificationMessage'),
+      );
+  static const newissuenotificationmessage = ApiManagementEmailTemplateName._(
+    TfArgLiteral('NewIssueNotificationMessage'),
+  );
+  static const passwordresetbyadminnotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('PasswordResetByAdminNotificationMessage'),
+      );
+  static const passwordresetidentitydefault = ApiManagementEmailTemplateName._(
+    TfArgLiteral('PasswordResetIdentityDefault'),
+  );
+  static const purchasedevelopernotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('PurchaseDeveloperNotificationMessage'),
+      );
+  static const quotalimitapproachingdevelopernotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('QuotaLimitApproachingDeveloperNotificationMessage'),
+      );
+  static const rejectdevelopernotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('RejectDeveloperNotificationMessage'),
+      );
+  static const requestdevelopernotificationmessage =
+      ApiManagementEmailTemplateName._(
+        TfArgLiteral('RequestDeveloperNotificationMessage'),
+      );
+
+  static const List<ApiManagementEmailTemplateName> values = [
+    accountcloseddeveloper,
+    applicationapprovednotificationmessage,
+    confirmsignupidentitydefault,
+    emailchangeidentitydefault,
+    inviteusernotificationmessage,
+    newcommentnotificationmessage,
+    newdevelopernotificationmessage,
+    newissuenotificationmessage,
+    passwordresetbyadminnotificationmessage,
+    passwordresetidentitydefault,
+    purchasedevelopernotificationmessage,
+    quotalimitapproachingdevelopernotificationmessage,
+    rejectdevelopernotificationmessage,
+    requestdevelopernotificationmessage,
+  ];
+}
+
 /// Factory wrapper for `azurerm_api_management_email_template`.
 final class AzurermApiManagementEmailTemplate extends Resource {
   static const String tfType = 'azurerm_api_management_email_template';
@@ -18,7 +95,7 @@ final class AzurermApiManagementEmailTemplate extends Resource {
     required TfArg<String> body,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> subject,
-    required TfArg<String> templateName,
+    required ApiManagementEmailTemplateName templateName,
     super.lifecycle,
     super.dependsOn,
     super.provider,

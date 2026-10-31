@@ -34,6 +34,12 @@ properties:
         enum_values:
           - "ntfs"
           - "unix"
+      - api_name: service_level
+        enum_values:
+          - "Premium"
+          - "Standard"
+          - "Ultra"
+          - "Flexible"
       - api_name: volume_spec_name
         enum_values:
           - "data"

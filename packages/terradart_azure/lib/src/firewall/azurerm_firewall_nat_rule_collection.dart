@@ -48,7 +48,7 @@ final class FirewallNatRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final List<FirewallNatRuleCollectionProtocols> protocols;
+  final EnumList<FirewallNatRuleCollectionProtocols> protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -64,7 +64,7 @@ final class FirewallNatRuleCollectionRule {
     'destination_addresses': destinationAddresses.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
     'translated_address': translatedAddress.toTfJson(),

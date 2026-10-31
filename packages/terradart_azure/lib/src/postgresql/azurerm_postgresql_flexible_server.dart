@@ -11,6 +11,121 @@ const Set<String> _azurermPostgresqlFlexibleServerSensitive = <String>{
   'administrator_password',
 };
 
+/// Postgresql Flexible Server Create enum for `create_mode`.
+extension type const PostgresqlFlexibleServerCreateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlFlexibleServerCreateMode.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerCreateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerCreateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('Default'),
+  );
+  static const pointintimerestore = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('PointInTimeRestore'),
+  );
+  static const replica = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('Replica'),
+  );
+  static const revivedropped = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('ReviveDropped'),
+  );
+  static const georestore = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('GeoRestore'),
+  );
+  static const update = PostgresqlFlexibleServerCreateMode._(
+    TfArgLiteral('Update'),
+  );
+
+  static const List<PostgresqlFlexibleServerCreateMode> values = [
+    defaultCase,
+    pointintimerestore,
+    replica,
+    revivedropped,
+    georestore,
+    update,
+  ];
+}
+
+/// Postgresql Flexible Server Replication enum for `replication_role`.
+extension type const PostgresqlFlexibleServerReplicationRole._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlFlexibleServerReplicationRole.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerReplicationRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerReplicationRole.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = PostgresqlFlexibleServerReplicationRole._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<PostgresqlFlexibleServerReplicationRole> values = [none];
+}
+
+/// Postgresql Flexible Server Storage enum for `storage_tier`.
+extension type const PostgresqlFlexibleServerStorageTier._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlFlexibleServerStorageTier.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerStorageTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerStorageTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const p4 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P4'));
+  static const p6 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P6'));
+  static const p10 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P10'));
+  static const p15 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P15'));
+  static const p20 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P20'));
+  static const p30 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P30'));
+  static const p40 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P40'));
+  static const p50 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P50'));
+  static const p60 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P60'));
+  static const p70 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P70'));
+  static const p80 = PostgresqlFlexibleServerStorageTier._(TfArgLiteral('P80'));
+
+  static const List<PostgresqlFlexibleServerStorageTier> values = [
+    p4,
+    p6,
+    p10,
+    p15,
+    p20,
+    p30,
+    p40,
+    p50,
+    p60,
+    p70,
+    p80,
+  ];
+}
+
+/// Postgresql Flexible Server Storage enum for `storage_type`.
+extension type const PostgresqlFlexibleServerStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlFlexibleServerStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlFlexibleServerStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlFlexibleServerStorageType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = PostgresqlFlexibleServerStorageType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const premiumv2Lrs = PostgresqlFlexibleServerStorageType._(
+    TfArgLiteral('PremiumV2_LRS'),
+  );
+
+  static const List<PostgresqlFlexibleServerStorageType> values = [
+    premiumLrs,
+    premiumv2Lrs,
+  ];
+}
+
 /// Postgresql Flexible Server enum for `version`.
 extension type const PostgresqlFlexibleServerVersion._(TfArg<String> _)
     implements TfArg<String> {
@@ -295,7 +410,7 @@ final class AzurermPostgresqlFlexibleServer extends Resource {
     TfArg<num>? administratorPasswordWoVersion,
     TfArg<bool>? autoGrowEnabled,
     TfArg<num>? backupRetentionDays,
-    TfArg<String>? createMode,
+    PostgresqlFlexibleServerCreateMode? createMode,
     TfArg<String>? delegatedSubnetId,
     TfArg<bool>? geoRedundantBackupEnabled,
     required TfArg<String> location,
@@ -303,15 +418,15 @@ final class AzurermPostgresqlFlexibleServer extends Resource {
     TfArg<String>? pointInTimeRestoreTimeInUtc,
     TfArg<String>? privateDnsZoneId,
     TfArg<bool>? publicNetworkAccessEnabled,
-    TfArg<String>? replicationRole,
+    PostgresqlFlexibleServerReplicationRole? replicationRole,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? skuName,
     TfArg<String>? sourceServerId,
     TfArg<num>? storageIops,
     TfArg<num>? storageMb,
     TfArg<num>? storageThroughput,
-    TfArg<String>? storageTier,
-    TfArg<String>? storageType,
+    PostgresqlFlexibleServerStorageTier? storageTier,
+    PostgresqlFlexibleServerStorageType? storageType,
     TfArg<Map<String, String>>? tags,
     PostgresqlFlexibleServerVersion? version,
     TfArg<String>? zone,

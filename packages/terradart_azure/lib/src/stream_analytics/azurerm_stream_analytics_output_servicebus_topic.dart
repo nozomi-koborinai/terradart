@@ -10,6 +10,31 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermStreamAnalyticsOutputServicebusTopicSensitive =
     <String>{'shared_access_policy_key'};
 
+/// Stream Analytics Output Servicebus Topic Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputServicebusTopicAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicAuthenticationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicAuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const msi = StreamAnalyticsOutputServicebusTopicAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsOutputServicebusTopicAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsOutputServicebusTopicAuthenticationMode>
+  values = [msi, connectionstring];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_output_servicebus_topic` (derived from provider schema).
 @immutable
@@ -21,13 +46,13 @@ final class StreamAnalyticsOutputServicebusTopicSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsOutputServicebusTopicEncoding? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputServicebusTopicFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputServicebusTopicFormat? format;
 
-  final TfArg<String> type;
+  final StreamAnalyticsOutputServicebusTopicType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -38,6 +63,113 @@ final class StreamAnalyticsOutputServicebusTopicSerialization {
   };
 }
 
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicEncoding._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsOutputServicebusTopicEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicEncoding> values = [
+    utf8,
+  ];
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicFieldDelimiter.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const value = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicFieldDelimiter> values =
+      [value, value2, value3, value4, value5];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const array = StreamAnalyticsOutputServicebusTopicFormat._(
+    TfArgLiteral('Array'),
+  );
+  static const lineseparated = StreamAnalyticsOutputServicebusTopicFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicFormat> values = [
+    array,
+    lineseparated,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const avro = StreamAnalyticsOutputServicebusTopicType._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsOutputServicebusTopicType._(
+    TfArgLiteral('Csv'),
+  );
+  static const json = StreamAnalyticsOutputServicebusTopicType._(
+    TfArgLiteral('Json'),
+  );
+  static const parquet = StreamAnalyticsOutputServicebusTopicType._(
+    TfArgLiteral('Parquet'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicType> values = [
+    avro,
+    csv,
+    json,
+    parquet,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_servicebus_topic`.
 final class AzurermStreamAnalyticsOutputServicebusTopic extends Resource {
   static const String tfType =
@@ -45,7 +177,7 @@ final class AzurermStreamAnalyticsOutputServicebusTopic extends Resource {
 
   AzurermStreamAnalyticsOutputServicebusTopic(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputServicebusTopicAuthenticationMode? authenticationMode,
     required TfArg<String> name,
     TfArg<List<String>>? propertyColumns,
     required RefTo<AzurermResourceGroup> resourceGroupName,

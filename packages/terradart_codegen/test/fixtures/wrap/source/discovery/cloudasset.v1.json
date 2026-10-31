@@ -1,0 +1,23 @@
+{
+  "name": "cloudasset",
+  "version": "v1",
+  "revision": "20261017",
+  "sourceUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Feed": {
+      "properties": {
+        "contentType": {
+          "enum": [
+            "CONTENT_TYPE_UNSPECIFIED",
+            "RESOURCE",
+            "IAM_POLICY",
+            "ORG_POLICY",
+            "ACCESS_POLICY",
+            "OS_INVENTORY",
+            "RELATIONSHIP"
+          ]
+        }
+      }
+    }
+  }
+}

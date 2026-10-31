@@ -7,6 +7,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_assistant`.
 const Set<String> _googleDiscoveryEngineAssistantSensitive = <String>{};
 
+/// Discovery Engine Assistant enum for `location`.
+extension type const DiscoveryEngineAssistantLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAssistantLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAssistantLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAssistantLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineAssistantLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineAssistantLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineAssistantLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineAssistantLocation> values = [global, us, eu];
+}
+
+/// Discovery Engine Assistant Web Grounding enum for `web_grounding_type`.
+extension type const DiscoveryEngineAssistantWebGroundingType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAssistantWebGroundingType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAssistantWebGroundingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAssistantWebGroundingType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const webGroundingTypeDisabled =
+      DiscoveryEngineAssistantWebGroundingType._(
+        TfArgLiteral('WEB_GROUNDING_TYPE_DISABLED'),
+      );
+  static const webGroundingTypeGoogleSearch =
+      DiscoveryEngineAssistantWebGroundingType._(
+        TfArgLiteral('WEB_GROUNDING_TYPE_GOOGLE_SEARCH'),
+      );
+  static const webGroundingTypeEnterpriseWebSearch =
+      DiscoveryEngineAssistantWebGroundingType._(
+        TfArgLiteral('WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH'),
+      );
+
+  static const List<DiscoveryEngineAssistantWebGroundingType> values = [
+    webGroundingTypeDisabled,
+    webGroundingTypeGoogleSearch,
+    webGroundingTypeEnterpriseWebSearch,
+  ];
+}
+
 /// Typed helper for the `customer_policy` block of
 /// `google_discovery_engine_assistant` (derived from provider schema).
 @immutable
@@ -40,7 +88,7 @@ final class DiscoveryEngineAssistantBannedPhrases {
 
   final TfArg<bool>? ignoreDiacritics;
 
-  final TfArg<String>? matchType;
+  final DiscoveryEngineAssistantMatchType? matchType;
 
   final TfArg<String> phrase;
 
@@ -50,6 +98,28 @@ final class DiscoveryEngineAssistantBannedPhrases {
     'match_type': ?matchType?.toTfJson(),
     'phrase': phrase.toTfJson(),
   };
+}
+
+/// `match_type` — derived from the provider schema description.
+extension type const DiscoveryEngineAssistantMatchType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAssistantMatchType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAssistantMatchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAssistantMatchType.arg(TfArg<String> arg) : this._(arg);
+
+  static const simpleStringMatch = DiscoveryEngineAssistantMatchType._(
+    TfArgLiteral('SIMPLE_STRING_MATCH'),
+  );
+  static const wordBoundaryStringMatch = DiscoveryEngineAssistantMatchType._(
+    TfArgLiteral('WORD_BOUNDARY_STRING_MATCH'),
+  );
+
+  static const List<DiscoveryEngineAssistantMatchType> values = [
+    simpleStringMatch,
+    wordBoundaryStringMatch,
+  ];
 }
 
 /// Typed helper for the `customer_policy.model_armor_config` block of
@@ -62,7 +132,7 @@ final class DiscoveryEngineAssistantModelArmorConfig {
     required this.userPromptTemplate,
   });
 
-  final TfArg<String>? failureMode;
+  final DiscoveryEngineAssistantFailureMode? failureMode;
 
   final TfArg<String> responseTemplate;
 
@@ -74,6 +144,29 @@ final class DiscoveryEngineAssistantModelArmorConfig {
     'response_template': responseTemplate.toTfJson(),
     'user_prompt_template': userPromptTemplate.toTfJson(),
   };
+}
+
+/// `failure_mode` — derived from the provider schema description.
+extension type const DiscoveryEngineAssistantFailureMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAssistantFailureMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAssistantFailureMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAssistantFailureMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const failOpen = DiscoveryEngineAssistantFailureMode._(
+    TfArgLiteral('FAIL_OPEN'),
+  );
+  static const failClosed = DiscoveryEngineAssistantFailureMode._(
+    TfArgLiteral('FAIL_CLOSED'),
+  );
+
+  static const List<DiscoveryEngineAssistantFailureMode> values = [
+    failOpen,
+    failClosed,
+  ];
 }
 
 /// Typed helper for the `generation_config` block of
@@ -130,7 +223,7 @@ final class GoogleDiscoveryEngineAssistant extends Resource {
 
   GoogleDiscoveryEngineAssistant(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineAssistantLocation location,
     required TfArg<String> collectionId,
     required TfArg<String> engineId,
     required TfArg<String> assistantId,
@@ -138,7 +231,7 @@ final class GoogleDiscoveryEngineAssistant extends Resource {
     TfArg<String>? description,
     DiscoveryEngineAssistantGenerationConfig? generationConfig,
     DiscoveryEngineAssistantCustomerPolicy? customerPolicy,
-    TfArg<String>? webGroundingType,
+    DiscoveryEngineAssistantWebGroundingType? webGroundingType,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

@@ -222,7 +222,7 @@ final class ComputeRolloutPlanValidation {
     this.timeBasedValidationMetadata,
   });
 
-  final TfArg<String> type;
+  final ComputeRolloutPlanValidationType type;
 
   final ComputeRolloutPlanTimeBasedValidationMetadata?
   timeBasedValidationMetadata;
@@ -232,6 +232,23 @@ final class ComputeRolloutPlanValidation {
     'type': type.toTfJson(),
     'time_based_validation_metadata': ?timeBasedValidationMetadata?.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeRolloutPlanValidationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRolloutPlanValidationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRolloutPlanValidationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRolloutPlanValidationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const manual = ComputeRolloutPlanValidationType._(
+    TfArgLiteral('manual'),
+  );
+  static const time = ComputeRolloutPlanValidationType._(TfArgLiteral('time'));
+
+  static const List<ComputeRolloutPlanValidationType> values = [manual, time];
 }
 
 /// Typed helper for the `waves.validation.time_based_validation_metadata` block of

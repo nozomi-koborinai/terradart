@@ -23,8 +23,13 @@ export 'src/data/cloudflare_cloudforce_one_request.dart'
 export 'src/data/cloudflare_cloudforce_one_request_asset.dart'
     show DataCloudflareCloudforceOneRequestAsset;
 export 'src/data/cloudflare_cloudforce_one_request_message.dart'
-    show DataCloudflareCloudforceOneRequestMessage;
+    show
+        DataCloudflareCloudforceOneRequestMessage,
+        DataCloudforceOneRequestMessageSortOrder;
 export 'src/data/cloudflare_cloudforce_one_request_priority.dart'
     show DataCloudflareCloudforceOneRequestPriority;
 export 'src/data/cloudflare_cloudforce_one_requests.dart'
-    show DataCloudflareCloudforceOneRequests;
+    show
+        DataCloudflareCloudforceOneRequests,
+        DataCloudforceOneRequestsSortOrder,
+        DataCloudforceOneRequestsStatus;

@@ -226,7 +226,8 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
     this.visualMode,
   });
 
-  final List<WorkspaceswebUserSettingsHiddenToolbarItems>? hiddenToolbarItems;
+  final EnumList<WorkspaceswebUserSettingsHiddenToolbarItems>?
+  hiddenToolbarItems;
 
   final WorkspaceswebUserSettingsMaxDisplayResolution? maxDisplayResolution;
 
@@ -236,10 +237,7 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    if (hiddenToolbarItems != null)
-      'hidden_toolbar_items': [
-        for (final e in hiddenToolbarItems!) e.toTfJson(),
-      ],
+    'hidden_toolbar_items': ?hiddenToolbarItems?.toTfJson(),
     'max_display_resolution': ?maxDisplayResolution?.toTfJson(),
     'toolbar_type': ?toolbarType?.toTfJson(),
     'visual_mode': ?visualMode?.toTfJson(),

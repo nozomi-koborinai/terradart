@@ -8,6 +8,42 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeOrganizationSecurityPolicySensitive =
     <String>{};
 
+/// Compute Organization Security Policy enum for `type`.
+extension type const ComputeOrganizationSecurityPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const firewall = ComputeOrganizationSecurityPolicyType._(
+    TfArgLiteral('FIREWALL'),
+  );
+  static const cloudArmor = ComputeOrganizationSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR'),
+  );
+  static const cloudArmorEdge = ComputeOrganizationSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR_EDGE'),
+  );
+  static const cloudArmorInternalService =
+      ComputeOrganizationSecurityPolicyType._(
+        TfArgLiteral('CLOUD_ARMOR_INTERNAL_SERVICE'),
+      );
+  static const cloudArmorNetwork = ComputeOrganizationSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR_NETWORK'),
+  );
+
+  static const List<ComputeOrganizationSecurityPolicyType> values = [
+    firewall,
+    cloudArmor,
+    cloudArmorEdge,
+    cloudArmorInternalService,
+    cloudArmorNetwork,
+  ];
+}
+
 /// Typed helper for the `advanced_options_config` block of
 /// `google_compute_organization_security_policy` (derived from provider schema).
 @immutable
@@ -167,7 +203,7 @@ final class GoogleComputeOrganizationSecurityPolicy extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> parent,
     TfArg<String>? shortName,
-    TfArg<String>? type,
+    ComputeOrganizationSecurityPolicyType? type,
     ComputeOrganizationSecurityPolicyAdvancedOptionsConfig?
     advancedOptionsConfig,
     super.lifecycle,

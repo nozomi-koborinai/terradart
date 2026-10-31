@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkManagementNetworkMonitoringProviderSensitive =
     <String>{};
 
+/// Network Management Network Monitoring Provider enum for `provider_type`.
+extension type const NetworkManagementNetworkMonitoringProviderType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementNetworkMonitoringProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagementNetworkMonitoringProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkManagementNetworkMonitoringProviderType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const external = NetworkManagementNetworkMonitoringProviderType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<NetworkManagementNetworkMonitoringProviderType> values = [
+    external,
+  ];
+}
+
 /// Factory wrapper for `google_network_management_network_monitoring_provider`.
 ///
 /// A Network Monitoring Provider resource that allows third-party network
@@ -21,7 +41,7 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
     super.localName, {
     required TfArg<String> networkMonitoringProviderId,
     required TfArg<String> location,
-    required TfArg<String> providerType,
+    required NetworkManagementNetworkMonitoringProviderType providerType,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

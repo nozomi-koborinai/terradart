@@ -34,22 +34,16 @@ final class WebPubsubNetworkAclPrivateEndpoint {
     required this.id,
   });
 
-  final List<WebPubsubNetworkAclAllowedRequestTypes>? allowedRequestTypes;
+  final EnumList<WebPubsubNetworkAclAllowedRequestTypes>? allowedRequestTypes;
 
-  final List<WebPubsubNetworkAclDeniedRequestTypes>? deniedRequestTypes;
+  final EnumList<WebPubsubNetworkAclDeniedRequestTypes>? deniedRequestTypes;
 
   final TfArg<String> id;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedRequestTypes != null)
-      'allowed_request_types': [
-        for (final e in allowedRequestTypes!) e.toTfJson(),
-      ],
-    if (deniedRequestTypes != null)
-      'denied_request_types': [
-        for (final e in deniedRequestTypes!) e.toTfJson(),
-      ],
+    'allowed_request_types': ?allowedRequestTypes?.toTfJson(),
+    'denied_request_types': ?deniedRequestTypes?.toTfJson(),
     'id': id.toTfJson(),
   };
 }
@@ -138,12 +132,12 @@ sealed class WebPubsubNetworkAclPublicNetworkRequestTypes {
 
   /// Sets `allowed_request_types`.
   const factory WebPubsubNetworkAclPublicNetworkRequestTypes.allowedRequestTypes(
-    List<WebPubsubNetworkAclAllowedRequestTypes> allowedRequestTypes,
+    EnumList<WebPubsubNetworkAclAllowedRequestTypes> allowedRequestTypes,
   ) = WebPubsubNetworkAclPublicNetworkAllowedRequestTypes;
 
   /// Sets `denied_request_types`.
   const factory WebPubsubNetworkAclPublicNetworkRequestTypes.deniedRequestTypes(
-    List<WebPubsubNetworkAclDeniedRequestTypes> deniedRequestTypes,
+    EnumList<WebPubsubNetworkAclDeniedRequestTypes> deniedRequestTypes,
   ) = WebPubsubNetworkAclPublicNetworkDeniedRequestTypes;
 
   /// The Terraform argument this choice sets.
@@ -161,7 +155,7 @@ final class WebPubsubNetworkAclPublicNetworkAllowedRequestTypes
     this.allowedRequestTypes,
   );
 
-  final List<WebPubsubNetworkAclAllowedRequestTypes> allowedRequestTypes;
+  final EnumList<WebPubsubNetworkAclAllowedRequestTypes> allowedRequestTypes;
 
   @internal
   @override
@@ -170,9 +164,7 @@ final class WebPubsubNetworkAclPublicNetworkAllowedRequestTypes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'allowed_request_types': [
-      for (final e in allowedRequestTypes) e.toTfJson(),
-    ],
+    'allowed_request_types': allowedRequestTypes.toTfJson(),
   };
 }
 
@@ -183,7 +175,7 @@ final class WebPubsubNetworkAclPublicNetworkDeniedRequestTypes
     this.deniedRequestTypes,
   );
 
-  final List<WebPubsubNetworkAclDeniedRequestTypes> deniedRequestTypes;
+  final EnumList<WebPubsubNetworkAclDeniedRequestTypes> deniedRequestTypes;
 
   @internal
   @override
@@ -192,7 +184,7 @@ final class WebPubsubNetworkAclPublicNetworkDeniedRequestTypes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'denied_request_types': [for (final e in deniedRequestTypes) e.toTfJson()],
+    'denied_request_types': deniedRequestTypes.toTfJson(),
   };
 }
 

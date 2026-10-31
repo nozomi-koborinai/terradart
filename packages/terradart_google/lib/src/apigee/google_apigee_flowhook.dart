@@ -6,6 +6,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_apigee_flowhook`.
 const Set<String> _googleApigeeFlowhookSensitive = <String>{};
 
+/// Apigee Flowhook Flow Hook enum for `flow_hook_point`.
+extension type const ApigeeFlowhookFlowHookPoint._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeFlowhookFlowHookPoint.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeFlowhookFlowHookPoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeFlowhookFlowHookPoint.arg(TfArg<String> arg) : this._(arg);
+
+  static const preproxyflowhook = ApigeeFlowhookFlowHookPoint._(
+    TfArgLiteral('PreProxyFlowHook'),
+  );
+  static const postproxyflowhook = ApigeeFlowhookFlowHookPoint._(
+    TfArgLiteral('PostProxyFlowHook'),
+  );
+  static const pretargetflowhook = ApigeeFlowhookFlowHookPoint._(
+    TfArgLiteral('PreTargetFlowHook'),
+  );
+  static const posttargetflowhook = ApigeeFlowhookFlowHookPoint._(
+    TfArgLiteral('PostTargetFlowHook'),
+  );
+
+  static const List<ApigeeFlowhookFlowHookPoint> values = [
+    preproxyflowhook,
+    postproxyflowhook,
+    pretargetflowhook,
+    posttargetflowhook,
+  ];
+}
+
 /// Factory wrapper for `google_apigee_flowhook`.
 ///
 /// Apigee **flow hook** — attaches a shared flow to a flow-hook point in
@@ -24,7 +54,7 @@ final class GoogleApigeeFlowhook extends Resource {
     super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> environment,
-    required TfArg<String> flowHookPoint,
+    required ApigeeFlowhookFlowHookPoint flowHookPoint,
     required TfArg<String> sharedflow,
     TfArg<String>? description,
     TfArg<bool>? continueOnError,

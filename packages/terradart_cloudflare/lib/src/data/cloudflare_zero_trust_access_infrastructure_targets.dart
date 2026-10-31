@@ -8,6 +8,52 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustAccessInfrastructureTargetsSensitive =
     <String>{};
 
+/// Data Zero Trust Access Infrastructure Targets enum for `direction`.
+extension type const DataZeroTrustAccessInfrastructureTargetsDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustAccessInfrastructureTargetsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustAccessInfrastructureTargetsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustAccessInfrastructureTargetsDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataZeroTrustAccessInfrastructureTargetsDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustAccessInfrastructureTargetsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustAccessInfrastructureTargetsDirection> values =
+      [asc, desc];
+}
+
+/// Data Zero Trust Access Infrastructure Targets enum for `order`.
+extension type const DataZeroTrustAccessInfrastructureTargetsOrder._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustAccessInfrastructureTargetsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustAccessInfrastructureTargetsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustAccessInfrastructureTargetsOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const hostname = DataZeroTrustAccessInfrastructureTargetsOrder._(
+    TfArgLiteral('hostname'),
+  );
+  static const createdAt = DataZeroTrustAccessInfrastructureTargetsOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataZeroTrustAccessInfrastructureTargetsOrder> values = [
+    hostname,
+    createdAt,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_access_infrastructure_targets`.
 final class DataCloudflareZeroTrustAccessInfrastructureTargets extends Data {
   static const String tfType =
@@ -18,7 +64,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTargets extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? createdAfter,
     TfArg<String>? createdBefore,
-    TfArg<String>? direction,
+    DataZeroTrustAccessInfrastructureTargetsDirection? direction,
     TfArg<String>? hostname,
     TfArg<String>? hostnameContains,
     TfArg<String>? ipLike,
@@ -32,7 +78,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTargets extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? modifiedAfter,
     TfArg<String>? modifiedBefore,
-    TfArg<String>? order,
+    DataZeroTrustAccessInfrastructureTargetsOrder? order,
     TfArg<List<String>>? tag,
     TfArg<List<String>>? targetIds,
     TfArg<String>? virtualNetworkId,

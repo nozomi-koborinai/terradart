@@ -9,6 +9,7 @@ export 'src/cloud_scheduler/google_cloud_scheduler_job.dart'
         CloudSchedulerJobAppEngineHttpTarget,
         CloudSchedulerJobAppEngineHttpTargetChoice,
         CloudSchedulerJobAppEngineRouting,
+        CloudSchedulerJobHttpMethod,
         CloudSchedulerJobHttpTarget,
         CloudSchedulerJobHttpTargetChoice,
         CloudSchedulerJobOauthToken,

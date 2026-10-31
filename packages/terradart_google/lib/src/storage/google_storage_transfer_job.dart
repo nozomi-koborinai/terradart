@@ -17,6 +17,25 @@ const Set<String> _googleStorageTransferJobSensitive = <String>{
   'transfer_spec.azure_blob_storage_data_source.federated_identity_config.tenant_id',
 };
 
+/// Storage Transfer Job enum for `status`.
+extension type const StorageTransferJobStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobStatus.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const enabled = StorageTransferJobStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = StorageTransferJobStatus._(TfArgLiteral('DISABLED'));
+  static const deleted = StorageTransferJobStatus._(TfArgLiteral('DELETED'));
+
+  static const List<StorageTransferJobStatus> values = [
+    enabled,
+    disabled,
+    deleted,
+  ];
+}
+
 /// Typed helper for the `event_stream` block of
 /// `google_storage_transfer_job` (derived from provider schema).
 @immutable
@@ -53,9 +72,9 @@ final class StorageTransferJobLoggingConfig {
 
   final TfArg<bool>? enableOnPremGcsTransferLogs;
 
-  final TfArg<List<String>>? logActionStates;
+  final EnumList<StorageTransferJobLogActionStates>? logActionStates;
 
-  final TfArg<List<String>>? logActions;
+  final EnumList<StorageTransferJobLogActions>? logActions;
 
   @internal
   Map<String, Object?> encode() => {
@@ -64,6 +83,48 @@ final class StorageTransferJobLoggingConfig {
     'log_action_states': ?logActionStates?.toTfJson(),
     'log_actions': ?logActions?.toTfJson(),
   };
+}
+
+/// `log_action_states` — derived from the provider schema description.
+extension type const StorageTransferJobLogActionStates._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobLogActionStates.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobLogActionStates.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobLogActionStates.arg(TfArg<String> arg) : this._(arg);
+
+  static const succeeded = StorageTransferJobLogActionStates._(
+    TfArgLiteral('SUCCEEDED'),
+  );
+  static const failed = StorageTransferJobLogActionStates._(
+    TfArgLiteral('FAILED'),
+  );
+  static const skipped = StorageTransferJobLogActionStates._(
+    TfArgLiteral('SKIPPED'),
+  );
+
+  static const List<StorageTransferJobLogActionStates> values = [
+    succeeded,
+    failed,
+    skipped,
+  ];
+}
+
+/// `log_actions` — derived from the provider schema description.
+extension type const StorageTransferJobLogActions._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobLogActions.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobLogActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobLogActions.arg(TfArg<String> arg) : this._(arg);
+
+  static const find = StorageTransferJobLogActions._(TfArgLiteral('FIND'));
+  static const delete = StorageTransferJobLogActions._(TfArgLiteral('DELETE'));
+  static const copy = StorageTransferJobLogActions._(TfArgLiteral('COPY'));
+
+  static const List<StorageTransferJobLogActions> values = [find, delete, copy];
 }
 
 /// Typed helper for the `notification_config` block of
@@ -76,9 +137,9 @@ final class StorageTransferJobNotificationConfig {
     required this.pubsubTopic,
   });
 
-  final TfArg<List<String>>? eventTypes;
+  final EnumList<StorageTransferJobEventTypes>? eventTypes;
 
-  final TfArg<String> payloadFormat;
+  final StorageTransferJobPayloadFormat payloadFormat;
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
@@ -88,6 +149,47 @@ final class StorageTransferJobNotificationConfig {
     'payload_format': payloadFormat.toTfJson(),
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
+}
+
+/// `event_types` — derived from the provider schema description.
+extension type const StorageTransferJobEventTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobEventTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobEventTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobEventTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const transferOperationSuccess = StorageTransferJobEventTypes._(
+    TfArgLiteral('TRANSFER_OPERATION_SUCCESS'),
+  );
+  static const transferOperationFailed = StorageTransferJobEventTypes._(
+    TfArgLiteral('TRANSFER_OPERATION_FAILED'),
+  );
+  static const transferOperationAborted = StorageTransferJobEventTypes._(
+    TfArgLiteral('TRANSFER_OPERATION_ABORTED'),
+  );
+
+  static const List<StorageTransferJobEventTypes> values = [
+    transferOperationSuccess,
+    transferOperationFailed,
+    transferOperationAborted,
+  ];
+}
+
+/// `payload_format` — derived from the provider schema description.
+extension type const StorageTransferJobPayloadFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobPayloadFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobPayloadFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobPayloadFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = StorageTransferJobPayloadFormat._(TfArgLiteral('NONE'));
+  static const json = StorageTransferJobPayloadFormat._(TfArgLiteral('JSON'));
+
+  static const List<StorageTransferJobPayloadFormat> values = [none, json];
 }
 
 /// Typed helper for the `replication_spec` block of
@@ -212,7 +314,7 @@ final class StorageTransferJobTransferOptions {
 
   final TfArg<bool>? overwriteObjectsAlreadyExistingInSink;
 
-  final TfArg<String>? overwriteWhen;
+  final StorageTransferJobOverwriteWhen? overwriteWhen;
 
   final StorageTransferJobMetadataOptions? metadataOptions;
 
@@ -226,6 +328,30 @@ final class StorageTransferJobTransferOptions {
     'overwrite_when': ?overwriteWhen?.toTfJson(),
     'metadata_options': ?metadataOptions?.encode(),
   };
+}
+
+/// `overwrite_when` — derived from the provider schema description.
+extension type const StorageTransferJobOverwriteWhen._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobOverwriteWhen.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobOverwriteWhen.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobOverwriteWhen.arg(TfArg<String> arg) : this._(arg);
+
+  static const different = StorageTransferJobOverwriteWhen._(
+    TfArgLiteral('DIFFERENT'),
+  );
+  static const never = StorageTransferJobOverwriteWhen._(TfArgLiteral('NEVER'));
+  static const always = StorageTransferJobOverwriteWhen._(
+    TfArgLiteral('ALWAYS'),
+  );
+
+  static const List<StorageTransferJobOverwriteWhen> values = [
+    different,
+    never,
+    always,
+  ];
 }
 
 /// Typed helper for the `replication_spec.transfer_options.metadata_options` block of
@@ -245,23 +371,23 @@ final class StorageTransferJobMetadataOptions {
     this.uid,
   });
 
-  final TfArg<String>? acl;
+  final StorageTransferJobAcl? acl;
 
-  final TfArg<String>? gid;
+  final StorageTransferJobGid? gid;
 
-  final TfArg<String>? kmsKey;
+  final StorageTransferJobKmsKey? kmsKey;
 
-  final TfArg<String>? mode;
+  final StorageTransferJobMode? mode;
 
-  final TfArg<String>? storageClass;
+  final StorageTransferJobStorageClass? storageClass;
 
-  final TfArg<String>? symlink;
+  final StorageTransferJobSymlink? symlink;
 
-  final TfArg<String>? temporaryHold;
+  final StorageTransferJobTemporaryHold? temporaryHold;
 
-  final TfArg<String>? timeCreated;
+  final StorageTransferJobTimeCreated? timeCreated;
 
-  final TfArg<String>? uid;
+  final StorageTransferJobUid? uid;
 
   @internal
   Map<String, Object?> encode() => {
@@ -275,6 +401,198 @@ final class StorageTransferJobMetadataOptions {
     'time_created': ?timeCreated?.toTfJson(),
     'uid': ?uid?.toTfJson(),
   };
+}
+
+/// `acl` — derived from the provider schema description.
+extension type const StorageTransferJobAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobAcl.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobAcl.arg(TfArg<String> arg) : this._(arg);
+
+  static const aclDestinationBucketDefault = StorageTransferJobAcl._(
+    TfArgLiteral('ACL_DESTINATION_BUCKET_DEFAULT'),
+  );
+  static const aclPreserve = StorageTransferJobAcl._(
+    TfArgLiteral('ACL_PRESERVE'),
+  );
+
+  static const List<StorageTransferJobAcl> values = [
+    aclDestinationBucketDefault,
+    aclPreserve,
+  ];
+}
+
+/// `gid` — derived from the provider schema description.
+extension type const StorageTransferJobGid._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobGid.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobGid.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobGid.arg(TfArg<String> arg) : this._(arg);
+
+  static const gidSkip = StorageTransferJobGid._(TfArgLiteral('GID_SKIP'));
+  static const gidNumber = StorageTransferJobGid._(TfArgLiteral('GID_NUMBER'));
+
+  static const List<StorageTransferJobGid> values = [gidSkip, gidNumber];
+}
+
+/// `kms_key` — derived from the provider schema description.
+extension type const StorageTransferJobKmsKey._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobKmsKey.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobKmsKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobKmsKey.arg(TfArg<String> arg) : this._(arg);
+
+  static const kmsKeyDestinationBucketDefault = StorageTransferJobKmsKey._(
+    TfArgLiteral('KMS_KEY_DESTINATION_BUCKET_DEFAULT'),
+  );
+  static const kmsKeyPreserve = StorageTransferJobKmsKey._(
+    TfArgLiteral('KMS_KEY_PRESERVE'),
+  );
+
+  static const List<StorageTransferJobKmsKey> values = [
+    kmsKeyDestinationBucketDefault,
+    kmsKeyPreserve,
+  ];
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const StorageTransferJobMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobMode.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const modeSkip = StorageTransferJobMode._(TfArgLiteral('MODE_SKIP'));
+  static const modePreserve = StorageTransferJobMode._(
+    TfArgLiteral('MODE_PRESERVE'),
+  );
+
+  static const List<StorageTransferJobMode> values = [modeSkip, modePreserve];
+}
+
+/// `storage_class` — derived from the provider schema description.
+extension type const StorageTransferJobStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobStorageClass.arg(TfArg<String> arg) : this._(arg);
+
+  static const storageClassDestinationBucketDefault =
+      StorageTransferJobStorageClass._(
+        TfArgLiteral('STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT'),
+      );
+  static const storageClassPreserve = StorageTransferJobStorageClass._(
+    TfArgLiteral('STORAGE_CLASS_PRESERVE'),
+  );
+  static const storageClassStandard = StorageTransferJobStorageClass._(
+    TfArgLiteral('STORAGE_CLASS_STANDARD'),
+  );
+  static const storageClassNearline = StorageTransferJobStorageClass._(
+    TfArgLiteral('STORAGE_CLASS_NEARLINE'),
+  );
+  static const storageClassColdline = StorageTransferJobStorageClass._(
+    TfArgLiteral('STORAGE_CLASS_COLDLINE'),
+  );
+  static const storageClassArchive = StorageTransferJobStorageClass._(
+    TfArgLiteral('STORAGE_CLASS_ARCHIVE'),
+  );
+
+  static const List<StorageTransferJobStorageClass> values = [
+    storageClassDestinationBucketDefault,
+    storageClassPreserve,
+    storageClassStandard,
+    storageClassNearline,
+    storageClassColdline,
+    storageClassArchive,
+  ];
+}
+
+/// `symlink` — derived from the provider schema description.
+extension type const StorageTransferJobSymlink._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobSymlink.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobSymlink.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobSymlink.arg(TfArg<String> arg) : this._(arg);
+
+  static const symlinkSkip = StorageTransferJobSymlink._(
+    TfArgLiteral('SYMLINK_SKIP'),
+  );
+  static const symlinkPreserve = StorageTransferJobSymlink._(
+    TfArgLiteral('SYMLINK_PRESERVE'),
+  );
+
+  static const List<StorageTransferJobSymlink> values = [
+    symlinkSkip,
+    symlinkPreserve,
+  ];
+}
+
+/// `temporary_hold` — derived from the provider schema description.
+extension type const StorageTransferJobTemporaryHold._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobTemporaryHold.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobTemporaryHold.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobTemporaryHold.arg(TfArg<String> arg) : this._(arg);
+
+  static const temporaryHoldSkip = StorageTransferJobTemporaryHold._(
+    TfArgLiteral('TEMPORARY_HOLD_SKIP'),
+  );
+  static const temporaryHoldPreserve = StorageTransferJobTemporaryHold._(
+    TfArgLiteral('TEMPORARY_HOLD_PRESERVE'),
+  );
+
+  static const List<StorageTransferJobTemporaryHold> values = [
+    temporaryHoldSkip,
+    temporaryHoldPreserve,
+  ];
+}
+
+/// `time_created` — derived from the provider schema description.
+extension type const StorageTransferJobTimeCreated._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobTimeCreated.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobTimeCreated.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobTimeCreated.arg(TfArg<String> arg) : this._(arg);
+
+  static const timeCreatedSkip = StorageTransferJobTimeCreated._(
+    TfArgLiteral('TIME_CREATED_SKIP'),
+  );
+  static const timeCreatedPreserveAsCustomTime =
+      StorageTransferJobTimeCreated._(
+        TfArgLiteral('TIME_CREATED_PRESERVE_AS_CUSTOM_TIME'),
+      );
+
+  static const List<StorageTransferJobTimeCreated> values = [
+    timeCreatedSkip,
+    timeCreatedPreserveAsCustomTime,
+  ];
+}
+
+/// `uid` — derived from the provider schema description.
+extension type const StorageTransferJobUid._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobUid.variable(String name) : this._(TfArg.variable(name));
+  StorageTransferJobUid.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobUid.arg(TfArg<String> arg) : this._(arg);
+
+  static const uidSkip = StorageTransferJobUid._(TfArgLiteral('UID_SKIP'));
+  static const uidNumber = StorageTransferJobUid._(TfArgLiteral('UID_NUMBER'));
+
+  static const List<StorageTransferJobUid> values = [uidSkip, uidNumber];
 }
 
 /// Typed helper for the `schedule` block of
@@ -493,13 +811,13 @@ final class StorageTransferJobS3Metadata {
     this.requestModel,
   });
 
-  final TfArg<String>? authMethod;
+  final StorageTransferJobAuthMethod? authMethod;
 
-  final TfArg<String>? listApi;
+  final StorageTransferJobListApi? listApi;
 
-  final TfArg<String>? protocol;
+  final StorageTransferJobProtocol? protocol;
 
-  final TfArg<String>? requestModel;
+  final StorageTransferJobRequestModel? requestModel;
 
   @internal
   Map<String, Object?> encode() => {
@@ -508,6 +826,95 @@ final class StorageTransferJobS3Metadata {
     'protocol': ?protocol?.toTfJson(),
     'request_model': ?requestModel?.toTfJson(),
   };
+}
+
+/// `auth_method` — derived from the provider schema description.
+extension type const StorageTransferJobAuthMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobAuthMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobAuthMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobAuthMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const authMethodAwsSignatureV4 = StorageTransferJobAuthMethod._(
+    TfArgLiteral('AUTH_METHOD_AWS_SIGNATURE_V4'),
+  );
+  static const authMethodAwsSignatureV2 = StorageTransferJobAuthMethod._(
+    TfArgLiteral('AUTH_METHOD_AWS_SIGNATURE_V2'),
+  );
+
+  static const List<StorageTransferJobAuthMethod> values = [
+    authMethodAwsSignatureV4,
+    authMethodAwsSignatureV2,
+  ];
+}
+
+/// `list_api` — derived from the provider schema description.
+extension type const StorageTransferJobListApi._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobListApi.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobListApi.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobListApi.arg(TfArg<String> arg) : this._(arg);
+
+  static const listObjectsV2 = StorageTransferJobListApi._(
+    TfArgLiteral('LIST_OBJECTS_V2'),
+  );
+  static const listObjects = StorageTransferJobListApi._(
+    TfArgLiteral('LIST_OBJECTS'),
+  );
+
+  static const List<StorageTransferJobListApi> values = [
+    listObjectsV2,
+    listObjects,
+  ];
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const StorageTransferJobProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const networkProtocolHttps = StorageTransferJobProtocol._(
+    TfArgLiteral('NETWORK_PROTOCOL_HTTPS'),
+  );
+  static const networkProtocolHttp = StorageTransferJobProtocol._(
+    TfArgLiteral('NETWORK_PROTOCOL_HTTP'),
+  );
+
+  static const List<StorageTransferJobProtocol> values = [
+    networkProtocolHttps,
+    networkProtocolHttp,
+  ];
+}
+
+/// `request_model` — derived from the provider schema description.
+extension type const StorageTransferJobRequestModel._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobRequestModel.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobRequestModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobRequestModel.arg(TfArg<String> arg) : this._(arg);
+
+  static const requestModelVirtualHostedStyle =
+      StorageTransferJobRequestModel._(
+        TfArgLiteral('REQUEST_MODEL_VIRTUAL_HOSTED_STYLE'),
+      );
+  static const requestModelPathStyle = StorageTransferJobRequestModel._(
+    TfArgLiteral('REQUEST_MODEL_PATH_STYLE'),
+  );
+
+  static const List<StorageTransferJobRequestModel> values = [
+    requestModelVirtualHostedStyle,
+    requestModelPathStyle,
+  ];
 }
 
 /// Typed helper for the `transfer_spec.aws_s3_data_source` block of
@@ -720,7 +1127,7 @@ final class StorageTransferJobTransferManifest {
 /// GoogleStorageTransferJob(
 ///   'copy',
 ///   description: TfArg.literal('terradart disabled gcs copy'),
-///   status: TfArg.literal('DISABLED'),
+///   status: .disabled,
 ///   transferSpec: StorageTransferJobTransferSpec(
 ///     gcsDataSource: .new(
 ///       bucketName: src.ref,
@@ -739,7 +1146,7 @@ final class GoogleStorageTransferJob extends Resource {
     required TfArg<String> description,
     StorageTransferJobTransferSpec? transferSpec,
     StorageTransferJobSchedule? schedule,
-    TfArg<String>? status,
+    StorageTransferJobStatus? status,
     RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<String>? name,
     TfArg<String>? deletionPolicy,

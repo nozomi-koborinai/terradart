@@ -10,6 +10,36 @@ import '../subnet/azurerm_subnet.dart' show AzurermSubnet;
 /// Sensitive field paths for `azurerm_managed_lustre_file_system`.
 const Set<String> _azurermManagedLustreFileSystemSensitive = <String>{};
 
+/// Managed Lustre File System Sku enum for `sku_name`.
+extension type const ManagedLustreFileSystemSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedLustreFileSystemSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedLustreFileSystemSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedLustreFileSystemSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const amlfsDurablePremium40 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-40'),
+  );
+  static const amlfsDurablePremium125 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-125'),
+  );
+  static const amlfsDurablePremium250 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-250'),
+  );
+  static const amlfsDurablePremium500 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-500'),
+  );
+
+  static const List<ManagedLustreFileSystemSkuName> values = [
+    amlfsDurablePremium40,
+    amlfsDurablePremium125,
+    amlfsDurablePremium250,
+    amlfsDurablePremium500,
+  ];
+}
+
 /// Typed helper for the `encryption_key` block of
 /// `azurerm_managed_lustre_file_system` (derived from provider schema).
 @immutable
@@ -147,7 +177,7 @@ final class ManagedLustreFileSystemRootSquash {
     this.squashUid,
   });
 
-  final TfArg<String> mode;
+  final ManagedLustreFileSystemMode mode;
 
   final TfArg<String> noSquashNids;
 
@@ -164,6 +194,23 @@ final class ManagedLustreFileSystemRootSquash {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+extension type const ManagedLustreFileSystemMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedLustreFileSystemMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedLustreFileSystemMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedLustreFileSystemMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = ManagedLustreFileSystemMode._(TfArgLiteral('All'));
+  static const rootonly = ManagedLustreFileSystemMode._(
+    TfArgLiteral('RootOnly'),
+  );
+
+  static const List<ManagedLustreFileSystemMode> values = [all, rootonly];
+}
+
 /// Factory wrapper for `azurerm_managed_lustre_file_system`.
 final class AzurermManagedLustreFileSystem extends Resource {
   static const String tfType = 'azurerm_managed_lustre_file_system';
@@ -173,7 +220,7 @@ final class AzurermManagedLustreFileSystem extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required ManagedLustreFileSystemSkuName skuName,
     required TfArg<num> storageCapacityInTb,
     required RefTo<AzurermSubnet> subnetId,
     TfArg<Map<String, String>>? tags,

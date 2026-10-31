@@ -84,9 +84,7 @@ final class NetworkServicesMeshStack extends Stack {
             action: .new(
               retryPolicy: .new(
                 numRetries: .literal(1),
-                retryConditions: [
-                  NetworkServicesGrpcRouteRetryConditions.connectFailure,
-                ],
+                retryConditions: .literal([.connectFailure]),
               ),
             ),
           ),

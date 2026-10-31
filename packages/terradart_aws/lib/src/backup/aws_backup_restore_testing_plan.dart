@@ -25,7 +25,7 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 
   final TfArg<List<String>> includeVaults;
 
-  final List<BackupRestoreTestingPlanRecoveryPointTypes> recoveryPointTypes;
+  final EnumList<BackupRestoreTestingPlanRecoveryPointTypes> recoveryPointTypes;
 
   final TfArg<num>? selectionWindowDays;
 
@@ -34,7 +34,7 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
     'algorithm': algorithm.toTfJson(),
     'exclude_vaults': ?excludeVaults?.toTfJson(),
     'include_vaults': includeVaults.toTfJson(),
-    'recovery_point_types': [for (final e in recoveryPointTypes) e.toTfJson()],
+    'recovery_point_types': recoveryPointTypes.toTfJson(),
     'selection_window_days': ?selectionWindowDays?.toTfJson(),
   };
 }

@@ -1,0 +1,31 @@
+{
+  "name": "biglake",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://biglake.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Catalog": {
+      "properties": {}
+    },
+    "Database": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "HIVE"
+          ]
+        }
+      }
+    },
+    "Table": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "HIVE"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,38 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_cdn_profile`.
 const Set<String> _azurermCdnProfileSensitive = <String>{};
 
+/// Cdn Profile enum for `sku`.
+extension type const CdnProfileSku._(TfArg<String> _) implements TfArg<String> {
+  CdnProfileSku.variable(String name) : this._(TfArg.variable(name));
+  CdnProfileSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnProfileSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const standardAkamai = CdnProfileSku._(
+    TfArgLiteral('Standard_Akamai'),
+  );
+  static const standardChinacdn = CdnProfileSku._(
+    TfArgLiteral('Standard_ChinaCdn'),
+  );
+  static const standardVerizon = CdnProfileSku._(
+    TfArgLiteral('Standard_Verizon'),
+  );
+  static const standardMicrosoft = CdnProfileSku._(
+    TfArgLiteral('Standard_Microsoft'),
+  );
+  static const premiumVerizon = CdnProfileSku._(
+    TfArgLiteral('Premium_Verizon'),
+  );
+
+  static const List<CdnProfileSku> values = [
+    standardAkamai,
+    standardChinacdn,
+    standardVerizon,
+    standardMicrosoft,
+    premiumVerizon,
+  ];
+}
+
 /// Factory wrapper for `azurerm_cdn_profile`.
 final class AzurermCdnProfile extends Resource {
   static const String tfType = 'azurerm_cdn_profile';
@@ -17,7 +49,7 @@ final class AzurermCdnProfile extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> sku,
+    required CdnProfileSku sku,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

@@ -1,0 +1,471 @@
+# Inputs whose description has a value-set cue (`Possible values`, `Valid
+# options`, `Options are`, `the following values`, `One of`, `either`, ...)
+# that only the checker's loose reader
+# (`cueValues` in check_google_enum_gaps.dart) reads, and that a reviewer
+# found to be prose rather than a value set, each with the reason.
+#
+# This is not gap debt: an input listed here has no fixed value set, so it
+# stays a string by design. A line can only name a `cue` gap. An input the
+# enum parser or Magic Modules reads is a value set and cannot be excused
+# here, and a line that no longer matches a cue-only gap fails the check.
+# A new wording the parser skips therefore fails the gate until the parser
+# reads it or a reviewer adds a line here.
+
+# The cue names sibling inputs of a mutual-exclusion group, not values.
+google_compute_firewall.source_ranges: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_compute_firewall.source_service_accounts: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_compute_firewall.source_tags: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_secret_manager_secret.expire_time: only one of 'expire_time' or 'ttl' can be provided (sibling inputs)
+google_secret_manager_secret.ttl: only one of 'ttl' or 'expire_time' can be provided (sibling inputs)
+google_secret_manager_regional_secret.expire_time: only one of 'expire_time' or 'ttl' can be provided (sibling inputs)
+google_secret_manager_regional_secret.ttl: only one of 'ttl' or 'expire_time' can be provided (sibling inputs)
+google_dialogflow_cx_flow.knowledge_connector_settings.target_flow: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_flow.knowledge_connector_settings.target_page: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.messages.payload: only one of the message union members may be set; the payload is a JSON string
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.ssml: only one of 'text' or 'ssml' may be set; the value is SSML text
+google_dialogflow_cx_page.knowledge_connector_settings.target_flow: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_page.knowledge_connector_settings.target_page: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.messages.payload: only one of the message union members may be set; the payload is a JSON string
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.ssml: only one of 'text' or 'ssml' may be set; the value is SSML text
+google_discovery_engine_chat_engine.chat_engine_config.dialogflow_agent_to_link: exactly one of 'agent_creation_config' or 'dialogflow_agent_to_link' must be set; the value is an agent resource name
+google_monitoring_slo.windows_based_sli.good_bad_metric_filter: one of four sibling inputs must be set; the value is a monitoring filter
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.custom_alphabet: only one of this, 'common_alphabet' or 'radix' must be specified; the value is a custom alphabet string
+
+# The cue lists the values of another input.
+google_sql_user.password_wo: "either CLOUD_IAM_USER or CLOUD_IAM_SERVICE_ACCOUNT" are values of 'type'; this input is a password
+google_compute_ssl_policy.custom_features: the 'COMPATIBLE' ... 'CUSTOM' list describes 'profile'; this input lists SSL feature names
+google_composer_environment.config.maintenance_window.recurrence: the allowed 'FREQ' values constrain one RRULE field; the input is a full RFC 5545 rule
+google_iam_workload_identity_pool_provider.oidc.allowed_audiences: acceptable values for the token's 'aud' claim, which are any audience strings
+
+# The cue introduces formats, paths or URLs of a resource name, not values.
+google_cloud_security_compliance_cloud_control.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_cloud_security_compliance_framework.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_cloud_security_compliance_framework_deployment.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_data_loss_prevention_job_trigger.parent: either the format 'projects/{{project}}' or 'projects/{{project}}/locations/{{location}}'
+google_model_armor_floorsetting.parent: one of the formats 'projects/{project}', 'folders/{folder}' or 'organizations/{organizationId}'
+google_org_policy_policy.name: one of the policy resource name formats
+google_logging_folder_sink.folder: either a folder ID or 'folders/[FOLDER_ID]'
+google_compute_disk.image: one of the image reference formats (self link, project/family paths, names)
+google_compute_region_disk.image: one of the image reference formats (self link, project/family paths, names)
+google_compute_address.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_subnetwork.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_forwarding_rule.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_forwarding_rule.ip_address: an IP address, range or address URL in one of the listed formats
+google_compute_global_forwarding_rule.ip_address: an IP address, range or address URL in one of the listed formats
+google_network_connectivity_regional_endpoint.address: an IPv4 address or an address resource URI
+google_compute_storage_pool.storage_pool_type: example storage pool type URLs and names, not a closed list
+google_managed_kafka_acl.acl_id: one of the ACL id path patterns ('topic/{resource_name}', ...)
+google_storage_object_access_control.entity: one of the entity forms ('user-{{email}}', 'group-{{groupId}}', ...)
+google_storage_default_object_access_control.entity: one of the entity forms ('user-{{email}}', 'group-{{groupId}}', ...)
+google_iam_projects_policy_binding.target.principal_set: example principal set resource names for each supported type
+google_iam_organizations_policy_binding.target.principal_set: example principal set resource names for each supported type
+google_monitoring_alert_policy.alert_strategy.notification_channel_strategy.notification_channel_names: notification channel resource names
+google_network_connectivity_service_connection_policy.psc_config.allowed_google_producers_resource_hierarchy_level: 'projects/<id>', 'folders/<id>' or 'organizations/<id>' resource names
+google_app_engine_flexible_app_version.runtime_api_version: a runtime API version from the app.yaml reference, per language
+google_app_engine_standard_app_version.runtime_api_version: a runtime API version from the app.yaml reference, per language
+
+# The cue gives examples of an open set (an address, a URI, a name).
+google_apigee_environment.forward_proxy_uri: the scheme part of a URI must be http or https; the value is a full URI
+google_compute_forwarding_rule.source_ip_ranges: each entry is either an IP address or a CIDR range
+google_compute_global_forwarding_rule.source_ip_ranges: each entry is either an IP address or a CIDR range
+google_compute_route.next_hop_ilb: an IP address or a forwarding rule URL
+google_compute_external_vpn_gateway.interface.ip_address: an IPv4 address that can be either on-premise or from another cloud
+google_compute_external_vpn_gateway.interface.ipv6_address: an IPv6 address that can be either on-premise or from another cloud
+google_eventarc_trigger.destination.http_endpoint.uri: an HTTP URI whose host can be either a static IP or an internal DNS name
+google_filestore_instance.directory_services.ldap.servers: LDAP server names, either all DNS names or all IP addresses
+google_clouddeploy_target.execution_configs.artifact_storage: either a bucket or a path within a bucket
+google_clouddeploy_target.execution_configs.default_pool.artifact_storage: either a bucket or a path within a bucket
+google_clouddeploy_target.execution_configs.private_pool.artifact_storage: either a bucket or a path within a bucket
+google_healthcare_dataset.time_zone: either an IANA time zone name or empty
+google_composer_environment.config.recovery_config.scheduled_snapshots_config.time_zone: a UTC offset from UTC-12 to UTC+12
+google_dataproc_workflow_template.placement.managed_cluster.config.software_config.image_version: one of the supported Dataproc versions, an open list given by example
+google_monitoring_notification_channel.type: a notification channel descriptor type; the docs list valid values "such as" email and slack
+google_bigquery_connection.configuration.connector_id: possible values include three IDs "and other connector IDs"
+google_container_analysis_occurrence.attestation.signatures.public_key_id: examples of valid key ID URIs
+google_binary_authorization_attestor.attestation_authority_note.public_keys.ascii_armored_pgp_public_key: a PGP key with either LF or CRLF line endings
+google_compute_addresses.filter: the filter expression may use either of the listed operators
+google_lustre_instance.capacity_gib: allowed values are a numeric range
+google_compute_region_security_policy.rules.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
+google_compute_region_security_policy_rule.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
+
+
+# Round 5: every untyped input whose description carries a value-set cue,
+# grouped by reason.
+
+google_bigquery_routine.spark_options.main_class: names sibling inputs of a mutual-exclusion or union group, not values
+google_bigquery_routine.spark_options.main_file_uri: names sibling inputs of a mutual-exclusion or union group, not values
+google_bigquery_table.external_data_configuration.google_sheets_options.range: names sibling inputs of a mutual-exclusion or union group, not values
+google_certificate_manager_certificate.managed.dns_authorizations: names sibling inputs of a mutual-exclusion or union group, not values
+google_certificate_manager_certificate.managed.issuance_config: names sibling inputs of a mutual-exclusion or union group, not values
+google_ces_app.variable_declarations.schema.any_of: names sibling inputs of a mutual-exclusion or union group, not values
+google_ces_tool.client_function.parameters.any_of: names sibling inputs of a mutual-exclusion or union group, not values
+google_ces_tool.client_function.response.any_of: names sibling inputs of a mutual-exclusion or union group, not values
+google_ces_tool.widget_tool.parameters.any_of: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_folder_feed.asset_names: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_folder_feed.asset_types: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_organization_feed.asset_names: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_organization_feed.asset_types: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_project_feed.asset_names: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloud_asset_project_feed.asset_types: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.bitbucket_server_trigger_config.push.branch: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.bitbucket_server_trigger_config.push.tag: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.filename: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.github.push.branch: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.github.push.tag: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.included_files: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.source_to_build.repository: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.trigger_template.commit_sha: names sibling inputs of a mutual-exclusion or union group, not values
+google_cloudbuild_trigger.trigger_template.tag_name: names sibling inputs of a mutual-exclusion or union group, not values
+google_clouddomains_registration.dns_settings.glue_records.ipv4_addresses: names sibling inputs of a mutual-exclusion or union group, not values
+google_clouddomains_registration.dns_settings.glue_records.ipv6_addresses: names sibling inputs of a mutual-exclusion or union group, not values
+google_colab_schedule.end_time: names sibling inputs of a mutual-exclusion or union group, not values
+google_colab_schedule.max_run_count: names sibling inputs of a mutual-exclusion or union group, not values
+google_composer_environment.config.node_config.ip_allocation_policy.cluster_ipv4_cidr_block: names sibling inputs of a mutual-exclusion or union group, not values
+google_composer_environment.config.node_config.ip_allocation_policy.cluster_secondary_range_name: names sibling inputs of a mutual-exclusion or union group, not values
+google_composer_environment.config.node_config.ip_allocation_policy.services_ipv4_cidr_block: names sibling inputs of a mutual-exclusion or union group, not values
+google_composer_environment.config.node_config.ip_allocation_policy.services_secondary_range_name: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_backend_service.cdn_policy.cache_key_policy.query_string_blacklist: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_backend_service.cdn_policy.cache_key_policy.query_string_whitelist: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_disk.disk_encryption_key.rsa_encrypted_key_wo: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_image.raw_disk.source: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_image.source_disk: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_instance.name: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_instance_from_template.name: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_instance_template.disk.source: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_instance_template.disk.source_image: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_instance_template.disk.source_snapshot: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_node_template.node_type: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_backend_service.cdn_policy.cache_key_policy.query_string_blacklist: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_backend_service.cdn_policy.cache_key_policy.query_string_whitelist: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_disk.disk_encryption_key.rsa_encrypted_key_wo: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_instance_template.disk.source: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_instance_template.disk.source_image: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_instance_template.disk.source_snapshot: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.default_route_action.url_rewrite.path_template_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.full_path_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.header_matches.exact_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.header_matches.prefix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.header_matches.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.header_matches.suffix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.prefix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.query_parameter_matches.exact_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.query_parameter_matches.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.match_rules.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.route_action.url_rewrite.path_prefix_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_region_url_map.path_matcher.route_rules.route_action.url_rewrite.path_template_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_router_interface.interconnect_attachment: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_router_interface.vpn_tunnel: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_service_attachment.consumer_accept_lists.endpoint_url: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_service_attachment.consumer_accept_lists.project_id_or_num: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.default_route_action.cache_policy.cache_key_policy.excluded_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.default_route_action.cache_policy.cache_key_policy.included_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.default_route_action.cache_policy.cache_key_policy.excluded_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.default_route_action.cache_policy.cache_key_policy.included_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.path_rule.route_action.cache_policy.cache_key_policy.excluded_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.path_rule.route_action.cache_policy.cache_key_policy.included_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.full_path_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.header_matches.exact_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.header_matches.prefix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.header_matches.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.header_matches.suffix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.prefix_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.query_parameter_matches.exact_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.query_parameter_matches.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.match_rules.regex_match: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.route_action.cache_policy.cache_key_policy.excluded_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.route_action.cache_policy.cache_key_policy.included_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.route_action.url_rewrite.path_prefix_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.route_action.url_rewrite.path_template_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_compute_url_map.path_matcher.route_rules.url_redirect.path_redirect: names sibling inputs of a mutual-exclusion or union group, not values
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.character_mask_config.characters_to_ignore.characters_to_skip: names sibling inputs of a mutual-exclusion or union group, not values
+google_data_loss_prevention_job_trigger.inspect_job.storage_config.cloud_storage_options.file_set.regex_file_set.include_regex: names sibling inputs of a mutual-exclusion or union group, not values
+google_dataplex_datascan.data_quality_spec.rules.range_expectation.max_value: names sibling inputs of a mutual-exclusion or union group, not values
+google_dataplex_datascan.data_quality_spec.rules.range_expectation.min_value: names sibling inputs of a mutual-exclusion or union group, not values
+google_dataplex_datascan.data_quality_spec.rules.statistic_range_expectation.max_value: names sibling inputs of a mutual-exclusion or union group, not values
+google_dataplex_datascan.data_quality_spec.rules.statistic_range_expectation.min_value: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.text: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_flow.transition_routes.condition: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_flow.transition_routes.intent: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.text: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_page.transition_routes.condition: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_page.transition_routes.intent: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_test_case.test_config.flow: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_test_case.test_config.page: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_tool.open_api_spec.text_schema: names sibling inputs of a mutual-exclusion or union group, not values
+google_dialogflow_cx_tool_version.tool.open_api_spec.text_schema: names sibling inputs of a mutual-exclusion or union group, not values
+google_endpoints_service.openapi_config: names sibling inputs of a mutual-exclusion or union group, not values
+google_gke_backup_backup_plan.backup_schedule.rpo_config.exclusion_windows.daily: names sibling inputs of a mutual-exclusion or union group, not values
+google_netapp_volume.export_policy.rules.has_root_access: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_security_security_profile.url_filtering_profile.url_filters.urls: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_edge_cache_service.routing.path_matcher.route_rule.origin: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_edge_cache_service.routing.path_matcher.route_rule.route_action.cdn_policy.cache_key_policy.excluded_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_edge_cache_service.routing.path_matcher.route_rule.route_action.cdn_policy.cache_key_policy.included_query_parameters: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_edge_cache_service.routing.path_matcher.route_rule.route_action.url_rewrite.path_template_rewrite: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_tls_route.rules.matches.alpn: names sibling inputs of a mutual-exclusion or union group, not values
+google_network_services_tls_route.rules.matches.sni_host: names sibling inputs of a mutual-exclusion or union group, not values
+google_storage_insights_dataset_config.exclude_cloud_storage_buckets.cloud_storage_buckets.bucket_prefix_regex: names sibling inputs of a mutual-exclusion or union group, not values
+google_storage_insights_dataset_config.include_cloud_storage_buckets.cloud_storage_buckets.bucket_prefix_regex: names sibling inputs of a mutual-exclusion or union group, not values
+google_vertex_ai_persistent_resource.resource_runtime_spec.ray_spec.image_uri: names sibling inputs of a mutual-exclusion or union group, not values
+
+google_apigee_keystores_aliases_self_signed_cert.alias: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_assured_workloads_workload.provisioned_resources_parent: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_biglake_iceberg_catalog.restricted_locations_config.restricted_locations: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_ces_app.variable_declarations.schema.default: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_ces_tool.client_function.parameters.default: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_ces_tool.client_function.response.default: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_ces_tool.widget_tool.parameters.default: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_chronicle_feed.details.trellix_hx_alerts_settings.endpoint: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_chronicle_feed.details.trellix_hx_bulk_acqs_settings.endpoint: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_chronicle_feed.details.trellix_hx_hosts_settings.endpoint: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_cloud_scheduler_job.pubsub_target.data: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_cloudbuild_trigger.build.artifacts.maven_artifacts.path: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_cloudbuild_trigger.build.step.timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_compute_disk.disk_encryption_key.raw_key_wo: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_compute_region_disk.disk_encryption_key.raw_key_wo: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_compute_region_url_map.host_rule.hosts: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_compute_url_map.host_rule.hosts: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_container_cluster.node_version: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_dataplex_glossary_category.parent: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_dataplex_glossary_term.parent: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_dataproc_cluster.cluster_config.gce_cluster_config.service_account_scopes: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_eventarc_trigger.destination.gke.location: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_managed_kafka_connect_cluster.gcp_config.access_config.network_configs.additional_subnets: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_monitoring_slo.request_based_sli.good_total_ratio.bad_service_filter: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_monitoring_slo.windows_based_sli.good_total_ratio_threshold.performance.good_total_ratio.bad_service_filter: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_network_services_tcp_route.rules.action.idle_timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_scc_v2_folder_scc_big_query_export.big_query_export_id: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_storage_ftp_user.user_credentials.ssh_public_key_body: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.command: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_workbench_instance.gce_setup.reservation_affinity.values: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+
+google_data_loss_prevention_content_policy.inspect_config.custom_info_types.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_content_policy.inspect_config.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_content_policy.inspect_config.limits.max_findings_per_info_type.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_content_policy.inspect_config.min_likelihood_per_info_type.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_content_policy.inspect_config.rule_set.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_content_policy.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_deterministic_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.primitive_transformation.crypto_replace_ffx_fpe_config.surrogate_info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.custom_info_types.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.limits.max_findings_per_info_type.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.min_likelihood_per_info_type.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.rule_set.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_inspect_template.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_job_trigger.inspect_job.inspect_config.custom_info_types.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_job_trigger.inspect_job.inspect_config.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_job_trigger.inspect_job.inspect_config.limits.max_findings_per_info_type.info_type.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_job_trigger.inspect_job.inspect_config.rule_set.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+google_data_loss_prevention_job_trigger.inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types.name: a custom infoType name or a built-in DLP infoType; the built-in catalog is external and grows
+
+google_apihub_plugin_instance.actions.action_id: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_bigtable_authorized_view.subset_view.family_subsets.qualifier_prefixes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_compute_backend_service.security_settings.subject_alt_names: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_compute_snapshot_settings.storage_location.locations.name: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_data_loss_prevention_job_trigger.inspect_job.storage_config.cloud_storage_options.file_set.regex_file_set.exclude_regex: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_data_loss_prevention_job_trigger.inspect_job.storage_config.hybrid_options.required_finding_label_keys: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_gke_backup_restore_plan.restore_config.transformation_rules.resource_filter.namespaces: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_healthcare_fhir_store.validation_config.enabled_implementation_guides: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_hypercomputecluster_cluster.orchestrator.slurm.default_partition: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_grpc_route.gateways: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_grpc_route.meshes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_http_route.gateways: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_http_route.meshes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_tcp_route.gateways: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_tcp_route.meshes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_tls_route.gateways: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_tls_route.meshes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_network_services_tls_route.target_proxies: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_os_config_patch_deployment.instance_filter.instance_name_prefixes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_storage_transfer_job.replication_spec.object_conditions.include_prefixes: the cue describes how listed or user-supplied entries match, not a fixed value set
+google_storage_transfer_job.transfer_spec.object_conditions.include_prefixes: the cue describes how listed or user-supplied entries match, not a fixed value set
+
+google_compute_region_url_map.default_route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.default_route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.default_route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.default_route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.path_rule.route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.path_rule.route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.route_rules.route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_region_url_map.path_matcher.route_rules.route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.default_route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.default_route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.default_route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.default_route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.path_rule.route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.path_rule.route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.route_rules.route_action.cors_policy.allow_origin_regexes: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+google_compute_url_map.path_matcher.route_rules.route_action.cors_policy.allow_origins: origins or origin regexes; the 'either' names the two sibling lists an origin may match
+
+google_clouddeploy_automation.rules.promote_release_rule.destination_target_id: a resource name, URL or id in one of the listed forms
+google_clouddeploy_automation.rules.timed_promote_release_rule.destination_target_id: a resource name, URL or id in one of the listed forms
+google_clouddeploy_automation.selector.targets.id: a resource name, URL or id in one of the listed forms
+google_clouddeploy_deploy_policy.selectors.delivery_pipeline.id: a resource name, URL or id in one of the listed forms
+google_clouddeploy_deploy_policy.selectors.target.id: a resource name, URL or id in one of the listed forms
+google_cloudfunctions_function.vpc_connector: a resource name, URL or id in one of the listed forms
+google_compute_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
+google_compute_image.source_image: a resource name, URL or id in one of the listed forms
+google_compute_image.source_snapshot: a resource name, URL or id in one of the listed forms
+google_compute_network_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
+google_compute_region_network_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
+google_dataplex_entry.aspects.aspect_key: a resource name, URL or id in one of the listed forms
+google_iam_folders_policy_binding.target.principal_set: a resource name, URL or id in one of the listed forms
+google_securityposture_posture_deployment.target_resource: a resource name, URL or id in one of the listed forms
+google_storage_bucket_access_control.entity: a resource name, URL or id in one of the listed forms
+
+google_apihub_host_project_registration.gcp_project: a project (or fleet) id or number, both forms accepted
+google_apihub_runtime_project_attachment.runtime_project: a project (or fleet) id or number, both forms accepted
+google_apphub_service_project_attachment.service_project: a project (or fleet) id or number, both forms accepted
+google_cloud_run_domain_mapping.metadata.namespace: a project (or fleet) id or number, both forms accepted
+google_cloud_run_service.metadata.namespace: a project (or fleet) id or number, both forms accepted
+google_cloud_run_service.template.metadata.namespace: a project (or fleet) id or number, both forms accepted
+google_gke_hub_feature.spec.clusterupgrade.upstream_fleets: a project (or fleet) id or number, both forms accepted
+google_vmwareengine_network_peering.vmware_engine_network: a project (or fleet) id or number, both forms accepted
+google_vmwareengine_network_policy.vmware_engine_network: a project (or fleet) id or number, both forms accepted
+google_vmwareengine_private_cloud.network_config.vmware_engine_network: a project (or fleet) id or number, both forms accepted
+
+google_apigee_security_action.condition_config.ip_address_ranges: an IP address, range or CIDR block
+google_compute_network_endpoint.ip_address: an IP address, range or CIDR block
+google_compute_network_endpoints.network_endpoints.ip_address: an IP address, range or CIDR block
+google_filestore_instance.file_shares.nfs_export_options.ip_ranges: an IP address, range or CIDR block
+google_gkeonprem_bare_metal_cluster.load_balancer.bgp_lb_config.address_pools.addresses: an IP address, range or CIDR block
+google_gkeonprem_bare_metal_cluster.load_balancer.metal_lb_config.address_pools.addresses: an IP address, range or CIDR block
+google_gkeonprem_vmware_cluster.load_balancer.metal_lb_config.address_pools.addresses: an IP address, range or CIDR block
+google_vmwareengine_network_policy.edge_services_cidr: an IP address, range or CIDR block
+
+google_compute_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
+google_compute_firewall_policy_with_rules.rule.match.layer4_config.ip_protocol: a protocol name or any IP protocol number, an open set
+google_compute_network_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
+google_compute_network_firewall_policy_with_rules.rule.match.layer4_config.ip_protocol: a protocol name or any IP protocol number, an open set
+google_compute_region_network_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
+google_compute_region_network_firewall_policy_with_rules.rule.match.layer4_config.ip_protocol: a protocol name or any IP protocol number, an open set
+
+google_compute_firewall_policy_rule.match.layer4_configs.ports: a port number or a port range
+google_compute_firewall_policy_with_rules.rule.match.layer4_config.ports: a port number or a port range
+google_compute_network_firewall_policy_rule.match.layer4_configs.ports: a port number or a port range
+google_compute_network_firewall_policy_with_rules.rule.match.layer4_config.ports: a port number or a port range
+google_compute_region_network_firewall_policy_rule.match.layer4_configs.ports: a port number or a port range
+google_compute_region_network_firewall_policy_with_rules.rule.match.layer4_config.ports: a port number or a port range
+
+google_ces_app.variable_declarations.schema.enum: user-defined enum values of a declared schema
+google_ces_tool.client_function.parameters.enum: user-defined enum values of a declared schema
+google_ces_tool.client_function.response.enum: user-defined enum values of a declared schema
+google_ces_tool.widget_tool.parameters.enum: user-defined enum values of a declared schema
+
+google_compute_url_map.default_custom_error_response_policy.error_response_rule.match_response_codes: an HTTP status number from 400 to 599 or the classes 4xx and 5xx, a numeric range
+google_compute_url_map.path_matcher.default_custom_error_response_policy.error_response_rule.match_response_codes: an HTTP status number from 400 to 599 or the classes 4xx and 5xx, a numeric range
+google_compute_url_map.path_matcher.path_rule.custom_error_response_policy.error_response_rule.match_response_codes: an HTTP status number from 400 to 599 or the classes 4xx and 5xx, a numeric range
+google_compute_url_map.path_matcher.route_rules.custom_error_response_policy.error_response_rule.match_response_codes: an HTTP status number from 400 to 599 or the classes 4xx and 5xx, a numeric range
+
+google_access_context_manager_access_level.basic.conditions.ip_subnetworks: CIDR blocks; the cue says a request IP must fall in one of them
+google_access_context_manager_access_level_condition.ip_subnetworks: CIDR blocks; the cue says a request IP must fall in one of them
+google_access_context_manager_access_levels.access_levels.basic.conditions.ip_subnetworks: CIDR blocks; the cue says a request IP must fall in one of them
+
+google_access_context_manager_access_level.basic.conditions.members: principals ('user:{emailid}', 'serviceAccount:{emailid}'); the cue says a requester must be one of them
+google_access_context_manager_access_level_condition.members: principals ('user:{emailid}', 'serviceAccount:{emailid}'); the cue says a requester must be one of them
+google_access_context_manager_access_levels.access_levels.basic.conditions.members: principals ('user:{emailid}', 'serviceAccount:{emailid}'); the cue says a requester must be one of them
+
+google_access_context_manager_access_level.basic.conditions.regions: an ISO 3166-1 alpha-2 country code, an external standard of about 250 codes
+google_access_context_manager_access_level_condition.regions: an ISO 3166-1 alpha-2 country code, an external standard of about 250 codes
+google_access_context_manager_access_levels.access_levels.basic.conditions.regions: an ISO 3166-1 alpha-2 country code, an external standard of about 250 codes
+
+google_container_cluster.node_config.guest_accelerator.gpu_partition_size: an NVIDIA MIG profile name that depends on the GPU model, kept in an external guide
+google_container_cluster.node_pool.node_config.guest_accelerator.gpu_partition_size: an NVIDIA MIG profile name that depends on the GPU model, kept in an external guide
+google_container_node_pool.node_config.guest_accelerator.gpu_partition_size: an NVIDIA MIG profile name that depends on the GPU model, kept in an external guide
+
+google_iam_workload_identity_pool.inline_trust_config.additional_trust_bundles.trust_anchors.pem_certificate: a PEM certificate
+google_iam_workload_identity_pool_provider.x509.trust_store.intermediate_cas.pem_certificate: a PEM certificate
+google_iam_workload_identity_pool_provider.x509.trust_store.trust_anchors.pem_certificate: a PEM certificate
+
+google_artifact_registry_repository.location: a location; the cue points at the artifact_registry_locations data source, an open list
+google_artifact_registry_rule.location: a location; the cue points at the artifact_registry_locations data source, an open list
+
+google_compute_network_firewall_policy_rule.target_forwarding_rules: forwarding rule URLs; the 'valid values' are example URL forms
+google_compute_region_network_firewall_policy_with_rules.rule.target_forwarding_rules: forwarding rule URLs; the 'valid values' are example URL forms
+
+google_compute_node_group.maintenance_window.start_time: a time with an optional UTC offset that resolves to a 4-hour slot ('13:00-5' is valid), so the literal strings are open
+google_compute_resource_policy.snapshot_schedule_policy.schedule.daily_schedule.start_time: a time with an optional UTC offset that resolves to a 4-hour slot ('13:00-5' is valid), so the literal strings are open
+
+google_vertex_ai_index_endpoint_deployed_index.deployment_group: a deployment group name of the caller's choosing ('test', 'prod'); the cue is about reserved IP range reuse
+
+google_contact_center_insights_qa_question.tags: predefined or custom tags; custom tags are free-form
+
+google_data_catalog_entry.user_specified_type: a custom entry type for entries that fit no EntryType value; any name matching the stated pattern
+
+google_apigee_organization.analytics_region: a GCP region; the cue links the Apigee region list, which grows
+
+
+google_redis_instance.redis_version: the description defers to the API docs for the latest versions, an open version list
+
+google_certificate_manager_certificate_issuance_config.lifetime: a duration in seconds between 1814400s and 2592000s, a numeric range
+
+google_cloudbuild_bitbucket_server_config.ssl_ca: PEM certificate content; the cue lists file extensions, not values
+
+google_sql_database.charset: a database charset; the supported set is the engine's own list (MySQL or PostgreSQL), external and engine-dependent
+
+google_sql_database.collation: a database collation; the supported set is the engine's own list, external and engine-dependent
+
+google_vertex_ai_index_endpoint_deployed_index.dedicated_resources.machine_spec.machine_type: a Compute Engine machine type from the linked prediction and training lists, which grow with new machine families
+
+google_dialogflow_cx_agent.personalization_settings.default_end_user_metadata: a JSON object; the link points at a field, not an enum
+
+google_ces_app.language_settings.fallback_action: a tool resource name or a predefined action such as 'escalate'; the resource names are open
+
+google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.image_uri: a container image URI; the cue points at pre-built images as one option
+
+google_pubsub_topic.message_storage_policy.allowed_persistence_regions: GCP region ids, an open list that grows with new regions
+
+google_dataproc_workflow_template.parameters.validation.values.values: the caller's own allowed values for a template parameter
+
+google_hypercomputecluster_cluster.storage_resources.config.new_lustre.capacity_gb: allowed values are a numeric range
+
+google_compute_router_nat.subnetwork.secondary_ip_range_names: secondary range names of the subnetwork; the cue names a value of another input
+
+google_ces_tool.data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec.control_points.attribute_value: the cue introduces formats of a resource name, path or id, not values
+
+google_apigee_target_server.s_sl_info.ciphers: cipher suite names from the Java standard names list or a BoringSSL configuration string, external and syntax-dependent
+
+google_composer_environment.config.software_config.image_version: an image version matching the stated regular expression, an open version list
+
+google_bigquery_analytics_hub_listing_subscription.destination_pubsub_subscription.pubsub_subscription.expiration_policy.ttl: a duration whose allowed range depends on the resource type
+
+google_artifact_registry_repository.remote_repository_config.common_repository.uri: a repository resource name or registry URI in one of the listed forms
+
+# The link names the JSON message schema of a JSON-encoded string, not an enum.
+google_dialogflow_cx_flow.event_handlers.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_flow.transition_routes.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.entry_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.event_handlers.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.form.parameters.fill_behavior.initial_prompt_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.form.parameters.fill_behavior.reprompt_event_handlers.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+google_dialogflow_cx_page.transition_routes.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
+
+google_dialogflow_cx_agent.text_to_speech_settings.synthesize_speech_configs: a JSON map from language to SynthesizeSpeechConfig; the links name message schemas, not enums
+google_dialogflow_cx_playbook.instruction.steps.steps: a JSON-encoded Step; the link names a message schema, not an enum
+google_secure_source_manager_repository.initial_config.gitignores: a gitignore template catalog of 230 names (REST InitialConfig) that grows with new templates
+google_secure_source_manager_repository.initial_config.license: an SPDX-based license template catalog of 459 names (REST InitialConfig) that grows with the SPDX list
+
+# Round 6: wordings the widened cue grammar now reads, reviewed as prose.
+google_bigquery_dataset.default_collation: the two supported values are 'und:ci' and the empty string, and an enum member cannot name the empty string, so the input stays a string
+google_compute_security_policy.rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_security_policy.rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_security_policy_rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_apigee_api_product.operation_group.operation_configs.operations.methods: HTTP verbs of the proxy's REST operations; the description names no closed set
+google_iam_principal_access_boundary_policy.details.rules.resources: resource names the rule covers, not values
+google_document_ai_warehouse_document_schema.property_definitions.enum_type_options.possible_values: the user-defined values of a document schema enum property
+google_document_ai_warehouse_document_schema.property_definitions.property_type_options.property_definitions.enum_type_options.possible_values: the user-defined values of a document schema enum property
+google_iam_folder_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_iam_project_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_iam_organization_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_network_services_authz_extension.service: a service host name or backend service URI in the formats the cue introduces, not a fixed set

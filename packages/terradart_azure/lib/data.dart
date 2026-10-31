@@ -309,7 +309,7 @@ export 'src/data/azurerm_key_vault_certificate_issuer.dart'
 export 'src/data/azurerm_key_vault_certificates.dart'
     show DataAzurermKeyVaultCertificates;
 export 'src/data/azurerm_key_vault_encrypted_value.dart'
-    show DataAzurermKeyVaultEncryptedValue;
+    show DataAzurermKeyVaultEncryptedValue, DataKeyVaultEncryptedValueAlgorithm;
 export 'src/data/azurerm_key_vault_key.dart' show DataAzurermKeyVaultKey;
 export 'src/data/azurerm_key_vault_managed_hardware_security_module.dart'
     show DataAzurermKeyVaultManagedHardwareSecurityModule;
@@ -482,9 +482,11 @@ export 'src/data/azurerm_oracle_database_system_versions.dart'
     show
         DataAzurermOracleDatabaseSystemVersions,
         DataOracleDatabaseSystemVersionsDatabaseSystemShape,
+        DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice,
         DataOracleDatabaseSystemVersionsShape,
         DataOracleDatabaseSystemVersionsShapeFamily,
-        DataOracleDatabaseSystemVersionsShapeFamilyChoice;
+        DataOracleDatabaseSystemVersionsShapeFamilyChoice,
+        DataOracleDatabaseSystemVersionsStorageManagement;
 export 'src/data/azurerm_oracle_db_nodes.dart' show DataAzurermOracleDbNodes;
 export 'src/data/azurerm_oracle_db_servers.dart'
     show DataAzurermOracleDbServers;
@@ -582,7 +584,10 @@ export 'src/data/azurerm_public_ips.dart'
         DataPublicIpsAllocationType,
         DataPublicIpsAttachmentStatus;
 export 'src/data/azurerm_public_maintenance_configurations.dart'
-    show DataAzurermPublicMaintenanceConfigurations;
+    show
+        DataAzurermPublicMaintenanceConfigurations,
+        DataPublicMaintenanceConfigurationsRecurEvery,
+        DataPublicMaintenanceConfigurationsScope;
 export 'src/data/azurerm_recovery_services_vault.dart'
     show DataAzurermRecoveryServicesVault;
 export 'src/data/azurerm_redis_cache.dart' show DataAzurermRedisCache;

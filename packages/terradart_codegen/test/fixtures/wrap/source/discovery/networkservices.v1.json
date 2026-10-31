@@ -1,0 +1,443 @@
+{
+  "name": "networkservices",
+  "version": "v1",
+  "revision": "20261027",
+  "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AgentConnectivityTemplate": {
+      "properties": {
+        "egressNetworkConfig": {
+          "$ref": "EgressNetworkConfig"
+        },
+        "agentCompute": {
+          "enum": [
+            "AGENT_COMPUTE_UNSPECIFIED",
+            "GKE",
+            "CLOUD_RUN",
+            "BORG",
+            "GCE_VM"
+          ]
+        },
+        "deploymentModel": {
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "CENTRALIZED",
+            "AMBIENT"
+          ]
+        },
+        "accessPath": {
+          "enum": [
+            "ACCESS_PATH_UNSPECIFIED",
+            "CLIENT_TO_AGENT",
+            "AGENT_TO_ANYWHERE"
+          ]
+        },
+        "accessTypes": {
+          "items": {
+            "enum": [
+              "ACCESS_TYPE_UNSPECIFIED",
+              "PUBLIC",
+              "PRIVATE"
+            ]
+          }
+        }
+      }
+    },
+    "AgentGateway": {
+      "properties": {
+        "protocols": {
+          "items": {
+            "enum": [
+              "PROTOCOL_UNSPECIFIED",
+              "MCP"
+            ]
+          }
+        },
+        "googleManaged": {
+          "$ref": "AgentGatewayGoogleManaged"
+        }
+      }
+    },
+    "AgentGatewayGoogleManaged": {
+      "properties": {
+        "governedAccessPath": {
+          "enum": [
+            "GOVERNED_ACCESS_PATH_UNSPECIFIED",
+            "AGENT_TO_ANYWHERE",
+            "CLIENT_TO_AGENT"
+          ]
+        }
+      }
+    },
+    "AuthzExtension": {
+      "properties": {
+        "loadBalancingScheme": {
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ]
+        },
+        "wireFormat": {
+          "enum": [
+            "WIRE_FORMAT_UNSPECIFIED",
+            "EXT_PROC_GRPC",
+            "EXT_AUTHZ_GRPC"
+          ]
+        }
+      }
+    },
+    "EgressNetworkConfig": {
+      "properties": {
+        "vpcEgress": {
+          "enum": [
+            "VPC_EGRESS_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_RANGES_ONLY"
+          ]
+        },
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig"
+        }
+      }
+    },
+    "EgressNetworkConfigTlsConfig": {
+      "properties": {
+        "additionalRoots": {
+          "enum": [
+            "ADDITIONAL_ROOTS_UNSPECIFIED",
+            "NO_ADDITIONAL_ROOTS",
+            "PUBLICLY_TRUSTED_ROOTS"
+          ]
+        }
+      }
+    },
+    "EndpointMatcher": {
+      "properties": {
+        "metadataLabelMatcher": {
+          "$ref": "EndpointMatcherMetadataLabelMatcher"
+        }
+      }
+    },
+    "EndpointMatcherMetadataLabelMatcher": {
+      "properties": {
+        "metadataLabelMatchCriteria": {
+          "enum": [
+            "METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED",
+            "MATCH_ANY",
+            "MATCH_ALL"
+          ]
+        }
+      }
+    },
+    "EndpointPolicy": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ENDPOINT_POLICY_TYPE_UNSPECIFIED",
+            "SIDECAR_PROXY",
+            "GRPC_SERVER"
+          ]
+        },
+        "endpointMatcher": {
+          "$ref": "EndpointMatcher"
+        }
+      }
+    },
+    "ExtensionChain": {
+      "properties": {
+        "extensions": {
+          "items": {
+            "$ref": "ExtensionChainExtension"
+          }
+        }
+      }
+    },
+    "ExtensionChainExtension": {
+      "properties": {
+        "requestBodySendMode": {
+          "enum": [
+            "BODY_SEND_MODE_UNSPECIFIED",
+            "BODY_SEND_MODE_STREAMED",
+            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
+          ]
+        },
+        "responseBodySendMode": {
+          "enum": [
+            "BODY_SEND_MODE_UNSPECIFIED",
+            "BODY_SEND_MODE_STREAMED",
+            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
+          ]
+        },
+        "supportedEvents": {
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "REQUEST_HEADERS",
+              "REQUEST_BODY",
+              "RESPONSE_HEADERS",
+              "RESPONSE_BODY",
+              "REQUEST_TRAILERS",
+              "RESPONSE_TRAILERS"
+            ]
+          }
+        }
+      }
+    },
+    "Gateway": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "OPEN_MESH",
+            "SECURE_WEB_GATEWAY"
+          ]
+        },
+        "routingMode": {
+          "enum": [
+            "EXPLICIT_ROUTING_MODE",
+            "NEXT_HOP_ROUTING_MODE"
+          ]
+        },
+        "ipVersion": {
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ]
+        },
+        "envoyHeaders": {
+          "enum": [
+            "ENVOY_HEADERS_UNSPECIFIED",
+            "NONE",
+            "DEBUG_HEADERS"
+          ]
+        }
+      }
+    },
+    "GrpcRoute": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GrpcRouteRouteRule"
+          }
+        }
+      }
+    },
+    "GrpcRouteHeaderMatch": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EXACT",
+            "REGULAR_EXPRESSION"
+          ]
+        }
+      }
+    },
+    "GrpcRouteMethodMatch": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EXACT",
+            "REGULAR_EXPRESSION"
+          ]
+        }
+      }
+    },
+    "GrpcRouteRouteMatch": {
+      "properties": {
+        "headers": {
+          "items": {
+            "$ref": "GrpcRouteHeaderMatch"
+          }
+        },
+        "method": {
+          "$ref": "GrpcRouteMethodMatch"
+        }
+      }
+    },
+    "GrpcRouteRouteRule": {
+      "properties": {
+        "matches": {
+          "items": {
+            "$ref": "GrpcRouteRouteMatch"
+          }
+        }
+      }
+    },
+    "HttpRoute": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "HttpRouteRouteRule"
+          }
+        }
+      }
+    },
+    "HttpRouteRedirect": {
+      "properties": {
+        "responseCode": {
+          "enum": [
+            "RESPONSE_CODE_UNSPECIFIED",
+            "MOVED_PERMANENTLY_DEFAULT",
+            "FOUND",
+            "SEE_OTHER",
+            "TEMPORARY_REDIRECT",
+            "PERMANENT_REDIRECT"
+          ]
+        }
+      }
+    },
+    "HttpRouteRouteAction": {
+      "properties": {
+        "redirect": {
+          "$ref": "HttpRouteRedirect"
+        }
+      }
+    },
+    "HttpRouteRouteRule": {
+      "properties": {
+        "action": {
+          "$ref": "HttpRouteRouteAction"
+        }
+      }
+    },
+    "LbEdgeExtension": {
+      "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
+        "loadBalancingScheme": {
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ]
+        }
+      }
+    },
+    "LbRouteExtension": {
+      "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
+        "loadBalancingScheme": {
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ]
+        }
+      }
+    },
+    "LbTrafficExtension": {
+      "properties": {
+        "loadBalancingScheme": {
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        }
+      }
+    },
+    "Mesh": {
+      "properties": {
+        "envoyHeaders": {
+          "enum": [
+            "ENVOY_HEADERS_UNSPECIFIED",
+            "NONE",
+            "DEBUG_HEADERS"
+          ]
+        }
+      }
+    },
+    "MulticastConsumerAssociation": {
+      "properties": {
+        "resourceState": {
+          "enum": [
+            "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE"
+          ]
+        },
+        "state": {
+          "$ref": "MulticastResourceState"
+        }
+      }
+    },
+    "MulticastGroupConsumerActivation": {
+      "properties": {
+        "state": {
+          "$ref": "MulticastResourceState"
+        },
+        "resourceState": {
+          "enum": [
+            "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE"
+          ]
+        }
+      }
+    },
+    "MulticastResourceState": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_ENUM_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "DELETE_FAILED",
+            "UPDATING",
+            "UPDATE_FAILED",
+            "INACTIVE",
+            "OBSOLETE"
+          ]
+        }
+      }
+    },
+    "ServiceBinding": {
+      "properties": {}
+    },
+    "TcpRoute": {
+      "properties": {}
+    },
+    "TlsRoute": {
+      "properties": {}
+    },
+    "WasmPlugin": {
+      "properties": {
+        "logConfig": {
+          "$ref": "WasmPluginLogConfig"
+        }
+      }
+    },
+    "WasmPluginLogConfig": {
+      "properties": {
+        "minLogLevel": {
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "CRITICAL"
+          ]
+        }
+      }
+    }
+  }
+}

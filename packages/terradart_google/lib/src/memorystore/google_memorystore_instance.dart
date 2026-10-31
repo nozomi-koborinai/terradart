@@ -10,6 +10,33 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_memorystore_instance`.
 const Set<String> _googleMemorystoreInstanceSensitive = <String>{};
 
+/// Memorystore Instance Authorization enum for `authorization_mode`.
+extension type const MemorystoreInstanceAuthorizationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceAuthorizationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceAuthorizationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceAuthorizationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const authDisabled = MemorystoreInstanceAuthorizationMode._(
+    TfArgLiteral('AUTH_DISABLED'),
+  );
+  static const iamAuth = MemorystoreInstanceAuthorizationMode._(
+    TfArgLiteral('IAM_AUTH'),
+  );
+  static const tokenAuth = MemorystoreInstanceAuthorizationMode._(
+    TfArgLiteral('TOKEN_AUTH'),
+  );
+
+  static const List<MemorystoreInstanceAuthorizationMode> values = [
+    authDisabled,
+    iamAuth,
+    tokenAuth,
+  ];
+}
+
 /// Memorystore Instance enum for `mode`.
 extension type const MemorystoreInstanceMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -26,6 +53,60 @@ extension type const MemorystoreInstanceMode._(TfArg<String> _)
   static const List<MemorystoreInstanceMode> values = [
     cluster,
     clusterDisabled,
+  ];
+}
+
+/// Memorystore Instance Node enum for `node_type`.
+extension type const MemorystoreInstanceNodeType._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceNodeType.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceNodeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceNodeType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sharedCoreNano = MemorystoreInstanceNodeType._(
+    TfArgLiteral('SHARED_CORE_NANO'),
+  );
+  static const customPico = MemorystoreInstanceNodeType._(
+    TfArgLiteral('CUSTOM_PICO'),
+  );
+  static const customMicro = MemorystoreInstanceNodeType._(
+    TfArgLiteral('CUSTOM_MICRO'),
+  );
+  static const customMini = MemorystoreInstanceNodeType._(
+    TfArgLiteral('CUSTOM_MINI'),
+  );
+  static const highmemMedium = MemorystoreInstanceNodeType._(
+    TfArgLiteral('HIGHMEM_MEDIUM'),
+  );
+  static const highcpuMedium = MemorystoreInstanceNodeType._(
+    TfArgLiteral('HIGHCPU_MEDIUM'),
+  );
+  static const highmemXlarge = MemorystoreInstanceNodeType._(
+    TfArgLiteral('HIGHMEM_XLARGE'),
+  );
+  static const standardSmall = MemorystoreInstanceNodeType._(
+    TfArgLiteral('STANDARD_SMALL'),
+  );
+  static const standardLarge = MemorystoreInstanceNodeType._(
+    TfArgLiteral('STANDARD_LARGE'),
+  );
+  static const highmem2xlarge = MemorystoreInstanceNodeType._(
+    TfArgLiteral('HIGHMEM_2XLARGE'),
+  );
+
+  static const List<MemorystoreInstanceNodeType> values = [
+    sharedCoreNano,
+    customPico,
+    customMicro,
+    customMini,
+    highmemMedium,
+    highcpuMedium,
+    highmemXlarge,
+    standardSmall,
+    standardLarge,
+    highmem2xlarge,
   ];
 }
 
@@ -56,6 +137,31 @@ extension type const MemorystoreInstanceServerCaMode._(TfArg<String> _)
     googleManagedSharedCa,
     customerManagedCasCa,
     serverCaModeUnspecified,
+  ];
+}
+
+/// Memorystore Instance Transit Encryption enum for `transit_encryption_mode`.
+extension type const MemorystoreInstanceTransitEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceTransitEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceTransitEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceTransitEncryptionMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const transitEncryptionDisabled =
+      MemorystoreInstanceTransitEncryptionMode._(
+        TfArgLiteral('TRANSIT_ENCRYPTION_DISABLED'),
+      );
+  static const serverAuthentication =
+      MemorystoreInstanceTransitEncryptionMode._(
+        TfArgLiteral('SERVER_AUTHENTICATION'),
+      );
+
+  static const List<MemorystoreInstanceTransitEncryptionMode> values = [
+    transitEncryptionDisabled,
+    serverAuthentication,
   ];
 }
 
@@ -472,10 +578,34 @@ extension type const MemorystoreInstancePersistenceConfigMode._(TfArg<String> _)
 final class MemorystoreInstanceAofConfig {
   const MemorystoreInstanceAofConfig({this.appendFsync});
 
-  final TfArg<String>? appendFsync;
+  final MemorystoreInstanceAppendFsync? appendFsync;
 
   @internal
   Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
+}
+
+/// `append_fsync` — derived from the provider schema description.
+extension type const MemorystoreInstanceAppendFsync._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceAppendFsync.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceAppendFsync.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceAppendFsync.arg(TfArg<String> arg) : this._(arg);
+
+  static const never = MemorystoreInstanceAppendFsync._(TfArgLiteral('NEVER'));
+  static const everySec = MemorystoreInstanceAppendFsync._(
+    TfArgLiteral('EVERY_SEC'),
+  );
+  static const always = MemorystoreInstanceAppendFsync._(
+    TfArgLiteral('ALWAYS'),
+  );
+
+  static const List<MemorystoreInstanceAppendFsync> values = [
+    never,
+    everySec,
+    always,
+  ];
 }
 
 /// Typed helper for the `persistence_config.rdb_config` block of
@@ -487,7 +617,7 @@ final class MemorystoreInstanceRdbConfig {
     this.rdbSnapshotStartTime,
   });
 
-  final TfArg<String>? rdbSnapshotPeriod;
+  final MemorystoreInstanceRdbSnapshotPeriod? rdbSnapshotPeriod;
 
   final TfArg<String>? rdbSnapshotStartTime;
 
@@ -496,6 +626,37 @@ final class MemorystoreInstanceRdbConfig {
     'rdb_snapshot_period': ?rdbSnapshotPeriod?.toTfJson(),
     'rdb_snapshot_start_time': ?rdbSnapshotStartTime?.toTfJson(),
   };
+}
+
+/// `rdb_snapshot_period` — derived from the provider schema description.
+extension type const MemorystoreInstanceRdbSnapshotPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceRdbSnapshotPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceRdbSnapshotPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceRdbSnapshotPeriod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const oneHour = MemorystoreInstanceRdbSnapshotPeriod._(
+    TfArgLiteral('ONE_HOUR'),
+  );
+  static const sixHours = MemorystoreInstanceRdbSnapshotPeriod._(
+    TfArgLiteral('SIX_HOURS'),
+  );
+  static const twelveHours = MemorystoreInstanceRdbSnapshotPeriod._(
+    TfArgLiteral('TWELVE_HOURS'),
+  );
+  static const twentyFourHours = MemorystoreInstanceRdbSnapshotPeriod._(
+    TfArgLiteral('TWENTY_FOUR_HOURS'),
+  );
+
+  static const List<MemorystoreInstanceRdbSnapshotPeriod> values = [
+    oneHour,
+    sixHours,
+    twelveHours,
+    twentyFourHours,
+  ];
 }
 
 /// Typed helper for the `zone_distribution_config` block of
@@ -567,7 +728,7 @@ extension type const MemorystoreInstanceZoneDistributionConfigMode._(
 ///   location: TfArg.literal('us-central1'),
 ///   shardCount: TfArg.literal(1),
 ///   replicaCount: TfArg.literal(0),
-///   nodeType: TfArg.literal('SHARED_CORE_NANO'),
+///   nodeType: .sharedCoreNano,
 ///   desiredAutoCreatedEndpoints: [
 ///     MemorystoreInstanceDesiredAutoCreatedEndpoints(
 ///       network: network.ref,
@@ -586,11 +747,11 @@ final class GoogleMemorystoreInstance extends Resource {
     required TfArg<String> location,
     required TfArg<num> shardCount,
     TfArg<num>? replicaCount,
-    TfArg<String>? nodeType,
-    TfArg<String>? mode,
+    MemorystoreInstanceNodeType? nodeType,
+    MemorystoreInstanceMode? mode,
     TfArg<String>? engineVersion,
-    TfArg<String>? authorizationMode,
-    TfArg<String>? transitEncryptionMode,
+    MemorystoreInstanceAuthorizationMode? authorizationMode,
+    MemorystoreInstanceTransitEncryptionMode? transitEncryptionMode,
     List<MemorystoreInstanceDesiredAutoCreatedEndpoints>?
     desiredAutoCreatedEndpoints,
     List<MemorystoreInstanceDesiredPscAutoConnections>?

@@ -103,7 +103,7 @@ final class AzurermSentinelAlertRuleMsSecurityIncident extends Resource {
     required TfArg<String> logAnalyticsWorkspaceId,
     required TfArg<String> name,
     required SentinelAlertRuleMsSecurityIncidentProductFilter productFilter,
-    required List<SentinelAlertRuleMsSecurityIncidentSeverityFilter>
+    required EnumList<SentinelAlertRuleMsSecurityIncidentSeverityFilter>
     severityFilter,
     super.lifecycle,
     super.dependsOn,
@@ -121,9 +121,7 @@ final class AzurermSentinelAlertRuleMsSecurityIncident extends Resource {
            'log_analytics_workspace_id': logAnalyticsWorkspaceId,
            'name': name,
            'product_filter': productFilter,
-           'severity_filter': TfArg.literal([
-             for (final e in severityFilter) e.toTfJson(),
-           ]),
+           'severity_filter': severityFilter,
          },
        );
 

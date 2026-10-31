@@ -9,6 +9,93 @@ const Set<String> _azurermVirtualMachineScaleSetExtensionSensitive = <String>{
   'protected_settings',
 };
 
+/// At most one of `protected_settings`, `protected_settings_from_key_vault` on `azurerm_virtual_machine_scale_set_extension`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.protectedSettings(...)`.
+sealed class VirtualMachineScaleSetExtensionProtectedSettings {
+  const VirtualMachineScaleSetExtensionProtectedSettings();
+
+  /// Sets `protected_settings`.
+  const factory VirtualMachineScaleSetExtensionProtectedSettings.protectedSettings(
+    Sensitive<String> protectedSettings,
+  ) = VirtualMachineScaleSetExtensionProtectedSettingsChoice;
+
+  /// Sets `protected_settings_from_key_vault`.
+  const factory VirtualMachineScaleSetExtensionProtectedSettings.protectedSettingsFromKeyVault(
+    VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault
+    protectedSettingsFromKeyVault,
+  ) = VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [VirtualMachineScaleSetExtensionProtectedSettings.protectedSettings] choice: sets `protected_settings`.
+final class VirtualMachineScaleSetExtensionProtectedSettingsChoice
+    extends VirtualMachineScaleSetExtensionProtectedSettings {
+  const VirtualMachineScaleSetExtensionProtectedSettingsChoice(
+    this.protectedSettings,
+  );
+
+  final Sensitive<String> protectedSettings;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings': protectedSettings.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_settings': protectedSettings,
+  };
+}
+
+/// The [VirtualMachineScaleSetExtensionProtectedSettings.protectedSettingsFromKeyVault] choice: sets `protected_settings_from_key_vault`.
+final class VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice
+    extends VirtualMachineScaleSetExtensionProtectedSettings {
+  const VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice(
+    this.protectedSettingsFromKeyVault,
+  );
+
+  final VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault
+  protectedSettingsFromKeyVault;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings_from_key_vault';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings_from_key_vault': protectedSettingsFromKeyVault.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_settings_from_key_vault': TfArg.literal(
+      protectedSettingsFromKeyVault.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `protected_settings_from_key_vault` block of
 /// `azurerm_virtual_machine_scale_set_extension` (derived from provider schema).
 @immutable
@@ -40,15 +127,13 @@ final class AzurermVirtualMachineScaleSetExtension extends Resource {
     TfArg<bool>? failureSuppressionEnabled,
     TfArg<String>? forceUpdateTag,
     required TfArg<String> name,
-    Sensitive<String>? protectedSettings,
+    VirtualMachineScaleSetExtensionProtectedSettings? protectedSettings,
     TfArg<List<String>>? provisionAfterExtensions,
     required TfArg<String> publisher,
     TfArg<String>? settings,
     required TfArg<String> type,
     required TfArg<String> typeHandlerVersion,
     required TfArg<String> virtualMachineScaleSetId,
-    VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault?
-    protectedSettingsFromKeyVault,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -61,17 +146,13 @@ final class AzurermVirtualMachineScaleSetExtension extends Resource {
            'failure_suppression_enabled': ?failureSuppressionEnabled,
            'force_update_tag': ?forceUpdateTag,
            'name': name,
-           'protected_settings': ?protectedSettings,
+           ...?protectedSettings?.argMap,
            'provision_after_extensions': ?provisionAfterExtensions,
            'publisher': publisher,
            'settings': ?settings,
            'type': type,
            'type_handler_version': typeHandlerVersion,
            'virtual_machine_scale_set_id': virtualMachineScaleSetId,
-           if (protectedSettingsFromKeyVault != null)
-             'protected_settings_from_key_vault': TfArg.literal(
-               protectedSettingsFromKeyVault.encode(),
-             ),
          },
        );
 

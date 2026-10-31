@@ -43,7 +43,11 @@ export 'src/netapp/azurerm_netapp_backup_policy.dart'
 export 'src/netapp/azurerm_netapp_backup_vault.dart'
     show AzurermNetappBackupVault;
 export 'src/netapp/azurerm_netapp_pool.dart'
-    show AzurermNetappPool, NetappPoolEncryptionType, NetappPoolQosType;
+    show
+        AzurermNetappPool,
+        NetappPoolEncryptionType,
+        NetappPoolQosType,
+        NetappPoolServiceLevel;
 export 'src/netapp/azurerm_netapp_snapshot.dart' show AzurermNetappSnapshot;
 export 'src/netapp/azurerm_netapp_snapshot_policy.dart'
     show
@@ -64,11 +68,14 @@ export 'src/netapp/azurerm_netapp_volume.dart'
         NetappVolumeDataProtectionReplication,
         NetappVolumeDataProtectionSnapshotPolicy,
         NetappVolumeEncryptionKeySource,
+        NetappVolumeEndpointType,
         NetappVolumeExportPolicyRule,
+        NetappVolumeNetworkFeatures,
         NetappVolumeProtocol,
         NetappVolumeProtocols,
         NetappVolumeReplicationFrequency,
-        NetappVolumeRetrievalPolicy;
+        NetappVolumeRetrievalPolicy,
+        NetappVolumeServiceLevel;
 export 'src/netapp/azurerm_netapp_volume_bucket.dart'
     show
         AzurermNetappVolumeBucket,
@@ -92,6 +99,7 @@ export 'src/netapp/azurerm_netapp_volume_group_oracle.dart'
         NetappVolumeGroupOracleProtocols,
         NetappVolumeGroupOracleReplicationFrequency,
         NetappVolumeGroupOracleSecurityStyle,
+        NetappVolumeGroupOracleServiceLevel,
         NetappVolumeGroupOracleVolume,
         NetappVolumeGroupOracleVolumeSpecName;
 export 'src/netapp/azurerm_netapp_volume_group_sap_hana.dart'
@@ -106,6 +114,7 @@ export 'src/netapp/azurerm_netapp_volume_group_sap_hana.dart'
         NetappVolumeGroupSapHanaProtocols,
         NetappVolumeGroupSapHanaReplicationFrequency,
         NetappVolumeGroupSapHanaSecurityStyle,
+        NetappVolumeGroupSapHanaServiceLevel,
         NetappVolumeGroupSapHanaVolume,
         NetappVolumeGroupSapHanaVolumeSpecName;
 export 'src/netapp/azurerm_netapp_volume_quota_rule.dart'
