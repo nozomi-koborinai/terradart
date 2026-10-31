@@ -38,20 +38,20 @@ extension type const OrganizationIamAuditConfigLogType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const OrganizationIamAuditConfigLogType.arg(TfArg<String> arg) : this._(arg);
 
-  static const dataRead = OrganizationIamAuditConfigLogType._(
-    TfArgLiteral('DATA_READ'),
+  static const adminRead = OrganizationIamAuditConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
   );
   static const dataWrite = OrganizationIamAuditConfigLogType._(
     TfArgLiteral('DATA_WRITE'),
   );
-  static const adminRead = OrganizationIamAuditConfigLogType._(
-    TfArgLiteral('ADMIN_READ'),
+  static const dataRead = OrganizationIamAuditConfigLogType._(
+    TfArgLiteral('DATA_READ'),
   );
 
   static const List<OrganizationIamAuditConfigLogType> values = [
-    dataRead,
-    dataWrite,
     adminRead,
+    dataWrite,
+    dataRead,
   ];
 }
 

@@ -25,10 +25,15 @@ extension type const ContactCenterInsightsQaScorecardSource._(TfArg<String> _)
   static const discoveryEngine = ContactCenterInsightsQaScorecardSource._(
     TfArgLiteral('QA_SCORECARD_SOURCE_DISCOVERY_ENGINE'),
   );
+  static const qaScorecardSourceIntentTaxonomy =
+      ContactCenterInsightsQaScorecardSource._(
+        TfArgLiteral('QA_SCORECARD_SOURCE_INTENT_TAXONOMY'),
+      );
 
   static const List<ContactCenterInsightsQaScorecardSource> values = [
     customerDefined,
     discoveryEngine,
+    qaScorecardSourceIntentTaxonomy,
   ];
 }
 

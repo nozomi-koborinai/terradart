@@ -36,9 +36,6 @@ extension type const IamOauthClientType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const IamOauthClientType.arg(TfArg<String> arg) : this._(arg);
 
-  static const clientTypeUnspecified = IamOauthClientType._(
-    TfArgLiteral('CLIENT_TYPE_UNSPECIFIED'),
-  );
   static const publicClient = IamOauthClientType._(
     TfArgLiteral('PUBLIC_CLIENT'),
   );
@@ -47,7 +44,6 @@ extension type const IamOauthClientType._(TfArg<String> _)
   );
 
   static const List<IamOauthClientType> values = [
-    clientTypeUnspecified,
     publicClient,
     confidentialClient,
   ];

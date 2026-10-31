@@ -236,5 +236,16 @@
         }
       }
     }
+  },
+  "parameters": {
+    "ServicePerimeter": {
+      "deletedPrincipalSyntax": {
+        "enum": [
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_UNSPECIFIED",
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED",
+          "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED"
+        ]
+      }
+    }
   }
 }

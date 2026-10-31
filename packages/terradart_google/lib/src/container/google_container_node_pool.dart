@@ -262,14 +262,8 @@ extension type const ContainerNodePoolTotalEgressBandwidthTier._(
   static const tier1 = ContainerNodePoolTotalEgressBandwidthTier._(
     TfArgLiteral('TIER_1'),
   );
-  static const tierUnspecified = ContainerNodePoolTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_UNSPECIFIED'),
-  );
 
-  static const List<ContainerNodePoolTotalEgressBandwidthTier> values = [
-    tier1,
-    tierUnspecified,
-  ];
+  static const List<ContainerNodePoolTotalEgressBandwidthTier> values = [tier1];
 }
 
 /// Typed helper for the `network_config.pod_cidr_overprovision_config` block of

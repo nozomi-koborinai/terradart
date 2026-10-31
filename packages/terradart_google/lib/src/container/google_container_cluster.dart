@@ -1524,18 +1524,24 @@ extension type const ContainerClusterLoggingConfigEnableComponents._(
       ContainerClusterLoggingConfigEnableComponents._(
         TfArgLiteral('SYSTEM_COMPONENTS'),
       );
+  static const workloads = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('WORKLOADS'),
+  );
   static const apiserver = ContainerClusterLoggingConfigEnableComponents._(
     TfArgLiteral('APISERVER'),
+  );
+  static const scheduler = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('SCHEDULER'),
   );
   static const controllerManager =
       ContainerClusterLoggingConfigEnableComponents._(
         TfArgLiteral('CONTROLLER_MANAGER'),
       );
-  static const kcpConnection = ContainerClusterLoggingConfigEnableComponents._(
-    TfArgLiteral('KCP_CONNECTION'),
-  );
   static const kcpSshd = ContainerClusterLoggingConfigEnableComponents._(
     TfArgLiteral('KCP_SSHD'),
+  );
+  static const kcpConnection = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('KCP_CONNECTION'),
   );
   static const kcpHpa = ContainerClusterLoggingConfigEnableComponents._(
     TfArgLiteral('KCP_HPA'),
@@ -1543,23 +1549,17 @@ extension type const ContainerClusterLoggingConfigEnableComponents._(
   static const kcpVpa = ContainerClusterLoggingConfigEnableComponents._(
     TfArgLiteral('KCP_VPA'),
   );
-  static const scheduler = ContainerClusterLoggingConfigEnableComponents._(
-    TfArgLiteral('SCHEDULER'),
-  );
-  static const workloads = ContainerClusterLoggingConfigEnableComponents._(
-    TfArgLiteral('WORKLOADS'),
-  );
 
   static const List<ContainerClusterLoggingConfigEnableComponents> values = [
     systemComponents,
+    workloads,
     apiserver,
+    scheduler,
     controllerManager,
-    kcpConnection,
     kcpSshd,
+    kcpConnection,
     kcpHpa,
     kcpVpa,
-    scheduler,
-    workloads,
   ];
 }
 
@@ -2013,11 +2013,11 @@ extension type const ContainerClusterMonitoringConfigEnableComponents._(
   static const statefulset = ContainerClusterMonitoringConfigEnableComponents._(
     TfArgLiteral('STATEFULSET'),
   );
-  static const kubelet = ContainerClusterMonitoringConfigEnableComponents._(
-    TfArgLiteral('KUBELET'),
-  );
   static const cadvisor = ContainerClusterMonitoringConfigEnableComponents._(
     TfArgLiteral('CADVISOR'),
+  );
+  static const kubelet = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('KUBELET'),
   );
   static const dcgm = ContainerClusterMonitoringConfigEnableComponents._(
     TfArgLiteral('DCGM'),
@@ -2037,8 +2037,8 @@ extension type const ContainerClusterMonitoringConfigEnableComponents._(
     daemonset,
     deployment,
     statefulset,
-    kubelet,
     cadvisor,
+    kubelet,
     dcgm,
     jobset,
   ];
@@ -2122,6 +2122,7 @@ extension type const ContainerClusterAutoMonitoringConfigScope._(
 
 /// Typed helper for the `network_performance_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterNetworkPerformanceConfig {
   const ContainerClusterNetworkPerformanceConfig({
@@ -4284,8 +4285,7 @@ final class ContainerClusterNetworkConfig {
   final List<ContainerClusterAdditionalPodNetworkConfigs>?
   additionalPodNetworkConfigs;
 
-  final ContainerClusterNetworkConfigNetworkPerformanceConfig?
-  networkPerformanceConfig;
+  final ContainerClusterNetworkPerformanceConfig? networkPerformanceConfig;
 
   final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
@@ -4352,52 +4352,6 @@ final class ContainerClusterAdditionalPodNetworkConfigs {
     'secondary_pod_range': ?secondaryPodRange?.toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
   };
-}
-
-/// Typed helper for the `node_pool.network_config.network_performance_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNetworkConfigNetworkPerformanceConfig {
-  const ContainerClusterNetworkConfigNetworkPerformanceConfig({
-    required this.totalEgressBandwidthTier,
-  });
-
-  final ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier
-  totalEgressBandwidthTier;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
-  };
-}
-
-/// `total_egress_bandwidth_tier` — derived from the provider schema description.
-extension type const ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier.variable(
-    String name,
-  ) : this._(TfArg.variable(name));
-  ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const tier1 =
-      ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier._(
-        TfArgLiteral('TIER_1'),
-      );
-  static const tierUnspecified =
-      ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier._(
-        TfArgLiteral('TIER_UNSPECIFIED'),
-      );
-
-  static const List<
-    ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier
-  >
-  values = [tier1, tierUnspecified];
 }
 
 /// Typed helper for the `node_pool.node_drain_config` block of

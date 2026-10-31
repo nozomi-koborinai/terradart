@@ -552,7 +552,7 @@ properties:
   });
 
   group('withDiscovery', () {
-    DiscoveryEnums discovery({bool passthrough = false}) => DiscoveryEnums(
+    DiscoveryEnums discovery() => DiscoveryEnums(
       docs: {
         'x.v1': {
           'Thing': {
@@ -577,7 +577,6 @@ properties:
           doc: 'x.v1',
           schema: 'Thing',
           paths: const {},
-          passthrough: passthrough,
         ),
       },
       dataSources: const {},
@@ -610,16 +609,6 @@ properties:
       expect(resolve(enums, ['tier']), ['BASIC']);
     });
 
-    test('a hand-written resource keeps its description set', () {
-      final enums = ProviderEnums.mmGroups(
-        const {},
-      ).withDiscovery(discovery(), const {});
-      expect(
-        resolve(enums, ['tier'], 'Possible values: ["STANDARD", "GOLD"]'),
-        ['STANDARD', 'GOLD'],
-      );
-    });
-
     for (final (label, enums) in [
       (
         'an MM resource',
@@ -628,10 +617,8 @@ properties:
         }).withDiscovery(discovery(), const {'x_thing': mmYaml}),
       ),
       (
-        'a passthrough root',
-        ProviderEnums.mmGroups(
-          const {},
-        ).withDiscovery(discovery(passthrough: true), const {}),
+        'a hand-written resource',
+        ProviderEnums.mmGroups(const {}).withDiscovery(discovery(), const {}),
       ),
     ]) {
       test('$label takes Discovery over a description it contradicts', () {
@@ -641,12 +628,19 @@ properties:
         );
       });
 
-      test('$label keeps a description whose values Discovery has', () {
+      test('$label takes Discovery over a description it covers', () {
         expect(
           resolve(enums, [
             'tier',
           ], 'Possible values: ["TIER_UNSPECIFIED", "PREMIUM"]'),
-          ['TIER_UNSPECIFIED', 'PREMIUM'],
+          ['STANDARD', 'PREMIUM'],
+        );
+      });
+
+      test('$label keeps a description where Discovery has no enum', () {
+        expect(
+          resolve(enums, ['name'], 'Possible values: ["A", "B"]'),
+          ['A', 'B'],
         );
       });
     }

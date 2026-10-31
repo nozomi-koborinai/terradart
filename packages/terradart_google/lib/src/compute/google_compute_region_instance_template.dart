@@ -91,21 +91,21 @@ extension type const ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const standard =
+  static const architectural =
       ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
-        TfArgLiteral('STANDARD'),
+        TfArgLiteral('ARCHITECTURAL'),
       );
   static const enhanced =
       ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
         TfArgLiteral('ENHANCED'),
       );
-  static const architectural =
+  static const standard =
       ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
-        TfArgLiteral('ARCHITECTURAL'),
+        TfArgLiteral('STANDARD'),
       );
 
   static const List<ComputeRegionInstanceTemplatePerformanceMonitoringUnit>
-  values = [standard, enhanced, architectural];
+  values = [architectural, enhanced, standard];
 }
 
 /// Typed helper for the `confidential_instance_config` block of
@@ -142,6 +142,12 @@ extension type const ComputeRegionInstanceTemplateConfidentialInstanceType._(
     TfArg<String> arg,
   ) : this._(arg);
 
+  static const bmsai = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = ComputeRegionInstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
   static const sev = ComputeRegionInstanceTemplateConfidentialInstanceType._(
     TfArgLiteral('SEV'),
   );
@@ -153,7 +159,7 @@ extension type const ComputeRegionInstanceTemplateConfidentialInstanceType._(
   );
 
   static const List<ComputeRegionInstanceTemplateConfidentialInstanceType>
-  values = [sev, sevSnp, tdx];
+  values = [bmsai, cca, sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `disk` block of
@@ -318,16 +324,16 @@ extension type const ComputeRegionInstanceTemplateMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeRegionInstanceTemplateMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const readWrite = ComputeRegionInstanceTemplateMode._(
-    TfArgLiteral('READ_WRITE'),
-  );
   static const readOnly = ComputeRegionInstanceTemplateMode._(
     TfArgLiteral('READ_ONLY'),
   );
+  static const readWrite = ComputeRegionInstanceTemplateMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
 
   static const List<ComputeRegionInstanceTemplateMode> values = [
-    readWrite,
     readOnly,
+    readWrite,
   ];
 }
 
@@ -340,16 +346,16 @@ extension type const ComputeRegionInstanceTemplateType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeRegionInstanceTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  static const scratch = ComputeRegionInstanceTemplateType._(
-    TfArgLiteral('SCRATCH'),
-  );
   static const persistent = ComputeRegionInstanceTemplateType._(
     TfArgLiteral('PERSISTENT'),
   );
+  static const scratch = ComputeRegionInstanceTemplateType._(
+    TfArgLiteral('SCRATCH'),
+  );
 
   static const List<ComputeRegionInstanceTemplateType> values = [
-    scratch,
     persistent,
+    scratch,
   ];
 }
 
@@ -568,25 +574,25 @@ extension type const ComputeRegionInstanceTemplateNicType._(TfArg<String> _)
   static const gvnic = ComputeRegionInstanceTemplateNicType._(
     TfArgLiteral('GVNIC'),
   );
-  static const virtioNet = ComputeRegionInstanceTemplateNicType._(
-    TfArgLiteral('VIRTIO_NET'),
-  );
-  static const mrdma = ComputeRegionInstanceTemplateNicType._(
-    TfArgLiteral('MRDMA'),
+  static const idpf = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('IDPF'),
   );
   static const irdma = ComputeRegionInstanceTemplateNicType._(
     TfArgLiteral('IRDMA'),
   );
-  static const idpf = ComputeRegionInstanceTemplateNicType._(
-    TfArgLiteral('IDPF'),
+  static const mrdma = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const virtioNet = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
   );
 
   static const List<ComputeRegionInstanceTemplateNicType> values = [
     gvnic,
-    virtioNet,
-    mrdma,
-    irdma,
     idpf,
+    irdma,
+    mrdma,
+    virtioNet,
   ];
 }
 
@@ -733,16 +739,16 @@ extension type const ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const tier1 = ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase =
       ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
         TfArgLiteral('DEFAULT'),
       );
+  static const tier1 = ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeRegionInstanceTemplateTotalEgressBandwidthTier>
-  values = [tier1, defaultCase];
+  values = [defaultCase, tier1];
 }
 
 /// Typed helper for the `reservation_affinity` block of
@@ -920,12 +926,6 @@ extension type const ComputeRegionInstanceTemplateProvisioningModel._(
   const ComputeRegionInstanceTemplateProvisioningModel.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const standard = ComputeRegionInstanceTemplateProvisioningModel._(
-    TfArgLiteral('STANDARD'),
-  );
-  static const spot = ComputeRegionInstanceTemplateProvisioningModel._(
-    TfArgLiteral('SPOT'),
-  );
   static const flexStart = ComputeRegionInstanceTemplateProvisioningModel._(
     TfArgLiteral('FLEX_START'),
   );
@@ -933,12 +933,18 @@ extension type const ComputeRegionInstanceTemplateProvisioningModel._(
       ComputeRegionInstanceTemplateProvisioningModel._(
         TfArgLiteral('RESERVATION_BOUND'),
       );
+  static const spot = ComputeRegionInstanceTemplateProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const standard = ComputeRegionInstanceTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
 
   static const List<ComputeRegionInstanceTemplateProvisioningModel> values = [
-    standard,
-    spot,
     flexStart,
     reservationBound,
+    spot,
+    standard,
   ];
 }
 

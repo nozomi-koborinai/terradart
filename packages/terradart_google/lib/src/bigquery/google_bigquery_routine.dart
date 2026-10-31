@@ -146,8 +146,15 @@ extension type const BigqueryRoutineArgumentKind._(TfArg<String> _)
   static const anyType = BigqueryRoutineArgumentKind._(
     TfArgLiteral('ANY_TYPE'),
   );
+  static const fixedTable = BigqueryRoutineArgumentKind._(
+    TfArgLiteral('FIXED_TABLE'),
+  );
 
-  static const List<BigqueryRoutineArgumentKind> values = [fixedType, anyType];
+  static const List<BigqueryRoutineArgumentKind> values = [
+    fixedType,
+    anyType,
+    fixedTable,
+  ];
 }
 
 /// Argument direction for `arguments.mode`. Procedures use this to mark

@@ -100,9 +100,22 @@ extension type const ContactCenterInsightsQaQuestionPredefinedQuestionConfigType
       ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
         TfArgLiteral('CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE'),
       );
+  static const conversationOutcomeAiAversion =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME_AI_AVERSION'),
+      );
+  static const conversationOutcomeEscalationReason =
+      ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
+        TfArgLiteral('CONVERSATION_OUTCOME_ESCALATION_REASON'),
+      );
 
   static const List<ContactCenterInsightsQaQuestionPredefinedQuestionConfigType>
-  values = [conversationOutcome, conversationOutcomeEscalationInitiatorRole];
+  values = [
+    conversationOutcome,
+    conversationOutcomeEscalationInitiatorRole,
+    conversationOutcomeAiAversion,
+    conversationOutcomeEscalationReason,
+  ];
 }
 
 /// Typed helper for the `qa_question_data_options` block of

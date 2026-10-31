@@ -14,14 +14,11 @@ const discoveryRootsFile = 'roots.yaml';
 /// The Discovery schema a Terraform type is: the document key
 /// (`compute.v1`), the schema name (`Address`), and the hand path prefixes
 /// (Terraform path prefix → REST field path) for a resource whose Terraform
-/// shape is not the REST one. [passthrough] marks a hand-written resource
-/// that sends its inputs to the REST API unchanged, as a Magic Modules one
-/// does.
+/// shape is not the REST one.
 typedef DiscoveryRoot = ({
   String doc,
   String schema,
   Map<String, List<String>> paths,
-  bool passthrough,
 });
 
 /// One enum a Discovery document declares for a Terraform input.
@@ -31,17 +28,23 @@ typedef DiscoveryEnum = ({List<String> values, String doc, String field});
 ///
 /// Each `<name>.<version>.json` is one Discovery document pruned to the
 /// properties that lead to an `enum`, with its provenance (`name`,
-/// `version`, `revision`, `sourceUrl`). `roots.yaml` records the schema
-/// each Terraform type is.
+/// `version`, `revision`, `sourceUrl`), plus the enum query parameters of
+/// the methods that take a root schema as their request body. `roots.yaml`
+/// records the schema each Terraform type is.
 final class DiscoveryEnums {
   DiscoveryEnums({
     required this.docs,
     required this.resources,
     required this.dataSources,
+    this.parameters = const {},
   });
 
   /// Pruned schemas by document key (`compute.v1`).
   final Map<String, Map<String, Object?>> docs;
+
+  /// Enum query parameters by document key, then request schema, then
+  /// parameter name (`apikeys.v2` → `V2Key` → `checkExistingUsage`).
+  final Map<String, Map<String, Map<String, List<String>>>> parameters;
   final Map<String, DiscoveryRoot> resources;
   final Map<String, DiscoveryRoot> dataSources;
 
@@ -58,20 +61,32 @@ final class DiscoveryEnums {
     final rootsFile = File(p.join(dir.path, discoveryRootsFile));
     if (!rootsFile.existsSync()) return null;
     final docs = <String, Map<String, Object?>>{};
+    final parameters = <String, Map<String, Map<String, List<String>>>>{};
     for (final f in dir.listSync().whereType<File>()) {
       if (!f.path.endsWith('.json')) continue;
       final doc = jsonDecode(f.readAsStringSync());
       if (doc is! Map<String, Object?> || doc['schemas'] is! Map) {
         throw FormatException('${f.path}: no schemas');
       }
-      docs[p.basenameWithoutExtension(f.path)] = (doc['schemas'] as Map)
-          .cast<String, Object?>();
+      final key = p.basenameWithoutExtension(f.path);
+      docs[key] = (doc['schemas'] as Map).cast<String, Object?>();
+      if (doc['parameters'] case final Map<String, Object?> bySchema) {
+        parameters[key] = {
+          for (final MapEntry(key: schema, value: params) in bySchema.entries)
+            schema: {
+              for (final MapEntry(key: name, value: param)
+                  in (params as Map).entries)
+                '$name': [for (final v in (param as Map)['enum'] as List) '$v'],
+            },
+        };
+      }
     }
     final roots = parseDiscoveryRoots(rootsFile.readAsStringSync());
     return DiscoveryEnums(
       docs: docs,
       resources: roots.resources,
       dataSources: roots.dataSources,
+      parameters: parameters,
     );
   }
 
@@ -82,7 +97,9 @@ final class DiscoveryEnums {
   /// is followed first. Without one, or when it does not resolve, each
   /// Terraform segment matches the property whose name is the same letters
   /// (`ip_protocol` is `IPProtocol`), or their plural (`node_affinity` is
-  /// `nodeAffinities`).
+  /// `nodeAffinities`). A top-level input no property resolves falls back to
+  /// an enum query parameter of a method that takes the schema
+  /// (`V2Key?checkExistingUsage`).
   DiscoveryEnum? lookup(
     String type,
     String path, {
@@ -106,6 +123,16 @@ final class DiscoveryEnums {
           values: found.values,
           doc: root.doc,
           field: '${root.schema}.${found.field}',
+        );
+      }
+    }
+    if (segments.length == 1) {
+      final params = parameters[root.doc]?[root.schema] ?? const {};
+      if (_match(params.keys, segments.single) case final name?) {
+        return (
+          values: params[name]!,
+          doc: root.doc,
+          field: '${root.schema}?$name',
         );
       }
     }
@@ -249,7 +276,6 @@ DiscoveryRoot _root(String type, Object? value) {
           for (final MapEntry(:key, :value) in paths.entries)
             '$key': '$value'.split('.'),
       },
-      passthrough: (value as Map)['passthrough'] == true,
     );
   }
   throw FormatException('$discoveryRootsFile: $type needs doc and schema');
@@ -258,7 +284,9 @@ DiscoveryRoot _root(String type, Object? value) {
 /// [doc] (a Discovery REST document) reduced to the schemas and properties
 /// under [roots] that lead to an `enum`: each kept property is `enum`,
 /// `$ref`, `items`, `additionalProperties` or `properties`, nothing else.
-/// The provenance fields stay.
+/// The provenance fields stay, and `parameters` keeps the enum query
+/// parameters of every method whose request body is one of [roots], by
+/// root (the first method in name order wins a name two methods share).
 Map<String, Object?> pruneDiscoveryDoc(
   Map<String, Object?> doc,
   Iterable<String> roots, {
@@ -325,6 +353,36 @@ Map<String, Object?> pruneDiscoveryDoc(
     kept[root] =
         prune(schemas[root]) ?? const {'properties': <String, Object?>{}};
   }
+  final rootSet = roots.toSet();
+  final methods = <(String, String, Map<Object?, Object?>)>[];
+  void walkResources(Object? resources) {
+    if (resources is! Map) return;
+    for (final resource in resources.values) {
+      if (resource is! Map) continue;
+      if (resource['methods'] case final Map<Object?, Object?> byName) {
+        for (final MapEntry(key: name, value: method) in byName.entries) {
+          if (method case {
+            'request': {r'$ref': final String ref},
+            'parameters': final Map<Object?, Object?> params,
+          } when rootSet.contains(ref)) {
+            methods.add((ref, '$name', params));
+          }
+        }
+      }
+      walkResources(resource['resources']);
+    }
+  }
+
+  walkResources(doc['resources']);
+  methods.sort((a, b) => a.$2.compareTo(b.$2));
+  final parameters = <String, Map<String, Object?>>{};
+  for (final (ref, _, params) in methods) {
+    for (final MapEntry(key: name, value: param) in params.entries) {
+      if (param case {'enum': final List<Object?> values}) {
+        (parameters[ref] ??= {}).putIfAbsent('$name', () => {'enum': values});
+      }
+    }
+  }
   return {
     'name': doc['name'],
     'version': doc['version'],
@@ -334,5 +392,13 @@ Map<String, Object?> pruneDiscoveryDoc(
       for (final k in kept.keys.toList()..sort())
         if (kept[k] != null) k: kept[k],
     },
+    if (parameters.isNotEmpty)
+      'parameters': {
+        for (final k in parameters.keys.toList()..sort())
+          k: {
+            for (final n in parameters[k]!.keys.toList()..sort())
+              n: parameters[k]![n],
+          },
+      },
   };
 }

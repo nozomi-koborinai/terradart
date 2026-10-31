@@ -93,8 +93,12 @@ prelude: |
     static const monthly = BigqueryCapacityCommitmentPlan._(TfArgLiteral('MONTHLY'));
     static const annual = BigqueryCapacityCommitmentPlan._(TfArgLiteral('ANNUAL'));
     static const threeYear = BigqueryCapacityCommitmentPlan._(TfArgLiteral('THREE_YEAR'));
+    static const flexFlatRate = BigqueryCapacityCommitmentPlan._(TfArgLiteral('FLEX_FLAT_RATE'));
+    static const monthlyFlatRate = BigqueryCapacityCommitmentPlan._(TfArgLiteral('MONTHLY_FLAT_RATE'));
+    static const annualFlatRate = BigqueryCapacityCommitmentPlan._(TfArgLiteral('ANNUAL_FLAT_RATE'));
+    static const none = BigqueryCapacityCommitmentPlan._(TfArgLiteral('NONE'));
 
-    static const List<BigqueryCapacityCommitmentPlan> values = [flex, trial, monthly, annual, threeYear];
+    static const List<BigqueryCapacityCommitmentPlan> values = [flex, trial, monthly, annual, threeYear, flexFlatRate, monthlyFlatRate, annualFlatRate, none];
   }
 
   /// Renewal plan applied when the current commitment term ends.
@@ -111,8 +115,12 @@ prelude: |
     static const monthly = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('MONTHLY'));
     static const annual = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('ANNUAL'));
     static const threeYear = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('THREE_YEAR'));
+    static const flexFlatRate = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('FLEX_FLAT_RATE'));
+    static const trial = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('TRIAL'));
+    static const monthlyFlatRate = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('MONTHLY_FLAT_RATE'));
+    static const annualFlatRate = BigqueryCapacityCommitmentRenewalPlan._(TfArgLiteral('ANNUAL_FLAT_RATE'));
 
-    static const List<BigqueryCapacityCommitmentRenewalPlan> values = [none, flex, monthly, annual, threeYear];
+    static const List<BigqueryCapacityCommitmentRenewalPlan> values = [none, flex, monthly, annual, threeYear, flexFlatRate, trial, monthlyFlatRate, annualFlatRate];
   }
 
   /// BigQuery edition for

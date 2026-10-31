@@ -127,9 +127,6 @@ extension type const ManagedKafkaClusterMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ManagedKafkaClusterMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const modeUnspecified = ManagedKafkaClusterMode._(
-    TfArgLiteral('MODE_UNSPECIFIED'),
-  );
   static const noRebalance = ManagedKafkaClusterMode._(
     TfArgLiteral('NO_REBALANCE'),
   );
@@ -138,7 +135,6 @@ extension type const ManagedKafkaClusterMode._(TfArg<String> _)
   );
 
   static const List<ManagedKafkaClusterMode> values = [
-    modeUnspecified,
     noRebalance,
     autoRebalanceOnScaleUp,
   ];

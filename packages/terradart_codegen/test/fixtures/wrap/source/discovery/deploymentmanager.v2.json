@@ -199,5 +199,21 @@
         }
       }
     }
+  },
+  "parameters": {
+    "Deployment": {
+      "createPolicy": {
+        "enum": [
+          "CREATE_OR_ACQUIRE",
+          "ACQUIRE"
+        ]
+      },
+      "deletePolicy": {
+        "enum": [
+          "DELETE",
+          "ABANDON"
+        ]
+      }
+    }
   }
 }

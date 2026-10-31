@@ -121,21 +121,21 @@ extension type const ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const standard =
+  static const architectural =
       ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
-        TfArgLiteral('STANDARD'),
+        TfArgLiteral('ARCHITECTURAL'),
       );
   static const enhanced =
       ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
         TfArgLiteral('ENHANCED'),
       );
-  static const architectural =
+  static const standard =
       ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
-        TfArgLiteral('ARCHITECTURAL'),
+        TfArgLiteral('STANDARD'),
       );
 
   static const List<ComputeInstanceFromTemplatePerformanceMonitoringUnit>
-  values = [standard, enhanced, architectural];
+  values = [architectural, enhanced, standard];
 }
 
 /// Typed helper for the `attached_disk` block of
@@ -276,14 +276,14 @@ extension type const ComputeInstanceFromTemplateInterface._(TfArg<String> _)
   const ComputeInstanceFromTemplateInterface.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const scsi = ComputeInstanceFromTemplateInterface._(
-    TfArgLiteral('SCSI'),
-  );
   static const nvme = ComputeInstanceFromTemplateInterface._(
     TfArgLiteral('NVME'),
   );
+  static const scsi = ComputeInstanceFromTemplateInterface._(
+    TfArgLiteral('SCSI'),
+  );
 
-  static const List<ComputeInstanceFromTemplateInterface> values = [scsi, nvme];
+  static const List<ComputeInstanceFromTemplateInterface> values = [nvme, scsi];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -370,16 +370,16 @@ extension type const ComputeInstanceFromTemplateArchitecture._(TfArg<String> _)
   const ComputeInstanceFromTemplateArchitecture.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const x8664 = ComputeInstanceFromTemplateArchitecture._(
-    TfArgLiteral('X86_64'),
-  );
   static const arm64 = ComputeInstanceFromTemplateArchitecture._(
     TfArgLiteral('ARM64'),
   );
+  static const x8664 = ComputeInstanceFromTemplateArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
 
   static const List<ComputeInstanceFromTemplateArchitecture> values = [
-    x8664,
     arm64,
+    x8664,
   ];
 }
 
@@ -473,6 +473,12 @@ extension type const ComputeInstanceFromTemplateConfidentialInstanceType._(
     TfArg<String> arg,
   ) : this._(arg);
 
+  static const bmsai = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
   static const sev = ComputeInstanceFromTemplateConfidentialInstanceType._(
     TfArgLiteral('SEV'),
   );
@@ -484,7 +490,7 @@ extension type const ComputeInstanceFromTemplateConfidentialInstanceType._(
   );
 
   static const List<ComputeInstanceFromTemplateConfidentialInstanceType>
-  values = [sev, sevSnp, tdx];
+  values = [bmsai, cca, sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `guest_accelerator` block of
@@ -645,25 +651,25 @@ extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
   static const gvnic = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('GVNIC'),
   );
-  static const virtioNet = ComputeInstanceFromTemplateNicType._(
-    TfArgLiteral('VIRTIO_NET'),
-  );
   static const idpf = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('IDPF'),
-  );
-  static const mrdma = ComputeInstanceFromTemplateNicType._(
-    TfArgLiteral('MRDMA'),
   );
   static const irdma = ComputeInstanceFromTemplateNicType._(
     TfArgLiteral('IRDMA'),
   );
+  static const mrdma = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const virtioNet = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
 
   static const List<ComputeInstanceFromTemplateNicType> values = [
     gvnic,
-    virtioNet,
     idpf,
-    mrdma,
     irdma,
+    mrdma,
+    virtioNet,
   ];
 }
 
@@ -706,7 +712,7 @@ final class ComputeInstanceFromTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final ComputeInstanceFromTemplateAccessConfigNetworkTier? networkTier;
+  final ComputeInstanceFromTemplateNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -719,26 +725,35 @@ final class ComputeInstanceFromTemplateAccessConfig {
 }
 
 /// `network_tier` — derived from the provider schema description.
-extension type const ComputeInstanceFromTemplateAccessConfigNetworkTier._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ComputeInstanceFromTemplateAccessConfigNetworkTier.variable(String name)
+extension type const ComputeInstanceFromTemplateNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateNetworkTier.variable(String name)
     : this._(TfArg.variable(name));
-  ComputeInstanceFromTemplateAccessConfigNetworkTier.expression(String template)
+  ComputeInstanceFromTemplateNetworkTier.expression(String template)
     : this._(TfArg.expression(template));
-  const ComputeInstanceFromTemplateAccessConfigNetworkTier.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
+  const ComputeInstanceFromTemplateNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const premium = ComputeInstanceFromTemplateAccessConfigNetworkTier._(
+  static const fixedStandard = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+  static const premium = ComputeInstanceFromTemplateNetworkTier._(
     TfArgLiteral('PREMIUM'),
   );
-  static const standard = ComputeInstanceFromTemplateAccessConfigNetworkTier._(
+  static const standard = ComputeInstanceFromTemplateNetworkTier._(
     TfArgLiteral('STANDARD'),
   );
+  static const standardOverridesFixedStandard =
+      ComputeInstanceFromTemplateNetworkTier._(
+        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
+      );
 
-  static const List<ComputeInstanceFromTemplateAccessConfigNetworkTier> values =
-      [premium, standard];
+  static const List<ComputeInstanceFromTemplateNetworkTier> values = [
+    fixedStandard,
+    premium,
+    standard,
+    standardOverridesFixedStandard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -779,7 +794,7 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
 
   final TfArg<String>? name;
 
-  final ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier networkTier;
+  final ComputeInstanceFromTemplateNetworkTier networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -791,40 +806,6 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
     'network_tier': networkTier.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
-}
-
-/// `network_tier` — derived from the provider schema description.
-extension type const ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const fixedStandard =
-      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('FIXED_STANDARD'),
-      );
-  static const premium =
-      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('PREMIUM'),
-      );
-  static const standard =
-      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('STANDARD'),
-      );
-  static const standardOverridesFixedStandard =
-      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
-      );
-
-  static const List<ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier>
-  values = [fixedStandard, premium, standard, standardOverridesFixedStandard];
 }
 
 /// Typed helper for the `network_performance_config` block of
@@ -857,16 +838,16 @@ extension type const ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const tier1 = ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase =
       ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
         TfArgLiteral('DEFAULT'),
       );
+  static const tier1 = ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeInstanceFromTemplateTotalEgressBandwidthTier>
-  values = [tier1, defaultCase];
+  values = [defaultCase, tier1];
 }
 
 /// Typed helper for the `params` block of
@@ -1054,12 +1035,6 @@ extension type const ComputeInstanceFromTemplateProvisioningModel._(
   const ComputeInstanceFromTemplateProvisioningModel.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const standard = ComputeInstanceFromTemplateProvisioningModel._(
-    TfArgLiteral('STANDARD'),
-  );
-  static const spot = ComputeInstanceFromTemplateProvisioningModel._(
-    TfArgLiteral('SPOT'),
-  );
   static const flexStart = ComputeInstanceFromTemplateProvisioningModel._(
     TfArgLiteral('FLEX_START'),
   );
@@ -1067,12 +1042,18 @@ extension type const ComputeInstanceFromTemplateProvisioningModel._(
       ComputeInstanceFromTemplateProvisioningModel._(
         TfArgLiteral('RESERVATION_BOUND'),
       );
+  static const spot = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const standard = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
 
   static const List<ComputeInstanceFromTemplateProvisioningModel> values = [
-    standard,
-    spot,
     flexStart,
     reservationBound,
+    spot,
+    standard,
   ];
 }
 

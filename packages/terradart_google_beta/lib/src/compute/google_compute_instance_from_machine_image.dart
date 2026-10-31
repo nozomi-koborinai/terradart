@@ -119,21 +119,21 @@ extension type const ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const standard =
+  static const architectural =
       ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
-        TfArgLiteral('STANDARD'),
+        TfArgLiteral('ARCHITECTURAL'),
       );
   static const enhanced =
       ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
         TfArgLiteral('ENHANCED'),
       );
-  static const architectural =
+  static const standard =
       ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
-        TfArgLiteral('ARCHITECTURAL'),
+        TfArgLiteral('STANDARD'),
       );
 
   static const List<ComputeInstanceFromMachineImagePerformanceMonitoringUnit>
-  values = [standard, enhanced, architectural];
+  values = [architectural, enhanced, standard];
 }
 
 /// Typed helper for the `confidential_instance_config` block of
@@ -170,6 +170,13 @@ extension type const ComputeInstanceFromMachineImageConfidentialInstanceType._(
     TfArg<String> arg,
   ) : this._(arg);
 
+  static const bmsai =
+      ComputeInstanceFromMachineImageConfidentialInstanceType._(
+        TfArgLiteral('BMSAI'),
+      );
+  static const cca = ComputeInstanceFromMachineImageConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
   static const sev = ComputeInstanceFromMachineImageConfidentialInstanceType._(
     TfArgLiteral('SEV'),
   );
@@ -182,7 +189,7 @@ extension type const ComputeInstanceFromMachineImageConfidentialInstanceType._(
   );
 
   static const List<ComputeInstanceFromMachineImageConfidentialInstanceType>
-  values = [sev, sevSnp, tdx];
+  values = [bmsai, cca, sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `guest_accelerator` block of
@@ -353,25 +360,25 @@ extension type const ComputeInstanceFromMachineImageNicType._(TfArg<String> _)
   static const gvnic = ComputeInstanceFromMachineImageNicType._(
     TfArgLiteral('GVNIC'),
   );
-  static const virtioNet = ComputeInstanceFromMachineImageNicType._(
-    TfArgLiteral('VIRTIO_NET'),
-  );
   static const idpf = ComputeInstanceFromMachineImageNicType._(
     TfArgLiteral('IDPF'),
-  );
-  static const mrdma = ComputeInstanceFromMachineImageNicType._(
-    TfArgLiteral('MRDMA'),
   );
   static const irdma = ComputeInstanceFromMachineImageNicType._(
     TfArgLiteral('IRDMA'),
   );
+  static const mrdma = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const virtioNet = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
 
   static const List<ComputeInstanceFromMachineImageNicType> values = [
     gvnic,
-    virtioNet,
     idpf,
-    mrdma,
     irdma,
+    mrdma,
+    virtioNet,
   ];
 }
 
@@ -414,7 +421,7 @@ final class ComputeInstanceFromMachineImageAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final ComputeInstanceFromMachineImageAccessConfigNetworkTier? networkTier;
+  final ComputeInstanceFromMachineImageNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -427,29 +434,36 @@ final class ComputeInstanceFromMachineImageAccessConfig {
 }
 
 /// `network_tier` — derived from the provider schema description.
-extension type const ComputeInstanceFromMachineImageAccessConfigNetworkTier._(
+extension type const ComputeInstanceFromMachineImageNetworkTier._(
   TfArg<String> _
 ) implements TfArg<String> {
-  ComputeInstanceFromMachineImageAccessConfigNetworkTier.variable(String name)
+  ComputeInstanceFromMachineImageNetworkTier.variable(String name)
     : this._(TfArg.variable(name));
-  ComputeInstanceFromMachineImageAccessConfigNetworkTier.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const ComputeInstanceFromMachineImageAccessConfigNetworkTier.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
+  ComputeInstanceFromMachineImageNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const premium =
-      ComputeInstanceFromMachineImageAccessConfigNetworkTier._(
-        TfArgLiteral('PREMIUM'),
-      );
-  static const standard =
-      ComputeInstanceFromMachineImageAccessConfigNetworkTier._(
-        TfArgLiteral('STANDARD'),
+  static const fixedStandard = ComputeInstanceFromMachineImageNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+  static const premium = ComputeInstanceFromMachineImageNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeInstanceFromMachineImageNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardOverridesFixedStandard =
+      ComputeInstanceFromMachineImageNetworkTier._(
+        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
       );
 
-  static const List<ComputeInstanceFromMachineImageAccessConfigNetworkTier>
-  values = [premium, standard];
+  static const List<ComputeInstanceFromMachineImageNetworkTier> values = [
+    fixedStandard,
+    premium,
+    standard,
+    standardOverridesFixedStandard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -510,7 +524,7 @@ final class ComputeInstanceFromMachineImageIpv6AccessConfig {
 
   final TfArg<String>? name;
 
-  final ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier networkTier;
+  final ComputeInstanceFromMachineImageNetworkTier networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -522,41 +536,6 @@ final class ComputeInstanceFromMachineImageIpv6AccessConfig {
     'network_tier': networkTier.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
-}
-
-/// `network_tier` — derived from the provider schema description.
-extension type const ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier.variable(
-    String name,
-  ) : this._(TfArg.variable(name));
-  ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const fixedStandard =
-      ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('FIXED_STANDARD'),
-      );
-  static const premium =
-      ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('PREMIUM'),
-      );
-  static const standard =
-      ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('STANDARD'),
-      );
-  static const standardOverridesFixedStandard =
-      ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier._(
-        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
-      );
-
-  static const List<ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier>
-  values = [fixedStandard, premium, standard, standardOverridesFixedStandard];
 }
 
 /// Typed helper for the `network_performance_config` block of
@@ -589,17 +568,17 @@ extension type const ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const tier1 =
-      ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
-        TfArgLiteral('TIER_1'),
-      );
   static const defaultCase =
       ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
         TfArgLiteral('DEFAULT'),
       );
+  static const tier1 =
+      ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
+        TfArgLiteral('TIER_1'),
+      );
 
   static const List<ComputeInstanceFromMachineImageTotalEgressBandwidthTier>
-  values = [tier1, defaultCase];
+  values = [defaultCase, tier1];
 }
 
 /// Typed helper for the `params` block of
@@ -828,12 +807,6 @@ extension type const ComputeInstanceFromMachineImageProvisioningModel._(
   const ComputeInstanceFromMachineImageProvisioningModel.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const standard = ComputeInstanceFromMachineImageProvisioningModel._(
-    TfArgLiteral('STANDARD'),
-  );
-  static const spot = ComputeInstanceFromMachineImageProvisioningModel._(
-    TfArgLiteral('SPOT'),
-  );
   static const flexStart = ComputeInstanceFromMachineImageProvisioningModel._(
     TfArgLiteral('FLEX_START'),
   );
@@ -841,12 +814,18 @@ extension type const ComputeInstanceFromMachineImageProvisioningModel._(
       ComputeInstanceFromMachineImageProvisioningModel._(
         TfArgLiteral('RESERVATION_BOUND'),
       );
+  static const spot = ComputeInstanceFromMachineImageProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const standard = ComputeInstanceFromMachineImageProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
 
   static const List<ComputeInstanceFromMachineImageProvisioningModel> values = [
-    standard,
-    spot,
     flexStart,
     reservationBound,
+    spot,
+    standard,
   ];
 }
 

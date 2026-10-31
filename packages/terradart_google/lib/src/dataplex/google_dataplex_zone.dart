@@ -17,13 +17,10 @@ extension type const DataplexZoneType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const DataplexZoneType.arg(TfArg<String> arg) : this._(arg);
 
-  static const typeUnspecified = DataplexZoneType._(
-    TfArgLiteral('TYPE_UNSPECIFIED'),
-  );
   static const raw = DataplexZoneType._(TfArgLiteral('RAW'));
   static const curated = DataplexZoneType._(TfArgLiteral('CURATED'));
 
-  static const List<DataplexZoneType> values = [typeUnspecified, raw, curated];
+  static const List<DataplexZoneType> values = [raw, curated];
 }
 
 /// Typed helper for the `discovery_spec` block of
@@ -127,9 +124,6 @@ extension type const DataplexZoneLocationType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const DataplexZoneLocationType.arg(TfArg<String> arg) : this._(arg);
 
-  static const locationTypeUnspecified = DataplexZoneLocationType._(
-    TfArgLiteral('LOCATION_TYPE_UNSPECIFIED'),
-  );
   static const singleRegion = DataplexZoneLocationType._(
     TfArgLiteral('SINGLE_REGION'),
   );
@@ -138,7 +132,6 @@ extension type const DataplexZoneLocationType._(TfArg<String> _)
   );
 
   static const List<DataplexZoneLocationType> values = [
-    locationTypeUnspecified,
     singleRegion,
     multiRegion,
   ];

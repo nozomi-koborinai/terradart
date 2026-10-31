@@ -17,10 +17,17 @@
 // The tool writes one `<api>.<version>.json` per Discovery document, pruned
 // to the properties under those schemas that lead to an `enum` and carrying
 // its provenance (`name`, `version`, `revision`, `sourceUrl`), and
-// `roots.yaml`, the type → schema record. tool/wrap_lanes.dart re-runs it on
-// regen when `roots.yaml` no longer matches the fixture
-// ([staleDiscovery]) and fails the wrap gate on a stale record.
+// `roots.yaml`, the type → schema record with a SHA-256 digest of each
+// document it wrote. tool/wrap_lanes.dart re-runs it on regen when
+// `roots.yaml` no longer matches the fixture or a document no longer matches
+// its digest ([staleDiscovery]) and fails the wrap gate on either.
 // Never hand-edit the output.
+//
+// A document is absent only when the server says so (404), or when an API's
+// own host does not resolve or refuses (400, 403) and the public directory
+// is tried next. Any other failure (a socket error on the directory or
+// GitHub, a 5xx or 429 that outlasts the retries) stops the run before
+// anything is written, so a network fault never erases the copy.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -43,7 +50,7 @@ const _mmRaw =
 
 /// The hand entries of [lane] in tool/discovery_sources.yaml: `types`,
 /// Terraform type (`data.<type>` for a data source) → `{api, version,
-/// schema?, url?, paths?, passthrough?}`, and `products`, MM product → `{api, version}` for
+/// schema?, url?, paths?}`, and `products`, MM product → `{api, version}` for
 /// a product whose `base_url` names no version.
 ({
   Map<String, Map<String, Object?>> types,
@@ -83,6 +90,35 @@ handRoots(String yamlText, String lane) {
   return (types: entries('types'), products: entries('products'));
 }
 
+/// The `absent` entries of [lane] in tool/discovery_sources.yaml:
+/// `<api>.<version>` → why the API has no Discovery document.
+Map<String, String> absentApis(String yamlText, String lane) {
+  final doc = loadYaml(yamlText);
+  final raw = doc is YamlMap && doc[lane] is YamlMap
+      ? (doc[lane] as YamlMap)['absent']
+      : null;
+  if (raw == null) return const {};
+  if (raw is! YamlMap) {
+    throw FormatException('$discoverySourcesPath: $lane.absent is not a map');
+  }
+  final out = <String, String>{};
+  for (final MapEntry(:key, :value) in raw.entries) {
+    if (value is! String || value.isEmpty) {
+      throw FormatException(
+        '$discoverySourcesPath: $lane.absent.$key needs a reason',
+      );
+    }
+    out['$key'] = value;
+  }
+  return out;
+}
+
+/// The `<api>.<version>` a Discovery URL of [discoveryUrls] or [apiUrls]
+/// names.
+String discoveryApiOf(Uri url) => url.host == 'www.googleapis.com'
+    ? '${url.pathSegments[3]}.${url.pathSegments[4]}'
+    : '${url.host.split('.').first}.${url.queryParameters['version']}';
+
 /// The digest `roots.yaml` records of [lane]'s hand roots, so an edit to
 /// tool/discovery_sources.yaml makes the copy stale.
 String handRootsDigest(String yamlText, String lane) {
@@ -90,17 +126,59 @@ String handRootsDigest(String yamlText, String lane) {
   return sha256
       .convert(
         utf8.encode(
-          jsonEncode({'types': hand.types, 'products': hand.products}),
+          jsonEncode({
+            'types': hand.types,
+            'products': hand.products,
+            'absent': absentApis(yamlText, lane),
+          }),
         ),
       )
       .toString()
       .substring(0, 16);
 }
 
+/// The SHA-256 digest `roots.yaml` records of one copied document.
+String discoveryDocDigest(String text) =>
+    sha256.convert(utf8.encode(text)).toString();
+
+/// Why the documents in [dir] differ from the [digests] `roots.yaml`
+/// records: an edited, missing or unrecorded `<doc>.json`.
+List<String> discoveryDigestDrift(Directory dir, Object? digests) {
+  const label = '$discoveryDirName/$discoveryRootsFile';
+  final recorded = {
+    if (digests is Map)
+      for (final MapEntry(:key, :value) in digests.entries) '$key': '$value',
+  };
+  final onDisk = {
+    if (dir.existsSync())
+      for (final f in dir.listSync().whereType<File>())
+        if (f.path.endsWith('.json')) p.basenameWithoutExtension(f.path): f,
+  };
+  final reasons = <String>[];
+  for (final doc in recorded.keys.toList()..sort()) {
+    final f = onDisk[doc];
+    if (f == null) {
+      reasons.add('$label records $doc.json, which is missing');
+    } else if (discoveryDocDigest(f.readAsStringSync()) != recorded[doc]) {
+      reasons.add(
+        '$discoveryDirName/$doc.json does not match the digest $label '
+        'records (edited by hand?)',
+      );
+    }
+  }
+  for (final doc in onDisk.keys.toList()..sort()) {
+    if (!recorded.containsKey(doc)) {
+      reasons.add('$discoveryDirName/$doc.json has no digest in $label');
+    }
+  }
+  return reasons;
+}
+
 /// Why [lane]'s Discovery copy no longer matches what it was fetched for:
 /// empty when `roots.yaml` records the fixture's `provider_version.txt`, the
 /// MM ref the lane's YAML was synced at, the digest of its hand roots, and
-/// exactly the types its overrides wrap.
+/// exactly the types its overrides wrap, and every copied document matches
+/// the digest `roots.yaml` records for it.
 List<String> staleDiscovery(WrapLane lane, String repoRoot) {
   final record = File(
     p.join(repoRoot, lane.schemaDir, discoveryDirName, discoveryRootsFile),
@@ -125,6 +203,7 @@ List<String> staleDiscovery(WrapLane lane, String repoRoot) {
       '$label records MM ref ${doc['upstream_ref']}, the lane is at $ref',
     if ('${doc['hand_roots']}' != digest)
       '$label predates the $discoverySourcesPath entries of ${lane.name}',
+    ...discoveryDigestDrift(record.parent, doc['digests']),
   ];
   final types = laneTypes(p.join(repoRoot, lane.overridesRoot));
   for (final (dataSource, header) in [
@@ -152,6 +231,20 @@ List<String> staleDiscovery(WrapLane lane, String repoRoot) {
     }
   }
   return reasons;
+}
+
+/// Whether a GET of [url] that answered [status], or failed with
+/// [socketError], means there is no document there. A 404 does anywhere;
+/// on an API's own host (tried before the public directory) a refusal (400,
+/// 403) or an unknown host does too. Anything else is a fault the refresh
+/// must not mistake for an absent document.
+bool discoveryAbsent(Uri url, {int? status, String? socketError}) {
+  final ownHost =
+      url.host.endsWith('.googleapis.com') && url.host != 'www.googleapis.com';
+  if (socketError != null) {
+    return ownHost && socketError.contains('Failed host lookup');
+  }
+  return status == 404 || (ownHost && (status == 400 || status == 403));
 }
 
 /// The schema of [schemas] that [name] is: itself, else the shortest one
@@ -278,6 +371,7 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
     p.join(repoRoot, discoverySourcesPath),
   ).readAsStringSync();
   final hand = handRoots(handText, lane.name);
+  final absent = absentApis(handText, lane.name);
   final client = HttpClient();
 
   final cache = Platform.environment['DISCOVERY_CACHE'];
@@ -293,8 +387,18 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
     try {
       final response = await getRetryingTransient(client, url);
       final body = await response.transform(utf8.decoder).join();
-      ok = response.statusCode == 200 ? body : null;
-    } on SocketException {
+      ok = response.statusCode == 200
+          ? body
+          : discoveryAbsent(url, status: response.statusCode)
+          ? null
+          : throw HttpException(
+              '$url answered ${response.statusCode}',
+              uri: url,
+            );
+    } on SocketException catch (e) {
+      if (!discoveryAbsent(url, socketError: e.message)) {
+        throw HttpException('$url: ${e.message}', uri: url);
+      }
       ok = null;
     }
     if (cached != null) {
@@ -345,12 +449,7 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
   final roots =
       <
         (bool, String),
-        ({
-          String doc,
-          String schema,
-          Map<String, String> paths,
-          bool passthrough,
-        })?
+        ({String doc, String schema, Map<String, String> paths})?
       >{};
   final reasons = <(bool, String), String>{};
   final schemasByDoc = <String, Set<String>>{};
@@ -362,7 +461,6 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
     List<Uri>? urls;
     String? schema;
     var paths = const <String, String>{};
-    var passthrough = false;
     final h = hand.types[handKey] ?? (dataSource ? hand.types[type] : null);
     final upstream =
         mm.upstream[key] ?? (dataSource ? mm.upstream[type] : null);
@@ -389,13 +487,17 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
       ];
       schema = h['schema'] as String? ?? schema;
       paths = (h['paths'] as Map<String, String>?) ?? const {};
-      passthrough = h['passthrough'] == 'true';
     }
     if (urls == null || urls.isEmpty || schema == null) {
       roots[(dataSource, type)] = null;
       reasons[(dataSource, type)] = upstream == null
           ? 'no Magic Modules YAML and no hand root'
           : 'no Discovery version in the base_url of ${p.split(upstream)[2]}';
+      continue;
+    }
+    if (absent[discoveryApiOf(urls.last)] case final why?) {
+      roots[(dataSource, type)] = null;
+      reasons[(dataSource, type)] = why;
       continue;
     }
     final fetched = await document(urls);
@@ -418,12 +520,7 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
       continue;
     }
     schema = named;
-    roots[(dataSource, type)] = (
-      doc: docKey,
-      schema: schema,
-      paths: paths,
-      passthrough: passthrough,
-    );
+    roots[(dataSource, type)] = (doc: docKey, schema: schema, paths: paths);
     schemasByDoc.putIfAbsent(docKey, () => {}).add(schema);
   }
   client.close();
@@ -432,11 +529,13 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
   if (outDir.existsSync()) outDir.deleteSync(recursive: true);
   outDir.createSync(recursive: true);
   const encoder = JsonEncoder.withIndent('  ');
+  final digests = <String, String>{};
   for (final MapEntry(key: docKey, value: schemas) in schemasByDoc.entries) {
     final (body, url) = docBodies[docKey]!;
-    File(p.join(outDir.path, '$docKey.json')).writeAsStringSync(
-      '${encoder.convert(pruneDiscoveryDoc(body, schemas, sourceUrl: '$url'))}\n',
-    );
+    final text =
+        '${encoder.convert(pruneDiscoveryDoc(body, schemas, sourceUrl: '$url'))}\n';
+    File(p.join(outDir.path, '$docKey.json')).writeAsStringSync(text);
+    digests[docKey] = discoveryDocDigest(text);
   }
   File(p.join(outDir.path, discoveryRootsFile)).writeAsStringSync(
     renderDiscoveryRoots(
@@ -444,6 +543,7 @@ Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
       providerVersion: version,
       upstreamRef: mm.ref,
       handRoots: handRootsDigest(handText, lane.name),
+      digests: digests,
       roots: roots,
       reasons: reasons,
     ),
@@ -460,9 +560,10 @@ String renderDiscoveryRoots({
   required String providerVersion,
   required String upstreamRef,
   required String handRoots,
+  required Map<String, String> digests,
   required Map<
     (bool, String),
-    ({String doc, String schema, Map<String, String> paths, bool passthrough})?
+    ({String doc, String schema, Map<String, String> paths})?
   >
   roots,
   required Map<(bool, String), String> reasons,
@@ -482,11 +583,21 @@ String renderDiscoveryRoots({
     )
     ..writeln(
       '# matches provider_version.txt, the MM ref, the wrapped types or '
-      '$discoverySourcesPath.',
+      '$discoverySourcesPath,',
+    )
+    ..writeln(
+      '# and fails the wrap gate when a document no longer matches its '
+      'digest.',
     )
     ..writeln('provider_version: $providerVersion')
     ..writeln('upstream_ref: $upstreamRef')
     ..writeln('hand_roots: $handRoots');
+  if (digests.isNotEmpty) {
+    out.writeln('digests:');
+    for (final doc in digests.keys.toList()..sort()) {
+      out.writeln('  $doc: ${digests[doc]}');
+    }
+  }
   for (final (dataSource, header) in [
     (false, 'resources'),
     (true, 'data_sources'),
@@ -503,7 +614,6 @@ String renderDiscoveryRoots({
       out.writeln('  $type:');
       out.writeln('    doc: ${root.doc}');
       out.writeln('    schema: ${root.schema}');
-      if (root.passthrough) out.writeln('    passthrough: true');
       if (root.paths.isNotEmpty) {
         out.writeln('    paths:');
         for (final MapEntry(:key, :value) in root.paths.entries) {

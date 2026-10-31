@@ -172,20 +172,24 @@ extension type const DeveloperConnectConnectionGithubApp._(TfArg<String> _)
   const DeveloperConnectConnectionGithubApp.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const gitHubAppUnspecified = DeveloperConnectConnectionGithubApp._(
-    TfArgLiteral('GIT_HUB_APP_UNSPECIFIED'),
-  );
   static const developerConnect = DeveloperConnectConnectionGithubApp._(
     TfArgLiteral('DEVELOPER_CONNECT'),
   );
   static const firebase = DeveloperConnectConnectionGithubApp._(
     TfArgLiteral('FIREBASE'),
   );
+  static const geminiCodeAssist = DeveloperConnectConnectionGithubApp._(
+    TfArgLiteral('GEMINI_CODE_ASSIST'),
+  );
+  static const dataform = DeveloperConnectConnectionGithubApp._(
+    TfArgLiteral('DATAFORM'),
+  );
 
   static const List<DeveloperConnectConnectionGithubApp> values = [
-    gitHubAppUnspecified,
     developerConnect,
     firebase,
+    geminiCodeAssist,
+    dataform,
   ];
 }
 

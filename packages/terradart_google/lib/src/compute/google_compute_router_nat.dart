@@ -42,20 +42,20 @@ extension type const ComputeRouterNatEndpointTypes._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeRouterNatEndpointTypes.arg(TfArg<String> arg) : this._(arg);
 
-  static const endpointTypeVm = ComputeRouterNatEndpointTypes._(
-    TfArgLiteral('ENDPOINT_TYPE_VM'),
+  static const endpointTypeManagedProxyLb = ComputeRouterNatEndpointTypes._(
+    TfArgLiteral('ENDPOINT_TYPE_MANAGED_PROXY_LB'),
   );
   static const endpointTypeSwg = ComputeRouterNatEndpointTypes._(
     TfArgLiteral('ENDPOINT_TYPE_SWG'),
   );
-  static const endpointTypeManagedProxyLb = ComputeRouterNatEndpointTypes._(
-    TfArgLiteral('ENDPOINT_TYPE_MANAGED_PROXY_LB'),
+  static const endpointTypeVm = ComputeRouterNatEndpointTypes._(
+    TfArgLiteral('ENDPOINT_TYPE_VM'),
   );
 
   static const List<ComputeRouterNatEndpointTypes> values = [
-    endpointTypeVm,
-    endpointTypeSwg,
     endpointTypeManagedProxyLb,
+    endpointTypeSwg,
+    endpointTypeVm,
   ];
 }
 

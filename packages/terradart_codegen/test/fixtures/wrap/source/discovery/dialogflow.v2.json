@@ -901,5 +901,15 @@
         }
       }
     }
+  },
+  "parameters": {
+    "GoogleCloudDialogflowV2Intent": {
+      "intentView": {
+        "enum": [
+          "INTENT_VIEW_UNSPECIFIED",
+          "INTENT_VIEW_FULL"
+        ]
+      }
+    }
   }
 }

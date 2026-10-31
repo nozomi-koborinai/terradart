@@ -72,6 +72,9 @@ extension type const CesDeploymentChannelType._(TfArg<String> _)
   static const contactCenterAsAService = CesDeploymentChannelType._(
     TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE'),
   );
+  static const contactCenterAsAServiceChat = CesDeploymentChannelType._(
+    TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE_CHAT'),
+  );
   static const five9 = CesDeploymentChannelType._(TfArgLiteral('FIVE9'));
   static const contactCenterIntegration = CesDeploymentChannelType._(
     TfArgLiteral('CONTACT_CENTER_INTEGRATION'),
@@ -88,6 +91,7 @@ extension type const CesDeploymentChannelType._(TfArg<String> _)
     twilio,
     googleTelephonyPlatform,
     contactCenterAsAService,
+    contactCenterAsAServiceChat,
     five9,
     contactCenterIntegration,
     whatsapp,
@@ -158,9 +162,6 @@ extension type const CesDeploymentModality._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const CesDeploymentModality.arg(TfArg<String> arg) : this._(arg);
 
-  static const modalityUnspecified = CesDeploymentModality._(
-    TfArgLiteral('MODALITY_UNSPECIFIED'),
-  );
   static const chatAndVoice = CesDeploymentModality._(
     TfArgLiteral('CHAT_AND_VOICE'),
   );
@@ -171,7 +172,6 @@ extension type const CesDeploymentModality._(TfArg<String> _)
   );
 
   static const List<CesDeploymentModality> values = [
-    modalityUnspecified,
     chatAndVoice,
     voiceOnly,
     chatOnly,
@@ -187,17 +187,10 @@ extension type const CesDeploymentTheme._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const CesDeploymentTheme.arg(TfArg<String> arg) : this._(arg);
 
-  static const themeUnspecified = CesDeploymentTheme._(
-    TfArgLiteral('THEME_UNSPECIFIED'),
-  );
   static const light = CesDeploymentTheme._(TfArgLiteral('LIGHT'));
   static const dark = CesDeploymentTheme._(TfArgLiteral('DARK'));
 
-  static const List<CesDeploymentTheme> values = [
-    themeUnspecified,
-    light,
-    dark,
-  ];
+  static const List<CesDeploymentTheme> values = [light, dark];
 }
 
 /// Typed helper for the `channel_profile.web_widget_config.security_settings` block of

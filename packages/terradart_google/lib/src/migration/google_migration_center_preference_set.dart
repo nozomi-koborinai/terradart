@@ -90,10 +90,6 @@ extension type const MigrationCenterPreferenceSetCommitmentPlan._(
   const MigrationCenterPreferenceSetCommitmentPlan.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const commitmentPlanUnspecified =
-      MigrationCenterPreferenceSetCommitmentPlan._(
-        TfArgLiteral('COMMITMENT_PLAN_UNSPECIFIED'),
-      );
   static const commitmentPlanNone =
       MigrationCenterPreferenceSetCommitmentPlan._(
         TfArgLiteral('COMMITMENT_PLAN_NONE'),
@@ -108,7 +104,6 @@ extension type const MigrationCenterPreferenceSetCommitmentPlan._(
       );
 
   static const List<MigrationCenterPreferenceSetCommitmentPlan> values = [
-    commitmentPlanUnspecified,
     commitmentPlanNone,
     commitmentPlanOneYear,
     commitmentPlanThreeYears,
@@ -128,10 +123,6 @@ extension type const MigrationCenterPreferenceSetSizingOptimizationStrategy._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const sizingOptimizationStrategyUnspecified =
-      MigrationCenterPreferenceSetSizingOptimizationStrategy._(
-        TfArgLiteral('SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED'),
-      );
   static const sizingOptimizationStrategySameAsSource =
       MigrationCenterPreferenceSetSizingOptimizationStrategy._(
         TfArgLiteral('SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE'),
@@ -147,7 +138,6 @@ extension type const MigrationCenterPreferenceSetSizingOptimizationStrategy._(
 
   static const List<MigrationCenterPreferenceSetSizingOptimizationStrategy>
   values = [
-    sizingOptimizationStrategyUnspecified,
     sizingOptimizationStrategySameAsSource,
     sizingOptimizationStrategyModerate,
     sizingOptimizationStrategyAggressive,
@@ -165,10 +155,6 @@ extension type const MigrationCenterPreferenceSetTargetProduct._(
   const MigrationCenterPreferenceSetTargetProduct.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const computeMigrationTargetProductUnspecified =
-      MigrationCenterPreferenceSetTargetProduct._(
-        TfArgLiteral('COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED'),
-      );
   static const computeMigrationTargetProductComputeEngine =
       MigrationCenterPreferenceSetTargetProduct._(
         TfArgLiteral('COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE'),
@@ -183,7 +169,6 @@ extension type const MigrationCenterPreferenceSetTargetProduct._(
       );
 
   static const List<MigrationCenterPreferenceSetTargetProduct> values = [
-    computeMigrationTargetProductUnspecified,
     computeMigrationTargetProductComputeEngine,
     computeMigrationTargetProductVmwareEngine,
     computeMigrationTargetProductSoleTenancy,
@@ -224,10 +209,6 @@ extension type const MigrationCenterPreferenceSetLicenseType._(TfArg<String> _)
   const MigrationCenterPreferenceSetLicenseType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const licenseTypeUnspecified =
-      MigrationCenterPreferenceSetLicenseType._(
-        TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'),
-      );
   static const licenseTypeDefault = MigrationCenterPreferenceSetLicenseType._(
     TfArgLiteral('LICENSE_TYPE_DEFAULT'),
   );
@@ -237,7 +218,6 @@ extension type const MigrationCenterPreferenceSetLicenseType._(TfArg<String> _)
       );
 
   static const List<MigrationCenterPreferenceSetLicenseType> values = [
-    licenseTypeUnspecified,
     licenseTypeDefault,
     licenseTypeBringYourOwnLicense,
   ];
@@ -365,10 +345,6 @@ extension type const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmen
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const commitmentPlanUnspecified =
-      MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
-        TfArgLiteral('COMMITMENT_PLAN_UNSPECIFIED'),
-      );
   static const onDemand =
       MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
         TfArgLiteral('ON_DEMAND'),
@@ -385,12 +361,7 @@ extension type const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmen
   static const List<
     MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan
   >
-  values = [
-    commitmentPlanUnspecified,
-    onDemand,
-    commitment1Year,
-    commitment3Year,
-  ];
+  values = [onDemand, commitment1Year, commitment3Year];
 }
 
 /// `host_maintenance_policy` — derived from the provider schema description.
@@ -404,10 +375,6 @@ extension type const MigrationCenterPreferenceSetHostMaintenancePolicy._(
   const MigrationCenterPreferenceSetHostMaintenancePolicy.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const hostMaintenancePolicyUnspecified =
-      MigrationCenterPreferenceSetHostMaintenancePolicy._(
-        TfArgLiteral('HOST_MAINTENANCE_POLICY_UNSPECIFIED'),
-      );
   static const hostMaintenancePolicyDefault =
       MigrationCenterPreferenceSetHostMaintenancePolicy._(
         TfArgLiteral('HOST_MAINTENANCE_POLICY_DEFAULT'),
@@ -423,7 +390,6 @@ extension type const MigrationCenterPreferenceSetHostMaintenancePolicy._(
 
   static const List<MigrationCenterPreferenceSetHostMaintenancePolicy> values =
       [
-        hostMaintenancePolicyUnspecified,
         hostMaintenancePolicyDefault,
         hostMaintenancePolicyRestartInPlace,
         hostMaintenancePolicyMigrateWithinNodeGroup,
@@ -486,10 +452,6 @@ extension type const MigrationCenterPreferenceSetVmwareEnginePreferencesCommitme
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const commitmentPlanUnspecified =
-      MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
-        TfArgLiteral('COMMITMENT_PLAN_UNSPECIFIED'),
-      );
   static const onDemand =
       MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
         TfArgLiteral('ON_DEMAND'),
@@ -515,7 +477,6 @@ extension type const MigrationCenterPreferenceSetVmwareEnginePreferencesCommitme
     MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan
   >
   values = [
-    commitmentPlanUnspecified,
     onDemand,
     commitment1YearMonthlyPayments,
     commitment3YearMonthlyPayments,

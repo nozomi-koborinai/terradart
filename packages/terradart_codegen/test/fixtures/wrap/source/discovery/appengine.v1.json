@@ -306,5 +306,16 @@
         }
       }
     }
+  },
+  "parameters": {
+    "DomainMapping": {
+      "overrideStrategy": {
+        "enum": [
+          "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY",
+          "STRICT",
+          "OVERRIDE"
+        ]
+      }
+    }
   }
 }

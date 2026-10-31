@@ -72,8 +72,16 @@ extension type const SaasRuntimeUnitOperationType._(TfArg<String> _)
   static const string = SaasRuntimeUnitOperationType._(TfArgLiteral('STRING'));
   static const int = SaasRuntimeUnitOperationType._(TfArgLiteral('INT'));
   static const bool = SaasRuntimeUnitOperationType._(TfArgLiteral('BOOL'));
+  static const struct = SaasRuntimeUnitOperationType._(TfArgLiteral('STRUCT'));
+  static const list = SaasRuntimeUnitOperationType._(TfArgLiteral('LIST'));
 
-  static const List<SaasRuntimeUnitOperationType> values = [string, int, bool];
+  static const List<SaasRuntimeUnitOperationType> values = [
+    string,
+    int,
+    bool,
+    struct,
+    list,
+  ];
 }
 
 /// Typed helper for the `upgrade` block of

@@ -256,10 +256,6 @@ extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const patchingModeUnspecified =
-      OracleDatabaseCloudExadataInfrastructurePatchingMode._(
-        TfArgLiteral('PATCHING_MODE_UNSPECIFIED'),
-      );
   static const rolling = OracleDatabaseCloudExadataInfrastructurePatchingMode._(
     TfArgLiteral('ROLLING'),
   );
@@ -269,7 +265,7 @@ extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
       );
 
   static const List<OracleDatabaseCloudExadataInfrastructurePatchingMode>
-  values = [patchingModeUnspecified, rolling, nonRolling];
+  values = [rolling, nonRolling];
 }
 
 /// `preference` — derived from the provider schema description.
@@ -284,10 +280,6 @@ extension type const OracleDatabaseCloudExadataInfrastructurePreference._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const maintenanceWindowPreferenceUnspecified =
-      OracleDatabaseCloudExadataInfrastructurePreference._(
-        TfArgLiteral('MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED'),
-      );
   static const customPreference =
       OracleDatabaseCloudExadataInfrastructurePreference._(
         TfArgLiteral('CUSTOM_PREFERENCE'),
@@ -298,7 +290,7 @@ extension type const OracleDatabaseCloudExadataInfrastructurePreference._(
       );
 
   static const List<OracleDatabaseCloudExadataInfrastructurePreference> values =
-      [maintenanceWindowPreferenceUnspecified, customPreference, noPreference];
+      [customPreference, noPreference];
 }
 
 /// Factory wrapper for `google_oracle_database_cloud_exadata_infrastructure`.

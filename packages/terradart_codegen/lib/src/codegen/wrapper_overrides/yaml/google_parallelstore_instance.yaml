@@ -15,11 +15,10 @@ prelude: |
     ParallelstoreInstanceDeploymentType.expression(String template) : this._(TfArg.expression(template));
     const ParallelstoreInstanceDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-    static const unspecified = ParallelstoreInstanceDeploymentType._(TfArgLiteral('DEPLOYMENT_TYPE_UNSPECIFIED'));
     static const scratch = ParallelstoreInstanceDeploymentType._(TfArgLiteral('SCRATCH'));
     static const persistent = ParallelstoreInstanceDeploymentType._(TfArgLiteral('PERSISTENT'));
 
-    static const List<ParallelstoreInstanceDeploymentType> values = [unspecified, scratch, persistent];
+    static const List<ParallelstoreInstanceDeploymentType> values = [scratch, persistent];
   }
 
 curatedDoc: |-

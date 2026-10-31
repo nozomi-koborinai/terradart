@@ -65,7 +65,6 @@ DiscoveryEnums _enums({Map<String, List<String>> paths = const {}}) =>
           doc: 'compute.v1',
           schema: 'Address',
           paths: paths,
-          passthrough: false,
         ),
       },
       dataSources: {
@@ -73,7 +72,6 @@ DiscoveryEnums _enums({Map<String, List<String>> paths = const {}}) =>
           doc: 'compute.v1',
           schema: 'Policy',
           paths: const {},
-          passthrough: false,
         ),
       },
     );
@@ -133,6 +131,45 @@ void main() {
         ['ON', 'OFF'],
       );
     });
+
+    test('a top-level input falls back to a method query parameter', () {
+      final enums = DiscoveryEnums(
+        docs: {'compute.v1': _schemas},
+        resources: {
+          'google_compute_address': (
+            doc: 'compute.v1',
+            schema: 'Address',
+            paths: const {},
+          ),
+        },
+        dataSources: const {},
+        parameters: {
+          'compute.v1': {
+            'Address': {
+              'checkExistingUsage': [
+                'CHECK_EXISTING_USAGE_UNSPECIFIED',
+                'SKIP',
+              ],
+              'IPProtocol': ['NOT_USED'],
+            },
+          },
+        },
+      );
+      final found = enums.lookup(
+        'google_compute_address',
+        'check_existing_usage',
+      );
+      expect(found?.values, ['CHECK_EXISTING_USAGE_UNSPECIFIED', 'SKIP']);
+      expect(found?.field, 'Address?checkExistingUsage');
+      expect(enums.lookup('google_compute_address', 'ip_protocol')?.values, [
+        'TCP',
+        'UDP',
+      ], reason: 'a schema property wins over a parameter');
+      expect(
+        enums.lookup('google_compute_address', 'labels.check_existing_usage'),
+        isNull,
+      );
+    });
   });
 
   test('isDiscoverySentinel', () {
@@ -145,7 +182,7 @@ void main() {
   });
 
   group('parseDiscoveryRoots', () {
-    test('reads roots, hand paths, passthrough and nulls', () {
+    test('reads roots, hand paths and nulls', () {
       final roots = parseDiscoveryRoots('''
 provider_version: 7.0.0
 upstream_ref: abc
@@ -153,7 +190,6 @@ resources:
   google_a:
     doc: a.v1
     schema: A
-    passthrough: true
     paths:
       settings: config.settings
   google_b: null
@@ -166,11 +202,10 @@ data_sources:
       expect(roots.upstreamRef, 'abc');
       expect(roots.resources.keys, ['google_a']);
       final a = roots.resources['google_a']!;
-      expect((a.doc, a.schema, a.passthrough), ('a.v1', 'A', true));
+      expect((a.doc, a.schema), ('a.v1', 'A'));
       expect(a.paths, {
         'settings': ['config', 'settings'],
       });
-      expect(roots.dataSources['google_c']!.passthrough, isFalse);
     });
 
     test('rejects a root without doc and schema', () {
@@ -205,6 +240,57 @@ data_sources:
     expect(address['IPProtocol'], {
       'enum': ['TCP', 'UDP'],
     });
+    expect(pruned.containsKey('parameters'), isFalse);
+  });
+
+  test('pruneDiscoveryDoc keeps the enum parameters of root methods', () {
+    Map<String, Object?> method(String ref, Map<String, Object?> params) => {
+      'request': {r'$ref': ref},
+      'parameters': params,
+    };
+    final pruned = pruneDiscoveryDoc(
+      {
+        'name': 'compute',
+        'version': 'v1',
+        'schemas': _schemas,
+        'resources': {
+          'projects': {
+            'resources': {
+              'addresses': {
+                'methods': {
+                  'patch': method('Address', {
+                    'mode': {
+                      'type': 'string',
+                      'enum': ['A', 'B'],
+                    },
+                    'updateMask': {'type': 'string'},
+                  }),
+                  'insert': method('Address', {
+                    'mode': {
+                      'enum': ['A'],
+                    },
+                  }),
+                  'other': method('Unrelated', {
+                    'flag': {
+                      'enum': ['X'],
+                    },
+                  }),
+                },
+              },
+            },
+          },
+        },
+      },
+      ['Address'],
+      sourceUrl: 'https://example.test/rest',
+    );
+    expect(pruned['parameters'], {
+      'Address': {
+        'mode': {
+          'enum': ['A'],
+        },
+      },
+    });
   });
 
   group('load', () {
@@ -218,9 +304,19 @@ data_sources:
 
     test('reads every document beside roots.yaml', () {
       final d = Directory(p.join(dir.path, discoveryDirName))..createSync();
-      File(
-        p.join(d.path, 'compute.v1.json'),
-      ).writeAsStringSync(jsonEncode({'name': 'compute', 'schemas': _schemas}));
+      File(p.join(d.path, 'compute.v1.json')).writeAsStringSync(
+        jsonEncode({
+          'name': 'compute',
+          'schemas': _schemas,
+          'parameters': {
+            'Address': {
+              'checkMode': {
+                'enum': ['ON'],
+              },
+            },
+          },
+        }),
+      );
       File(p.join(d.path, discoveryRootsFile)).writeAsStringSync(
         'resources:\n  google_compute_address:\n'
         '    doc: compute.v1\n    schema: Address\n',
@@ -229,6 +325,9 @@ data_sources:
       expect(loaded.lookup('google_compute_address', 'ip_protocol')?.values, [
         'TCP',
         'UDP',
+      ]);
+      expect(loaded.lookup('google_compute_address', 'check_mode')?.values, [
+        'ON',
       ]);
     });
 

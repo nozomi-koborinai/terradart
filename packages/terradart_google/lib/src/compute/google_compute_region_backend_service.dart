@@ -257,12 +257,16 @@ extension type const RegionBackendServiceBalancingMode._(TfArg<String> _)
   static const customMetrics = RegionBackendServiceBalancingMode._(
     TfArgLiteral('CUSTOM_METRICS'),
   );
+  static const inFlight = RegionBackendServiceBalancingMode._(
+    TfArgLiteral('IN_FLIGHT'),
+  );
 
   static const List<RegionBackendServiceBalancingMode> values = [
     utilization,
     rate,
     connection,
     customMetrics,
+    inFlight,
   ];
 }
 

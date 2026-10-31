@@ -89,6 +89,12 @@ extension type const SubnetworkPurpose._(TfArg<String> _)
     TfArgLiteral('PEER_MIGRATION'),
   );
   static const privateNat = SubnetworkPurpose._(TfArgLiteral('PRIVATE_NAT'));
+  static const internalHttpsLoadBalancer = SubnetworkPurpose._(
+    TfArgLiteral('INTERNAL_HTTPS_LOAD_BALANCER'),
+  );
+  static const privateRfc1918 = SubnetworkPurpose._(
+    TfArgLiteral('PRIVATE_RFC_1918'),
+  );
 
   static const List<SubnetworkPurpose> values = [
     private,
@@ -97,6 +103,8 @@ extension type const SubnetworkPurpose._(TfArg<String> _)
     privateServiceConnect,
     peerMigration,
     privateNat,
+    internalHttpsLoadBalancer,
+    privateRfc1918,
   ];
 }
 

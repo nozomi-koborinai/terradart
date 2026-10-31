@@ -43,6 +43,16 @@ extension type const BigqueryCapacityCommitmentPlan._(TfArg<String> _)
   static const threeYear = BigqueryCapacityCommitmentPlan._(
     TfArgLiteral('THREE_YEAR'),
   );
+  static const flexFlatRate = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('FLEX_FLAT_RATE'),
+  );
+  static const monthlyFlatRate = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('MONTHLY_FLAT_RATE'),
+  );
+  static const annualFlatRate = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('ANNUAL_FLAT_RATE'),
+  );
+  static const none = BigqueryCapacityCommitmentPlan._(TfArgLiteral('NONE'));
 
   static const List<BigqueryCapacityCommitmentPlan> values = [
     flex,
@@ -50,6 +60,10 @@ extension type const BigqueryCapacityCommitmentPlan._(TfArg<String> _)
     monthly,
     annual,
     threeYear,
+    flexFlatRate,
+    monthlyFlatRate,
+    annualFlatRate,
+    none,
   ];
 }
 
@@ -81,6 +95,18 @@ extension type const BigqueryCapacityCommitmentRenewalPlan._(TfArg<String> _)
   static const threeYear = BigqueryCapacityCommitmentRenewalPlan._(
     TfArgLiteral('THREE_YEAR'),
   );
+  static const flexFlatRate = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('FLEX_FLAT_RATE'),
+  );
+  static const trial = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('TRIAL'),
+  );
+  static const monthlyFlatRate = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('MONTHLY_FLAT_RATE'),
+  );
+  static const annualFlatRate = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('ANNUAL_FLAT_RATE'),
+  );
 
   static const List<BigqueryCapacityCommitmentRenewalPlan> values = [
     none,
@@ -88,6 +114,10 @@ extension type const BigqueryCapacityCommitmentRenewalPlan._(TfArg<String> _)
     monthly,
     annual,
     threeYear,
+    flexFlatRate,
+    trial,
+    monthlyFlatRate,
+    annualFlatRate,
   ];
 }
 

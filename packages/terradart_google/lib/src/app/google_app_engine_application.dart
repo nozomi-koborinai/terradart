@@ -45,9 +45,16 @@ extension type const AppEngineDatabaseType._(TfArg<String> _)
     TfArgLiteral('CLOUD_DATASTORE_COMPATIBILITY'),
   );
 
+  /// The mode of an application created before
+  /// `CLOUD_DATASTORE_COMPATIBILITY`; a new application cannot take it.
+  static const legacyCloudDatastore = AppEngineDatabaseType._(
+    TfArgLiteral('CLOUD_DATASTORE'),
+  );
+
   static const List<AppEngineDatabaseType> values = [
     cloudFirestore,
     cloudDatastore,
+    legacyCloudDatastore,
   ];
 }
 

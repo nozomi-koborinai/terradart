@@ -20,8 +20,10 @@ prelude: |
     static const disabled = KmsCryptoKeyVersionState._(TfArgLiteral('DISABLED'));
     static const destroyed = KmsCryptoKeyVersionState._(TfArgLiteral('DESTROYED'));
     static const destroyScheduled = KmsCryptoKeyVersionState._(TfArgLiteral('DESTROY_SCHEDULED'));
+    static const pendingImport = KmsCryptoKeyVersionState._(TfArgLiteral('PENDING_IMPORT'));
+    static const importFailed = KmsCryptoKeyVersionState._(TfArgLiteral('IMPORT_FAILED'));
 
-    static const List<KmsCryptoKeyVersionState> values = [pendingGeneration, enabled, disabled, destroyed, destroyScheduled];
+    static const List<KmsCryptoKeyVersionState> values = [pendingGeneration, enabled, disabled, destroyed, destroyScheduled, pendingImport, importFailed];
   }
 
 paramOrder:

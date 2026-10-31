@@ -164,15 +164,29 @@ extension type const NetworkServicesLbRouteExtensionSupportedEvents._(
   static const requestBody = NetworkServicesLbRouteExtensionSupportedEvents._(
     TfArgLiteral('REQUEST_BODY'),
   );
+  static const responseHeaders =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_HEADERS'),
+      );
+  static const responseBody = NetworkServicesLbRouteExtensionSupportedEvents._(
+    TfArgLiteral('RESPONSE_BODY'),
+  );
   static const requestTrailers =
       NetworkServicesLbRouteExtensionSupportedEvents._(
         TfArgLiteral('REQUEST_TRAILERS'),
+      );
+  static const responseTrailers =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_TRAILERS'),
       );
 
   static const List<NetworkServicesLbRouteExtensionSupportedEvents> values = [
     requestHeaders,
     requestBody,
+    responseHeaders,
+    responseBody,
     requestTrailers,
+    responseTrailers,
   ];
 }
 

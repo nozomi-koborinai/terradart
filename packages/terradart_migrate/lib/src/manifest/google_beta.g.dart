@@ -11909,7 +11909,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'networkTier',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ComputeInstanceFromMachineImageAccessConfigNetworkTier',
+          dartType: 'ComputeInstanceFromMachineImageNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -12112,8 +12112,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'networkTier',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType:
-              'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier',
+          dartType: 'ComputeInstanceFromMachineImageNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -15990,13 +15989,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'UNSPECIFIED': 'unspecified',
       },
     ),
-    'ComputeInstanceFromMachineImageAccessConfigNetworkTier': MigrateEnum(
-      name: 'ComputeInstanceFromMachineImageAccessConfigNetworkTier',
-      members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
-    ),
     'ComputeInstanceFromMachineImageConfidentialInstanceType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageConfidentialInstanceType',
       members: <String, String>{
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
         'SEV': 'sev',
         'SEV_SNP': 'sevSnp',
         'TDX': 'tdx',
@@ -16021,15 +16018,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       name: 'ComputeInstanceFromMachineImageInstanceTerminationAction',
       members: <String, String>{'DELETE': 'delete', 'STOP': 'stop'},
     ),
-    'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier': MigrateEnum(
-      name: 'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier',
-      members: <String, String>{
-        'FIXED_STANDARD': 'fixedStandard',
-        'PREMIUM': 'premium',
-        'STANDARD': 'standard',
-        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
-      },
-    ),
     'ComputeInstanceFromMachineImageKeyRevocationActionType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageKeyRevocationActionType',
       members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
@@ -16042,14 +16030,23 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'RECURRENT': 'recurrent',
       },
     ),
+    'ComputeInstanceFromMachineImageNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageNetworkTier',
+      members: <String, String>{
+        'FIXED_STANDARD': 'fixedStandard',
+        'PREMIUM': 'premium',
+        'STANDARD': 'standard',
+        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
+      },
+    ),
     'ComputeInstanceFromMachineImageNicType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageNicType',
       members: <String, String>{
         'GVNIC': 'gvnic',
-        'VIRTIO_NET': 'virtioNet',
         'IDPF': 'idpf',
-        'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'MRDMA': 'mrdma',
+        'VIRTIO_NET': 'virtioNet',
       },
     ),
     'ComputeInstanceFromMachineImageOnHostMaintenance': MigrateEnum(
@@ -16063,18 +16060,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
     'ComputeInstanceFromMachineImagePerformanceMonitoringUnit': MigrateEnum(
       name: 'ComputeInstanceFromMachineImagePerformanceMonitoringUnit',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'ENHANCED': 'enhanced',
         'ARCHITECTURAL': 'architectural',
+        'ENHANCED': 'enhanced',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeInstanceFromMachineImageProvisioningModel': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageProvisioningModel',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'SPOT': 'spot',
         'FLEX_START': 'flexStart',
         'RESERVATION_BOUND': 'reservationBound',
+        'SPOT': 'spot',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeInstanceFromMachineImageStackType': MigrateEnum(
@@ -16087,7 +16084,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceFromMachineImageTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
     ),
     'ComputeNetworkFirewallPolicyPacketMirroringRuleDirection': MigrateEnum(
       name: 'ComputeNetworkFirewallPolicyPacketMirroringRuleDirection',
@@ -16446,6 +16443,8 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'STRING': 'string',
         'INT': 'int',
         'BOOL': 'bool',
+        'STRUCT': 'struct',
+        'LIST': 'list',
       },
     ),
     'SecurityScannerScanConfigExportToSecurityCommandCenter': MigrateEnum(

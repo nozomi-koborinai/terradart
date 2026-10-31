@@ -91,7 +91,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleAssuredWorkloadsWorkload(
         'assuredworkloadsworkload',
-        complianceRegime: .complianceRegimeUnspecified,
+        complianceRegime: .fedrampModerate,
         deletionPolicy: .literal('DELETE'),
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),

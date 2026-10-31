@@ -40,20 +40,20 @@ extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
   const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(
-    TfArgLiteral('DATA_READ'),
+  static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
   );
   static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(
     TfArgLiteral('DATA_WRITE'),
   );
-  static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(
-    TfArgLiteral('ADMIN_READ'),
+  static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('DATA_READ'),
   );
 
   static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [
-    dataRead,
-    dataWrite,
     adminRead,
+    dataWrite,
+    dataRead,
   ];
 }
 

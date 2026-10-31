@@ -345,24 +345,24 @@ extension type const ComputeRegionCommitmentResourcesType._(TfArg<String> _)
   const ComputeRegionCommitmentResourcesType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const vcpu = ComputeRegionCommitmentResourcesType._(
-    TfArgLiteral('VCPU'),
-  );
-  static const memory = ComputeRegionCommitmentResourcesType._(
-    TfArgLiteral('MEMORY'),
+  static const accelerator = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('ACCELERATOR'),
   );
   static const localSsd = ComputeRegionCommitmentResourcesType._(
     TfArgLiteral('LOCAL_SSD'),
   );
-  static const accelerator = ComputeRegionCommitmentResourcesType._(
-    TfArgLiteral('ACCELERATOR'),
+  static const memory = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('MEMORY'),
+  );
+  static const vcpu = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('VCPU'),
   );
 
   static const List<ComputeRegionCommitmentResourcesType> values = [
-    vcpu,
-    memory,
-    localSsd,
     accelerator,
+    localSsd,
+    memory,
+    vcpu,
   ];
 }
 

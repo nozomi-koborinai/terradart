@@ -5,6 +5,9 @@
 # or name). The entries below cover the rest. Per lane:
 #   products: MM product → {api, version}, for a product whose base_url
 #             names no API version
+#   absent:   `<api>.<version>` → why no Discovery document exists, for an
+#             API whose endpoints answer with an error rather than a 404
+#             (the fetch fails closed on such an answer otherwise)
 #   types:    Terraform type (`data.<type>` for a data source; a data source
 #             without an entry uses its resource's) →
 #     api, version: the Discovery document
@@ -14,20 +17,19 @@
 #     paths:        (optional) Terraform path or path prefix → REST field
 #                   path, for a block whose Terraform name or nesting is not
 #                   the REST one
-#     passthrough:  (optional) true when the hand-written resource sends
-#                   its inputs to the REST API unchanged, as a Magic Modules
-#                   one does: wrap then takes the Discovery enum over a
-#                   description it contradicts
 # A hand-written provider resource with no entry has no Discovery root; its
 # enum sites are compared against tool/enum_prose_sources.yaml instead.
 # Editing this file makes the lane's discovery/roots.yaml stale, so the next
 # `dart tool/wrap_lanes.dart --gate regen` re-fetches.
 google:
+  absent:
+    contentwarehouse.v1: Document AI Warehouse is retired; its host answers 502 and the public directory 404
   products:
     monitoring: {api: monitoring, version: v3}
   types:
+    google_apikeys_key: {api: apikeys, version: v2, schema: V2Key}
     google_app_engine_application: {api: appengine, version: v1, schema: Application}
-    google_assured_workloads_workload: {api: assuredworkloads, version: v1, schema: GoogleCloudAssuredworkloadsV1Workload, passthrough: true}
+    google_assured_workloads_workload: {api: assuredworkloads, version: v1, schema: GoogleCloudAssuredworkloadsV1Workload}
     google_bigtable_instance:
       api: bigtableadmin
       version: v2
@@ -147,6 +149,7 @@ google:
       schema: AuditConfig
       paths:
         audit_log_config: auditLogConfigs
+    google_iam_principal_access_boundary_policy: {api: iam, version: v3, schema: GoogleIamV3PrincipalAccessBoundaryPolicy}
     google_organization_iam_audit_config: *audit_config
     google_project_iam_audit_config: *audit_config
     google_gke_hub_feature_membership: {api: gkehub, version: v1, schema: MembershipFeatureSpec}
@@ -157,7 +160,7 @@ google:
     google_project_iam_custom_role: {api: iam, version: v1, schema: Role}
     google_recaptcha_enterprise_key: {api: recaptchaenterprise, version: v1, schema: GoogleCloudRecaptchaenterpriseV1Key}
     google_service_account_key: {api: iam, version: v1, schema: ServiceAccountKey}
-    google_sql_database_instance: {api: sqladmin, version: v1, schema: DatabaseInstance, passthrough: true}
+    google_sql_database_instance: {api: sqladmin, version: v1, schema: DatabaseInstance}
     data.google_sql_database_instances: {api: sqladmin, version: v1, schema: DatabaseInstance}
     google_sql_user: {api: sqladmin, version: v1, schema: User}
     google_storage_bucket:

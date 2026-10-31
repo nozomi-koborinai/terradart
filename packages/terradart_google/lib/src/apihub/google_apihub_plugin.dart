@@ -17,19 +17,12 @@ extension type const ApihubPluginCategory._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubPluginCategory.arg(TfArg<String> arg) : this._(arg);
 
-  static const pluginCategoryUnspecified = ApihubPluginCategory._(
-    TfArgLiteral('PLUGIN_CATEGORY_UNSPECIFIED'),
-  );
   static const apiGateway = ApihubPluginCategory._(TfArgLiteral('API_GATEWAY'));
   static const apiProducer = ApihubPluginCategory._(
     TfArgLiteral('API_PRODUCER'),
   );
 
-  static const List<ApihubPluginCategory> values = [
-    pluginCategoryUnspecified,
-    apiGateway,
-    apiProducer,
-  ];
+  static const List<ApihubPluginCategory> values = [apiGateway, apiProducer];
 }
 
 /// Typed helper for the `actions_config` block of
@@ -68,9 +61,6 @@ extension type const ApihubPluginTriggerMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubPluginTriggerMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const triggerModeUnspecified = ApihubPluginTriggerMode._(
-    TfArgLiteral('TRIGGER_MODE_UNSPECIFIED'),
-  );
   static const apiHubOnDemandTrigger = ApihubPluginTriggerMode._(
     TfArgLiteral('API_HUB_ON_DEMAND_TRIGGER'),
   );
@@ -82,7 +72,6 @@ extension type const ApihubPluginTriggerMode._(TfArg<String> _)
   );
 
   static const List<ApihubPluginTriggerMode> values = [
-    triggerModeUnspecified,
     apiHubOnDemandTrigger,
     apiHubScheduleTrigger,
     nonApiHubManaged,
@@ -162,9 +151,6 @@ extension type const ApihubPluginValueType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubPluginValueType.arg(TfArg<String> arg) : this._(arg);
 
-  static const valueTypeUnspecified = ApihubPluginValueType._(
-    TfArgLiteral('VALUE_TYPE_UNSPECIFIED'),
-  );
   static const string = ApihubPluginValueType._(TfArgLiteral('STRING'));
   static const int = ApihubPluginValueType._(TfArgLiteral('INT'));
   static const bool = ApihubPluginValueType._(TfArgLiteral('BOOL'));
@@ -179,7 +165,6 @@ extension type const ApihubPluginValueType._(TfArg<String> _)
   static const multiInt = ApihubPluginValueType._(TfArgLiteral('MULTI_INT'));
 
   static const List<ApihubPluginValueType> values = [
-    valueTypeUnspecified,
     string,
     int,
     bool,

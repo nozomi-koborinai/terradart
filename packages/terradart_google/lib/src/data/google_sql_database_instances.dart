@@ -258,9 +258,6 @@ extension type const DataSqlDatabaseInstancesState._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const DataSqlDatabaseInstancesState.arg(TfArg<String> arg) : this._(arg);
 
-  static const sqlInstanceStateUnspecified = DataSqlDatabaseInstancesState._(
-    TfArgLiteral('SQL_INSTANCE_STATE_UNSPECIFIED'),
-  );
   static const runnable = DataSqlDatabaseInstancesState._(
     TfArgLiteral('RUNNABLE'),
   );
@@ -277,15 +274,22 @@ extension type const DataSqlDatabaseInstancesState._(TfArg<String> _)
     TfArgLiteral('MAINTENANCE'),
   );
   static const failed = DataSqlDatabaseInstancesState._(TfArgLiteral('FAILED'));
+  static const onlineMaintenance = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('ONLINE_MAINTENANCE'),
+  );
+  static const repairing = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('REPAIRING'),
+  );
 
   static const List<DataSqlDatabaseInstancesState> values = [
-    sqlInstanceStateUnspecified,
     runnable,
     suspended,
     pendingDelete,
     pendingCreate,
     maintenance,
     failed,
+    onlineMaintenance,
+    repairing,
   ];
 }
 

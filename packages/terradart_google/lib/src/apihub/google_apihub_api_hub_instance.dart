@@ -44,9 +44,6 @@ extension type const ApihubApiHubInstanceEncryptionType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubApiHubInstanceEncryptionType.arg(TfArg<String> arg) : this._(arg);
 
-  static const encryptionTypeUnspecified = ApihubApiHubInstanceEncryptionType._(
-    TfArgLiteral('ENCRYPTION_TYPE_UNSPECIFIED'),
-  );
   static const gmek = ApihubApiHubInstanceEncryptionType._(
     TfArgLiteral('GMEK'),
   );
@@ -54,11 +51,7 @@ extension type const ApihubApiHubInstanceEncryptionType._(TfArg<String> _)
     TfArgLiteral('CMEK'),
   );
 
-  static const List<ApihubApiHubInstanceEncryptionType> values = [
-    encryptionTypeUnspecified,
-    gmek,
-    cmek,
-  ];
+  static const List<ApihubApiHubInstanceEncryptionType> values = [gmek, cmek];
 }
 
 /// Factory wrapper for `google_apihub_api_hub_instance`.

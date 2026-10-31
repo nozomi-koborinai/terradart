@@ -17,10 +17,6 @@ extension type const IamOrganizationsPolicyBindingPolicyKind._(TfArg<String> _)
   const IamOrganizationsPolicyBindingPolicyKind.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const policyKindUnspecified =
-      IamOrganizationsPolicyBindingPolicyKind._(
-        TfArgLiteral('POLICY_KIND_UNSPECIFIED'),
-      );
   static const principalAccessBoundary =
       IamOrganizationsPolicyBindingPolicyKind._(
         TfArgLiteral('PRINCIPAL_ACCESS_BOUNDARY'),
@@ -30,7 +26,6 @@ extension type const IamOrganizationsPolicyBindingPolicyKind._(TfArg<String> _)
   );
 
   static const List<IamOrganizationsPolicyBindingPolicyKind> values = [
-    policyKindUnspecified,
     principalAccessBoundary,
     access,
   ];

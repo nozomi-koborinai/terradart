@@ -7,5 +7,16 @@
     "QuotaOverride": {
       "properties": {}
     }
+  },
+  "parameters": {
+    "QuotaOverride": {
+      "forceOnly": {
+        "enum": [
+          "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+          "LIMIT_DECREASE_BELOW_USAGE",
+          "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
+        ]
+      }
+    }
   }
 }

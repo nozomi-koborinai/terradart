@@ -296,8 +296,9 @@ prelude: |
     static const rate = RegionBackendServiceBalancingMode._(TfArgLiteral('RATE'));
     static const connection = RegionBackendServiceBalancingMode._(TfArgLiteral('CONNECTION'));
     static const customMetrics = RegionBackendServiceBalancingMode._(TfArgLiteral('CUSTOM_METRICS'));
+    static const inFlight = RegionBackendServiceBalancingMode._(TfArgLiteral('IN_FLIGHT'));
 
-    static const List<RegionBackendServiceBalancingMode> values = [utilization, rate, connection, customMetrics];
+    static const List<RegionBackendServiceBalancingMode> values = [utilization, rate, connection, customMetrics, inFlight];
   }
 
   /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without

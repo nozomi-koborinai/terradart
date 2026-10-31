@@ -78,12 +78,14 @@ extension type const InstanceTemplateNicType._(TfArg<String> _)
   );
   static const mrdma = InstanceTemplateNicType._(TfArgLiteral('MRDMA'));
   static const irdma = InstanceTemplateNicType._(TfArgLiteral('IRDMA'));
+  static const idpf = InstanceTemplateNicType._(TfArgLiteral('IDPF'));
 
   static const List<InstanceTemplateNicType> values = [
     gvnic,
     virtioNet,
     mrdma,
     irdma,
+    idpf,
   ];
 }
 
@@ -154,10 +156,18 @@ extension type const InstanceTemplateProvisioningModel._(TfArg<String> _)
     TfArgLiteral('STANDARD'),
   );
   static const spot = InstanceTemplateProvisioningModel._(TfArgLiteral('SPOT'));
+  static const flexStart = InstanceTemplateProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound = InstanceTemplateProvisioningModel._(
+    TfArgLiteral('RESERVATION_BOUND'),
+  );
 
   static const List<InstanceTemplateProvisioningModel> values = [
     standard,
     spot,
+    flexStart,
+    reservationBound,
   ];
 }
 
@@ -207,11 +217,19 @@ extension type const InstanceTemplateConfidentialInstanceType._(TfArg<String> _)
   static const tdx = InstanceTemplateConfidentialInstanceType._(
     TfArgLiteral('TDX'),
   );
+  static const bmsai = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('BMSAI'),
+  );
+  static const cca = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('CCA'),
+  );
 
   static const List<InstanceTemplateConfidentialInstanceType> values = [
     sev,
     sevSnp,
     tdx,
+    bmsai,
+    cca,
   ];
 }
 
@@ -493,12 +511,12 @@ extension type const ComputeInstanceTemplateType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeInstanceTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  static const scratch = ComputeInstanceTemplateType._(TfArgLiteral('SCRATCH'));
   static const persistent = ComputeInstanceTemplateType._(
     TfArgLiteral('PERSISTENT'),
   );
+  static const scratch = ComputeInstanceTemplateType._(TfArgLiteral('SCRATCH'));
 
-  static const List<ComputeInstanceTemplateType> values = [scratch, persistent];
+  static const List<ComputeInstanceTemplateType> values = [persistent, scratch];
 }
 
 /// Typed helper for the `disk.disk_encryption_key` block of
@@ -805,16 +823,16 @@ extension type const ComputeInstanceTemplateTotalEgressBandwidthTier._(
   const ComputeInstanceTemplateTotalEgressBandwidthTier.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const tier1 = ComputeInstanceTemplateTotalEgressBandwidthTier._(
-    TfArgLiteral('TIER_1'),
-  );
   static const defaultCase = ComputeInstanceTemplateTotalEgressBandwidthTier._(
     TfArgLiteral('DEFAULT'),
   );
+  static const tier1 = ComputeInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
 
   static const List<ComputeInstanceTemplateTotalEgressBandwidthTier> values = [
-    tier1,
     defaultCase,
+    tier1,
   ];
 }
 

@@ -101,10 +101,6 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const metadataUnspecified =
-      NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
-        TfArgLiteral('METADATA_UNSPECIFIED'),
-      );
   static const includeAllMetadata =
       NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
         TfArgLiteral('INCLUDE_ALL_METADATA'),
@@ -119,12 +115,7 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
       );
 
   static const List<NetworkManagementOrganizationVpcFlowLogsConfigMetadata>
-  values = [
-    metadataUnspecified,
-    includeAllMetadata,
-    excludeAllMetadata,
-    customMetadata,
-  ];
+  values = [includeAllMetadata, excludeAllMetadata, customMetadata];
 }
 
 /// Network Management Organization Vpc Flow Logs Config enum for `state`.

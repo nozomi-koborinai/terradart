@@ -33,5 +33,16 @@
         }
       }
     }
+  },
+  "parameters": {
+    "QuotaPreference": {
+      "ignoreSafetyChecks": {
+        "enum": [
+          "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+          "QUOTA_DECREASE_BELOW_USAGE",
+          "QUOTA_DECREASE_PERCENTAGE_TOO_HIGH"
+        ]
+      }
+    }
   }
 }

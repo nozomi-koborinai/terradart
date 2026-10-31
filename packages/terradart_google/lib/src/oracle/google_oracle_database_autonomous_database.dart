@@ -52,10 +52,6 @@ extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
   const OracleDatabaseAutonomousDatabaseDbWorkload.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const dbWorkloadUnspecified =
-      OracleDatabaseAutonomousDatabaseDbWorkload._(
-        TfArgLiteral('DB_WORKLOAD_UNSPECIFIED'),
-      );
   static const oltp = OracleDatabaseAutonomousDatabaseDbWorkload._(
     TfArgLiteral('OLTP'),
   );
@@ -68,13 +64,16 @@ extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
   static const apex = OracleDatabaseAutonomousDatabaseDbWorkload._(
     TfArgLiteral('APEX'),
   );
+  static const lh = OracleDatabaseAutonomousDatabaseDbWorkload._(
+    TfArgLiteral('LH'),
+  );
 
   static const List<OracleDatabaseAutonomousDatabaseDbWorkload> values = [
-    dbWorkloadUnspecified,
     oltp,
     dw,
     ajd,
     apex,
+    lh,
   ];
 }
 
@@ -89,10 +88,6 @@ extension type const OracleDatabaseAutonomousDatabaseLicenseType._(
   const OracleDatabaseAutonomousDatabaseLicenseType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const licenseTypeUnspecified =
-      OracleDatabaseAutonomousDatabaseLicenseType._(
-        TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'),
-      );
   static const licenseIncluded = OracleDatabaseAutonomousDatabaseLicenseType._(
     TfArgLiteral('LICENSE_INCLUDED'),
   );
@@ -102,7 +97,6 @@ extension type const OracleDatabaseAutonomousDatabaseLicenseType._(
       );
 
   static const List<OracleDatabaseAutonomousDatabaseLicenseType> values = [
-    licenseTypeUnspecified,
     licenseIncluded,
     bringYourOwnLicense,
   ];
@@ -219,10 +213,6 @@ extension type const OracleDatabaseAutonomousDatabaseDbEdition._(
   const OracleDatabaseAutonomousDatabaseDbEdition.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const databaseEditionUnspecified =
-      OracleDatabaseAutonomousDatabaseDbEdition._(
-        TfArgLiteral('DATABASE_EDITION_UNSPECIFIED'),
-      );
   static const standardEdition = OracleDatabaseAutonomousDatabaseDbEdition._(
     TfArgLiteral('STANDARD_EDITION'),
   );
@@ -231,7 +221,6 @@ extension type const OracleDatabaseAutonomousDatabaseDbEdition._(
   );
 
   static const List<OracleDatabaseAutonomousDatabaseDbEdition> values = [
-    databaseEditionUnspecified,
     standardEdition,
     enterpriseEdition,
   ];
@@ -250,10 +239,6 @@ extension type const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const maintenanceScheduleTypeUnspecified =
-      OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
-        TfArgLiteral('MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED'),
-      );
   static const early =
       OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
         TfArgLiteral('EARLY'),
@@ -264,7 +249,7 @@ extension type const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
       );
 
   static const List<OracleDatabaseAutonomousDatabaseMaintenanceScheduleType>
-  values = [maintenanceScheduleTypeUnspecified, early, regular];
+  values = [early, regular];
 }
 
 /// `operations_insights_state` — derived from the provider schema description.
@@ -280,10 +265,6 @@ extension type const OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const operationsInsightsStateUnspecified =
-      OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
-        TfArgLiteral('OPERATIONS_INSIGHTS_STATE_UNSPECIFIED'),
-      );
   static const enabling =
       OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
         TfArgLiteral('ENABLING'),
@@ -311,7 +292,6 @@ extension type const OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
 
   static const List<OracleDatabaseAutonomousDatabaseOperationsInsightsState>
   values = [
-    operationsInsightsStateUnspecified,
     enabling,
     enabled,
     disabling,

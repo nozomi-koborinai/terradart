@@ -337,9 +337,6 @@ extension type const VertexAiReasoningEngineOutcome._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const VertexAiReasoningEngineOutcome.arg(TfArg<String> arg) : this._(arg);
 
-  static const outcomeUnspecified = VertexAiReasoningEngineOutcome._(
-    TfArgLiteral('OUTCOME_UNSPECIFIED'),
-  );
   static const outcomeOk = VertexAiReasoningEngineOutcome._(
     TfArgLiteral('OUTCOME_OK'),
   );
@@ -351,7 +348,6 @@ extension type const VertexAiReasoningEngineOutcome._(TfArg<String> _)
   );
 
   static const List<VertexAiReasoningEngineOutcome> values = [
-    outcomeUnspecified,
     outcomeOk,
     outcomeFailed,
     outcomeDeadlineExceeded,

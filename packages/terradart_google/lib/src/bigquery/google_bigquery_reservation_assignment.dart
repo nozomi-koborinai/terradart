@@ -18,9 +18,6 @@ extension type const BigqueryReservationAssignmentJobType._(TfArg<String> _)
   const BigqueryReservationAssignmentJobType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const unspecified = BigqueryReservationAssignmentJobType._(
-    TfArgLiteral('JOB_TYPE_UNSPECIFIED'),
-  );
   static const pipeline = BigqueryReservationAssignmentJobType._(
     TfArgLiteral('PIPELINE'),
   );
@@ -30,12 +27,39 @@ extension type const BigqueryReservationAssignmentJobType._(TfArg<String> _)
   static const continuous = BigqueryReservationAssignmentJobType._(
     TfArgLiteral('CONTINUOUS'),
   );
+  static const mlExternal = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('ML_EXTERNAL'),
+  );
+  static const background = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('BACKGROUND'),
+  );
+  static const backgroundChangeDataCapture =
+      BigqueryReservationAssignmentJobType._(
+        TfArgLiteral('BACKGROUND_CHANGE_DATA_CAPTURE'),
+      );
+  static const backgroundColumnMetadataIndex =
+      BigqueryReservationAssignmentJobType._(
+        TfArgLiteral('BACKGROUND_COLUMN_METADATA_INDEX'),
+      );
+  static const backgroundSearchIndexRefresh =
+      BigqueryReservationAssignmentJobType._(
+        TfArgLiteral('BACKGROUND_SEARCH_INDEX_REFRESH'),
+      );
+  static const automaticMaterializedViewRefresh =
+      BigqueryReservationAssignmentJobType._(
+        TfArgLiteral('AUTOMATIC_MATERIALIZED_VIEW_REFRESH'),
+      );
 
   static const List<BigqueryReservationAssignmentJobType> values = [
-    unspecified,
     pipeline,
     query,
     continuous,
+    mlExternal,
+    background,
+    backgroundChangeDataCapture,
+    backgroundColumnMetadataIndex,
+    backgroundSearchIndexRefresh,
+    automaticMaterializedViewRefresh,
   ];
 }
 

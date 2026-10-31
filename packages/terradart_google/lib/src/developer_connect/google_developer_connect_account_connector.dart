@@ -163,6 +163,10 @@ extension type const DeveloperConnectAccountConnectorSystemProviderId._(
   static const dynatrace = DeveloperConnectAccountConnectorSystemProviderId._(
     TfArgLiteral('DYNATRACE'),
   );
+  static const bitbucketCloud =
+      DeveloperConnectAccountConnectorSystemProviderId._(
+        TfArgLiteral('BITBUCKET_CLOUD'),
+      );
 
   static const List<DeveloperConnectAccountConnectorSystemProviderId> values = [
     github,
@@ -173,6 +177,7 @@ extension type const DeveloperConnectAccountConnectorSystemProviderId._(
     newRelic,
     datastax,
     dynatrace,
+    bitbucketCloud,
   ];
 }
 

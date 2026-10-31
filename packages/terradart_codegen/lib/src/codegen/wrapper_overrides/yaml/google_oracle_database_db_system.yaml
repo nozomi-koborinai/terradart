@@ -48,8 +48,9 @@ prelude: |
 
     static const standardEdition = OracleDatabaseDbSystemDatabaseEdition._(TfArgLiteral('STANDARD_EDITION'));
     static const enterpriseEdition = OracleDatabaseDbSystemDatabaseEdition._(TfArgLiteral('ENTERPRISE_EDITION'));
+    static const enterpriseEditionHighPerformance = OracleDatabaseDbSystemDatabaseEdition._(TfArgLiteral('ENTERPRISE_EDITION_HIGH_PERFORMANCE'));
 
-    static const List<OracleDatabaseDbSystemDatabaseEdition> values = [standardEdition, enterpriseEdition];
+    static const List<OracleDatabaseDbSystemDatabaseEdition> values = [standardEdition, enterpriseEdition, enterpriseEditionHighPerformance];
   }
 
   /// DB System license model.

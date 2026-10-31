@@ -66,9 +66,6 @@ extension type const ApihubPluginInstanceCurationType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubPluginInstanceCurationType.arg(TfArg<String> arg) : this._(arg);
 
-  static const curationTypeUnspecified = ApihubPluginInstanceCurationType._(
-    TfArgLiteral('CURATION_TYPE_UNSPECIFIED'),
-  );
   static const defaultCurationForApiMetadata =
       ApihubPluginInstanceCurationType._(
         TfArgLiteral('DEFAULT_CURATION_FOR_API_METADATA'),
@@ -79,7 +76,6 @@ extension type const ApihubPluginInstanceCurationType._(TfArg<String> _)
       );
 
   static const List<ApihubPluginInstanceCurationType> values = [
-    curationTypeUnspecified,
     defaultCurationForApiMetadata,
     customCurationForApiMetadata,
   ];
@@ -141,9 +137,6 @@ extension type const ApihubPluginInstanceAuthType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ApihubPluginInstanceAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  static const authTypeUnspecified = ApihubPluginInstanceAuthType._(
-    TfArgLiteral('AUTH_TYPE_UNSPECIFIED'),
-  );
   static const noAuth = ApihubPluginInstanceAuthType._(TfArgLiteral('NO_AUTH'));
   static const googleServiceAccount = ApihubPluginInstanceAuthType._(
     TfArgLiteral('GOOGLE_SERVICE_ACCOUNT'),
@@ -157,7 +150,6 @@ extension type const ApihubPluginInstanceAuthType._(TfArg<String> _)
   );
 
   static const List<ApihubPluginInstanceAuthType> values = [
-    authTypeUnspecified,
     noAuth,
     googleServiceAccount,
     userPassword,
@@ -200,10 +192,6 @@ extension type const ApihubPluginInstanceHttpElementLocation._(TfArg<String> _)
   const ApihubPluginInstanceHttpElementLocation.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const httpElementLocationUnspecified =
-      ApihubPluginInstanceHttpElementLocation._(
-        TfArgLiteral('HTTP_ELEMENT_LOCATION_UNSPECIFIED'),
-      );
   static const query = ApihubPluginInstanceHttpElementLocation._(
     TfArgLiteral('QUERY'),
   );
@@ -221,7 +209,6 @@ extension type const ApihubPluginInstanceHttpElementLocation._(TfArg<String> _)
   );
 
   static const List<ApihubPluginInstanceHttpElementLocation> values = [
-    httpElementLocationUnspecified,
     query,
     header,
     path,

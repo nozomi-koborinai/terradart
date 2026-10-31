@@ -221422,7 +221422,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'networkTier',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ComputeInstanceFromTemplateAccessConfigNetworkTier',
+          dartType: 'ComputeInstanceFromTemplateNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -221851,7 +221851,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'networkTier',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier',
+          dartType: 'ComputeInstanceFromTemplateNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -241395,7 +241395,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'ContainerClusterNetworkConfigNetworkPerformanceConfig',
+          helper: 'ContainerClusterNetworkPerformanceConfig',
         ),
         MigrateSlot(
           tfName: 'pod_cidr_overprovision_config',
@@ -241404,19 +241404,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'ContainerClusterPodCidrOverprovisionConfig',
-        ),
-      ],
-    ),
-    'ContainerClusterNetworkConfigNetworkPerformanceConfig': MigrateHelper(
-      className: 'ContainerClusterNetworkConfigNetworkPerformanceConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'total_egress_bandwidth_tier',
-          dartName: 'totalEgressBandwidthTier',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          dartType:
-              'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier',
         ),
       ],
     ),
@@ -328856,16 +328843,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ApihubApiHubInstanceEncryptionType': MigrateEnum(
       name: 'ApihubApiHubInstanceEncryptionType',
-      members: <String, String>{
-        'ENCRYPTION_TYPE_UNSPECIFIED': 'encryptionTypeUnspecified',
-        'GMEK': 'gmek',
-        'CMEK': 'cmek',
-      },
+      members: <String, String>{'GMEK': 'gmek', 'CMEK': 'cmek'},
     ),
     'ApihubPluginCategory': MigrateEnum(
       name: 'ApihubPluginCategory',
       members: <String, String>{
-        'PLUGIN_CATEGORY_UNSPECIFIED': 'pluginCategoryUnspecified',
         'API_GATEWAY': 'apiGateway',
         'API_PRODUCER': 'apiProducer',
       },
@@ -328873,7 +328855,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApihubPluginInstanceAuthType': MigrateEnum(
       name: 'ApihubPluginInstanceAuthType',
       members: <String, String>{
-        'AUTH_TYPE_UNSPECIFIED': 'authTypeUnspecified',
         'NO_AUTH': 'noAuth',
         'GOOGLE_SERVICE_ACCOUNT': 'googleServiceAccount',
         'USER_PASSWORD': 'userPassword',
@@ -328884,7 +328865,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApihubPluginInstanceCurationType': MigrateEnum(
       name: 'ApihubPluginInstanceCurationType',
       members: <String, String>{
-        'CURATION_TYPE_UNSPECIFIED': 'curationTypeUnspecified',
         'DEFAULT_CURATION_FOR_API_METADATA': 'defaultCurationForApiMetadata',
         'CUSTOM_CURATION_FOR_API_METADATA': 'customCurationForApiMetadata',
       },
@@ -328892,7 +328872,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApihubPluginInstanceHttpElementLocation': MigrateEnum(
       name: 'ApihubPluginInstanceHttpElementLocation',
       members: <String, String>{
-        'HTTP_ELEMENT_LOCATION_UNSPECIFIED': 'httpElementLocationUnspecified',
         'QUERY': 'query',
         'HEADER': 'header',
         'PATH': 'path',
@@ -328913,7 +328892,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApihubPluginTriggerMode': MigrateEnum(
       name: 'ApihubPluginTriggerMode',
       members: <String, String>{
-        'TRIGGER_MODE_UNSPECIFIED': 'triggerModeUnspecified',
         'API_HUB_ON_DEMAND_TRIGGER': 'apiHubOnDemandTrigger',
         'API_HUB_SCHEDULE_TRIGGER': 'apiHubScheduleTrigger',
         'NON_API_HUB_MANAGED': 'nonApiHubManaged',
@@ -328922,7 +328900,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ApihubPluginValueType': MigrateEnum(
       name: 'ApihubPluginValueType',
       members: <String, String>{
-        'VALUE_TYPE_UNSPECIFIED': 'valueTypeUnspecified',
         'STRING': 'string',
         'INT': 'int',
         'BOOL': 'bool',
@@ -328953,6 +328930,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'CLOUD_FIRESTORE': 'cloudFirestore',
         'CLOUD_DATASTORE_COMPATIBILITY': 'cloudDatastore',
+        'CLOUD_DATASTORE': 'legacyCloudDatastore',
       },
     ),
     'AppEngineDomainMappingOverrideStrategy': MigrateEnum(
@@ -329357,7 +329335,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AssuredWorkloadsWorkloadComplianceRegime': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadComplianceRegime',
       members: <String, String>{
-        'COMPLIANCE_REGIME_UNSPECIFIED': 'complianceRegimeUnspecified',
         'IL4': 'il4ComplianceRegime',
         'CJIS': 'cjis',
         'FEDRAMP_HIGH': 'fedrampHigh',
@@ -329384,6 +329361,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT':
             'healthcareAndLifeSciencesControlsUsSupport',
         'IRS_1075': 'irs1075',
+        'AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT':
+            'australiaDataBoundaryAndSupport',
+        'CANADA_DATA_BOUNDARY_AND_SUPPORT': 'canadaDataBoundaryAndSupport',
+        'DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS':
+            'dataBoundaryForCanadaControlledGoods',
+        'DATA_BOUNDARY_FOR_CANADA_PROTECTED_B':
+            'dataBoundaryForCanadaProtectedB',
+        'DATA_BOUNDARY_FOR_CJIS': 'dataBoundaryForCjis',
+        'DATA_BOUNDARY_FOR_FEDRAMP_HIGH': 'dataBoundaryForFedrampHigh',
+        'DATA_BOUNDARY_FOR_FEDRAMP_MODERATE': 'dataBoundaryForFedrampModerate',
+        'DATA_BOUNDARY_FOR_IL2': 'dataBoundaryForIl2',
+        'DATA_BOUNDARY_FOR_IL4': 'dataBoundaryForIl4',
+        'DATA_BOUNDARY_FOR_IL5': 'dataBoundaryForIl5',
+        'DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075':
+            'dataBoundaryForIrsPublication1075',
+        'DATA_BOUNDARY_FOR_ITAR': 'dataBoundaryForItar',
+        'EU_DATA_BOUNDARY_AND_SUPPORT': 'euDataBoundaryAndSupport',
+        'ISRAEL_DATA_BOUNDARY_AND_SUPPORT': 'israelDataBoundaryAndSupport',
+        'JAPAN_DATA_BOUNDARY': 'japanDataBoundary',
+        'SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS':
+            'switzerlandDataBoundaryWithAccessJustifications',
+        'KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS':
+            'ksaDataBoundaryWithAccessJustifications',
+        'REGIONAL_DATA_BOUNDARY': 'regionalDataBoundary',
+        'US_DATA_BOUNDARY_AND_SUPPORT': 'usDataBoundaryAndSupport',
+        'US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES':
+            'usDataBoundaryForHealthcareAndLifeSciences',
+        'US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT':
+            'usDataBoundaryForHealthcareAndLifeSciencesWithSupport',
+        'CANADA_CONTROLLED_GOODS': 'canadaControlledGoods',
       },
     ),
     'AssuredWorkloadsWorkloadKajEnrollmentType': MigrateEnum(
@@ -329395,7 +329402,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AssuredWorkloadsWorkloadPartner': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadPartner',
       members: <String, String>{
-        'PARTNER_UNSPECIFIED': 'partnerUnspecified',
         'LOCAL_CONTROLS_BY_S3NS': 'localControlsByS3ns',
         'SOVEREIGN_CONTROLS_BY_T_SYSTEMS': 'sovereignControlsByTSystems',
         'SOVEREIGN_CONTROLS_BY_SIA_MINSAIT': 'sovereignControlsBySiaMinsait',
@@ -329408,11 +329414,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AssuredWorkloadsWorkloadResourceType': MigrateEnum(
       name: 'AssuredWorkloadsWorkloadResourceType',
       members: <String, String>{
-        'RESOURCE_TYPE_UNSPECIFIED': 'resourceTypeUnspecified',
         'CONSUMER_PROJECT': 'consumerProject',
+        'CONSUMER_FOLDER': 'consumerFolder',
         'ENCRYPTION_KEYS_PROJECT': 'encryptionKeysProject',
         'KEYRING': 'keyring',
-        'CONSUMER_FOLDER': 'consumerFolder',
       },
     ),
     'AutoscalerCpuPredictiveMethod': MigrateEnum(
@@ -329944,6 +329949,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MONTHLY': 'monthly',
         'ANNUAL': 'annual',
         'THREE_YEAR': 'threeYear',
+        'FLEX_FLAT_RATE': 'flexFlatRate',
+        'MONTHLY_FLAT_RATE': 'monthlyFlatRate',
+        'ANNUAL_FLAT_RATE': 'annualFlatRate',
+        'NONE': 'none',
       },
     ),
     'BigqueryCapacityCommitmentRenewalPlan': MigrateEnum(
@@ -329954,6 +329963,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MONTHLY': 'monthly',
         'ANNUAL': 'annual',
         'THREE_YEAR': 'threeYear',
+        'FLEX_FLAT_RATE': 'flexFlatRate',
+        'TRIAL': 'trial',
+        'MONTHLY_FLAT_RATE': 'monthlyFlatRate',
+        'ANNUAL_FLAT_RATE': 'annualFlatRate',
       },
     ),
     'BigqueryConnectionCloudSqlType': MigrateEnum(
@@ -330105,10 +330118,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'BigqueryReservationAssignmentJobType': MigrateEnum(
       name: 'BigqueryReservationAssignmentJobType',
       members: <String, String>{
-        'JOB_TYPE_UNSPECIFIED': 'unspecified',
         'PIPELINE': 'pipeline',
         'QUERY': 'query',
         'CONTINUOUS': 'continuous',
+        'ML_EXTERNAL': 'mlExternal',
+        'BACKGROUND': 'background',
+        'BACKGROUND_CHANGE_DATA_CAPTURE': 'backgroundChangeDataCapture',
+        'BACKGROUND_COLUMN_METADATA_INDEX': 'backgroundColumnMetadataIndex',
+        'BACKGROUND_SEARCH_INDEX_REFRESH': 'backgroundSearchIndexRefresh',
+        'AUTOMATIC_MATERIALIZED_VIEW_REFRESH':
+            'automaticMaterializedViewRefresh',
       },
     ),
     'BigqueryReservationEdition': MigrateEnum(
@@ -330124,6 +330143,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'FIXED_TYPE': 'fixedType',
         'ANY_TYPE': 'anyType',
+        'FIXED_TABLE': 'fixedTable',
       },
     ),
     'BigqueryRoutineArgumentMode': MigrateEnum(
@@ -330463,6 +330483,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TWILIO': 'twilio',
         'GOOGLE_TELEPHONY_PLATFORM': 'googleTelephonyPlatform',
         'CONTACT_CENTER_AS_A_SERVICE': 'contactCenterAsAService',
+        'CONTACT_CENTER_AS_A_SERVICE_CHAT': 'contactCenterAsAServiceChat',
+        'FIVE9': 'five9',
+        'CONTACT_CENTER_INTEGRATION': 'contactCenterIntegration',
+        'WHATSAPP': 'whatsapp',
+        'INSTAGRAM': 'instagram',
       },
     ),
     'CesAppErrorHandlingStrategy': MigrateEnum(
@@ -330522,12 +330547,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'CesAppSemanticSimilarityChannel': MigrateEnum(
       name: 'CesAppSemanticSimilarityChannel',
-      members: <String, String>{
-        'SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED':
-            'semanticSimilarityChannelUnspecified',
-        'TEXT': 'text',
-        'AUDIO': 'audio',
-      },
+      members: <String, String>{'TEXT': 'text', 'AUDIO': 'audio'},
     ),
     'CesAppTheme': MigrateEnum(
       name: 'CesAppTheme',
@@ -330569,6 +330589,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TWILIO': 'twilio',
         'GOOGLE_TELEPHONY_PLATFORM': 'googleTelephonyPlatform',
         'CONTACT_CENTER_AS_A_SERVICE': 'contactCenterAsAService',
+        'CONTACT_CENTER_AS_A_SERVICE_CHAT': 'contactCenterAsAServiceChat',
         'FIVE9': 'five9',
         'CONTACT_CENTER_INTEGRATION': 'contactCenterIntegration',
         'WHATSAPP': 'whatsapp',
@@ -330578,7 +330599,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'CesDeploymentModality': MigrateEnum(
       name: 'CesDeploymentModality',
       members: <String, String>{
-        'MODALITY_UNSPECIFIED': 'modalityUnspecified',
         'CHAT_AND_VOICE': 'chatAndVoice',
         'VOICE_ONLY': 'voiceOnly',
         'CHAT_ONLY': 'chatOnly',
@@ -330595,11 +330615,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'CesDeploymentTheme': MigrateEnum(
       name: 'CesDeploymentTheme',
-      members: <String, String>{
-        'THEME_UNSPECIFIED': 'themeUnspecified',
-        'LIGHT': 'light',
-        'DARK': 'dark',
-      },
+      members: <String, String>{'LIGHT': 'light', 'DARK': 'dark'},
     ),
     'CesGuardrailCategory': MigrateEnum(
       name: 'CesGuardrailCategory',
@@ -330616,6 +330632,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SIMPLE_STRING_MATCH': 'simpleStringMatch',
         'WORD_BOUNDARY_STRING_MATCH': 'wordBoundaryStringMatch',
         'REGEXP_MATCH': 'regexpMatch',
+        'SENSITIVE_WORDS': 'sensitiveWords',
       },
     ),
     'CesGuardrailPolicyScope': MigrateEnum(
@@ -331715,8 +331732,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'CloudfunctionsFunctionDockerRegistry': MigrateEnum(
       name: 'CloudfunctionsFunctionDockerRegistry',
       members: <String, String>{
-        'ARTIFACT_REGISTRY': 'artifactRegistry',
         'CONTAINER_REGISTRY': 'containerRegistry',
+        'ARTIFACT_REGISTRY': 'artifactRegistry',
       },
     ),
     'CloudfunctionsFunctionIngressSettings': MigrateEnum(
@@ -331724,6 +331741,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ALLOW_ALL': 'allowAll',
         'ALLOW_INTERNAL_ONLY': 'allowInternalOnly',
+        'ALLOW_INTERNAL_AND_GCLB': 'allowInternalAndGclb',
       },
     ),
     'CloudfunctionsFunctionStatus': MigrateEnum(
@@ -331740,8 +331758,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'CloudfunctionsFunctionVpcConnectorEgressSettings': MigrateEnum(
       name: 'CloudfunctionsFunctionVpcConnectorEgressSettings',
       members: <String, String>{
-        'ALL_TRAFFIC': 'allTraffic',
         'PRIVATE_RANGES_ONLY': 'privateRangesOnly',
+        'ALL_TRAFFIC': 'allTraffic',
       },
     ),
     'ColabNotebookExecutionAcceleratorType': MigrateEnum(
@@ -331934,13 +331952,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeAttachedDiskInterface': MigrateEnum(
       name: 'ComputeAttachedDiskInterface',
-      members: <String, String>{'SCSI': 'scsi', 'NVME': 'nvme'},
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
     ),
     'ComputeAttachedDiskMode': MigrateEnum(
       name: 'ComputeAttachedDiskMode',
       members: <String, String>{
-        'READ_WRITE': 'readWrite',
         'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
       },
     ),
     'ComputeBackendServicePolicyName': MigrateEnum(
@@ -331969,6 +331987,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TDX_CAPABLE': 'tdxCapable',
         'SEV_LIVE_MIGRATABLE_V2': 'sevLiveMigratableV2',
         'SNP_SVSM_CAPABLE': 'snpSvsmCapable',
+        'BARE_METAL_LINUX_COMPATIBLE': 'bareMetalLinuxCompatible',
+        'BMSAI_CAPABLE': 'bmsaiCapable',
+        'CCA_CAPABLE': 'ccaCapable',
+        'IDPF': 'idpf',
+        'SUSPEND_SAFE_FPR': 'suspendSafeFpr',
       },
     ),
     'ComputeExternalVpnGatewayRedundancyType': MigrateEnum(
@@ -332068,7 +332091,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceArchitecture': MigrateEnum(
       name: 'ComputeInstanceArchitecture',
-      members: <String, String>{'X86_64': 'x8664', 'ARM64': 'arm64'},
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
     ),
     'ComputeInstanceDesiredStatus': MigrateEnum(
       name: 'ComputeInstanceDesiredStatus',
@@ -332078,17 +332101,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TERMINATED': 'terminated',
       },
     ),
-    'ComputeInstanceFromTemplateAccessConfigNetworkTier': MigrateEnum(
-      name: 'ComputeInstanceFromTemplateAccessConfigNetworkTier',
-      members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
-    ),
     'ComputeInstanceFromTemplateArchitecture': MigrateEnum(
       name: 'ComputeInstanceFromTemplateArchitecture',
-      members: <String, String>{'X86_64': 'x8664', 'ARM64': 'arm64'},
+      members: <String, String>{'ARM64': 'arm64', 'X86_64': 'x8664'},
     ),
     'ComputeInstanceFromTemplateConfidentialInstanceType': MigrateEnum(
       name: 'ComputeInstanceFromTemplateConfidentialInstanceType',
       members: <String, String>{
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
         'SEV': 'sev',
         'SEV_SNP': 'sevSnp',
         'TDX': 'tdx',
@@ -332115,16 +332136,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceFromTemplateInterface': MigrateEnum(
       name: 'ComputeInstanceFromTemplateInterface',
-      members: <String, String>{'SCSI': 'scsi', 'NVME': 'nvme'},
-    ),
-    'ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier': MigrateEnum(
-      name: 'ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier',
-      members: <String, String>{
-        'FIXED_STANDARD': 'fixedStandard',
-        'PREMIUM': 'premium',
-        'STANDARD': 'standard',
-        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
-      },
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
     ),
     'ComputeInstanceFromTemplateKeyRevocationActionType': MigrateEnum(
       name: 'ComputeInstanceFromTemplateKeyRevocationActionType',
@@ -332137,14 +332149,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'READ_WRITE': 'readWrite',
       },
     ),
+    'ComputeInstanceFromTemplateNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromTemplateNetworkTier',
+      members: <String, String>{
+        'FIXED_STANDARD': 'fixedStandard',
+        'PREMIUM': 'premium',
+        'STANDARD': 'standard',
+        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
+      },
+    ),
     'ComputeInstanceFromTemplateNicType': MigrateEnum(
       name: 'ComputeInstanceFromTemplateNicType',
       members: <String, String>{
         'GVNIC': 'gvnic',
-        'VIRTIO_NET': 'virtioNet',
         'IDPF': 'idpf',
-        'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'MRDMA': 'mrdma',
+        'VIRTIO_NET': 'virtioNet',
       },
     ),
     'ComputeInstanceFromTemplateOnHostMaintenance': MigrateEnum(
@@ -332158,18 +332179,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeInstanceFromTemplatePerformanceMonitoringUnit': MigrateEnum(
       name: 'ComputeInstanceFromTemplatePerformanceMonitoringUnit',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'ENHANCED': 'enhanced',
         'ARCHITECTURAL': 'architectural',
+        'ENHANCED': 'enhanced',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeInstanceFromTemplateProvisioningModel': MigrateEnum(
       name: 'ComputeInstanceFromTemplateProvisioningModel',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'SPOT': 'spot',
         'FLEX_START': 'flexStart',
         'RESERVATION_BOUND': 'reservationBound',
+        'SPOT': 'spot',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeInstanceFromTemplateStackType': MigrateEnum(
@@ -332182,7 +332203,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceFromTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeInstanceFromTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
     ),
     'ComputeInstanceGroupManagerStatefulDeleteRule': MigrateEnum(
       name: 'ComputeInstanceGroupManagerStatefulDeleteRule',
@@ -332200,7 +332221,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceInterface': MigrateEnum(
       name: 'ComputeInstanceInterface',
-      members: <String, String>{'SCSI': 'scsi', 'NVME': 'nvme'},
+      members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
     ),
     'ComputeInstanceKeyRevocationActionType': MigrateEnum(
       name: 'ComputeInstanceKeyRevocationActionType',
@@ -332267,13 +332288,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeInstanceTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeInstanceTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
     ),
     'ComputeInstanceTemplateType': MigrateEnum(
       name: 'ComputeInstanceTemplateType',
       members: <String, String>{
-        'SCRATCH': 'scratch',
         'PERSISTENT': 'persistent',
+        'SCRATCH': 'scratch',
       },
     ),
     'ComputeInterconnectAttachmentBandwidth': MigrateEnum(
@@ -332489,8 +332510,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeNodeGroupMaintenancePolicy',
       members: <String, String>{
         'DEFAULT': 'defaultCase',
-        'RESTART_IN_PLACE': 'restartInPlace',
         'MIGRATE_WITHIN_NODE_GROUP': 'migrateWithinNodeGroup',
+        'RESTART_IN_PLACE': 'restartInPlace',
       },
     ),
     'ComputeNodeGroupMode': MigrateEnum(
@@ -332685,10 +332706,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionCommitmentResourcesType': MigrateEnum(
       name: 'ComputeRegionCommitmentResourcesType',
       members: <String, String>{
-        'VCPU': 'vcpu',
-        'MEMORY': 'memory',
-        'LOCAL_SSD': 'localSsd',
         'ACCELERATOR': 'accelerator',
+        'LOCAL_SSD': 'localSsd',
+        'MEMORY': 'memory',
+        'VCPU': 'vcpu',
       },
     ),
     'ComputeRegionCommitmentStatus': MigrateEnum(
@@ -332793,6 +332814,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionInstanceTemplateConfidentialInstanceType': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateConfidentialInstanceType',
       members: <String, String>{
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
         'SEV': 'sev',
         'SEV_SNP': 'sevSnp',
         'TDX': 'tdx',
@@ -332820,8 +332843,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionInstanceTemplateMode': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateMode',
       members: <String, String>{
-        'READ_WRITE': 'readWrite',
         'READ_ONLY': 'readOnly',
+        'READ_WRITE': 'readWrite',
       },
     ),
     'ComputeRegionInstanceTemplateNetworkTier': MigrateEnum(
@@ -332837,10 +332860,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeRegionInstanceTemplateNicType',
       members: <String, String>{
         'GVNIC': 'gvnic',
-        'VIRTIO_NET': 'virtioNet',
-        'MRDMA': 'mrdma',
-        'IRDMA': 'irdma',
         'IDPF': 'idpf',
+        'IRDMA': 'irdma',
+        'MRDMA': 'mrdma',
+        'VIRTIO_NET': 'virtioNet',
       },
     ),
     'ComputeRegionInstanceTemplateOnHostMaintenance': MigrateEnum(
@@ -332854,18 +332877,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionInstanceTemplatePerformanceMonitoringUnit': MigrateEnum(
       name: 'ComputeRegionInstanceTemplatePerformanceMonitoringUnit',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'ENHANCED': 'enhanced',
         'ARCHITECTURAL': 'architectural',
+        'ENHANCED': 'enhanced',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeRegionInstanceTemplateProvisioningModel': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateProvisioningModel',
       members: <String, String>{
-        'STANDARD': 'standard',
-        'SPOT': 'spot',
         'FLEX_START': 'flexStart',
         'RESERVATION_BOUND': 'reservationBound',
+        'SPOT': 'spot',
+        'STANDARD': 'standard',
       },
     ),
     'ComputeRegionInstanceTemplateStackType': MigrateEnum(
@@ -332878,13 +332901,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ComputeRegionInstanceTemplateTotalEgressBandwidthTier': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateTotalEgressBandwidthTier',
-      members: <String, String>{'TIER_1': 'tier1', 'DEFAULT': 'defaultCase'},
+      members: <String, String>{'DEFAULT': 'defaultCase', 'TIER_1': 'tier1'},
     ),
     'ComputeRegionInstanceTemplateType': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateType',
       members: <String, String>{
-        'SCRATCH': 'scratch',
         'PERSISTENT': 'persistent',
+        'SCRATCH': 'scratch',
       },
     ),
     'ComputeRegionInstantSnapshotDeletionPolicy': MigrateEnum(
@@ -333164,9 +333187,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRouterNatEndpointTypes': MigrateEnum(
       name: 'ComputeRouterNatEndpointTypes',
       members: <String, String>{
-        'ENDPOINT_TYPE_VM': 'endpointTypeVm',
-        'ENDPOINT_TYPE_SWG': 'endpointTypeSwg',
         'ENDPOINT_TYPE_MANAGED_PROXY_LB': 'endpointTypeManagedProxyLb',
+        'ENDPOINT_TYPE_SWG': 'endpointTypeSwg',
+        'ENDPOINT_TYPE_VM': 'endpointTypeVm',
       },
     ),
     'ComputeRouterNatFilter': MigrateEnum(
@@ -333420,6 +333443,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CONVERSATION_OUTCOME': 'conversationOutcome',
         'CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE':
             'conversationOutcomeEscalationInitiatorRole',
+        'CONVERSATION_OUTCOME_AI_AVERSION': 'conversationOutcomeAiAversion',
+        'CONVERSATION_OUTCOME_ESCALATION_REASON':
+            'conversationOutcomeEscalationReason',
       },
     ),
     'ContactCenterInsightsQaQuestionType': MigrateEnum(
@@ -333434,6 +333460,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'QA_SCORECARD_SOURCE_CUSTOMER_DEFINED': 'customerDefined',
         'QA_SCORECARD_SOURCE_DISCOVERY_ENGINE': 'discoveryEngine',
+        'QA_SCORECARD_SOURCE_INTENT_TAXONOMY':
+            'qaScorecardSourceIntentTaxonomy',
       },
     ),
     'ContainerAttachedClusterDistribution': MigrateEnum(
@@ -333678,14 +333706,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ContainerClusterLoggingConfigEnableComponents',
       members: <String, String>{
         'SYSTEM_COMPONENTS': 'systemComponents',
+        'WORKLOADS': 'workloads',
         'APISERVER': 'apiserver',
+        'SCHEDULER': 'scheduler',
         'CONTROLLER_MANAGER': 'controllerManager',
-        'KCP_CONNECTION': 'kcpConnection',
         'KCP_SSHD': 'kcpSshd',
+        'KCP_CONNECTION': 'kcpConnection',
         'KCP_HPA': 'kcpHpa',
         'KCP_VPA': 'kcpVpa',
-        'SCHEDULER': 'scheduler',
-        'WORKLOADS': 'workloads',
       },
     ),
     'ContainerClusterLoggingVariant': MigrateEnum(
@@ -333712,21 +333740,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DAEMONSET': 'daemonset',
         'DEPLOYMENT': 'deployment',
         'STATEFULSET': 'statefulset',
-        'KUBELET': 'kubelet',
         'CADVISOR': 'cadvisor',
+        'KUBELET': 'kubelet',
         'DCGM': 'dcgm',
         'JOBSET': 'jobset',
       },
     ),
-    'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier':
-        MigrateEnum(
-          name:
-              'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier',
-          members: <String, String>{
-            'TIER_1': 'tier1',
-            'TIER_UNSPECIFIED': 'tierUnspecified',
-          },
-        ),
     'ContainerClusterNetworkTier': MigrateEnum(
       name: 'ContainerClusterNetworkTier',
       members: <String, String>{
@@ -334026,10 +334045,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ContainerNodePoolTotalEgressBandwidthTier': MigrateEnum(
       name: 'ContainerNodePoolTotalEgressBandwidthTier',
-      members: <String, String>{
-        'TIER_1': 'tier1',
-        'TIER_UNSPECIFIED': 'tierUnspecified',
-      },
+      members: <String, String>{'TIER_1': 'tier1'},
     ),
     'ContainerNodePoolTransparentHugepageDefrag': MigrateEnum(
       name: 'ContainerNodePoolTransparentHugepageDefrag',
@@ -334076,6 +334092,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'GA': 'ga',
         'DEPRECATED': 'deprecated',
         'DISABLED': 'disabled',
+        'EAP': 'eap',
       },
     ),
     'DataCatalogTagTemplatePrimitiveType': MigrateEnum(
@@ -334735,13 +334752,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataSqlDatabaseInstancesState': MigrateEnum(
       name: 'DataSqlDatabaseInstancesState',
       members: <String, String>{
-        'SQL_INSTANCE_STATE_UNSPECIFIED': 'sqlInstanceStateUnspecified',
         'RUNNABLE': 'runnable',
         'SUSPENDED': 'suspended',
         'PENDING_DELETE': 'pendingDelete',
         'PENDING_CREATE': 'pendingCreate',
         'MAINTENANCE': 'maintenance',
         'FAILED': 'failed',
+        'ONLINE_MAINTENANCE': 'onlineMaintenance',
+        'REPAIRING': 'repairing',
       },
     ),
     'DataStorageControlFolderIntelligenceFindingsSummaryResourceScope':
@@ -334920,6 +334938,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SQLSERVER_2025_STANDARD': 'sqlserver2025Standard',
         'SQLSERVER_2025_ENTERPRISE': 'sqlserver2025Enterprise',
         'SQLSERVER_2025_EXPRESS': 'sqlserver2025Express',
+        'MYSQL_5_1': 'mysql51',
+        'MYSQL_5_5': 'mysql55',
+        'MYSQL_8_0_18': 'mysql8018',
+        'MYSQL_8_0_26': 'mysql8026',
+        'MYSQL_8_0_27': 'mysql8027',
+        'MYSQL_8_0_28': 'mysql8028',
+        'MYSQL_8_0_29': 'mysql8029',
+        'MYSQL_8_0_30': 'mysql8030',
+        'MYSQL_8_0_31': 'mysql8031',
+        'MYSQL_8_0_32': 'mysql8032',
+        'MYSQL_8_0_33': 'mysql8033',
+        'MYSQL_8_0_34': 'mysql8034',
+        'MYSQL_8_0_35': 'mysql8035',
+        'MYSQL_8_0_36': 'mysql8036',
+        'MYSQL_8_0_37': 'mysql8037',
+        'MYSQL_8_0_39': 'mysql8039',
+        'MYSQL_8_0_40': 'mysql8040',
+        'MYSQL_8_0_41': 'mysql8041',
+        'MYSQL_8_0_42': 'mysql8042',
+        'MYSQL_8_0_43': 'mysql8043',
+        'MYSQL_8_0_44': 'mysql8044',
+        'MYSQL_8_0_45': 'mysql8045',
+        'MYSQL_8_0_46': 'mysql8046',
+        'MYSQL_9_7': 'mysql97',
+        'SQLSERVER_2017_STANDARD': 'sqlserver2017Standard',
+        'SQLSERVER_2017_ENTERPRISE': 'sqlserver2017Enterprise',
+        'SQLSERVER_2017_EXPRESS': 'sqlserver2017Express',
+        'SQLSERVER_2017_WEB': 'sqlserver2017Web',
+        'POSTGRES_19': 'postgres19',
+        'POSTGRES_20': 'postgres20',
+        'SQLSERVER_2019_STANDARD': 'sqlserver2019Standard',
+        'SQLSERVER_2019_ENTERPRISE': 'sqlserver2019Enterprise',
+        'SQLSERVER_2019_EXPRESS': 'sqlserver2019Express',
+        'SQLSERVER_2019_WEB': 'sqlserver2019Web',
       },
     ),
     'DataflowJobIpConfiguration': MigrateEnum(
@@ -335017,18 +335069,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataplexZoneLocationType': MigrateEnum(
       name: 'DataplexZoneLocationType',
       members: <String, String>{
-        'LOCATION_TYPE_UNSPECIFIED': 'locationTypeUnspecified',
         'SINGLE_REGION': 'singleRegion',
         'MULTI_REGION': 'multiRegion',
       },
     ),
     'DataplexZoneType': MigrateEnum(
       name: 'DataplexZoneType',
-      members: <String, String>{
-        'TYPE_UNSPECIFIED': 'typeUnspecified',
-        'RAW': 'raw',
-        'CURATED': 'curated',
-      },
+      members: <String, String>{'RAW': 'raw', 'CURATED': 'curated'},
     ),
     'DataprocBatchScenarios': MigrateEnum(
       name: 'DataprocBatchScenarios',
@@ -335246,7 +335293,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataprocWorkflowTemplateConsumeReservationType': MigrateEnum(
       name: 'DataprocWorkflowTemplateConsumeReservationType',
       members: <String, String>{
-        'TYPE_UNSPECIFIED': 'typeUnspecified',
         'NO_RESERVATION': 'noReservation',
         'ANY_RESERVATION': 'anyReservation',
         'SPECIFIC_RESERVATION': 'specificReservation',
@@ -335292,16 +335338,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataprocWorkflowTemplatePreemptibility': MigrateEnum(
       name: 'DataprocWorkflowTemplatePreemptibility',
       members: <String, String>{
-        'PREEMPTIBILITY_UNSPECIFIED': 'preemptibilityUnspecified',
         'NON_PREEMPTIBLE': 'nonPreemptible',
         'PREEMPTIBLE': 'preemptible',
+        'SPOT': 'spot',
       },
     ),
     'DataprocWorkflowTemplatePrivateIpv6GoogleAccess': MigrateEnum(
       name: 'DataprocWorkflowTemplatePrivateIpv6GoogleAccess',
       members: <String, String>{
-        'PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED':
-            'privateIpv6GoogleAccessUnspecified',
         'INHERIT_FROM_SUBNETWORK': 'inheritFromSubnetwork',
         'OUTBOUND': 'outbound',
         'BIDIRECTIONAL': 'bidirectional',
@@ -335406,14 +335450,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NEW_RELIC': 'newRelic',
         'DATASTAX': 'datastax',
         'DYNATRACE': 'dynatrace',
+        'BITBUCKET_CLOUD': 'bitbucketCloud',
       },
     ),
     'DeveloperConnectConnectionGithubApp': MigrateEnum(
       name: 'DeveloperConnectConnectionGithubApp',
       members: <String, String>{
-        'GIT_HUB_APP_UNSPECIFIED': 'gitHubAppUnspecified',
         'DEVELOPER_CONNECT': 'developerConnect',
         'FIREBASE': 'firebase',
+        'GEMINI_CODE_ASSIST': 'geminiCodeAssist',
+        'DATAFORM': 'dataform',
       },
     ),
     'DialogflowAgentApiVersion': MigrateEnum(
@@ -336096,10 +336142,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'DiscoveryEngineSearchEngineAppType': MigrateEnum(
       name: 'DiscoveryEngineSearchEngineAppType',
-      members: <String, String>{
-        'APP_TYPE_UNSPECIFIED': 'appTypeUnspecified',
-        'APP_TYPE_INTRANET': 'appTypeIntranet',
-      },
+      members: <String, String>{'APP_TYPE_INTRANET': 'appTypeIntranet'},
     ),
     'DiscoveryEngineSearchEngineConfigSearchAddOns': MigrateEnum(
       name: 'DiscoveryEngineSearchEngineConfigSearchAddOns',
@@ -336773,9 +336816,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'FolderIamAuditConfigLogType': MigrateEnum(
       name: 'FolderIamAuditConfigLogType',
       members: <String, String>{
-        'DATA_READ': 'dataRead',
-        'DATA_WRITE': 'dataWrite',
         'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
       },
     ),
     'ForwardingPath': MigrateEnum(
@@ -336965,12 +337008,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'GkeHubFeatureMembershipControlPlane': MigrateEnum(
       name: 'GkeHubFeatureMembershipControlPlane',
-      members: <String, String>{
-        'CONTROL_PLANE_MANAGEMENT_UNSPECIFIED':
-            'controlPlaneManagementUnspecified',
-        'AUTOMATIC': 'automatic',
-        'MANUAL': 'manual',
-      },
+      members: <String, String>{'AUTOMATIC': 'automatic', 'MANUAL': 'manual'},
     ),
     'GkeHubFeatureMembershipGitSecretType': MigrateEnum(
       name: 'GkeHubFeatureMembershipGitSecretType',
@@ -336986,7 +337024,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'GkeHubFeatureMembershipInstallSpec': MigrateEnum(
       name: 'GkeHubFeatureMembershipInstallSpec',
       members: <String, String>{
-        'INSTALL_SPEC_UNSPECIFIED': 'installSpecUnspecified',
         'INSTALL_SPEC_NOT_INSTALLED': 'installSpecNotInstalled',
         'INSTALL_SPEC_ENABLED': 'installSpecEnabled',
         'INSTALL_SPEC_SUSPENDED': 'installSpecSuspended',
@@ -336995,18 +337032,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'GkeHubFeatureMembershipInstallation': MigrateEnum(
       name: 'GkeHubFeatureMembershipInstallation',
-      members: <String, String>{
-        'INSTALLATION_UNSPECIFIED': 'installationUnspecified',
-        'NOT_INSTALLED': 'notInstalled',
-        'ALL': 'all',
-      },
+      members: <String, String>{'NOT_INSTALLED': 'notInstalled', 'ALL': 'all'},
     ),
     'GkeHubFeatureMembershipMeshManagement': MigrateEnum(
       name: 'GkeHubFeatureMembershipMeshManagement',
       members: <String, String>{
-        'MANAGEMENT_UNSPECIFIED': 'managementUnspecified',
         'MANAGEMENT_AUTOMATIC': 'managementAutomatic',
         'MANAGEMENT_MANUAL': 'managementManual',
+        'MANAGEMENT_NOT_INSTALLED': 'managementNotInstalled',
       },
     ),
     'GkeHubFeatureMembershipOciSecretType': MigrateEnum(
@@ -337020,7 +337053,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'GkeHubFeatureMembershipPodAffinity': MigrateEnum(
       name: 'GkeHubFeatureMembershipPodAffinity',
       members: <String, String>{
-        'AFFINITY_UNSPECIFIED': 'affinityUnspecified',
         'NO_AFFINITY': 'noAffinity',
         'ANTI_AFFINITY': 'antiAffinity',
       },
@@ -337433,7 +337465,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'IamFoldersPolicyBindingPolicyKind': MigrateEnum(
       name: 'IamFoldersPolicyBindingPolicyKind',
       members: <String, String>{
-        'POLICY_KIND_UNSPECIFIED': 'policyKindUnspecified',
         'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
         'ACCESS': 'access',
       },
@@ -337448,7 +337479,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'IamOauthClientType': MigrateEnum(
       name: 'IamOauthClientType',
       members: <String, String>{
-        'CLIENT_TYPE_UNSPECIFIED': 'clientTypeUnspecified',
         'PUBLIC_CLIENT': 'publicClient',
         'CONFIDENTIAL_CLIENT': 'confidentialClient',
       },
@@ -337460,7 +337490,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'IamOrganizationsPolicyBindingPolicyKind': MigrateEnum(
       name: 'IamOrganizationsPolicyBindingPolicyKind',
       members: <String, String>{
-        'POLICY_KIND_UNSPECIFIED': 'policyKindUnspecified',
         'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
         'ACCESS': 'access',
       },
@@ -337476,7 +337505,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'IamProjectsPolicyBindingPolicyKind': MigrateEnum(
       name: 'IamProjectsPolicyBindingPolicyKind',
       members: <String, String>{
-        'POLICY_KIND_UNSPECIFIED': 'policyKindUnspecified',
         'PRINCIPAL_ACCESS_BOUNDARY': 'principalAccessBoundary',
         'ACCESS': 'access',
       },
@@ -337705,6 +337733,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SEV': 'sev',
         'SEV_SNP': 'sevSnp',
         'TDX': 'tdx',
+        'BMSAI': 'bmsai',
+        'CCA': 'cca',
       },
     ),
     'InstanceTemplateDiskMode': MigrateEnum(
@@ -337725,6 +337755,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VIRTIO_NET': 'virtioNet',
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'IDPF': 'idpf',
       },
     ),
     'InstanceTemplateOnHostMaintenance': MigrateEnum(
@@ -337741,7 +337772,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'InstanceTemplateProvisioningModel': MigrateEnum(
       name: 'InstanceTemplateProvisioningModel',
-      members: <String, String>{'STANDARD': 'standard', 'SPOT': 'spot'},
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SPOT': 'spot',
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+      },
     ),
     'InstanceTemplateReservationAffinityType': MigrateEnum(
       name: 'InstanceTemplateReservationAffinityType',
@@ -337874,7 +337910,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'KeyAlgorithm': MigrateEnum(
       name: 'KeyAlgorithm',
       members: <String, String>{
-        'KEY_ALG_UNSPECIFIED': 'unspecified',
         'KEY_ALG_RSA_1024': 'rsa1024',
         'KEY_ALG_RSA_2048': 'rsa2048',
       },
@@ -337950,6 +337985,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DISABLED': 'disabled',
         'DESTROYED': 'destroyed',
         'DESTROY_SCHEDULED': 'destroyScheduled',
+        'PENDING_IMPORT': 'pendingImport',
+        'IMPORT_FAILED': 'importFailed',
       },
     ),
     'KmsEkmConnectionKeyManagementMode': MigrateEnum(
@@ -337964,6 +338001,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ASYMMETRIC_DECRYPT': 'asymmetricDecrypt',
         'MAC': 'mac',
         'RAW_ENCRYPT_DECRYPT': 'rawEncryptDecrypt',
+        'KEY_ENCAPSULATION': 'keyEncapsulation',
+        'AES_WRAPPING': 'aesWrapping',
       },
     ),
     'KmsKeyRingImportJobImportMethod': MigrateEnum(
@@ -337999,6 +338038,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'HSM': 'hsm',
         'EXTERNAL': 'external',
         'EXTERNAL_VPC': 'externalVpc',
+        'HSM_SINGLE_TENANT': 'hsmSingleTenant',
       },
     ),
     'LaunchStage': MigrateEnum(
@@ -338176,7 +338216,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ManagedKafkaClusterMode': MigrateEnum(
       name: 'ManagedKafkaClusterMode',
       members: <String, String>{
-        'MODE_UNSPECIFIED': 'modeUnspecified',
         'NO_REBALANCE': 'noRebalance',
         'AUTO_REBALANCE_ON_SCALE_UP': 'autoRebalanceOnScaleUp',
       },
@@ -338367,7 +338406,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'MigrationCenterPreferenceSetCommitmentPlan': MigrateEnum(
       name: 'MigrationCenterPreferenceSetCommitmentPlan',
       members: <String, String>{
-        'COMMITMENT_PLAN_UNSPECIFIED': 'commitmentPlanUnspecified',
         'COMMITMENT_PLAN_NONE': 'commitmentPlanNone',
         'COMMITMENT_PLAN_ONE_YEAR': 'commitmentPlanOneYear',
         'COMMITMENT_PLAN_THREE_YEARS': 'commitmentPlanThreeYears',
@@ -338384,8 +338422,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'MigrationCenterPreferenceSetHostMaintenancePolicy': MigrateEnum(
       name: 'MigrationCenterPreferenceSetHostMaintenancePolicy',
       members: <String, String>{
-        'HOST_MAINTENANCE_POLICY_UNSPECIFIED':
-            'hostMaintenancePolicyUnspecified',
         'HOST_MAINTENANCE_POLICY_DEFAULT': 'hostMaintenancePolicyDefault',
         'HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE':
             'hostMaintenancePolicyRestartInPlace',
@@ -338396,7 +338432,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'MigrationCenterPreferenceSetLicenseType': MigrateEnum(
       name: 'MigrationCenterPreferenceSetLicenseType',
       members: <String, String>{
-        'LICENSE_TYPE_UNSPECIFIED': 'licenseTypeUnspecified',
         'LICENSE_TYPE_DEFAULT': 'licenseTypeDefault',
         'LICENSE_TYPE_BRING_YOUR_OWN_LICENSE': 'licenseTypeBringYourOwnLicense',
       },
@@ -338412,8 +338447,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'MigrationCenterPreferenceSetSizingOptimizationStrategy': MigrateEnum(
       name: 'MigrationCenterPreferenceSetSizingOptimizationStrategy',
       members: <String, String>{
-        'SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED':
-            'sizingOptimizationStrategyUnspecified',
         'SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE':
             'sizingOptimizationStrategySameAsSource',
         'SIZING_OPTIMIZATION_STRATEGY_MODERATE':
@@ -338427,7 +338460,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           name:
               'MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan',
           members: <String, String>{
-            'COMMITMENT_PLAN_UNSPECIFIED': 'commitmentPlanUnspecified',
             'ON_DEMAND': 'onDemand',
             'COMMITMENT_1_YEAR': 'commitment1Year',
             'COMMITMENT_3_YEAR': 'commitment3Year',
@@ -338436,8 +338468,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'MigrationCenterPreferenceSetTargetProduct': MigrateEnum(
       name: 'MigrationCenterPreferenceSetTargetProduct',
       members: <String, String>{
-        'COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED':
-            'computeMigrationTargetProductUnspecified',
         'COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE':
             'computeMigrationTargetProductComputeEngine',
         'COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE':
@@ -338451,7 +338481,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           name:
               'MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan',
           members: <String, String>{
-            'COMMITMENT_PLAN_UNSPECIFIED': 'commitmentPlanUnspecified',
             'ON_DEMAND': 'onDemand',
             'COMMITMENT_1_YEAR_MONTHLY_PAYMENTS':
                 'commitment1YearMonthlyPayments',
@@ -338545,6 +338574,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'FILTER_VERSION_ALIAS_STABLE': 'filterVersionAliasStable',
         'FILTER_VERSION_ALIAS_LATEST': 'filterVersionAliasLatest',
+        'FILTER_VERSION_ALIAS_LEGACY': 'filterVersionAliasLegacy',
+        'FILTER_VERSION_ALIAS_RETIRED': 'filterVersionAliasRetired',
       },
     ),
     'ModelArmorTemplateConfidenceLevel': MigrateEnum(
@@ -339111,7 +339142,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'NetworkManagementOrganizationVpcFlowLogsConfigMetadata': MigrateEnum(
       name: 'NetworkManagementOrganizationVpcFlowLogsConfigMetadata',
       members: <String, String>{
-        'METADATA_UNSPECIFIED': 'metadataUnspecified',
         'INCLUDE_ALL_METADATA': 'includeAllMetadata',
         'EXCLUDE_ALL_METADATA': 'excludeAllMetadata',
         'CUSTOM_METADATA': 'customMetadata',
@@ -339124,7 +339154,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'NetworkManagementVpcFlowLogsConfigAggregationInterval': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigAggregationInterval',
       members: <String, String>{
-        'AGGREGATION_INTERVAL_UNSPECIFIED': 'aggregationIntervalUnspecified',
         'INTERVAL_5_SEC': 'interval5Sec',
         'INTERVAL_30_SEC': 'interval30Sec',
         'INTERVAL_1_MIN': 'interval1Min',
@@ -339136,7 +339165,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'NetworkManagementVpcFlowLogsConfigMetadata': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigMetadata',
       members: <String, String>{
-        'METADATA_UNSPECIFIED': 'metadataUnspecified',
         'INCLUDE_ALL_METADATA': 'includeAllMetadata',
         'EXCLUDE_ALL_METADATA': 'excludeAllMetadata',
         'CUSTOM_METADATA': 'customMetadata',
@@ -339144,11 +339172,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'NetworkManagementVpcFlowLogsConfigState': MigrateEnum(
       name: 'NetworkManagementVpcFlowLogsConfigState',
-      members: <String, String>{
-        'STATE_UNSPECIFIED': 'stateUnspecified',
-        'ENABLED': 'enabled',
-        'DISABLED': 'disabled',
-      },
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
     ),
     'NetworkSecurityAddressGroupType': MigrateEnum(
       name: 'NetworkSecurityAddressGroupType',
@@ -339361,7 +339385,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'NetworkServicesAgentConnectivityTemplateAgentCompute': MigrateEnum(
       name: 'NetworkServicesAgentConnectivityTemplateAgentCompute',
-      members: <String, String>{'GKE': 'gke', 'CLOUD_RUN': 'cloudRun'},
+      members: <String, String>{
+        'GKE': 'gke',
+        'CLOUD_RUN': 'cloudRun',
+        'BORG': 'borg',
+        'GCE_VM': 'gceVm',
+      },
     ),
     'NetworkServicesAgentConnectivityTemplateDeploymentModel': MigrateEnum(
       name: 'NetworkServicesAgentConnectivityTemplateDeploymentModel',
@@ -339585,7 +339614,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'REQUEST_HEADERS': 'requestHeaders',
         'REQUEST_BODY': 'requestBody',
+        'RESPONSE_HEADERS': 'responseHeaders',
+        'RESPONSE_BODY': 'responseBody',
         'REQUEST_TRAILERS': 'requestTrailers',
+        'RESPONSE_TRAILERS': 'responseTrailers',
       },
     ),
     'NetworkServicesLbTrafficExtensionLoadBalancingScheme': MigrateEnum(
@@ -339598,11 +339630,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'NetworkServicesLbTrafficExtensionSupportedEvents': MigrateEnum(
       name: 'NetworkServicesLbTrafficExtensionSupportedEvents',
       members: <String, String>{
-        'EVENT_TYPE_UNSPECIFIED': 'eventTypeUnspecified',
         'REQUEST_HEADERS': 'requestHeaders',
         'REQUEST_BODY': 'requestBody',
         'RESPONSE_HEADERS': 'responseHeaders',
         'RESPONSE_BODY': 'responseBody',
+        'REQUEST_TRAILERS': 'requestTrailers',
+        'RESPONSE_TRAILERS': 'responseTrailers',
       },
     ),
     'NetworkServicesMulticastDomainConnectionType': MigrateEnum(
@@ -339639,6 +339672,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VIRTIO_NET': 'virtioNet',
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+        'IDPF': 'idpf',
       },
     ),
     'NotificationPrompt': MigrateEnum(
@@ -339660,7 +339694,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseAutonomousDatabaseDbEdition': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseDbEdition',
       members: <String, String>{
-        'DATABASE_EDITION_UNSPECIFIED': 'databaseEditionUnspecified',
         'STANDARD_EDITION': 'standardEdition',
         'ENTERPRISE_EDITION': 'enterpriseEdition',
       },
@@ -339668,11 +339701,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseAutonomousDatabaseDbWorkload': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseDbWorkload',
       members: <String, String>{
-        'DB_WORKLOAD_UNSPECIFIED': 'dbWorkloadUnspecified',
         'OLTP': 'oltp',
         'DW': 'dw',
         'AJD': 'ajd',
         'APEX': 'apex',
+        'LH': 'lh',
       },
     ),
     'OracleDatabaseAutonomousDatabaseDeletionPolicy': MigrateEnum(
@@ -339686,25 +339719,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseAutonomousDatabaseLicenseType': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseLicenseType',
       members: <String, String>{
-        'LICENSE_TYPE_UNSPECIFIED': 'licenseTypeUnspecified',
         'LICENSE_INCLUDED': 'licenseIncluded',
         'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
       },
     ),
     'OracleDatabaseAutonomousDatabaseMaintenanceScheduleType': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseMaintenanceScheduleType',
-      members: <String, String>{
-        'MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED':
-            'maintenanceScheduleTypeUnspecified',
-        'EARLY': 'early',
-        'REGULAR': 'regular',
-      },
+      members: <String, String>{'EARLY': 'early', 'REGULAR': 'regular'},
     ),
     'OracleDatabaseAutonomousDatabaseOperationsInsightsState': MigrateEnum(
       name: 'OracleDatabaseAutonomousDatabaseOperationsInsightsState',
       members: <String, String>{
-        'OPERATIONS_INSIGHTS_STATE_UNSPECIFIED':
-            'operationsInsightsStateUnspecified',
         'ENABLING': 'enabling',
         'ENABLED': 'enabled',
         'DISABLING': 'disabling',
@@ -339753,7 +339778,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseCloudExadataInfrastructurePatchingMode': MigrateEnum(
       name: 'OracleDatabaseCloudExadataInfrastructurePatchingMode',
       members: <String, String>{
-        'PATCHING_MODE_UNSPECIFIED': 'patchingModeUnspecified',
         'ROLLING': 'rolling',
         'NON_ROLLING': 'nonRolling',
       },
@@ -339761,8 +339785,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseCloudExadataInfrastructurePreference': MigrateEnum(
       name: 'OracleDatabaseCloudExadataInfrastructurePreference',
       members: <String, String>{
-        'MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED':
-            'maintenanceWindowPreferenceUnspecified',
         'CUSTOM_PREFERENCE': 'customPreference',
         'NO_PREFERENCE': 'noPreference',
       },
@@ -339777,16 +339799,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'OracleDatabaseCloudVmClusterDiskRedundancy': MigrateEnum(
       name: 'OracleDatabaseCloudVmClusterDiskRedundancy',
-      members: <String, String>{
-        'DISK_REDUNDANCY_UNSPECIFIED': 'diskRedundancyUnspecified',
-        'HIGH': 'high',
-        'NORMAL': 'normal',
-      },
+      members: <String, String>{'HIGH': 'high', 'NORMAL': 'normal'},
     ),
     'OracleDatabaseCloudVmClusterLicenseType': MigrateEnum(
       name: 'OracleDatabaseCloudVmClusterLicenseType',
       members: <String, String>{
-        'LICENSE_TYPE_UNSPECIFIED': 'licenseTypeUnspecified',
         'LICENSE_INCLUDED': 'licenseIncluded',
         'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
       },
@@ -339794,7 +339811,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseCloudVmClusterVmBackupStorageType': MigrateEnum(
       name: 'OracleDatabaseCloudVmClusterVmBackupStorageType',
       members: <String, String>{
-        'VM_BACKUP_STORAGE_TYPE_UNSPECIFIED': 'vmBackupStorageTypeUnspecified',
         'VM_BACKUP_STORAGE_TYPE_LOCAL': 'vmBackupStorageTypeLocal',
         'VM_BACKUP_STORAGE_TYPE_EXASCALE': 'vmBackupStorageTypeExascale',
       },
@@ -339802,8 +339818,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OracleDatabaseCloudVmClusterVmFileSystemStorageType': MigrateEnum(
       name: 'OracleDatabaseCloudVmClusterVmFileSystemStorageType',
       members: <String, String>{
-        'VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED':
-            'vmFileSystemStorageTypeUnspecified',
         'VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL': 'vmFileSystemStorageTypeLocal',
         'VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE':
             'vmFileSystemStorageTypeExascale',
@@ -339871,6 +339885,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'STANDARD_EDITION': 'standardEdition',
         'ENTERPRISE_EDITION': 'enterpriseEdition',
+        'ENTERPRISE_EDITION_HIGH_PERFORMANCE':
+            'enterpriseEditionHighPerformance',
       },
     ),
     'OracleDatabaseDbSystemDeletionPolicy': MigrateEnum(
@@ -340323,31 +340339,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OrganizationIamAuditConfigLogType': MigrateEnum(
       name: 'OrganizationIamAuditConfigLogType',
       members: <String, String>{
-        'DATA_READ': 'dataRead',
-        'DATA_WRITE': 'dataWrite',
         'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
       },
     ),
     'OsConfigOsPolicyAssignmentArchiveType': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentArchiveType',
-      members: <String, String>{
-        'ARCHIVE_TYPE_UNSPECIFIED': 'archiveTypeUnspecified',
-        'DEB': 'deb',
-        'DEB_SRC': 'debSrc',
-      },
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
     ),
     'OsConfigOsPolicyAssignmentDesiredState': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentDesiredState',
-      members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
-        'INSTALLED': 'installed',
-        'REMOVED': 'removed',
-      },
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
     ),
     'OsConfigOsPolicyAssignmentInterpreter': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentInterpreter',
       members: <String, String>{
-        'INTERPRETER_UNSPECIFIED': 'interpreterUnspecified',
         'NONE': 'none',
         'SHELL': 'shell',
         'POWERSHELL': 'powershell',
@@ -340356,7 +340363,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigOsPolicyAssignmentMode': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentMode',
       members: <String, String>{
-        'MODE_UNSPECIFIED': 'modeUnspecified',
         'VALIDATION': 'validation',
         'ENFORCEMENT': 'enforcement',
       },
@@ -340364,7 +340370,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigOsPolicyAssignmentState': MigrateEnum(
       name: 'OsConfigOsPolicyAssignmentState',
       members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
         'PRESENT': 'present',
         'ABSENT': 'absent',
         'CONTENTS_MATCH': 'contentsMatch',
@@ -340425,24 +340430,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'OsConfigV2PolicyOrchestratorArchiveType': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorArchiveType',
-      members: <String, String>{
-        'ARCHIVE_TYPE_UNSPECIFIED': 'archiveTypeUnspecified',
-        'DEB': 'deb',
-        'DEB_SRC': 'debSrc',
-      },
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
     ),
     'OsConfigV2PolicyOrchestratorDesiredState': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorDesiredState',
-      members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
-        'INSTALLED': 'installed',
-        'REMOVED': 'removed',
-      },
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
     ),
     'OsConfigV2PolicyOrchestratorFileState': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorFileState',
       members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
         'PRESENT': 'present',
         'ABSENT': 'absent',
         'CONTENTS_MATCH': 'contentsMatch',
@@ -340489,24 +340485,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'OsConfigV2PolicyOrchestratorForOrganizationArchiveType': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForOrganizationArchiveType',
-      members: <String, String>{
-        'ARCHIVE_TYPE_UNSPECIFIED': 'archiveTypeUnspecified',
-        'DEB': 'deb',
-        'DEB_SRC': 'debSrc',
-      },
+      members: <String, String>{'DEB': 'deb', 'DEB_SRC': 'debSrc'},
     ),
     'OsConfigV2PolicyOrchestratorForOrganizationDesiredState': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForOrganizationDesiredState',
-      members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
-        'INSTALLED': 'installed',
-        'REMOVED': 'removed',
-      },
+      members: <String, String>{'INSTALLED': 'installed', 'REMOVED': 'removed'},
     ),
     'OsConfigV2PolicyOrchestratorForOrganizationFileState': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForOrganizationFileState',
       members: <String, String>{
-        'DESIRED_STATE_UNSPECIFIED': 'desiredStateUnspecified',
         'PRESENT': 'present',
         'ABSENT': 'absent',
         'CONTENTS_MATCH': 'contentsMatch',
@@ -340515,7 +340502,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigV2PolicyOrchestratorForOrganizationInterpreter': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForOrganizationInterpreter',
       members: <String, String>{
-        'INTERPRETER_UNSPECIFIED': 'interpreterUnspecified',
         'NONE': 'none',
         'SHELL': 'shell',
         'POWERSHELL': 'powershell',
@@ -340524,7 +340510,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigV2PolicyOrchestratorForOrganizationMode': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorForOrganizationMode',
       members: <String, String>{
-        'MODE_UNSPECIFIED': 'modeUnspecified',
         'VALIDATION': 'validation',
         'ENFORCEMENT': 'enforcement',
       },
@@ -340532,7 +340517,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigV2PolicyOrchestratorInterpreter': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorInterpreter',
       members: <String, String>{
-        'INTERPRETER_UNSPECIFIED': 'interpreterUnspecified',
         'NONE': 'none',
         'SHELL': 'shell',
         'POWERSHELL': 'powershell',
@@ -340541,7 +340525,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OsConfigV2PolicyOrchestratorMode': MigrateEnum(
       name: 'OsConfigV2PolicyOrchestratorMode',
       members: <String, String>{
-        'MODE_UNSPECIFIED': 'modeUnspecified',
         'VALIDATION': 'validation',
         'ENFORCEMENT': 'enforcement',
       },
@@ -340549,7 +340532,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ParallelstoreInstanceDeploymentType': MigrateEnum(
       name: 'ParallelstoreInstanceDeploymentType',
       members: <String, String>{
-        'DEPLOYMENT_TYPE_UNSPECIFIED': 'unspecified',
         'SCRATCH': 'scratch',
         'PERSISTENT': 'persistent',
       },
@@ -340557,7 +340539,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ParallelstoreInstanceDirectoryStripeLevel': MigrateEnum(
       name: 'ParallelstoreInstanceDirectoryStripeLevel',
       members: <String, String>{
-        'DIRECTORY_STRIPE_LEVEL_UNSPECIFIED': 'directoryStripeLevelUnspecified',
         'DIRECTORY_STRIPE_LEVEL_MIN': 'directoryStripeLevelMin',
         'DIRECTORY_STRIPE_LEVEL_BALANCED': 'directoryStripeLevelBalanced',
         'DIRECTORY_STRIPE_LEVEL_MAX': 'directoryStripeLevelMax',
@@ -340566,7 +340547,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ParallelstoreInstanceFileStripeLevel': MigrateEnum(
       name: 'ParallelstoreInstanceFileStripeLevel',
       members: <String, String>{
-        'FILE_STRIPE_LEVEL_UNSPECIFIED': 'fileStripeLevelUnspecified',
         'FILE_STRIPE_LEVEL_MIN': 'fileStripeLevelMin',
         'FILE_STRIPE_LEVEL_BALANCED': 'fileStripeLevelBalanced',
         'FILE_STRIPE_LEVEL_MAX': 'fileStripeLevelMax',
@@ -340606,7 +340586,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'PrivateKeyType': MigrateEnum(
       name: 'PrivateKeyType',
       members: <String, String>{
-        'TYPE_UNSPECIFIED': 'unspecified',
         'TYPE_PKCS12_FILE': 'pkcs12File',
         'TYPE_GOOGLE_CREDENTIALS_FILE': 'googleCredentialsFile',
       },
@@ -340840,14 +340819,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ProjectIamAuditConfigAuditLogConfigLogType': MigrateEnum(
       name: 'ProjectIamAuditConfigAuditLogConfigLogType',
       members: <String, String>{
-        'DATA_READ': 'dataRead',
-        'DATA_WRITE': 'dataWrite',
         'ADMIN_READ': 'adminRead',
+        'DATA_WRITE': 'dataWrite',
+        'DATA_READ': 'dataRead',
       },
     ),
     'ProvisioningModel': MigrateEnum(
       name: 'ProvisioningModel',
-      members: <String, String>{'STANDARD': 'standard', 'SPOT': 'spot'},
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SPOT': 'spot',
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
+      },
     ),
     'PublicKeyType': MigrateEnum(
       name: 'PublicKeyType',
@@ -340910,8 +340894,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'RecaptchaEnterpriseKeyChallengeSecurityPreference': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyChallengeSecurityPreference',
       members: <String, String>{
-        'CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED':
-            'challengeSecurityPreferenceUnspecified',
         'USABILITY': 'usability',
         'BALANCE': 'balance',
         'SECURITY': 'security',
@@ -340929,7 +340911,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'RecaptchaEnterpriseKeyTestingChallenge': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyTestingChallenge',
       members: <String, String>{
-        'TESTING_CHALLENGE_UNSPECIFIED': 'testingChallengeUnspecified',
         'NOCAPTCHA': 'nocaptcha',
         'UNSOLVABLE_CHALLENGE': 'unsolvableChallenge',
       },
@@ -340945,7 +340926,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'RecaptchaEnterpriseKeyWafService': MigrateEnum(
       name: 'RecaptchaEnterpriseKeyWafService',
-      members: <String, String>{'CA': 'ca', 'FASTLY': 'fastly'},
+      members: <String, String>{
+        'CA': 'ca',
+        'FASTLY': 'fastly',
+        'CLOUDFLARE': 'cloudflare',
+        'AKAMAI': 'akamai',
+      },
     ),
     'RedisClusterAppendFsync': MigrateEnum(
       name: 'RedisClusterAppendFsync',
@@ -341158,6 +341144,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'RATE': 'rate',
         'CONNECTION': 'connection',
         'CUSTOM_METRICS': 'customMetrics',
+        'IN_FLIGHT': 'inFlight',
       },
     ),
     'RegionBackendServiceCacheMode': MigrateEnum(
@@ -341683,7 +341670,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'SecurityPolicyJsonParsing': MigrateEnum(
       name: 'SecurityPolicyJsonParsing',
-      members: <String, String>{'DISABLED': 'disabled', 'STANDARD': 'standard'},
+      members: <String, String>{
+        'DISABLED': 'disabled',
+        'STANDARD': 'standard',
+        'STANDARD_WITH_GRAPHQL': 'standardWithGraphql',
+      },
     ),
     'SecurityPolicyLogLevel': MigrateEnum(
       name: 'SecurityPolicyLogLevel',
@@ -341987,6 +341978,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ENTERPRISE': 'enterprise',
         'ENTERPRISE_PLUS': 'enterprisePlus',
+        'DEVELOPER': 'developer',
       },
     ),
     'SqlSourceRepresentationInstanceDatabaseVersion': MigrateEnum(
@@ -342060,6 +342052,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'CLOUD_IAM_USER': 'cloudIamUser',
         'CLOUD_IAM_SERVICE_ACCOUNT': 'cloudIamServiceAccount',
         'CLOUD_IAM_GROUP': 'cloudIamGroup',
+        'CLOUD_IAM_GROUP_USER': 'cloudIamGroupUser',
+        'CLOUD_IAM_GROUP_SERVICE_ACCOUNT': 'cloudIamGroupServiceAccount',
+        'CLOUD_IAM_WORKFORCE_IDENTITY': 'cloudIamWorkforceIdentity',
+        'ENTRAID_USER': 'entraidUser',
       },
     ),
     'SslPolicyMinTlsVersion': MigrateEnum(
@@ -342413,6 +342409,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PRIVATE_SERVICE_CONNECT': 'privateServiceConnect',
         'PEER_MIGRATION': 'peerMigration',
         'PRIVATE_NAT': 'privateNat',
+        'INTERNAL_HTTPS_LOAD_BALANCER': 'internalHttpsLoadBalancer',
+        'PRIVATE_RFC_1918': 'privateRfc1918',
       },
     ),
     'SubnetworkResolveSubnetMask': MigrateEnum(
@@ -342763,7 +342761,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'VertexAiReasoningEngineOutcome': MigrateEnum(
       name: 'VertexAiReasoningEngineOutcome',
       members: <String, String>{
-        'OUTCOME_UNSPECIFIED': 'outcomeUnspecified',
         'OUTCOME_OK': 'outcomeOk',
         'OUTCOME_FAILED': 'outcomeFailed',
         'OUTCOME_DEADLINE_EXCEEDED': 'outcomeDeadlineExceeded',

@@ -57,7 +57,6 @@ export 'src/compute/google_compute_future_reservation.dart'
 export 'src/compute/google_compute_instance_from_machine_image.dart'
     show
         ComputeInstanceFromMachineImageAccessConfig,
-        ComputeInstanceFromMachineImageAccessConfigNetworkTier,
         ComputeInstanceFromMachineImageAdvancedMachineFeatures,
         ComputeInstanceFromMachineImageAliasIpRange,
         ComputeInstanceFromMachineImageAliasIpv6Range,
@@ -70,7 +69,6 @@ export 'src/compute/google_compute_instance_from_machine_image.dart'
         ComputeInstanceFromMachineImageInstanceEncryptionKey,
         ComputeInstanceFromMachineImageInstanceTerminationAction,
         ComputeInstanceFromMachineImageIpv6AccessConfig,
-        ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier,
         ComputeInstanceFromMachineImageKeyRevocationActionType,
         ComputeInstanceFromMachineImageLocalSsdRecoveryTimeout,
         ComputeInstanceFromMachineImageMaintenanceInterval,
@@ -78,6 +76,7 @@ export 'src/compute/google_compute_instance_from_machine_image.dart'
         ComputeInstanceFromMachineImageMaxRunDuration,
         ComputeInstanceFromMachineImageNetworkInterface,
         ComputeInstanceFromMachineImageNetworkPerformanceConfig,
+        ComputeInstanceFromMachineImageNetworkTier,
         ComputeInstanceFromMachineImageNicType,
         ComputeInstanceFromMachineImageNodeAffinities,
         ComputeInstanceFromMachineImageOnHostMaintenance,

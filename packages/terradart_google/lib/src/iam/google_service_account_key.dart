@@ -16,13 +16,10 @@ extension type const KeyAlgorithm._(TfArg<String> _) implements TfArg<String> {
   KeyAlgorithm.expression(String template) : this._(TfArg.expression(template));
   const KeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  static const unspecified = KeyAlgorithm._(
-    TfArgLiteral('KEY_ALG_UNSPECIFIED'),
-  );
   static const rsa1024 = KeyAlgorithm._(TfArgLiteral('KEY_ALG_RSA_1024'));
   static const rsa2048 = KeyAlgorithm._(TfArgLiteral('KEY_ALG_RSA_2048'));
 
-  static const List<KeyAlgorithm> values = [unspecified, rsa1024, rsa2048];
+  static const List<KeyAlgorithm> values = [rsa1024, rsa2048];
 }
 
 /// Output format for the emitted private key
@@ -37,14 +34,12 @@ extension type const PrivateKeyType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const PrivateKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  static const unspecified = PrivateKeyType._(TfArgLiteral('TYPE_UNSPECIFIED'));
   static const pkcs12File = PrivateKeyType._(TfArgLiteral('TYPE_PKCS12_FILE'));
   static const googleCredentialsFile = PrivateKeyType._(
     TfArgLiteral('TYPE_GOOGLE_CREDENTIALS_FILE'),
   );
 
   static const List<PrivateKeyType> values = [
-    unspecified,
     pkcs12File,
     googleCredentialsFile,
   ];

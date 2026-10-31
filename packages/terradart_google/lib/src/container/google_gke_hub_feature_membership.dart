@@ -441,10 +441,6 @@ extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
   const GkeHubFeatureMembershipControlPlane.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const controlPlaneManagementUnspecified =
-      GkeHubFeatureMembershipControlPlane._(
-        TfArgLiteral('CONTROL_PLANE_MANAGEMENT_UNSPECIFIED'),
-      );
   static const automatic = GkeHubFeatureMembershipControlPlane._(
     TfArgLiteral('AUTOMATIC'),
   );
@@ -453,7 +449,6 @@ extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipControlPlane> values = [
-    controlPlaneManagementUnspecified,
     automatic,
     manual,
   ];
@@ -469,20 +464,20 @@ extension type const GkeHubFeatureMembershipMeshManagement._(TfArg<String> _)
   const GkeHubFeatureMembershipMeshManagement.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const managementUnspecified = GkeHubFeatureMembershipMeshManagement._(
-    TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
-  );
   static const managementAutomatic = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_AUTOMATIC'),
   );
   static const managementManual = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_MANUAL'),
   );
+  static const managementNotInstalled = GkeHubFeatureMembershipMeshManagement._(
+    TfArgLiteral('MANAGEMENT_NOT_INSTALLED'),
+  );
 
   static const List<GkeHubFeatureMembershipMeshManagement> values = [
-    managementUnspecified,
     managementAutomatic,
     managementManual,
+    managementNotInstalled,
   ];
 }
 
@@ -569,9 +564,6 @@ extension type const GkeHubFeatureMembershipInstallSpec._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const GkeHubFeatureMembershipInstallSpec.arg(TfArg<String> arg) : this._(arg);
 
-  static const installSpecUnspecified = GkeHubFeatureMembershipInstallSpec._(
-    TfArgLiteral('INSTALL_SPEC_UNSPECIFIED'),
-  );
   static const installSpecNotInstalled = GkeHubFeatureMembershipInstallSpec._(
     TfArgLiteral('INSTALL_SPEC_NOT_INSTALLED'),
   );
@@ -586,7 +578,6 @@ extension type const GkeHubFeatureMembershipInstallSpec._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipInstallSpec> values = [
-    installSpecUnspecified,
     installSpecNotInstalled,
     installSpecEnabled,
     installSpecSuspended,
@@ -636,9 +627,6 @@ extension type const GkeHubFeatureMembershipPodAffinity._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const GkeHubFeatureMembershipPodAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  static const affinityUnspecified = GkeHubFeatureMembershipPodAffinity._(
-    TfArgLiteral('AFFINITY_UNSPECIFIED'),
-  );
   static const noAffinity = GkeHubFeatureMembershipPodAffinity._(
     TfArgLiteral('NO_AFFINITY'),
   );
@@ -647,7 +635,6 @@ extension type const GkeHubFeatureMembershipPodAffinity._(TfArg<String> _)
   );
 
   static const List<GkeHubFeatureMembershipPodAffinity> values = [
-    affinityUnspecified,
     noAffinity,
     antiAffinity,
   ];
@@ -794,16 +781,12 @@ extension type const GkeHubFeatureMembershipInstallation._(TfArg<String> _)
   const GkeHubFeatureMembershipInstallation.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const installationUnspecified = GkeHubFeatureMembershipInstallation._(
-    TfArgLiteral('INSTALLATION_UNSPECIFIED'),
-  );
   static const notInstalled = GkeHubFeatureMembershipInstallation._(
     TfArgLiteral('NOT_INSTALLED'),
   );
   static const all = GkeHubFeatureMembershipInstallation._(TfArgLiteral('ALL'));
 
   static const List<GkeHubFeatureMembershipInstallation> values = [
-    installationUnspecified,
     notInstalled,
     all,
   ];

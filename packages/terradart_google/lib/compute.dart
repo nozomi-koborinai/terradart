@@ -339,7 +339,6 @@ export 'src/compute/google_compute_instance.dart'
 export 'src/compute/google_compute_instance_from_template.dart'
     show
         ComputeInstanceFromTemplateAccessConfig,
-        ComputeInstanceFromTemplateAccessConfigNetworkTier,
         ComputeInstanceFromTemplateAdvancedMachineFeatures,
         ComputeInstanceFromTemplateAliasIpRange,
         ComputeInstanceFromTemplateArchitecture,
@@ -355,13 +354,13 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateInstanceTerminationAction,
         ComputeInstanceFromTemplateInterface,
         ComputeInstanceFromTemplateIpv6AccessConfig,
-        ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier,
         ComputeInstanceFromTemplateKeyRevocationActionType,
         ComputeInstanceFromTemplateLocalSsdRecoveryTimeout,
         ComputeInstanceFromTemplateMaxRunDuration,
         ComputeInstanceFromTemplateMode,
         ComputeInstanceFromTemplateNetworkInterface,
         ComputeInstanceFromTemplateNetworkPerformanceConfig,
+        ComputeInstanceFromTemplateNetworkTier,
         ComputeInstanceFromTemplateNicType,
         ComputeInstanceFromTemplateNodeAffinities,
         ComputeInstanceFromTemplateOnHostMaintenance,

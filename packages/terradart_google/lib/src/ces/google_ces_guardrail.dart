@@ -278,11 +278,15 @@ extension type const CesGuardrailMatchType._(TfArg<String> _)
   static const regexpMatch = CesGuardrailMatchType._(
     TfArgLiteral('REGEXP_MATCH'),
   );
+  static const sensitiveWords = CesGuardrailMatchType._(
+    TfArgLiteral('SENSITIVE_WORDS'),
+  );
 
   static const List<CesGuardrailMatchType> values = [
     simpleStringMatch,
     wordBoundaryStringMatch,
     regexpMatch,
+    sensitiveWords,
   ];
 }
 

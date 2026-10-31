@@ -448,18 +448,18 @@ class MmYamlParser {
 
   /// MM YAML uses lowerCamelCase for the `name` field, but the canonical
   /// Terraform JSON name comes from `api_name`. When `api_name` is absent
-  /// we synthesise a snake_case from the camelCase name.
-  String _toSnakeCase(String camel) {
-    final buf = StringBuffer();
-    for (var i = 0; i < camel.length; i++) {
-      final ch = camel[i];
-      if (ch.toUpperCase() == ch && ch != ch.toLowerCase() && i != 0) {
-        buf.write('_');
-      }
-      buf.write(ch.toLowerCase());
-    }
-    return buf.toString();
-  }
+  /// we synthesise a snake_case from the camelCase name the way the provider
+  /// generator's `google.Underscore` does, so an acronym run stays one word
+  /// (`IPProtocol` is `ip_protocol`).
+  String _toSnakeCase(String camel) => camel
+      .replaceAllMapped(
+        RegExp('([A-Z]+)([A-Z][a-z])'),
+        (m) => '${m[1]}_${m[2]}',
+      )
+      .replaceAllMapped(RegExp(r'([a-z\d])([A-Z])'), (m) => '${m[1]}_${m[2]}')
+      .replaceFirst('-', '_')
+      .replaceFirst('.', '_')
+      .toLowerCase();
 }
 
 /// The relation rules of one resource, as dotted Terraform paths.

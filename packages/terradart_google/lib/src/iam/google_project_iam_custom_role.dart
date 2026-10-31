@@ -22,6 +22,7 @@ extension type const CustomRoleStage._(TfArg<String> _)
   static const ga = CustomRoleStage._(TfArgLiteral('GA'));
   static const deprecated = CustomRoleStage._(TfArgLiteral('DEPRECATED'));
   static const disabled = CustomRoleStage._(TfArgLiteral('DISABLED'));
+  static const eap = CustomRoleStage._(TfArgLiteral('EAP'));
 
   static const List<CustomRoleStage> values = [
     alpha,
@@ -29,6 +30,7 @@ extension type const CustomRoleStage._(TfArg<String> _)
     ga,
     deprecated,
     disabled,
+    eap,
   ];
 }
 

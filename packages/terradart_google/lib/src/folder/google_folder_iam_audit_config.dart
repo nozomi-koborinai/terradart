@@ -38,20 +38,20 @@ extension type const FolderIamAuditConfigLogType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const FolderIamAuditConfigLogType.arg(TfArg<String> arg) : this._(arg);
 
-  static const dataRead = FolderIamAuditConfigLogType._(
-    TfArgLiteral('DATA_READ'),
+  static const adminRead = FolderIamAuditConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
   );
   static const dataWrite = FolderIamAuditConfigLogType._(
     TfArgLiteral('DATA_WRITE'),
   );
-  static const adminRead = FolderIamAuditConfigLogType._(
-    TfArgLiteral('ADMIN_READ'),
+  static const dataRead = FolderIamAuditConfigLogType._(
+    TfArgLiteral('DATA_READ'),
   );
 
   static const List<FolderIamAuditConfigLogType> values = [
-    dataRead,
-    dataWrite,
     adminRead,
+    dataWrite,
+    dataRead,
   ];
 }
 

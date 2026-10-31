@@ -450,10 +450,18 @@ extension type const ModelArmorTemplateAlias._(TfArg<String> _)
   static const filterVersionAliasLatest = ModelArmorTemplateAlias._(
     TfArgLiteral('FILTER_VERSION_ALIAS_LATEST'),
   );
+  static const filterVersionAliasLegacy = ModelArmorTemplateAlias._(
+    TfArgLiteral('FILTER_VERSION_ALIAS_LEGACY'),
+  );
+  static const filterVersionAliasRetired = ModelArmorTemplateAlias._(
+    TfArgLiteral('FILTER_VERSION_ALIAS_RETIRED'),
+  );
 
   static const List<ModelArmorTemplateAlias> values = [
     filterVersionAliasStable,
     filterVersionAliasLatest,
+    filterVersionAliasLegacy,
+    filterVersionAliasRetired,
   ];
 }
 

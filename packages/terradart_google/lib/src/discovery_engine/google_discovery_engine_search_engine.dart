@@ -18,15 +18,11 @@ extension type const DiscoveryEngineSearchEngineAppType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const DiscoveryEngineSearchEngineAppType.arg(TfArg<String> arg) : this._(arg);
 
-  static const appTypeUnspecified = DiscoveryEngineSearchEngineAppType._(
-    TfArgLiteral('APP_TYPE_UNSPECIFIED'),
-  );
   static const appTypeIntranet = DiscoveryEngineSearchEngineAppType._(
     TfArgLiteral('APP_TYPE_INTRANET'),
   );
 
   static const List<DiscoveryEngineSearchEngineAppType> values = [
-    appTypeUnspecified,
     appTypeIntranet,
   ];
 }

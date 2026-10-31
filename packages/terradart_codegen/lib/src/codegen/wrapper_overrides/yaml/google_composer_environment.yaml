@@ -14,6 +14,9 @@ enumValues:
     - composer-n1-webserver-2
     - composer-n1-webserver-4
     - composer-n1-webserver-8
+  config.software_config.web_server_plugins_mode:
+    - ENABLED
+    - DISABLED
 
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -507,17 +507,6 @@ final class ProviderEnums {
     final typeHints =
         _tables.of(kind).enums[terraformType] ?? const <String, List<String>>{};
     final discovery = _discovery;
-    final dataSource = kind == WrapperOverrideKind.dataSource;
-    final passthrough =
-        (dataSource
-                ? (_mm['data_$terraformType'] ?? _mm[terraformType])
-                : _mm[terraformType]) !=
-            null ||
-        ((dataSource
-                    ? discovery?.dataSources
-                    : discovery?.resources)?[terraformType]
-                ?.passthrough ??
-            false);
     return (path, description) {
       if (typeHints[path.join('.')] case final values?) return values;
       final described =
@@ -532,17 +521,10 @@ final class ProviderEnums {
               terraformType,
               path.join('.'),
             );
-      // A Magic Modules resource sends the value to the REST API as is, so
-      // a description the API's own enum contradicts is the stale one.
-      if (passthrough &&
-          described != null &&
-          declared != null &&
-          !declared.toSet().containsAll(
-            described.where((v) => !isDiscoverySentinel(v)),
-          )) {
-        return declared;
-      }
-      return described ?? declared;
+      // The API's own enum is the source wherever one resolves: a
+      // description is prose, and an override `enumValues` entry (checked
+      // against this set) records a deliberate difference.
+      return declared ?? described;
     };
   }
 

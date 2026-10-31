@@ -16,9 +16,6 @@ extension type const IamFoldersPolicyBindingPolicyKind._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const IamFoldersPolicyBindingPolicyKind.arg(TfArg<String> arg) : this._(arg);
 
-  static const policyKindUnspecified = IamFoldersPolicyBindingPolicyKind._(
-    TfArgLiteral('POLICY_KIND_UNSPECIFIED'),
-  );
   static const principalAccessBoundary = IamFoldersPolicyBindingPolicyKind._(
     TfArgLiteral('PRINCIPAL_ACCESS_BOUNDARY'),
   );
@@ -27,7 +24,6 @@ extension type const IamFoldersPolicyBindingPolicyKind._(TfArg<String> _)
   );
 
   static const List<IamFoldersPolicyBindingPolicyKind> values = [
-    policyKindUnspecified,
     principalAccessBoundary,
     access,
   ];

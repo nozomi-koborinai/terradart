@@ -9,18 +9,23 @@
 // its emitted wire values, spelled exactly, against the first machine source
 // that has a set for it: the Magic Modules `enum_values` of the lane's
 // `<schemaDir>/mm`, then the lane's Google API Discovery copy
-// (`<schemaDir>/discovery`, tool/fetch_discovery_enums.dart). A set neither
-// has comes from prose (an MM description, a hand `enumValues` entry, a
-// `prelude` enum) and needs an entry in tool/enum_prose_sources.yaml with its
-// exact values and why no machine source covers it:
+// (`<schemaDir>/discovery`, tool/fetch_discovery_enums.dart) without its
+// `*_UNSPECIFIED` sentinel. The two sets must be equal: a value the source
+// lists and the enum lacks fails like a value the enum has and the source
+// does not. A set no machine source has comes from prose (an MM description,
+// a hand `enumValues` entry, a `prelude` enum), and a set that differs from
+// its source is a deliberate difference; both need an entry in
+// tool/enum_prose_sources.yaml with the exact values and a reason:
 //   no-document  no Discovery document is recorded for the type
 //                (`<schemaDir>/discovery/roots.yaml` says why);
 //   no-enum      the type's Discovery schema declares no enum at the path;
-//   disagrees    a machine source has a set, and an emitted value is not in
-//                it; the note says why the provider accepts the value.
+//   disagrees    a machine source has a set (`upstream`, as compared) the
+//                enum does not equal; the note says why the provider takes
+//                the emitted values instead.
 // `no-document` and `no-enum` are checked against the copy, so `--fix`
 // writes them; a `disagrees` note is a human decision that `--fix` keeps
-// while the values match and replaces with `awaiting-review` otherwise.
+// while both the emitted and the upstream values match, and replaces with
+// `awaiting-review` otherwise.
 // tool/wrap_lanes.dart runs `--fix` after a discovery lane's regen, so a
 // schema bump records new prose sets and fails CI only on a new
 // disagreement. tool/google_enum_sources_test.dart is the gate.
@@ -176,8 +181,14 @@ final class LaneSources {
 }
 
 /// One reasoned prose set: its exact values and why no machine source has
-/// it (`no-document`, `no-enum`, or `disagrees` with a note).
-typedef ProseEntry = ({List<String> values, String reason, String? note});
+/// it (`no-document`, `no-enum`), or why it differs from the source set
+/// [upstream] (`disagrees` with a note).
+typedef ProseEntry = ({
+  List<String> values,
+  String reason,
+  String? note,
+  List<String>? upstream,
+});
 
 /// Parses one lane's section of tool/enum_prose_sources.yaml, keyed by
 /// [inputLabel].
@@ -191,17 +202,28 @@ Map<String, ProseEntry> parseProseSources(String yamlText, String lane) {
   return {
     for (final MapEntry(:key, :value) in section.entries)
       '$key': switch (value) {
-        {'values': final YamlList values, 'disagrees': final String note} => (
-          values: [for (final v in values) '$v'],
-          reason: 'disagrees',
-          note: note,
-        ),
+        {
+          'values': final YamlList values,
+          'upstream': final YamlList upstream,
+          'disagrees': final String note,
+        } =>
+          (
+            values: [for (final v in values) '$v'],
+            reason: 'disagrees',
+            note: note,
+            upstream: [for (final v in upstream) '$v'],
+          ),
         {'values': final YamlList values, 'source': final String reason}
             when reason == 'no-document' || reason == 'no-enum' =>
-          (values: [for (final v in values) '$v'], reason: reason, note: null),
+          (
+            values: [for (final v in values) '$v'],
+            reason: reason,
+            note: null,
+            upstream: null,
+          ),
         _ => throw FormatException(
           '$proseSourcesPath: $lane.$key needs values and source '
-          '(no-document | no-enum) or a disagrees note',
+          '(no-document | no-enum), or upstream and a disagrees note',
         ),
       },
   };
@@ -216,8 +238,9 @@ typedef SourceCheck = ({
   /// Sites the reasoned list covers, by reason.
   Map<String, int> prose,
 
-  /// Every failure: a value no source spells, a missing, stale or
-  /// unreviewed entry, a set a machine source has left untyped.
+  /// Every failure: a value no source spells, a source value the enum
+  /// lacks, a missing, stale or unreviewed entry, a set a machine source has
+  /// left untyped.
   List<String> failures,
 
   /// The prose list as the lane's sites need it (for `--fix`).
@@ -256,14 +279,25 @@ SourceCheck checkSources(
     final (against, set) = mmSet != null
         ? ('Magic Modules', mmSet)
         : disc != null
-        ? ('Discovery ${disc.doc} ${disc.field}', disc.values)
+        ? (
+            'Discovery ${disc.doc} ${disc.field}',
+            [
+              for (final v in disc.values)
+                if (!isDiscoverySentinel(v)) v,
+            ],
+          )
         : ('', null);
     final outside = [
       if (set != null)
         for (final v in emitted)
           if (!set.contains(v)) v,
     ];
-    if (set != null && outside.isEmpty) {
+    final missing = [
+      if (set != null)
+        for (final v in set)
+          if (!emitted.contains(v)) v,
+    ];
+    if (set != null && outside.isEmpty && missing.isEmpty) {
       if (mmSet != null) {
         mmCount++;
       } else {
@@ -271,6 +305,10 @@ SourceCheck checkSources(
       }
       continue;
     }
+    final difference = [
+      if (outside.isNotEmpty) 'emits ${outside.join(', ')}',
+      if (missing.isNotEmpty) 'lacks ${missing.join(', ')}',
+    ].join(' and ');
     final reason = set != null
         ? 'disagrees'
         : sources.hasDocument(key)
@@ -281,18 +319,20 @@ SourceCheck checkSources(
     final keep =
         entry != null &&
         entry.reason == reason &&
-        _sameList(entry.values, emitted);
+        _sameList(entry.values, emitted) &&
+        (set == null || _sameList(entry.upstream!, set));
     wanted[label] = (
       values: emitted,
       reason: reason,
       note: reason == 'disagrees' ? (keep ? entry.note : awaitingReview) : null,
+      upstream: set,
     );
     if (entry == null) {
       failures.add(
         set != null
-            ? '$label: emits ${outside.join(', ')}, which $against does not '
-                  'list ($set); fix the spelling, or record why the provider '
-                  'accepts it in $proseSourcesPath'
+            ? '$label: $difference against $against ($set); make the enum '
+                  'equal its source, or record why the provider takes the '
+                  'emitted values in $proseSourcesPath'
             : '$label: no machine source has its values $emitted; record it '
                   'in $proseSourcesPath (dart tool/google_enum_sources.dart --fix)',
       );
@@ -312,10 +352,17 @@ SourceCheck checkSources(
       );
       continue;
     }
+    if (set != null && !_sameList(entry.upstream!, set)) {
+      failures.add(
+        '$label: $proseSourcesPath records upstream ${entry.upstream}, '
+        '$against now lists $set; review the note',
+      );
+      continue;
+    }
     if (entry.note == awaitingReview) {
       failures.add(
-        '$label: emits ${outside.join(', ')} outside $against; replace '
-        '$awaitingReview with why the provider accepts it',
+        '$label: $difference against $against; replace $awaitingReview with '
+        'why the provider takes the emitted values',
       );
       continue;
     }
@@ -365,12 +412,15 @@ String renderProseSources(Map<String, Map<String, ProseEntry>> lanes) {
       'path',
     )
     ..writeln(
-      '#   disagrees: <note>     a machine source has a set without an emitted '
-      'value; the note says why',
+      '#   disagrees: <note>     the enum differs from the machine source set '
+      '`upstream`; the note says why',
     )
     ..writeln(
-      '#                         the provider accepts it (a human decision; '
-      '--fix keeps it while the values match).',
+      '#                         the provider takes the emitted values (a '
+      'human decision; --fix keeps it while',
+    )
+    ..writeln(
+      '#                         both lists match).',
     )
     ..writeln(
       '# Values are exact and in emitted order; --fix rewrites the source '
@@ -392,6 +442,7 @@ String renderProseSources(Map<String, Map<String, ProseEntry>> lanes) {
       out.writeln('  $label:');
       out.writeln('    values: [${e.values.map(q).join(', ')}]');
       if (e.reason == 'disagrees') {
+        out.writeln('    upstream: [${e.upstream!.map(q).join(', ')}]');
         out.writeln('    disagrees: ${q(e.note!)}');
       } else {
         out.writeln('    source: ${e.reason}');

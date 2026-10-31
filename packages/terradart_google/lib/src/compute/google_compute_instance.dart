@@ -87,8 +87,9 @@ extension type const NicType._(TfArg<String> _) implements TfArg<String> {
   static const virtioNet = NicType._(TfArgLiteral('VIRTIO_NET'));
   static const mrdma = NicType._(TfArgLiteral('MRDMA'));
   static const irdma = NicType._(TfArgLiteral('IRDMA'));
+  static const idpf = NicType._(TfArgLiteral('IDPF'));
 
-  static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma];
+  static const List<NicType> values = [gvnic, virtioNet, mrdma, irdma, idpf];
 }
 
 /// `network_interface.access_config.network_tier` -- service tier for the
@@ -156,8 +157,17 @@ extension type const ProvisioningModel._(TfArg<String> _)
 
   static const standard = ProvisioningModel._(TfArgLiteral('STANDARD'));
   static const spot = ProvisioningModel._(TfArgLiteral('SPOT'));
+  static const flexStart = ProvisioningModel._(TfArgLiteral('FLEX_START'));
+  static const reservationBound = ProvisioningModel._(
+    TfArgLiteral('RESERVATION_BOUND'),
+  );
 
-  static const List<ProvisioningModel> values = [standard, spot];
+  static const List<ProvisioningModel> values = [
+    standard,
+    spot,
+    flexStart,
+    reservationBound,
+  ];
 }
 
 /// `scheduling.instance_termination_action` -- action when a SPOT VM is
@@ -445,10 +455,10 @@ extension type const ComputeInstanceInterface._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeInstanceInterface.arg(TfArg<String> arg) : this._(arg);
 
-  static const scsi = ComputeInstanceInterface._(TfArgLiteral('SCSI'));
   static const nvme = ComputeInstanceInterface._(TfArgLiteral('NVME'));
+  static const scsi = ComputeInstanceInterface._(TfArgLiteral('SCSI'));
 
-  static const List<ComputeInstanceInterface> values = [scsi, nvme];
+  static const List<ComputeInstanceInterface> values = [nvme, scsi];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -532,10 +542,10 @@ extension type const ComputeInstanceArchitecture._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeInstanceArchitecture.arg(TfArg<String> arg) : this._(arg);
 
-  static const x8664 = ComputeInstanceArchitecture._(TfArgLiteral('X86_64'));
   static const arm64 = ComputeInstanceArchitecture._(TfArgLiteral('ARM64'));
+  static const x8664 = ComputeInstanceArchitecture._(TfArgLiteral('X86_64'));
 
-  static const List<ComputeInstanceArchitecture> values = [x8664, arm64];
+  static const List<ComputeInstanceArchitecture> values = [arm64, x8664];
 }
 
 /// Typed helper for the `boot_disk.initialize_params.source_image_encryption_key` block of

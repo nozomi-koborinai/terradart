@@ -200,9 +200,6 @@ extension type const OsConfigV2PolicyOrchestratorMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const OsConfigV2PolicyOrchestratorMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const modeUnspecified = OsConfigV2PolicyOrchestratorMode._(
-    TfArgLiteral('MODE_UNSPECIFIED'),
-  );
   static const validation = OsConfigV2PolicyOrchestratorMode._(
     TfArgLiteral('VALIDATION'),
   );
@@ -211,7 +208,6 @@ extension type const OsConfigV2PolicyOrchestratorMode._(TfArg<String> _)
   );
 
   static const List<OsConfigV2PolicyOrchestratorMode> values = [
-    modeUnspecified,
     validation,
     enforcement,
   ];
@@ -352,10 +348,6 @@ extension type const OsConfigV2PolicyOrchestratorInterpreter._(TfArg<String> _)
   const OsConfigV2PolicyOrchestratorInterpreter.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const interpreterUnspecified =
-      OsConfigV2PolicyOrchestratorInterpreter._(
-        TfArgLiteral('INTERPRETER_UNSPECIFIED'),
-      );
   static const none = OsConfigV2PolicyOrchestratorInterpreter._(
     TfArgLiteral('NONE'),
   );
@@ -367,7 +359,6 @@ extension type const OsConfigV2PolicyOrchestratorInterpreter._(TfArg<String> _)
   );
 
   static const List<OsConfigV2PolicyOrchestratorInterpreter> values = [
-    interpreterUnspecified,
     none,
     shell,
     powershell,
@@ -523,10 +514,6 @@ extension type const OsConfigV2PolicyOrchestratorFileState._(TfArg<String> _)
   const OsConfigV2PolicyOrchestratorFileState.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const desiredStateUnspecified =
-      OsConfigV2PolicyOrchestratorFileState._(
-        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-      );
   static const present = OsConfigV2PolicyOrchestratorFileState._(
     TfArgLiteral('PRESENT'),
   );
@@ -538,7 +525,6 @@ extension type const OsConfigV2PolicyOrchestratorFileState._(TfArg<String> _)
   );
 
   static const List<OsConfigV2PolicyOrchestratorFileState> values = [
-    desiredStateUnspecified,
     present,
     absent,
     contentsMatch,
@@ -599,10 +585,6 @@ extension type const OsConfigV2PolicyOrchestratorDesiredState._(TfArg<String> _)
   const OsConfigV2PolicyOrchestratorDesiredState.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const desiredStateUnspecified =
-      OsConfigV2PolicyOrchestratorDesiredState._(
-        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-      );
   static const installed = OsConfigV2PolicyOrchestratorDesiredState._(
     TfArgLiteral('INSTALLED'),
   );
@@ -611,7 +593,6 @@ extension type const OsConfigV2PolicyOrchestratorDesiredState._(TfArg<String> _)
   );
 
   static const List<OsConfigV2PolicyOrchestratorDesiredState> values = [
-    desiredStateUnspecified,
     installed,
     removed,
   ];
@@ -818,10 +799,6 @@ extension type const OsConfigV2PolicyOrchestratorArchiveType._(TfArg<String> _)
   const OsConfigV2PolicyOrchestratorArchiveType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const archiveTypeUnspecified =
-      OsConfigV2PolicyOrchestratorArchiveType._(
-        TfArgLiteral('ARCHIVE_TYPE_UNSPECIFIED'),
-      );
   static const deb = OsConfigV2PolicyOrchestratorArchiveType._(
     TfArgLiteral('DEB'),
   );
@@ -830,7 +807,6 @@ extension type const OsConfigV2PolicyOrchestratorArchiveType._(TfArg<String> _)
   );
 
   static const List<OsConfigV2PolicyOrchestratorArchiveType> values = [
-    archiveTypeUnspecified,
     deb,
     debSrc,
   ];

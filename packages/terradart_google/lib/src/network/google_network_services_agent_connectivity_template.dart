@@ -77,9 +77,15 @@ extension type const NetworkServicesAgentConnectivityTemplateAgentCompute._(
       NetworkServicesAgentConnectivityTemplateAgentCompute._(
         TfArgLiteral('CLOUD_RUN'),
       );
+  static const borg = NetworkServicesAgentConnectivityTemplateAgentCompute._(
+    TfArgLiteral('BORG'),
+  );
+  static const gceVm = NetworkServicesAgentConnectivityTemplateAgentCompute._(
+    TfArgLiteral('GCE_VM'),
+  );
 
   static const List<NetworkServicesAgentConnectivityTemplateAgentCompute>
-  values = [gke, cloudRun];
+  values = [gke, cloudRun, borg, gceVm];
 }
 
 /// Network Services Agent Connectivity Template Deployment enum for `deployment_model`.

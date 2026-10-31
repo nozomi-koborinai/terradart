@@ -767,10 +767,6 @@ extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
   const DataprocWorkflowTemplatePrivateIpv6GoogleAccess.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const privateIpv6GoogleAccessUnspecified =
-      DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
-        TfArgLiteral('PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
-      );
   static const inheritFromSubnetwork =
       DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
         TfArgLiteral('INHERIT_FROM_SUBNETWORK'),
@@ -784,7 +780,6 @@ extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
       );
 
   static const List<DataprocWorkflowTemplatePrivateIpv6GoogleAccess> values = [
-    privateIpv6GoogleAccessUnspecified,
     inheritFromSubnetwork,
     outbound,
     bidirectional,
@@ -838,10 +833,6 @@ extension type const DataprocWorkflowTemplateConsumeReservationType._(
   const DataprocWorkflowTemplateConsumeReservationType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const typeUnspecified =
-      DataprocWorkflowTemplateConsumeReservationType._(
-        TfArgLiteral('TYPE_UNSPECIFIED'),
-      );
   static const noReservation = DataprocWorkflowTemplateConsumeReservationType._(
     TfArgLiteral('NO_RESERVATION'),
   );
@@ -855,7 +846,6 @@ extension type const DataprocWorkflowTemplateConsumeReservationType._(
       );
 
   static const List<DataprocWorkflowTemplateConsumeReservationType> values = [
-    typeUnspecified,
     noReservation,
     anyReservation,
     specificReservation,
@@ -986,21 +976,20 @@ extension type const DataprocWorkflowTemplatePreemptibility._(TfArg<String> _)
   const DataprocWorkflowTemplatePreemptibility.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const preemptibilityUnspecified =
-      DataprocWorkflowTemplatePreemptibility._(
-        TfArgLiteral('PREEMPTIBILITY_UNSPECIFIED'),
-      );
   static const nonPreemptible = DataprocWorkflowTemplatePreemptibility._(
     TfArgLiteral('NON_PREEMPTIBLE'),
   );
   static const preemptible = DataprocWorkflowTemplatePreemptibility._(
     TfArgLiteral('PREEMPTIBLE'),
   );
+  static const spot = DataprocWorkflowTemplatePreemptibility._(
+    TfArgLiteral('SPOT'),
+  );
 
   static const List<DataprocWorkflowTemplatePreemptibility> values = [
-    preemptibilityUnspecified,
     nonPreemptible,
     preemptible,
+    spot,
   ];
 }
 

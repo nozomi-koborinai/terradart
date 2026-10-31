@@ -118,10 +118,6 @@ extension type const NetworkServicesLbTrafficExtensionSupportedEvents._(
   const NetworkServicesLbTrafficExtensionSupportedEvents.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const eventTypeUnspecified =
-      NetworkServicesLbTrafficExtensionSupportedEvents._(
-        TfArgLiteral('EVENT_TYPE_UNSPECIFIED'),
-      );
   static const requestHeaders =
       NetworkServicesLbTrafficExtensionSupportedEvents._(
         TfArgLiteral('REQUEST_HEADERS'),
@@ -137,13 +133,22 @@ extension type const NetworkServicesLbTrafficExtensionSupportedEvents._(
       NetworkServicesLbTrafficExtensionSupportedEvents._(
         TfArgLiteral('RESPONSE_BODY'),
       );
+  static const requestTrailers =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_TRAILERS'),
+      );
+  static const responseTrailers =
+      NetworkServicesLbTrafficExtensionSupportedEvents._(
+        TfArgLiteral('RESPONSE_TRAILERS'),
+      );
 
   static const List<NetworkServicesLbTrafficExtensionSupportedEvents> values = [
-    eventTypeUnspecified,
     requestHeaders,
     requestBody,
     responseHeaders,
     responseBody,
+    requestTrailers,
+    responseTrailers,
   ];
 }
 

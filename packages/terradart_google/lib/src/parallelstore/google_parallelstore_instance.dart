@@ -19,10 +19,6 @@ extension type const ParallelstoreInstanceDirectoryStripeLevel._(
   const ParallelstoreInstanceDirectoryStripeLevel.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const directoryStripeLevelUnspecified =
-      ParallelstoreInstanceDirectoryStripeLevel._(
-        TfArgLiteral('DIRECTORY_STRIPE_LEVEL_UNSPECIFIED'),
-      );
   static const directoryStripeLevelMin =
       ParallelstoreInstanceDirectoryStripeLevel._(
         TfArgLiteral('DIRECTORY_STRIPE_LEVEL_MIN'),
@@ -37,7 +33,6 @@ extension type const ParallelstoreInstanceDirectoryStripeLevel._(
       );
 
   static const List<ParallelstoreInstanceDirectoryStripeLevel> values = [
-    directoryStripeLevelUnspecified,
     directoryStripeLevelMin,
     directoryStripeLevelBalanced,
     directoryStripeLevelMax,
@@ -54,10 +49,6 @@ extension type const ParallelstoreInstanceFileStripeLevel._(TfArg<String> _)
   const ParallelstoreInstanceFileStripeLevel.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const fileStripeLevelUnspecified =
-      ParallelstoreInstanceFileStripeLevel._(
-        TfArgLiteral('FILE_STRIPE_LEVEL_UNSPECIFIED'),
-      );
   static const fileStripeLevelMin = ParallelstoreInstanceFileStripeLevel._(
     TfArgLiteral('FILE_STRIPE_LEVEL_MIN'),
   );
@@ -69,7 +60,6 @@ extension type const ParallelstoreInstanceFileStripeLevel._(TfArg<String> _)
   );
 
   static const List<ParallelstoreInstanceFileStripeLevel> values = [
-    fileStripeLevelUnspecified,
     fileStripeLevelMin,
     fileStripeLevelBalanced,
     fileStripeLevelMax,
@@ -86,9 +76,6 @@ extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
   const ParallelstoreInstanceDeploymentType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const unspecified = ParallelstoreInstanceDeploymentType._(
-    TfArgLiteral('DEPLOYMENT_TYPE_UNSPECIFIED'),
-  );
   static const scratch = ParallelstoreInstanceDeploymentType._(
     TfArgLiteral('SCRATCH'),
   );
@@ -97,7 +84,6 @@ extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
   );
 
   static const List<ParallelstoreInstanceDeploymentType> values = [
-    unspecified,
     scratch,
     persistent,
   ];

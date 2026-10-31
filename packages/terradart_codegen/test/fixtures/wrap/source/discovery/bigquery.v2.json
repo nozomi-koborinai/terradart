@@ -1368,5 +1368,17 @@
         }
       }
     }
+  },
+  "parameters": {
+    "Dataset": {
+      "updateMode": {
+        "enum": [
+          "UPDATE_MODE_UNSPECIFIED",
+          "UPDATE_METADATA",
+          "UPDATE_ACL",
+          "UPDATE_FULL"
+        ]
+      }
+    }
   }
 }

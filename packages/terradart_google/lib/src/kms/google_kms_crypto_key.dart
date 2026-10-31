@@ -30,6 +30,10 @@ extension type const KmsKeyPurpose._(TfArg<String> _) implements TfArg<String> {
   static const rawEncryptDecrypt = KmsKeyPurpose._(
     TfArgLiteral('RAW_ENCRYPT_DECRYPT'),
   );
+  static const keyEncapsulation = KmsKeyPurpose._(
+    TfArgLiteral('KEY_ENCAPSULATION'),
+  );
+  static const aesWrapping = KmsKeyPurpose._(TfArgLiteral('AES_WRAPPING'));
 
   static const List<KmsKeyPurpose> values = [
     encryptDecrypt,
@@ -37,6 +41,8 @@ extension type const KmsKeyPurpose._(TfArg<String> _) implements TfArg<String> {
     asymmetricDecrypt,
     mac,
     rawEncryptDecrypt,
+    keyEncapsulation,
+    aesWrapping,
   ];
 }
 
@@ -54,12 +60,16 @@ extension type const KmsProtectionLevel._(TfArg<String> _)
   static const hsm = KmsProtectionLevel._(TfArgLiteral('HSM'));
   static const external = KmsProtectionLevel._(TfArgLiteral('EXTERNAL'));
   static const externalVpc = KmsProtectionLevel._(TfArgLiteral('EXTERNAL_VPC'));
+  static const hsmSingleTenant = KmsProtectionLevel._(
+    TfArgLiteral('HSM_SINGLE_TENANT'),
+  );
 
   static const List<KmsProtectionLevel> values = [
     software,
     hsm,
     external,
     externalVpc,
+    hsmSingleTenant,
   ];
 }
 

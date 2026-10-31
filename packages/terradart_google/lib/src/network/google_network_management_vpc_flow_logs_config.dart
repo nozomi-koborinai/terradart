@@ -23,10 +23,6 @@ extension type const NetworkManagementVpcFlowLogsConfigAggregationInterval._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const aggregationIntervalUnspecified =
-      NetworkManagementVpcFlowLogsConfigAggregationInterval._(
-        TfArgLiteral('AGGREGATION_INTERVAL_UNSPECIFIED'),
-      );
   static const interval5Sec =
       NetworkManagementVpcFlowLogsConfigAggregationInterval._(
         TfArgLiteral('INTERVAL_5_SEC'),
@@ -54,7 +50,6 @@ extension type const NetworkManagementVpcFlowLogsConfigAggregationInterval._(
 
   static const List<NetworkManagementVpcFlowLogsConfigAggregationInterval>
   values = [
-    aggregationIntervalUnspecified,
     interval5Sec,
     interval30Sec,
     interval1Min,
@@ -75,10 +70,6 @@ extension type const NetworkManagementVpcFlowLogsConfigMetadata._(
   const NetworkManagementVpcFlowLogsConfigMetadata.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const metadataUnspecified =
-      NetworkManagementVpcFlowLogsConfigMetadata._(
-        TfArgLiteral('METADATA_UNSPECIFIED'),
-      );
   static const includeAllMetadata =
       NetworkManagementVpcFlowLogsConfigMetadata._(
         TfArgLiteral('INCLUDE_ALL_METADATA'),
@@ -92,7 +83,6 @@ extension type const NetworkManagementVpcFlowLogsConfigMetadata._(
   );
 
   static const List<NetworkManagementVpcFlowLogsConfigMetadata> values = [
-    metadataUnspecified,
     includeAllMetadata,
     excludeAllMetadata,
     customMetadata,
@@ -109,9 +99,6 @@ extension type const NetworkManagementVpcFlowLogsConfigState._(TfArg<String> _)
   const NetworkManagementVpcFlowLogsConfigState.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const stateUnspecified = NetworkManagementVpcFlowLogsConfigState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
   static const enabled = NetworkManagementVpcFlowLogsConfigState._(
     TfArgLiteral('ENABLED'),
   );
@@ -120,7 +107,6 @@ extension type const NetworkManagementVpcFlowLogsConfigState._(TfArg<String> _)
   );
 
   static const List<NetworkManagementVpcFlowLogsConfigState> values = [
-    stateUnspecified,
     enabled,
     disabled,
   ];

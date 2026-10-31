@@ -3,10 +3,6 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
-enumValues:
-  details.rules.effect:
-    - ALLOW
-
 extraImports:
   - "import 'package:meta/meta.dart';"
 

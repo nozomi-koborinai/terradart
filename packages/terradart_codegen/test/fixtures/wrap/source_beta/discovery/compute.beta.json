@@ -451,5 +451,27 @@
         }
       }
     }
+  },
+  "parameters": {
+    "Instance": {
+      "minimalAction": {
+        "enum": [
+          "INVALID",
+          "NO_EFFECT",
+          "REFRESH",
+          "RESTART",
+          "RESTART_IN_PLACE"
+        ]
+      },
+      "mostDisruptiveAllowedAction": {
+        "enum": [
+          "INVALID",
+          "NO_EFFECT",
+          "REFRESH",
+          "RESTART",
+          "RESTART_IN_PLACE"
+        ]
+      }
+    }
   }
 }

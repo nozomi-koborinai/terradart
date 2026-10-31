@@ -41,6 +41,32 @@
           ]
         }
       }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicy": {
+      "properties": {
+        "details": {
+          "$ref": "GoogleIamV3PrincipalAccessBoundaryPolicyDetails"
+        }
+      }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicyDetails": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GoogleIamV3PrincipalAccessBoundaryPolicyRule"
+          }
+        }
+      }
+    },
+    "GoogleIamV3PrincipalAccessBoundaryPolicyRule": {
+      "properties": {
+        "effect": {
+          "enum": [
+            "EFFECT_UNSPECIFIED",
+            "ALLOW"
+          ]
+        }
+      }
     }
   }
 }

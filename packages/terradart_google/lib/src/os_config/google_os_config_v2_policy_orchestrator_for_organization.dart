@@ -216,10 +216,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationMode._(
   const OsConfigV2PolicyOrchestratorForOrganizationMode.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const modeUnspecified =
-      OsConfigV2PolicyOrchestratorForOrganizationMode._(
-        TfArgLiteral('MODE_UNSPECIFIED'),
-      );
   static const validation = OsConfigV2PolicyOrchestratorForOrganizationMode._(
     TfArgLiteral('VALIDATION'),
   );
@@ -228,7 +224,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationMode._(
   );
 
   static const List<OsConfigV2PolicyOrchestratorForOrganizationMode> values = [
-    modeUnspecified,
     validation,
     enforcement,
   ];
@@ -373,10 +368,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const interpreterUnspecified =
-      OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
-        TfArgLiteral('INTERPRETER_UNSPECIFIED'),
-      );
   static const none = OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
     TfArgLiteral('NONE'),
   );
@@ -389,7 +380,7 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
       );
 
   static const List<OsConfigV2PolicyOrchestratorForOrganizationInterpreter>
-  values = [interpreterUnspecified, none, shell, powershell];
+  values = [none, shell, powershell];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file` block of
@@ -544,10 +535,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationFileState._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const desiredStateUnspecified =
-      OsConfigV2PolicyOrchestratorForOrganizationFileState._(
-        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-      );
   static const present = OsConfigV2PolicyOrchestratorForOrganizationFileState._(
     TfArgLiteral('PRESENT'),
   );
@@ -560,7 +547,7 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationFileState._(
       );
 
   static const List<OsConfigV2PolicyOrchestratorForOrganizationFileState>
-  values = [desiredStateUnspecified, present, absent, contentsMatch];
+  values = [present, absent, contentsMatch];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg` block of
@@ -620,10 +607,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const desiredStateUnspecified =
-      OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
-        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
-      );
   static const installed =
       OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
         TfArgLiteral('INSTALLED'),
@@ -634,7 +617,7 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
       );
 
   static const List<OsConfigV2PolicyOrchestratorForOrganizationDesiredState>
-  values = [desiredStateUnspecified, installed, removed];
+  values = [installed, removed];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.apt` block of
@@ -849,10 +832,6 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const archiveTypeUnspecified =
-      OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
-        TfArgLiteral('ARCHIVE_TYPE_UNSPECIFIED'),
-      );
   static const deb = OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
     TfArgLiteral('DEB'),
   );
@@ -862,7 +841,7 @@ extension type const OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
       );
 
   static const List<OsConfigV2PolicyOrchestratorForOrganizationArchiveType>
-  values = [archiveTypeUnspecified, deb, debSrc];
+  values = [deb, debSrc];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.goo` block of

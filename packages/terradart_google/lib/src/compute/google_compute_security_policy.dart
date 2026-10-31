@@ -137,8 +137,15 @@ extension type const SecurityPolicyJsonParsing._(TfArg<String> _)
 
   static const disabled = SecurityPolicyJsonParsing._(TfArgLiteral('DISABLED'));
   static const standard = SecurityPolicyJsonParsing._(TfArgLiteral('STANDARD'));
+  static const standardWithGraphql = SecurityPolicyJsonParsing._(
+    TfArgLiteral('STANDARD_WITH_GRAPHQL'),
+  );
 
-  static const List<SecurityPolicyJsonParsing> values = [disabled, standard];
+  static const List<SecurityPolicyJsonParsing> values = [
+    disabled,
+    standard,
+    standardWithGraphql,
+  ];
 }
 
 /// `advanced_options_config.log_level` -- verbosity of Cloud Armor's

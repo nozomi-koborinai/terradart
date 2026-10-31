@@ -147,10 +147,6 @@ extension type const OracleDatabaseCloudVmClusterDiskRedundancy._(
   const OracleDatabaseCloudVmClusterDiskRedundancy.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const diskRedundancyUnspecified =
-      OracleDatabaseCloudVmClusterDiskRedundancy._(
-        TfArgLiteral('DISK_REDUNDANCY_UNSPECIFIED'),
-      );
   static const high = OracleDatabaseCloudVmClusterDiskRedundancy._(
     TfArgLiteral('HIGH'),
   );
@@ -159,7 +155,6 @@ extension type const OracleDatabaseCloudVmClusterDiskRedundancy._(
   );
 
   static const List<OracleDatabaseCloudVmClusterDiskRedundancy> values = [
-    diskRedundancyUnspecified,
     high,
     normal,
   ];
@@ -175,10 +170,6 @@ extension type const OracleDatabaseCloudVmClusterLicenseType._(TfArg<String> _)
   const OracleDatabaseCloudVmClusterLicenseType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const licenseTypeUnspecified =
-      OracleDatabaseCloudVmClusterLicenseType._(
-        TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'),
-      );
   static const licenseIncluded = OracleDatabaseCloudVmClusterLicenseType._(
     TfArgLiteral('LICENSE_INCLUDED'),
   );
@@ -187,7 +178,6 @@ extension type const OracleDatabaseCloudVmClusterLicenseType._(TfArg<String> _)
   );
 
   static const List<OracleDatabaseCloudVmClusterLicenseType> values = [
-    licenseTypeUnspecified,
     licenseIncluded,
     bringYourOwnLicense,
   ];
@@ -204,10 +194,6 @@ extension type const OracleDatabaseCloudVmClusterVmBackupStorageType._(
   const OracleDatabaseCloudVmClusterVmBackupStorageType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const vmBackupStorageTypeUnspecified =
-      OracleDatabaseCloudVmClusterVmBackupStorageType._(
-        TfArgLiteral('VM_BACKUP_STORAGE_TYPE_UNSPECIFIED'),
-      );
   static const vmBackupStorageTypeLocal =
       OracleDatabaseCloudVmClusterVmBackupStorageType._(
         TfArgLiteral('VM_BACKUP_STORAGE_TYPE_LOCAL'),
@@ -218,7 +204,6 @@ extension type const OracleDatabaseCloudVmClusterVmBackupStorageType._(
       );
 
   static const List<OracleDatabaseCloudVmClusterVmBackupStorageType> values = [
-    vmBackupStorageTypeUnspecified,
     vmBackupStorageTypeLocal,
     vmBackupStorageTypeExascale,
   ];
@@ -237,10 +222,6 @@ extension type const OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const vmFileSystemStorageTypeUnspecified =
-      OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
-        TfArgLiteral('VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED'),
-      );
   static const vmFileSystemStorageTypeLocal =
       OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
         TfArgLiteral('VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL'),
@@ -251,11 +232,7 @@ extension type const OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
       );
 
   static const List<OracleDatabaseCloudVmClusterVmFileSystemStorageType>
-  values = [
-    vmFileSystemStorageTypeUnspecified,
-    vmFileSystemStorageTypeLocal,
-    vmFileSystemStorageTypeExascale,
-  ];
+  values = [vmFileSystemStorageTypeLocal, vmFileSystemStorageTypeExascale];
 }
 
 /// Typed helper for the `properties.diagnostics_data_collection_options` block of

@@ -1,5 +1,5 @@
 // The gate of tool/google_enum_sources.dart: every enum of a discovery lane
-// spells exactly the values a checked-in machine source lists, or has a
+// equals the value set a checked-in machine source lists, or has a
 // reasoned tool/enum_prose_sources.yaml entry, and no input a machine source
 // has a set for stays a plain string.
 import 'dart:io';
@@ -48,7 +48,6 @@ LaneSources _sources() => LaneSources(
         doc: 'thing.v1',
         schema: 'Thing',
         paths: const {},
-        passthrough: false,
       ),
     },
     dataSources: const {},
@@ -60,12 +59,16 @@ SourceCheck _check(
   Map<String, ProseEntry> prose = const {},
 ]) => checkSources(inputs, _sources(), prose);
 
-ProseEntry _entry(List<String> values, String reason, [String? note]) =>
-    (values: values, reason: reason, note: note);
+ProseEntry _entry(
+  List<String> values,
+  String reason, [
+  String? note,
+  List<String>? upstream,
+]) => (values: values, reason: reason, note: note, upstream: upstream);
 
 Map<String, String> _flat(Map<String, ProseEntry> entries) => {
   for (final MapEntry(:key, :value) in entries.entries)
-    key: '${value.values} ${value.reason} ${value.note}',
+    key: '${value.values} ${value.reason} ${value.note} ${value.upstream}',
 };
 
 void main() {
@@ -138,6 +141,54 @@ void main() {
         }
       });
 
+      test('$lane: a seeded missing source value fails', () {
+        final seeded = inputs.entries.firstWhere(
+          (e) =>
+              e.value != null &&
+              e.value!.length > 1 &&
+              !prose.containsKey(inputLabel(e.key)) &&
+              (sources.mmValues(e.key) ?? sources.discoveryEnum(e.key)) != null,
+        );
+        final dropped = seeded.value!.last;
+        final check = checkSources(
+          {...inputs, seeded.key: seeded.value!.sublist(1)..remove(dropped)},
+          sources,
+          prose,
+        );
+        expect(check.failures, [
+          allOf(
+            contains('${inputLabel(seeded.key)}: lacks'),
+            contains(dropped),
+          ),
+        ]);
+      });
+
+      test('$lane: a seeded Discovery sentinel fails', () {
+        final seeded = inputs.entries.firstWhere(
+          (e) =>
+              e.value != null &&
+              !prose.containsKey(inputLabel(e.key)) &&
+              sources.mmValues(e.key) == null &&
+              (sources.discoveryEnum(e.key)?.values.any(isDiscoverySentinel) ??
+                  false),
+        );
+        final sentinel = sources
+            .discoveryEnum(seeded.key)!
+            .values
+            .firstWhere(isDiscoverySentinel);
+        final check = checkSources(
+          {
+            ...inputs,
+            seeded.key: [sentinel, ...seeded.value!],
+          },
+          sources,
+          prose,
+        );
+        expect(check.failures, [
+          contains('${inputLabel(seeded.key)}: emits $sentinel'),
+        ]);
+      });
+
       test('$lane: a seeded untyped input with a machine set fails', () {
         final seeded = inputs.entries.firstWhere(
           (e) => e.value != null && sources.typableValues(e.key) != null,
@@ -158,7 +209,7 @@ void main() {
         final e = prose[label]!;
         final check = checkSources(inputs, sources, {
           ...prose,
-          label: _entry([...e.values, 'EXTRA'], e.reason, e.note),
+          label: _entry([...e.values, 'EXTRA'], e.reason, e.note, e.upstream),
         });
         expect(check.failures, [contains('$label: $proseSourcesPath lists')]);
       });
@@ -168,16 +219,41 @@ void main() {
   group('checkSources', () {
     test('counts exact matches by source', () {
       final check = _check({
-        _key(_mmType, 'mode'): ['ENABLED'],
+        _key(_mmType, 'mode'): ['ENABLED', 'DISABLED'],
         _key(_discoveryType, 'tier'): ['STANDARD', 'PREMIUM'],
       });
       expect(check.failures, isEmpty);
       expect((check.mm, check.discovery), (1, 1));
     });
 
+    test('a source value the enum lacks fails, against each source', () {
+      final check = _check({
+        _key(_mmType, 'mode'): ['ENABLED'],
+        _key(_discoveryType, 'tier'): ['STANDARD'],
+      });
+      expect(check.failures, [
+        allOf(contains('$_mmType.mode: lacks DISABLED'), contains('Magic')),
+        allOf(
+          contains('$_discoveryType.tier: lacks PREMIUM'),
+          contains('thing'),
+        ),
+      ]);
+    });
+
+    test('an emitted Discovery sentinel fails', () {
+      final check = _check({
+        _key(_discoveryType, 'tier'): [
+          'TIER_UNSPECIFIED',
+          'STANDARD',
+          'PREMIUM',
+        ],
+      });
+      expect(check.failures, [contains('emits TIER_UNSPECIFIED')]);
+    });
+
     test('a misspelled Magic Modules value fails', () {
       final check = _check({
-        _key(_mmType, 'mode'): ['ENABLED', 'DISABLD'],
+        _key(_mmType, 'mode'): ['ENABLED', 'DISABLED', 'DISABLD'],
       });
       expect(check.failures, [
         allOf(contains('emits DISABLD'), contains('Magic Modules')),
@@ -186,7 +262,7 @@ void main() {
 
     test('a misspelled Discovery value fails', () {
       final check = _check({
-        _key(_discoveryType, 'tier'): ['STANDARD', 'PREMUIM'],
+        _key(_discoveryType, 'tier'): ['STANDARD', 'PREMIUM', 'PREMUIM'],
       });
       expect(check.failures, [
         allOf(contains('emits PREMUIM'), contains('Discovery thing.v1')),
@@ -196,7 +272,7 @@ void main() {
     test('spelling is compared exactly, case included', () {
       expect(
         _check({
-          _key(_discoveryType, 'tier'): ['standard'],
+          _key(_discoveryType, 'tier'): ['standard', 'PREMIUM'],
         }).failures,
         hasLength(1),
       );
@@ -274,19 +350,62 @@ void main() {
           ['STANDARD', 'HIDDEN'],
           'disagrees',
           awaitingReview,
+          ['STANDARD', 'PREMIUM'],
         ),
       });
-      expect(unreviewed.failures, [contains('replace $awaitingReview')]);
+      expect(unreviewed.failures, [
+        allOf(
+          contains('emits HIDDEN and lacks PREMIUM'),
+          contains('replace $awaitingReview'),
+        ),
+      ]);
 
       final reviewed = _check(inputs, {
         '$_discoveryType.tier': _entry(
           ['STANDARD', 'HIDDEN'],
           'disagrees',
           'the API hides HIDDEN',
+          ['STANDARD', 'PREMIUM'],
         ),
       });
       expect(reviewed.failures, isEmpty);
       expect(reviewed.wanted.values.single.note, 'the API hides HIDDEN');
+    });
+
+    test('a narrowing needs a reviewed note too', () {
+      final inputs = {
+        _key(_discoveryType, 'tier'): ['STANDARD'],
+      };
+      expect(_check(inputs).failures, [contains('lacks PREMIUM')]);
+      expect(
+        _check(inputs, {
+          '$_discoveryType.tier': _entry(
+            ['STANDARD'],
+            'disagrees',
+            'the provider rejects PREMIUM',
+            ['STANDARD', 'PREMIUM'],
+          ),
+        }).failures,
+        isEmpty,
+      );
+    });
+
+    test('a note goes stale when its upstream set moves', () {
+      final check = _check(
+        {
+          _key(_discoveryType, 'tier'): ['STANDARD'],
+        },
+        {
+          '$_discoveryType.tier': _entry(
+            ['STANDARD'],
+            'disagrees',
+            'the provider rejects PREMIUM',
+            ['STANDARD', 'PREMIUM', 'GOLD'],
+          ),
+        },
+      );
+      expect(check.failures, [contains('records upstream')]);
+      expect(check.wanted.values.single.note, awaitingReview);
     });
 
     test('--fix marks a changed disagreement awaiting review', () {
@@ -299,6 +418,7 @@ void main() {
             ['STANDARD', 'HIDDEN'],
             'disagrees',
             'the API hides HIDDEN',
+            ['STANDARD', 'PREMIUM'],
           ),
         },
       );
@@ -308,10 +428,10 @@ void main() {
     test('a stale entry fails', () {
       final check = _check(
         {
-          _key(_mmType, 'mode'): ['ENABLED'],
+          _key(_mmType, 'mode'): ['ENABLED', 'DISABLED'],
         },
         {
-          '$_mmType.mode': _entry(['ENABLED'], 'no-document'),
+          '$_mmType.mode': _entry(['ENABLED', 'DISABLED'], 'no-document'),
           '$_bareType.gone': _entry(['A'], 'no-document'),
         },
       );
@@ -354,13 +474,19 @@ google:
     source: no-enum
   google_b.y:
     values: [C]
+    upstream: [C, D]
     disagrees: 'why it is accepted'
 ''', 'google');
       expect(
         _flat(parsed),
         _flat({
           'google_a.x': _entry(['A', 'B'], 'no-enum'),
-          'google_b.y': _entry(['C'], 'disagrees', 'why it is accepted'),
+          'google_b.y': _entry(
+            ['C'],
+            'disagrees',
+            'why it is accepted',
+            ['C', 'D'],
+          ),
         }),
       );
       expect(parseProseSources('google: {}', 'google-beta'), isEmpty);
@@ -371,6 +497,7 @@ google:
         '    values: [A]\n    source: maybe',
         '    values: [A]',
         '    source: no-enum',
+        '    values: [A]\n    disagrees: why',
       ]) {
         expect(
           () => parseProseSources('google:\n  google_a.x:\n$body\n', 'google'),
@@ -383,7 +510,12 @@ google:
     test('round-trips through renderProseSources', () {
       final entries = {
         'google_a.x': _entry(['A', 'yes', '1.0'], 'no-document'),
-        'google_b.y': _entry(['C'], 'disagrees', "it's accepted: see #1"),
+        'google_b.y': _entry(
+          ['C'],
+          'disagrees',
+          "it's accepted: see #1",
+          ['C', 'yes'],
+        ),
       };
       expect(
         _flat(

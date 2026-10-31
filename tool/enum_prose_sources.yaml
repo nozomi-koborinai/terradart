@@ -1,8 +1,9 @@
 # The google-lane enums whose values no machine source has, with why (tool/google_enum_sources.dart).
 #   source: no-document   no Discovery document is recorded for the type
 #   source: no-enum       its Discovery schema declares no enum at the path
-#   disagrees: <note>     a machine source has a set without an emitted value; the note says why
-#                         the provider accepts it (a human decision; --fix keeps it while the values match).
+#   disagrees: <note>     the enum differs from the machine source set `upstream`; the note says why
+#                         the provider takes the emitted values (a human decision; --fix keeps it while
+#                         both lists match).
 # Values are exact and in emitted order; --fix rewrites the source entries, never a note.
 google:
   data.google_discovery_engine_data_store.location:
@@ -41,6 +42,10 @@ google:
   google_agentic_applications_analyst_agent_persona.role:
     values: [ANALYST_ROLE_GENERIC_FINANCE_ANALYST, ANALYST_ROLE_CORPORATE_FINANCE_ANALYST, ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST, ANALYST_ROLE_KYC_ANALYST, ANALYST_ROLE_SALES_TRADER, ANALYST_ROLE_QUANT_ANALYST, ANALYST_ROLE_EXCHANGE_MANAGER, ANALYST_ROLE_PORTFOLIO_MANAGER, ANALYST_ROLE_WEALTH_MANAGER, ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST, ANALYST_ROLE_MNA_EXECUTION_ANALYST, ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST, ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST, ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST, ANALYST_ROLE_CORPORATE_BANKING_ANALYST, ANALYST_ROLE_CREDIT_RISK_STRATEGIST, ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST, ANALYST_ROLE_FUND_ACCOUNTANT, ANALYST_ROLE_MODEL_VALIDATION_AUDITOR, ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST, ANALYST_ROLE_TREASURY_ANALYST, ANALYST_ROLE_VENTURE_CAPITAL_ANALYST, ANALYST_ROLE_AML_INVESTIGATOR, ANALYST_ROLE_DUE_DILIGENCE_ANALYST, ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST, ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER, ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER]
     source: no-document
+  google_alloydb_user.user_type:
+    values: [ALLOYDB_BUILT_IN, ALLOYDB_IAM_USER]
+    upstream: [ALLOYDB_BUILT_IN, ALLOYDB_IAM_USER, ALLOYDB_IAM_GROUP]
+    disagrees: 'the Magic Modules description says ALLOYDB_IAM_GROUP is supported only by the google-beta provider (v1beta alloydb API); the GA provider this lane wraps does not take it'
   google_apigee_api_product.graphql_operation_group.operation_configs.operations.operation_types:
     values: [query, mutation]
     source: no-enum
@@ -77,9 +82,6 @@ google:
   google_apigee_security_action.condition_config.http_methods:
     values: [GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH]
     source: no-enum
-  google_apikeys_key.check_existing_usage:
-    values: [SKIP, CHECK]
-    source: no-document
   google_app_engine_flexible_app_version.instance_class:
     values: [F1, F2, F4, F4_1G, B1, B2, B4, B8, B4_1G]
     source: no-enum
@@ -145,6 +147,7 @@ google:
     source: no-enum
   google_bigquery_table.time_partitioning.type:
     values: [DAY, HOUR, MONTH, YEAR]
+    upstream: [DAY]
     disagrees: 'the hand-written provider resource validates DAY, HOUR, MONTH and YEAR (resource_bigquery_table.go StringInSlice); the Magic Modules Table YAML, which does not generate it, lists only DAY'
   google_bigtable_instance.cluster.node_scaling_factor:
     values: [NodeScalingFactor1X, NodeScalingFactor2X]
@@ -322,19 +325,40 @@ google:
     source: no-enum
   google_composer_environment.config.software_config.web_server_plugins_mode:
     values: [ENABLED, DISABLED]
-    disagrees: 'the provider takes ENABLED / DISABLED and sends PLUGINS_ENABLED / PLUGINS_DISABLED (resource_composer_environment.go expand and flatten)'
+    upstream: [PLUGINS_DISABLED, PLUGINS_ENABLED]
+    disagrees: 'the provider takes ENABLED or DISABLED and maps them to PLUGINS_ENABLED / PLUGINS_DISABLED itself (resource_composer_environment.go expand and flatten); the API spelling is not a valid input'
   google_composer_environment.config.web_server_config.machine_type:
     values: [composer-n1-webserver-2, composer-n1-webserver-4, composer-n1-webserver-8]
     source: no-enum
   google_compute_firewall_policy_with_rules.rule.action:
     values: [allow, deny, apply_security_profile_group, goto_next]
     source: no-enum
+  google_compute_global_address.purpose:
+    values: [VPC_PEERING, PRIVATE_SERVICE_CONNECT]
+    upstream: [DNS_RESOLVER, GCE_ENDPOINT, IPSEC_INTERCONNECT, NAT_AUTO, PRIVATE_SERVICE_CONNECT, SERVERLESS, SHARED_LOADBALANCER_VIP, VPC_PEERING]
+    disagrees: 'Address.purpose is shared by regional and global addresses; the API description and the provider document only VPC_PEERING and PRIVATE_SERVICE_CONNECT for a global address, and the other purposes are regional'
   google_compute_instance.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
+  google_compute_instance.network_interface.access_config.network_tier:
+    values: [PREMIUM, STANDARD, FIXED_STANDARD]
+    upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
+    disagrees: 'STANDARD_OVERRIDES_FIXED_STANDARD is output only (compute v1 enumDescriptions: a temporary tier the API reports when FIXED_STANDARD expires), so an input never takes it'
+  google_compute_instance.network_interface.ipv6_access_config.network_tier:
+    values: [PREMIUM, STANDARD, FIXED_STANDARD]
+    upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
+    disagrees: 'STANDARD_OVERRIDES_FIXED_STANDARD is output only (compute v1 enumDescriptions: a temporary tier the API reports when FIXED_STANDARD expires), so an input never takes it'
   google_compute_instance_from_template.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
+  google_compute_instance_template.network_interface.access_config.network_tier:
+    values: [PREMIUM, STANDARD, FIXED_STANDARD]
+    upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
+    disagrees: 'STANDARD_OVERRIDES_FIXED_STANDARD is output only (compute v1 enumDescriptions: a temporary tier the API reports when FIXED_STANDARD expires), so an input never takes it'
+  google_compute_instance_template.network_interface.ipv6_access_config.network_tier:
+    values: [PREMIUM, STANDARD, FIXED_STANDARD]
+    upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
+    disagrees: 'STANDARD_OVERRIDES_FIXED_STANDARD is output only (compute v1 enumDescriptions: a temporary tier the API reports when FIXED_STANDARD expires), so an input never takes it'
   google_compute_instance_template.reservation_affinity.type:
     values: [ANY_RESERVATION, SPECIFIC_RESERVATION, NO_RESERVATION]
     source: no-enum
@@ -350,6 +374,10 @@ google:
   google_compute_per_instance_config.most_disruptive_allowed_action:
     values: [REPLACE, RESTART, REFRESH, NONE]
     source: no-enum
+  google_compute_project_default_network_tier.network_tier:
+    values: [PREMIUM, STANDARD]
+    upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
+    disagrees: 'the hand-written provider resource validates PREMIUM and STANDARD only (resource_compute_project_default_network_tier.go StringInSlice), as the API description says; STANDARD_OVERRIDES_FIXED_STANDARD is output only'
   google_compute_region_instant_snapshot.deletion_policy:
     values: [DELETE, PREVENT, ABANDON]
     source: no-document
@@ -395,6 +423,14 @@ google:
   google_compute_security_policy.rule.action:
     values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, redirect, throttle]
     source: no-enum
+  google_compute_security_policy.rule.rate_limit_options.enforce_on_key:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, ASN, HTTP_COOKIE, HTTP_HEADER, HTTP_PATH, IP, REGION_CODE, SNI, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, XFF_IP]
+    disagrees: 'the hand-written provider resource validates the list without ASN (resource_compute_security_policy.go StringInSlice), and the enum type is shared with the Magic Modules security policy resources, whose generated validator omits ASN too'
+  google_compute_security_policy.rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_type:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, ASN, HTTP_COOKIE, HTTP_HEADER, HTTP_PATH, IP, REGION_CODE, SNI, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, XFF_IP]
+    disagrees: 'the hand-written provider resource validates the list without ASN (resource_compute_security_policy.go StringInSlice), and the enum type is shared with the Magic Modules security policy resources, whose generated validator omits ASN too'
   google_compute_security_policy.rule.rate_limit_options.exceed_action:
     values: [redirect, 'deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
     source: no-enum
@@ -455,6 +491,10 @@ google:
   google_container_cluster.node_pool_defaults.node_config_defaults.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']
     source: no-enum
+  google_container_cluster.release_channel.channel:
+    values: [UNSPECIFIED, RAPID, REGULAR, STABLE, EXTENDED]
+    upstream: [RAPID, REGULAR, STABLE, EXTENDED]
+    disagrees: 'the provider validates UNSPECIFIED, RAPID, REGULAR, STABLE and EXTENDED (resource_container_cluster.go StringInSlice); UNSPECIFIED means not set here, a real input rather than the Discovery sentinel'
   google_container_node_pool.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']
     source: no-enum
@@ -668,9 +708,6 @@ google:
   google_hypercomputecluster_cluster.storage_resources.config.new_lustre.per_unit_storage_throughput:
     values: ['125', '250', '500', '1000']
     source: no-enum
-  google_iam_principal_access_boundary_policy.details.rules.effect:
-    values: [ALLOW]
-    source: no-document
   google_identity_platform_default_supported_idp_config.idp_id:
     values: [apple.com, facebook.com, gc.apple.com, github.com, google.com, linkedin.com, microsoft.com, playgames.google.com, twitter.com, yahoo.com]
     source: no-enum
@@ -751,6 +788,7 @@ google:
     source: no-enum
   google_network_security_mirroring_endpoint_group.type:
     values: [DIRECT, BROKER]
+    upstream: [DIRECT]
     disagrees: 'the provider sends BROKER with mirroring_deployment_groups; the public networksecurity v1 Discovery document declares neither (an override enumValues decision)'
   google_network_security_ull_mirroring_collector.deletion_policy:
     values: [DELETE, PREVENT, ABANDON]

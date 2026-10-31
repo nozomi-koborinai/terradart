@@ -15,10 +15,10 @@ extension type const ComputeAttachedDiskInterface._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeAttachedDiskInterface.arg(TfArg<String> arg) : this._(arg);
 
-  static const scsi = ComputeAttachedDiskInterface._(TfArgLiteral('SCSI'));
   static const nvme = ComputeAttachedDiskInterface._(TfArgLiteral('NVME'));
+  static const scsi = ComputeAttachedDiskInterface._(TfArgLiteral('SCSI'));
 
-  static const List<ComputeAttachedDiskInterface> values = [scsi, nvme];
+  static const List<ComputeAttachedDiskInterface> values = [nvme, scsi];
 }
 
 /// Compute Attached Disk enum for `mode`.
@@ -29,12 +29,12 @@ extension type const ComputeAttachedDiskMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeAttachedDiskMode.arg(TfArg<String> arg) : this._(arg);
 
+  static const readOnly = ComputeAttachedDiskMode._(TfArgLiteral('READ_ONLY'));
   static const readWrite = ComputeAttachedDiskMode._(
     TfArgLiteral('READ_WRITE'),
   );
-  static const readOnly = ComputeAttachedDiskMode._(TfArgLiteral('READ_ONLY'));
 
-  static const List<ComputeAttachedDiskMode> values = [readWrite, readOnly];
+  static const List<ComputeAttachedDiskMode> values = [readOnly, readWrite];
 }
 
 /// Factory wrapper for `google_compute_attached_disk`.

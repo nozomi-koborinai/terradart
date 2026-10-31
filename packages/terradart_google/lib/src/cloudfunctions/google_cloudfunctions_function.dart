@@ -20,16 +20,16 @@ extension type const CloudfunctionsFunctionDockerRegistry._(TfArg<String> _)
   const CloudfunctionsFunctionDockerRegistry.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const artifactRegistry = CloudfunctionsFunctionDockerRegistry._(
-    TfArgLiteral('ARTIFACT_REGISTRY'),
-  );
   static const containerRegistry = CloudfunctionsFunctionDockerRegistry._(
     TfArgLiteral('CONTAINER_REGISTRY'),
   );
+  static const artifactRegistry = CloudfunctionsFunctionDockerRegistry._(
+    TfArgLiteral('ARTIFACT_REGISTRY'),
+  );
 
   static const List<CloudfunctionsFunctionDockerRegistry> values = [
-    artifactRegistry,
     containerRegistry,
+    artifactRegistry,
   ];
 }
 
@@ -49,10 +49,14 @@ extension type const CloudfunctionsFunctionIngressSettings._(TfArg<String> _)
   static const allowInternalOnly = CloudfunctionsFunctionIngressSettings._(
     TfArgLiteral('ALLOW_INTERNAL_ONLY'),
   );
+  static const allowInternalAndGclb = CloudfunctionsFunctionIngressSettings._(
+    TfArgLiteral('ALLOW_INTERNAL_AND_GCLB'),
+  );
 
   static const List<CloudfunctionsFunctionIngressSettings> values = [
     allowAll,
     allowInternalOnly,
+    allowInternalAndGclb,
   ];
 }
 
@@ -103,17 +107,17 @@ extension type const CloudfunctionsFunctionVpcConnectorEgressSettings._(
   const CloudfunctionsFunctionVpcConnectorEgressSettings.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const allTraffic = CloudfunctionsFunctionVpcConnectorEgressSettings._(
-    TfArgLiteral('ALL_TRAFFIC'),
-  );
   static const privateRangesOnly =
       CloudfunctionsFunctionVpcConnectorEgressSettings._(
         TfArgLiteral('PRIVATE_RANGES_ONLY'),
       );
+  static const allTraffic = CloudfunctionsFunctionVpcConnectorEgressSettings._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
 
   static const List<CloudfunctionsFunctionVpcConnectorEgressSettings> values = [
-    allTraffic,
     privateRangesOnly,
+    allTraffic,
   ];
 }
 

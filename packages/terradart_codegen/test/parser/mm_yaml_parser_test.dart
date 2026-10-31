@@ -22,6 +22,27 @@ void main() {
       expect(result.fieldOverrides['project']?.forceNew ?? false, isFalse);
     });
 
+    test('a name snake-cases as the provider generator does', () {
+      final result = const MmYamlParser().parseString('''
+name: Rule
+properties:
+  - name: 'IPProtocol'
+    type: Enum
+    enum_values: [TCP, UDP]
+  - name: 'enableIPv6Route'
+    type: Enum
+    enum_values: [ON]
+  - name: 'v1Mode'
+    type: Enum
+    enum_values: [A]
+''');
+      expect(result.enumValuesByPath.keys, [
+        'ip_protocol',
+        'enable_i_pv6_route',
+        'v1_mode',
+      ]);
+    });
+
     test('validation.regex / minLength / maxLength are surfaced', () {
       final result = const MmYamlParser().parseString(yaml);
       final c = result.fieldOverrides['name']!;

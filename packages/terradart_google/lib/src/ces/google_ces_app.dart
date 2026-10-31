@@ -254,6 +254,15 @@ extension type const CesAppChannelType._(TfArg<String> _)
   static const contactCenterAsAService = CesAppChannelType._(
     TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE'),
   );
+  static const contactCenterAsAServiceChat = CesAppChannelType._(
+    TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE_CHAT'),
+  );
+  static const five9 = CesAppChannelType._(TfArgLiteral('FIVE9'));
+  static const contactCenterIntegration = CesAppChannelType._(
+    TfArgLiteral('CONTACT_CENTER_INTEGRATION'),
+  );
+  static const whatsapp = CesAppChannelType._(TfArgLiteral('WHATSAPP'));
+  static const instagram = CesAppChannelType._(TfArgLiteral('INSTAGRAM'));
 
   static const List<CesAppChannelType> values = [
     unknown,
@@ -262,6 +271,11 @@ extension type const CesAppChannelType._(TfArg<String> _)
     twilio,
     googleTelephonyPlatform,
     contactCenterAsAService,
+    contactCenterAsAServiceChat,
+    five9,
+    contactCenterIntegration,
+    whatsapp,
+    instagram,
   ];
 }
 
@@ -672,18 +686,10 @@ extension type const CesAppSemanticSimilarityChannel._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const CesAppSemanticSimilarityChannel.arg(TfArg<String> arg) : this._(arg);
 
-  static const semanticSimilarityChannelUnspecified =
-      CesAppSemanticSimilarityChannel._(
-        TfArgLiteral('SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED'),
-      );
   static const text = CesAppSemanticSimilarityChannel._(TfArgLiteral('TEXT'));
   static const audio = CesAppSemanticSimilarityChannel._(TfArgLiteral('AUDIO'));
 
-  static const List<CesAppSemanticSimilarityChannel> values = [
-    semanticSimilarityChannelUnspecified,
-    text,
-    audio,
-  ];
+  static const List<CesAppSemanticSimilarityChannel> values = [text, audio];
 }
 
 /// Typed helper for the `language_settings` block of

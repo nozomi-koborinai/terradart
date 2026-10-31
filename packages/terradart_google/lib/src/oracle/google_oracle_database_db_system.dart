@@ -55,10 +55,15 @@ extension type const OracleDatabaseDbSystemDatabaseEdition._(TfArg<String> _)
   static const enterpriseEdition = OracleDatabaseDbSystemDatabaseEdition._(
     TfArgLiteral('ENTERPRISE_EDITION'),
   );
+  static const enterpriseEditionHighPerformance =
+      OracleDatabaseDbSystemDatabaseEdition._(
+        TfArgLiteral('ENTERPRISE_EDITION_HIGH_PERFORMANCE'),
+      );
 
   static const List<OracleDatabaseDbSystemDatabaseEdition> values = [
     standardEdition,
     enterpriseEdition,
+    enterpriseEditionHighPerformance,
   ];
 }
 

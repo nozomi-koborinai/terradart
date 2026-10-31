@@ -22,17 +22,17 @@ extension type const ComputeNodeGroupMaintenancePolicy._(TfArg<String> _)
   static const defaultCase = ComputeNodeGroupMaintenancePolicy._(
     TfArgLiteral('DEFAULT'),
   );
-  static const restartInPlace = ComputeNodeGroupMaintenancePolicy._(
-    TfArgLiteral('RESTART_IN_PLACE'),
-  );
   static const migrateWithinNodeGroup = ComputeNodeGroupMaintenancePolicy._(
     TfArgLiteral('MIGRATE_WITHIN_NODE_GROUP'),
+  );
+  static const restartInPlace = ComputeNodeGroupMaintenancePolicy._(
+    TfArgLiteral('RESTART_IN_PLACE'),
   );
 
   static const List<ComputeNodeGroupMaintenancePolicy> values = [
     defaultCase,
-    restartInPlace,
     migrateWithinNodeGroup,
+    restartInPlace,
   ];
 }
 

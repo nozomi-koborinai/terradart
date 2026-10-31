@@ -89,5 +89,62 @@
         }
       }
     }
+  },
+  "parameters": {
+    "Bucket": {
+      "predefinedAcl": {
+        "enum": [
+          "authenticatedRead",
+          "private",
+          "projectPrivate",
+          "publicRead",
+          "publicReadWrite"
+        ]
+      },
+      "predefinedDefaultObjectAcl": {
+        "enum": [
+          "authenticatedRead",
+          "bucketOwnerFullControl",
+          "bucketOwnerRead",
+          "private",
+          "projectPrivate",
+          "publicRead"
+        ]
+      },
+      "projection": {
+        "enum": [
+          "full",
+          "noAcl"
+        ]
+      }
+    },
+    "Object": {
+      "destinationPredefinedAcl": {
+        "enum": [
+          "authenticatedRead",
+          "bucketOwnerFullControl",
+          "bucketOwnerRead",
+          "private",
+          "projectPrivate",
+          "publicRead"
+        ]
+      },
+      "predefinedAcl": {
+        "enum": [
+          "authenticatedRead",
+          "bucketOwnerFullControl",
+          "bucketOwnerRead",
+          "private",
+          "projectPrivate",
+          "publicRead"
+        ]
+      },
+      "projection": {
+        "enum": [
+          "full",
+          "noAcl"
+        ]
+      }
+    }
   }
 }

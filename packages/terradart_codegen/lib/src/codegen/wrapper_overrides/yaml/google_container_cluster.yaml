@@ -1,6 +1,13 @@
 outputDir: container
 deriveClassDoc: true
 deriveEnums: true
+enumValues:
+  release_channel.channel:
+    - UNSPECIFIED
+    - RAPID
+    - REGULAR
+    - STABLE
+    - EXTENDED
 deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true

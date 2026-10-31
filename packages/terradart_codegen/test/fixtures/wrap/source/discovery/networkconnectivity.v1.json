@@ -479,5 +479,24 @@
         }
       }
     }
+  },
+  "parameters": {
+    "ServiceConnectionPolicy": {
+      "autoSubnetworkConfig.ipStack": {
+        "enum": [
+          "SUBNET_IP_STACK_UNSPECIFIED",
+          "IPV4_ONLY",
+          "IPV6_ONLY",
+          "IPV4_IPV6"
+        ]
+      },
+      "subnetworkMode": {
+        "enum": [
+          "SUBNETWORK_MODE_UNSPECIFIED",
+          "USER_PROVIDED",
+          "AUTO_CREATED"
+        ]
+      }
+    }
   }
 }

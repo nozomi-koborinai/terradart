@@ -105,5 +105,16 @@
         }
       }
     }
+  },
+  "parameters": {
+    "Group": {
+      "initialGroupConfig": {
+        "enum": [
+          "INITIAL_GROUP_CONFIG_UNSPECIFIED",
+          "WITH_INITIAL_OWNER",
+          "EMPTY"
+        ]
+      }
+    }
   }
 }
