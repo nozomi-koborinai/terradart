@@ -217,15 +217,16 @@ final _cue = RegExp(
 final _sentenceEnd = RegExp(r'\.(?:\s|$)');
 final _cueToken = RegExp(
   r'''"[^"\s]+"|'[^'\s]+'|\b[A-Z][A-Z0-9]*(?:[_-][A-Z0-9]+)*[A-Z0-9]\b|'''
-  r'\b[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]*)+\b',
+  r'\b[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]*)+\b|'
+  r'\b[a-z][a-z0-9_]*\([^()\s]*\)',
 );
 
 /// The values a description names after a value-set cue, read without
 /// `parseEnumValuesFromDescription`, so a wording the parser skips still
 /// reaches the gap report. Deliberately looser than the parser: it takes
-/// every quoted, upper-case or PascalCase word between a cue (`Possible
-/// values`, `Valid options`, `One of`, `either`) and the end of its
-/// sentence.
+/// every quoted, upper-case or PascalCase word, and every call-shaped
+/// word (`deny(403)`, `deny(STATUS)`), between a cue (`Possible values`,
+/// `Valid options`, `One of`, `either`) and the end of its sentence.
 List<String>? cueValues(String? description) {
   if (description == null) return null;
   for (final m in _cue.allMatches(description)) {

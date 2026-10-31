@@ -282,6 +282,9 @@ properties:
       'Valid values': 'Valid values: DEPRIVILEGE, DELETE, DISABLE.',
       'Accepted values': 'Accepted values are (case insensitive): ALLOW, DENY.',
       'either X or Y': 'The disk mode, either READ_WRITE or READ_ONLY.',
+      'call-shaped values':
+          'Valid options are deny(STATUS), where valid values for STATUS '
+          'are 403, 404, 429, and 502.',
     };
 
     for (final MapEntry(key: wording, value: description) in wordings.entries) {
@@ -339,6 +342,15 @@ GoogleExampleThing(super.localName, {
       expect(gaps.single, endsWith('\tcue'));
     });
 
+    test('a call-shaped value is read whole', () {
+      expect(
+        cueValues(
+          'Valid options are "deny(403)", deny(429) and redirect(302).',
+        ),
+        ['deny(403)', 'deny(429)', 'redirect(302)'],
+      );
+    });
+
     test('prose with no cue is not a gap', () {
       expect(
         cueValues('The name of the bucket. Must be unique within a project.'),
@@ -364,6 +376,7 @@ GoogleExampleThing(super.localName, {
       'storage/google_storage_bucket_object.dart',
       'colab/google_colab_schedule.dart',
       'managed/google_managed_kafka_acl.dart',
+      'compute/google_compute_region_security_policy.dart',
     ];
     late Directory root;
 
@@ -496,6 +509,13 @@ GoogleExampleThing(super.localName, {
         'final ManagedKafkaAclPermissionType? permissionType;',
         'final TfArg<String>? permissionType;',
         'google_managed_kafka_acl.acl_entries.permission_type',
+      ),
+      'call-shaped values': (
+        8,
+        'final ComputeRegionSecurityPolicyExceedAction exceedAction;',
+        'final TfArg<String> exceedAction;',
+        'google_compute_region_security_policy.rules.rate_limit_options'
+            '.exceed_action',
       ),
     };
     for (final MapEntry(key: wording, value: (i, typed, raw, gap))
