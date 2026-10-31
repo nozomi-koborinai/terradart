@@ -314,6 +314,104 @@ properties:
     expect(overridesOnly.hasGroupSource, isFalse);
   });
 
+  group('an override enumValues entry', () {
+    final ir = ProviderSchemaIR(
+      providerName: 'x',
+      providerSource: 'example/x',
+      providerVersion: '1.0.0',
+      resources: {
+        'x_thing': ResourceDef(
+          terraformType: 'x_thing',
+          root: BlockDef(
+            attributes: [
+              const Attribute(
+                name: 'status',
+                type: StringType(),
+                constraints: Constraints(
+                  computed: true,
+                  enumValues: ['ACTOVE', 'OFFLINE'],
+                ),
+              ),
+              _attr('size', type: const NumberType()),
+            ],
+            nestedBlocks: [
+              NestedBlockDef(
+                name: 'entities',
+                nesting: NestingMode.list,
+                constraints: const Constraints(optional: true),
+                block: BlockDef(
+                  attributes: [_attr('entity_name', description: available)],
+                ),
+              ),
+            ],
+          ),
+        ),
+      },
+      dataSources: const {},
+    );
+    LoadedOverrides lane(Map<String, List<String>> values) => LoadedOverrides(
+      resources: {
+        'x_thing': WrapperOverride(outputDir: 'thing', enumValues: values),
+      },
+      dataSources: const {},
+    );
+
+    test('replaces a top-level set, outputs included', () {
+      final out = const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['ACTIVE', 'OFFLINE'],
+        }),
+        ir,
+        error: fail,
+      );
+      expect(_values(out, 'status'), ['ACTIVE', 'OFFLINE']);
+    });
+
+    test('wins over the derived set of a nested input', () {
+      const enums = ProviderEnums.on();
+      final override = lane({
+        'entities.entity_name': ['Lead', 'issue'],
+      }).resources['x_thing']!;
+      enums.withOverrideEnums(lane(override.enumValues!), ir, error: fail);
+      final resolve = enums.nestedHints('x_thing', override).enumValues;
+      expect(resolve(['entities', 'entity_name'], available), [
+        'Lead',
+        'issue',
+      ]);
+      expect(resolve(['other'], available), ['a', 'b']);
+    });
+
+    test('fails on a path that names no string attribute', () {
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'gone': ['a', 'b'],
+          'size': ['1', '2'],
+        }),
+        ir,
+        error: errors.add,
+      );
+      expect(errors, [
+        contains('enumValues gone: names no string attribute'),
+        contains('enumValues size: names no string attribute'),
+      ]);
+    });
+
+    test('fails on an entry the derivation already gives', () {
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['OFFLINE', 'ACTOVE'],
+          'entities.entity_name': ['b', 'a'],
+        }),
+        ir,
+        error: errors.add,
+      );
+      expect(errors, hasLength(2));
+      expect(errors, everyElement(contains('remove the entry')));
+    });
+  });
+
   test('top-level string and list-of-string inputs are enriched', () {
     final ir = const ProviderEnums.on().enrich(
       _ir([

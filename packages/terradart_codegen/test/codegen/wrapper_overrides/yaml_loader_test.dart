@@ -376,6 +376,54 @@ $names''');
         });
       });
 
+      group('enumValues', () {
+        late Directory tmp;
+        setUp(() => tmp = Directory.systemTemp.createTempSync('enum_values_'));
+        tearDown(() => tmp.deleteSync(recursive: true));
+
+        YamlOverrideLoader loaderFor(String values) {
+          File(p.join(tmp.path, 'google_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+enumValues:
+$values''');
+          return YamlOverrideLoader(rootDir: tmp.path);
+        }
+
+        test('reads input paths and their values in order', () {
+          final o = loaderFor(
+            '  status: [ACTIVE, OFFLINE]\n'
+            '  entities.entity_name: [Lead, issue]\n',
+          ).load().resources['google_thing']!;
+          expect(o.enumValues, {
+            'status': ['ACTIVE', 'OFFLINE'],
+            'entities.entity_name': ['Lead', 'issue'],
+          });
+        });
+
+        test('a key that is not an input path -> FormatException', () {
+          expect(
+            loaderFor('  "a, b": [x]\n').load,
+            throwsFormatExceptionWith('must be a dotted input path'),
+          );
+        });
+
+        test('an empty or non-string list -> FormatException', () {
+          for (final body in ['  status: []\n', '  status: [1, 2]\n']) {
+            expect(
+              loaderFor(body).load,
+              throwsFormatExceptionWith('must be a non-empty list of strings'),
+            );
+          }
+        });
+
+        test('a repeated value -> FormatException', () {
+          expect(
+            loaderFor('  status: [A, A]\n').load,
+            throwsFormatExceptionWith('lists a value twice'),
+          );
+        });
+      });
+
       group('exactlyOneOf / atMostOneOf', () {
         late Directory tmp;
         setUp(() => tmp = Directory.systemTemp.createTempSync('groups_'));

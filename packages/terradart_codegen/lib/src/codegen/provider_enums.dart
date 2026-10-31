@@ -443,7 +443,12 @@ final class ProviderEnums {
   /// The hints [override]'s derived nested types read.
   NestedHints nestedHints(String terraformType, WrapperOverride override) {
     final table = _tables.of(override.kind);
-    final enumValues = _resolver(table, terraformType);
+    final derived = _resolver(table, terraformType);
+    final own = override.enumValues;
+    final EnumValuesResolver enumValues = own == null
+        ? derived
+        : (path, description) =>
+              own[path.join('.')] ?? derived(path, description);
     if (!override.deriveExactlyOne) {
       return (
         enumValues: enumValues,
@@ -492,6 +497,93 @@ final class ProviderEnums {
       resources: enriched(WrapperOverrideKind.resource),
       dataSources: enriched(WrapperOverrideKind.dataSource),
     );
+  }
+
+  /// [ir] with each override's `enumValues` in place of the value set of
+  /// the top-level attribute it names; nested paths reach the derived types
+  /// through [nestedHints]. [error] hears an entry that names no string
+  /// attribute of its kind's definition, or whose values the derivation
+  /// already gives (stale once upstream is fixed), as `type path: reason`.
+  ProviderSchemaIR withOverrideEnums(
+    LoadedOverrides overrides,
+    ProviderSchemaIR ir, {
+    required void Function(String error) error,
+  }) {
+    Map<String, ResourceDef> replaced(WrapperOverrideKind kind) {
+      final defs = {...ir.of(kind)};
+      for (final MapEntry(key: type, value: o) in overrides.of(kind).entries) {
+        final own = o.enumValues;
+        if (own == null) continue;
+        final def = defs[type];
+        final resolve = _resolver(_tables.of(kind), type);
+        final top = <String, List<String>>{};
+        for (final MapEntry(key: path, value: values) in own.entries) {
+          final label = '${kind.label(type)} enumValues $path';
+          final segments = path.split('.');
+          final attr = def == null ? null : _attributeAt(def.root, segments);
+          if (attr == null || !_isStringish(attr.type)) {
+            error('$label: names no string attribute');
+            continue;
+          }
+          final derived = segments.length == 1
+              ? attr.constraints.enumValues
+              : resolve(segments, attr.description);
+          if (derived != null &&
+              derived.length == values.length &&
+              derived.toSet().containsAll(values)) {
+            error(
+              '$label: the derivation already gives these values; '
+              'remove the entry',
+            );
+            continue;
+          }
+          if (segments.length == 1) top[path] = values;
+        }
+        if (def == null || top.isEmpty) continue;
+        defs[type] = ResourceDef(
+          terraformType: def.terraformType,
+          description: def.description,
+          deprecationMessage: def.deprecationMessage,
+          root: BlockDef(
+            attributes: [
+              for (final a in def.root.attributes)
+                if (top[a.name] case final values?)
+                  Attribute(
+                    name: a.name,
+                    type: a.type,
+                    description: a.description,
+                    defaultValue: a.defaultValue,
+                    constraints: a.constraints.copyWith(enumValues: values),
+                  )
+                else
+                  a,
+            ],
+            nestedBlocks: def.root.nestedBlocks,
+            description: def.root.description,
+          ),
+        );
+      }
+      return defs;
+    }
+
+    return ProviderSchemaIR(
+      providerName: ir.providerName,
+      providerSource: ir.providerSource,
+      providerVersion: ir.providerVersion,
+      resources: replaced(WrapperOverrideKind.resource),
+      dataSources: replaced(WrapperOverrideKind.dataSource),
+    );
+  }
+
+  static Attribute? _attributeAt(BlockDef block, List<String> path) {
+    final [head, ...rest] = path;
+    if (rest.isEmpty) {
+      return block.attributes.where((a) => a.name == head).firstOrNull;
+    }
+    for (final b in block.nestedBlocks) {
+      if (b.name == head) return _attributeAt(b.block, rest);
+    }
+    return null;
   }
 
   /// [overrides] with a `dartTypeOverrides` entry naming the derived enum

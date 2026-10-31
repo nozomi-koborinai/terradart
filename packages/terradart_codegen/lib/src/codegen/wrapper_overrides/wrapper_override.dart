@@ -324,6 +324,14 @@ final class WrapperOverride {
   /// collides with another type of the resource.
   final Map<String, String>? typeNames;
 
+  /// Value sets that replace the derived ones: the dotted path of a string
+  /// input or output from the resource root → the values the provider
+  /// accepts or returns, in order. For a set the upstream source gets wrong
+  /// (a Magic Modules typo) or leaves in prose no reader can close. `wrap`
+  /// fails on an entry that names no string attribute, or whose values the
+  /// derivation already gives, so the entry goes once upstream is fixed.
+  final Map<String, List<String>>? enumValues;
+
   /// Groups of inputs the provider accepts exactly one of that no group
   /// source declares (the API enforces them, or the provider checks them
   /// outside its validators). Each entry lists the members as dotted paths
@@ -447,6 +455,7 @@ final class WrapperOverride {
     this.deriveExactlyOne = false,
     this.sealedNames,
     this.typeNames,
+    this.enumValues,
     this.exactlyOneOf,
     this.atMostOneOf,
     this.unsealedGroups,
@@ -483,6 +492,7 @@ final class WrapperOverride {
        deriveExactlyOne = base.deriveExactlyOne,
        sealedNames = base.sealedNames,
        typeNames = base.typeNames,
+       enumValues = base.enumValues,
        exactlyOneOf = base.exactlyOneOf,
        atMostOneOf = base.atMostOneOf,
        unsealedGroups = base.unsealedGroups;

@@ -164,6 +164,7 @@ class YamlOverrideLoader {
     'deriveExactlyOne',
     'sealedNames',
     'typeNames',
+    'enumValues',
     'exactlyOneOf',
     'atMostOneOf',
     'unsealedGroups',
@@ -464,6 +465,7 @@ class YamlOverrideLoader {
       deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
       sealedNames: _readSealedNames(yaml, filePath),
       typeNames: _readTypeNames(yaml, filePath),
+      enumValues: _readEnumValues(yaml, filePath),
       exactlyOneOf: _readGroups(yaml, 'exactlyOneOf', filePath),
       atMostOneOf: _readGroups(yaml, 'atMostOneOf', filePath),
       unsealedGroups: _readUnsealedGroups(yaml, filePath),
@@ -555,6 +557,43 @@ class YamlOverrideLoader {
       }
     }
     return names;
+  }
+
+  /// The `enumValues` axis: a map from a dotted input path to a non-empty
+  /// list of distinct string values.
+  Map<String, List<String>>? _readEnumValues(YamlMap yaml, String filePath) {
+    final node = yaml['enumValues'];
+    if (node == null) return null;
+    if (node is! YamlMap || node.isEmpty) {
+      throw FormatException(
+        '$filePath: enumValues must be a non-empty map from an input path '
+        'to its values.',
+      );
+    }
+    final out = <String, List<String>>{};
+    for (final MapEntry(:key, :value) in node.entries) {
+      if (key is! String || !_inputPath.hasMatch(key)) {
+        throw FormatException(
+          '$filePath: enumValues key "$key" must be a dotted input path '
+          '(entities.entity_name).',
+        );
+      }
+      if (value is! YamlList ||
+          value.isEmpty ||
+          value.any((v) => v is! String || v.isEmpty)) {
+        throw FormatException(
+          '$filePath: enumValues "$key" must be a non-empty list of strings.',
+        );
+      }
+      final values = [for (final v in value) v as String];
+      if (values.toSet().length != values.length) {
+        throw FormatException(
+          '$filePath: enumValues "$key" lists a value twice.',
+        );
+      }
+      out[key] = values;
+    }
+    return out;
   }
 
   /// Resolves the `kind` axis. Default: [WrapperOverrideKind.resource].

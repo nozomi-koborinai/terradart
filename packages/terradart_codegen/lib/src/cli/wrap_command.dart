@@ -334,7 +334,7 @@ class WrapCommand extends Command<int> {
     }
     final dropped = <DroppedGroup>[];
     providerEnums = providerEnums.withinSchema(mergedIr, dropped: dropped.add);
-    final ir = providerEnums.enrich(mergedIr);
+    final enrichedIr = providerEnums.enrich(mergedIr);
 
     // 2. Resolve the YAML override root: the --overrides-root flag when
     //    given (non-google providers carry their own registry), else the
@@ -378,6 +378,18 @@ class WrapCommand extends Command<int> {
     );
     if (groupErrors.isNotEmpty) {
       for (final e in groupErrors) {
+        stderr.writeln('[E406] terradart wrap: $e');
+      }
+      return CliExitCodes.dataError;
+    }
+    final enumErrors = <String>[];
+    final ir = providerEnums.withOverrideEnums(
+      loaded,
+      enrichedIr,
+      error: enumErrors.add,
+    );
+    if (enumErrors.isNotEmpty) {
+      for (final e in enumErrors) {
         stderr.writeln('[E406] terradart wrap: $e');
       }
       return CliExitCodes.dataError;
