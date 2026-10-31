@@ -3,6 +3,13 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: method
+    enum_values:
+      - "DELETE"
+      - "GET"
+      - "PATCH"
+      - "POST"
+      - "PUT"
   - api_name: run_after
     properties:
       - api_name: action_result

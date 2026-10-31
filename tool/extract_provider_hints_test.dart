@@ -849,7 +849,6 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
 
   test('the azurerm unresolved ledger gives every entry a reason', () {
     final ledger = readUnresolvedLedger('azurerm');
-    expect(ledger, isNotEmpty);
     expect(ledger.values.where((r) => r.trim().length < 20), isEmpty);
   });
 }

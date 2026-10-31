@@ -3,6 +3,56 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: certificate_permissions
+    enum_values:
+      - "Get"
+      - "List"
+      - "Update"
+      - "Create"
+      - "Import"
+      - "Delete"
+      - "Recover"
+      - "Backup"
+      - "Restore"
+      - "ManageContacts"
+      - "ManageIssuers"
+      - "GetIssuers"
+      - "ListIssuers"
+      - "SetIssuers"
+      - "DeleteIssuers"
+      - "Purge"
+  - api_name: key_permissions
+    enum_values:
+      - "Get"
+      - "List"
+      - "Update"
+      - "Create"
+      - "Import"
+      - "Delete"
+      - "Recover"
+      - "Backup"
+      - "Restore"
+      - "Decrypt"
+      - "Encrypt"
+      - "UnwrapKey"
+      - "WrapKey"
+      - "Verify"
+      - "Sign"
+      - "Purge"
+      - "Release"
+      - "Rotate"
+      - "GetRotationPolicy"
+      - "SetRotationPolicy"
+  - api_name: secret_permissions
+    enum_values:
+      - "Get"
+      - "List"
+      - "Set"
+      - "Delete"
+      - "Recover"
+      - "Backup"
+      - "Restore"
+      - "Purge"
   - api_name: storage_permissions
     enum_values:
       - "Backup"

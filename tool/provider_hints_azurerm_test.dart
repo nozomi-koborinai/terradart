@@ -289,8 +289,8 @@ func resourceTyped() *Resource { return nil }
     expect(hints['encoding']!.values, ['UTF8']);
     expect(hints['shape']!.values, ['round', 'square']);
     expect(hints['method']!.values, ['GET', 'PUT']);
-    expect(hints.containsKey('computed'), isFalse);
-    expect(scan.unresolvedSites, ['azurerm_widget computed']);
+    expect(hints['computed']!.values, ['on', 'off', 'auto']);
+    expect(scan.unresolvedSites, isEmpty);
     // A schema-map value that calls a schema function, in this package or an
     // imported one, is scanned at its key's path: the validated set wins over
     // a description that names Go constants.
@@ -465,5 +465,241 @@ func (r NamedResource) Arguments() map[string]*Schema {
       'azurerm_client_config',
       'azurerm_shared',
     ]);
+  });
+
+  test('evaluates value sets built in code', () {
+    final root = Directory.systemTemp.createTempSync('azurerm_hints_eval_');
+    addTearDown(() => root.deleteSync(recursive: true));
+    void write(String rel, String src) {
+      final file = File(p.join(root.path, rel));
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(src);
+    }
+
+    write('go.mod', 'module github.com/hashicorp/terraform-provider-azurerm\n');
+    write('internal/provider/provider.go', 'package provider\n');
+    write(
+      'vendor/github.com/hashicorp/go-azure-sdk/resource-manager/demo/constants.go',
+      '''
+package demo
+
+type Op string
+
+const (
+	OpEqual    Op = "Equal"
+	OpContains Op = "Contains"
+)
+
+func PossibleValuesForOp() []string {
+	return []string{string(OpEqual), string(OpContains)}
+}
+
+type Sku string
+
+const (
+	SkuEnterpriseOne Sku = "Enterprise_E1"
+	SkuBalancedThree Sku = "Balanced_B3"
+	SkuBalancedOne   Sku = "Balanced_B1"
+)
+
+func PossibleValuesForSku() []string {
+	return []string{string(SkuEnterpriseOne), string(SkuBalancedThree), string(SkuBalancedOne)}
+}
+
+type Action string
+
+const (
+	ActionRead  Action = "Microsoft.KeyVault/read"
+	ActionWrite Action = "Microsoft.KeyVault/write"
+)
+
+func PossibleActionValues() []Action {
+	return []Action{ActionRead, ActionWrite}
+}
+
+type Freq string
+
+const (
+	FreqOne    Freq = "1s"
+	FreqAlways Freq = "always"
+)
+
+func PossibleValuesForFreq() []string {
+	return []string{string(FreqOne), string(FreqAlways)}
+}
+
+type Template string
+
+const TemplateAccountClosed Template = "accountClosedDeveloper"
+''',
+    );
+    write('internal/services/demo/registration.go', '''
+package demo
+
+func (r Registration) SupportedResources() map[string]*Resource {
+	return map[string]*Resource{
+		"azurerm_demo": resourceDemo(),
+	}
+}
+''');
+    write('internal/services/demo/helpers/shared.go', '''
+package helpers
+
+const NegatedPrefix = "Not"
+
+func OperatorValues(values []string) []string {
+	result := make([]string, 0, len(values)*2)
+	for _, value := range values {
+		result = append(result, value, NegatedPrefix+value)
+	}
+	return result
+}
+
+var basicSkus = []string{"B1", "B2"}
+
+var premiumSkus = []string{"P1v3"}
+
+func AllSkus() []string {
+	all := make([]string, 0)
+	all = append(all, basicSkus...)
+	all = append(all, premiumSkus...)
+	return all
+}
+''');
+    write('internal/services/demo/resource.go', '''
+package demo
+
+import (
+	"net/http"
+	"slices"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/demo"
+	"github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/helpers"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+)
+
+type Tier struct {
+	Name    string
+	Minimum int
+}
+
+func tiers() []Tier {
+	return []Tier{
+		{Name: "Premium-40", Minimum: 48},
+		{Name: "Premium-125", Minimum: 16},
+	}
+}
+
+func tierNames() []string {
+	names := make([]string, 0)
+	for _, tier := range tiers() {
+		names = append(names, tier.Name)
+	}
+	return names
+}
+
+func supportedSkus() []string {
+	out := make([]string, 0)
+	for _, sku := range demo.PossibleValuesForSku() {
+		if strings.HasPrefix(sku, "Enterprise_") {
+			continue
+		}
+		out = append(out, sku)
+	}
+	slices.Sort(out)
+	return out
+}
+
+func frequencies() []string {
+	res := make([]string, 0)
+	for _, freq := range demo.PossibleValuesForFreq() {
+		if freq != string(demo.FreqAlways) {
+			res = append(res, freq)
+		}
+	}
+	return res
+}
+
+func titleCase(input string) string {
+	return cases.Title(language.English, cases.NoLower).String(input)
+}
+
+func remote() []string {
+	return fetchFromApi()
+}
+
+func resourceDemo() *Resource {
+	return &Resource{
+		Schema: map[string]*Schema{
+			"operator": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(helpers.OperatorValues(demo.PossibleValuesForOp()), false),
+			},
+			"plan_sku": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(helpers.AllSkus(), false),
+			},
+			"method": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice([]string{
+					http.MethodGet,
+					http.MethodPost,
+				}, false),
+			},
+			"action": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice(func() (res []string) {
+					for _, v := range demo.PossibleActionValues() {
+						res = append(res, string(v))
+					}
+					return
+				}(), false),
+			},
+			"tier": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(tierNames(), false),
+			},
+			"sku": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(supportedSkus(), false),
+			},
+			"frequency": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(frequencies(), false),
+			},
+			"template": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice([]string{
+					titleCase(string(demo.TemplateAccountClosed)),
+				}, false),
+			},
+			"remote": {
+				Type:         TypeString,
+				ValidateFunc: validation.StringInSlice(remote(), false),
+			},
+		},
+	}
+}
+''');
+
+    final scan = scanAzurermProvider(root);
+    final hints = {
+      for (final hint in scan.byType['azurerm_demo']!.hints)
+        hint.dotted: hint.values,
+    };
+    expect(hints, {
+      'operator': ['Equal', 'NotEqual', 'Contains', 'NotContains'],
+      'plan_sku': ['B1', 'B2', 'P1v3'],
+      'method': ['GET', 'POST'],
+      'action': ['Microsoft.KeyVault/read', 'Microsoft.KeyVault/write'],
+      'tier': ['Premium-40', 'Premium-125'],
+      'sku': ['Balanced_B1', 'Balanced_B3'],
+      'frequency': ['1s'],
+      'template': ['AccountClosedDeveloper'],
+    });
+    expect(scan.unresolvedSites, ['azurerm_demo remote']);
   });
 }
