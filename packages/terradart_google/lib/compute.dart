@@ -435,6 +435,7 @@ export 'src/compute/google_compute_instance_template.dart'
         ComputeInstanceTemplateIgmpQuery,
         ComputeInstanceTemplateInterface,
         ComputeInstanceTemplateIpv6AccessConfig,
+        ComputeInstanceTemplateKeyRevocationActionType,
         ComputeInstanceTemplateLocalSsdRecoveryTimeout,
         ComputeInstanceTemplateMaxRunDuration,
         ComputeInstanceTemplateNetworkInterface,
@@ -633,6 +634,7 @@ export 'src/compute/google_compute_organization_security_policy_rule.dart'
         ComputeOrganizationSecurityPolicyRuleExpr,
         ComputeOrganizationSecurityPolicyRuleHeaderAction,
         ComputeOrganizationSecurityPolicyRuleMatch,
+        ComputeOrganizationSecurityPolicyRuleOperator,
         ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig,
         ComputeOrganizationSecurityPolicyRuleRedirectOptions,
         ComputeOrganizationSecurityPolicyRuleRequestCookie,
@@ -640,6 +642,8 @@ export 'src/compute/google_compute_organization_security_policy_rule.dart'
         ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds,
         ComputeOrganizationSecurityPolicyRuleRequestQueryParam,
         ComputeOrganizationSecurityPolicyRuleRequestUri,
+        ComputeOrganizationSecurityPolicyRuleType,
+        ComputeOrganizationSecurityPolicyRuleVersionedExpr,
         GoogleComputeOrganizationSecurityPolicyRule;
 export 'src/compute/google_compute_packet_mirroring.dart'
     show
@@ -853,6 +857,7 @@ export 'src/compute/google_compute_region_instance_template.dart'
         ComputeRegionInstanceTemplateInstanceTerminationAction,
         ComputeRegionInstanceTemplateInterface,
         ComputeRegionInstanceTemplateIpv6AccessConfig,
+        ComputeRegionInstanceTemplateKeyRevocationActionType,
         ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout,
         ComputeRegionInstanceTemplateMaxRunDuration,
         ComputeRegionInstanceTemplateMode,

@@ -50538,9 +50538,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceTemplateKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'disk',
@@ -58697,9 +58697,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeRegionInstanceTemplateKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'instance_description',
@@ -72539,9 +72539,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'datapath_provider',
           dartName: 'datapathProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDatapathProvider',
         ),
         MigrateSlot(
           tfName: 'dataplane_optimization_mode',
@@ -72672,9 +72672,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'in_transit_encryption_config',
           dartName: 'inTransitEncryptionConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterInTransitEncryptionConfig',
         ),
         MigrateSlot(
           tfName: 'initial_node_count',
@@ -72750,9 +72750,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ipv6_google_access',
           dartName: 'privateIpv6GoogleAccess',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterPrivateIpv6GoogleAccess',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -225544,9 +225544,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'versioned_expr',
           dartName: 'versionedExpr',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleVersionedExpr',
         ),
         MigrateSlot(
           tfName: 'config',
@@ -225595,9 +225595,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleType',
         ),
       ],
     ),
@@ -225607,9 +225607,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225626,9 +225626,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225664,9 +225664,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -225683,9 +225683,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeOrganizationSecurityPolicyRuleOperator',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -239378,9 +239378,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterAutoMonitoringConfigScope',
         ),
       ],
     ),
@@ -239483,9 +239483,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'strategy',
           dartName: 'strategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterStrategy',
         ),
         MigrateSlot(
           tfName: 'blue_green_settings',
@@ -239543,9 +239543,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'autoscaling_profile',
           dartName: 'autoscalingProfile',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterAutoscalingProfile',
         ),
         MigrateSlot(
           tfName: 'default_compute_class_enabled',
@@ -240063,9 +240063,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_dns',
           dartName: 'clusterDns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDns',
         ),
         MigrateSlot(
           tfName: 'cluster_dns_domain',
@@ -240077,9 +240077,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_dns_scope',
           dartName: 'clusterDnsScope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterDnsScope',
         ),
       ],
     ),
@@ -240337,16 +240337,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'end_time_behavior',
           dartName: 'endTimeBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterEndTimeBehavior',
         ),
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterExclusionOptionsScope',
         ),
       ],
     ),
@@ -240412,9 +240412,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'channel',
           dartName: 'channel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterGatewayApiConfigChannel',
         ),
       ],
     ),
@@ -240575,20 +240575,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ContainerClusterGuestAcceleratorGpuDriverInstallationConfig':
-        MigrateHelper(
-          className:
-              'ContainerClusterGuestAcceleratorGpuDriverInstallationConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gpu_driver_version',
-              dartName: 'gpuDriverVersion',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-          ],
-        ),
     'ContainerClusterGvnic': MigrateHelper(
       className: 'ContainerClusterGvnic',
       slots: <MigrateSlot>[
@@ -241429,7 +241415,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'totalEgressBandwidthTier',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'ContainerClusterTotalEgressBandwidthTier',
+          dartType:
+              'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier',
         ),
       ],
     ),
@@ -241439,9 +241426,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'total_egress_bandwidth_tier',
           dartName: 'totalEgressBandwidthTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterTotalEgressBandwidthTier',
         ),
       ],
     ),
@@ -241513,9 +241500,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerClusterOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -241567,9 +241554,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpudirect_strategy',
           dartName: 'gpudirectStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerClusterGpudirectStrategy',
         ),
         MigrateSlot(
           tfName: 'image_type',
@@ -241915,48 +241902,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ContainerClusterNodeConfigGuestAccelerator': MigrateHelper(
-      className: 'ContainerClusterNodeConfigGuestAccelerator',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'count',
-          dartName: 'count',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'gpu_partition_size',
-          dartName: 'gpuPartitionSize',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'gpu_driver_installation_config',
-          dartName: 'gpuDriverInstallationConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterGuestAcceleratorGpuDriverInstallationConfig',
-        ),
-        MigrateSlot(
-          tfName: 'gpu_sharing_config',
-          dartName: 'gpuSharingConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterGpuSharingConfig',
-        ),
-      ],
-    ),
     'ContainerClusterNodeConfigLinuxNodeConfig': MigrateHelper(
       className: 'ContainerClusterNodeConfigLinuxNodeConfig',
       slots: <MigrateSlot>[
@@ -242217,7 +242162,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'ContainerClusterNodePoolNodeConfig',
+          helper: 'ContainerClusterNodeConfig',
         ),
         MigrateSlot(
           tfName: 'node_drain_config',
@@ -242374,360 +242319,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'ContainerClusterExclusionUntilEndOfSupport',
-        ),
-      ],
-    ),
-    'ContainerClusterNodePoolNodeConfig': MigrateHelper(
-      className: 'ContainerClusterNodePoolNodeConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'boot_disk_kms_key',
-          dartName: 'bootDiskKmsKey',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'disk_size_gb',
-          dartName: 'diskSizeGb',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'disk_type',
-          dartName: 'diskType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'enable_confidential_storage',
-          dartName: 'enableConfidentialStorage',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'flex_start',
-          dartName: 'flexStart',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'gpudirect_strategy',
-          dartName: 'gpudirectStrategy',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'image_type',
-          dartName: 'imageType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'labels',
-          dartName: 'labels',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'local_ssd_count',
-          dartName: 'localSsdCount',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'local_ssd_encryption_mode',
-          dartName: 'localSsdEncryptionMode',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'ContainerClusterLocalSsdEncryptionMode',
-        ),
-        MigrateSlot(
-          tfName: 'logging_variant',
-          dartName: 'loggingVariant',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'ContainerClusterLoggingVariant',
-        ),
-        MigrateSlot(
-          tfName: 'machine_type',
-          dartName: 'machineType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'max_run_duration',
-          dartName: 'maxRunDuration',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'metadata',
-          dartName: 'metadata',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'min_cpu_platform',
-          dartName: 'minCpuPlatform',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'node_group',
-          dartName: 'nodeGroup',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'oauth_scopes',
-          dartName: 'oauthScopes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'preemptible',
-          dartName: 'preemptible',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'resource_labels',
-          dartName: 'resourceLabels',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'resource_manager_tags',
-          dartName: 'resourceManagerTags',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'service_account',
-          dartName: 'serviceAccount',
-          kind: MigrateSlotKind.reference,
-          required: false,
-          dartType: 'GoogleServiceAccount',
-          attribute: 'email',
-        ),
-        MigrateSlot(
-          tfName: 'spot',
-          dartName: 'spot',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'storage_pools',
-          dartName: 'storagePools',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'tags',
-          dartName: 'tags',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'advanced_machine_features',
-          dartName: 'advancedMachineFeatures',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterAdvancedMachineFeatures',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk',
-          dartName: 'bootDisk',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterBootDisk',
-        ),
-        MigrateSlot(
-          tfName: 'confidential_nodes',
-          dartName: 'confidentialNodes',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterConfidentialNodes',
-        ),
-        MigrateSlot(
-          tfName: 'containerd_config',
-          dartName: 'containerdConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterContainerdConfig',
-        ),
-        MigrateSlot(
-          tfName: 'ephemeral_storage_local_ssd_config',
-          dartName: 'ephemeralStorageLocalSsdConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterEphemeralStorageLocalSsdConfig',
-        ),
-        MigrateSlot(
-          tfName: 'fast_socket',
-          dartName: 'fastSocket',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterFastSocket',
-        ),
-        MigrateSlot(
-          tfName: 'gcfs_config',
-          dartName: 'gcfsConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterGcfsConfig',
-        ),
-        MigrateSlot(
-          tfName: 'guest_accelerator',
-          dartName: 'guestAccelerator',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ContainerClusterNodeConfigGuestAccelerator',
-        ),
-        MigrateSlot(
-          tfName: 'gvnic',
-          dartName: 'gvnic',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterGvnic',
-        ),
-        MigrateSlot(
-          tfName: 'kubelet_config',
-          dartName: 'kubeletConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterKubeletConfig',
-        ),
-        MigrateSlot(
-          tfName: 'linux_node_config',
-          dartName: 'linuxNodeConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterNodeConfigLinuxNodeConfig',
-        ),
-        MigrateSlot(
-          tfName: 'local_nvme_ssd_block_config',
-          dartName: 'localNvmeSsdBlockConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterLocalNvmeSsdBlockConfig',
-        ),
-        MigrateSlot(
-          tfName: 'node_image_config',
-          dartName: 'nodeImageConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ContainerClusterNodeImageConfig',
-        ),
-        MigrateSlot(
-          tfName: 'reservation_affinity',
-          dartName: 'reservationAffinity',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterReservationAffinity',
-        ),
-        MigrateSlot(
-          tfName: 'sandbox_config',
-          dartName: 'sandboxConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterSandboxConfig',
-        ),
-        MigrateSlot(
-          tfName: 'secondary_boot_disks',
-          dartName: 'secondaryBootDisks',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ContainerClusterSecondaryBootDisks',
-        ),
-        MigrateSlot(
-          tfName: 'shielded_instance_config',
-          dartName: 'shieldedInstanceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterShieldedInstanceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'sole_tenant_config',
-          dartName: 'soleTenantConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterSoleTenantConfig',
-        ),
-        MigrateSlot(
-          tfName: 'taint',
-          dartName: 'taint',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ContainerClusterTaint',
-        ),
-        MigrateSlot(
-          tfName: 'taint_config',
-          dartName: 'taintConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterTaintConfig',
-        ),
-        MigrateSlot(
-          tfName: 'windows_node_config',
-          dartName: 'windowsNodeConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterWindowsNodeConfig',
-        ),
-        MigrateSlot(
-          tfName: 'workload_metadata_config',
-          dartName: 'workloadMetadataConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ContainerClusterWorkloadMetadataConfig',
         ),
       ],
     ),
@@ -243093,7 +242684,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'channel',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'ContainerClusterChannel',
+          dartType: 'ContainerClusterReleaseChannelChannel',
         ),
       ],
     ),
@@ -244326,9 +243917,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpu_driver_version',
           dartName: 'gpuDriverVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolGpuDriverVersion',
         ),
       ],
     ),
@@ -244951,9 +244542,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -245005,9 +244596,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gpudirect_strategy',
           dartName: 'gpudirectStrategy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerNodePoolGpudirectStrategy',
         ),
         MigrateSlot(
           tfName: 'image_type',
@@ -258494,6 +258085,46 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataprocClusterAttachedDiskConfig': MigrateHelper(
+      className: 'DataprocClusterAttachedDiskConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_size_gb',
+          dartName: 'diskSizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'DataprocClusterDiskType',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_iops',
+          dartName: 'provisionedIops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_throughput',
+          dartName: 'provisionedThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'DataprocClusterAutoscaling': MigrateHelper(
       className: 'DataprocClusterAutoscaling',
       slots: <MigrateSlot>[
@@ -258766,6 +258397,62 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataprocClusterDiskConfig': MigrateHelper(
+      className: 'DataprocClusterDiskConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'boot_disk_provisioned_iops',
+          dartName: 'bootDiskProvisionedIops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_provisioned_throughput',
+          dartName: 'bootDiskProvisionedThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_size_gb',
+          dartName: 'bootDiskSizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_type',
+          dartName: 'bootDiskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_interface',
+          dartName: 'localSsdInterface',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'DataprocClusterLocalSsdInterface',
+        ),
+        MigrateSlot(
+          tfName: 'num_local_ssds',
+          dartName: 'numLocalSsds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'attached_disk_config',
+          dartName: 'attachedDiskConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'DataprocClusterAttachedDiskConfig',
+        ),
+      ],
+    ),
     'DataprocClusterEncryptionConfig': MigrateHelper(
       className: 'DataprocClusterEncryptionConfig',
       slots: <MigrateSlot>[
@@ -258995,6 +258682,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+      ],
+    ),
+    'DataprocClusterInstanceSelectionList': MigrateHelper(
+      className: 'DataprocClusterInstanceSelectionList',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'machine_types',
+          dartName: 'machineTypes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'rank',
+          dartName: 'rank',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_config',
+          dartName: 'diskConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataprocClusterDiskConfig',
         ),
       ],
     ),
@@ -259234,7 +258948,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'DataprocClusterMasterConfigDiskConfig',
+          helper: 'DataprocClusterDiskConfig',
         ),
         MigrateSlot(
           tfName: 'instance_flexibility_policy',
@@ -259243,102 +258957,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'DataprocClusterMasterConfigInstanceFlexibilityPolicy',
-        ),
-      ],
-    ),
-    'DataprocClusterMasterConfigAttachedDiskConfig': MigrateHelper(
-      className: 'DataprocClusterMasterConfigAttachedDiskConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'disk_size_gb',
-          dartName: 'diskSizeGb',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'disk_type',
-          dartName: 'diskType',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'DataprocClusterDiskType',
-        ),
-        MigrateSlot(
-          tfName: 'provisioned_iops',
-          dartName: 'provisionedIops',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'provisioned_throughput',
-          dartName: 'provisionedThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-    ),
-    'DataprocClusterMasterConfigDiskConfig': MigrateHelper(
-      className: 'DataprocClusterMasterConfigDiskConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'boot_disk_provisioned_iops',
-          dartName: 'bootDiskProvisionedIops',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_provisioned_throughput',
-          dartName: 'bootDiskProvisionedThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_size_gb',
-          dartName: 'bootDiskSizeGb',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_type',
-          dartName: 'bootDiskType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'local_ssd_interface',
-          dartName: 'localSsdInterface',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'DataprocClusterLocalSsdInterface',
-        ),
-        MigrateSlot(
-          tfName: 'num_local_ssds',
-          dartName: 'numLocalSsds',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'attached_disk_config',
-          dartName: 'attachedDiskConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'DataprocClusterMasterConfigAttachedDiskConfig',
         ),
       ],
     ),
@@ -259352,34 +258970,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'DataprocClusterMasterConfigInstanceSelectionList',
-        ),
-      ],
-    ),
-    'DataprocClusterMasterConfigInstanceSelectionList': MigrateHelper(
-      className: 'DataprocClusterMasterConfigInstanceSelectionList',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'machine_types',
-          dartName: 'machineTypes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'rank',
-          dartName: 'rank',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'disk_config',
-          dartName: 'diskConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DataprocClusterMasterConfigDiskConfig',
+          helper: 'DataprocClusterInstanceSelectionList',
         ),
       ],
     ),
@@ -259646,9 +259237,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'preemptibility',
           dartName: 'preemptibility',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataprocClusterPreemptibility',
         ),
         MigrateSlot(
           tfName: 'disk_config',
@@ -259656,7 +259247,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'DataprocClusterPreemptibleWorkerConfigDiskConfig',
+          helper: 'DataprocClusterDiskConfig',
         ),
         MigrateSlot(
           tfName: 'instance_flexibility_policy',
@@ -259666,102 +259257,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           helper:
               'DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy',
-        ),
-      ],
-    ),
-    'DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig': MigrateHelper(
-      className: 'DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'disk_size_gb',
-          dartName: 'diskSizeGb',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'disk_type',
-          dartName: 'diskType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'provisioned_iops',
-          dartName: 'provisionedIops',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'provisioned_throughput',
-          dartName: 'provisionedThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-    ),
-    'DataprocClusterPreemptibleWorkerConfigDiskConfig': MigrateHelper(
-      className: 'DataprocClusterPreemptibleWorkerConfigDiskConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'boot_disk_provisioned_iops',
-          dartName: 'bootDiskProvisionedIops',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_provisioned_throughput',
-          dartName: 'bootDiskProvisionedThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_size_gb',
-          dartName: 'bootDiskSizeGb',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'boot_disk_type',
-          dartName: 'bootDiskType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'local_ssd_interface',
-          dartName: 'localSsdInterface',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'DataprocClusterLocalSsdInterface',
-        ),
-        MigrateSlot(
-          tfName: 'num_local_ssds',
-          dartName: 'numLocalSsds',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'attached_disk_config',
-          dartName: 'attachedDiskConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig',
         ),
       ],
     ),
@@ -259777,8 +259272,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: false,
               repeated: true,
               wrapped: false,
-              helper:
-                  'DataprocClusterPreemptibleWorkerConfigInstanceSelectionList',
+              helper: 'DataprocClusterInstanceSelectionList',
             ),
             MigrateSlot(
               tfName: 'provisioning_model_mix',
@@ -259787,35 +259281,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: false,
               wrapped: false,
               helper: 'DataprocClusterProvisioningModelMix',
-            ),
-          ],
-        ),
-    'DataprocClusterPreemptibleWorkerConfigInstanceSelectionList':
-        MigrateHelper(
-          className:
-              'DataprocClusterPreemptibleWorkerConfigInstanceSelectionList',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'machine_types',
-              dartName: 'machineTypes',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-            MigrateSlot(
-              tfName: 'rank',
-              dartName: 'rank',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'num',
-            ),
-            MigrateSlot(
-              tfName: 'disk_config',
-              dartName: 'diskConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper: 'DataprocClusterPreemptibleWorkerConfigDiskConfig',
             ),
           ],
         ),
@@ -260031,7 +259496,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'DataprocClusterMasterConfigDiskConfig',
+          helper: 'DataprocClusterDiskConfig',
         ),
         MigrateSlot(
           tfName: 'instance_flexibility_policy',
@@ -332784,6 +332249,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ComputeInstanceTemplateInterface',
       members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
     ),
+    'ComputeInstanceTemplateKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeInstanceTemplateKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
     'ComputeInstanceTemplateOperator': MigrateEnum(
       name: 'ComputeInstanceTemplateOperator',
       members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
@@ -333073,6 +332542,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         '64KB': 'v64kb',
       },
     ),
+    'ComputeOrganizationSecurityPolicyRuleOperator': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleOperator',
+      members: <String, String>{
+        'CONTAINS': 'contains',
+        'ENDS_WITH': 'endsWith',
+        'EQUALS': 'equals',
+        'EQUALS_ANY': 'equalsAny',
+        'STARTS_WITH': 'startsWith',
+      },
+    ),
+    'ComputeOrganizationSecurityPolicyRuleType': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleType',
+      members: <String, String>{
+        'EXTERNAL_302': 'external302',
+        'GOOGLE_RECAPTCHA': 'googleRecaptcha',
+      },
+    ),
+    'ComputeOrganizationSecurityPolicyRuleVersionedExpr': MigrateEnum(
+      name: 'ComputeOrganizationSecurityPolicyRuleVersionedExpr',
+      members: <String, String>{'SRC_IPS_V1': 'srcIpsV1'},
+    ),
     'ComputeOrganizationSecurityPolicyType': MigrateEnum(
       name: 'ComputeOrganizationSecurityPolicyType',
       members: <String, String>{
@@ -333322,6 +332812,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionInstanceTemplateInterface': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateInterface',
       members: <String, String>{'NVME': 'nvme', 'SCSI': 'scsi'},
+    ),
+    'ComputeRegionInstanceTemplateKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeRegionInstanceTemplateKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
     ),
     'ComputeRegionInstanceTemplateMode': MigrateEnum(
       name: 'ComputeRegionInstanceTemplateMode',
@@ -334011,6 +333505,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ContainerClusterArchitectureTaintBehavior',
       members: <String, String>{'NONE': 'none', 'ARM': 'arm'},
     ),
+    'ContainerClusterAutoMonitoringConfigScope': MigrateEnum(
+      name: 'ContainerClusterAutoMonitoringConfigScope',
+      members: <String, String>{'ALL': 'all', 'NONE': 'none'},
+    ),
+    'ContainerClusterAutoscalingProfile': MigrateEnum(
+      name: 'ContainerClusterAutoscalingProfile',
+      members: <String, String>{
+        'OPTIMIZE_UTILIZATION': 'optimizeUtilization',
+        'BALANCED': 'balanced',
+      },
+    ),
     'ContainerClusterCapabilities': MigrateEnum(
       name: 'ContainerClusterCapabilities',
       members: <String, String>{
@@ -334024,16 +333529,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'CGROUP_MODE_V1': 'cgroupModeV1',
         'CGROUP_MODE_V2': 'cgroupModeV2',
-      },
-    ),
-    'ContainerClusterChannel': MigrateEnum(
-      name: 'ContainerClusterChannel',
-      members: <String, String>{
-        'UNSPECIFIED': 'unspecified',
-        'RAPID': 'rapid',
-        'REGULAR': 'regular',
-        'STABLE': 'stable',
-        'EXTENDED': 'extended',
       },
     ),
     'ContainerClusterConfidentialInstanceType': MigrateEnum(
@@ -334053,11 +333548,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ANY_RESERVATION_THEN_FAIL': 'anyReservationThenFail',
       },
     ),
+    'ContainerClusterDatapathProvider': MigrateEnum(
+      name: 'ContainerClusterDatapathProvider',
+      members: <String, String>{
+        'LEGACY_DATAPATH': 'legacyDatapath',
+        'ADVANCED_DATAPATH': 'advancedDatapath',
+        'MIGRATE_TO_ADVANCED_DATAPATH': 'migrateToAdvancedDatapath',
+        'MIGRATE_TO_LEGACY_DATAPATH': 'migrateToLegacyDatapath',
+      },
+    ),
     'ContainerClusterDesiredTier': MigrateEnum(
       name: 'ContainerClusterDesiredTier',
       members: <String, String>{
         'STANDARD': 'standard',
         'ENTERPRISE': 'enterprise',
+      },
+    ),
+    'ContainerClusterDns': MigrateEnum(
+      name: 'ContainerClusterDns',
+      members: <String, String>{
+        'PLATFORM_DEFAULT': 'platformDefault',
+        'CLOUD_DNS': 'cloudDns',
+        'KUBE_DNS': 'kubeDns',
+      },
+    ),
+    'ContainerClusterDnsScope': MigrateEnum(
+      name: 'ContainerClusterDnsScope',
+      members: <String, String>{
+        'CLUSTER_SCOPE': 'clusterScope',
+        'VPC_SCOPE': 'vpcScope',
       },
     ),
     'ContainerClusterEffect': MigrateEnum(
@@ -334067,6 +333586,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'PREFER_NO_SCHEDULE': 'preferNoSchedule',
         'NO_EXECUTE': 'noExecute',
       },
+    ),
+    'ContainerClusterEndTimeBehavior': MigrateEnum(
+      name: 'ContainerClusterEndTimeBehavior',
+      members: <String, String>{'UNTIL_END_OF_SUPPORT': 'untilEndOfSupport'},
     ),
     'ContainerClusterEvaluationMode': MigrateEnum(
       name: 'ContainerClusterEvaluationMode',
@@ -334084,6 +333607,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'UPGRADE_INFO_EVENT': 'upgradeInfoEvent',
       },
     ),
+    'ContainerClusterExclusionOptionsScope': MigrateEnum(
+      name: 'ContainerClusterExclusionOptionsScope',
+      members: <String, String>{
+        'NO_UPGRADES': 'noUpgrades',
+        'NO_MINOR_UPGRADES': 'noMinorUpgrades',
+        'NO_MINOR_OR_NODE_UPGRADES': 'noMinorOrNodeUpgrades',
+      },
+    ),
+    'ContainerClusterGatewayApiConfigChannel': MigrateEnum(
+      name: 'ContainerClusterGatewayApiConfigChannel',
+      members: <String, String>{
+        'CHANNEL_DISABLED': 'channelDisabled',
+        'CHANNEL_EXPERIMENTAL': 'channelExperimental',
+        'CHANNEL_STANDARD': 'channelStandard',
+      },
+    ),
     'ContainerClusterGpuDriverVersion': MigrateEnum(
       name: 'ContainerClusterGpuDriverVersion',
       members: <String, String>{
@@ -334097,9 +333636,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'ContainerClusterGpuSharingStrategy',
       members: <String, String>{'TIME_SHARING': 'timeSharing', 'MPS': 'mps'},
     ),
+    'ContainerClusterGpudirectStrategy': MigrateEnum(
+      name: 'ContainerClusterGpudirectStrategy',
+      members: <String, String>{'RDMA': 'rdma'},
+    ),
     'ContainerClusterHpaProfile': MigrateEnum(
       name: 'ContainerClusterHpaProfile',
       members: <String, String>{'NONE': 'none', 'PERFORMANCE': 'performance'},
+    ),
+    'ContainerClusterInTransitEncryptionConfig': MigrateEnum(
+      name: 'ContainerClusterInTransitEncryptionConfig',
+      members: <String, String>{
+        'IN_TRANSIT_ENCRYPTION_DISABLED': 'inTransitEncryptionDisabled',
+        'IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT':
+            'inTransitEncryptionInterNodeTransparent',
+      },
     ),
     'ContainerClusterInsecureKubeletReadonlyPortEnabled': MigrateEnum(
       name: 'ContainerClusterInsecureKubeletReadonlyPortEnabled',
@@ -334167,6 +333718,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'JOBSET': 'jobset',
       },
     ),
+    'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier':
+        MigrateEnum(
+          name:
+              'ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier',
+          members: <String, String>{
+            'TIER_1': 'tier1',
+            'TIER_UNSPECIFIED': 'tierUnspecified',
+          },
+        ),
     'ContainerClusterNetworkTier': MigrateEnum(
       name: 'ContainerClusterNetworkTier',
       members: <String, String>{
@@ -334181,6 +333741,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'VIA_KUBELET': 'viaKubelet',
         'VIA_CONTROL_PLANE': 'viaControlPlane',
       },
+    ),
+    'ContainerClusterOperator': MigrateEnum(
+      name: 'ContainerClusterOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
     ),
     'ContainerClusterOsversion': MigrateEnum(
       name: 'ContainerClusterOsversion',
@@ -334212,9 +333776,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DO_NOT_ENFORCE_SIGNED_MODULES': 'doNotEnforceSignedModules',
       },
     ),
+    'ContainerClusterPrivateIpv6GoogleAccess': MigrateEnum(
+      name: 'ContainerClusterPrivateIpv6GoogleAccess',
+      members: <String, String>{
+        'PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED':
+            'privateIpv6GoogleAccessDisabled',
+        'PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE':
+            'privateIpv6GoogleAccessToGoogle',
+        'PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL':
+            'privateIpv6GoogleAccessBidirectional',
+      },
+    ),
     'ContainerClusterProvider': MigrateEnum(
       name: 'ContainerClusterProvider',
       members: <String, String>{'CALICO': 'calico'},
+    ),
+    'ContainerClusterReleaseChannelChannel': MigrateEnum(
+      name: 'ContainerClusterReleaseChannelChannel',
+      members: <String, String>{
+        'UNSPECIFIED': 'unspecified',
+        'RAPID': 'rapid',
+        'REGULAR': 'regular',
+        'STABLE': 'stable',
+        'EXTENDED': 'extended',
+      },
     ),
     'ContainerClusterSandboxConfigType': MigrateEnum(
       name: 'ContainerClusterSandboxConfigType',
@@ -334271,10 +333856,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'ContainerClusterTotalEgressBandwidthTier': MigrateEnum(
       name: 'ContainerClusterTotalEgressBandwidthTier',
-      members: <String, String>{
-        'TIER_1': 'tier1',
-        'TIER_UNSPECIFIED': 'tierUnspecified',
-      },
+      members: <String, String>{'TIER_1': 'tier1'},
     ),
     'ContainerClusterTransparentHugepageDefrag': MigrateEnum(
       name: 'ContainerClusterTransparentHugepageDefrag',
@@ -334357,9 +333939,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NO_EXECUTE': 'noExecute',
       },
     ),
+    'ContainerNodePoolGpuDriverVersion': MigrateEnum(
+      name: 'ContainerNodePoolGpuDriverVersion',
+      members: <String, String>{
+        'INSTALLATION_DISABLED': 'installationDisabled',
+        'DEFAULT': 'defaultCase',
+        'LATEST': 'latest',
+        'SPECIFIC': 'specific',
+      },
+    ),
     'ContainerNodePoolGpuSharingStrategy': MigrateEnum(
       name: 'ContainerNodePoolGpuSharingStrategy',
       members: <String, String>{'TIME_SHARING': 'timeSharing', 'MPS': 'mps'},
+    ),
+    'ContainerNodePoolGpudirectStrategy': MigrateEnum(
+      name: 'ContainerNodePoolGpudirectStrategy',
+      members: <String, String>{'RDMA': 'rdma'},
     ),
     'ContainerNodePoolInsecureKubeletReadonlyPortEnabled': MigrateEnum(
       name: 'ContainerNodePoolInsecureKubeletReadonlyPortEnabled',
@@ -334382,6 +333977,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'DEFAULT': 'defaultCase',
         'MAX_THROUGHPUT': 'maxThroughput',
       },
+    ),
+    'ContainerNodePoolOperator': MigrateEnum(
+      name: 'ContainerNodePoolOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
     ),
     'ContainerNodePoolOsversion': MigrateEnum(
       name: 'ContainerNodePoolOsversion',
@@ -335527,6 +335126,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ZEPPELIN': 'zeppelin',
         'ZOOKEEPER': 'zookeeper',
         'JUPYTER_KERNEL_GATEWAY': 'jupyterKernelGateway',
+      },
+    ),
+    'DataprocClusterPreemptibility': MigrateEnum(
+      name: 'DataprocClusterPreemptibility',
+      members: <String, String>{
+        'NON_PREEMPTIBLE': 'nonPreemptible',
+        'PREEMPTIBLE': 'preemptible',
+        'SPOT': 'spot',
       },
     ),
     'DataprocClusterRoles': MigrateEnum(

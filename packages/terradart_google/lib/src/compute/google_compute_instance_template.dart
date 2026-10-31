@@ -18,6 +18,30 @@ const Set<String> _googleComputeInstanceTemplateSensitive = <String>{
   'metadata_startup_script',
 };
 
+/// Compute Instance Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateKeyRevocationActionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ComputeInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceTemplateKeyRevocationActionType> values = [
+    none,
+    stop,
+  ];
+}
+
 // ===========================================================================
 // Enums (all prefixed `InstanceTemplate` to avoid collision with
 // `google_compute_instance` in the same `compute/` package.)
@@ -1158,7 +1182,7 @@ final class GoogleComputeInstanceTemplate extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? resourceManagerTags,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceTemplateKeyRevocationActionType? keyRevocationActionType,
     required List<ComputeInstanceTemplateDisk> disk,
     List<ComputeInstanceTemplateNetworkInterface>? networkInterface,
     ComputeInstanceTemplateServiceAccount? serviceAccount,

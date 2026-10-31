@@ -347,7 +347,7 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<bool>? flexStart;
 
-  final TfArg<String>? gpudirectStrategy;
+  final ContainerNodePoolGpudirectStrategy? gpudirectStrategy;
 
   final TfArg<String>? imageType;
 
@@ -483,6 +483,22 @@ final class ContainerNodePoolNodeConfig {
     'windows_node_config': ?windowsNodeConfig?.encode(),
     'workload_metadata_config': ?workloadMetadataConfig?.encode(),
   };
+}
+
+/// `gpudirect_strategy` — derived from the provider schema description.
+extension type const ContainerNodePoolGpudirectStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpudirectStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpudirectStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpudirectStrategy.arg(TfArg<String> arg) : this._(arg);
+
+  static const rdma = ContainerNodePoolGpudirectStrategy._(
+    TfArgLiteral('RDMA'),
+  );
+
+  static const List<ContainerNodePoolGpudirectStrategy> values = [rdma];
 }
 
 /// `local_ssd_encryption_mode` — derived from the provider schema description.
@@ -1001,12 +1017,42 @@ final class ContainerNodePoolGpuDriverInstallationConfig {
     required this.gpuDriverVersion,
   });
 
-  final TfArg<String> gpuDriverVersion;
+  final ContainerNodePoolGpuDriverVersion gpuDriverVersion;
 
   @internal
   Map<String, Object?> encode() => {
     'gpu_driver_version': gpuDriverVersion.toTfJson(),
   };
+}
+
+/// `gpu_driver_version` — derived from the provider schema description.
+extension type const ContainerNodePoolGpuDriverVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpuDriverVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpuDriverVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpuDriverVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const installationDisabled = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('INSTALLATION_DISABLED'),
+  );
+  static const defaultCase = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const latest = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('LATEST'),
+  );
+  static const specific = ContainerNodePoolGpuDriverVersion._(
+    TfArgLiteral('SPECIFIC'),
+  );
+
+  static const List<ContainerNodePoolGpuDriverVersion> values = [
+    installationDisabled,
+    defaultCase,
+    latest,
+    specific,
+  ];
 }
 
 /// Typed helper for the `node_config.guest_accelerator.gpu_sharing_config` block of
@@ -1913,7 +1959,7 @@ final class ContainerNodePoolNodeAffinity {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ContainerNodePoolOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -1923,6 +1969,21 @@ final class ContainerNodePoolNodeAffinity {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ContainerNodePoolOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ContainerNodePoolOperator._(TfArgLiteral('IN'));
+  static const notIn = ContainerNodePoolOperator._(TfArgLiteral('NOT_IN'));
+
+  static const List<ContainerNodePoolOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `node_config.taint` block of

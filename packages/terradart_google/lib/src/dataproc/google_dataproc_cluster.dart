@@ -698,7 +698,7 @@ final class DataprocClusterMasterConfig {
 
   final List<DataprocClusterAccelerators>? accelerators;
 
-  final DataprocClusterMasterConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
   final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
@@ -720,8 +720,8 @@ final class DataprocClusterMasterConfig {
 /// `google_dataproc_cluster` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterMasterConfigDiskConfig {
-  const DataprocClusterMasterConfigDiskConfig({
+final class DataprocClusterDiskConfig {
+  const DataprocClusterDiskConfig({
     this.bootDiskProvisionedIops,
     this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
@@ -743,7 +743,7 @@ final class DataprocClusterMasterConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
-  final List<DataprocClusterMasterConfigAttachedDiskConfig>? attachedDiskConfig;
+  final List<DataprocClusterAttachedDiskConfig>? attachedDiskConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -763,8 +763,8 @@ final class DataprocClusterMasterConfigDiskConfig {
 /// `google_dataproc_cluster` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterMasterConfigAttachedDiskConfig {
-  const DataprocClusterMasterConfigAttachedDiskConfig({
+final class DataprocClusterAttachedDiskConfig {
+  const DataprocClusterAttachedDiskConfig({
     this.diskSizeGb,
     this.diskType,
     this.provisionedIops,
@@ -830,8 +830,7 @@ final class DataprocClusterMasterConfigInstanceFlexibilityPolicy {
     this.instanceSelectionList,
   });
 
-  final List<DataprocClusterMasterConfigInstanceSelectionList>?
-  instanceSelectionList;
+  final List<DataprocClusterInstanceSelectionList>? instanceSelectionList;
 
   @internal
   Map<String, Object?> encode() => {
@@ -846,8 +845,8 @@ final class DataprocClusterMasterConfigInstanceFlexibilityPolicy {
 /// `google_dataproc_cluster` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocClusterMasterConfigInstanceSelectionList {
-  const DataprocClusterMasterConfigInstanceSelectionList({
+final class DataprocClusterInstanceSelectionList {
+  const DataprocClusterInstanceSelectionList({
     this.machineTypes,
     this.rank,
     this.diskConfig,
@@ -857,7 +856,7 @@ final class DataprocClusterMasterConfigInstanceSelectionList {
 
   final TfArg<num>? rank;
 
-  final DataprocClusterMasterConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -896,9 +895,9 @@ final class DataprocClusterPreemptibleWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<String>? preemptibility;
+  final DataprocClusterPreemptibility? preemptibility;
 
-  final DataprocClusterPreemptibleWorkerConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
   final DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
@@ -912,81 +911,28 @@ final class DataprocClusterPreemptibleWorkerConfig {
   };
 }
 
-/// Typed helper for the `cluster_config.preemptible_worker_config.disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
-@immutable
-final class DataprocClusterPreemptibleWorkerConfigDiskConfig {
-  const DataprocClusterPreemptibleWorkerConfigDiskConfig({
-    this.bootDiskProvisionedIops,
-    this.bootDiskProvisionedThroughput,
-    this.bootDiskSizeGb,
-    this.bootDiskType,
-    this.localSsdInterface,
-    this.numLocalSsds,
-    this.attachedDiskConfig,
-  });
+/// `preemptibility` — derived from the provider schema description.
+extension type const DataprocClusterPreemptibility._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterPreemptibility.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterPreemptibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterPreemptibility.arg(TfArg<String> arg) : this._(arg);
 
-  final TfArg<num>? bootDiskProvisionedIops;
+  static const nonPreemptible = DataprocClusterPreemptibility._(
+    TfArgLiteral('NON_PREEMPTIBLE'),
+  );
+  static const preemptible = DataprocClusterPreemptibility._(
+    TfArgLiteral('PREEMPTIBLE'),
+  );
+  static const spot = DataprocClusterPreemptibility._(TfArgLiteral('SPOT'));
 
-  final TfArg<num>? bootDiskProvisionedThroughput;
-
-  final TfArg<num>? bootDiskSizeGb;
-
-  final TfArg<String>? bootDiskType;
-
-  final DataprocClusterLocalSsdInterface? localSsdInterface;
-
-  final TfArg<num>? numLocalSsds;
-
-  final List<DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig>?
-  attachedDiskConfig;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
-    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
-        ?.toTfJson(),
-    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
-    'boot_disk_type': ?bootDiskType?.toTfJson(),
-    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
-    'num_local_ssds': ?numLocalSsds?.toTfJson(),
-    if (attachedDiskConfig != null)
-      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `cluster_config.preemptible_worker_config.disk_config.attached_disk_config` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
-@immutable
-final class DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig {
-  const DataprocClusterPreemptibleWorkerConfigAttachedDiskConfig({
-    this.diskSizeGb,
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-    this.type,
-  });
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  final TfArg<String>? type;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
+  static const List<DataprocClusterPreemptibility> values = [
+    nonPreemptible,
+    preemptible,
+    spot,
+  ];
 }
 
 /// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy` block of
@@ -998,8 +944,7 @@ final class DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy {
     this.provisioningModelMix,
   });
 
-  final List<DataprocClusterPreemptibleWorkerConfigInstanceSelectionList>?
-  instanceSelectionList;
+  final List<DataprocClusterInstanceSelectionList>? instanceSelectionList;
 
   final DataprocClusterProvisioningModelMix? provisioningModelMix;
 
@@ -1010,30 +955,6 @@ final class DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy {
         for (final e in instanceSelectionList!) e.encode(),
       ],
     'provisioning_model_mix': ?provisioningModelMix?.encode(),
-  };
-}
-
-/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list` block of
-/// `google_dataproc_cluster` (derived from provider schema).
-@immutable
-final class DataprocClusterPreemptibleWorkerConfigInstanceSelectionList {
-  const DataprocClusterPreemptibleWorkerConfigInstanceSelectionList({
-    this.machineTypes,
-    this.rank,
-    this.diskConfig,
-  });
-
-  final TfArg<List<String>>? machineTypes;
-
-  final TfArg<num>? rank;
-
-  final DataprocClusterPreemptibleWorkerConfigDiskConfig? diskConfig;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'machine_types': ?machineTypes?.toTfJson(),
-    'rank': ?rank?.toTfJson(),
-    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -1302,7 +1223,7 @@ final class DataprocClusterWorkerConfig {
 
   final List<DataprocClusterAccelerators>? accelerators;
 
-  final DataprocClusterMasterConfigDiskConfig? diskConfig;
+  final DataprocClusterDiskConfig? diskConfig;
 
   final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;

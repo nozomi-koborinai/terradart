@@ -437,17 +437,11 @@ google:
   google_container_aws_node_pool.config.taints.effect:
     values: [EFFECT_UNSPECIFIED, NO_SCHEDULE, PREFER_NO_SCHEDULE, NO_EXECUTE]
     source: no-document
-  google_container_cluster.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
-    values: [TIME_SHARING, MPS]
-    source: no-enum
   google_container_cluster.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']
     source: no-enum
   google_container_cluster.node_config.kubelet_config.topology_manager.scope:
     values: [container, pod]
-    source: no-enum
-  google_container_cluster.node_pool.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
-    values: [TIME_SHARING, MPS]
     source: no-enum
   google_container_cluster.node_pool.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']
@@ -460,9 +454,6 @@ google:
     source: no-enum
   google_container_cluster.node_pool_defaults.node_config_defaults.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']
-    source: no-enum
-  google_container_node_pool.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
-    values: [TIME_SHARING, MPS]
     source: no-enum
   google_container_node_pool.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
     values: ['TRUE', 'FALSE']

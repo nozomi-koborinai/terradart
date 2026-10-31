@@ -17,6 +17,30 @@ const Set<String> _googleComputeRegionInstanceTemplateSensitive = <String>{
   'disk.source_snapshot_encryption_key.rsa_encrypted_key',
 };
 
+/// Compute Region Instance Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeRegionInstanceTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateKeyRevocationActionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateKeyRevocationActionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none = ComputeRegionInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeRegionInstanceTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateKeyRevocationActionType>
+  values = [none, stop];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_region_instance_template` (derived from provider schema).
 @immutable
@@ -1129,7 +1153,8 @@ final class GoogleComputeRegionInstanceTemplate extends Resource {
     TfArg<String>? minCpuPlatform,
     TfArg<Map<String, String>>? resourceManagerTags,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeRegionInstanceTemplateKeyRevocationActionType?
+    keyRevocationActionType,
     TfArg<String>? instanceDescription,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

@@ -58,6 +58,7 @@ google:
         disk.architecture: properties.disks.architecture
         network_interface: properties.networkInterfaces
         network_performance_config: properties.networkPerformanceConfig
+        key_revocation_action_type: properties.keyRevocationActionType
         reservation_affinity: properties.reservationAffinity
         scheduling: properties.scheduling
     google_compute_region_instance_template: *compute_instance_template
@@ -80,6 +81,7 @@ google:
         preserved_state.internal_ip.auto_delete: preservedState.internalIPs.autoDelete
     google_compute_region_per_instance_config: *per_instance_config
     google_compute_network_peering: {api: compute, version: v1, schema: NetworkPeering}
+    google_compute_organization_security_policy_rule: {api: compute, version: v1, schema: SecurityPolicyRule}
     google_compute_project_default_network_tier:
       api: compute
       version: v1
@@ -96,11 +98,26 @@ google:
       version: v1
       schema: Cluster
       paths:
+        cluster_autoscaling: autoscaling
+        cluster_autoscaling.auto_provisioning_defaults: autoscaling.autoprovisioningNodePoolDefaults
+        datapath_provider: networkConfig.datapathProvider
+        dns_config: networkConfig.dnsConfig
+        gateway_api_config: networkConfig.gatewayApiConfig
+        in_transit_encryption_config: networkConfig.inTransitEncryptionConfig
         logging_config.enable_components: loggingConfig.componentConfig.enableComponents
+        maintenance_policy.maintenance_exclusion: maintenancePolicy.window.maintenanceExclusions
+        maintenance_policy.maintenance_exclusion.exclusion_options: maintenancePolicy.window.maintenanceExclusions.maintenanceExclusionOptions
         monitoring_config.enable_components: monitoringConfig.componentConfig.enableComponents
+        monitoring_config.managed_prometheus: monitoringConfig.managedPrometheusConfig
+        network_performance_config: networkConfig.networkPerformanceConfig
+        node_config.gpudirect_strategy: nodeConfig.gpuDirectConfig.gpuDirectStrategy
+        node_config.guest_accelerator: nodeConfig.accelerators
         node_config.logging_variant: nodeConfig.loggingConfig.variantConfig.variant
+        node_pool.node_config.gpudirect_strategy: nodePools.config.gpuDirectConfig.gpuDirectStrategy
+        node_pool.node_config.guest_accelerator: nodePools.config.accelerators
         node_pool.node_config.logging_variant: nodePools.config.loggingConfig.variantConfig.variant
         node_pool.node_config: nodePools.config
+        private_ipv6_google_access: networkConfig.privateIpv6GoogleAccess
         node_pool_defaults.node_config_defaults.logging_variant: nodePoolDefaults.nodeConfigDefaults.loggingConfig.variantConfig.variant
     google_container_node_pool:
       api: container
@@ -108,6 +125,8 @@ google:
       schema: NodePool
       paths:
         node_config: config
+        node_config.gpudirect_strategy: config.gpuDirectConfig.gpuDirectStrategy
+        node_config.guest_accelerator: config.accelerators
         node_config.logging_variant: config.loggingConfig.variantConfig.variant
     google_dataflow_job: {api: dataflow, version: v1b3, schema: RuntimeEnvironment}
     google_dataplex_asset: {api: dataplex, version: v1, schema: GoogleCloudDataplexV1Asset}
@@ -118,6 +137,7 @@ google:
       schema: Cluster
       paths:
         cluster_config: config
+        cluster_config.preemptible_worker_config: config.secondaryWorkerConfig
     google_dataproc_workflow_template: {api: dataproc, version: v1, schema: WorkflowTemplate}
     google_dns_record_set: {api: dns, version: v1, schema: ResourceRecordSet}
     google_firebaserules_ruleset: {api: firebaserules, version: v1, schema: Ruleset}

@@ -81,7 +81,8 @@ final class DiscoveryEnums {
   /// [restPath] is the REST field path Magic Modules records for [path]; it
   /// is followed first. Without one, or when it does not resolve, each
   /// Terraform segment matches the property whose name is the same letters
-  /// (`ip_protocol` is `IPProtocol`), or their plural.
+  /// (`ip_protocol` is `IPProtocol`), or their plural (`node_affinity` is
+  /// `nodeAffinities`).
   DiscoveryEnum? lookup(
     String type,
     String path, {
@@ -175,7 +176,12 @@ final class DiscoveryEnums {
 
   static String? _match(Iterable<String> keys, String segment) {
     final want = _norm(segment);
-    for (final form in [want, '${want}s', '${want}es']) {
+    for (final form in [
+      want,
+      '${want}s',
+      '${want}es',
+      if (want.endsWith('y')) '${want.substring(0, want.length - 1)}ies',
+    ]) {
       for (final k in keys) {
         if (_norm(k) == form) return k;
       }

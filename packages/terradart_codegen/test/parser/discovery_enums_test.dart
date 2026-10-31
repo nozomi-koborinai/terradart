@@ -21,6 +21,15 @@ final _schemas = <String, Object?>{
         'additionalProperties': {r'$ref': 'Label'},
       },
       'description': {'type': 'string'},
+      'nodeAffinities': {
+        'items': {
+          'properties': {
+            'operator': {
+              'enum': ['IN', 'NOT_IN'],
+            },
+          },
+        },
+      },
     },
   },
   'Policy': {
@@ -95,6 +104,7 @@ void main() {
     test(r'follows $ref, items and additionalProperties', () {
       expect(values('policies.mode'), ['ON', 'OFF']);
       expect(values('labels.kind'), ['A', 'B']);
+      expect(values('node_affinity.operator'), ['IN', 'NOT_IN']);
     });
 
     test('is null for a non-enum, an unknown path or an unknown type', () {

@@ -64,7 +64,7 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 
   final TfArg<String>? description;
 
-  final TfArg<String>? versionedExpr;
+  final ComputeOrganizationSecurityPolicyRuleVersionedExpr? versionedExpr;
 
   final ComputeOrganizationSecurityPolicyRuleConfig? config;
 
@@ -77,6 +77,26 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
     'config': ?config?.encode(),
     'expr': ?expr?.encode(),
   };
+}
+
+/// `versioned_expr` — derived from the provider schema description.
+extension type const ComputeOrganizationSecurityPolicyRuleVersionedExpr._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyRuleVersionedExpr.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyRuleVersionedExpr.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyRuleVersionedExpr.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const srcIpsV1 = ComputeOrganizationSecurityPolicyRuleVersionedExpr._(
+    TfArgLiteral('SRC_IPS_V1'),
+  );
+
+  static const List<ComputeOrganizationSecurityPolicyRuleVersionedExpr> values =
+      [srcIpsV1];
 }
 
 /// Typed helper for the `match.config` block of
@@ -170,7 +190,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestCookie {
     this.value,
   });
 
-  final TfArg<String> operator;
+  final ComputeOrganizationSecurityPolicyRuleOperator operator;
 
   final TfArg<String>? value;
 
@@ -179,6 +199,42 @@ final class ComputeOrganizationSecurityPolicyRuleRequestCookie {
     'operator': operator.toTfJson(),
     'value': ?value?.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeOrganizationSecurityPolicyRuleOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyRuleOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyRuleOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyRuleOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const contains = ComputeOrganizationSecurityPolicyRuleOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const endsWith = ComputeOrganizationSecurityPolicyRuleOperator._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const equals = ComputeOrganizationSecurityPolicyRuleOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const equalsAny = ComputeOrganizationSecurityPolicyRuleOperator._(
+    TfArgLiteral('EQUALS_ANY'),
+  );
+  static const startsWith = ComputeOrganizationSecurityPolicyRuleOperator._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+
+  static const List<ComputeOrganizationSecurityPolicyRuleOperator> values = [
+    contains,
+    endsWith,
+    equals,
+    equalsAny,
+    startsWith,
+  ];
 }
 
 /// Typed helper for the `preconfigured_waf_config.exclusion.request_header` block of
@@ -190,7 +246,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestHeader {
     this.value,
   });
 
-  final TfArg<String> operator;
+  final ComputeOrganizationSecurityPolicyRuleOperator operator;
 
   final TfArg<String>? value;
 
@@ -210,7 +266,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestQueryParam {
     this.value,
   });
 
-  final TfArg<String> operator;
+  final ComputeOrganizationSecurityPolicyRuleOperator operator;
 
   final TfArg<String>? value;
 
@@ -230,7 +286,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestUri {
     this.value,
   });
 
-  final TfArg<String> operator;
+  final ComputeOrganizationSecurityPolicyRuleOperator operator;
 
   final TfArg<String>? value;
 
@@ -252,13 +308,37 @@ final class ComputeOrganizationSecurityPolicyRuleRedirectOptions {
 
   final TfArg<String>? target;
 
-  final TfArg<String> type;
+  final ComputeOrganizationSecurityPolicyRuleType type;
 
   @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeOrganizationSecurityPolicyRuleType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyRuleType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const external302 = ComputeOrganizationSecurityPolicyRuleType._(
+    TfArgLiteral('EXTERNAL_302'),
+  );
+  static const googleRecaptcha = ComputeOrganizationSecurityPolicyRuleType._(
+    TfArgLiteral('GOOGLE_RECAPTCHA'),
+  );
+
+  static const List<ComputeOrganizationSecurityPolicyRuleType> values = [
+    external302,
+    googleRecaptcha,
+  ];
 }
 
 /// Factory wrapper for `google_compute_organization_security_policy_rule`.

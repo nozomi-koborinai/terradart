@@ -4,7 +4,7 @@
 # matches provider_version.txt, the MM ref, the wrapped types or tool/discovery_sources.yaml.
 provider_version: 8.8.1
 upstream_ref: 62273cb679bf27bd33e40ee33ab7e4dc43e608f8
-hand_roots: 0ab7b1210cbd5231
+hand_roots: 8cd10627703166ea
 resources:
   google_access_context_manager_access_level:
     doc: accesscontextmanager.v1
@@ -807,6 +807,7 @@ resources:
       disk.architecture: properties.disks.architecture
       network_interface: properties.networkInterfaces
       network_performance_config: properties.networkPerformanceConfig
+      key_revocation_action_type: properties.keyRevocationActionType
       reservation_affinity: properties.reservationAffinity
       scheduling: properties.scheduling
   google_compute_instance_template_iam_binding: null  # no Magic Modules YAML and no hand root
@@ -884,7 +885,7 @@ resources:
     schema: SecurityPolicy
   google_compute_organization_security_policy_rule:
     doc: compute.v1
-    schema: SecurityPolicy
+    schema: SecurityPolicyRule
   google_compute_packet_mirroring:
     doc: compute.v1
     schema: PacketMirroring
@@ -960,6 +961,7 @@ resources:
       disk.architecture: properties.disks.architecture
       network_interface: properties.networkInterfaces
       network_performance_config: properties.networkPerformanceConfig
+      key_revocation_action_type: properties.keyRevocationActionType
       reservation_affinity: properties.reservationAffinity
       scheduling: properties.scheduling
   google_compute_region_instant_snapshot: null  # no schema RegionInstantSnapshot in compute.v1
@@ -1175,17 +1177,34 @@ resources:
     doc: container.v1
     schema: Cluster
     paths:
+      cluster_autoscaling: autoscaling
+      cluster_autoscaling.auto_provisioning_defaults: autoscaling.autoprovisioningNodePoolDefaults
+      datapath_provider: networkConfig.datapathProvider
+      dns_config: networkConfig.dnsConfig
+      gateway_api_config: networkConfig.gatewayApiConfig
+      in_transit_encryption_config: networkConfig.inTransitEncryptionConfig
       logging_config.enable_components: loggingConfig.componentConfig.enableComponents
+      maintenance_policy.maintenance_exclusion: maintenancePolicy.window.maintenanceExclusions
+      maintenance_policy.maintenance_exclusion.exclusion_options: maintenancePolicy.window.maintenanceExclusions.maintenanceExclusionOptions
       monitoring_config.enable_components: monitoringConfig.componentConfig.enableComponents
+      monitoring_config.managed_prometheus: monitoringConfig.managedPrometheusConfig
+      network_performance_config: networkConfig.networkPerformanceConfig
+      node_config.gpudirect_strategy: nodeConfig.gpuDirectConfig.gpuDirectStrategy
+      node_config.guest_accelerator: nodeConfig.accelerators
       node_config.logging_variant: nodeConfig.loggingConfig.variantConfig.variant
+      node_pool.node_config.gpudirect_strategy: nodePools.config.gpuDirectConfig.gpuDirectStrategy
+      node_pool.node_config.guest_accelerator: nodePools.config.accelerators
       node_pool.node_config.logging_variant: nodePools.config.loggingConfig.variantConfig.variant
       node_pool.node_config: nodePools.config
+      private_ipv6_google_access: networkConfig.privateIpv6GoogleAccess
       node_pool_defaults.node_config_defaults.logging_variant: nodePoolDefaults.nodeConfigDefaults.loggingConfig.variantConfig.variant
   google_container_node_pool:
     doc: container.v1
     schema: NodePool
     paths:
       node_config: config
+      node_config.gpudirect_strategy: config.gpuDirectConfig.gpuDirectStrategy
+      node_config.guest_accelerator: config.accelerators
       node_config.logging_variant: config.loggingConfig.variantConfig.variant
   google_container_registry: null  # no Magic Modules YAML and no hand root
   google_data_catalog_entry:
@@ -1364,6 +1383,7 @@ resources:
     schema: Cluster
     paths:
       cluster_config: config
+      cluster_config.preemptible_worker_config: config.secondaryWorkerConfig
   google_dataproc_cluster_iam_binding: null  # no Magic Modules YAML and no hand root
   google_dataproc_cluster_iam_member: null  # no Magic Modules YAML and no hand root
   google_dataproc_cluster_iam_policy: null  # no Magic Modules YAML and no hand root
@@ -3228,6 +3248,7 @@ data_sources:
       disk.architecture: properties.disks.architecture
       network_interface: properties.networkInterfaces
       network_performance_config: properties.networkPerformanceConfig
+      key_revocation_action_type: properties.keyRevocationActionType
       reservation_affinity: properties.reservationAffinity
       scheduling: properties.scheduling
   google_compute_instance_template_iam_policy: null  # no Magic Modules YAML and no hand root
@@ -3277,6 +3298,7 @@ data_sources:
       disk.architecture: properties.disks.architecture
       network_interface: properties.networkInterfaces
       network_performance_config: properties.networkPerformanceConfig
+      key_revocation_action_type: properties.keyRevocationActionType
       reservation_affinity: properties.reservationAffinity
       scheduling: properties.scheduling
   google_compute_region_instant_snapshot_iam_policy: null  # no Magic Modules YAML and no hand root
@@ -3362,11 +3384,26 @@ data_sources:
     doc: container.v1
     schema: Cluster
     paths:
+      cluster_autoscaling: autoscaling
+      cluster_autoscaling.auto_provisioning_defaults: autoscaling.autoprovisioningNodePoolDefaults
+      datapath_provider: networkConfig.datapathProvider
+      dns_config: networkConfig.dnsConfig
+      gateway_api_config: networkConfig.gatewayApiConfig
+      in_transit_encryption_config: networkConfig.inTransitEncryptionConfig
       logging_config.enable_components: loggingConfig.componentConfig.enableComponents
+      maintenance_policy.maintenance_exclusion: maintenancePolicy.window.maintenanceExclusions
+      maintenance_policy.maintenance_exclusion.exclusion_options: maintenancePolicy.window.maintenanceExclusions.maintenanceExclusionOptions
       monitoring_config.enable_components: monitoringConfig.componentConfig.enableComponents
+      monitoring_config.managed_prometheus: monitoringConfig.managedPrometheusConfig
+      network_performance_config: networkConfig.networkPerformanceConfig
+      node_config.gpudirect_strategy: nodeConfig.gpuDirectConfig.gpuDirectStrategy
+      node_config.guest_accelerator: nodeConfig.accelerators
       node_config.logging_variant: nodeConfig.loggingConfig.variantConfig.variant
+      node_pool.node_config.gpudirect_strategy: nodePools.config.gpuDirectConfig.gpuDirectStrategy
+      node_pool.node_config.guest_accelerator: nodePools.config.accelerators
       node_pool.node_config.logging_variant: nodePools.config.loggingConfig.variantConfig.variant
       node_pool.node_config: nodePools.config
+      private_ipv6_google_access: networkConfig.privateIpv6GoogleAccess
       node_pool_defaults.node_config_defaults.logging_variant: nodePoolDefaults.nodeConfigDefaults.loggingConfig.variantConfig.variant
   google_container_engine_versions: null  # no Magic Modules YAML and no hand root
   google_container_registry_image: null  # no Magic Modules YAML and no hand root
