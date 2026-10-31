@@ -155,6 +155,7 @@ workspace:
   - cookbook/lunch-concierge/server
   - cookbook/lunch-concierge/infra
 dev_dependencies:
+  analyzer: any
   args: any
   crypto: any
   meta: any
