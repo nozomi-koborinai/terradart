@@ -84,13 +84,7 @@ google_vertex_ai_deployment_resource_pool.dedicated_resources.machine_spec.accel
 google_container_analysis_occurrence.attestation.signatures.public_key_id: examples of valid key ID URIs
 google_binary_authorization_attestor.attestation_authority_note.public_keys.ascii_armored_pgp_public_key: a PGP key with either LF or CRLF line endings
 google_compute_addresses.filter: the filter expression may use either of the listed operators
-google_compute_security_policy.rule.rate_limit_options.exceed_action: "deny(STATUS)" takes a status code, so the values are not a closed list
 google_lustre_instance.capacity_gib: allowed values are a numeric range
 google_compute_region_security_policy.rules.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
 google_compute_region_security_policy_rule.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
 
-# The value set depends on another input, so one enum would admit values the
-# API rejects.
-google_app_engine_flexible_app_version.instance_class: the valid classes depend on the scaling mode (F classes for automatic, B classes for manual)
-google_app_engine_standard_app_version.instance_class: the valid classes depend on the scaling mode (F classes for automatic, B classes for basic or manual)
-google_discovery_engine_data_connector.entities.entity_name: the valid entity names depend on the data source (Salesforce, Jira, Confluence)

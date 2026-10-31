@@ -6,4 +6,5 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
+  "site_config.application_stack.docker, site_config.application_stack.dotnet_version, site_config.application_stack.java_version, site_config.application_stack.node_version, site_config.application_stack.powershell_core_version, site_config.application_stack.python_version, site_config.application_stack.use_custom_runtime": runtime
   "storage_account_access_key, storage_uses_managed_identity": storage_access
