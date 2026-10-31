@@ -677,6 +677,29 @@ class ChronicleDashboardChartSeries {
   };
 }
 
+/// One `x_axes` or `y_axes` entry of a chart visualization.
+@immutable
+class ChronicleDashboardChartAxis {
+  const ChronicleDashboardChartAxis({
+    this.axisType,
+    this.displayName,
+    this.min,
+    this.max,
+  });
+
+  final ChronicleDashboardChartAxisType? axisType;
+  final TfArg<String>? displayName;
+  final TfArg<num>? min;
+  final TfArg<num>? max;
+
+  Map<String, Object?> toArgMap() => {
+    if (axisType != null) 'axis_type': axisType!.toTfJson(),
+    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    if (min != null) 'min': min!.toTfJson(),
+    if (max != null) 'max': max!.toTfJson(),
+  };
+}
+
 /// Visualization block on a dashboard chart.
 @immutable
 class ChronicleDashboardChartVisualization {
@@ -690,8 +713,8 @@ class ChronicleDashboardChartVisualization {
     this.columnRenderType,
     this.tooltipTrigger,
     this.visualMapType,
-    this.xAxisType,
-    this.yAxisType,
+    this.xAxes,
+    this.yAxes,
   });
 
   final List<ChronicleDashboardChartSeries>? series;
@@ -703,8 +726,8 @@ class ChronicleDashboardChartVisualization {
   final ChronicleDashboardChartColumnRenderType? columnRenderType;
   final ChronicleDashboardChartTooltipTrigger? tooltipTrigger;
   final ChronicleDashboardChartVisualMapType? visualMapType;
-  final ChronicleDashboardChartAxisType? xAxisType;
-  final ChronicleDashboardChartAxisType? yAxisType;
+  final List<ChronicleDashboardChartAxis>? xAxes;
+  final List<ChronicleDashboardChartAxis>? yAxes;
 
   Map<String, Object?> toArgMap() => {
     if (series != null) 'series': series!.map((s) => s.toArgMap()).toList(),
@@ -749,14 +772,8 @@ class ChronicleDashboardChartVisualization {
       'visual_maps': [
         {'visual_map_type': visualMapType!.toTfJson()},
       ],
-    if (xAxisType != null)
-      'x_axes': [
-        {'axis_type': xAxisType!.toTfJson()},
-      ],
-    if (yAxisType != null)
-      'y_axes': [
-        {'axis_type': yAxisType!.toTfJson()},
-      ],
+    if (xAxes != null) 'x_axes': xAxes!.map((a) => a.toArgMap()).toList(),
+    if (yAxes != null) 'y_axes': yAxes!.map((a) => a.toArgMap()).toList(),
   };
 }
 

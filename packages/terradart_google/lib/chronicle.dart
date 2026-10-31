@@ -29,6 +29,7 @@ export 'src/chronicle/google_chronicle_custom_list.dart'
     show ChronicleCustomListDeletionPolicy, GoogleChronicleCustomList;
 export 'src/chronicle/google_chronicle_dashboard_chart.dart'
     show
+        ChronicleDashboardChartAxis,
         ChronicleDashboardChartAxisType,
         ChronicleDashboardChartButtonStyle,
         ChronicleDashboardChartColumnRenderType,

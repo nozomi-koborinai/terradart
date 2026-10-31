@@ -7377,6 +7377,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ChronicleDashboardChartFilterOperatorAndValues',
       'ChronicleDashboardChartMetricTrendConfig',
       'ChronicleDashboardChartSeries',
+      'ChronicleDashboardChartAxis',
       'ChronicleDashboardChartVisualization',
       'ChronicleDashboardChartSpec',
       'ChronicleDashboardChartRelativeTime',

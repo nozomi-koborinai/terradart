@@ -337,6 +337,8 @@ google_gkeonprem_bare_metal_cluster.load_balancer.metal_lb_config.address_pools.
 google_gkeonprem_vmware_cluster.load_balancer.metal_lb_config.address_pools.addresses: an IP address, range or CIDR block
 google_vmwareengine_network_policy.edge_services_cidr: an IP address, range or CIDR block
 
+google_compute_firewall.allow.protocol: a protocol name or any IP protocol number, an open set
+google_compute_firewall.deny.protocol: a protocol name or any IP protocol number, an open set
 google_compute_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
 google_compute_firewall_policy_with_rules.rule.match.layer4_config.ip_protocol: a protocol name or any IP protocol number, an open set
 google_compute_network_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
@@ -344,6 +346,8 @@ google_compute_network_firewall_policy_with_rules.rule.match.layer4_config.ip_pr
 google_compute_region_network_firewall_policy_rule.match.layer4_configs.ip_protocol: a protocol name or any IP protocol number, an open set
 google_compute_region_network_firewall_policy_with_rules.rule.match.layer4_config.ip_protocol: a protocol name or any IP protocol number, an open set
 
+google_compute_firewall.allow.ports: a port number or a port range
+google_compute_firewall.deny.ports: a port number or a port range
 google_compute_firewall_policy_rule.match.layer4_configs.ports: a port number or a port range
 google_compute_firewall_policy_with_rules.rule.match.layer4_config.ports: a port number or a port range
 google_compute_network_firewall_policy_rule.match.layer4_configs.ports: a port number or a port range

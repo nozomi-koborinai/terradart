@@ -29,7 +29,8 @@ and `ComputeRegionAutoscalerAutoscalingPolicy` is a list. Each schedule
 takes its `name`, which was the map key.
 
 `ChronicleDashboardChartVisualization.axisType` set both axes. It is
-replaced by `xAxisType` and `yAxisType`, each of which sets one axis.
+replaced by `xAxes` and `yAxes`, each a list of `ChronicleDashboardChartAxis`
+with `axisType`, `displayName`, `min` and `max`.
 
 `ComputeSecurityPolicyRulesMatch` and `ComputeRegionSecurityPolicyRulesMatch`
 are sealed. `.config(...)` and `.expr(...)` build them as before. Their
@@ -43,7 +44,7 @@ are sealed. `.config(...)` and `.expr(...)` build them as before. Their
 | `GkeBackupBackupPlanExclusionWindowDaysOfWeek(daysOfWeek: [.monday])` | `GkeBackupBackupPlanExclusionWindowDaysOfWeek(daysOfWeek: .literal([.monday]))` |
 | `GoogleComputeFirewall('f', rulePolicy: .allow(protocol: .literal('tcp'), ports: ['443']), ...)` | `GoogleComputeFirewall('f', rulePolicy: .allow([.new(protocol: .literal('tcp'), ports: .literal(['443']))]), ...)` |
 | `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: {'peak': .new(minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))}, ...)` | `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: [.new(name: .literal('peak'), minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))], ...)` |
-| `ChronicleDashboardChartVisualization(axisType: .value)` | `ChronicleDashboardChartVisualization(xAxisType: .value, yAxisType: .value)` |
+| `ChronicleDashboardChartVisualization(axisType: .value)` | `ChronicleDashboardChartVisualization(xAxes: [.new(axisType: .value)], yAxes: [.new(axisType: .value)])` |
 
 ### Managed database point-in-time restore is one sealed argument
 
