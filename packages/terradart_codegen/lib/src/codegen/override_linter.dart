@@ -121,21 +121,25 @@ final class MigrateShapeLintInput {
 }
 
 /// Builds the package-wide [ShapeContext] the lint resolves types against:
-/// what `terradart wrap --migrate-manifest` sees minus the derived symbols
-/// (`deriveEnums` enums, `deriveNestedTypes` classes), which only exist in
-/// emitted source. A custom slot or prelude field typed with a *derived*
-/// symbol therefore reads as underivable here; none does today, and one
-/// that appears is a reviewed ledger entry, not a silent pass.
-ShapeContext preludeShapeContext(Map<String, WrapperOverride> overrides) {
+/// the symbols every override's `prelude` declares, plus those of [emitted]
+/// (the lane's generated wrapper sources), where the derived symbols
+/// (`deriveEnums` enums, `deriveNestedTypes` classes) live. Without
+/// [emitted], a custom slot or prelude field typed with a derived symbol
+/// reads as underivable.
+ShapeContext preludeShapeContext(
+  Map<String, WrapperOverride> overrides, {
+  Iterable<String> emitted = const [],
+}) {
   const helperExtractor = HelperClassExtractor();
   const enumExtractor = EnumExtractor();
   final parts = <HelperExtraction>[];
   final enumNames = <String>{};
-  for (final o in overrides.values) {
-    final prelude = o.prelude;
-    if (prelude == null) continue;
-    parts.add(helperExtractor.extract(prelude));
-    enumNames.addAll(enumExtractor.extract(prelude).map((e) => e.name));
+  for (final source in [
+    for (final o in overrides.values) ?o.prelude,
+    ...emitted,
+  ]) {
+    parts.add(helperExtractor.extract(source));
+    enumNames.addAll(enumExtractor.extract(source).map((e) => e.name));
   }
   return ShapeContext(
     helpers: HelperExtraction.merge(parts),
