@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
 import 'package:terradart_codegen/src/ir/nested_block.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
@@ -11,6 +12,45 @@ void main() {
     final fixture = File(
       'test/fixtures/schema/google_pubsub_topic.schema.json',
     );
+
+    test('descriptions keep a dollar sign, so wire values read from them do', () {
+      const schema = r"""
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/cloudflare/cloudflare": {
+      "provider": {"version": 0, "block": {}},
+      "data_source_schemas": {
+        "cloudflare_api_shield_operations": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "order": {
+                "type": "string",
+                "optional": true,
+                "description": "Field to order by.\nAvailable values: \"method\", \"thresholds.$key\"."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+""";
+      final ir = const SchemaJsonParser().parseString(schema);
+      final order = ir
+          .dataSources['cloudflare_api_shield_operations']!
+          .root
+          .attributes
+          .single;
+      expect(order.description, contains(r'"thresholds.$key"'));
+      expect(order.description, isNot(contains('\uFF04')));
+      expect(parseAvailableValues(order.description), [
+        'method',
+        r'thresholds.$key',
+      ]);
+    });
 
     test('parses google_pubsub_topic into ProviderSchemaIR', () {
       final ir = const SchemaJsonParser().parseString(
