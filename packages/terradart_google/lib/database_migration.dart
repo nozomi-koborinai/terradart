@@ -19,6 +19,7 @@ export 'src/database_migration/google_database_migration_service_connection_prof
         DatabaseMigrationServiceConnectionProfileCredentialPassword,
         DatabaseMigrationServiceConnectionProfileCredentialPrivateKey,
         DatabaseMigrationServiceConnectionProfileDataDiskType,
+        DatabaseMigrationServiceConnectionProfileDatabaseVersion,
         DatabaseMigrationServiceConnectionProfileEdition,
         DatabaseMigrationServiceConnectionProfileEngine,
         DatabaseMigrationServiceConnectionProfileEngineAlloydb,

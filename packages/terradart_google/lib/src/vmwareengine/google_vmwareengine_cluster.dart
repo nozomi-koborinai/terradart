@@ -174,7 +174,7 @@ final class VmwareengineClusterDatastoreMountConfig {
 
   final TfArg<bool>? ignoreColocation;
 
-  final TfArg<String>? nfsVersion;
+  final VmwareengineClusterNfsVersion? nfsVersion;
 
   final VmwareengineClusterDatastoreNetwork datastoreNetwork;
 
@@ -208,6 +208,20 @@ extension type const VmwareengineClusterAccessMode._(TfArg<String> _)
     readOnly,
     readWrite,
   ];
+}
+
+/// `nfs_version` — derived from the provider schema description.
+extension type const VmwareengineClusterNfsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareengineClusterNfsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareengineClusterNfsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineClusterNfsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const nfsV3 = VmwareengineClusterNfsVersion._(TfArgLiteral('NFS_V3'));
+
+  static const List<VmwareengineClusterNfsVersion> values = [nfsV3];
 }
 
 /// Typed helper for the `datastore_mount_config.datastore_network` block of

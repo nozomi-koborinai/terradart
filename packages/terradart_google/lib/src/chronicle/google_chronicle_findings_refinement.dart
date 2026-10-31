@@ -7,6 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_findings_refinement`.
 const Set<String> _googleChronicleFindingsRefinementSensitive = <String>{};
 
+/// Chronicle Findings Refinement enum for `type`.
+extension type const ChronicleFindingsRefinementType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFindingsRefinementType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFindingsRefinementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFindingsRefinementType.arg(TfArg<String> arg) : this._(arg);
+
+  static const detectionExclusion = ChronicleFindingsRefinementType._(
+    TfArgLiteral('DETECTION_EXCLUSION'),
+  );
+
+  static const List<ChronicleFindingsRefinementType> values = [
+    detectionExclusion,
+  ];
+}
+
 /// Typed helper for the `outcome_filters` block of
 /// `google_chronicle_findings_refinement` (derived from provider schema).
 @immutable
@@ -88,7 +106,7 @@ final class GoogleChronicleFindingsRefinement extends Resource {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
-    TfArg<String>? type,
+    ChronicleFindingsRefinementType? type,
     TfArg<String>? displayName,
     TfArg<String>? query,
     List<ChronicleFindingsRefinementOutcomeFilters>? outcomeFilters,

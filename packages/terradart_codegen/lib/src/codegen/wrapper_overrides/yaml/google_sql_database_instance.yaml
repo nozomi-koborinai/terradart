@@ -1,9 +1,17 @@
 outputDir: sql
+enumValues:
+  instance_type:
+    - CLOUD_SQL_INSTANCE
+    - ON_PREMISES_INSTANCE
+    - READ_REPLICA_INSTANCE
+    - READ_POOL_INSTANCE
+    - GREEN_INSTANCE
 
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL

@@ -482,7 +482,7 @@ final class CesAgentOauthConfig {
 
   final TfArg<String> clientSecretVersion;
 
-  final TfArg<String> oauthGrantType;
+  final CesAgentOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -496,6 +496,21 @@ final class CesAgentOauthConfig {
     'scopes': ?scopes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
+}
+
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const CesAgentOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAgentOauthGrantType.variable(String name) : this._(TfArg.variable(name));
+  CesAgentOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAgentOauthGrantType.arg(TfArg<String> arg) : this._(arg);
+
+  static const clientCredential = CesAgentOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<CesAgentOauthGrantType> values = [clientCredential];
 }
 
 /// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.service_account_auth_config` block of

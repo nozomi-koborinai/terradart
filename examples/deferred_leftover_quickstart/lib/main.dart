@@ -493,7 +493,7 @@ final class DeferredLeftoverStack extends Stack {
         folderId: .literal('folders/123456789'),
         enrolledServices: [
           FolderAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
+            cloudProduct: .all,
           ),
         ],
       ),
@@ -836,7 +836,7 @@ final class DeferredLeftoverStack extends Stack {
         organizationId: .literal('terradart-leftover'),
         enrolledServices: [
           OrganizationAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
+            cloudProduct: .all,
           ),
         ],
       ),
@@ -878,7 +878,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestratorForFolder(
         'orchestratorforfolder',
-        action: .literal('DEPRIVILEGE'),
+        action: .upsert,
         deletionPolicy: .literal('DELETE'),
         folderId: .literal('folders/123456789'),
         policyOrchestratorId: .literal('terradart-leftover'),
@@ -890,7 +890,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestratorForOrganization(
         'orchestratorfororganization',
-        action: .literal('DEPRIVILEGE'),
+        action: .upsert,
         deletionPolicy: .literal('DELETE'),
         organizationId: .literal('terradart-leftover'),
         policyOrchestratorId: .literal('terradart-leftover'),
@@ -906,7 +906,7 @@ final class DeferredLeftoverStack extends Stack {
         projectId: .literal(projectId),
         enrolledServices: [
           ProjectAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .literal('terradart-leftover'),
+            cloudProduct: .all,
           ),
         ],
       ),

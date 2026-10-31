@@ -794,7 +794,8 @@ final class HypercomputeclusterClusterNewLustre {
 
   final TfArg<String> lustre;
 
-  final TfArg<String>? perUnitStorageThroughput;
+  final HypercomputeclusterClusterPerUnitStorageThroughput?
+  perUnitStorageThroughput;
 
   @internal
   Map<String, Object?> encode() => {
@@ -804,6 +805,35 @@ final class HypercomputeclusterClusterNewLustre {
     'lustre': lustre.toTfJson(),
     'per_unit_storage_throughput': ?perUnitStorageThroughput?.toTfJson(),
   };
+}
+
+/// `per_unit_storage_throughput` — derived from the provider schema description.
+extension type const HypercomputeclusterClusterPerUnitStorageThroughput._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HypercomputeclusterClusterPerUnitStorageThroughput.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterPerUnitStorageThroughput.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterPerUnitStorageThroughput.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const v125 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('125'),
+  );
+  static const v250 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('250'),
+  );
+  static const v500 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('500'),
+  );
+  static const v1000 = HypercomputeclusterClusterPerUnitStorageThroughput._(
+    TfArgLiteral('1000'),
+  );
+
+  static const List<HypercomputeclusterClusterPerUnitStorageThroughput> values =
+      [v125, v250, v500, v1000];
 }
 
 /// Factory wrapper for `google_hypercomputecluster_cluster`.

@@ -102,6 +102,7 @@ export 'src/iam/google_iam_principal_access_boundary_policy.dart'
     show
         GoogleIamPrincipalAccessBoundaryPolicy,
         IamPrincipalAccessBoundaryPolicyDetails,
+        IamPrincipalAccessBoundaryPolicyEffect,
         IamPrincipalAccessBoundaryPolicyRules;
 export 'src/iam/google_iam_project_access_policy.dart'
     show

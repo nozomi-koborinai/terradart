@@ -127,7 +127,7 @@ final class DiscoveryEngineChatEngineAgentCreationConfig {
 
   final TfArg<String> defaultLanguageCode;
 
-  final TfArg<String>? location;
+  final DiscoveryEngineChatEngineAgentCreationConfigLocation? location;
 
   final TfArg<String> timeZone;
 
@@ -138,6 +138,33 @@ final class DiscoveryEngineChatEngineAgentCreationConfig {
     'location': ?location?.toTfJson(),
     'time_zone': timeZone.toTfJson(),
   };
+}
+
+/// `location` — derived from the provider schema description.
+extension type const DiscoveryEngineChatEngineAgentCreationConfigLocation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineChatEngineAgentCreationConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineChatEngineAgentCreationConfigLocation.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineChatEngineAgentCreationConfigLocation.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const global = DiscoveryEngineChatEngineAgentCreationConfigLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineChatEngineAgentCreationConfigLocation._(
+    TfArgLiteral('us'),
+  );
+  static const eu = DiscoveryEngineChatEngineAgentCreationConfigLocation._(
+    TfArgLiteral('eu'),
+  );
+
+  static const List<DiscoveryEngineChatEngineAgentCreationConfigLocation>
+  values = [global, us, eu];
 }
 
 /// Typed helper for the `common_config` block of

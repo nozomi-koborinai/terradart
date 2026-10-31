@@ -1,4 +1,8 @@
 outputDir: container
+enumValues:
+  node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    - TIME_SHARING
+    - MPS
 
 deriveClassDoc: true
 deriveExactlyOne: true

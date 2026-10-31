@@ -2,7 +2,17 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
+enumValues:
+  action:
+    - allow
+    - 'deny(403)'
+    - 'deny(404)'
+    - 'deny(502)'
+    - rate_based_ban
+    - redirect
+    - throttle
 
 paramOrder:
   - action

@@ -71,7 +71,7 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 
   final TfArg<num>? acceleratorCount;
 
-  final TfArg<String>? acceleratorType;
+  final VertexAiDeploymentResourcePoolAcceleratorType? acceleratorType;
 
   final TfArg<String>? machineType;
 
@@ -81,6 +81,100 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
   };
+}
+
+/// `accelerator_type` — derived from the provider schema description.
+extension type const VertexAiDeploymentResourcePoolAcceleratorType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiDeploymentResourcePoolAcceleratorType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiDeploymentResourcePoolAcceleratorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiDeploymentResourcePoolAcceleratorType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvidiaTeslaK80 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_K80'),
+  );
+  static const nvidiaTeslaP100 =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_P100'),
+      );
+  static const nvidiaTeslaV100 =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_V100'),
+      );
+  static const nvidiaTeslaP4 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_P4'),
+  );
+  static const nvidiaTeslaT4 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_T4'),
+  );
+  static const nvidiaTeslaA100 =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_A100'),
+      );
+  static const nvidiaA10080gb = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_A100_80GB'),
+  );
+  static const nvidiaL4 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_L4'),
+  );
+  static const nvidiaH10080gb = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_H100_80GB'),
+  );
+  static const nvidiaH100Mega80gb =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_H100_MEGA_80GB'),
+      );
+  static const nvidiaH200141gb =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_H200_141GB'),
+      );
+  static const nvidiaB200 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_B200'),
+  );
+  static const nvidiaGb200 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('NVIDIA_GB200'),
+  );
+  static const nvidiaRtxPro6000 =
+      VertexAiDeploymentResourcePoolAcceleratorType._(
+        TfArgLiteral('NVIDIA_RTX_PRO_6000'),
+      );
+  static const tpuV2 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('TPU_V2'),
+  );
+  static const tpuV3 = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('TPU_V3'),
+  );
+  static const tpuV4Pod = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('TPU_V4_POD'),
+  );
+  static const tpuV5Litepod = VertexAiDeploymentResourcePoolAcceleratorType._(
+    TfArgLiteral('TPU_V5_LITEPOD'),
+  );
+
+  static const List<VertexAiDeploymentResourcePoolAcceleratorType> values = [
+    nvidiaTeslaK80,
+    nvidiaTeslaP100,
+    nvidiaTeslaV100,
+    nvidiaTeslaP4,
+    nvidiaTeslaT4,
+    nvidiaTeslaA100,
+    nvidiaA10080gb,
+    nvidiaL4,
+    nvidiaH10080gb,
+    nvidiaH100Mega80gb,
+    nvidiaH200141gb,
+    nvidiaB200,
+    nvidiaGb200,
+    nvidiaRtxPro6000,
+    tpuV2,
+    tpuV3,
+    tpuV4Pod,
+    tpuV5Litepod,
+  ];
 }
 
 /// Factory wrapper for `google_vertex_ai_deployment_resource_pool`.

@@ -165,7 +165,7 @@ final class GkeHubFeatureMembershipGit {
 
   final TfArg<String>? policyDir;
 
-  final TfArg<String>? secretType;
+  final GkeHubFeatureMembershipGitSecretType? secretType;
 
   final TfArg<String>? syncBranch;
 
@@ -188,6 +188,45 @@ final class GkeHubFeatureMembershipGit {
   };
 }
 
+/// `secret_type` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipGitSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipGitSecretType.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipGitSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipGitSecretType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ssh = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('ssh'),
+  );
+  static const cookiefile = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('cookiefile'),
+  );
+  static const gcenode = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('gcenode'),
+  );
+  static const token = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('token'),
+  );
+  static const gcpserviceaccount = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('gcpserviceaccount'),
+  );
+  static const none = GkeHubFeatureMembershipGitSecretType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<GkeHubFeatureMembershipGitSecretType> values = [
+    ssh,
+    cookiefile,
+    gcenode,
+    token,
+    gcpserviceaccount,
+    none,
+  ];
+}
+
 /// Typed helper for the `configmanagement.config_sync.oci` block of
 /// `google_gke_hub_feature_membership` (derived from provider schema).
 @immutable
@@ -204,7 +243,7 @@ final class GkeHubFeatureMembershipOci {
 
   final TfArg<String>? policyDir;
 
-  final TfArg<String>? secretType;
+  final GkeHubFeatureMembershipOciSecretType? secretType;
 
   final TfArg<String>? syncRepo;
 
@@ -218,6 +257,33 @@ final class GkeHubFeatureMembershipOci {
     'sync_repo': ?syncRepo?.toTfJson(),
     'sync_wait_secs': ?syncWaitSecs?.toTfJson(),
   };
+}
+
+/// `secret_type` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipOciSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipOciSecretType.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipOciSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipOciSecretType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const gcenode = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('gcenode'),
+  );
+  static const gcpserviceaccount = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('gcpserviceaccount'),
+  );
+  static const none = GkeHubFeatureMembershipOciSecretType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<GkeHubFeatureMembershipOciSecretType> values = [
+    gcenode,
+    gcpserviceaccount,
+    none,
+  ];
 }
 
 /// Typed helper for the `configmanagement.hierarchy_controller` block of

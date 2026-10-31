@@ -209,7 +209,11 @@ void main() {
           'Currently supported values are `fips` (FIPS-approved curves) and '
           '`pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be '
           'added; clients should treat unknown values as opaque strings.';
-      for (final d in [flexShielding, complianceModes]) {
+      const orchestratorState =
+          "Allowed values:\n- 'ACTIVE' - orchestrator is actively looking for "
+          "actions to be taken.\n- 'STOPPED' - orchestrator won't make any "
+          'changes.\n\nNote: There might be more states added in the future.';
+      for (final d in [flexShielding, complianceModes, orchestratorState]) {
         expect(describesOpenSet(d), isTrue, reason: d);
         expect(parseEnumValuesFromDescription(d), isNull, reason: d);
       }

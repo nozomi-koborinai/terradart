@@ -284,6 +284,7 @@ export 'src/chronicle/google_chronicle_findings_refinement.dart'
     show
         ChronicleFindingsRefinementOutcomeFilterOperator,
         ChronicleFindingsRefinementOutcomeFilters,
+        ChronicleFindingsRefinementType,
         GoogleChronicleFindingsRefinement;
 export 'src/chronicle/google_chronicle_findings_refinement_deployment.dart'
     show

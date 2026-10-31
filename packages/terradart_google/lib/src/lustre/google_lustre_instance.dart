@@ -10,6 +10,37 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_lustre_instance`.
 const Set<String> _googleLustreInstanceSensitive = <String>{};
 
+/// Lustre Instance Per Unit Storage enum for `per_unit_storage_throughput`.
+extension type const LustreInstancePerUnitStorageThroughput._(TfArg<String> _)
+    implements TfArg<String> {
+  LustreInstancePerUnitStorageThroughput.variable(String name)
+    : this._(TfArg.variable(name));
+  LustreInstancePerUnitStorageThroughput.expression(String template)
+    : this._(TfArg.expression(template));
+  const LustreInstancePerUnitStorageThroughput.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v125 = LustreInstancePerUnitStorageThroughput._(
+    TfArgLiteral('125'),
+  );
+  static const v250 = LustreInstancePerUnitStorageThroughput._(
+    TfArgLiteral('250'),
+  );
+  static const v500 = LustreInstancePerUnitStorageThroughput._(
+    TfArgLiteral('500'),
+  );
+  static const v1000 = LustreInstancePerUnitStorageThroughput._(
+    TfArgLiteral('1000'),
+  );
+
+  static const List<LustreInstancePerUnitStorageThroughput> values = [
+    v125,
+    v250,
+    v500,
+    v1000,
+  ];
+}
+
 /// Typed helper for the `access_rules_options` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
@@ -344,7 +375,7 @@ final class GoogleLustreInstance extends Resource {
     required TfArg<String> capacityGib,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? description,
-    TfArg<String>? perUnitStorageThroughput,
+    LustreInstancePerUnitStorageThroughput? perUnitStorageThroughput,
     TfArg<bool>? gkeSupportEnabled,
     RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<String>? placementPolicy,

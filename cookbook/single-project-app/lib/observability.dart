@@ -47,7 +47,7 @@ GoogleMonitoringUptimeCheckConfig buildUptimeCheck(
   'coffee_uptime',
   displayName: .literal('Coffee Shop uptime'),
   timeout: .literal('10s'),
-  period: .literal('60s'),
+  period: .v60s,
   target: .monitoredResource(
     .new(
       type: .literal('uptime_url'),

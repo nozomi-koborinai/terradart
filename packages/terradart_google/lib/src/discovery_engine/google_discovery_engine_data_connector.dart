@@ -133,13 +133,17 @@ final class DiscoveryEngineDataConnectorBapConfig {
 
   final List<DiscoveryEngineDataConnectorEnabledActions>? enabledActions;
 
-  final TfArg<List<String>>? supportedConnectorModes;
+  final List<DiscoveryEngineDataConnectorSupportedConnectorModes>?
+  supportedConnectorModes;
 
   @internal
   Map<String, Object?> encode() => {
     if (enabledActions != null)
       'enabled_actions': [for (final e in enabledActions!) e.toTfJson()],
-    'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
+    if (supportedConnectorModes != null)
+      'supported_connector_modes': [
+        for (final e in supportedConnectorModes!) e.toTfJson(),
+      ],
   };
 }
 
@@ -181,6 +185,35 @@ extension type const DiscoveryEngineDataConnectorEnabledActions._(
     updateComment,
     uploadAttachment,
   ];
+}
+
+/// `supported_connector_modes` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorSupportedConnectorModes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataConnectorSupportedConnectorModes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorSupportedConnectorModes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorSupportedConnectorModes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const dataIngestion =
+      DiscoveryEngineDataConnectorSupportedConnectorModes._(
+        TfArgLiteral('DATA_INGESTION'),
+      );
+  static const actions = DiscoveryEngineDataConnectorSupportedConnectorModes._(
+    TfArgLiteral('ACTIONS'),
+  );
+  static const endUserAuthentication =
+      DiscoveryEngineDataConnectorSupportedConnectorModes._(
+        TfArgLiteral('END_USER_AUTHENTICATION'),
+      );
+
+  static const List<DiscoveryEngineDataConnectorSupportedConnectorModes>
+  values = [dataIngestion, actions, endUserAuthentication];
 }
 
 /// Typed helper for the `destination_configs` block of

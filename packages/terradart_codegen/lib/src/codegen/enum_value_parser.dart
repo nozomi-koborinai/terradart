@@ -59,12 +59,14 @@ List<String>? parseEnumValuesFromDescription(String? description) {
 /// Whether [description] says the values it lists are not all the values
 /// the input takes: `See [FlexShieldingRegion](...) for the full list`,
 /// `Future modes (e.g. cnsa2) may be added; clients should treat unknown
-/// values as opaque strings.` Such an input stays a string.
+/// values as opaque strings.`, `There might be more states added in the
+/// future.` Such an input stays a string.
 bool describesOpenSet(String description) => _openSet.hasMatch(description);
 
 final RegExp _openSet = RegExp(
   r'\bfor\s+the\s+(?:full|complete)\s+list\b'
   r'|\b(?:values|modes|options|types)\b[^.]{0,40}\bmay\s+be\s+added\b'
+  r'|\b(?:may|might)\s+be\s+more\s+(?:values|modes|options|types|states)\s+added\b'
   r'|\bunknown\s+values\b',
   caseSensitive: false,
 );

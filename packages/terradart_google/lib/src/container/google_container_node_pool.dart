@@ -895,7 +895,7 @@ final class ContainerNodePoolGpuSharingConfig {
     required this.maxSharedClientsPerGpu,
   });
 
-  final TfArg<String> gpuSharingStrategy;
+  final ContainerNodePoolGpuSharingStrategy gpuSharingStrategy;
 
   final TfArg<num> maxSharedClientsPerGpu;
 
@@ -904,6 +904,27 @@ final class ContainerNodePoolGpuSharingConfig {
     'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
     'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
   };
+}
+
+/// `gpu_sharing_strategy` — derived from the provider schema description.
+extension type const ContainerNodePoolGpuSharingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolGpuSharingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolGpuSharingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolGpuSharingStrategy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const timeSharing = ContainerNodePoolGpuSharingStrategy._(
+    TfArgLiteral('TIME_SHARING'),
+  );
+  static const mps = ContainerNodePoolGpuSharingStrategy._(TfArgLiteral('MPS'));
+
+  static const List<ContainerNodePoolGpuSharingStrategy> values = [
+    timeSharing,
+    mps,
+  ];
 }
 
 /// Typed helper for the `node_config.gvnic` block of

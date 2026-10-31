@@ -4,6 +4,38 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  quota_time_unit:
+    - second
+    - minute
+    - hour
+    - day
+    - month
+    - year
+  graphql_operation_group.operation_configs.quota.time_unit:
+    - second
+    - minute
+    - hour
+    - day
+    - month
+    - year
+  grpc_operation_group.operation_configs.quota.time_unit:
+    - second
+    - minute
+    - hour
+    - day
+    - month
+    - year
+  operation_group.operation_configs.quota.time_unit:
+    - second
+    - minute
+    - hour
+    - day
+    - month
+    - year
+  graphql_operation_group.operation_configs.operations.operation_types:
+    - query
+    - mutation
 
 extraImports:
   - "import 'package:meta/meta.dart';"

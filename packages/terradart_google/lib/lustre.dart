@@ -17,6 +17,7 @@ export 'src/lustre/google_lustre_instance.dart'
         LustreInstanceMaintenanceExclusionWindow,
         LustreInstanceMaintenancePolicy,
         LustreInstanceMode,
+        LustreInstancePerUnitStorageThroughput,
         LustreInstanceSquashMode,
         LustreInstanceStartDate,
         LustreInstanceStartTime,

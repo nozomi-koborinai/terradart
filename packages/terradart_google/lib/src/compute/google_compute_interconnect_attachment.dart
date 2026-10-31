@@ -104,6 +104,28 @@ extension type const ComputeInterconnectAttachmentEncryption._(TfArg<String> _)
   ];
 }
 
+/// Compute Interconnect Attachment enum for `mtu`.
+extension type const ComputeInterconnectAttachmentMtu._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentMtu.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentMtu.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentMtu.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1440 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1440'));
+  static const v1460 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1460'));
+  static const v1500 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('1500'));
+  static const v8896 = ComputeInterconnectAttachmentMtu._(TfArgLiteral('8896'));
+
+  static const List<ComputeInterconnectAttachmentMtu> values = [
+    v1440,
+    v1460,
+    v1500,
+    v8896,
+  ];
+}
+
 /// Compute Interconnect Attachment Stack enum for `stack_type`.
 extension type const ComputeInterconnectAttachmentStackType._(TfArg<String> _)
     implements TfArg<String> {
@@ -322,7 +344,7 @@ final class GoogleComputeInterconnectAttachment extends Resource {
     TfArg<String>? region,
     ComputeInterconnectAttachmentBandwidth? bandwidth,
     TfArg<num>? vlanTag8021q,
-    TfArg<String>? mtu,
+    ComputeInterconnectAttachmentMtu? mtu,
     ComputeInterconnectAttachmentEncryption? encryption,
     ComputeInterconnectAttachmentStackType? stackType,
     TfArg<String>? edgeAvailabilityDomain,

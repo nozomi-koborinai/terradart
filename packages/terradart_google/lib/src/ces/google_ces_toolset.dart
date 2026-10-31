@@ -266,7 +266,7 @@ final class CesToolsetApiAuthenticationApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final TfArg<String> requestLocation;
+  final CesToolsetMcpToolsetRequestLocation requestLocation;
 
   @internal
   Map<String, Object?> encode() => {
@@ -274,6 +274,23 @@ final class CesToolsetApiAuthenticationApiKeyConfig {
     'key_name': keyName.toTfJson(),
     'request_location': requestLocation.toTfJson(),
   };
+}
+
+/// `request_location` — derived from the provider schema description.
+extension type const CesToolsetMcpToolsetRequestLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetMcpToolsetRequestLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  CesToolsetMcpToolsetRequestLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetMcpToolsetRequestLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const header = CesToolsetMcpToolsetRequestLocation._(
+    TfArgLiteral('HEADER'),
+  );
+
+  static const List<CesToolsetMcpToolsetRequestLocation> values = [header];
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.bearer_token_config` block of
@@ -306,7 +323,7 @@ final class CesToolsetOauthConfig {
 
   final TfArg<String> clientSecretVersion;
 
-  final TfArg<String> oauthGrantType;
+  final CesToolsetOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -320,6 +337,21 @@ final class CesToolsetOauthConfig {
     'scopes': ?scopes?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
+}
+
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const CesToolsetOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolsetOauthGrantType.variable(String name) : this._(TfArg.variable(name));
+  CesToolsetOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolsetOauthGrantType.arg(TfArg<String> arg) : this._(arg);
+
+  static const clientCredential = CesToolsetOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<CesToolsetOauthGrantType> values = [clientCredential];
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.service_account_auth_config` block of
@@ -503,7 +535,7 @@ final class CesToolsetApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final CesToolsetRequestLocation requestLocation;
+  final CesToolsetOpenApiToolsetRequestLocation requestLocation;
 
   @internal
   Map<String, Object?> encode() => {
@@ -514,20 +546,26 @@ final class CesToolsetApiKeyConfig {
 }
 
 /// `request_location` — derived from the provider schema description.
-extension type const CesToolsetRequestLocation._(TfArg<String> _)
+extension type const CesToolsetOpenApiToolsetRequestLocation._(TfArg<String> _)
     implements TfArg<String> {
-  CesToolsetRequestLocation.variable(String name)
+  CesToolsetOpenApiToolsetRequestLocation.variable(String name)
     : this._(TfArg.variable(name));
-  CesToolsetRequestLocation.expression(String template)
+  CesToolsetOpenApiToolsetRequestLocation.expression(String template)
     : this._(TfArg.expression(template));
-  const CesToolsetRequestLocation.arg(TfArg<String> arg) : this._(arg);
+  const CesToolsetOpenApiToolsetRequestLocation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const header = CesToolsetRequestLocation._(TfArgLiteral('HEADER'));
-  static const queryString = CesToolsetRequestLocation._(
+  static const header = CesToolsetOpenApiToolsetRequestLocation._(
+    TfArgLiteral('HEADER'),
+  );
+  static const queryString = CesToolsetOpenApiToolsetRequestLocation._(
     TfArgLiteral('QUERY_STRING'),
   );
 
-  static const List<CesToolsetRequestLocation> values = [header, queryString];
+  static const List<CesToolsetOpenApiToolsetRequestLocation> values = [
+    header,
+    queryString,
+  ];
 }
 
 /// Typed helper for the `tool_fake_config` block of

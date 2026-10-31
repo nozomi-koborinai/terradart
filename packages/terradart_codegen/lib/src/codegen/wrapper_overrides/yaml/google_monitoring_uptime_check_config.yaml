@@ -1,9 +1,16 @@
 outputDir: monitoring
+enumValues:
+  period:
+    - '60s'
+    - '300s'
+    - '600s'
+    - '900s'
 
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
 
 curatedDoc: |-
   /// An uptime check is a periodic probe (HTTP / HTTPS, plain TCP, or a

@@ -27,7 +27,7 @@ final class AzureLeftoverStack extends Stack {
         dataResidencyLocation: .asiaPacific,
         domainName: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('PremiumP1'),
+        skuName: .premiump1,
       ),
     );
 
@@ -566,9 +566,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: ApiManagementStandaloneGatewaySku(
-          name: .literal('WorkspaceGatewayPremium'),
-        ),
+        sku: ApiManagementStandaloneGatewaySku(name: .workspacegatewaypremium),
       ),
     );
 
@@ -696,7 +694,7 @@ final class AzureLeftoverStack extends Stack {
         hostnameBindingId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/hostNameBindings/hostNameBindingName',
         ),
-        sslState: .literal('IpBasedEnabled'),
+        sslState: .ipbasedenabled,
       ),
     );
 
@@ -719,9 +717,7 @@ final class AzureLeftoverStack extends Stack {
         targetResourceId: .literal(
           '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
         ),
-        authentication: AppServiceConnectionAuthentication(
-          type: .literal('secret'),
-        ),
+        authentication: AppServiceConnectionAuthentication(type: .secret),
       ),
     );
 
@@ -837,7 +833,7 @@ final class AzureLeftoverStack extends Stack {
         content: .literal(leftover),
         name: .literal(leftover),
         scope: .shared,
-        type: .literal('query'),
+        type: .query,
       ),
     );
 
@@ -885,7 +881,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         configuration: .literal(leftover),
         geoLocations: .literal([leftover]),
-        kind: .literal('multistep'),
+        kind: .multistep,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -1057,7 +1053,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermArcResourceBridgeAppliance(
         'arc_resource_bridge_appliance',
-        distro: .literal('AKSEdge'),
+        distro: .aksedge,
         infrastructureProvider: .hci,
         location: .literal(location),
         name: .literal(leftover),
@@ -1737,7 +1733,7 @@ final class AzureLeftoverStack extends Stack {
         mode: .detection,
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Standard_AzureFrontDoor'),
+        skuName: .standardAzurefrontdoor,
       ),
     );
 
@@ -1771,7 +1767,7 @@ final class AzureLeftoverStack extends Stack {
         'cdn_frontdoor_profile',
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Premium_AzureFrontDoor'),
+        skuName: .premiumAzurefrontdoor,
       ),
     );
 
@@ -1807,7 +1803,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: .literal('Standard_Akamai'),
+        sku: .standardAkamai,
       ),
     );
 
@@ -1837,7 +1833,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermCognitiveAccountConnectionAccountKey(
         'cognitive_account_connection_account_key',
         accountKey: leftoverSecret,
-        category: .literal('AzureStorageAccount'),
+        category: .azurestorageaccount,
         cognitiveAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName',
         ),
@@ -1850,7 +1846,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermCognitiveAccountConnectionAccountManagedIdentity(
         'cognitive_account_connection_account_managed_ide',
-        category: .literal('AIServices'),
+        category: .aiservices,
         cognitiveAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName',
         ),
@@ -1864,7 +1860,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermCognitiveAccountConnectionApiKey(
         'cognitive_account_connection_api_key',
         apiKey: leftoverSecret,
-        category: .literal('AIServices'),
+        category: .aiservices,
         cognitiveAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName',
         ),
@@ -1875,7 +1871,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermCognitiveAccountConnectionCustomKeys(
         'cognitive_account_connection_custom_keys',
-        category: .literal('CustomKeys'),
+        category: .customkeys,
         cognitiveAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName',
         ),
@@ -1888,7 +1884,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermCognitiveAccountConnectionEntraId(
         'cognitive_account_connection_entra_id',
-        category: .literal('AIServices'),
+        category: .aiservices,
         cognitiveAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName',
         ),
@@ -1979,7 +1975,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermConfidentialLedger(
         'confidential_ledger',
-        ledgerType: .literal('Private'),
+        ledgerType: .private,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -2142,7 +2138,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: .literal('Basic'),
+        sku: .basic,
       ),
     );
 
@@ -2226,7 +2222,7 @@ final class AzureLeftoverStack extends Stack {
         'cosmosdb_account',
         location: .literal(location),
         name: .literal(leftover),
-        offerType: .literal('Standard'),
+        offerType: .standard,
         resourceGroupName: .literal(resourceGroupName),
         consistencyPolicy: CosmosdbAccountConsistencyPolicy(
           consistencyLevel: .boundedstaleness,
@@ -3117,7 +3113,7 @@ final class AzureLeftoverStack extends Stack {
             DataProtectionBackupPolicyKubernetesClusterDefaultRetentionRule(
               lifeCycle: [
                 .new(
-                  dataStoreType: .literal('OperationalStore'),
+                  dataStoreType: .operationalstore,
                   duration: .literal('P1D'),
                 ),
               ],
@@ -3136,10 +3132,7 @@ final class AzureLeftoverStack extends Stack {
         defaultRetentionRule:
             DataProtectionBackupPolicyPostgresqlFlexibleServerDefaultRetentionRule(
               lifeCycle: [
-                .new(
-                  dataStoreType: .literal('VaultStore'),
-                  duration: .literal('P1D'),
-                ),
+                .new(dataStoreType: .vaultstore, duration: .literal('P1D')),
               ],
             ),
       ),
@@ -3527,7 +3520,7 @@ final class AzureLeftoverStack extends Stack {
         'dev_test_policy',
         evaluatorType: .allowedvaluespolicy,
         labName: .literal(leftover),
-        name: .literal('GalleryImage'),
+        name: .galleryimage,
         policySetName: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         threshold: .literal(leftover),
@@ -4042,7 +4035,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName',
         ),
         schemaCompatibility: .backward,
-        schemaType: .literal('Unknown'),
+        schemaType: .unknown,
       ),
     );
 
@@ -4142,7 +4135,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: FabricCapacitySku(name: .f2, tier: .literal('Fabric')),
+        sku: FabricCapacitySku(name: .f2, tier: .fabric),
       ),
     );
 
@@ -4339,9 +4332,7 @@ final class AzureLeftoverStack extends Stack {
         targetResourceId: .literal(
           '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
         ),
-        authentication: FunctionAppConnectionAuthentication(
-          type: .literal('secret'),
-        ),
+        authentication: FunctionAppConnectionAuthentication(type: .secret),
       ),
     );
 
@@ -4358,7 +4349,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         storageAuthenticationType: .storageaccountconnectionstring,
         storageContainerEndpoint: .literal(leftover),
-        storageContainerType: .literal('blobContainer'),
+        storageContainerType: .blobcontainer,
         siteConfig: FunctionAppFlexConsumptionSiteConfig(
           apiDefinitionUrl: .literal('https://example.com'),
         ),
@@ -4754,7 +4745,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: IothubDpsSku(capacity: .literal(200), name: .literal('S1')),
+        sku: IothubDpsSku(capacity: .literal(200), name: .s1),
       ),
     );
 
@@ -4806,7 +4797,7 @@ final class AzureLeftoverStack extends Stack {
         iothubName: .literal(leftover),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        source: .literal('DeviceConnectionStateEvents'),
+        source: .deviceconnectionstateevents,
       ),
     );
 
@@ -4889,8 +4880,8 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermKeyVaultKey(
         'key_vault_key',
-        keyOpts: .literal(['decrypt']),
-        keyType: .literal('EC'),
+        keyOpts: [.decrypt],
+        keyType: .ec,
         keyVaultId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue',
         ),
@@ -5020,7 +5011,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         name: .literal(leftover),
         managedClusterUpdate: KubernetesFleetUpdateRunManagedClusterUpdate(
-          upgrade: .new(type: .literal('Full')),
+          upgrade: .new(type: .full),
         ),
       ),
     );
@@ -5263,7 +5254,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName',
         ),
         name: .literal(leftover),
-        protocol: .literal('All'),
+        protocol: .all,
         resourceGroupName: .literal(resourceGroupName),
       ),
     );
@@ -5277,7 +5268,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName',
         ),
         name: .literal(leftover),
-        protocol: .literal('All'),
+        protocol: .all,
         resourceGroupName: .literal(resourceGroupName),
       ),
     );
@@ -5292,7 +5283,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName',
         ),
         name: .literal(leftover),
-        protocol: .literal('All'),
+        protocol: .all,
       ),
     );
 
@@ -5317,7 +5308,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName',
         ),
         name: .literal(leftover),
-        protocol: .literal('All'),
+        protocol: .all,
       ),
     );
 
@@ -5566,7 +5557,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Basic'),
+        skuName: .basic,
       ),
     );
 
@@ -5841,7 +5832,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        scope: .literal('Extension'),
+        scope: .extension,
       ),
     );
 
@@ -5870,7 +5861,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermManagedDisk(
         'managed_disk',
-        createOption: .literal('Copy'),
+        createOption: .copy,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -5881,7 +5872,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermManagedDiskSasToken(
         'managed_disk_sas_token',
-        accessLevel: .literal('Read'),
+        accessLevel: .read,
         durationInSeconds: .literal(200),
         managedDiskId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/disks/diskValue',
@@ -5926,7 +5917,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermManagementLock(
         'management_lock',
-        lockLevel: .literal('CanNotDelete'),
+        lockLevel: .cannotdelete,
         name: .literal(leftover),
         scope: .literal(leftover),
       ),
@@ -5984,18 +5975,13 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermMongoClusterUser(
         'mongo_cluster_user',
-        identityProviderType: .literal('MicrosoftEntraID'),
+        identityProviderType: .microsoftentraid,
         mongoClusterId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/mongoClusters/mongoClusterName',
         ),
         objectId: .literal('11111111-1111-1111-1111-111111111111'),
         principalType: .serviceprincipal,
-        role: [
-          MongoClusterUserRole(
-            database: .literal(leftover),
-            name: .literal('root'),
-          ),
-        ],
+        role: [MongoClusterUserRole(database: .literal(leftover), name: .root)],
       ),
     );
 
@@ -6178,7 +6164,7 @@ final class AzureLeftoverStack extends Stack {
         windowDuration: .pt1m,
         criteria: [
           MonitorScheduledQueryRulesAlertV2Criteria(
-            operator: .literal('Equal'),
+            operator: .equal,
             query: .literal(leftover),
             threshold: .literal(200),
             timeAggregationMethod: .average,
@@ -6636,7 +6622,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        serviceLevel: .literal('Premium'),
+        serviceLevel: .premium,
         sizeInTb: .literal(200),
       ),
     );
@@ -6672,7 +6658,7 @@ final class AzureLeftoverStack extends Stack {
         name: .literal(leftover),
         poolName: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        serviceLevel: .literal('Premium'),
+        serviceLevel: .premium,
         storageQuotaInGb: .literal(200),
         subnetId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue',
@@ -6698,7 +6684,7 @@ final class AzureLeftoverStack extends Stack {
             name: .literal(leftover),
             protocols: [.nfsv4p1],
             securityStyle: .ntfs,
-            serviceLevel: .literal('Premium'),
+            serviceLevel: .premium,
             snapshotDirectoryVisible: .literal(true),
             storageQuotaInGb: .literal(200),
             subnetId: .literal(
@@ -6723,7 +6709,7 @@ final class AzureLeftoverStack extends Stack {
             name: .literal(leftover),
             protocols: [.nfsv4p1],
             securityStyle: .ntfs,
-            serviceLevel: .literal('Premium'),
+            serviceLevel: .premium,
             snapshotDirectoryVisible: .literal(true),
             storageQuotaInGb: .literal(200),
             subnetId: .literal(
@@ -6811,7 +6797,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName',
         ),
         ipfxEmission: NetworkFunctionCollectorPolicyIpfxEmission(
-          destinationTypes: .literal(['AzureMonitor']),
+          destinationTypes: [.azuremonitor],
         ),
         ipfxIngestion: NetworkFunctionCollectorPolicyIpfxIngestion(
           sourceResourceIds: .literal([
@@ -6956,7 +6942,7 @@ final class AzureLeftoverStack extends Stack {
         networkManagerId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName',
         ),
-        scopeAccess: .literal('Connectivity'),
+        scopeAccess: .connectivity,
       ),
     );
 
@@ -7677,7 +7663,7 @@ final class AzureLeftoverStack extends Stack {
         'postgresql_flexible_server_active_directory_admi',
         objectId: .literal('11111111-1111-1111-1111-111111111111'),
         principalName: .literal(leftover),
-        principalType: .literal('Group'),
+        principalType: .group,
         resourceGroupName: .literal(resourceGroupName),
         serverName: .literal(leftover),
         tenantId: .literal('11111111-1111-1111-1111-111111111111'),
@@ -7737,7 +7723,7 @@ final class AzureLeftoverStack extends Stack {
         sourceServerId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerName',
         ),
-        type: .literal('ReadWrite'),
+        type: .readwrite,
       ),
     );
 
@@ -8123,7 +8109,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Standard'),
+        skuName: .standard,
       ),
     );
 
@@ -8287,7 +8273,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPAddresses/publicIPAddressesValue',
         ),
         resourceGroupName: .literal(resourceGroupName),
-        sku: .literal('Standard'),
+        sku: .standard,
         subnetId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue',
         ),
@@ -8401,7 +8387,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSecurityCenterServerVulnerabilityAssessmentsSetting(
         'security_center_server_vulnerability_assessments',
-        vulnerabilityAssessmentProvider: .literal('MdeTvm'),
+        vulnerabilityAssessmentProvider: .mdetvm,
       ),
     );
 
@@ -8409,7 +8395,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermSecurityCenterSetting(
         'security_center_setting',
         enabled: .literal(true),
-        settingName: .literal('current'),
+        settingName: .current,
       ),
     );
 
@@ -9208,7 +9194,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSnapshot(
         'snapshot',
-        createOption: .literal('Copy'),
+        createOption: .copy,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -9226,7 +9212,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudAccelerator(
         'spring_cloud_accelerator',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9246,7 +9232,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudApiPortal(
         'spring_cloud_api_portal',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9275,7 +9261,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudAppCosmosdbAssociation(
         'spring_cloud_app_cosmosdb_association',
-        apiType: .literal('cassandra'),
+        apiType: .cassandra,
         cosmosdbAccessKey: .literal(leftover),
         cosmosdbAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountName',
@@ -9343,7 +9329,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudApplicationLiveView(
         'spring_cloud_application_live_view',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9393,7 +9379,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudConfigurationService(
         'spring_cloud_configuration_service',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9410,9 +9396,7 @@ final class AzureLeftoverStack extends Stack {
         targetResourceId: .literal(
           '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
         ),
-        authentication: SpringCloudConnectionAuthentication(
-          type: .literal('secret'),
-        ),
+        authentication: SpringCloudConnectionAuthentication(type: .secret),
       ),
     );
 
@@ -9445,7 +9429,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudDevToolPortal(
         'spring_cloud_dev_tool_portal',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9481,7 +9465,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSpringCloudGateway(
         'spring_cloud_gateway',
-        name: .literal('default'),
+        name: .defaultCase,
         springCloudServiceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue',
         ),
@@ -9666,7 +9650,7 @@ final class AzureLeftoverStack extends Stack {
         staticWebAppId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteName',
         ),
-        validationType: .literal('dns-txt-token'),
+        validationType: .dnsTxtToken,
       ),
     );
 
@@ -9768,7 +9752,7 @@ final class AzureLeftoverStack extends Stack {
         'storage_data_lake_gen2_path',
         filesystemName: .literal(leftover),
         path: .literal(leftover),
-        resource: .literal('directory'),
+        resource: .directory,
         storageAccountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue',
         ),
@@ -10022,7 +10006,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermStreamAnalyticsJobStorageAccount(
         'stream_analytics_job_storage_account',
-        authenticationMode: .literal('Msi'),
+        authenticationMode: .msi,
         storageAccountName: .literal(leftover),
         streamAnalyticsJobId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobName',
@@ -10054,9 +10038,7 @@ final class AzureLeftoverStack extends Stack {
         storageContainerName: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
         timeFormat: .literal(leftover),
-        serialization: StreamAnalyticsOutputBlobSerialization(
-          type: .literal('Avro'),
-        ),
+        serialization: StreamAnalyticsOutputBlobSerialization(type: .avro),
       ),
     );
 
@@ -10083,9 +10065,7 @@ final class AzureLeftoverStack extends Stack {
         resourceGroupName: .literal(resourceGroupName),
         servicebusNamespace: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
-        serialization: StreamAnalyticsOutputEventhubSerialization(
-          type: .literal('Avro'),
-        ),
+        serialization: StreamAnalyticsOutputEventhubSerialization(type: .avro),
       ),
     );
 
@@ -10136,7 +10116,7 @@ final class AzureLeftoverStack extends Stack {
         servicebusNamespace: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
         serialization: StreamAnalyticsOutputServicebusQueueSerialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10150,7 +10130,7 @@ final class AzureLeftoverStack extends Stack {
         streamAnalyticsJobName: .literal(leftover),
         topicName: .literal(leftover),
         serialization: StreamAnalyticsOutputServicebusTopicSerialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10196,7 +10176,7 @@ final class AzureLeftoverStack extends Stack {
         streamAnalyticsJobName: .literal(leftover),
         timeFormat: .literal(leftover),
         serialization: StreamAnalyticsReferenceInputBlobSerialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10228,9 +10208,7 @@ final class AzureLeftoverStack extends Stack {
         storageContainerName: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
         timeFormat: .literal(leftover),
-        serialization: StreamAnalyticsStreamInputBlobSerialization(
-          type: .literal('Avro'),
-        ),
+        serialization: StreamAnalyticsStreamInputBlobSerialization(type: .avro),
       ),
     );
 
@@ -10243,7 +10221,7 @@ final class AzureLeftoverStack extends Stack {
         servicebusNamespace: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
         serialization: StreamAnalyticsStreamInputEventhubSerialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10258,7 +10236,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobName',
         ),
         serialization: StreamAnalyticsStreamInputEventhubV2Serialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10275,7 +10253,7 @@ final class AzureLeftoverStack extends Stack {
         sharedAccessPolicyName: .literal(leftover),
         streamAnalyticsJobName: .literal(leftover),
         serialization: StreamAnalyticsStreamInputIothubSerialization(
-          type: .literal('Avro'),
+          type: .avro,
         ),
       ),
     );
@@ -10722,7 +10700,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        type: .literal('Personal'),
+        type: .personal,
       ),
     );
 
@@ -10943,7 +10921,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermVirtualMachineImplicitDataDiskFromSource(
         'virtual_machine_implicit_data_disk_from_source',
-        createOption: .literal('Copy'),
+        createOption: .copy,
         diskSizeGb: .literal(200),
         lun: .literal(200),
         name: .literal(leftover),
@@ -11087,7 +11065,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        type: .literal('ExpressRoute'),
+        type: .expressroute,
         virtualNetworkGatewayId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName',
         ),
@@ -11368,7 +11346,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: WebPubsubSocketioSku(name: .literal('Free_F1')),
+        sku: WebPubsubSocketioSku(name: .freeF1),
       ),
     );
 

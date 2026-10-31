@@ -39,7 +39,10 @@ export 'src/apigee/google_apigee_api_product.dart'
         ApigeeApiProductOperationGroup,
         ApigeeApiProductOperationGroupOperationConfigs,
         ApigeeApiProductOperationGroupOperations,
+        ApigeeApiProductOperationTypes,
         ApigeeApiProductQuotaCounterScope,
+        ApigeeApiProductQuotaTimeUnit,
+        ApigeeApiProductTimeUnit,
         GoogleApigeeApiProduct;
 export 'src/apigee/google_apigee_app_group.dart'
     show ApigeeAppGroupAttributes, ApigeeAppGroupStatus, GoogleApigeeAppGroup;
@@ -103,7 +106,10 @@ export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
 export 'src/apigee/google_apigee_flowhook.dart'
     show ApigeeFlowhookFlowHookPoint, GoogleApigeeFlowhook;
 export 'src/apigee/google_apigee_instance.dart'
-    show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
+    show
+        ApigeeInstanceAccessLoggingConfig,
+        ApigeeInstancePeeringCidrRange,
+        GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'
     show GoogleApigeeInstanceAttachment;
 export 'src/apigee/google_apigee_keystores_aliases_key_cert_file.dart'
@@ -112,6 +118,7 @@ export 'src/apigee/google_apigee_keystores_aliases_pkcs12.dart'
     show GoogleApigeeKeystoresAliasesPkcs12;
 export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
     show
+        ApigeeKeystoresAliasesSelfSignedCertSigAlg,
         ApigeeKeystoresAliasesSelfSignedCertSubject,
         ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames,
         ApigeeKeystoresAliasesSelfSignedCertType,

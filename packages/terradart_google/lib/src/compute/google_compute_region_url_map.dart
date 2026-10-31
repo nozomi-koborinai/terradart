@@ -372,16 +372,69 @@ final class ComputeRegionUrlMapRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<String>>? retryConditions;
+  final List<ComputeRegionUrlMapRetryConditions>? retryConditions;
 
   final ComputeRegionUrlMapPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
-    'retry_conditions': ?retryConditions?.toTfJson(),
+    if (retryConditions != null)
+      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
+}
+
+/// `retry_conditions` — derived from the provider schema description.
+extension type const ComputeRegionUrlMapRetryConditions._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionUrlMapRetryConditions.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionUrlMapRetryConditions.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionUrlMapRetryConditions.arg(TfArg<String> arg) : this._(arg);
+
+  static const v5xx = ComputeRegionUrlMapRetryConditions._(TfArgLiteral('5xx'));
+  static const gatewayError = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('gateway-error'),
+  );
+  static const connectFailure = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('connect-failure'),
+  );
+  static const retriable4xx = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('retriable-4xx'),
+  );
+  static const refusedStream = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('refused-stream'),
+  );
+  static const cancelled = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('cancelled'),
+  );
+  static const deadlineExceeded = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('deadline-exceeded'),
+  );
+  static const internal = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('internal'),
+  );
+  static const resourceExhausted = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('resource-exhausted'),
+  );
+  static const unavailable = ComputeRegionUrlMapRetryConditions._(
+    TfArgLiteral('unavailable'),
+  );
+
+  static const List<ComputeRegionUrlMapRetryConditions> values = [
+    v5xx,
+    gatewayError,
+    connectFailure,
+    retriable4xx,
+    refusedStream,
+    cancelled,
+    deadlineExceeded,
+    internal,
+    resourceExhausted,
+    unavailable,
+  ];
 }
 
 /// Typed helper for the `default_route_action.retry_policy.per_try_timeout` block of
@@ -1012,14 +1065,15 @@ final class ComputeRegionUrlMapPathRuleRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final TfArg<List<String>>? retryConditions;
+  final List<ComputeRegionUrlMapRetryConditions>? retryConditions;
 
   final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
-    'retry_conditions': ?retryConditions?.toTfJson(),
+    if (retryConditions != null)
+      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
 }
@@ -1525,14 +1579,15 @@ final class ComputeRegionUrlMapRouteRulesRetryPolicy {
 
   final TfArg<num> numRetries;
 
-  final TfArg<List<String>>? retryConditions;
+  final List<ComputeRegionUrlMapRetryConditions>? retryConditions;
 
   final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
-    'retry_conditions': ?retryConditions?.toTfJson(),
+    if (retryConditions != null)
+      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
 }

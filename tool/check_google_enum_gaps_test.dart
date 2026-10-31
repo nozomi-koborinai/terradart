@@ -351,6 +351,61 @@ GoogleExampleThing(super.localName, {
       );
     });
 
+    const cueOnly = {
+      'lower-case values':
+          'Time unit. Valid values include second, minute, hour, day, month '
+          'or year.',
+      'hyphenated values':
+          'Valid values are: * 5xx: retry on 5xx. * gateway-error: retry on '
+          '502. * connect-failure: retry on connect errors.',
+      'duration values':
+          'Currently, the only supported values are 60s (1 minute) and 300s '
+          '(5 minutes).',
+      'a linked canonical enum':
+          'The type of the connected data store. See [DataStoreType]('
+          'https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/'
+          'DataStoreConnection#datastoretype).',
+      'an upper-case anchor':
+          'Type of Feature value. https://cloud.google.com/vertex-ai/docs/'
+          'reference/rest/v1/projects.locations.featurestores.entityTypes.'
+          'features#ValueType',
+    };
+    for (final MapEntry(key: wording, value: description) in cueOnly.entries) {
+      test('$wording left a string is a cue gap', () {
+        expect(hasValueSetCue(description), isTrue);
+        final gaps = topLevelEnumGaps(
+          stem: 'google_example_thing',
+          override: const {'outputDir': 'example'},
+          resourceSchemas: {
+            'google_example_thing': _schema({
+              'unit': {
+                'type': 'string',
+                'optional': true,
+                'description': description,
+              },
+            }),
+          },
+          dataSourceSchemas: const {},
+          generatedSource: '''
+GoogleExampleThing(super.localName, {
+  TfArg<String>? unit,
+}) : super(
+''',
+        );
+        expect(gaps.map(_gapKey), ['google_example_thing.unit']);
+      });
+    }
+
+    test('a list the description calls partial is not a gap', () {
+      const description =
+          "Allowed values: - 'ACTIVE' - running. - 'STOPPED' - idle. "
+          'Note: There might be more states added in the future.';
+      expect(
+        describedValues(description, null),
+        isNull,
+      );
+    });
+
     test('prose with no cue is not a gap', () {
       expect(
         cueValues('The name of the bucket. Must be unique within a project.'),
@@ -455,6 +510,24 @@ GoogleExampleThing(super.localName, {
       expect(
         result.stdout,
         contains('google_compute_instance.attached_disk.mode'),
+      );
+    });
+
+    test('a field typed in one block does not cover its twin in another', () {
+      seed(
+        wrappers[2],
+        'final ComputeInstanceInterface? interface;',
+        'final TfArg<String>? interface;',
+      );
+      final result = check();
+      expect(result.exitCode, 1);
+      expect(
+        result.stdout,
+        contains('google_compute_instance.boot_disk.interface'),
+      );
+      expect(
+        result.stdout,
+        isNot(contains('google_compute_instance.scratch_disk.interface')),
       );
     });
 

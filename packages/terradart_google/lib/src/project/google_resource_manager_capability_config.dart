@@ -6,6 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_resource_manager_capability_config`.
 const Set<String> _googleResourceManagerCapabilityConfigSensitive = <String>{};
 
+/// Resource Manager Capability Config enum for `types`.
+extension type const ResourceManagerCapabilityConfigTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ResourceManagerCapabilityConfigTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ResourceManagerCapabilityConfigTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ResourceManagerCapabilityConfigTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const agentManagement = ResourceManagerCapabilityConfigTypes._(
+    TfArgLiteral('AGENT_MANAGEMENT'),
+  );
+
+  static const List<ResourceManagerCapabilityConfigTypes> values = [
+    agentManagement,
+  ];
+}
+
 /// Factory wrapper for `google_resource_manager_capability_config`.
 ///
 /// Capability configs define the enabled capabilities and their scope of
@@ -21,7 +40,7 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? managementProject,
     required TfArg<String> parent,
-    required TfArg<List<String>> types,
+    required List<ResourceManagerCapabilityConfigTypes> types,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,7 +53,7 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
            'display_name': ?displayName,
            'management_project': ?managementProject,
            'parent': parent,
-           'types': types,
+           'types': TfArg.literal([for (final e in types) e.toTfJson()]),
          },
        );
 

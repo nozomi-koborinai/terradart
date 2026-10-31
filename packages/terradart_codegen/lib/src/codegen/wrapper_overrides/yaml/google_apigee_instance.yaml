@@ -1,4 +1,13 @@
 outputDir: apigee
+enumValues:
+  peering_cidr_range:
+    - SLASH_16
+    - SLASH_17
+    - SLASH_18
+    - SLASH_19
+    - SLASH_20
+    - SLASH_22
+    - SLASH_23
 
 deriveClassDoc: true
 deriveExactlyOne: true

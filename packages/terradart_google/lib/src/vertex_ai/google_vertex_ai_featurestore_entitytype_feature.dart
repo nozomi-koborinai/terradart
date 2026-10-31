@@ -7,6 +7,62 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVertexAiFeaturestoreEntitytypeFeatureSensitive =
     <String>{};
 
+/// Vertex Ai Featurestore Entitytype Feature Value enum for `value_type`.
+extension type const VertexAiFeaturestoreEntitytypeFeatureValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiFeaturestoreEntitytypeFeatureValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiFeaturestoreEntitytypeFeatureValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiFeaturestoreEntitytypeFeatureValueType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const bool = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('BOOL'),
+  );
+  static const boolArray = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('BOOL_ARRAY'),
+  );
+  static const double = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('DOUBLE'),
+  );
+  static const doubleArray = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('DOUBLE_ARRAY'),
+  );
+  static const int64 = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('INT64'),
+  );
+  static const int64Array = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('INT64_ARRAY'),
+  );
+  static const string = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('STRING'),
+  );
+  static const stringArray = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('STRING_ARRAY'),
+  );
+  static const bytes = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('BYTES'),
+  );
+  static const struct = VertexAiFeaturestoreEntitytypeFeatureValueType._(
+    TfArgLiteral('STRUCT'),
+  );
+
+  static const List<VertexAiFeaturestoreEntitytypeFeatureValueType> values = [
+    bool,
+    boolArray,
+    double,
+    doubleArray,
+    int64,
+    int64Array,
+    string,
+    stringArray,
+    bytes,
+    struct,
+  ];
+}
+
 /// Factory wrapper for `google_vertex_ai_featurestore_entitytype_feature`.
 ///
 /// Feature Metadata information that describes an attribute of an entity type.
@@ -43,7 +99,7 @@ final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {
     super.localName, {
     required TfArg<String> entitytype,
     TfArg<String>? name,
-    required TfArg<String> valueType,
+    required VertexAiFeaturestoreEntitytypeFeatureValueType valueType,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     super.lifecycle,

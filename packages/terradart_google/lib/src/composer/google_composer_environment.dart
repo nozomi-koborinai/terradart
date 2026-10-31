@@ -163,7 +163,7 @@ final class ComposerEnvironmentTaskLogsRetentionConfig {
 final class ComposerEnvironmentDatabaseConfig {
   const ComposerEnvironmentDatabaseConfig({this.machineType, this.zone});
 
-  final TfArg<String>? machineType;
+  final ComposerEnvironmentDatabaseConfigMachineType? machineType;
 
   final TfArg<String>? zone;
 
@@ -172,6 +172,38 @@ final class ComposerEnvironmentDatabaseConfig {
     'machine_type': ?machineType?.toTfJson(),
     'zone': ?zone?.toTfJson(),
   };
+}
+
+/// `machine_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentDatabaseConfigMachineType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComposerEnvironmentDatabaseConfigMachineType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentDatabaseConfigMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentDatabaseConfigMachineType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dbN1Standard2 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-2'),
+  );
+  static const dbN1Standard4 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-4'),
+  );
+  static const dbN1Standard8 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-8'),
+  );
+  static const dbN1Standard16 = ComposerEnvironmentDatabaseConfigMachineType._(
+    TfArgLiteral('db-n1-standard-16'),
+  );
+
+  static const List<ComposerEnvironmentDatabaseConfigMachineType> values = [
+    dbN1Standard2,
+    dbN1Standard4,
+    dbN1Standard8,
+    dbN1Standard16,
+  ];
 }
 
 /// Typed helper for the `config.encryption_config` block of
@@ -543,10 +575,41 @@ final class ComposerEnvironmentCloudDataLineageIntegration {
 final class ComposerEnvironmentWebServerConfig {
   const ComposerEnvironmentWebServerConfig({required this.machineType});
 
-  final TfArg<String> machineType;
+  final ComposerEnvironmentWebServerConfigMachineType machineType;
 
   @internal
   Map<String, Object?> encode() => {'machine_type': machineType.toTfJson()};
+}
+
+/// `machine_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentWebServerConfigMachineType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComposerEnvironmentWebServerConfigMachineType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentWebServerConfigMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentWebServerConfigMachineType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const composerN1Webserver2 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-2'),
+      );
+  static const composerN1Webserver4 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-4'),
+      );
+  static const composerN1Webserver8 =
+      ComposerEnvironmentWebServerConfigMachineType._(
+        TfArgLiteral('composer-n1-webserver-8'),
+      );
+
+  static const List<ComposerEnvironmentWebServerConfigMachineType> values = [
+    composerN1Webserver2,
+    composerN1Webserver4,
+    composerN1Webserver8,
+  ];
 }
 
 /// Typed helper for the `config.web_server_network_access_control` block of

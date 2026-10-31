@@ -11,6 +11,34 @@ const Set<String> _googleMonitoringUptimeCheckConfigSensitive = <String>{
   'http_check.auth_info.password',
 };
 
+/// Monitoring Uptime Check Config enum for `period`.
+extension type const MonitoringUptimeCheckConfigPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckConfigPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckConfigPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckConfigPeriod.arg(TfArg<String> arg) : this._(arg);
+
+  static const v60s = MonitoringUptimeCheckConfigPeriod._(TfArgLiteral('60s'));
+  static const v300s = MonitoringUptimeCheckConfigPeriod._(
+    TfArgLiteral('300s'),
+  );
+  static const v600s = MonitoringUptimeCheckConfigPeriod._(
+    TfArgLiteral('600s'),
+  );
+  static const v900s = MonitoringUptimeCheckConfigPeriod._(
+    TfArgLiteral('900s'),
+  );
+
+  static const List<MonitoringUptimeCheckConfigPeriod> values = [
+    v60s,
+    v300s,
+    v600s,
+    v900s,
+  ];
+}
+
 // ===========================================================================
 // Top-level enums
 // ===========================================================================
@@ -851,7 +879,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> timeout,
-    TfArg<String>? period,
+    MonitoringUptimeCheckConfigPeriod? period,
     List<MonitoringUptimeCheckRegion>? selectedRegions,
     MonitoringUptimeCheckCheckerType? checkerType,
     required MonitoringUptimeCheckConfigTarget target,

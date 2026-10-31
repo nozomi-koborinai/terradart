@@ -194,12 +194,55 @@ final class NetworkServicesEdgeCacheOriginUrlRewrite {
 final class NetworkServicesEdgeCacheOriginRedirect {
   const NetworkServicesEdgeCacheOriginRedirect({this.redirectConditions});
 
-  final TfArg<List<String>>? redirectConditions;
+  final List<NetworkServicesEdgeCacheOriginRedirectConditions>?
+  redirectConditions;
 
   @internal
   Map<String, Object?> encode() => {
-    'redirect_conditions': ?redirectConditions?.toTfJson(),
+    if (redirectConditions != null)
+      'redirect_conditions': [
+        for (final e in redirectConditions!) e.toTfJson(),
+      ],
   };
+}
+
+/// `redirect_conditions` — derived from the provider schema description.
+extension type const NetworkServicesEdgeCacheOriginRedirectConditions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheOriginRedirectConditions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheOriginRedirectConditions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheOriginRedirectConditions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const movedPermanently =
+      NetworkServicesEdgeCacheOriginRedirectConditions._(
+        TfArgLiteral('MOVED_PERMANENTLY'),
+      );
+  static const found = NetworkServicesEdgeCacheOriginRedirectConditions._(
+    TfArgLiteral('FOUND'),
+  );
+  static const seeOther = NetworkServicesEdgeCacheOriginRedirectConditions._(
+    TfArgLiteral('SEE_OTHER'),
+  );
+  static const temporaryRedirect =
+      NetworkServicesEdgeCacheOriginRedirectConditions._(
+        TfArgLiteral('TEMPORARY_REDIRECT'),
+      );
+  static const permanentRedirect =
+      NetworkServicesEdgeCacheOriginRedirectConditions._(
+        TfArgLiteral('PERMANENT_REDIRECT'),
+      );
+
+  static const List<NetworkServicesEdgeCacheOriginRedirectConditions> values = [
+    movedPermanently,
+    found,
+    seeOther,
+    temporaryRedirect,
+    permanentRedirect,
+  ];
 }
 
 /// Typed helper for the `timeout` block of

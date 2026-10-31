@@ -3,6 +3,18 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+enumValues:
+  enrolled_services.cloud_product:
+    - all
+    - appengine.googleapis.com
+    - bigquery.googleapis.com
+    - bigtable.googleapis.com
+    - cloudkms.googleapis.com
+    - compute.googleapis.com
+    - dataflow.googleapis.com
+    - iam.googleapis.com
+    - pubsub.googleapis.com
+    - storage.googleapis.com
 
 extraImports:
   - "import 'package:meta/meta.dart';"

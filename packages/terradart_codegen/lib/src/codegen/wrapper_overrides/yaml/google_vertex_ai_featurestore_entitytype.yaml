@@ -1,4 +1,13 @@
 outputDir: vertex_ai
+enumValues:
+  monitoring_config.import_features_analysis.anomaly_detection_baseline:
+    - LATEST_STATS
+    - MOST_RECENT_SNAPSHOT_STATS
+    - PREVIOUS_IMPORT_FEATURES_STATS
+  monitoring_config.import_features_analysis.state:
+    - DEFAULT
+    - ENABLED
+    - DISABLED
 
 deriveClassDoc: true
 deriveExactlyOne: true

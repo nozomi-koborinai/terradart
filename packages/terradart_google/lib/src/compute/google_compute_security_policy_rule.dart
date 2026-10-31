@@ -15,6 +15,46 @@ import '../compute/google_compute_security_policy.dart'
 /// Sensitive field paths for `google_compute_security_policy_rule`.
 const Set<String> _googleComputeSecurityPolicyRuleSensitive = <String>{};
 
+/// Compute Security Policy Rule enum for `action`.
+extension type const ComputeSecurityPolicyRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSecurityPolicyRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyRuleAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = ComputeSecurityPolicyRuleAction._(TfArgLiteral('allow'));
+  static const deny403 = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny502 = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('deny(502)'),
+  );
+  static const rateBasedBan = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('rate_based_ban'),
+  );
+  static const redirect = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('redirect'),
+  );
+  static const throttle = ComputeSecurityPolicyRuleAction._(
+    TfArgLiteral('throttle'),
+  );
+
+  static const List<ComputeSecurityPolicyRuleAction> values = [
+    allow,
+    deny403,
+    deny404,
+    deny502,
+    rateBasedBan,
+    redirect,
+    throttle,
+  ];
+}
+
 /// `match` block — condition that fires this standalone rule.
 @immutable
 class ComputeSecurityPolicyRuleMatch {
@@ -233,7 +273,7 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
 
   GoogleComputeSecurityPolicyRule(
     super.localName, {
-    required TfArg<String> action,
+    required ComputeSecurityPolicyRuleAction action,
     TfArg<String>? description,
     TfArg<bool>? preview,
     required TfArg<num> priority,

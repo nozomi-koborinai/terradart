@@ -162,7 +162,7 @@ final class VmComplianceStack extends Stack {
       GoogleOsConfigV2PolicyOrchestrator(
         'stopped',
         policyOrchestratorId: .literal('terradart-po'),
-        action: .literal('UPSERT'),
+        action: .upsert,
         state: .literal('STOPPED'),
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
           osPolicyAssignmentV1Payload: .new(

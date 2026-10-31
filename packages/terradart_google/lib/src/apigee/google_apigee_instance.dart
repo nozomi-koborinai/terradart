@@ -7,6 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_apigee_instance`.
 const Set<String> _googleApigeeInstanceSensitive = <String>{};
 
+/// Apigee Instance Peering Cidr enum for `peering_cidr_range`.
+extension type const ApigeeInstancePeeringCidrRange._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeInstancePeeringCidrRange.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeInstancePeeringCidrRange.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeInstancePeeringCidrRange.arg(TfArg<String> arg) : this._(arg);
+
+  static const slash16 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_16'),
+  );
+  static const slash17 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_17'),
+  );
+  static const slash18 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_18'),
+  );
+  static const slash19 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_19'),
+  );
+  static const slash20 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_20'),
+  );
+  static const slash22 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_22'),
+  );
+  static const slash23 = ApigeeInstancePeeringCidrRange._(
+    TfArgLiteral('SLASH_23'),
+  );
+
+  static const List<ApigeeInstancePeeringCidrRange> values = [
+    slash16,
+    slash17,
+    slash18,
+    slash19,
+    slash20,
+    slash22,
+    slash23,
+  ];
+}
+
 /// Typed helper for the `access_logging_config` block of
 /// `google_apigee_instance` (derived from provider schema).
 @immutable
@@ -58,7 +100,7 @@ final class GoogleApigeeInstance extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> orgId,
-    TfArg<String>? peeringCidrRange,
+    ApigeeInstancePeeringCidrRange? peeringCidrRange,
     TfArg<String>? ipRange,
     TfArg<String>? displayName,
     TfArg<String>? description,

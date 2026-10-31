@@ -91,6 +91,7 @@ export 'src/os_config/google_os_config_patch_deployment.dart'
 export 'src/os_config/google_os_config_v2_policy_orchestrator.dart'
     show
         GoogleOsConfigV2PolicyOrchestrator,
+        OsConfigV2PolicyOrchestratorAction,
         OsConfigV2PolicyOrchestratorArchiveType,
         OsConfigV2PolicyOrchestratorDeb,
         OsConfigV2PolicyOrchestratorDesiredState,
@@ -136,6 +137,7 @@ export 'src/os_config/google_os_config_v2_policy_orchestrator.dart'
 export 'src/os_config/google_os_config_v2_policy_orchestrator_for_folder.dart'
     show
         GoogleOsConfigV2PolicyOrchestratorForFolder,
+        OsConfigV2PolicyOrchestratorForFolderAction,
         OsConfigV2PolicyOrchestratorForFolderArchiveType,
         OsConfigV2PolicyOrchestratorForFolderDeb,
         OsConfigV2PolicyOrchestratorForFolderDesiredState,
@@ -181,6 +183,7 @@ export 'src/os_config/google_os_config_v2_policy_orchestrator_for_folder.dart'
 export 'src/os_config/google_os_config_v2_policy_orchestrator_for_organization.dart'
     show
         GoogleOsConfigV2PolicyOrchestratorForOrganization,
+        OsConfigV2PolicyOrchestratorForOrganizationAction,
         OsConfigV2PolicyOrchestratorForOrganizationArchiveType,
         OsConfigV2PolicyOrchestratorForOrganizationDeb,
         OsConfigV2PolicyOrchestratorForOrganizationDesiredState,

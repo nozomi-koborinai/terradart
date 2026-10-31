@@ -43,6 +43,7 @@ export 'src/vmwareengine/google_vmwareengine_cluster.dart'
         VmwareengineClusterCpuThresholds,
         VmwareengineClusterDatastoreMountConfig,
         VmwareengineClusterDatastoreNetwork,
+        VmwareengineClusterNfsVersion,
         VmwareengineClusterNodeTypeConfigs,
         VmwareengineClusterState,
         VmwareengineClusterStorageThresholds;

@@ -26,7 +26,7 @@ final class SecureSourceManagerRepositoryInitialConfig {
 
   final TfArg<String>? license;
 
-  final TfArg<String>? readme;
+  final SecureSourceManagerRepositoryReadme? readme;
 
   @internal
   Map<String, Object?> encode() => {
@@ -35,6 +35,23 @@ final class SecureSourceManagerRepositoryInitialConfig {
     'license': ?license?.toTfJson(),
     'readme': ?readme?.toTfJson(),
   };
+}
+
+/// `readme` — derived from the provider schema description.
+extension type const SecureSourceManagerRepositoryReadme._(TfArg<String> _)
+    implements TfArg<String> {
+  SecureSourceManagerRepositoryReadme.variable(String name)
+    : this._(TfArg.variable(name));
+  SecureSourceManagerRepositoryReadme.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecureSourceManagerRepositoryReadme.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const defaultCase = SecureSourceManagerRepositoryReadme._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SecureSourceManagerRepositoryReadme> values = [defaultCase];
 }
 
 /// Typed helper for the `scan_config` block of

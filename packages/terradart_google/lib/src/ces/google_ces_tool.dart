@@ -420,7 +420,7 @@ final class CesToolBoostControlSpec {
 
   final TfArg<String>? fieldName;
 
-  final TfArg<String>? interpolationType;
+  final CesToolInterpolationType? interpolationType;
 
   final List<CesToolControlPoints>? controlPoints;
 
@@ -446,6 +446,19 @@ extension type const CesToolAttributeType._(TfArg<String> _)
   static const freshness = CesToolAttributeType._(TfArgLiteral('FRESHNESS'));
 
   static const List<CesToolAttributeType> values = [numerical, freshness];
+}
+
+/// `interpolation_type` — derived from the provider schema description.
+extension type const CesToolInterpolationType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolInterpolationType.variable(String name) : this._(TfArg.variable(name));
+  CesToolInterpolationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolInterpolationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const linear = CesToolInterpolationType._(TfArgLiteral('LINEAR'));
+
+  static const List<CesToolInterpolationType> values = [linear];
 }
 
 /// Typed helper for the `data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec.control_points` block of

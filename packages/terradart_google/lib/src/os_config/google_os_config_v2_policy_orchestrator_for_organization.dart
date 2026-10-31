@@ -10,6 +10,28 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleOsConfigV2PolicyOrchestratorForOrganizationSensitive =
     <String>{};
 
+/// Os Config V2 Policy Orchestrator For Organization enum for `action`.
+extension type const OsConfigV2PolicyOrchestratorForOrganizationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForOrganizationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForOrganizationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForOrganizationAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const upsert = OsConfigV2PolicyOrchestratorForOrganizationAction._(
+    TfArgLiteral('UPSERT'),
+  );
+  static const delete = OsConfigV2PolicyOrchestratorForOrganizationAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForOrganizationAction> values =
+      [upsert, delete];
+}
+
 /// Typed helper for the `orchestrated_resource` block of
 /// `google_os_config_v2_policy_orchestrator_for_organization` (derived from provider schema).
 @immutable
@@ -1053,7 +1075,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
 
   GoogleOsConfigV2PolicyOrchestratorForOrganization(
     super.localName, {
-    required TfArg<String> action,
+    required OsConfigV2PolicyOrchestratorForOrganizationAction action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

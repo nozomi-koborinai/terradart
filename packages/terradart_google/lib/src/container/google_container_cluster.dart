@@ -935,10 +935,26 @@ final class ContainerClusterGatewayApiConfig {
 final class ContainerClusterGkeAutoUpgradeConfig {
   const ContainerClusterGkeAutoUpgradeConfig({required this.patchMode});
 
-  final TfArg<String> patchMode;
+  final ContainerClusterPatchMode patchMode;
 
   @internal
   Map<String, Object?> encode() => {'patch_mode': patchMode.toTfJson()};
+}
+
+/// `patch_mode` — derived from the provider schema description.
+extension type const ContainerClusterPatchMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterPatchMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterPatchMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterPatchMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const accelerated = ContainerClusterPatchMode._(
+    TfArgLiteral('ACCELERATED'),
+  );
+
+  static const List<ContainerClusterPatchMode> values = [accelerated];
 }
 
 /// Typed helper for the `identity_service_config` block of
@@ -2286,7 +2302,7 @@ final class ContainerClusterGpuSharingConfig {
     required this.maxSharedClientsPerGpu,
   });
 
-  final TfArg<String> gpuSharingStrategy;
+  final ContainerClusterGpuSharingStrategy gpuSharingStrategy;
 
   final TfArg<num> maxSharedClientsPerGpu;
 
@@ -2295,6 +2311,26 @@ final class ContainerClusterGpuSharingConfig {
     'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
     'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
   };
+}
+
+/// `gpu_sharing_strategy` — derived from the provider schema description.
+extension type const ContainerClusterGpuSharingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterGpuSharingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterGpuSharingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterGpuSharingStrategy.arg(TfArg<String> arg) : this._(arg);
+
+  static const timeSharing = ContainerClusterGpuSharingStrategy._(
+    TfArgLiteral('TIME_SHARING'),
+  );
+  static const mps = ContainerClusterGpuSharingStrategy._(TfArgLiteral('MPS'));
+
+  static const List<ContainerClusterGpuSharingStrategy> values = [
+    timeSharing,
+    mps,
+  ];
 }
 
 /// Typed helper for the `node_config.gvnic` block of

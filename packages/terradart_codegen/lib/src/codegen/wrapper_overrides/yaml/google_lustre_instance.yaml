@@ -4,6 +4,12 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  per_unit_storage_throughput:
+    - '125'
+    - '250'
+    - '500'
+    - '1000'
 
 curatedDoc: |-
   /// Managed Lustre **instance** — Google-managed Lustre parallel file

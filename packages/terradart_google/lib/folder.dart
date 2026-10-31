@@ -15,6 +15,7 @@ export 'src/data/google_folders.dart' show DataGoogleFolders;
 export 'src/folder/google_folder.dart' show GoogleFolder;
 export 'src/folder/google_folder_access_approval_settings.dart'
     show
+        FolderAccessApprovalSettingsCloudProduct,
         FolderAccessApprovalSettingsEnrolledServices,
         FolderAccessApprovalSettingsEnrollmentLevel,
         GoogleFolderAccessApprovalSettings;

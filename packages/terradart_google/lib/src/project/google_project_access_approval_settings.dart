@@ -16,7 +16,7 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
     this.enrollmentLevel,
   });
 
-  final TfArg<String> cloudProduct;
+  final ProjectAccessApprovalSettingsCloudProduct cloudProduct;
 
   final ProjectAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;
 
@@ -25,6 +25,70 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
+}
+
+/// `cloud_product` — derived from the provider schema description.
+extension type const ProjectAccessApprovalSettingsCloudProduct._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ProjectAccessApprovalSettingsCloudProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectAccessApprovalSettingsCloudProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectAccessApprovalSettingsCloudProduct.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const all = ProjectAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('all'),
+  );
+  static const appengineGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('appengine.googleapis.com'),
+      );
+  static const bigqueryGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigquery.googleapis.com'),
+      );
+  static const bigtableGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigtable.googleapis.com'),
+      );
+  static const cloudkmsGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('cloudkms.googleapis.com'),
+      );
+  static const computeGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('compute.googleapis.com'),
+      );
+  static const dataflowGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('dataflow.googleapis.com'),
+      );
+  static const iamGoogleapisCom = ProjectAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('iam.googleapis.com'),
+  );
+  static const pubsubGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('pubsub.googleapis.com'),
+      );
+  static const storageGoogleapisCom =
+      ProjectAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('storage.googleapis.com'),
+      );
+
+  static const List<ProjectAccessApprovalSettingsCloudProduct> values = [
+    all,
+    appengineGoogleapisCom,
+    bigqueryGoogleapisCom,
+    bigtableGoogleapisCom,
+    cloudkmsGoogleapisCom,
+    computeGoogleapisCom,
+    dataflowGoogleapisCom,
+    iamGoogleapisCom,
+    pubsubGoogleapisCom,
+    storageGoogleapisCom,
+  ];
 }
 
 /// `enrollment_level` — derived from the provider schema description.

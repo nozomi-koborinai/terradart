@@ -4,6 +4,13 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  origin_redirect.redirect_conditions:
+    - MOVED_PERMANENTLY
+    - FOUND
+    - SEE_OTHER
+    - TEMPORARY_REDIRECT
+    - PERMANENT_REDIRECT
 
 dartTypeOverrides:
   protocol: NetworkServicesEdgeCacheOriginProtocol

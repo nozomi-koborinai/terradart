@@ -1,4 +1,9 @@
 outputDir: discovery_engine
+enumValues:
+  document_processing_config.default_parsing_config.layout_parsing_config.structured_content_types:
+    - shareholder-structure
+  document_processing_config.parsing_config_overrides.layout_parsing_config.structured_content_types:
+    - shareholder-structure
 
 deriveClassDoc: true
 deriveExactlyOne: true

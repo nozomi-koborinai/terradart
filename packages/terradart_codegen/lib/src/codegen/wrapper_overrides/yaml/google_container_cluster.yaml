@@ -1,4 +1,13 @@
 outputDir: container
+enumValues:
+  node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    - TIME_SHARING
+    - MPS
+  node_pool.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    - TIME_SHARING
+    - MPS
+  gke_auto_upgrade_config.patch_mode:
+    - ACCELERATED
 
 deriveClassDoc: true
 deriveExactlyOne: true

@@ -54,6 +54,7 @@ export 'src/sql/google_sql_database_instance.dart'
         SqlDatabaseInstanceSettings,
         SqlDatabaseInstanceSqlServerAuditConfig,
         SqlDatabaseInstanceTargetMetrics,
+        SqlDatabaseInstanceType,
         SqlDiskType,
         SqlEdition;
 export 'src/sql/google_sql_provision_script.dart' show GoogleSqlProvisionScript;

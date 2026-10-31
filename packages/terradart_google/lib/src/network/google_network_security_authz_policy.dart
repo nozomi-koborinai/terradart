@@ -654,7 +654,7 @@ extension type const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption._(
 final class NetworkSecurityAuthzPolicyMethods {
   const NetworkSecurityAuthzPolicyMethods({required this.name, this.params});
 
-  final TfArg<String> name;
+  final NetworkSecurityAuthzPolicyMethodsName name;
 
   final List<NetworkSecurityAuthzPolicyParams>? params;
 
@@ -663,6 +663,69 @@ final class NetworkSecurityAuthzPolicyMethods {
     'name': name.toTfJson(),
     if (params != null) 'params': [for (final e in params!) e.encode()],
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const NetworkSecurityAuthzPolicyMethodsName._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityAuthzPolicyMethodsName.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyMethodsName.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyMethodsName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tools = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('tools'),
+  );
+  static const prompts = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('prompts'),
+  );
+  static const resources = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources'),
+  );
+  static const promptsList = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('prompts/list'),
+  );
+  static const toolsList = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('tools/list'),
+  );
+  static const resourcesList = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources/list'),
+  );
+  static const resourcesTemplatesList = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources/templates/list'),
+  );
+  static const promptsGet = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('prompts/get'),
+  );
+  static const toolsCall = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('tools/call'),
+  );
+  static const resourcesSubscribe = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources/subscribe'),
+  );
+  static const resourcesUnsubscribe = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources/unsubscribe'),
+  );
+  static const resourcesRead = NetworkSecurityAuthzPolicyMethodsName._(
+    TfArgLiteral('resources/read'),
+  );
+
+  static const List<NetworkSecurityAuthzPolicyMethodsName> values = [
+    tools,
+    prompts,
+    resources,
+    promptsList,
+    toolsList,
+    resourcesList,
+    resourcesTemplatesList,
+    promptsGet,
+    toolsCall,
+    resourcesSubscribe,
+    resourcesUnsubscribe,
+    resourcesRead,
+  ];
 }
 
 /// Typed helper for the `http_rules.to.operations.mcp.methods.params` block of

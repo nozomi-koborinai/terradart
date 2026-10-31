@@ -34,6 +34,7 @@ export 'src/hypercomputecluster/google_hypercomputecluster_cluster.dart'
         HypercomputeclusterClusterNodeSets,
         HypercomputeclusterClusterOrchestrator,
         HypercomputeclusterClusterPartitions,
+        HypercomputeclusterClusterPerUnitStorageThroughput,
         HypercomputeclusterClusterProtocol,
         HypercomputeclusterClusterSlurm,
         HypercomputeclusterClusterStorageClass,

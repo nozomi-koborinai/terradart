@@ -4,6 +4,12 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
+enumValues:
+  mtu:
+    - '1440'
+    - '1460'
+    - '1500'
+    - '8896'
 
 dartTypeOverrides:
   type: ComputeInterconnectAttachmentType

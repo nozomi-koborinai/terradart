@@ -331,7 +331,8 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
 
   final TfArg<List<String>>? excludeHtmlIds;
 
-  final TfArg<List<String>>? structuredContentTypes;
+  final List<DiscoveryEngineDataStoreStructuredContentTypes>?
+  structuredContentTypes;
 
   @internal
   Map<String, Object?> encode() => {
@@ -342,8 +343,32 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
     'exclude_html_classes': ?excludeHtmlClasses?.toTfJson(),
     'exclude_html_elements': ?excludeHtmlElements?.toTfJson(),
     'exclude_html_ids': ?excludeHtmlIds?.toTfJson(),
-    'structured_content_types': ?structuredContentTypes?.toTfJson(),
+    if (structuredContentTypes != null)
+      'structured_content_types': [
+        for (final e in structuredContentTypes!) e.toTfJson(),
+      ],
   };
+}
+
+/// `structured_content_types` — derived from the provider schema description.
+extension type const DiscoveryEngineDataStoreStructuredContentTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataStoreStructuredContentTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreStructuredContentTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreStructuredContentTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const shareholderStructure =
+      DiscoveryEngineDataStoreStructuredContentTypes._(
+        TfArgLiteral('shareholder-structure'),
+      );
+
+  static const List<DiscoveryEngineDataStoreStructuredContentTypes> values = [
+    shareholderStructure,
+  ];
 }
 
 /// Typed helper for the `document_processing_config.default_parsing_config.ocr_parsing_config` block of

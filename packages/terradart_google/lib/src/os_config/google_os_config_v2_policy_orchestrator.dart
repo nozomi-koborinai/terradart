@@ -9,6 +9,28 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_os_config_v2_policy_orchestrator`.
 const Set<String> _googleOsConfigV2PolicyOrchestratorSensitive = <String>{};
 
+/// Os Config V2 Policy Orchestrator enum for `action`.
+extension type const OsConfigV2PolicyOrchestratorAction._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorAction.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const upsert = OsConfigV2PolicyOrchestratorAction._(
+    TfArgLiteral('UPSERT'),
+  );
+  static const delete = OsConfigV2PolicyOrchestratorAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorAction> values = [
+    upsert,
+    delete,
+  ];
+}
+
 /// Typed helper for the `orchestrated_resource` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
@@ -1071,7 +1093,7 @@ final class GoogleOsConfigV2PolicyOrchestrator extends Resource {
   GoogleOsConfigV2PolicyOrchestrator(
     super.localName, {
     required TfArg<String> policyOrchestratorId,
-    required TfArg<String> action,
+    required OsConfigV2PolicyOrchestratorAction action,
     required OsConfigV2PolicyOrchestratorOrchestratedResource
     orchestratedResource,
     TfArg<String>? state,

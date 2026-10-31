@@ -1,4 +1,7 @@
 outputDir: vmwareengine
+enumValues:
+  datastore_mount_config.nfs_version:
+    - NFS_V3
 
 deriveClassDoc: true
 deriveExactlyOne: true

@@ -1,4 +1,16 @@
 outputDir: vertex_ai
+enumValues:
+  value_type:
+    - BOOL
+    - BOOL_ARRAY
+    - DOUBLE
+    - DOUBLE_ARRAY
+    - INT64
+    - INT64_ARRAY
+    - STRING
+    - STRING_ARRAY
+    - BYTES
+    - STRUCT
 
 deriveClassDoc: true
 deriveExactlyOne: true

@@ -28,6 +28,7 @@ export 'src/organization/google_org_policy_policy.dart'
 export 'src/organization/google_organization_access_approval_settings.dart'
     show
         GoogleOrganizationAccessApprovalSettings,
+        OrganizationAccessApprovalSettingsCloudProduct,
         OrganizationAccessApprovalSettingsEnrolledServices,
         OrganizationAccessApprovalSettingsEnrollmentLevel;
 export 'src/organization/google_organization_iam_audit_config.dart'

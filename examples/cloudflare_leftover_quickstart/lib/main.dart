@@ -1088,7 +1088,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareOriginTlsComplianceModes(
         'origin_tls_compliance_modes',
-        value: [.fips],
+        value: .literal([leftover]),
         zoneId: .literal(zoneId),
       ),
     );

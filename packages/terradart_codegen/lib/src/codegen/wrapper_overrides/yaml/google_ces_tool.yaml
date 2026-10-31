@@ -1,4 +1,7 @@
 outputDir: ces
+enumValues:
+  data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec.interpolation_type:
+    - LINEAR
 
 deriveClassDoc: true
 deriveExactlyOne: true

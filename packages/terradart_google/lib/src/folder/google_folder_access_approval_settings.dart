@@ -16,7 +16,7 @@ final class FolderAccessApprovalSettingsEnrolledServices {
     this.enrollmentLevel,
   });
 
-  final TfArg<String> cloudProduct;
+  final FolderAccessApprovalSettingsCloudProduct cloudProduct;
 
   final FolderAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;
 
@@ -25,6 +25,110 @@ final class FolderAccessApprovalSettingsEnrolledServices {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
+}
+
+/// `cloud_product` — derived from the provider schema description.
+extension type const FolderAccessApprovalSettingsCloudProduct._(TfArg<String> _)
+    implements TfArg<String> {
+  FolderAccessApprovalSettingsCloudProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  FolderAccessApprovalSettingsCloudProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const FolderAccessApprovalSettingsCloudProduct.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const all = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('all'),
+  );
+  static const appEngine = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('App Engine'),
+  );
+  static const bigquery = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('BigQuery'),
+  );
+  static const cloudBigtable = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Cloud Bigtable'),
+  );
+  static const cloudKeyManagementService =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('Cloud Key Management Service'),
+      );
+  static const computeEngine = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Compute Engine'),
+  );
+  static const cloudDataflow = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Cloud Dataflow'),
+  );
+  static const cloudIdentityAndAccessManagement =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('Cloud Identity and Access Management'),
+      );
+  static const cloudPubSub = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Cloud Pub/Sub'),
+  );
+  static const cloudStorage = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Cloud Storage'),
+  );
+  static const persistentDisk = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('Persistent Disk'),
+  );
+  static const appengineGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('appengine.googleapis.com'),
+      );
+  static const bigqueryGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigquery.googleapis.com'),
+      );
+  static const bigtableGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigtable.googleapis.com'),
+      );
+  static const cloudkmsGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('cloudkms.googleapis.com'),
+      );
+  static const computeGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('compute.googleapis.com'),
+      );
+  static const dataflowGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('dataflow.googleapis.com'),
+      );
+  static const iamGoogleapisCom = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('iam.googleapis.com'),
+  );
+  static const pubsubGoogleapisCom = FolderAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('pubsub.googleapis.com'),
+  );
+  static const storageGoogleapisCom =
+      FolderAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('storage.googleapis.com'),
+      );
+
+  static const List<FolderAccessApprovalSettingsCloudProduct> values = [
+    all,
+    appEngine,
+    bigquery,
+    cloudBigtable,
+    cloudKeyManagementService,
+    computeEngine,
+    cloudDataflow,
+    cloudIdentityAndAccessManagement,
+    cloudPubSub,
+    cloudStorage,
+    persistentDisk,
+    appengineGoogleapisCom,
+    bigqueryGoogleapisCom,
+    bigtableGoogleapisCom,
+    cloudkmsGoogleapisCom,
+    computeGoogleapisCom,
+    dataflowGoogleapisCom,
+    iamGoogleapisCom,
+    pubsubGoogleapisCom,
+    storageGoogleapisCom,
+  ];
 }
 
 /// `enrollment_level` — derived from the provider schema description.

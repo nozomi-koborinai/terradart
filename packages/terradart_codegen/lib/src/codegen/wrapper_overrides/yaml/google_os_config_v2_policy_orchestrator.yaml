@@ -1,4 +1,8 @@
 outputDir: os_config
+enumValues:
+  action:
+    - UPSERT
+    - DELETE
 
 deriveClassDoc: true
 deriveExactlyOne: true

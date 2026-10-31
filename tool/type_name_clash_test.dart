@@ -116,7 +116,7 @@ final class _NetappStack extends Stack {
         name: const .literal('shared'),
         poolName: const .literal('terradart-pool'),
         resourceGroupName: .literal('terradart-rg'),
-        serviceLevel: const .literal('Standard'),
+        serviceLevel: .standard,
         storageQuotaInGb: const .literal(100),
         subnetId: .literal('netapp-subnet-id'),
         volumePath: const .literal('shared'),

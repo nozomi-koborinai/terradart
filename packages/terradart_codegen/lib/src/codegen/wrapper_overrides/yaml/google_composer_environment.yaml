@@ -4,6 +4,16 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  config.database_config.machine_type:
+    - db-n1-standard-2
+    - db-n1-standard-4
+    - db-n1-standard-8
+    - db-n1-standard-16
+  config.web_server_config.machine_type:
+    - composer-n1-webserver-2
+    - composer-n1-webserver-4
+    - composer-n1-webserver-8
 
 extraImports:
   - "import 'package:meta/meta.dart';"

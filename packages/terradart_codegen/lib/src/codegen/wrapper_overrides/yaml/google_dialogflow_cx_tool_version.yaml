@@ -1,4 +1,20 @@
 outputDir: dialogflow
+enumValues:
+  tool.data_store_spec.data_store_connections.data_store_type:
+    - PUBLIC_WEB
+    - UNSTRUCTURED
+    - STRUCTURED
+  tool.data_store_spec.data_store_connections.document_processing_mode:
+    - DOCUMENTS
+    - CHUNKS
+  tool.open_api_spec.authentication.api_key_config.request_location:
+    - HEADER
+    - QUERY_STRING
+  tool.open_api_spec.authentication.oauth_config.oauth_grant_type:
+    - CLIENT_CREDENTIAL
+  tool.open_api_spec.authentication.service_agent_auth_config.service_agent_auth:
+    - ID_TOKEN
+    - ACCESS_TOKEN
 
 deriveClassDoc: true
 deriveExactlyOne: true

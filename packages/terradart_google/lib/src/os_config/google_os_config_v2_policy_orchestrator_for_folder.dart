@@ -10,6 +10,30 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleOsConfigV2PolicyOrchestratorForFolderSensitive =
     <String>{};
 
+/// Os Config V2 Policy Orchestrator For Folder enum for `action`.
+extension type const OsConfigV2PolicyOrchestratorForFolderAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderAction.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const upsert = OsConfigV2PolicyOrchestratorForFolderAction._(
+    TfArgLiteral('UPSERT'),
+  );
+  static const delete = OsConfigV2PolicyOrchestratorForFolderAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderAction> values = [
+    upsert,
+    delete,
+  ];
+}
+
 /// Typed helper for the `orchestrated_resource` block of
 /// `google_os_config_v2_policy_orchestrator_for_folder` (derived from provider schema).
 @immutable
@@ -1013,7 +1037,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForFolder extends Resource {
 
   GoogleOsConfigV2PolicyOrchestratorForFolder(
     super.localName, {
-    required TfArg<String> action,
+    required OsConfigV2PolicyOrchestratorForFolderAction action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> folderId,

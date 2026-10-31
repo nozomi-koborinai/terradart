@@ -7,6 +7,10 @@ deriveNestedTypes: true
 # The schema lists the entity names per data source in prose; the API
 # rejects a name its data source does not have.
 enumValues:
+  bap_config.supported_connector_modes:
+    - DATA_INGESTION
+    - ACTIONS
+    - END_USER_AUTHENTICATION
   entities.entity_name:
     - Lead
     - Opportunity

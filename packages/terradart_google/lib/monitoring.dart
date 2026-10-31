@@ -150,6 +150,7 @@ export 'src/monitoring/google_monitoring_uptime_check_config.dart'
         MonitoringUptimeCheckConfigPassword,
         MonitoringUptimeCheckConfigPasswordChoice,
         MonitoringUptimeCheckConfigPasswordWo,
+        MonitoringUptimeCheckConfigPeriod,
         MonitoringUptimeCheckConfigPingConfig,
         MonitoringUptimeCheckConfigResourceGroup,
         MonitoringUptimeCheckConfigServiceAgentAuthentication,

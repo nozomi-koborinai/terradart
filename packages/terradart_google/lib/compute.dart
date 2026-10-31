@@ -485,6 +485,7 @@ export 'src/compute/google_compute_interconnect_attachment.dart'
         ComputeInterconnectAttachmentGeneveHeader,
         ComputeInterconnectAttachmentInnerVlanToApplianceMappings,
         ComputeInterconnectAttachmentL2Forwarding,
+        ComputeInterconnectAttachmentMtu,
         ComputeInterconnectAttachmentParams,
         ComputeInterconnectAttachmentStackType,
         ComputeInterconnectAttachmentState,
@@ -938,6 +939,7 @@ export 'src/compute/google_compute_region_security_policy.dart'
         ComputeRegionSecurityPolicyExceedAction,
         ComputeRegionSecurityPolicyJsonCustomConfig,
         ComputeRegionSecurityPolicyRules,
+        ComputeRegionSecurityPolicyRulesAction,
         ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig,
         ComputeRegionSecurityPolicyRulesMatch,
         ComputeRegionSecurityPolicyRulesMatchConfig,
@@ -955,6 +957,7 @@ export 'src/compute/google_compute_region_security_policy.dart'
         RegionSecurityPolicyUserDefinedFieldBase;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
     show
+        ComputeRegionSecurityPolicyRuleAction,
         ComputeRegionSecurityPolicyRuleExceedAction,
         ComputeRegionSecurityPolicyRuleMatch,
         ComputeRegionSecurityPolicyRuleMatchConfig,
@@ -1028,6 +1031,7 @@ export 'src/compute/google_compute_region_url_map.dart'
         ComputeRegionUrlMapRequestHeadersToAdd,
         ComputeRegionUrlMapRequestMirrorPolicy,
         ComputeRegionUrlMapResponseHeadersToAdd,
+        ComputeRegionUrlMapRetryConditions,
         ComputeRegionUrlMapRetryPolicy,
         ComputeRegionUrlMapRetryPolicyPerTryTimeout,
         ComputeRegionUrlMapRouteActionCorsPolicy,
@@ -1208,6 +1212,7 @@ export 'src/compute/google_compute_security_policy.dart'
         SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_security_policy_rule.dart'
     show
+        ComputeSecurityPolicyRuleAction,
         ComputeSecurityPolicyRuleExceedAction,
         ComputeSecurityPolicyRuleHeaderAction,
         ComputeSecurityPolicyRuleMatch,
@@ -1369,6 +1374,7 @@ export 'src/compute/google_compute_url_map.dart'
         ComputeUrlMapRequestHeadersToAdd,
         ComputeUrlMapRequestMirrorPolicy,
         ComputeUrlMapResponseHeadersToAdd,
+        ComputeUrlMapRetryConditions,
         ComputeUrlMapRetryPolicy,
         ComputeUrlMapRetryPolicyPerTryTimeout,
         ComputeUrlMapRouteActionCorsPolicy,

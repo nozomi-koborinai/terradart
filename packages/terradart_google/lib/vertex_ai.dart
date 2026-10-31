@@ -22,6 +22,7 @@ export 'src/vertex_ai/google_vertex_ai_dataset.dart'
 export 'src/vertex_ai/google_vertex_ai_deployment_resource_pool.dart'
     show
         GoogleVertexAiDeploymentResourcePool,
+        VertexAiDeploymentResourcePoolAcceleratorType,
         VertexAiDeploymentResourcePoolAutoscalingMetricSpecs,
         VertexAiDeploymentResourcePoolDedicatedResources,
         VertexAiDeploymentResourcePoolMachineSpec;
@@ -105,13 +106,17 @@ export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype.dart'
     show
         GoogleVertexAiFeaturestoreEntitytype,
+        VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline,
         VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig,
         VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis,
         VertexAiFeaturestoreEntitytypeMonitoringConfig,
         VertexAiFeaturestoreEntitytypeNumericalThresholdConfig,
-        VertexAiFeaturestoreEntitytypeSnapshotAnalysis;
+        VertexAiFeaturestoreEntitytypeSnapshotAnalysis,
+        VertexAiFeaturestoreEntitytypeState;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_feature.dart'
-    show GoogleVertexAiFeaturestoreEntitytypeFeature;
+    show
+        GoogleVertexAiFeaturestoreEntitytypeFeature,
+        VertexAiFeaturestoreEntitytypeFeatureValueType;
 export 'src/vertex_ai/google_vertex_ai_index.dart'
     show
         GoogleVertexAiIndex,

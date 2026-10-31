@@ -15,6 +15,7 @@ export 'src/data/google_projects.dart' show DataGoogleProjects;
 export 'src/project/google_project_access_approval_settings.dart'
     show
         GoogleProjectAccessApprovalSettings,
+        ProjectAccessApprovalSettingsCloudProduct,
         ProjectAccessApprovalSettingsEnrolledServices,
         ProjectAccessApprovalSettingsEnrollmentLevel;
 export 'src/project/google_project_default_service_accounts.dart'
@@ -36,7 +37,9 @@ export 'src/project/google_project_usage_export_bucket.dart'
 export 'src/project/google_resource_manager_capability.dart'
     show GoogleResourceManagerCapability;
 export 'src/project/google_resource_manager_capability_config.dart'
-    show GoogleResourceManagerCapabilityConfig;
+    show
+        GoogleResourceManagerCapabilityConfig,
+        ResourceManagerCapabilityConfigTypes;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
 export 'src/project/apis.dart' show Apis, StackApis;

@@ -17,7 +17,7 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
     this.enrollmentLevel,
   });
 
-  final TfArg<String> cloudProduct;
+  final OrganizationAccessApprovalSettingsCloudProduct cloudProduct;
 
   final OrganizationAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;
 
@@ -26,6 +26,71 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
+}
+
+/// `cloud_product` — derived from the provider schema description.
+extension type const OrganizationAccessApprovalSettingsCloudProduct._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrganizationAccessApprovalSettingsCloudProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  OrganizationAccessApprovalSettingsCloudProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationAccessApprovalSettingsCloudProduct.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const all = OrganizationAccessApprovalSettingsCloudProduct._(
+    TfArgLiteral('all'),
+  );
+  static const appengineGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('appengine.googleapis.com'),
+      );
+  static const bigqueryGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigquery.googleapis.com'),
+      );
+  static const bigtableGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('bigtable.googleapis.com'),
+      );
+  static const cloudkmsGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('cloudkms.googleapis.com'),
+      );
+  static const computeGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('compute.googleapis.com'),
+      );
+  static const dataflowGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('dataflow.googleapis.com'),
+      );
+  static const iamGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('iam.googleapis.com'),
+      );
+  static const pubsubGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('pubsub.googleapis.com'),
+      );
+  static const storageGoogleapisCom =
+      OrganizationAccessApprovalSettingsCloudProduct._(
+        TfArgLiteral('storage.googleapis.com'),
+      );
+
+  static const List<OrganizationAccessApprovalSettingsCloudProduct> values = [
+    all,
+    appengineGoogleapisCom,
+    bigqueryGoogleapisCom,
+    bigtableGoogleapisCom,
+    cloudkmsGoogleapisCom,
+    computeGoogleapisCom,
+    dataflowGoogleapisCom,
+    iamGoogleapisCom,
+    pubsubGoogleapisCom,
+    storageGoogleapisCom,
+  ];
 }
 
 /// `enrollment_level` — derived from the provider schema description.

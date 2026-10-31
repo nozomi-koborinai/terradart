@@ -4,6 +4,20 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+enumValues:
+  http_rules.to.operations.mcp.methods.name:
+    - tools
+    - prompts
+    - resources
+    - 'prompts/list'
+    - 'tools/list'
+    - 'resources/list'
+    - 'resources/templates/list'
+    - 'prompts/get'
+    - 'tools/call'
+    - 'resources/subscribe'
+    - 'resources/unsubscribe'
+    - 'resources/read'
 
 extraImports:
   - "import 'package:meta/meta.dart';"

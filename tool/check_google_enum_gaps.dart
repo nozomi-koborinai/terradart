@@ -242,7 +242,8 @@ List<String>? cueValues(String? description) {
 }
 
 final _enumLink = RegExp(
-  r'https?://\S*/reference/rest/\S*#[A-Z][A-Za-z0-9]*\b',
+  r'https?://\S*/reference/rest/\S*#[A-Z][A-Za-z0-9]*\b'
+  r'|\[[A-Z][A-Za-z0-9]*\]\(https?://\S*/reference/rest/\S*#[a-z][a-z0-9]*\)',
 );
 
 /// Whether [description] carries a value-set cue (`Possible values`, `Valid

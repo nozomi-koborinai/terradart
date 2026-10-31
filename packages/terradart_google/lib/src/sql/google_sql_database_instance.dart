@@ -16,6 +16,39 @@ const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
   'server_ca_cert',
 };
 
+/// Sql Database Instance enum for `instance_type`.
+extension type const SqlDatabaseInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceType.variable(String name) : this._(TfArg.variable(name));
+  SqlDatabaseInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceType.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudSqlInstance = SqlDatabaseInstanceType._(
+    TfArgLiteral('CLOUD_SQL_INSTANCE'),
+  );
+  static const onPremisesInstance = SqlDatabaseInstanceType._(
+    TfArgLiteral('ON_PREMISES_INSTANCE'),
+  );
+  static const readReplicaInstance = SqlDatabaseInstanceType._(
+    TfArgLiteral('READ_REPLICA_INSTANCE'),
+  );
+  static const readPoolInstance = SqlDatabaseInstanceType._(
+    TfArgLiteral('READ_POOL_INSTANCE'),
+  );
+  static const greenInstance = SqlDatabaseInstanceType._(
+    TfArgLiteral('GREEN_INSTANCE'),
+  );
+
+  static const List<SqlDatabaseInstanceType> values = [
+    cloudSqlInstance,
+    onPremisesInstance,
+    readReplicaInstance,
+    readPoolInstance,
+    greenInstance,
+  ];
+}
+
 // ===========================================================================
 // Top-level enums
 // ===========================================================================
@@ -1192,7 +1225,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<String>? masterInstanceName,
     SqlDatabaseInstanceReplicaConfiguration? replicaConfiguration,
-    TfArg<String>? instanceType,
+    SqlDatabaseInstanceType? instanceType,
     TfArg<num>? nodeCount,
     TfArg<String>? maintenanceVersion,
     RefTo<GoogleKmsCryptoKey>? encryptionKeyName,
