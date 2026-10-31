@@ -572,13 +572,7 @@ properties:
           },
         },
       },
-      resources: {
-        'x_thing': (
-          doc: 'x.v1',
-          schema: 'Thing',
-          paths: const {},
-        ),
-      },
+      resources: {'x_thing': (doc: 'x.v1', schema: 'Thing', paths: const {})},
       dataSources: const {},
     );
     const mmYaml = MmResourceOverrides(fieldOverrides: {});
@@ -638,10 +632,10 @@ properties:
       });
 
       test('$label keeps a description where Discovery has no enum', () {
-        expect(
-          resolve(enums, ['name'], 'Possible values: ["A", "B"]'),
-          ['A', 'B'],
-        );
+        expect(resolve(enums, ['name'], 'Possible values: ["A", "B"]'), [
+          'A',
+          'B',
+        ]);
       });
     }
   });
