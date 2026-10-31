@@ -66,6 +66,57 @@ extension type const AppEngineFlexibleAppVersionInboundServices._(
   ];
 }
 
+/// App Engine Flexible App Version Instance enum for `instance_class`.
+extension type const AppEngineFlexibleAppVersionInstanceClass._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineFlexibleAppVersionInstanceClass.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionInstanceClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionInstanceClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const f1 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('F1'),
+  );
+  static const f2 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('F2'),
+  );
+  static const f4 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('F4'),
+  );
+  static const f41g = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('F4_1G'),
+  );
+  static const b1 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('B1'),
+  );
+  static const b2 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('B2'),
+  );
+  static const b4 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('B4'),
+  );
+  static const b8 = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('B8'),
+  );
+  static const b41g = AppEngineFlexibleAppVersionInstanceClass._(
+    TfArgLiteral('B4_1G'),
+  );
+
+  static const List<AppEngineFlexibleAppVersionInstanceClass> values = [
+    f1,
+    f2,
+    f4,
+    f41g,
+    b1,
+    b2,
+    b4,
+    b8,
+    b41g,
+  ];
+}
+
 /// App Engine Flexible App Version Serving enum for `serving_status`.
 extension type const AppEngineFlexibleAppVersionServingStatus._(TfArg<String> _)
     implements TfArg<String> {
@@ -780,7 +831,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? versionId,
     required TfArg<String> runtime,
     TfArg<String>? runtimeApiVersion,
-    TfArg<String>? instanceClass,
+    AppEngineFlexibleAppVersionInstanceClass? instanceClass,
     required AppEngineFlexibleAppVersionScaling scaling,
     required AppEngineFlexibleAppVersionLivenessCheck livenessCheck,
     required AppEngineFlexibleAppVersionReadinessCheck readinessCheck,

@@ -24,6 +24,7 @@ export 'src/managed_devops/azurerm_managed_devops_pool.dart'
         ManagedDevopsPoolOrganization,
         ManagedDevopsPoolOsDiskStorageAccountType,
         ManagedDevopsPoolPermission,
+        ManagedDevopsPoolPredictionPreference,
         ManagedDevopsPoolSaturdaySchedule,
         ManagedDevopsPoolSecurity,
         ManagedDevopsPoolStatefulAgent,

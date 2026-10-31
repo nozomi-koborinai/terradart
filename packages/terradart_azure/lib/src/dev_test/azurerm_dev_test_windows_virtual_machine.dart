@@ -73,13 +73,33 @@ final class DevTestWindowsVirtualMachineInboundNatRule {
 
   final TfArg<num> backendPort;
 
-  final TfArg<String> protocol;
+  final DevTestWindowsVirtualMachineProtocol protocol;
 
   @internal
   Map<String, Object?> encode() => {
     'backend_port': backendPort.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const DevTestWindowsVirtualMachineProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  DevTestWindowsVirtualMachineProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DevTestWindowsVirtualMachineProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevTestWindowsVirtualMachineProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tcp = DevTestWindowsVirtualMachineProtocol._(
+    TfArgLiteral('Tcp'),
+  );
+  static const udp = DevTestWindowsVirtualMachineProtocol._(
+    TfArgLiteral('Udp'),
+  );
+
+  static const List<DevTestWindowsVirtualMachineProtocol> values = [tcp, udp];
 }
 
 /// Factory wrapper for `azurerm_dev_test_windows_virtual_machine`.

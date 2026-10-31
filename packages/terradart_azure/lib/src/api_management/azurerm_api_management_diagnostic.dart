@@ -162,7 +162,7 @@ final class ApiManagementDiagnosticHeaders {
     required this.value,
   });
 
-  final TfArg<String> mode;
+  final ApiManagementDiagnosticMode mode;
 
   final TfArg<String> value;
 
@@ -171,6 +171,21 @@ final class ApiManagementDiagnosticHeaders {
     'mode': mode.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ApiManagementDiagnosticMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementDiagnosticMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementDiagnosticMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementDiagnosticMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const hide = ApiManagementDiagnosticMode._(TfArgLiteral('Hide'));
+  static const mask = ApiManagementDiagnosticMode._(TfArgLiteral('Mask'));
+
+  static const List<ApiManagementDiagnosticMode> values = [hide, mask];
 }
 
 /// Typed helper for the `backend_request.data_masking.query_params` block of
@@ -183,7 +198,7 @@ final class ApiManagementDiagnosticQueryParams {
     required this.value,
   });
 
-  final TfArg<String> mode;
+  final ApiManagementDiagnosticMode mode;
 
   final TfArg<String> value;
 

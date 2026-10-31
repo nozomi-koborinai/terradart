@@ -24,9 +24,9 @@ final class StreamAnalyticsOutputEventhubSerialization {
 
   final TfArg<String>? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputEventhubFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputEventhubFormat? format;
 
   final TfArg<String> type;
 
@@ -37,6 +37,65 @@ final class StreamAnalyticsOutputEventhubSerialization {
     'format': ?format?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputEventhubFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputEventhubFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputEventhubFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputEventhubFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputEventhubFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputEventhubFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const array = StreamAnalyticsOutputEventhubFormat._(
+    TfArgLiteral('Array'),
+  );
+  static const lineseparated = StreamAnalyticsOutputEventhubFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputEventhubFormat> values = [
+    array,
+    lineseparated,
+  ];
 }
 
 /// Factory wrapper for `azurerm_stream_analytics_output_eventhub`.

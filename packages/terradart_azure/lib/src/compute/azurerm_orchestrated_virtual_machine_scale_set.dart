@@ -312,7 +312,7 @@ final class OrchestratedVirtualMachineScaleSetAutomaticInstanceRepair {
     this.gracePeriod,
   });
 
-  final TfArg<String>? action;
+  final OrchestratedVirtualMachineScaleSetAction? action;
 
   final TfArg<bool> enabled;
 
@@ -324,6 +324,33 @@ final class OrchestratedVirtualMachineScaleSetAutomaticInstanceRepair {
     'enabled': enabled.toTfJson(),
     'grace_period': ?gracePeriod?.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetAction._(TfArg<String> _)
+    implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetAction.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const reimage = OrchestratedVirtualMachineScaleSetAction._(
+    TfArgLiteral('Reimage'),
+  );
+  static const replace = OrchestratedVirtualMachineScaleSetAction._(
+    TfArgLiteral('Replace'),
+  );
+  static const restart = OrchestratedVirtualMachineScaleSetAction._(
+    TfArgLiteral('Restart'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetAction> values = [
+    reimage,
+    replace,
+    restart,
+  ];
 }
 
 /// Typed helper for the `boot_diagnostics` block of
@@ -358,7 +385,7 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
     this.writeAcceleratorEnabled,
   });
 
-  final TfArg<String> caching;
+  final OrchestratedVirtualMachineScaleSetCaching caching;
 
   final TfArg<String>? createOption;
 
@@ -372,7 +399,7 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
 
   final TfArg<num>? lun;
 
-  final TfArg<String> storageAccountType;
+  final OrchestratedVirtualMachineScaleSetStorageAccountType storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -390,6 +417,88 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
   };
 }
 
+/// `caching` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetCaching._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetCaching.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = OrchestratedVirtualMachineScaleSetCaching._(
+    TfArgLiteral('None'),
+  );
+  static const readonly = OrchestratedVirtualMachineScaleSetCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = OrchestratedVirtualMachineScaleSetCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumv2Lrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('PremiumV2_LRS'),
+      );
+  static const premiumZrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
+  static const standardssdLrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('StandardSSD_LRS'),
+      );
+  static const standardssdZrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('StandardSSD_ZRS'),
+      );
+  static const ultrassdLrs =
+      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+        TfArgLiteral('UltraSSD_LRS'),
+      );
+
+  static const List<OrchestratedVirtualMachineScaleSetStorageAccountType>
+  values = [
+    premiumLrs,
+    premiumv2Lrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    ultrassdLrs,
+  ];
+}
+
 /// Typed helper for the `extension` block of
 /// `azurerm_orchestrated_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -405,7 +514,6 @@ final class OrchestratedVirtualMachineScaleSetExtension {
     this.settings,
     required this.type,
     required this.typeHandlerVersion,
-    this.protectedSettingsFromKeyVault,
   });
 
   final TfArg<bool>? autoUpgradeMinorVersionEnabled;
@@ -418,7 +526,7 @@ final class OrchestratedVirtualMachineScaleSetExtension {
 
   final TfArg<String> name;
 
-  final Sensitive<String>? protectedSettings;
+  final OrchestratedVirtualMachineScaleSetProtectedSettings? protectedSettings;
 
   final TfArg<String> publisher;
 
@@ -427,9 +535,6 @@ final class OrchestratedVirtualMachineScaleSetExtension {
   final TfArg<String> type;
 
   final TfArg<String> typeHandlerVersion;
-
-  final OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault?
-  protectedSettingsFromKeyVault;
 
   @internal
   Map<String, Object?> encode() => {
@@ -441,13 +546,79 @@ final class OrchestratedVirtualMachineScaleSetExtension {
     'force_extension_execution_on_change': ?forceExtensionExecutionOnChange
         ?.toTfJson(),
     'name': name.toTfJson(),
-    'protected_settings': ?protectedSettings?.toTfJson(),
+    ...?protectedSettings?.encode(),
     'publisher': publisher.toTfJson(),
     'settings': ?settings?.toTfJson(),
     'type': type.toTfJson(),
     'type_handler_version': typeHandlerVersion.toTfJson(),
-    'protected_settings_from_key_vault': ?protectedSettingsFromKeyVault
-        ?.encode(),
+  };
+}
+
+/// At most one of `protected_settings`, `protected_settings_from_key_vault` on the `extension` block of `azurerm_orchestrated_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.protectedSettings(...)`.
+sealed class OrchestratedVirtualMachineScaleSetProtectedSettings {
+  const OrchestratedVirtualMachineScaleSetProtectedSettings();
+
+  /// Sets `protected_settings`.
+  const factory OrchestratedVirtualMachineScaleSetProtectedSettings.protectedSettings(
+    Sensitive<String> protectedSettings,
+  ) = OrchestratedVirtualMachineScaleSetProtectedSettingsChoice;
+
+  /// Sets `protected_settings_from_key_vault`.
+  const factory OrchestratedVirtualMachineScaleSetProtectedSettings.protectedSettingsFromKeyVault(
+    OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault
+    protectedSettingsFromKeyVault,
+  ) = OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [OrchestratedVirtualMachineScaleSetProtectedSettings.protectedSettings] choice: sets `protected_settings`.
+final class OrchestratedVirtualMachineScaleSetProtectedSettingsChoice
+    extends OrchestratedVirtualMachineScaleSetProtectedSettings {
+  const OrchestratedVirtualMachineScaleSetProtectedSettingsChoice(
+    this.protectedSettings,
+  );
+
+  final Sensitive<String> protectedSettings;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings': protectedSettings.toTfJson(),
+  };
+}
+
+/// The [OrchestratedVirtualMachineScaleSetProtectedSettings.protectedSettingsFromKeyVault] choice: sets `protected_settings_from_key_vault`.
+final class OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice
+    extends OrchestratedVirtualMachineScaleSetProtectedSettings {
+  const OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice(
+    this.protectedSettingsFromKeyVault,
+  );
+
+  final OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault
+  protectedSettingsFromKeyVault;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings_from_key_vault';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings_from_key_vault': protectedSettingsFromKeyVault.encode(),
   };
 }
 
@@ -570,7 +741,7 @@ final class OrchestratedVirtualMachineScaleSetIpConfiguration {
 
   final TfArg<String>? subnetId;
 
-  final TfArg<String>? version;
+  final OrchestratedVirtualMachineScaleSetVersion? version;
 
   final List<OrchestratedVirtualMachineScaleSetPublicIpAddress>?
   publicIpAddress;
@@ -589,6 +760,30 @@ final class OrchestratedVirtualMachineScaleSetIpConfiguration {
     if (publicIpAddress != null)
       'public_ip_address': [for (final e in publicIpAddress!) e.encode()],
   };
+}
+
+/// `version` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipv4 = OrchestratedVirtualMachineScaleSetVersion._(
+    TfArgLiteral('IPv4'),
+  );
+  static const ipv6 = OrchestratedVirtualMachineScaleSetVersion._(
+    TfArgLiteral('IPv6'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetVersion> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Typed helper for the `network_interface.ip_configuration.public_ip_address` block of
@@ -615,7 +810,7 @@ final class OrchestratedVirtualMachineScaleSetPublicIpAddress {
 
   final TfArg<String>? skuName;
 
-  final TfArg<String>? version;
+  final OrchestratedVirtualMachineScaleSetVersion? version;
 
   final List<OrchestratedVirtualMachineScaleSetIpTag>? ipTag;
 
@@ -664,7 +859,7 @@ final class OrchestratedVirtualMachineScaleSetOsDisk {
     this.diffDiskSettings,
   });
 
-  final TfArg<String> caching;
+  final OrchestratedVirtualMachineScaleSetCaching caching;
 
   final TfArg<String>? diskEncryptionSetId;
 
@@ -698,13 +893,41 @@ final class OrchestratedVirtualMachineScaleSetDiffDiskSettings {
 
   final TfArg<String> option;
 
-  final TfArg<String>? placement;
+  final OrchestratedVirtualMachineScaleSetPlacement? placement;
 
   @internal
   Map<String, Object?> encode() => {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `placement` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetPlacement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetPlacement.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetPlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetPlacement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cachedisk = OrchestratedVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+  static const nvmedisk = OrchestratedVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('NvmeDisk'),
+  );
+  static const resourcedisk = OrchestratedVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('ResourceDisk'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetPlacement> values = [
+    cachedisk,
+    nvmedisk,
+    resourcedisk,
+  ];
 }
 
 /// Typed helper for the `os_profile` block of
@@ -757,9 +980,11 @@ final class OrchestratedVirtualMachineScaleSetLinuxConfiguration {
 
   final TfArg<bool>? disablePasswordAuthentication;
 
-  final TfArg<String>? patchAssessmentMode;
+  final OrchestratedVirtualMachineScaleSetPatchAssessmentMode?
+  patchAssessmentMode;
 
-  final TfArg<String>? patchMode;
+  final OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode?
+  patchMode;
 
   final TfArg<bool>? provisionVmAgent;
 
@@ -782,6 +1007,61 @@ final class OrchestratedVirtualMachineScaleSetLinuxConfiguration {
       'admin_ssh_key': [for (final e in adminSshKey!) e.encode()],
     if (secret != null) 'secret': [for (final e in secret!) e.encode()],
   };
+}
+
+/// `patch_assessment_mode` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetPatchAssessmentMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetPatchAssessmentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetPatchAssessmentMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetPatchAssessmentMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const automaticbyplatform =
+      OrchestratedVirtualMachineScaleSetPatchAssessmentMode._(
+        TfArgLiteral('AutomaticByPlatform'),
+      );
+  static const imagedefault =
+      OrchestratedVirtualMachineScaleSetPatchAssessmentMode._(
+        TfArgLiteral('ImageDefault'),
+      );
+
+  static const List<OrchestratedVirtualMachineScaleSetPatchAssessmentMode>
+  values = [automaticbyplatform, imagedefault];
+}
+
+/// `patch_mode` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const automaticbyplatform =
+      OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode._(
+        TfArgLiteral('AutomaticByPlatform'),
+      );
+  static const imagedefault =
+      OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode._(
+        TfArgLiteral('ImageDefault'),
+      );
+
+  static const List<
+    OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode
+  >
+  values = [automaticbyplatform, imagedefault];
 }
 
 /// Typed helper for the `os_profile.linux_configuration.admin_ssh_key` block of
@@ -868,9 +1148,11 @@ final class OrchestratedVirtualMachineScaleSetWindowsConfiguration {
 
   final TfArg<bool>? hotpatchingEnabled;
 
-  final TfArg<String>? patchAssessmentMode;
+  final OrchestratedVirtualMachineScaleSetPatchAssessmentMode?
+  patchAssessmentMode;
 
-  final TfArg<String>? patchMode;
+  final OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode?
+  patchMode;
 
   final TfArg<bool>? provisionVmAgent;
 
@@ -905,6 +1187,39 @@ final class OrchestratedVirtualMachineScaleSetWindowsConfiguration {
   };
 }
 
+/// `patch_mode` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const automaticbyos =
+      OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode._(
+        TfArgLiteral('AutomaticByOS'),
+      );
+  static const automaticbyplatform =
+      OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode._(
+        TfArgLiteral('AutomaticByPlatform'),
+      );
+  static const manual =
+      OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode._(
+        TfArgLiteral('Manual'),
+      );
+
+  static const List<
+    OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode
+  >
+  values = [automaticbyos, automaticbyplatform, manual];
+}
+
 /// Typed helper for the `os_profile.windows_configuration.additional_unattend_content` block of
 /// `azurerm_orchestrated_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -916,13 +1231,37 @@ final class OrchestratedVirtualMachineScaleSetAdditionalUnattendContent {
 
   final Sensitive<String> content;
 
-  final TfArg<String> setting;
+  final OrchestratedVirtualMachineScaleSetSetting setting;
 
   @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'setting': setting.toTfJson(),
   };
+}
+
+/// `setting` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetSetting._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetSetting.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const autologon = OrchestratedVirtualMachineScaleSetSetting._(
+    TfArgLiteral('AutoLogon'),
+  );
+  static const firstlogoncommands = OrchestratedVirtualMachineScaleSetSetting._(
+    TfArgLiteral('FirstLogonCommands'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetSetting> values = [
+    autologon,
+    firstlogoncommands,
+  ];
 }
 
 /// Typed helper for the `os_profile.windows_configuration.secret` block of
@@ -977,13 +1316,37 @@ final class OrchestratedVirtualMachineScaleSetWinrmListener {
 
   final TfArg<String>? certificateUrl;
 
-  final TfArg<String> protocol;
+  final OrchestratedVirtualMachineScaleSetProtocol protocol;
 
   @internal
   Map<String, Object?> encode() => {
     'certificate_url': ?certificateUrl?.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = OrchestratedVirtualMachineScaleSetProtocol._(
+    TfArgLiteral('Http'),
+  );
+  static const https = OrchestratedVirtualMachineScaleSetProtocol._(
+    TfArgLiteral('Https'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetProtocol> values = [
+    http,
+    https,
+  ];
 }
 
 /// Typed helper for the `plan` block of

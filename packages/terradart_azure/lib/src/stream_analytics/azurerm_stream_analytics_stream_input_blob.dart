@@ -24,7 +24,7 @@ final class StreamAnalyticsStreamInputBlobSerialization {
 
   final TfArg<String>? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsStreamInputBlobFieldDelimiter? fieldDelimiter;
 
   final TfArg<String> type;
 
@@ -34,6 +34,42 @@ final class StreamAnalyticsStreamInputBlobSerialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputBlobFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputBlobFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputBlobFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputBlobFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsStreamInputBlobFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsStreamInputBlobFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsStreamInputBlobFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsStreamInputBlobFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsStreamInputBlobFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsStreamInputBlobFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
 }
 
 /// Factory wrapper for `azurerm_stream_analytics_stream_input_blob`.

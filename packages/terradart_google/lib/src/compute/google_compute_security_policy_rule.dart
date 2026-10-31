@@ -38,20 +38,58 @@ class ComputeSecurityPolicyRuleMatchConfig {
   Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
 }
 
+/// Action for requests over a `rate_limit_options` threshold.
+extension type const ComputeSecurityPolicyRuleExceedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSecurityPolicyRuleExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyRuleExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyRuleExceedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirect = ComputeSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('redirect'),
+  );
+  static const deny403 = ComputeSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeSecurityPolicyRuleExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeSecurityPolicyRuleExceedAction> values = [
+    redirect,
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 @immutable
 class ComputeSecurityPolicyRuleRateLimitOptions {
   const ComputeSecurityPolicyRuleRateLimitOptions({
+    this.exceedAction,
     this.enforceOnKey,
     this.enforceOnKeyName,
     this.enforceOnKeyConfigs,
   });
 
+  final ComputeSecurityPolicyRuleExceedAction? exceedAction;
   final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
   final TfArg<String>? enforceOnKeyName;
   final List<ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig>?
   enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
+    if (exceedAction != null) 'exceed_action': exceedAction!.toTfJson(),
     if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),

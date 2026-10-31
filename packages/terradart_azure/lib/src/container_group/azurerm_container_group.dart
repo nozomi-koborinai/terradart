@@ -317,7 +317,7 @@ final class ContainerGroupHttpGet {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? scheme;
+  final ContainerGroupScheme? scheme;
 
   @internal
   Map<String, Object?> encode() => {
@@ -326,6 +326,20 @@ final class ContainerGroupHttpGet {
     'port': ?port?.toTfJson(),
     'scheme': ?scheme?.toTfJson(),
   };
+}
+
+/// `scheme` — derived from the provider schema description.
+extension type const ContainerGroupScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupScheme.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupScheme.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = ContainerGroupScheme._(TfArgLiteral('http'));
+  static const https = ContainerGroupScheme._(TfArgLiteral('https'));
+
+  static const List<ContainerGroupScheme> values = [http, https];
 }
 
 /// Typed helper for the `container.ports` block of

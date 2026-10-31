@@ -9,6 +9,7 @@ export 'src/batch/azurerm_batch_account.dart'
         AzurermBatchAccount,
         BatchAccountAccess,
         BatchAccountAllowedAuthenticationModes,
+        BatchAccountDefaultAction,
         BatchAccountIdentity,
         BatchAccountIpRule,
         BatchAccountKeyVaultReference,

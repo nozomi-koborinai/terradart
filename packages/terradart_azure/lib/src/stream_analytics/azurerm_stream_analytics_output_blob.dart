@@ -44,9 +44,9 @@ final class StreamAnalyticsOutputBlobSerialization {
 
   final TfArg<String>? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputBlobFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputBlobFormat? format;
 
   final TfArg<String> type;
 
@@ -57,6 +57,61 @@ final class StreamAnalyticsOutputBlobSerialization {
     'format': ?format?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobFieldDelimiter._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputBlobFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputBlobFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputBlobFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputBlobFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputBlobFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const array = StreamAnalyticsOutputBlobFormat._(TfArgLiteral('Array'));
+  static const lineseparated = StreamAnalyticsOutputBlobFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputBlobFormat> values = [
+    array,
+    lineseparated,
+  ];
 }
 
 /// Factory wrapper for `azurerm_stream_analytics_output_blob`.

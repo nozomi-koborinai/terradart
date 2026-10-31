@@ -116,7 +116,7 @@ final class CdnFrontdoorBatchRuleSetModifyRequestHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -124,6 +124,32 @@ final class CdnFrontdoorBatchRuleSetModifyRequestHeader {
     'header_value': ?headerValue?.toTfJson(),
     'operator': operator.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const append = CdnFrontdoorBatchRuleSetOperator._(
+    TfArgLiteral('Append'),
+  );
+  static const delete = CdnFrontdoorBatchRuleSetOperator._(
+    TfArgLiteral('Delete'),
+  );
+  static const overwrite = CdnFrontdoorBatchRuleSetOperator._(
+    TfArgLiteral('Overwrite'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetOperator> values = [
+    append,
+    delete,
+    overwrite,
+  ];
 }
 
 /// Typed helper for the `rule.actions.modify_response_header` block of
@@ -140,7 +166,7 @@ final class CdnFrontdoorBatchRuleSetModifyResponseHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorBatchRuleSetOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -588,16 +614,55 @@ final class CdnFrontdoorBatchRuleSetHostName {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `transforms` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetTransforms._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetTransforms.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetTransforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetTransforms.arg(TfArg<String> arg) : this._(arg);
+
+  static const lowercase = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Lowercase'),
+  );
+  static const removenulls = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('RemoveNulls'),
+  );
+  static const trim = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Trim'),
+  );
+  static const urldecode = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('UrlDecode'),
+  );
+  static const urlencode = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('UrlEncode'),
+  );
+  static const uppercase = CdnFrontdoorBatchRuleSetTransforms._(
+    TfArgLiteral('Uppercase'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetTransforms> values = [
+    lowercase,
+    removenulls,
+    trim,
+    urldecode,
+    urlencode,
+    uppercase,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.http_version` block of
@@ -611,13 +676,45 @@ final class CdnFrontdoorBatchRuleSetHttpVersion {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>> values;
+  final List<CdnFrontdoorBatchRuleSetHttpVersionValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': values.toTfJson(),
+    'values': [for (final e in values) e.toTfJson()],
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetHttpVersionValues._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetHttpVersionValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetHttpVersionValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetHttpVersionValues.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v2p0 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('2.0'),
+  );
+  static const v1p1 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p0 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('1.0'),
+  );
+  static const v0p9 = CdnFrontdoorBatchRuleSetHttpVersionValues._(
+    TfArgLiteral('0.9'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetHttpVersionValues> values = [
+    v2p0,
+    v1p1,
+    v1p0,
+    v0p9,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.post_argument` block of
@@ -635,7 +732,7 @@ final class CdnFrontdoorBatchRuleSetPostArgument {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -643,7 +740,8 @@ final class CdnFrontdoorBatchRuleSetPostArgument {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -660,14 +758,15 @@ final class CdnFrontdoorBatchRuleSetQueryString {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -704,14 +803,15 @@ final class CdnFrontdoorBatchRuleSetRequestBody {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -731,7 +831,7 @@ final class CdnFrontdoorBatchRuleSetRequestCookies {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -739,7 +839,8 @@ final class CdnFrontdoorBatchRuleSetRequestCookies {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -756,14 +857,15 @@ final class CdnFrontdoorBatchRuleSetRequestFileExtension {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -780,14 +882,15 @@ final class CdnFrontdoorBatchRuleSetRequestFilename {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -807,7 +910,7 @@ final class CdnFrontdoorBatchRuleSetRequestHeader {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -815,7 +918,8 @@ final class CdnFrontdoorBatchRuleSetRequestHeader {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -896,14 +1000,15 @@ final class CdnFrontdoorBatchRuleSetRequestPath {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -964,14 +1069,15 @@ final class CdnFrontdoorBatchRuleSetRequestUrl {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorBatchRuleSetTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -987,13 +1093,36 @@ final class CdnFrontdoorBatchRuleSetServerPort {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? values;
+  final List<CdnFrontdoorBatchRuleSetServerPortValues>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': ?values?.toTfJson(),
+    if (values != null) 'values': [for (final e in values!) e.toTfJson()],
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorBatchRuleSetServerPortValues._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorBatchRuleSetServerPortValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorBatchRuleSetServerPortValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorBatchRuleSetServerPortValues.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v80 = CdnFrontdoorBatchRuleSetServerPortValues._(
+    TfArgLiteral('80'),
+  );
+  static const v443 = CdnFrontdoorBatchRuleSetServerPortValues._(
+    TfArgLiteral('443'),
+  );
+
+  static const List<CdnFrontdoorBatchRuleSetServerPortValues> values = [
+    v80,
+    v443,
+  ];
 }
 
 /// Typed helper for the `rule.conditions.socket_address` block of

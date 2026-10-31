@@ -145,7 +145,7 @@ final class BatchAccountNetworkProfile {
 final class BatchAccountAccess {
   const BatchAccountAccess({this.defaultAction, this.ipRule});
 
-  final TfArg<String>? defaultAction;
+  final BatchAccountDefaultAction? defaultAction;
 
   final List<BatchAccountIpRule>? ipRule;
 
@@ -154,6 +154,21 @@ final class BatchAccountAccess {
     'default_action': ?defaultAction?.toTfJson(),
     if (ipRule != null) 'ip_rule': [for (final e in ipRule!) e.encode()],
   };
+}
+
+/// `default_action` — derived from the provider schema description.
+extension type const BatchAccountDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchAccountDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountDefaultAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = BatchAccountDefaultAction._(TfArgLiteral('Allow'));
+  static const deny = BatchAccountDefaultAction._(TfArgLiteral('Deny'));
+
+  static const List<BatchAccountDefaultAction> values = [allow, deny];
 }
 
 /// Typed helper for the `network_profile.account_access.ip_rule` block of
@@ -180,7 +195,7 @@ final class BatchAccountIpRule {
 final class BatchAccountNodeManagementAccess {
   const BatchAccountNodeManagementAccess({this.defaultAction, this.ipRule});
 
-  final TfArg<String>? defaultAction;
+  final BatchAccountDefaultAction? defaultAction;
 
   final List<BatchAccountIpRule>? ipRule;
 

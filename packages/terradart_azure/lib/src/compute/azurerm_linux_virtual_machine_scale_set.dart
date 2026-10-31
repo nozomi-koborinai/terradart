@@ -271,7 +271,7 @@ final class LinuxVirtualMachineScaleSetAutomaticInstanceRepair {
     this.gracePeriod,
   });
 
-  final TfArg<String>? action;
+  final LinuxVirtualMachineScaleSetAction? action;
 
   final TfArg<bool> enabled;
 
@@ -283,6 +283,32 @@ final class LinuxVirtualMachineScaleSetAutomaticInstanceRepair {
     'enabled': enabled.toTfJson(),
     'grace_period': ?gracePeriod?.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const reimage = LinuxVirtualMachineScaleSetAction._(
+    TfArgLiteral('Reimage'),
+  );
+  static const replace = LinuxVirtualMachineScaleSetAction._(
+    TfArgLiteral('Replace'),
+  );
+  static const restart = LinuxVirtualMachineScaleSetAction._(
+    TfArgLiteral('Restart'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetAction> values = [
+    reimage,
+    replace,
+    restart,
+  ];
 }
 
 /// Typed helper for the `automatic_os_upgrade_policy` block of
@@ -336,7 +362,7 @@ final class LinuxVirtualMachineScaleSetDataDisk {
     this.writeAcceleratorEnabled,
   });
 
-  final TfArg<String> caching;
+  final LinuxVirtualMachineScaleSetCaching caching;
 
   final TfArg<String>? createOption;
 
@@ -352,7 +378,7 @@ final class LinuxVirtualMachineScaleSetDataDisk {
 
   final TfArg<String>? name;
 
-  final TfArg<String> storageAccountType;
+  final LinuxVirtualMachineScaleSetStorageAccountType storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -371,6 +397,76 @@ final class LinuxVirtualMachineScaleSetDataDisk {
   };
 }
 
+/// `caching` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = LinuxVirtualMachineScaleSetCaching._(
+    TfArgLiteral('None'),
+  );
+  static const readonly = LinuxVirtualMachineScaleSetCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = LinuxVirtualMachineScaleSetCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineScaleSetStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const premiumv2Lrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('PremiumV2_LRS'),
+  );
+  static const premiumZrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('Premium_ZRS'),
+  );
+  static const standardLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const standardssdZrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('StandardSSD_ZRS'),
+  );
+  static const ultrassdLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
+    TfArgLiteral('UltraSSD_LRS'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetStorageAccountType> values = [
+    premiumLrs,
+    premiumv2Lrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    ultrassdLrs,
+  ];
+}
+
 /// Typed helper for the `extension` block of
 /// `azurerm_linux_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -386,7 +482,6 @@ final class LinuxVirtualMachineScaleSetExtension {
     this.settings,
     required this.type,
     required this.typeHandlerVersion,
-    this.protectedSettingsFromKeyVault,
   });
 
   final TfArg<bool>? autoUpgradeMinorVersion;
@@ -397,7 +492,7 @@ final class LinuxVirtualMachineScaleSetExtension {
 
   final TfArg<String> name;
 
-  final Sensitive<String>? protectedSettings;
+  final LinuxVirtualMachineScaleSetProtectedSettings? protectedSettings;
 
   final TfArg<List<String>>? provisionAfterExtensions;
 
@@ -409,23 +504,86 @@ final class LinuxVirtualMachineScaleSetExtension {
 
   final TfArg<String> typeHandlerVersion;
 
-  final LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault?
-  protectedSettingsFromKeyVault;
-
   @internal
   Map<String, Object?> encode() => {
     'auto_upgrade_minor_version': ?autoUpgradeMinorVersion?.toTfJson(),
     'automatic_upgrade_enabled': ?automaticUpgradeEnabled?.toTfJson(),
     'force_update_tag': ?forceUpdateTag?.toTfJson(),
     'name': name.toTfJson(),
-    'protected_settings': ?protectedSettings?.toTfJson(),
+    ...?protectedSettings?.encode(),
     'provision_after_extensions': ?provisionAfterExtensions?.toTfJson(),
     'publisher': publisher.toTfJson(),
     'settings': ?settings?.toTfJson(),
     'type': type.toTfJson(),
     'type_handler_version': typeHandlerVersion.toTfJson(),
-    'protected_settings_from_key_vault': ?protectedSettingsFromKeyVault
-        ?.encode(),
+  };
+}
+
+/// At most one of `protected_settings`, `protected_settings_from_key_vault` on the `extension` block of `azurerm_linux_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.protectedSettings(...)`.
+sealed class LinuxVirtualMachineScaleSetProtectedSettings {
+  const LinuxVirtualMachineScaleSetProtectedSettings();
+
+  /// Sets `protected_settings`.
+  const factory LinuxVirtualMachineScaleSetProtectedSettings.protectedSettings(
+    Sensitive<String> protectedSettings,
+  ) = LinuxVirtualMachineScaleSetProtectedSettingsChoice;
+
+  /// Sets `protected_settings_from_key_vault`.
+  const factory LinuxVirtualMachineScaleSetProtectedSettings.protectedSettingsFromKeyVault(
+    LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault
+    protectedSettingsFromKeyVault,
+  ) = LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxVirtualMachineScaleSetProtectedSettings.protectedSettings] choice: sets `protected_settings`.
+final class LinuxVirtualMachineScaleSetProtectedSettingsChoice
+    extends LinuxVirtualMachineScaleSetProtectedSettings {
+  const LinuxVirtualMachineScaleSetProtectedSettingsChoice(
+    this.protectedSettings,
+  );
+
+  final Sensitive<String> protectedSettings;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings': protectedSettings.toTfJson(),
+  };
+}
+
+/// The [LinuxVirtualMachineScaleSetProtectedSettings.protectedSettingsFromKeyVault] choice: sets `protected_settings_from_key_vault`.
+final class LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice
+    extends LinuxVirtualMachineScaleSetProtectedSettings {
+  const LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice(
+    this.protectedSettingsFromKeyVault,
+  );
+
+  final LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault
+  protectedSettingsFromKeyVault;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings_from_key_vault';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings_from_key_vault': protectedSettingsFromKeyVault.encode(),
   };
 }
 
@@ -575,7 +733,7 @@ final class LinuxVirtualMachineScaleSetIpConfiguration {
 
   final TfArg<String>? subnetId;
 
-  final TfArg<String>? version;
+  final LinuxVirtualMachineScaleSetVersion? version;
 
   final List<LinuxVirtualMachineScaleSetPublicIpAddress>? publicIpAddress;
 
@@ -595,6 +753,25 @@ final class LinuxVirtualMachineScaleSetIpConfiguration {
     if (publicIpAddress != null)
       'public_ip_address': [for (final e in publicIpAddress!) e.encode()],
   };
+}
+
+/// `version` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4 = LinuxVirtualMachineScaleSetVersion._(
+    TfArgLiteral('IPv4'),
+  );
+  static const ipv6 = LinuxVirtualMachineScaleSetVersion._(
+    TfArgLiteral('IPv6'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetVersion> values = [ipv4, ipv6];
 }
 
 /// Typed helper for the `network_interface.ip_configuration.public_ip_address` block of
@@ -618,7 +795,7 @@ final class LinuxVirtualMachineScaleSetPublicIpAddress {
 
   final TfArg<String>? publicIpPrefixId;
 
-  final TfArg<String>? version;
+  final LinuxVirtualMachineScaleSetVersion? version;
 
   final List<LinuxVirtualMachineScaleSetIpTag>? ipTag;
 
@@ -659,22 +836,19 @@ final class LinuxVirtualMachineScaleSetIpTag {
 final class LinuxVirtualMachineScaleSetOsDisk {
   const LinuxVirtualMachineScaleSetOsDisk({
     required this.caching,
-    this.diskEncryptionSetId,
+    this.encryptionSet,
     this.diskSizeGb,
-    this.secureVmDiskEncryptionSetId,
     this.securityEncryptionType,
     required this.storageAccountType,
     this.writeAcceleratorEnabled,
     this.diffDiskSettings,
   });
 
-  final TfArg<String> caching;
+  final LinuxVirtualMachineScaleSetCaching caching;
 
-  final TfArg<String>? diskEncryptionSetId;
+  final LinuxVirtualMachineScaleSetEncryptionSet? encryptionSet;
 
   final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? secureVmDiskEncryptionSetId;
 
   final TfArg<String>? securityEncryptionType;
 
@@ -687,14 +861,78 @@ final class LinuxVirtualMachineScaleSetOsDisk {
   @internal
   Map<String, Object?> encode() => {
     'caching': caching.toTfJson(),
-    'disk_encryption_set_id': ?diskEncryptionSetId?.toTfJson(),
+    ...?encryptionSet?.encode(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'secure_vm_disk_encryption_set_id': ?secureVmDiskEncryptionSetId
-        ?.toTfJson(),
     'security_encryption_type': ?securityEncryptionType?.toTfJson(),
     'storage_account_type': storageAccountType.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
     'diff_disk_settings': ?diffDiskSettings?.encode(),
+  };
+}
+
+/// At most one of `disk_encryption_set_id`, `secure_vm_disk_encryption_set_id` on the `os_disk` block of `azurerm_linux_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.diskEncryptionSetId(...)`.
+sealed class LinuxVirtualMachineScaleSetEncryptionSet {
+  const LinuxVirtualMachineScaleSetEncryptionSet();
+
+  /// Sets `disk_encryption_set_id`.
+  const factory LinuxVirtualMachineScaleSetEncryptionSet.diskEncryptionSetId(
+    TfArg<String> diskEncryptionSetId,
+  ) = LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId;
+
+  /// Sets `secure_vm_disk_encryption_set_id`.
+  const factory LinuxVirtualMachineScaleSetEncryptionSet.secureVmDiskEncryptionSetId(
+    TfArg<String> secureVmDiskEncryptionSetId,
+  ) = LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxVirtualMachineScaleSetEncryptionSet.diskEncryptionSetId] choice: sets `disk_encryption_set_id`.
+final class LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId
+    extends LinuxVirtualMachineScaleSetEncryptionSet {
+  const LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId(
+    this.diskEncryptionSetId,
+  );
+
+  final TfArg<String> diskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'disk_encryption_set_id': diskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// The [LinuxVirtualMachineScaleSetEncryptionSet.secureVmDiskEncryptionSetId] choice: sets `secure_vm_disk_encryption_set_id`.
+final class LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId
+    extends LinuxVirtualMachineScaleSetEncryptionSet {
+  const LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId(
+    this.secureVmDiskEncryptionSetId,
+  );
+
+  final TfArg<String> secureVmDiskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'secure_vm_disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId.toTfJson(),
   };
 }
 
@@ -709,13 +947,40 @@ final class LinuxVirtualMachineScaleSetDiffDiskSettings {
 
   final TfArg<String> option;
 
-  final TfArg<String>? placement;
+  final LinuxVirtualMachineScaleSetPlacement? placement;
 
   @internal
   Map<String, Object?> encode() => {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `placement` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetPlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetPlacement.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetPlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetPlacement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cachedisk = LinuxVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+  static const nvmedisk = LinuxVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('NvmeDisk'),
+  );
+  static const resourcedisk = LinuxVirtualMachineScaleSetPlacement._(
+    TfArgLiteral('ResourceDisk'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetPlacement> values = [
+    cachedisk,
+    nvmedisk,
+    resourcedisk,
+  ];
 }
 
 /// Typed helper for the `plan` block of
@@ -796,13 +1061,39 @@ final class LinuxVirtualMachineScaleSetScaleIn {
 
   final TfArg<bool>? forceDeletionEnabled;
 
-  final TfArg<String>? rule;
+  final LinuxVirtualMachineScaleSetRule? rule;
 
   @internal
   Map<String, Object?> encode() => {
     'force_deletion_enabled': ?forceDeletionEnabled?.toTfJson(),
     'rule': ?rule?.toTfJson(),
   };
+}
+
+/// `rule` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetRule._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetRule.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetRule.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetRule.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = LinuxVirtualMachineScaleSetRule._(
+    TfArgLiteral('Default'),
+  );
+  static const newestvm = LinuxVirtualMachineScaleSetRule._(
+    TfArgLiteral('NewestVM'),
+  );
+  static const oldestvm = LinuxVirtualMachineScaleSetRule._(
+    TfArgLiteral('OldestVM'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetRule> values = [
+    defaultCase,
+    newestvm,
+    oldestvm,
+  ];
 }
 
 /// Typed helper for the `secret` block of

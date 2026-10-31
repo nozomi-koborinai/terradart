@@ -47342,9 +47342,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'event_delivery_schema',
           dartName: 'eventDeliverySchema',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'EventgridEventSubscriptionEventDeliverySchema',
         ),
         MigrateSlot(
           tfName: 'eventhub_id',
@@ -48208,9 +48208,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'event_delivery_schema',
           dartName: 'eventDeliverySchema',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'EventgridSystemTopicEventSubscriptionEventDeliverySchema',
         ),
         MigrateSlot(
           tfName: 'eventhub_id',
@@ -53925,16 +53925,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tier',
           dartName: 'tier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightHadoopClusterTier',
         ),
         MigrateSlot(
           tfName: 'tls_min_version',
           dartName: 'tlsMinVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightHadoopClusterTlsMinVersion',
         ),
         MigrateSlot(
           tfName: 'component_version',
@@ -54129,16 +54129,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tier',
           dartName: 'tier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightHbaseClusterTier',
         ),
         MigrateSlot(
           tfName: 'tls_min_version',
           dartName: 'tlsMinVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightHbaseClusterTlsMinVersion',
         ),
         MigrateSlot(
           tfName: 'component_version',
@@ -54340,16 +54340,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tier',
           dartName: 'tier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightInteractiveQueryClusterTier',
         ),
         MigrateSlot(
           tfName: 'tls_min_version',
           dartName: 'tlsMinVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightInteractiveQueryClusterTlsMinVersion',
         ),
         MigrateSlot(
           tfName: 'component_version',
@@ -54556,16 +54556,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tier',
           dartName: 'tier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightKafkaClusterTier',
         ),
         MigrateSlot(
           tfName: 'tls_min_version',
           dartName: 'tlsMinVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightKafkaClusterTlsMinVersion',
         ),
         MigrateSlot(
           tfName: 'component_version',
@@ -54785,16 +54785,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tier',
           dartName: 'tier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightSparkClusterTier',
         ),
         MigrateSlot(
           tfName: 'tls_min_version',
           dartName: 'tlsMinVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'HdinsightSparkClusterTlsMinVersion',
         ),
         MigrateSlot(
           tfName: 'zones',
@@ -99029,11 +99029,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'network_profile',
@@ -99144,10 +99148,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'network_profile',
@@ -99270,11 +99279,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'identity',
@@ -99394,11 +99407,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'network_profile',
@@ -99510,11 +99527,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'network_profile',
@@ -99637,11 +99658,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dns_settings',
           dartName: 'dnsSettings',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings',
+          variants: <String, String>{
+            'dns_servers':
+                'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers',
+            'use_azure_dns':
+                'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns',
+          },
         ),
         MigrateSlot(
           tfName: 'identity',
@@ -139412,11 +139437,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'protected_settings',
+          tfName: '',
           dartName: 'protectedSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'protected_settings':
+                'VirtualMachineScaleSetExtensionProtectedSettingsChoice',
+            'protected_settings_from_key_vault':
+                'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'provision_after_extensions',
@@ -139459,15 +139491,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'protected_settings_from_key_vault',
-          dartName: 'protectedSettingsFromKeyVault',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault',
         ),
       ],
       getters: <MigrateGetter>[
@@ -147689,9 +147712,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApiManagementApiDiagnosticMode',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -147708,9 +147731,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApiManagementApiDiagnosticMode',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -149256,9 +149279,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApiManagementDiagnosticMode',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -149275,9 +149298,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApiManagementDiagnosticMode',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -150529,9 +150552,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'runtime_stack',
           dartName: 'runtimeStack',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'AppServiceSourceControlRuntimeStack',
         ),
         MigrateSlot(
           tfName: 'runtime_version',
@@ -150609,9 +150632,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'runtime_stack',
           dartName: 'runtimeStack',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'AppServiceSourceControlSlotRuntimeStack',
         ),
         MigrateSlot(
           tfName: 'runtime_version',
@@ -151841,23 +151864,25 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cipher_suites',
           dartName: 'cipherSuites',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ApplicationGatewayCipherSuites',
         ),
         MigrateSlot(
           tfName: 'disabled_protocols',
           dartName: 'disabledProtocols',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'ApplicationGatewayDisabledProtocols',
         ),
         MigrateSlot(
           tfName: 'min_protocol_version',
           dartName: 'minProtocolVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApplicationGatewayMinProtocolVersion',
         ),
         MigrateSlot(
           tfName: 'policy_name',
@@ -151869,9 +151894,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_type',
           dartName: 'policyType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ApplicationGatewayPolicyType',
         ),
       ],
     ),
@@ -154243,9 +154268,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_action',
           dartName: 'defaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BatchAccountDefaultAction',
         ),
         MigrateSlot(
           tfName: 'ip_rule',
@@ -154342,9 +154367,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_action',
           dartName: 'defaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BatchAccountDefaultAction',
         ),
         MigrateSlot(
           tfName: 'ip_rule',
@@ -156852,9 +156877,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -156878,9 +156904,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'values',
           dartName: 'values',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetHttpVersionValues',
         ),
       ],
     ),
@@ -156904,9 +156931,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetOperator',
         ),
       ],
     ),
@@ -156930,9 +156957,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetOperator',
         ),
       ],
     ),
@@ -156975,9 +157002,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157001,9 +157029,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157046,9 +157075,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157079,9 +157109,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157105,9 +157136,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157131,9 +157163,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157164,9 +157197,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157210,9 +157244,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157256,9 +157291,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157345,9 +157381,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'values',
           dartName: 'values',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorBatchRuleSetServerPortValues',
         ),
       ],
     ),
@@ -158308,9 +158345,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158334,9 +158372,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'values',
           dartName: 'values',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleHttpVersionValues',
         ),
       ],
     ),
@@ -158360,9 +158399,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleOperator',
         ),
       ],
     ),
@@ -158386,9 +158425,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleOperator',
         ),
       ],
     ),
@@ -158431,9 +158470,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158457,9 +158497,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158502,9 +158543,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158535,9 +158577,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158561,9 +158604,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158587,9 +158631,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158620,9 +158665,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158666,9 +158712,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158712,9 +158759,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transforms',
           dartName: 'transforms',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleTransforms',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158759,9 +158807,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'values',
           dartName: 'values',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'CdnFrontdoorRuleServerPortValues',
         ),
       ],
     ),
@@ -160018,9 +160067,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'custom_rule_type',
           dartName: 'customRuleType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerAppCustomRuleType',
         ),
         MigrateSlot(
           tfName: 'identity_id',
@@ -160291,9 +160340,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'workload_profile_type',
           dartName: 'workloadProfileType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerAppEnvironmentWorkloadProfileType',
         ),
       ],
     ),
@@ -160395,9 +160444,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'client_certificate_mode',
           dartName: 'clientCertificateMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerAppClientCertificateMode',
         ),
         MigrateSlot(
           tfName: 'exposed_port',
@@ -160526,9 +160575,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerAppAction',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -161056,9 +161105,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'custom_rule_type',
           dartName: 'customRuleType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ContainerAppJobCustomRuleType',
         ),
         MigrateSlot(
           tfName: 'identity_id',
@@ -162139,9 +162188,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scheme',
           dartName: 'scheme',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ContainerGroupScheme',
         ),
       ],
     ),
@@ -163466,9 +163515,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order_by',
           dartName: 'orderBy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CosmosdbCassandraTableOrderBy',
         ),
       ],
     ),
@@ -163593,9 +163642,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CosmosdbGremlinGraphMode',
         ),
       ],
     ),
@@ -163605,9 +163654,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CosmosdbGremlinGraphOrder',
         ),
         MigrateSlot(
           tfName: 'path',
@@ -163847,9 +163896,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CosmosdbSqlContainerMode',
         ),
       ],
     ),
@@ -163883,9 +163932,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'order',
           dartName: 'order',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CosmosdbSqlContainerOrder',
         ),
         MigrateSlot(
           tfName: 'path',
@@ -169438,9 +169487,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DevTestLinuxVirtualMachineProtocol',
         ),
       ],
     ),
@@ -169620,9 +169669,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DevTestWindowsVirtualMachineProtocol',
         ),
       ],
     ),
@@ -170560,9 +170609,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'EventgridEventSubscriptionDeadLetterIdentityType',
         ),
         MigrateSlot(
           tfName: 'user_assigned_identity',
@@ -170579,9 +170628,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'EventgridEventSubscriptionDeadLetterIdentityType',
         ),
         MigrateSlot(
           tfName: 'user_assigned_identity',
@@ -170619,9 +170668,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'EventgridEventSubscriptionDeliveryPropertyType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -171491,9 +171540,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'EventgridSystemTopicEventSubscriptionDeadLetterIdentityType',
         ),
         MigrateSlot(
           tfName: 'user_assigned_identity',
@@ -171510,9 +171560,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'EventgridSystemTopicEventSubscriptionDeadLetterIdentityType',
         ),
         MigrateSlot(
           tfName: 'user_assigned_identity',
@@ -171550,9 +171601,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'EventgridSystemTopicEventSubscriptionDeliveryPropertyType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -174560,21 +174611,53 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName',
+          },
         ),
       ],
     ),
+    'FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice':
+        MigrateHelper(
+          className:
+              'FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret',
+              dartName: 'clientSecret',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecret',
+        ),
+    'FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName':
+        MigrateHelper(
+          className:
+              'FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_setting_name',
+              dartName: 'clientSecretSettingName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretSettingName',
+        ),
     'FunctionAppFlexConsumptionActiveDirectoryV2': MigrateHelper(
       className: 'FunctionAppFlexConsumptionActiveDirectoryV2',
       slots: <MigrateSlot>[
@@ -174614,18 +174697,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -174664,6 +174747,38 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName':
+        MigrateHelper(
+          className:
+              'FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_setting_name',
+              dartName: 'clientSecretSettingName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretSettingName',
+        ),
     'FunctionAppFlexConsumptionAlwaysReady': MigrateHelper(
       className: 'FunctionAppFlexConsumptionAlwaysReady',
       slots: <MigrateSlot>[
@@ -174682,6 +174797,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'FunctionAppFlexConsumptionAppSecretChoice': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'FunctionAppFlexConsumptionAppSecretSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
     ),
     'FunctionAppFlexConsumptionAppServiceLogs': MigrateHelper(
       className: 'FunctionAppFlexConsumptionAppServiceLogs',
@@ -175045,6 +175188,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'FunctionAppFlexConsumptionConsumerSecretChoice': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'FunctionAppFlexConsumptionConsumerSecretSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
+    ),
     'FunctionAppFlexConsumptionCors': MigrateHelper(
       className: 'FunctionAppFlexConsumptionCors',
       slots: <MigrateSlot>[
@@ -175115,18 +175286,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'FunctionAppFlexConsumptionAppSecretChoice',
+            'app_secret_setting_name':
+                'FunctionAppFlexConsumptionAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -175181,18 +175351,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'FunctionAppFlexConsumptionGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'FunctionAppFlexConsumptionGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -175202,6 +175372,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'FunctionAppFlexConsumptionGithubClientSecretChoice': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'FunctionAppFlexConsumptionGithubClientSecretSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'FunctionAppFlexConsumptionGithubV2': MigrateHelper(
       className: 'FunctionAppFlexConsumptionGithubV2',
@@ -175240,18 +175438,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'FunctionAppFlexConsumptionGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'FunctionAppFlexConsumptionGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -175261,6 +175459,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'FunctionAppFlexConsumptionGoogleClientSecretChoice': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'FunctionAppFlexConsumptionGoogleClientSecretSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'FunctionAppFlexConsumptionGoogleV2': MigrateHelper(
       className: 'FunctionAppFlexConsumptionGoogleV2',
@@ -175435,18 +175661,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'FunctionAppFlexConsumptionTokenStorePath',
+            'token_store_sas_setting_name':
+                'FunctionAppFlexConsumptionTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -175468,18 +175693,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'FunctionAppFlexConsumptionMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'FunctionAppFlexConsumptionMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -175489,6 +175714,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'FunctionAppFlexConsumptionMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'FunctionAppFlexConsumptionMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'FunctionAppFlexConsumptionMicrosoftV2': MigrateHelper(
       className: 'FunctionAppFlexConsumptionMicrosoftV2',
@@ -175674,9 +175927,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FunctionAppFlexConsumptionIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
@@ -175709,9 +175962,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'remote_debugging_version',
           dartName: 'remoteDebuggingVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FunctionAppFlexConsumptionRemoteDebuggingVersion',
         ),
         MigrateSlot(
           tfName: 'runtime_scale_monitoring_enabled',
@@ -175723,9 +175976,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FunctionAppFlexConsumptionScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
@@ -175824,6 +176077,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'FunctionAppFlexConsumptionTokenStorePath': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'FunctionAppFlexConsumptionTokenStoreSasSettingName': MigrateHelper(
+      className: 'FunctionAppFlexConsumptionTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'FunctionAppFlexConsumptionTwitter': MigrateHelper(
       className: 'FunctionAppFlexConsumptionTwitter',
       slots: <MigrateSlot>[
@@ -175835,18 +176116,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'FunctionAppFlexConsumptionConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'FunctionAppFlexConsumptionConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -176076,9 +176356,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_algorithm',
           dartName: 'encryptionAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHadoopClusterEncryptionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'encryption_at_host_enabled',
@@ -176369,9 +176649,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ip_allocation_method',
           dartName: 'privateIpAllocationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHadoopClusterPrivateIpAllocationMethod',
         ),
         MigrateSlot(
           tfName: 'subnet_id',
@@ -176436,9 +176716,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_direction',
           dartName: 'connectionDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHadoopClusterConnectionDirection',
         ),
         MigrateSlot(
           tfName: 'private_link_enabled',
@@ -176975,9 +177255,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_algorithm',
           dartName: 'encryptionAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHbaseClusterEncryptionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'encryption_at_host_enabled',
@@ -177156,9 +177436,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ip_allocation_method',
           dartName: 'privateIpAllocationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHbaseClusterPrivateIpAllocationMethod',
         ),
         MigrateSlot(
           tfName: 'subnet_id',
@@ -177223,9 +177503,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_direction',
           dartName: 'connectionDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightHbaseClusterConnectionDirection',
         ),
         MigrateSlot(
           tfName: 'private_link_enabled',
@@ -177728,9 +178008,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_algorithm',
           dartName: 'encryptionAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightInteractiveQueryClusterEncryptionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'encryption_at_host_enabled',
@@ -177909,9 +178189,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ip_allocation_method',
           dartName: 'privateIpAllocationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightInteractiveQueryClusterPrivateIpAllocationMethod',
         ),
         MigrateSlot(
           tfName: 'subnet_id',
@@ -177976,9 +178256,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_direction',
           dartName: 'connectionDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightInteractiveQueryClusterConnectionDirection',
         ),
         MigrateSlot(
           tfName: 'private_link_enabled',
@@ -178468,9 +178748,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_algorithm',
           dartName: 'encryptionAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightKafkaClusterEncryptionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'encryption_at_host_enabled',
@@ -178649,9 +178929,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ip_allocation_method',
           dartName: 'privateIpAllocationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightKafkaClusterPrivateIpAllocationMethod',
         ),
         MigrateSlot(
           tfName: 'subnet_id',
@@ -178765,9 +179045,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_direction',
           dartName: 'connectionDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightKafkaClusterConnectionDirection',
         ),
         MigrateSlot(
           tfName: 'private_link_enabled',
@@ -179276,9 +179556,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'encryption_algorithm',
           dartName: 'encryptionAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightSparkClusterEncryptionAlgorithm',
         ),
         MigrateSlot(
           tfName: 'encryption_at_host_enabled',
@@ -179457,9 +179737,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_ip_allocation_method',
           dartName: 'privateIpAllocationMethod',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightSparkClusterPrivateIpAllocationMethod',
         ),
         MigrateSlot(
           tfName: 'subnet_id',
@@ -179524,9 +179804,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'connection_direction',
           dartName: 'connectionDirection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'HdinsightSparkClusterConnectionDirection',
         ),
         MigrateSlot(
           tfName: 'private_link_enabled',
@@ -183293,9 +183573,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolProtocol',
         ),
       ],
     ),
@@ -183340,9 +183620,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cpu_manager_policy',
           dartName: 'cpuManagerPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolCpuManagerPolicy',
         ),
         MigrateSlot(
           tfName: 'image_gc_high_threshold',
@@ -183368,9 +183648,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'topology_manager_policy',
           dartName: 'topologyManagerPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolTopologyManagerPolicy',
         ),
       ],
     ),
@@ -183387,16 +183667,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'transparent_huge_page',
           dartName: 'transparentHugePage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolTransparentHugePage',
         ),
         MigrateSlot(
           tfName: 'transparent_huge_page_defrag',
           dartName: 'transparentHugePageDefrag',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolTransparentHugePageDefrag',
         ),
         MigrateSlot(
           tfName: 'sysctl_config',
@@ -183435,6 +183715,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           helper: 'KubernetesClusterNodePoolAllowedHostPorts',
         ),
       ],
+    ),
+    'KubernetesClusterNodePoolSurgeLimitMaxSurge': MigrateHelper(
+      className: 'KubernetesClusterNodePoolSurgeLimitMaxSurge',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_surge',
+          dartName: 'maxSurge',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'maxSurge',
+    ),
+    'KubernetesClusterNodePoolSurgeLimitMaxUnavailable': MigrateHelper(
+      className: 'KubernetesClusterNodePoolSurgeLimitMaxUnavailable',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_unavailable',
+          dartName: 'maxUnavailable',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'maxUnavailable',
     ),
     'KubernetesClusterNodePoolSysctlConfig': MigrateHelper(
       className: 'KubernetesClusterNodePoolSysctlConfig',
@@ -183655,18 +183963,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
-          tfName: 'max_surge',
-          dartName: 'maxSurge',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'surgeLimit',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'max_unavailable',
-          dartName: 'maxUnavailable',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'max_surge': 'KubernetesClusterNodePoolSurgeLimitMaxSurge',
+            'max_unavailable':
+                'KubernetesClusterNodePoolSurgeLimitMaxUnavailable',
+          },
         ),
         MigrateSlot(
           tfName: 'node_soak_duration_in_minutes',
@@ -183678,9 +183985,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'undrainable_node_behavior',
           dartName: 'undrainableNodeBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'KubernetesClusterNodePoolUndrainableNodeBehavior',
         ),
       ],
     ),
@@ -185496,20 +185803,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'LinuxFunctionAppActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'LinuxFunctionAppActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppActiveDirectoryV2': MigrateHelper(
       className: 'LinuxFunctionAppActiveDirectoryV2',
@@ -185550,18 +185885,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -185600,6 +185935,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
     'LinuxFunctionAppAppleV2': MigrateHelper(
       className: 'LinuxFunctionAppAppleV2',
       slots: <MigrateSlot>[
@@ -185623,46 +185988,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       className: 'LinuxFunctionAppApplicationStack',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'dotnet_version',
-          dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppDotnetVersion',
-        ),
-        MigrateSlot(
-          tfName: 'java_version',
-          dartName: 'javaVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppJavaVersion',
-        ),
-        MigrateSlot(
-          tfName: 'node_version',
-          dartName: 'nodeVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppNodeVersion',
-        ),
-        MigrateSlot(
-          tfName: 'powershell_core_version',
-          dartName: 'powershellCoreVersion',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'python_version',
-          dartName: 'pythonVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppPythonVersion',
-        ),
-        MigrateSlot(
-          tfName: 'use_custom_runtime',
-          dartName: 'useCustomRuntime',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          tfName: '',
+          dartName: 'runtime',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'docker': 'LinuxFunctionAppRuntimeDocker',
+            'dotnet_version': 'LinuxFunctionAppRuntimeDotnetVersion',
+            'java_version': 'LinuxFunctionAppRuntimeJavaVersion',
+            'node_version': 'LinuxFunctionAppRuntimeNodeVersion',
+            'powershell_core_version':
+                'LinuxFunctionAppRuntimePowershellCoreVersion',
+            'python_version': 'LinuxFunctionAppRuntimePythonVersion',
+            'use_custom_runtime': 'LinuxFunctionAppUseCustomRuntime',
+          },
         ),
         MigrateSlot(
           tfName: 'use_dotnet_isolated_runtime',
@@ -185670,15 +186011,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'docker',
-          dartName: 'docker',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'LinuxFunctionAppDocker',
         ),
       ],
     ),
@@ -186029,7 +186361,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'LinuxFunctionAppType',
+          dartType: 'LinuxFunctionAppConnectionStringType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -186039,6 +186371,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxFunctionAppConsumerSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'LinuxFunctionAppConsumerSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
     ),
     'LinuxFunctionAppCors': MigrateHelper(
       className: 'LinuxFunctionAppCors',
@@ -186150,18 +186510,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'LinuxFunctionAppSecretChoice',
+            'app_secret_setting_name': 'LinuxFunctionAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -186216,18 +186574,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -186237,6 +186594,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppGithubClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppGithubClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppGithubV2': MigrateHelper(
       className: 'LinuxFunctionAppGithubV2',
@@ -186275,18 +186660,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -186296,6 +186680,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppGoogleClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppGoogleClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppGoogleV2': MigrateHelper(
       className: 'LinuxFunctionAppGoogleV2',
@@ -186470,18 +186882,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'LinuxFunctionAppTokenStorePath',
+            'token_store_sas_setting_name':
+                'LinuxFunctionAppTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -186503,18 +186914,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -186524,6 +186934,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppMicrosoftV2': MigrateHelper(
       className: 'LinuxFunctionAppMicrosoftV2',
@@ -186557,6 +186995,92 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppRuntimeDocker': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimeDocker',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'docker',
+          dartName: 'docker',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxFunctionAppDocker',
+        ),
+      ],
+      shorthand: 'docker',
+    ),
+    'LinuxFunctionAppRuntimeDotnetVersion': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimeDotnetVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dotnet_version',
+          dartName: 'dotnetVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppDotnetVersion',
+        ),
+      ],
+      shorthand: 'dotnetVersion',
+    ),
+    'LinuxFunctionAppRuntimeJavaVersion': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimeJavaVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'java_version',
+          dartName: 'javaVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppJavaVersion',
+        ),
+      ],
+      shorthand: 'javaVersion',
+    ),
+    'LinuxFunctionAppRuntimeNodeVersion': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimeNodeVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_version',
+          dartName: 'nodeVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppNodeVersion',
+        ),
+      ],
+      shorthand: 'nodeVersion',
+    ),
+    'LinuxFunctionAppRuntimePowershellCoreVersion': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimePowershellCoreVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'powershell_core_version',
+          dartName: 'powershellCoreVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppPowershellCoreVersion',
+        ),
+      ],
+      shorthand: 'powershellCoreVersion',
+    ),
+    'LinuxFunctionAppRuntimePythonVersion': MigrateHelper(
+      className: 'LinuxFunctionAppRuntimePythonVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'python_version',
+          dartName: 'pythonVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppPythonVersion',
+        ),
+      ],
+      shorthand: 'pythonVersion',
     ),
     'LinuxFunctionAppSchedule': MigrateHelper(
       className: 'LinuxFunctionAppSchedule',
@@ -186658,6 +187182,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxFunctionAppSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'LinuxFunctionAppSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
     ),
     'LinuxFunctionAppServiceLogs': MigrateHelper(
       className: 'LinuxFunctionAppServiceLogs',
@@ -186789,9 +187341,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
@@ -186810,9 +187362,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
@@ -186852,9 +187404,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
@@ -186960,20 +187512,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'LinuxFunctionAppSlotActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'LinuxFunctionAppSlotActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppSlotActiveDirectoryV2': MigrateHelper(
       className: 'LinuxFunctionAppSlotActiveDirectoryV2',
@@ -187014,18 +187594,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -187063,6 +187643,66 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName':
+        MigrateHelper(
+          className:
+              'LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_setting_name',
+              dartName: 'clientSecretSettingName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretSettingName',
+        ),
+    'LinuxFunctionAppSlotAppSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'LinuxFunctionAppSlotAppSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
     ),
     'LinuxFunctionAppSlotAppServiceLogs': MigrateHelper(
       className: 'LinuxFunctionAppSlotAppServiceLogs',
@@ -187106,46 +187746,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       className: 'LinuxFunctionAppSlotApplicationStack',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'dotnet_version',
-          dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppSlotDotnetVersion',
-        ),
-        MigrateSlot(
-          tfName: 'java_version',
-          dartName: 'javaVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppSlotJavaVersion',
-        ),
-        MigrateSlot(
-          tfName: 'node_version',
-          dartName: 'nodeVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppSlotNodeVersion',
-        ),
-        MigrateSlot(
-          tfName: 'powershell_core_version',
-          dartName: 'powershellCoreVersion',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'python_version',
-          dartName: 'pythonVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'LinuxFunctionAppSlotPythonVersion',
-        ),
-        MigrateSlot(
-          tfName: 'use_custom_runtime',
-          dartName: 'useCustomRuntime',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          tfName: '',
+          dartName: 'runtime',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'docker': 'LinuxFunctionAppSlotRuntimeDocker',
+            'dotnet_version': 'LinuxFunctionAppSlotRuntimeDotnetVersion',
+            'java_version': 'LinuxFunctionAppSlotRuntimeJavaVersion',
+            'node_version': 'LinuxFunctionAppSlotRuntimeNodeVersion',
+            'powershell_core_version':
+                'LinuxFunctionAppSlotRuntimePowershellCoreVersion',
+            'python_version': 'LinuxFunctionAppSlotRuntimePythonVersion',
+            'use_custom_runtime': 'LinuxFunctionAppSlotUseCustomRuntime',
+          },
         ),
         MigrateSlot(
           tfName: 'use_dotnet_isolated_runtime',
@@ -187153,15 +187769,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'docker',
-          dartName: 'docker',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'LinuxFunctionAppSlotDocker',
         ),
       ],
     ),
@@ -187512,7 +188119,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'LinuxFunctionAppSlotType',
+          dartType: 'LinuxFunctionAppSlotConnectionStringType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -187522,6 +188129,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotConsumerSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'LinuxFunctionAppSlotConsumerSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
     ),
     'LinuxFunctionAppSlotCors': MigrateHelper(
       className: 'LinuxFunctionAppSlotCors',
@@ -187633,18 +188268,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'LinuxFunctionAppSlotAppSecretChoice',
+            'app_secret_setting_name':
+                'LinuxFunctionAppSlotAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -187699,18 +188333,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppSlotGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppSlotGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -187720,6 +188353,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotGithubClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppSlotGithubClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppSlotGithubV2': MigrateHelper(
       className: 'LinuxFunctionAppSlotGithubV2',
@@ -187758,18 +188419,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppSlotGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppSlotGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -187779,6 +188439,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotGoogleClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppSlotGoogleClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppSlotGoogleV2': MigrateHelper(
       className: 'LinuxFunctionAppSlotGoogleV2',
@@ -187953,18 +188641,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'LinuxFunctionAppSlotTokenStorePath',
+            'token_store_sas_setting_name':
+                'LinuxFunctionAppSlotTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -187986,18 +188673,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxFunctionAppSlotMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxFunctionAppSlotMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -188007,6 +188693,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'LinuxFunctionAppSlotMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxFunctionAppSlotMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxFunctionAppSlotMicrosoftV2': MigrateHelper(
       className: 'LinuxFunctionAppSlotMicrosoftV2',
@@ -188040,6 +188754,92 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotRuntimeDocker': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimeDocker',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'docker',
+          dartName: 'docker',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxFunctionAppSlotDocker',
+        ),
+      ],
+      shorthand: 'docker',
+    ),
+    'LinuxFunctionAppSlotRuntimeDotnetVersion': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimeDotnetVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dotnet_version',
+          dartName: 'dotnetVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppSlotDotnetVersion',
+        ),
+      ],
+      shorthand: 'dotnetVersion',
+    ),
+    'LinuxFunctionAppSlotRuntimeJavaVersion': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimeJavaVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'java_version',
+          dartName: 'javaVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppSlotJavaVersion',
+        ),
+      ],
+      shorthand: 'javaVersion',
+    ),
+    'LinuxFunctionAppSlotRuntimeNodeVersion': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimeNodeVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_version',
+          dartName: 'nodeVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppSlotNodeVersion',
+        ),
+      ],
+      shorthand: 'nodeVersion',
+    ),
+    'LinuxFunctionAppSlotRuntimePowershellCoreVersion': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimePowershellCoreVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'powershell_core_version',
+          dartName: 'powershellCoreVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppSlotPowershellCoreVersion',
+        ),
+      ],
+      shorthand: 'powershellCoreVersion',
+    ),
+    'LinuxFunctionAppSlotRuntimePythonVersion': MigrateHelper(
+      className: 'LinuxFunctionAppSlotRuntimePythonVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'python_version',
+          dartName: 'pythonVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'LinuxFunctionAppSlotPythonVersion',
+        ),
+      ],
+      shorthand: 'pythonVersion',
     ),
     'LinuxFunctionAppSlotSchedule': MigrateHelper(
       className: 'LinuxFunctionAppSlotSchedule',
@@ -188260,9 +189060,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppSlotIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
@@ -188281,9 +189081,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppSlotMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
@@ -188323,9 +189123,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppSlotScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
@@ -188484,9 +189284,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppSlotStorageAccountType',
         ),
       ],
     ),
@@ -188519,6 +189319,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'storageKeyVaultSecretId',
     ),
+    'LinuxFunctionAppSlotTokenStorePath': MigrateHelper(
+      className: 'LinuxFunctionAppSlotTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'LinuxFunctionAppSlotTokenStoreSasSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppSlotTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'LinuxFunctionAppSlotTwitter': MigrateHelper(
       className: 'LinuxFunctionAppSlotTwitter',
       slots: <MigrateSlot>[
@@ -188530,18 +189358,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'LinuxFunctionAppSlotConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'LinuxFunctionAppSlotConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -188563,6 +189390,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxFunctionAppSlotUseCustomRuntime': MigrateHelper(
+      className: 'LinuxFunctionAppSlotUseCustomRuntime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_custom_runtime',
+          dartName: 'useCustomRuntime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'useCustomRuntime',
     ),
     'LinuxFunctionAppStickySettings': MigrateHelper(
       className: 'LinuxFunctionAppStickySettings',
@@ -188652,9 +189493,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxFunctionAppStorageAccountType',
         ),
       ],
     ),
@@ -188687,6 +189528,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'storageKeyVaultSecretId',
     ),
+    'LinuxFunctionAppTokenStorePath': MigrateHelper(
+      className: 'LinuxFunctionAppTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'LinuxFunctionAppTokenStoreSasSettingName': MigrateHelper(
+      className: 'LinuxFunctionAppTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'LinuxFunctionAppTwitter': MigrateHelper(
       className: 'LinuxFunctionAppTwitter',
       slots: <MigrateSlot>[
@@ -188698,18 +189567,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'LinuxFunctionAppConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'LinuxFunctionAppConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -188731,6 +189599,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxFunctionAppUseCustomRuntime': MigrateHelper(
+      className: 'LinuxFunctionAppUseCustomRuntime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_custom_runtime',
+          dartName: 'useCustomRuntime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'useCustomRuntime',
     ),
     'LinuxVirtualMachineAdditionalCapabilities': MigrateHelper(
       className: 'LinuxVirtualMachineAdditionalCapabilities',
@@ -188835,12 +189717,42 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'placement',
           dartName: 'placement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachinePlacement',
         ),
       ],
     ),
+    'LinuxVirtualMachineEncryptionSetDiskEncryptionSetId': MigrateHelper(
+      className: 'LinuxVirtualMachineEncryptionSetDiskEncryptionSetId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_encryption_set_id',
+          dartName: 'diskEncryptionSetId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'diskEncryptionSetId',
+    ),
+    'LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secure_vm_disk_encryption_set_id',
+              dartName: 'secureVmDiskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'secureVmDiskEncryptionSetId',
+        ),
     'LinuxVirtualMachineGalleryApplication': MigrateHelper(
       className: 'LinuxVirtualMachineGalleryApplication',
       slots: <MigrateSlot>[
@@ -188913,16 +189825,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineCaching',
         ),
         MigrateSlot(
-          tfName: 'disk_encryption_set_id',
-          dartName: 'diskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'encryptionSet',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'disk_encryption_set_id':
+                'LinuxVirtualMachineEncryptionSetDiskEncryptionSetId',
+            'secure_vm_disk_encryption_set_id':
+                'LinuxVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId',
+          },
         ),
         MigrateSlot(
           tfName: 'disk_size_gb',
@@ -188934,13 +189853,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'secure_vm_disk_encryption_set_id',
-          dartName: 'secureVmDiskEncryptionSetId',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -189091,9 +190003,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetAction',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -189174,9 +190086,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
           tfName: 'create_option',
@@ -189230,9 +190142,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_account_type',
           dartName: 'storageAccountType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetStorageAccountType',
         ),
         MigrateSlot(
           tfName: 'write_accelerator_enabled',
@@ -189256,12 +190168,44 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'placement',
           dartName: 'placement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetPlacement',
         ),
       ],
     ),
+    'LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disk_encryption_set_id',
+              dartName: 'diskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'diskEncryptionSetId',
+        ),
+    'LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secure_vm_disk_encryption_set_id',
+              dartName: 'secureVmDiskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'secureVmDiskEncryptionSetId',
+        ),
     'LinuxVirtualMachineScaleSetExtension': MigrateHelper(
       className: 'LinuxVirtualMachineScaleSetExtension',
       slots: <MigrateSlot>[
@@ -189294,11 +190238,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'protected_settings',
+          tfName: '',
           dartName: 'protectedSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'protected_settings':
+                'LinuxVirtualMachineScaleSetProtectedSettingsChoice',
+            'protected_settings_from_key_vault':
+                'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'provision_after_extensions',
@@ -189334,14 +190285,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'protected_settings_from_key_vault',
-          dartName: 'protectedSettingsFromKeyVault',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault',
         ),
       ],
     ),
@@ -189452,9 +190395,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'public_ip_address',
@@ -189562,16 +190505,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
-          tfName: 'disk_encryption_set_id',
-          dartName: 'diskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'encryptionSet',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'disk_encryption_set_id':
+                'LinuxVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId',
+            'secure_vm_disk_encryption_set_id':
+                'LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId',
+          },
         ),
         MigrateSlot(
           tfName: 'disk_size_gb',
@@ -189579,13 +190529,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'secure_vm_disk_encryption_set_id',
-          dartName: 'secureVmDiskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'security_encryption_type',
@@ -189644,6 +190587,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxVirtualMachineScaleSetProtectedSettingsChoice': MigrateHelper(
+      className: 'LinuxVirtualMachineScaleSetProtectedSettingsChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'protected_settings',
+          dartName: 'protectedSettings',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'protectedSettings',
+    ),
     'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault': MigrateHelper(
       className: 'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault',
       slots: <MigrateSlot>[
@@ -189663,6 +190620,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice':
+        MigrateHelper(
+          className:
+              'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'protected_settings_from_key_vault',
+              dartName: 'protectedSettingsFromKeyVault',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault',
+            ),
+          ],
+          shorthand: 'protectedSettingsFromKeyVault',
+        ),
     'LinuxVirtualMachineScaleSetProximityPlacementGroupId': MigrateHelper(
       className: 'LinuxVirtualMachineScaleSetProximityPlacementGroupId',
       slots: <MigrateSlot>[
@@ -189711,9 +190686,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'ip_tag',
@@ -189793,9 +190768,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'rule',
           dartName: 'rule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxVirtualMachineScaleSetRule',
         ),
       ],
     ),
@@ -190059,20 +191034,47 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'LinuxWebAppActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppActiveDirectoryV2': MigrateHelper(
       className: 'LinuxWebAppActiveDirectoryV2',
@@ -190113,18 +191115,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'LinuxWebAppActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -190163,6 +191165,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'LinuxWebAppActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
     'LinuxWebAppAppleV2': MigrateHelper(
       className: 'LinuxWebAppAppleV2',
       slots: <MigrateSlot>[
@@ -190188,9 +191220,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_system_level',
           dartName: 'fileSystemLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxWebAppFileSystemLevel',
         ),
         MigrateSlot(
           tfName: 'azure_blob_storage',
@@ -190262,23 +191294,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dotnet_version',
           dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppDotnetVersion',
         ),
         MigrateSlot(
           tfName: 'go_version',
           dartName: 'goVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppGoVersion',
         ),
         MigrateSlot(
           tfName: 'java_server',
           dartName: 'javaServer',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppJavaServer',
         ),
         MigrateSlot(
           tfName: 'java_server_version',
@@ -190290,30 +191322,30 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'java_version',
           dartName: 'javaVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppJavaVersion',
         ),
         MigrateSlot(
           tfName: 'node_version',
           dartName: 'nodeVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppNodeVersion',
         ),
         MigrateSlot(
           tfName: 'php_version',
           dartName: 'phpVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppPhpVersion',
         ),
         MigrateSlot(
           tfName: 'python_version',
           dartName: 'pythonVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppPythonVersion',
         ),
       ],
     ),
@@ -190685,7 +191717,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'LinuxWebAppType',
+          dartType: 'LinuxWebAppConnectionStringType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -190695,6 +191727,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxWebAppConsumerSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'LinuxWebAppConsumerSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
     ),
     'LinuxWebAppCors': MigrateHelper(
       className: 'LinuxWebAppCors',
@@ -190766,18 +191826,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'LinuxWebAppSecretChoice',
+            'app_secret_setting_name': 'LinuxWebAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -190851,18 +191909,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -190872,6 +191929,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppGithubClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppGithubClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppGithubV2': MigrateHelper(
       className: 'LinuxWebAppGithubV2',
@@ -190910,18 +191995,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -190931,6 +192015,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppGoogleClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppGoogleClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppGoogleV2': MigrateHelper(
       className: 'LinuxWebAppGoogleV2',
@@ -190965,27 +192077,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LinuxWebAppHttpLogs': MigrateHelper(
-      className: 'LinuxWebAppHttpLogs',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'azure_blob_storage',
-          dartName: 'azureBlobStorage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxWebAppHttpLogsAzureBlobStorage',
-        ),
-        MigrateSlot(
-          tfName: 'file_system',
-          dartName: 'fileSystem',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxWebAppFileSystem',
-        ),
-      ],
-    ),
     'LinuxWebAppHttpLogsAzureBlobStorage': MigrateHelper(
       className: 'LinuxWebAppHttpLogsAzureBlobStorage',
       slots: <MigrateSlot>[
@@ -191004,6 +192095,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxWebAppHttpLogsAzureBlobStorageChoice': MigrateHelper(
+      className: 'LinuxWebAppHttpLogsAzureBlobStorageChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_storage',
+          dartName: 'azureBlobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxWebAppHttpLogsAzureBlobStorage',
+        ),
+      ],
+      shorthand: 'azureBlobStorage',
+    ),
+    'LinuxWebAppHttpLogsFileSystem': MigrateHelper(
+      className: 'LinuxWebAppHttpLogsFileSystem',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'file_system',
+          dartName: 'fileSystem',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxWebAppFileSystem',
+        ),
+      ],
+      shorthand: 'fileSystem',
     ),
     'LinuxWebAppIdentity': MigrateHelper(
       className: 'LinuxWebAppIdentity',
@@ -191145,18 +192266,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'LinuxWebAppTokenStorePath',
+            'token_store_sas_setting_name':
+                'LinuxWebAppTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -191195,10 +192315,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_logs',
           dartName: 'httpLogs',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'LinuxWebAppHttpLogs',
+          variants: <String, String>{
+            'azure_blob_storage': 'LinuxWebAppHttpLogsAzureBlobStorageChoice',
+            'file_system': 'LinuxWebAppHttpLogsFileSystem',
+          },
         ),
       ],
     ),
@@ -191213,18 +192336,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -191234,6 +192356,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppMicrosoftV2': MigrateHelper(
       className: 'LinuxWebAppMicrosoftV2',
@@ -191388,6 +192538,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxWebAppSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'LinuxWebAppSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
+    ),
     'LinuxWebAppSiteConfig': MigrateHelper(
       className: 'LinuxWebAppSiteConfig',
       slots: <MigrateSlot>[
@@ -191443,9 +192621,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ftps_state',
           dartName: 'ftpsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppFtpsState',
         ),
         MigrateSlot(
           tfName: 'health_check_eviction_time_in_min',
@@ -191471,16 +192649,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
           dartName: 'loadBalancingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppLoadBalancingMode',
         ),
         MigrateSlot(
           tfName: 'local_mysql_enabled',
@@ -191492,23 +192670,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_pipeline_mode',
           dartName: 'managedPipelineMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppManagedPipelineMode',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
           dartName: 'minimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'remote_debugging_enabled',
@@ -191527,16 +192705,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
           dartName: 'scmMinimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppScmMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'scm_use_main_ip_restriction',
@@ -191654,20 +192832,47 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppSlotActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppSlotActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'LinuxWebAppSlotActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppSlotActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppSlotActiveDirectoryV2': MigrateHelper(
       className: 'LinuxWebAppSlotActiveDirectoryV2',
@@ -191708,18 +192913,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -191758,6 +192963,64 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
+    'LinuxWebAppSlotAppSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'LinuxWebAppSlotAppSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
+    ),
     'LinuxWebAppSlotAppleV2': MigrateHelper(
       className: 'LinuxWebAppSlotAppleV2',
       slots: <MigrateSlot>[
@@ -191783,9 +193046,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_system_level',
           dartName: 'fileSystemLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotFileSystemLevel',
         ),
         MigrateSlot(
           tfName: 'azure_blob_storage',
@@ -191857,23 +193120,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dotnet_version',
           dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotDotnetVersion',
         ),
         MigrateSlot(
           tfName: 'go_version',
           dartName: 'goVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotGoVersion',
         ),
         MigrateSlot(
           tfName: 'java_server',
           dartName: 'javaServer',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotJavaServer',
         ),
         MigrateSlot(
           tfName: 'java_server_version',
@@ -191885,30 +193148,30 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'java_version',
           dartName: 'javaVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotJavaVersion',
         ),
         MigrateSlot(
           tfName: 'node_version',
           dartName: 'nodeVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotNodeVersion',
         ),
         MigrateSlot(
           tfName: 'php_version',
           dartName: 'phpVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotPhpVersion',
         ),
         MigrateSlot(
           tfName: 'python_version',
           dartName: 'pythonVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotPythonVersion',
         ),
       ],
     ),
@@ -192280,7 +193543,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'LinuxWebAppSlotType',
+          dartType: 'LinuxWebAppSlotConnectionStringType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -192290,6 +193553,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxWebAppSlotConsumerSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'LinuxWebAppSlotConsumerSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
     ),
     'LinuxWebAppSlotCors': MigrateHelper(
       className: 'LinuxWebAppSlotCors',
@@ -192361,18 +193652,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'LinuxWebAppSlotAppSecretChoice',
+            'app_secret_setting_name': 'LinuxWebAppSlotAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -192446,18 +193735,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppSlotGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppSlotGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -192467,6 +193755,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppSlotGithubClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppSlotGithubClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppSlotGithubV2': MigrateHelper(
       className: 'LinuxWebAppSlotGithubV2',
@@ -192505,18 +193821,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppSlotGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppSlotGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -192526,6 +193841,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppSlotGoogleClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppSlotGoogleClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppSlotGoogleV2': MigrateHelper(
       className: 'LinuxWebAppSlotGoogleV2',
@@ -192560,27 +193903,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LinuxWebAppSlotHttpLogs': MigrateHelper(
-      className: 'LinuxWebAppSlotHttpLogs',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'azure_blob_storage',
-          dartName: 'azureBlobStorage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxWebAppSlotHttpLogsAzureBlobStorage',
-        ),
-        MigrateSlot(
-          tfName: 'file_system',
-          dartName: 'fileSystem',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxWebAppSlotFileSystem',
-        ),
-      ],
-    ),
     'LinuxWebAppSlotHttpLogsAzureBlobStorage': MigrateHelper(
       className: 'LinuxWebAppSlotHttpLogsAzureBlobStorage',
       slots: <MigrateSlot>[
@@ -192599,6 +193921,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxWebAppSlotHttpLogsAzureBlobStorageChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotHttpLogsAzureBlobStorageChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_storage',
+          dartName: 'azureBlobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxWebAppSlotHttpLogsAzureBlobStorage',
+        ),
+      ],
+      shorthand: 'azureBlobStorage',
+    ),
+    'LinuxWebAppSlotHttpLogsFileSystem': MigrateHelper(
+      className: 'LinuxWebAppSlotHttpLogsFileSystem',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'file_system',
+          dartName: 'fileSystem',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxWebAppSlotFileSystem',
+        ),
+      ],
+      shorthand: 'fileSystem',
     ),
     'LinuxWebAppSlotIdentity': MigrateHelper(
       className: 'LinuxWebAppSlotIdentity',
@@ -192740,18 +194092,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'LinuxWebAppSlotTokenStorePath',
+            'token_store_sas_setting_name':
+                'LinuxWebAppSlotTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -192790,10 +194141,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_logs',
           dartName: 'httpLogs',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'LinuxWebAppSlotHttpLogs',
+          variants: <String, String>{
+            'azure_blob_storage':
+                'LinuxWebAppSlotHttpLogsAzureBlobStorageChoice',
+            'file_system': 'LinuxWebAppSlotHttpLogsFileSystem',
+          },
         ),
       ],
     ),
@@ -192808,18 +194163,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'LinuxWebAppSlotMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'LinuxWebAppSlotMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -192829,6 +194183,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'LinuxWebAppSlotMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'LinuxWebAppSlotMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'LinuxWebAppSlotMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'LinuxWebAppSlotMicrosoftV2': MigrateHelper(
       className: 'LinuxWebAppSlotMicrosoftV2',
@@ -193045,9 +194427,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ftps_state',
           dartName: 'ftpsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotFtpsState',
         ),
         MigrateSlot(
           tfName: 'health_check_eviction_time_in_min',
@@ -193073,16 +194455,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
           dartName: 'loadBalancingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotLoadBalancingMode',
         ),
         MigrateSlot(
           tfName: 'local_mysql_enabled',
@@ -193094,23 +194476,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_pipeline_mode',
           dartName: 'managedPipelineMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotManagedPipelineMode',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
           dartName: 'minimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'remote_debugging_enabled',
@@ -193129,16 +194511,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
           dartName: 'scmMinimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LinuxWebAppSlotScmMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'scm_use_main_ip_restriction',
@@ -193366,11 +194748,39 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'LinuxWebAppSlotStorageAccountType',
+        ),
+      ],
+    ),
+    'LinuxWebAppSlotTokenStorePath': MigrateHelper(
+      className: 'LinuxWebAppSlotTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
           kind: MigrateSlotKind.scalar,
           required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'tokenStorePath',
+    ),
+    'LinuxWebAppSlotTokenStoreSasSettingName': MigrateHelper(
+      className: 'LinuxWebAppSlotTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
     ),
     'LinuxWebAppSlotTrigger': MigrateHelper(
       className: 'LinuxWebAppSlotTrigger',
@@ -193422,18 +194832,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'LinuxWebAppSlotConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'LinuxWebAppSlotConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -193622,11 +195031,39 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'LinuxWebAppStorageAccountType',
+        ),
+      ],
+    ),
+    'LinuxWebAppTokenStorePath': MigrateHelper(
+      className: 'LinuxWebAppTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
           kind: MigrateSlotKind.scalar,
           required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'tokenStorePath',
+    ),
+    'LinuxWebAppTokenStoreSasSettingName': MigrateHelper(
+      className: 'LinuxWebAppTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
     ),
     'LinuxWebAppTrigger': MigrateHelper(
       className: 'LinuxWebAppTrigger',
@@ -193678,18 +195115,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'LinuxWebAppConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'LinuxWebAppConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -194443,9 +195879,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dotnet_framework_version',
           dartName: 'dotnetFrameworkVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppStandardDotnetFrameworkVersion',
         ),
         MigrateSlot(
           tfName: 'elastic_instance_minimum',
@@ -194457,9 +195893,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ftps_state',
           dartName: 'ftpsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppStandardFtpsState',
         ),
         MigrateSlot(
           tfName: 'health_check_path',
@@ -194478,9 +195914,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppStandardIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'linux_fx_version',
@@ -194513,9 +195949,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppStandardScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_min_tls_version',
@@ -194527,9 +195963,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_type',
           dartName: 'scmType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppStandardScmType',
         ),
         MigrateSlot(
           tfName: 'scm_use_main_ip_restriction',
@@ -195431,9 +196867,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'prediction_preference',
           dartName: 'predictionPreference',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ManagedDevopsPoolPredictionPreference',
         ),
       ],
     ),
@@ -204793,9 +206229,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'setting',
               dartName: 'setting',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'OrchestratedVirtualMachineScaleSetSetting',
             ),
           ],
         ),
@@ -204824,9 +206260,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetAction',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -204878,9 +206314,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
           tfName: 'create_option',
@@ -204927,9 +206363,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_account_type',
           dartName: 'storageAccountType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetStorageAccountType',
         ),
         MigrateSlot(
           tfName: 'write_accelerator_enabled',
@@ -204953,9 +206389,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'placement',
           dartName: 'placement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetPlacement',
         ),
       ],
     ),
@@ -204998,11 +206434,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'protected_settings',
+          tfName: '',
           dartName: 'protectedSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'protected_settings':
+                'OrchestratedVirtualMachineScaleSetProtectedSettingsChoice',
+            'protected_settings_from_key_vault':
+                'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'publisher',
@@ -205031,15 +206474,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'protected_settings_from_key_vault',
-          dartName: 'protectedSettingsFromKeyVault',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault',
         ),
       ],
     ),
@@ -205110,9 +206544,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'public_ip_address',
@@ -205178,16 +206612,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'patch_assessment_mode',
           dartName: 'patchAssessmentMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetPatchAssessmentMode',
         ),
         MigrateSlot(
           tfName: 'patch_mode',
           dartName: 'patchMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode',
         ),
         MigrateSlot(
           tfName: 'provision_vm_agent',
@@ -205335,9 +206770,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
           tfName: 'disk_encryption_set_id',
@@ -205450,6 +206885,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'OrchestratedVirtualMachineScaleSetProtectedSettingsChoice': MigrateHelper(
+      className: 'OrchestratedVirtualMachineScaleSetProtectedSettingsChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'protected_settings',
+          dartName: 'protectedSettings',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'protectedSettings',
+    ),
     'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault':
         MigrateHelper(
           className:
@@ -205470,6 +206919,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice':
+        MigrateHelper(
+          className:
+              'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'protected_settings_from_key_vault',
+              dartName: 'protectedSettingsFromKeyVault',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault',
+            ),
+          ],
+          shorthand: 'protectedSettingsFromKeyVault',
         ),
     'OrchestratedVirtualMachineScaleSetProximityPlacementGroupId':
         MigrateHelper(
@@ -205528,9 +206995,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'ip_tag',
@@ -205761,16 +207228,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'patch_assessment_mode',
           dartName: 'patchAssessmentMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetPatchAssessmentMode',
         ),
         MigrateSlot(
           tfName: 'patch_mode',
           dartName: 'patchMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType:
+              'OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode',
         ),
         MigrateSlot(
           tfName: 'provision_vm_agent',
@@ -205872,9 +207340,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'OrchestratedVirtualMachineScaleSetProtocol',
         ),
       ],
     ),
@@ -206063,9 +207531,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol',
         ),
         MigrateSlot(
           tfName: 'backend_config',
@@ -206087,26 +207556,37 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings':
+    'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackFrontendConfig':
         MigrateHelper(
@@ -206206,9 +207686,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol',
         ),
         MigrateSlot(
           tfName: 'backend_config',
@@ -206230,26 +207710,37 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings':
+    'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualHubPanoramaDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualHubPanoramaFrontendConfig':
         MigrateHelper(
@@ -206335,65 +207826,76 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDestinationNat':
-        MigrateHelper(
-          className:
-              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDestinationNat',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'protocol',
-              dartName: 'protocol',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'backend_config',
-              dartName: 'backendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerBackendConfig',
-            ),
-            MigrateSlot(
-              tfName: 'frontend_config',
-              dartName: 'frontendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerFrontendConfig',
-            ),
-          ],
+    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDestinationNat': MigrateHelper(
+      className:
+          'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDestinationNat',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettings':
+        MigrateSlot(
+          tfName: 'protocol',
+          dartName: 'protocol',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType:
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'backend_config',
+          dartName: 'backendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerBackendConfig',
+        ),
+        MigrateSlot(
+          tfName: 'frontend_config',
+          dartName: 'frontendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerFrontendConfig',
+        ),
+      ],
+    ),
+    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerFrontendConfig':
         MigrateHelper(
@@ -206500,65 +208002,76 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDestinationNat':
-        MigrateHelper(
-          className:
-              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDestinationNat',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'protocol',
-              dartName: 'protocol',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'backend_config',
-              dartName: 'backendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackBackendConfig',
-            ),
-            MigrateSlot(
-              tfName: 'frontend_config',
-              dartName: 'frontendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackFrontendConfig',
-            ),
-          ],
+    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDestinationNat': MigrateHelper(
+      className:
+          'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDestinationNat',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettings':
+        MigrateSlot(
+          tfName: 'protocol',
+          dartName: 'protocol',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType:
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'backend_config',
+          dartName: 'backendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackBackendConfig',
+        ),
+        MigrateSlot(
+          tfName: 'frontend_config',
+          dartName: 'frontendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackFrontendConfig',
+        ),
+      ],
+    ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackFrontendConfig':
         MigrateHelper(
@@ -206681,9 +208194,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaProtocol',
         ),
         MigrateSlot(
           tfName: 'backend_config',
@@ -206705,26 +208219,37 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettings':
+    'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaFrontendConfig':
         MigrateHelper(
@@ -206833,65 +208358,76 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestinationNat':
-        MigrateHelper(
-          className:
-              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestinationNat',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'protocol',
-              dartName: 'protocol',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'backend_config',
-              dartName: 'backendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerBackendConfig',
-            ),
-            MigrateSlot(
-              tfName: 'frontend_config',
-              dartName: 'frontendConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerFrontendConfig',
-            ),
-          ],
+    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestinationNat': MigrateHelper(
+      className:
+          'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestinationNat',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings':
+        MigrateSlot(
+          tfName: 'protocol',
+          dartName: 'protocol',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType:
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol',
+        ),
+        MigrateSlot(
+          tfName: 'backend_config',
+          dartName: 'backendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerBackendConfig',
+        ),
+        MigrateSlot(
+          tfName: 'frontend_config',
+          dartName: 'frontendConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerFrontendConfig',
+        ),
+      ],
+    ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers':
         MigrateHelper(
           className:
-              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings',
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dns_servers',
               dartName: 'dnsServers',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'List<String>',
             ),
+          ],
+          shorthand: 'dnsServers',
+        ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns':
+        MigrateHelper(
+          className:
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'use_azure_dns',
               dartName: 'useAzureDns',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
+              positional: true,
               dartType: 'bool',
             ),
           ],
+          shorthand: 'useAzureDns',
         ),
     'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerFrontendConfig':
         MigrateHelper(
@@ -209314,7 +210850,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'RoleManagementPolicyActiveAssignmentsAdminNotifications',
+          helper: 'RoleManagementPolicyAdminNotifications',
         ),
         MigrateSlot(
           tfName: 'approver_notifications',
@@ -209334,8 +210870,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RoleManagementPolicyActiveAssignmentsAdminNotifications': MigrateHelper(
-      className: 'RoleManagementPolicyActiveAssignmentsAdminNotifications',
+    'RoleManagementPolicyAdminNotifications': MigrateHelper(
+      className: 'RoleManagementPolicyAdminNotifications',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'additional_recipients',
@@ -209394,9 +210930,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'notification_level',
           dartName: 'notificationLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'RoleManagementPolicyNotificationLevel',
         ),
       ],
     ),
@@ -209420,9 +210956,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'notification_level',
           dartName: 'notificationLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'RoleManagementPolicyNotificationLevel',
         ),
       ],
     ),
@@ -209451,7 +210987,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'RoleManagementPolicyEligibleActivationsAdminNotifications',
+          helper: 'RoleManagementPolicyAdminNotifications',
         ),
         MigrateSlot(
           tfName: 'approver_notifications',
@@ -209468,32 +211004,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'RoleManagementPolicyAssigneeNotifications',
-        ),
-      ],
-    ),
-    'RoleManagementPolicyEligibleActivationsAdminNotifications': MigrateHelper(
-      className: 'RoleManagementPolicyEligibleActivationsAdminNotifications',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'additional_recipients',
-          dartName: 'additionalRecipients',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'default_recipients',
-          dartName: 'defaultRecipients',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'notification_level',
-          dartName: 'notificationLevel',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
         ),
       ],
     ),
@@ -209525,7 +211035,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'RoleManagementPolicyEligibleActivationsAdminNotifications',
+          helper: 'RoleManagementPolicyAdminNotifications',
         ),
         MigrateSlot(
           tfName: 'approver_notifications',
@@ -211366,9 +212876,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ServiceFabricManagedClusterType',
         ),
       ],
     ),
@@ -211437,9 +212947,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'probe_protocol',
           dartName: 'probeProtocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ServiceFabricManagedClusterProbeProtocol',
         ),
         MigrateSlot(
           tfName: 'probe_request_path',
@@ -211451,9 +212961,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ServiceFabricManagedClusterProtocol',
         ),
       ],
     ),
@@ -211484,9 +212994,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_disk_type',
           dartName: 'dataDiskType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ServiceFabricManagedClusterDataDiskType',
         ),
         MigrateSlot(
           tfName: 'ephemeral_port_range',
@@ -214086,9 +215596,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'host_key_algorithm',
           dartName: 'hostKeyAlgorithm',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SpringCloudServiceHostKeyAlgorithm',
         ),
         MigrateSlot(
           tfName: 'private_key',
@@ -216473,16 +217983,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputBlobFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'format',
           dartName: 'format',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputBlobFormat',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216506,16 +218016,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputEventhubFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'format',
           dartName: 'format',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputEventhubFormat',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216539,16 +218049,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputServicebusQueueFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'format',
           dartName: 'format',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputServicebusQueueFormat',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216572,16 +218082,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputServicebusTopicFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'format',
           dartName: 'format',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsOutputServicebusTopicFormat',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216605,9 +218115,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsReferenceInputBlobFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216631,9 +218141,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsStreamInputBlobFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216657,9 +218167,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsStreamInputEventhubFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216683,9 +218193,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsStreamInputEventhubV2FieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -216709,9 +218219,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'field_delimiter',
           dartName: 'fieldDelimiter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StreamAnalyticsStreamInputIothubFieldDelimiter',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -219270,6 +220780,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'VirtualMachineScaleSetExtensionProtectedSettingsChoice': MigrateHelper(
+      className: 'VirtualMachineScaleSetExtensionProtectedSettingsChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'protected_settings',
+          dartName: 'protectedSettings',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'protectedSettings',
+    ),
     'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault':
         MigrateHelper(
           className:
@@ -219290,6 +220814,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice':
+        MigrateHelper(
+          className:
+              'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVaultChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'protected_settings_from_key_vault',
+              dartName: 'protectedSettingsFromKeyVault',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'VirtualMachineScaleSetExtensionProtectedSettingsFromKeyVault',
+            ),
+          ],
+          shorthand: 'protectedSettingsFromKeyVault',
         ),
     'VirtualMachineScaleSetIdentity': MigrateHelper(
       className: 'VirtualMachineScaleSetIdentity',
@@ -222263,20 +223805,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'WindowsFunctionAppActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'WindowsFunctionAppActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppActiveDirectoryV2': MigrateHelper(
       className: 'WindowsFunctionAppActiveDirectoryV2',
@@ -222317,18 +223887,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -222367,6 +223937,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
     'WindowsFunctionAppAppleV2': MigrateHelper(
       className: 'WindowsFunctionAppAppleV2',
       slots: <MigrateSlot>[
@@ -222390,39 +223990,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       className: 'WindowsFunctionAppApplicationStack',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'dotnet_version',
-          dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppDotnetVersion',
-        ),
-        MigrateSlot(
-          tfName: 'java_version',
-          dartName: 'javaVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppJavaVersion',
-        ),
-        MigrateSlot(
-          tfName: 'node_version',
-          dartName: 'nodeVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppNodeVersion',
-        ),
-        MigrateSlot(
-          tfName: 'powershell_core_version',
-          dartName: 'powershellCoreVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppPowershellCoreVersion',
-        ),
-        MigrateSlot(
-          tfName: 'use_custom_runtime',
-          dartName: 'useCustomRuntime',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          tfName: '',
+          dartName: 'runtime',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'dotnet_version': 'WindowsFunctionAppRuntimeDotnetVersion',
+            'java_version': 'WindowsFunctionAppRuntimeJavaVersion',
+            'node_version': 'WindowsFunctionAppRuntimeNodeVersion',
+            'powershell_core_version':
+                'WindowsFunctionAppRuntimePowershellCoreVersion',
+            'use_custom_runtime': 'WindowsFunctionAppUseCustomRuntime',
+          },
         ),
         MigrateSlot(
           tfName: 'use_dotnet_isolated_runtime',
@@ -222791,6 +224372,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsFunctionAppConsumerSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'WindowsFunctionAppConsumerSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
+    ),
     'WindowsFunctionAppCors': MigrateHelper(
       className: 'WindowsFunctionAppCors',
       slots: <MigrateSlot>[
@@ -222861,18 +224470,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'WindowsFunctionAppSecretChoice',
+            'app_secret_setting_name': 'WindowsFunctionAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -222927,18 +224534,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsFunctionAppGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -222948,6 +224554,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppGithubClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppGithubClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppGithubV2': MigrateHelper(
       className: 'WindowsFunctionAppGithubV2',
@@ -222986,18 +224620,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsFunctionAppGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -223007,6 +224640,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppGoogleClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppGoogleClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppGoogleV2': MigrateHelper(
       className: 'WindowsFunctionAppGoogleV2',
@@ -223181,18 +224842,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'WindowsFunctionAppTokenStorePath',
+            'token_store_sas_setting_name':
+                'WindowsFunctionAppTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -223214,18 +224874,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsFunctionAppMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -223235,6 +224894,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppMicrosoftV2': MigrateHelper(
       className: 'WindowsFunctionAppMicrosoftV2',
@@ -223268,6 +224955,62 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppRuntimeDotnetVersion': MigrateHelper(
+      className: 'WindowsFunctionAppRuntimeDotnetVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dotnet_version',
+          dartName: 'dotnetVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppDotnetVersion',
+        ),
+      ],
+      shorthand: 'dotnetVersion',
+    ),
+    'WindowsFunctionAppRuntimeJavaVersion': MigrateHelper(
+      className: 'WindowsFunctionAppRuntimeJavaVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'java_version',
+          dartName: 'javaVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppJavaVersion',
+        ),
+      ],
+      shorthand: 'javaVersion',
+    ),
+    'WindowsFunctionAppRuntimeNodeVersion': MigrateHelper(
+      className: 'WindowsFunctionAppRuntimeNodeVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_version',
+          dartName: 'nodeVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppNodeVersion',
+        ),
+      ],
+      shorthand: 'nodeVersion',
+    ),
+    'WindowsFunctionAppRuntimePowershellCoreVersion': MigrateHelper(
+      className: 'WindowsFunctionAppRuntimePowershellCoreVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'powershell_core_version',
+          dartName: 'powershellCoreVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppPowershellCoreVersion',
+        ),
+      ],
+      shorthand: 'powershellCoreVersion',
     ),
     'WindowsFunctionAppSchedule': MigrateHelper(
       className: 'WindowsFunctionAppSchedule',
@@ -223369,6 +225112,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsFunctionAppSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'WindowsFunctionAppSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
     ),
     'WindowsFunctionAppServiceLogs': MigrateHelper(
       className: 'WindowsFunctionAppServiceLogs',
@@ -223486,9 +225257,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
@@ -223507,9 +225278,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
@@ -223549,9 +225320,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
@@ -223657,21 +225428,51 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'WindowsFunctionAppSlotActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName',
+          },
         ),
       ],
     ),
+    'WindowsFunctionAppSlotActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName':
+        MigrateHelper(
+          className:
+              'WindowsFunctionAppSlotActiveDirectoryClientSecretSettingName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_setting_name',
+              dartName: 'clientSecretSettingName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretSettingName',
+        ),
     'WindowsFunctionAppSlotActiveDirectoryV2': MigrateHelper(
       className: 'WindowsFunctionAppSlotActiveDirectoryV2',
       slots: <MigrateSlot>[
@@ -223711,18 +225512,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -223760,6 +225561,66 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretSettingName':
+        MigrateHelper(
+          className:
+              'WindowsFunctionAppSlotActiveDirectoryV2ClientSecretSettingName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_setting_name',
+              dartName: 'clientSecretSettingName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretSettingName',
+        ),
+    'WindowsFunctionAppSlotAppSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'WindowsFunctionAppSlotAppSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
     ),
     'WindowsFunctionAppSlotAppServiceLogs': MigrateHelper(
       className: 'WindowsFunctionAppSlotAppServiceLogs',
@@ -223803,39 +225664,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       className: 'WindowsFunctionAppSlotApplicationStack',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'dotnet_version',
-          dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppSlotDotnetVersion',
-        ),
-        MigrateSlot(
-          tfName: 'java_version',
-          dartName: 'javaVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppSlotJavaVersion',
-        ),
-        MigrateSlot(
-          tfName: 'node_version',
-          dartName: 'nodeVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppSlotNodeVersion',
-        ),
-        MigrateSlot(
-          tfName: 'powershell_core_version',
-          dartName: 'powershellCoreVersion',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'WindowsFunctionAppSlotPowershellCoreVersion',
-        ),
-        MigrateSlot(
-          tfName: 'use_custom_runtime',
-          dartName: 'useCustomRuntime',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          tfName: '',
+          dartName: 'runtime',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'dotnet_version': 'WindowsFunctionAppSlotRuntimeDotnetVersion',
+            'java_version': 'WindowsFunctionAppSlotRuntimeJavaVersion',
+            'node_version': 'WindowsFunctionAppSlotRuntimeNodeVersion',
+            'powershell_core_version':
+                'WindowsFunctionAppSlotRuntimePowershellCoreVersion',
+            'use_custom_runtime': 'WindowsFunctionAppSlotUseCustomRuntime',
+          },
         ),
         MigrateSlot(
           tfName: 'use_dotnet_isolated_runtime',
@@ -224204,6 +226046,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsFunctionAppSlotConsumerSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'WindowsFunctionAppSlotConsumerSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
+    ),
     'WindowsFunctionAppSlotCors': MigrateHelper(
       className: 'WindowsFunctionAppSlotCors',
       slots: <MigrateSlot>[
@@ -224274,18 +226144,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'WindowsFunctionAppSlotAppSecretChoice',
+            'app_secret_setting_name':
+                'WindowsFunctionAppSlotAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -224340,18 +226209,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsFunctionAppSlotGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppSlotGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -224361,6 +226229,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotGithubClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppSlotGithubClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppSlotGithubV2': MigrateHelper(
       className: 'WindowsFunctionAppSlotGithubV2',
@@ -224399,18 +226295,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsFunctionAppSlotGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppSlotGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -224420,6 +226315,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotGoogleClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppSlotGoogleClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppSlotGoogleV2': MigrateHelper(
       className: 'WindowsFunctionAppSlotGoogleV2',
@@ -224594,18 +226517,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'WindowsFunctionAppSlotTokenStorePath',
+            'token_store_sas_setting_name':
+                'WindowsFunctionAppSlotTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -224627,18 +226549,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'WindowsFunctionAppSlotMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsFunctionAppSlotMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -224648,6 +226570,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'WindowsFunctionAppSlotMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsFunctionAppSlotMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsFunctionAppSlotMicrosoftV2': MigrateHelper(
       className: 'WindowsFunctionAppSlotMicrosoftV2',
@@ -224681,6 +226631,62 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotRuntimeDotnetVersion': MigrateHelper(
+      className: 'WindowsFunctionAppSlotRuntimeDotnetVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dotnet_version',
+          dartName: 'dotnetVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppSlotDotnetVersion',
+        ),
+      ],
+      shorthand: 'dotnetVersion',
+    ),
+    'WindowsFunctionAppSlotRuntimeJavaVersion': MigrateHelper(
+      className: 'WindowsFunctionAppSlotRuntimeJavaVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'java_version',
+          dartName: 'javaVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppSlotJavaVersion',
+        ),
+      ],
+      shorthand: 'javaVersion',
+    ),
+    'WindowsFunctionAppSlotRuntimeNodeVersion': MigrateHelper(
+      className: 'WindowsFunctionAppSlotRuntimeNodeVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_version',
+          dartName: 'nodeVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppSlotNodeVersion',
+        ),
+      ],
+      shorthand: 'nodeVersion',
+    ),
+    'WindowsFunctionAppSlotRuntimePowershellCoreVersion': MigrateHelper(
+      className: 'WindowsFunctionAppSlotRuntimePowershellCoreVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'powershell_core_version',
+          dartName: 'powershellCoreVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'WindowsFunctionAppSlotPowershellCoreVersion',
+        ),
+      ],
+      shorthand: 'powershellCoreVersion',
     ),
     'WindowsFunctionAppSlotSchedule': MigrateHelper(
       className: 'WindowsFunctionAppSlotSchedule',
@@ -224887,9 +226893,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppSlotIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
@@ -224908,9 +226914,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppSlotMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
@@ -224950,9 +226956,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsFunctionAppSlotScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
@@ -225146,6 +227152,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'storageKeyVaultSecretId',
     ),
+    'WindowsFunctionAppSlotTokenStorePath': MigrateHelper(
+      className: 'WindowsFunctionAppSlotTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'WindowsFunctionAppSlotTokenStoreSasSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppSlotTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'WindowsFunctionAppSlotTwitter': MigrateHelper(
       className: 'WindowsFunctionAppSlotTwitter',
       slots: <MigrateSlot>[
@@ -225157,18 +227191,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'WindowsFunctionAppSlotConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'WindowsFunctionAppSlotConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -225190,6 +227223,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsFunctionAppSlotUseCustomRuntime': MigrateHelper(
+      className: 'WindowsFunctionAppSlotUseCustomRuntime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_custom_runtime',
+          dartName: 'useCustomRuntime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'useCustomRuntime',
     ),
     'WindowsFunctionAppStickySettings': MigrateHelper(
       className: 'WindowsFunctionAppStickySettings',
@@ -225314,6 +227361,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'storageKeyVaultSecretId',
     ),
+    'WindowsFunctionAppTokenStorePath': MigrateHelper(
+      className: 'WindowsFunctionAppTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'WindowsFunctionAppTokenStoreSasSettingName': MigrateHelper(
+      className: 'WindowsFunctionAppTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'WindowsFunctionAppTwitter': MigrateHelper(
       className: 'WindowsFunctionAppTwitter',
       slots: <MigrateSlot>[
@@ -225325,18 +227400,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'WindowsFunctionAppConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'WindowsFunctionAppConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -225358,6 +227432,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsFunctionAppUseCustomRuntime': MigrateHelper(
+      className: 'WindowsFunctionAppUseCustomRuntime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_custom_runtime',
+          dartName: 'useCustomRuntime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'useCustomRuntime',
     ),
     'WindowsVirtualMachineAdditionalCapabilities': MigrateHelper(
       className: 'WindowsVirtualMachineAdditionalCapabilities',
@@ -225391,9 +227479,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'setting',
           dartName: 'setting',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineSetting',
         ),
       ],
     ),
@@ -225469,12 +227557,42 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'placement',
           dartName: 'placement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachinePlacement',
         ),
       ],
     ),
+    'WindowsVirtualMachineEncryptionSetDiskEncryptionSetId': MigrateHelper(
+      className: 'WindowsVirtualMachineEncryptionSetDiskEncryptionSetId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_encryption_set_id',
+          dartName: 'diskEncryptionSetId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'diskEncryptionSetId',
+    ),
+    'WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secure_vm_disk_encryption_set_id',
+              dartName: 'secureVmDiskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'secureVmDiskEncryptionSetId',
+        ),
     'WindowsVirtualMachineGalleryApplication': MigrateHelper(
       className: 'WindowsVirtualMachineGalleryApplication',
       slots: <MigrateSlot>[
@@ -225547,16 +227665,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineCaching',
         ),
         MigrateSlot(
-          tfName: 'disk_encryption_set_id',
-          dartName: 'diskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'encryptionSet',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'disk_encryption_set_id':
+                'WindowsVirtualMachineEncryptionSetDiskEncryptionSetId',
+            'secure_vm_disk_encryption_set_id':
+                'WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId',
+          },
         ),
         MigrateSlot(
           tfName: 'disk_size_gb',
@@ -225568,13 +227693,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'secure_vm_disk_encryption_set_id',
-          dartName: 'secureVmDiskEncryptionSetId',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -225713,9 +227831,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'setting',
           dartName: 'setting',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetSetting',
         ),
       ],
     ),
@@ -225725,9 +227843,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action',
           dartName: 'action',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetAction',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -225815,9 +227933,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
           tfName: 'create_option',
@@ -225871,9 +227989,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_account_type',
           dartName: 'storageAccountType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetStorageAccountType',
         ),
         MigrateSlot(
           tfName: 'write_accelerator_enabled',
@@ -225897,12 +228015,44 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'placement',
           dartName: 'placement',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetPlacement',
         ),
       ],
     ),
+    'WindowsVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'WindowsVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disk_encryption_set_id',
+              dartName: 'diskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'diskEncryptionSetId',
+        ),
+    'WindowsVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId':
+        MigrateHelper(
+          className:
+              'WindowsVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secure_vm_disk_encryption_set_id',
+              dartName: 'secureVmDiskEncryptionSetId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'secureVmDiskEncryptionSetId',
+        ),
     'WindowsVirtualMachineScaleSetExtension': MigrateHelper(
       className: 'WindowsVirtualMachineScaleSetExtension',
       slots: <MigrateSlot>[
@@ -225935,11 +228085,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'protected_settings',
+          tfName: '',
           dartName: 'protectedSettings',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'protected_settings':
+                'WindowsVirtualMachineScaleSetProtectedSettingsChoice',
+            'protected_settings_from_key_vault':
+                'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'provision_after_extensions',
@@ -225975,14 +228132,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'protected_settings_from_key_vault',
-          dartName: 'protectedSettingsFromKeyVault',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVault',
         ),
       ],
     ),
@@ -226093,9 +228242,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'public_ip_address',
@@ -226203,16 +228352,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'caching',
           dartName: 'caching',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetCaching',
         ),
         MigrateSlot(
-          tfName: 'disk_encryption_set_id',
-          dartName: 'diskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'encryptionSet',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'disk_encryption_set_id':
+                'WindowsVirtualMachineScaleSetEncryptionSetDiskEncryptionSetId',
+            'secure_vm_disk_encryption_set_id':
+                'WindowsVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId',
+          },
         ),
         MigrateSlot(
           tfName: 'disk_size_gb',
@@ -226220,13 +228376,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'secure_vm_disk_encryption_set_id',
-          dartName: 'secureVmDiskEncryptionSetId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'security_encryption_type',
@@ -226285,6 +228434,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsVirtualMachineScaleSetProtectedSettingsChoice': MigrateHelper(
+      className: 'WindowsVirtualMachineScaleSetProtectedSettingsChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'protected_settings',
+          dartName: 'protectedSettings',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'protectedSettings',
+    ),
     'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVault': MigrateHelper(
       className: 'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVault',
       slots: <MigrateSlot>[
@@ -226304,6 +228467,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice':
+        MigrateHelper(
+          className:
+              'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVaultChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'protected_settings_from_key_vault',
+              dartName: 'protectedSettingsFromKeyVault',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVault',
+            ),
+          ],
+          shorthand: 'protectedSettingsFromKeyVault',
+        ),
     'WindowsVirtualMachineScaleSetProximityPlacementGroupId': MigrateHelper(
       className: 'WindowsVirtualMachineScaleSetProximityPlacementGroupId',
       slots: <MigrateSlot>[
@@ -226352,9 +228533,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version',
           dartName: 'version',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetVersion',
         ),
         MigrateSlot(
           tfName: 'ip_tag',
@@ -226434,9 +228615,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'rule',
           dartName: 'rule',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetRule',
         ),
       ],
     ),
@@ -226574,9 +228755,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineScaleSetProtocol',
         ),
       ],
     ),
@@ -226695,9 +228876,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsVirtualMachineProtocol',
         ),
       ],
     ),
@@ -226707,9 +228888,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action_type',
           dartName: 'actionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsWebAppActionType',
         ),
         MigrateSlot(
           tfName: 'minimum_process_execution_time',
@@ -226746,20 +228927,47 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'WindowsWebAppActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppActiveDirectoryV2': MigrateHelper(
       className: 'WindowsWebAppActiveDirectoryV2',
@@ -226800,18 +229008,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'WindowsWebAppActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -226850,6 +229058,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'WindowsWebAppActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
     'WindowsWebAppAppleV2': MigrateHelper(
       className: 'WindowsWebAppAppleV2',
       slots: <MigrateSlot>[
@@ -226875,9 +229113,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_system_level',
           dartName: 'fileSystemLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsWebAppFileSystemLevel',
         ),
         MigrateSlot(
           tfName: 'azure_blob_storage',
@@ -226921,9 +229159,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'current_stack',
           dartName: 'currentStack',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppCurrentStack',
         ),
         MigrateSlot(
           tfName: 'docker_image_name',
@@ -226963,16 +229201,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dotnet_version',
           dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppDotnetVersion',
         ),
         MigrateSlot(
           tfName: 'java_container',
           dartName: 'javaContainer',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppJavaContainer',
         ),
         MigrateSlot(
           tfName: 'java_container_version',
@@ -226998,9 +229236,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_version',
           dartName: 'nodeVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppNodeVersion',
         ),
         MigrateSlot(
           tfName: 'php_version',
@@ -227404,6 +229642,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppConsumerSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'WindowsWebAppConsumerSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
+    ),
     'WindowsWebAppCors': MigrateHelper(
       className: 'WindowsWebAppCors',
       slots: <MigrateSlot>[
@@ -227493,18 +229759,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'WindowsWebAppSecretChoice',
+            'app_secret_setting_name': 'WindowsWebAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -227578,18 +229842,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -227599,6 +229862,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppGithubClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppGithubClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppGithubV2': MigrateHelper(
       className: 'WindowsWebAppGithubV2',
@@ -227637,18 +229928,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -227658,6 +229948,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppGoogleClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppGoogleClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppGoogleV2': MigrateHelper(
       className: 'WindowsWebAppGoogleV2',
@@ -227718,27 +230036,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WindowsWebAppHttpLogs': MigrateHelper(
-      className: 'WindowsWebAppHttpLogs',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'azure_blob_storage',
-          dartName: 'azureBlobStorage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsWebAppHttpLogsAzureBlobStorage',
-        ),
-        MigrateSlot(
-          tfName: 'file_system',
-          dartName: 'fileSystem',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsWebAppFileSystem',
-        ),
-      ],
-    ),
     'WindowsWebAppHttpLogsAzureBlobStorage': MigrateHelper(
       className: 'WindowsWebAppHttpLogsAzureBlobStorage',
       slots: <MigrateSlot>[
@@ -227757,6 +230054,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsWebAppHttpLogsAzureBlobStorageChoice': MigrateHelper(
+      className: 'WindowsWebAppHttpLogsAzureBlobStorageChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_storage',
+          dartName: 'azureBlobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'WindowsWebAppHttpLogsAzureBlobStorage',
+        ),
+      ],
+      shorthand: 'azureBlobStorage',
+    ),
+    'WindowsWebAppHttpLogsFileSystem': MigrateHelper(
+      className: 'WindowsWebAppHttpLogsFileSystem',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'file_system',
+          dartName: 'fileSystem',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'WindowsWebAppFileSystem',
+        ),
+      ],
+      shorthand: 'fileSystem',
     ),
     'WindowsWebAppIdentity': MigrateHelper(
       className: 'WindowsWebAppIdentity',
@@ -227898,18 +230225,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'WindowsWebAppTokenStorePath',
+            'token_store_sas_setting_name':
+                'WindowsWebAppTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -227948,10 +230274,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_logs',
           dartName: 'httpLogs',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'WindowsWebAppHttpLogs',
+          variants: <String, String>{
+            'azure_blob_storage': 'WindowsWebAppHttpLogsAzureBlobStorageChoice',
+            'file_system': 'WindowsWebAppHttpLogsFileSystem',
+          },
         ),
       ],
     ),
@@ -227966,18 +230295,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -227987,6 +230315,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppMicrosoftV2': MigrateHelper(
       className: 'WindowsWebAppMicrosoftV2',
@@ -228141,6 +230497,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'WindowsWebAppSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
+    ),
     'WindowsWebAppSiteConfig': MigrateHelper(
       className: 'WindowsWebAppSiteConfig',
       slots: <MigrateSlot>[
@@ -228196,9 +230580,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ftps_state',
           dartName: 'ftpsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppFtpsState',
         ),
         MigrateSlot(
           tfName: 'health_check_eviction_time_in_min',
@@ -228224,16 +230608,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
           dartName: 'loadBalancingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppLoadBalancingMode',
         ),
         MigrateSlot(
           tfName: 'local_mysql_enabled',
@@ -228245,23 +230629,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_pipeline_mode',
           dartName: 'managedPipelineMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppManagedPipelineMode',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
           dartName: 'minimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'remote_debugging_enabled',
@@ -228280,16 +230664,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
           dartName: 'scmMinimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppScmMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'scm_use_main_ip_restriction',
@@ -228394,9 +230778,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'action_type',
           dartName: 'actionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotActionType',
         ),
         MigrateSlot(
           tfName: 'minimum_process_execution_time',
@@ -228433,20 +230817,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret':
+                'WindowsWebAppSlotActiveDirectoryClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppSlotActiveDirectoryClientSecretSettingName',
+          },
+        ),
+      ],
+    ),
+    'WindowsWebAppSlotActiveDirectoryClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotActiveDirectoryClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'client_secret',
           dartName: 'clientSecret',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppSlotActiveDirectoryClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotActiveDirectoryClientSecretSettingName',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'client_secret_setting_name',
           dartName: 'clientSecretSettingName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppSlotActiveDirectoryV2': MigrateHelper(
       className: 'WindowsWebAppSlotActiveDirectoryV2',
@@ -228487,18 +230899,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret_certificate_thumbprint',
-          dartName: 'clientSecretCertificateThumbprint',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret_certificate_thumbprint':
+                'WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+            'client_secret_setting_name':
+                'WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'jwt_allowed_client_applications',
@@ -228537,6 +230949,64 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint':
+        MigrateHelper(
+          className:
+              'WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'client_secret_certificate_thumbprint',
+              dartName: 'clientSecretCertificateThumbprint',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'clientSecretCertificateThumbprint',
+        ),
+    'WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
+    ),
+    'WindowsWebAppSlotAppSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotAppSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret',
+          dartName: 'appSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecret',
+    ),
+    'WindowsWebAppSlotAppSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotAppSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_secret_setting_name',
+          dartName: 'appSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appSecretSettingName',
+    ),
     'WindowsWebAppSlotAppleV2': MigrateHelper(
       className: 'WindowsWebAppSlotAppleV2',
       slots: <MigrateSlot>[
@@ -228562,9 +231032,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'file_system_level',
           dartName: 'fileSystemLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotFileSystemLevel',
         ),
         MigrateSlot(
           tfName: 'azure_blob_storage',
@@ -228608,9 +231078,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'current_stack',
           dartName: 'currentStack',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotCurrentStack',
         ),
         MigrateSlot(
           tfName: 'docker_image_name',
@@ -228650,16 +231120,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dotnet_version',
           dartName: 'dotnetVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotDotnetVersion',
         ),
         MigrateSlot(
           tfName: 'java_container',
           dartName: 'javaContainer',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotJavaContainer',
         ),
         MigrateSlot(
           tfName: 'java_container_version',
@@ -228685,9 +231155,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_version',
           dartName: 'nodeVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotNodeVersion',
         ),
         MigrateSlot(
           tfName: 'php_version',
@@ -229091,6 +231561,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppSlotConsumerSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotConsumerSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret',
+          dartName: 'consumerSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecret',
+    ),
+    'WindowsWebAppSlotConsumerSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotConsumerSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_secret_setting_name',
+          dartName: 'consumerSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'consumerSecretSettingName',
+    ),
     'WindowsWebAppSlotCors': MigrateHelper(
       className: 'WindowsWebAppSlotCors',
       slots: <MigrateSlot>[
@@ -229180,18 +231678,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'app_secret',
+          tfName: '',
           dartName: 'appSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'app_secret_setting_name',
-          dartName: 'appSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_secret': 'WindowsWebAppSlotAppSecretChoice',
+            'app_secret_setting_name': 'WindowsWebAppSlotAppSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -229265,18 +231761,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppSlotGithubClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppSlotGithubClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -229286,6 +231781,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppSlotGithubClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotGithubClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppSlotGithubClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotGithubClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppSlotGithubV2': MigrateHelper(
       className: 'WindowsWebAppSlotGithubV2',
@@ -229324,18 +231847,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppSlotGoogleClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppSlotGoogleClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -229345,6 +231867,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppSlotGoogleClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotGoogleClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppSlotGoogleClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotGoogleClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppSlotGoogleV2': MigrateHelper(
       className: 'WindowsWebAppSlotGoogleV2',
@@ -229405,27 +231955,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WindowsWebAppSlotHttpLogs': MigrateHelper(
-      className: 'WindowsWebAppSlotHttpLogs',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'azure_blob_storage',
-          dartName: 'azureBlobStorage',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsWebAppSlotHttpLogsAzureBlobStorage',
-        ),
-        MigrateSlot(
-          tfName: 'file_system',
-          dartName: 'fileSystem',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsWebAppSlotFileSystem',
-        ),
-      ],
-    ),
     'WindowsWebAppSlotHttpLogsAzureBlobStorage': MigrateHelper(
       className: 'WindowsWebAppSlotHttpLogsAzureBlobStorage',
       slots: <MigrateSlot>[
@@ -229444,6 +231973,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsWebAppSlotHttpLogsAzureBlobStorageChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotHttpLogsAzureBlobStorageChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_storage',
+          dartName: 'azureBlobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'WindowsWebAppSlotHttpLogsAzureBlobStorage',
+        ),
+      ],
+      shorthand: 'azureBlobStorage',
+    ),
+    'WindowsWebAppSlotHttpLogsFileSystem': MigrateHelper(
+      className: 'WindowsWebAppSlotHttpLogsFileSystem',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'file_system',
+          dartName: 'fileSystem',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'WindowsWebAppSlotFileSystem',
+        ),
+      ],
+      shorthand: 'fileSystem',
     ),
     'WindowsWebAppSlotIdentity': MigrateHelper(
       className: 'WindowsWebAppSlotIdentity',
@@ -229585,18 +232144,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'token_store_path',
-          dartName: 'tokenStorePath',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'tokenStore',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'token_store_sas_setting_name',
-          dartName: 'tokenStoreSasSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'token_store_path': 'WindowsWebAppSlotTokenStorePath',
+            'token_store_sas_setting_name':
+                'WindowsWebAppSlotTokenStoreSasSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'validate_nonce',
@@ -229635,10 +232193,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'http_logs',
           dartName: 'httpLogs',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'WindowsWebAppSlotHttpLogs',
+          variants: <String, String>{
+            'azure_blob_storage':
+                'WindowsWebAppSlotHttpLogsAzureBlobStorageChoice',
+            'file_system': 'WindowsWebAppSlotHttpLogsFileSystem',
+          },
         ),
       ],
     ),
@@ -229653,18 +232215,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'client_secret',
+          tfName: '',
           dartName: 'clientSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'client_secret_setting_name',
-          dartName: 'clientSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'client_secret': 'WindowsWebAppSlotMicrosoftClientSecretChoice',
+            'client_secret_setting_name':
+                'WindowsWebAppSlotMicrosoftClientSecretSettingName',
+          },
         ),
         MigrateSlot(
           tfName: 'oauth_scopes',
@@ -229674,6 +232235,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'WindowsWebAppSlotMicrosoftClientSecretChoice': MigrateHelper(
+      className: 'WindowsWebAppSlotMicrosoftClientSecretChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret',
+          dartName: 'clientSecret',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecret',
+    ),
+    'WindowsWebAppSlotMicrosoftClientSecretSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotMicrosoftClientSecretSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_secret_setting_name',
+          dartName: 'clientSecretSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'clientSecretSettingName',
     ),
     'WindowsWebAppSlotMicrosoftV2': MigrateHelper(
       className: 'WindowsWebAppSlotMicrosoftV2',
@@ -229890,9 +232479,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ftps_state',
           dartName: 'ftpsState',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotFtpsState',
         ),
         MigrateSlot(
           tfName: 'health_check_eviction_time_in_min',
@@ -229918,16 +232507,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ip_restriction_default_action',
           dartName: 'ipRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'load_balancing_mode',
           dartName: 'loadBalancingMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotLoadBalancingMode',
         ),
         MigrateSlot(
           tfName: 'local_mysql_enabled',
@@ -229939,23 +232528,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_pipeline_mode',
           dartName: 'managedPipelineMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotManagedPipelineMode',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_cipher_suite',
           dartName: 'minimumTlsCipherSuite',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotMinimumTlsCipherSuite',
         ),
         MigrateSlot(
           tfName: 'minimum_tls_version',
           dartName: 'minimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'remote_debugging_enabled',
@@ -229974,16 +232563,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scm_ip_restriction_default_action',
           dartName: 'scmIpRestrictionDefaultAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotScmIpRestrictionDefaultAction',
         ),
         MigrateSlot(
           tfName: 'scm_minimum_tls_version',
           dartName: 'scmMinimumTlsVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'WindowsWebAppSlotScmMinimumTlsVersion',
         ),
         MigrateSlot(
           tfName: 'scm_use_main_ip_restriction',
@@ -230235,6 +232824,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppSlotTokenStorePath': MigrateHelper(
+      className: 'WindowsWebAppSlotTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'WindowsWebAppSlotTokenStoreSasSettingName': MigrateHelper(
+      className: 'WindowsWebAppSlotTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'WindowsWebAppSlotTrigger': MigrateHelper(
       className: 'WindowsWebAppSlotTrigger',
       slots: <MigrateSlot>[
@@ -230292,18 +232909,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'WindowsWebAppSlotConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'WindowsWebAppSlotConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -230552,6 +233168,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsWebAppTokenStorePath': MigrateHelper(
+      className: 'WindowsWebAppTokenStorePath',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_path',
+          dartName: 'tokenStorePath',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStorePath',
+    ),
+    'WindowsWebAppTokenStoreSasSettingName': MigrateHelper(
+      className: 'WindowsWebAppTokenStoreSasSettingName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'token_store_sas_setting_name',
+          dartName: 'tokenStoreSasSettingName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'tokenStoreSasSettingName',
+    ),
     'WindowsWebAppTrigger': MigrateHelper(
       className: 'WindowsWebAppTrigger',
       slots: <MigrateSlot>[
@@ -230609,18 +233253,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'consumer_secret',
+          tfName: '',
           dartName: 'consumerSecret',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'consumer_secret_setting_name',
-          dartName: 'consumerSecretSettingName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'consumer_secret': 'WindowsWebAppConsumerSecretChoice',
+            'consumer_secret_setting_name':
+                'WindowsWebAppConsumerSecretSettingName',
+          },
         ),
       ],
     ),
@@ -231705,6 +234348,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'azuremonitor': 'azuremonitor',
       },
     ),
+    'ApiManagementApiDiagnosticMode': MigrateEnum(
+      name: 'ApiManagementApiDiagnosticMode',
+      members: <String, String>{'Hide': 'hide', 'Mask': 'mask'},
+    ),
     'ApiManagementApiDiagnosticOperationNameFormat': MigrateEnum(
       name: 'ApiManagementApiDiagnosticOperationNameFormat',
       members: <String, String>{'Name': 'name', 'Url': 'url'},
@@ -231794,6 +234441,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'applicationinsights': 'applicationinsights',
         'azuremonitor': 'azuremonitor',
       },
+    ),
+    'ApiManagementDiagnosticMode': MigrateEnum(
+      name: 'ApiManagementDiagnosticMode',
+      members: <String, String>{'Hide': 'hide', 'Mask': 'mask'},
     ),
     'ApiManagementDiagnosticOperationNameFormat': MigrateEnum(
       name: 'ApiManagementDiagnosticOperationNameFormat',
@@ -231938,6 +234589,67 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Unknown': 'unknown',
       },
     ),
+    'AppServiceSourceControlRuntimeStack': MigrateEnum(
+      name: 'AppServiceSourceControlRuntimeStack',
+      members: <String, String>{
+        'dotnetcore': 'dotnetcore',
+        'spring': 'spring',
+        'tomcat': 'tomcat',
+        'node': 'node',
+        'python': 'python',
+      },
+    ),
+    'AppServiceSourceControlSlotRuntimeStack': MigrateEnum(
+      name: 'AppServiceSourceControlSlotRuntimeStack',
+      members: <String, String>{
+        'dotnetcore': 'dotnetcore',
+        'spring': 'spring',
+        'tomcat': 'tomcat',
+        'node': 'node',
+        'python': 'python',
+      },
+    ),
+    'ApplicationGatewayCipherSuites': MigrateEnum(
+      name: 'ApplicationGatewayCipherSuites',
+      members: <String, String>{
+        'TLS_DHE_DSS_WITH_AES_128_CBC_SHA': 'tlsDheDssWithAes128CbcSha',
+        'TLS_DHE_DSS_WITH_AES_128_CBC_SHA256': 'tlsDheDssWithAes128CbcSha256',
+        'TLS_DHE_DSS_WITH_AES_256_CBC_SHA': 'tlsDheDssWithAes256CbcSha',
+        'TLS_DHE_DSS_WITH_AES_256_CBC_SHA256': 'tlsDheDssWithAes256CbcSha256',
+        'TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA': 'tlsDheDssWith3desEdeCbcSha',
+        'TLS_DHE_RSA_WITH_AES_128_CBC_SHA': 'tlsDheRsaWithAes128CbcSha',
+        'TLS_DHE_RSA_WITH_AES_128_GCM_SHA256': 'tlsDheRsaWithAes128GcmSha256',
+        'TLS_DHE_RSA_WITH_AES_256_CBC_SHA': 'tlsDheRsaWithAes256CbcSha',
+        'TLS_DHE_RSA_WITH_AES_256_GCM_SHA384': 'tlsDheRsaWithAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA': 'tlsEcdheEcdsaWithAes128CbcSha',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA': 'tlsEcdheEcdsaWithAes256CbcSha',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheEcdsaWithAes256CbcSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_3DES_EDE_CBC_SHA': 'tlsRsaWith3desEdeCbcSha',
+      },
+    ),
     'ApplicationGatewayClientAuthenticationMode': MigrateEnum(
       name: 'ApplicationGatewayClientAuthenticationMode',
       members: <String, String>{
@@ -231955,6 +234667,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'ApplicationGatewayCookieBasedAffinity': MigrateEnum(
       name: 'ApplicationGatewayCookieBasedAffinity',
       members: <String, String>{'Disabled': 'disabled', 'Enabled': 'enabled'},
+    ),
+    'ApplicationGatewayDisabledProtocols': MigrateEnum(
+      name: 'ApplicationGatewayDisabledProtocols',
+      members: <String, String>{
+        'TLSv1_1': 'tlsv11',
+        'TLSv1_3': 'tlsv13',
+        'TLSv1_2': 'tlsv12',
+        'TLSv1_0': 'tlsv10',
+      },
     ),
     'ApplicationGatewayFirewallMode': MigrateEnum(
       name: 'ApplicationGatewayFirewallMode',
@@ -231975,6 +234696,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'RequestHeaderKeys': 'requestheaderkeys',
         'RequestHeaderNames': 'requestheadernames',
         'RequestHeaderValues': 'requestheadervalues',
+      },
+    ),
+    'ApplicationGatewayMinProtocolVersion': MigrateEnum(
+      name: 'ApplicationGatewayMinProtocolVersion',
+      members: <String, String>{
+        'TLSv1_1': 'tlsv11',
+        'TLSv1_3': 'tlsv13',
+        'TLSv1_2': 'tlsv12',
+        'TLSv1_0': 'tlsv10',
+      },
+    ),
+    'ApplicationGatewayPolicyType': MigrateEnum(
+      name: 'ApplicationGatewayPolicyType',
+      members: <String, String>{
+        'Custom': 'custom',
+        'CustomV2': 'customv2',
+        'Predefined': 'predefined',
       },
     ),
     'ApplicationGatewayPrivateIpAddressAllocation': MigrateEnum(
@@ -232268,6 +235006,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TaskAuthenticationToken': 'taskauthenticationtoken',
       },
     ),
+    'BatchAccountDefaultAction': MigrateEnum(
+      name: 'BatchAccountDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'BatchAccountPoolAllocationMode': MigrateEnum(
       name: 'BatchAccountPoolAllocationMode',
       members: <String, String>{
@@ -232403,6 +235145,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'MatchRequest': 'matchrequest',
       },
     ),
+    'CdnFrontdoorBatchRuleSetHttpVersionValues': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetHttpVersionValues',
+      members: <String, String>{
+        '2.0': 'v2p0',
+        '1.1': 'v1p1',
+        '1.0': 'v1p0',
+        '0.9': 'v0p9',
+      },
+    ),
+    'CdnFrontdoorBatchRuleSetOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetOperator',
+      members: <String, String>{
+        'Append': 'append',
+        'Delete': 'delete',
+        'Overwrite': 'overwrite',
+      },
+    ),
     'CdnFrontdoorBatchRuleSetQueryStringBehaviour': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetQueryStringBehaviour',
       members: <String, String>{
@@ -232445,12 +235204,27 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'CdnFrontdoorBatchRuleSetRequestSchemeValues',
       members: <String, String>{'HTTP': 'http', 'HTTPS': 'https'},
     ),
+    'CdnFrontdoorBatchRuleSetServerPortValues': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetServerPortValues',
+      members: <String, String>{'80': 'v80', '443': 'v443'},
+    ),
     'CdnFrontdoorBatchRuleSetSslProtocolValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetSslProtocolValues',
       members: <String, String>{
         'TLSv1': 'tlsv1',
         'TLSv1.1': 'tlsv1p1',
         'TLSv1.2': 'tlsv1p2',
+      },
+    ),
+    'CdnFrontdoorBatchRuleSetTransforms': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetTransforms',
+      members: <String, String>{
+        'Lowercase': 'lowercase',
+        'RemoveNulls': 'removenulls',
+        'Trim': 'trim',
+        'UrlDecode': 'urldecode',
+        'UrlEncode': 'urlencode',
+        'Uppercase': 'uppercase',
       },
     ),
     'CdnFrontdoorCustomDomainTls13': MigrateEnum(
@@ -232621,6 +235395,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'MatchRequest': 'matchrequest',
       },
     ),
+    'CdnFrontdoorRuleHttpVersionValues': MigrateEnum(
+      name: 'CdnFrontdoorRuleHttpVersionValues',
+      members: <String, String>{
+        '2.0': 'v2p0',
+        '1.1': 'v1p1',
+        '1.0': 'v1p0',
+        '0.9': 'v0p9',
+      },
+    ),
+    'CdnFrontdoorRuleOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleOperator',
+      members: <String, String>{
+        'Append': 'append',
+        'Delete': 'delete',
+        'Overwrite': 'overwrite',
+      },
+    ),
     'CdnFrontdoorRuleQueryStringBehaviour': MigrateEnum(
       name: 'CdnFrontdoorRuleQueryStringBehaviour',
       members: <String, String>{
@@ -232663,12 +235454,27 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'CdnFrontdoorRuleRequestSchemeValues',
       members: <String, String>{'HTTP': 'http', 'HTTPS': 'https'},
     ),
+    'CdnFrontdoorRuleServerPortValues': MigrateEnum(
+      name: 'CdnFrontdoorRuleServerPortValues',
+      members: <String, String>{'80': 'v80', '443': 'v443'},
+    ),
     'CdnFrontdoorRuleSslProtocolValues': MigrateEnum(
       name: 'CdnFrontdoorRuleSslProtocolValues',
       members: <String, String>{
         'TLSv1': 'tlsv1',
         'TLSv1.1': 'tlsv1p1',
         'TLSv1.2': 'tlsv1p2',
+      },
+    ),
+    'CdnFrontdoorRuleTransforms': MigrateEnum(
+      name: 'CdnFrontdoorRuleTransforms',
+      members: <String, String>{
+        'Lowercase': 'lowercase',
+        'RemoveNulls': 'removenulls',
+        'Trim': 'trim',
+        'UrlDecode': 'urldecode',
+        'UrlEncode': 'urlencode',
+        'Uppercase': 'uppercase',
       },
     ),
     'CognitiveAccountBypass': MigrateEnum(
@@ -232838,12 +235644,89 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Reader': 'reader',
       },
     ),
+    'ContainerAppAction': MigrateEnum(
+      name: 'ContainerAppAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'ContainerAppClientCertificateMode': MigrateEnum(
+      name: 'ContainerAppClientCertificateMode',
+      members: <String, String>{
+        'accept': 'accept',
+        'ignore': 'ignore',
+        'require': 'require',
+      },
+    ),
     'ContainerAppCustomDomainCertificateBindingType': MigrateEnum(
       name: 'ContainerAppCustomDomainCertificateBindingType',
       members: <String, String>{
         'Auto': 'auto',
         'Disabled': 'disabled',
         'SniEnabled': 'snienabled',
+      },
+    ),
+    'ContainerAppCustomRuleType': MigrateEnum(
+      name: 'ContainerAppCustomRuleType',
+      members: <String, String>{
+        'activemq': 'activemq',
+        'artemis-queue': 'artemisQueue',
+        'kafka': 'kafka',
+        'pulsar': 'pulsar',
+        'aws-cloudwatch': 'awsCloudwatch',
+        'aws-dynamodb': 'awsDynamodb',
+        'aws-dynamodb-streams': 'awsDynamodbStreams',
+        'aws-kinesis-stream': 'awsKinesisStream',
+        'aws-sqs-queue': 'awsSqsQueue',
+        'azure-app-insights': 'azureAppInsights',
+        'azure-blob': 'azureBlob',
+        'azure-data-explorer': 'azureDataExplorer',
+        'azure-durabletask-scheduler': 'azureDurabletaskScheduler',
+        'azure-eventhub': 'azureEventhub',
+        'azure-log-analytics': 'azureLogAnalytics',
+        'azure-monitor': 'azureMonitor',
+        'azure-pipelines': 'azurePipelines',
+        'azure-servicebus': 'azureServicebus',
+        'azure-queue': 'azureQueue',
+        'cassandra': 'cassandra',
+        'cpu': 'cpu',
+        'cron': 'cron',
+        'datadog': 'datadog',
+        'elasticsearch': 'elasticsearch',
+        'external': 'external',
+        'external-push': 'externalPush',
+        'gcp-stackdriver': 'gcpStackdriver',
+        'gcp-storage': 'gcpStorage',
+        'gcp-pubsub': 'gcpPubsub',
+        'graphite': 'graphite',
+        'http': 'http',
+        'huawei-cloudeye': 'huaweiCloudeye',
+        'ibmmq': 'ibmmq',
+        'influxdb': 'influxdb',
+        'kubernetes-workload': 'kubernetesWorkload',
+        'liiklus': 'liiklus',
+        'memory': 'memory',
+        'metrics-api': 'metricsApi',
+        'mongodb': 'mongodb',
+        'mssql': 'mssql',
+        'mysql': 'mysql',
+        'nats-jetstream': 'natsJetstream',
+        'stan': 'stan',
+        'tcp': 'tcp',
+        'new-relic': 'newRelic',
+        'openstack-metric': 'openstackMetric',
+        'openstack-swift': 'openstackSwift',
+        'postgresql': 'postgresql',
+        'predictkube': 'predictkube',
+        'prometheus': 'prometheus',
+        'rabbitmq': 'rabbitmq',
+        'redis': 'redis',
+        'redis-cluster': 'redisCluster',
+        'redis-sentinel': 'redisSentinel',
+        'redis-streams': 'redisStreams',
+        'redis-cluster-streams': 'redisClusterStreams',
+        'redis-sentinel-streams': 'redisSentinelStreams',
+        'selenium-grid': 'seleniumGrid',
+        'solace-event-queue': 'solaceEventQueue',
+        'github-runner': 'githubRunner',
       },
     ),
     'ContainerAppEnvironmentLogsDestination': MigrateEnum(
@@ -232870,11 +235753,97 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'ReadWrite': 'readwrite',
       },
     ),
+    'ContainerAppEnvironmentWorkloadProfileType': MigrateEnum(
+      name: 'ContainerAppEnvironmentWorkloadProfileType',
+      members: <String, String>{
+        'Consumption': 'consumption',
+        'Consumption-GPU-NC24-A100': 'consumptionGpuNc24A100',
+        'Consumption-GPU-NC8as-T4': 'consumptionGpuNc8asT4',
+        'D4': 'd4',
+        'D8': 'd8',
+        'D16': 'd16',
+        'D32': 'd32',
+        'E4': 'e4',
+        'E8': 'e8',
+        'E16': 'e16',
+        'E32': 'e32',
+        'NC24-A100': 'nc24A100',
+        'NC48-A100': 'nc48A100',
+        'NC96-A100': 'nc96A100',
+      },
+    ),
+    'ContainerAppJobCustomRuleType': MigrateEnum(
+      name: 'ContainerAppJobCustomRuleType',
+      members: <String, String>{
+        'activemq': 'activemq',
+        'artemis-queue': 'artemisQueue',
+        'kafka': 'kafka',
+        'pulsar': 'pulsar',
+        'aws-cloudwatch': 'awsCloudwatch',
+        'aws-dynamodb': 'awsDynamodb',
+        'aws-dynamodb-streams': 'awsDynamodbStreams',
+        'aws-kinesis-stream': 'awsKinesisStream',
+        'aws-sqs-queue': 'awsSqsQueue',
+        'azure-app-insights': 'azureAppInsights',
+        'azure-blob': 'azureBlob',
+        'azure-data-explorer': 'azureDataExplorer',
+        'azure-durabletask-scheduler': 'azureDurabletaskScheduler',
+        'azure-eventhub': 'azureEventhub',
+        'azure-log-analytics': 'azureLogAnalytics',
+        'azure-monitor': 'azureMonitor',
+        'azure-pipelines': 'azurePipelines',
+        'azure-servicebus': 'azureServicebus',
+        'azure-queue': 'azureQueue',
+        'cassandra': 'cassandra',
+        'cpu': 'cpu',
+        'cron': 'cron',
+        'datadog': 'datadog',
+        'elasticsearch': 'elasticsearch',
+        'external': 'external',
+        'external-push': 'externalPush',
+        'gcp-stackdriver': 'gcpStackdriver',
+        'gcp-storage': 'gcpStorage',
+        'gcp-pubsub': 'gcpPubsub',
+        'graphite': 'graphite',
+        'http': 'http',
+        'huawei-cloudeye': 'huaweiCloudeye',
+        'ibmmq': 'ibmmq',
+        'influxdb': 'influxdb',
+        'kubernetes-workload': 'kubernetesWorkload',
+        'liiklus': 'liiklus',
+        'memory': 'memory',
+        'metrics-api': 'metricsApi',
+        'mongodb': 'mongodb',
+        'mssql': 'mssql',
+        'mysql': 'mysql',
+        'nats-jetstream': 'natsJetstream',
+        'stan': 'stan',
+        'tcp': 'tcp',
+        'new-relic': 'newRelic',
+        'openstack-metric': 'openstackMetric',
+        'openstack-swift': 'openstackSwift',
+        'postgresql': 'postgresql',
+        'predictkube': 'predictkube',
+        'prometheus': 'prometheus',
+        'rabbitmq': 'rabbitmq',
+        'redis': 'redis',
+        'redis-cluster': 'redisCluster',
+        'redis-sentinel': 'redisSentinel',
+        'redis-streams': 'redisStreams',
+        'redis-cluster-streams': 'redisClusterStreams',
+        'redis-sentinel-streams': 'redisSentinelStreams',
+        'selenium-grid': 'seleniumGrid',
+        'solace-event-queue': 'solaceEventQueue',
+        'github-runner': 'githubRunner',
+      },
+    ),
     'ContainerAppJobStorageType': MigrateEnum(
       name: 'ContainerAppJobStorageType',
       members: <String, String>{
         'AzureFile': 'azurefile',
         'EmptyDir': 'emptydir',
+        'NfsAzureFile': 'nfsazurefile',
+        'Secret': 'secret',
       },
     ),
     'ContainerAppJobTransport': MigrateEnum(
@@ -232887,7 +235856,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     ),
     'ContainerAppProtocol': MigrateEnum(
       name: 'ContainerAppProtocol',
-      members: <String, String>{'http': 'http', 'grpc': 'grpc'},
+      members: <String, String>{'grpc': 'grpc', 'http': 'http'},
     ),
     'ContainerAppRevisionMode': MigrateEnum(
       name: 'ContainerAppRevisionMode',
@@ -232898,6 +235867,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureFile': 'azurefile',
         'EmptyDir': 'emptydir',
+        'NfsAzureFile': 'nfsazurefile',
+        'Secret': 'secret',
       },
     ),
     'ContainerAppTransport': MigrateEnum(
@@ -232960,6 +235931,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Never': 'never',
         'OnFailure': 'onfailure',
       },
+    ),
+    'ContainerGroupScheme': MigrateEnum(
+      name: 'ContainerGroupScheme',
+      members: <String, String>{'http': 'http', 'https': 'https'},
     ),
     'ContainerGroupSku': MigrateEnum(
       name: 'ContainerGroupSku',
@@ -233144,12 +236119,30 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '5.0': 'v5p0',
       },
     ),
+    'CosmosdbCassandraTableOrderBy': MigrateEnum(
+      name: 'CosmosdbCassandraTableOrderBy',
+      members: <String, String>{'Asc': 'asc', 'Desc': 'desc'},
+    ),
     'CosmosdbGremlinGraphIndexingMode': MigrateEnum(
       name: 'CosmosdbGremlinGraphIndexingMode',
       members: <String, String>{
         'consistent': 'consistent',
         'lazy': 'lazy',
         'none': 'none',
+      },
+    ),
+    'CosmosdbGremlinGraphMode': MigrateEnum(
+      name: 'CosmosdbGremlinGraphMode',
+      members: <String, String>{
+        'Custom': 'custom',
+        'LastWriterWins': 'lastwriterwins',
+      },
+    ),
+    'CosmosdbGremlinGraphOrder': MigrateEnum(
+      name: 'CosmosdbGremlinGraphOrder',
+      members: <String, String>{
+        'ascending': 'ascending',
+        'descending': 'descending',
       },
     ),
     'CosmosdbPostgresqlClusterCitusVersion': MigrateEnum(
@@ -233199,6 +236192,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '14': 'v14',
         '15': 'v15',
         '16': 'v16',
+      },
+    ),
+    'CosmosdbSqlContainerMode': MigrateEnum(
+      name: 'CosmosdbSqlContainerMode',
+      members: <String, String>{
+        'Custom': 'custom',
+        'LastWriterWins': 'lastwriterwins',
+      },
+    ),
+    'CosmosdbSqlContainerOrder': MigrateEnum(
+      name: 'CosmosdbSqlContainerOrder',
+      members: <String, String>{
+        'ascending': 'ascending',
+        'descending': 'descending',
       },
     ),
     'CosmosdbSqlDedicatedGatewayInstanceSize': MigrateEnum(
@@ -234231,6 +237238,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'None': 'none',
       },
     ),
+    'DevTestLinuxVirtualMachineProtocol': MigrateEnum(
+      name: 'DevTestLinuxVirtualMachineProtocol',
+      members: <String, String>{'Tcp': 'tcp', 'Udp': 'udp'},
+    ),
     'DevTestLinuxVirtualMachineStorageType': MigrateEnum(
       name: 'DevTestLinuxVirtualMachineStorageType',
       members: <String, String>{'Standard': 'standard', 'Premium': 'premium'},
@@ -234264,6 +237275,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     ),
     'DevTestVirtualNetworkTransportProtocol': MigrateEnum(
       name: 'DevTestVirtualNetworkTransportProtocol',
+      members: <String, String>{'Tcp': 'tcp', 'Udp': 'udp'},
+    ),
+    'DevTestWindowsVirtualMachineProtocol': MigrateEnum(
+      name: 'DevTestWindowsVirtualMachineProtocol',
       members: <String, String>{'Tcp': 'tcp', 'Udp': 'udp'},
     ),
     'DevTestWindowsVirtualMachineStorageType': MigrateEnum(
@@ -234377,6 +237392,25 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'EventgridDomainMinimumTlsVersion',
       members: <String, String>{'1.1': 'v1p1', '1.2': 'v1p2', '1.0': 'v1p0'},
     ),
+    'EventgridEventSubscriptionDeadLetterIdentityType': MigrateEnum(
+      name: 'EventgridEventSubscriptionDeadLetterIdentityType',
+      members: <String, String>{
+        'SystemAssigned': 'systemassigned',
+        'UserAssigned': 'userassigned',
+      },
+    ),
+    'EventgridEventSubscriptionDeliveryPropertyType': MigrateEnum(
+      name: 'EventgridEventSubscriptionDeliveryPropertyType',
+      members: <String, String>{'Static': 'static', 'Dynamic': 'dynamic'},
+    ),
+    'EventgridEventSubscriptionEventDeliverySchema': MigrateEnum(
+      name: 'EventgridEventSubscriptionEventDeliverySchema',
+      members: <String, String>{
+        'CloudEventSchemaV1_0': 'cloudeventschemav10',
+        'CustomInputSchema': 'custominputschema',
+        'EventGridSchema': 'eventgridschema',
+      },
+    ),
     'EventgridNamespaceAlternativeAuthenticationNameSource': MigrateEnum(
       name: 'EventgridNamespaceAlternativeAuthenticationNameSource',
       members: <String, String>{
@@ -234397,6 +237431,25 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'EventgridPartnerNamespacePublicNetworkAccess': MigrateEnum(
       name: 'EventgridPartnerNamespacePublicNetworkAccess',
       members: <String, String>{'Disabled': 'disabled', 'Enabled': 'enabled'},
+    ),
+    'EventgridSystemTopicEventSubscriptionDeadLetterIdentityType': MigrateEnum(
+      name: 'EventgridSystemTopicEventSubscriptionDeadLetterIdentityType',
+      members: <String, String>{
+        'SystemAssigned': 'systemassigned',
+        'UserAssigned': 'userassigned',
+      },
+    ),
+    'EventgridSystemTopicEventSubscriptionDeliveryPropertyType': MigrateEnum(
+      name: 'EventgridSystemTopicEventSubscriptionDeliveryPropertyType',
+      members: <String, String>{'Static': 'static', 'Dynamic': 'dynamic'},
+    ),
+    'EventgridSystemTopicEventSubscriptionEventDeliverySchema': MigrateEnum(
+      name: 'EventgridSystemTopicEventSubscriptionEventDeliverySchema',
+      members: <String, String>{
+        'CloudEventSchemaV1_0': 'cloudeventschemav10',
+        'CustomInputSchema': 'custominputschema',
+        'EventGridSchema': 'eventgridschema',
+      },
     ),
     'EventgridTopicDataResidencyBoundary': MigrateEnum(
       name: 'EventgridTopicDataResidencyBoundary',
@@ -234814,25 +237867,29 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
       },
     ),
     'FunctionAppFlexConsumptionForwardProxyConvention': MigrateEnum(
       name: 'FunctionAppFlexConsumptionForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
+    ),
+    'FunctionAppFlexConsumptionIpRestrictionDefaultAction': MigrateEnum(
+      name: 'FunctionAppFlexConsumptionIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
     'FunctionAppFlexConsumptionLoadBalancingMode': MigrateEnum(
       name: 'FunctionAppFlexConsumptionLoadBalancingMode',
       members: <String, String>{
-        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastResponseTime': 'leastresponsetime',
         'WeightedTotalTraffic': 'weightedtotaltraffic',
         'RequestHash': 'requesthash',
@@ -234842,13 +237899,26 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'FunctionAppFlexConsumptionManagedPipelineMode': MigrateEnum(
       name: 'FunctionAppFlexConsumptionManagedPipelineMode',
       members: <String, String>{
-        'Integrated': 'integrated',
         'Classic': 'classic',
+        'Integrated': 'integrated',
       },
     ),
     'FunctionAppFlexConsumptionMinimumTlsVersion': MigrateEnum(
       name: 'FunctionAppFlexConsumptionMinimumTlsVersion',
-      members: <String, String>{'1.0': 'v1p0', '1.1': 'v1p1', '1.2': 'v1p2'},
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'FunctionAppFlexConsumptionRemoteDebuggingVersion': MigrateEnum(
+      name: 'FunctionAppFlexConsumptionRemoteDebuggingVersion',
+      members: <String, String>{
+        'VS2017': 'vs2017',
+        'VS2019': 'vs2019',
+        'VS2022': 'vs2022',
+      },
     ),
     'FunctionAppFlexConsumptionRuntimeName': MigrateEnum(
       name: 'FunctionAppFlexConsumptionRuntimeName',
@@ -234861,9 +237931,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'python': 'python',
       },
     ),
+    'FunctionAppFlexConsumptionScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'FunctionAppFlexConsumptionScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'FunctionAppFlexConsumptionScmMinimumTlsVersion': MigrateEnum(
       name: 'FunctionAppFlexConsumptionScmMinimumTlsVersion',
-      members: <String, String>{'1.0': 'v1p0', '1.1': 'v1p1', '1.2': 'v1p2'},
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
     ),
     'FunctionAppFlexConsumptionStorageAuthenticationType': MigrateEnum(
       name: 'FunctionAppFlexConsumptionStorageAuthenticationType',
@@ -234876,24 +237955,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'FunctionAppFlexConsumptionType': MigrateEnum(
       name: 'FunctionAppFlexConsumptionType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
+        'ApiHub': 'apihub',
         'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
         'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
         'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'FunctionAppFlexConsumptionUnauthenticatedAction': MigrateEnum(
       name: 'FunctionAppFlexConsumptionUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -234901,8 +237980,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'FunctionAppFlexConsumptionUnauthenticatedClientAction': MigrateEnum(
       name: 'FunctionAppFlexConsumptionUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
     'FunctionAppFunctionLanguage': MigrateEnum(
@@ -234927,6 +238006,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Premium_LRS': 'premiumLrs',
         'Standard_LRS': 'standardLrs',
         'Standard_ZRS': 'standardZrs',
+      },
+    ),
+    'HdinsightHadoopClusterConnectionDirection': MigrateEnum(
+      name: 'HdinsightHadoopClusterConnectionDirection',
+      members: <String, String>{'Inbound': 'inbound', 'Outbound': 'outbound'},
+    ),
+    'HdinsightHadoopClusterEncryptionAlgorithm': MigrateEnum(
+      name: 'HdinsightHadoopClusterEncryptionAlgorithm',
+      members: <String, String>{
+        'RSA-OAEP': 'rsaOaep',
+        'RSA-OAEP-256': 'rsaOaep256',
+        'RSA1_5': 'rsa15',
+      },
+    ),
+    'HdinsightHadoopClusterPrivateIpAllocationMethod': MigrateEnum(
+      name: 'HdinsightHadoopClusterPrivateIpAllocationMethod',
+      members: <String, String>{'dynamic': 'dynamic', 'static': 'static'},
+    ),
+    'HdinsightHadoopClusterTier': MigrateEnum(
+      name: 'HdinsightHadoopClusterTier',
+      members: <String, String>{'Premium': 'premium', 'Standard': 'standard'},
+    ),
+    'HdinsightHadoopClusterTlsMinVersion': MigrateEnum(
+      name: 'HdinsightHadoopClusterTlsMinVersion',
+      members: <String, String>{
+        '1.0': 'v1p0',
+        '1.1': 'v1p1',
+        '1.2': 'v1p2',
+        '1.3': 'v1p3',
       },
     ),
     'HdinsightHadoopClusterVmSize': MigrateEnum(
@@ -235046,6 +238154,122 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Standard_GS4': 'standardGs4',
         'Standard_GS5': 'standardGs5',
         'Standard_NC24': 'standardNc24',
+      },
+    ),
+    'HdinsightHbaseClusterConnectionDirection': MigrateEnum(
+      name: 'HdinsightHbaseClusterConnectionDirection',
+      members: <String, String>{'Inbound': 'inbound', 'Outbound': 'outbound'},
+    ),
+    'HdinsightHbaseClusterEncryptionAlgorithm': MigrateEnum(
+      name: 'HdinsightHbaseClusterEncryptionAlgorithm',
+      members: <String, String>{
+        'RSA-OAEP': 'rsaOaep',
+        'RSA-OAEP-256': 'rsaOaep256',
+        'RSA1_5': 'rsa15',
+      },
+    ),
+    'HdinsightHbaseClusterPrivateIpAllocationMethod': MigrateEnum(
+      name: 'HdinsightHbaseClusterPrivateIpAllocationMethod',
+      members: <String, String>{'dynamic': 'dynamic', 'static': 'static'},
+    ),
+    'HdinsightHbaseClusterTier': MigrateEnum(
+      name: 'HdinsightHbaseClusterTier',
+      members: <String, String>{'Premium': 'premium', 'Standard': 'standard'},
+    ),
+    'HdinsightHbaseClusterTlsMinVersion': MigrateEnum(
+      name: 'HdinsightHbaseClusterTlsMinVersion',
+      members: <String, String>{
+        '1.0': 'v1p0',
+        '1.1': 'v1p1',
+        '1.2': 'v1p2',
+        '1.3': 'v1p3',
+      },
+    ),
+    'HdinsightInteractiveQueryClusterConnectionDirection': MigrateEnum(
+      name: 'HdinsightInteractiveQueryClusterConnectionDirection',
+      members: <String, String>{'Inbound': 'inbound', 'Outbound': 'outbound'},
+    ),
+    'HdinsightInteractiveQueryClusterEncryptionAlgorithm': MigrateEnum(
+      name: 'HdinsightInteractiveQueryClusterEncryptionAlgorithm',
+      members: <String, String>{
+        'RSA-OAEP': 'rsaOaep',
+        'RSA-OAEP-256': 'rsaOaep256',
+        'RSA1_5': 'rsa15',
+      },
+    ),
+    'HdinsightInteractiveQueryClusterPrivateIpAllocationMethod': MigrateEnum(
+      name: 'HdinsightInteractiveQueryClusterPrivateIpAllocationMethod',
+      members: <String, String>{'dynamic': 'dynamic', 'static': 'static'},
+    ),
+    'HdinsightInteractiveQueryClusterTier': MigrateEnum(
+      name: 'HdinsightInteractiveQueryClusterTier',
+      members: <String, String>{'Premium': 'premium', 'Standard': 'standard'},
+    ),
+    'HdinsightInteractiveQueryClusterTlsMinVersion': MigrateEnum(
+      name: 'HdinsightInteractiveQueryClusterTlsMinVersion',
+      members: <String, String>{
+        '1.0': 'v1p0',
+        '1.1': 'v1p1',
+        '1.2': 'v1p2',
+        '1.3': 'v1p3',
+      },
+    ),
+    'HdinsightKafkaClusterConnectionDirection': MigrateEnum(
+      name: 'HdinsightKafkaClusterConnectionDirection',
+      members: <String, String>{'Inbound': 'inbound', 'Outbound': 'outbound'},
+    ),
+    'HdinsightKafkaClusterEncryptionAlgorithm': MigrateEnum(
+      name: 'HdinsightKafkaClusterEncryptionAlgorithm',
+      members: <String, String>{
+        'RSA-OAEP': 'rsaOaep',
+        'RSA-OAEP-256': 'rsaOaep256',
+        'RSA1_5': 'rsa15',
+      },
+    ),
+    'HdinsightKafkaClusterPrivateIpAllocationMethod': MigrateEnum(
+      name: 'HdinsightKafkaClusterPrivateIpAllocationMethod',
+      members: <String, String>{'dynamic': 'dynamic', 'static': 'static'},
+    ),
+    'HdinsightKafkaClusterTier': MigrateEnum(
+      name: 'HdinsightKafkaClusterTier',
+      members: <String, String>{'Premium': 'premium', 'Standard': 'standard'},
+    ),
+    'HdinsightKafkaClusterTlsMinVersion': MigrateEnum(
+      name: 'HdinsightKafkaClusterTlsMinVersion',
+      members: <String, String>{
+        '1.0': 'v1p0',
+        '1.1': 'v1p1',
+        '1.2': 'v1p2',
+        '1.3': 'v1p3',
+      },
+    ),
+    'HdinsightSparkClusterConnectionDirection': MigrateEnum(
+      name: 'HdinsightSparkClusterConnectionDirection',
+      members: <String, String>{'Inbound': 'inbound', 'Outbound': 'outbound'},
+    ),
+    'HdinsightSparkClusterEncryptionAlgorithm': MigrateEnum(
+      name: 'HdinsightSparkClusterEncryptionAlgorithm',
+      members: <String, String>{
+        'RSA-OAEP': 'rsaOaep',
+        'RSA-OAEP-256': 'rsaOaep256',
+        'RSA1_5': 'rsa15',
+      },
+    ),
+    'HdinsightSparkClusterPrivateIpAllocationMethod': MigrateEnum(
+      name: 'HdinsightSparkClusterPrivateIpAllocationMethod',
+      members: <String, String>{'dynamic': 'dynamic', 'static': 'static'},
+    ),
+    'HdinsightSparkClusterTier': MigrateEnum(
+      name: 'HdinsightSparkClusterTier',
+      members: <String, String>{'Premium': 'premium', 'Standard': 'standard'},
+    ),
+    'HdinsightSparkClusterTlsMinVersion': MigrateEnum(
+      name: 'HdinsightSparkClusterTlsMinVersion',
+      members: <String, String>{
+        '1.0': 'v1p0',
+        '1.1': 'v1p1',
+        '1.2': 'v1p2',
+        '1.3': 'v1p3',
       },
     ),
     'HealthbotSkuName': MigrateEnum(
@@ -235347,6 +238571,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Unmanaged': 'unmanaged',
       },
     ),
+    'KubernetesClusterNodePoolCpuManagerPolicy': MigrateEnum(
+      name: 'KubernetesClusterNodePoolCpuManagerPolicy',
+      members: <String, String>{'none': 'none', 'static': 'static'},
+    ),
     'KubernetesClusterNodePoolEvictionPolicy': MigrateEnum(
       name: 'KubernetesClusterNodePoolEvictionPolicy',
       members: <String, String>{'Deallocate': 'deallocate', 'Delete': 'delete'},
@@ -235371,9 +238599,44 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'KubernetesClusterNodePoolPriority',
       members: <String, String>{'Regular': 'regular', 'Spot': 'spot'},
     ),
+    'KubernetesClusterNodePoolProtocol': MigrateEnum(
+      name: 'KubernetesClusterNodePoolProtocol',
+      members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+    ),
     'KubernetesClusterNodePoolScaleDownMode': MigrateEnum(
       name: 'KubernetesClusterNodePoolScaleDownMode',
       members: <String, String>{'Deallocate': 'deallocate', 'Delete': 'delete'},
+    ),
+    'KubernetesClusterNodePoolTopologyManagerPolicy': MigrateEnum(
+      name: 'KubernetesClusterNodePoolTopologyManagerPolicy',
+      members: <String, String>{
+        'none': 'none',
+        'best-effort': 'bestEffort',
+        'restricted': 'restricted',
+        'single-numa-node': 'singleNumaNode',
+      },
+    ),
+    'KubernetesClusterNodePoolTransparentHugePage': MigrateEnum(
+      name: 'KubernetesClusterNodePoolTransparentHugePage',
+      members: <String, String>{
+        'always': 'always',
+        'madvise': 'madvise',
+        'never': 'never',
+      },
+    ),
+    'KubernetesClusterNodePoolTransparentHugePageDefrag': MigrateEnum(
+      name: 'KubernetesClusterNodePoolTransparentHugePageDefrag',
+      members: <String, String>{
+        'always': 'always',
+        'defer': 'defer',
+        'defer+madvise': 'deferMadvise',
+        'madvise': 'madvise',
+        'never': 'never',
+      },
+    ),
+    'KubernetesClusterNodePoolUndrainableNodeBehavior': MigrateEnum(
+      name: 'KubernetesClusterNodePoolUndrainableNodeBehavior',
+      members: <String, String>{'Cordon': 'cordon', 'Schedule': 'schedule'},
     ),
     'KubernetesClusterNodePoolWorkloadRuntime': MigrateEnum(
       name: 'KubernetesClusterNodePoolWorkloadRuntime',
@@ -235718,6 +238981,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Required': 'required',
       },
     ),
+    'LinuxFunctionAppConnectionStringType': MigrateEnum(
+      name: 'LinuxFunctionAppConnectionStringType',
+      members: <String, String>{
+        'ApiHub': 'apihub',
+        'Custom': 'custom',
+        'DocDb': 'docdb',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
+        'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
+      },
+    ),
     'LinuxFunctionAppCookieExpirationConvention': MigrateEnum(
       name: 'LinuxFunctionAppCookieExpirationConvention',
       members: <String, String>{
@@ -235730,10 +239009,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
       },
     ),
     'LinuxFunctionAppDotnetVersion': MigrateEnum(
@@ -235744,14 +239023,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '7.0': 'v7p0',
         '8.0': 'v8p0',
         '9.0': 'v9p0',
+        '10.0': 'v10p0',
       },
     ),
     'LinuxFunctionAppForwardProxyConvention': MigrateEnum(
       name: 'LinuxFunctionAppForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'LinuxFunctionAppFrequencyUnit': MigrateEnum(
@@ -235762,9 +239042,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'LinuxFunctionAppFtpsState',
       members: <String, String>{
         'AllAllowed': 'allallowed',
-        'FtpsOnly': 'ftpsonly',
         'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
       },
+    ),
+    'LinuxFunctionAppIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxFunctionAppIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
     'LinuxFunctionAppJavaVersion': MigrateEnum(
       name: 'LinuxFunctionAppJavaVersion',
@@ -235779,8 +239063,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppLoadBalancingMode': MigrateEnum(
       name: 'LinuxFunctionAppLoadBalancingMode',
       members: <String, String>{
-        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastResponseTime': 'leastresponsetime',
         'WeightedTotalTraffic': 'weightedtotaltraffic',
         'RequestHash': 'requesthash',
@@ -235790,13 +239074,47 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppManagedPipelineMode': MigrateEnum(
       name: 'LinuxFunctionAppManagedPipelineMode',
       members: <String, String>{
-        'Integrated': 'integrated',
         'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'LinuxFunctionAppMinimumTlsCipherSuite': MigrateEnum(
+      name: 'LinuxFunctionAppMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
       },
     ),
     'LinuxFunctionAppMinimumTlsVersion': MigrateEnum(
       name: 'LinuxFunctionAppMinimumTlsVersion',
-      members: <String, String>{'1.0': 'v1p0', '1.1': 'v1p1', '1.2': 'v1p2'},
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
     ),
     'LinuxFunctionAppNodeVersion': MigrateEnum(
       name: 'LinuxFunctionAppNodeVersion',
@@ -235808,6 +239126,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '20': 'v20',
         '22': 'v22',
         '24': 'v24',
+      },
+    ),
+    'LinuxFunctionAppPowershellCoreVersion': MigrateEnum(
+      name: 'LinuxFunctionAppPowershellCoreVersion',
+      members: <String, String>{
+        '7': 'v7',
+        '7.2': 'v7p2',
+        '7.4': 'v7p4',
+        '7.6': 'v7p6',
       },
     ),
     'LinuxFunctionAppPythonVersion': MigrateEnum(
@@ -235823,13 +239150,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '3.7': 'v3p7',
       },
     ),
+    'LinuxFunctionAppScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxFunctionAppScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'LinuxFunctionAppScmMinimumTlsVersion': MigrateEnum(
       name: 'LinuxFunctionAppScmMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
     'LinuxFunctionAppSlotAction': MigrateEnum(
@@ -235844,6 +239175,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Required': 'required',
       },
     ),
+    'LinuxFunctionAppSlotConnectionStringType': MigrateEnum(
+      name: 'LinuxFunctionAppSlotConnectionStringType',
+      members: <String, String>{
+        'ApiHub': 'apihub',
+        'Custom': 'custom',
+        'DocDb': 'docdb',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
+        'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
+      },
+    ),
     'LinuxFunctionAppSlotCookieExpirationConvention': MigrateEnum(
       name: 'LinuxFunctionAppSlotCookieExpirationConvention',
       members: <String, String>{
@@ -235856,10 +239203,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
       },
     ),
     'LinuxFunctionAppSlotDotnetVersion': MigrateEnum(
@@ -235870,14 +239217,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '7.0': 'v7p0',
         '8.0': 'v8p0',
         '9.0': 'v9p0',
+        '10.0': 'v10p0',
       },
     ),
     'LinuxFunctionAppSlotForwardProxyConvention': MigrateEnum(
       name: 'LinuxFunctionAppSlotForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'LinuxFunctionAppSlotFrequencyUnit': MigrateEnum(
@@ -235888,9 +239236,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'LinuxFunctionAppSlotFtpsState',
       members: <String, String>{
         'AllAllowed': 'allallowed',
-        'FtpsOnly': 'ftpsonly',
         'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
       },
+    ),
+    'LinuxFunctionAppSlotIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxFunctionAppSlotIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
     'LinuxFunctionAppSlotJavaVersion': MigrateEnum(
       name: 'LinuxFunctionAppSlotJavaVersion',
@@ -235905,8 +239257,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppSlotLoadBalancingMode': MigrateEnum(
       name: 'LinuxFunctionAppSlotLoadBalancingMode',
       members: <String, String>{
-        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastResponseTime': 'leastresponsetime',
         'WeightedTotalTraffic': 'weightedtotaltraffic',
         'RequestHash': 'requesthash',
@@ -235916,17 +239268,46 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppSlotManagedPipelineMode': MigrateEnum(
       name: 'LinuxFunctionAppSlotManagedPipelineMode',
       members: <String, String>{
-        'Integrated': 'integrated',
         'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'LinuxFunctionAppSlotMinimumTlsCipherSuite': MigrateEnum(
+      name: 'LinuxFunctionAppSlotMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
       },
     ),
     'LinuxFunctionAppSlotMinimumTlsVersion': MigrateEnum(
       name: 'LinuxFunctionAppSlotMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
     'LinuxFunctionAppSlotNodeVersion': MigrateEnum(
@@ -235939,6 +239320,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '20': 'v20',
         '22': 'v22',
         '24': 'v24',
+      },
+    ),
+    'LinuxFunctionAppSlotPowershellCoreVersion': MigrateEnum(
+      name: 'LinuxFunctionAppSlotPowershellCoreVersion',
+      members: <String, String>{
+        '7': 'v7',
+        '7.2': 'v7p2',
+        '7.4': 'v7p4',
+        '7.6': 'v7p6',
       },
     ),
     'LinuxFunctionAppSlotPythonVersion': MigrateEnum(
@@ -235954,36 +239344,31 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '3.7': 'v3p7',
       },
     ),
+    'LinuxFunctionAppSlotScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxFunctionAppSlotScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'LinuxFunctionAppSlotScmMinimumTlsVersion': MigrateEnum(
       name: 'LinuxFunctionAppSlotScmMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
-    'LinuxFunctionAppSlotType': MigrateEnum(
-      name: 'LinuxFunctionAppSlotType',
+    'LinuxFunctionAppSlotStorageAccountType': MigrateEnum(
+      name: 'LinuxFunctionAppSlotStorageAccountType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
-        'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
-        'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
-        'PostgreSQL': 'postgresql',
+        'AzureBlob': 'azureblob',
+        'AzureFiles': 'azurefiles',
       },
     ),
     'LinuxFunctionAppSlotUnauthenticatedAction': MigrateEnum(
       name: 'LinuxFunctionAppSlotUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -235991,31 +239376,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppSlotUnauthenticatedClientAction': MigrateEnum(
       name: 'LinuxFunctionAppSlotUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
-    'LinuxFunctionAppType': MigrateEnum(
-      name: 'LinuxFunctionAppType',
+    'LinuxFunctionAppStorageAccountType': MigrateEnum(
+      name: 'LinuxFunctionAppStorageAccountType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
-        'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
-        'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
-        'PostgreSQL': 'postgresql',
+        'AzureBlob': 'azureblob',
+        'AzureFiles': 'azurefiles',
       },
     ),
     'LinuxFunctionAppUnauthenticatedAction': MigrateEnum(
       name: 'LinuxFunctionAppUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -236023,8 +239399,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxFunctionAppUnauthenticatedClientAction': MigrateEnum(
       name: 'LinuxFunctionAppUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
+      },
+    ),
+    'LinuxVirtualMachineCaching': MigrateEnum(
+      name: 'LinuxVirtualMachineCaching',
+      members: <String, String>{
+        'None': 'none',
+        'ReadOnly': 'readonly',
+        'ReadWrite': 'readwrite',
       },
     ),
     'LinuxVirtualMachineDiskControllerType': MigrateEnum(
@@ -236065,9 +239449,61 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'ImageDefault': 'imagedefault',
       },
     ),
+    'LinuxVirtualMachinePlacement': MigrateEnum(
+      name: 'LinuxVirtualMachinePlacement',
+      members: <String, String>{
+        'CacheDisk': 'cachedisk',
+        'NvmeDisk': 'nvmedisk',
+        'ResourceDisk': 'resourcedisk',
+      },
+    ),
+    'LinuxVirtualMachineScaleSetAction': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetAction',
+      members: <String, String>{
+        'Reimage': 'reimage',
+        'Replace': 'replace',
+        'Restart': 'restart',
+      },
+    ),
+    'LinuxVirtualMachineScaleSetCaching': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetCaching',
+      members: <String, String>{
+        'None': 'none',
+        'ReadOnly': 'readonly',
+        'ReadWrite': 'readwrite',
+      },
+    ),
     'LinuxVirtualMachineScaleSetEvictionPolicy': MigrateEnum(
       name: 'LinuxVirtualMachineScaleSetEvictionPolicy',
       members: <String, String>{'Deallocate': 'deallocate', 'Delete': 'delete'},
+    ),
+    'LinuxVirtualMachineScaleSetPlacement': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetPlacement',
+      members: <String, String>{
+        'CacheDisk': 'cachedisk',
+        'NvmeDisk': 'nvmedisk',
+        'ResourceDisk': 'resourcedisk',
+      },
+    ),
+    'LinuxVirtualMachineScaleSetRule': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetRule',
+      members: <String, String>{
+        'Default': 'defaultCase',
+        'NewestVM': 'newestvm',
+        'OldestVM': 'oldestvm',
+      },
+    ),
+    'LinuxVirtualMachineScaleSetStorageAccountType': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetStorageAccountType',
+      members: <String, String>{
+        'Premium_LRS': 'premiumLrs',
+        'PremiumV2_LRS': 'premiumv2Lrs',
+        'Premium_ZRS': 'premiumZrs',
+        'Standard_LRS': 'standardLrs',
+        'StandardSSD_LRS': 'standardssdLrs',
+        'StandardSSD_ZRS': 'standardssdZrs',
+        'UltraSSD_LRS': 'ultrassdLrs',
+      },
     ),
     'LinuxVirtualMachineScaleSetUpgradeMode': MigrateEnum(
       name: 'LinuxVirtualMachineScaleSetUpgradeMode',
@@ -236077,12 +239513,32 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Rolling': 'rolling',
       },
     ),
+    'LinuxVirtualMachineScaleSetVersion': MigrateEnum(
+      name: 'LinuxVirtualMachineScaleSetVersion',
+      members: <String, String>{'IPv4': 'ipv4', 'IPv6': 'ipv6'},
+    ),
     'LinuxWebAppClientCertificateMode': MigrateEnum(
       name: 'LinuxWebAppClientCertificateMode',
       members: <String, String>{
         'Optional': 'optional',
         'OptionalInteractiveUser': 'optionalinteractiveuser',
         'Required': 'required',
+      },
+    ),
+    'LinuxWebAppConnectionStringType': MigrateEnum(
+      name: 'LinuxWebAppConnectionStringType',
+      members: <String, String>{
+        'ApiHub': 'apihub',
+        'Custom': 'custom',
+        'DocDb': 'docdb',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
+        'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'LinuxWebAppCookieExpirationConvention': MigrateEnum(
@@ -236097,27 +239553,189 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
+      },
+    ),
+    'LinuxWebAppDotnetVersion': MigrateEnum(
+      name: 'LinuxWebAppDotnetVersion',
+      members: <String, String>{
+        '3.1': 'v3p1',
+        '5.0': 'v5p0',
+        '6.0': 'v6p0',
+        '7.0': 'v7p0',
+        '8.0': 'v8p0',
+        '9.0': 'v9p0',
+        '10.0': 'v10p0',
+      },
+    ),
+    'LinuxWebAppFileSystemLevel': MigrateEnum(
+      name: 'LinuxWebAppFileSystemLevel',
+      members: <String, String>{
+        'Error': 'error',
+        'Information': 'information',
+        'Off': 'off',
+        'Verbose': 'verbose',
+        'Warning': 'warning',
       },
     ),
     'LinuxWebAppForwardProxyConvention': MigrateEnum(
       name: 'LinuxWebAppForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'LinuxWebAppFrequencyUnit': MigrateEnum(
       name: 'LinuxWebAppFrequencyUnit',
       members: <String, String>{'Day': 'day', 'Hour': 'hour'},
     ),
+    'LinuxWebAppFtpsState': MigrateEnum(
+      name: 'LinuxWebAppFtpsState',
+      members: <String, String>{
+        'AllAllowed': 'allallowed',
+        'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
+      },
+    ),
+    'LinuxWebAppGoVersion': MigrateEnum(
+      name: 'LinuxWebAppGoVersion',
+      members: <String, String>{'1.19': 'v1p19', '1.18': 'v1p18'},
+    ),
     'LinuxWebAppIpRestrictionAction': MigrateEnum(
       name: 'LinuxWebAppIpRestrictionAction',
       members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LinuxWebAppIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxWebAppIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LinuxWebAppJavaServer': MigrateEnum(
+      name: 'LinuxWebAppJavaServer',
+      members: <String, String>{
+        'JAVA': 'java',
+        'TOMCAT': 'tomcat',
+        'JBOSSEAP': 'jbosseap',
+      },
+    ),
+    'LinuxWebAppJavaVersion': MigrateEnum(
+      name: 'LinuxWebAppJavaVersion',
+      members: <String, String>{
+        '8': 'v8',
+        '11': 'v11',
+        '17': 'v17',
+        '21': 'v21',
+        '25': 'v25',
+      },
+    ),
+    'LinuxWebAppLoadBalancingMode': MigrateEnum(
+      name: 'LinuxWebAppLoadBalancingMode',
+      members: <String, String>{
+        'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
+        'LeastResponseTime': 'leastresponsetime',
+        'WeightedTotalTraffic': 'weightedtotaltraffic',
+        'RequestHash': 'requesthash',
+        'PerSiteRoundRobin': 'persiteroundrobin',
+      },
+    ),
+    'LinuxWebAppManagedPipelineMode': MigrateEnum(
+      name: 'LinuxWebAppManagedPipelineMode',
+      members: <String, String>{
+        'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'LinuxWebAppMinimumTlsCipherSuite': MigrateEnum(
+      name: 'LinuxWebAppMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
+      },
+    ),
+    'LinuxWebAppMinimumTlsVersion': MigrateEnum(
+      name: 'LinuxWebAppMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'LinuxWebAppNodeVersion': MigrateEnum(
+      name: 'LinuxWebAppNodeVersion',
+      members: <String, String>{
+        '12-lts': 'v12Lts',
+        '14-lts': 'v14Lts',
+        '16-lts': 'v16Lts',
+        '18-lts': 'v18Lts',
+        '20-lts': 'v20Lts',
+        '22-lts': 'v22Lts',
+        '24-lts': 'v24Lts',
+      },
+    ),
+    'LinuxWebAppPhpVersion': MigrateEnum(
+      name: 'LinuxWebAppPhpVersion',
+      members: <String, String>{
+        '7.4': 'v7p4',
+        '8.0': 'v8p0',
+        '8.1': 'v8p1',
+        '8.2': 'v8p2',
+        '8.3': 'v8p3',
+        '8.4': 'v8p4',
+        '8.5': 'v8p5',
+      },
+    ),
+    'LinuxWebAppPythonVersion': MigrateEnum(
+      name: 'LinuxWebAppPythonVersion',
+      members: <String, String>{
+        '3.7': 'v3p7',
+        '3.8': 'v3p8',
+        '3.9': 'v3p9',
+        '3.10': 'v3p10',
+        '3.11': 'v3p11',
+        '3.12': 'v3p12',
+        '3.13': 'v3p13',
+        '3.14': 'v3p14',
+      },
+    ),
+    'LinuxWebAppScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxWebAppScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LinuxWebAppScmMinimumTlsVersion': MigrateEnum(
+      name: 'LinuxWebAppScmMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
     ),
     'LinuxWebAppSlotClientCertificateMode': MigrateEnum(
       name: 'LinuxWebAppSlotClientCertificateMode',
@@ -236125,6 +239743,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Optional': 'optional',
         'OptionalInteractiveUser': 'optionalinteractiveuser',
         'Required': 'required',
+      },
+    ),
+    'LinuxWebAppSlotConnectionStringType': MigrateEnum(
+      name: 'LinuxWebAppSlotConnectionStringType',
+      members: <String, String>{
+        'ApiHub': 'apihub',
+        'Custom': 'custom',
+        'DocDb': 'docdb',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
+        'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'LinuxWebAppSlotCookieExpirationConvention': MigrateEnum(
@@ -236139,49 +239773,202 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
+      },
+    ),
+    'LinuxWebAppSlotDotnetVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotDotnetVersion',
+      members: <String, String>{
+        '3.1': 'v3p1',
+        '5.0': 'v5p0',
+        '6.0': 'v6p0',
+        '7.0': 'v7p0',
+        '8.0': 'v8p0',
+        '9.0': 'v9p0',
+        '10.0': 'v10p0',
+      },
+    ),
+    'LinuxWebAppSlotFileSystemLevel': MigrateEnum(
+      name: 'LinuxWebAppSlotFileSystemLevel',
+      members: <String, String>{
+        'Error': 'error',
+        'Information': 'information',
+        'Off': 'off',
+        'Verbose': 'verbose',
+        'Warning': 'warning',
       },
     ),
     'LinuxWebAppSlotForwardProxyConvention': MigrateEnum(
       name: 'LinuxWebAppSlotForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'LinuxWebAppSlotFrequencyUnit': MigrateEnum(
       name: 'LinuxWebAppSlotFrequencyUnit',
       members: <String, String>{'Day': 'day', 'Hour': 'hour'},
     ),
+    'LinuxWebAppSlotFtpsState': MigrateEnum(
+      name: 'LinuxWebAppSlotFtpsState',
+      members: <String, String>{
+        'AllAllowed': 'allallowed',
+        'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
+      },
+    ),
+    'LinuxWebAppSlotGoVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotGoVersion',
+      members: <String, String>{'1.19': 'v1p19', '1.18': 'v1p18'},
+    ),
     'LinuxWebAppSlotIpRestrictionAction': MigrateEnum(
       name: 'LinuxWebAppSlotIpRestrictionAction',
       members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
-    'LinuxWebAppSlotType': MigrateEnum(
-      name: 'LinuxWebAppSlotType',
+    'LinuxWebAppSlotIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxWebAppSlotIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LinuxWebAppSlotJavaServer': MigrateEnum(
+      name: 'LinuxWebAppSlotJavaServer',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
-        'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
-        'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
-        'PostgreSQL': 'postgresql',
+        'JAVA': 'java',
+        'TOMCAT': 'tomcat',
+        'JBOSSEAP': 'jbosseap',
+      },
+    ),
+    'LinuxWebAppSlotJavaVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotJavaVersion',
+      members: <String, String>{
+        '8': 'v8',
+        '11': 'v11',
+        '17': 'v17',
+        '21': 'v21',
+        '25': 'v25',
+      },
+    ),
+    'LinuxWebAppSlotLoadBalancingMode': MigrateEnum(
+      name: 'LinuxWebAppSlotLoadBalancingMode',
+      members: <String, String>{
+        'LeastRequests': 'leastrequests',
+        'LeastResponseTime': 'leastresponsetime',
+        'PerSiteRoundRobin': 'persiteroundrobin',
+        'RequestHash': 'requesthash',
+        'WeightedRoundRobin': 'weightedroundrobin',
+        'WeightedTotalTraffic': 'weightedtotaltraffic',
+      },
+    ),
+    'LinuxWebAppSlotManagedPipelineMode': MigrateEnum(
+      name: 'LinuxWebAppSlotManagedPipelineMode',
+      members: <String, String>{
+        'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'LinuxWebAppSlotMinimumTlsCipherSuite': MigrateEnum(
+      name: 'LinuxWebAppSlotMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
+      },
+    ),
+    'LinuxWebAppSlotMinimumTlsVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'LinuxWebAppSlotNodeVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotNodeVersion',
+      members: <String, String>{
+        '12-lts': 'v12Lts',
+        '14-lts': 'v14Lts',
+        '16-lts': 'v16Lts',
+        '18-lts': 'v18Lts',
+        '20-lts': 'v20Lts',
+        '22-lts': 'v22Lts',
+        '24-lts': 'v24Lts',
+      },
+    ),
+    'LinuxWebAppSlotPhpVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotPhpVersion',
+      members: <String, String>{
+        '7.4': 'v7p4',
+        '8.0': 'v8p0',
+        '8.1': 'v8p1',
+        '8.2': 'v8p2',
+        '8.3': 'v8p3',
+        '8.4': 'v8p4',
+        '8.5': 'v8p5',
+      },
+    ),
+    'LinuxWebAppSlotPythonVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotPythonVersion',
+      members: <String, String>{
+        '3.7': 'v3p7',
+        '3.8': 'v3p8',
+        '3.9': 'v3p9',
+        '3.10': 'v3p10',
+        '3.11': 'v3p11',
+        '3.12': 'v3p12',
+        '3.13': 'v3p13',
+        '3.14': 'v3p14',
+      },
+    ),
+    'LinuxWebAppSlotScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LinuxWebAppSlotScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LinuxWebAppSlotScmMinimumTlsVersion': MigrateEnum(
+      name: 'LinuxWebAppSlotScmMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'LinuxWebAppSlotStorageAccountType': MigrateEnum(
+      name: 'LinuxWebAppSlotStorageAccountType',
+      members: <String, String>{
+        'AzureBlob': 'azureblob',
+        'AzureFiles': 'azurefiles',
       },
     ),
     'LinuxWebAppSlotUnauthenticatedAction': MigrateEnum(
       name: 'LinuxWebAppSlotUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -236189,31 +239976,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxWebAppSlotUnauthenticatedClientAction': MigrateEnum(
       name: 'LinuxWebAppSlotUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
-    'LinuxWebAppType': MigrateEnum(
-      name: 'LinuxWebAppType',
+    'LinuxWebAppStorageAccountType': MigrateEnum(
+      name: 'LinuxWebAppStorageAccountType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
-        'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
-        'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
-        'PostgreSQL': 'postgresql',
+        'AzureBlob': 'azureblob',
+        'AzureFiles': 'azurefiles',
       },
     ),
     'LinuxWebAppUnauthenticatedAction': MigrateEnum(
       name: 'LinuxWebAppUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -236221,8 +239999,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'LinuxWebAppUnauthenticatedClientAction': MigrateEnum(
       name: 'LinuxWebAppUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
     'LoadTestType': MigrateEnum(
@@ -236659,6 +240437,51 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Required': 'required',
       },
     ),
+    'LogicAppStandardDotnetFrameworkVersion': MigrateEnum(
+      name: 'LogicAppStandardDotnetFrameworkVersion',
+      members: <String, String>{
+        'v4.0': 'v4p0',
+        'v5.0': 'v5p0',
+        'v6.0': 'v6p0',
+        'v8.0': 'v8p0',
+        'v10.0': 'v10p0',
+      },
+    ),
+    'LogicAppStandardFtpsState': MigrateEnum(
+      name: 'LogicAppStandardFtpsState',
+      members: <String, String>{
+        'AllAllowed': 'allallowed',
+        'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
+      },
+    ),
+    'LogicAppStandardIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LogicAppStandardIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LogicAppStandardScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'LogicAppStandardScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'LogicAppStandardScmType': MigrateEnum(
+      name: 'LogicAppStandardScmType',
+      members: <String, String>{
+        'BitbucketGit': 'bitbucketgit',
+        'BitbucketHg': 'bitbuckethg',
+        'CodePlexGit': 'codeplexgit',
+        'CodePlexHg': 'codeplexhg',
+        'Dropbox': 'dropbox',
+        'ExternalGit': 'externalgit',
+        'ExternalHg': 'externalhg',
+        'GitHub': 'github',
+        'LocalGit': 'localgit',
+        'None': 'none',
+        'OneDrive': 'onedrive',
+        'Tfs': 'tfs',
+        'VSO': 'vso',
+        'VSTSRM': 'vstsrm',
+      },
+    ),
     'LogicAppStandardType': MigrateEnum(
       name: 'LogicAppStandardType',
       members: <String, String>{
@@ -236941,6 +240764,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Premium': 'premium',
         'Standard': 'standard',
         'StandardSSD': 'standardssd',
+      },
+    ),
+    'ManagedDevopsPoolPredictionPreference': MigrateEnum(
+      name: 'ManagedDevopsPoolPredictionPreference',
+      members: <String, String>{
+        'Balanced': 'balanced',
+        'BestPerformance': 'bestperformance',
+        'MoreCostEffective': 'morecosteffective',
+        'MorePerformance': 'moreperformance',
+        'MostCostEffective': 'mostcosteffective',
       },
     ),
     'ManagedDevopsPoolStorageAccountType': MigrateEnum(
@@ -238354,12 +242187,28 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Yearly': 'yearly',
       },
     ),
+    'OrchestratedVirtualMachineScaleSetAction': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetAction',
+      members: <String, String>{
+        'Reimage': 'reimage',
+        'Replace': 'replace',
+        'Restart': 'restart',
+      },
+    ),
     'OrchestratedVirtualMachineScaleSetAllocationStrategy': MigrateEnum(
       name: 'OrchestratedVirtualMachineScaleSetAllocationStrategy',
       members: <String, String>{
         'CapacityOptimized': 'capacityoptimized',
         'LowestPrice': 'lowestprice',
         'Prioritized': 'prioritized',
+      },
+    ),
+    'OrchestratedVirtualMachineScaleSetCaching': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetCaching',
+      members: <String, String>{
+        'None': 'none',
+        'ReadOnly': 'readonly',
+        'ReadWrite': 'readwrite',
       },
     ),
     'OrchestratedVirtualMachineScaleSetEvictionPolicy': MigrateEnum(
@@ -238374,11 +242223,57 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Windows_Server': 'windowsServer',
       },
     ),
+    'OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode':
+        MigrateEnum(
+          name: 'OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode',
+          members: <String, String>{
+            'AutomaticByPlatform': 'automaticbyplatform',
+            'ImageDefault': 'imagedefault',
+          },
+        ),
     'OrchestratedVirtualMachineScaleSetNetworkApiVersion': MigrateEnum(
       name: 'OrchestratedVirtualMachineScaleSetNetworkApiVersion',
       members: <String, String>{
         '2022-11-01': 'v2022x11x01',
         '2020-11-01': 'v2020x11x01',
+      },
+    ),
+    'OrchestratedVirtualMachineScaleSetPatchAssessmentMode': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetPatchAssessmentMode',
+      members: <String, String>{
+        'AutomaticByPlatform': 'automaticbyplatform',
+        'ImageDefault': 'imagedefault',
+      },
+    ),
+    'OrchestratedVirtualMachineScaleSetPlacement': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetPlacement',
+      members: <String, String>{
+        'CacheDisk': 'cachedisk',
+        'NvmeDisk': 'nvmedisk',
+        'ResourceDisk': 'resourcedisk',
+      },
+    ),
+    'OrchestratedVirtualMachineScaleSetProtocol': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetProtocol',
+      members: <String, String>{'Http': 'http', 'Https': 'https'},
+    ),
+    'OrchestratedVirtualMachineScaleSetSetting': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetSetting',
+      members: <String, String>{
+        'AutoLogon': 'autologon',
+        'FirstLogonCommands': 'firstlogoncommands',
+      },
+    ),
+    'OrchestratedVirtualMachineScaleSetStorageAccountType': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetStorageAccountType',
+      members: <String, String>{
+        'Premium_LRS': 'premiumLrs',
+        'PremiumV2_LRS': 'premiumv2Lrs',
+        'Premium_ZRS': 'premiumZrs',
+        'Standard_LRS': 'standardLrs',
+        'StandardSSD_LRS': 'standardssdLrs',
+        'StandardSSD_ZRS': 'standardssdZrs',
+        'UltraSSD_LRS': 'ultrassdLrs',
       },
     ),
     'OrchestratedVirtualMachineScaleSetUpgradeMode': MigrateEnum(
@@ -238389,6 +242284,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Rolling': 'rolling',
       },
     ),
+    'OrchestratedVirtualMachineScaleSetVersion': MigrateEnum(
+      name: 'OrchestratedVirtualMachineScaleSetVersion',
+      members: <String, String>{'IPv4': 'ipv4', 'IPv6': 'ipv6'},
+    ),
+    'OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode':
+        MigrateEnum(
+          name:
+              'OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode',
+          members: <String, String>{
+            'AutomaticByOS': 'automaticbyos',
+            'AutomaticByPlatform': 'automaticbyplatform',
+            'Manual': 'manual',
+          },
+        ),
     'PaloAltoLocalRulestackRuleAction': MigrateEnum(
       name: 'PaloAltoLocalRulestackRuleAction',
       members: <String, String>{
@@ -238406,6 +242315,38 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'SSLOutboundInspection': 'ssloutboundinspection',
       },
     ),
+    'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol':
+        MigrateEnum(
+          name:
+              'PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol',
+          members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+        ),
+    'PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol': MigrateEnum(
+      name: 'PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol',
+      members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+    ),
+    'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerProtocol':
+        MigrateEnum(
+          name:
+              'PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerProtocol',
+          members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+        ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackProtocol':
+        MigrateEnum(
+          name:
+              'PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackProtocol',
+          members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+        ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaProtocol': MigrateEnum(
+      name: 'PaloAltoNextGenerationFirewallVirtualNetworkPanoramaProtocol',
+      members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+    ),
+    'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol':
+        MigrateEnum(
+          name:
+              'PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol',
+          members: <String, String>{'TCP': 'tcp', 'UDP': 'udp'},
+        ),
     'PolicyDefinitionMode': MigrateEnum(
       name: 'PolicyDefinitionMode',
       members: <String, String>{
@@ -239264,9 +243205,32 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Parallel': 'parallel',
       },
     ),
+    'ServiceFabricManagedClusterDataDiskType': MigrateEnum(
+      name: 'ServiceFabricManagedClusterDataDiskType',
+      members: <String, String>{
+        'Premium_LRS': 'premiumLrs',
+        'Standard_LRS': 'standardLrs',
+        'StandardSSD_LRS': 'standardssdLrs',
+      },
+    ),
+    'ServiceFabricManagedClusterProbeProtocol': MigrateEnum(
+      name: 'ServiceFabricManagedClusterProbeProtocol',
+      members: <String, String>{'http': 'http', 'https': 'https', 'tcp': 'tcp'},
+    ),
+    'ServiceFabricManagedClusterProtocol': MigrateEnum(
+      name: 'ServiceFabricManagedClusterProtocol',
+      members: <String, String>{'tcp': 'tcp', 'udp': 'udp'},
+    ),
     'ServiceFabricManagedClusterSku': MigrateEnum(
       name: 'ServiceFabricManagedClusterSku',
       members: <String, String>{'Basic': 'basic', 'Standard': 'standard'},
+    ),
+    'ServiceFabricManagedClusterType': MigrateEnum(
+      name: 'ServiceFabricManagedClusterType',
+      members: <String, String>{
+        'AdminClient': 'adminclient',
+        'ReadOnlyClient': 'readonlyclient',
+      },
     ),
     'ServiceFabricManagedClusterUpgradeWave': MigrateEnum(
       name: 'ServiceFabricManagedClusterUpgradeWave',
@@ -239475,6 +243439,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'S3': 's3',
         'S4': 's4',
         'S5': 's5',
+      },
+    ),
+    'SpringCloudServiceHostKeyAlgorithm': MigrateEnum(
+      name: 'SpringCloudServiceHostKeyAlgorithm',
+      members: <String, String>{
+        'ssh-dss': 'sshDss',
+        'ssh-rsa': 'sshRsa',
+        'ecdsa-sha2-nistp256': 'ecdsaSha2Nistp256',
+        'ecdsa-sha2-nistp384': 'ecdsaSha2Nistp384',
+        'ecdsa-sha2-nistp521': 'ecdsaSha2Nistp521',
       },
     ),
     'SpringCloudServiceOutboundType': MigrateEnum(
@@ -239858,9 +243832,87 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'StreamAnalyticsJobType',
       members: <String, String>{'Cloud': 'cloud', 'Edge': 'edge'},
     ),
+    'StreamAnalyticsOutputBlobFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsOutputBlobFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsOutputBlobFormat': MigrateEnum(
+      name: 'StreamAnalyticsOutputBlobFormat',
+      members: <String, String>{
+        'Array': 'array',
+        'LineSeparated': 'lineseparated',
+      },
+    ),
     'StreamAnalyticsOutputBlobWriteMode': MigrateEnum(
       name: 'StreamAnalyticsOutputBlobWriteMode',
       members: <String, String>{'Append': 'append', 'Once': 'once'},
+    ),
+    'StreamAnalyticsOutputEventhubFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsOutputEventhubFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsOutputEventhubFormat': MigrateEnum(
+      name: 'StreamAnalyticsOutputEventhubFormat',
+      members: <String, String>{
+        'Array': 'array',
+        'LineSeparated': 'lineseparated',
+      },
+    ),
+    'StreamAnalyticsOutputServicebusQueueFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsOutputServicebusQueueFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsOutputServicebusQueueFormat': MigrateEnum(
+      name: 'StreamAnalyticsOutputServicebusQueueFormat',
+      members: <String, String>{
+        'Array': 'array',
+        'LineSeparated': 'lineseparated',
+      },
+    ),
+    'StreamAnalyticsOutputServicebusTopicFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsOutputServicebusTopicFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsOutputServicebusTopicFormat': MigrateEnum(
+      name: 'StreamAnalyticsOutputServicebusTopicFormat',
+      members: <String, String>{
+        'Array': 'array',
+        'LineSeparated': 'lineseparated',
+      },
+    ),
+    'StreamAnalyticsReferenceInputBlobFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsReferenceInputBlobFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
     ),
     'StreamAnalyticsReferenceInputMssqlRefreshType': MigrateEnum(
       name: 'StreamAnalyticsReferenceInputMssqlRefreshType',
@@ -239868,6 +243920,46 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Static': 'static',
         'RefreshPeriodicallyWithFull': 'refreshperiodicallywithfull',
         'RefreshPeriodicallyWithDelta': 'refreshperiodicallywithdelta',
+      },
+    ),
+    'StreamAnalyticsStreamInputBlobFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsStreamInputBlobFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsStreamInputEventhubFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsStreamInputEventhubFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsStreamInputEventhubV2FieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsStreamInputEventhubV2FieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
+      },
+    ),
+    'StreamAnalyticsStreamInputIothubFieldDelimiter': MigrateEnum(
+      name: 'StreamAnalyticsStreamInputIothubFieldDelimiter',
+      members: <String, String>{
+        ' ': 'value',
+        ',': 'value2',
+        '	': 'value3',
+        '|': 'value4',
+        ';': 'value5',
       },
     ),
     'SubnetActions': MigrateEnum(
@@ -241107,10 +245199,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
       },
     ),
     'WindowsFunctionAppDotnetVersion': MigrateEnum(
@@ -241128,9 +245220,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppForwardProxyConvention': MigrateEnum(
       name: 'WindowsFunctionAppForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'WindowsFunctionAppFrequencyUnit': MigrateEnum(
@@ -241141,9 +245233,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'WindowsFunctionAppFtpsState',
       members: <String, String>{
         'AllAllowed': 'allallowed',
-        'FtpsOnly': 'ftpsonly',
         'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
       },
+    ),
+    'WindowsFunctionAppIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsFunctionAppIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
     'WindowsFunctionAppJavaVersion': MigrateEnum(
       name: 'WindowsFunctionAppJavaVersion',
@@ -241158,8 +245254,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppLoadBalancingMode': MigrateEnum(
       name: 'WindowsFunctionAppLoadBalancingMode',
       members: <String, String>{
-        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastResponseTime': 'leastresponsetime',
         'WeightedTotalTraffic': 'weightedtotaltraffic',
         'RequestHash': 'requesthash',
@@ -241169,13 +245265,47 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppManagedPipelineMode': MigrateEnum(
       name: 'WindowsFunctionAppManagedPipelineMode',
       members: <String, String>{
-        'Integrated': 'integrated',
         'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'WindowsFunctionAppMinimumTlsCipherSuite': MigrateEnum(
+      name: 'WindowsFunctionAppMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
       },
     ),
     'WindowsFunctionAppMinimumTlsVersion': MigrateEnum(
       name: 'WindowsFunctionAppMinimumTlsVersion',
-      members: <String, String>{'1.0': 'v1p0', '1.1': 'v1p1', '1.2': 'v1p2'},
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
     ),
     'WindowsFunctionAppNodeVersion': MigrateEnum(
       name: 'WindowsFunctionAppNodeVersion',
@@ -241198,13 +245328,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '7.6': 'v7p6',
       },
     ),
+    'WindowsFunctionAppScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsFunctionAppScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'WindowsFunctionAppScmMinimumTlsVersion': MigrateEnum(
       name: 'WindowsFunctionAppScmMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
     'WindowsFunctionAppSlotAction': MigrateEnum(
@@ -241231,10 +245365,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
       },
     ),
     'WindowsFunctionAppSlotDotnetVersion': MigrateEnum(
@@ -241252,9 +245386,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppSlotForwardProxyConvention': MigrateEnum(
       name: 'WindowsFunctionAppSlotForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'WindowsFunctionAppSlotFrequencyUnit': MigrateEnum(
@@ -241265,9 +245399,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'WindowsFunctionAppSlotFtpsState',
       members: <String, String>{
         'AllAllowed': 'allallowed',
-        'FtpsOnly': 'ftpsonly',
         'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
       },
+    ),
+    'WindowsFunctionAppSlotIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsFunctionAppSlotIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
     'WindowsFunctionAppSlotJavaVersion': MigrateEnum(
       name: 'WindowsFunctionAppSlotJavaVersion',
@@ -241282,8 +245420,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppSlotLoadBalancingMode': MigrateEnum(
       name: 'WindowsFunctionAppSlotLoadBalancingMode',
       members: <String, String>{
-        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastRequests': 'leastrequests',
+        'WeightedRoundRobin': 'weightedroundrobin',
         'LeastResponseTime': 'leastresponsetime',
         'WeightedTotalTraffic': 'weightedtotaltraffic',
         'RequestHash': 'requesthash',
@@ -241293,17 +245431,46 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppSlotManagedPipelineMode': MigrateEnum(
       name: 'WindowsFunctionAppSlotManagedPipelineMode',
       members: <String, String>{
-        'Integrated': 'integrated',
         'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'WindowsFunctionAppSlotMinimumTlsCipherSuite': MigrateEnum(
+      name: 'WindowsFunctionAppSlotMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
       },
     ),
     'WindowsFunctionAppSlotMinimumTlsVersion': MigrateEnum(
       name: 'WindowsFunctionAppSlotMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
     'WindowsFunctionAppSlotNodeVersion': MigrateEnum(
@@ -241327,36 +245494,40 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '7.6': 'v7p6',
       },
     ),
+    'WindowsFunctionAppSlotScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsFunctionAppSlotScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
     'WindowsFunctionAppSlotScmMinimumTlsVersion': MigrateEnum(
       name: 'WindowsFunctionAppSlotScmMinimumTlsVersion',
       members: <String, String>{
-        '1.0': 'v1p0',
         '1.1': 'v1p1',
-        '1.2': 'v1p2',
         '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
       },
     ),
     'WindowsFunctionAppSlotType': MigrateEnum(
       name: 'WindowsFunctionAppSlotType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
+        'ApiHub': 'apihub',
         'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
         'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
         'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'WindowsFunctionAppSlotUnauthenticatedAction': MigrateEnum(
       name: 'WindowsFunctionAppSlotUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -241364,31 +245535,31 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppSlotUnauthenticatedClientAction': MigrateEnum(
       name: 'WindowsFunctionAppSlotUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
     'WindowsFunctionAppType': MigrateEnum(
       name: 'WindowsFunctionAppType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
+        'ApiHub': 'apihub',
         'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
         'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
         'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'WindowsFunctionAppUnauthenticatedAction': MigrateEnum(
       name: 'WindowsFunctionAppUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -241396,8 +245567,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsFunctionAppUnauthenticatedClientAction': MigrateEnum(
       name: 'WindowsFunctionAppUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
+      },
+    ),
+    'WindowsVirtualMachineCaching': MigrateEnum(
+      name: 'WindowsVirtualMachineCaching',
+      members: <String, String>{
+        'None': 'none',
+        'ReadOnly': 'readonly',
+        'ReadWrite': 'readwrite',
       },
     ),
     'WindowsVirtualMachineDiskControllerType': MigrateEnum(
@@ -241431,6 +245610,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Manual': 'manual',
       },
     ),
+    'WindowsVirtualMachinePlacement': MigrateEnum(
+      name: 'WindowsVirtualMachinePlacement',
+      members: <String, String>{
+        'CacheDisk': 'cachedisk',
+        'NvmeDisk': 'nvmedisk',
+        'ResourceDisk': 'resourcedisk',
+      },
+    ),
+    'WindowsVirtualMachineProtocol': MigrateEnum(
+      name: 'WindowsVirtualMachineProtocol',
+      members: <String, String>{'Http': 'http', 'Https': 'https'},
+    ),
+    'WindowsVirtualMachineScaleSetAction': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetAction',
+      members: <String, String>{
+        'Reimage': 'reimage',
+        'Replace': 'replace',
+        'Restart': 'restart',
+      },
+    ),
+    'WindowsVirtualMachineScaleSetCaching': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetCaching',
+      members: <String, String>{
+        'None': 'none',
+        'ReadOnly': 'readonly',
+        'ReadWrite': 'readwrite',
+      },
+    ),
     'WindowsVirtualMachineScaleSetEvictionPolicy': MigrateEnum(
       name: 'WindowsVirtualMachineScaleSetEvictionPolicy',
       members: <String, String>{'Deallocate': 'deallocate', 'Delete': 'delete'},
@@ -241443,12 +245650,70 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Windows_Server': 'windowsServer',
       },
     ),
+    'WindowsVirtualMachineScaleSetPlacement': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetPlacement',
+      members: <String, String>{
+        'CacheDisk': 'cachedisk',
+        'NvmeDisk': 'nvmedisk',
+        'ResourceDisk': 'resourcedisk',
+      },
+    ),
+    'WindowsVirtualMachineScaleSetProtocol': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetProtocol',
+      members: <String, String>{'Http': 'http', 'Https': 'https'},
+    ),
+    'WindowsVirtualMachineScaleSetRule': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetRule',
+      members: <String, String>{
+        'Default': 'defaultCase',
+        'NewestVM': 'newestvm',
+        'OldestVM': 'oldestvm',
+      },
+    ),
+    'WindowsVirtualMachineScaleSetSetting': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetSetting',
+      members: <String, String>{
+        'AutoLogon': 'autologon',
+        'FirstLogonCommands': 'firstlogoncommands',
+      },
+    ),
+    'WindowsVirtualMachineScaleSetStorageAccountType': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetStorageAccountType',
+      members: <String, String>{
+        'Premium_LRS': 'premiumLrs',
+        'PremiumV2_LRS': 'premiumv2Lrs',
+        'Premium_ZRS': 'premiumZrs',
+        'Standard_LRS': 'standardLrs',
+        'StandardSSD_LRS': 'standardssdLrs',
+        'StandardSSD_ZRS': 'standardssdZrs',
+        'UltraSSD_LRS': 'ultrassdLrs',
+      },
+    ),
     'WindowsVirtualMachineScaleSetUpgradeMode': MigrateEnum(
       name: 'WindowsVirtualMachineScaleSetUpgradeMode',
       members: <String, String>{
         'Automatic': 'automatic',
         'Manual': 'manual',
         'Rolling': 'rolling',
+      },
+    ),
+    'WindowsVirtualMachineScaleSetVersion': MigrateEnum(
+      name: 'WindowsVirtualMachineScaleSetVersion',
+      members: <String, String>{'IPv4': 'ipv4', 'IPv6': 'ipv6'},
+    ),
+    'WindowsVirtualMachineSetting': MigrateEnum(
+      name: 'WindowsVirtualMachineSetting',
+      members: <String, String>{
+        'AutoLogon': 'autologon',
+        'FirstLogonCommands': 'firstlogoncommands',
+      },
+    ),
+    'WindowsWebAppActionType': MigrateEnum(
+      name: 'WindowsWebAppActionType',
+      members: <String, String>{
+        'CustomAction': 'customaction',
+        'LogEvent': 'logevent',
+        'Recycle': 'recycle',
       },
     ),
     'WindowsWebAppClientCertificateMode': MigrateEnum(
@@ -241466,32 +245731,175 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'IdentityProviderDerived': 'identityproviderderived',
       },
     ),
+    'WindowsWebAppCurrentStack': MigrateEnum(
+      name: 'WindowsWebAppCurrentStack',
+      members: <String, String>{
+        'dotnet': 'dotnet',
+        'dotnetcore': 'dotnetcore',
+        'node': 'node',
+        'python': 'python',
+        'php': 'php',
+        'java': 'java',
+      },
+    ),
     'WindowsWebAppDefaultProvider': MigrateEnum(
       name: 'WindowsWebAppDefaultProvider',
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
+      },
+    ),
+    'WindowsWebAppDotnetVersion': MigrateEnum(
+      name: 'WindowsWebAppDotnetVersion',
+      members: <String, String>{
+        'v2.0': 'v2p0',
+        'v3.0': 'v3p0',
+        'v4.0': 'v4p0',
+        'v5.0': 'v5p0',
+        'v6.0': 'v6p0',
+        'v7.0': 'v7p0',
+        'v8.0': 'v8p0',
+        'v9.0': 'v9p0',
+        'v10.0': 'v10p0',
+      },
+    ),
+    'WindowsWebAppFileSystemLevel': MigrateEnum(
+      name: 'WindowsWebAppFileSystemLevel',
+      members: <String, String>{
+        'Error': 'error',
+        'Information': 'information',
+        'Off': 'off',
+        'Verbose': 'verbose',
+        'Warning': 'warning',
       },
     ),
     'WindowsWebAppForwardProxyConvention': MigrateEnum(
       name: 'WindowsWebAppForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'WindowsWebAppFrequencyUnit': MigrateEnum(
       name: 'WindowsWebAppFrequencyUnit',
       members: <String, String>{'Day': 'day', 'Hour': 'hour'},
     ),
+    'WindowsWebAppFtpsState': MigrateEnum(
+      name: 'WindowsWebAppFtpsState',
+      members: <String, String>{
+        'AllAllowed': 'allallowed',
+        'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
+      },
+    ),
     'WindowsWebAppIpRestrictionAction': MigrateEnum(
       name: 'WindowsWebAppIpRestrictionAction',
       members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'WindowsWebAppIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsWebAppIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'WindowsWebAppJavaContainer': MigrateEnum(
+      name: 'WindowsWebAppJavaContainer',
+      members: <String, String>{
+        'JAVA': 'java',
+        'JETTY': 'jetty',
+        'TOMCAT': 'tomcat',
+      },
+    ),
+    'WindowsWebAppLoadBalancingMode': MigrateEnum(
+      name: 'WindowsWebAppLoadBalancingMode',
+      members: <String, String>{
+        'LeastRequests': 'leastrequests',
+        'LeastResponseTime': 'leastresponsetime',
+        'PerSiteRoundRobin': 'persiteroundrobin',
+        'RequestHash': 'requesthash',
+        'WeightedRoundRobin': 'weightedroundrobin',
+        'WeightedTotalTraffic': 'weightedtotaltraffic',
+      },
+    ),
+    'WindowsWebAppManagedPipelineMode': MigrateEnum(
+      name: 'WindowsWebAppManagedPipelineMode',
+      members: <String, String>{
+        'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'WindowsWebAppMinimumTlsCipherSuite': MigrateEnum(
+      name: 'WindowsWebAppMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
+      },
+    ),
+    'WindowsWebAppMinimumTlsVersion': MigrateEnum(
+      name: 'WindowsWebAppMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'WindowsWebAppNodeVersion': MigrateEnum(
+      name: 'WindowsWebAppNodeVersion',
+      members: <String, String>{
+        '~14': 'v14',
+        '~16': 'v16',
+        '~18': 'v18',
+        '~20': 'v20',
+        '~22': 'v22',
+        '~24': 'v24',
+      },
+    ),
+    'WindowsWebAppScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsWebAppScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'WindowsWebAppScmMinimumTlsVersion': MigrateEnum(
+      name: 'WindowsWebAppScmMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'WindowsWebAppSlotActionType': MigrateEnum(
+      name: 'WindowsWebAppSlotActionType',
+      members: <String, String>{
+        'CustomAction': 'customaction',
+        'LogEvent': 'logevent',
+        'Recycle': 'recycle',
+      },
     ),
     'WindowsWebAppSlotClientCertificateMode': MigrateEnum(
       name: 'WindowsWebAppSlotClientCertificateMode',
@@ -241508,54 +245916,189 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'IdentityProviderDerived': 'identityproviderderived',
       },
     ),
+    'WindowsWebAppSlotCurrentStack': MigrateEnum(
+      name: 'WindowsWebAppSlotCurrentStack',
+      members: <String, String>{
+        'dotnet': 'dotnet',
+        'dotnetcore': 'dotnetcore',
+        'node': 'node',
+        'python': 'python',
+        'php': 'php',
+        'java': 'java',
+      },
+    ),
     'WindowsWebAppSlotDefaultProvider': MigrateEnum(
       name: 'WindowsWebAppSlotDefaultProvider',
       members: <String, String>{
         'AzureActiveDirectory': 'azureactivedirectory',
         'Facebook': 'facebook',
+        'Github': 'github',
         'Google': 'google',
         'MicrosoftAccount': 'microsoftaccount',
         'Twitter': 'twitter',
-        'Github': 'github',
+      },
+    ),
+    'WindowsWebAppSlotDotnetVersion': MigrateEnum(
+      name: 'WindowsWebAppSlotDotnetVersion',
+      members: <String, String>{
+        'v2.0': 'v2p0',
+        'v3.0': 'v3p0',
+        'v4.0': 'v4p0',
+        'v5.0': 'v5p0',
+        'v6.0': 'v6p0',
+        'v7.0': 'v7p0',
+        'v8.0': 'v8p0',
+        'v9.0': 'v9p0',
+        'v10.0': 'v10p0',
+      },
+    ),
+    'WindowsWebAppSlotFileSystemLevel': MigrateEnum(
+      name: 'WindowsWebAppSlotFileSystemLevel',
+      members: <String, String>{
+        'Error': 'error',
+        'Information': 'information',
+        'Off': 'off',
+        'Verbose': 'verbose',
+        'Warning': 'warning',
       },
     ),
     'WindowsWebAppSlotForwardProxyConvention': MigrateEnum(
       name: 'WindowsWebAppSlotForwardProxyConvention',
       members: <String, String>{
-        'ForwardProxyConventionNoProxy': 'forwardproxyconventionnoproxy',
-        'ForwardProxyConventionStandard': 'forwardproxyconventionstandard',
-        'ForwardProxyConventionCustom': 'forwardproxyconventioncustom',
+        'Custom': 'custom',
+        'NoProxy': 'noproxy',
+        'Standard': 'standard',
       },
     ),
     'WindowsWebAppSlotFrequencyUnit': MigrateEnum(
       name: 'WindowsWebAppSlotFrequencyUnit',
       members: <String, String>{'Day': 'day', 'Hour': 'hour'},
     ),
+    'WindowsWebAppSlotFtpsState': MigrateEnum(
+      name: 'WindowsWebAppSlotFtpsState',
+      members: <String, String>{
+        'AllAllowed': 'allallowed',
+        'Disabled': 'disabled',
+        'FtpsOnly': 'ftpsonly',
+      },
+    ),
     'WindowsWebAppSlotIpRestrictionAction': MigrateEnum(
       name: 'WindowsWebAppSlotIpRestrictionAction',
       members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
     ),
+    'WindowsWebAppSlotIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsWebAppSlotIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'WindowsWebAppSlotJavaContainer': MigrateEnum(
+      name: 'WindowsWebAppSlotJavaContainer',
+      members: <String, String>{
+        'JAVA': 'java',
+        'JETTY': 'jetty',
+        'TOMCAT': 'tomcat',
+      },
+    ),
+    'WindowsWebAppSlotLoadBalancingMode': MigrateEnum(
+      name: 'WindowsWebAppSlotLoadBalancingMode',
+      members: <String, String>{
+        'LeastRequests': 'leastrequests',
+        'LeastResponseTime': 'leastresponsetime',
+        'PerSiteRoundRobin': 'persiteroundrobin',
+        'RequestHash': 'requesthash',
+        'WeightedRoundRobin': 'weightedroundrobin',
+        'WeightedTotalTraffic': 'weightedtotaltraffic',
+      },
+    ),
+    'WindowsWebAppSlotManagedPipelineMode': MigrateEnum(
+      name: 'WindowsWebAppSlotManagedPipelineMode',
+      members: <String, String>{
+        'Classic': 'classic',
+        'Integrated': 'integrated',
+      },
+    ),
+    'WindowsWebAppSlotMinimumTlsCipherSuite': MigrateEnum(
+      name: 'WindowsWebAppSlotMinimumTlsCipherSuite',
+      members: <String, String>{
+        'TLS_AES_128_GCM_SHA256': 'tlsAes128GcmSha256',
+        'TLS_AES_256_GCM_SHA384': 'tlsAes256GcmSha384',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheEcdsaWithAes128CbcSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheEcdsaWithAes128GcmSha256',
+        'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheEcdsaWithAes256GcmSha384',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA': 'tlsEcdheRsaWithAes128CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256':
+            'tlsEcdheRsaWithAes128CbcSha256',
+        'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256':
+            'tlsEcdheRsaWithAes128GcmSha256',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA': 'tlsEcdheRsaWithAes256CbcSha',
+        'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384':
+            'tlsEcdheRsaWithAes256CbcSha384',
+        'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384':
+            'tlsEcdheRsaWithAes256GcmSha384',
+        'TLS_RSA_WITH_AES_128_CBC_SHA': 'tlsRsaWithAes128CbcSha',
+        'TLS_RSA_WITH_AES_128_CBC_SHA256': 'tlsRsaWithAes128CbcSha256',
+        'TLS_RSA_WITH_AES_128_GCM_SHA256': 'tlsRsaWithAes128GcmSha256',
+        'TLS_RSA_WITH_AES_256_CBC_SHA': 'tlsRsaWithAes256CbcSha',
+        'TLS_RSA_WITH_AES_256_CBC_SHA256': 'tlsRsaWithAes256CbcSha256',
+        'TLS_RSA_WITH_AES_256_GCM_SHA384': 'tlsRsaWithAes256GcmSha384',
+      },
+    ),
+    'WindowsWebAppSlotMinimumTlsVersion': MigrateEnum(
+      name: 'WindowsWebAppSlotMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
+    'WindowsWebAppSlotNodeVersion': MigrateEnum(
+      name: 'WindowsWebAppSlotNodeVersion',
+      members: <String, String>{
+        '~14': 'v14',
+        '~16': 'v16',
+        '~18': 'v18',
+        '~20': 'v20',
+        '~22': 'v22',
+        '~24': 'v24',
+      },
+    ),
+    'WindowsWebAppSlotScmIpRestrictionDefaultAction': MigrateEnum(
+      name: 'WindowsWebAppSlotScmIpRestrictionDefaultAction',
+      members: <String, String>{'Allow': 'allow', 'Deny': 'deny'},
+    ),
+    'WindowsWebAppSlotScmMinimumTlsVersion': MigrateEnum(
+      name: 'WindowsWebAppSlotScmMinimumTlsVersion',
+      members: <String, String>{
+        '1.1': 'v1p1',
+        '1.3': 'v1p3',
+        '1.2': 'v1p2',
+        '1.0': 'v1p0',
+      },
+    ),
     'WindowsWebAppSlotType': MigrateEnum(
       name: 'WindowsWebAppSlotType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
+        'ApiHub': 'apihub',
         'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
         'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
         'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'WindowsWebAppSlotUnauthenticatedAction': MigrateEnum(
       name: 'WindowsWebAppSlotUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -241563,31 +246106,31 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsWebAppSlotUnauthenticatedClientAction': MigrateEnum(
       name: 'WindowsWebAppSlotUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
     'WindowsWebAppType': MigrateEnum(
       name: 'WindowsWebAppType',
       members: <String, String>{
-        'MySQL': 'mysql',
-        'SQLServer': 'sqlserver',
-        'SQLAzure': 'sqlazure',
+        'ApiHub': 'apihub',
         'Custom': 'custom',
-        'NotificationHub': 'notificationhub',
-        'ServiceBus': 'servicebus',
-        'EventHub': 'eventhub',
-        'APIHub': 'apihub',
         'DocDb': 'docdb',
-        'RedisCache': 'rediscache',
+        'EventHub': 'eventhub',
+        'MySql': 'mysql',
+        'NotificationHub': 'notificationhub',
         'PostgreSQL': 'postgresql',
+        'RedisCache': 'rediscache',
+        'SQLAzure': 'sqlazure',
+        'SQLServer': 'sqlserver',
+        'ServiceBus': 'servicebus',
       },
     ),
     'WindowsWebAppUnauthenticatedAction': MigrateEnum(
       name: 'WindowsWebAppUnauthenticatedAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
         'Return401': 'return401',
         'Return403': 'return403',
       },
@@ -241595,8 +246138,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'WindowsWebAppUnauthenticatedClientAction': MigrateEnum(
       name: 'WindowsWebAppUnauthenticatedClientAction',
       members: <String, String>{
-        'RedirectToLoginPage': 'redirecttologinpage',
         'AllowAnonymous': 'allowanonymous',
+        'RedirectToLoginPage': 'redirecttologinpage',
       },
     ),
     'WorkloadsSapDiscoveryVirtualInstanceEnvironment': MigrateEnum(

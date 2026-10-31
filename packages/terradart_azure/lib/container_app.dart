@@ -7,10 +7,13 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/container_app/azurerm_container_app.dart'
     show
         AzurermContainerApp,
+        ContainerAppAction,
         ContainerAppAzureQueueScaleRule,
         ContainerAppAzureQueueScaleRuleAuthentication,
+        ContainerAppClientCertificateMode,
         ContainerAppContainer,
         ContainerAppCors,
+        ContainerAppCustomRuleType,
         ContainerAppCustomScaleRule,
         ContainerAppDapr,
         ContainerAppEnv,
@@ -46,7 +49,8 @@ export 'src/container_app/azurerm_container_app_environment.dart'
         ContainerAppEnvironmentIdentity,
         ContainerAppEnvironmentLogsDestination,
         ContainerAppEnvironmentPublicNetworkAccess,
-        ContainerAppEnvironmentWorkloadProfile;
+        ContainerAppEnvironmentWorkloadProfile,
+        ContainerAppEnvironmentWorkloadProfileType;
 export 'src/container_app/azurerm_container_app_environment_certificate.dart'
     show
         AzurermContainerAppEnvironmentCertificate,
@@ -77,6 +81,7 @@ export 'src/container_app/azurerm_container_app_job.dart'
         AzurermContainerAppJob,
         ContainerAppJobAuthentication,
         ContainerAppJobContainer,
+        ContainerAppJobCustomRuleType,
         ContainerAppJobEnv,
         ContainerAppJobEventTriggerConfig,
         ContainerAppJobEventTriggerConfigChoice,

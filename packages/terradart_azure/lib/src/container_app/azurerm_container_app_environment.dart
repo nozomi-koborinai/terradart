@@ -92,7 +92,7 @@ final class ContainerAppEnvironmentWorkloadProfile {
 
   final TfArg<String> name;
 
-  final TfArg<String> workloadProfileType;
+  final ContainerAppEnvironmentWorkloadProfileType workloadProfileType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -101,6 +101,80 @@ final class ContainerAppEnvironmentWorkloadProfile {
     'name': name.toTfJson(),
     'workload_profile_type': workloadProfileType.toTfJson(),
   };
+}
+
+/// `workload_profile_type` — derived from the provider schema description.
+extension type const ContainerAppEnvironmentWorkloadProfileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerAppEnvironmentWorkloadProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppEnvironmentWorkloadProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppEnvironmentWorkloadProfileType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const consumption = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('Consumption'),
+  );
+  static const consumptionGpuNc24A100 =
+      ContainerAppEnvironmentWorkloadProfileType._(
+        TfArgLiteral('Consumption-GPU-NC24-A100'),
+      );
+  static const consumptionGpuNc8asT4 =
+      ContainerAppEnvironmentWorkloadProfileType._(
+        TfArgLiteral('Consumption-GPU-NC8as-T4'),
+      );
+  static const d4 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D4'),
+  );
+  static const d8 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D8'),
+  );
+  static const d16 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D16'),
+  );
+  static const d32 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('D32'),
+  );
+  static const e4 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E4'),
+  );
+  static const e8 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E8'),
+  );
+  static const e16 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E16'),
+  );
+  static const e32 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('E32'),
+  );
+  static const nc24A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC24-A100'),
+  );
+  static const nc48A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC48-A100'),
+  );
+  static const nc96A100 = ContainerAppEnvironmentWorkloadProfileType._(
+    TfArgLiteral('NC96-A100'),
+  );
+
+  static const List<ContainerAppEnvironmentWorkloadProfileType> values = [
+    consumption,
+    consumptionGpuNc24A100,
+    consumptionGpuNc8asT4,
+    d4,
+    d8,
+    d16,
+    d32,
+    e4,
+    e8,
+    e16,
+    e32,
+    nc24A100,
+    nc48A100,
+    nc96A100,
+  ];
 }
 
 /// Factory wrapper for `azurerm_container_app_environment`.

@@ -87,6 +87,7 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorDestinations,
         DiscoveryEngineDataConnectorEnabledActions,
         DiscoveryEngineDataConnectorEntities,
+        DiscoveryEngineDataConnectorEntityName,
         DiscoveryEngineDataConnectorJsonParams,
         DiscoveryEngineDataConnectorLocation,
         DiscoveryEngineDataConnectorMetadata,

@@ -228,6 +228,37 @@ class ComputeRegionSecurityPolicyRulesMatchExpr {
   Map<String, Object?> toArgMap() => {'expression': expression.toTfJson()};
 }
 
+/// Action for requests over a `rules.rate_limit_options` threshold.
+extension type const ComputeRegionSecurityPolicyExceedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionSecurityPolicyExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionSecurityPolicyExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionSecurityPolicyExceedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deny403 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeRegionSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeRegionSecurityPolicyExceedAction> values = [
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 /// `rules.rate_limit_options` -- required when [action] is
 /// `rate_based_ban` or `throttle`.
 @immutable
@@ -244,7 +275,7 @@ class ComputeRegionSecurityPolicyRulesRateLimitOptions {
   });
 
   final TfArg<String> conformAction;
-  final TfArg<String> exceedAction;
+  final ComputeRegionSecurityPolicyExceedAction exceedAction;
   final ComputeRegionSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
   final TfArg<int>? banDurationSec;
   final ComputeRegionSecurityPolicyRulesRateLimitThreshold? banThreshold;

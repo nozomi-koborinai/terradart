@@ -235,7 +235,7 @@ final class DiscoveryEngineDataConnectorEntities {
     this.params,
   });
 
-  final TfArg<String>? entityName;
+  final DiscoveryEngineDataConnectorEntityName? entityName;
 
   final TfArg<Map<String, String>>? keyPropertyMappings;
 
@@ -247,6 +247,77 @@ final class DiscoveryEngineDataConnectorEntities {
     'key_property_mappings': ?keyPropertyMappings?.toTfJson(),
     'params': ?params?.toTfJson(),
   };
+}
+
+/// `entity_name` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorEntityName._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorEntityName.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorEntityName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorEntityName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const lead = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Lead'),
+  );
+  static const opportunity = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Opportunity'),
+  );
+  static const contact = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Contact'),
+  );
+  static const account = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Account'),
+  );
+  static const caseCase = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Case'),
+  );
+  static const contract = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Contract'),
+  );
+  static const campaign = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Campaign'),
+  );
+  static const project = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('project'),
+  );
+  static const issue = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('issue'),
+  );
+  static const attachment = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('attachment'),
+  );
+  static const comment = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('comment'),
+  );
+  static const worklog = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('worklog'),
+  );
+  static const content = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Content'),
+  );
+  static const space = DiscoveryEngineDataConnectorEntityName._(
+    TfArgLiteral('Space'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorEntityName> values = [
+    lead,
+    opportunity,
+    contact,
+    account,
+    caseCase,
+    contract,
+    campaign,
+    project,
+    issue,
+    attachment,
+    comment,
+    worklog,
+    content,
+    space,
+  ];
 }
 
 /// Typed helper for the `metadata` block of

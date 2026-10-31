@@ -144,6 +144,57 @@ extension type const AppEngineStandardAppVersionInboundServices._(
   ];
 }
 
+/// App Engine Standard App Version Instance enum for `instance_class`.
+extension type const AppEngineStandardAppVersionInstanceClass._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionInstanceClass.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionInstanceClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionInstanceClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const f1 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F1'),
+  );
+  static const f2 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F2'),
+  );
+  static const f4 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F4'),
+  );
+  static const f41g = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('F4_1G'),
+  );
+  static const b1 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B1'),
+  );
+  static const b2 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B2'),
+  );
+  static const b4 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B4'),
+  );
+  static const b8 = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B8'),
+  );
+  static const b41g = AppEngineStandardAppVersionInstanceClass._(
+    TfArgLiteral('B4_1G'),
+  );
+
+  static const List<AppEngineStandardAppVersionInstanceClass> values = [
+    f1,
+    f2,
+    f4,
+    f41g,
+    b1,
+    b2,
+    b4,
+    b8,
+    b41g,
+  ];
+}
+
 /// At most one of `app_engine_apis`, `app_engine_bundled_services` on `google_app_engine_standard_app_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -775,7 +826,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<String>? versionId,
     required TfArg<String> runtime,
     TfArg<String>? runtimeApiVersion,
-    TfArg<String>? instanceClass,
+    AppEngineStandardAppVersionInstanceClass? instanceClass,
     TfArg<Map<String, String>>? envVariables,
     List<AppEngineStandardAppVersionHandlers>? handlers,
     required AppEngineStandardAppVersionDeployment deployment,

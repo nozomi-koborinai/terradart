@@ -37,7 +37,7 @@ final class CosmosdbSqlContainerConflictResolutionPolicy {
 
   final TfArg<String>? conflictResolutionProcedure;
 
-  final TfArg<String> mode;
+  final CosmosdbSqlContainerMode mode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -45,6 +45,22 @@ final class CosmosdbSqlContainerConflictResolutionPolicy {
     'conflict_resolution_procedure': ?conflictResolutionProcedure?.toTfJson(),
     'mode': mode.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerMode.variable(String name) : this._(TfArg.variable(name));
+  CosmosdbSqlContainerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = CosmosdbSqlContainerMode._(TfArgLiteral('Custom'));
+  static const lastwriterwins = CosmosdbSqlContainerMode._(
+    TfArgLiteral('LastWriterWins'),
+  );
+
+  static const List<CosmosdbSqlContainerMode> values = [custom, lastwriterwins];
 }
 
 /// Typed helper for the `indexing_policy` block of
@@ -103,7 +119,7 @@ final class CosmosdbSqlContainerCompositeIndex {
 final class CosmosdbSqlContainerIndex {
   const CosmosdbSqlContainerIndex({required this.order, required this.path});
 
-  final TfArg<String> order;
+  final CosmosdbSqlContainerOrder order;
 
   final TfArg<String> path;
 
@@ -112,6 +128,25 @@ final class CosmosdbSqlContainerIndex {
     'order': order.toTfJson(),
     'path': path.toTfJson(),
   };
+}
+
+/// `order` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const ascending = CosmosdbSqlContainerOrder._(
+    TfArgLiteral('ascending'),
+  );
+  static const descending = CosmosdbSqlContainerOrder._(
+    TfArgLiteral('descending'),
+  );
+
+  static const List<CosmosdbSqlContainerOrder> values = [ascending, descending];
 }
 
 /// Typed helper for the `indexing_policy.excluded_path` block of

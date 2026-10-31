@@ -24,7 +24,8 @@ final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestin
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol
+  protocol;
 
   final PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerBackendConfig?
   backendConfig;
@@ -39,6 +40,35 @@ final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestin
     'backend_config': ?backendConfig?.encode(),
     'frontend_config': ?frontendConfig?.encode(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tcp =
+      PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol._(
+        TfArgLiteral('TCP'),
+      );
+  static const udp =
+      PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol._(
+        TfArgLiteral('UDP'),
+      );
+
+  static const List<
+    PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol
+  >
+  values = [tcp, udp];
 }
 
 /// Typed helper for the `destination_nat.backend_config` block of
@@ -81,24 +111,68 @@ final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerFronte
   };
 }
 
-/// Typed helper for the `dns_settings` block of
-/// `azurerm_palo_alto_next_generation_firewall_virtual_network_strata_cloud_manager` (derived from provider schema).
-@immutable
-final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings {
-  const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings({
-    this.dnsServers,
-    this.useAzureDns,
-  });
+/// At most one of `dns_servers`, `use_azure_dns` on the `dns_settings` block of `azurerm_palo_alto_next_generation_firewall_virtual_network_strata_cloud_manager`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dnsServers(...)`.
+sealed class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings();
 
-  final TfArg<List<String>>? dnsServers;
+  /// Sets `dns_servers`.
+  const factory PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings.dnsServers(
+    TfArg<List<String>> dnsServers,
+  ) = PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers;
 
-  final TfArg<bool>? useAzureDns;
+  /// Sets `use_azure_dns`.
+  const factory PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings.useAzureDns(
+    TfArg<bool> useAzureDns,
+  ) = PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
-  Map<String, Object?> encode() => {
-    'dns_servers': ?dnsServers?.toTfJson(),
-    'use_azure_dns': ?useAzureDns?.toTfJson(),
-  };
+  Map<String, Object?> encode();
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings.dnsServers] choice: sets `dns_servers`.
+final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers
+    extends
+        PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsDnsServers(
+    this.dnsServers,
+  );
+
+  final TfArg<List<String>> dnsServers;
+
+  @internal
+  @override
+  String get blockKey => 'dns_servers';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_servers': dnsServers.toTfJson()};
+}
+
+/// The [PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings.useAzureDns] choice: sets `use_azure_dns`.
+final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns
+    extends
+        PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettings {
+  const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDnsSettingsUseAzureDns(
+    this.useAzureDns,
+  );
+
+  final TfArg<bool> useAzureDns;
+
+  @internal
+  @override
+  String get blockKey => 'use_azure_dns';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'use_azure_dns': useAzureDns.toTfJson()};
 }
 
 /// Typed helper for the `identity` block of

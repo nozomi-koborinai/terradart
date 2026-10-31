@@ -8650,9 +8650,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_class',
           dartName: 'instanceClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineFlexibleAppVersionInstanceClass',
         ),
         MigrateSlot(
           tfName: '',
@@ -9080,9 +9080,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_class',
           dartName: 'instanceClass',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'AppEngineStandardAppVersionInstanceClass',
         ),
         MigrateSlot(
           tfName: 'env_variables',
@@ -229967,6 +229967,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'ComputeRegionSecurityPolicyRuleRateLimitOptions',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'exceed_action',
+          dartName: 'exceedAction',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'ComputeRegionSecurityPolicyRuleExceedAction',
+        ),
+        MigrateSlot(
           tfName: 'enforce_on_key',
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
@@ -230221,9 +230228,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exceed_action',
           dartName: 'exceedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeRegionSecurityPolicyExceedAction',
         ),
         MigrateSlot(
           tfName: 'rate_limit_threshold',
@@ -233820,6 +233827,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'ComputeSecurityPolicyRuleRateLimitOptions',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'exceed_action',
+          dartName: 'exceedAction',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'ComputeSecurityPolicyRuleExceedAction',
+        ),
+        MigrateSlot(
           tfName: 'enforce_on_key',
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
@@ -234042,9 +234056,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exceed_action',
           dartName: 'exceedAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeSecurityPolicyExceedAction',
         ),
         MigrateSlot(
           tfName: 'rate_limit_threshold',
@@ -272196,9 +272210,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entity_name',
           dartName: 'entityName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DiscoveryEngineDataConnectorEntityName',
         ),
         MigrateSlot(
           tfName: 'key_property_mappings',
@@ -328928,6 +328942,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INBOUND_SERVICE_WARMUP': 'inboundServiceWarmup',
       },
     ),
+    'AppEngineFlexibleAppVersionInstanceClass': MigrateEnum(
+      name: 'AppEngineFlexibleAppVersionInstanceClass',
+      members: <String, String>{
+        'F1': 'f1',
+        'F2': 'f2',
+        'F4': 'f4',
+        'F4_1G': 'f41g',
+        'B1': 'b1',
+        'B2': 'b2',
+        'B4': 'b4',
+        'B8': 'b8',
+        'B4_1G': 'b41g',
+      },
+    ),
     'AppEngineFlexibleAppVersionLogin': MigrateEnum(
       name: 'AppEngineFlexibleAppVersionLogin',
       members: <String, String>{
@@ -329032,6 +329060,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INBOUND_SERVICE_XMPP_PRESENCE': 'inboundServiceXmppPresence',
         'INBOUND_SERVICE_CHANNEL_PRESENCE': 'inboundServiceChannelPresence',
         'INBOUND_SERVICE_WARMUP': 'inboundServiceWarmup',
+      },
+    ),
+    'AppEngineStandardAppVersionInstanceClass': MigrateEnum(
+      name: 'AppEngineStandardAppVersionInstanceClass',
+      members: <String, String>{
+        'F1': 'f1',
+        'F2': 'f2',
+        'F4': 'f4',
+        'F4_1G': 'f41g',
+        'B1': 'b1',
+        'B2': 'b2',
+        'B4': 'b4',
+        'B8': 'b8',
+        'B4_1G': 'b41g',
       },
     ),
     'AppEngineStandardAppVersionLogin': MigrateEnum(
@@ -331396,7 +331438,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       name: 'CloudfunctionsFunctionStatus',
       members: <String, String>{
         'CLOUD_FUNCTION_STATUS_UNSPECIFIED': 'cloudFunctionStatusUnspecified',
-        'ACTOVE': 'actove',
+        'ACTIVE': 'active',
         'OFFLINE': 'offline',
         'DEPLOY_IN_PROGRESS': 'deployInProgress',
         'DELETE_IN_PROGRESS': 'deleteInProgress',
@@ -332326,6 +332368,24 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NONE': 'none',
       },
     ),
+    'ComputeRegionSecurityPolicyExceedAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyExceedAction',
+      members: <String, String>{
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeRegionSecurityPolicyRuleExceedAction': MigrateEnum(
+      name: 'ComputeRegionSecurityPolicyRuleExceedAction',
+      members: <String, String>{
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
     'ComputeReservationInterface': MigrateEnum(
       name: 'ComputeReservationInterface',
       members: <String, String>{'SCSI': 'scsi', 'NVME': 'nvme'},
@@ -332493,6 +332553,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'ROUTE_POLICY_TYPE_IMPORT': 'routePolicyTypeImport',
         'ROUTE_POLICY_TYPE_EXPORT': 'routePolicyTypeExport',
+      },
+    ),
+    'ComputeSecurityPolicyExceedAction': MigrateEnum(
+      name: 'ComputeSecurityPolicyExceedAction',
+      members: <String, String>{
+        'redirect': 'redirect',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
+      },
+    ),
+    'ComputeSecurityPolicyRuleExceedAction': MigrateEnum(
+      name: 'ComputeSecurityPolicyRuleExceedAction',
+      members: <String, String>{
+        'redirect': 'redirect',
+        'deny(403)': 'deny403',
+        'deny(404)': 'deny404',
+        'deny(429)': 'deny429',
+        'deny(502)': 'deny502',
       },
     ),
     'ComputeSnapshotSettingsPolicy': MigrateEnum(
@@ -334295,6 +334375,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'create_comment': 'createComment',
         'update_comment': 'updateComment',
         'upload_attachment': 'uploadAttachment',
+      },
+    ),
+    'DiscoveryEngineDataConnectorEntityName': MigrateEnum(
+      name: 'DiscoveryEngineDataConnectorEntityName',
+      members: <String, String>{
+        'Lead': 'lead',
+        'Opportunity': 'opportunity',
+        'Contact': 'contact',
+        'Account': 'account',
+        'Case': 'caseCase',
+        'Contract': 'contract',
+        'Campaign': 'campaign',
+        'project': 'project',
+        'issue': 'issue',
+        'attachment': 'attachment',
+        'comment': 'comment',
+        'worklog': 'worklog',
+        'Content': 'content',
+        'Space': 'space',
       },
     ),
     'DiscoveryEngineDataConnectorLocation': MigrateEnum(

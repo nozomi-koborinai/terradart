@@ -408,13 +408,35 @@ final class WindowsVirtualMachineAdditionalUnattendContent {
 
   final Sensitive<String> content;
 
-  final TfArg<String> setting;
+  final WindowsVirtualMachineSetting setting;
 
   @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'setting': setting.toTfJson(),
   };
+}
+
+/// `setting` — derived from the provider schema description.
+extension type const WindowsVirtualMachineSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineSetting.arg(TfArg<String> arg) : this._(arg);
+
+  static const autologon = WindowsVirtualMachineSetting._(
+    TfArgLiteral('AutoLogon'),
+  );
+  static const firstlogoncommands = WindowsVirtualMachineSetting._(
+    TfArgLiteral('FirstLogonCommands'),
+  );
+
+  static const List<WindowsVirtualMachineSetting> values = [
+    autologon,
+    firstlogoncommands,
+  ];
 }
 
 /// Typed helper for the `boot_diagnostics` block of
@@ -491,25 +513,22 @@ final class WindowsVirtualMachineIdentity {
 final class WindowsVirtualMachineOsDisk {
   const WindowsVirtualMachineOsDisk({
     required this.caching,
-    this.diskEncryptionSetId,
+    this.encryptionSet,
     this.diskSizeGb,
     this.name,
-    this.secureVmDiskEncryptionSetId,
     this.securityEncryptionType,
     this.storageAccountType,
     this.writeAcceleratorEnabled,
     this.diffDiskSettings,
   });
 
-  final TfArg<String> caching;
+  final WindowsVirtualMachineCaching caching;
 
-  final TfArg<String>? diskEncryptionSetId;
+  final WindowsVirtualMachineEncryptionSet? encryptionSet;
 
   final TfArg<num>? diskSizeGb;
 
   final TfArg<String>? name;
-
-  final TfArg<String>? secureVmDiskEncryptionSetId;
 
   final TfArg<String>? securityEncryptionType;
 
@@ -522,16 +541,104 @@ final class WindowsVirtualMachineOsDisk {
   @internal
   Map<String, Object?> encode() => {
     'caching': caching.toTfJson(),
-    'disk_encryption_set_id': ?diskEncryptionSetId?.toTfJson(),
+    ...?encryptionSet?.encode(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'name': ?name?.toTfJson(),
-    'secure_vm_disk_encryption_set_id': ?secureVmDiskEncryptionSetId
-        ?.toTfJson(),
     'security_encryption_type': ?securityEncryptionType?.toTfJson(),
     'storage_account_type': ?storageAccountType?.toTfJson(),
     'write_accelerator_enabled': ?writeAcceleratorEnabled?.toTfJson(),
     'diff_disk_settings': ?diffDiskSettings?.encode(),
   };
+}
+
+/// At most one of `disk_encryption_set_id`, `secure_vm_disk_encryption_set_id` on the `os_disk` block of `azurerm_windows_virtual_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.diskEncryptionSetId(...)`.
+sealed class WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSet();
+
+  /// Sets `disk_encryption_set_id`.
+  const factory WindowsVirtualMachineEncryptionSet.diskEncryptionSetId(
+    TfArg<String> diskEncryptionSetId,
+  ) = WindowsVirtualMachineEncryptionSetDiskEncryptionSetId;
+
+  /// Sets `secure_vm_disk_encryption_set_id`.
+  const factory WindowsVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId(
+    TfArg<String> secureVmDiskEncryptionSetId,
+  ) = WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsVirtualMachineEncryptionSet.diskEncryptionSetId] choice: sets `disk_encryption_set_id`.
+final class WindowsVirtualMachineEncryptionSetDiskEncryptionSetId
+    extends WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSetDiskEncryptionSetId(
+    this.diskEncryptionSetId,
+  );
+
+  final TfArg<String> diskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'disk_encryption_set_id': diskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// The [WindowsVirtualMachineEncryptionSet.secureVmDiskEncryptionSetId] choice: sets `secure_vm_disk_encryption_set_id`.
+final class WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId
+    extends WindowsVirtualMachineEncryptionSet {
+  const WindowsVirtualMachineEncryptionSetSecureVmDiskEncryptionSetId(
+    this.secureVmDiskEncryptionSetId,
+  );
+
+  final TfArg<String> secureVmDiskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'secure_vm_disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId.toTfJson(),
+  };
+}
+
+/// `caching` — derived from the provider schema description.
+extension type const WindowsVirtualMachineCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = WindowsVirtualMachineCaching._(TfArgLiteral('None'));
+  static const readonly = WindowsVirtualMachineCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = WindowsVirtualMachineCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<WindowsVirtualMachineCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
 }
 
 /// Typed helper for the `os_disk.diff_disk_settings` block of
@@ -545,13 +652,39 @@ final class WindowsVirtualMachineDiffDiskSettings {
 
   final TfArg<String> option;
 
-  final TfArg<String>? placement;
+  final WindowsVirtualMachinePlacement? placement;
 
   @internal
   Map<String, Object?> encode() => {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `placement` — derived from the provider schema description.
+extension type const WindowsVirtualMachinePlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePlacement.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePlacement.arg(TfArg<String> arg) : this._(arg);
+
+  static const cachedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+  static const nvmedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('NvmeDisk'),
+  );
+  static const resourcedisk = WindowsVirtualMachinePlacement._(
+    TfArgLiteral('ResourceDisk'),
+  );
+
+  static const List<WindowsVirtualMachinePlacement> values = [
+    cachedisk,
+    nvmedisk,
+    resourcedisk,
+  ];
 }
 
 /// Typed helper for the `os_image_notification` block of
@@ -689,13 +822,28 @@ final class WindowsVirtualMachineWinrmListener {
 
   final TfArg<String>? certificateUrl;
 
-  final TfArg<String> protocol;
+  final WindowsVirtualMachineProtocol protocol;
 
   @internal
   Map<String, Object?> encode() => {
     'certificate_url': ?certificateUrl?.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const WindowsVirtualMachineProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = WindowsVirtualMachineProtocol._(TfArgLiteral('Http'));
+  static const https = WindowsVirtualMachineProtocol._(TfArgLiteral('Https'));
+
+  static const List<WindowsVirtualMachineProtocol> values = [http, https];
 }
 
 /// Factory wrapper for `azurerm_windows_virtual_machine`.

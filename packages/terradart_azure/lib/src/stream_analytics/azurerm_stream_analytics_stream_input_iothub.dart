@@ -23,7 +23,7 @@ final class StreamAnalyticsStreamInputIothubSerialization {
 
   final TfArg<String>? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsStreamInputIothubFieldDelimiter? fieldDelimiter;
 
   final TfArg<String> type;
 
@@ -33,6 +33,42 @@ final class StreamAnalyticsStreamInputIothubSerialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputIothubFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputIothubFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputIothubFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputIothubFieldDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const value = StreamAnalyticsStreamInputIothubFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsStreamInputIothubFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsStreamInputIothubFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsStreamInputIothubFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsStreamInputIothubFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsStreamInputIothubFieldDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+  ];
 }
 
 /// Factory wrapper for `azurerm_stream_analytics_stream_input_iothub`.

@@ -180,7 +180,7 @@ final class ContainerAppJobRules {
     this.authentication,
   });
 
-  final TfArg<String> customRuleType;
+  final ContainerAppJobCustomRuleType customRuleType;
 
   final TfArg<String>? identityId;
 
@@ -199,6 +199,236 @@ final class ContainerAppJobRules {
     if (authentication != null)
       'authentication': [for (final e in authentication!) e.encode()],
   };
+}
+
+/// `custom_rule_type` — derived from the provider schema description.
+extension type const ContainerAppJobCustomRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppJobCustomRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppJobCustomRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppJobCustomRuleType.arg(TfArg<String> arg) : this._(arg);
+
+  static const activemq = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('activemq'),
+  );
+  static const artemisQueue = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('artemis-queue'),
+  );
+  static const kafka = ContainerAppJobCustomRuleType._(TfArgLiteral('kafka'));
+  static const pulsar = ContainerAppJobCustomRuleType._(TfArgLiteral('pulsar'));
+  static const awsCloudwatch = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('aws-cloudwatch'),
+  );
+  static const awsDynamodb = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('aws-dynamodb'),
+  );
+  static const awsDynamodbStreams = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('aws-dynamodb-streams'),
+  );
+  static const awsKinesisStream = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('aws-kinesis-stream'),
+  );
+  static const awsSqsQueue = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('aws-sqs-queue'),
+  );
+  static const azureAppInsights = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-app-insights'),
+  );
+  static const azureBlob = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-blob'),
+  );
+  static const azureDataExplorer = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-data-explorer'),
+  );
+  static const azureDurabletaskScheduler = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-durabletask-scheduler'),
+  );
+  static const azureEventhub = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-eventhub'),
+  );
+  static const azureLogAnalytics = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-log-analytics'),
+  );
+  static const azureMonitor = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-monitor'),
+  );
+  static const azurePipelines = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-pipelines'),
+  );
+  static const azureServicebus = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-servicebus'),
+  );
+  static const azureQueue = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('azure-queue'),
+  );
+  static const cassandra = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('cassandra'),
+  );
+  static const cpu = ContainerAppJobCustomRuleType._(TfArgLiteral('cpu'));
+  static const cron = ContainerAppJobCustomRuleType._(TfArgLiteral('cron'));
+  static const datadog = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('datadog'),
+  );
+  static const elasticsearch = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('elasticsearch'),
+  );
+  static const external = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('external'),
+  );
+  static const externalPush = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('external-push'),
+  );
+  static const gcpStackdriver = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('gcp-stackdriver'),
+  );
+  static const gcpStorage = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('gcp-storage'),
+  );
+  static const gcpPubsub = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('gcp-pubsub'),
+  );
+  static const graphite = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('graphite'),
+  );
+  static const http = ContainerAppJobCustomRuleType._(TfArgLiteral('http'));
+  static const huaweiCloudeye = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('huawei-cloudeye'),
+  );
+  static const ibmmq = ContainerAppJobCustomRuleType._(TfArgLiteral('ibmmq'));
+  static const influxdb = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('influxdb'),
+  );
+  static const kubernetesWorkload = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('kubernetes-workload'),
+  );
+  static const liiklus = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('liiklus'),
+  );
+  static const memory = ContainerAppJobCustomRuleType._(TfArgLiteral('memory'));
+  static const metricsApi = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('metrics-api'),
+  );
+  static const mongodb = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('mongodb'),
+  );
+  static const mssql = ContainerAppJobCustomRuleType._(TfArgLiteral('mssql'));
+  static const mysql = ContainerAppJobCustomRuleType._(TfArgLiteral('mysql'));
+  static const natsJetstream = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('nats-jetstream'),
+  );
+  static const stan = ContainerAppJobCustomRuleType._(TfArgLiteral('stan'));
+  static const tcp = ContainerAppJobCustomRuleType._(TfArgLiteral('tcp'));
+  static const newRelic = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('new-relic'),
+  );
+  static const openstackMetric = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('openstack-metric'),
+  );
+  static const openstackSwift = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('openstack-swift'),
+  );
+  static const postgresql = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('postgresql'),
+  );
+  static const predictkube = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('predictkube'),
+  );
+  static const prometheus = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('prometheus'),
+  );
+  static const rabbitmq = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('rabbitmq'),
+  );
+  static const redis = ContainerAppJobCustomRuleType._(TfArgLiteral('redis'));
+  static const redisCluster = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('redis-cluster'),
+  );
+  static const redisSentinel = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('redis-sentinel'),
+  );
+  static const redisStreams = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('redis-streams'),
+  );
+  static const redisClusterStreams = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('redis-cluster-streams'),
+  );
+  static const redisSentinelStreams = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('redis-sentinel-streams'),
+  );
+  static const seleniumGrid = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('selenium-grid'),
+  );
+  static const solaceEventQueue = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('solace-event-queue'),
+  );
+  static const githubRunner = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('github-runner'),
+  );
+
+  static const List<ContainerAppJobCustomRuleType> values = [
+    activemq,
+    artemisQueue,
+    kafka,
+    pulsar,
+    awsCloudwatch,
+    awsDynamodb,
+    awsDynamodbStreams,
+    awsKinesisStream,
+    awsSqsQueue,
+    azureAppInsights,
+    azureBlob,
+    azureDataExplorer,
+    azureDurabletaskScheduler,
+    azureEventhub,
+    azureLogAnalytics,
+    azureMonitor,
+    azurePipelines,
+    azureServicebus,
+    azureQueue,
+    cassandra,
+    cpu,
+    cron,
+    datadog,
+    elasticsearch,
+    external,
+    externalPush,
+    gcpStackdriver,
+    gcpStorage,
+    gcpPubsub,
+    graphite,
+    http,
+    huaweiCloudeye,
+    ibmmq,
+    influxdb,
+    kubernetesWorkload,
+    liiklus,
+    memory,
+    metricsApi,
+    mongodb,
+    mssql,
+    mysql,
+    natsJetstream,
+    stan,
+    tcp,
+    newRelic,
+    openstackMetric,
+    openstackSwift,
+    postgresql,
+    predictkube,
+    prometheus,
+    rabbitmq,
+    redis,
+    redisCluster,
+    redisSentinel,
+    redisStreams,
+    redisClusterStreams,
+    redisSentinelStreams,
+    seleniumGrid,
+    solaceEventQueue,
+    githubRunner,
+  ];
 }
 
 /// Typed helper for the `event_trigger_config.scale.rules.authentication` block of
@@ -738,8 +968,17 @@ extension type const ContainerAppJobStorageType._(TfArg<String> _)
   static const emptydir = ContainerAppJobStorageType._(
     TfArgLiteral('EmptyDir'),
   );
+  static const nfsazurefile = ContainerAppJobStorageType._(
+    TfArgLiteral('NfsAzureFile'),
+  );
+  static const secret = ContainerAppJobStorageType._(TfArgLiteral('Secret'));
 
-  static const List<ContainerAppJobStorageType> values = [azurefile, emptydir];
+  static const List<ContainerAppJobStorageType> values = [
+    azurefile,
+    emptydir,
+    nfsazurefile,
+    secret,
+  ];
 }
 
 /// Factory wrapper for `azurerm_container_app_job`.

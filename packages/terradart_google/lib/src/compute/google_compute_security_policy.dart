@@ -405,6 +405,40 @@ class ComputeSecurityPolicyRulesMatchExpr {
   Map<String, Object?> toArgMap() => {'expression': expression.toTfJson()};
 }
 
+/// Action for requests over a `rule.rate_limit_options` threshold.
+extension type const ComputeSecurityPolicyExceedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSecurityPolicyExceedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyExceedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyExceedAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const redirect = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('redirect'),
+  );
+  static const deny403 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(403)'),
+  );
+  static const deny404 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(404)'),
+  );
+  static const deny429 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(429)'),
+  );
+  static const deny502 = ComputeSecurityPolicyExceedAction._(
+    TfArgLiteral('deny(502)'),
+  );
+
+  static const List<ComputeSecurityPolicyExceedAction> values = [
+    redirect,
+    deny403,
+    deny404,
+    deny429,
+    deny502,
+  ];
+}
+
 /// `rule.rate_limit_options` -- threshold + action plumbing for
 /// [SecurityPolicyRuleAction.throttle] and
 /// [SecurityPolicyRuleAction.rateBasedBan]. Throttle simply rejects
@@ -429,10 +463,10 @@ class ComputeSecurityPolicyRulesRateLimitOptions {
   /// `'allow'` today.
   final TfArg<String> conformAction;
 
-  /// Action for over-threshold requests. Valid values are `'deny(403)'`,
-  /// `'deny(404)'`, `'deny(429)'`, `'deny(502)'`, and `'redirect'`
-  /// (paired with [exceedRedirectOptions]).
-  final TfArg<String> exceedAction;
+  /// Action for over-threshold requests: deny with a status code, or
+  /// [ComputeSecurityPolicyExceedAction.redirect] (paired with
+  /// [exceedRedirectOptions]).
+  final ComputeSecurityPolicyExceedAction exceedAction;
 
   /// Required rate-limit threshold (counts per interval).
   final ComputeSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
@@ -458,7 +492,8 @@ class ComputeSecurityPolicyRulesRateLimitOptions {
   /// with the single-attribute [enforceOnKey] / [enforceOnKeyName].
   final List<ComputeSecurityPolicyRulesEnforceOnKeyConfig>? enforceOnKeyConfigs;
 
-  /// Redirect target when [exceedAction] is `'redirect'`.
+  /// Redirect target when [exceedAction] is
+  /// [ComputeSecurityPolicyExceedAction.redirect].
   final ComputeSecurityPolicyRulesRedirectOptions? exceedRedirectOptions;
 
   Map<String, Object?> toArgMap() => {
@@ -912,7 +947,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///   ),
 ///   rateLimitOptions: .new(
 ///     conformAction: TfArg.literal('allow'),
-///     exceedAction: TfArg.literal('redirect'),
+///     exceedAction: .redirect,
 ///     rateLimitThreshold: .new(
 ///       count: TfArg.literal(100),
 ///       intervalSec: TfArg.literal(60),

@@ -1167,24 +1167,246 @@ final class ApplicationGatewaySslPolicy {
     this.policyType,
   });
 
-  final TfArg<List<String>>? cipherSuites;
+  final List<ApplicationGatewayCipherSuites>? cipherSuites;
 
-  final TfArg<List<String>>? disabledProtocols;
+  final List<ApplicationGatewayDisabledProtocols>? disabledProtocols;
 
-  final TfArg<String>? minProtocolVersion;
+  final ApplicationGatewayMinProtocolVersion? minProtocolVersion;
 
   final TfArg<String>? policyName;
 
-  final TfArg<String>? policyType;
+  final ApplicationGatewayPolicyType? policyType;
 
   @internal
   Map<String, Object?> encode() => {
-    'cipher_suites': ?cipherSuites?.toTfJson(),
-    'disabled_protocols': ?disabledProtocols?.toTfJson(),
+    if (cipherSuites != null)
+      'cipher_suites': [for (final e in cipherSuites!) e.toTfJson()],
+    if (disabledProtocols != null)
+      'disabled_protocols': [for (final e in disabledProtocols!) e.toTfJson()],
     'min_protocol_version': ?minProtocolVersion?.toTfJson(),
     'policy_name': ?policyName?.toTfJson(),
     'policy_type': ?policyType?.toTfJson(),
   };
+}
+
+/// `cipher_suites` — derived from the provider schema description.
+extension type const ApplicationGatewayCipherSuites._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationGatewayCipherSuites.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayCipherSuites.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayCipherSuites.arg(TfArg<String> arg) : this._(arg);
+
+  static const tlsDheDssWithAes128CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_DSS_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsDheDssWithAes128CbcSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_DSS_WITH_AES_128_CBC_SHA256'),
+  );
+  static const tlsDheDssWithAes256CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_DSS_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsDheDssWithAes256CbcSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_DSS_WITH_AES_256_CBC_SHA256'),
+  );
+  static const tlsDheDssWith3desEdeCbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA'),
+  );
+  static const tlsDheRsaWithAes128CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsDheRsaWithAes128GcmSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_RSA_WITH_AES_128_GCM_SHA256'),
+  );
+  static const tlsDheRsaWithAes256CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsDheRsaWithAes256GcmSha384 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_DHE_RSA_WITH_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsEcdheEcdsaWithAes256CbcSha384 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      ApplicationGatewayCipherSuites._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsRsaWithAes128CbcSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes128GcmSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+  );
+  static const tlsRsaWithAes256CbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsRsaWithAes256CbcSha256 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes256GcmSha384 = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+  );
+  static const tlsRsaWith3desEdeCbcSha = ApplicationGatewayCipherSuites._(
+    TfArgLiteral('TLS_RSA_WITH_3DES_EDE_CBC_SHA'),
+  );
+
+  static const List<ApplicationGatewayCipherSuites> values = [
+    tlsDheDssWithAes128CbcSha,
+    tlsDheDssWithAes128CbcSha256,
+    tlsDheDssWithAes256CbcSha,
+    tlsDheDssWithAes256CbcSha256,
+    tlsDheDssWith3desEdeCbcSha,
+    tlsDheRsaWithAes128CbcSha,
+    tlsDheRsaWithAes128GcmSha256,
+    tlsDheRsaWithAes256CbcSha,
+    tlsDheRsaWithAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256CbcSha,
+    tlsEcdheEcdsaWithAes256CbcSha384,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+    tlsRsaWith3desEdeCbcSha,
+  ];
+}
+
+/// `disabled_protocols` — derived from the provider schema description.
+extension type const ApplicationGatewayDisabledProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationGatewayDisabledProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayDisabledProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayDisabledProtocols.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsv11 = ApplicationGatewayDisabledProtocols._(
+    TfArgLiteral('TLSv1_1'),
+  );
+  static const tlsv13 = ApplicationGatewayDisabledProtocols._(
+    TfArgLiteral('TLSv1_3'),
+  );
+  static const tlsv12 = ApplicationGatewayDisabledProtocols._(
+    TfArgLiteral('TLSv1_2'),
+  );
+  static const tlsv10 = ApplicationGatewayDisabledProtocols._(
+    TfArgLiteral('TLSv1_0'),
+  );
+
+  static const List<ApplicationGatewayDisabledProtocols> values = [
+    tlsv11,
+    tlsv13,
+    tlsv12,
+    tlsv10,
+  ];
+}
+
+/// `min_protocol_version` — derived from the provider schema description.
+extension type const ApplicationGatewayMinProtocolVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationGatewayMinProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayMinProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayMinProtocolVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsv11 = ApplicationGatewayMinProtocolVersion._(
+    TfArgLiteral('TLSv1_1'),
+  );
+  static const tlsv13 = ApplicationGatewayMinProtocolVersion._(
+    TfArgLiteral('TLSv1_3'),
+  );
+  static const tlsv12 = ApplicationGatewayMinProtocolVersion._(
+    TfArgLiteral('TLSv1_2'),
+  );
+  static const tlsv10 = ApplicationGatewayMinProtocolVersion._(
+    TfArgLiteral('TLSv1_0'),
+  );
+
+  static const List<ApplicationGatewayMinProtocolVersion> values = [
+    tlsv11,
+    tlsv13,
+    tlsv12,
+    tlsv10,
+  ];
+}
+
+/// `policy_type` — derived from the provider schema description.
+extension type const ApplicationGatewayPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationGatewayPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayPolicyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = ApplicationGatewayPolicyType._(TfArgLiteral('Custom'));
+  static const customv2 = ApplicationGatewayPolicyType._(
+    TfArgLiteral('CustomV2'),
+  );
+  static const predefined = ApplicationGatewayPolicyType._(
+    TfArgLiteral('Predefined'),
+  );
+
+  static const List<ApplicationGatewayPolicyType> values = [
+    custom,
+    customv2,
+    predefined,
+  ];
 }
 
 /// Typed helper for the `ssl_profile` block of

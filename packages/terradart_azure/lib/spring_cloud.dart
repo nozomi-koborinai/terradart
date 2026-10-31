@@ -115,6 +115,7 @@ export 'src/spring_cloud/azurerm_spring_cloud_service.dart'
         SpringCloudServiceConfigServerGitSetting,
         SpringCloudServiceContainerRegistry,
         SpringCloudServiceDefaultBuildService,
+        SpringCloudServiceHostKeyAlgorithm,
         SpringCloudServiceHttpBasicAuth,
         SpringCloudServiceMarketplace,
         SpringCloudServiceNetwork,

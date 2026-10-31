@@ -234,6 +234,9 @@ extension type const FunctionAppFlexConsumptionDefaultProvider._(
   static const facebook = FunctionAppFlexConsumptionDefaultProvider._(
     TfArgLiteral('Facebook'),
   );
+  static const github = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
   static const google = FunctionAppFlexConsumptionDefaultProvider._(
     TfArgLiteral('Google'),
   );
@@ -243,17 +246,14 @@ extension type const FunctionAppFlexConsumptionDefaultProvider._(
   static const twitter = FunctionAppFlexConsumptionDefaultProvider._(
     TfArgLiteral('Twitter'),
   );
-  static const github = FunctionAppFlexConsumptionDefaultProvider._(
-    TfArgLiteral('Github'),
-  );
 
   static const List<FunctionAppFlexConsumptionDefaultProvider> values = [
     azureactivedirectory,
     facebook,
+    github,
     google,
     microsoftaccount,
     twitter,
-    github,
   ];
 }
 
@@ -270,17 +270,17 @@ extension type const FunctionAppFlexConsumptionUnauthenticatedClientAction._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const redirecttologinpage =
-      FunctionAppFlexConsumptionUnauthenticatedClientAction._(
-        TfArgLiteral('RedirectToLoginPage'),
-      );
   static const allowanonymous =
       FunctionAppFlexConsumptionUnauthenticatedClientAction._(
         TfArgLiteral('AllowAnonymous'),
       );
+  static const redirecttologinpage =
+      FunctionAppFlexConsumptionUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
 
   static const List<FunctionAppFlexConsumptionUnauthenticatedClientAction>
-  values = [redirecttologinpage, allowanonymous];
+  values = [allowanonymous, redirecttologinpage];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -291,23 +291,83 @@ final class FunctionAppFlexConsumptionActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final FunctionAppFlexConsumptionActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class FunctionAppFlexConsumptionActiveDirectoryClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory FunctionAppFlexConsumptionActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice
+    extends FunctionAppFlexConsumptionActiveDirectoryClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [FunctionAppFlexConsumptionActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName
+    extends FunctionAppFlexConsumptionActiveDirectoryClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -317,25 +377,82 @@ final class FunctionAppFlexConsumptionActiveDirectory {
 final class FunctionAppFlexConsumptionFacebook {
   const FunctionAppFlexConsumptionFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final FunctionAppFlexConsumptionAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class FunctionAppFlexConsumptionAppSecret {
+  const FunctionAppFlexConsumptionAppSecret();
+
+  /// Sets `app_secret`.
+  const factory FunctionAppFlexConsumptionAppSecret.appSecret(
+    Sensitive<String> appSecret,
+  ) = FunctionAppFlexConsumptionAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = FunctionAppFlexConsumptionAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionAppSecret.appSecret] choice: sets `app_secret`.
+final class FunctionAppFlexConsumptionAppSecretChoice
+    extends FunctionAppFlexConsumptionAppSecret {
+  const FunctionAppFlexConsumptionAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [FunctionAppFlexConsumptionAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class FunctionAppFlexConsumptionAppSecretSettingName
+    extends FunctionAppFlexConsumptionAppSecret {
+  const FunctionAppFlexConsumptionAppSecretSettingName(
+    this.appSecretSettingName,
+  );
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -345,25 +462,82 @@ final class FunctionAppFlexConsumptionFacebook {
 final class FunctionAppFlexConsumptionGithub {
   const FunctionAppFlexConsumptionGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final FunctionAppFlexConsumptionGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class FunctionAppFlexConsumptionGithubClientSecret {
+  const FunctionAppFlexConsumptionGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory FunctionAppFlexConsumptionGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = FunctionAppFlexConsumptionGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = FunctionAppFlexConsumptionGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class FunctionAppFlexConsumptionGithubClientSecretChoice
+    extends FunctionAppFlexConsumptionGithubClientSecret {
+  const FunctionAppFlexConsumptionGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [FunctionAppFlexConsumptionGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionGithubClientSecretSettingName
+    extends FunctionAppFlexConsumptionGithubClientSecret {
+  const FunctionAppFlexConsumptionGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -373,25 +547,82 @@ final class FunctionAppFlexConsumptionGithub {
 final class FunctionAppFlexConsumptionGoogle {
   const FunctionAppFlexConsumptionGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final FunctionAppFlexConsumptionGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class FunctionAppFlexConsumptionGoogleClientSecret {
+  const FunctionAppFlexConsumptionGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory FunctionAppFlexConsumptionGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = FunctionAppFlexConsumptionGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = FunctionAppFlexConsumptionGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class FunctionAppFlexConsumptionGoogleClientSecretChoice
+    extends FunctionAppFlexConsumptionGoogleClientSecret {
+  const FunctionAppFlexConsumptionGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [FunctionAppFlexConsumptionGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionGoogleClientSecretSettingName
+    extends FunctionAppFlexConsumptionGoogleClientSecret {
+  const FunctionAppFlexConsumptionGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -401,25 +632,84 @@ final class FunctionAppFlexConsumptionGoogle {
 final class FunctionAppFlexConsumptionMicrosoft {
   const FunctionAppFlexConsumptionMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final FunctionAppFlexConsumptionMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class FunctionAppFlexConsumptionMicrosoftClientSecret {
+  const FunctionAppFlexConsumptionMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory FunctionAppFlexConsumptionMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = FunctionAppFlexConsumptionMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = FunctionAppFlexConsumptionMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class FunctionAppFlexConsumptionMicrosoftClientSecretChoice
+    extends FunctionAppFlexConsumptionMicrosoftClientSecret {
+  const FunctionAppFlexConsumptionMicrosoftClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [FunctionAppFlexConsumptionMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionMicrosoftClientSecretSettingName
+    extends FunctionAppFlexConsumptionMicrosoftClientSecret {
+  const FunctionAppFlexConsumptionMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -429,21 +719,80 @@ final class FunctionAppFlexConsumptionMicrosoft {
 final class FunctionAppFlexConsumptionTwitter {
   const FunctionAppFlexConsumptionTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final FunctionAppFlexConsumptionConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class FunctionAppFlexConsumptionConsumerSecret {
+  const FunctionAppFlexConsumptionConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory FunctionAppFlexConsumptionConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = FunctionAppFlexConsumptionConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = FunctionAppFlexConsumptionConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class FunctionAppFlexConsumptionConsumerSecretChoice
+    extends FunctionAppFlexConsumptionConsumerSecret {
+  const FunctionAppFlexConsumptionConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [FunctionAppFlexConsumptionConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class FunctionAppFlexConsumptionConsumerSecretSettingName
+    extends FunctionAppFlexConsumptionConsumerSecret {
+  const FunctionAppFlexConsumptionConsumerSecretSettingName(
+    this.consumerSecretSettingName,
+  );
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -562,23 +911,20 @@ extension type const FunctionAppFlexConsumptionForwardProxyConvention._(
   const FunctionAppFlexConsumptionForwardProxyConvention.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const forwardproxyconventionnoproxy =
-      FunctionAppFlexConsumptionForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionNoProxy'),
-      );
-  static const forwardproxyconventionstandard =
-      FunctionAppFlexConsumptionForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionStandard'),
-      );
-  static const forwardproxyconventioncustom =
-      FunctionAppFlexConsumptionForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionCustom'),
-      );
+  static const custom = FunctionAppFlexConsumptionForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = FunctionAppFlexConsumptionForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = FunctionAppFlexConsumptionForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
 
   static const List<FunctionAppFlexConsumptionForwardProxyConvention> values = [
-    forwardproxyconventionnoproxy,
-    forwardproxyconventionstandard,
-    forwardproxyconventioncustom,
+    custom,
+    noproxy,
+    standard,
   ];
 }
 
@@ -593,13 +939,13 @@ extension type const FunctionAppFlexConsumptionUnauthenticatedAction._(
   const FunctionAppFlexConsumptionUnauthenticatedAction.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const redirecttologinpage =
-      FunctionAppFlexConsumptionUnauthenticatedAction._(
-        TfArgLiteral('RedirectToLoginPage'),
-      );
   static const allowanonymous =
       FunctionAppFlexConsumptionUnauthenticatedAction._(
         TfArgLiteral('AllowAnonymous'),
+      );
+  static const redirecttologinpage =
+      FunctionAppFlexConsumptionUnauthenticatedAction._(
+        TfArgLiteral('RedirectToLoginPage'),
       );
   static const return401 = FunctionAppFlexConsumptionUnauthenticatedAction._(
     TfArgLiteral('Return401'),
@@ -609,8 +955,8 @@ extension type const FunctionAppFlexConsumptionUnauthenticatedAction._(
   );
 
   static const List<FunctionAppFlexConsumptionUnauthenticatedAction> values = [
-    redirecttologinpage,
     allowanonymous,
+    redirecttologinpage,
     return401,
     return403,
   ];
@@ -626,8 +972,7 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientSecret,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -645,9 +990,7 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret? clientSecret;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -666,15 +1009,80 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint
+    extends FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName
+    extends FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
+  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -835,8 +1243,7 @@ final class FunctionAppFlexConsumptionLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
@@ -857,9 +1264,7 @@ final class FunctionAppFlexConsumptionLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final FunctionAppFlexConsumptionTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -874,9 +1279,72 @@ final class FunctionAppFlexConsumptionLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
+  };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_function_app_flex_consumption`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class FunctionAppFlexConsumptionTokenStore {
+  const FunctionAppFlexConsumptionTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory FunctionAppFlexConsumptionTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = FunctionAppFlexConsumptionTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory FunctionAppFlexConsumptionTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = FunctionAppFlexConsumptionTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FunctionAppFlexConsumptionTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class FunctionAppFlexConsumptionTokenStorePath
+    extends FunctionAppFlexConsumptionTokenStore {
+  const FunctionAppFlexConsumptionTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [FunctionAppFlexConsumptionTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class FunctionAppFlexConsumptionTokenStoreSasSettingName
+    extends FunctionAppFlexConsumptionTokenStore {
+  const FunctionAppFlexConsumptionTokenStoreSasSettingName(
+    this.tokenStoreSasSettingName,
+  );
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
   };
 }
 
@@ -987,48 +1455,48 @@ extension type const FunctionAppFlexConsumptionType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const FunctionAppFlexConsumptionType.arg(TfArg<String> arg) : this._(arg);
 
-  static const mysql = FunctionAppFlexConsumptionType._(TfArgLiteral('MySQL'));
-  static const sqlserver = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('SQLServer'),
-  );
-  static const sqlazure = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('SQLAzure'),
+  static const apihub = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('ApiHub'),
   );
   static const custom = FunctionAppFlexConsumptionType._(
     TfArgLiteral('Custom'),
   );
-  static const notificationhub = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('NotificationHub'),
-  );
-  static const servicebus = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('ServiceBus'),
-  );
+  static const docdb = FunctionAppFlexConsumptionType._(TfArgLiteral('DocDb'));
   static const eventhub = FunctionAppFlexConsumptionType._(
     TfArgLiteral('EventHub'),
   );
-  static const apihub = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('APIHub'),
-  );
-  static const docdb = FunctionAppFlexConsumptionType._(TfArgLiteral('DocDb'));
-  static const rediscache = FunctionAppFlexConsumptionType._(
-    TfArgLiteral('RedisCache'),
+  static const mysql = FunctionAppFlexConsumptionType._(TfArgLiteral('MySql'));
+  static const notificationhub = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('NotificationHub'),
   );
   static const postgresql = FunctionAppFlexConsumptionType._(
     TfArgLiteral('PostgreSQL'),
   );
+  static const rediscache = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('ServiceBus'),
+  );
 
   static const List<FunctionAppFlexConsumptionType> values = [
-    mysql,
-    sqlserver,
-    sqlazure,
-    custom,
-    notificationhub,
-    servicebus,
-    eventhub,
     apihub,
+    custom,
     docdb,
-    rediscache,
+    eventhub,
+    mysql,
+    notificationhub,
     postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
   ];
 }
 
@@ -1113,7 +1581,8 @@ final class FunctionAppFlexConsumptionSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final FunctionAppFlexConsumptionIpRestrictionDefaultAction?
+  ipRestrictionDefaultAction;
 
   final FunctionAppFlexConsumptionLoadBalancingMode? loadBalancingMode;
 
@@ -1123,11 +1592,13 @@ final class FunctionAppFlexConsumptionSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final FunctionAppFlexConsumptionRemoteDebuggingVersion?
+  remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final FunctionAppFlexConsumptionScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
   final FunctionAppFlexConsumptionScmMinimumTlsVersion? scmMinimumTlsVersion;
 
@@ -1192,6 +1663,30 @@ final class FunctionAppFlexConsumptionSiteConfig {
   };
 }
 
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionIpRestrictionDefaultAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionIpRestrictionDefaultAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allow = FunctionAppFlexConsumptionIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = FunctionAppFlexConsumptionIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<FunctionAppFlexConsumptionIpRestrictionDefaultAction>
+  values = [allow, deny];
+}
+
 /// `load_balancing_mode` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
   TfArg<String> _
@@ -1203,13 +1698,13 @@ extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
   const FunctionAppFlexConsumptionLoadBalancingMode.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const leastrequests = FunctionAppFlexConsumptionLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
   static const weightedroundrobin =
       FunctionAppFlexConsumptionLoadBalancingMode._(
         TfArgLiteral('WeightedRoundRobin'),
       );
-  static const leastrequests = FunctionAppFlexConsumptionLoadBalancingMode._(
-    TfArgLiteral('LeastRequests'),
-  );
   static const leastresponsetime =
       FunctionAppFlexConsumptionLoadBalancingMode._(
         TfArgLiteral('LeastResponseTime'),
@@ -1227,8 +1722,8 @@ extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
       );
 
   static const List<FunctionAppFlexConsumptionLoadBalancingMode> values = [
-    weightedroundrobin,
     leastrequests,
+    weightedroundrobin,
     leastresponsetime,
     weightedtotaltraffic,
     requesthash,
@@ -1247,16 +1742,16 @@ extension type const FunctionAppFlexConsumptionManagedPipelineMode._(
   const FunctionAppFlexConsumptionManagedPipelineMode.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const integrated = FunctionAppFlexConsumptionManagedPipelineMode._(
-    TfArgLiteral('Integrated'),
-  );
   static const classic = FunctionAppFlexConsumptionManagedPipelineMode._(
     TfArgLiteral('Classic'),
   );
+  static const integrated = FunctionAppFlexConsumptionManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
 
   static const List<FunctionAppFlexConsumptionManagedPipelineMode> values = [
-    integrated,
     classic,
+    integrated,
   ];
 }
 
@@ -1271,21 +1766,78 @@ extension type const FunctionAppFlexConsumptionMinimumTlsVersion._(
   const FunctionAppFlexConsumptionMinimumTlsVersion.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const v1p0 = FunctionAppFlexConsumptionMinimumTlsVersion._(
-    TfArgLiteral('1.0'),
-  );
   static const v1p1 = FunctionAppFlexConsumptionMinimumTlsVersion._(
     TfArgLiteral('1.1'),
+  );
+  static const v1p3 = FunctionAppFlexConsumptionMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
   );
   static const v1p2 = FunctionAppFlexConsumptionMinimumTlsVersion._(
     TfArgLiteral('1.2'),
   );
+  static const v1p0 = FunctionAppFlexConsumptionMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
 
   static const List<FunctionAppFlexConsumptionMinimumTlsVersion> values = [
-    v1p0,
     v1p1,
+    v1p3,
     v1p2,
+    v1p0,
   ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionRemoteDebuggingVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2017 = FunctionAppFlexConsumptionRemoteDebuggingVersion._(
+    TfArgLiteral('VS2017'),
+  );
+  static const vs2019 = FunctionAppFlexConsumptionRemoteDebuggingVersion._(
+    TfArgLiteral('VS2019'),
+  );
+  static const vs2022 = FunctionAppFlexConsumptionRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<FunctionAppFlexConsumptionRemoteDebuggingVersion> values = [
+    vs2017,
+    vs2019,
+    vs2022,
+  ];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionScmIpRestrictionDefaultAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionScmIpRestrictionDefaultAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allow =
+      FunctionAppFlexConsumptionScmIpRestrictionDefaultAction._(
+        TfArgLiteral('Allow'),
+      );
+  static const deny = FunctionAppFlexConsumptionScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<FunctionAppFlexConsumptionScmIpRestrictionDefaultAction>
+  values = [allow, deny];
 }
 
 /// `scm_minimum_tls_version` — derived from the provider schema description.
@@ -1299,20 +1851,24 @@ extension type const FunctionAppFlexConsumptionScmMinimumTlsVersion._(
   const FunctionAppFlexConsumptionScmMinimumTlsVersion.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const v1p0 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
-    TfArgLiteral('1.0'),
-  );
   static const v1p1 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
     TfArgLiteral('1.1'),
+  );
+  static const v1p3 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
   );
   static const v1p2 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
     TfArgLiteral('1.2'),
   );
+  static const v1p0 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
 
   static const List<FunctionAppFlexConsumptionScmMinimumTlsVersion> values = [
-    v1p0,
     v1p1,
+    v1p3,
     v1p2,
+    v1p0,
   ];
 }
 

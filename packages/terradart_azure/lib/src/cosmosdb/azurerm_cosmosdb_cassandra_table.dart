@@ -57,13 +57,28 @@ final class CosmosdbCassandraTableClusterKey {
 
   final TfArg<String> name;
 
-  final TfArg<String> orderBy;
+  final CosmosdbCassandraTableOrderBy orderBy;
 
   @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'order_by': orderBy.toTfJson(),
   };
+}
+
+/// `order_by` — derived from the provider schema description.
+extension type const CosmosdbCassandraTableOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbCassandraTableOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbCassandraTableOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbCassandraTableOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = CosmosdbCassandraTableOrderBy._(TfArgLiteral('Asc'));
+  static const desc = CosmosdbCassandraTableOrderBy._(TfArgLiteral('Desc'));
+
+  static const List<CosmosdbCassandraTableOrderBy> values = [asc, desc];
 }
 
 /// Typed helper for the `schema.column` block of

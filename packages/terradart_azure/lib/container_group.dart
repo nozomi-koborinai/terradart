@@ -27,6 +27,7 @@ export 'src/container_group/azurerm_container_group.dart'
         ContainerGroupPriority,
         ContainerGroupReadinessProbe,
         ContainerGroupRestartPolicy,
+        ContainerGroupScheme,
         ContainerGroupSecurity,
         ContainerGroupSku,
         ContainerGroupVolume;

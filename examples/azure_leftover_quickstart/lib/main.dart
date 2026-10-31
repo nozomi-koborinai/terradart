@@ -1785,7 +1785,7 @@ final class AzureLeftoverStack extends Stack {
         order: .literal(200),
         actions: CdnFrontdoorRuleActions(
           modifyRequestHeader: [
-            .new(headerName: .literal(leftover), operator: .literal('Append')),
+            .new(headerName: .literal(leftover), operator: .append),
           ],
         ),
       ),
@@ -4431,8 +4431,8 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        tier: .literal('Premium'),
-        tlsMinVersion: .literal('1.0'),
+        tier: .premium,
+        tlsMinVersion: .v1p0,
         componentVersion: HdinsightHadoopClusterComponentVersion(
           hadoop: .literal(leftover),
         ),
@@ -4465,8 +4465,8 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        tier: .literal('Premium'),
-        tlsMinVersion: .literal('1.0'),
+        tier: .premium,
+        tlsMinVersion: .v1p0,
         componentVersion: HdinsightHbaseClusterComponentVersion(
           hbase: .literal(leftover),
         ),
@@ -4499,8 +4499,8 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        tier: .literal('Premium'),
-        tlsMinVersion: .literal('1.0'),
+        tier: .premium,
+        tlsMinVersion: .v1p0,
         componentVersion: HdinsightInteractiveQueryClusterComponentVersion(
           interactiveHive: .literal(leftover),
         ),
@@ -4533,8 +4533,8 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        tier: .literal('Premium'),
-        tlsMinVersion: .literal('1.0'),
+        tier: .premium,
+        tlsMinVersion: .v1p0,
         componentVersion: HdinsightKafkaClusterComponentVersion(
           kafka: .literal(leftover),
         ),
@@ -4568,8 +4568,8 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        tier: .literal('Premium'),
-        tlsMinVersion: .literal('1.0'),
+        tier: .premium,
+        tlsMinVersion: .v1p0,
         componentVersion: HdinsightSparkClusterComponentVersion(
           spark: .literal(leftover),
         ),
@@ -8804,8 +8804,8 @@ final class AzureLeftoverStack extends Stack {
           ServiceFabricManagedClusterLbRule(
             backendPort: .literal(200),
             frontendPort: .literal(200),
-            probeProtocol: .literal('http'),
-            protocol: .literal('tcp'),
+            probeProtocol: .http,
+            protocol: .tcp,
           ),
         ],
       ),

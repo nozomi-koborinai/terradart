@@ -78225,7 +78225,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'method': 'method',
         'host': 'host',
         'endpoint': 'endpoint',
-        'thresholds.＄key': 'thresholdsKey',
+        'thresholds.\$key': 'thresholdsKey',
       },
     ),
     'DataApiTokenDirection': MigrateEnum(

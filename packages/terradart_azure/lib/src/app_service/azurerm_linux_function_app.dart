@@ -303,6 +303,9 @@ extension type const LinuxFunctionAppDefaultProvider._(TfArg<String> _)
   static const facebook = LinuxFunctionAppDefaultProvider._(
     TfArgLiteral('Facebook'),
   );
+  static const github = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
   static const google = LinuxFunctionAppDefaultProvider._(
     TfArgLiteral('Google'),
   );
@@ -312,17 +315,14 @@ extension type const LinuxFunctionAppDefaultProvider._(TfArg<String> _)
   static const twitter = LinuxFunctionAppDefaultProvider._(
     TfArgLiteral('Twitter'),
   );
-  static const github = LinuxFunctionAppDefaultProvider._(
-    TfArgLiteral('Github'),
-  );
 
   static const List<LinuxFunctionAppDefaultProvider> values = [
     azureactivedirectory,
     facebook,
+    github,
     google,
     microsoftaccount,
     twitter,
-    github,
   ];
 }
 
@@ -337,17 +337,17 @@ extension type const LinuxFunctionAppUnauthenticatedClientAction._(
   const LinuxFunctionAppUnauthenticatedClientAction.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const allowanonymous = LinuxFunctionAppUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
   static const redirecttologinpage =
       LinuxFunctionAppUnauthenticatedClientAction._(
         TfArgLiteral('RedirectToLoginPage'),
       );
-  static const allowanonymous = LinuxFunctionAppUnauthenticatedClientAction._(
-    TfArgLiteral('AllowAnonymous'),
-  );
 
   static const List<LinuxFunctionAppUnauthenticatedClientAction> values = [
-    redirecttologinpage,
     allowanonymous,
+    redirecttologinpage,
   ];
 }
 
@@ -359,23 +359,81 @@ final class LinuxFunctionAppActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_linux_function_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppActiveDirectoryClientSecret {
+  const LinuxFunctionAppActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppActiveDirectoryClientSecretChoice
+    extends LinuxFunctionAppActiveDirectoryClientSecret {
+  const LinuxFunctionAppActiveDirectoryClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppActiveDirectoryClientSecretSettingName
+    extends LinuxFunctionAppActiveDirectoryClientSecret {
+  const LinuxFunctionAppActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -385,25 +443,77 @@ final class LinuxFunctionAppActiveDirectory {
 final class LinuxFunctionAppFacebook {
   const LinuxFunctionAppFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final LinuxFunctionAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class LinuxFunctionAppSecret {
+  const LinuxFunctionAppSecret();
+
+  /// Sets `app_secret`.
+  const factory LinuxFunctionAppSecret.appSecret(Sensitive<String> appSecret) =
+      LinuxFunctionAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory LinuxFunctionAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = LinuxFunctionAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppSecret.appSecret] choice: sets `app_secret`.
+final class LinuxFunctionAppSecretChoice extends LinuxFunctionAppSecret {
+  const LinuxFunctionAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class LinuxFunctionAppSecretSettingName extends LinuxFunctionAppSecret {
+  const LinuxFunctionAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -413,25 +523,82 @@ final class LinuxFunctionAppFacebook {
 final class LinuxFunctionAppGithub {
   const LinuxFunctionAppGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppGithubClientSecret {
+  const LinuxFunctionAppGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppGithubClientSecretChoice
+    extends LinuxFunctionAppGithubClientSecret {
+  const LinuxFunctionAppGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppGithubClientSecretSettingName
+    extends LinuxFunctionAppGithubClientSecret {
+  const LinuxFunctionAppGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -441,25 +608,82 @@ final class LinuxFunctionAppGithub {
 final class LinuxFunctionAppGoogle {
   const LinuxFunctionAppGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppGoogleClientSecret {
+  const LinuxFunctionAppGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppGoogleClientSecretChoice
+    extends LinuxFunctionAppGoogleClientSecret {
+  const LinuxFunctionAppGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppGoogleClientSecretSettingName
+    extends LinuxFunctionAppGoogleClientSecret {
+  const LinuxFunctionAppGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -469,25 +693,82 @@ final class LinuxFunctionAppGoogle {
 final class LinuxFunctionAppMicrosoft {
   const LinuxFunctionAppMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class LinuxFunctionAppMicrosoftClientSecret {
+  const LinuxFunctionAppMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory LinuxFunctionAppMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = LinuxFunctionAppMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class LinuxFunctionAppMicrosoftClientSecretChoice
+    extends LinuxFunctionAppMicrosoftClientSecret {
+  const LinuxFunctionAppMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [LinuxFunctionAppMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppMicrosoftClientSecretSettingName
+    extends LinuxFunctionAppMicrosoftClientSecret {
+  const LinuxFunctionAppMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -497,21 +778,80 @@ final class LinuxFunctionAppMicrosoft {
 final class LinuxFunctionAppTwitter {
   const LinuxFunctionAppTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final LinuxFunctionAppConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class LinuxFunctionAppConsumerSecret {
+  const LinuxFunctionAppConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory LinuxFunctionAppConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = LinuxFunctionAppConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory LinuxFunctionAppConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = LinuxFunctionAppConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class LinuxFunctionAppConsumerSecretChoice
+    extends LinuxFunctionAppConsumerSecret {
+  const LinuxFunctionAppConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class LinuxFunctionAppConsumerSecretSettingName
+    extends LinuxFunctionAppConsumerSecret {
+  const LinuxFunctionAppConsumerSecretSettingName(
+    this.consumerSecretSettingName,
+  );
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -628,23 +968,20 @@ extension type const LinuxFunctionAppForwardProxyConvention._(TfArg<String> _)
   const LinuxFunctionAppForwardProxyConvention.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const forwardproxyconventionnoproxy =
-      LinuxFunctionAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionNoProxy'),
-      );
-  static const forwardproxyconventionstandard =
-      LinuxFunctionAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionStandard'),
-      );
-  static const forwardproxyconventioncustom =
-      LinuxFunctionAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionCustom'),
-      );
+  static const custom = LinuxFunctionAppForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = LinuxFunctionAppForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = LinuxFunctionAppForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
 
   static const List<LinuxFunctionAppForwardProxyConvention> values = [
-    forwardproxyconventionnoproxy,
-    forwardproxyconventionstandard,
-    forwardproxyconventioncustom,
+    custom,
+    noproxy,
+    standard,
   ];
 }
 
@@ -658,11 +995,11 @@ extension type const LinuxFunctionAppUnauthenticatedAction._(TfArg<String> _)
   const LinuxFunctionAppUnauthenticatedAction.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const redirecttologinpage = LinuxFunctionAppUnauthenticatedAction._(
-    TfArgLiteral('RedirectToLoginPage'),
-  );
   static const allowanonymous = LinuxFunctionAppUnauthenticatedAction._(
     TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage = LinuxFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
   );
   static const return401 = LinuxFunctionAppUnauthenticatedAction._(
     TfArgLiteral('Return401'),
@@ -672,8 +1009,8 @@ extension type const LinuxFunctionAppUnauthenticatedAction._(TfArg<String> _)
   );
 
   static const List<LinuxFunctionAppUnauthenticatedAction> values = [
-    redirecttologinpage,
     allowanonymous,
+    redirecttologinpage,
     return401,
     return403,
   ];
@@ -689,8 +1026,7 @@ final class LinuxFunctionAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientSecret,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -708,9 +1044,7 @@ final class LinuxFunctionAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final LinuxFunctionAppActiveDirectoryV2ClientSecret? clientSecret;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -729,15 +1063,80 @@ final class LinuxFunctionAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_linux_function_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class LinuxFunctionAppActiveDirectoryV2ClientSecret {
+  const LinuxFunctionAppActiveDirectoryV2ClientSecret();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint
+    extends LinuxFunctionAppActiveDirectoryV2ClientSecret {
+  const LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName
+    extends LinuxFunctionAppActiveDirectoryV2ClientSecret {
+  const LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -898,8 +1297,7 @@ final class LinuxFunctionAppLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
@@ -919,9 +1317,7 @@ final class LinuxFunctionAppLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final LinuxFunctionAppTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -936,9 +1332,69 @@ final class LinuxFunctionAppLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
+  };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_linux_function_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class LinuxFunctionAppTokenStore {
+  const LinuxFunctionAppTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory LinuxFunctionAppTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = LinuxFunctionAppTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory LinuxFunctionAppTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = LinuxFunctionAppTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class LinuxFunctionAppTokenStorePath extends LinuxFunctionAppTokenStore {
+  const LinuxFunctionAppTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class LinuxFunctionAppTokenStoreSasSettingName
+    extends LinuxFunctionAppTokenStore {
+  const LinuxFunctionAppTokenStoreSasSettingName(this.tokenStoreSasSettingName);
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
   };
 }
 
@@ -1102,7 +1558,7 @@ final class LinuxFunctionAppConnectionString {
 
   final TfArg<String> name;
 
-  final LinuxFunctionAppType type;
+  final LinuxFunctionAppConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -1115,39 +1571,61 @@ final class LinuxFunctionAppConnectionString {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const LinuxFunctionAppType._(TfArg<String> _)
+extension type const LinuxFunctionAppConnectionStringType._(TfArg<String> _)
     implements TfArg<String> {
-  LinuxFunctionAppType.variable(String name) : this._(TfArg.variable(name));
-  LinuxFunctionAppType.expression(String template)
+  LinuxFunctionAppConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppConnectionStringType.expression(String template)
     : this._(TfArg.expression(template));
-  const LinuxFunctionAppType.arg(TfArg<String> arg) : this._(arg);
+  const LinuxFunctionAppConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const mysql = LinuxFunctionAppType._(TfArgLiteral('MySQL'));
-  static const sqlserver = LinuxFunctionAppType._(TfArgLiteral('SQLServer'));
-  static const sqlazure = LinuxFunctionAppType._(TfArgLiteral('SQLAzure'));
-  static const custom = LinuxFunctionAppType._(TfArgLiteral('Custom'));
-  static const notificationhub = LinuxFunctionAppType._(
+  static const apihub = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = LinuxFunctionAppConnectionStringType._(
     TfArgLiteral('NotificationHub'),
   );
-  static const servicebus = LinuxFunctionAppType._(TfArgLiteral('ServiceBus'));
-  static const eventhub = LinuxFunctionAppType._(TfArgLiteral('EventHub'));
-  static const apihub = LinuxFunctionAppType._(TfArgLiteral('APIHub'));
-  static const docdb = LinuxFunctionAppType._(TfArgLiteral('DocDb'));
-  static const rediscache = LinuxFunctionAppType._(TfArgLiteral('RedisCache'));
-  static const postgresql = LinuxFunctionAppType._(TfArgLiteral('PostgreSQL'));
+  static const postgresql = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = LinuxFunctionAppConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
 
-  static const List<LinuxFunctionAppType> values = [
-    mysql,
-    sqlserver,
-    sqlazure,
-    custom,
-    notificationhub,
-    servicebus,
-    eventhub,
+  static const List<LinuxFunctionAppConnectionStringType> values = [
     apihub,
+    custom,
     docdb,
-    rediscache,
+    eventhub,
+    mysql,
+    notificationhub,
     postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
   ];
 }
 
@@ -1241,13 +1719,13 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final LinuxFunctionAppIpRestrictionDefaultAction? ipRestrictionDefaultAction;
 
   final LinuxFunctionAppLoadBalancingMode? loadBalancingMode;
 
   final LinuxFunctionAppManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final LinuxFunctionAppMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
   final LinuxFunctionAppMinimumTlsVersion? minimumTlsVersion;
 
@@ -1259,7 +1737,8 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final LinuxFunctionAppScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
   final LinuxFunctionAppScmMinimumTlsVersion? scmMinimumTlsVersion;
 
@@ -1344,13 +1823,37 @@ extension type const LinuxFunctionAppFtpsState._(TfArg<String> _)
   static const allallowed = LinuxFunctionAppFtpsState._(
     TfArgLiteral('AllAllowed'),
   );
-  static const ftpsonly = LinuxFunctionAppFtpsState._(TfArgLiteral('FtpsOnly'));
   static const disabled = LinuxFunctionAppFtpsState._(TfArgLiteral('Disabled'));
+  static const ftpsonly = LinuxFunctionAppFtpsState._(TfArgLiteral('FtpsOnly'));
 
   static const List<LinuxFunctionAppFtpsState> values = [
     allallowed,
-    ftpsonly,
     disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxFunctionAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxFunctionAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxFunctionAppIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
   ];
 }
 
@@ -1363,11 +1866,11 @@ extension type const LinuxFunctionAppLoadBalancingMode._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const LinuxFunctionAppLoadBalancingMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const weightedroundrobin = LinuxFunctionAppLoadBalancingMode._(
-    TfArgLiteral('WeightedRoundRobin'),
-  );
   static const leastrequests = LinuxFunctionAppLoadBalancingMode._(
     TfArgLiteral('LeastRequests'),
+  );
+  static const weightedroundrobin = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
   );
   static const leastresponsetime = LinuxFunctionAppLoadBalancingMode._(
     TfArgLiteral('LeastResponseTime'),
@@ -1383,8 +1886,8 @@ extension type const LinuxFunctionAppLoadBalancingMode._(TfArg<String> _)
   );
 
   static const List<LinuxFunctionAppLoadBalancingMode> values = [
-    weightedroundrobin,
     leastrequests,
+    weightedroundrobin,
     leastresponsetime,
     weightedtotaltraffic,
     requesthash,
@@ -1402,16 +1905,112 @@ extension type const LinuxFunctionAppManagedPipelineMode._(TfArg<String> _)
   const LinuxFunctionAppManagedPipelineMode.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const integrated = LinuxFunctionAppManagedPipelineMode._(
-    TfArgLiteral('Integrated'),
-  );
   static const classic = LinuxFunctionAppManagedPipelineMode._(
     TfArgLiteral('Classic'),
   );
+  static const integrated = LinuxFunctionAppManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
 
   static const List<LinuxFunctionAppManagedPipelineMode> values = [
-    integrated,
     classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const LinuxFunctionAppMinimumTlsCipherSuite._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppMinimumTlsCipherSuite.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tlsAes128GcmSha256 = LinuxFunctionAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = LinuxFunctionAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha = LinuxFunctionAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsRsaWithAes128CbcSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes128GcmSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsRsaWithAes256CbcSha = LinuxFunctionAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsRsaWithAes256CbcSha256 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+      );
+  static const tlsRsaWithAes256GcmSha384 =
+      LinuxFunctionAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+
+  static const List<LinuxFunctionAppMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
   ];
 }
 
@@ -1424,14 +2023,40 @@ extension type const LinuxFunctionAppMinimumTlsVersion._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const LinuxFunctionAppMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
 
-  static const v1p0 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.0'));
   static const v1p1 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.3'));
   static const v1p2 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.0'));
 
   static const List<LinuxFunctionAppMinimumTlsVersion> values = [
-    v1p0,
     v1p1,
+    v1p3,
     v1p2,
+    v1p0,
+  ];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = LinuxFunctionAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxFunctionAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxFunctionAppScmIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
   ];
 }
 
@@ -1445,24 +2070,24 @@ extension type const LinuxFunctionAppScmMinimumTlsVersion._(TfArg<String> _)
   const LinuxFunctionAppScmMinimumTlsVersion.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const v1p0 = LinuxFunctionAppScmMinimumTlsVersion._(
-    TfArgLiteral('1.0'),
-  );
   static const v1p1 = LinuxFunctionAppScmMinimumTlsVersion._(
     TfArgLiteral('1.1'),
-  );
-  static const v1p2 = LinuxFunctionAppScmMinimumTlsVersion._(
-    TfArgLiteral('1.2'),
   );
   static const v1p3 = LinuxFunctionAppScmMinimumTlsVersion._(
     TfArgLiteral('1.3'),
   );
+  static const v1p2 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p0 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
 
   static const List<LinuxFunctionAppScmMinimumTlsVersion> values = [
-    v1p0,
     v1p1,
-    v1p2,
     v1p3,
+    v1p2,
+    v1p0,
   ];
 }
 
@@ -1491,42 +2116,184 @@ final class LinuxFunctionAppServiceLogs {
 @immutable
 final class LinuxFunctionAppApplicationStack {
   const LinuxFunctionAppApplicationStack({
-    this.dotnetVersion,
-    this.javaVersion,
-    this.nodeVersion,
-    this.powershellCoreVersion,
-    this.pythonVersion,
-    this.useCustomRuntime,
+    required this.runtime,
     this.useDotnetIsolatedRuntime,
-    this.docker,
   });
 
-  final LinuxFunctionAppDotnetVersion? dotnetVersion;
-
-  final LinuxFunctionAppJavaVersion? javaVersion;
-
-  final LinuxFunctionAppNodeVersion? nodeVersion;
-
-  final TfArg<String>? powershellCoreVersion;
-
-  final LinuxFunctionAppPythonVersion? pythonVersion;
-
-  final TfArg<bool>? useCustomRuntime;
+  final LinuxFunctionAppRuntime runtime;
 
   final TfArg<bool>? useDotnetIsolatedRuntime;
 
-  final List<LinuxFunctionAppDocker>? docker;
-
   @internal
   Map<String, Object?> encode() => {
-    'dotnet_version': ?dotnetVersion?.toTfJson(),
-    'java_version': ?javaVersion?.toTfJson(),
-    'node_version': ?nodeVersion?.toTfJson(),
-    'powershell_core_version': ?powershellCoreVersion?.toTfJson(),
-    'python_version': ?pythonVersion?.toTfJson(),
-    'use_custom_runtime': ?useCustomRuntime?.toTfJson(),
+    ...runtime.encode(),
     'use_dotnet_isolated_runtime': ?useDotnetIsolatedRuntime?.toTfJson(),
-    if (docker != null) 'docker': [for (final e in docker!) e.encode()],
+  };
+}
+
+/// Exactly one of `docker`, `dotnet_version`, `java_version`, `node_version`, `powershell_core_version`, `python_version`, `use_custom_runtime` on the `site_config.application_stack` block of `azurerm_linux_function_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.docker(...)`.
+sealed class LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntime();
+
+  /// Sets `docker`.
+  const factory LinuxFunctionAppRuntime.docker(
+    List<LinuxFunctionAppDocker> docker,
+  ) = LinuxFunctionAppRuntimeDocker;
+
+  /// Sets `dotnet_version`.
+  const factory LinuxFunctionAppRuntime.dotnetVersion(
+    LinuxFunctionAppDotnetVersion dotnetVersion,
+  ) = LinuxFunctionAppRuntimeDotnetVersion;
+
+  /// Sets `java_version`.
+  const factory LinuxFunctionAppRuntime.javaVersion(
+    LinuxFunctionAppJavaVersion javaVersion,
+  ) = LinuxFunctionAppRuntimeJavaVersion;
+
+  /// Sets `node_version`.
+  const factory LinuxFunctionAppRuntime.nodeVersion(
+    LinuxFunctionAppNodeVersion nodeVersion,
+  ) = LinuxFunctionAppRuntimeNodeVersion;
+
+  /// Sets `powershell_core_version`.
+  const factory LinuxFunctionAppRuntime.powershellCoreVersion(
+    LinuxFunctionAppPowershellCoreVersion powershellCoreVersion,
+  ) = LinuxFunctionAppRuntimePowershellCoreVersion;
+
+  /// Sets `python_version`.
+  const factory LinuxFunctionAppRuntime.pythonVersion(
+    LinuxFunctionAppPythonVersion pythonVersion,
+  ) = LinuxFunctionAppRuntimePythonVersion;
+
+  /// Sets `use_custom_runtime`.
+  const factory LinuxFunctionAppRuntime.useCustomRuntime(
+    TfArg<bool> useCustomRuntime,
+  ) = LinuxFunctionAppUseCustomRuntime;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [LinuxFunctionAppRuntime.docker] choice: sets `docker`.
+final class LinuxFunctionAppRuntimeDocker extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimeDocker(this.docker);
+
+  final List<LinuxFunctionAppDocker> docker;
+
+  @internal
+  @override
+  String get blockKey => 'docker';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'docker': [for (final e in docker) e.encode()],
+  };
+}
+
+/// The [LinuxFunctionAppRuntime.dotnetVersion] choice: sets `dotnet_version`.
+final class LinuxFunctionAppRuntimeDotnetVersion
+    extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimeDotnetVersion(this.dotnetVersion);
+
+  final LinuxFunctionAppDotnetVersion dotnetVersion;
+
+  @internal
+  @override
+  String get blockKey => 'dotnet_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dotnet_version': dotnetVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppRuntime.javaVersion] choice: sets `java_version`.
+final class LinuxFunctionAppRuntimeJavaVersion extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimeJavaVersion(this.javaVersion);
+
+  final LinuxFunctionAppJavaVersion javaVersion;
+
+  @internal
+  @override
+  String get blockKey => 'java_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'java_version': javaVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppRuntime.nodeVersion] choice: sets `node_version`.
+final class LinuxFunctionAppRuntimeNodeVersion extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimeNodeVersion(this.nodeVersion);
+
+  final LinuxFunctionAppNodeVersion nodeVersion;
+
+  @internal
+  @override
+  String get blockKey => 'node_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'node_version': nodeVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppRuntime.powershellCoreVersion] choice: sets `powershell_core_version`.
+final class LinuxFunctionAppRuntimePowershellCoreVersion
+    extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimePowershellCoreVersion(
+    this.powershellCoreVersion,
+  );
+
+  final LinuxFunctionAppPowershellCoreVersion powershellCoreVersion;
+
+  @internal
+  @override
+  String get blockKey => 'powershell_core_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'powershell_core_version': powershellCoreVersion.toTfJson(),
+  };
+}
+
+/// The [LinuxFunctionAppRuntime.pythonVersion] choice: sets `python_version`.
+final class LinuxFunctionAppRuntimePythonVersion
+    extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppRuntimePythonVersion(this.pythonVersion);
+
+  final LinuxFunctionAppPythonVersion pythonVersion;
+
+  @internal
+  @override
+  String get blockKey => 'python_version';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'python_version': pythonVersion.toTfJson()};
+}
+
+/// The [LinuxFunctionAppRuntime.useCustomRuntime] choice: sets `use_custom_runtime`.
+final class LinuxFunctionAppUseCustomRuntime extends LinuxFunctionAppRuntime {
+  const LinuxFunctionAppUseCustomRuntime(this.useCustomRuntime);
+
+  final TfArg<bool> useCustomRuntime;
+
+  @internal
+  @override
+  String get blockKey => 'use_custom_runtime';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'use_custom_runtime': useCustomRuntime.toTfJson(),
   };
 }
 
@@ -1544,6 +2311,7 @@ extension type const LinuxFunctionAppDotnetVersion._(TfArg<String> _)
   static const v7p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('7.0'));
   static const v8p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('8.0'));
   static const v9p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('9.0'));
+  static const v10p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('10.0'));
 
   static const List<LinuxFunctionAppDotnetVersion> values = [
     v3p1,
@@ -1551,6 +2319,7 @@ extension type const LinuxFunctionAppDotnetVersion._(TfArg<String> _)
     v7p0,
     v8p0,
     v9p0,
+    v10p0,
   ];
 }
 
@@ -1603,6 +2372,35 @@ extension type const LinuxFunctionAppNodeVersion._(TfArg<String> _)
     v20,
     v22,
     v24,
+  ];
+}
+
+/// `powershell_core_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppPowershellCoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppPowershellCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppPowershellCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppPowershellCoreVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v7 = LinuxFunctionAppPowershellCoreVersion._(TfArgLiteral('7'));
+  static const v7p2 = LinuxFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.2'),
+  );
+  static const v7p4 = LinuxFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.4'),
+  );
+  static const v7p6 = LinuxFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.6'),
+  );
+
+  static const List<LinuxFunctionAppPowershellCoreVersion> values = [
+    v7,
+    v7p2,
+    v7p4,
+    v7p6,
   ];
 }
 
@@ -1830,7 +2628,7 @@ final class LinuxFunctionAppStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final LinuxFunctionAppStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1841,6 +2639,28 @@ final class LinuxFunctionAppStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxFunctionAppStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppStorageAccountType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureblob = LinuxFunctionAppStorageAccountType._(
+    TfArgLiteral('AzureBlob'),
+  );
+  static const azurefiles = LinuxFunctionAppStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<LinuxFunctionAppStorageAccountType> values = [
+    azureblob,
+    azurefiles,
+  ];
 }
 
 /// Factory wrapper for `azurerm_linux_function_app`.

@@ -139,7 +139,7 @@ AzurermLinuxVirtualMachine _linuxVm(LinuxVirtualMachineOsSource osSource) =>
       networkInterfaceIds: const .literal(['nic']),
       resourceGroupName: .literal('app'),
       size: const .literal('Standard_B1s'),
-      osDisk: const LinuxVirtualMachineOsDisk(caching: .literal('ReadWrite')),
+      osDisk: const LinuxVirtualMachineOsDisk(caching: .readwrite),
     );
 
 AzurermWindowsVirtualMachine _windowsVm(
@@ -152,7 +152,7 @@ AzurermWindowsVirtualMachine _windowsVm(
   networkInterfaceIds: const .literal(['nic']),
   resourceGroupName: .literal('app'),
   size: const .literal('Standard_B1s'),
-  osDisk: const WindowsVirtualMachineOsDisk(caching: .literal('ReadWrite')),
+  osDisk: const WindowsVirtualMachineOsDisk(caching: .readwrite),
 );
 
 AzurermSiteRecoveryVmwareReplicatedVm _vmwareVm(

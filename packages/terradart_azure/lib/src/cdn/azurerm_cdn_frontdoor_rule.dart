@@ -79,7 +79,7 @@ final class CdnFrontdoorRuleModifyRequestHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorRuleOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -87,6 +87,27 @@ final class CdnFrontdoorRuleModifyRequestHeader {
     'header_value': ?headerValue?.toTfJson(),
     'operator': operator.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorRuleOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRuleOperator.variable(String name) : this._(TfArg.variable(name));
+  CdnFrontdoorRuleOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRuleOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const append = CdnFrontdoorRuleOperator._(TfArgLiteral('Append'));
+  static const delete = CdnFrontdoorRuleOperator._(TfArgLiteral('Delete'));
+  static const overwrite = CdnFrontdoorRuleOperator._(
+    TfArgLiteral('Overwrite'),
+  );
+
+  static const List<CdnFrontdoorRuleOperator> values = [
+    append,
+    delete,
+    overwrite,
+  ];
 }
 
 /// Typed helper for the `actions.modify_response_header` block of
@@ -103,7 +124,7 @@ final class CdnFrontdoorRuleModifyResponseHeader {
 
   final TfArg<String>? headerValue;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorRuleOperator operator;
 
   @internal
   Map<String, Object?> encode() => {
@@ -534,16 +555,53 @@ final class CdnFrontdoorRuleHostName {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `transforms` — derived from the provider schema description.
+extension type const CdnFrontdoorRuleTransforms._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRuleTransforms.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRuleTransforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRuleTransforms.arg(TfArg<String> arg) : this._(arg);
+
+  static const lowercase = CdnFrontdoorRuleTransforms._(
+    TfArgLiteral('Lowercase'),
+  );
+  static const removenulls = CdnFrontdoorRuleTransforms._(
+    TfArgLiteral('RemoveNulls'),
+  );
+  static const trim = CdnFrontdoorRuleTransforms._(TfArgLiteral('Trim'));
+  static const urldecode = CdnFrontdoorRuleTransforms._(
+    TfArgLiteral('UrlDecode'),
+  );
+  static const urlencode = CdnFrontdoorRuleTransforms._(
+    TfArgLiteral('UrlEncode'),
+  );
+  static const uppercase = CdnFrontdoorRuleTransforms._(
+    TfArgLiteral('Uppercase'),
+  );
+
+  static const List<CdnFrontdoorRuleTransforms> values = [
+    lowercase,
+    removenulls,
+    trim,
+    urldecode,
+    urlencode,
+    uppercase,
+  ];
 }
 
 /// Typed helper for the `conditions.http_version` block of
@@ -557,13 +615,35 @@ final class CdnFrontdoorRuleHttpVersion {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>> values;
+  final List<CdnFrontdoorRuleHttpVersionValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': values.toTfJson(),
+    'values': [for (final e in values) e.toTfJson()],
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorRuleHttpVersionValues._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRuleHttpVersionValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRuleHttpVersionValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRuleHttpVersionValues.arg(TfArg<String> arg) : this._(arg);
+
+  static const v2p0 = CdnFrontdoorRuleHttpVersionValues._(TfArgLiteral('2.0'));
+  static const v1p1 = CdnFrontdoorRuleHttpVersionValues._(TfArgLiteral('1.1'));
+  static const v1p0 = CdnFrontdoorRuleHttpVersionValues._(TfArgLiteral('1.0'));
+  static const v0p9 = CdnFrontdoorRuleHttpVersionValues._(TfArgLiteral('0.9'));
+
+  static const List<CdnFrontdoorRuleHttpVersionValues> values = [
+    v2p0,
+    v1p1,
+    v1p0,
+    v0p9,
+  ];
 }
 
 /// Typed helper for the `conditions.post_argument` block of
@@ -581,7 +661,7 @@ final class CdnFrontdoorRulePostArgument {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -589,7 +669,8 @@ final class CdnFrontdoorRulePostArgument {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -606,14 +687,15 @@ final class CdnFrontdoorRuleQueryString {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -650,14 +732,15 @@ final class CdnFrontdoorRuleRequestBody {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -677,7 +760,7 @@ final class CdnFrontdoorRuleRequestCookies {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -685,7 +768,8 @@ final class CdnFrontdoorRuleRequestCookies {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -702,14 +786,15 @@ final class CdnFrontdoorRuleRequestFileExtension {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -726,14 +811,15 @@ final class CdnFrontdoorRuleRequestFilename {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -753,7 +839,7 @@ final class CdnFrontdoorRuleRequestHeader {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -761,7 +847,8 @@ final class CdnFrontdoorRuleRequestHeader {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -837,14 +924,15 @@ final class CdnFrontdoorRuleRequestPath {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -901,14 +989,15 @@ final class CdnFrontdoorRuleRequestUrl {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
 }
@@ -921,13 +1010,28 @@ final class CdnFrontdoorRuleServerPort {
 
   final TfArg<String> operator;
 
-  final TfArg<List<String>>? values;
+  final List<CdnFrontdoorRuleServerPortValues>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': ?values?.toTfJson(),
+    if (values != null) 'values': [for (final e in values!) e.toTfJson()],
   };
+}
+
+/// `values` — derived from the provider schema description.
+extension type const CdnFrontdoorRuleServerPortValues._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRuleServerPortValues.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRuleServerPortValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRuleServerPortValues.arg(TfArg<String> arg) : this._(arg);
+
+  static const v80 = CdnFrontdoorRuleServerPortValues._(TfArgLiteral('80'));
+  static const v443 = CdnFrontdoorRuleServerPortValues._(TfArgLiteral('443'));
+
+  static const List<CdnFrontdoorRuleServerPortValues> values = [v80, v443];
 }
 
 /// Typed helper for the `conditions.socket_address` block of

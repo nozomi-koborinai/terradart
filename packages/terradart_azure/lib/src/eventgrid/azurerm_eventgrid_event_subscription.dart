@@ -9,6 +9,37 @@ const Set<String> _azurermEventgridEventSubscriptionSensitive = <String>{
   'delivery_property.value',
 };
 
+/// Eventgrid Event Subscription Event Delivery enum for `event_delivery_schema`.
+extension type const EventgridEventSubscriptionEventDeliverySchema._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EventgridEventSubscriptionEventDeliverySchema.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridEventSubscriptionEventDeliverySchema.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridEventSubscriptionEventDeliverySchema.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cloudeventschemav10 =
+      EventgridEventSubscriptionEventDeliverySchema._(
+        TfArgLiteral('CloudEventSchemaV1_0'),
+      );
+  static const custominputschema =
+      EventgridEventSubscriptionEventDeliverySchema._(
+        TfArgLiteral('CustomInputSchema'),
+      );
+  static const eventgridschema =
+      EventgridEventSubscriptionEventDeliverySchema._(
+        TfArgLiteral('EventGridSchema'),
+      );
+
+  static const List<EventgridEventSubscriptionEventDeliverySchema> values = [
+    cloudeventschemav10,
+    custominputschema,
+    eventgridschema,
+  ];
+}
+
 /// Typed helper for the `advanced_filter` block of
 /// `azurerm_eventgrid_event_subscription` (derived from provider schema).
 @immutable
@@ -521,7 +552,7 @@ final class EventgridEventSubscriptionDeadLetterIdentity {
     this.userAssignedIdentity,
   });
 
-  final TfArg<String> type;
+  final EventgridEventSubscriptionDeadLetterIdentityType type;
 
   final TfArg<String>? userAssignedIdentity;
 
@@ -530,6 +561,32 @@ final class EventgridEventSubscriptionDeadLetterIdentity {
     'type': type.toTfJson(),
     'user_assigned_identity': ?userAssignedIdentity?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const EventgridEventSubscriptionDeadLetterIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EventgridEventSubscriptionDeadLetterIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridEventSubscriptionDeadLetterIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridEventSubscriptionDeadLetterIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const systemassigned =
+      EventgridEventSubscriptionDeadLetterIdentityType._(
+        TfArgLiteral('SystemAssigned'),
+      );
+  static const userassigned =
+      EventgridEventSubscriptionDeadLetterIdentityType._(
+        TfArgLiteral('UserAssigned'),
+      );
+
+  static const List<EventgridEventSubscriptionDeadLetterIdentityType> values = [
+    systemassigned,
+    userassigned,
+  ];
 }
 
 /// Typed helper for the `delivery_identity` block of
@@ -541,7 +598,7 @@ final class EventgridEventSubscriptionDeliveryIdentity {
     this.userAssignedIdentity,
   });
 
-  final TfArg<String> type;
+  final EventgridEventSubscriptionDeadLetterIdentityType type;
 
   final TfArg<String>? userAssignedIdentity;
 
@@ -570,7 +627,7 @@ final class EventgridEventSubscriptionDeliveryProperty {
 
   final TfArg<String>? sourceField;
 
-  final TfArg<String> type;
+  final EventgridEventSubscriptionDeliveryPropertyType type;
 
   final Sensitive<String>? value;
 
@@ -582,6 +639,30 @@ final class EventgridEventSubscriptionDeliveryProperty {
     'type': type.toTfJson(),
     'value': ?value?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const EventgridEventSubscriptionDeliveryPropertyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EventgridEventSubscriptionDeliveryPropertyType.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridEventSubscriptionDeliveryPropertyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridEventSubscriptionDeliveryPropertyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const static = EventgridEventSubscriptionDeliveryPropertyType._(
+    TfArgLiteral('Static'),
+  );
+  static const dynamic = EventgridEventSubscriptionDeliveryPropertyType._(
+    TfArgLiteral('Dynamic'),
+  );
+
+  static const List<EventgridEventSubscriptionDeliveryPropertyType> values = [
+    static,
+    dynamic,
+  ];
 }
 
 /// Typed helper for the `retry_policy` block of
@@ -713,7 +794,7 @@ final class AzurermEventgridEventSubscription extends Resource {
   AzurermEventgridEventSubscription(
     super.localName, {
     TfArg<bool>? advancedFilteringOnArraysEnabled,
-    TfArg<String>? eventDeliverySchema,
+    EventgridEventSubscriptionEventDeliverySchema? eventDeliverySchema,
     TfArg<String>? eventhubId,
     TfArg<String>? expirationTimeUtc,
     TfArg<String>? hybridConnectionId,

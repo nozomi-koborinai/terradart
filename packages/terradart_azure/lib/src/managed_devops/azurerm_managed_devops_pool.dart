@@ -245,12 +245,47 @@ final class ManagedDevopsPoolAutomaticResourcePrediction {
     this.predictionPreference,
   });
 
-  final TfArg<String>? predictionPreference;
+  final ManagedDevopsPoolPredictionPreference? predictionPreference;
 
   @internal
   Map<String, Object?> encode() => {
     'prediction_preference': ?predictionPreference?.toTfJson(),
   };
+}
+
+/// `prediction_preference` — derived from the provider schema description.
+extension type const ManagedDevopsPoolPredictionPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDevopsPoolPredictionPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDevopsPoolPredictionPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDevopsPoolPredictionPreference.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const balanced = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('Balanced'),
+  );
+  static const bestperformance = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('BestPerformance'),
+  );
+  static const morecosteffective = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MoreCostEffective'),
+  );
+  static const moreperformance = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MorePerformance'),
+  );
+  static const mostcosteffective = ManagedDevopsPoolPredictionPreference._(
+    TfArgLiteral('MostCostEffective'),
+  );
+
+  static const List<ManagedDevopsPoolPredictionPreference> values = [
+    balanced,
+    bestperformance,
+    morecosteffective,
+    moreperformance,
+    mostcosteffective,
+  ];
 }
 
 /// Typed helper for the `stateful_agent.manual_resource_prediction` block of

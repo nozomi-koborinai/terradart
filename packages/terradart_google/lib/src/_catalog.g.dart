@@ -2380,6 +2380,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'AppEngineFlexibleAppVersionInboundServices',
+      'AppEngineFlexibleAppVersionInstanceClass',
       'AppEngineFlexibleAppVersionServingStatus',
       'AppEngineFlexibleAppVersionScaling',
       'AppEngineFlexibleAppVersionAutomaticScalingMode',
@@ -2486,6 +2487,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'AppEngineStandardAppVersionAppEngineBundledServices',
       'AppEngineStandardAppVersionInboundServices',
+      'AppEngineStandardAppVersionInstanceClass',
       'AppEngineStandardAppVersionLegacyServices',
       'AppEngineStandardAppVersionLegacyServicesAppEngineApis',
       'AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices',
@@ -15156,6 +15158,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRegionSecurityPolicyRulesMatch',
       'ComputeRegionSecurityPolicyRulesMatchConfig',
       'ComputeRegionSecurityPolicyRulesMatchExpr',
+      'ComputeRegionSecurityPolicyExceedAction',
       'ComputeRegionSecurityPolicyRulesRateLimitOptions',
       'ComputeRegionSecurityPolicyRulesRateLimitThreshold',
       'ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig',
@@ -15207,6 +15210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'ComputeRegionSecurityPolicyRuleMatch',
       'ComputeRegionSecurityPolicyRuleMatchConfig',
+      'ComputeRegionSecurityPolicyRuleExceedAction',
       'ComputeRegionSecurityPolicyRuleRateLimitOptions',
       'ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig',
       'ComputeRegionSecurityPolicyRulePreconfiguredWafConfig',
@@ -16057,6 +16061,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeSecurityPolicyRulesMatch',
       'ComputeSecurityPolicyRulesMatchConfig',
       'ComputeSecurityPolicyRulesMatchExpr',
+      'ComputeSecurityPolicyExceedAction',
       'ComputeSecurityPolicyRulesRateLimitOptions',
       'ComputeSecurityPolicyRulesRateLimitThreshold',
       'ComputeSecurityPolicyRulesEnforceOnKeyConfig',
@@ -16074,7 +16079,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_security_policy`.\n\nGoogle Cloud Armor: a layer-7 WAF / DDoS / rate-limiting policy that\nattaches to one or more `google_compute_backend_service` (via that\nresource\'s `securityPolicy` field) or to backend buckets for edge\nvariants.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_security_policy.`).\n- `name`: GCP resource name (1-63 chars, lowercase RFC1035).\n\nPolicy intent:\n- [type]: pick [SecurityPolicyType.cloudArmor] for backend-service\n  policies (the default and most common), [SecurityPolicyType.cloudArmorEdge]\n  for edge policies that filter at Google\'s cache layer (cache-bypass\n  protection, applied to backend services and backend buckets), or\n  [SecurityPolicyType.cloudArmorNetwork] for Network Load Balancing.\n- [rules]: at least one [ComputeSecurityPolicyRules]. Cloud Armor\n  always needs a default rule (priority `2147483647`, match `\'*\'`) --\n  if you omit it the provider auto-injects one with action `allow`,\n  which is rarely what you want for a deny-list policy. Author the\n  default-deny explicitly.\n\n[selfLink] is the canonical reference\n`google_compute_backend_service.security_policy` expects. Use\n[name] when wiring the policy name. [fingerprint] is used by the\nAPI for optimistic locking on updates.\n\nExample (deny-by-default with a JP allow-list):\n```dart\nfinal policy = GoogleComputeSecurityPolicy(\n  \'edge_deny_all\',\n  name: TfArg.literal(\'edge-deny-all\'),\n  type: SecurityPolicyType.cloudArmorEdge,\n  rules: [\n    // Higher-priority allow for JP traffic.\n    ComputeSecurityPolicyRules(\n      priority: TfArg.literal(1000),\n      action: SecurityPolicyRuleAction.allow,\n      match: ComputeSecurityPolicyRulesMatch.expr(\n        .new(\n          expression: TfArg.literal("origin.region_code == \'JP\'"),\n        ),\n      ),\n      description: TfArg.literal(\'allow JP\'),\n    ),\n    // Default-deny (lowest priority, match all).\n    ComputeSecurityPolicyRules(\n      priority: TfArg.literal(2147483647),\n      action: SecurityPolicyRuleAction.deny403,\n      match: ComputeSecurityPolicyRulesMatch.config(\n        versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,\n        config: .new(srcIpRanges: [\'*\']),\n      ),\n      description: TfArg.literal(\'default deny\'),\n    ),\n  ],\n);\n```\n\nExample (rate-limit on `/api/*`, redirect overflow to a CAPTCHA):\n```dart\nComputeSecurityPolicyRules(\n  priority: TfArg.literal(500),\n  action: SecurityPolicyRuleAction.throttle,\n  match: ComputeSecurityPolicyRulesMatch.expr(\n    .new(\n      expression: TfArg.literal("request.path.matches(\'/api/.*\')"),\n    ),\n  ),\n  rateLimitOptions: .new(\n    conformAction: TfArg.literal(\'allow\'),\n    exceedAction: TfArg.literal(\'redirect\'),\n    rateLimitThreshold: .new(\n      count: TfArg.literal(100),\n      intervalSec: TfArg.literal(60),\n    ),\n    exceedRedirectOptions: .new(\n      type: TfArg.literal(\'GOOGLE_RECAPTCHA\'),\n    ),\n  ),\n);\n```\n\nAll nested classes are prefixed with `SecurityPolicy` to avoid\ncollisions with other Cloud Armor / load-balancing wrappers that\nreuse the same Terraform field names (`config`, `expr`, `match`,\n`header_action`, ...).',
+        'Factory wrapper for `google_compute_security_policy`.\n\nGoogle Cloud Armor: a layer-7 WAF / DDoS / rate-limiting policy that\nattaches to one or more `google_compute_backend_service` (via that\nresource\'s `securityPolicy` field) or to backend buckets for edge\nvariants.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_security_policy.`).\n- `name`: GCP resource name (1-63 chars, lowercase RFC1035).\n\nPolicy intent:\n- [type]: pick [SecurityPolicyType.cloudArmor] for backend-service\n  policies (the default and most common), [SecurityPolicyType.cloudArmorEdge]\n  for edge policies that filter at Google\'s cache layer (cache-bypass\n  protection, applied to backend services and backend buckets), or\n  [SecurityPolicyType.cloudArmorNetwork] for Network Load Balancing.\n- [rules]: at least one [ComputeSecurityPolicyRules]. Cloud Armor\n  always needs a default rule (priority `2147483647`, match `\'*\'`) --\n  if you omit it the provider auto-injects one with action `allow`,\n  which is rarely what you want for a deny-list policy. Author the\n  default-deny explicitly.\n\n[selfLink] is the canonical reference\n`google_compute_backend_service.security_policy` expects. Use\n[name] when wiring the policy name. [fingerprint] is used by the\nAPI for optimistic locking on updates.\n\nExample (deny-by-default with a JP allow-list):\n```dart\nfinal policy = GoogleComputeSecurityPolicy(\n  \'edge_deny_all\',\n  name: TfArg.literal(\'edge-deny-all\'),\n  type: SecurityPolicyType.cloudArmorEdge,\n  rules: [\n    // Higher-priority allow for JP traffic.\n    ComputeSecurityPolicyRules(\n      priority: TfArg.literal(1000),\n      action: SecurityPolicyRuleAction.allow,\n      match: ComputeSecurityPolicyRulesMatch.expr(\n        .new(\n          expression: TfArg.literal("origin.region_code == \'JP\'"),\n        ),\n      ),\n      description: TfArg.literal(\'allow JP\'),\n    ),\n    // Default-deny (lowest priority, match all).\n    ComputeSecurityPolicyRules(\n      priority: TfArg.literal(2147483647),\n      action: SecurityPolicyRuleAction.deny403,\n      match: ComputeSecurityPolicyRulesMatch.config(\n        versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,\n        config: .new(srcIpRanges: [\'*\']),\n      ),\n      description: TfArg.literal(\'default deny\'),\n    ),\n  ],\n);\n```\n\nExample (rate-limit on `/api/*`, redirect overflow to a CAPTCHA):\n```dart\nComputeSecurityPolicyRules(\n  priority: TfArg.literal(500),\n  action: SecurityPolicyRuleAction.throttle,\n  match: ComputeSecurityPolicyRulesMatch.expr(\n    .new(\n      expression: TfArg.literal("request.path.matches(\'/api/.*\')"),\n    ),\n  ),\n  rateLimitOptions: .new(\n    conformAction: TfArg.literal(\'allow\'),\n    exceedAction: .redirect,\n    rateLimitThreshold: .new(\n      count: TfArg.literal(100),\n      intervalSec: TfArg.literal(60),\n    ),\n    exceedRedirectOptions: .new(\n      type: TfArg.literal(\'GOOGLE_RECAPTCHA\'),\n    ),\n  ),\n);\n```\n\nAll nested classes are prefixed with `SecurityPolicy` to avoid\ncollisions with other Cloud Armor / load-balancing wrappers that\nreuse the same Terraform field names (`config`, `expr`, `match`,\n`header_action`, ...).',
   ),
   CatalogEntry(
     tfType: 'google_compute_security_policy',
@@ -16111,6 +16116,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'ComputeSecurityPolicyRuleMatch',
       'ComputeSecurityPolicyRuleMatchConfig',
+      'ComputeSecurityPolicyRuleExceedAction',
       'ComputeSecurityPolicyRuleRateLimitOptions',
       'ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig',
       'ComputeSecurityPolicyRulePreconfiguredWafConfig',
@@ -23446,6 +23452,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DiscoveryEngineDataConnectorDestinationConfigs',
       'DiscoveryEngineDataConnectorDestinations',
       'DiscoveryEngineDataConnectorEntities',
+      'DiscoveryEngineDataConnectorEntityName',
       'DiscoveryEngineDataConnectorMetadata',
     ],
     sensitiveFields: <String>[],

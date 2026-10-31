@@ -23,9 +23,9 @@ final class StreamAnalyticsOutputServicebusTopicSerialization {
 
   final TfArg<String>? encoding;
 
-  final TfArg<String>? fieldDelimiter;
+  final StreamAnalyticsOutputServicebusTopicFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String>? format;
+  final StreamAnalyticsOutputServicebusTopicFormat? format;
 
   final TfArg<String> type;
 
@@ -36,6 +36,62 @@ final class StreamAnalyticsOutputServicebusTopicSerialization {
     'format': ?format?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `field_delimiter` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicFieldDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicFieldDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicFieldDelimiter.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const value = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value2 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(','),
+  );
+  static const value3 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral('	'),
+  );
+  static const value4 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value5 = StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
+    TfArgLiteral(';'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicFieldDelimiter> values =
+      [value, value2, value3, value4, value5];
+}
+
+/// `format` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusTopicFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusTopicFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusTopicFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusTopicFormat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const array = StreamAnalyticsOutputServicebusTopicFormat._(
+    TfArgLiteral('Array'),
+  );
+  static const lineseparated = StreamAnalyticsOutputServicebusTopicFormat._(
+    TfArgLiteral('LineSeparated'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusTopicFormat> values = [
+    array,
+    lineseparated,
+  ];
 }
 
 /// Factory wrapper for `azurerm_stream_analytics_output_servicebus_topic`.

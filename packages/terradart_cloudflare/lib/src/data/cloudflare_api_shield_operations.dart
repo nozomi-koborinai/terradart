@@ -37,7 +37,7 @@ extension type const DataApiShieldOperationsOrder._(TfArg<String> _)
     TfArgLiteral('endpoint'),
   );
   static const thresholdsKey = DataApiShieldOperationsOrder._(
-    TfArgLiteral('thresholds.＄key'),
+    TfArgLiteral('thresholds.\$key'),
   );
 
   static const List<DataApiShieldOperationsOrder> values = [

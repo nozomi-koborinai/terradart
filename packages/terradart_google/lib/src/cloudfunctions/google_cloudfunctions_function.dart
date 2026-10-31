@@ -68,7 +68,7 @@ extension type const CloudfunctionsFunctionStatus._(TfArg<String> _)
   static const cloudFunctionStatusUnspecified = CloudfunctionsFunctionStatus._(
     TfArgLiteral('CLOUD_FUNCTION_STATUS_UNSPECIFIED'),
   );
-  static const actove = CloudfunctionsFunctionStatus._(TfArgLiteral('ACTOVE'));
+  static const active = CloudfunctionsFunctionStatus._(TfArgLiteral('ACTIVE'));
   static const offline = CloudfunctionsFunctionStatus._(
     TfArgLiteral('OFFLINE'),
   );
@@ -84,7 +84,7 @@ extension type const CloudfunctionsFunctionStatus._(TfArg<String> _)
 
   static const List<CloudfunctionsFunctionStatus> values = [
     cloudFunctionStatusUnspecified,
-    actove,
+    active,
     offline,
     deployInProgress,
     deleteInProgress,

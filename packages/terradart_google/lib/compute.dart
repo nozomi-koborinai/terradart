@@ -935,6 +935,7 @@ export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyAdvancedOptionsConfig,
         ComputeRegionSecurityPolicyDdosProtectionConfig,
+        ComputeRegionSecurityPolicyExceedAction,
         ComputeRegionSecurityPolicyJsonCustomConfig,
         ComputeRegionSecurityPolicyRules,
         ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig,
@@ -954,6 +955,7 @@ export 'src/compute/google_compute_region_security_policy.dart'
         RegionSecurityPolicyUserDefinedFieldBase;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
     show
+        ComputeRegionSecurityPolicyRuleExceedAction,
         ComputeRegionSecurityPolicyRuleMatch,
         ComputeRegionSecurityPolicyRuleMatchConfig,
         ComputeRegionSecurityPolicyRuleNetworkMatch,
@@ -1180,6 +1182,7 @@ export 'src/compute/google_compute_security_policy.dart'
         ComputeSecurityPolicyAdaptiveProtectionConfig,
         ComputeSecurityPolicyAdaptiveProtectionThresholdConfig,
         ComputeSecurityPolicyAdvancedOptionsConfig,
+        ComputeSecurityPolicyExceedAction,
         ComputeSecurityPolicyJsonCustomConfig,
         ComputeSecurityPolicyLayer7DdosDefenseConfig,
         ComputeSecurityPolicyRecaptchaOptionsConfig,
@@ -1205,6 +1208,7 @@ export 'src/compute/google_compute_security_policy.dart'
         SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_security_policy_rule.dart'
     show
+        ComputeSecurityPolicyRuleExceedAction,
         ComputeSecurityPolicyRuleHeaderAction,
         ComputeSecurityPolicyRuleMatch,
         ComputeSecurityPolicyRuleMatchConfig,

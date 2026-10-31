@@ -45,6 +45,7 @@ export 'src/cosmosdb/azurerm_cosmosdb_cassandra_table.dart'
         CosmosdbCassandraTableAutoscaleSettings,
         CosmosdbCassandraTableClusterKey,
         CosmosdbCassandraTableColumn,
+        CosmosdbCassandraTableOrderBy,
         CosmosdbCassandraTablePartitionKey,
         CosmosdbCassandraTableSchema;
 export 'src/cosmosdb/azurerm_cosmosdb_gremlin_database.dart'
@@ -60,6 +61,8 @@ export 'src/cosmosdb/azurerm_cosmosdb_gremlin_graph.dart'
         CosmosdbGremlinGraphIndex,
         CosmosdbGremlinGraphIndexPolicy,
         CosmosdbGremlinGraphIndexingMode,
+        CosmosdbGremlinGraphMode,
+        CosmosdbGremlinGraphOrder,
         CosmosdbGremlinGraphSpatialIndex,
         CosmosdbGremlinGraphUniqueKey;
 export 'src/cosmosdb/azurerm_cosmosdb_mongo_collection.dart'
@@ -102,6 +105,8 @@ export 'src/cosmosdb/azurerm_cosmosdb_sql_container.dart'
         CosmosdbSqlContainerIncludedPath,
         CosmosdbSqlContainerIndex,
         CosmosdbSqlContainerIndexingPolicy,
+        CosmosdbSqlContainerMode,
+        CosmosdbSqlContainerOrder,
         CosmosdbSqlContainerSpatialIndex,
         CosmosdbSqlContainerUniqueKey;
 export 'src/cosmosdb/azurerm_cosmosdb_sql_database.dart'

@@ -136,6 +136,7 @@ extension type const WindowsWebAppDefaultProvider._(TfArg<String> _)
   static const facebook = WindowsWebAppDefaultProvider._(
     TfArgLiteral('Facebook'),
   );
+  static const github = WindowsWebAppDefaultProvider._(TfArgLiteral('Github'));
   static const google = WindowsWebAppDefaultProvider._(TfArgLiteral('Google'));
   static const microsoftaccount = WindowsWebAppDefaultProvider._(
     TfArgLiteral('MicrosoftAccount'),
@@ -143,15 +144,14 @@ extension type const WindowsWebAppDefaultProvider._(TfArg<String> _)
   static const twitter = WindowsWebAppDefaultProvider._(
     TfArgLiteral('Twitter'),
   );
-  static const github = WindowsWebAppDefaultProvider._(TfArgLiteral('Github'));
 
   static const List<WindowsWebAppDefaultProvider> values = [
     azureactivedirectory,
     facebook,
+    github,
     google,
     microsoftaccount,
     twitter,
-    github,
   ];
 }
 
@@ -165,16 +165,16 @@ extension type const WindowsWebAppUnauthenticatedClientAction._(TfArg<String> _)
   const WindowsWebAppUnauthenticatedClientAction.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const redirecttologinpage = WindowsWebAppUnauthenticatedClientAction._(
-    TfArgLiteral('RedirectToLoginPage'),
-  );
   static const allowanonymous = WindowsWebAppUnauthenticatedClientAction._(
     TfArgLiteral('AllowAnonymous'),
   );
+  static const redirecttologinpage = WindowsWebAppUnauthenticatedClientAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
 
   static const List<WindowsWebAppUnauthenticatedClientAction> values = [
-    redirecttologinpage,
     allowanonymous,
+    redirecttologinpage,
   ];
 }
 
@@ -186,23 +186,81 @@ final class WindowsWebAppActiveDirectory {
     this.allowedAudiences,
     required this.clientId,
     this.clientSecret,
-    this.clientSecretSettingName,
   });
 
   final TfArg<List<String>>? allowedAudiences;
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppActiveDirectoryClientSecret? clientSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_setting_name` on the `auth_settings.active_directory` block of `azurerm_windows_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppActiveDirectoryClientSecret {
+  const WindowsWebAppActiveDirectoryClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppActiveDirectoryClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppActiveDirectoryClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppActiveDirectoryClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppActiveDirectoryClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppActiveDirectoryClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppActiveDirectoryClientSecretChoice
+    extends WindowsWebAppActiveDirectoryClientSecret {
+  const WindowsWebAppActiveDirectoryClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppActiveDirectoryClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppActiveDirectoryClientSecretSettingName
+    extends WindowsWebAppActiveDirectoryClientSecret {
+  const WindowsWebAppActiveDirectoryClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -212,25 +270,77 @@ final class WindowsWebAppActiveDirectory {
 final class WindowsWebAppFacebook {
   const WindowsWebAppFacebook({
     required this.appId,
-    this.appSecret,
-    this.appSecretSettingName,
+    required this.appSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> appId;
 
-  final Sensitive<String>? appSecret;
-
-  final TfArg<String>? appSecretSettingName;
+  final WindowsWebAppSecret appSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'app_id': appId.toTfJson(),
-    'app_secret': ?appSecret?.toTfJson(),
-    'app_secret_setting_name': ?appSecretSettingName?.toTfJson(),
+    ...appSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `app_secret`, `app_secret_setting_name` on the `auth_settings.facebook` block of `azurerm_windows_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.appSecret(...)`.
+sealed class WindowsWebAppSecret {
+  const WindowsWebAppSecret();
+
+  /// Sets `app_secret`.
+  const factory WindowsWebAppSecret.appSecret(Sensitive<String> appSecret) =
+      WindowsWebAppSecretChoice;
+
+  /// Sets `app_secret_setting_name`.
+  const factory WindowsWebAppSecret.appSecretSettingName(
+    TfArg<String> appSecretSettingName,
+  ) = WindowsWebAppSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppSecret.appSecret] choice: sets `app_secret`.
+final class WindowsWebAppSecretChoice extends WindowsWebAppSecret {
+  const WindowsWebAppSecretChoice(this.appSecret);
+
+  final Sensitive<String> appSecret;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'app_secret': appSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppSecret.appSecretSettingName] choice: sets `app_secret_setting_name`.
+final class WindowsWebAppSecretSettingName extends WindowsWebAppSecret {
+  const WindowsWebAppSecretSettingName(this.appSecretSettingName);
+
+  final TfArg<String> appSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'app_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_secret_setting_name': appSecretSettingName.toTfJson(),
   };
 }
 
@@ -240,25 +350,82 @@ final class WindowsWebAppFacebook {
 final class WindowsWebAppGithub {
   const WindowsWebAppGithub({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppGithubClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.github` block of `azurerm_windows_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppGithubClientSecret {
+  const WindowsWebAppGithubClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppGithubClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppGithubClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppGithubClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppGithubClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppGithubClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppGithubClientSecretChoice
+    extends WindowsWebAppGithubClientSecret {
+  const WindowsWebAppGithubClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppGithubClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppGithubClientSecretSettingName
+    extends WindowsWebAppGithubClientSecret {
+  const WindowsWebAppGithubClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -268,25 +435,82 @@ final class WindowsWebAppGithub {
 final class WindowsWebAppGoogle {
   const WindowsWebAppGoogle({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppGoogleClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.google` block of `azurerm_windows_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppGoogleClientSecret {
+  const WindowsWebAppGoogleClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppGoogleClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppGoogleClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppGoogleClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppGoogleClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppGoogleClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppGoogleClientSecretChoice
+    extends WindowsWebAppGoogleClientSecret {
+  const WindowsWebAppGoogleClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppGoogleClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppGoogleClientSecretSettingName
+    extends WindowsWebAppGoogleClientSecret {
+  const WindowsWebAppGoogleClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -296,25 +520,82 @@ final class WindowsWebAppGoogle {
 final class WindowsWebAppMicrosoft {
   const WindowsWebAppMicrosoft({
     required this.clientId,
-    this.clientSecret,
-    this.clientSecretSettingName,
+    required this.clientSecret,
     this.oauthScopes,
   });
 
   final TfArg<String> clientId;
 
-  final Sensitive<String>? clientSecret;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppMicrosoftClientSecret clientSecret;
 
   final TfArg<List<String>>? oauthScopes;
 
   @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...clientSecret.encode(),
     'oauth_scopes': ?oauthScopes?.toTfJson(),
+  };
+}
+
+/// Exactly one of `client_secret`, `client_secret_setting_name` on the `auth_settings.microsoft` block of `azurerm_windows_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class WindowsWebAppMicrosoftClientSecret {
+  const WindowsWebAppMicrosoftClientSecret();
+
+  /// Sets `client_secret`.
+  const factory WindowsWebAppMicrosoftClientSecret.clientSecret(
+    Sensitive<String> clientSecret,
+  ) = WindowsWebAppMicrosoftClientSecretChoice;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppMicrosoftClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppMicrosoftClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppMicrosoftClientSecret.clientSecret] choice: sets `client_secret`.
+final class WindowsWebAppMicrosoftClientSecretChoice
+    extends WindowsWebAppMicrosoftClientSecret {
+  const WindowsWebAppMicrosoftClientSecretChoice(this.clientSecret);
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [WindowsWebAppMicrosoftClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppMicrosoftClientSecretSettingName
+    extends WindowsWebAppMicrosoftClientSecret {
+  const WindowsWebAppMicrosoftClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -324,21 +605,78 @@ final class WindowsWebAppMicrosoft {
 final class WindowsWebAppTwitter {
   const WindowsWebAppTwitter({
     required this.consumerKey,
-    this.consumerSecret,
-    this.consumerSecretSettingName,
+    required this.consumerSecret,
   });
 
   final TfArg<String> consumerKey;
 
-  final Sensitive<String>? consumerSecret;
-
-  final TfArg<String>? consumerSecretSettingName;
+  final WindowsWebAppConsumerSecret consumerSecret;
 
   @internal
   Map<String, Object?> encode() => {
     'consumer_key': consumerKey.toTfJson(),
-    'consumer_secret': ?consumerSecret?.toTfJson(),
-    'consumer_secret_setting_name': ?consumerSecretSettingName?.toTfJson(),
+    ...consumerSecret.encode(),
+  };
+}
+
+/// Exactly one of `consumer_secret`, `consumer_secret_setting_name` on the `auth_settings.twitter` block of `azurerm_windows_web_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.consumerSecret(...)`.
+sealed class WindowsWebAppConsumerSecret {
+  const WindowsWebAppConsumerSecret();
+
+  /// Sets `consumer_secret`.
+  const factory WindowsWebAppConsumerSecret.consumerSecret(
+    Sensitive<String> consumerSecret,
+  ) = WindowsWebAppConsumerSecretChoice;
+
+  /// Sets `consumer_secret_setting_name`.
+  const factory WindowsWebAppConsumerSecret.consumerSecretSettingName(
+    TfArg<String> consumerSecretSettingName,
+  ) = WindowsWebAppConsumerSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppConsumerSecret.consumerSecret] choice: sets `consumer_secret`.
+final class WindowsWebAppConsumerSecretChoice
+    extends WindowsWebAppConsumerSecret {
+  const WindowsWebAppConsumerSecretChoice(this.consumerSecret);
+
+  final Sensitive<String> consumerSecret;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret': consumerSecret.toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppConsumerSecret.consumerSecretSettingName] choice: sets `consumer_secret_setting_name`.
+final class WindowsWebAppConsumerSecretSettingName
+    extends WindowsWebAppConsumerSecret {
+  const WindowsWebAppConsumerSecretSettingName(this.consumerSecretSettingName);
+
+  final TfArg<String> consumerSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'consumer_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_secret_setting_name': consumerSecretSettingName.toTfJson(),
   };
 }
 
@@ -455,23 +793,20 @@ extension type const WindowsWebAppForwardProxyConvention._(TfArg<String> _)
   const WindowsWebAppForwardProxyConvention.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const forwardproxyconventionnoproxy =
-      WindowsWebAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionNoProxy'),
-      );
-  static const forwardproxyconventionstandard =
-      WindowsWebAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionStandard'),
-      );
-  static const forwardproxyconventioncustom =
-      WindowsWebAppForwardProxyConvention._(
-        TfArgLiteral('ForwardProxyConventionCustom'),
-      );
+  static const custom = WindowsWebAppForwardProxyConvention._(
+    TfArgLiteral('Custom'),
+  );
+  static const noproxy = WindowsWebAppForwardProxyConvention._(
+    TfArgLiteral('NoProxy'),
+  );
+  static const standard = WindowsWebAppForwardProxyConvention._(
+    TfArgLiteral('Standard'),
+  );
 
   static const List<WindowsWebAppForwardProxyConvention> values = [
-    forwardproxyconventionnoproxy,
-    forwardproxyconventionstandard,
-    forwardproxyconventioncustom,
+    custom,
+    noproxy,
+    standard,
   ];
 }
 
@@ -484,11 +819,11 @@ extension type const WindowsWebAppUnauthenticatedAction._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const WindowsWebAppUnauthenticatedAction.arg(TfArg<String> arg) : this._(arg);
 
-  static const redirecttologinpage = WindowsWebAppUnauthenticatedAction._(
-    TfArgLiteral('RedirectToLoginPage'),
-  );
   static const allowanonymous = WindowsWebAppUnauthenticatedAction._(
     TfArgLiteral('AllowAnonymous'),
+  );
+  static const redirecttologinpage = WindowsWebAppUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
   );
   static const return401 = WindowsWebAppUnauthenticatedAction._(
     TfArgLiteral('Return401'),
@@ -498,8 +833,8 @@ extension type const WindowsWebAppUnauthenticatedAction._(TfArg<String> _)
   );
 
   static const List<WindowsWebAppUnauthenticatedAction> values = [
-    redirecttologinpage,
     allowanonymous,
+    redirecttologinpage,
     return401,
     return403,
   ];
@@ -515,8 +850,7 @@ final class WindowsWebAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecretCertificateThumbprint,
-    this.clientSecretSettingName,
+    this.clientSecret,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -534,9 +868,7 @@ final class WindowsWebAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecretCertificateThumbprint;
-
-  final TfArg<String>? clientSecretSettingName;
+  final WindowsWebAppActiveDirectoryV2ClientSecret? clientSecret;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -555,15 +887,80 @@ final class WindowsWebAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    'client_secret_certificate_thumbprint': ?clientSecretCertificateThumbprint
-        ?.toTfJson(),
-    'client_secret_setting_name': ?clientSecretSettingName?.toTfJson(),
+    ...?clientSecret?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
     'login_parameters': ?loginParameters?.toTfJson(),
     'tenant_auth_endpoint': tenantAuthEndpoint.toTfJson(),
     'www_authentication_disabled': ?wwwAuthenticationDisabled?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret_certificate_thumbprint`, `client_secret_setting_name` on the `auth_settings_v2.active_directory_v2` block of `azurerm_windows_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
+sealed class WindowsWebAppActiveDirectoryV2ClientSecret {
+  const WindowsWebAppActiveDirectoryV2ClientSecret();
+
+  /// Sets `client_secret_certificate_thumbprint`.
+  const factory WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+    TfArg<String> clientSecretCertificateThumbprint,
+  ) = WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+
+  /// Sets `client_secret_setting_name`.
+  const factory WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+    TfArg<String> clientSecretSettingName,
+  ) = WindowsWebAppActiveDirectoryV2ClientSecretSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint
+    extends WindowsWebAppActiveDirectoryV2ClientSecret {
+  const WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+    this.clientSecretCertificateThumbprint,
+  );
+
+  final TfArg<String> clientSecretCertificateThumbprint;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_certificate_thumbprint';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_certificate_thumbprint': clientSecretCertificateThumbprint
+        .toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppActiveDirectoryV2ClientSecretSettingName
+    extends WindowsWebAppActiveDirectoryV2ClientSecret {
+  const WindowsWebAppActiveDirectoryV2ClientSecretSettingName(
+    this.clientSecretSettingName,
+  );
+
+  final TfArg<String> clientSecretSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_setting_name': clientSecretSettingName.toTfJson(),
   };
 }
 
@@ -724,8 +1121,7 @@ final class WindowsWebAppLogin {
     this.preserveUrlFragmentsForLogins,
     this.tokenRefreshExtensionTime,
     this.tokenStoreEnabled,
-    this.tokenStorePath,
-    this.tokenStoreSasSettingName,
+    this.tokenStore,
     this.validateNonce,
   });
 
@@ -745,9 +1141,7 @@ final class WindowsWebAppLogin {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? tokenStorePath;
-
-  final TfArg<String>? tokenStoreSasSettingName;
+  final WindowsWebAppTokenStore? tokenStore;
 
   final TfArg<bool>? validateNonce;
 
@@ -762,9 +1156,69 @@ final class WindowsWebAppLogin {
         ?.toTfJson(),
     'token_refresh_extension_time': ?tokenRefreshExtensionTime?.toTfJson(),
     'token_store_enabled': ?tokenStoreEnabled?.toTfJson(),
-    'token_store_path': ?tokenStorePath?.toTfJson(),
-    'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
+    ...?tokenStore?.encode(),
     'validate_nonce': ?validateNonce?.toTfJson(),
+  };
+}
+
+/// At most one of `token_store_path`, `token_store_sas_setting_name` on the `auth_settings_v2.login` block of `azurerm_windows_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tokenStorePath(...)`.
+sealed class WindowsWebAppTokenStore {
+  const WindowsWebAppTokenStore();
+
+  /// Sets `token_store_path`.
+  const factory WindowsWebAppTokenStore.tokenStorePath(
+    TfArg<String> tokenStorePath,
+  ) = WindowsWebAppTokenStorePath;
+
+  /// Sets `token_store_sas_setting_name`.
+  const factory WindowsWebAppTokenStore.tokenStoreSasSettingName(
+    TfArg<String> tokenStoreSasSettingName,
+  ) = WindowsWebAppTokenStoreSasSettingName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppTokenStore.tokenStorePath] choice: sets `token_store_path`.
+final class WindowsWebAppTokenStorePath extends WindowsWebAppTokenStore {
+  const WindowsWebAppTokenStorePath(this.tokenStorePath);
+
+  final TfArg<String> tokenStorePath;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_path': tokenStorePath.toTfJson(),
+  };
+}
+
+/// The [WindowsWebAppTokenStore.tokenStoreSasSettingName] choice: sets `token_store_sas_setting_name`.
+final class WindowsWebAppTokenStoreSasSettingName
+    extends WindowsWebAppTokenStore {
+  const WindowsWebAppTokenStoreSasSettingName(this.tokenStoreSasSettingName);
+
+  final TfArg<String> tokenStoreSasSettingName;
+
+  @internal
+  @override
+  String get blockKey => 'token_store_sas_setting_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'token_store_sas_setting_name': tokenStoreSasSettingName.toTfJson(),
   };
 }
 
@@ -947,32 +1401,32 @@ extension type const WindowsWebAppType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const WindowsWebAppType.arg(TfArg<String> arg) : this._(arg);
 
-  static const mysql = WindowsWebAppType._(TfArgLiteral('MySQL'));
-  static const sqlserver = WindowsWebAppType._(TfArgLiteral('SQLServer'));
-  static const sqlazure = WindowsWebAppType._(TfArgLiteral('SQLAzure'));
+  static const apihub = WindowsWebAppType._(TfArgLiteral('ApiHub'));
   static const custom = WindowsWebAppType._(TfArgLiteral('Custom'));
+  static const docdb = WindowsWebAppType._(TfArgLiteral('DocDb'));
+  static const eventhub = WindowsWebAppType._(TfArgLiteral('EventHub'));
+  static const mysql = WindowsWebAppType._(TfArgLiteral('MySql'));
   static const notificationhub = WindowsWebAppType._(
     TfArgLiteral('NotificationHub'),
   );
-  static const servicebus = WindowsWebAppType._(TfArgLiteral('ServiceBus'));
-  static const eventhub = WindowsWebAppType._(TfArgLiteral('EventHub'));
-  static const apihub = WindowsWebAppType._(TfArgLiteral('APIHub'));
-  static const docdb = WindowsWebAppType._(TfArgLiteral('DocDb'));
-  static const rediscache = WindowsWebAppType._(TfArgLiteral('RedisCache'));
   static const postgresql = WindowsWebAppType._(TfArgLiteral('PostgreSQL'));
+  static const rediscache = WindowsWebAppType._(TfArgLiteral('RedisCache'));
+  static const sqlazure = WindowsWebAppType._(TfArgLiteral('SQLAzure'));
+  static const sqlserver = WindowsWebAppType._(TfArgLiteral('SQLServer'));
+  static const servicebus = WindowsWebAppType._(TfArgLiteral('ServiceBus'));
 
   static const List<WindowsWebAppType> values = [
-    mysql,
-    sqlserver,
-    sqlazure,
-    custom,
-    notificationhub,
-    servicebus,
-    eventhub,
     apihub,
+    custom,
     docdb,
-    rediscache,
+    eventhub,
+    mysql,
+    notificationhub,
     postgresql,
+    rediscache,
+    sqlazure,
+    sqlserver,
+    servicebus,
   ];
 }
 
@@ -1030,7 +1484,7 @@ final class WindowsWebAppApplicationLogs {
     this.azureBlobStorage,
   });
 
-  final TfArg<String> fileSystemLevel;
+  final WindowsWebAppFileSystemLevel fileSystemLevel;
 
   final WindowsWebAppApplicationLogsAzureBlobStorage? azureBlobStorage;
 
@@ -1039,6 +1493,36 @@ final class WindowsWebAppApplicationLogs {
     'file_system_level': fileSystemLevel.toTfJson(),
     'azure_blob_storage': ?azureBlobStorage?.encode(),
   };
+}
+
+/// `file_system_level` — derived from the provider schema description.
+extension type const WindowsWebAppFileSystemLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppFileSystemLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppFileSystemLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppFileSystemLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = WindowsWebAppFileSystemLevel._(TfArgLiteral('Error'));
+  static const information = WindowsWebAppFileSystemLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const off = WindowsWebAppFileSystemLevel._(TfArgLiteral('Off'));
+  static const verbose = WindowsWebAppFileSystemLevel._(
+    TfArgLiteral('Verbose'),
+  );
+  static const warning = WindowsWebAppFileSystemLevel._(
+    TfArgLiteral('Warning'),
+  );
+
+  static const List<WindowsWebAppFileSystemLevel> values = [
+    error,
+    information,
+    off,
+    verbose,
+    warning,
+  ];
 }
 
 /// Typed helper for the `logs.application_logs.azure_blob_storage` block of
@@ -1065,21 +1549,63 @@ final class WindowsWebAppApplicationLogsAzureBlobStorage {
   };
 }
 
-/// Typed helper for the `logs.http_logs` block of
-/// `azurerm_windows_web_app` (derived from provider schema).
-@immutable
-final class WindowsWebAppHttpLogs {
-  const WindowsWebAppHttpLogs({this.azureBlobStorage, this.fileSystem});
+/// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_windows_web_app`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.azureBlobStorage(...)`.
+sealed class WindowsWebAppHttpLogs {
+  const WindowsWebAppHttpLogs();
 
-  final WindowsWebAppHttpLogsAzureBlobStorage? azureBlobStorage;
+  /// Sets `azure_blob_storage`.
+  const factory WindowsWebAppHttpLogs.azureBlobStorage(
+    WindowsWebAppHttpLogsAzureBlobStorage azureBlobStorage,
+  ) = WindowsWebAppHttpLogsAzureBlobStorageChoice;
 
-  final WindowsWebAppFileSystem? fileSystem;
+  /// Sets `file_system`.
+  const factory WindowsWebAppHttpLogs.fileSystem(
+    WindowsWebAppFileSystem fileSystem,
+  ) = WindowsWebAppHttpLogsFileSystem;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
+  Map<String, Object?> encode();
+}
+
+/// The [WindowsWebAppHttpLogs.azureBlobStorage] choice: sets `azure_blob_storage`.
+final class WindowsWebAppHttpLogsAzureBlobStorageChoice
+    extends WindowsWebAppHttpLogs {
+  const WindowsWebAppHttpLogsAzureBlobStorageChoice(this.azureBlobStorage);
+
+  final WindowsWebAppHttpLogsAzureBlobStorage azureBlobStorage;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {
-    'azure_blob_storage': ?azureBlobStorage?.encode(),
-    'file_system': ?fileSystem?.encode(),
+    'azure_blob_storage': azureBlobStorage.encode(),
   };
+}
+
+/// The [WindowsWebAppHttpLogs.fileSystem] choice: sets `file_system`.
+final class WindowsWebAppHttpLogsFileSystem extends WindowsWebAppHttpLogs {
+  const WindowsWebAppHttpLogsFileSystem(this.fileSystem);
+
+  final WindowsWebAppFileSystem fileSystem;
+
+  @internal
+  @override
+  String get blockKey => 'file_system';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'file_system': fileSystem.encode()};
 }
 
 /// Typed helper for the `logs.http_logs.azure_blob_storage` block of
@@ -1176,7 +1702,7 @@ final class WindowsWebAppSiteConfig {
 
   final TfArg<List<String>>? defaultDocuments;
 
-  final TfArg<String>? ftpsState;
+  final WindowsWebAppFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -1184,25 +1710,26 @@ final class WindowsWebAppSiteConfig {
 
   final TfArg<bool>? http2Enabled;
 
-  final TfArg<String>? ipRestrictionDefaultAction;
+  final WindowsWebAppIpRestrictionDefaultAction? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final WindowsWebAppLoadBalancingMode? loadBalancingMode;
 
   final TfArg<bool>? localMysqlEnabled;
 
-  final TfArg<String>? managedPipelineMode;
+  final WindowsWebAppManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsCipherSuite;
+  final WindowsWebAppMinimumTlsCipherSuite? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final WindowsWebAppMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
   final TfArg<String>? remoteDebuggingVersion;
 
-  final TfArg<String>? scmIpRestrictionDefaultAction;
+  final WindowsWebAppScmIpRestrictionDefaultAction?
+  scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final WindowsWebAppScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1274,6 +1801,269 @@ final class WindowsWebAppSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const WindowsWebAppFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppFtpsState.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = WindowsWebAppFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const disabled = WindowsWebAppFtpsState._(TfArgLiteral('Disabled'));
+  static const ftpsonly = WindowsWebAppFtpsState._(TfArgLiteral('FtpsOnly'));
+
+  static const List<WindowsWebAppFtpsState> values = [
+    allallowed,
+    disabled,
+    ftpsonly,
+  ];
+}
+
+/// `ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsWebAppIpRestrictionDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const WindowsWebAppLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppLoadBalancingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const leastrequests = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const leastresponsetime = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const persiteroundrobin = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+  static const requesthash = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const weightedroundrobin = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const weightedtotaltraffic = WindowsWebAppLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+
+  static const List<WindowsWebAppLoadBalancingMode> values = [
+    leastrequests,
+    leastresponsetime,
+    persiteroundrobin,
+    requesthash,
+    weightedroundrobin,
+    weightedtotaltraffic,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const WindowsWebAppManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppManagedPipelineMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const classic = WindowsWebAppManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const integrated = WindowsWebAppManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+
+  static const List<WindowsWebAppManagedPipelineMode> values = [
+    classic,
+    integrated,
+  ];
+}
+
+/// `minimum_tls_cipher_suite` — derived from the provider schema description.
+extension type const WindowsWebAppMinimumTlsCipherSuite._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppMinimumTlsCipherSuite.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppMinimumTlsCipherSuite.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppMinimumTlsCipherSuite.arg(TfArg<String> arg) : this._(arg);
+
+  static const tlsAes128GcmSha256 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+  static const tlsEcdheEcdsaWithAes128CbcSha256 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes128GcmSha256 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheEcdsaWithAes256GcmSha384 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes128CbcSha256 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes128GcmSha256 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'),
+      );
+  static const tlsEcdheRsaWithAes256CbcSha384 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384'),
+      );
+  static const tlsEcdheRsaWithAes256GcmSha384 =
+      WindowsWebAppMinimumTlsCipherSuite._(
+        TfArgLiteral('TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'),
+      );
+  static const tlsRsaWithAes128CbcSha = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA'),
+  );
+  static const tlsRsaWithAes128CbcSha256 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes128GcmSha256 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_128_GCM_SHA256'),
+  );
+  static const tlsRsaWithAes256CbcSha = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA'),
+  );
+  static const tlsRsaWithAes256CbcSha256 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_CBC_SHA256'),
+  );
+  static const tlsRsaWithAes256GcmSha384 = WindowsWebAppMinimumTlsCipherSuite._(
+    TfArgLiteral('TLS_RSA_WITH_AES_256_GCM_SHA384'),
+  );
+
+  static const List<WindowsWebAppMinimumTlsCipherSuite> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+    tlsEcdheEcdsaWithAes128CbcSha256,
+    tlsEcdheEcdsaWithAes128GcmSha256,
+    tlsEcdheEcdsaWithAes256GcmSha384,
+    tlsEcdheRsaWithAes128CbcSha,
+    tlsEcdheRsaWithAes128CbcSha256,
+    tlsEcdheRsaWithAes128GcmSha256,
+    tlsEcdheRsaWithAes256CbcSha,
+    tlsEcdheRsaWithAes256CbcSha384,
+    tlsEcdheRsaWithAes256GcmSha384,
+    tlsRsaWithAes128CbcSha,
+    tlsRsaWithAes128CbcSha256,
+    tlsRsaWithAes128GcmSha256,
+    tlsRsaWithAes256CbcSha,
+    tlsRsaWithAes256CbcSha256,
+    tlsRsaWithAes256GcmSha384,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsWebAppMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = WindowsWebAppMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = WindowsWebAppMinimumTlsVersion._(TfArgLiteral('1.3'));
+  static const v1p2 = WindowsWebAppMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = WindowsWebAppMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<WindowsWebAppMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
+/// `scm_ip_restriction_default_action` — derived from the provider schema description.
+extension type const WindowsWebAppScmIpRestrictionDefaultAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppScmIpRestrictionDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppScmIpRestrictionDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppScmIpRestrictionDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppScmIpRestrictionDefaultAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppScmIpRestrictionDefaultAction> values = [
+    allow,
+    deny,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsWebAppScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppScmMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = WindowsWebAppScmMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p3 = WindowsWebAppScmMinimumTlsVersion._(TfArgLiteral('1.3'));
+  static const v1p2 = WindowsWebAppScmMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = WindowsWebAppScmMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<WindowsWebAppScmMinimumTlsVersion> values = [
+    v1p1,
+    v1p3,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `site_config.application_stack` block of
 /// `azurerm_windows_web_app` (derived from provider schema).
 @immutable
@@ -1296,7 +2086,7 @@ final class WindowsWebAppApplicationStack {
     this.tomcatVersion,
   });
 
-  final TfArg<String>? currentStack;
+  final WindowsWebAppCurrentStack? currentStack;
 
   final TfArg<String>? dockerImageName;
 
@@ -1308,9 +2098,9 @@ final class WindowsWebAppApplicationStack {
 
   final TfArg<String>? dotnetCoreVersion;
 
-  final TfArg<String>? dotnetVersion;
+  final WindowsWebAppDotnetVersion? dotnetVersion;
 
-  final TfArg<String>? javaContainer;
+  final WindowsWebAppJavaContainer? javaContainer;
 
   final TfArg<String>? javaContainerVersion;
 
@@ -1318,7 +2108,7 @@ final class WindowsWebAppApplicationStack {
 
   final TfArg<String>? javaVersion;
 
-  final TfArg<String>? nodeVersion;
+  final WindowsWebAppNodeVersion? nodeVersion;
 
   final TfArg<String>? phpVersion;
 
@@ -1344,6 +2134,107 @@ final class WindowsWebAppApplicationStack {
     'python': ?python?.toTfJson(),
     'tomcat_version': ?tomcatVersion?.toTfJson(),
   };
+}
+
+/// `current_stack` — derived from the provider schema description.
+extension type const WindowsWebAppCurrentStack._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppCurrentStack.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppCurrentStack.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppCurrentStack.arg(TfArg<String> arg) : this._(arg);
+
+  static const dotnet = WindowsWebAppCurrentStack._(TfArgLiteral('dotnet'));
+  static const dotnetcore = WindowsWebAppCurrentStack._(
+    TfArgLiteral('dotnetcore'),
+  );
+  static const node = WindowsWebAppCurrentStack._(TfArgLiteral('node'));
+  static const python = WindowsWebAppCurrentStack._(TfArgLiteral('python'));
+  static const php = WindowsWebAppCurrentStack._(TfArgLiteral('php'));
+  static const java = WindowsWebAppCurrentStack._(TfArgLiteral('java'));
+
+  static const List<WindowsWebAppCurrentStack> values = [
+    dotnet,
+    dotnetcore,
+    node,
+    python,
+    php,
+    java,
+  ];
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const WindowsWebAppDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v2p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v2.0'));
+  static const v3p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v3.0'));
+  static const v4p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v4.0'));
+  static const v5p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v5.0'));
+  static const v6p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v6.0'));
+  static const v7p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v7.0'));
+  static const v8p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v8.0'));
+  static const v9p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v9.0'));
+  static const v10p0 = WindowsWebAppDotnetVersion._(TfArgLiteral('v10.0'));
+
+  static const List<WindowsWebAppDotnetVersion> values = [
+    v2p0,
+    v3p0,
+    v4p0,
+    v5p0,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `java_container` — derived from the provider schema description.
+extension type const WindowsWebAppJavaContainer._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppJavaContainer.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppJavaContainer.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppJavaContainer.arg(TfArg<String> arg) : this._(arg);
+
+  static const java = WindowsWebAppJavaContainer._(TfArgLiteral('JAVA'));
+  static const jetty = WindowsWebAppJavaContainer._(TfArgLiteral('JETTY'));
+  static const tomcat = WindowsWebAppJavaContainer._(TfArgLiteral('TOMCAT'));
+
+  static const List<WindowsWebAppJavaContainer> values = [java, jetty, tomcat];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const WindowsWebAppNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppNodeVersion.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v14 = WindowsWebAppNodeVersion._(TfArgLiteral('~14'));
+  static const v16 = WindowsWebAppNodeVersion._(TfArgLiteral('~16'));
+  static const v18 = WindowsWebAppNodeVersion._(TfArgLiteral('~18'));
+  static const v20 = WindowsWebAppNodeVersion._(TfArgLiteral('~20'));
+  static const v22 = WindowsWebAppNodeVersion._(TfArgLiteral('~22'));
+  static const v24 = WindowsWebAppNodeVersion._(TfArgLiteral('~24'));
+
+  static const List<WindowsWebAppNodeVersion> values = [
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting` block of
@@ -1376,7 +2267,7 @@ final class WindowsWebAppAction {
     this.customAction,
   });
 
-  final TfArg<String> actionType;
+  final WindowsWebAppActionType actionType;
 
   final TfArg<String>? minimumProcessExecutionTime;
 
@@ -1388,6 +2279,27 @@ final class WindowsWebAppAction {
     'minimum_process_execution_time': ?minimumProcessExecutionTime?.toTfJson(),
     'custom_action': ?customAction?.encode(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const WindowsWebAppActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppActionType.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const customaction = WindowsWebAppActionType._(
+    TfArgLiteral('CustomAction'),
+  );
+  static const logevent = WindowsWebAppActionType._(TfArgLiteral('LogEvent'));
+  static const recycle = WindowsWebAppActionType._(TfArgLiteral('Recycle'));
+
+  static const List<WindowsWebAppActionType> values = [
+    customaction,
+    logevent,
+    recycle,
+  ];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting.action.custom_action` block of
