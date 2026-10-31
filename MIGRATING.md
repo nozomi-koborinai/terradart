@@ -121,17 +121,41 @@ The `status` getter is unchanged, and no Terraform JSON changes.
 `ConnectionProperties` from their names
 (`OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType`).
 
-Two `google_container_cluster` blocks that shared one helper now differ,
-because their value sets come from different sources.
-`ContainerClusterNetworkConfig.networkPerformanceConfig` (the
-`node_pool.network_config` copy) takes
-`ContainerClusterNetworkConfigNetworkPerformanceConfig`, whose
-`totalEgressBandwidthTier` takes
-`ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier`, the two
-values the description lists. The cluster-level `networkPerformanceConfig`
-keeps `ContainerClusterNetworkPerformanceConfig`, whose
-`totalEgressBandwidthTier` takes `ContainerClusterTotalEgressBandwidthTier`
-(`tier1`) from the container v1 Discovery document.
+29 Google enums lose their `*_UNSPECIFIED` member. It is the sentinel of the
+API, which the provider rejects or reads as unset, and the enum now lists
+the set its source gives without it. Leave the input unset instead:
+`AssuredWorkloadsWorkloadComplianceRegime.complianceRegimeUnspecified`,
+`AssuredWorkloadsWorkloadPartner.partnerUnspecified`,
+`AssuredWorkloadsWorkloadResourceType.resourceTypeUnspecified`,
+`BigqueryReservationAssignmentJobType.unspecified`,
+`DataplexZoneLocationType.locationTypeUnspecified`,
+`DataplexZoneType.typeUnspecified`,
+`DataprocWorkflowTemplateConsumeReservationType.typeUnspecified`,
+`DataprocWorkflowTemplatePreemptibility.preemptibilityUnspecified`,
+`DataprocWorkflowTemplatePrivateIpv6GoogleAccess.privateIpv6GoogleAccessUnspecified`,
+`GkeHubFeatureMembershipControlPlane.controlPlaneManagementUnspecified`,
+`GkeHubFeatureMembershipInstallSpec.installSpecUnspecified`,
+`GkeHubFeatureMembershipInstallation.installationUnspecified`,
+`GkeHubFeatureMembershipPodAffinity.affinityUnspecified`,
+`KeyAlgorithm.unspecified`,
+`NetworkManagementVpcFlowLogsConfigAggregationInterval.aggregationIntervalUnspecified`,
+`NetworkManagementVpcFlowLogsConfigMetadata.metadataUnspecified`,
+`NetworkManagementVpcFlowLogsConfigState.stateUnspecified`,
+`OracleDatabaseAutonomousDatabaseDbWorkload.dbWorkloadUnspecified`,
+`OracleDatabaseAutonomousDatabaseLicenseType.licenseTypeUnspecified`,
+`OsConfigOsPolicyAssignmentArchiveType.archiveTypeUnspecified`,
+`OsConfigOsPolicyAssignmentDesiredState.desiredStateUnspecified`,
+`OsConfigOsPolicyAssignmentInterpreter.interpreterUnspecified`,
+`OsConfigOsPolicyAssignmentMode.modeUnspecified`,
+`OsConfigOsPolicyAssignmentState.desiredStateUnspecified`,
+`ParallelstoreInstanceDeploymentType.unspecified`,
+`PrivateKeyType.unspecified`,
+`RecaptchaEnterpriseKeyChallengeSecurityPreference.challengeSecurityPreferenceUnspecified`,
+`RecaptchaEnterpriseKeyTestingChallenge.testingChallengeUnspecified`,
+`VertexAiReasoningEngineOutcome.outcomeUnspecified`. `NotificationPrompt`, a
+hand-written enum no input took, is removed.
+`MonitoringAlertPolicyAlertStrategy.notificationPrompts` takes
+`MonitoringAlertPolicyNotificationPrompts`, as before.
 
 `GoogleVertexAiOnlineEvaluator` derives its nested blocks. `config`,
 `cloudObservability` and `metricSources` took a `Map<String, dynamic>` (a
@@ -285,14 +309,14 @@ Every retyped `terradart_google` input:
 | `ComputeInstanceAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
 | `ComputeInstanceBootDisk.interface` | `TfArg<String>` | `ComputeInstanceInterface` |
 | `ComputeInstanceBootDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
-| `ComputeInstanceFromTemplateAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateAccessConfigNetworkTier` |
+| `ComputeInstanceFromTemplateAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateNetworkTier` |
 | `ComputeInstanceFromTemplateAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ComputeInstanceFromTemplatePerformanceMonitoringUnit` |
 | `ComputeInstanceFromTemplateAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
 | `ComputeInstanceFromTemplateBootDisk.interface` | `TfArg<String>` | `ComputeInstanceFromTemplateInterface` |
 | `ComputeInstanceFromTemplateBootDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
 | `ComputeInstanceFromTemplateConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `ComputeInstanceFromTemplateConfidentialInstanceType` |
 | `ComputeInstanceFromTemplateInitializeParams.architecture` | `TfArg<String>` | `ComputeInstanceFromTemplateArchitecture` |
-| `ComputeInstanceFromTemplateIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier` |
+| `ComputeInstanceFromTemplateIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateNetworkTier` |
 | `ComputeInstanceFromTemplateNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceFromTemplateIgmpQuery` |
 | `ComputeInstanceFromTemplateNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceFromTemplateStackType` |
 | `ComputeInstanceFromTemplateNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceFromTemplateOperator` |
@@ -888,10 +912,10 @@ Every retyped `terradart_google_beta` input:
 |---|---|---|
 | `CesEvaluationScenario.taskCompletionBehavior` | `TfArg<String>` | `CesEvaluationTaskCompletionBehavior` |
 | `CesEvaluationScenario.userGoalBehavior` | `TfArg<String>` | `CesEvaluationUserGoalBehavior` |
-| `ComputeInstanceFromMachineImageAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageAccessConfigNetworkTier` |
+| `ComputeInstanceFromMachineImageAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageNetworkTier` |
 | `ComputeInstanceFromMachineImageAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ComputeInstanceFromMachineImagePerformanceMonitoringUnit` |
 | `ComputeInstanceFromMachineImageConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `ComputeInstanceFromMachineImageConfidentialInstanceType` |
-| `ComputeInstanceFromMachineImageIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier` |
+| `ComputeInstanceFromMachineImageIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageNetworkTier` |
 | `ComputeInstanceFromMachineImageNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceFromMachineImageIgmpQuery` |
 | `ComputeInstanceFromMachineImageNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceFromMachineImageStackType` |
 | `ComputeInstanceFromMachineImageNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceFromMachineImageOperator` |
@@ -1920,20 +1944,27 @@ Terraform JSON for the same choice is unchanged.
 | `GoogleDatabaseMigrationServicePrivateConnection('pc', pscInterfaceConfig: psc, ...)` | `GoogleDatabaseMigrationServicePrivateConnection('pc', connectivity: .pscInterfaceConfig(psc), ...)` |
 | *(not available)* | `GoogleDatabaseMigrationServicePrivateConnection('pc', connectivity: .reservedPublicIpConfig(ip), ...)` |
 | `GoogleDialogflowGenerator('gen', summarizationContext: summary, ...)` | `GoogleDialogflowGenerator('gen', context: .summarizationContext(summary), ...)` |
-| *(not available)* | `GoogleDialogflowGenerator('gen', context: .freeFormContext(freeForm), ...)` or `.agentCoachingContext(coaching)` |
+| *(not available)* | `GoogleDialogflowGenerator('gen', context: .freeFormContext(freeForm), ...)` or `GoogleDialogflowGenerator('gen', context: .agentCoachingContext(coaching), ...)` |
 | `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, secretData: data)` | `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, payload: .secretData(data))` |
 | *(not available)* | `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, payload: .secretDataWo(data), secretDataWoVersion: .literal('1'))` |
 | `BigqueryConnectionCloudSqlCredential(username: user, password: password)` | `BigqueryConnectionCloudSqlCredential(username: user, password: .password(password))` |
 | *(not available)* | `BigqueryConnectionCloudSqlCredential(username: user, password: .passwordWo(password), passwordWoVersion: .literal('1'))` |
+| `GoogleSpannerInstance('main', numNodes: .literal(1), ...)` | `GoogleSpannerInstance('main', capacity: .numNodes(.literal(1)), ...)` |
+| `GoogleSpannerInstance('main', processingUnits: .literal(100), ...)` | `GoogleSpannerInstance('main', capacity: .processingUnits(.literal(100)), ...)` |
+| `GoogleSpannerInstance('main', autoscalingConfig: autoscaling, ...)` | `GoogleSpannerInstance('main', capacity: .autoscalingConfig(autoscaling), ...)` |
+| `GoogleDeveloperConnectInsightsConfig('insights', appHubApplication: application, ...)` | `GoogleDeveloperConnectInsightsConfig('insights', scope: .appHubApplication(application), ...)` |
+| `GoogleDeveloperConnectInsightsConfig('insights', targetProjects: projects, ...)` | `GoogleDeveloperConnectInsightsConfig('insights', scope: .targetProjects(projects), ...)` |
 | `AwsS3Bucket('logs', objectLockEnabled: .literal(true))` | `AwsS3Bucket('logs', objectLock: .objectLockEnabled(.literal(true)))` |
 | `AwsS3Bucket('logs', objectLockConfiguration: lock)` | `AwsS3Bucket('logs', objectLock: .objectLockConfiguration(lock))` |
 | `AwsWafv2WebAcl('acl', rule: rules, ...)` | `AwsWafv2WebAcl('acl', rules: .rule(rules), ...)` |
-| `AwsWafv2WebAcl('acl', ruleJson: json, ...)` | `AwsWafv2WebAcl('acl', rules: .ruleJson(json), ...)` |
+| `AwsWafv2WebAcl('acl', ruleJson: document, ...)` | `AwsWafv2WebAcl('acl', rules: .ruleJson(document), ...)` |
 
 `connectivity`, `context`, `payload` and the credential `password` are
 required, because the provider takes exactly one member. `objectLock` and
 `rules` stay optional. The inline `rule` and `object_lock_configuration`
-blocks stay maps, as before.
+blocks stay maps, as before. `capacity` and `scope` are optional too. Their
+Magic Modules `conflicts` groups name the Terraform inputs, and the parser
+used to look them up by the REST field name, so neither group sealed.
 
 Magic Modules wrote seven more groups from another block's path, so `wrap`
 read them as inputs that do not exist. They now seal in the block they sit
@@ -1947,8 +1978,8 @@ sealed type. The two cloudbuild groups take a field (`event`, `revision`).
 | `ComputeBackendServiceTlsSettings(subjectAltNames: [.new(dnsName: .literal('api.example.com'))])` | `ComputeBackendServiceTlsSettings(subjectAltNames: [.dnsName(.literal('api.example.com'))])` |
 | `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [.new(uniformResourceIdentifier: uri)])` | `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [.uniformResourceIdentifier(uri)])` |
 | `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .new(serverVerification: verification), ...)` | `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .serverVerification(verification), ...)` |
-| `defaultParsingConfig: .new(ocrParsingConfig: ocr)` on `google_discovery_engine_data_store` | `defaultParsingConfig: .ocrParsingConfig(ocr)` |
-| `engineFeaturesConfig: .new(mostPopularConfig: popular)` on `google_discovery_engine_recommendation_engine` | `engineFeaturesConfig: .mostPopularConfig(popular)` |
+| `DiscoveryEngineDataStoreDocumentProcessingConfig(defaultParsingConfig: .new(ocrParsingConfig: ocr))` | `DiscoveryEngineDataStoreDocumentProcessingConfig(defaultParsingConfig: .ocrParsingConfig(ocr))` |
+| `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig(engineFeaturesConfig: .new(mostPopularConfig: popular))` | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig(engineFeaturesConfig: .mostPopularConfig(popular))` |
 
 **Additive (`terradart_google`).** Five derived helpers had no constructor
 argument. `GoogleAgenticApplicationsAnalystAgentPersona` takes
@@ -1982,7 +2013,7 @@ type prefix.
 | `LinuxVirtualMachineScaleSetExtension(protectedSettingsFromKeyVault: kv, ...)` | `LinuxVirtualMachineScaleSetExtension(protectedSettings: .protectedSettingsFromKeyVault(kv), ...)` |
 | `KubernetesClusterNodePoolUpgradeSettings(maxSurge: .literal('10%'))` | `KubernetesClusterNodePoolUpgradeSettings(upgradeCapacity: .maxSurge(.literal('10%')))` |
 | `KubernetesClusterNodePoolUpgradeSettings(maxUnavailable: .literal('1'))` | `KubernetesClusterNodePoolUpgradeSettings(upgradeCapacity: .maxUnavailable(.literal('1')))` |
-| `dnsSettings: .new(useAzureDns: .literal(true))` on the Palo Alto firewalls | `dnsSettings: .useAzureDns(.literal(true))` |
+| `AzurermPaloAltoNextGenerationFirewallVirtualNetworkPanorama('fw', dnsSettings: .new(useAzureDns: .literal(true)), ...)`, and the same on the other Palo Alto firewalls | `AzurermPaloAltoNextGenerationFirewallVirtualNetworkPanorama('fw', dnsSettings: .useAzureDns(.literal(true)), ...)` |
 
 The Facebook `appSecret`, the GitHub, Google and Microsoft `clientSecret`,
 the Twitter `consumerSecret` and the function app `runtime` are required,
@@ -2081,9 +2112,9 @@ and the variant types above. This bump puts the four-member group back on
 | `GooglePubsubSubscription('bq', name: name, topic: topic.ref, delivery: .bigqueryConfig(bq))` | `GooglePubsubSubscription('bq', name: name, topic: topic.ref, delivery: .bigqueryConfig(bq))` |
 | `GooglePubsubSubscription('gcs', name: name, topic: topic.ref, delivery: .cloudStorageConfig(storage))` | `GooglePubsubSubscription('gcs', name: name, topic: topic.ref, delivery: .cloudStorageConfig(storage))` |
 | *(not available)* | `GooglePubsubSubscription('bt', name: name, topic: topic.ref, delivery: .bigtableConfig(.new(table: .literal('projects/p/instances/i/tables/t'))))` |
-| `PubsubSubscriptionDeliveryPushConfig(pushConfig: push)` | `PubsubSubscriptionDeliveryPushConfig(pushConfig: push)` |
-| `PubsubSubscriptionDeliveryBigqueryConfig(bigqueryConfig: bq)` | `PubsubSubscriptionDeliveryBigqueryConfig(bigqueryConfig: bq)` |
-| `PubsubSubscriptionDeliveryCloudStorageConfig(cloudStorageConfig: storage)` | `PubsubSubscriptionDeliveryCloudStorageConfig(cloudStorageConfig: storage)` |
+| `PubsubSubscriptionDeliveryPushConfig(push)` | `PubsubSubscriptionDeliveryPushConfig(push)` |
+| `PubsubSubscriptionDeliveryBigqueryConfig(bq)` | `PubsubSubscriptionDeliveryBigqueryConfig(bq)` |
+| `PubsubSubscriptionDeliveryCloudStorageConfig(storage)` | `PubsubSubscriptionDeliveryCloudStorageConfig(storage)` |
 
 `push` is a `PubsubSubscriptionPushConfig`. `bq` is a
 `PubsubSubscriptionBigqueryConfig`. `storage` is a
@@ -2153,9 +2184,9 @@ wrote.
 
 | Before | After |
 |---|---|
-| `warmType: .ultrawarm1MediumSearch` | `warmType: .literal('ultrawarm1.medium.search')` |
-| `warmType: .ultrawarm1LargeSearch` | `warmType: .literal('ultrawarm1.large.search')` |
-| `warmType: .ultrawarm1XlargeSearch` | `warmType: .literal('ultrawarm1.xlarge.search')` |
+| `OpensearchDomainClusterConfig(warmType: .ultrawarm1MediumSearch)` | `OpensearchDomainClusterConfig(warmType: .literal('ultrawarm1.medium.search'))` |
+| `OpensearchDomainClusterConfig(warmType: .ultrawarm1LargeSearch)` | `OpensearchDomainClusterConfig(warmType: .literal('ultrawarm1.large.search'))` |
+| `OpensearchDomainClusterConfig(warmType: .ultrawarm1XlargeSearch)` | `OpensearchDomainClusterConfig(warmType: .literal('ultrawarm1.xlarge.search'))` |
 
 ### Organization telemetry evaluation takes one region choice
 
@@ -2240,18 +2271,18 @@ Pass the value on the field. The Terraform JSON is unchanged.
 | `PubsubTopicIngestionDataSourceSettings(source: .azureEventHubs(hubs))` | `PubsubTopicIngestionDataSourceSettings(azureEventHubs: hubs)` |
 | `PubsubTopicIngestionDataSourceSettings(source: .cloudStorage(storage))` | `PubsubTopicIngestionDataSourceSettings(cloudStorage: storage)` |
 | `PubsubTopicIngestionDataSourceSettings(source: .confluentCloud(cloud))` | `PubsubTopicIngestionDataSourceSettings(confluentCloud: cloud)` |
-| `CesToolDataStoreTool(source: .dataStoreSource(store))` | `CesToolDataStoreTool(dataStoreSource: store)` |
-| `CesToolDataStoreTool(source: .engineSource(engine))` | `CesToolDataStoreTool(engineSource: engine)` |
+| `CesToolDataStoreTool(name: name, source: .dataStoreSource(store))` | `CesToolDataStoreTool(name: name, dataStoreSource: store)` |
+| `CesToolDataStoreTool(name: name, source: .engineSource(engine))` | `CesToolDataStoreTool(name: name, engineSource: engine)` |
 | `CloudTasksQueueHttpTarget(token: .oauthToken(oauth))` | `CloudTasksQueueHttpTarget(oauthToken: oauth)` |
 | `CloudTasksQueueHttpTarget(token: .oidcToken(oidc))` | `CloudTasksQueueHttpTarget(oidcToken: oidc)` |
 | `DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey(key)` | `DataLossPreventionDiscoveryConfigTagFilters(namespacedTagKey: key)` |
 | `DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue(value)` | `DataLossPreventionDiscoveryConfigTagFilters(namespacedTagValue: value)` |
 | `FilestoreInstancePerformanceConfig.iopsPerTb(iops)` | `FilestoreInstancePerformanceConfig(iopsPerTb: iops)` |
 | `FilestoreInstancePerformanceConfig.fixedIops(iops)` | `FilestoreInstancePerformanceConfig(fixedIops: iops)` |
-| `HealthcarePipelineJobMappingPipelineJob(destination: .fhirStoreDestination(store))` | `HealthcarePipelineJobMappingPipelineJob(fhirStoreDestination: store)` |
-| `HealthcarePipelineJobMappingPipelineJob(destination: .reconciliationDestination(dest))` | `HealthcarePipelineJobMappingPipelineJob(reconciliationDestination: dest)` |
-| `PubsubSubscriptionBigqueryConfig(schema: .useTopicSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(useTopicSchema: .literal(true))` |
-| `PubsubSubscriptionBigqueryConfig(schema: .useTableSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(useTableSchema: .literal(true))` |
+| `HealthcarePipelineJobMappingPipelineJob(mappingConfig: mapping, destination: .fhirStoreDestination(store))` | `HealthcarePipelineJobMappingPipelineJob(mappingConfig: mapping, fhirStoreDestination: store)` |
+| `HealthcarePipelineJobMappingPipelineJob(mappingConfig: mapping, destination: .reconciliationDestination(dest))` | `HealthcarePipelineJobMappingPipelineJob(mappingConfig: mapping, reconciliationDestination: dest)` |
+| `PubsubSubscriptionBigqueryConfig(table: table, schema: .useTopicSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(table: table, useTopicSchema: .literal(true))` |
+| `PubsubSubscriptionBigqueryConfig(table: table, schema: .useTableSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(table: table, useTableSchema: .literal(true))` |
 
 `CloudRunV2JobBinaryAuthorization` and
 `CloudRunV2WorkerPoolBinaryAuthorization` follow the service helper. The
@@ -2318,8 +2349,8 @@ helper are the fields of the type that replaces it. `fixedLikelihood` and
 |---|---|
 | `DataLossPreventionContentPolicyCustomInfoTypes(infoType: DataLossPreventionContentPolicyCustomInfoTypesInfoType(name: .literal('EMAIL'), version: .literal('1')))` | `DataLossPreventionContentPolicyCustomInfoTypes(infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL'), version: .literal('1')))` |
 | `DataLossPreventionContentPolicyMaxFindingsPerInfoType(maxFindings: .literal(10), infoType: DataLossPreventionContentPolicyCustomInfoTypesInfoType(name: .literal('EMAIL')))` | `DataLossPreventionContentPolicyMaxFindingsPerInfoType(maxFindings: .literal(10), infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL')))` |
-| `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .literal(.possible), infoType: DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType(name: .literal('EMAIL'), version: .literal('1')))` | `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .literal(.possible), infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL'), version: .literal('1')))` |
-| `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyLikelihoodAdjustment(fixedLikelihood: .literal(.veryLikely)), proximity: ...)` | `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment(fixedLikelihood: .literal(.veryLikely)), proximity: ...)` |
+| `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .possible, infoType: DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType(name: .literal('EMAIL'), version: .literal('1')))` | `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .possible, infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL'), version: .literal('1')))` |
+| `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyLikelihoodAdjustment(fixedLikelihood: .veryLikely), proximity: ...)` | `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment(fixedLikelihood: .veryLikely), proximity: ...)` |
 
 Removed, with no replacement class of the old name:
 
@@ -2336,7 +2367,7 @@ list. A stack that set one credential passes a one-element list.
 
 | Before | After |
 |---|---|
-| `userCredentials: StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .literal('ssh'), sshPublicKeyBody: .literal('ssh-ed25519 AAAA'))` | `userCredentials: [StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .literal('ssh'), sshPublicKeyBody: .literal('ssh-ed25519 AAAA'))]` |
+| `GoogleStorageFtpUser('deploy', userCredentials: StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .literal('PUBLIC_KEY'), sshPublicKeyBody: .literal('ssh-ed25519 AAAA')), ...)` | `GoogleStorageFtpUser('deploy', userCredentials: [StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .publicKey, sshPublicKeyBody: .literal('ssh-ed25519 AAAA'))], ...)` |
 
 ### IAM policy binding targets are a sealed choice
 
@@ -2401,11 +2432,11 @@ These members are gone or retyped.
 
 | Before | After |
 |---|---|
-| `CloudflareApiShieldDiscoveryOperation(operationId: ...)` and `.id` / `.operationId` | `discoveryId:` is the identity. `.id` and `.operationId` are gone |
-| `CloudflareApiShieldOperation(feature: ..., withSchemas: ...)` and `ApiShieldOperationFeature` | both arguments and the enum are gone |
+| `CloudflareApiShieldDiscoveryOperation('op', operationId: ..., ...)`, with the getters `CloudflareApiShieldDiscoveryOperation.id` and `CloudflareApiShieldDiscoveryOperation.operationId` | `CloudflareApiShieldDiscoveryOperation('op', discoveryId: ..., ...)`, whose discovery id is the identity. The id and operation id getters are gone |
+| `CloudflareApiShieldOperation('op', feature: ..., withSchemas: ..., ...)` and `ApiShieldOperationFeature` | both arguments and the enum are gone |
 | `CloudflareZeroTrustOrganization(mfaSshPivKeyRequirements: ZeroTrustOrganizationMfaSshPivKeyRequirements(...))` | the argument and the helper are gone |
 | `DataCloudflareFlagshipFlags.limit` and `DataFlagshipFlagFilter.limit` as `TfArg<String>` | `TfArg<num>` |
-| `.wordList` on the Zero Trust DLP entry factories and data sources (`CloudflareZeroTrustDlpEntry`, `CloudflareZeroTrustDlpCustomEntry`, `CloudflareZeroTrustDlpIntegrationEntry`, `CloudflareZeroTrustDlpPredefinedEntry`, and the `DataCloudflareZeroTrustDlp*` twins) | `TfRef<List<String>>` |
+| `CloudflareZeroTrustDlpEntry.wordList`, and the same getter on the other Zero Trust DLP entry factories and data sources (`CloudflareZeroTrustDlpCustomEntry`, `CloudflareZeroTrustDlpIntegrationEntry`, `CloudflareZeroTrustDlpPredefinedEntry`, `DataCloudflareZeroTrustDlpEntry`, `DataCloudflareZeroTrustDlpCustomEntry`, `DataCloudflareZeroTrustDlpIntegrationEntry`, `DataCloudflareZeroTrustDlpPredefinedEntry`) | `TfRef<List<String>>` |
 
 5.28.0 also adds `CloudflareMonetizationRules`,
 `DataCloudflareMonetizationRules`, `CloudflareZeroTrustCasbIntegration`,
