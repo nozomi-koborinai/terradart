@@ -20,7 +20,7 @@ String shapeFixturePath(String package) =>
     '$shapeFixtureRoot/${shapeFixtureLane(package)}/main.tf.json';
 
 /// The shapes a migration of [manifest]'s fixture must use: each enum,
-/// enum-list, sealed and reference slot kind the manifest has, with both
+/// enum-list, sealed, reference and principal slot kind the manifest has, with both
 /// enum fallbacks and all three enum-list forms.
 Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
   final out = <MigratedShape>{};
@@ -47,6 +47,8 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
           );
         case MigrateSlotKind.reference:
           out.add(MigratedShape.reference);
+        case MigrateSlotKind.principal:
+          out.add(MigratedShape.principal);
         default:
       }
     }

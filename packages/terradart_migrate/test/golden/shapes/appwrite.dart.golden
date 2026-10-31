@@ -37,6 +37,7 @@ final class ShapesAppwriteStack extends Stack {
         'literal',
         name: .literal('literal'),
         compression: .gzip,
+        permissions: .literal([.read(.any), .write(.users())]),
       ),
     );
     add(

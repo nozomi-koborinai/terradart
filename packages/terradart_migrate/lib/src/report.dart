@@ -85,7 +85,6 @@ final class KeptItem {
   Map<String, Object?> toJson() => {'address': address, 'reason': reason};
 }
 
-/// The report of one module's migration.
 /// A typed API shape a migrated argument is written in.
 enum MigratedShape {
   /// An enum member (`.premium`) for a literal that names one.
@@ -118,8 +117,13 @@ enum MigratedShape {
 
   /// A migrated block's output getter (`topic.name`).
   outputGetter,
+
+  /// An IAM principal or Appwrite permission (`.user('a@example.com')`,
+  /// `account.principal`), never a plain string.
+  principal,
 }
 
+/// The report of one module's migration.
 final class MigrationReport {
   /// Creates the report for [module], migrated into [stackClass].
   const MigrationReport({

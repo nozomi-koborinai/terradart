@@ -31,7 +31,11 @@
     "appwrite_storage_bucket": {
       "literal": {
         "name": "literal",
-        "compression": "gzip"
+        "compression": "gzip",
+        "permissions": [
+          "read(\"any\")",
+          "write(\"users\")"
+        ]
       },
       "variable": {
         "name": "variable",

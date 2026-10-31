@@ -825,6 +825,12 @@ final class ValueEmitter {
   /// [slot] is repeated: a literal list holds one principal per element,
   /// anything else is the whole list (`var.members`, a splat).
   String _principal(MigrateSlot slot, Expr value, {required String path}) {
+    final out = _principalArg(slot, value, path: path);
+    shapes.add(MigratedShape.principal);
+    return out;
+  }
+
+  String _principalArg(MigrateSlot slot, Expr value, {required String path}) {
     final appwrite = slot.dartType == 'AppwritePermission';
     String one(Expr e) => appwrite
         ? _permissionValue(e, path: path)

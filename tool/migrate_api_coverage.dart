@@ -13,6 +13,8 @@ import 'dart:io';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/references/resolved_reference.dart'
+    show principalTypes;
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:yaml/yaml.dart';
 
@@ -35,6 +37,9 @@ final class WrapperApi {
   final Map<String, Map<String, ({String attribute, String type})>> getters =
       {};
 
+  /// Classes with a `principal` getter, the IAM principal of their `member`.
+  final Set<String> principalGetters = {};
+
   /// Every `.dart` file under `packages/<package>/lib`.
   static WrapperApi readPackage(String repoRoot, String package) {
     final lib = Directory(p.join(repoRoot, 'packages', package, 'lib'));
@@ -56,7 +61,8 @@ final class WrapperApi {
     // A `super.x` parameter takes the type of the superclass field. One
     // whose superclass is outside the package (`Resource`'s `lifecycle`)
     // is a bookend every factory shares, not an input of its own.
-    for (final MapEntry(key: name, value: pending) in api._superParams.entries) {
+    for (final MapEntry(key: name, value: pending)
+        in api._superParams.entries) {
       final fields = api._fields[api._superclass[name]];
       if (fields == null) continue;
       for (final param in pending) {
@@ -114,6 +120,11 @@ final class WrapperApi {
     final refs = <String, ({String attribute, String type})>{};
     for (final m in members.whereType<MethodDeclaration>()) {
       if (!m.isGetter) continue;
+      if (m.name.lexeme == 'principal' &&
+          principalTypes.containsKey(m.returnType?.toSource())) {
+        principalGetters.add(name);
+        continue;
+      }
       final body = m.body;
       if (body is! ExpressionFunctionBody) continue;
       final call = body.expression;
@@ -196,6 +207,13 @@ sealed class InputShape {
       final s? when s.endsWith('>') => s.substring(0, s.length - 1),
       _ => null,
     };
+    if (principalTypes.containsKey(t)) {
+      return PrincipalInput(t, repeated: false);
+    }
+    if (listOf('TfArg<List<') case final c?
+        when principalTypes.containsKey(c)) {
+      return PrincipalInput(c, repeated: true);
+    }
     if (api.enums.containsKey(t)) return EnumInput(t);
     if (api.sealed.containsKey(t)) return SealedInput(t, repeated: false);
     if (inner('RefTo<') case final c?) return RefInput(c, repeated: false);
@@ -233,6 +251,12 @@ final class SealedInput extends InputShape {
   final bool repeated;
 }
 
+final class PrincipalInput extends InputShape {
+  const PrincipalInput(this.type, {required this.repeated});
+  final String type;
+  final bool repeated;
+}
+
 final class RefInput extends InputShape {
   const RefInput(this.type, {required this.repeated});
   final String type;
@@ -257,7 +281,6 @@ List<String> coverageFindings(
   WrapperApi api, {
   Map<String, String> debt = const {},
   Set<String>? usedDebt,
-  Map<String, int>? judged,
 }) {
   final findings = <String>[];
   final reachedBy = _reachingTypes(manifest);
@@ -281,10 +304,6 @@ List<String> coverageFindings(
     final bySlot = {for (final s in slots) s.dartName: s};
     for (final MapEntry(key: name, value: type) in declared.entries) {
       final shape = InputShape.of(type, api);
-      if (shape != null && judged != null) {
-        final kind = '${shape.runtimeType}';
-        judged[kind] = (judged[kind] ?? 0) + 1;
-      }
       final slot = bySlot[name];
       if (slot == null) {
         if (shape != null) {
@@ -313,6 +332,16 @@ List<String> coverageFindings(
 
   for (final e in manifest.entries) {
     checkOwner(e.className, e.slots);
+    final hasPrincipal = api.principalGetters.contains(e.className);
+    if (hasPrincipal != e.principal) {
+      findings.add(
+        hasPrincipal
+            ? '${e.className}.principal: the getter has no manifest flag, so '
+                  'a grant that reads its `member` stays a string'
+            : '${e.className}.principal: the manifest records a getter the '
+                  'class does not declare',
+      );
+    }
     final declared = api.getters[e.className] ?? const {};
     final recorded = {for (final g in e.getters) g.dartName: g};
     for (final MapEntry(key: name, value: g) in declared.entries) {
@@ -375,7 +404,8 @@ String? _mismatch(
     case null:
       if (slot.kind == MigrateSlotKind.enumValue ||
           slot.kind == MigrateSlotKind.sealed ||
-          slot.kind == MigrateSlotKind.reference) {
+          slot.kind == MigrateSlotKind.reference ||
+          slot.kind == MigrateSlotKind.principal) {
         return 'the manifest builds ${got()} for an input the package does '
             'not type that way';
       }
@@ -412,6 +442,12 @@ String? _mismatch(
         if (h == null) return 'variant $v has no manifest helper';
       }
       return null;
+    case PrincipalInput(:final type, :final repeated):
+      return slot.kind == MigrateSlotKind.principal &&
+              slot.repeated == repeated &&
+              slot.dartType == type
+          ? null
+          : 'an IAM principal ($type), the manifest builds ${got()}';
     case RefInput(:final type, :final repeated):
       return slot.kind == MigrateSlotKind.reference &&
               slot.repeated == repeated &&

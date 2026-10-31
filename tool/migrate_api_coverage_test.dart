@@ -267,6 +267,36 @@ void main() {
       expect(findings.single, contains('a RefTo<GoogleComputeNetwork>'));
     });
 
+    test('an IAM principal list the manifest builds as a string list', () {
+      final findings =
+          _findings('$_params, TfArg<List<IamPrincipal>>? members', [
+            ...slots,
+            const MigrateSlot(
+              tfName: 'members',
+              dartName: 'members',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              repeated: true,
+              dartType: 'String',
+            ),
+          ]);
+      expect(findings.single, contains('an IAM principal (IamPrincipal)'));
+    });
+
+    test('a principal getter the manifest does not flag', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _factory(_params).replaceFirst(
+          'TfRef<String> get name',
+          "IamPrincipal get principal => IamPrincipal.arg(member);\n"
+              '  TfRef<String> get name',
+        ),
+      ]);
+      final findings = coverageFindings(_manifest(slots), api);
+      expect(findings.single, contains('GoogleThing.principal'));
+    });
+
     test('a typed input with no manifest slot', () {
       final findings = _findings(_params, [_tiersSlot, _sourceSlot]);
       expect(findings, hasLength(2));

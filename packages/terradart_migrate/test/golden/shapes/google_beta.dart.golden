@@ -95,5 +95,14 @@ final class ShapesGoogleBetaStack extends Stack {
         siteId: .literal('shapes'),
       ),
     );
+    add(
+      GoogleApiGatewayApiConfigIamMember(
+        'viewer',
+        api: .literal('shapes'),
+        apiConfig: .literal('shapes'),
+        member: .group('viewers@shapes.example.com'),
+        role: .literal('roles/viewer'),
+      ),
+    );
   }
 }

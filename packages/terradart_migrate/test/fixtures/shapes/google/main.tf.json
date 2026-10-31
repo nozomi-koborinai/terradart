@@ -144,6 +144,25 @@
           }
         ]
       }
+    },
+    "google_service_account": {
+      "runtime": {
+        "account_id": "shapes-runtime"
+      }
+    },
+    "google_secret_manager_secret_iam_member": {
+      "runtime": {
+        "secret_id": "${google_secret_manager_secret.secret.secret_id}",
+        "role": "roles/secretmanager.secretAccessor",
+        "member": "${google_service_account.runtime.member}",
+        "project": "${google_secret_manager_secret.secret.project}"
+      },
+      "auditor": {
+        "secret_id": "${google_secret_manager_secret.secret.secret_id}",
+        "role": "roles/secretmanager.viewer",
+        "member": "user:auditor@shapes.example.com",
+        "project": "${google_secret_manager_secret.secret.project}"
+      }
     }
   }
 }

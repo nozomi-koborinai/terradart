@@ -100,6 +100,15 @@
         "ttl": "86400s",
         "provider": "google-beta"
       }
+    },
+    "google_api_gateway_api_config_iam_member": {
+      "viewer": {
+        "api": "shapes",
+        "api_config": "shapes",
+        "member": "group:viewers@shapes.example.com",
+        "role": "roles/viewer",
+        "provider": "google-beta"
+      }
     }
   }
 }
