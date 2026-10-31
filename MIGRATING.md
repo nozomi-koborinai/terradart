@@ -25,10 +25,10 @@ omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
 ### Fixed value sets are enums
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
-`terradart_azure`, `terradart_cloudflare`).** 706 inputs took a raw string,
+`terradart_azure`, `terradart_cloudflare`).** 935 inputs took a raw string,
 or a list of strings, although the provider accepts only a fixed set of
-values. Each now takes an enum of that set. By package, 425 are in
-`terradart_google`, 10 in `terradart_google_beta`, 9 in `terradart_aws`, 134
+values. Each now takes an enum of that set. By package, 430 are in
+`terradart_google`, 10 in `terradart_google_beta`, 9 in `terradart_aws`, 358
 in `terradart_azure` and 128 in `terradart_cloudflare`. They include helper
 fields of nested blocks. The Google value sets come from Magic Modules
 `enum_values` (on nested blocks and list items too), else from the
@@ -36,11 +36,25 @@ description. The description reader, shared by every package, reads
 `Possible values:` lists separated by commas or by spaces, `Allowed values`,
 `Supported values`, `Valid values` and `Accepted values`, `One of A or B`
 and `Must be one of` with or without quotes, `either A or B`, and a list of
-quoted values each on its own line with a description. The Cloudflare ones
-also come from `Available values:` and the provider hints. Pass a member
-with a dot shorthand. A value the enum does not list goes through
-`.arg(.literal(...))`, and `.variable` and `.expression` still work. The
-Terraform JSON for the same value is unchanged.
+quoted values each on its own line with a description, or with a call shape
+such as `deny(403)`. The aws, azure and Cloudflare ones also come from the
+provider hints, which the provider validators give and which win over the
+description, and the Cloudflare ones from `Available values:` too. Where the
+upstream set is wrong or sits in prose no reader closes, an `enumValues`
+entry in the wrapper override gives it: the Google App Engine
+`instance_class` classes and the Discovery Engine data connector
+`entities.entity_name` names. Pass a member with a dot shorthand. A value
+the enum does not list goes through `.arg(.literal(...))`, and `.variable`
+and `.expression` still work. The Terraform JSON for the same value is
+unchanged, the wire value of every member being the one the provider takes
+(`NoProxy` for the App Service `forward_proxy_convention`, `thresholds.$key`
+for `cloudflare_api_shield_operations`).
+
+One existing member changes. `CloudfunctionsFunctionStatus.actove` is now
+`CloudfunctionsFunctionStatus.active` with the value `ACTIVE`, the one the
+provider returns. Magic Modules lists `ACTOVE`, so the override of
+`google_cloudfunctions_function` gives the set. `status` is an output, so no
+Terraform JSON changes.
 
 | Before | After |
 |---|---|
@@ -205,10 +219,12 @@ Every retyped `terradart_google` input:
 | `ComputeRegionInstanceTemplateDisk.type` | `TfArg<String>` | `ComputeRegionInstanceTemplateType` |
 | `ComputeRegionInstanceTemplateScheduling.provisioningModel` | `TfArg<String>` | `ComputeRegionInstanceTemplateProvisioningModel` |
 | `ComputeRegionNetworkFirewallPolicyWithRulesRule.action` | `TfArg<String>` | `ComputeRegionNetworkFirewallPolicyWithRulesAction` |
+| `ComputeRegionSecurityPolicyRulesRateLimitOptions.exceedAction` | `TfArg<String>` | `ComputeRegionSecurityPolicyExceedAction` |
 | `ComputeResourcePolicyGroupPlacementPolicy.collocation` | `TfArg<String>` | `ComputeResourcePolicyCollocation` |
 | `ComputeRolloutPlanValidation.type` | `TfArg<String>` | `ComputeRolloutPlanValidationType` |
 | `ComputeRouterNatSubnetwork.sourceIpRangesToNat` | `TfArg<List<String>>` | `List<ComputeRouterNatSourceIpRangesToNat>` |
 | `ComputeSecurityPolicyLayer7DdosDefenseConfig.ruleVisibility` | `TfArg<String>` | `SecurityPolicyRuleVisibility` |
+| `ComputeSecurityPolicyRulesRateLimitOptions.exceedAction` | `TfArg<String>` | `ComputeSecurityPolicyExceedAction` |
 | `ContactCenterInsightsQaQuestionPredefinedQuestionConfig.type` | `TfArg<String>` | `ContactCenterInsightsQaQuestionPredefinedQuestionConfigType` |
 | `ContainerClusterAnonymousAuthenticationConfig.mode` | `TfArg<String>` | `ContainerClusterMode` |
 | `ContainerClusterFilter.eventType` | `TfArg<List<String>>` | `List<ContainerClusterEventType>` |
@@ -254,6 +270,7 @@ Every retyped `terradart_google` input:
 | `DiscoveryEngineAssistantModelArmorConfig.failureMode` | `TfArg<String>` | `DiscoveryEngineAssistantFailureMode` |
 | `DiscoveryEngineControlInterpolationBoostSpec.interpolationType` | `TfArg<String>` | `DiscoveryEngineControlInterpolationType` |
 | `DiscoveryEngineDataConnectorBapConfig.enabledActions` | `TfArg<List<String>>` | `List<DiscoveryEngineDataConnectorEnabledActions>` |
+| `DiscoveryEngineDataConnectorEntities.entityName` | `TfArg<String>` | `DiscoveryEngineDataConnectorEntityName` |
 | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig.optimizationObjective` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineOptimizationObjective` |
 | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig.type` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineType` |
 | `DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig.targetField` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineTargetField` |
@@ -273,7 +290,9 @@ Every retyped `terradart_google` input:
 | `GoogleApihubPlugin.pluginCategory` | `TfArg<String>` | `ApihubPluginCategory` |
 | `GoogleApikeysKey.checkExistingUsage` | `TfArg<String>` | `ApikeysKeyCheckExistingUsage` |
 | `GoogleAppEngineFlexibleAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineFlexibleAppVersionInboundServices>` |
+| `GoogleAppEngineFlexibleAppVersion.instanceClass` | `TfArg<String>` | `AppEngineFlexibleAppVersionInstanceClass` |
 | `GoogleAppEngineStandardAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionInboundServices>` |
+| `GoogleAppEngineStandardAppVersion.instanceClass` | `TfArg<String>` | `AppEngineStandardAppVersionInstanceClass` |
 | `GoogleBiglakeTable.type` | `TfArg<String>` | `BiglakeTableType` |
 | `GoogleBinaryAuthorizationPolicy.globalPolicyEvaluationMode` | `TfArg<String>` | `BinaryAuthorizationPolicyGlobalPolicyEvaluationMode` |
 | `GoogleCesTool.executionType` | `TfArg<String>` | `CesToolExecutionType` |
@@ -540,18 +559,89 @@ Every retyped `terradart_azure` input:
 
 | Input | Before | After |
 |---|---|---|
+| `ApiManagementApiDiagnosticHeaders.mode` | `TfArg<String>` | `ApiManagementApiDiagnosticMode` |
+| `ApiManagementApiDiagnosticQueryParams.mode` | `TfArg<String>` | `ApiManagementApiDiagnosticMode` |
+| `ApiManagementDiagnosticHeaders.mode` | `TfArg<String>` | `ApiManagementDiagnosticMode` |
+| `ApiManagementDiagnosticQueryParams.mode` | `TfArg<String>` | `ApiManagementDiagnosticMode` |
+| `AppServiceSourceControlCodeConfiguration.runtimeStack` | `TfArg<String>` | `AppServiceSourceControlRuntimeStack` |
+| `AppServiceSourceControlSlotCodeConfiguration.runtimeStack` | `TfArg<String>` | `AppServiceSourceControlSlotRuntimeStack` |
+| `ApplicationGatewaySslPolicy.cipherSuites` | `TfArg<List<String>>` | `List<ApplicationGatewayCipherSuites>` |
+| `ApplicationGatewaySslPolicy.disabledProtocols` | `TfArg<List<String>>` | `List<ApplicationGatewayDisabledProtocols>` |
+| `ApplicationGatewaySslPolicy.minProtocolVersion` | `TfArg<String>` | `ApplicationGatewayMinProtocolVersion` |
+| `ApplicationGatewaySslPolicy.policyType` | `TfArg<String>` | `ApplicationGatewayPolicyType` |
 | `AzurermContainerAppEnvironment.logsDestination` | `TfArg<String>` | `ContainerAppEnvironmentLogsDestination` |
 | `AzurermContainerAppEnvironmentManagedCertificate.domainControlValidation` | `TfArg<String>` | `ContainerAppEnvironmentManagedCertificateDomainControlValidation` |
+| `AzurermEventgridEventSubscription.eventDeliverySchema` | `TfArg<String>` | `EventgridEventSubscriptionEventDeliverySchema` |
+| `AzurermEventgridSystemTopicEventSubscription.eventDeliverySchema` | `TfArg<String>` | `EventgridSystemTopicEventSubscriptionEventDeliverySchema` |
+| `AzurermHdinsightHadoopCluster.tier` | `TfArg<String>` | `HdinsightHadoopClusterTier` |
+| `AzurermHdinsightHadoopCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightHadoopClusterTlsMinVersion` |
+| `AzurermHdinsightHbaseCluster.tier` | `TfArg<String>` | `HdinsightHbaseClusterTier` |
+| `AzurermHdinsightHbaseCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightHbaseClusterTlsMinVersion` |
+| `AzurermHdinsightInteractiveQueryCluster.tier` | `TfArg<String>` | `HdinsightInteractiveQueryClusterTier` |
+| `AzurermHdinsightInteractiveQueryCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightInteractiveQueryClusterTlsMinVersion` |
+| `AzurermHdinsightKafkaCluster.tier` | `TfArg<String>` | `HdinsightKafkaClusterTier` |
+| `AzurermHdinsightKafkaCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightKafkaClusterTlsMinVersion` |
+| `AzurermHdinsightSparkCluster.tier` | `TfArg<String>` | `HdinsightSparkClusterTier` |
+| `AzurermHdinsightSparkCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightSparkClusterTlsMinVersion` |
+| `BatchAccountAccess.defaultAction` | `TfArg<String>` | `BatchAccountDefaultAction` |
+| `BatchAccountNodeManagementAccess.defaultAction` | `TfArg<String>` | `BatchAccountDefaultAction` |
+| `CdnFrontdoorBatchRuleSetHostName.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetHttpVersion.values` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetHttpVersionValues>` |
+| `CdnFrontdoorBatchRuleSetModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetOperator` |
+| `CdnFrontdoorBatchRuleSetModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetOperator` |
+| `CdnFrontdoorBatchRuleSetPostArgument.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetQueryString.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestBody.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestCookies.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestFileExtension.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestFilename.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestHeader.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestPath.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestUrl.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetServerPort.values` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetServerPortValues>` |
+| `CdnFrontdoorRuleHostName.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleHttpVersion.values` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleHttpVersionValues>` |
+| `CdnFrontdoorRuleModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleOperator` |
+| `CdnFrontdoorRuleModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleOperator` |
+| `CdnFrontdoorRulePostArgument.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleQueryString.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestBody.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestCookies.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestFileExtension.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestFilename.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestHeader.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestPath.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestUrl.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleServerPort.values` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleServerPortValues>` |
+| `ContainerAppCustomScaleRule.customRuleType` | `TfArg<String>` | `ContainerAppCustomRuleType` |
 | `ContainerAppDapr.appProtocol` | `TfArg<String>` | `ContainerAppProtocol` |
+| `ContainerAppEnvironmentWorkloadProfile.workloadProfileType` | `TfArg<String>` | `ContainerAppEnvironmentWorkloadProfileType` |
+| `ContainerAppIngress.clientCertificateMode` | `TfArg<String>` | `ContainerAppClientCertificateMode` |
 | `ContainerAppIngress.transport` | `TfArg<String>` | `ContainerAppTransport` |
+| `ContainerAppIpSecurityRestriction.action` | `TfArg<String>` | `ContainerAppAction` |
 | `ContainerAppJobLivenessProbe.transport` | `TfArg<String>` | `ContainerAppJobTransport` |
 | `ContainerAppJobReadinessProbe.transport` | `TfArg<String>` | `ContainerAppJobTransport` |
+| `ContainerAppJobRules.customRuleType` | `TfArg<String>` | `ContainerAppJobCustomRuleType` |
 | `ContainerAppJobStartupProbe.transport` | `TfArg<String>` | `ContainerAppJobTransport` |
 | `ContainerAppJobVolume.storageType` | `TfArg<String>` | `ContainerAppJobStorageType` |
 | `ContainerAppLivenessProbe.transport` | `TfArg<String>` | `ContainerAppLivenessProbeTransport` |
 | `ContainerAppReadinessProbe.transport` | `TfArg<String>` | `ContainerAppLivenessProbeTransport` |
 | `ContainerAppStartupProbe.transport` | `TfArg<String>` | `ContainerAppLivenessProbeTransport` |
 | `ContainerAppVolume.storageType` | `TfArg<String>` | `ContainerAppStorageType` |
+| `ContainerGroupHttpGet.scheme` | `TfArg<String>` | `ContainerGroupScheme` |
+| `CosmosdbCassandraTableClusterKey.orderBy` | `TfArg<String>` | `CosmosdbCassandraTableOrderBy` |
+| `CosmosdbGremlinGraphConflictResolutionPolicy.mode` | `TfArg<String>` | `CosmosdbGremlinGraphMode` |
+| `CosmosdbGremlinGraphIndex.order` | `TfArg<String>` | `CosmosdbGremlinGraphOrder` |
+| `CosmosdbSqlContainerConflictResolutionPolicy.mode` | `TfArg<String>` | `CosmosdbSqlContainerMode` |
+| `CosmosdbSqlContainerIndex.order` | `TfArg<String>` | `CosmosdbSqlContainerOrder` |
+| `DevTestLinuxVirtualMachineInboundNatRule.protocol` | `TfArg<String>` | `DevTestLinuxVirtualMachineProtocol` |
+| `DevTestWindowsVirtualMachineInboundNatRule.protocol` | `TfArg<String>` | `DevTestWindowsVirtualMachineProtocol` |
+| `EventgridEventSubscriptionDeadLetterIdentity.type` | `TfArg<String>` | `EventgridEventSubscriptionDeadLetterIdentityType` |
+| `EventgridEventSubscriptionDeliveryIdentity.type` | `TfArg<String>` | `EventgridEventSubscriptionDeadLetterIdentityType` |
+| `EventgridEventSubscriptionDeliveryProperty.type` | `TfArg<String>` | `EventgridEventSubscriptionDeliveryPropertyType` |
+| `EventgridSystemTopicEventSubscriptionDeadLetterIdentity.type` | `TfArg<String>` | `EventgridSystemTopicEventSubscriptionDeadLetterIdentityType` |
+| `EventgridSystemTopicEventSubscriptionDeliveryIdentity.type` | `TfArg<String>` | `EventgridSystemTopicEventSubscriptionDeadLetterIdentityType` |
+| `EventgridSystemTopicEventSubscriptionDeliveryProperty.type` | `TfArg<String>` | `EventgridSystemTopicEventSubscriptionDeliveryPropertyType` |
 | `FunctionAppFlexConsumptionAuthSettings.defaultProvider` | `TfArg<String>` | `FunctionAppFlexConsumptionDefaultProvider` |
 | `FunctionAppFlexConsumptionAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `FunctionAppFlexConsumptionUnauthenticatedClientAction` |
 | `FunctionAppFlexConsumptionAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `FunctionAppFlexConsumptionForwardProxyConvention` |
@@ -560,70 +650,179 @@ Every retyped `terradart_azure` input:
 | `FunctionAppFlexConsumptionIpRestriction.action` | `TfArg<String>` | `FunctionAppFlexConsumptionAction` |
 | `FunctionAppFlexConsumptionLogin.cookieExpirationConvention` | `TfArg<String>` | `FunctionAppFlexConsumptionCookieExpirationConvention` |
 | `FunctionAppFlexConsumptionScmIpRestriction.action` | `TfArg<String>` | `FunctionAppFlexConsumptionAction` |
+| `FunctionAppFlexConsumptionSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `FunctionAppFlexConsumptionIpRestrictionDefaultAction` |
 | `FunctionAppFlexConsumptionSiteConfig.loadBalancingMode` | `TfArg<String>` | `FunctionAppFlexConsumptionLoadBalancingMode` |
 | `FunctionAppFlexConsumptionSiteConfig.managedPipelineMode` | `TfArg<String>` | `FunctionAppFlexConsumptionManagedPipelineMode` |
 | `FunctionAppFlexConsumptionSiteConfig.minimumTlsVersion` | `TfArg<String>` | `FunctionAppFlexConsumptionMinimumTlsVersion` |
+| `FunctionAppFlexConsumptionSiteConfig.remoteDebuggingVersion` | `TfArg<String>` | `FunctionAppFlexConsumptionRemoteDebuggingVersion` |
+| `FunctionAppFlexConsumptionSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `FunctionAppFlexConsumptionScmIpRestrictionDefaultAction` |
 | `FunctionAppFlexConsumptionSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `FunctionAppFlexConsumptionScmMinimumTlsVersion` |
-| `LinuxFunctionAppApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxFunctionAppDotnetVersion` |
-| `LinuxFunctionAppApplicationStack.javaVersion` | `TfArg<String>` | `LinuxFunctionAppJavaVersion` |
-| `LinuxFunctionAppApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxFunctionAppNodeVersion` |
-| `LinuxFunctionAppApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxFunctionAppPythonVersion` |
+| `HdinsightHadoopClusterDiskEncryption.encryptionAlgorithm` | `TfArg<String>` | `HdinsightHadoopClusterEncryptionAlgorithm` |
+| `HdinsightHadoopClusterIpConfiguration.privateIpAllocationMethod` | `TfArg<String>` | `HdinsightHadoopClusterPrivateIpAllocationMethod` |
+| `HdinsightHadoopClusterNetwork.connectionDirection` | `TfArg<String>` | `HdinsightHadoopClusterConnectionDirection` |
+| `HdinsightHbaseClusterDiskEncryption.encryptionAlgorithm` | `TfArg<String>` | `HdinsightHbaseClusterEncryptionAlgorithm` |
+| `HdinsightHbaseClusterIpConfiguration.privateIpAllocationMethod` | `TfArg<String>` | `HdinsightHbaseClusterPrivateIpAllocationMethod` |
+| `HdinsightHbaseClusterNetwork.connectionDirection` | `TfArg<String>` | `HdinsightHbaseClusterConnectionDirection` |
+| `HdinsightInteractiveQueryClusterDiskEncryption.encryptionAlgorithm` | `TfArg<String>` | `HdinsightInteractiveQueryClusterEncryptionAlgorithm` |
+| `HdinsightInteractiveQueryClusterIpConfiguration.privateIpAllocationMethod` | `TfArg<String>` | `HdinsightInteractiveQueryClusterPrivateIpAllocationMethod` |
+| `HdinsightInteractiveQueryClusterNetwork.connectionDirection` | `TfArg<String>` | `HdinsightInteractiveQueryClusterConnectionDirection` |
+| `HdinsightKafkaClusterDiskEncryption.encryptionAlgorithm` | `TfArg<String>` | `HdinsightKafkaClusterEncryptionAlgorithm` |
+| `HdinsightKafkaClusterIpConfiguration.privateIpAllocationMethod` | `TfArg<String>` | `HdinsightKafkaClusterPrivateIpAllocationMethod` |
+| `HdinsightKafkaClusterNetwork.connectionDirection` | `TfArg<String>` | `HdinsightKafkaClusterConnectionDirection` |
+| `HdinsightSparkClusterDiskEncryption.encryptionAlgorithm` | `TfArg<String>` | `HdinsightSparkClusterEncryptionAlgorithm` |
+| `HdinsightSparkClusterIpConfiguration.privateIpAllocationMethod` | `TfArg<String>` | `HdinsightSparkClusterPrivateIpAllocationMethod` |
+| `HdinsightSparkClusterNetwork.connectionDirection` | `TfArg<String>` | `HdinsightSparkClusterConnectionDirection` |
+| `KubernetesClusterNodePoolAllowedHostPorts.protocol` | `TfArg<String>` | `KubernetesClusterNodePoolProtocol` |
+| `KubernetesClusterNodePoolKubeletConfig.cpuManagerPolicy` | `TfArg<String>` | `KubernetesClusterNodePoolCpuManagerPolicy` |
+| `KubernetesClusterNodePoolKubeletConfig.topologyManagerPolicy` | `TfArg<String>` | `KubernetesClusterNodePoolTopologyManagerPolicy` |
+| `KubernetesClusterNodePoolLinuxOsConfig.transparentHugePage` | `TfArg<String>` | `KubernetesClusterNodePoolTransparentHugePage` |
+| `KubernetesClusterNodePoolLinuxOsConfig.transparentHugePageDefrag` | `TfArg<String>` | `KubernetesClusterNodePoolTransparentHugePageDefrag` |
+| `KubernetesClusterNodePoolUpgradeSettings.undrainableNodeBehavior` | `TfArg<String>` | `KubernetesClusterNodePoolUndrainableNodeBehavior` |
 | `LinuxFunctionAppAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxFunctionAppDefaultProvider` |
 | `LinuxFunctionAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxFunctionAppUnauthenticatedClientAction` |
 | `LinuxFunctionAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxFunctionAppForwardProxyConvention` |
 | `LinuxFunctionAppAuthSettingsV2.unauthenticatedAction` | `TfArg<String>` | `LinuxFunctionAppUnauthenticatedAction` |
-| `LinuxFunctionAppConnectionString.type` | `TfArg<String>` | `LinuxFunctionAppType` |
+| `LinuxFunctionAppConnectionString.type` | `TfArg<String>` | `LinuxFunctionAppConnectionStringType` |
 | `LinuxFunctionAppIpRestriction.action` | `TfArg<String>` | `LinuxFunctionAppAction` |
 | `LinuxFunctionAppLogin.cookieExpirationConvention` | `TfArg<String>` | `LinuxFunctionAppCookieExpirationConvention` |
 | `LinuxFunctionAppSchedule.frequencyUnit` | `TfArg<String>` | `LinuxFunctionAppFrequencyUnit` |
 | `LinuxFunctionAppScmIpRestriction.action` | `TfArg<String>` | `LinuxFunctionAppAction` |
 | `LinuxFunctionAppSiteConfig.ftpsState` | `TfArg<String>` | `LinuxFunctionAppFtpsState` |
+| `LinuxFunctionAppSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `LinuxFunctionAppIpRestrictionDefaultAction` |
 | `LinuxFunctionAppSiteConfig.loadBalancingMode` | `TfArg<String>` | `LinuxFunctionAppLoadBalancingMode` |
 | `LinuxFunctionAppSiteConfig.managedPipelineMode` | `TfArg<String>` | `LinuxFunctionAppManagedPipelineMode` |
+| `LinuxFunctionAppSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `LinuxFunctionAppMinimumTlsCipherSuite` |
 | `LinuxFunctionAppSiteConfig.minimumTlsVersion` | `TfArg<String>` | `LinuxFunctionAppMinimumTlsVersion` |
+| `LinuxFunctionAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LinuxFunctionAppScmIpRestrictionDefaultAction` |
 | `LinuxFunctionAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `LinuxFunctionAppScmMinimumTlsVersion` |
-| `LinuxFunctionAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxFunctionAppSlotDotnetVersion` |
-| `LinuxFunctionAppSlotApplicationStack.javaVersion` | `TfArg<String>` | `LinuxFunctionAppSlotJavaVersion` |
-| `LinuxFunctionAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxFunctionAppSlotNodeVersion` |
-| `LinuxFunctionAppSlotApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxFunctionAppSlotPythonVersion` |
 | `LinuxFunctionAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxFunctionAppSlotDefaultProvider` |
 | `LinuxFunctionAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxFunctionAppSlotUnauthenticatedClientAction` |
 | `LinuxFunctionAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxFunctionAppSlotForwardProxyConvention` |
 | `LinuxFunctionAppSlotAuthSettingsV2.unauthenticatedAction` | `TfArg<String>` | `LinuxFunctionAppSlotUnauthenticatedAction` |
-| `LinuxFunctionAppSlotConnectionString.type` | `TfArg<String>` | `LinuxFunctionAppSlotType` |
+| `LinuxFunctionAppSlotConnectionString.type` | `TfArg<String>` | `LinuxFunctionAppSlotConnectionStringType` |
 | `LinuxFunctionAppSlotIpRestriction.action` | `TfArg<String>` | `LinuxFunctionAppSlotAction` |
 | `LinuxFunctionAppSlotLogin.cookieExpirationConvention` | `TfArg<String>` | `LinuxFunctionAppSlotCookieExpirationConvention` |
 | `LinuxFunctionAppSlotSchedule.frequencyUnit` | `TfArg<String>` | `LinuxFunctionAppSlotFrequencyUnit` |
 | `LinuxFunctionAppSlotScmIpRestriction.action` | `TfArg<String>` | `LinuxFunctionAppSlotAction` |
 | `LinuxFunctionAppSlotSiteConfig.ftpsState` | `TfArg<String>` | `LinuxFunctionAppSlotFtpsState` |
+| `LinuxFunctionAppSlotSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `LinuxFunctionAppSlotIpRestrictionDefaultAction` |
 | `LinuxFunctionAppSlotSiteConfig.loadBalancingMode` | `TfArg<String>` | `LinuxFunctionAppSlotLoadBalancingMode` |
 | `LinuxFunctionAppSlotSiteConfig.managedPipelineMode` | `TfArg<String>` | `LinuxFunctionAppSlotManagedPipelineMode` |
+| `LinuxFunctionAppSlotSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `LinuxFunctionAppSlotMinimumTlsCipherSuite` |
 | `LinuxFunctionAppSlotSiteConfig.minimumTlsVersion` | `TfArg<String>` | `LinuxFunctionAppSlotMinimumTlsVersion` |
+| `LinuxFunctionAppSlotSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LinuxFunctionAppSlotScmIpRestrictionDefaultAction` |
 | `LinuxFunctionAppSlotSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `LinuxFunctionAppSlotScmMinimumTlsVersion` |
+| `LinuxFunctionAppSlotStorageAccount.type` | `TfArg<String>` | `LinuxFunctionAppSlotStorageAccountType` |
+| `LinuxFunctionAppStorageAccount.type` | `TfArg<String>` | `LinuxFunctionAppStorageAccountType` |
+| `LinuxVirtualMachineDiffDiskSettings.placement` | `TfArg<String>` | `LinuxVirtualMachinePlacement` |
+| `LinuxVirtualMachineOsDisk.caching` | `TfArg<String>` | `LinuxVirtualMachineCaching` |
+| `LinuxVirtualMachineScaleSetAutomaticInstanceRepair.action` | `TfArg<String>` | `LinuxVirtualMachineScaleSetAction` |
+| `LinuxVirtualMachineScaleSetDataDisk.caching` | `TfArg<String>` | `LinuxVirtualMachineScaleSetCaching` |
+| `LinuxVirtualMachineScaleSetDataDisk.storageAccountType` | `TfArg<String>` | `LinuxVirtualMachineScaleSetStorageAccountType` |
+| `LinuxVirtualMachineScaleSetDiffDiskSettings.placement` | `TfArg<String>` | `LinuxVirtualMachineScaleSetPlacement` |
+| `LinuxVirtualMachineScaleSetIpConfiguration.version` | `TfArg<String>` | `LinuxVirtualMachineScaleSetVersion` |
+| `LinuxVirtualMachineScaleSetOsDisk.caching` | `TfArg<String>` | `LinuxVirtualMachineScaleSetCaching` |
+| `LinuxVirtualMachineScaleSetPublicIpAddress.version` | `TfArg<String>` | `LinuxVirtualMachineScaleSetVersion` |
+| `LinuxVirtualMachineScaleSetScaleIn.rule` | `TfArg<String>` | `LinuxVirtualMachineScaleSetRule` |
+| `LinuxWebAppApplicationLogs.fileSystemLevel` | `TfArg<String>` | `LinuxWebAppFileSystemLevel` |
+| `LinuxWebAppApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxWebAppDotnetVersion` |
+| `LinuxWebAppApplicationStack.goVersion` | `TfArg<String>` | `LinuxWebAppGoVersion` |
+| `LinuxWebAppApplicationStack.javaServer` | `TfArg<String>` | `LinuxWebAppJavaServer` |
+| `LinuxWebAppApplicationStack.javaVersion` | `TfArg<String>` | `LinuxWebAppJavaVersion` |
+| `LinuxWebAppApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxWebAppNodeVersion` |
+| `LinuxWebAppApplicationStack.phpVersion` | `TfArg<String>` | `LinuxWebAppPhpVersion` |
+| `LinuxWebAppApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxWebAppPythonVersion` |
 | `LinuxWebAppAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxWebAppDefaultProvider` |
 | `LinuxWebAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxWebAppUnauthenticatedClientAction` |
 | `LinuxWebAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxWebAppForwardProxyConvention` |
 | `LinuxWebAppAuthSettingsV2.unauthenticatedAction` | `TfArg<String>` | `LinuxWebAppUnauthenticatedAction` |
-| `LinuxWebAppConnectionString.type` | `TfArg<String>` | `LinuxWebAppType` |
+| `LinuxWebAppConnectionString.type` | `TfArg<String>` | `LinuxWebAppConnectionStringType` |
 | `LinuxWebAppIpRestriction.action` | `TfArg<String>` | `LinuxWebAppIpRestrictionAction` |
 | `LinuxWebAppLogin.cookieExpirationConvention` | `TfArg<String>` | `LinuxWebAppCookieExpirationConvention` |
 | `LinuxWebAppSchedule.frequencyUnit` | `TfArg<String>` | `LinuxWebAppFrequencyUnit` |
 | `LinuxWebAppScmIpRestriction.action` | `TfArg<String>` | `LinuxWebAppIpRestrictionAction` |
+| `LinuxWebAppSiteConfig.ftpsState` | `TfArg<String>` | `LinuxWebAppFtpsState` |
+| `LinuxWebAppSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `LinuxWebAppIpRestrictionDefaultAction` |
+| `LinuxWebAppSiteConfig.loadBalancingMode` | `TfArg<String>` | `LinuxWebAppLoadBalancingMode` |
+| `LinuxWebAppSiteConfig.managedPipelineMode` | `TfArg<String>` | `LinuxWebAppManagedPipelineMode` |
+| `LinuxWebAppSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `LinuxWebAppMinimumTlsCipherSuite` |
+| `LinuxWebAppSiteConfig.minimumTlsVersion` | `TfArg<String>` | `LinuxWebAppMinimumTlsVersion` |
+| `LinuxWebAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LinuxWebAppScmIpRestrictionDefaultAction` |
+| `LinuxWebAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `LinuxWebAppScmMinimumTlsVersion` |
+| `LinuxWebAppSlotApplicationLogs.fileSystemLevel` | `TfArg<String>` | `LinuxWebAppSlotFileSystemLevel` |
+| `LinuxWebAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxWebAppSlotDotnetVersion` |
+| `LinuxWebAppSlotApplicationStack.goVersion` | `TfArg<String>` | `LinuxWebAppSlotGoVersion` |
+| `LinuxWebAppSlotApplicationStack.javaServer` | `TfArg<String>` | `LinuxWebAppSlotJavaServer` |
+| `LinuxWebAppSlotApplicationStack.javaVersion` | `TfArg<String>` | `LinuxWebAppSlotJavaVersion` |
+| `LinuxWebAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxWebAppSlotNodeVersion` |
+| `LinuxWebAppSlotApplicationStack.phpVersion` | `TfArg<String>` | `LinuxWebAppSlotPhpVersion` |
+| `LinuxWebAppSlotApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxWebAppSlotPythonVersion` |
 | `LinuxWebAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxWebAppSlotDefaultProvider` |
 | `LinuxWebAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxWebAppSlotUnauthenticatedClientAction` |
 | `LinuxWebAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxWebAppSlotForwardProxyConvention` |
 | `LinuxWebAppSlotAuthSettingsV2.unauthenticatedAction` | `TfArg<String>` | `LinuxWebAppSlotUnauthenticatedAction` |
-| `LinuxWebAppSlotConnectionString.type` | `TfArg<String>` | `LinuxWebAppSlotType` |
+| `LinuxWebAppSlotConnectionString.type` | `TfArg<String>` | `LinuxWebAppSlotConnectionStringType` |
 | `LinuxWebAppSlotIpRestriction.action` | `TfArg<String>` | `LinuxWebAppSlotIpRestrictionAction` |
 | `LinuxWebAppSlotLogin.cookieExpirationConvention` | `TfArg<String>` | `LinuxWebAppSlotCookieExpirationConvention` |
 | `LinuxWebAppSlotSchedule.frequencyUnit` | `TfArg<String>` | `LinuxWebAppSlotFrequencyUnit` |
 | `LinuxWebAppSlotScmIpRestriction.action` | `TfArg<String>` | `LinuxWebAppSlotIpRestrictionAction` |
+| `LinuxWebAppSlotSiteConfig.ftpsState` | `TfArg<String>` | `LinuxWebAppSlotFtpsState` |
+| `LinuxWebAppSlotSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `LinuxWebAppSlotIpRestrictionDefaultAction` |
+| `LinuxWebAppSlotSiteConfig.loadBalancingMode` | `TfArg<String>` | `LinuxWebAppSlotLoadBalancingMode` |
+| `LinuxWebAppSlotSiteConfig.managedPipelineMode` | `TfArg<String>` | `LinuxWebAppSlotManagedPipelineMode` |
+| `LinuxWebAppSlotSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `LinuxWebAppSlotMinimumTlsCipherSuite` |
+| `LinuxWebAppSlotSiteConfig.minimumTlsVersion` | `TfArg<String>` | `LinuxWebAppSlotMinimumTlsVersion` |
+| `LinuxWebAppSlotSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LinuxWebAppSlotScmIpRestrictionDefaultAction` |
+| `LinuxWebAppSlotSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `LinuxWebAppSlotScmMinimumTlsVersion` |
+| `LinuxWebAppSlotStorageAccount.type` | `TfArg<String>` | `LinuxWebAppSlotStorageAccountType` |
+| `LinuxWebAppStorageAccount.type` | `TfArg<String>` | `LinuxWebAppStorageAccountType` |
 | `LogicAppStandardIpRestriction.action` | `TfArg<String>` | `LogicAppStandardAction` |
 | `LogicAppStandardScmIpRestriction.action` | `TfArg<String>` | `LogicAppStandardAction` |
-| `WindowsFunctionAppApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsFunctionAppDotnetVersion` |
-| `WindowsFunctionAppApplicationStack.javaVersion` | `TfArg<String>` | `WindowsFunctionAppJavaVersion` |
-| `WindowsFunctionAppApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsFunctionAppNodeVersion` |
-| `WindowsFunctionAppApplicationStack.powershellCoreVersion` | `TfArg<String>` | `WindowsFunctionAppPowershellCoreVersion` |
+| `LogicAppStandardSiteConfig.dotnetFrameworkVersion` | `TfArg<String>` | `LogicAppStandardDotnetFrameworkVersion` |
+| `LogicAppStandardSiteConfig.ftpsState` | `TfArg<String>` | `LogicAppStandardFtpsState` |
+| `LogicAppStandardSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `LogicAppStandardIpRestrictionDefaultAction` |
+| `LogicAppStandardSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LogicAppStandardScmIpRestrictionDefaultAction` |
+| `LogicAppStandardSiteConfig.scmType` | `TfArg<String>` | `LogicAppStandardScmType` |
+| `ManagedDevopsPoolAutomaticResourcePrediction.predictionPreference` | `TfArg<String>` | `ManagedDevopsPoolPredictionPreference` |
+| `OrchestratedVirtualMachineScaleSetAdditionalUnattendContent.setting` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetSetting` |
+| `OrchestratedVirtualMachineScaleSetAutomaticInstanceRepair.action` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetAction` |
+| `OrchestratedVirtualMachineScaleSetDataDisk.caching` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetCaching` |
+| `OrchestratedVirtualMachineScaleSetDataDisk.storageAccountType` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetStorageAccountType` |
+| `OrchestratedVirtualMachineScaleSetDiffDiskSettings.placement` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetPlacement` |
+| `OrchestratedVirtualMachineScaleSetIpConfiguration.version` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetVersion` |
+| `OrchestratedVirtualMachineScaleSetLinuxConfiguration.patchAssessmentMode` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetPatchAssessmentMode` |
+| `OrchestratedVirtualMachineScaleSetLinuxConfiguration.patchMode` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode` |
+| `OrchestratedVirtualMachineScaleSetOsDisk.caching` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetCaching` |
+| `OrchestratedVirtualMachineScaleSetPublicIpAddress.version` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetVersion` |
+| `OrchestratedVirtualMachineScaleSetWindowsConfiguration.patchAssessmentMode` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetPatchAssessmentMode` |
+| `OrchestratedVirtualMachineScaleSetWindowsConfiguration.patchMode` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode` |
+| `OrchestratedVirtualMachineScaleSetWinrmListener.protocol` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualHubPanoramaDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualHubStrataCloudManagerProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualNetworkLocalRulestackProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualNetworkPanoramaDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualNetworkPanoramaProtocol` |
+| `PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestinationNat.protocol` | `TfArg<String>` | `PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol` |
+| `RoleManagementPolicyApproverNotifications.notificationLevel` | `TfArg<String>` | `RoleManagementPolicyNotificationLevel` |
+| `RoleManagementPolicyAssigneeNotifications.notificationLevel` | `TfArg<String>` | `RoleManagementPolicyNotificationLevel` |
+| `ServiceFabricManagedClusterCertificate.type` | `TfArg<String>` | `ServiceFabricManagedClusterType` |
+| `ServiceFabricManagedClusterLbRule.probeProtocol` | `TfArg<String>` | `ServiceFabricManagedClusterProbeProtocol` |
+| `ServiceFabricManagedClusterLbRule.protocol` | `TfArg<String>` | `ServiceFabricManagedClusterProtocol` |
+| `ServiceFabricManagedClusterNodeType.dataDiskType` | `TfArg<String>` | `ServiceFabricManagedClusterDataDiskType` |
+| `SpringCloudServiceSshAuth.hostKeyAlgorithm` | `TfArg<String>` | `SpringCloudServiceHostKeyAlgorithm` |
+| `StreamAnalyticsOutputBlobSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsOutputBlobFieldDelimiter` |
+| `StreamAnalyticsOutputBlobSerialization.format` | `TfArg<String>` | `StreamAnalyticsOutputBlobFormat` |
+| `StreamAnalyticsOutputEventhubSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsOutputEventhubFieldDelimiter` |
+| `StreamAnalyticsOutputEventhubSerialization.format` | `TfArg<String>` | `StreamAnalyticsOutputEventhubFormat` |
+| `StreamAnalyticsOutputServicebusQueueSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsOutputServicebusQueueFieldDelimiter` |
+| `StreamAnalyticsOutputServicebusQueueSerialization.format` | `TfArg<String>` | `StreamAnalyticsOutputServicebusQueueFormat` |
+| `StreamAnalyticsOutputServicebusTopicSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsOutputServicebusTopicFieldDelimiter` |
+| `StreamAnalyticsOutputServicebusTopicSerialization.format` | `TfArg<String>` | `StreamAnalyticsOutputServicebusTopicFormat` |
+| `StreamAnalyticsReferenceInputBlobSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsReferenceInputBlobFieldDelimiter` |
+| `StreamAnalyticsStreamInputBlobSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsStreamInputBlobFieldDelimiter` |
+| `StreamAnalyticsStreamInputEventhubSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsStreamInputEventhubFieldDelimiter` |
+| `StreamAnalyticsStreamInputEventhubV2Serialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsStreamInputEventhubV2FieldDelimiter` |
+| `StreamAnalyticsStreamInputIothubSerialization.fieldDelimiter` | `TfArg<String>` | `StreamAnalyticsStreamInputIothubFieldDelimiter` |
 | `WindowsFunctionAppAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsFunctionAppDefaultProvider` |
 | `WindowsFunctionAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsFunctionAppUnauthenticatedClientAction` |
 | `WindowsFunctionAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsFunctionAppForwardProxyConvention` |
@@ -634,14 +833,13 @@ Every retyped `terradart_azure` input:
 | `WindowsFunctionAppSchedule.frequencyUnit` | `TfArg<String>` | `WindowsFunctionAppFrequencyUnit` |
 | `WindowsFunctionAppScmIpRestriction.action` | `TfArg<String>` | `WindowsFunctionAppAction` |
 | `WindowsFunctionAppSiteConfig.ftpsState` | `TfArg<String>` | `WindowsFunctionAppFtpsState` |
+| `WindowsFunctionAppSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `WindowsFunctionAppIpRestrictionDefaultAction` |
 | `WindowsFunctionAppSiteConfig.loadBalancingMode` | `TfArg<String>` | `WindowsFunctionAppLoadBalancingMode` |
 | `WindowsFunctionAppSiteConfig.managedPipelineMode` | `TfArg<String>` | `WindowsFunctionAppManagedPipelineMode` |
+| `WindowsFunctionAppSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `WindowsFunctionAppMinimumTlsCipherSuite` |
 | `WindowsFunctionAppSiteConfig.minimumTlsVersion` | `TfArg<String>` | `WindowsFunctionAppMinimumTlsVersion` |
+| `WindowsFunctionAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `WindowsFunctionAppScmIpRestrictionDefaultAction` |
 | `WindowsFunctionAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `WindowsFunctionAppScmMinimumTlsVersion` |
-| `WindowsFunctionAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsFunctionAppSlotDotnetVersion` |
-| `WindowsFunctionAppSlotApplicationStack.javaVersion` | `TfArg<String>` | `WindowsFunctionAppSlotJavaVersion` |
-| `WindowsFunctionAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsFunctionAppSlotNodeVersion` |
-| `WindowsFunctionAppSlotApplicationStack.powershellCoreVersion` | `TfArg<String>` | `WindowsFunctionAppSlotPowershellCoreVersion` |
 | `WindowsFunctionAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsFunctionAppSlotDefaultProvider` |
 | `WindowsFunctionAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsFunctionAppSlotUnauthenticatedClientAction` |
 | `WindowsFunctionAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsFunctionAppSlotForwardProxyConvention` |
@@ -652,10 +850,33 @@ Every retyped `terradart_azure` input:
 | `WindowsFunctionAppSlotSchedule.frequencyUnit` | `TfArg<String>` | `WindowsFunctionAppSlotFrequencyUnit` |
 | `WindowsFunctionAppSlotScmIpRestriction.action` | `TfArg<String>` | `WindowsFunctionAppSlotAction` |
 | `WindowsFunctionAppSlotSiteConfig.ftpsState` | `TfArg<String>` | `WindowsFunctionAppSlotFtpsState` |
+| `WindowsFunctionAppSlotSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `WindowsFunctionAppSlotIpRestrictionDefaultAction` |
 | `WindowsFunctionAppSlotSiteConfig.loadBalancingMode` | `TfArg<String>` | `WindowsFunctionAppSlotLoadBalancingMode` |
 | `WindowsFunctionAppSlotSiteConfig.managedPipelineMode` | `TfArg<String>` | `WindowsFunctionAppSlotManagedPipelineMode` |
+| `WindowsFunctionAppSlotSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `WindowsFunctionAppSlotMinimumTlsCipherSuite` |
 | `WindowsFunctionAppSlotSiteConfig.minimumTlsVersion` | `TfArg<String>` | `WindowsFunctionAppSlotMinimumTlsVersion` |
+| `WindowsFunctionAppSlotSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `WindowsFunctionAppSlotScmIpRestrictionDefaultAction` |
 | `WindowsFunctionAppSlotSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `WindowsFunctionAppSlotScmMinimumTlsVersion` |
+| `WindowsVirtualMachineAdditionalUnattendContent.setting` | `TfArg<String>` | `WindowsVirtualMachineSetting` |
+| `WindowsVirtualMachineDiffDiskSettings.placement` | `TfArg<String>` | `WindowsVirtualMachinePlacement` |
+| `WindowsVirtualMachineOsDisk.caching` | `TfArg<String>` | `WindowsVirtualMachineCaching` |
+| `WindowsVirtualMachineScaleSetAdditionalUnattendContent.setting` | `TfArg<String>` | `WindowsVirtualMachineScaleSetSetting` |
+| `WindowsVirtualMachineScaleSetAutomaticInstanceRepair.action` | `TfArg<String>` | `WindowsVirtualMachineScaleSetAction` |
+| `WindowsVirtualMachineScaleSetDataDisk.caching` | `TfArg<String>` | `WindowsVirtualMachineScaleSetCaching` |
+| `WindowsVirtualMachineScaleSetDataDisk.storageAccountType` | `TfArg<String>` | `WindowsVirtualMachineScaleSetStorageAccountType` |
+| `WindowsVirtualMachineScaleSetDiffDiskSettings.placement` | `TfArg<String>` | `WindowsVirtualMachineScaleSetPlacement` |
+| `WindowsVirtualMachineScaleSetIpConfiguration.version` | `TfArg<String>` | `WindowsVirtualMachineScaleSetVersion` |
+| `WindowsVirtualMachineScaleSetOsDisk.caching` | `TfArg<String>` | `WindowsVirtualMachineScaleSetCaching` |
+| `WindowsVirtualMachineScaleSetPublicIpAddress.version` | `TfArg<String>` | `WindowsVirtualMachineScaleSetVersion` |
+| `WindowsVirtualMachineScaleSetScaleIn.rule` | `TfArg<String>` | `WindowsVirtualMachineScaleSetRule` |
+| `WindowsVirtualMachineScaleSetWinrmListener.protocol` | `TfArg<String>` | `WindowsVirtualMachineScaleSetProtocol` |
+| `WindowsVirtualMachineWinrmListener.protocol` | `TfArg<String>` | `WindowsVirtualMachineProtocol` |
+| `WindowsWebAppAction.actionType` | `TfArg<String>` | `WindowsWebAppActionType` |
+| `WindowsWebAppApplicationLogs.fileSystemLevel` | `TfArg<String>` | `WindowsWebAppFileSystemLevel` |
+| `WindowsWebAppApplicationStack.currentStack` | `TfArg<String>` | `WindowsWebAppCurrentStack` |
+| `WindowsWebAppApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsWebAppDotnetVersion` |
+| `WindowsWebAppApplicationStack.javaContainer` | `TfArg<String>` | `WindowsWebAppJavaContainer` |
+| `WindowsWebAppApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsWebAppNodeVersion` |
 | `WindowsWebAppAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsWebAppDefaultProvider` |
 | `WindowsWebAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsWebAppUnauthenticatedClientAction` |
 | `WindowsWebAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsWebAppForwardProxyConvention` |
@@ -665,6 +886,20 @@ Every retyped `terradart_azure` input:
 | `WindowsWebAppLogin.cookieExpirationConvention` | `TfArg<String>` | `WindowsWebAppCookieExpirationConvention` |
 | `WindowsWebAppSchedule.frequencyUnit` | `TfArg<String>` | `WindowsWebAppFrequencyUnit` |
 | `WindowsWebAppScmIpRestriction.action` | `TfArg<String>` | `WindowsWebAppIpRestrictionAction` |
+| `WindowsWebAppSiteConfig.ftpsState` | `TfArg<String>` | `WindowsWebAppFtpsState` |
+| `WindowsWebAppSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `WindowsWebAppIpRestrictionDefaultAction` |
+| `WindowsWebAppSiteConfig.loadBalancingMode` | `TfArg<String>` | `WindowsWebAppLoadBalancingMode` |
+| `WindowsWebAppSiteConfig.managedPipelineMode` | `TfArg<String>` | `WindowsWebAppManagedPipelineMode` |
+| `WindowsWebAppSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `WindowsWebAppMinimumTlsCipherSuite` |
+| `WindowsWebAppSiteConfig.minimumTlsVersion` | `TfArg<String>` | `WindowsWebAppMinimumTlsVersion` |
+| `WindowsWebAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `WindowsWebAppScmIpRestrictionDefaultAction` |
+| `WindowsWebAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `WindowsWebAppScmMinimumTlsVersion` |
+| `WindowsWebAppSlotAction.actionType` | `TfArg<String>` | `WindowsWebAppSlotActionType` |
+| `WindowsWebAppSlotApplicationLogs.fileSystemLevel` | `TfArg<String>` | `WindowsWebAppSlotFileSystemLevel` |
+| `WindowsWebAppSlotApplicationStack.currentStack` | `TfArg<String>` | `WindowsWebAppSlotCurrentStack` |
+| `WindowsWebAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsWebAppSlotDotnetVersion` |
+| `WindowsWebAppSlotApplicationStack.javaContainer` | `TfArg<String>` | `WindowsWebAppSlotJavaContainer` |
+| `WindowsWebAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsWebAppSlotNodeVersion` |
 | `WindowsWebAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsWebAppSlotDefaultProvider` |
 | `WindowsWebAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsWebAppSlotUnauthenticatedClientAction` |
 | `WindowsWebAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsWebAppSlotForwardProxyConvention` |
@@ -674,6 +909,14 @@ Every retyped `terradart_azure` input:
 | `WindowsWebAppSlotLogin.cookieExpirationConvention` | `TfArg<String>` | `WindowsWebAppSlotCookieExpirationConvention` |
 | `WindowsWebAppSlotSchedule.frequencyUnit` | `TfArg<String>` | `WindowsWebAppSlotFrequencyUnit` |
 | `WindowsWebAppSlotScmIpRestriction.action` | `TfArg<String>` | `WindowsWebAppSlotIpRestrictionAction` |
+| `WindowsWebAppSlotSiteConfig.ftpsState` | `TfArg<String>` | `WindowsWebAppSlotFtpsState` |
+| `WindowsWebAppSlotSiteConfig.ipRestrictionDefaultAction` | `TfArg<String>` | `WindowsWebAppSlotIpRestrictionDefaultAction` |
+| `WindowsWebAppSlotSiteConfig.loadBalancingMode` | `TfArg<String>` | `WindowsWebAppSlotLoadBalancingMode` |
+| `WindowsWebAppSlotSiteConfig.managedPipelineMode` | `TfArg<String>` | `WindowsWebAppSlotManagedPipelineMode` |
+| `WindowsWebAppSlotSiteConfig.minimumTlsCipherSuite` | `TfArg<String>` | `WindowsWebAppSlotMinimumTlsCipherSuite` |
+| `WindowsWebAppSlotSiteConfig.minimumTlsVersion` | `TfArg<String>` | `WindowsWebAppSlotMinimumTlsVersion` |
+| `WindowsWebAppSlotSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `WindowsWebAppSlotScmIpRestrictionDefaultAction` |
+| `WindowsWebAppSlotSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `WindowsWebAppSlotScmMinimumTlsVersion` |
 
 Every retyped `terradart_cloudflare` input:
 
@@ -885,6 +1128,51 @@ argument. `GoogleAgenticApplicationsAnalystAgentPersona` takes
 `encryptionConfiguration`, `GoogleCesAgent` takes `remoteA2aAgent`,
 `GoogleContainerCluster` takes `managedOpentelemetryConfig`, and
 `GoogleContainerNodePool` takes `bestEffortProvisioning`.
+
+### App Service, VM and firewall exclusive groups are sealed
+
+**Breaking (`terradart_azure`).** The hint extractor now reads the schema
+helper functions an azurerm resource mounts (`helpers.AuthV2SettingsSchema()`
+and others), so their value sets and their `ExactlyOneOf` and
+`ConflictsWith` groups reach `wrap`. Each group is one sealed argument, as
+for the other lanes. The Terraform JSON for the same choice is unchanged.
+The App Service rows hold for the Linux and Windows web and function apps,
+their slots and `azurerm_function_app_flex_consumption`, each with its own
+type prefix.
+
+| Before | After |
+|---|---|
+| `LinuxWebAppFacebook(appId: id, appSecret: secret)` | `LinuxWebAppFacebook(appId: id, appSecret: .appSecret(secret))` |
+| `LinuxWebAppFacebook(appId: id, appSecretSettingName: name)` | `LinuxWebAppFacebook(appId: id, appSecret: .appSecretSettingName(name))` |
+| `LinuxWebAppGithub(clientId: id, clientSecretSettingName: name)` | `LinuxWebAppGithub(clientId: id, clientSecret: .clientSecretSettingName(name))` |
+| `LinuxWebAppActiveDirectory(clientId: id, clientSecret: secret)` | `LinuxWebAppActiveDirectory(clientId: id, clientSecret: .clientSecret(secret))` |
+| `LinuxWebAppLogin(tokenStorePath: path)` | `LinuxWebAppLogin(tokenStore: .tokenStorePath(path))` |
+| `LinuxWebAppLogs(httpLogs: .new(fileSystem: fs))` | `LinuxWebAppLogs(httpLogs: .fileSystem(fs))` |
+| `LinuxFunctionAppApplicationStack(pythonVersion: .literal('3.12'))` | `LinuxFunctionAppApplicationStack(runtime: .pythonVersion(.literal('3.12')))` |
+| `LinuxVirtualMachineOsDisk(caching: .readwrite, diskEncryptionSetId: set.ref)` | `LinuxVirtualMachineOsDisk(caching: .readwrite, encryptionSet: .diskEncryptionSetId(set.ref))` |
+| `LinuxVirtualMachineScaleSetExtension(protectedSettingsFromKeyVault: kv, ...)` | `LinuxVirtualMachineScaleSetExtension(protectedSettings: .protectedSettingsFromKeyVault(kv), ...)` |
+| `KubernetesClusterNodePoolUpgradeSettings(maxSurge: .literal('10%'))` | `KubernetesClusterNodePoolUpgradeSettings(surgeLimit: .maxSurge(.literal('10%')))` |
+| `dnsSettings: .new(useAzureDns: .literal(true))` on the Palo Alto firewalls | `dnsSettings: .useAzureDns(.literal(true))` |
+
+The Facebook `appSecret`, the GitHub, Google and Microsoft `clientSecret`,
+the Twitter `consumerSecret` and the function app `runtime` are required,
+because the provider takes exactly one member. The others stay optional.
+The `os_disk` rows hold for the Windows VM and both scale sets too, and the
+extension row for `azurerm_virtual_machine_scale_set_extension` and the
+Windows and orchestrated scale sets. The six Palo Alto firewall resources
+take `dnsSettings` the same way.
+
+The three `admin_notifications` blocks of `azurerm_role_management_policy`
+now share `RoleManagementPolicyAdminNotifications`, because their
+`notificationLevel` takes one enum.
+`RoleManagementPolicyActiveAssignmentsAdminNotifications` and
+`RoleManagementPolicyEligibleActivationsAdminNotifications` are gone.
+
+**Additive (`terradart_google`).** The rate-limit helpers of
+`google_compute_security_policy_rule` and
+`google_compute_region_security_policy_rule` take `exceedAction`
+(`ComputeSecurityPolicyRuleExceedAction`,
+`ComputeRegionSecurityPolicyRuleExceedAction`).
 
 ### EMR instance fleets can set configuration blocks
 
