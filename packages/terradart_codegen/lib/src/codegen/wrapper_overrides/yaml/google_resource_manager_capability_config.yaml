@@ -2,6 +2,7 @@
 # Review every TODO before committing.
 enumValues:
   types:
+    - APP_MANAGEMENT
     - AGENT_MANAGEMENT
 
 outputDir: project

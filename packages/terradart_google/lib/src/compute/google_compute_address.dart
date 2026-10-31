@@ -9,6 +9,47 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 /// Sensitive field paths for `google_compute_address`.
 const Set<String> _googleComputeAddressSensitive = <String>{};
 
+/// Compute Address enum for `purpose`.
+extension type const ComputeAddressPurpose._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeAddressPurpose.variable(String name) : this._(TfArg.variable(name));
+  ComputeAddressPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeAddressPurpose.arg(TfArg<String> arg) : this._(arg);
+
+  static const dnsResolver = ComputeAddressPurpose._(
+    TfArgLiteral('DNS_RESOLVER'),
+  );
+  static const gceEndpoint = ComputeAddressPurpose._(
+    TfArgLiteral('GCE_ENDPOINT'),
+  );
+  static const ipsecInterconnect = ComputeAddressPurpose._(
+    TfArgLiteral('IPSEC_INTERCONNECT'),
+  );
+  static const natAuto = ComputeAddressPurpose._(TfArgLiteral('NAT_AUTO'));
+  static const privateServiceConnect = ComputeAddressPurpose._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+  static const serverless = ComputeAddressPurpose._(TfArgLiteral('SERVERLESS'));
+  static const sharedLoadbalancerVip = ComputeAddressPurpose._(
+    TfArgLiteral('SHARED_LOADBALANCER_VIP'),
+  );
+  static const vpcPeering = ComputeAddressPurpose._(
+    TfArgLiteral('VPC_PEERING'),
+  );
+
+  static const List<ComputeAddressPurpose> values = [
+    dnsResolver,
+    gceEndpoint,
+    ipsecInterconnect,
+    natAuto,
+    privateServiceConnect,
+    serverless,
+    sharedLoadbalancerVip,
+    vpcPeering,
+  ];
+}
+
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
 // directly; TfArg detects `.toTfJson()` getter.
 
@@ -108,7 +149,7 @@ final class GoogleComputeAddress extends Resource {
     AddressType? addressType,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
-    TfArg<String>? purpose,
+    ComputeAddressPurpose? purpose,
     NetworkTier? networkTier,
     IpVersion? ipVersion,
     Ipv6EndpointType? ipv6EndpointType,

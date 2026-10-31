@@ -1,6 +1,18 @@
+enumValues:
+  purpose:
+    - 'DNS_RESOLVER'
+    - 'GCE_ENDPOINT'
+    - 'IPSEC_INTERCONNECT'
+    - 'NAT_AUTO'
+    - 'PRIVATE_SERVICE_CONNECT'
+    - 'SERVERLESS'
+    - 'SHARED_LOADBALANCER_VIP'
+    - 'VPC_PEERING'
+
 outputDir: compute
 
 deriveClassDoc: true
+deriveEnums: true
 deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true

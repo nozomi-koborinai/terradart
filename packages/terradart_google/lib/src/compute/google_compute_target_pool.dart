@@ -6,6 +6,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_target_pool`.
 const Set<String> _googleComputeTargetPoolSensitive = <String>{};
 
+/// Compute Target Pool Session enum for `session_affinity`.
+extension type const ComputeTargetPoolSessionAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeTargetPoolSessionAffinity.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeTargetPoolSessionAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeTargetPoolSessionAffinity.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = ComputeTargetPoolSessionAffinity._(TfArgLiteral('NONE'));
+  static const clientIp = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('CLIENT_IP'),
+  );
+  static const clientIpProto = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PROTO'),
+  );
+
+  static const List<ComputeTargetPoolSessionAffinity> values = [
+    none,
+    clientIp,
+    clientIpProto,
+  ];
+}
+
 /// Factory wrapper for `google_compute_target_pool`.
 ///
 /// Legacy Network Load Balancer target pool. Optional [healthChecks] accept
@@ -21,7 +45,7 @@ final class GoogleComputeTargetPool extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? instances,
     TfArg<List<String>>? healthChecks,
-    TfArg<String>? sessionAffinity,
+    ComputeTargetPoolSessionAffinity? sessionAffinity,
     TfArg<String>? backupPool,
     TfArg<num>? failoverRatio,
     TfArg<String>? deletionPolicy,

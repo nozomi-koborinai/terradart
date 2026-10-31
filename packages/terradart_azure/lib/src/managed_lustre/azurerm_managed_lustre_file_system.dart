@@ -10,6 +10,36 @@ import '../subnet/azurerm_subnet.dart' show AzurermSubnet;
 /// Sensitive field paths for `azurerm_managed_lustre_file_system`.
 const Set<String> _azurermManagedLustreFileSystemSensitive = <String>{};
 
+/// Managed Lustre File System Sku enum for `sku_name`.
+extension type const ManagedLustreFileSystemSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedLustreFileSystemSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedLustreFileSystemSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedLustreFileSystemSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const amlfsDurablePremium40 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-40'),
+  );
+  static const amlfsDurablePremium125 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-125'),
+  );
+  static const amlfsDurablePremium250 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-250'),
+  );
+  static const amlfsDurablePremium500 = ManagedLustreFileSystemSkuName._(
+    TfArgLiteral('AMLFS-Durable-Premium-500'),
+  );
+
+  static const List<ManagedLustreFileSystemSkuName> values = [
+    amlfsDurablePremium40,
+    amlfsDurablePremium125,
+    amlfsDurablePremium250,
+    amlfsDurablePremium500,
+  ];
+}
+
 /// Typed helper for the `encryption_key` block of
 /// `azurerm_managed_lustre_file_system` (derived from provider schema).
 @immutable
@@ -190,7 +220,7 @@ final class AzurermManagedLustreFileSystem extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required ManagedLustreFileSystemSkuName skuName,
     required TfArg<num> storageCapacityInTb,
     required RefTo<AzurermSubnet> subnetId,
     TfArg<Map<String, String>>? tags,

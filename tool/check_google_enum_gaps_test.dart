@@ -285,6 +285,24 @@ properties:
       'call-shaped values':
           'Valid options are deny(STATUS), where valid values for STATUS '
           'are 403, 404, 429, and 502.',
+      'Options are':
+          'Specifies how the transfer is performed. Options are '
+          'TRANSFER_MODE_UNSPECIFIED, AUTOMATIC and MANUAL.',
+      'The following values are supported':
+          'The networking tier. The following values are supported: '
+          'PREMIUM, STANDARD.',
+      'can take the following values':
+          'The schema update option can take the following values: '
+          'ALLOW_FIELD_ADDITION, ALLOW_FIELD_RELAXATION.',
+      'types are allowed':
+          'The OAuth grant type. The following grant types are allowed: '
+          'AUTHORIZATION_CODE_GRANT, REFRESH_TOKEN_GRANT.',
+      'Values supported are':
+          'The session affinity. Values supported are NONE, CLIENT_IP and '
+          'CLIENT_IP_PROTO.',
+      'Acceptable encoding values are':
+          'The encoding of the values. Acceptable encoding values are TEXT '
+          'and BINARY.',
     };
 
     for (final MapEntry(key: wording, value: description) in wordings.entries) {

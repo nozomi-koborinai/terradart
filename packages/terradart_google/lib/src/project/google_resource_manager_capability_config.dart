@@ -16,11 +16,15 @@ extension type const ResourceManagerCapabilityConfigTypes._(TfArg<String> _)
   const ResourceManagerCapabilityConfigTypes.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const appManagement = ResourceManagerCapabilityConfigTypes._(
+    TfArgLiteral('APP_MANAGEMENT'),
+  );
   static const agentManagement = ResourceManagerCapabilityConfigTypes._(
     TfArgLiteral('AGENT_MANAGEMENT'),
   );
 
   static const List<ResourceManagerCapabilityConfigTypes> values = [
+    appManagement,
     agentManagement,
   ];
 }

@@ -12,6 +12,7 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/compute/google_compute_address.dart'
     show
         AddressType,
+        ComputeAddressPurpose,
         GoogleComputeAddress,
         IpVersion,
         Ipv6EndpointType,
@@ -379,6 +380,7 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         ComputeInstanceGroupManagerNamedPort,
         ComputeInstanceGroupManagerResourcePolicies,
         ComputeInstanceGroupManagerStandbyPolicy,
+        ComputeInstanceGroupManagerStatefulDeleteRule,
         ComputeInstanceGroupManagerStatefulDisk,
         ComputeInstanceGroupManagerStatefulIp,
         ComputeInstanceGroupManagerTargetSizePolicy,
@@ -797,6 +799,7 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         ComputeRegionInstanceGroupManagerNamedPort,
         ComputeRegionInstanceGroupManagerResourcePolicies,
         ComputeRegionInstanceGroupManagerStandbyPolicy,
+        ComputeRegionInstanceGroupManagerStatefulDeleteRule,
         ComputeRegionInstanceGroupManagerStatefulDisk,
         ComputeRegionInstanceGroupManagerStatefulIp,
         ComputeRegionInstanceGroupManagerTargetSizePolicy,
@@ -830,6 +833,7 @@ export 'src/compute/google_compute_region_instance_template.dart'
         ComputeRegionInstanceTemplateMode,
         ComputeRegionInstanceTemplateNetworkInterface,
         ComputeRegionInstanceTemplateNetworkPerformanceConfig,
+        ComputeRegionInstanceTemplateNetworkTier,
         ComputeRegionInstanceTemplateNicType,
         ComputeRegionInstanceTemplateNodeAffinities,
         ComputeRegionInstanceTemplateOnInstanceStopAction,
@@ -1190,6 +1194,7 @@ export 'src/compute/google_compute_security_policy.dart'
         ComputeSecurityPolicyJsonCustomConfig,
         ComputeSecurityPolicyLayer7DdosDefenseConfig,
         ComputeSecurityPolicyRecaptchaOptionsConfig,
+        ComputeSecurityPolicyRequestBodyInspectionSize,
         ComputeSecurityPolicyRules,
         ComputeSecurityPolicyRulesEnforceOnKeyConfig,
         ComputeSecurityPolicyRulesHeaderAction,
@@ -1316,7 +1321,7 @@ export 'src/compute/google_compute_target_https_proxy.dart'
 export 'src/compute/google_compute_target_instance.dart'
     show ComputeTargetInstanceNatPolicy, GoogleComputeTargetInstance;
 export 'src/compute/google_compute_target_pool.dart'
-    show GoogleComputeTargetPool;
+    show ComputeTargetPoolSessionAffinity, GoogleComputeTargetPool;
 export 'src/compute/google_compute_target_ssl_proxy.dart'
     show GoogleComputeTargetSslProxy, TargetSslProxyProxyHeader;
 export 'src/compute/google_compute_target_tcp_proxy.dart'

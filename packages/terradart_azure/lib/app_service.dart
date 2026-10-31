@@ -549,7 +549,7 @@ export 'src/app_service/azurerm_linux_web_app_slot.dart'
         LinuxWebAppSlotUnauthenticatedAction,
         LinuxWebAppSlotUnauthenticatedClientAction;
 export 'src/app_service/azurerm_service_plan.dart'
-    show AzurermServicePlan, ServicePlanOsType;
+    show AzurermServicePlan, ServicePlanOsType, ServicePlanSkuName;
 export 'src/app_service/azurerm_windows_function_app.dart'
     show
         AzurermWindowsFunctionApp,

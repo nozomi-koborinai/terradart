@@ -8,6 +8,111 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_network_connectivity_transport`.
 const Set<String> _googleNetworkConnectivityTransportSensitive = <String>{};
 
+/// Network Connectivity Transport enum for `bandwidth`.
+extension type const NetworkConnectivityTransportBandwidth._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityTransportBandwidth.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityTransportBandwidth.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityTransportBandwidth.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const bps50m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_50M'),
+  );
+  static const bps100m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_100M'),
+  );
+  static const bps200m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_200M'),
+  );
+  static const bps300m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_300M'),
+  );
+  static const bps400m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_400M'),
+  );
+  static const bps500m = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_500M'),
+  );
+  static const bps1g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_1G'),
+  );
+  static const bps2g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_2G'),
+  );
+  static const bps5g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_5G'),
+  );
+  static const bps10g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_10G'),
+  );
+  static const bps20g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_20G'),
+  );
+  static const bps50g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_50G'),
+  );
+  static const bps100g = NetworkConnectivityTransportBandwidth._(
+    TfArgLiteral('BPS_100G'),
+  );
+
+  static const List<NetworkConnectivityTransportBandwidth> values = [
+    bps50m,
+    bps100m,
+    bps200m,
+    bps300m,
+    bps400m,
+    bps500m,
+    bps1g,
+    bps2g,
+    bps5g,
+    bps10g,
+    bps20g,
+    bps50g,
+    bps100g,
+  ];
+}
+
+/// Network Connectivity Transport enum for `state`.
+extension type const NetworkConnectivityTransportState._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityTransportState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityTransportState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityTransportState.arg(TfArg<String> arg) : this._(arg);
+
+  static const creating = NetworkConnectivityTransportState._(
+    TfArgLiteral('CREATING'),
+  );
+  static const pendingConfig = NetworkConnectivityTransportState._(
+    TfArgLiteral('PENDING_CONFIG'),
+  );
+  static const pendingKey = NetworkConnectivityTransportState._(
+    TfArgLiteral('PENDING_KEY'),
+  );
+  static const active = NetworkConnectivityTransportState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const deleting = NetworkConnectivityTransportState._(
+    TfArgLiteral('DELETING'),
+  );
+  static const deprovisioned = NetworkConnectivityTransportState._(
+    TfArgLiteral('DEPROVISIONED'),
+  );
+
+  static const List<NetworkConnectivityTransportState> values = [
+    creating,
+    pendingConfig,
+    pendingKey,
+    active,
+    deleting,
+    deprovisioned,
+  ];
+}
+
 /// Terraform `deletion_policy` for Network Connectivity transports.
 extension type const NetworkConnectivityTransportDeletionPolicy._(
   TfArg<String> _
@@ -93,7 +198,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
     RefTo<GoogleComputeNetwork>? network,
     required TfArg<String> remoteProfile,
     TfArg<String>? description,
-    TfArg<String>? bandwidth,
+    NetworkConnectivityTransportBandwidth? bandwidth,
     TfArg<String>? remoteAccountId,
     TfArg<String>? providedActivationKey,
     TfArg<List<String>>? advertisedRoutes,

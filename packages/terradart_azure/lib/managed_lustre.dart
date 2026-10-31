@@ -13,4 +13,5 @@ export 'src/managed_lustre/azurerm_managed_lustre_file_system.dart'
         ManagedLustreFileSystemIdentity,
         ManagedLustreFileSystemMaintenanceWindow,
         ManagedLustreFileSystemMode,
-        ManagedLustreFileSystemRootSquash;
+        ManagedLustreFileSystemRootSquash,
+        ManagedLustreFileSystemSkuName;

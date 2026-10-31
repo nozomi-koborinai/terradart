@@ -399,6 +399,32 @@ class ComputeRegionInstanceGroupManagerNamedPort {
 // stateful_disk / stateful_internal_ip / stateful_external_ip blocks
 // ===========================================================================
 
+/// `delete_rule` of the `stateful_disk`, `stateful_internal_ip` and
+/// `stateful_external_ip` blocks.
+extension type const ComputeRegionInstanceGroupManagerStatefulDeleteRule._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceGroupManagerStatefulDeleteRule.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceGroupManagerStatefulDeleteRule.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceGroupManagerStatefulDeleteRule.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const never = ComputeRegionInstanceGroupManagerStatefulDeleteRule._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputeRegionInstanceGroupManagerStatefulDeleteRule._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputeRegionInstanceGroupManagerStatefulDeleteRule>
+  values = [never, onPermanentInstanceDeletion];
+}
+
 /// One entry in [statefulDisks]. Marks a disk attached at
 /// [deviceName] as **stateful** — the MIG preserves the disk across
 /// VM recreates per [deleteRule]. Note: cross-zone instance
@@ -419,7 +445,7 @@ class ComputeRegionInstanceGroupManagerStatefulDisk {
 
   /// `NEVER` (default — detach but keep the disk) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final TfArg<String>? deleteRule;
+  final ComputeRegionInstanceGroupManagerStatefulDeleteRule? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     'device_name': deviceName.toTfJson(),
@@ -441,7 +467,7 @@ class ComputeRegionInstanceGroupManagerStatefulIp {
 
   /// `NEVER` (default — detach but keep the Address) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final TfArg<String>? deleteRule;
+  final ComputeRegionInstanceGroupManagerStatefulDeleteRule? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),

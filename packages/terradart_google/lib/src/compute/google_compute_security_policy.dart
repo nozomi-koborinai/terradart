@@ -630,6 +630,43 @@ class ComputeSecurityPolicyRulesHeaderAdd {
 // advanced_options_config (single block, max_items=1)
 // ===========================================================================
 
+/// `advanced_options_config.request_body_inspection_size`. The provider
+/// compares it case-insensitively; these are the canonical spellings.
+extension type const ComputeSecurityPolicyRequestBodyInspectionSize._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeSecurityPolicyRequestBodyInspectionSize.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyRequestBodyInspectionSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyRequestBodyInspectionSize.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v8kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('8KB'),
+  );
+  static const v16kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('16KB'),
+  );
+  static const v32kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('32KB'),
+  );
+  static const v48kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('48KB'),
+  );
+  static const v64kb = ComputeSecurityPolicyRequestBodyInspectionSize._(
+    TfArgLiteral('64KB'),
+  );
+
+  static const List<ComputeSecurityPolicyRequestBodyInspectionSize> values = [
+    v8kb,
+    v16kb,
+    v32kb,
+    v48kb,
+    v64kb,
+  ];
+}
+
 /// `advanced_options_config` -- knobs that apply across the whole
 /// policy: JSON-body inspection for preconfigured WAF rules, log
 /// verbosity, and client-IP resolution headers.
@@ -650,10 +687,10 @@ class ComputeSecurityPolicyAdvancedOptionsConfig {
   /// Cloud Logging verbosity for this policy.
   final SecurityPolicyLogLevel? logLevel;
 
-  /// Max request body size to inspect with WAF (`'8KB'`, `'16KB'`,
-  /// `'32KB'`, `'48KB'`, `'64KB'` -- case-insensitive). Larger values
-  /// catch more attacks at the cost of latency / cost.
-  final TfArg<String>? requestBodyInspectionSize;
+  /// Max request body size to inspect with WAF. Larger values catch
+  /// more attacks at the cost of latency / cost.
+  final ComputeSecurityPolicyRequestBodyInspectionSize?
+  requestBodyInspectionSize;
 
   /// Headers Cloud Armor consults to derive the client IP (in addition
   /// to the L4 source). Case-insensitive header names; typically

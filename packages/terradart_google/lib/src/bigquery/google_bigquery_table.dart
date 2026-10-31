@@ -464,13 +464,13 @@ final class BigqueryTableColumnFamily {
     this.column,
   });
 
-  final TfArg<String>? encoding;
+  final BigqueryTableColumnFamilyEncoding? encoding;
 
   final TfArg<String>? familyId;
 
   final TfArg<bool>? onlyReadLatest;
 
-  final TfArg<String>? type;
+  final BigqueryTableColumnFamilyType? type;
 
   final List<BigqueryTableColumn>? column;
 
@@ -482,6 +482,53 @@ final class BigqueryTableColumnFamily {
     'type': ?type?.toTfJson(),
     if (column != null) 'column': [for (final e in column!) e.encode()],
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableColumnFamilyEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableColumnFamilyEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableColumnFamilyEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableColumnFamilyEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const text = BigqueryTableColumnFamilyEncoding._(TfArgLiteral('TEXT'));
+  static const binary = BigqueryTableColumnFamilyEncoding._(
+    TfArgLiteral('BINARY'),
+  );
+
+  static const List<BigqueryTableColumnFamilyEncoding> values = [text, binary];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const BigqueryTableColumnFamilyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableColumnFamilyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableColumnFamilyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableColumnFamilyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bytes = BigqueryTableColumnFamilyType._(TfArgLiteral('BYTES'));
+  static const string = BigqueryTableColumnFamilyType._(TfArgLiteral('STRING'));
+  static const integer = BigqueryTableColumnFamilyType._(
+    TfArgLiteral('INTEGER'),
+  );
+  static const float = BigqueryTableColumnFamilyType._(TfArgLiteral('FLOAT'));
+  static const boolean = BigqueryTableColumnFamilyType._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const json = BigqueryTableColumnFamilyType._(TfArgLiteral('JSON'));
+
+  static const List<BigqueryTableColumnFamilyType> values = [
+    bytes,
+    string,
+    integer,
+    float,
+    boolean,
+    json,
+  ];
 }
 
 /// Typed helper for the `external_data_configuration.bigtable_options.column_family.column` block of
@@ -497,7 +544,7 @@ final class BigqueryTableColumn {
     this.type,
   });
 
-  final TfArg<String>? encoding;
+  final BigqueryTableColumnFamilyEncoding? encoding;
 
   final TfArg<String>? fieldName;
 
@@ -507,7 +554,7 @@ final class BigqueryTableColumn {
 
   final TfArg<String>? qualifierString;
 
-  final TfArg<String>? type;
+  final BigqueryTableColumnFamilyType? type;
 
   @internal
   Map<String, Object?> encode() => {

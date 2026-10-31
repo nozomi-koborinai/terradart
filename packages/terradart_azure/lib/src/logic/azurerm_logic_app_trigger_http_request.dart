@@ -6,6 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_logic_app_trigger_http_request`.
 const Set<String> _azurermLogicAppTriggerHttpRequestSensitive = <String>{};
 
+/// Logic App Trigger Http Request enum for `method`.
+extension type const LogicAppTriggerHttpRequestMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppTriggerHttpRequestMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppTriggerHttpRequestMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppTriggerHttpRequestMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const delete = LogicAppTriggerHttpRequestMethod._(
+    TfArgLiteral('DELETE'),
+  );
+  static const get = LogicAppTriggerHttpRequestMethod._(TfArgLiteral('GET'));
+  static const patch = LogicAppTriggerHttpRequestMethod._(
+    TfArgLiteral('PATCH'),
+  );
+  static const post = LogicAppTriggerHttpRequestMethod._(TfArgLiteral('POST'));
+  static const put = LogicAppTriggerHttpRequestMethod._(TfArgLiteral('PUT'));
+
+  static const List<LogicAppTriggerHttpRequestMethod> values = [
+    delete,
+    get,
+    patch,
+    post,
+    put,
+  ];
+}
+
 /// Factory wrapper for `azurerm_logic_app_trigger_http_request`.
 final class AzurermLogicAppTriggerHttpRequest extends Resource {
   static const String tfType = 'azurerm_logic_app_trigger_http_request';
@@ -13,7 +41,7 @@ final class AzurermLogicAppTriggerHttpRequest extends Resource {
   AzurermLogicAppTriggerHttpRequest(
     super.localName, {
     required TfArg<String> logicAppId,
-    TfArg<String>? method,
+    LogicAppTriggerHttpRequestMethod? method,
     required TfArg<String> name,
     TfArg<String>? relativePath,
     required TfArg<String> schema,

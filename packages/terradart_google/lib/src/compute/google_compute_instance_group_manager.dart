@@ -302,6 +302,32 @@ class ComputeInstanceGroupManagerNamedPort {
 // stateful_disk / stateful_internal_ip / stateful_external_ip blocks
 // ===========================================================================
 
+/// `delete_rule` of the `stateful_disk`, `stateful_internal_ip` and
+/// `stateful_external_ip` blocks.
+extension type const ComputeInstanceGroupManagerStatefulDeleteRule._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceGroupManagerStatefulDeleteRule.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceGroupManagerStatefulDeleteRule.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceGroupManagerStatefulDeleteRule.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const never = ComputeInstanceGroupManagerStatefulDeleteRule._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputeInstanceGroupManagerStatefulDeleteRule._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputeInstanceGroupManagerStatefulDeleteRule> values = [
+    never,
+    onPermanentInstanceDeletion,
+  ];
+}
+
 /// One entry in [statefulDisks]. Marks a disk attached at
 /// [deviceName] as **stateful** — the MIG preserves the disk across
 /// VM recreates per [deleteRule].
@@ -318,7 +344,7 @@ class ComputeInstanceGroupManagerStatefulDisk {
 
   /// `NEVER` (default — detach but keep the disk) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final TfArg<String>? deleteRule;
+  final ComputeInstanceGroupManagerStatefulDeleteRule? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     'device_name': deviceName.toTfJson(),
@@ -340,7 +366,7 @@ class ComputeInstanceGroupManagerStatefulIp {
 
   /// `NEVER` (default — detach but keep the Address) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final TfArg<String>? deleteRule;
+  final ComputeInstanceGroupManagerStatefulDeleteRule? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),

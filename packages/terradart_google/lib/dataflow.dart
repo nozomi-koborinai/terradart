@@ -22,4 +22,4 @@ export 'src/dataflow/google_data_pipeline_pipeline.dart'
         DataPipelinePipelineWorkload,
         GoogleDataPipelinePipeline;
 export 'src/dataflow/google_dataflow_job.dart'
-    show DataflowJobOnDelete, GoogleDataflowJob;
+    show DataflowJobIpConfiguration, DataflowJobOnDelete, GoogleDataflowJob;

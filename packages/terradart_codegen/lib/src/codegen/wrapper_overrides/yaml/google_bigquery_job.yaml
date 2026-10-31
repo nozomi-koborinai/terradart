@@ -1,3 +1,11 @@
+enumValues:
+  query.schema_update_options:
+    - "ALLOW_FIELD_ADDITION"
+    - "ALLOW_FIELD_RELAXATION"
+  load.schema_update_options:
+    - "ALLOW_FIELD_ADDITION"
+    - "ALLOW_FIELD_RELAXATION"
+
 outputDir: bigquery
 
 deriveClassDoc: true

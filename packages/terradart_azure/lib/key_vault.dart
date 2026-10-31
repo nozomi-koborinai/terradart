@@ -42,7 +42,12 @@ export 'src/key_vault/azurerm_key_vault.dart'
         KeyVaultNetworkAcls,
         KeyVaultSkuName;
 export 'src/key_vault/azurerm_key_vault_access_policy.dart'
-    show AzurermKeyVaultAccessPolicy, KeyVaultAccessPolicyStoragePermissions;
+    show
+        AzurermKeyVaultAccessPolicy,
+        KeyVaultAccessPolicyCertificatePermissions,
+        KeyVaultAccessPolicyKeyPermissions,
+        KeyVaultAccessPolicySecretPermissions,
+        KeyVaultAccessPolicyStoragePermissions;
 export 'src/key_vault/azurerm_key_vault_certificate.dart'
     show
         AzurermKeyVaultCertificate,
@@ -100,6 +105,8 @@ export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module_role_as
 export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module_role_definition.dart'
     show
         AzurermKeyVaultManagedHardwareSecurityModuleRoleDefinition,
+        KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions,
+        KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions,
         KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission;
 export 'src/key_vault/azurerm_key_vault_managed_storage_account.dart'
     show AzurermKeyVaultManagedStorageAccount, KeyVaultManagedStorageAccountKey;

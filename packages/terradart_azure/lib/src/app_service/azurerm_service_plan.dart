@@ -29,6 +29,123 @@ extension type const ServicePlanOsType._(TfArg<String> _)
   ];
 }
 
+/// Service Plan Sku enum for `sku_name`.
+extension type const ServicePlanSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicePlanSkuName.variable(String name) : this._(TfArg.variable(name));
+  ServicePlanSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicePlanSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const b1 = ServicePlanSkuName._(TfArgLiteral('B1'));
+  static const b2 = ServicePlanSkuName._(TfArgLiteral('B2'));
+  static const b3 = ServicePlanSkuName._(TfArgLiteral('B3'));
+  static const s1 = ServicePlanSkuName._(TfArgLiteral('S1'));
+  static const s2 = ServicePlanSkuName._(TfArgLiteral('S2'));
+  static const s3 = ServicePlanSkuName._(TfArgLiteral('S3'));
+  static const y1 = ServicePlanSkuName._(TfArgLiteral('Y1'));
+  static const ep1 = ServicePlanSkuName._(TfArgLiteral('EP1'));
+  static const ep2 = ServicePlanSkuName._(TfArgLiteral('EP2'));
+  static const ep3 = ServicePlanSkuName._(TfArgLiteral('EP3'));
+  static const fc1 = ServicePlanSkuName._(TfArgLiteral('FC1'));
+  static const f1 = ServicePlanSkuName._(TfArgLiteral('F1'));
+  static const i1 = ServicePlanSkuName._(TfArgLiteral('I1'));
+  static const i2 = ServicePlanSkuName._(TfArgLiteral('I2'));
+  static const i3 = ServicePlanSkuName._(TfArgLiteral('I3'));
+  static const i1v2 = ServicePlanSkuName._(TfArgLiteral('I1v2'));
+  static const i2v2 = ServicePlanSkuName._(TfArgLiteral('I2v2'));
+  static const i3v2 = ServicePlanSkuName._(TfArgLiteral('I3v2'));
+  static const i4v2 = ServicePlanSkuName._(TfArgLiteral('I4v2'));
+  static const i5v2 = ServicePlanSkuName._(TfArgLiteral('I5v2'));
+  static const i6v2 = ServicePlanSkuName._(TfArgLiteral('I6v2'));
+  static const i1mv2 = ServicePlanSkuName._(TfArgLiteral('I1mv2'));
+  static const i2mv2 = ServicePlanSkuName._(TfArgLiteral('I2mv2'));
+  static const i3mv2 = ServicePlanSkuName._(TfArgLiteral('I3mv2'));
+  static const i4mv2 = ServicePlanSkuName._(TfArgLiteral('I4mv2'));
+  static const i5mv2 = ServicePlanSkuName._(TfArgLiteral('I5mv2'));
+  static const p1v2 = ServicePlanSkuName._(TfArgLiteral('P1v2'));
+  static const p2v2 = ServicePlanSkuName._(TfArgLiteral('P2v2'));
+  static const p3v2 = ServicePlanSkuName._(TfArgLiteral('P3v2'));
+  static const p0v3 = ServicePlanSkuName._(TfArgLiteral('P0v3'));
+  static const p1v3 = ServicePlanSkuName._(TfArgLiteral('P1v3'));
+  static const p2v3 = ServicePlanSkuName._(TfArgLiteral('P2v3'));
+  static const p3v3 = ServicePlanSkuName._(TfArgLiteral('P3v3'));
+  static const p1mv3 = ServicePlanSkuName._(TfArgLiteral('P1mv3'));
+  static const p2mv3 = ServicePlanSkuName._(TfArgLiteral('P2mv3'));
+  static const p3mv3 = ServicePlanSkuName._(TfArgLiteral('P3mv3'));
+  static const p4mv3 = ServicePlanSkuName._(TfArgLiteral('P4mv3'));
+  static const p5mv3 = ServicePlanSkuName._(TfArgLiteral('P5mv3'));
+  static const p0v4 = ServicePlanSkuName._(TfArgLiteral('P0v4'));
+  static const p1v4 = ServicePlanSkuName._(TfArgLiteral('P1v4'));
+  static const p2v4 = ServicePlanSkuName._(TfArgLiteral('P2v4'));
+  static const p3v4 = ServicePlanSkuName._(TfArgLiteral('P3v4'));
+  static const p1mv4 = ServicePlanSkuName._(TfArgLiteral('P1mv4'));
+  static const p2mv4 = ServicePlanSkuName._(TfArgLiteral('P2mv4'));
+  static const p3mv4 = ServicePlanSkuName._(TfArgLiteral('P3mv4'));
+  static const p4mv4 = ServicePlanSkuName._(TfArgLiteral('P4mv4'));
+  static const p5mv4 = ServicePlanSkuName._(TfArgLiteral('P5mv4'));
+  static const d1 = ServicePlanSkuName._(TfArgLiteral('D1'));
+  static const shared = ServicePlanSkuName._(TfArgLiteral('SHARED'));
+  static const ws1 = ServicePlanSkuName._(TfArgLiteral('WS1'));
+  static const ws2 = ServicePlanSkuName._(TfArgLiteral('WS2'));
+  static const ws3 = ServicePlanSkuName._(TfArgLiteral('WS3'));
+
+  static const List<ServicePlanSkuName> values = [
+    b1,
+    b2,
+    b3,
+    s1,
+    s2,
+    s3,
+    y1,
+    ep1,
+    ep2,
+    ep3,
+    fc1,
+    f1,
+    i1,
+    i2,
+    i3,
+    i1v2,
+    i2v2,
+    i3v2,
+    i4v2,
+    i5v2,
+    i6v2,
+    i1mv2,
+    i2mv2,
+    i3mv2,
+    i4mv2,
+    i5mv2,
+    p1v2,
+    p2v2,
+    p3v2,
+    p0v3,
+    p1v3,
+    p2v3,
+    p3v3,
+    p1mv3,
+    p2mv3,
+    p3mv3,
+    p4mv3,
+    p5mv3,
+    p0v4,
+    p1v4,
+    p2v4,
+    p3v4,
+    p1mv4,
+    p2mv4,
+    p3mv4,
+    p4mv4,
+    p5mv4,
+    d1,
+    shared,
+    ws1,
+    ws2,
+    ws3,
+  ];
+}
+
 /// Factory wrapper for `azurerm_service_plan`.
 final class AzurermServicePlan extends Resource {
   static const String tfType = 'azurerm_service_plan';
@@ -43,7 +160,7 @@ final class AzurermServicePlan extends Resource {
     TfArg<bool>? perSiteScalingEnabled,
     TfArg<bool>? premiumPlanAutoScaleEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required ServicePlanSkuName skuName,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? workerCount,
     TfArg<bool>? zoneBalancingEnabled,

@@ -211,7 +211,13 @@ _GapTarget _gapTarget({
 
 final _cue = RegExp(
   r'\b(?:(?:possible|allowed|supported|valid|accepted|acceptable)\s+'
-  r'(?:values|options)|one\s+of|either)\b',
+  r'(?:[a-z]+\s+)?(?:values|options)'
+  r'|(?:values|options|types|modes)\s+(?:supported|allowed|accepted)\s+are'
+  r'|(?:values|options|types|modes)\s+(?:are|is)\s+'
+  r'(?:allowed|supported|accepted|valid)'
+  r'|options\s+are'
+  r'|the\s+following\s+(?:[a-z]+\s+)?(?:values|options|types|modes)'
+  r'|one\s+of|either)\b',
   caseSensitive: false,
 );
 final _sentenceEnd = RegExp(r'\.(?:\s|$)');
@@ -226,7 +232,9 @@ final _cueToken = RegExp(
 /// reaches the gap report. Deliberately looser than the parser: it takes
 /// every quoted, upper-case or PascalCase word, and every call-shaped
 /// word (`deny(403)`, `deny(STATUS)`), between a cue (`Possible values`,
-/// `Valid options`, `One of`, `either`) and the end of its sentence.
+/// `Valid options`, `Options are`, `Values supported are`, `types are
+/// allowed`, `the following values`, `One of`, `either`) and the end of
+/// its sentence.
 List<String>? cueValues(String? description) {
   if (description == null) return null;
   for (final m in _cue.allMatches(description)) {
@@ -246,8 +254,7 @@ final _enumLink = RegExp(
   r'|\[[A-Z][A-Za-z0-9]*\]\(https?://\S*/reference/rest/\S*#[a-z][a-z0-9]*\)',
 );
 
-/// Whether [description] carries a value-set cue (`Possible values`, `Valid
-/// options`, `One of`, `either`) or links a REST reference anchor that may
+/// Whether [description] carries a value-set cue (see [cueValues]) or links a REST reference anchor that may
 /// name a canonical enum, whatever tokens follow it. The tokens decide
 /// nothing: every such string input is typed or has a reasoned line in
 /// tool/enum_gap_cue_prose.yaml.

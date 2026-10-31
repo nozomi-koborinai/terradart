@@ -1,5 +1,6 @@
 # Inputs whose description has a value-set cue (`Possible values`, `Valid
-# options`, `One of`, `either`) that only the checker's loose reader
+# options`, `Options are`, `the following values`, `One of`, `either`, ...)
+# that only the checker's loose reader
 # (`cueValues` in check_google_enum_gaps.dart) reads, and that a reviewer
 # found to be prose rather than a value set, each with the reason.
 #
@@ -397,7 +398,6 @@ google_data_catalog_entry.user_specified_type: a custom entry type for entries t
 
 google_apigee_organization.analytics_region: a GCP region; the cue links the Apigee region list, which grows
 
-google_network_connectivity_transport.bandwidth: the valid bandwidths depend on the remote profile, so there is no fixed set
 
 google_redis_instance.redis_version: the description defers to the API docs for the latest versions, an open version list
 
@@ -446,8 +446,26 @@ google_dialogflow_cx_page.form.parameters.fill_behavior.reprompt_event_handlers.
 google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
 google_dialogflow_cx_page.transition_routes.trigger_fulfillment.conditional_cases.cases: a JSON-encoded list of Case messages; the link names a message schema, not an enum
 
-google_compute_address.purpose: the provider lists six purposes but the Compute v1 API Address.purpose also takes DNS_RESOLVER, NAT_AUTO and PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0/1, so the description is not the closed set
 google_dialogflow_cx_agent.text_to_speech_settings.synthesize_speech_configs: a JSON map from language to SynthesizeSpeechConfig; the links name message schemas, not enums
 google_dialogflow_cx_playbook.instruction.steps.steps: a JSON-encoded Step; the link names a message schema, not an enum
 google_secure_source_manager_repository.initial_config.gitignores: a gitignore template catalog of 230 names (REST InitialConfig) that grows with new templates
 google_secure_source_manager_repository.initial_config.license: an SPDX-based license template catalog of 459 names (REST InitialConfig) that grows with the SPDX list
+
+# Round 6: wordings the widened cue grammar now reads, reviewed as prose.
+google_bigquery_dataset.default_collation: the two supported values are 'und:ci' and the empty string, and an enum member cannot name the empty string, so the input stays a string
+google_compute_security_policy.rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_security_policy.rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_compute_security_policy_rule.rate_limit_options.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key types it applies to
+google_compute_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_name: an HTTP header or cookie name; HTTP_HEADER and HTTP_COOKIE are the enforce_on_key_type values it applies to
+google_apigee_api_product.operation_group.operation_configs.operations.methods: HTTP verbs of the proxy's REST operations; the description names no closed set
+google_iam_principal_access_boundary_policy.details.rules.resources: resource names the rule covers, not values
+google_document_ai_warehouse_document_schema.property_definitions.enum_type_options.possible_values: the user-defined values of a document schema enum property
+google_document_ai_warehouse_document_schema.property_definitions.property_type_options.property_definitions.enum_type_options.possible_values: the user-defined values of a document schema enum property
+google_iam_folder_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_iam_project_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_iam_organization_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
+google_network_services_authz_extension.service: a service host name or backend service URI in the formats the cue introduces, not a fixed set

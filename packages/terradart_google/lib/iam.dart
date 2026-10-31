@@ -79,7 +79,10 @@ export 'src/iam/google_iam_folders_policy_binding.dart'
         IamFoldersPolicyBindingTargetPrincipalSet,
         IamFoldersPolicyBindingTargetResource;
 export 'src/iam/google_iam_oauth_client.dart'
-    show GoogleIamOauthClient, IamOauthClientType;
+    show
+        GoogleIamOauthClient,
+        IamOauthClientAllowedGrantTypes,
+        IamOauthClientType;
 export 'src/iam/google_iam_oauth_client_credential.dart'
     show GoogleIamOauthClientCredential;
 export 'src/iam/google_iam_organization_access_policy.dart'

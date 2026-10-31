@@ -3790,9 +3790,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'template_name',
           dartName: 'templateName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ApiManagementEmailTemplateName',
         ),
       ],
       getters: <MigrateGetter>[
@@ -59496,16 +59496,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'certificate_permissions',
           dartName: 'certificatePermissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'KeyVaultAccessPolicyCertificatePermissions',
         ),
         MigrateSlot(
           tfName: 'key_permissions',
           dartName: 'keyPermissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'KeyVaultAccessPolicyKeyPermissions',
         ),
         MigrateSlot(
           tfName: 'key_vault_id',
@@ -59525,9 +59527,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret_permissions',
           dartName: 'secretPermissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'KeyVaultAccessPolicySecretPermissions',
         ),
         MigrateSlot(
           tfName: 'storage_permissions',
@@ -72213,9 +72216,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'method',
           dartName: 'method',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'LogicAppActionHttpMethod',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -73609,9 +73612,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'method',
           dartName: 'method',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'LogicAppTriggerHttpRequestMethod',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -76956,9 +76959,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sku_name',
           dartName: 'skuName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ManagedLustreFileSystemSkuName',
         ),
         MigrateSlot(
           tfName: 'storage_capacity_in_tb',
@@ -77120,9 +77123,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sku_name',
           dartName: 'skuName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ManagedRedisSkuName',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -114036,9 +114039,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sku_name',
           dartName: 'skuName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ServicePlanSkuName',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -156690,9 +156693,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -156885,9 +156888,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -156905,9 +156908,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -156932,9 +156935,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -156968,7 +156971,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'operator',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'CdnFrontdoorBatchRuleSetOperator',
+          dartType: 'CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator',
         ),
       ],
     ),
@@ -156994,7 +156997,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'operator',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'CdnFrontdoorBatchRuleSetOperator',
+          dartType: 'CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator',
         ),
       ],
     ),
@@ -157030,9 +157033,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157057,9 +157060,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157084,9 +157087,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetRemoteAddressOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157103,9 +157106,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157137,9 +157140,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157164,9 +157167,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157191,9 +157194,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157225,9 +157228,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157252,9 +157255,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157272,9 +157275,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetRequestPathOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157299,9 +157302,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157319,9 +157322,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -157409,9 +157412,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157429,9 +157432,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetSocketAddressOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -157448,9 +157451,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158160,9 +158163,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158355,9 +158358,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158375,9 +158378,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158402,9 +158405,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158438,7 +158441,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'operator',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'CdnFrontdoorRuleOperator',
+          dartType: 'CdnFrontdoorRuleModifyRequestHeaderOperator',
         ),
       ],
     ),
@@ -158464,7 +158467,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'operator',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'CdnFrontdoorRuleOperator',
+          dartType: 'CdnFrontdoorRuleModifyRequestHeaderOperator',
         ),
       ],
     ),
@@ -158500,9 +158503,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158527,9 +158530,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158554,9 +158557,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleRemoteAddressOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158573,9 +158576,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158607,9 +158610,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158634,9 +158637,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158661,9 +158664,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158695,9 +158698,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158722,9 +158725,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158742,9 +158745,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleRequestPathOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158769,9 +158772,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158789,9 +158792,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'transforms',
@@ -158837,9 +158840,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleClientPortOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158857,9 +158860,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleSocketAddressOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -158876,9 +158879,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'CdnFrontdoorRuleDeviceTypeOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -181852,41 +181855,44 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission':
-        MigrateHelper(
-          className:
-              'KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'actions',
-              dartName: 'actions',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-            MigrateSlot(
-              tfName: 'data_actions',
-              dartName: 'dataActions',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-            MigrateSlot(
-              tfName: 'not_actions',
-              dartName: 'notActions',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-            MigrateSlot(
-              tfName: 'not_data_actions',
-              dartName: 'notDataActions',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'List<String>',
-            ),
-          ],
+    'KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission': MigrateHelper(
+      className:
+          'KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'actions',
+          dartName: 'actions',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
         ),
+        MigrateSlot(
+          tfName: 'data_actions',
+          dartName: 'dataActions',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          repeated: true,
+          dartType:
+              'KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions',
+        ),
+        MigrateSlot(
+          tfName: 'not_actions',
+          dartName: 'notActions',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'not_data_actions',
+          dartName: 'notDataActions',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          repeated: true,
+          dartType:
+              'KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions',
+        ),
+      ],
+    ),
     'KeyVaultNetworkAcls': MigrateHelper(
       className: 'KeyVaultNetworkAcls',
       slots: <MigrateSlot>[
@@ -197804,10 +197810,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'persistence_append_only_file_backup_frequency',
               dartName: 'persistenceAppendOnlyFileBackupFrequency',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
               positional: true,
-              dartType: 'String',
+              dartType: 'ManagedRedisPersistenceAppendOnlyFileBackupFrequency',
             ),
           ],
           shorthand: 'persistenceAppendOnlyFileBackupFrequency',
@@ -234530,6 +234536,31 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'verbose': 'verbose',
       },
     ),
+    'ApiManagementEmailTemplateName': MigrateEnum(
+      name: 'ApiManagementEmailTemplateName',
+      members: <String, String>{
+        'AccountClosedDeveloper': 'accountcloseddeveloper',
+        'ApplicationApprovedNotificationMessage':
+            'applicationapprovednotificationmessage',
+        'ConfirmSignUpIdentityDefault': 'confirmsignupidentitydefault',
+        'EmailChangeIdentityDefault': 'emailchangeidentitydefault',
+        'InviteUserNotificationMessage': 'inviteusernotificationmessage',
+        'NewCommentNotificationMessage': 'newcommentnotificationmessage',
+        'NewDeveloperNotificationMessage': 'newdevelopernotificationmessage',
+        'NewIssueNotificationMessage': 'newissuenotificationmessage',
+        'PasswordResetByAdminNotificationMessage':
+            'passwordresetbyadminnotificationmessage',
+        'PasswordResetIdentityDefault': 'passwordresetidentitydefault',
+        'PurchaseDeveloperNotificationMessage':
+            'purchasedevelopernotificationmessage',
+        'QuotaLimitApproachingDeveloperNotificationMessage':
+            'quotalimitapproachingdevelopernotificationmessage',
+        'RejectDeveloperNotificationMessage':
+            'rejectdevelopernotificationmessage',
+        'RequestDeveloperNotificationMessage':
+            'requestdevelopernotificationmessage',
+      },
+    ),
     'ApiManagementGlobalSchemaType': MigrateEnum(
       name: 'ApiManagementGlobalSchemaType',
       members: <String, String>{'json': 'json', 'xml': 'xml'},
@@ -235470,6 +235501,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'CdnFrontdoorBatchRuleSetBehaviourOnMatch',
       members: <String, String>{'Continue': 'continueCase', 'Stop': 'stop'},
     ),
+    'CdnFrontdoorBatchRuleSetClientPortOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetClientPortOperator',
+      members: <String, String>{
+        'Any': 'any',
+        'NotAny': 'notany',
+        'BeginsWith': 'beginswith',
+        'NotBeginsWith': 'notbeginswith',
+        'Contains': 'contains',
+        'NotContains': 'notcontains',
+        'EndsWith': 'endswith',
+        'NotEndsWith': 'notendswith',
+        'Equal': 'equal',
+        'NotEqual': 'notequal',
+        'GreaterThan': 'greaterthan',
+        'NotGreaterThan': 'notgreaterthan',
+        'GreaterThanOrEqual': 'greaterthanorequal',
+        'NotGreaterThanOrEqual': 'notgreaterthanorequal',
+        'LessThan': 'lessthan',
+        'NotLessThan': 'notlessthan',
+        'LessThanOrEqual': 'lessthanorequal',
+        'NotLessThanOrEqual': 'notlessthanorequal',
+        'RegEx': 'regex',
+        'NotRegEx': 'notregex',
+      },
+    ),
+    'CdnFrontdoorBatchRuleSetDeviceTypeOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetDeviceTypeOperator',
+      members: <String, String>{'Equal': 'equal', 'NotEqual': 'notequal'},
+    ),
     'CdnFrontdoorBatchRuleSetDeviceTypeValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetDeviceTypeValues',
       members: <String, String>{'Desktop': 'desktop', 'Mobile': 'mobile'},
@@ -235491,8 +235551,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '0.9': 'v0p9',
       },
     ),
-    'CdnFrontdoorBatchRuleSetOperator': MigrateEnum(
-      name: 'CdnFrontdoorBatchRuleSetOperator',
+    'CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator',
       members: <String, String>{
         'Append': 'append',
         'Delete': 'delete',
@@ -235525,6 +235585,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TemporaryRedirect': 'temporaryredirect',
       },
     ),
+    'CdnFrontdoorBatchRuleSetRemoteAddressOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetRemoteAddressOperator',
+      members: <String, String>{
+        'GeoMatch': 'geomatch',
+        'NotGeoMatch': 'notgeomatch',
+        'IPMatch': 'ipmatch',
+        'NotIPMatch': 'notipmatch',
+      },
+    ),
     'CdnFrontdoorBatchRuleSetRequestMethodValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetRequestMethodValues',
       members: <String, String>{
@@ -235537,6 +235606,33 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TRACE': 'trace',
       },
     ),
+    'CdnFrontdoorBatchRuleSetRequestPathOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetRequestPathOperator',
+      members: <String, String>{
+        'Any': 'any',
+        'NotAny': 'notany',
+        'BeginsWith': 'beginswith',
+        'NotBeginsWith': 'notbeginswith',
+        'Contains': 'contains',
+        'NotContains': 'notcontains',
+        'EndsWith': 'endswith',
+        'NotEndsWith': 'notendswith',
+        'Equal': 'equal',
+        'NotEqual': 'notequal',
+        'GreaterThan': 'greaterthan',
+        'NotGreaterThan': 'notgreaterthan',
+        'GreaterThanOrEqual': 'greaterthanorequal',
+        'NotGreaterThanOrEqual': 'notgreaterthanorequal',
+        'LessThan': 'lessthan',
+        'NotLessThan': 'notlessthan',
+        'LessThanOrEqual': 'lessthanorequal',
+        'NotLessThanOrEqual': 'notlessthanorequal',
+        'RegEx': 'regex',
+        'NotRegEx': 'notregex',
+        'Wildcard': 'wildcard',
+        'NotWildcard': 'notwildcard',
+      },
+    ),
     'CdnFrontdoorBatchRuleSetRequestSchemeValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetRequestSchemeValues',
       members: <String, String>{'HTTP': 'http', 'HTTPS': 'https'},
@@ -235544,6 +235640,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'CdnFrontdoorBatchRuleSetServerPortValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetServerPortValues',
       members: <String, String>{'80': 'v80', '443': 'v443'},
+    ),
+    'CdnFrontdoorBatchRuleSetSocketAddressOperator': MigrateEnum(
+      name: 'CdnFrontdoorBatchRuleSetSocketAddressOperator',
+      members: <String, String>{
+        'IPMatch': 'ipmatch',
+        'NotIPMatch': 'notipmatch',
+      },
     ),
     'CdnFrontdoorBatchRuleSetSslProtocolValues': MigrateEnum(
       name: 'CdnFrontdoorBatchRuleSetSslProtocolValues',
@@ -235845,6 +235948,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'CdnFrontdoorRuleBehaviourOnMatch',
       members: <String, String>{'Continue': 'continueCase', 'Stop': 'stop'},
     ),
+    'CdnFrontdoorRuleClientPortOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleClientPortOperator',
+      members: <String, String>{
+        'Any': 'any',
+        'NotAny': 'notany',
+        'BeginsWith': 'beginswith',
+        'NotBeginsWith': 'notbeginswith',
+        'Contains': 'contains',
+        'NotContains': 'notcontains',
+        'EndsWith': 'endswith',
+        'NotEndsWith': 'notendswith',
+        'Equal': 'equal',
+        'NotEqual': 'notequal',
+        'GreaterThan': 'greaterthan',
+        'NotGreaterThan': 'notgreaterthan',
+        'GreaterThanOrEqual': 'greaterthanorequal',
+        'NotGreaterThanOrEqual': 'notgreaterthanorequal',
+        'LessThan': 'lessthan',
+        'NotLessThan': 'notlessthan',
+        'LessThanOrEqual': 'lessthanorequal',
+        'NotLessThanOrEqual': 'notlessthanorequal',
+        'RegEx': 'regex',
+        'NotRegEx': 'notregex',
+      },
+    ),
+    'CdnFrontdoorRuleDeviceTypeOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleDeviceTypeOperator',
+      members: <String, String>{'Equal': 'equal', 'NotEqual': 'notequal'},
+    ),
     'CdnFrontdoorRuleDeviceTypeValues': MigrateEnum(
       name: 'CdnFrontdoorRuleDeviceTypeValues',
       members: <String, String>{'Desktop': 'desktop', 'Mobile': 'mobile'},
@@ -235866,8 +235998,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         '0.9': 'v0p9',
       },
     ),
-    'CdnFrontdoorRuleOperator': MigrateEnum(
-      name: 'CdnFrontdoorRuleOperator',
+    'CdnFrontdoorRuleModifyRequestHeaderOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleModifyRequestHeaderOperator',
       members: <String, String>{
         'Append': 'append',
         'Delete': 'delete',
@@ -235900,6 +236032,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TemporaryRedirect': 'temporaryredirect',
       },
     ),
+    'CdnFrontdoorRuleRemoteAddressOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleRemoteAddressOperator',
+      members: <String, String>{
+        'GeoMatch': 'geomatch',
+        'NotGeoMatch': 'notgeomatch',
+        'IPMatch': 'ipmatch',
+        'NotIPMatch': 'notipmatch',
+      },
+    ),
     'CdnFrontdoorRuleRequestMethodValues': MigrateEnum(
       name: 'CdnFrontdoorRuleRequestMethodValues',
       members: <String, String>{
@@ -235912,6 +236053,33 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TRACE': 'trace',
       },
     ),
+    'CdnFrontdoorRuleRequestPathOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleRequestPathOperator',
+      members: <String, String>{
+        'Any': 'any',
+        'NotAny': 'notany',
+        'BeginsWith': 'beginswith',
+        'NotBeginsWith': 'notbeginswith',
+        'Contains': 'contains',
+        'NotContains': 'notcontains',
+        'EndsWith': 'endswith',
+        'NotEndsWith': 'notendswith',
+        'Equal': 'equal',
+        'NotEqual': 'notequal',
+        'GreaterThan': 'greaterthan',
+        'NotGreaterThan': 'notgreaterthan',
+        'GreaterThanOrEqual': 'greaterthanorequal',
+        'NotGreaterThanOrEqual': 'notgreaterthanorequal',
+        'LessThan': 'lessthan',
+        'NotLessThan': 'notlessthan',
+        'LessThanOrEqual': 'lessthanorequal',
+        'NotLessThanOrEqual': 'notlessthanorequal',
+        'RegEx': 'regex',
+        'NotRegEx': 'notregex',
+        'Wildcard': 'wildcard',
+        'NotWildcard': 'notwildcard',
+      },
+    ),
     'CdnFrontdoorRuleRequestSchemeValues': MigrateEnum(
       name: 'CdnFrontdoorRuleRequestSchemeValues',
       members: <String, String>{'HTTP': 'http', 'HTTPS': 'https'},
@@ -235919,6 +236087,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'CdnFrontdoorRuleServerPortValues': MigrateEnum(
       name: 'CdnFrontdoorRuleServerPortValues',
       members: <String, String>{'80': 'v80', '443': 'v443'},
+    ),
+    'CdnFrontdoorRuleSocketAddressOperator': MigrateEnum(
+      name: 'CdnFrontdoorRuleSocketAddressOperator',
+      members: <String, String>{
+        'IPMatch': 'ipmatch',
+        'NotIPMatch': 'notipmatch',
+      },
     ),
     'CdnFrontdoorRuleSslProtocolValues': MigrateEnum(
       name: 'CdnFrontdoorRuleSslProtocolValues',
@@ -239309,6 +239484,65 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TwinChangeEvents': 'twinchangeevents',
       },
     ),
+    'KeyVaultAccessPolicyCertificatePermissions': MigrateEnum(
+      name: 'KeyVaultAccessPolicyCertificatePermissions',
+      members: <String, String>{
+        'Get': 'get',
+        'List': 'list',
+        'Update': 'update',
+        'Create': 'create',
+        'Import': 'import',
+        'Delete': 'delete',
+        'Recover': 'recover',
+        'Backup': 'backup',
+        'Restore': 'restore',
+        'ManageContacts': 'managecontacts',
+        'ManageIssuers': 'manageissuers',
+        'GetIssuers': 'getissuers',
+        'ListIssuers': 'listissuers',
+        'SetIssuers': 'setissuers',
+        'DeleteIssuers': 'deleteissuers',
+        'Purge': 'purge',
+      },
+    ),
+    'KeyVaultAccessPolicyKeyPermissions': MigrateEnum(
+      name: 'KeyVaultAccessPolicyKeyPermissions',
+      members: <String, String>{
+        'Get': 'get',
+        'List': 'list',
+        'Update': 'update',
+        'Create': 'create',
+        'Import': 'import',
+        'Delete': 'delete',
+        'Recover': 'recover',
+        'Backup': 'backup',
+        'Restore': 'restore',
+        'Decrypt': 'decrypt',
+        'Encrypt': 'encrypt',
+        'UnwrapKey': 'unwrapkey',
+        'WrapKey': 'wrapkey',
+        'Verify': 'verify',
+        'Sign': 'sign',
+        'Purge': 'purge',
+        'Release': 'release',
+        'Rotate': 'rotate',
+        'GetRotationPolicy': 'getrotationpolicy',
+        'SetRotationPolicy': 'setrotationpolicy',
+      },
+    ),
+    'KeyVaultAccessPolicySecretPermissions': MigrateEnum(
+      name: 'KeyVaultAccessPolicySecretPermissions',
+      members: <String, String>{
+        'Get': 'get',
+        'List': 'list',
+        'Set': 'set',
+        'Delete': 'delete',
+        'Recover': 'recover',
+        'Backup': 'backup',
+        'Restore': 'restore',
+        'Purge': 'purge',
+      },
+    ),
     'KeyVaultAccessPolicyStoragePermissions': MigrateEnum(
       name: 'KeyVaultAccessPolicyStoragePermissions',
       members: <String, String>{
@@ -239428,6 +239662,156 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'RSA-HSM': 'rsaHsm',
       },
     ),
+    'KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions':
+        MigrateEnum(
+          name:
+              'KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions',
+          members: <String, String>{
+            'Microsoft.KeyVault/managedHsm/keys/backup/action':
+                'microsoftKeyvaultManagedhsmKeysBackupAction',
+            'Microsoft.KeyVault/managedHsm/keys/create':
+                'microsoftKeyvaultManagedhsmKeysCreate',
+            'Microsoft.KeyVault/managedHsm/keys/decrypt/action':
+                'microsoftKeyvaultManagedhsmKeysDecryptAction',
+            'Microsoft.KeyVault/managedHsm/keys/delete':
+                'microsoftKeyvaultManagedhsmKeysDelete',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/delete/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsDeleteAction',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/delete/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsDeleteAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/download/action':
+                'microsoftKeyvaultManagedhsmSecuritydomainDownloadAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/download/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainDownloadRead',
+            'Microsoft.KeyVault/managedHsm/keys/encrypt/action':
+                'microsoftKeyvaultManagedhsmKeysEncryptAction',
+            'Microsoft.KeyVault/managedHsm/keys/export/action':
+                'microsoftKeyvaultManagedhsmKeysExportAction',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/read/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsReadAction',
+            'Microsoft.KeyVault/managedHsm/keys/import/action':
+                'microsoftKeyvaultManagedhsmKeysImportAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/delete':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysDelete',
+            'Microsoft.KeyVault/managedHsm/rng/action':
+                'microsoftKeyvaultManagedhsmRngAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/read/action':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysReadAction',
+            'Microsoft.KeyVault/managedHsm/backup/status/action':
+                'microsoftKeyvaultManagedhsmBackupStatusAction',
+            'Microsoft.KeyVault/managedHsm/keys/read/action':
+                'microsoftKeyvaultManagedhsmKeysReadAction',
+            'Microsoft.KeyVault/managedHsm/restore/status/action':
+                'microsoftKeyvaultManagedhsmRestoreStatusAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/upload/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainUploadRead',
+            'Microsoft.KeyVault/managedHsm/securitydomain/transferkey/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainTransferkeyRead',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/read/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsReadAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/recover/action':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysRecoverAction',
+            'Microsoft.KeyVault/managedHsm/keys/release/action':
+                'microsoftKeyvaultManagedhsmKeysReleaseAction',
+            'Microsoft.KeyVault/managedHsm/keys/restore/action':
+                'microsoftKeyvaultManagedhsmKeysRestoreAction',
+            'Microsoft.KeyVault/managedHsm/keys/sign/action':
+                'microsoftKeyvaultManagedhsmKeysSignAction',
+            'Microsoft.KeyVault/managedHsm/backup/start/action':
+                'microsoftKeyvaultManagedhsmBackupStartAction',
+            'Microsoft.KeyVault/managedHsm/restore/start/action':
+                'microsoftKeyvaultManagedhsmRestoreStartAction',
+            'Microsoft.KeyVault/managedHsm/keys/unwrap/action':
+                'microsoftKeyvaultManagedhsmKeysUnwrapAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/upload/action':
+                'microsoftKeyvaultManagedhsmSecuritydomainUploadAction',
+            'Microsoft.KeyVault/managedHsm/keys/verify/action':
+                'microsoftKeyvaultManagedhsmKeysVerifyAction',
+            'Microsoft.KeyVault/managedHsm/keys/wrap/action':
+                'microsoftKeyvaultManagedhsmKeysWrapAction',
+            'Microsoft.KeyVault/managedHsm/keys/write/action':
+                'microsoftKeyvaultManagedhsmKeysWriteAction',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/write/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsWriteAction',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/write/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsWriteAction',
+          },
+        ),
+    'KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions':
+        MigrateEnum(
+          name:
+              'KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions',
+          members: <String, String>{
+            'Microsoft.KeyVault/managedHsm/keys/backup/action':
+                'microsoftKeyvaultManagedhsmKeysBackupAction',
+            'Microsoft.KeyVault/managedHsm/keys/create':
+                'microsoftKeyvaultManagedhsmKeysCreate',
+            'Microsoft.KeyVault/managedHsm/keys/decrypt/action':
+                'microsoftKeyvaultManagedhsmKeysDecryptAction',
+            'Microsoft.KeyVault/managedHsm/keys/delete':
+                'microsoftKeyvaultManagedhsmKeysDelete',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/delete/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsDeleteAction',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/delete/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsDeleteAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/download/action':
+                'microsoftKeyvaultManagedhsmSecuritydomainDownloadAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/download/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainDownloadRead',
+            'Microsoft.KeyVault/managedHsm/keys/encrypt/action':
+                'microsoftKeyvaultManagedhsmKeysEncryptAction',
+            'Microsoft.KeyVault/managedHsm/keys/export/action':
+                'microsoftKeyvaultManagedhsmKeysExportAction',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/read/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsReadAction',
+            'Microsoft.KeyVault/managedHsm/keys/import/action':
+                'microsoftKeyvaultManagedhsmKeysImportAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/delete':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysDelete',
+            'Microsoft.KeyVault/managedHsm/rng/action':
+                'microsoftKeyvaultManagedhsmRngAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/read/action':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysReadAction',
+            'Microsoft.KeyVault/managedHsm/backup/status/action':
+                'microsoftKeyvaultManagedhsmBackupStatusAction',
+            'Microsoft.KeyVault/managedHsm/keys/read/action':
+                'microsoftKeyvaultManagedhsmKeysReadAction',
+            'Microsoft.KeyVault/managedHsm/restore/status/action':
+                'microsoftKeyvaultManagedhsmRestoreStatusAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/upload/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainUploadRead',
+            'Microsoft.KeyVault/managedHsm/securitydomain/transferkey/read':
+                'microsoftKeyvaultManagedhsmSecuritydomainTransferkeyRead',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/read/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsReadAction',
+            'Microsoft.KeyVault/managedHsm/keys/deletedKeys/recover/action':
+                'microsoftKeyvaultManagedhsmKeysDeletedkeysRecoverAction',
+            'Microsoft.KeyVault/managedHsm/keys/release/action':
+                'microsoftKeyvaultManagedhsmKeysReleaseAction',
+            'Microsoft.KeyVault/managedHsm/keys/restore/action':
+                'microsoftKeyvaultManagedhsmKeysRestoreAction',
+            'Microsoft.KeyVault/managedHsm/keys/sign/action':
+                'microsoftKeyvaultManagedhsmKeysSignAction',
+            'Microsoft.KeyVault/managedHsm/backup/start/action':
+                'microsoftKeyvaultManagedhsmBackupStartAction',
+            'Microsoft.KeyVault/managedHsm/restore/start/action':
+                'microsoftKeyvaultManagedhsmRestoreStartAction',
+            'Microsoft.KeyVault/managedHsm/keys/unwrap/action':
+                'microsoftKeyvaultManagedhsmKeysUnwrapAction',
+            'Microsoft.KeyVault/managedHsm/securitydomain/upload/action':
+                'microsoftKeyvaultManagedhsmSecuritydomainUploadAction',
+            'Microsoft.KeyVault/managedHsm/keys/verify/action':
+                'microsoftKeyvaultManagedhsmKeysVerifyAction',
+            'Microsoft.KeyVault/managedHsm/keys/wrap/action':
+                'microsoftKeyvaultManagedhsmKeysWrapAction',
+            'Microsoft.KeyVault/managedHsm/keys/write/action':
+                'microsoftKeyvaultManagedhsmKeysWriteAction',
+            'Microsoft.KeyVault/managedHsm/roleAssignments/write/action':
+                'microsoftKeyvaultManagedhsmRoleassignmentsWriteAction',
+            'Microsoft.KeyVault/managedHsm/roleDefinitions/write/action':
+                'microsoftKeyvaultManagedhsmRoledefinitionsWriteAction',
+          },
+        ),
     'KeyVaultManagedHardwareSecurityModuleSkuName': MigrateEnum(
       name: 'KeyVaultManagedHardwareSecurityModuleSkuName',
       members: <String, String>{'Standard_B1': 'standardB1'},
@@ -241639,6 +242023,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'TimedOut': 'timedout',
       },
     ),
+    'LogicAppActionHttpMethod': MigrateEnum(
+      name: 'LogicAppActionHttpMethod',
+      members: <String, String>{
+        'DELETE': 'delete',
+        'GET': 'get',
+        'PATCH': 'patch',
+        'POST': 'post',
+        'PUT': 'put',
+      },
+    ),
     'LogicAppIntegrationAccountAgreementType': MigrateEnum(
       name: 'LogicAppIntegrationAccountAgreementType',
       members: <String, String>{
@@ -241785,6 +242179,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'SQLAzure': 'sqlazure',
         'SQLServer': 'sqlserver',
         'ServiceBus': 'servicebus',
+      },
+    ),
+    'LogicAppTriggerHttpRequestMethod': MigrateEnum(
+      name: 'LogicAppTriggerHttpRequestMethod',
+      members: <String, String>{
+        'DELETE': 'delete',
+        'GET': 'get',
+        'PATCH': 'patch',
+        'POST': 'post',
+        'PUT': 'put',
       },
     ),
     'LogicAppTriggerRecurrenceFrequency': MigrateEnum(
@@ -242183,6 +242587,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'ManagedLustreFileSystemMode',
       members: <String, String>{'All': 'all', 'RootOnly': 'rootonly'},
     ),
+    'ManagedLustreFileSystemSkuName': MigrateEnum(
+      name: 'ManagedLustreFileSystemSkuName',
+      members: <String, String>{
+        'AMLFS-Durable-Premium-40': 'amlfsDurablePremium40',
+        'AMLFS-Durable-Premium-125': 'amlfsDurablePremium125',
+        'AMLFS-Durable-Premium-250': 'amlfsDurablePremium250',
+        'AMLFS-Durable-Premium-500': 'amlfsDurablePremium500',
+      },
+    ),
     'ManagedRedisClientProtocol': MigrateEnum(
       name: 'ManagedRedisClientProtocol',
       members: <String, String>{
@@ -242220,6 +242633,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'RedisJSON': 'redisjson',
       },
     ),
+    'ManagedRedisPersistenceAppendOnlyFileBackupFrequency': MigrateEnum(
+      name: 'ManagedRedisPersistenceAppendOnlyFileBackupFrequency',
+      members: <String, String>{'1s': 'v1s'},
+    ),
     'ManagedRedisPersistenceRedisDatabaseBackupFrequency': MigrateEnum(
       name: 'ManagedRedisPersistenceRedisDatabaseBackupFrequency',
       members: <String, String>{'12h': 'v12h', '1h': 'v1h', '6h': 'v6h'},
@@ -242227,6 +242644,55 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
     'ManagedRedisPublicNetworkAccess': MigrateEnum(
       name: 'ManagedRedisPublicNetworkAccess',
       members: <String, String>{'Disabled': 'disabled', 'Enabled': 'enabled'},
+    ),
+    'ManagedRedisSkuName': MigrateEnum(
+      name: 'ManagedRedisSkuName',
+      members: <String, String>{
+        'Balanced_B0': 'balancedB0',
+        'Balanced_B1': 'balancedB1',
+        'Balanced_B10': 'balancedB10',
+        'Balanced_B100': 'balancedB100',
+        'Balanced_B1000': 'balancedB1000',
+        'Balanced_B150': 'balancedB150',
+        'Balanced_B20': 'balancedB20',
+        'Balanced_B250': 'balancedB250',
+        'Balanced_B3': 'balancedB3',
+        'Balanced_B350': 'balancedB350',
+        'Balanced_B5': 'balancedB5',
+        'Balanced_B50': 'balancedB50',
+        'Balanced_B500': 'balancedB500',
+        'Balanced_B700': 'balancedB700',
+        'ComputeOptimized_X10': 'computeoptimizedX10',
+        'ComputeOptimized_X100': 'computeoptimizedX100',
+        'ComputeOptimized_X150': 'computeoptimizedX150',
+        'ComputeOptimized_X20': 'computeoptimizedX20',
+        'ComputeOptimized_X250': 'computeoptimizedX250',
+        'ComputeOptimized_X3': 'computeoptimizedX3',
+        'ComputeOptimized_X350': 'computeoptimizedX350',
+        'ComputeOptimized_X5': 'computeoptimizedX5',
+        'ComputeOptimized_X50': 'computeoptimizedX50',
+        'ComputeOptimized_X500': 'computeoptimizedX500',
+        'ComputeOptimized_X700': 'computeoptimizedX700',
+        'FlashOptimized_A1000': 'flashoptimizedA1000',
+        'FlashOptimized_A1500': 'flashoptimizedA1500',
+        'FlashOptimized_A2000': 'flashoptimizedA2000',
+        'FlashOptimized_A250': 'flashoptimizedA250',
+        'FlashOptimized_A4500': 'flashoptimizedA4500',
+        'FlashOptimized_A500': 'flashoptimizedA500',
+        'FlashOptimized_A700': 'flashoptimizedA700',
+        'MemoryOptimized_M10': 'memoryoptimizedM10',
+        'MemoryOptimized_M100': 'memoryoptimizedM100',
+        'MemoryOptimized_M1000': 'memoryoptimizedM1000',
+        'MemoryOptimized_M150': 'memoryoptimizedM150',
+        'MemoryOptimized_M1500': 'memoryoptimizedM1500',
+        'MemoryOptimized_M20': 'memoryoptimizedM20',
+        'MemoryOptimized_M2000': 'memoryoptimizedM2000',
+        'MemoryOptimized_M250': 'memoryoptimizedM250',
+        'MemoryOptimized_M350': 'memoryoptimizedM350',
+        'MemoryOptimized_M50': 'memoryoptimizedM50',
+        'MemoryOptimized_M500': 'memoryoptimizedM500',
+        'MemoryOptimized_M700': 'memoryoptimizedM700',
+      },
     ),
     'ManagementGroupPolicySetDefinitionPolicyType': MigrateEnum(
       name: 'ManagementGroupPolicySetDefinitionPolicyType',
@@ -245206,6 +245672,63 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Linux': 'linux',
         'Windows': 'windows',
         'WindowsContainer': 'windowscontainer',
+      },
+    ),
+    'ServicePlanSkuName': MigrateEnum(
+      name: 'ServicePlanSkuName',
+      members: <String, String>{
+        'B1': 'b1',
+        'B2': 'b2',
+        'B3': 'b3',
+        'S1': 's1',
+        'S2': 's2',
+        'S3': 's3',
+        'Y1': 'y1',
+        'EP1': 'ep1',
+        'EP2': 'ep2',
+        'EP3': 'ep3',
+        'FC1': 'fc1',
+        'F1': 'f1',
+        'I1': 'i1',
+        'I2': 'i2',
+        'I3': 'i3',
+        'I1v2': 'i1v2',
+        'I2v2': 'i2v2',
+        'I3v2': 'i3v2',
+        'I4v2': 'i4v2',
+        'I5v2': 'i5v2',
+        'I6v2': 'i6v2',
+        'I1mv2': 'i1mv2',
+        'I2mv2': 'i2mv2',
+        'I3mv2': 'i3mv2',
+        'I4mv2': 'i4mv2',
+        'I5mv2': 'i5mv2',
+        'P1v2': 'p1v2',
+        'P2v2': 'p2v2',
+        'P3v2': 'p3v2',
+        'P0v3': 'p0v3',
+        'P1v3': 'p1v3',
+        'P2v3': 'p2v3',
+        'P3v3': 'p3v3',
+        'P1mv3': 'p1mv3',
+        'P2mv3': 'p2mv3',
+        'P3mv3': 'p3mv3',
+        'P4mv3': 'p4mv3',
+        'P5mv3': 'p5mv3',
+        'P0v4': 'p0v4',
+        'P1v4': 'p1v4',
+        'P2v4': 'p2v4',
+        'P3v4': 'p3v4',
+        'P1mv4': 'p1mv4',
+        'P2mv4': 'p2mv4',
+        'P3mv4': 'p3mv4',
+        'P4mv4': 'p4mv4',
+        'P5mv4': 'p5mv4',
+        'D1': 'd1',
+        'SHARED': 'shared',
+        'WS1': 'ws1',
+        'WS2': 'ws2',
+        'WS3': 'ws3',
       },
     ),
     'ServicebusNamespaceDefaultAction': MigrateEnum(

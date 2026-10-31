@@ -18,6 +18,7 @@ export 'src/logic/azurerm_logic_app_action_http.dart'
     show
         AzurermLogicAppActionHttp,
         LogicAppActionHttpActionResult,
+        LogicAppActionHttpMethod,
         LogicAppActionHttpRunAfter;
 export 'src/logic/azurerm_logic_app_integration_account.dart'
     show AzurermLogicAppIntegrationAccount, LogicAppIntegrationAccountSkuName;
@@ -81,7 +82,7 @@ export 'src/logic/azurerm_logic_app_standard.dart'
 export 'src/logic/azurerm_logic_app_trigger_custom.dart'
     show AzurermLogicAppTriggerCustom;
 export 'src/logic/azurerm_logic_app_trigger_http_request.dart'
-    show AzurermLogicAppTriggerHttpRequest;
+    show AzurermLogicAppTriggerHttpRequest, LogicAppTriggerHttpRequestMethod;
 export 'src/logic/azurerm_logic_app_trigger_recurrence.dart'
     show
         AzurermLogicAppTriggerRecurrence,

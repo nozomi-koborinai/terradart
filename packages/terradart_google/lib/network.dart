@@ -117,8 +117,10 @@ export 'src/network/google_network_connectivity_spoke.dart'
 export 'src/network/google_network_connectivity_transport.dart'
     show
         GoogleNetworkConnectivityTransport,
+        NetworkConnectivityTransportBandwidth,
         NetworkConnectivityTransportDeletionPolicy,
-        NetworkConnectivityTransportStackType;
+        NetworkConnectivityTransportStackType,
+        NetworkConnectivityTransportState;
 export 'src/network/google_network_management_connectivity_test.dart'
     show
         GoogleNetworkManagementConnectivityTest,

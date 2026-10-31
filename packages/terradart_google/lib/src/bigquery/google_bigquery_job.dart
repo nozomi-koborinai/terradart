@@ -595,7 +595,7 @@ final class BigqueryJobLoad {
 
   final TfArg<String>? quote;
 
-  final TfArg<List<String>>? schemaUpdateOptions;
+  final List<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<num>? skipLeadingRows;
 
@@ -628,7 +628,10 @@ final class BigqueryJobLoad {
     'null_marker': ?nullMarker?.toTfJson(),
     'projection_fields': ?projectionFields?.toTfJson(),
     'quote': ?quote?.toTfJson(),
-    'schema_update_options': ?schemaUpdateOptions?.toTfJson(),
+    if (schemaUpdateOptions != null)
+      'schema_update_options': [
+        for (final e in schemaUpdateOptions!) e.toTfJson(),
+      ],
     'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
     'source_format': ?sourceFormat?.toTfJson(),
     'source_uris': sourceUris.toTfJson(),
@@ -653,6 +656,28 @@ extension type const BigqueryJobEncoding._(TfArg<String> _)
   static const iso88591 = BigqueryJobEncoding._(TfArgLiteral('ISO-8859-1'));
 
   static const List<BigqueryJobEncoding> values = [utf8, iso88591];
+}
+
+/// `schema_update_options` — derived from the provider schema description.
+extension type const BigqueryJobSchemaUpdateOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobSchemaUpdateOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobSchemaUpdateOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobSchemaUpdateOptions.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowFieldAddition = BigqueryJobSchemaUpdateOptions._(
+    TfArgLiteral('ALLOW_FIELD_ADDITION'),
+  );
+  static const allowFieldRelaxation = BigqueryJobSchemaUpdateOptions._(
+    TfArgLiteral('ALLOW_FIELD_RELAXATION'),
+  );
+
+  static const List<BigqueryJobSchemaUpdateOptions> values = [
+    allowFieldAddition,
+    allowFieldRelaxation,
+  ];
 }
 
 /// Typed helper for the `load.parquet_options` block of
@@ -740,7 +765,7 @@ final class BigqueryJobQuery {
 
   final TfArg<String> query;
 
-  final TfArg<List<String>>? schemaUpdateOptions;
+  final List<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<bool>? useLegacySql;
 
@@ -772,7 +797,10 @@ final class BigqueryJobQuery {
     'parameter_mode': ?parameterMode?.toTfJson(),
     'priority': ?priority?.toTfJson(),
     'query': query.toTfJson(),
-    'schema_update_options': ?schemaUpdateOptions?.toTfJson(),
+    if (schemaUpdateOptions != null)
+      'schema_update_options': [
+        for (final e in schemaUpdateOptions!) e.toTfJson(),
+      ],
     'use_legacy_sql': ?useLegacySql?.toTfJson(),
     'use_query_cache': ?useQueryCache?.toTfJson(),
     'write_disposition': ?writeDisposition?.toTfJson(),

@@ -798,7 +798,7 @@ final class CloudRunServiceCsi {
     this.volumeAttributes,
   });
 
-  final TfArg<String> driver;
+  final CloudRunServiceDriver driver;
 
   final TfArg<bool>? readOnly;
 
@@ -810,6 +810,21 @@ final class CloudRunServiceCsi {
     'read_only': ?readOnly?.toTfJson(),
     'volume_attributes': ?volumeAttributes?.toTfJson(),
   };
+}
+
+/// `driver` — derived from the provider schema description.
+extension type const CloudRunServiceDriver._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunServiceDriver.variable(String name) : this._(TfArg.variable(name));
+  CloudRunServiceDriver.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunServiceDriver.arg(TfArg<String> arg) : this._(arg);
+
+  static const gcsfuseRunGoogleapisCom = CloudRunServiceDriver._(
+    TfArgLiteral('gcsfuse.run.googleapis.com'),
+  );
+
+  static const List<CloudRunServiceDriver> values = [gcsfuseRunGoogleapisCom];
 }
 
 /// Typed helper for the `template.spec.volumes.empty_dir` block of

@@ -160,7 +160,7 @@ export 'src/api_management/azurerm_api_management_diagnostic.dart'
         ApiManagementDiagnosticVerbosity,
         AzurermApiManagementDiagnostic;
 export 'src/api_management/azurerm_api_management_email_template.dart'
-    show AzurermApiManagementEmailTemplate;
+    show ApiManagementEmailTemplateName, AzurermApiManagementEmailTemplate;
 export 'src/api_management/azurerm_api_management_gateway.dart'
     show ApiManagementGatewayLocationData, AzurermApiManagementGateway;
 export 'src/api_management/azurerm_api_management_gateway_api.dart'

@@ -16,6 +16,7 @@ export 'src/cloud_run/google_cloud_run_service.dart'
         CloudRunServiceConfigMapRef,
         CloudRunServiceContainers,
         CloudRunServiceCsi,
+        CloudRunServiceDriver,
         CloudRunServiceEmptyDir,
         CloudRunServiceEnv,
         CloudRunServiceEnvFrom,

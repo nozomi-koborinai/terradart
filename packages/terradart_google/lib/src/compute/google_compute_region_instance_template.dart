@@ -531,13 +531,40 @@ final class ComputeRegionInstanceTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<String>? networkTier;
+  final ComputeRegionInstanceTemplateNetworkTier? networkTier;
 
   @internal
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
     'network_tier': ?networkTier?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeRegionInstanceTemplateNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const fixedStandard = ComputeRegionInstanceTemplateNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateNetworkTier> values = [
+    premium,
+    standard,
+    fixedStandard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of

@@ -20,6 +20,7 @@ export 'src/organization/google_org_policy_custom_constraint.dart'
 export 'src/organization/google_org_policy_policy.dart'
     show
         GoogleOrgPolicyPolicy,
+        OrgPolicyPolicyAllowAll,
         OrgPolicyPolicyCondition,
         OrgPolicyPolicyDryRunSpec,
         OrgPolicyPolicyRules,

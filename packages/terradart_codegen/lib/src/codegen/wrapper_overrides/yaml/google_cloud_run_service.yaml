@@ -1,3 +1,7 @@
+enumValues:
+  template.spec.volumes.csi.driver:
+    - "gcsfuse.run.googleapis.com"
+
 outputDir: cloud_run
 deriveClassDoc: true
 deriveExactlyOne: true

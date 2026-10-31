@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_oauth_client`.
 const Set<String> _googleIamOauthClientSensitive = <String>{};
 
+/// Iam Oauth Client Allowed Grant enum for `allowed_grant_types`.
+extension type const IamOauthClientAllowedGrantTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  IamOauthClientAllowedGrantTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  IamOauthClientAllowedGrantTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamOauthClientAllowedGrantTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const authorizationCodeGrant = IamOauthClientAllowedGrantTypes._(
+    TfArgLiteral('AUTHORIZATION_CODE_GRANT'),
+  );
+  static const refreshTokenGrant = IamOauthClientAllowedGrantTypes._(
+    TfArgLiteral('REFRESH_TOKEN_GRANT'),
+  );
+
+  static const List<IamOauthClientAllowedGrantTypes> values = [
+    authorizationCodeGrant,
+    refreshTokenGrant,
+  ];
+}
+
 /// Iam Oauth Client enum for `client_type`.
 extension type const IamOauthClientType._(TfArg<String> _)
     implements TfArg<String> {
@@ -73,7 +95,7 @@ final class GoogleIamOauthClient extends Resource {
     super.localName, {
     required TfArg<String> oauthClientId,
     required TfArg<String> location,
-    required TfArg<List<String>> allowedGrantTypes,
+    required List<IamOauthClientAllowedGrantTypes> allowedGrantTypes,
     required TfArg<List<String>> allowedRedirectUris,
     required TfArg<List<String>> allowedScopes,
     IamOauthClientType? clientType,
@@ -91,7 +113,9 @@ final class GoogleIamOauthClient extends Resource {
          argMap: {
            'oauth_client_id': oauthClientId,
            'location': location,
-           'allowed_grant_types': allowedGrantTypes,
+           'allowed_grant_types': TfArg.literal([
+             for (final e in allowedGrantTypes) e.toTfJson(),
+           ]),
            'allowed_redirect_uris': allowedRedirectUris,
            'allowed_scopes': allowedScopes,
            'client_type': ?clientType,
