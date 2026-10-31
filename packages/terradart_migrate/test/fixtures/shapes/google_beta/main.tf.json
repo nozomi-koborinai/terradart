@@ -77,6 +77,18 @@
         ],
         "target_platforms": "${distinct(var.target_platforms)}",
         "provider": "google-beta"
+      },
+      "unlisted": {
+        "display_name": "${google_compute_region_backend_bucket.backend.name}",
+        "starting_urls": [
+          "https://shapes.example.com"
+        ],
+        "target_platforms": [
+          "COMPUTE"
+        ],
+        "user_agent": "${var.user_agent}",
+        "export_to_security_command_center": "UNLISTED_EXPORT",
+        "provider": "google-beta"
       }
     },
     "google_api_gateway_api_config": {

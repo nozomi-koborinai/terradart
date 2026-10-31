@@ -44,6 +44,14 @@
       "expression": {
         "name": "expression",
         "compression": "${lower(var.compression)}"
+      },
+      "unlisted": {
+        "name": "unlisted",
+        "compression": "unlisted",
+        "permissions": [
+          "read(\"any\")",
+          "write(\"users\")"
+        ]
       }
     }
   }

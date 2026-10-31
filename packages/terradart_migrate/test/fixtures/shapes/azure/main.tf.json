@@ -60,6 +60,13 @@
         "storage_account_id": "${azurerm_storage_account.sa.id}",
         "default_action": "${title(var.default_action)}",
         "bypass": "${distinct(var.bypass)}"
+      },
+      "unlisted": {
+        "storage_account_id": "${azurerm_storage_account.sa.id}",
+        "default_action": "Unlisted",
+        "bypass": [
+          "AzureServices"
+        ]
       }
     },
     "azurerm_data_factory_linked_service_azure_blob_storage": {

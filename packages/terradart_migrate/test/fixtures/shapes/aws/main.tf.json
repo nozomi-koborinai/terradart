@@ -46,6 +46,14 @@
         "name": "expression",
         "capabilities": "${distinct(var.capabilities)}",
         "on_failure": "${upper(var.on_failure)}"
+      },
+      "unlisted": {
+        "name": "unlisted",
+        "iam_role_arn": "${aws_iam_role.stack.arn}",
+        "capabilities": [
+          "CAPABILITY_IAM"
+        ],
+        "on_failure": "UNLISTED"
       }
     },
     "aws_acm_certificate": {

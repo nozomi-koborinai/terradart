@@ -95,6 +95,15 @@
         "display_name": "expression",
         "location": "global",
         "purge_data_types": "${slice(var.purge_data_types, 0, 1)}"
+      },
+      "unlisted": {
+        "display_name": "${google_artifact_registry_repository.repo.name}",
+        "location": "global",
+        "retention_window_days": 30,
+        "purge_data_types": [
+          "DIALOGFLOW_HISTORY"
+        ],
+        "redaction_scope": "UNLISTED_SCOPE"
       }
     },
     "google_data_loss_prevention_deidentify_template": {

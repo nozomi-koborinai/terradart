@@ -75,6 +75,14 @@
         "name": "expression",
         "action": "block",
         "filters": "${distinct(var.filters)}"
+      },
+      "unlisted": {
+        "account_id": "shapes-account",
+        "name": "unlisted",
+        "action": "unlisted",
+        "filters": [
+          "dns"
+        ]
       }
     }
   }
