@@ -483,7 +483,7 @@ List<String> discoveryEnumFields(Map<String, Object?> schemas, String root) {
       }
       if (node['properties'] case final Map<String, Object?> props) {
         for (final MapEntry(:key, :value) in props.entries) {
-          walk(value, [...path, '$key'], refs);
+          walk(value, [...path, key], refs);
         }
         return;
       }
