@@ -48,12 +48,9 @@ extension type const GkeBackupBackupPlanDayOfWeek._(TfArg<String> _)
 class GkeBackupBackupPlanExclusionWindowDaysOfWeek {
   const GkeBackupBackupPlanExclusionWindowDaysOfWeek({this.daysOfWeek});
 
-  final List<GkeBackupBackupPlanDayOfWeek>? daysOfWeek;
+  final EnumList<GkeBackupBackupPlanDayOfWeek>? daysOfWeek;
 
-  Map<String, Object?> toArgMap() => {
-    if (daysOfWeek != null)
-      'days_of_week': daysOfWeek!.map((d) => d.toTfJson()).toList(),
-  };
+  Map<String, Object?> toArgMap() => {'days_of_week': ?daysOfWeek?.toTfJson()};
 }
 
 @immutable

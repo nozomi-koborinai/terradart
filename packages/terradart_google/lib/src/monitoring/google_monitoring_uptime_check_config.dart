@@ -865,11 +865,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 ///       matcher: .containsString,
 ///     ),
 ///   ],
-///   selectedRegions: [
-///     MonitoringUptimeCheckRegion.usa,
-///     MonitoringUptimeCheckRegion.europe,
-///     MonitoringUptimeCheckRegion.asiaPacific,
-///   ],
+///   selectedRegions: .literal([.usa, .europe, .asiaPacific]),
 /// );
 /// ```
 final class GoogleMonitoringUptimeCheckConfig extends Resource {
@@ -880,7 +876,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> timeout,
     MonitoringUptimeCheckConfigPeriod? period,
-    List<MonitoringUptimeCheckRegion>? selectedRegions,
+    EnumList<MonitoringUptimeCheckRegion>? selectedRegions,
     MonitoringUptimeCheckCheckerType? checkerType,
     required MonitoringUptimeCheckConfigTarget target,
     MonitoringUptimeCheckConfigHttpCheck? httpCheck,
@@ -899,10 +895,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
            'display_name': displayName,
            'timeout': timeout,
            'period': ?period,
-           if (selectedRegions != null)
-             'selected_regions': TfArg.literal(
-               selectedRegions.map((r) => r.toTfJson()).toList(),
-             ),
+           'selected_regions': ?selectedRegions,
            'checker_type': ?checkerType,
            if (httpCheck != null)
              'http_check': TfArg.literal(httpCheck.encode()),

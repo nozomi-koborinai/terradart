@@ -319,10 +319,7 @@ final class AssetsStack extends Stack {
         bucket: assets.ref,
         topic: objectEventsTopic.ref,
         payloadFormat: .jsonApiV1,
-        eventTypes: const [
-          StorageNotificationEventType.objectFinalize,
-          StorageNotificationEventType.objectDelete,
-        ],
+        eventTypes: .literal([.objectFinalize, .objectDelete]),
         objectNamePrefix: objectPrefix.output<String>('prefix'),
         dependsOn: [objectEventsTopic],
       ),

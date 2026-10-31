@@ -117,10 +117,7 @@ extension type const StorageNotificationEventType._(TfArg<String> _)
 ///   // the full path the API expects.
 ///   topic: ingestTopic.ref,
 ///   payloadFormat: StorageNotificationPayloadFormat.jsonApiV1,
-///   eventTypes: const [
-///     StorageNotificationEventType.objectFinalize,
-///     StorageNotificationEventType.objectMetadataUpdate,
-///   ],
+///   eventTypes: .literal([.objectFinalize, .objectMetadataUpdate]),
 ///   objectNamePrefix: TfArg.literal('incoming/'),
 ///   customAttributes: TfArg.literal(const {'source': 'gcs-ingest'}),
 /// );
@@ -144,7 +141,7 @@ final class GoogleStorageNotification extends Resource {
     required RefTo<GoogleStorageBucket> bucket,
     required RefTo<GooglePubsubTopic> topic,
     required StorageNotificationPayloadFormat payloadFormat,
-    List<StorageNotificationEventType>? eventTypes,
+    EnumList<StorageNotificationEventType>? eventTypes,
     TfArg<String>? objectNamePrefix,
     TfArg<Map<String, String>>? customAttributes,
     super.lifecycle,
@@ -157,10 +154,7 @@ final class GoogleStorageNotification extends Resource {
            'bucket': bucket.encodeAs('name'),
            'topic': topic.encodeAs('id'),
            'payload_format': payloadFormat,
-           if (eventTypes != null)
-             'event_types': TfArg.literal(
-               eventTypes.map((e) => e.toTfJson()).toList(),
-             ),
+           'event_types': ?eventTypes,
            'object_name_prefix': ?objectNamePrefix,
            'custom_attributes': ?customAttributes,
          },

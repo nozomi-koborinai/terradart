@@ -868,8 +868,7 @@ resource "google_pubsub_topic" "t" {
     });
 
     group('a list of enum values', () {
-      // `selected_regions` is a bare `List<MonitoringUptimeCheckRegion>`:
-      // one member per element, and no single reference fits it.
+      // `selected_regions` is an `EnumList<MonitoringUptimeCheckRegion>`.
       MigrationResult migrate(Object regions) => _migrateJson({
         'terraform': _google,
         'resource': {
@@ -897,11 +896,11 @@ resource "google_pubsub_topic" "t" {
         );
         expect(
           r.files['lib/demo_stack.dart'],
-          contains('selectedRegions: [.usa, .europe]'),
+          contains('selectedRegions: .literal([.usa, .europe])'),
         );
       });
 
-      test('a reference to a whole list stays in Terraform', () {
+      test('a reference to a whole list is the list variable', () {
         final r = _migrateJson({
           'terraform': _google,
           'variable': {
@@ -924,13 +923,10 @@ resource "google_pubsub_topic" "t" {
           },
         });
         expect(
-          reasonOf(r, 'google_monitoring_uptime_check_config.u'),
-          contains(
-            'argument "selected_regions" takes a list of '
-            'MonitoringUptimeCheckRegion values, not a reference to a '
-            'whole list',
-          ),
+          r.files['lib/demo_stack.dart'],
+          contains("selectedRegions: .variable('regions')"),
         );
+        expect(r.report.shapes, contains(MigratedShape.enumListVariable));
       });
     });
 

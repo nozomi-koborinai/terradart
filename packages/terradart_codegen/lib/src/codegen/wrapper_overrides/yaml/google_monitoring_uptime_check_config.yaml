@@ -81,11 +81,7 @@ curatedDoc: |-
   ///       matcher: .containsString,
   ///     ),
   ///   ],
-  ///   selectedRegions: [
-  ///     MonitoringUptimeCheckRegion.usa,
-  ///     MonitoringUptimeCheckRegion.europe,
-  ///     MonitoringUptimeCheckRegion.asiaPacific,
-  ///   ],
+  ///   selectedRegions: .literal([.usa, .europe, .asiaPacific]),
   /// );
   /// ```
 
@@ -326,5 +322,5 @@ prelude: |
 
 customSlots:
   selected_regions:
-    paramDeclaration: 'List<MonitoringUptimeCheckRegion>? selectedRegions'
-    argMapEntry: "if (selectedRegions != null) 'selected_regions': TfArg.literal(selectedRegions.map((r) => r.toTfJson()).toList()),"
+    paramDeclaration: 'EnumList<MonitoringUptimeCheckRegion>? selectedRegions'
+    argMapEntry: "'selected_regions': ?selectedRegions,"

@@ -88,11 +88,7 @@ final class LatencyAlertStack extends Stack {
             }),
           ),
         ),
-        selectedRegions: const [
-          MonitoringUptimeCheckRegion.usa,
-          MonitoringUptimeCheckRegion.europe,
-          MonitoringUptimeCheckRegion.asiaPacific,
-        ],
+        selectedRegions: .literal([.usa, .europe, .asiaPacific]),
         dependsOn: [apiMonitoring, publicUrls],
       ),
     );
