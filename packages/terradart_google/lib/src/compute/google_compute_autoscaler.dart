@@ -155,9 +155,8 @@ class ComputeAutoscalerAutoscalingPolicy {
   final ComputeAutoscalerScaleInControl? scaleInControl;
 
   /// Scheduled scaling overrides. Each entry pins a minimum replica
-  /// count during a cron-defined time window. The map key becomes the
-  /// schedule's `name` on the wire.
-  final Map<String, ComputeAutoscalerScalingSchedule>? scalingSchedules;
+  /// count during a cron-defined time window.
+  final List<ComputeAutoscalerScalingSchedule>? scalingSchedules;
 
   Map<String, Object?> toArgMap() => {
     'min_replicas': minReplicas.toTfJson(),
@@ -171,9 +170,7 @@ class ComputeAutoscalerAutoscalingPolicy {
     if (scaleInControl != null)
       'scale_in_control': [scaleInControl!.toArgMap()],
     if (scalingSchedules != null)
-      'scaling_schedules': scalingSchedules!.entries
-          .map((e) => {'name': e.key, ...e.value.toArgMap()})
-          .toList(),
+      'scaling_schedules': scalingSchedules!.map((s) => s.toArgMap()).toList(),
   };
 }
 
@@ -328,12 +325,10 @@ class ComputeAutoscalerScaleInReplicas {
 }
 
 // ===========================================================================
-// scaling_schedules (map, unbounded)
+// scaling_schedules (set, unbounded)
 // ===========================================================================
 
-/// One `scaling_schedules` entry. The Dart `Map<String, _>` key becomes
-/// the schedule's `name` on the wire (the schema models this as a `set`
-/// of blocks with `name` baked in).
+/// One `scaling_schedules` entry, identified by its [name].
 ///
 /// Each schedule pins a [minRequiredReplicas] floor for instances during
 /// a cron-defined time window. Multiple schedules may overlap; the
@@ -341,6 +336,7 @@ class ComputeAutoscalerScaleInReplicas {
 @immutable
 class ComputeAutoscalerScalingSchedule {
   const ComputeAutoscalerScalingSchedule({
+    required this.name,
     required this.minRequiredReplicas,
     required this.schedule,
     required this.durationSec,
@@ -348,6 +344,9 @@ class ComputeAutoscalerScalingSchedule {
     this.disabled,
     this.description,
   });
+
+  /// The schedule's name, unique within the policy.
+  final TfArg<String> name;
 
   /// Minimum replica count the autoscaler will recommend while this
   /// schedule is active.
@@ -371,6 +370,7 @@ class ComputeAutoscalerScalingSchedule {
   final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
+    'name': name.toTfJson(),
     'min_required_replicas': minRequiredReplicas.toTfJson(),
     'schedule': schedule.toTfJson(),
     'duration_sec': durationSec.toTfJson(),

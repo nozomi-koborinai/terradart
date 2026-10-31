@@ -217939,10 +217939,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scaling_schedules',
           dartName: 'scalingSchedules',
-          kind: MigrateSlotKind.manual,
+          kind: MigrateSlotKind.helper,
           required: false,
-          reason:
-              '`Map<String, ComputeAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeAutoscalerScalingSchedule',
         ),
       ],
     ),
@@ -218059,6 +218060,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeAutoscalerScalingSchedule': MigrateHelper(
       className: 'ComputeAutoscalerScalingSchedule',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'min_required_replicas',
           dartName: 'minRequiredReplicas',
@@ -225983,10 +225991,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scaling_schedules',
           dartName: 'scalingSchedules',
-          kind: MigrateSlotKind.manual,
+          kind: MigrateSlotKind.helper,
           required: false,
-          reason:
-              '`Map<String, ComputeRegionAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeRegionAutoscalerScalingSchedule',
         ),
       ],
     ),
@@ -226103,6 +226112,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionAutoscalerScalingSchedule': MigrateHelper(
       className: 'ComputeRegionAutoscalerScalingSchedule',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'min_required_replicas',
           dartName: 'minRequiredReplicas',

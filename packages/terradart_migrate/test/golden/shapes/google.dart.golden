@@ -6,6 +6,7 @@
 library;
 
 import 'package:terradart_google/artifact_registry.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dialogflow.dart';
 import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/kms.dart';
@@ -121,6 +122,28 @@ final class ShapesGoogleStack extends Stack {
               ),
             ],
           ),
+        ),
+      ),
+    );
+    add(
+      GoogleComputeAutoscaler(
+        'web',
+        name: .literal('shapes'),
+        zone: .literal('us-central1-a'),
+        target: .literal(
+          'projects/shapes-project/zones/us-central1-a/instanceGroupManagers/web',
+        ),
+        autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
+          minReplicas: .literal(1),
+          maxReplicas: .literal(5),
+          scalingSchedules: [
+            .new(
+              name: .literal('business-hours'),
+              minRequiredReplicas: .literal(3),
+              schedule: .literal('0 9 * * MON-FRI'),
+              durationSec: .literal(28800),
+            ),
+          ],
         ),
       ),
     );

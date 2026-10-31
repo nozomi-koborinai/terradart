@@ -123,6 +123,27 @@
           }
         }
       }
+    },
+    "google_compute_autoscaler": {
+      "web": {
+        "name": "shapes",
+        "zone": "us-central1-a",
+        "target": "projects/shapes-project/zones/us-central1-a/instanceGroupManagers/web",
+        "autoscaling_policy": [
+          {
+            "min_replicas": 1,
+            "max_replicas": 5,
+            "scaling_schedules": [
+              {
+                "name": "business-hours",
+                "min_required_replicas": 3,
+                "schedule": "0 9 * * MON-FRI",
+                "duration_sec": 28800
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }
