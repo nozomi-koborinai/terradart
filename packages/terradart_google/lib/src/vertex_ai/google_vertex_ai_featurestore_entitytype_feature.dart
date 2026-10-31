@@ -88,7 +88,7 @@ extension type const VertexAiFeaturestoreEntitytypeFeatureValueType._(
 ///   'age',
 ///   entitytype: entity.name,
 ///   name: TfArg.literal('age'),
-///   valueType: TfArg.literal('INT64'),
+///   valueType: .int64,
 /// );
 /// ```
 final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {

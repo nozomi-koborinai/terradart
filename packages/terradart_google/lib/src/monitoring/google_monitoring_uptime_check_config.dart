@@ -845,7 +845,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 ///   'api_uptime',
 ///   displayName: TfArg.literal('Public API healthz'),
 ///   timeout: TfArg.literal('10s'),
-///   period: TfArg.literal('60s'),
+///   period: .v60s,
 ///   httpCheck: MonitoringUptimeCheckConfigHttpCheck(
 ///     path: .literal('/healthz'),
 ///     port: .literal(443),

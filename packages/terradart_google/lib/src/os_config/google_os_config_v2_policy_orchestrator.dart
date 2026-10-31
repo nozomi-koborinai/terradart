@@ -1045,7 +1045,7 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 /// GoogleOsConfigV2PolicyOrchestrator(
 ///   'stopped',
 ///   policyOrchestratorId: TfArg.literal('terradart-po'),
-///   action: TfArg.literal('UPSERT'),
+///   action: .upsert,
 ///   state: TfArg.literal('STOPPED'),
 ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
 ///     osPolicyAssignmentV1Payload: .new(
