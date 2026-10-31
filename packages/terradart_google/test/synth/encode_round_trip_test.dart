@@ -121,6 +121,26 @@ final Map<String, Object Function()> _syntheticInstances = {
       const BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
   'BigtableGcPolicyMaxVersion': () =>
       const BigtableGcPolicyMaxVersion(TfArg.literal(1)),
+  'ComputeSecurityPolicyRulesMatchConfigChoice': () =>
+      const ComputeSecurityPolicyRulesMatchConfigChoice(
+        versionedExpr: .srcIpsV1,
+        config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+      ),
+  'ComputeSecurityPolicyRulesMatchExprChoice': () =>
+      const ComputeSecurityPolicyRulesMatchExprChoice(
+        ComputeSecurityPolicyRulesMatchExpr(expression: TfArg.literal('true')),
+      ),
+  'ComputeRegionSecurityPolicyRulesMatchConfigChoice': () =>
+      const ComputeRegionSecurityPolicyRulesMatchConfigChoice(
+        versionedExpr: .srcIpsV1,
+        config: ComputeRegionSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+      ),
+  'ComputeRegionSecurityPolicyRulesMatchExprChoice': () =>
+      const ComputeRegionSecurityPolicyRulesMatchExprChoice(
+        ComputeRegionSecurityPolicyRulesMatchExpr(
+          expression: TfArg.literal('true'),
+        ),
+      ),
 
   // --- AppEngineFlexibleAppVersionScaling (2) — app_engine_flexible_app_version
   'AppEngineFlexibleAppVersionAutomaticScalingMode': () =>

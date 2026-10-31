@@ -229970,10 +229970,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'ComputeRegionSecurityPolicyRulesMatch',
+          variants: <String, String>{
+            'versioned_expr':
+                'ComputeRegionSecurityPolicyRulesMatchConfigChoice',
+            'expr': 'ComputeRegionSecurityPolicyRulesMatchExprChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'description',
@@ -230026,10 +230030,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeRegionSecurityPolicyRulesMatch': MigrateHelper(
-      className: 'ComputeRegionSecurityPolicyRulesMatch',
-      slots: <MigrateSlot>[],
-    ),
     'ComputeRegionSecurityPolicyRulesMatchConfig': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesMatchConfig',
       slots: <MigrateSlot>[
@@ -230044,6 +230044,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeRegionSecurityPolicyRulesMatchConfigChoice': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchConfigChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'versioned_expr',
+          dartName: 'versionedExpr',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'SecurityPolicyRuleMatchVersionedExpr',
+        ),
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesMatchConfig',
+        ),
+      ],
+      shorthand: 'config',
+    ),
     'ComputeRegionSecurityPolicyRulesMatchExpr': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesMatchExpr',
       slots: <MigrateSlot>[
@@ -230055,6 +230076,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeRegionSecurityPolicyRulesMatchExprChoice': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchExprChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expr',
+          dartName: 'expr',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeRegionSecurityPolicyRulesMatchExpr',
+        ),
+      ],
+      shorthand: 'expr',
     ),
     'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig',
@@ -233851,10 +233887,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'ComputeSecurityPolicyRulesMatch',
+          variants: <String, String>{
+            'versioned_expr': 'ComputeSecurityPolicyRulesMatchConfigChoice',
+            'expr': 'ComputeSecurityPolicyRulesMatchExprChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'description',
@@ -233948,10 +233987,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeSecurityPolicyRulesMatch': MigrateHelper(
-      className: 'ComputeSecurityPolicyRulesMatch',
-      slots: <MigrateSlot>[],
-    ),
     'ComputeSecurityPolicyRulesMatchConfig': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesMatchConfig',
       slots: <MigrateSlot>[
@@ -233966,6 +234001,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeSecurityPolicyRulesMatchConfigChoice': MigrateHelper(
+      className: 'ComputeSecurityPolicyRulesMatchConfigChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'versioned_expr',
+          dartName: 'versionedExpr',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'SecurityPolicyRuleMatchVersionedExpr',
+        ),
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeSecurityPolicyRulesMatchConfig',
+        ),
+      ],
+      shorthand: 'config',
+    ),
     'ComputeSecurityPolicyRulesMatchExpr': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesMatchExpr',
       slots: <MigrateSlot>[
@@ -233977,6 +234033,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeSecurityPolicyRulesMatchExprChoice': MigrateHelper(
+      className: 'ComputeSecurityPolicyRulesMatchExprChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expr',
+          dartName: 'expr',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeSecurityPolicyRulesMatchExpr',
+        ),
+      ],
+      shorthand: 'expr',
     ),
     'ComputeSecurityPolicyRulesRateLimitOptions': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesRateLimitOptions',

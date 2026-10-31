@@ -133,36 +133,54 @@ prelude: |
 
   /// `rules.match` -- mutually-exclusive [config] (versioned predicate) or
   /// [expr] (CEL) variants.
-  @immutable
-  class ComputeRegionSecurityPolicyRulesMatch {
-    const ComputeRegionSecurityPolicyRulesMatch._({
-      this.versionedExpr,
-      this.config,
-      this.expr,
-    });
+  sealed class ComputeRegionSecurityPolicyRulesMatch {
+    const ComputeRegionSecurityPolicyRulesMatch();
 
-    factory ComputeRegionSecurityPolicyRulesMatch.config({
+    /// Built-in predicate variant: `versionedExpr` over `config`.
+    const factory ComputeRegionSecurityPolicyRulesMatch.config({
       required SecurityPolicyRuleMatchVersionedExpr versionedExpr,
       required ComputeRegionSecurityPolicyRulesMatchConfig config,
-    }) => ComputeRegionSecurityPolicyRulesMatch._(
-      versionedExpr: versionedExpr,
-      config: config,
-    );
+    }) = ComputeRegionSecurityPolicyRulesMatchConfigChoice;
 
-    factory ComputeRegionSecurityPolicyRulesMatch.expr(
+    /// User-defined CEL expression variant.
+    const factory ComputeRegionSecurityPolicyRulesMatch.expr(
       ComputeRegionSecurityPolicyRulesMatchExpr expr,
-    ) => ComputeRegionSecurityPolicyRulesMatch._(expr: expr);
+    ) = ComputeRegionSecurityPolicyRulesMatchExprChoice;
 
-    final SecurityPolicyRuleMatchVersionedExpr? versionedExpr;
-    final ComputeRegionSecurityPolicyRulesMatchConfig? config;
-    final ComputeRegionSecurityPolicyRulesMatchExpr? expr;
+    @internal
+    Map<String, Object?> toArgMap();
+  }
 
+  /// The [ComputeRegionSecurityPolicyRulesMatch.config] variant.
+  final class ComputeRegionSecurityPolicyRulesMatchConfigChoice extends ComputeRegionSecurityPolicyRulesMatch {
+    const ComputeRegionSecurityPolicyRulesMatchConfigChoice({
+      required this.versionedExpr,
+      required this.config,
+    });
+
+    final SecurityPolicyRuleMatchVersionedExpr versionedExpr;
+    final ComputeRegionSecurityPolicyRulesMatchConfig config;
+
+    @internal
+    String get blockKey => 'versioned_expr';
+
+    @override
+    @internal
     Map<String, Object?> toArgMap() => {
-      if (versionedExpr != null)
-        'versioned_expr': versionedExpr!.toTfJson(),
-      if (config != null) 'config': [config!.toArgMap()],
-      if (expr != null) 'expr': [expr!.toArgMap()],
+      'versioned_expr': versionedExpr.toTfJson(),
+      'config': [config.toArgMap()],
     };
+  }
+
+  /// The [ComputeRegionSecurityPolicyRulesMatch.expr] variant.
+  final class ComputeRegionSecurityPolicyRulesMatchExprChoice extends ComputeRegionSecurityPolicyRulesMatch {
+    const ComputeRegionSecurityPolicyRulesMatchExprChoice(this.expr);
+
+    final ComputeRegionSecurityPolicyRulesMatchExpr expr;
+
+    @override
+    @internal
+    Map<String, Object?> toArgMap() => {'expr': [expr.toArgMap()]};
   }
 
   @immutable

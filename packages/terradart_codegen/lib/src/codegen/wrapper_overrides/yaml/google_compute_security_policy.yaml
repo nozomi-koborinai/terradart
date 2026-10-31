@@ -343,39 +343,54 @@ prelude: |
   ///   Use for anything beyond source-IP matching (geo, path, header,
   ///   request size, ...). See
   ///   https://cloud.google.com/armor/docs/rules-language-reference.
-  @immutable
-  class ComputeSecurityPolicyRulesMatch {
-    const ComputeSecurityPolicyRulesMatch._({
-      this.versionedExpr,
-      this.config,
-      this.expr,
-    });
+  sealed class ComputeSecurityPolicyRulesMatch {
+    const ComputeSecurityPolicyRulesMatch();
 
-    /// Built-in predicate variant. Pair [versionedExpr] with [config]
-    /// (both required by the schema when this variant is used).
-    factory ComputeSecurityPolicyRulesMatch.config({
+    /// Built-in predicate variant: `versionedExpr` over `config`.
+    const factory ComputeSecurityPolicyRulesMatch.config({
       required SecurityPolicyRuleMatchVersionedExpr versionedExpr,
       required ComputeSecurityPolicyRulesMatchConfig config,
-    }) => ComputeSecurityPolicyRulesMatch._(
-      versionedExpr: versionedExpr,
-      config: config,
-    );
+    }) = ComputeSecurityPolicyRulesMatchConfigChoice;
 
     /// User-defined CEL expression variant.
-    factory ComputeSecurityPolicyRulesMatch.expr(
+    const factory ComputeSecurityPolicyRulesMatch.expr(
       ComputeSecurityPolicyRulesMatchExpr expr,
-    ) => ComputeSecurityPolicyRulesMatch._(expr: expr);
+    ) = ComputeSecurityPolicyRulesMatchExprChoice;
 
-    final SecurityPolicyRuleMatchVersionedExpr? versionedExpr;
-    final ComputeSecurityPolicyRulesMatchConfig? config;
-    final ComputeSecurityPolicyRulesMatchExpr? expr;
+    @internal
+    Map<String, Object?> toArgMap();
+  }
 
+  /// The [ComputeSecurityPolicyRulesMatch.config] variant.
+  final class ComputeSecurityPolicyRulesMatchConfigChoice extends ComputeSecurityPolicyRulesMatch {
+    const ComputeSecurityPolicyRulesMatchConfigChoice({
+      required this.versionedExpr,
+      required this.config,
+    });
+
+    final SecurityPolicyRuleMatchVersionedExpr versionedExpr;
+    final ComputeSecurityPolicyRulesMatchConfig config;
+
+    @internal
+    String get blockKey => 'versioned_expr';
+
+    @override
+    @internal
     Map<String, Object?> toArgMap() => {
-      if (versionedExpr != null)
-        'versioned_expr': versionedExpr!.toTfJson(),
-      if (config != null) 'config': [config!.toArgMap()],
-      if (expr != null) 'expr': [expr!.toArgMap()],
+      'versioned_expr': versionedExpr.toTfJson(),
+      'config': [config.toArgMap()],
     };
+  }
+
+  /// The [ComputeSecurityPolicyRulesMatch.expr] variant.
+  final class ComputeSecurityPolicyRulesMatchExprChoice extends ComputeSecurityPolicyRulesMatch {
+    const ComputeSecurityPolicyRulesMatchExprChoice(this.expr);
+
+    final ComputeSecurityPolicyRulesMatchExpr expr;
+
+    @override
+    @internal
+    Map<String, Object?> toArgMap() => {'expr': [expr.toArgMap()]};
   }
 
   /// `match.config` -- payload for the `SRC_IPS_V1` predicate. The only
