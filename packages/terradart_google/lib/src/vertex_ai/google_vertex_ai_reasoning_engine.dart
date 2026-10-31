@@ -391,19 +391,11 @@ extension type const VertexAiReasoningEngineLanguage._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const VertexAiReasoningEngineLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  static const languageUnspecified = VertexAiReasoningEngineLanguage._(
-    TfArgLiteral('LANGUAGE_UNSPECIFIED'),
-  );
   static const python = VertexAiReasoningEngineLanguage._(
     TfArgLiteral('PYTHON'),
   );
-  static const bash = VertexAiReasoningEngineLanguage._(TfArgLiteral('BASH'));
 
-  static const List<VertexAiReasoningEngineLanguage> values = [
-    languageUnspecified,
-    python,
-    bash,
-  ];
+  static const List<VertexAiReasoningEngineLanguage> values = [python];
 }
 
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.file_data` block of
@@ -677,12 +669,44 @@ final class VertexAiReasoningEngineCustomMemoryTopic {
 final class VertexAiReasoningEngineManagedMemoryTopic {
   const VertexAiReasoningEngineManagedMemoryTopic({this.managedTopicEnum});
 
-  final TfArg<String>? managedTopicEnum;
+  final VertexAiReasoningEngineManagedTopicEnum? managedTopicEnum;
 
   @internal
   Map<String, Object?> encode() => {
     'managed_topic_enum': ?managedTopicEnum?.toTfJson(),
   };
+}
+
+/// `managed_topic_enum` — derived from the provider schema description.
+extension type const VertexAiReasoningEngineManagedTopicEnum._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiReasoningEngineManagedTopicEnum.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineManagedTopicEnum.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineManagedTopicEnum.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const userPersonalInfo = VertexAiReasoningEngineManagedTopicEnum._(
+    TfArgLiteral('USER_PERSONAL_INFO'),
+  );
+  static const userPreferences = VertexAiReasoningEngineManagedTopicEnum._(
+    TfArgLiteral('USER_PREFERENCES'),
+  );
+  static const keyConversationDetails =
+      VertexAiReasoningEngineManagedTopicEnum._(
+        TfArgLiteral('KEY_CONVERSATION_DETAILS'),
+      );
+  static const explicitInstructions = VertexAiReasoningEngineManagedTopicEnum._(
+    TfArgLiteral('EXPLICIT_INSTRUCTIONS'),
+  );
+
+  static const List<VertexAiReasoningEngineManagedTopicEnum> values = [
+    userPersonalInfo,
+    userPreferences,
+    keyConversationDetails,
+    explicitInstructions,
+  ];
 }
 
 /// Typed helper for the `context_spec.memory_bank_config.generation_config` block of

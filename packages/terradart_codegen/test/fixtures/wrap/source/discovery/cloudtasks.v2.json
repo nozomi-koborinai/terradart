@@ -1,0 +1,60 @@
+{
+  "name": "cloudtasks",
+  "version": "v2",
+  "revision": "20261020",
+  "sourceUrl": "https://cloudtasks.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "HttpTarget": {
+      "properties": {
+        "uriOverride": {
+          "$ref": "UriOverride"
+        },
+        "httpMethod": {
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ]
+        }
+      }
+    },
+    "Queue": {
+      "properties": {
+        "httpTarget": {
+          "$ref": "HttpTarget"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "UriOverride": {
+      "properties": {
+        "scheme": {
+          "enum": [
+            "SCHEME_UNSPECIFIED",
+            "HTTP",
+            "HTTPS"
+          ]
+        },
+        "uriOverrideEnforceMode": {
+          "enum": [
+            "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED",
+            "IF_NOT_EXISTS",
+            "ALWAYS"
+          ]
+        }
+      }
+    }
+  }
+}

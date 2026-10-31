@@ -1,0 +1,27 @@
+{
+  "name": "firebasedatabase",
+  "version": "v1beta",
+  "revision": "20261025",
+  "sourceUrl": "https://firebasedatabase.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "DatabaseInstance": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATABASE_INSTANCE_TYPE_UNSPECIFIED",
+            "DEFAULT_DATABASE",
+            "USER_DATABASE"
+          ]
+        },
+        "state": {
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DISABLED",
+            "DELETED"
+          ]
+        }
+      }
+    }
+  }
+}

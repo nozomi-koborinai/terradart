@@ -130,7 +130,8 @@ export 'src/vertex_ai/google_vertex_ai_index.dart'
         VertexAiIndexFeatureNormType,
         VertexAiIndexMetadata,
         VertexAiIndexShardSize,
-        VertexAiIndexTreeAhConfig;
+        VertexAiIndexTreeAhConfig,
+        VertexAiIndexUpdateMethod;
 export 'src/vertex_ai/google_vertex_ai_index_endpoint.dart'
     show
         GoogleVertexAiIndexEndpoint,
@@ -265,6 +266,7 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineInlineSource,
         VertexAiReasoningEngineLanguage,
         VertexAiReasoningEngineManagedMemoryTopic,
+        VertexAiReasoningEngineManagedTopicEnum,
         VertexAiReasoningEngineMemoryBankConfig,
         VertexAiReasoningEngineMemoryTopics,
         VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic,

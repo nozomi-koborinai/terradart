@@ -1,0 +1,158 @@
+{
+  "name": "securityposture",
+  "version": "v1",
+  "revision": "20260817",
+  "sourceUrl": "https://securityposture.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Constraint": {
+      "properties": {
+        "securityHealthAnalyticsModule": {
+          "$ref": "SecurityHealthAnalyticsModule"
+        },
+        "securityHealthAnalyticsCustomModule": {
+          "$ref": "SecurityHealthAnalyticsCustomModule"
+        },
+        "orgPolicyConstraintCustom": {
+          "$ref": "OrgPolicyConstraintCustom"
+        }
+      }
+    },
+    "CustomConfig": {
+      "properties": {
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        }
+      }
+    },
+    "GoogleCloudSecuritypostureV1CustomConstraint": {
+      "properties": {
+        "methodTypes": {
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ]
+          }
+        },
+        "actionType": {
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        }
+      }
+    },
+    "OrgPolicyConstraintCustom": {
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudSecuritypostureV1CustomConstraint"
+        }
+      }
+    },
+    "Policy": {
+      "properties": {
+        "constraint": {
+          "$ref": "Constraint"
+        }
+      }
+    },
+    "PolicySet": {
+      "properties": {
+        "policies": {
+          "items": {
+            "$ref": "Policy"
+          }
+        }
+      }
+    },
+    "Posture": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DEPRECATED",
+            "DRAFT",
+            "ACTIVE"
+          ]
+        },
+        "policySets": {
+          "items": {
+            "$ref": "PolicySet"
+          }
+        },
+        "categories": {
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI",
+              "AWS",
+              "GCP",
+              "AZURE"
+            ]
+          }
+        }
+      }
+    },
+    "PostureDeployment": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "DELETING",
+            "UPDATING",
+            "ACTIVE",
+            "CREATE_FAILED",
+            "UPDATE_FAILED",
+            "DELETE_FAILED"
+          ]
+        },
+        "categories": {
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI",
+              "AWS",
+              "GCP",
+              "AZURE"
+            ]
+          }
+        }
+      }
+    },
+    "SecurityHealthAnalyticsCustomModule": {
+      "properties": {
+        "moduleEnablementState": {
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "config": {
+          "$ref": "CustomConfig"
+        }
+      }
+    },
+    "SecurityHealthAnalyticsModule": {
+      "properties": {
+        "moduleEnablementState": {
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    }
+  }
+}

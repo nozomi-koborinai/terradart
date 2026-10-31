@@ -1,0 +1,604 @@
+{
+  "name": "dataplex",
+  "version": "v1",
+  "revision": "20261027",
+  "sourceUrl": "https://dataplex.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDataplexV1AspectType": {
+      "properties": {
+        "transferStatus": {
+          "enum": [
+            "TRANSFER_STATUS_UNSPECIFIED",
+            "TRANSFER_STATUS_MIGRATED",
+            "TRANSFER_STATUS_TRANSFERRED"
+          ]
+        },
+        "dataClassification": {
+          "enum": [
+            "DATA_CLASSIFICATION_UNSPECIFIED",
+            "METADATA_AND_DATA"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1Asset": {
+      "properties": {
+        "securityStatus": {
+          "$ref": "GoogleCloudDataplexV1AssetSecurityStatus"
+        },
+        "resourceStatus": {
+          "$ref": "GoogleCloudDataplexV1AssetResourceStatus"
+        },
+        "resourceSpec": {
+          "$ref": "GoogleCloudDataplexV1AssetResourceSpec"
+        },
+        "discoveryStatus": {
+          "$ref": "GoogleCloudDataplexV1AssetDiscoveryStatus"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1AssetDiscoveryStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SCHEDULED",
+            "IN_PROGRESS",
+            "PAUSED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1AssetResourceSpec": {
+      "properties": {
+        "readAccessMode": {
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "DIRECT",
+            "MANAGED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "STORAGE_BUCKET",
+            "BIGQUERY_DATASET"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1AssetResourceStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1AssetSecurityStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "APPLYING",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataAsset": {
+      "properties": {
+        "accessGroupConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDataplexV1DataAssetAccessGroupConfig"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataAssetAccessGroupConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPLYING",
+            "APPLIED",
+            "FAILED",
+            "UNSUPPORTED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpec": {
+      "properties": {
+        "bigqueryPublishingConfig": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig": {
+      "properties": {
+        "tableType": {
+          "enum": [
+            "TABLE_TYPE_UNSPECIFIED",
+            "EXTERNAL",
+            "BIGLAKE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResult": {
+      "properties": {
+        "dataProductResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultDataProductResult"
+        },
+        "datasetResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultDatasetResult"
+        },
+        "tableResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultTableResult"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultDataProductResult": {
+      "properties": {
+        "queries": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultDatasetResult": {
+      "properties": {
+        "schemaRelationships": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultSchemaRelationship"
+          }
+        },
+        "queries": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultQuery": {
+      "properties": {
+        "sqlDialect": {
+          "enum": [
+            "SQL_DIALECT_UNSPECIFIED",
+            "GOOGLE_SQL",
+            "SPARK_SQL"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultSchemaRelationship": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "SCHEMA_JOIN"
+          ]
+        },
+        "sources": {
+          "items": {
+            "enum": [
+              "SOURCE_UNSPECIFIED",
+              "AGENT",
+              "QUERY_HISTORY",
+              "TABLE_CONSTRAINTS"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultTableResult": {
+      "properties": {
+        "queries": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataDocumentationSpec": {
+      "properties": {
+        "generationScopes": {
+          "items": {
+            "enum": [
+              "GENERATION_SCOPE_UNSPECIFIED",
+              "ALL",
+              "TABLE_AND_COLUMN_DESCRIPTIONS",
+              "SQL_QUERIES",
+              "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS"
+            ]
+          }
+        },
+        "sqlDialect": {
+          "enum": [
+            "SQL_DIALECT_UNSPECIFIED",
+            "GOOGLE_SQL",
+            "SPARK_SQL"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataProduct": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1DataProfileResult": {
+      "properties": {
+        "catalogPublishingStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus"
+        },
+        "postScanActionsResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResult"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataProfileResultPostScanActionsResult": {
+      "properties": {
+        "bigqueryExportResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataProfileSpec": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "STANDARD",
+            "LIGHTWEIGHT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityResult": {
+      "properties": {
+        "postScanActionsResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult"
+        },
+        "catalogPublishingStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus"
+        },
+        "rules": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRuleResult"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult": {
+      "properties": {
+        "bigqueryExportResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityRule": {
+      "properties": {
+        "statisticRangeExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityRuleResult": {
+      "properties": {
+        "rule": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRule"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation": {
+      "properties": {
+        "statistic": {
+          "enum": [
+            "STATISTIC_UNDEFINED",
+            "MEAN",
+            "MIN",
+            "MAX"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataQualitySpec": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRule"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataScan": {
+      "properties": {
+        "dataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpec"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        },
+        "dataDocumentationSpec": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationSpec"
+        },
+        "dataQualityResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResult"
+        },
+        "dataDiscoverySpec": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpec"
+        },
+        "dataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResult"
+        },
+        "dataDocumentationResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResult"
+        },
+        "dataQualitySpec": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpec"
+        },
+        "type": {
+          "enum": [
+            "DATA_SCAN_TYPE_UNSPECIFIED",
+            "DATA_QUALITY",
+            "DATA_PROFILE",
+            "DATA_DISCOVERY",
+            "DATA_DOCUMENTATION"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1DataScanCatalogPublishingStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1Entry": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1EntryGroup": {
+      "properties": {
+        "transferStatus": {
+          "enum": [
+            "TRANSFER_STATUS_UNSPECIFIED",
+            "TRANSFER_STATUS_MIGRATED",
+            "TRANSFER_STATUS_TRANSFERRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1EntryLink": {
+      "properties": {
+        "entryReferences": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryLinkEntryReference"
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1EntryLinkEntryReference": {
+      "properties": {
+        "type": {
+          "enum": [
+            "UNSPECIFIED",
+            "SOURCE",
+            "TARGET"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1EntryType": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1Glossary": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1GlossaryCategory": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1GlossaryTerm": {
+      "properties": {}
+    },
+    "GoogleCloudDataplexV1Job": {
+      "properties": {
+        "trigger": {
+          "enum": [
+            "TRIGGER_UNSPECIFIED",
+            "TASK_CONFIG",
+            "RUN_REQUEST"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "FAILED",
+            "ABORTED"
+          ]
+        },
+        "service": {
+          "enum": [
+            "SERVICE_UNSPECIFIED",
+            "DATAPROC"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1Lake": {
+      "properties": {
+        "metastoreStatus": {
+          "$ref": "GoogleCloudDataplexV1LakeMetastoreStatus"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1LakeMetastoreStatus": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NONE",
+            "READY",
+            "UPDATING",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1MetadataFeed": {
+      "properties": {
+        "filters": {
+          "$ref": "GoogleCloudDataplexV1MetadataFeedFilters"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1MetadataFeedFilters": {
+      "properties": {
+        "changeTypes": {
+          "items": {
+            "enum": [
+              "CHANGE_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudDataplexV1Task": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        },
+        "executionStatus": {
+          "$ref": "GoogleCloudDataplexV1TaskExecutionStatus"
+        },
+        "triggerSpec": {
+          "$ref": "GoogleCloudDataplexV1TaskTriggerSpec"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1TaskExecutionStatus": {
+      "properties": {
+        "latestJob": {
+          "$ref": "GoogleCloudDataplexV1Job"
+        }
+      }
+    },
+    "GoogleCloudDataplexV1TaskTriggerSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "RECURRING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1Zone": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "RAW",
+            "CURATED"
+          ]
+        },
+        "resourceSpec": {
+          "$ref": "GoogleCloudDataplexV1ZoneResourceSpec"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDataplexV1ZoneResourceSpec": {
+      "properties": {
+        "locationType": {
+          "enum": [
+            "LOCATION_TYPE_UNSPECIFIED",
+            "SINGLE_REGION",
+            "MULTI_REGION"
+          ]
+        }
+      }
+    }
+  }
+}

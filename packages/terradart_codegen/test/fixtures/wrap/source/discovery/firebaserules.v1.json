@@ -1,0 +1,11 @@
+{
+  "name": "firebaserules",
+  "version": "v1",
+  "revision": "20261012",
+  "sourceUrl": "https://firebaserules.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Ruleset": {
+      "properties": {}
+    }
+  }
+}

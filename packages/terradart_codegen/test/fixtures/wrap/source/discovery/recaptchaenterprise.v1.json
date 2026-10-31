@@ -1,0 +1,75 @@
+{
+  "name": "recaptchaenterprise",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://recaptchaenterprise.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudRecaptchaenterpriseV1Key": {
+      "properties": {
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
+        },
+        "testingOptions": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
+        },
+        "webSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
+        }
+      }
+    },
+    "GoogleCloudRecaptchaenterpriseV1TestingOptions": {
+      "properties": {
+        "testingChallenge": {
+          "enum": [
+            "TESTING_CHALLENGE_UNSPECIFIED",
+            "NOCAPTCHA",
+            "UNSOLVABLE_CHALLENGE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudRecaptchaenterpriseV1WafSettings": {
+      "properties": {
+        "wafFeature": {
+          "enum": [
+            "WAF_FEATURE_UNSPECIFIED",
+            "CHALLENGE_PAGE",
+            "SESSION_TOKEN",
+            "ACTION_TOKEN",
+            "EXPRESS"
+          ]
+        },
+        "wafService": {
+          "enum": [
+            "WAF_SERVICE_UNSPECIFIED",
+            "CA",
+            "FASTLY",
+            "CLOUDFLARE",
+            "AKAMAI"
+          ]
+        }
+      }
+    },
+    "GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
+      "properties": {
+        "integrationType": {
+          "enum": [
+            "INTEGRATION_TYPE_UNSPECIFIED",
+            "SCORE",
+            "CHECKBOX",
+            "INVISIBLE",
+            "POLICY_BASED_CHALLENGE"
+          ]
+        },
+        "challengeSecurityPreference": {
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -27,4 +27,5 @@ export 'src/tpu/google_tpu_v2_vm.dart'
         TpuV2VmNetworkConfigsChoice,
         TpuV2VmSchedulingConfig,
         TpuV2VmServiceAccount,
-        TpuV2VmShieldedInstanceConfig;
+        TpuV2VmShieldedInstanceConfig,
+        TpuV2VmType;

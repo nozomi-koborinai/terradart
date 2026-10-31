@@ -49,9 +49,6 @@ extension type const ComputeDiskGuestOsFeatureType._(TfArg<String> _)
   static const sevSnpCapable = ComputeDiskGuestOsFeatureType._(
     TfArgLiteral('SEV_SNP_CAPABLE'),
   );
-  static const suspendResumeCompatible = ComputeDiskGuestOsFeatureType._(
-    TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'),
-  );
   static const tdxCapable = ComputeDiskGuestOsFeatureType._(
     TfArgLiteral('TDX_CAPABLE'),
   );
@@ -72,7 +69,6 @@ extension type const ComputeDiskGuestOsFeatureType._(TfArg<String> _)
     gVnic,
     sevLiveMigratable,
     sevSnpCapable,
-    suspendResumeCompatible,
     tdxCapable,
     sevLiveMigratableV2,
     snpSvsmCapable,

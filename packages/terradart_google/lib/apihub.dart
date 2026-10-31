@@ -30,6 +30,7 @@ export 'src/apihub/google_apihub_plugin.dart'
         ApihubPluginHostingService,
         ApihubPluginMultiSelectOptions,
         ApihubPluginServiceAccount,
+        ApihubPluginSupportedAuthTypes,
         ApihubPluginTriggerMode,
         ApihubPluginValueType,
         GoogleApihubPlugin;

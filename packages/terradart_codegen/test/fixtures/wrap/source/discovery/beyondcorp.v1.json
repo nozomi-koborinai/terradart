@@ -1,0 +1,111 @@
+{
+  "name": "beyondcorp",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders": {
+      "properties": {
+        "userInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
+        },
+        "deviceInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
+        },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
+        },
+        "groupInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
+        },
+        "outputType": {
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo": {
+      "properties": {
+        "outputType": {
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo": {
+      "properties": {
+        "outputType": {
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo": {
+      "properties": {
+        "outputType": {
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo": {
+      "properties": {
+        "outputType": {
+          "enum": [
+            "OUTPUT_TYPE_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig": {
+      "properties": {
+        "gatewayIdentity": {
+          "enum": [
+            "GATEWAY_IDENTITY_UNSPECIFIED",
+            "RESOURCE_NAME"
+          ]
+        },
+        "contextualHeaders": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders"
+        }
+      }
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway": {
+      "properties": {
+        "proxyProtocolConfig": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "RUNNING",
+            "DOWN",
+            "ERROR"
+          ]
+        }
+      }
+    }
+  }
+}

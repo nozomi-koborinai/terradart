@@ -1,0 +1,49 @@
+{
+  "name": "securesourcemanager",
+  "version": "v1",
+  "revision": "0",
+  "sourceUrl": "https://securesourcemanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BranchRule": {
+      "properties": {}
+    },
+    "Hook": {
+      "properties": {
+        "events": {
+          "items": {
+            "enum": [
+              "UNSPECIFIED",
+              "PUSH",
+              "PULL_REQUEST",
+              "PULL_REQUEST_COMMENT"
+            ]
+          }
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "stateNote": {
+          "enum": [
+            "STATE_NOTE_UNSPECIFIED",
+            "PAUSED_CMEK_UNAVAILABLE",
+            "INSTANCE_RESUMING"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "PAUSED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "Repository": {
+      "properties": {}
+    }
+  }
+}

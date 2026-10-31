@@ -1,0 +1,263 @@
+{
+  "name": "artifactregistry",
+  "version": "v1",
+  "revision": "20261017",
+  "sourceUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AptRepository": {
+      "properties": {
+        "publicRepository": {
+          "$ref": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository"
+        }
+      }
+    },
+    "CleanupPolicy": {
+      "properties": {
+        "condition": {
+          "$ref": "CleanupPolicyCondition"
+        },
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "DELETE",
+            "KEEP"
+          ]
+        }
+      }
+    },
+    "CleanupPolicyCondition": {
+      "properties": {
+        "tagState": {
+          "enum": [
+            "TAG_STATE_UNSPECIFIED",
+            "TAGGED",
+            "UNTAGGED",
+            "ANY"
+          ]
+        }
+      }
+    },
+    "DockerRepository": {
+      "properties": {
+        "publicRepository": {
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "DOCKER_HUB"
+          ]
+        }
+      }
+    },
+    "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository": {
+      "properties": {
+        "repositoryBase": {
+          "enum": [
+            "REPOSITORY_BASE_UNSPECIFIED",
+            "DEBIAN",
+            "UBUNTU",
+            "DEBIAN_SNAPSHOT"
+          ]
+        }
+      }
+    },
+    "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository": {
+      "properties": {
+        "repositoryBase": {
+          "enum": [
+            "REPOSITORY_BASE_UNSPECIFIED",
+            "CENTOS",
+            "CENTOS_DEBUG",
+            "CENTOS_VAULT",
+            "CENTOS_STREAM",
+            "ROCKY",
+            "EPEL"
+          ]
+        }
+      }
+    },
+    "GoogleDevtoolsArtifactregistryV1Rule": {
+      "properties": {
+        "operation": {
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "DOWNLOAD"
+          ]
+        },
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        }
+      }
+    },
+    "MavenRepository": {
+      "properties": {
+        "publicRepository": {
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "MAVEN_CENTRAL"
+          ]
+        }
+      }
+    },
+    "MavenRepositoryConfig": {
+      "properties": {
+        "versionPolicy": {
+          "enum": [
+            "VERSION_POLICY_UNSPECIFIED",
+            "RELEASE",
+            "SNAPSHOT"
+          ]
+        }
+      }
+    },
+    "NpmRepository": {
+      "properties": {
+        "publicRepository": {
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "NPMJS"
+          ]
+        }
+      }
+    },
+    "PlatformLogsConfig": {
+      "properties": {
+        "severityLevel": {
+          "enum": [
+            "SEVERITY_LEVEL_UNSPECIFIED",
+            "DEBUG",
+            "INFO",
+            "NOTICE",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+            "ALERT",
+            "EMERGENCY"
+          ]
+        },
+        "loggingState": {
+          "enum": [
+            "LOGGING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "ProjectConfig": {
+      "properties": {
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
+        }
+      }
+    },
+    "PythonRepository": {
+      "properties": {
+        "publicRepository": {
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "PYPI"
+          ]
+        }
+      }
+    },
+    "RemoteRepositoryConfig": {
+      "properties": {
+        "dockerRepository": {
+          "$ref": "DockerRepository"
+        },
+        "aptRepository": {
+          "$ref": "AptRepository"
+        },
+        "yumRepository": {
+          "$ref": "YumRepository"
+        },
+        "mavenRepository": {
+          "$ref": "MavenRepository"
+        },
+        "pythonRepository": {
+          "$ref": "PythonRepository"
+        },
+        "npmRepository": {
+          "$ref": "NpmRepository"
+        }
+      }
+    },
+    "Repository": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "STANDARD_REPOSITORY",
+            "VIRTUAL_REPOSITORY",
+            "REMOTE_REPOSITORY",
+            "AOSS_REPOSITORY",
+            "ASSURED_OSS_REPOSITORY"
+          ]
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
+        },
+        "format": {
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "DOCKER",
+            "MAVEN",
+            "NPM",
+            "APT",
+            "YUM",
+            "GOOGET",
+            "PYTHON",
+            "KFP",
+            "GO",
+            "GENERIC",
+            "RUBY",
+            "CONDA"
+          ]
+        },
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig"
+        },
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
+        },
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
+        },
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
+        }
+      }
+    },
+    "VulnerabilityScanningConfig": {
+      "properties": {
+        "enablementState": {
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "SCANNING_UNSUPPORTED",
+            "SCANNING_DISABLED",
+            "SCANNING_ACTIVE"
+          ]
+        },
+        "enablementConfig": {
+          "enum": [
+            "ENABLEMENT_CONFIG_UNSPECIFIED",
+            "INHERITED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "YumRepository": {
+      "properties": {
+        "publicRepository": {
+          "$ref": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository"
+        }
+      }
+    }
+  }
+}

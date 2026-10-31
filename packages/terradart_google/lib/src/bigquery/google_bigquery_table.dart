@@ -207,11 +207,11 @@ final class BigqueryTableBiglakeConfiguration {
 
   final TfArg<String> connectionId;
 
-  final TfArg<String> fileFormat;
+  final BigqueryTableFileFormat fileFormat;
 
   final TfArg<String> storageUri;
 
-  final TfArg<String> tableFormat;
+  final BigqueryTableFormat tableFormat;
 
   @internal
   Map<String, Object?> encode() => {
@@ -220,6 +220,32 @@ final class BigqueryTableBiglakeConfiguration {
     'storage_uri': storageUri.toTfJson(),
     'table_format': tableFormat.toTfJson(),
   };
+}
+
+/// `file_format` — derived from the provider schema description.
+extension type const BigqueryTableFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableFileFormat.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableFileFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const parquet = BigqueryTableFileFormat._(TfArgLiteral('PARQUET'));
+
+  static const List<BigqueryTableFileFormat> values = [parquet];
+}
+
+/// `table_format` — derived from the provider schema description.
+extension type const BigqueryTableFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableFormat.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const iceberg = BigqueryTableFormat._(TfArgLiteral('ICEBERG'));
+
+  static const List<BigqueryTableFormat> values = [iceberg];
 }
 
 /// Typed helper for the `encryption_configuration` block of
@@ -346,13 +372,13 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<String>? connectionId;
 
-  final TfArg<List<String>>? decimalTargetTypes;
+  final EnumList<BigqueryTableDecimalTargetTypes>? decimalTargetTypes;
 
   final FileSetSpecType? fileSetSpecType;
 
   final TfArg<bool>? ignoreUnknownValues;
 
-  final TfArg<String>? jsonExtension;
+  final BigqueryTableJsonExtension? jsonExtension;
 
   final TfArg<num>? maxBadRecords;
 
@@ -406,6 +432,46 @@ final class BigqueryTableExternalDataConfiguration {
     'json_options': ?jsonOptions?.encode(),
     'parquet_options': ?parquetOptions?.encode(),
   };
+}
+
+/// `decimal_target_types` — derived from the provider schema description.
+extension type const BigqueryTableDecimalTargetTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableDecimalTargetTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableDecimalTargetTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableDecimalTargetTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const numeric = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('NUMERIC'),
+  );
+  static const bignumeric = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('BIGNUMERIC'),
+  );
+  static const string = BigqueryTableDecimalTargetTypes._(
+    TfArgLiteral('STRING'),
+  );
+
+  static const List<BigqueryTableDecimalTargetTypes> values = [
+    numeric,
+    bignumeric,
+    string,
+  ];
+}
+
+/// `json_extension` — derived from the provider schema description.
+extension type const BigqueryTableJsonExtension._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableJsonExtension.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableJsonExtension.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableJsonExtension.arg(TfArg<String> arg) : this._(arg);
+
+  static const geojson = BigqueryTableJsonExtension._(TfArgLiteral('GEOJSON'));
+
+  static const List<BigqueryTableJsonExtension> values = [geojson];
 }
 
 /// Typed helper for the `external_data_configuration.avro_options` block of

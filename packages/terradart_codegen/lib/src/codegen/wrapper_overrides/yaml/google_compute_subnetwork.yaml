@@ -37,6 +37,7 @@ curatedDoc: |-
   /// ```
 
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
 
 paramOrder:

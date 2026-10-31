@@ -600,7 +600,7 @@ final class CloudbuildTriggerOptions {
 
   final CloudbuildTriggerLogging? logging;
 
-  final TfArg<String>? machineType;
+  final CloudbuildTriggerMachineType? machineType;
 
   final CloudbuildTriggerRequestedVerifyOption? requestedVerifyOption;
 
@@ -686,6 +686,44 @@ extension type const CloudbuildTriggerLogging._(TfArg<String> _)
     stackdriverOnly,
     cloudLoggingOnly,
     none,
+  ];
+}
+
+/// `machine_type` — derived from the provider schema description.
+extension type const CloudbuildTriggerMachineType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerMachineType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerMachineType.arg(TfArg<String> arg) : this._(arg);
+
+  static const n1Highcpu8 = CloudbuildTriggerMachineType._(
+    TfArgLiteral('N1_HIGHCPU_8'),
+  );
+  static const n1Highcpu32 = CloudbuildTriggerMachineType._(
+    TfArgLiteral('N1_HIGHCPU_32'),
+  );
+  static const e2Highcpu8 = CloudbuildTriggerMachineType._(
+    TfArgLiteral('E2_HIGHCPU_8'),
+  );
+  static const e2Highcpu32 = CloudbuildTriggerMachineType._(
+    TfArgLiteral('E2_HIGHCPU_32'),
+  );
+  static const e2Medium = CloudbuildTriggerMachineType._(
+    TfArgLiteral('E2_MEDIUM'),
+  );
+  static const e2Standard2 = CloudbuildTriggerMachineType._(
+    TfArgLiteral('E2_STANDARD_2'),
+  );
+
+  static const List<CloudbuildTriggerMachineType> values = [
+    n1Highcpu8,
+    n1Highcpu32,
+    e2Highcpu8,
+    e2Highcpu32,
+    e2Medium,
+    e2Standard2,
   ];
 }
 

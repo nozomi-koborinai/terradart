@@ -1,9 +1,4 @@
 outputDir: dialogflow
-enumValues:
-  generative_safety_settings.default_banned_phrase_match_strategy:
-    - PARTIAL_MATCH
-    - WORD_MATCH
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

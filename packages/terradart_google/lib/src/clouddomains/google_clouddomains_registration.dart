@@ -18,7 +18,7 @@ final class ClouddomainsRegistrationContactSettings {
     required this.technicalContact,
   });
 
-  final TfArg<String> privacy;
+  final ClouddomainsRegistrationPrivacy privacy;
 
   final ClouddomainsRegistrationAdminContact adminContact;
 
@@ -33,6 +33,32 @@ final class ClouddomainsRegistrationContactSettings {
     'registrant_contact': registrantContact.encode(),
     'technical_contact': technicalContact.encode(),
   };
+}
+
+/// `privacy` — derived from the provider schema description.
+extension type const ClouddomainsRegistrationPrivacy._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddomainsRegistrationPrivacy.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddomainsRegistrationPrivacy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddomainsRegistrationPrivacy.arg(TfArg<String> arg) : this._(arg);
+
+  static const publicContactData = ClouddomainsRegistrationPrivacy._(
+    TfArgLiteral('PUBLIC_CONTACT_DATA'),
+  );
+  static const privateContactData = ClouddomainsRegistrationPrivacy._(
+    TfArgLiteral('PRIVATE_CONTACT_DATA'),
+  );
+  static const redactedContactData = ClouddomainsRegistrationPrivacy._(
+    TfArgLiteral('REDACTED_CONTACT_DATA'),
+  );
+
+  static const List<ClouddomainsRegistrationPrivacy> values = [
+    publicContactData,
+    privateContactData,
+    redactedContactData,
+  ];
 }
 
 /// Typed helper for the `contact_settings.admin_contact` block of
@@ -210,11 +236,11 @@ final class ClouddomainsRegistrationDsRecords {
     this.keyTag,
   });
 
-  final TfArg<String>? algorithm;
+  final ClouddomainsRegistrationAlgorithm? algorithm;
 
   final TfArg<String>? digest;
 
-  final TfArg<String>? digestType;
+  final ClouddomainsRegistrationDigestType? digestType;
 
   final TfArg<num>? keyTag;
 
@@ -225,6 +251,112 @@ final class ClouddomainsRegistrationDsRecords {
     'digest_type': ?digestType?.toTfJson(),
     'key_tag': ?keyTag?.toTfJson(),
   };
+}
+
+/// `algorithm` — derived from the provider schema description.
+extension type const ClouddomainsRegistrationAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddomainsRegistrationAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddomainsRegistrationAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddomainsRegistrationAlgorithm.arg(TfArg<String> arg) : this._(arg);
+
+  static const rsamd5 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('RSAMD5'),
+  );
+  static const dh = ClouddomainsRegistrationAlgorithm._(TfArgLiteral('DH'));
+  static const dsa = ClouddomainsRegistrationAlgorithm._(TfArgLiteral('DSA'));
+  static const ecc = ClouddomainsRegistrationAlgorithm._(TfArgLiteral('ECC'));
+  static const rsasha1 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('RSASHA1'),
+  );
+  static const dsansec3sha1 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('DSANSEC3SHA1'),
+  );
+  static const rsasha1nsec3sha1 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('RSASHA1NSEC3SHA1'),
+  );
+  static const rsasha256 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('RSASHA256'),
+  );
+  static const rsasha512 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('RSASHA512'),
+  );
+  static const eccgost = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('ECCGOST'),
+  );
+  static const ecdsap256sha256 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('ECDSAP256SHA256'),
+  );
+  static const ecdsap384sha384 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('ECDSAP384SHA384'),
+  );
+  static const ed25519 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('ED25519'),
+  );
+  static const ed448 = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('ED448'),
+  );
+  static const indirect = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('INDIRECT'),
+  );
+  static const privatedns = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('PRIVATEDNS'),
+  );
+  static const privateoid = ClouddomainsRegistrationAlgorithm._(
+    TfArgLiteral('PRIVATEOID'),
+  );
+
+  static const List<ClouddomainsRegistrationAlgorithm> values = [
+    rsamd5,
+    dh,
+    dsa,
+    ecc,
+    rsasha1,
+    dsansec3sha1,
+    rsasha1nsec3sha1,
+    rsasha256,
+    rsasha512,
+    eccgost,
+    ecdsap256sha256,
+    ecdsap384sha384,
+    ed25519,
+    ed448,
+    indirect,
+    privatedns,
+    privateoid,
+  ];
+}
+
+/// `digest_type` — derived from the provider schema description.
+extension type const ClouddomainsRegistrationDigestType._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddomainsRegistrationDigestType.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddomainsRegistrationDigestType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddomainsRegistrationDigestType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sha1 = ClouddomainsRegistrationDigestType._(
+    TfArgLiteral('SHA1'),
+  );
+  static const sha256 = ClouddomainsRegistrationDigestType._(
+    TfArgLiteral('SHA256'),
+  );
+  static const gost3411 = ClouddomainsRegistrationDigestType._(
+    TfArgLiteral('GOST3411'),
+  );
+  static const sha384 = ClouddomainsRegistrationDigestType._(
+    TfArgLiteral('SHA384'),
+  );
+
+  static const List<ClouddomainsRegistrationDigestType> values = [
+    sha1,
+    sha256,
+    gost3411,
+    sha384,
+  ];
 }
 
 /// Typed helper for the `dns_settings.glue_records` block of
@@ -260,15 +392,69 @@ final class ClouddomainsRegistrationManagementSettings {
     this.transferLockState,
   });
 
-  final TfArg<String>? preferredRenewalMethod;
+  final ClouddomainsRegistrationPreferredRenewalMethod? preferredRenewalMethod;
 
-  final TfArg<String>? transferLockState;
+  final ClouddomainsRegistrationTransferLockState? transferLockState;
 
   @internal
   Map<String, Object?> encode() => {
     'preferred_renewal_method': ?preferredRenewalMethod?.toTfJson(),
     'transfer_lock_state': ?transferLockState?.toTfJson(),
   };
+}
+
+/// `preferred_renewal_method` — derived from the provider schema description.
+extension type const ClouddomainsRegistrationPreferredRenewalMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ClouddomainsRegistrationPreferredRenewalMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddomainsRegistrationPreferredRenewalMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddomainsRegistrationPreferredRenewalMethod.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automaticRenewal =
+      ClouddomainsRegistrationPreferredRenewalMethod._(
+        TfArgLiteral('AUTOMATIC_RENEWAL'),
+      );
+  static const manualRenewal = ClouddomainsRegistrationPreferredRenewalMethod._(
+    TfArgLiteral('MANUAL_RENEWAL'),
+  );
+  static const renewalDisabled =
+      ClouddomainsRegistrationPreferredRenewalMethod._(
+        TfArgLiteral('RENEWAL_DISABLED'),
+      );
+
+  static const List<ClouddomainsRegistrationPreferredRenewalMethod> values = [
+    automaticRenewal,
+    manualRenewal,
+    renewalDisabled,
+  ];
+}
+
+/// `transfer_lock_state` — derived from the provider schema description.
+extension type const ClouddomainsRegistrationTransferLockState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ClouddomainsRegistrationTransferLockState.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddomainsRegistrationTransferLockState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddomainsRegistrationTransferLockState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const unlocked = ClouddomainsRegistrationTransferLockState._(
+    TfArgLiteral('UNLOCKED'),
+  );
+  static const locked = ClouddomainsRegistrationTransferLockState._(
+    TfArgLiteral('LOCKED'),
+  );
+
+  static const List<ClouddomainsRegistrationTransferLockState> values = [
+    unlocked,
+    locked,
+  ];
 }
 
 /// Typed helper for the `yearly_price` block of

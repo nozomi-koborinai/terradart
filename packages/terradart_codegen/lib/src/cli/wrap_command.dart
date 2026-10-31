@@ -25,6 +25,7 @@ import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/wrapper_override.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
+import '../parser/discovery_enums.dart';
 import '../parser/ir_merger.dart';
 import '../parser/mm_yaml_parser.dart';
 import '../parser/schema_parser.dart';
@@ -164,6 +165,15 @@ class WrapCommand extends Command<int> {
             'Only the exactly_one_of / conflicts / at_least_one_of groups of '
             '--mm-hints feed `deriveExactlyOne`; enum typing stays the '
             'merged IR\'s. Exclusive with --mm-hints and --provider-enums.',
+      )
+      ..addFlag(
+        'discovery-enums',
+        negatable: false,
+        help:
+            'With --mm-groups or --mm-hints: an input neither the Magic '
+            'Modules YAML nor its description gives values takes the enum '
+            'the Google API Discovery copy of <source>/discovery declares '
+            '(tool/fetch_discovery_enums.dart writes it).',
       )
       ..addOption(
         'reference-targets',
@@ -331,6 +341,29 @@ class WrapCommand extends Command<int> {
       }
     } else {
       providerEnums = ProviderEnums.off;
+    }
+    if (results['discovery-enums'] as bool) {
+      if (!(results['mm-groups'] as bool) && !(results['mm-hints'] as bool)) {
+        stderr.writeln(
+          'terradart wrap: --discovery-enums needs --mm-groups or --mm-hints.',
+        );
+        return CliExitCodes.dataError;
+      }
+      final DiscoveryEnums? discovery;
+      try {
+        discovery = DiscoveryEnums.load(source);
+      } on FormatException catch (e) {
+        stderr.writeln('[E405] terradart wrap: malformed Discovery copy: $e');
+        return CliExitCodes.dataError;
+      }
+      if (discovery == null) {
+        stderr.writeln(
+          '[E405] terradart wrap: --discovery-enums but no '
+          '${p.join(source, discoveryDirName, discoveryRootsFile)}.',
+        );
+        return CliExitCodes.dataError;
+      }
+      providerEnums = providerEnums.withDiscovery(discovery, mmOverrides);
     }
     final dropped = <DroppedGroup>[];
     providerEnums = providerEnums.withinSchema(mergedIr, dropped: dropped.add);

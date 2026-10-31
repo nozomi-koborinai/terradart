@@ -9,6 +9,22 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_ces_app`.
 const Set<String> _googleCesAppSensitive = <String>{};
 
+/// Ces App Tool Execution enum for `tool_execution_mode`.
+extension type const CesAppToolExecutionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppToolExecutionMode.variable(String name) : this._(TfArg.variable(name));
+  CesAppToolExecutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppToolExecutionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const parallel = CesAppToolExecutionMode._(TfArgLiteral('PARALLEL'));
+  static const sequential = CesAppToolExecutionMode._(
+    TfArgLiteral('SEQUENTIAL'),
+  );
+
+  static const List<CesAppToolExecutionMode> values = [parallel, sequential];
+}
+
 /// Typed helper for the `audio_processing_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
@@ -311,18 +327,18 @@ extension type const CesAppModality._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const CesAppModality.arg(TfArg<String> arg) : this._(arg);
 
-  static const unknownModality = CesAppModality._(
-    TfArgLiteral('UNKNOWN_MODALITY'),
-  );
   static const chatAndVoice = CesAppModality._(TfArgLiteral('CHAT_AND_VOICE'));
   static const voiceOnly = CesAppModality._(TfArgLiteral('VOICE_ONLY'));
   static const chatOnly = CesAppModality._(TfArgLiteral('CHAT_ONLY'));
+  static const chatVoiceAndVideo = CesAppModality._(
+    TfArgLiteral('CHAT_VOICE_AND_VIDEO'),
+  );
 
   static const List<CesAppModality> values = [
-    unknownModality,
     chatAndVoice,
     voiceOnly,
     chatOnly,
+    chatVoiceAndVideo,
   ];
 }
 
@@ -332,11 +348,10 @@ extension type const CesAppTheme._(TfArg<String> _) implements TfArg<String> {
   CesAppTheme.expression(String template) : this._(TfArg.expression(template));
   const CesAppTheme.arg(TfArg<String> arg) : this._(arg);
 
-  static const unknownTheme = CesAppTheme._(TfArgLiteral('UNKNOWN_THEME'));
   static const light = CesAppTheme._(TfArgLiteral('LIGHT'));
   static const dark = CesAppTheme._(TfArgLiteral('DARK'));
 
-  static const List<CesAppTheme> values = [unknownTheme, light, dark];
+  static const List<CesAppTheme> values = [light, dark];
 }
 
 /// Typed helper for the `default_channel_profile.web_widget_config.security_settings` block of
@@ -1080,7 +1095,7 @@ final class GoogleCesApp extends Resource {
     TfArg<String>? rootAgent,
     TfArg<bool>? pinned,
     TfArg<Map<String, String>>? metadata,
-    TfArg<String>? toolExecutionMode,
+    CesAppToolExecutionMode? toolExecutionMode,
     CesAppAudioProcessingConfig? audioProcessingConfig,
     CesAppLoggingSettings? loggingSettings,
     CesAppClientCertificateSettings? clientCertificateSettings,

@@ -149,7 +149,8 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
     this.tuningError,
   });
 
-  final TfArg<List<String>>? datasetValidationWarnings;
+  final EnumList<ContactCenterInsightsQaQuestionDatasetValidationWarnings>?
+  datasetValidationWarnings;
 
   final TfArg<String>? totalValidLabelCount;
 
@@ -161,6 +162,45 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
     'total_valid_label_count': ?totalValidLabelCount?.toTfJson(),
     'tuning_error': ?tuningError?.toTfJson(),
   };
+}
+
+/// `dataset_validation_warnings` — derived from the provider schema description.
+extension type const ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContactCenterInsightsQaQuestionDatasetValidationWarnings.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsQaQuestionDatasetValidationWarnings.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContactCenterInsightsQaQuestionDatasetValidationWarnings.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tooManyInvalidFeedbackLabels =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('TOO_MANY_INVALID_FEEDBACK_LABELS'),
+      );
+  static const insufficientFeedbackLabels =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('INSUFFICIENT_FEEDBACK_LABELS'),
+      );
+  static const insufficientFeedbackLabelsPerAnswer =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('INSUFFICIENT_FEEDBACK_LABELS_PER_ANSWER'),
+      );
+  static const allFeedbackLabelsHaveTheSameAnswer =
+      ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
+        TfArgLiteral('ALL_FEEDBACK_LABELS_HAVE_THE_SAME_ANSWER'),
+      );
+
+  static const List<ContactCenterInsightsQaQuestionDatasetValidationWarnings>
+  values = [
+    tooManyInvalidFeedbackLabels,
+    insufficientFeedbackLabels,
+    insufficientFeedbackLabelsPerAnswer,
+    allFeedbackLabelsHaveTheSameAnswer,
+  ];
 }
 
 /// Factory wrapper for `google_contact_center_insights_qa_question`.

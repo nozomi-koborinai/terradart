@@ -585,7 +585,7 @@ final class BigqueryJobLoad {
 
   final TfArg<bool>? ignoreUnknownValues;
 
-  final TfArg<String>? jsonExtension;
+  final BigqueryJobJsonExtension? jsonExtension;
 
   final TfArg<num>? maxBadRecords;
 
@@ -653,6 +653,19 @@ extension type const BigqueryJobEncoding._(TfArg<String> _)
   static const iso88591 = BigqueryJobEncoding._(TfArgLiteral('ISO-8859-1'));
 
   static const List<BigqueryJobEncoding> values = [utf8, iso88591];
+}
+
+/// `json_extension` — derived from the provider schema description.
+extension type const BigqueryJobJsonExtension._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobJsonExtension.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobJsonExtension.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobJsonExtension.arg(TfArg<String> arg) : this._(arg);
+
+  static const geojson = BigqueryJobJsonExtension._(TfArgLiteral('GEOJSON'));
+
+  static const List<BigqueryJobJsonExtension> values = [geojson];
 }
 
 /// `schema_update_options` — derived from the provider schema description.

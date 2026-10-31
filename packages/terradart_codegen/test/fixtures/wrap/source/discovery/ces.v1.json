@@ -1,0 +1,941 @@
+{
+  "name": "ces",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://ces.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Action": {
+      "properties": {
+        "entityOperation": {
+          "$ref": "ActionEntityOperation"
+        }
+      }
+    },
+    "ActionEntityOperation": {
+      "properties": {
+        "operation": {
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "LIST",
+            "GET",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ]
+        }
+      }
+    },
+    "Agent": {
+      "properties": {
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "transferRules": {
+          "items": {
+            "$ref": "TransferRule"
+          }
+        },
+        "remoteA2aAgent": {
+          "$ref": "AgentRemoteA2aAgent"
+        }
+      }
+    },
+    "AgentRemoteA2aAgent": {
+      "properties": {
+        "a2aConfig": {
+          "$ref": "RemoteA2aConfig"
+        }
+      }
+    },
+    "AmbientSoundConfig": {
+      "properties": {
+        "prebuiltAmbientNoise": {
+          "enum": [
+            "PREBUILT_AMBIENT_NOISE_UNSPECIFIED",
+            "RETAIL_STORE",
+            "CONVENTION_HALL",
+            "OUTDOOR"
+          ]
+        }
+      }
+    },
+    "ApiAuthentication": {
+      "properties": {
+        "apiKeyConfig": {
+          "$ref": "ApiKeyConfig"
+        },
+        "oauthConfig": {
+          "$ref": "OAuthConfig"
+        }
+      }
+    },
+    "ApiKeyConfig": {
+      "properties": {
+        "requestLocation": {
+          "enum": [
+            "REQUEST_LOCATION_UNSPECIFIED",
+            "HEADER",
+            "QUERY_STRING"
+          ]
+        }
+      }
+    },
+    "App": {
+      "properties": {
+        "errorHandlingSettings": {
+          "$ref": "ErrorHandlingSettings"
+        },
+        "audioProcessingConfig": {
+          "$ref": "AudioProcessingConfig"
+        },
+        "predefinedVariableDeclarations": {
+          "items": {
+            "$ref": "AppVariableDeclaration"
+          }
+        },
+        "toolExecutionMode": {
+          "enum": [
+            "TOOL_EXECUTION_MODE_UNSPECIFIED",
+            "PARALLEL",
+            "SEQUENTIAL"
+          ]
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "variableDeclarations": {
+          "items": {
+            "$ref": "AppVariableDeclaration"
+          }
+        },
+        "evaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholds"
+        },
+        "dataStoreSettings": {
+          "$ref": "DataStoreSettings"
+        },
+        "defaultChannelProfile": {
+          "$ref": "ChannelProfile"
+        }
+      }
+    },
+    "AppSnapshot": {
+      "properties": {
+        "toolsets": {
+          "items": {
+            "$ref": "Toolset"
+          }
+        },
+        "guardrails": {
+          "items": {
+            "$ref": "Guardrail"
+          }
+        },
+        "tools": {
+          "items": {
+            "$ref": "Tool"
+          }
+        },
+        "app": {
+          "$ref": "App"
+        },
+        "agents": {
+          "items": {
+            "$ref": "Agent"
+          }
+        }
+      }
+    },
+    "AppVariableDeclaration": {
+      "properties": {
+        "schema": {
+          "$ref": "Schema"
+        }
+      }
+    },
+    "AppVersion": {
+      "properties": {
+        "snapshot": {
+          "$ref": "AppSnapshot"
+        }
+      }
+    },
+    "AudioProcessingConfig": {
+      "properties": {
+        "customVoiceSamples": {
+          "items": {
+            "$ref": "CustomVoiceSample"
+          }
+        },
+        "ambientSoundConfig": {
+          "$ref": "AmbientSoundConfig"
+        }
+      }
+    },
+    "ChannelProfile": {
+      "properties": {
+        "channelType": {
+          "enum": [
+            "UNKNOWN",
+            "WEB_UI",
+            "API",
+            "TWILIO",
+            "GOOGLE_TELEPHONY_PLATFORM",
+            "CONTACT_CENTER_AS_A_SERVICE",
+            "CONTACT_CENTER_AS_A_SERVICE_CHAT",
+            "FIVE9",
+            "CONTACT_CENTER_INTEGRATION",
+            "WHATSAPP",
+            "INSTAGRAM"
+          ]
+        },
+        "personaProperty": {
+          "$ref": "ChannelProfilePersonaProperty"
+        },
+        "webWidgetConfig": {
+          "$ref": "ChannelProfileWebWidgetConfig"
+        }
+      }
+    },
+    "ChannelProfilePersonaProperty": {
+      "properties": {
+        "persona": {
+          "enum": [
+            "UNKNOWN",
+            "CONCISE",
+            "CHATTY"
+          ]
+        }
+      }
+    },
+    "ChannelProfileWebWidgetConfig": {
+      "properties": {
+        "modality": {
+          "enum": [
+            "MODALITY_UNSPECIFIED",
+            "CHAT_AND_VOICE",
+            "VOICE_ONLY",
+            "CHAT_ONLY",
+            "CHAT_VOICE_AND_VIDEO"
+          ]
+        },
+        "theme": {
+          "enum": [
+            "THEME_UNSPECIFIED",
+            "LIGHT",
+            "DARK"
+          ]
+        }
+      }
+    },
+    "ClientFunction": {
+      "properties": {
+        "parameters": {
+          "$ref": "Schema"
+        },
+        "response": {
+          "$ref": "Schema"
+        }
+      }
+    },
+    "ConnectorTool": {
+      "properties": {
+        "action": {
+          "$ref": "Action"
+        }
+      }
+    },
+    "ConnectorToolset": {
+      "properties": {
+        "connectorActions": {
+          "items": {
+            "$ref": "Action"
+          }
+        }
+      }
+    },
+    "CustomVoiceSample": {
+      "properties": {
+        "warnings": {
+          "items": {
+            "$ref": "CustomVoiceSampleWarning"
+          }
+        },
+        "voiceInstructionMode": {
+          "enum": [
+            "VOICE_INSTRUCTION_MODE_UNSPECIFIED",
+            "NO_INSTRUCTION",
+            "GENERATE_INSTRUCTION",
+            "CUSTOM_INSTRUCTION"
+          ]
+        }
+      }
+    },
+    "CustomVoiceSampleWarning": {
+      "properties": {
+        "type": {
+          "enum": [
+            "WARNING_TYPE_UNSPECIFIED",
+            "LOW_AUDIO_LEVEL"
+          ]
+        }
+      }
+    },
+    "DataStore": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATA_STORE_TYPE_UNSPECIFIED",
+            "PUBLIC_WEB",
+            "UNSTRUCTURED",
+            "FAQ",
+            "CONNECTOR"
+          ]
+        },
+        "documentProcessingMode": {
+          "enum": [
+            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ]
+        }
+      }
+    },
+    "DataStoreSettings": {
+      "properties": {
+        "engines": {
+          "items": {
+            "$ref": "DataStoreSettingsEngine"
+          }
+        }
+      }
+    },
+    "DataStoreSettingsEngine": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ENGINE_TYPE_SEARCH",
+            "ENGINE_TYPE_CHAT"
+          ]
+        }
+      }
+    },
+    "DataStoreTool": {
+      "properties": {
+        "dataStoreSource": {
+          "$ref": "DataStoreToolDataStoreSource"
+        },
+        "engineSource": {
+          "$ref": "DataStoreToolEngineSource"
+        },
+        "filterParameterBehavior": {
+          "enum": [
+            "FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED",
+            "ALWAYS_INCLUDE",
+            "NEVER_INCLUDE"
+          ]
+        },
+        "modalityConfigs": {
+          "items": {
+            "$ref": "DataStoreToolModalityConfig"
+          }
+        },
+        "boostSpecs": {
+          "items": {
+            "$ref": "DataStoreToolBoostSpecs"
+          }
+        }
+      }
+    },
+    "DataStoreToolBoostSpec": {
+      "properties": {
+        "conditionBoostSpecs": {
+          "items": {
+            "$ref": "DataStoreToolBoostSpecConditionBoostSpec"
+          }
+        }
+      }
+    },
+    "DataStoreToolBoostSpecConditionBoostSpec": {
+      "properties": {
+        "boostControlSpec": {
+          "$ref": "DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec"
+        }
+      }
+    },
+    "DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec": {
+      "properties": {
+        "attributeType": {
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ]
+        },
+        "interpolationType": {
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ]
+        }
+      }
+    },
+    "DataStoreToolBoostSpecs": {
+      "properties": {
+        "spec": {
+          "items": {
+            "$ref": "DataStoreToolBoostSpec"
+          }
+        }
+      }
+    },
+    "DataStoreToolDataStoreSource": {
+      "properties": {
+        "dataStore": {
+          "$ref": "DataStore"
+        }
+      }
+    },
+    "DataStoreToolEngineSource": {
+      "properties": {
+        "dataStoreSources": {
+          "items": {
+            "$ref": "DataStoreToolDataStoreSource"
+          }
+        }
+      }
+    },
+    "DataStoreToolModalityConfig": {
+      "properties": {
+        "modalityType": {
+          "enum": [
+            "MODALITY_TYPE_UNSPECIFIED",
+            "TEXT",
+            "AUDIO"
+          ]
+        },
+        "rewriterConfig": {
+          "$ref": "DataStoreToolRewriterConfig"
+        },
+        "summarizationConfig": {
+          "$ref": "DataStoreToolSummarizationConfig"
+        }
+      }
+    },
+    "DataStoreToolRewriterConfig": {
+      "properties": {
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        }
+      }
+    },
+    "DataStoreToolSummarizationConfig": {
+      "properties": {
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        }
+      }
+    },
+    "Deployment": {
+      "properties": {
+        "channelProfile": {
+          "$ref": "ChannelProfile"
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "experimentConfig": {
+          "$ref": "ExperimentConfig"
+        },
+        "modality": {
+          "enum": [
+            "MODALITY_UNSPECIFIED",
+            "MODALITY_TEXT",
+            "MODALITY_VOICE",
+            "MODALITY_VIDEO"
+          ]
+        }
+      }
+    },
+    "ErrorHandlingSettings": {
+      "properties": {
+        "errorHandlingStrategy": {
+          "enum": [
+            "ERROR_HANDLING_STRATEGY_UNSPECIFIED",
+            "NONE",
+            "FALLBACK_RESPONSE",
+            "END_SESSION"
+          ]
+        }
+      }
+    },
+    "EvaluationMetricsThresholds": {
+      "properties": {
+        "scenarioHallucinationMetricBehavior": {
+          "enum": [
+            "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "goldenEvaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
+        },
+        "goldenHallucinationMetricBehavior": {
+          "enum": [
+            "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "hallucinationMetricBehavior": {
+          "enum": [
+            "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        }
+      }
+    },
+    "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds": {
+      "properties": {
+        "turnLevelMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
+        },
+        "toolMatchingSettings": {
+          "$ref": "EvaluationMetricsThresholdsToolMatchingSettings"
+        }
+      }
+    },
+    "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds": {
+      "properties": {
+        "semanticSimilarityChannel": {
+          "enum": [
+            "SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED",
+            "TEXT",
+            "AUDIO"
+          ]
+        }
+      }
+    },
+    "EvaluationMetricsThresholdsToolMatchingSettings": {
+      "properties": {
+        "extraToolCallBehavior": {
+          "enum": [
+            "EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED",
+            "FAIL",
+            "ALLOW"
+          ]
+        }
+      }
+    },
+    "Example": {
+      "properties": {}
+    },
+    "ExperimentConfig": {
+      "properties": {
+        "versionRelease": {
+          "$ref": "ExperimentConfigVersionRelease"
+        }
+      }
+    },
+    "ExperimentConfigVersionRelease": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "DONE",
+            "EXPIRED"
+          ]
+        }
+      }
+    },
+    "FileSearchTool": {
+      "properties": {
+        "corpusType": {
+          "enum": [
+            "CORPUS_TYPE_UNSPECIFIED",
+            "USER_OWNED",
+            "FULLY_MANAGED"
+          ]
+        }
+      }
+    },
+    "Guardrail": {
+      "properties": {
+        "llmPromptSecurity": {
+          "$ref": "GuardrailLlmPromptSecurity"
+        },
+        "contentFilter": {
+          "$ref": "GuardrailContentFilter"
+        },
+        "llmPolicy": {
+          "$ref": "GuardrailLlmPolicy"
+        },
+        "supervisor": {
+          "$ref": "GuardrailSupervisor"
+        },
+        "modelSafety": {
+          "$ref": "GuardrailModelSafety"
+        }
+      }
+    },
+    "GuardrailContentFilter": {
+      "properties": {
+        "matchType": {
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "SIMPLE_STRING_MATCH",
+            "WORD_BOUNDARY_STRING_MATCH",
+            "REGEXP_MATCH",
+            "SENSITIVE_WORDS"
+          ]
+        }
+      }
+    },
+    "GuardrailLlmPolicy": {
+      "properties": {
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "policyScope": {
+          "enum": [
+            "POLICY_SCOPE_UNSPECIFIED",
+            "USER_QUERY",
+            "AGENT_RESPONSE",
+            "USER_QUERY_AND_AGENT_RESPONSE"
+          ]
+        }
+      }
+    },
+    "GuardrailLlmPromptSecurity": {
+      "properties": {
+        "customPolicy": {
+          "$ref": "GuardrailLlmPolicy"
+        }
+      }
+    },
+    "GuardrailModelSafety": {
+      "properties": {
+        "safetySettings": {
+          "items": {
+            "$ref": "GuardrailModelSafetySafetySetting"
+          }
+        }
+      }
+    },
+    "GuardrailModelSafetySafetySetting": {
+      "properties": {
+        "category": {
+          "enum": [
+            "HARM_CATEGORY_UNSPECIFIED",
+            "HARM_CATEGORY_HATE_SPEECH",
+            "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "HARM_CATEGORY_HARASSMENT",
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_PROFANITY",
+            "HARM_CATEGORY_TOXIC"
+          ]
+        },
+        "threshold": {
+          "enum": [
+            "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE",
+            "OFF"
+          ]
+        }
+      }
+    },
+    "GuardrailSupervisor": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INVALID_TEXT",
+            "LANGUAGE_SHIFT",
+            "SPEAKER_SHIFT",
+            "AUDIO_MISMATCH",
+            "MISSING_TOOL_CALL",
+            "CUSTOM",
+            "CHOPPY_AUDIO",
+            "PROFANITY"
+          ]
+        },
+        "detectionMode": {
+          "enum": [
+            "DETECTION_MODE_UNSPECIFIED",
+            "NON_BLOCKING",
+            "BLOCKING"
+          ]
+        }
+      }
+    },
+    "McpTool": {
+      "properties": {
+        "outputSchema": {
+          "$ref": "Schema"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "STALE"
+          ]
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        },
+        "inputSchema": {
+          "$ref": "Schema"
+        }
+      }
+    },
+    "McpToolDefinition": {
+      "properties": {
+        "inputSchema": {
+          "$ref": "Schema"
+        },
+        "outputSchema": {
+          "$ref": "Schema"
+        }
+      }
+    },
+    "McpToolOverride": {
+      "properties": {
+        "snapshot": {
+          "$ref": "McpToolDefinition"
+        }
+      }
+    },
+    "McpToolset": {
+      "properties": {
+        "toolOverrides": {
+          "items": {
+            "$ref": "McpToolOverride"
+          }
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        }
+      }
+    },
+    "ModelSettings": {
+      "properties": {
+        "thinkingLevel": {
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "DEFAULT",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        }
+      }
+    },
+    "OAuthConfig": {
+      "properties": {
+        "oauthGrantType": {
+          "enum": [
+            "OAUTH_GRANT_TYPE_UNSPECIFIED",
+            "CLIENT_CREDENTIAL"
+          ]
+        }
+      }
+    },
+    "OpenApiTool": {
+      "properties": {
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        }
+      }
+    },
+    "OpenApiToolset": {
+      "properties": {
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        }
+      }
+    },
+    "RemoteA2aConfig": {
+      "properties": {
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        }
+      }
+    },
+    "RemoteAgentTool": {
+      "properties": {
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        }
+      }
+    },
+    "Schema": {
+      "properties": {
+        "defs": {
+          "additionalProperties": {
+            "$ref": "Schema"
+          }
+        },
+        "additionalProperties": {
+          "$ref": "Schema"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "Schema"
+          }
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "STRING",
+            "INTEGER",
+            "NUMBER",
+            "BOOLEAN",
+            "OBJECT",
+            "ARRAY"
+          ]
+        },
+        "items": {
+          "$ref": "Schema"
+        },
+        "anyOf": {
+          "items": {
+            "$ref": "Schema"
+          }
+        },
+        "prefixItems": {
+          "items": {
+            "$ref": "Schema"
+          }
+        }
+      }
+    },
+    "Tool": {
+      "properties": {
+        "remoteAgentTool": {
+          "$ref": "RemoteAgentTool"
+        },
+        "fileSearchTool": {
+          "$ref": "FileSearchTool"
+        },
+        "dataStoreTool": {
+          "$ref": "DataStoreTool"
+        },
+        "mcpTool": {
+          "$ref": "McpTool"
+        },
+        "openApiTool": {
+          "$ref": "OpenApiTool"
+        },
+        "connectorTool": {
+          "$ref": "ConnectorTool"
+        },
+        "widgetTool": {
+          "$ref": "WidgetTool"
+        },
+        "clientFunction": {
+          "$ref": "ClientFunction"
+        },
+        "executionType": {
+          "enum": [
+            "EXECUTION_TYPE_UNSPECIFIED",
+            "SYNCHRONOUS",
+            "ASYNCHRONOUS"
+          ]
+        }
+      }
+    },
+    "Toolset": {
+      "properties": {
+        "connectorToolset": {
+          "$ref": "ConnectorToolset"
+        },
+        "openApiToolset": {
+          "$ref": "OpenApiToolset"
+        },
+        "executionType": {
+          "enum": [
+            "EXECUTION_TYPE_UNSPECIFIED",
+            "SYNCHRONOUS",
+            "ASYNCHRONOUS"
+          ]
+        },
+        "mcpToolset": {
+          "$ref": "McpToolset"
+        }
+      }
+    },
+    "TransferRule": {
+      "properties": {
+        "direction": {
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "PARENT_TO_CHILD",
+            "CHILD_TO_PARENT"
+          ]
+        }
+      }
+    },
+    "WidgetTool": {
+      "properties": {
+        "textResponseConfig": {
+          "$ref": "WidgetToolTextResponseConfig"
+        },
+        "dataMapping": {
+          "$ref": "WidgetToolDataMapping"
+        },
+        "parameters": {
+          "$ref": "Schema"
+        },
+        "widgetType": {
+          "enum": [
+            "WIDGET_TYPE_UNSPECIFIED",
+            "CUSTOM",
+            "PRODUCT_CAROUSEL",
+            "PRODUCT_DETAILS",
+            "QUICK_ACTIONS",
+            "PRODUCT_COMPARISON",
+            "ADVANCED_PRODUCT_DETAILS",
+            "SHORT_FORM",
+            "OVERALL_SATISFACTION",
+            "ORDER_SUMMARY",
+            "APPOINTMENT_DETAILS",
+            "APPOINTMENT_SCHEDULER",
+            "CONTACT_FORM"
+          ]
+        }
+      }
+    },
+    "WidgetToolDataMapping": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "FIELD_MAPPING",
+            "PYTHON_SCRIPT"
+          ]
+        }
+      }
+    },
+    "WidgetToolTextResponseConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NONE",
+            "LLM_GENERATED",
+            "STATIC"
+          ]
+        }
+      }
+    }
+  }
+}

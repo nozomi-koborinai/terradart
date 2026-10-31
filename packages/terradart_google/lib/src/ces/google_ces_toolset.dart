@@ -199,7 +199,7 @@ final class CesToolsetMcpToolset {
 
   final TfArg<String> serverAddress;
 
-  final CesToolsetMcpToolsetApiAuthentication? apiAuthentication;
+  final CesToolsetApiAuthentication? apiAuthentication;
 
   final CesToolsetServiceDirectoryConfig? serviceDirectoryConfig;
 
@@ -221,9 +221,10 @@ final class CesToolsetMcpToolset {
 
 /// Typed helper for the `mcp_toolset.api_authentication` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthentication {
-  const CesToolsetMcpToolsetApiAuthentication({
+final class CesToolsetApiAuthentication {
+  const CesToolsetApiAuthentication({
     this.apiKeyConfig,
     this.bearerTokenConfig,
     this.oauthConfig,
@@ -231,7 +232,7 @@ final class CesToolsetMcpToolsetApiAuthentication {
     this.serviceAgentIdTokenAuthConfig,
   });
 
-  final CesToolsetApiAuthenticationApiKeyConfig? apiKeyConfig;
+  final CesToolsetApiKeyConfig? apiKeyConfig;
 
   final CesToolsetBearerTokenConfig? bearerTokenConfig;
 
@@ -254,9 +255,10 @@ final class CesToolsetMcpToolsetApiAuthentication {
 
 /// Typed helper for the `mcp_toolset.api_authentication.api_key_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetApiAuthenticationApiKeyConfig {
-  const CesToolsetApiAuthenticationApiKeyConfig({
+final class CesToolsetApiKeyConfig {
+  const CesToolsetApiKeyConfig({
     required this.apiKeySecretVersion,
     required this.keyName,
     required this.requestLocation,
@@ -266,7 +268,7 @@ final class CesToolsetApiAuthenticationApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final CesToolsetMcpToolsetRequestLocation requestLocation;
+  final CesToolsetRequestLocation requestLocation;
 
   @internal
   Map<String, Object?> encode() => {
@@ -277,20 +279,20 @@ final class CesToolsetApiAuthenticationApiKeyConfig {
 }
 
 /// `request_location` — derived from the provider schema description.
-extension type const CesToolsetMcpToolsetRequestLocation._(TfArg<String> _)
+extension type const CesToolsetRequestLocation._(TfArg<String> _)
     implements TfArg<String> {
-  CesToolsetMcpToolsetRequestLocation.variable(String name)
+  CesToolsetRequestLocation.variable(String name)
     : this._(TfArg.variable(name));
-  CesToolsetMcpToolsetRequestLocation.expression(String template)
+  CesToolsetRequestLocation.expression(String template)
     : this._(TfArg.expression(template));
-  const CesToolsetMcpToolsetRequestLocation.arg(TfArg<String> arg)
-    : this._(arg);
+  const CesToolsetRequestLocation.arg(TfArg<String> arg) : this._(arg);
 
-  static const header = CesToolsetMcpToolsetRequestLocation._(
-    TfArgLiteral('HEADER'),
+  static const header = CesToolsetRequestLocation._(TfArgLiteral('HEADER'));
+  static const queryString = CesToolsetRequestLocation._(
+    TfArgLiteral('QUERY_STRING'),
   );
 
-  static const List<CesToolsetMcpToolsetRequestLocation> values = [header];
+  static const List<CesToolsetRequestLocation> values = [header, queryString];
 }
 
 /// Typed helper for the `mcp_toolset.api_authentication.bearer_token_config` block of
@@ -486,86 +488,6 @@ final class CesToolsetOpenApiToolset {
     'service_directory_config': ?serviceDirectoryConfig?.encode(),
     'tls_config': ?tlsConfig?.encode(),
   };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetApiAuthentication {
-  const CesToolsetApiAuthentication({
-    this.apiKeyConfig,
-    this.bearerTokenConfig,
-    this.oauthConfig,
-    this.serviceAccountAuthConfig,
-    this.serviceAgentIdTokenAuthConfig,
-  });
-
-  final CesToolsetApiKeyConfig? apiKeyConfig;
-
-  final CesToolsetBearerTokenConfig? bearerTokenConfig;
-
-  final CesToolsetOauthConfig? oauthConfig;
-
-  final CesToolsetServiceAccountAuthConfig? serviceAccountAuthConfig;
-
-  final CesToolsetServiceAgentIdTokenAuthConfig? serviceAgentIdTokenAuthConfig;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'api_key_config': ?apiKeyConfig?.encode(),
-    'bearer_token_config': ?bearerTokenConfig?.encode(),
-    'oauth_config': ?oauthConfig?.encode(),
-    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
-    'service_agent_id_token_auth_config': ?serviceAgentIdTokenAuthConfig
-        ?.encode(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.api_key_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetApiKeyConfig {
-  const CesToolsetApiKeyConfig({
-    required this.apiKeySecretVersion,
-    required this.keyName,
-    required this.requestLocation,
-  });
-
-  final TfArg<String> apiKeySecretVersion;
-
-  final TfArg<String> keyName;
-
-  final CesToolsetOpenApiToolsetRequestLocation requestLocation;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'api_key_secret_version': apiKeySecretVersion.toTfJson(),
-    'key_name': keyName.toTfJson(),
-    'request_location': requestLocation.toTfJson(),
-  };
-}
-
-/// `request_location` — derived from the provider schema description.
-extension type const CesToolsetOpenApiToolsetRequestLocation._(TfArg<String> _)
-    implements TfArg<String> {
-  CesToolsetOpenApiToolsetRequestLocation.variable(String name)
-    : this._(TfArg.variable(name));
-  CesToolsetOpenApiToolsetRequestLocation.expression(String template)
-    : this._(TfArg.expression(template));
-  const CesToolsetOpenApiToolsetRequestLocation.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const header = CesToolsetOpenApiToolsetRequestLocation._(
-    TfArgLiteral('HEADER'),
-  );
-  static const queryString = CesToolsetOpenApiToolsetRequestLocation._(
-    TfArgLiteral('QUERY_STRING'),
-  );
-
-  static const List<CesToolsetOpenApiToolsetRequestLocation> values = [
-    header,
-    queryString,
-  ];
 }
 
 /// Typed helper for the `tool_fake_config` block of

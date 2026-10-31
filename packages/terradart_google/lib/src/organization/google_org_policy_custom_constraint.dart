@@ -26,6 +26,41 @@ extension type const OrgPolicyCustomConstraintActionType._(TfArg<String> _)
   static const List<OrgPolicyCustomConstraintActionType> values = [allow, deny];
 }
 
+/// Org Policy Custom Constraint Method enum for `method_types`.
+extension type const OrgPolicyCustomConstraintMethodTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  OrgPolicyCustomConstraintMethodTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  OrgPolicyCustomConstraintMethodTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrgPolicyCustomConstraintMethodTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const create = OrgPolicyCustomConstraintMethodTypes._(
+    TfArgLiteral('CREATE'),
+  );
+  static const update = OrgPolicyCustomConstraintMethodTypes._(
+    TfArgLiteral('UPDATE'),
+  );
+  static const delete = OrgPolicyCustomConstraintMethodTypes._(
+    TfArgLiteral('DELETE'),
+  );
+  static const removeGrant = OrgPolicyCustomConstraintMethodTypes._(
+    TfArgLiteral('REMOVE_GRANT'),
+  );
+  static const governTags = OrgPolicyCustomConstraintMethodTypes._(
+    TfArgLiteral('GOVERN_TAGS'),
+  );
+
+  static const List<OrgPolicyCustomConstraintMethodTypes> values = [
+    create,
+    update,
+    delete,
+    removeGrant,
+    governTags,
+  ];
+}
+
 /// Factory wrapper for `google_org_policy_custom_constraint`.
 ///
 /// Custom constraints are created by administrators to provide more granular
@@ -48,7 +83,7 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,
-    required TfArg<List<String>> methodTypes,
+    required EnumList<OrgPolicyCustomConstraintMethodTypes> methodTypes,
     required TfArg<String> name,
     required TfArg<String> parent,
     required TfArg<List<String>> resourceTypes,

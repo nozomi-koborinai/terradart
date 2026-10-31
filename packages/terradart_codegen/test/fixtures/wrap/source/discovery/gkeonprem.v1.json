@@ -1,0 +1,395 @@
+{
+  "name": "gkeonprem",
+  "version": "v1",
+  "revision": "20260923",
+  "sourceUrl": "https://gkeonprem.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BareMetalAdminBgpLbConfig": {
+      "properties": {
+        "loadBalancerNodePoolConfig": {
+          "$ref": "BareMetalAdminLoadBalancerNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalAdminCluster": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "controlPlane": {
+          "$ref": "BareMetalAdminControlPlaneConfig"
+        },
+        "loadBalancer": {
+          "$ref": "BareMetalAdminLoadBalancerConfig"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        }
+      }
+    },
+    "BareMetalAdminControlPlaneConfig": {
+      "properties": {
+        "controlPlaneNodePoolConfig": {
+          "$ref": "BareMetalAdminControlPlaneNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalAdminControlPlaneNodePoolConfig": {
+      "properties": {
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalAdminLoadBalancerConfig": {
+      "properties": {
+        "bgpLbConfig": {
+          "$ref": "BareMetalAdminBgpLbConfig"
+        }
+      }
+    },
+    "BareMetalAdminLoadBalancerNodePoolConfig": {
+      "properties": {
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalBgpLbConfig": {
+      "properties": {
+        "loadBalancerNodePoolConfig": {
+          "$ref": "BareMetalLoadBalancerNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalCluster": {
+      "properties": {
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "upgradePolicy": {
+          "$ref": "BareMetalClusterUpgradePolicy"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "nodeConfig": {
+          "$ref": "BareMetalWorkloadNodeConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        },
+        "controlPlane": {
+          "$ref": "BareMetalControlPlaneConfig"
+        },
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        },
+        "loadBalancer": {
+          "$ref": "BareMetalLoadBalancerConfig"
+        }
+      }
+    },
+    "BareMetalClusterUpgradePolicy": {
+      "properties": {
+        "policy": {
+          "enum": [
+            "NODE_POOL_POLICY_UNSPECIFIED",
+            "SERIAL",
+            "CONCURRENT"
+          ]
+        }
+      }
+    },
+    "BareMetalControlPlaneConfig": {
+      "properties": {
+        "controlPlaneNodePoolConfig": {
+          "$ref": "BareMetalControlPlaneNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalControlPlaneNodePoolConfig": {
+      "properties": {
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalLoadBalancerConfig": {
+      "properties": {
+        "bgpLbConfig": {
+          "$ref": "BareMetalBgpLbConfig"
+        },
+        "metalLbConfig": {
+          "$ref": "BareMetalMetalLbConfig"
+        }
+      }
+    },
+    "BareMetalLoadBalancerNodePoolConfig": {
+      "properties": {
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalMetalLbConfig": {
+      "properties": {
+        "loadBalancerNodePoolConfig": {
+          "$ref": "BareMetalLoadBalancerNodePoolConfig"
+        }
+      }
+    },
+    "BareMetalNodePool": {
+      "properties": {
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        }
+      }
+    },
+    "BareMetalNodePoolConfig": {
+      "properties": {
+        "taints": {
+          "items": {
+            "$ref": "NodeTaint"
+          }
+        },
+        "operatingSystem": {
+          "enum": [
+            "OPERATING_SYSTEM_UNSPECIFIED",
+            "LINUX"
+          ]
+        }
+      }
+    },
+    "BareMetalWorkloadNodeConfig": {
+      "properties": {
+        "containerRuntime": {
+          "enum": [
+            "CONTAINER_RUNTIME_UNSPECIFIED",
+            "CONTAINERD"
+          ]
+        }
+      }
+    },
+    "BinaryAuthorization": {
+      "properties": {
+        "evaluationMode": {
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "PROJECT_SINGLETON_POLICY_ENFORCE"
+          ]
+        }
+      }
+    },
+    "NodeTaint": {
+      "properties": {
+        "effect": {
+          "enum": [
+            "EFFECT_UNSPECIFIED",
+            "NO_SCHEDULE",
+            "PREFER_NO_SCHEDULE",
+            "NO_EXECUTE"
+          ]
+        }
+      }
+    },
+    "ResourceCondition": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_TRUE",
+            "STATE_FALSE",
+            "STATE_UNKNOWN"
+          ]
+        }
+      }
+    },
+    "ResourceStatus": {
+      "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "ResourceCondition"
+          }
+        }
+      }
+    },
+    "ValidationCheck": {
+      "properties": {
+        "scenario": {
+          "enum": [
+            "SCENARIO_UNSPECIFIED",
+            "CREATE",
+            "UPDATE"
+          ]
+        },
+        "status": {
+          "$ref": "ValidationCheckStatus"
+        },
+        "option": {
+          "enum": [
+            "OPTIONS_UNSPECIFIED",
+            "SKIP_VALIDATION_CHECK_BLOCKING",
+            "SKIP_VALIDATION_ALL"
+          ]
+        }
+      }
+    },
+    "ValidationCheckResult": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNKNOWN",
+            "STATE_FAILURE",
+            "STATE_SKIPPED",
+            "STATE_FATAL",
+            "STATE_WARNING"
+          ]
+        }
+      }
+    },
+    "ValidationCheckStatus": {
+      "properties": {
+        "result": {
+          "items": {
+            "$ref": "ValidationCheckResult"
+          }
+        }
+      }
+    },
+    "VmwareAdminCluster": {
+      "properties": {
+        "platformConfig": {
+          "$ref": "VmwarePlatformConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        }
+      }
+    },
+    "VmwareBundleConfig": {
+      "properties": {
+        "status": {
+          "$ref": "ResourceStatus"
+        }
+      }
+    },
+    "VmwareCluster": {
+      "properties": {
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        }
+      }
+    },
+    "VmwareNodeConfig": {
+      "properties": {
+        "taints": {
+          "items": {
+            "$ref": "NodeTaint"
+          }
+        }
+      }
+    },
+    "VmwareNodePool": {
+      "properties": {
+        "config": {
+          "$ref": "VmwareNodeConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "RECONCILING",
+            "STOPPING",
+            "ERROR",
+            "DEGRADED"
+          ]
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        }
+      }
+    },
+    "VmwarePlatformConfig": {
+      "properties": {
+        "bundles": {
+          "items": {
+            "$ref": "VmwareBundleConfig"
+          }
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        }
+      }
+    }
+  }
+}

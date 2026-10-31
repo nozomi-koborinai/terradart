@@ -17,6 +17,7 @@ export 'src/model_armor/google_model_armor_floorsetting.dart'
         ModelArmorFloorsettingFilterType,
         ModelArmorFloorsettingFloorSettingMetadata,
         ModelArmorFloorsettingGoogleMcpServerFloorSetting,
+        ModelArmorFloorsettingIntegratedServices,
         ModelArmorFloorsettingMaliciousUriFilterSettings,
         ModelArmorFloorsettingMultiLanguageDetection,
         ModelArmorFloorsettingPiAndJailbreakFilterSettings,

@@ -213,7 +213,7 @@ final class NetworkServicesHttpRouteRedirect {
 
   final TfArg<String>? prefixRewrite;
 
-  final TfArg<String>? responseCode;
+  final NetworkServicesHttpRouteResponseCode? responseCode;
 
   final TfArg<bool>? stripQuery;
 
@@ -227,6 +227,41 @@ final class NetworkServicesHttpRouteRedirect {
     'response_code': ?responseCode?.toTfJson(),
     'strip_query': ?stripQuery?.toTfJson(),
   };
+}
+
+/// `response_code` — derived from the provider schema description.
+extension type const NetworkServicesHttpRouteResponseCode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesHttpRouteResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesHttpRouteResponseCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesHttpRouteResponseCode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const movedPermanentlyDefault = NetworkServicesHttpRouteResponseCode._(
+    TfArgLiteral('MOVED_PERMANENTLY_DEFAULT'),
+  );
+  static const found = NetworkServicesHttpRouteResponseCode._(
+    TfArgLiteral('FOUND'),
+  );
+  static const seeOther = NetworkServicesHttpRouteResponseCode._(
+    TfArgLiteral('SEE_OTHER'),
+  );
+  static const temporaryRedirect = NetworkServicesHttpRouteResponseCode._(
+    TfArgLiteral('TEMPORARY_REDIRECT'),
+  );
+  static const permanentRedirect = NetworkServicesHttpRouteResponseCode._(
+    TfArgLiteral('PERMANENT_REDIRECT'),
+  );
+
+  static const List<NetworkServicesHttpRouteResponseCode> values = [
+    movedPermanentlyDefault,
+    found,
+    seeOther,
+    temporaryRedirect,
+    permanentRedirect,
+  ];
 }
 
 /// Typed helper for the `rules.action.request_header_modifier` block of

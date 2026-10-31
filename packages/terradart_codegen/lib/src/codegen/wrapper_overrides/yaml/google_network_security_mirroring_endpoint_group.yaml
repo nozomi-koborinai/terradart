@@ -1,5 +1,12 @@
 outputDir: network
 
+# The public networksecurity v1 Discovery document hides BROKER (and the
+# mirroring_deployment_groups field it pairs with), which the provider sends.
+enumValues:
+  type:
+    - DIRECT
+    - BROKER
+
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

@@ -1,0 +1,93 @@
+{
+  "name": "bigqueryconnection",
+  "version": "v1",
+  "revision": "20261009",
+  "sourceUrl": "https://bigqueryconnection.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CloudSqlProperties": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "POSTGRES",
+            "MYSQL"
+          ]
+        }
+      }
+    },
+    "Connection": {
+      "properties": {
+        "configuration": {
+          "$ref": "ConnectorConfiguration"
+        },
+        "cloudSql": {
+          "$ref": "CloudSqlProperties"
+        }
+      }
+    },
+    "ConnectorConfiguration": {
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "ConnectorConfigurationParameterValue"
+          }
+        },
+        "authentication": {
+          "$ref": "ConnectorConfigurationAuthentication"
+        },
+        "tls": {
+          "$ref": "ConnectorConfigurationTls"
+        }
+      }
+    },
+    "ConnectorConfigurationAuthentication": {
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "ConnectorConfigurationParameterValue"
+          }
+        },
+        "usernamePassword": {
+          "$ref": "ConnectorConfigurationUsernamePassword"
+        }
+      }
+    },
+    "ConnectorConfigurationParameterValue": {
+      "properties": {
+        "secretValue": {
+          "$ref": "ConnectorConfigurationSecret"
+        }
+      }
+    },
+    "ConnectorConfigurationSecret": {
+      "properties": {
+        "secretType": {
+          "enum": [
+            "SECRET_TYPE_UNSPECIFIED",
+            "PLAINTEXT"
+          ]
+        }
+      }
+    },
+    "ConnectorConfigurationTls": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLE",
+            "ENCRYPT_VERIFY_NONE",
+            "ENCRYPT_VERIFY_CA",
+            "ENCRYPT_VERIFY_CA_AND_HOST"
+          ]
+        }
+      }
+    },
+    "ConnectorConfigurationUsernamePassword": {
+      "properties": {
+        "password": {
+          "$ref": "ConnectorConfigurationSecret"
+        }
+      }
+    }
+  }
+}

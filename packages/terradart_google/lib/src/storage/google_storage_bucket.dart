@@ -183,12 +183,34 @@ final class StorageBucketCustomerManagedEncryptionEnforcementConfig {
     required this.restrictionMode,
   });
 
-  final TfArg<String> restrictionMode;
+  final StorageBucketRestrictionMode restrictionMode;
 
   @internal
   Map<String, Object?> encode() => {
     'restriction_mode': restrictionMode.toTfJson(),
   };
+}
+
+/// `restriction_mode` — derived from the provider schema description.
+extension type const StorageBucketRestrictionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketRestrictionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBucketRestrictionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketRestrictionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const notrestricted = StorageBucketRestrictionMode._(
+    TfArgLiteral('NotRestricted'),
+  );
+  static const fullyrestricted = StorageBucketRestrictionMode._(
+    TfArgLiteral('FullyRestricted'),
+  );
+
+  static const List<StorageBucketRestrictionMode> values = [
+    notrestricted,
+    fullyrestricted,
+  ];
 }
 
 /// Typed helper for the `encryption.customer_supplied_encryption_enforcement_config` block of
@@ -199,7 +221,7 @@ final class StorageBucketCustomerSuppliedEncryptionEnforcementConfig {
     required this.restrictionMode,
   });
 
-  final TfArg<String> restrictionMode;
+  final StorageBucketRestrictionMode restrictionMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -215,7 +237,7 @@ final class StorageBucketGoogleManagedEncryptionEnforcementConfig {
     required this.restrictionMode,
   });
 
-  final TfArg<String> restrictionMode;
+  final StorageBucketRestrictionMode restrictionMode;
 
   @internal
   Map<String, Object?> encode() => {

@@ -118,7 +118,7 @@ final class ClouddeployTargetExecutionConfigs {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final TfArg<List<String>> usages;
+  final EnumList<ClouddeployTargetUsages> usages;
 
   final TfArg<bool>? verbose;
 
@@ -139,6 +139,33 @@ final class ClouddeployTargetExecutionConfigs {
     'default_pool': ?defaultPool?.encode(),
     'private_pool': ?privatePool?.encode(),
   };
+}
+
+/// `usages` — derived from the provider schema description.
+extension type const ClouddeployTargetUsages._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddeployTargetUsages.variable(String name) : this._(TfArg.variable(name));
+  ClouddeployTargetUsages.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddeployTargetUsages.arg(TfArg<String> arg) : this._(arg);
+
+  static const render = ClouddeployTargetUsages._(TfArgLiteral('RENDER'));
+  static const deploy = ClouddeployTargetUsages._(TfArgLiteral('DEPLOY'));
+  static const verify = ClouddeployTargetUsages._(TfArgLiteral('VERIFY'));
+  static const predeploy = ClouddeployTargetUsages._(TfArgLiteral('PREDEPLOY'));
+  static const postdeploy = ClouddeployTargetUsages._(
+    TfArgLiteral('POSTDEPLOY'),
+  );
+  static const analysis = ClouddeployTargetUsages._(TfArgLiteral('ANALYSIS'));
+
+  static const List<ClouddeployTargetUsages> values = [
+    render,
+    deploy,
+    verify,
+    predeploy,
+    postdeploy,
+    analysis,
+  ];
 }
 
 /// Typed helper for the `execution_configs.default_pool` block of

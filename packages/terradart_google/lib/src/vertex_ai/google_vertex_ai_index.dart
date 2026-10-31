@@ -9,6 +9,28 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_vertex_ai_index`.
 const Set<String> _googleVertexAiIndexSensitive = <String>{};
 
+/// Vertex Ai Index Update enum for `index_update_method`.
+extension type const VertexAiIndexUpdateMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiIndexUpdateMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiIndexUpdateMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiIndexUpdateMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const batchUpdate = VertexAiIndexUpdateMethod._(
+    TfArgLiteral('BATCH_UPDATE'),
+  );
+  static const streamUpdate = VertexAiIndexUpdateMethod._(
+    TfArgLiteral('STREAM_UPDATE'),
+  );
+
+  static const List<VertexAiIndexUpdateMethod> values = [
+    batchUpdate,
+    streamUpdate,
+  ];
+}
+
 /// Typed helper for the `encryption_spec` block of
 /// `google_vertex_ai_index` (derived from provider schema).
 @immutable
@@ -299,7 +321,7 @@ final class GoogleVertexAiIndex extends Resource {
     TfArg<String>? region,
     TfArg<String>? description,
     required VertexAiIndexMetadata metadata,
-    TfArg<String>? indexUpdateMethod,
+    VertexAiIndexUpdateMethod? indexUpdateMethod,
     VertexAiIndexEncryptionSpec? encryptionSpec,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

@@ -22,6 +22,7 @@ export 'src/ces/google_ces_evaluation.dart'
         CesEvaluationScenario,
         CesEvaluationScenarioExpectations,
         CesEvaluationSteps,
+        CesEvaluationTaskCompletionBehavior,
         CesEvaluationToolCall,
         CesEvaluationToolExpectation,
         CesEvaluationToolResponse,
@@ -31,6 +32,7 @@ export 'src/ces/google_ces_evaluation.dart'
         CesEvaluationTurns,
         CesEvaluationUpdatedVariables,
         CesEvaluationUserFacts,
+        CesEvaluationUserGoalBehavior,
         CesEvaluationUserInput,
         GoogleCesEvaluation;
 export 'src/ces/google_ces_security_settings.dart'

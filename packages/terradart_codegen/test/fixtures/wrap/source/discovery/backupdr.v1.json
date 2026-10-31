@@ -1,0 +1,210 @@
+{
+  "name": "backupdr",
+  "version": "v1",
+  "revision": "20261024",
+  "sourceUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BackupPlan": {
+      "properties": {
+        "backupRules": {
+          "items": {
+            "$ref": "BackupRule"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "INACTIVE",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "BackupPlanAssociation": {
+      "properties": {
+        "rulesConfigInfo": {
+          "items": {
+            "$ref": "RuleConfigInfo"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "INACTIVE",
+            "UPDATING",
+            "PAUSED"
+          ]
+        }
+      }
+    },
+    "BackupRule": {
+      "properties": {
+        "standardSchedule": {
+          "$ref": "StandardSchedule"
+        }
+      }
+    },
+    "BackupVault": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ERROR",
+            "UPDATING"
+          ]
+        },
+        "accessRestriction": {
+          "enum": [
+            "ACCESS_RESTRICTION_UNSPECIFIED",
+            "WITHIN_PROJECT",
+            "WITHIN_ORGANIZATION",
+            "UNRESTRICTED",
+            "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
+          ]
+        },
+        "backupRetentionInheritance": {
+          "enum": [
+            "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+            "INHERIT_VAULT_RETENTION",
+            "MATCH_BACKUP_EXPIRE_TIME"
+          ]
+        }
+      }
+    },
+    "ManagementServer": {
+      "properties": {
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
+        },
+        "state": {
+          "enum": [
+            "INSTANCE_STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "DELETING",
+            "REPAIRING",
+            "MAINTENANCE",
+            "ERROR"
+          ]
+        },
+        "type": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "BACKUP_RESTORE"
+          ]
+        }
+      }
+    },
+    "NetworkConfig": {
+      "properties": {
+        "peeringMode": {
+          "enum": [
+            "PEERING_MODE_UNSPECIFIED",
+            "PRIVATE_SERVICE_ACCESS"
+          ]
+        }
+      }
+    },
+    "RuleConfigInfo": {
+      "properties": {
+        "lastBackupState": {
+          "enum": [
+            "LAST_BACKUP_STATE_UNSPECIFIED",
+            "FIRST_BACKUP_PENDING",
+            "PERMISSION_DENIED",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "StandardSchedule": {
+      "properties": {
+        "weekDayOfMonth": {
+          "$ref": "WeekDayOfMonth"
+        },
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        },
+        "months": {
+          "items": {
+            "enum": [
+              "MONTH_UNSPECIFIED",
+              "JANUARY",
+              "FEBRUARY",
+              "MARCH",
+              "APRIL",
+              "MAY",
+              "JUNE",
+              "JULY",
+              "AUGUST",
+              "SEPTEMBER",
+              "OCTOBER",
+              "NOVEMBER",
+              "DECEMBER"
+            ]
+          }
+        },
+        "recurrenceType": {
+          "enum": [
+            "RECURRENCE_TYPE_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY"
+          ]
+        }
+      }
+    },
+    "WeekDayOfMonth": {
+      "properties": {
+        "weekOfMonth": {
+          "enum": [
+            "WEEK_OF_MONTH_UNSPECIFIED",
+            "FIRST",
+            "SECOND",
+            "THIRD",
+            "FOURTH",
+            "LAST"
+          ]
+        },
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    }
+  }
+}

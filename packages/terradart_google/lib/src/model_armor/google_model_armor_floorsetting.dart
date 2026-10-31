@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_model_armor_floorsetting`.
 const Set<String> _googleModelArmorFloorsettingSensitive = <String>{};
 
+/// Model Armor Floorsetting Integrated enum for `integrated_services`.
+extension type const ModelArmorFloorsettingIntegratedServices._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorFloorsettingIntegratedServices.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorFloorsettingIntegratedServices.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorFloorsettingIntegratedServices.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const aiPlatform = ModelArmorFloorsettingIntegratedServices._(
+    TfArgLiteral('AI_PLATFORM'),
+  );
+  static const googleMcpServer = ModelArmorFloorsettingIntegratedServices._(
+    TfArgLiteral('GOOGLE_MCP_SERVER'),
+  );
+
+  static const List<ModelArmorFloorsettingIntegratedServices> values = [
+    aiPlatform,
+    googleMcpServer,
+  ];
+}
+
 /// Typed helper for the `ai_platform_floor_setting` block of
 /// `google_model_armor_floorsetting` (derived from provider schema).
 @immutable
@@ -335,7 +358,7 @@ final class GoogleModelArmorFloorsetting extends Resource {
   GoogleModelArmorFloorsetting(
     super.localName, {
     TfArg<bool>? enableFloorSettingEnforcement,
-    TfArg<List<String>>? integratedServices,
+    EnumList<ModelArmorFloorsettingIntegratedServices>? integratedServices,
     required TfArg<String> location,
     required TfArg<String> parent,
     ModelArmorFloorsettingAiPlatformFloorSetting? aiPlatformFloorSetting,

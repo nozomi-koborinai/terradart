@@ -105,7 +105,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         projectId: const TfArg.literal('p'),
         datasetId: RefTo.literal('d'),
       ),
-      targetTypes: [const TfArg.literal('VIEWS')],
+      targetTypes: const .literal([.views]),
     ),
   ),
   'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(

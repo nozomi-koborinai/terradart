@@ -1,0 +1,58 @@
+{
+  "name": "cloudfunctions",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CloudFunction": {
+      "properties": {
+        "httpsTrigger": {
+          "$ref": "HttpsTrigger"
+        },
+        "dockerRegistry": {
+          "enum": [
+            "DOCKER_REGISTRY_UNSPECIFIED",
+            "CONTAINER_REGISTRY",
+            "ARTIFACT_REGISTRY"
+          ]
+        },
+        "ingressSettings": {
+          "enum": [
+            "INGRESS_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL",
+            "ALLOW_INTERNAL_ONLY",
+            "ALLOW_INTERNAL_AND_GCLB"
+          ]
+        },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
+          ]
+        },
+        "status": {
+          "enum": [
+            "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OFFLINE",
+            "DEPLOY_IN_PROGRESS",
+            "DELETE_IN_PROGRESS",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "HttpsTrigger": {
+      "properties": {
+        "securityLevel": {
+          "enum": [
+            "SECURITY_LEVEL_UNSPECIFIED",
+            "SECURE_ALWAYS",
+            "SECURE_OPTIONAL"
+          ]
+        }
+      }
+    }
+  }
+}

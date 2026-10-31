@@ -1,0 +1,107 @@
+{
+  "name": "bigqueryreservation",
+  "version": "v1",
+  "revision": "20261024",
+  "sourceUrl": "https://bigqueryreservation.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Assignment": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE"
+          ]
+        },
+        "jobType": {
+          "enum": [
+            "JOB_TYPE_UNSPECIFIED",
+            "PIPELINE",
+            "QUERY",
+            "ML_EXTERNAL",
+            "BACKGROUND",
+            "CONTINUOUS",
+            "BACKGROUND_CHANGE_DATA_CAPTURE",
+            "BACKGROUND_COLUMN_METADATA_INDEX",
+            "BACKGROUND_SEARCH_INDEX_REFRESH",
+            "AUTOMATIC_MATERIALIZED_VIEW_REFRESH"
+          ]
+        }
+      }
+    },
+    "BiReservation": {
+      "properties": {}
+    },
+    "CapacityCommitment": {
+      "properties": {
+        "renewalPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "FLEX",
+            "FLEX_FLAT_RATE",
+            "TRIAL",
+            "MONTHLY",
+            "MONTHLY_FLAT_RATE",
+            "ANNUAL",
+            "ANNUAL_FLAT_RATE",
+            "THREE_YEAR",
+            "NONE"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
+        "plan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "FLEX",
+            "FLEX_FLAT_RATE",
+            "TRIAL",
+            "MONTHLY",
+            "MONTHLY_FLAT_RATE",
+            "ANNUAL",
+            "ANNUAL_FLAT_RATE",
+            "THREE_YEAR",
+            "NONE"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Reservation": {
+      "properties": {
+        "scalingMode": {
+          "enum": [
+            "SCALING_MODE_UNSPECIFIED",
+            "AUTOSCALE_ONLY",
+            "IDLE_SLOTS_ONLY",
+            "ALL_SLOTS"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        }
+      }
+    },
+    "ReservationGroup": {
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "networkservices",
+  "version": "v1",
+  "revision": "20261027",
+  "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ServiceLbPolicy": {
+      "properties": {
+        "loadBalancingAlgorithm": {
+          "enum": [
+            "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
+            "SPRAY_TO_WORLD",
+            "SPRAY_TO_REGION",
+            "WATERFALL_BY_REGION",
+            "WATERFALL_BY_ZONE"
+          ]
+        },
+        "isolationConfig": {
+          "$ref": "ServiceLbPolicyIsolationConfig"
+        }
+      }
+    },
+    "ServiceLbPolicyIsolationConfig": {
+      "properties": {
+        "isolationMode": {
+          "enum": [
+            "ISOLATION_MODE_UNSPECIFIED",
+            "NEAREST",
+            "STRICT"
+          ]
+        },
+        "isolationGranularity": {
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/colab/google_colab_notebook_execution.dart'
     show
+        ColabNotebookExecutionAcceleratorType,
         ColabNotebookExecutionCompute,
         ColabNotebookExecutionComputeCustomEnvironmentSpec,
         ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName,
@@ -40,6 +41,7 @@ export 'src/colab/google_colab_runtime.dart'
         GoogleColabRuntime;
 export 'src/colab/google_colab_runtime_template.dart'
     show
+        ColabRuntimeTemplateAcceleratorType,
         ColabRuntimeTemplateColabImage,
         ColabRuntimeTemplateDataPersistentDiskSpec,
         ColabRuntimeTemplateEncryptionSpec,

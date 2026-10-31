@@ -16,7 +16,10 @@ export 'src/data/google_sql_database_instance.dart'
 export 'src/data/google_sql_database_instance_latest_recovery_time.dart'
     show DataGoogleSqlDatabaseInstanceLatestRecoveryTime;
 export 'src/data/google_sql_database_instances.dart'
-    show DataGoogleSqlDatabaseInstances, DataSqlDatabaseInstancesState;
+    show
+        DataGoogleSqlDatabaseInstances,
+        DataSqlDatabaseInstancesDatabaseVersion,
+        DataSqlDatabaseInstancesState;
 export 'src/data/google_sql_databases.dart' show DataGoogleSqlDatabases;
 export 'src/data/google_sql_tiers.dart' show DataGoogleSqlTiers;
 export 'src/sql/google_sql_database.dart' show GoogleSqlDatabase;
@@ -32,7 +35,10 @@ export 'src/sql/google_sql_database_instance.dart'
         SqlDatabaseInstanceBackupConfiguration,
         SqlDatabaseInstanceBackupRetentionSettings,
         SqlDatabaseInstanceClone,
+        SqlDatabaseInstanceComplexity,
         SqlDatabaseInstanceConnectionPoolConfig,
+        SqlDatabaseInstanceConnectorEnforcement,
+        SqlDatabaseInstanceDataApiAccess,
         SqlDatabaseInstanceDataCacheConfig,
         SqlDatabaseInstanceDatabaseFlags,
         SqlDatabaseInstanceDenyMaintenancePeriod,
@@ -43,18 +49,25 @@ export 'src/sql/google_sql_database_instance.dart'
         SqlDatabaseInstanceIpConfiguration,
         SqlDatabaseInstanceLocationPreference,
         SqlDatabaseInstanceMaintenanceWindow,
+        SqlDatabaseInstanceMode,
         SqlDatabaseInstancePasswordValidationPolicy,
         SqlDatabaseInstancePointInTimeRestoreContext,
+        SqlDatabaseInstancePricingPlan,
         SqlDatabaseInstancePscAutoConnections,
         SqlDatabaseInstancePscConfig,
         SqlDatabaseInstanceReadPoolAutoScaleConfig,
         SqlDatabaseInstanceReplicaConfiguration,
         SqlDatabaseInstanceReplicationCluster,
         SqlDatabaseInstanceRestoreBackupContext,
+        SqlDatabaseInstanceRetentionUnit,
+        SqlDatabaseInstanceServerCaMode,
+        SqlDatabaseInstanceServerCertificateRotationMode,
         SqlDatabaseInstanceSettings,
         SqlDatabaseInstanceSqlServerAuditConfig,
+        SqlDatabaseInstanceSslMode,
         SqlDatabaseInstanceTargetMetrics,
         SqlDatabaseInstanceType,
+        SqlDatabaseInstanceUpdateTrack,
         SqlDiskType,
         SqlEdition;
 export 'src/sql/google_sql_provision_script.dart' show GoogleSqlProvisionScript;

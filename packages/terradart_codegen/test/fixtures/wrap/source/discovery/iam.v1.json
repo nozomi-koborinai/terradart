@@ -1,0 +1,326 @@
+{
+  "name": "iam",
+  "version": "v1",
+  "revision": "20261023",
+  "sourceUrl": "https://iam.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ExtendedStatus": {
+      "properties": {
+        "key": {
+          "enum": [
+            "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_UNSPECIFIED",
+            "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_EXPOSED",
+            "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_COMPROMISE_DETECTED"
+          ]
+        }
+      }
+    },
+    "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client": {
+      "properties": {
+        "attributesType": {
+          "enum": [
+            "ATTRIBUTES_TYPE_UNSPECIFIED",
+            "AZURE_AD_GROUPS_MAIL",
+            "AZURE_AD_GROUPS_ID",
+            "AZURE_AD_GROUPS_DISPLAY_NAME"
+          ]
+        }
+      }
+    },
+    "GoogleIamAdminV1WorkforcePoolProviderOidc": {
+      "properties": {
+        "webSsoConfig": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig"
+        }
+      }
+    },
+    "GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig": {
+      "properties": {
+        "responseType": {
+          "enum": [
+            "RESPONSE_TYPE_UNSPECIFIED",
+            "CODE",
+            "ID_TOKEN"
+          ]
+        },
+        "assertionClaimsBehavior": {
+          "enum": [
+            "ASSERTION_CLAIMS_BEHAVIOR_UNSPECIFIED",
+            "MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS",
+            "ONLY_ID_TOKEN_CLAIMS"
+          ]
+        }
+      }
+    },
+    "InlineCertificateIssuanceConfig": {
+      "properties": {
+        "keyAlgorithm": {
+          "enum": [
+            "KEY_ALGORITHM_UNSPECIFIED",
+            "RSA_2048",
+            "RSA_3072",
+            "RSA_4096",
+            "ECDSA_P256",
+            "ECDSA_P384"
+          ]
+        }
+      }
+    },
+    "KeyData": {
+      "properties": {
+        "keySpec": {
+          "enum": [
+            "KEY_SPEC_UNSPECIFIED",
+            "RSA_2048",
+            "RSA_3072",
+            "RSA_4096"
+          ]
+        },
+        "format": {
+          "enum": [
+            "KEY_FORMAT_UNSPECIFIED",
+            "RSA_X509_PEM"
+          ]
+        }
+      }
+    },
+    "OauthClient": {
+      "properties": {
+        "clientType": {
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "PUBLIC_CLIENT",
+            "CONFIDENTIAL_CLIENT"
+          ]
+        },
+        "allowedGrantTypes": {
+          "items": {
+            "enum": [
+              "GRANT_TYPE_UNSPECIFIED",
+              "AUTHORIZATION_CODE_GRANT",
+              "REFRESH_TOKEN_GRANT"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "OauthClientCredential": {
+      "properties": {}
+    },
+    "Role": {
+      "properties": {
+        "stage": {
+          "enum": [
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED",
+            "DISABLED",
+            "EAP"
+          ]
+        }
+      }
+    },
+    "ServiceAccountKey": {
+      "properties": {
+        "extendedStatus": {
+          "items": {
+            "$ref": "ExtendedStatus"
+          }
+        },
+        "keyOrigin": {
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "USER_PROVIDED",
+            "GOOGLE_PROVIDED"
+          ]
+        },
+        "keyType": {
+          "enum": [
+            "KEY_TYPE_UNSPECIFIED",
+            "USER_MANAGED",
+            "SYSTEM_MANAGED"
+          ]
+        },
+        "disableReason": {
+          "enum": [
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
+          ]
+        },
+        "keyAlgorithm": {
+          "enum": [
+            "KEY_ALG_UNSPECIFIED",
+            "KEY_ALG_RSA_1024",
+            "KEY_ALG_RSA_2048"
+          ]
+        },
+        "privateKeyType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PKCS12_FILE",
+            "TYPE_GOOGLE_CREDENTIALS_FILE"
+          ]
+        }
+      }
+    },
+    "WorkforcePool": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkforcePoolProvider": {
+      "properties": {
+        "scimUsage": {
+          "enum": [
+            "SCIM_USAGE_UNSPECIFIED",
+            "ENABLED_FOR_GROUPS",
+            "ENABLED_FOR_USERS_GROUPS"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
+        "vendorType": {
+          "enum": [
+            "VENDOR_TYPE_UNSPECIFIED",
+            "ENTRA_ID",
+            "OKTA",
+            "PING_FEDERATE",
+            "ADFS",
+            "KEYCLOAK",
+            "FORGE_ROCK",
+            "JUMP_CLOUD",
+            "ONE_LOGIN",
+            "GENERIC"
+          ]
+        },
+        "extraAttributesOauth2Client": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
+        },
+        "oidc": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
+        },
+        "extendedAttributesOauth2Client": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
+        }
+      }
+    },
+    "WorkforcePoolProviderKey": {
+      "properties": {
+        "keyData": {
+          "$ref": "KeyData"
+        },
+        "use": {
+          "enum": [
+            "KEY_USE_UNSPECIFIED",
+            "ENCRYPTION"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkforcePoolProviderScimTenant": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkforcePoolProviderScimToken": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityPool": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
+        "inlineCertificateIssuanceConfig": {
+          "$ref": "InlineCertificateIssuanceConfig"
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "FEDERATION_ONLY",
+            "TRUST_DOMAIN",
+            "SYSTEM_TRUST_DOMAIN"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityPoolManagedIdentity": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityPoolNamespace": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WorkloadIdentityPoolProvider": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    }
+  }
+}

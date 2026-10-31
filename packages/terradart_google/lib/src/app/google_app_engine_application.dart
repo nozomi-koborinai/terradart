@@ -10,6 +10,26 @@ const Set<String> _googleAppEngineApplicationSensitive = <String>{
   'iap.oauth2_client_secret_sha256',
 };
 
+/// App Engine Application Ssl enum for `ssl_policy`.
+extension type const AppEngineApplicationSslPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineApplicationSslPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineApplicationSslPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineApplicationSslPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = AppEngineApplicationSslPolicy._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const modern = AppEngineApplicationSslPolicy._(TfArgLiteral('MODERN'));
+
+  static const List<AppEngineApplicationSslPolicy> values = [
+    defaultCase,
+    modern,
+  ];
+}
+
 /// Default database mode for an [GoogleAppEngineApplication].
 extension type const AppEngineDatabaseType._(TfArg<String> _)
     implements TfArg<String> {
@@ -126,7 +146,7 @@ final class GoogleAppEngineApplication extends Resource {
     AppEngineDatabaseType? databaseType,
     AppEngineServingStatus? servingStatus,
     TfArg<String>? authDomain,
-    TfArg<String>? sslPolicy,
+    AppEngineApplicationSslPolicy? sslPolicy,
     AppEngineApplicationFeatureSettings? featureSettings,
     AppEngineApplicationIap? iap,
     TfArg<String>? project,

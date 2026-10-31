@@ -209,6 +209,7 @@ export 'src/dataplex/google_dataplex_lake_iam_policy.dart'
     show GoogleDataplexLakeIamPolicy;
 export 'src/dataplex/google_dataplex_metadata_feed.dart'
     show
+        DataplexMetadataFeedChangeTypes,
         DataplexMetadataFeedFilters,
         DataplexMetadataFeedScope,
         GoogleDataplexMetadataFeed;

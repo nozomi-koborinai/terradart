@@ -10,6 +10,7 @@ export 'src/app/google_app_engine_application.dart'
     show
         AppEngineApplicationFeatureSettings,
         AppEngineApplicationIap,
+        AppEngineApplicationSslPolicy,
         AppEngineDatabaseType,
         AppEngineServingStatus,
         GoogleAppEngineApplication;
@@ -76,6 +77,7 @@ export 'src/app/google_app_engine_standard_app_version.dart'
         AppEngineStandardAppVersionBasicScaling,
         AppEngineStandardAppVersionBasicScalingChoice,
         AppEngineStandardAppVersionDeployment,
+        AppEngineStandardAppVersionEgressSetting,
         AppEngineStandardAppVersionEntrypoint,
         AppEngineStandardAppVersionFiles,
         AppEngineStandardAppVersionHandlers,

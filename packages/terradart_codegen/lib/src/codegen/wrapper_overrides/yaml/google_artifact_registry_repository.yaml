@@ -3,6 +3,7 @@ outputDir: artifact_registry
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
+deriveEnums: true
 
 # User-settable params first; nested blocks in the middle; computed-only
 # attrs (create_time, update_time, name, registry_uri, terraform_labels,

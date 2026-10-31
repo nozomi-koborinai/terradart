@@ -67,13 +67,123 @@ final class BinaryAuthorizationAttestorPkixPublicKey {
 
   final TfArg<String>? publicKeyPem;
 
-  final TfArg<String>? signatureAlgorithm;
+  final BinaryAuthorizationAttestorSignatureAlgorithm? signatureAlgorithm;
 
   @internal
   Map<String, Object?> encode() => {
     'public_key_pem': ?publicKeyPem?.toTfJson(),
     'signature_algorithm': ?signatureAlgorithm?.toTfJson(),
   };
+}
+
+/// `signature_algorithm` — derived from the provider schema description.
+extension type const BinaryAuthorizationAttestorSignatureAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BinaryAuthorizationAttestorSignatureAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  BinaryAuthorizationAttestorSignatureAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const BinaryAuthorizationAttestorSignatureAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const rsaPss2048Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_PSS_2048_SHA256'),
+      );
+  static const rsaSignPss2048Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PSS_2048_SHA256'),
+      );
+  static const rsaPss3072Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_PSS_3072_SHA256'),
+      );
+  static const rsaSignPss3072Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PSS_3072_SHA256'),
+      );
+  static const rsaPss4096Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_PSS_4096_SHA256'),
+      );
+  static const rsaSignPss4096Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PSS_4096_SHA256'),
+      );
+  static const rsaPss4096Sha512 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_PSS_4096_SHA512'),
+      );
+  static const rsaSignPss4096Sha512 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PSS_4096_SHA512'),
+      );
+  static const rsaSignPkcs12048Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PKCS1_2048_SHA256'),
+      );
+  static const rsaSignPkcs13072Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PKCS1_3072_SHA256'),
+      );
+  static const rsaSignPkcs14096Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PKCS1_4096_SHA256'),
+      );
+  static const rsaSignPkcs14096Sha512 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('RSA_SIGN_PKCS1_4096_SHA512'),
+      );
+  static const ecdsaP256Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('ECDSA_P256_SHA256'),
+      );
+  static const ecSignP256Sha256 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('EC_SIGN_P256_SHA256'),
+      );
+  static const ecdsaP384Sha384 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('ECDSA_P384_SHA384'),
+      );
+  static const ecSignP384Sha384 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('EC_SIGN_P384_SHA384'),
+      );
+  static const ecdsaP521Sha512 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('ECDSA_P521_SHA512'),
+      );
+  static const ecSignP521Sha512 =
+      BinaryAuthorizationAttestorSignatureAlgorithm._(
+        TfArgLiteral('EC_SIGN_P521_SHA512'),
+      );
+  static const mlDsa65 = BinaryAuthorizationAttestorSignatureAlgorithm._(
+    TfArgLiteral('ML_DSA_65'),
+  );
+
+  static const List<BinaryAuthorizationAttestorSignatureAlgorithm> values = [
+    rsaPss2048Sha256,
+    rsaSignPss2048Sha256,
+    rsaPss3072Sha256,
+    rsaSignPss3072Sha256,
+    rsaPss4096Sha256,
+    rsaSignPss4096Sha256,
+    rsaPss4096Sha512,
+    rsaSignPss4096Sha512,
+    rsaSignPkcs12048Sha256,
+    rsaSignPkcs13072Sha256,
+    rsaSignPkcs14096Sha256,
+    rsaSignPkcs14096Sha512,
+    ecdsaP256Sha256,
+    ecSignP256Sha256,
+    ecdsaP384Sha384,
+    ecSignP384Sha384,
+    ecdsaP521Sha512,
+    ecSignP521Sha512,
+    mlDsa65,
+  ];
 }
 
 /// Factory wrapper for `google_binary_authorization_attestor`.

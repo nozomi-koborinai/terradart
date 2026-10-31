@@ -1,0 +1,29 @@
+{
+  "name": "firebasevertexai",
+  "version": "v1beta",
+  "revision": "20261026",
+  "sourceUrl": "https://firebasevertexai.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "Config": {
+      "properties": {
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig"
+        }
+      }
+    },
+    "PromptTemplate": {
+      "properties": {}
+    },
+    "TelemetryConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "NONE",
+            "ALL"
+          ]
+        }
+      }
+    }
+  }
+}

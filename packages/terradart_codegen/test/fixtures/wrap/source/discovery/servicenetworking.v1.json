@@ -1,0 +1,11 @@
+{
+  "name": "servicenetworking",
+  "version": "v1",
+  "revision": "20261012",
+  "sourceUrl": "https://servicenetworking.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "VpcServiceControls": {
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "cloudresourcemanager",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AuditConfig": {
+      "properties": {
+        "auditLogConfigs": {
+          "items": {
+            "$ref": "AuditLogConfig"
+          }
+        }
+      }
+    },
+    "AuditLogConfig": {
+      "properties": {
+        "logType": {
+          "enum": [
+            "LOG_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "DATA_WRITE",
+            "DATA_READ"
+          ]
+        }
+      }
+    },
+    "Lien": {
+      "properties": {}
+    }
+  }
+}

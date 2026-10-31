@@ -298,13 +298,28 @@ final class ComputeImageDbs {
 
   final TfArg<String> content;
 
-  final TfArg<String>? fileType;
+  final ComputeImageFileType? fileType;
 
   @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'file_type': ?fileType?.toTfJson(),
   };
+}
+
+/// `file_type` — derived from the provider schema description.
+extension type const ComputeImageFileType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeImageFileType.variable(String name) : this._(TfArg.variable(name));
+  ComputeImageFileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeImageFileType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bin = ComputeImageFileType._(TfArgLiteral('BIN'));
+  static const undefined = ComputeImageFileType._(TfArgLiteral('UNDEFINED'));
+  static const x509 = ComputeImageFileType._(TfArgLiteral('X509'));
+
+  static const List<ComputeImageFileType> values = [bin, undefined, x509];
 }
 
 /// Typed helper for the `shielded_instance_initial_state.dbxs` block of
@@ -315,7 +330,7 @@ final class ComputeImageDbxs {
 
   final TfArg<String> content;
 
-  final TfArg<String>? fileType;
+  final ComputeImageFileType? fileType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -332,7 +347,7 @@ final class ComputeImageKeks {
 
   final TfArg<String> content;
 
-  final TfArg<String>? fileType;
+  final ComputeImageFileType? fileType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -349,7 +364,7 @@ final class ComputeImagePk {
 
   final TfArg<String> content;
 
-  final TfArg<String>? fileType;
+  final ComputeImageFileType? fileType;
 
   @internal
   Map<String, Object?> encode() => {

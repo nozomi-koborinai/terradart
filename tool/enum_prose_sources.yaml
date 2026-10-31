@@ -1,0 +1,941 @@
+# The google-lane enums whose values no machine source has, with why (tool/google_enum_sources.dart).
+#   source: no-document   no Discovery document is recorded for the type
+#   source: no-enum       its Discovery schema declares no enum at the path
+#   disagrees: <note>     a machine source has a set without an emitted value; the note says why
+#                         the provider accepts it (a human decision; --fix keeps it while the values match).
+# Values are exact and in emitted order; --fix rewrites the source entries, never a note.
+google:
+  data.google_discovery_engine_data_store.location:
+    values: [global, us, eu]
+    source: no-enum
+  data.google_discovery_engine_data_stores.location:
+    values: [global, us, eu]
+    source: no-document
+  data.google_site_verification_token.type:
+    values: [INET_DOMAIN, SITE]
+    source: no-document
+  data.google_site_verification_token.verification_method:
+    values: [ANALYTICS, DNS_CNAME, DNS_TXT, FILE, META, TAG_MANAGER]
+    source: no-document
+  data.google_storage_control_folder_intelligence_findings_summary.resource_scope:
+    values: [PARENT, PROJECT]
+    source: no-document
+  data.google_storage_control_organization_intelligence_findings_summary.resource_scope:
+    values: [PARENT, PROJECT]
+    source: no-document
+  data.google_storage_control_project_intelligence_findings_summary.resource_scope:
+    values: [PARENT, PROJECT]
+    source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.document_generation_options.export_format:
+    values: [PDF, DOCX, GOOGLE_DOCS]
+    source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.methodology_export_options.export_format:
+    values: [MARKDOWN, HTML, PDF]
+    source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.slide_generation_options.export_format:
+    values: [PDF, PNG, PPTX, GOOGLE_SLIDES]
+    source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.visualization_options.visualization_mode:
+    values: [VISUALIZATION_MODE_EXPLICIT_ONLY, VISUALIZATION_MODE_WHEN_NECESSARY, VISUALIZATION_MODE_WHEN_HELPFUL, VISUALIZATION_MODE_ALWAYS]
+    source: no-document
+  google_agentic_applications_analyst_agent_persona.role:
+    values: [ANALYST_ROLE_GENERIC_FINANCE_ANALYST, ANALYST_ROLE_CORPORATE_FINANCE_ANALYST, ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST, ANALYST_ROLE_KYC_ANALYST, ANALYST_ROLE_SALES_TRADER, ANALYST_ROLE_QUANT_ANALYST, ANALYST_ROLE_EXCHANGE_MANAGER, ANALYST_ROLE_PORTFOLIO_MANAGER, ANALYST_ROLE_WEALTH_MANAGER, ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST, ANALYST_ROLE_MNA_EXECUTION_ANALYST, ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST, ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST, ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST, ANALYST_ROLE_CORPORATE_BANKING_ANALYST, ANALYST_ROLE_CREDIT_RISK_STRATEGIST, ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST, ANALYST_ROLE_FUND_ACCOUNTANT, ANALYST_ROLE_MODEL_VALIDATION_AUDITOR, ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST, ANALYST_ROLE_TREASURY_ANALYST, ANALYST_ROLE_VENTURE_CAPITAL_ANALYST, ANALYST_ROLE_AML_INVESTIGATOR, ANALYST_ROLE_DUE_DILIGENCE_ANALYST, ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST, ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER, ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER]
+    source: no-document
+  google_apigee_api_product.graphql_operation_group.operation_configs.operations.operation_types:
+    values: [query, mutation]
+    source: no-enum
+  google_apigee_api_product.graphql_operation_group.operation_configs.quota.time_unit:
+    values: [second, minute, hour, day, month, year]
+    source: no-enum
+  google_apigee_api_product.grpc_operation_group.operation_configs.quota.time_unit:
+    values: [second, minute, hour, day, month, year]
+    source: no-enum
+  google_apigee_api_product.operation_group.operation_configs.quota.time_unit:
+    values: [second, minute, hour, day, month, year]
+    source: no-enum
+  google_apigee_api_product.quota_time_unit:
+    values: [second, minute, hour, day, month, year]
+    source: no-enum
+  google_apigee_data_collector.deletion_policy:
+    values: [DELETE, ABANDON]
+    source: no-enum
+  google_apigee_datastore.deletion_policy:
+    values: [DELETE, ABANDON]
+    source: no-enum
+  google_apigee_datastore.target_type:
+    values: [gcs, bigquery]
+    source: no-enum
+  google_apigee_env_references.resource_type:
+    values: [KeyStore, TrustStore]
+    source: no-enum
+  google_apigee_flowhook.flow_hook_point:
+    values: [PreProxyFlowHook, PostProxyFlowHook, PreTargetFlowHook, PostTargetFlowHook]
+    source: no-document
+  google_apigee_keystores_aliases_self_signed_cert.sig_alg:
+    values: [SHA512withRSA, SHA384withRSA, SHA256withRSA]
+    source: no-enum
+  google_apigee_security_action.condition_config.http_methods:
+    values: [GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH]
+    source: no-enum
+  google_apikeys_key.check_existing_usage:
+    values: [SKIP, CHECK]
+    source: no-document
+  google_app_engine_flexible_app_version.instance_class:
+    values: [F1, F2, F4, F4_1G, B1, B2, B4, B8, B4_1G]
+    source: no-enum
+  google_app_engine_standard_app_version.instance_class:
+    values: [F1, F2, F4, F4_1G, B1, B2, B4, B8, B4_1G]
+    source: no-enum
+  google_biglake_iceberg_table.sort_order.fields.direction:
+    values: [asc, desc]
+    source: no-document
+  google_biglake_iceberg_table.sort_order.fields.null_order:
+    values: [nulls-first, nulls-last]
+    source: no-document
+  google_bigquery_dataset.access.special_group:
+    values: [projectOwners, projectReaders, projectWriters, allAuthenticatedUsers]
+    source: no-enum
+  google_bigquery_dataset_access.dataset.target_types:
+    values: [VIEWS]
+    source: no-enum
+  google_bigquery_dataset_access.special_group:
+    values: [projectOwners, projectReaders, projectWriters, allAuthenticatedUsers]
+    source: no-enum
+  google_bigquery_job.extract.compression:
+    values: [GZIP, DEFLATE, SNAPPY, NONE]
+    source: no-enum
+  google_bigquery_job.extract.destination_format:
+    values: [CSV, NEWLINE_DELIMITED_JSON, AVRO, SAVED_MODEL]
+    source: no-enum
+  google_bigquery_job.load.encoding:
+    values: [UTF-8, ISO-8859-1]
+    source: no-enum
+  google_bigquery_job.load.schema_update_options:
+    values: [ALLOW_FIELD_ADDITION, ALLOW_FIELD_RELAXATION]
+    source: no-enum
+  google_bigquery_job.load.source_format:
+    values: [CSV, NEWLINE_DELIMITED_JSON, AVRO, PARQUET, ORC, DATASTORE_BACKUP, BIGTABLE]
+    source: no-enum
+  google_bigquery_job.query.parameter_mode:
+    values: [NAMED, POSITIONAL]
+    source: no-enum
+  google_bigquery_job.query.schema_update_options:
+    values: [ALLOW_FIELD_ADDITION, ALLOW_FIELD_RELAXATION]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.bigtable_options.column_family.column.encoding:
+    values: [TEXT, BINARY]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.bigtable_options.column_family.column.type:
+    values: [BYTES, STRING, INTEGER, FLOAT, BOOLEAN, JSON]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.bigtable_options.column_family.encoding:
+    values: [TEXT, BINARY]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.bigtable_options.column_family.type:
+    values: [BYTES, STRING, INTEGER, FLOAT, BOOLEAN, JSON]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.csv_options.source_column_match:
+    values: [POSITION, NAME]
+    source: no-enum
+  google_bigquery_table.external_data_configuration.json_options.encoding:
+    values: [UTF-8, UTF-16BE, UTF-16LE, UTF-32BE, UTF-32LE]
+    source: no-enum
+  google_bigquery_table.table_metadata_view:
+    values: [TABLE_METADATA_VIEW_UNSPECIFIED, BASIC, STORAGE_STATS, FULL]
+    source: no-enum
+  google_bigquery_table.time_partitioning.type:
+    values: [DAY, HOUR, MONTH, YEAR]
+    disagrees: 'the hand-written provider resource validates DAY, HOUR, MONTH and YEAR (resource_bigquery_table.go StringInSlice); the Magic Modules Table YAML, which does not generate it, lists only DAY'
+  google_bigtable_instance.cluster.node_scaling_factor:
+    values: [NodeScalingFactor1X, NodeScalingFactor2X]
+    source: no-enum
+  google_bigtable_instance.cluster.storage_type:
+    values: [SSD, HDD]
+    source: no-enum
+  google_ces_app.audio_processing_config.ambient_sound_config.prebuilt_ambient_sound:
+    values: [coffee_shop, keyboard, keypad, hum, office_1, office_2, office_3, room_1, room_2, room_3, room_4, room_5, air_conditioner]
+    source: no-enum
+  google_chronicle_custom_list.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_chronicle_dashboard_chart.dashboard_chart.drill_down_config.left_drill_downs.custom_settings.filter.dashboard_filters.filter_operator:
+    values: [EQUAL, NOT_EQUAL, IN, GREATER_THAN, GREATER_THAN_OR_EQUAL_TO, LESS_THAN, LESS_THAN_OR_EQUAL_TO, BETWEEN, PAST, IS_NULL, IS_NOT_NULL, STARTS_WITH, ENDS_WITH, DOES_NOT_STARTS_WITH, DOES_NOT_ENDS_WITH, NOT_IN, CONTAINS, DOES_NOT_CONTAIN]
+    source: no-document
+  google_chronicle_dashboard_chart.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_chronicle_feed.details.amazon_s3_settings.authentication.region:
+    values: [US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, US_GOV_CLOUD, US_GOV_EAST_1, EU_WEST_1, EU_WEST_2, EU_WEST_3, EU_CENTRAL_1, EU_NORTH_1, EU_SOUTH_1, AP_SOUTH_1, AP_SOUTHEAST_1, AP_SOUTHEAST_2, AP_SOUTHEAST_3, AP_NORTHEAST_1, AP_NORTHEAST_2, AP_NORTHEAST_3, AP_EAST_1, SA_EAST_1, CN_NORTH_1, CN_NORTHWEST_1, CA_CENTRAL_1, AF_SOUTH_1, ME_SOUTH_1, AP_SOUTH_2, AP_SOUTHEAST_4, CA_WEST_1, EU_SOUTH_2, EU_CENTRAL_2, IL_CENTRAL_1, ME_CENTRAL_1]
+    source: no-document
+  google_chronicle_feed.details.amazon_s3_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.amazon_s3_settings.source_type:
+    values: [FILES, FOLDERS, FOLDERS_RECURSIVE]
+    source: no-document
+  google_chronicle_feed.details.amazon_s3_v2_settings.source_deletion_option:
+    values: [NEVER, ON_SUCCESS]
+    source: no-document
+  google_chronicle_feed.details.amazon_sqs_settings.region:
+    values: [US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, US_GOV_CLOUD, US_GOV_EAST_1, EU_WEST_1, EU_WEST_2, EU_WEST_3, EU_CENTRAL_1, EU_NORTH_1, EU_SOUTH_1, AP_SOUTH_1, AP_SOUTHEAST_1, AP_SOUTHEAST_2, AP_SOUTHEAST_3, AP_NORTHEAST_1, AP_NORTHEAST_2, AP_NORTHEAST_3, AP_EAST_1, SA_EAST_1, CN_NORTH_1, CN_NORTHWEST_1, CA_CENTRAL_1, AF_SOUTH_1, ME_SOUTH_1, AP_SOUTH_2, AP_SOUTHEAST_4, CA_WEST_1, EU_SOUTH_2, EU_CENTRAL_2, IL_CENTRAL_1, ME_CENTRAL_1]
+    source: no-document
+  google_chronicle_feed.details.amazon_sqs_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.amazon_sqs_v2_settings.source_deletion_option:
+    values: [NEVER, ON_SUCCESS]
+    source: no-document
+  google_chronicle_feed.details.aws_iam_settings.api_type:
+    values: [USERS, ROLES, GROUPS]
+    source: no-document
+  google_chronicle_feed.details.azure_blob_store_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.azure_blob_store_settings.source_type:
+    values: [FILES, FOLDERS, FOLDERS_RECURSIVE]
+    source: no-document
+  google_chronicle_feed.details.azure_blob_store_v2_settings.source_deletion_option:
+    values: [NEVER, ON_SUCCESS]
+    source: no-document
+  google_chronicle_feed.details.crowdstrike_alerts_settings.ingestion_type:
+    values: [BRING_ALL_ALERTS, BRING_ONLY_NEW_ALERTS]
+    source: no-document
+  google_chronicle_feed.details.crowdstrike_detects_settings.ingestion_type:
+    values: [BRING_ONLY_NEW_DETECTIONS, BRING_ALL_DETECTIONS]
+    source: no-document
+  google_chronicle_feed.details.gcs_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.gcs_settings.source_type:
+    values: [FILES, FOLDERS, FOLDERS_RECURSIVE]
+    source: no-document
+  google_chronicle_feed.details.gcs_v2_settings.source_deletion_option:
+    values: [NEVER, ON_SUCCESS]
+    source: no-document
+  google_chronicle_feed.details.google_cloud_storage_event_driven_settings.source_deletion_option:
+    values: [NEVER, ON_SUCCESS]
+    source: no-document
+  google_chronicle_feed.details.http_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.http_settings.source_type:
+    values: [FILES, FOLDERS, FOLDERS_RECURSIVE]
+    source: no-document
+  google_chronicle_feed.details.office365_settings.content_type:
+    values: [AUDIT_AZURE_ACTIVE_DIRECTORY, AUDIT_EXCHANGE, AUDIT_SHARE_POINT, AUDIT_GENERAL, DLP_ALL]
+    source: no-document
+  google_chronicle_feed.details.qualys_scan_settings.api_type:
+    values: [SCAN_SUMMARY_OUTPUT, SCAN_COMPLIANCE_OUTPUT, SCAN_COMPLIANCE_CONTROL_OUTPUT]
+    source: no-document
+  google_chronicle_feed.details.sftp_settings.source_deletion_option:
+    values: [SOURCE_DELETION_NEVER, SOURCE_DELETION_ON_SUCCESS, SOURCE_DELETION_ON_SUCCESS_FILES_ONLY]
+    source: no-document
+  google_chronicle_feed.details.sftp_settings.source_type:
+    values: [FILES, FOLDERS, FOLDERS_RECURSIVE]
+    source: no-document
+  google_chronicle_feed.details.workspace_users_settings.projection_type:
+    values: [BASIC_PROJECTION, FULL_PROJECTION]
+    source: no-document
+  google_chronicle_findings_refinement.outcome_filters.outcome_filter_operator:
+    values: [EQUAL, CONTAINS, MATCHES_REGEX, MATCHES_CIDR]
+    source: no-document
+  google_chronicle_findings_refinement.type:
+    values: [DETECTION_EXCLUSION]
+    source: no-document
+  google_chronicle_native_dashboard.access:
+    values: [DASHBOARD_PRIVATE, DASHBOARD_PUBLIC]
+    source: no-document
+  google_chronicle_native_dashboard.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_chronicle_native_dashboard.filters.data_source:
+    values: [UDM, ENTITY, INGESTION_METRICS, RULE_DETECTIONS, RULESETS, GLOBAL, IOC_MATCHES, RULES, SOAR_CASES, SOAR_PLAYBOOKS, SOAR_CASE_HISTORY, DATA_TABLE, INVESTIGATION, INVESTIGATION_FEEDBACK]
+    source: no-document
+  google_chronicle_native_dashboard.type:
+    values: [CURATED, PRIVATE, PUBLIC, CUSTOM, MARKETPLACE]
+    source: no-document
+  google_chronicle_parser.low_code.field_extractors.extractors.precondition_op:
+    values: [EQUALS, NOT_EQUALS]
+    source: no-document
+  google_chronicle_parser.low_code.field_extractors.log_format:
+    values: [JSON, CSV, XML]
+    source: no-document
+  google_chronicle_parser_extension.field_extractors.extractors.precondition_op:
+    values: [EQUALS, NOT_EQUALS]
+    source: no-document
+  google_chronicle_parser_extension.field_extractors.log_format:
+    values: [JSON, CSV, XML]
+    source: no-document
+  google_chronicle_reference_list.syntax_type:
+    values: [REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING, REFERENCE_LIST_SYNTAX_TYPE_REGEX, REFERENCE_LIST_SYNTAX_TYPE_CIDR]
+    source: no-document
+  google_chronicle_rule_deployment.run_frequency:
+    values: [LIVE, HOURLY, DAILY, LIVE_CUSTOMIZABLE, HOURLY_CUSTOMIZABLE]
+    source: no-document
+  google_cloud_run_service.template.spec.containers.ports.name:
+    values: [http1, h2c]
+    source: no-enum
+  google_cloud_run_service.template.spec.volumes.csi.driver:
+    values: [gcsfuse.run.googleapis.com]
+    source: no-enum
+  google_cloud_run_v2_instance.containers.ports.name:
+    values: [http1, h2c]
+    source: no-enum
+  google_cloud_run_v2_job.template.template.containers.ports.name:
+    values: [http1, h2c]
+    source: no-enum
+  google_cloud_run_v2_service.template.containers.ports.name:
+    values: [http1, h2c]
+    source: no-enum
+  google_cloud_security_compliance_cloud_control.parameter_spec.sub_parameters.sub_parameters.value_type:
+    values: [STRING, BOOLEAN, STRINGLIST, NUMBER, ONEOF]
+    source: no-document
+  google_cloud_security_compliance_cloud_control.parameter_spec.sub_parameters.value_type:
+    values: [STRING, BOOLEAN, STRINGLIST, NUMBER, ONEOF]
+    source: no-document
+  google_cloud_security_compliance_cloud_control.parameter_spec.value_type:
+    values: [STRING, BOOLEAN, STRINGLIST, NUMBER, ONEOF]
+    source: no-document
+  google_cloud_security_compliance_cloud_control.severity:
+    values: [CRITICAL, HIGH, MEDIUM, LOW]
+    source: no-document
+  google_cloud_security_compliance_framework_deployment.cloud_control_metadata.enforcement_mode:
+    values: [PREVENTIVE, DETECTIVE, AUDIT]
+    source: no-document
+  google_cloud_tasks_queue.desired_state:
+    values: [RUNNING, PAUSED]
+    source: no-enum
+  google_colab_runtime.desired_state:
+    values: [RUNNING, STOPPED]
+    source: no-enum
+  google_colab_schedule.create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec.persistent_disk_spec.disk_type:
+    values: [pd-ssd, pd-standard, pd-balanced, pd-extreme]
+    source: no-enum
+  google_colab_schedule.desired_state:
+    values: [ACTIVE, PAUSED]
+    source: no-enum
+  google_composer_environment.config.database_config.machine_type:
+    values: [db-n1-standard-2, db-n1-standard-4, db-n1-standard-8, db-n1-standard-16]
+    source: no-enum
+  google_composer_environment.config.private_environment_config.connection_type:
+    values: [VPC_PEERING, PRIVATE_SERVICE_CONNECT]
+    source: no-enum
+  google_composer_environment.config.software_config.web_server_plugins_mode:
+    values: [ENABLED, DISABLED]
+    disagrees: 'the provider takes ENABLED / DISABLED and sends PLUGINS_ENABLED / PLUGINS_DISABLED (resource_composer_environment.go expand and flatten)'
+  google_composer_environment.config.web_server_config.machine_type:
+    values: [composer-n1-webserver-2, composer-n1-webserver-4, composer-n1-webserver-8]
+    source: no-enum
+  google_compute_firewall_policy_with_rules.rule.action:
+    values: [allow, deny, apply_security_profile_group, goto_next]
+    source: no-enum
+  google_compute_instance.desired_status:
+    values: [RUNNING, SUSPENDED, TERMINATED]
+    source: no-enum
+  google_compute_instance_from_template.desired_status:
+    values: [RUNNING, SUSPENDED, TERMINATED]
+    source: no-enum
+  google_compute_instance_template.reservation_affinity.type:
+    values: [ANY_RESERVATION, SPECIFIC_RESERVATION, NO_RESERVATION]
+    source: no-enum
+  google_compute_interconnect_attachment.mtu:
+    values: ['1440', '1460', '1500', '8896']
+    source: no-enum
+  google_compute_network_firewall_policy_with_rules.rule.action:
+    values: [allow, deny, apply_security_profile_group, goto_next]
+    source: no-enum
+  google_compute_per_instance_config.minimal_action:
+    values: [REPLACE, RESTART, REFRESH, NONE]
+    source: no-enum
+  google_compute_per_instance_config.most_disruptive_allowed_action:
+    values: [REPLACE, RESTART, REFRESH, NONE]
+    source: no-enum
+  google_compute_region_instant_snapshot.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_compute_region_network_firewall_policy_with_rules.rule.action:
+    values: [allow, deny, apply_security_profile_group, goto_next]
+    source: no-enum
+  google_compute_region_per_instance_config.minimal_action:
+    values: [REPLACE, RESTART, REFRESH, NONE]
+    source: no-enum
+  google_compute_region_per_instance_config.most_disruptive_allowed_action:
+    values: [REPLACE, RESTART, REFRESH, NONE]
+    source: no-enum
+  google_compute_region_security_policy.rules.action:
+    values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, throttle]
+    source: no-enum
+  google_compute_region_security_policy.rules.rate_limit_options.exceed_action:
+    values: ['deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
+    source: no-enum
+  google_compute_region_security_policy_rule.action:
+    values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, throttle]
+    source: no-enum
+  google_compute_region_security_policy_rule.rate_limit_options.exceed_action:
+    values: ['deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
+    source: no-enum
+  google_compute_region_url_map.default_route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_region_url_map.path_matcher.default_route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_region_url_map.path_matcher.path_rule.route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_region_url_map.path_matcher.route_rules.route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_rollout_plan.waves.validation.type:
+    values: [manual, time]
+    source: no-enum
+  google_compute_security_policy.advanced_options_config.request_body_inspection_size:
+    values: [8KB, 16KB, 32KB, 48KB, 64KB]
+    source: no-enum
+  google_compute_security_policy.rule.action:
+    values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, redirect, throttle]
+    source: no-enum
+  google_compute_security_policy.rule.rate_limit_options.exceed_action:
+    values: [redirect, 'deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
+    source: no-enum
+  google_compute_security_policy_rule.action:
+    values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, redirect, throttle]
+    source: no-enum
+  google_compute_security_policy_rule.rate_limit_options.exceed_action:
+    values: [redirect, 'deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
+    source: no-enum
+  google_compute_url_map.default_route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_url_map.path_matcher.default_route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_url_map.path_matcher.path_rule.route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_compute_url_map.path_matcher.route_rules.route_action.retry_policy.retry_conditions:
+    values: [5xx, gateway-error, connect-failure, retriable-4xx, refused-stream, cancelled, deadline-exceeded, internal, resource-exhausted, unavailable]
+    source: no-enum
+  google_config_deployment.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_container_attached_cluster.distribution:
+    values: [eks, aks, generic]
+    source: no-document
+  google_container_aws_cluster.binary_authorization.evaluation_mode:
+    values: [DISABLED, PROJECT_SINGLETON_POLICY_ENFORCE]
+    source: no-document
+  google_container_aws_cluster.control_plane.main_volume.volume_type:
+    values: [VOLUME_TYPE_UNSPECIFIED, GP2, GP3]
+    source: no-document
+  google_container_aws_cluster.control_plane.root_volume.volume_type:
+    values: [VOLUME_TYPE_UNSPECIFIED, GP2, GP3]
+    source: no-document
+  google_container_aws_node_pool.config.root_volume.volume_type:
+    values: [VOLUME_TYPE_UNSPECIFIED, GP2, GP3]
+    source: no-document
+  google_container_aws_node_pool.config.taints.effect:
+    values: [EFFECT_UNSPECIFIED, NO_SCHEDULE, PREFER_NO_SCHEDULE, NO_EXECUTE]
+    source: no-document
+  google_container_cluster.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    values: [TIME_SHARING, MPS]
+    source: no-enum
+  google_container_cluster.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_container_cluster.node_config.kubelet_config.topology_manager.scope:
+    values: [container, pod]
+    source: no-enum
+  google_container_cluster.node_pool.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    values: [TIME_SHARING, MPS]
+    source: no-enum
+  google_container_cluster.node_pool.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_container_cluster.node_pool.node_config.kubelet_config.topology_manager.scope:
+    values: [container, pod]
+    source: no-enum
+  google_container_cluster.node_pool_auto_config.node_kubelet_config.insecure_kubelet_readonly_port_enabled:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_container_cluster.node_pool_defaults.node_config_defaults.insecure_kubelet_readonly_port_enabled:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_container_node_pool.node_config.guest_accelerator.gpu_sharing_config.gpu_sharing_strategy:
+    values: [TIME_SHARING, MPS]
+    source: no-enum
+  google_container_node_pool.node_config.kubelet_config.insecure_kubelet_readonly_port_enabled:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_container_node_pool.node_config.kubelet_config.topology_manager.scope:
+    values: [container, pod]
+    source: no-enum
+  google_container_registry.location:
+    values: [ASIA, EU, US]
+    source: no-document
+  google_dataflow_job.on_delete:
+    values: [drain, cancel]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.auxiliary_node_groups.node_group.node_group_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.master_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.preemptible_worker_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.worker_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_cluster.cluster_config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_metastore_federation.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_dataproc_metastore_service.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.master_config.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.master_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.secondary_worker_config.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.secondary_worker_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.worker_config.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.worker_config.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.boot_disk_type:
+    values: [pd-balanced, pd-ssd, pd-standard]
+    source: no-enum
+  google_dataproc_workflow_template.placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.local_ssd_interface:
+    values: [scsi, nvme]
+    source: no-enum
+  google_datastream_stream.desired_state:
+    values: [NOT_STARTED, RUNNING, PAUSED]
+    source: no-enum
+  google_dialogflow_sip_trunk.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_discovery_engine_acl_config.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_assistant.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_chat_engine.chat_engine_config.agent_creation_config.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_cmek_config.location:
+    values: [us, eu]
+    source: no-enum
+  google_discovery_engine_control.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_data_connector.bap_config.enabled_actions:
+    values: [create_issue, update_issue, change_issue_status, create_comment, update_comment, upload_attachment]
+    source: no-enum
+  google_discovery_engine_data_connector.entities.entity_name:
+    values: [Lead, Opportunity, Contact, Account, Case, Contract, Campaign, project, issue, attachment, comment, worklog, Content, Space]
+    source: no-enum
+  google_discovery_engine_data_connector.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_data_store.document_processing_config.default_parsing_config.layout_parsing_config.structured_content_types:
+    values: [shareholder-structure]
+    source: no-enum
+  google_discovery_engine_data_store.document_processing_config.parsing_config_overrides.layout_parsing_config.structured_content_types:
+    values: [shareholder-structure]
+    source: no-enum
+  google_discovery_engine_data_store.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_license_config.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_recommendation_engine.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_recommendation_engine.media_recommendation_engine_config.engine_features_config.recommended_for_you_config.context_event_type:
+    values: [view-home-page, generic]
+    source: no-enum
+  google_discovery_engine_recommendation_engine.media_recommendation_engine_config.optimization_objective:
+    values: [ctr, cvr]
+    source: no-enum
+  google_discovery_engine_recommendation_engine.media_recommendation_engine_config.optimization_objective_config.target_field:
+    values: [watch-percentage, watch-time]
+    source: no-enum
+  google_discovery_engine_recommendation_engine.media_recommendation_engine_config.type:
+    values: [recommended-for-you, others-you-may-like, more-like-this, most-popular-items]
+    source: no-enum
+  google_discovery_engine_schema.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_serving_config.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_sitemap.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_target_site.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_user_store.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_discovery_engine_widget_config.location:
+    values: [global, us, eu]
+    source: no-enum
+  google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.ip_protocol:
+    values: [tcp, udp]
+    source: no-enum
+  google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.load_balancer_type:
+    values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
+    source: no-enum
+  google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.ip_protocol:
+    values: [tcp, udp]
+    source: no-enum
+  google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.load_balancer_type:
+    values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
+    source: no-enum
+  google_dns_record_set.routing_policy.primary_backup.primary.health_checked_targets.internal_load_balancers.ip_protocol:
+    values: [tcp, udp]
+    source: no-enum
+  google_dns_record_set.routing_policy.primary_backup.primary.health_checked_targets.internal_load_balancers.load_balancer_type:
+    values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
+    source: no-enum
+  google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.ip_protocol:
+    values: [tcp, udp]
+    source: no-enum
+  google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.load_balancer_type:
+    values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
+    source: no-enum
+  google_dns_record_set.type:
+    values: [A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA]
+    source: no-enum
+  google_document_ai_warehouse_document_schema.property_definitions.property_type_options.property_definitions.retrieval_importance:
+    values: [HIGHEST, HIGHER, HIGH, MEDIUM, LOW, LOWEST]
+    source: no-document
+  google_document_ai_warehouse_document_schema.property_definitions.retrieval_importance:
+    values: [HIGHEST, HIGHER, HIGH, MEDIUM, LOW, LOWEST]
+    source: no-document
+  google_filestore_instance.desired_replica_state:
+    values: [PAUSED, READY]
+    source: no-enum
+  google_firebase_data_connect_service.deletion_policy:
+    values: [DEFAULT, FORCE]
+    source: no-enum
+  google_firebaserules_ruleset.source.language:
+    values: [LANGUAGE_UNSPECIFIED, FIREBASE_RULES, EVENT_FLOW_TRIGGERS]
+    source: no-enum
+  google_firestore_index.deletion_policy:
+    values: [DELETE, PREVENT]
+    source: no-enum
+  google_folder_access_approval_settings.enrolled_services.cloud_product:
+    values: [all, GA, 'Access Context Manager', 'Anthos Identity Service', 'AlloyDB for PostgreSQL', Apigee, 'Application Integration', 'App Hub', 'Artifact Registry', 'Anthos Service Mesh', 'Access Transparency', BigQuery, 'Certificate Authority Service', 'Cloud Bigtable', 'CCAI Assist and Knowledge', 'Cloud Dataflow', 'Cloud Dataproc', 'CEP Security Gateway', 'Compliance Evaluation Service', 'Cloud Firestore', 'Cloud Healthcare API', Chronicle, 'Cloud AI Companion Gateway - Titan', 'Google Cloud Armor', 'Cloud Asset Inventory', 'Cloud Asset Search', 'Cloud Deploy', 'Cloud DNS', 'Cloud Latency', 'Cloud Memorystore for Redis', 'CloudNet Control', 'Cloud Riptide', 'Cloud Tasks', 'Cloud Trace', 'Cloud Data Transfer', 'Cloud Composer', 'Integration Connectors', 'Contact Center AI Insights', 'Cloud Pub/Sub', 'Cloud Run', 'Resource Manager', 'Cloud Spanner', 'Database Center', 'Cloud Dataform', 'Cloud Data Fusion', Dataplex, 'Dialogflow Customer Experience Edition', 'Cloud DLP', 'Document AI', 'Edge Container', 'Edge Network', 'Cloud EKM', Eventarc, 'Firebase Data Connect', 'Firebase Rules', 'App Engine', 'Cloud Build', 'Compute Engine', 'Cloud Functions (2nd Gen)', 'Cloud Filestore', 'Cloud Interconnect', 'Cloud NetApp Volumes', 'Cloud Storage', 'Generative AI App Builder', 'Google Kubernetes Engine', 'Backup for GKE API', 'GKE Connect', 'GKE Hub', Hoverboard, 'Cloud HSM', 'Cloud Identity and Access Management', 'Cloud Identity-Aware Proxy', 'Infrastructure Manager', 'Identity Storage Service', 'Key Access Justifications', 'Cloud Key Management Service', 'Cloud Logging', 'Looker (Google Cloud core)', 'Looker Studio', 'Management Hub', 'Model Armor', 'Cloud Monitoring', 'Cloud NAT', 'Connectivity Hub', 'External passthrough Network Load Balancer', 'OIDC One', 'Organization Policy Service', 'Org Lifecycle', 'Persistent Disk', 'Parameter Manager', 'Private Services Access', 'Regional Internal Application Load Balancer', 'Storage Batch Operations', 'Cloud Security Command Center', 'Secure Source Manager', Seeker, 'Service Provisioning', 'Speaker ID', 'Secret Manager', 'Cloud SQL', 'Cloud Speech-to-Text', 'Traffic Director', 'Cloud Text-to-Speech', 'USPS Andromeda', 'Vertex AI', 'Virtual Private Cloud (VPC)', 'VPC Access', 'VPC Service Controls Troubleshooter', 'VPC virtnet', 'Cloud Workstations', 'Web Risk', ga-only, appengine.googleapis.com, artifactregistry.googleapis.com, bigquery.googleapis.com, bigtable.googleapis.com, container.googleapis.com, cloudkms.googleapis.com, cloudresourcemanager.googleapis.com, cloudsql.googleapis.com, compute.googleapis.com, dataflow.googleapis.com, dataproc.googleapis.com, dlp.googleapis.com, iam.googleapis.com, logging.googleapis.com, orgpolicy.googleapis.com, pubsub.googleapis.com, spanner.googleapis.com, secretmanager.googleapis.com, speakerid.googleapis.com, storage.googleapis.com]
+    source: no-enum
+  google_gemini_gemini_gcp_enablement_setting.web_grounding_type:
+    values: [GROUNDING_WITH_GOOGLE_SEARCH, WEB_GROUNDING_FOR_ENTERPRISE]
+    source: no-document
+  google_gemini_release_channel_setting.release_channel:
+    values: [STABLE, EXPERIMENTAL]
+    source: no-document
+  google_gke_hub_feature_membership.configmanagement.config_sync.git.secret_type:
+    values: [ssh, cookiefile, gcenode, token, gcpserviceaccount, none]
+    source: no-enum
+  google_gke_hub_feature_membership.configmanagement.config_sync.oci.secret_type:
+    values: [gcenode, gcpserviceaccount, none]
+    source: no-enum
+  google_hypercomputecluster_cluster.storage_resources.config.new_lustre.per_unit_storage_throughput:
+    values: ['125', '250', '500', '1000']
+    source: no-enum
+  google_iam_principal_access_boundary_policy.details.rules.effect:
+    values: [ALLOW]
+    source: no-document
+  google_identity_platform_default_supported_idp_config.idp_id:
+    values: [apple.com, facebook.com, gc.apple.com, github.com, google.com, linkedin.com, microsoft.com, playgames.google.com, twitter.com, yahoo.com]
+    source: no-enum
+  google_identity_platform_tenant.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_identity_platform_tenant_default_supported_idp_config.idp_id:
+    values: [apple.com, facebook.com, gc.apple.com, github.com, google.com, linkedin.com, microsoft.com, playgames.google.com, twitter.com, yahoo.com]
+    source: no-enum
+  google_license_manager_configuration.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_lustre_instance.per_unit_storage_throughput:
+    values: ['125', '250', '500', '1000']
+    source: no-enum
+  google_managed_kafka_acl.acl_entries.operation:
+    values: [ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, CLUSTER_ACTION, DESCRIBE_CONFIGS, ALTER_CONFIGS, IDEMPOTENT_WRITE]
+    source: no-enum
+  google_managed_kafka_acl.acl_entries.permission_type:
+    values: [ALLOW, DENY]
+    source: no-enum
+  google_memorystore_instance.authorization_mode:
+    values: [AUTH_DISABLED, IAM_AUTH, TOKEN_AUTH]
+    source: no-document
+  google_memorystore_instance.node_type:
+    values: [SHARED_CORE_NANO, CUSTOM_PICO, CUSTOM_MICRO, CUSTOM_MINI, HIGHMEM_MEDIUM, HIGHCPU_MEDIUM, HIGHMEM_XLARGE, STANDARD_SMALL, STANDARD_LARGE, HIGHMEM_2XLARGE]
+    source: no-document
+  google_memorystore_instance.persistence_config.aof_config.append_fsync:
+    values: [NEVER, EVERY_SEC, ALWAYS]
+    source: no-document
+  google_memorystore_instance.persistence_config.rdb_config.rdb_snapshot_period:
+    values: [ONE_HOUR, SIX_HOURS, TWELVE_HOURS, TWENTY_FOUR_HOURS]
+    source: no-document
+  google_memorystore_instance.transit_encryption_mode:
+    values: [TRANSIT_ENCRYPTION_DISABLED, SERVER_AUTHENTICATION]
+    source: no-document
+  google_migration_center_assets_export_job.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_discovery_client.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_group.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_import_data_file.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_import_job.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_preference_set.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_report.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_report_config.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_settings.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_migration_center_source.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_monitoring_uptime_check_config.period:
+    values: [60s, 300s, 600s, 900s]
+    source: no-enum
+  google_network_connectivity_policy_based_route.filter.ip_protocol:
+    values: [TCP, UDP, ALL]
+    source: no-enum
+  google_network_connectivity_transport.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_network_security_authz_policy.http_rules.to.operations.mcp.methods.name:
+    values: [tools, prompts, resources, prompts/list, tools/list, resources/list, resources/templates/list, prompts/get, tools/call, resources/subscribe, resources/unsubscribe, resources/read]
+    source: no-enum
+  google_network_security_mirroring_endpoint_group.type:
+    values: [DIRECT, BROKER]
+    disagrees: 'the provider sends BROKER with mirroring_deployment_groups; the public networksecurity v1 Discovery document declares neither (an override enumValues decision)'
+  google_network_security_ull_mirroring_collector.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_network_security_ull_mirroring_collector_rule.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_network_security_ull_mirroring_collector_rule.match.direction:
+    values: [INGRESS, EGRESS]
+    source: no-document
+  google_network_security_ull_mirroring_engine.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-document
+  google_network_services_edge_cache_origin.origin_redirect.redirect_conditions:
+    values: [MOVED_PERMANENTLY, FOUND, SEE_OTHER, TEMPORARY_REDIRECT, PERMANENT_REDIRECT]
+    source: no-document
+  google_network_services_multicast_domain.connection_config.connection_type:
+    values: [NCC, SAME_VPC]
+    source: no-document
+  google_network_services_multicast_group_range.distribution_scope:
+    values: [INTRA_ZONE, INTRA_REGION]
+    source: no-document
+  google_oracle_database_autonomous_database.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_cloud_exadata_infrastructure.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_cloud_vm_cluster.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_db_system.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_exadb_vm_cluster.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_exascale_db_storage_vault.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_goldengate_connection.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_goldengate_connection_assignment.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_goldengate_deployment.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_odb_network.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_oracle_database_odb_subnet.deletion_policy:
+    values: [DELETE, PREVENT, ABANDON]
+    source: no-enum
+  google_org_policy_policy.dry_run_spec.rules.allow_all:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_org_policy_policy.spec.rules.allow_all:
+    values: ['TRUE', 'FALSE']
+    source: no-enum
+  google_organization_access_approval_settings.enrolled_services.cloud_product:
+    values: [all, GA, 'Access Context Manager', 'Anthos Identity Service', 'AlloyDB for PostgreSQL', Apigee, 'Application Integration', 'App Hub', 'Artifact Registry', 'Anthos Service Mesh', 'Access Transparency', BigQuery, 'Certificate Authority Service', 'Cloud Bigtable', 'CCAI Assist and Knowledge', 'Cloud Dataflow', 'Cloud Dataproc', 'CEP Security Gateway', 'Compliance Evaluation Service', 'Cloud Firestore', 'Cloud Healthcare API', Chronicle, 'Cloud AI Companion Gateway - Titan', 'Google Cloud Armor', 'Cloud Asset Inventory', 'Cloud Asset Search', 'Cloud Deploy', 'Cloud DNS', 'Cloud Latency', 'Cloud Memorystore for Redis', 'CloudNet Control', 'Cloud Riptide', 'Cloud Tasks', 'Cloud Trace', 'Cloud Data Transfer', 'Cloud Composer', 'Integration Connectors', 'Contact Center AI Insights', 'Cloud Pub/Sub', 'Cloud Run', 'Resource Manager', 'Cloud Spanner', 'Database Center', 'Cloud Dataform', 'Cloud Data Fusion', Dataplex, 'Dialogflow Customer Experience Edition', 'Cloud DLP', 'Document AI', 'Edge Container', 'Edge Network', 'Cloud EKM', Eventarc, 'Firebase Data Connect', 'Firebase Rules', 'App Engine', 'Cloud Build', 'Compute Engine', 'Cloud Functions (2nd Gen)', 'Cloud Filestore', 'Cloud Interconnect', 'Cloud NetApp Volumes', 'Cloud Storage', 'Generative AI App Builder', 'Google Kubernetes Engine', 'Backup for GKE API', 'GKE Connect', 'GKE Hub', Hoverboard, 'Cloud HSM', 'Cloud Identity and Access Management', 'Cloud Identity-Aware Proxy', 'Infrastructure Manager', 'Identity Storage Service', 'Key Access Justifications', 'Cloud Key Management Service', 'Cloud Logging', 'Looker (Google Cloud core)', 'Looker Studio', 'Management Hub', 'Model Armor', 'Cloud Monitoring', 'Cloud NAT', 'Connectivity Hub', 'External passthrough Network Load Balancer', 'OIDC One', 'Organization Policy Service', 'Org Lifecycle', 'Persistent Disk', 'Parameter Manager', 'Private Services Access', 'Regional Internal Application Load Balancer', 'Storage Batch Operations', 'Cloud Security Command Center', 'Secure Source Manager', Seeker, 'Service Provisioning', 'Speaker ID', 'Secret Manager', 'Cloud SQL', 'Cloud Speech-to-Text', 'Traffic Director', 'Cloud Text-to-Speech', 'USPS Andromeda', 'Vertex AI', 'Virtual Private Cloud (VPC)', 'VPC Access', 'VPC Service Controls Troubleshooter', 'VPC virtnet', 'Cloud Workstations', 'Web Risk', ga-only, appengine.googleapis.com, artifactregistry.googleapis.com, bigquery.googleapis.com, bigtable.googleapis.com, container.googleapis.com, cloudkms.googleapis.com, cloudresourcemanager.googleapis.com, cloudsql.googleapis.com, compute.googleapis.com, dataflow.googleapis.com, dataproc.googleapis.com, dlp.googleapis.com, iam.googleapis.com, logging.googleapis.com, orgpolicy.googleapis.com, pubsub.googleapis.com, spanner.googleapis.com, secretmanager.googleapis.com, speakerid.googleapis.com, storage.googleapis.com]
+    source: no-enum
+  google_os_config_v2_policy_orchestrator.action:
+    values: [UPSERT, DELETE]
+    source: no-enum
+  google_os_config_v2_policy_orchestrator_for_folder.action:
+    values: [UPSERT, DELETE]
+    source: no-enum
+  google_os_config_v2_policy_orchestrator_for_organization.action:
+    values: [UPSERT, DELETE]
+    source: no-enum
+  google_privateca_certificate_authority.desired_state:
+    values: [ENABLED, STAGED, DISABLED]
+    source: no-enum
+  google_project_access_approval_settings.enrolled_services.cloud_product:
+    values: [all, GA, 'Access Context Manager', 'Anthos Identity Service', 'AlloyDB for PostgreSQL', Apigee, 'Application Integration', 'App Hub', 'Artifact Registry', 'Anthos Service Mesh', 'Access Transparency', BigQuery, 'Certificate Authority Service', 'Cloud Bigtable', 'CCAI Assist and Knowledge', 'Cloud Dataflow', 'Cloud Dataproc', 'CEP Security Gateway', 'Compliance Evaluation Service', 'Cloud Firestore', 'Cloud Healthcare API', Chronicle, 'Cloud AI Companion Gateway - Titan', 'Google Cloud Armor', 'Cloud Asset Inventory', 'Cloud Asset Search', 'Cloud Deploy', 'Cloud DNS', 'Cloud Latency', 'Cloud Memorystore for Redis', 'CloudNet Control', 'Cloud Riptide', 'Cloud Tasks', 'Cloud Trace', 'Cloud Data Transfer', 'Cloud Composer', 'Integration Connectors', 'Contact Center AI Insights', 'Cloud Pub/Sub', 'Cloud Run', 'Resource Manager', 'Cloud Spanner', 'Database Center', 'Cloud Dataform', 'Cloud Data Fusion', Dataplex, 'Dialogflow Customer Experience Edition', 'Cloud DLP', 'Document AI', 'Edge Container', 'Edge Network', 'Cloud EKM', Eventarc, 'Firebase Data Connect', 'Firebase Rules', 'App Engine', 'Cloud Build', 'Compute Engine', 'Cloud Functions (2nd Gen)', 'Cloud Filestore', 'Cloud Interconnect', 'Cloud NetApp Volumes', 'Cloud Storage', 'Generative AI App Builder', 'Google Kubernetes Engine', 'Backup for GKE API', 'GKE Connect', 'GKE Hub', Hoverboard, 'Cloud HSM', 'Cloud Identity and Access Management', 'Cloud Identity-Aware Proxy', 'Infrastructure Manager', 'Identity Storage Service', 'Key Access Justifications', 'Cloud Key Management Service', 'Cloud Logging', 'Looker (Google Cloud core)', 'Looker Studio', 'Management Hub', 'Model Armor', 'Cloud Monitoring', 'Cloud NAT', 'Connectivity Hub', 'External passthrough Network Load Balancer', 'OIDC One', 'Organization Policy Service', 'Org Lifecycle', 'Persistent Disk', 'Parameter Manager', 'Private Services Access', 'Regional Internal Application Load Balancer', 'Storage Batch Operations', 'Cloud Security Command Center', 'Secure Source Manager', Seeker, 'Service Provisioning', 'Speaker ID', 'Secret Manager', 'Cloud SQL', 'Cloud Speech-to-Text', 'Traffic Director', 'Cloud Text-to-Speech', 'USPS Andromeda', 'Vertex AI', 'Virtual Private Cloud (VPC)', 'VPC Access', 'VPC Service Controls Troubleshooter', 'VPC virtnet', 'Cloud Workstations', 'Web Risk', ga-only, appengine.googleapis.com, artifactregistry.googleapis.com, bigquery.googleapis.com, bigtable.googleapis.com, container.googleapis.com, cloudkms.googleapis.com, cloudresourcemanager.googleapis.com, cloudsql.googleapis.com, compute.googleapis.com, dataflow.googleapis.com, dataproc.googleapis.com, dlp.googleapis.com, iam.googleapis.com, logging.googleapis.com, orgpolicy.googleapis.com, pubsub.googleapis.com, spanner.googleapis.com, secretmanager.googleapis.com, speakerid.googleapis.com, storage.googleapis.com]
+    source: no-enum
+  google_project_default_service_accounts.action:
+    values: [DEPRIVILEGE, DELETE, DISABLE]
+    source: no-document
+  google_project_default_service_accounts.restore_policy:
+    values: [NONE, REVERT, REVERT_AND_IGNORE_FAILURE]
+    source: no-document
+  google_secret_manager_secret_version.deletion_policy:
+    values: [DELETE, DISABLE, ABANDON]
+    source: no-enum
+  google_secure_source_manager_repository.initial_config.readme:
+    values: [default]
+    source: no-enum
+  google_service_account_key.public_key_type:
+    values: [TYPE_NONE, TYPE_X509_PEM_FILE, TYPE_RAW_PUBLIC_KEY]
+    source: no-enum
+  google_sql_database_instance.settings.disk_type:
+    values: [PD_SSD, PD_HDD, HYPERDISK_BALANCED]
+    source: no-enum
+  google_sql_user.deletion_policy:
+    values: [ABANDON]
+    source: no-enum
+  google_storage_bucket.autoclass.terminal_storage_class:
+    values: [NEARLINE, ARCHIVE]
+    source: no-enum
+  google_storage_bucket.ip_filter.mode:
+    values: [Enabled, Disabled]
+    source: no-enum
+  google_storage_bucket.lifecycle_rule.action.storage_class:
+    values: [STANDARD, NEARLINE, COLDLINE, ARCHIVE, MULTI_REGIONAL, REGIONAL, DURABLE_REDUCED_AVAILABILITY]
+    source: no-enum
+  google_storage_bucket.lifecycle_rule.action.type:
+    values: [Delete, SetStorageClass]
+    source: no-enum
+  google_storage_bucket.lifecycle_rule.condition.matches_storage_class:
+    values: [MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, STANDARD, DURABLE_REDUCED_AVAILABILITY]
+    source: no-enum
+  google_storage_bucket.lifecycle_rule.condition.with_state:
+    values: [LIVE, ARCHIVED, ANY]
+    source: no-enum
+  google_storage_bucket_object.retention.mode:
+    values: [Unlocked, Locked]
+    source: no-enum
+  google_storage_bucket_object.storage_class:
+    values: [STANDARD, NEARLINE, COLDLINE, ARCHIVE, MULTI_REGIONAL, REGIONAL, DURABLE_REDUCED_AVAILABILITY]
+    source: no-enum
+  google_storage_control_folder_intelligence_config.edition_config:
+    values: [INHERIT, TRIAL, DISABLED, STANDARD]
+    source: no-document
+  google_storage_control_organization_intelligence_config.edition_config:
+    values: [INHERIT, DISABLED, TRIAL, STANDARD]
+    source: no-document
+  google_storage_control_project_intelligence_config.edition_config:
+    values: [INHERIT, TRIAL, DISABLED, STANDARD]
+    source: no-document
+  google_storage_notification.event_types:
+    values: [OBJECT_FINALIZE, OBJECT_METADATA_UPDATE, OBJECT_DELETE, OBJECT_ARCHIVE]
+    source: no-enum
+  google_storage_notification.payload_format:
+    values: [JSON_API_V1, NONE]
+    source: no-enum
+  google_vertex_ai_endpoint_with_model_garden_deployment.deploy_config.dedicated_resources.machine_spec.accelerator_type:
+    values: [ACCELERATOR_TYPE_UNSPECIFIED, NVIDIA_TESLA_K80, NVIDIA_TESLA_P100, NVIDIA_TESLA_V100, NVIDIA_TESLA_P4, NVIDIA_TESLA_T4, NVIDIA_TESLA_A100, NVIDIA_A100_80GB, NVIDIA_L4, NVIDIA_H100_80GB, NVIDIA_H100_MEGA_80GB, NVIDIA_H200_141GB, NVIDIA_B200, TPU_V2, TPU_V3, TPU_V4_POD, TPU_V5_LITEPOD]
+    source: no-enum
+  google_vertex_ai_endpoint_with_model_garden_deployment.deploy_config.dedicated_resources.machine_spec.reservation_affinity.reservation_affinity_type:
+    values: [TYPE_UNSPECIFIED, NO_RESERVATION, ANY_RESERVATION, SPECIFIC_RESERVATION]
+    source: no-enum
+  google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.health_probe.http_get.scheme:
+    values: [HTTP, HTTPS]
+    source: no-enum
+  google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.liveness_probe.http_get.scheme:
+    values: [HTTP, HTTPS]
+    source: no-enum
+  google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.startup_probe.http_get.scheme:
+    values: [HTTP, HTTPS]
+    source: no-enum
+  google_vertex_ai_index.metadata.config.distance_measure_type:
+    values: [SQUARED_L2_DISTANCE, L1_DISTANCE, COSINE_DISTANCE, DOT_PRODUCT_DISTANCE]
+    source: no-enum
+  google_vertex_ai_index.metadata.config.feature_norm_type:
+    values: [UNIT_L2_NORM, NONE]
+    source: no-enum
+  google_vertex_ai_index.metadata.config.shard_size:
+    values: [SHARD_SIZE_SMALL, SHARD_SIZE_MEDIUM, SHARD_SIZE_LARGE]
+    source: no-enum
+  google_vertex_ai_persistent_resource.resource_pools.disk_spec.boot_disk_type:
+    values: [pd-ssd, pd-standard, hyperdisk-balanced]
+    source: no-enum
+  google_vertex_ai_reasoning_engine.context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.role:
+    values: [user, model]
+    source: no-enum
+google-beta:
+  google_bigquery_analytics_hub_data_exchange_subscription.refresh_policy:
+    values: [ON_READ, ON_STALE, NEVER]
+    source: no-enum
+  google_compute_instance_from_machine_image.desired_status:
+    values: [RUNNING, SUSPENDED, TERMINATED]
+    source: no-enum
+  google_firebase_database_instance.desired_state:
+    values: [ACTIVE, DISABLED]
+    source: no-enum

@@ -143,7 +143,6 @@ dartTypeOverrides:
   backend.balancing_mode: BackendServiceBalancingMode
   backend.preference: BackendServicePreference
   cdn_policy.cache_mode: BackendServiceCacheMode
-  locality_lb_policies.policy.name: LocalityLbPolicy
   log_config.optional_mode: BackendServiceLogOptionalMode
 
 prelude: |

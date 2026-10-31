@@ -16,7 +16,10 @@ export 'src/data/google_organization_iam_policy.dart'
     show DataGoogleOrganizationIamPolicy;
 export 'src/data/google_organizations.dart' show DataGoogleOrganizations;
 export 'src/organization/google_org_policy_custom_constraint.dart'
-    show GoogleOrgPolicyCustomConstraint, OrgPolicyCustomConstraintActionType;
+    show
+        GoogleOrgPolicyCustomConstraint,
+        OrgPolicyCustomConstraintActionType,
+        OrgPolicyCustomConstraintMethodTypes;
 export 'src/organization/google_org_policy_policy.dart'
     show
         GoogleOrgPolicyPolicy,

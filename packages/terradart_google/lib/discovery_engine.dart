@@ -92,9 +92,11 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorJsonParams,
         DiscoveryEngineDataConnectorLocation,
         DiscoveryEngineDataConnectorMetadata,
+        DiscoveryEngineDataConnectorModes,
         DiscoveryEngineDataConnectorParams,
         DiscoveryEngineDataConnectorParamsChoice,
         DiscoveryEngineDataConnectorSupportedConnectorModes,
+        DiscoveryEngineDataConnectorSyncMode,
         GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show

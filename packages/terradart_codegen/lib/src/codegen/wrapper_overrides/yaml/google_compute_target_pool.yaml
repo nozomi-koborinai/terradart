@@ -1,9 +1,3 @@
-enumValues:
-  session_affinity:
-    - "NONE"
-    - "CLIENT_IP"
-    - "CLIENT_IP_PROTO"
-
 outputDir: compute
 
 deriveClassDoc: true

@@ -1,0 +1,512 @@
+{
+  "name": "sqladmin",
+  "version": "v1",
+  "revision": "20261006",
+  "sourceUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BackupConfiguration": {
+      "properties": {
+        "backupTier": {
+          "enum": [
+            "BACKUP_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ADVANCED",
+            "ENHANCED"
+          ]
+        },
+        "transactionalLogStorageState": {
+          "enum": [
+            "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
+            "DISK",
+            "SWITCHING_TO_CLOUD_STORAGE",
+            "SWITCHED_TO_CLOUD_STORAGE",
+            "CLOUD_STORAGE"
+          ]
+        },
+        "backupRetentionSettings": {
+          "$ref": "BackupRetentionSettings"
+        }
+      }
+    },
+    "BackupRetentionSettings": {
+      "properties": {
+        "retentionUnit": {
+          "enum": [
+            "RETENTION_UNIT_UNSPECIFIED",
+            "COUNT"
+          ]
+        }
+      }
+    },
+    "BlueGreenDeploymentInfo": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PRE_SWITCHOVER",
+            "POST_SWITCHOVER"
+          ]
+        }
+      }
+    },
+    "DatabaseInstance": {
+      "properties": {
+        "suspensionReason": {
+          "items": {
+            "enum": [
+              "SQL_SUSPENSION_REASON_UNSPECIFIED",
+              "BILLING_ISSUE",
+              "LEGAL_ISSUE",
+              "OPERATIONAL_ISSUE",
+              "KMS_KEY_ISSUE",
+              "PROJECT_ABUSE"
+            ]
+          }
+        },
+        "backendType": {
+          "enum": [
+            "SQL_BACKEND_TYPE_UNSPECIFIED",
+            "FIRST_GEN",
+            "SECOND_GEN",
+            "EXTERNAL"
+          ]
+        },
+        "state": {
+          "enum": [
+            "SQL_INSTANCE_STATE_UNSPECIFIED",
+            "RUNNABLE",
+            "SUSPENDED",
+            "PENDING_DELETE",
+            "PENDING_CREATE",
+            "MAINTENANCE",
+            "FAILED",
+            "ONLINE_MAINTENANCE",
+            "REPAIRING"
+          ]
+        },
+        "databaseVersion": {
+          "enum": [
+            "SQL_DATABASE_VERSION_UNSPECIFIED",
+            "MYSQL_5_1",
+            "MYSQL_5_5",
+            "MYSQL_5_6",
+            "MYSQL_5_7",
+            "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
+            "MYSQL_8_0_29",
+            "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
+            "MYSQL_8_0_32",
+            "MYSQL_8_0_33",
+            "MYSQL_8_0_34",
+            "MYSQL_8_0_35",
+            "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
+            "MYSQL_8_4",
+            "MYSQL_9_7",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "POSTGRES_18",
+            "POSTGRES_19",
+            "POSTGRES_20",
+            "SQLSERVER_2019_STANDARD",
+            "SQLSERVER_2019_ENTERPRISE",
+            "SQLSERVER_2019_EXPRESS",
+            "SQLSERVER_2019_WEB",
+            "SQLSERVER_2022_STANDARD",
+            "SQLSERVER_2022_ENTERPRISE",
+            "SQLSERVER_2022_EXPRESS",
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
+          ]
+        },
+        "outOfDiskReport": {
+          "$ref": "SqlOutOfDiskReport"
+        },
+        "sqlNetworkArchitecture": {
+          "enum": [
+            "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
+            "NEW_NETWORK_ARCHITECTURE",
+            "OLD_NETWORK_ARCHITECTURE"
+          ]
+        },
+        "instanceType": {
+          "enum": [
+            "SQL_INSTANCE_TYPE_UNSPECIFIED",
+            "CLOUD_SQL_INSTANCE",
+            "ON_PREMISES_INSTANCE",
+            "READ_REPLICA_INSTANCE",
+            "READ_POOL_INSTANCE",
+            "GREEN_INSTANCE"
+          ]
+        },
+        "deploymentInfo": {
+          "$ref": "BlueGreenDeploymentInfo"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "PoolNodeConfig"
+          }
+        },
+        "databaseCenterIntegration": {
+          "enum": [
+            "DATABASE_CENTER_INTEGRATION_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "dnsNames": {
+          "items": {
+            "$ref": "DnsNameMapping"
+          }
+        },
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
+          }
+        },
+        "settings": {
+          "$ref": "Settings"
+        },
+        "onPremisesConfiguration": {
+          "$ref": "OnPremisesConfiguration"
+        }
+      }
+    },
+    "DnsNameMapping": {
+      "properties": {
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "PUBLIC",
+            "PRIVATE_SERVICES_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
+          ]
+        },
+        "dnsScope": {
+          "enum": [
+            "DNS_SCOPE_UNSPECIFIED",
+            "INSTANCE",
+            "CLUSTER"
+          ]
+        },
+        "recordManager": {
+          "enum": [
+            "RECORD_MANAGER_UNSPECIFIED",
+            "CUSTOMER",
+            "CLOUD_SQL_AUTOMATION"
+          ]
+        }
+      }
+    },
+    "IpConfiguration": {
+      "properties": {
+        "pscConfig": {
+          "$ref": "PscConfig"
+        },
+        "sslMode": {
+          "enum": [
+            "SSL_MODE_UNSPECIFIED",
+            "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+            "ENCRYPTED_ONLY",
+            "TRUSTED_CLIENT_CERTIFICATE_REQUIRED"
+          ]
+        },
+        "serverCertificateRotationMode": {
+          "enum": [
+            "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED",
+            "NO_AUTOMATIC_ROTATION",
+            "AUTOMATIC_ROTATION_DURING_MAINTENANCE"
+          ]
+        },
+        "serverCaMode": {
+          "enum": [
+            "CA_MODE_UNSPECIFIED",
+            "GOOGLE_MANAGED_INTERNAL_CA",
+            "GOOGLE_MANAGED_CAS_CA",
+            "CUSTOMER_MANAGED_CAS_CA"
+          ]
+        }
+      }
+    },
+    "IpMapping": {
+      "properties": {
+        "type": {
+          "enum": [
+            "SQL_IP_ADDRESS_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "OUTGOING",
+            "PRIVATE",
+            "MIGRATED_1ST_GEN"
+          ]
+        }
+      }
+    },
+    "MaintenanceWindow": {
+      "properties": {
+        "updateTrack": {
+          "enum": [
+            "SQL_UPDATE_TRACK_UNSPECIFIED",
+            "canary",
+            "stable",
+            "week5"
+          ]
+        }
+      }
+    },
+    "OnPremisesConfiguration": {
+      "properties": {
+        "sslOption": {
+          "enum": [
+            "SSL_OPTION_UNSPECIFIED",
+            "DISABLE",
+            "REQUIRE",
+            "VERIFY_CA"
+          ]
+        }
+      }
+    },
+    "PasswordValidationPolicy": {
+      "properties": {
+        "complexity": {
+          "enum": [
+            "COMPLEXITY_UNSPECIFIED",
+            "COMPLEXITY_DEFAULT"
+          ]
+        }
+      }
+    },
+    "PerformanceCaptureConfig": {
+      "properties": {
+        "transactionKillType": {
+          "enum": [
+            "TRANSACTION_KILL_TYPE_UNSPECIFIED",
+            "READ_ONLY_TRANSACTIONS",
+            "ALL_TRANSACTIONS"
+          ]
+        }
+      }
+    },
+    "PoolNodeConfig": {
+      "properties": {
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
+          }
+        },
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          }
+        },
+        "state": {
+          "enum": [
+            "SQL_INSTANCE_STATE_UNSPECIFIED",
+            "RUNNABLE",
+            "SUSPENDED",
+            "PENDING_DELETE",
+            "PENDING_CREATE",
+            "MAINTENANCE",
+            "FAILED",
+            "ONLINE_MAINTENANCE",
+            "REPAIRING"
+          ]
+        },
+        "dnsNames": {
+          "items": {
+            "$ref": "DnsNameMapping"
+          }
+        }
+      }
+    },
+    "PscAutoConnectionConfig": {
+      "properties": {
+        "writeEndpointAutoDnsStatus": {
+          "enum": [
+            "AUTO_DNS_STATUS_UNSPECIFIED",
+            "AUTO_DNS_OK",
+            "AUTO_DNS_FAILED",
+            "AUTO_DNS_UNKNOWN"
+          ]
+        },
+        "instanceAutoDnsStatus": {
+          "enum": [
+            "AUTO_DNS_STATUS_UNSPECIFIED",
+            "AUTO_DNS_OK",
+            "AUTO_DNS_FAILED",
+            "AUTO_DNS_UNKNOWN"
+          ]
+        }
+      }
+    },
+    "PscConfig": {
+      "properties": {
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "properties": {
+        "activeDirectoryConfig": {
+          "$ref": "SqlActiveDirectoryConfig"
+        },
+        "ipConfiguration": {
+          "$ref": "IpConfiguration"
+        },
+        "activationPolicy": {
+          "enum": [
+            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER",
+            "ON_DEMAND"
+          ]
+        },
+        "pricingPlan": {
+          "enum": [
+            "SQL_PRICING_PLAN_UNSPECIFIED",
+            "PACKAGE",
+            "PER_USE"
+          ]
+        },
+        "performanceCaptureConfig": {
+          "$ref": "PerformanceCaptureConfig"
+        },
+        "passwordValidationPolicy": {
+          "$ref": "PasswordValidationPolicy"
+        },
+        "replicationType": {
+          "enum": [
+            "SQL_REPLICATION_TYPE_UNSPECIFIED",
+            "SYNCHRONOUS",
+            "ASYNCHRONOUS"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "availabilityType": {
+          "enum": [
+            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "dataApiAccess": {
+          "enum": [
+            "DATA_API_ACCESS_UNSPECIFIED",
+            "DISALLOW_DATA_API",
+            "ALLOW_DATA_API"
+          ]
+        },
+        "connectorEnforcement": {
+          "enum": [
+            "CONNECTOR_ENFORCEMENT_UNSPECIFIED",
+            "NOT_REQUIRED",
+            "REQUIRED"
+          ]
+        },
+        "dataDiskType": {
+          "enum": [
+            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+            "PD_SSD",
+            "PD_HDD",
+            "OBSOLETE_LOCAL_SSD",
+            "HYPERDISK_BALANCED"
+          ]
+        },
+        "backupConfiguration": {
+          "$ref": "BackupConfiguration"
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS",
+            "DEVELOPER"
+          ]
+        }
+      }
+    },
+    "SqlActiveDirectoryConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "ACTIVE_DIRECTORY_MODE_UNSPECIFIED",
+            "MANAGED_ACTIVE_DIRECTORY",
+            "SELF_MANAGED_ACTIVE_DIRECTORY",
+            "CUSTOMER_MANAGED_ACTIVE_DIRECTORY"
+          ]
+        }
+      }
+    },
+    "SqlOutOfDiskReport": {
+      "properties": {
+        "sqlOutOfDiskState": {
+          "enum": [
+            "SQL_OUT_OF_DISK_STATE_UNSPECIFIED",
+            "NORMAL",
+            "SOFT_SHUTDOWN"
+          ]
+        }
+      }
+    },
+    "User": {
+      "properties": {
+        "iamStatus": {
+          "enum": [
+            "IAM_STATUS_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "BUILT_IN",
+            "CLOUD_IAM_USER",
+            "CLOUD_IAM_SERVICE_ACCOUNT",
+            "CLOUD_IAM_GROUP",
+            "CLOUD_IAM_GROUP_USER",
+            "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+            "CLOUD_IAM_WORKFORCE_IDENTITY",
+            "ENTRAID_USER"
+          ]
+        },
+        "dualPasswordType": {
+          "enum": [
+            "DUAL_PASSWORD_TYPE_UNSPECIFIED",
+            "NO_MODIFY_DUAL_PASSWORD",
+            "NO_DUAL_PASSWORD",
+            "DUAL_PASSWORD"
+          ]
+        }
+      }
+    }
+  }
+}

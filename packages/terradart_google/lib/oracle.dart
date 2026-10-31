@@ -53,8 +53,10 @@ export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
     show
         GoogleOracleDatabaseCloudExadataInfrastructure,
         OracleDatabaseCloudExadataInfrastructureCustomerContacts,
+        OracleDatabaseCloudExadataInfrastructureDaysOfWeek,
         OracleDatabaseCloudExadataInfrastructureDeletionPolicy,
         OracleDatabaseCloudExadataInfrastructureMaintenanceWindow,
+        OracleDatabaseCloudExadataInfrastructureMonths,
         OracleDatabaseCloudExadataInfrastructurePatchingMode,
         OracleDatabaseCloudExadataInfrastructurePreference,
         OracleDatabaseCloudExadataInfrastructureProperties;

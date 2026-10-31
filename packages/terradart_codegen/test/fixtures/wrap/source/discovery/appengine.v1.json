@@ -1,0 +1,310 @@
+{
+  "name": "appengine",
+  "version": "v1",
+  "revision": "20261023",
+  "sourceUrl": "https://appengine.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ApiConfigHandler": {
+      "properties": {
+        "authFailAction": {
+          "enum": [
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
+          ]
+        },
+        "securityLevel": {
+          "enum": [
+            "SECURE_UNSPECIFIED",
+            "SECURE_DEFAULT",
+            "SECURE_NEVER",
+            "SECURE_OPTIONAL",
+            "SECURE_ALWAYS"
+          ]
+        },
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        }
+      }
+    },
+    "Application": {
+      "properties": {
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "CLOUD_DATASTORE",
+            "CLOUD_FIRESTORE",
+            "CLOUD_DATASTORE_COMPATIBILITY"
+          ]
+        },
+        "sslPolicy": {
+          "enum": [
+            "SSL_POLICY_UNSPECIFIED",
+            "DEFAULT",
+            "MODERN"
+          ]
+        },
+        "servingStatus": {
+          "enum": [
+            "UNSPECIFIED",
+            "SERVING",
+            "USER_DISABLED",
+            "SYSTEM_DISABLED"
+          ]
+        }
+      }
+    },
+    "DomainMapping": {
+      "properties": {
+        "sslSettings": {
+          "$ref": "SslSettings"
+        },
+        "resourceRecords": {
+          "items": {
+            "$ref": "ResourceRecord"
+          }
+        }
+      }
+    },
+    "EndpointsApiService": {
+      "properties": {
+        "rolloutStrategy": {
+          "enum": [
+            "UNSPECIFIED_ROLLOUT_STRATEGY",
+            "FIXED",
+            "MANAGED"
+          ]
+        }
+      }
+    },
+    "ErrorHandler": {
+      "properties": {
+        "errorCode": {
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "ERROR_CODE_DEFAULT",
+            "ERROR_CODE_OVER_QUOTA",
+            "ERROR_CODE_DOS_API_DENIAL",
+            "ERROR_CODE_TIMEOUT"
+          ]
+        }
+      }
+    },
+    "FirewallRule": {
+      "properties": {
+        "action": {
+          "enum": [
+            "UNSPECIFIED_ACTION",
+            "ALLOW",
+            "DENY"
+          ]
+        }
+      }
+    },
+    "Network": {
+      "properties": {
+        "instanceIpMode": {
+          "enum": [
+            "INSTANCE_IP_MODE_UNSPECIFIED",
+            "EXTERNAL",
+            "INTERNAL"
+          ]
+        }
+      }
+    },
+    "NetworkSettings": {
+      "properties": {
+        "ingressTrafficAllowed": {
+          "enum": [
+            "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED",
+            "INGRESS_TRAFFIC_ALLOWED_ALL",
+            "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY",
+            "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB"
+          ]
+        }
+      }
+    },
+    "ResourceRecord": {
+      "properties": {
+        "type": {
+          "enum": [
+            "RECORD_TYPE_UNSPECIFIED",
+            "A",
+            "AAAA",
+            "CNAME"
+          ]
+        }
+      }
+    },
+    "Service": {
+      "properties": {
+        "networkSettings": {
+          "$ref": "NetworkSettings"
+        },
+        "split": {
+          "$ref": "TrafficSplit"
+        }
+      }
+    },
+    "SslSettings": {
+      "properties": {
+        "sslManagementType": {
+          "enum": [
+            "SSL_MANAGEMENT_TYPE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ]
+        }
+      }
+    },
+    "TrafficSplit": {
+      "properties": {
+        "shardBy": {
+          "enum": [
+            "UNSPECIFIED",
+            "COOKIE",
+            "IP",
+            "RANDOM"
+          ]
+        }
+      }
+    },
+    "UrlMap": {
+      "properties": {
+        "securityLevel": {
+          "enum": [
+            "SECURE_UNSPECIFIED",
+            "SECURE_DEFAULT",
+            "SECURE_NEVER",
+            "SECURE_OPTIONAL",
+            "SECURE_ALWAYS"
+          ]
+        },
+        "authFailAction": {
+          "enum": [
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
+          ]
+        },
+        "redirectHttpResponseCode": {
+          "enum": [
+            "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
+            "REDIRECT_HTTP_RESPONSE_CODE_301",
+            "REDIRECT_HTTP_RESPONSE_CODE_302",
+            "REDIRECT_HTTP_RESPONSE_CODE_303",
+            "REDIRECT_HTTP_RESPONSE_CODE_307"
+          ]
+        },
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        }
+      }
+    },
+    "Version": {
+      "properties": {
+        "vpcAccess": {
+          "$ref": "VpcAccess"
+        },
+        "handlers": {
+          "items": {
+            "$ref": "UrlMap"
+          }
+        },
+        "apiConfig": {
+          "$ref": "ApiConfigHandler"
+        },
+        "servingStatus": {
+          "enum": [
+            "SERVING_STATUS_UNSPECIFIED",
+            "SERVING",
+            "STOPPED"
+          ]
+        },
+        "errorHandlers": {
+          "items": {
+            "$ref": "ErrorHandler"
+          }
+        },
+        "inboundServices": {
+          "items": {
+            "enum": [
+              "INBOUND_SERVICE_UNSPECIFIED",
+              "INBOUND_SERVICE_MAIL",
+              "INBOUND_SERVICE_MAIL_BOUNCE",
+              "INBOUND_SERVICE_XMPP_ERROR",
+              "INBOUND_SERVICE_XMPP_MESSAGE",
+              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+              "INBOUND_SERVICE_XMPP_PRESENCE",
+              "INBOUND_SERVICE_CHANNEL_PRESENCE",
+              "INBOUND_SERVICE_WARMUP"
+            ]
+          }
+        },
+        "network": {
+          "$ref": "Network"
+        },
+        "appEngineBundledServices": {
+          "items": {
+            "enum": [
+              "BUNDLED_SERVICE_TYPE_UNSPECIFIED",
+              "BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE",
+              "BUNDLED_SERVICE_TYPE_BLOBSTORE",
+              "BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE",
+              "BUNDLED_SERVICE_TYPE_DATASTORE_V3",
+              "BUNDLED_SERVICE_TYPE_DEFERRED",
+              "BUNDLED_SERVICE_TYPE_IMAGES",
+              "BUNDLED_SERVICE_TYPE_MAIL",
+              "BUNDLED_SERVICE_TYPE_MEMCACHE",
+              "BUNDLED_SERVICE_TYPE_MODULES",
+              "BUNDLED_SERVICE_TYPE_NAMESPACES",
+              "BUNDLED_SERVICE_TYPE_NDB",
+              "BUNDLED_SERVICE_TYPE_SEARCH",
+              "BUNDLED_SERVICE_TYPE_TASKQUEUES",
+              "BUNDLED_SERVICE_TYPE_URLFETCH",
+              "BUNDLED_SERVICE_TYPE_USERS"
+            ]
+          }
+        },
+        "vpcAccessConnector": {
+          "$ref": "VpcAccessConnector"
+        },
+        "endpointsApiService": {
+          "$ref": "EndpointsApiService"
+        }
+      }
+    },
+    "VpcAccess": {
+      "properties": {
+        "vpcEgress": {
+          "enum": [
+            "VPC_EGRESS_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_IP_RANGES"
+          ]
+        }
+      }
+    },
+    "VpcAccessConnector": {
+      "properties": {
+        "egressSetting": {
+          "enum": [
+            "EGRESS_SETTING_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_IP_RANGES"
+          ]
+        }
+      }
+    }
+  }
+}

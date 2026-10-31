@@ -106,6 +106,7 @@ export 'src/privateca/google_privateca_certificate_template.dart'
         PrivatecaCertificateTemplateExtendedKeyUsage,
         PrivatecaCertificateTemplateIdentityConstraints,
         PrivatecaCertificateTemplateKeyUsage,
+        PrivatecaCertificateTemplateKnownExtensions,
         PrivatecaCertificateTemplateNameConstraints,
         PrivatecaCertificateTemplateObjectId,
         PrivatecaCertificateTemplatePassthroughExtensions,

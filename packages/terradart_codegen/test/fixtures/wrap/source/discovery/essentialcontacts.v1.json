@@ -1,0 +1,34 @@
+{
+  "name": "essentialcontacts",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://essentialcontacts.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudEssentialcontactsV1Contact": {
+      "properties": {
+        "validationState": {
+          "enum": [
+            "VALIDATION_STATE_UNSPECIFIED",
+            "VALID",
+            "INVALID"
+          ]
+        },
+        "notificationCategorySubscriptions": {
+          "items": {
+            "enum": [
+              "NOTIFICATION_CATEGORY_UNSPECIFIED",
+              "ALL",
+              "SUSPENSION",
+              "SECURITY",
+              "TECHNICAL",
+              "BILLING",
+              "LEGAL",
+              "PRODUCT_UPDATES",
+              "TECHNICAL_INCIDENTS"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,7 @@ export 'src/dialogflow/google_dialogflow_conversation_profile.dart'
         DialogflowConversationProfileSuggestionFeature,
         DialogflowConversationProfileSuggestionTriggerSettings,
         DialogflowConversationProfileTtsConfig,
+        DialogflowConversationProfileType,
         DialogflowConversationProfileVoice,
         GoogleDialogflowConversationProfile;
 export 'src/dialogflow/google_dialogflow_cx_agent.dart'

@@ -231,7 +231,7 @@ void main() {
           target: const .httpTarget(
             CloudSchedulerJobHttpTarget(
               uri: .literal('https://app.example.com/health'),
-              httpMethod: .literal('GET'),
+              httpMethod: .get,
             ),
           ),
         ),

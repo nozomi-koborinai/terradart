@@ -1,0 +1,47 @@
+{
+  "name": "bigquerydatapolicy",
+  "version": "v2",
+  "revision": "20261021",
+  "sourceUrl": "https://bigquerydatapolicy.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "DataMaskingPolicy": {
+      "properties": {
+        "predefinedExpression": {
+          "enum": [
+            "PREDEFINED_EXPRESSION_UNSPECIFIED",
+            "SHA256",
+            "ALWAYS_NULL",
+            "DEFAULT_MASKING_VALUE",
+            "LAST_FOUR_CHARACTERS",
+            "FIRST_FOUR_CHARACTERS",
+            "EMAIL_MASK",
+            "DATE_YEAR_MASK",
+            "RANDOM_HASH"
+          ]
+        }
+      }
+    },
+    "DataPolicy": {
+      "properties": {
+        "version": {
+          "enum": [
+            "VERSION_UNSPECIFIED",
+            "V1",
+            "V2"
+          ]
+        },
+        "dataMaskingPolicy": {
+          "$ref": "DataMaskingPolicy"
+        },
+        "dataPolicyType": {
+          "enum": [
+            "DATA_POLICY_TYPE_UNSPECIFIED",
+            "DATA_MASKING_POLICY",
+            "RAW_DATA_ACCESS_POLICY",
+            "COLUMN_LEVEL_SECURITY_POLICY"
+          ]
+        }
+      }
+    }
+  }
+}

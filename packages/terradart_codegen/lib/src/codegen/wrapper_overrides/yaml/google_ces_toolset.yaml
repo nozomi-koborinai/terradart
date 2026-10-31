@@ -1,21 +1,9 @@
 outputDir: ces
-enumValues:
-  mcp_toolset.api_authentication.api_key_config.request_location:
-    - HEADER
-  mcp_toolset.api_authentication.oauth_config.oauth_grant_type:
-    - CLIENT_CREDENTIAL
-  open_api_toolset.api_authentication.oauth_config.oauth_grant_type:
-    - CLIENT_CREDENTIAL
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
-
-typeNames:
-  open_api_toolset.api_authentication: CesToolsetApiAuthentication
-  open_api_toolset.api_authentication.api_key_config: CesToolsetApiKeyConfig
 
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -8,17 +8,17 @@ final class _EnumListStack extends Stack {
       CloudflareLoadBalancerPool(
         'literal',
         accountId: .literal('acc'),
-        name: .literal('pool'),
-        origins: [.new(address: .literal('192.0.2.1'))],
-        checkRegions: .literal([.wnam, .weu]),
+        name: const .literal('pool'),
+        origins: [const .new(address: .literal('192.0.2.1'))],
+        checkRegions: const .literal([.wnam, .weu]),
       ),
     );
     add(
       CloudflareLoadBalancerPool(
         'variable',
         accountId: .literal('acc'),
-        name: .literal('pool'),
-        origins: [.new(address: .literal('192.0.2.1'))],
+        name: const .literal('pool'),
+        origins: [const .new(address: .literal('192.0.2.1'))],
         checkRegions: .variable('regions'),
       ),
     );
@@ -26,8 +26,8 @@ final class _EnumListStack extends Stack {
       CloudflareLoadBalancerPool(
         'expression',
         accountId: .literal('acc'),
-        name: .literal('pool'),
-        origins: [.new(address: .literal('192.0.2.1'))],
+        name: const .literal('pool'),
+        origins: [const .new(address: .literal('192.0.2.1'))],
         checkRegions: .expression(r'${tolist(var.regions)}'),
       ),
     );

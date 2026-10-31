@@ -1,0 +1,47 @@
+{
+  "name": "workflows",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "StateError": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "KMS_ERROR"
+          ]
+        }
+      }
+    },
+    "Workflow": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UNAVAILABLE"
+          ]
+        },
+        "stateError": {
+          "$ref": "StateError"
+        },
+        "callLogLevel": {
+          "enum": [
+            "CALL_LOG_LEVEL_UNSPECIFIED",
+            "LOG_ALL_CALLS",
+            "LOG_ERRORS_ONLY",
+            "LOG_NONE"
+          ]
+        },
+        "executionHistoryLevel": {
+          "enum": [
+            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+            "EXECUTION_HISTORY_BASIC",
+            "EXECUTION_HISTORY_DETAILED"
+          ]
+        }
+      }
+    }
+  }
+}

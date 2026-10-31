@@ -62,7 +62,7 @@ final class MetastoreStack extends Stack {
         'sales',
         name: .literal('terradart_db'),
         catalog: catalog.ref,
-        type: .literal('HIVE'),
+        type: .hive,
         hiveOptions: BiglakeDatabaseHiveOptions(
           locationUri: .literal('$warehouse/terradart_db'),
           parameters: .literal({'owner': 'terradart'}),

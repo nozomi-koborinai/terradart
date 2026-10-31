@@ -60,7 +60,7 @@ Map<(CatalogKind, String, String), List<String>> emittedEnums(
     Set<String> onPath,
   ) {
     for (final slot in slots) {
-      final at = [...path, slot.tfName];
+      final at = [...path, if (slot.tfName.isNotEmpty) slot.tfName];
       switch (slot.kind) {
         case MigrateSlotKind.enumValue:
           final e = manifest.enums[slot.dartType];
@@ -72,6 +72,20 @@ Map<(CatalogKind, String, String), List<String>> emittedEnums(
           if (helper != null && onPath.add(helper.className)) {
             walk(kind, type, helper.slots, at, onPath);
             onPath.remove(helper.className);
+          }
+        case MigrateSlotKind.sealed:
+          for (final MapEntry(key: key, value: name)
+              in (slot.variants ?? const <String, String>{}).entries) {
+            final variant = manifest.helpers[name];
+            if (variant == null || !onPath.add(name)) continue;
+            final selfKeyed = variant.slots.any(
+              (s) => s.tfName == key || s.tfName.startsWith('$key.'),
+            );
+            walk(kind, type, variant.slots, [
+              ...at,
+              if (!selfKeyed) key,
+            ], onPath);
+            onPath.remove(name);
           }
         default:
       }

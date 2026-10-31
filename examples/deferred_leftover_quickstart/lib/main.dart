@@ -253,7 +253,7 @@ final class DeferredLeftoverStack extends Stack {
         domainName: .literal('example-leftover.test'),
         location: .literal('us-central1'),
         contactSettings: ClouddomainsRegistrationContactSettings(
-          privacy: .literal('REDACTED_CONTACT_DATA'),
+          privacy: .redactedContactData,
           adminContact: .new(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
@@ -809,7 +809,7 @@ final class DeferredLeftoverStack extends Stack {
         actionType: .allow,
         condition: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        methodTypes: .literal(['terradart-leftover']),
+        methodTypes: .literal([.create]),
         name: .literal('terradart-leftover'),
         parent: .literal('organizations/123456789'),
         resourceTypes: .literal(['terradart-leftover']),
@@ -1281,7 +1281,7 @@ final class DeferredLeftoverStack extends Stack {
         'network_monitoring_provider',
         location: .literal('global'),
         networkMonitoringProviderId: .literal('terradart-leftover'),
-        providerType: .literal('EXTERNAL'),
+        providerType: .external,
       ),
     );
 
@@ -1291,7 +1291,7 @@ final class DeferredLeftoverStack extends Stack {
         agentConnectivityTemplateId: .literal('terradart-leftover'),
         location: .literal('us-central1'),
         accessPath: .agentToAnywhere,
-        accessTypes: [.private],
+        accessTypes: .literal([.private]),
         egressNetworkConfig:
             NetworkServicesAgentConnectivityTemplateEgressNetworkConfig(
               networkAttachment: .literal(

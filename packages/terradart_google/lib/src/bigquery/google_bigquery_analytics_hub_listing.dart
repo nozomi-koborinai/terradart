@@ -9,6 +9,108 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing`.
 const Set<String> _googleBigqueryAnalyticsHubListingSensitive = <String>{};
 
+/// Bigquery Analytics Hub Listing enum for `categories`.
+extension type const BigqueryAnalyticsHubListingCategories._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryAnalyticsHubListingCategories.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryAnalyticsHubListingCategories.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryAnalyticsHubListingCategories.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const categoryOthers = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_OTHERS'),
+  );
+  static const categoryAdvertisingAndMarketing =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_ADVERTISING_AND_MARKETING'),
+      );
+  static const categoryCommerce = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_COMMERCE'),
+  );
+  static const categoryClimateAndEnvironment =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_CLIMATE_AND_ENVIRONMENT'),
+      );
+  static const categoryDemographics = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_DEMOGRAPHICS'),
+  );
+  static const categoryEconomics = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_ECONOMICS'),
+  );
+  static const categoryEducation = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_EDUCATION'),
+  );
+  static const categoryEnergy = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_ENERGY'),
+  );
+  static const categoryFinancial = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_FINANCIAL'),
+  );
+  static const categoryGaming = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_GAMING'),
+  );
+  static const categoryGeospatial = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_GEOSPATIAL'),
+  );
+  static const categoryHealthcareAndLifeScience =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE'),
+      );
+  static const categoryMedia = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_MEDIA'),
+  );
+  static const categoryPublicSector = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_PUBLIC_SECTOR'),
+  );
+  static const categoryRetail = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_RETAIL'),
+  );
+  static const categorySports = BigqueryAnalyticsHubListingCategories._(
+    TfArgLiteral('CATEGORY_SPORTS'),
+  );
+  static const categoryScienceAndResearch =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_SCIENCE_AND_RESEARCH'),
+      );
+  static const categoryTransportationAndLogistics =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_TRANSPORTATION_AND_LOGISTICS'),
+      );
+  static const categoryTravelAndTourism =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_TRAVEL_AND_TOURISM'),
+      );
+  static const categoryGoogleEarthEngine =
+      BigqueryAnalyticsHubListingCategories._(
+        TfArgLiteral('CATEGORY_GOOGLE_EARTH_ENGINE'),
+      );
+
+  static const List<BigqueryAnalyticsHubListingCategories> values = [
+    categoryOthers,
+    categoryAdvertisingAndMarketing,
+    categoryCommerce,
+    categoryClimateAndEnvironment,
+    categoryDemographics,
+    categoryEconomics,
+    categoryEducation,
+    categoryEnergy,
+    categoryFinancial,
+    categoryGaming,
+    categoryGeospatial,
+    categoryHealthcareAndLifeScience,
+    categoryMedia,
+    categoryPublicSector,
+    categoryRetail,
+    categorySports,
+    categoryScienceAndResearch,
+    categoryTransportationAndLogistics,
+    categoryTravelAndTourism,
+    categoryGoogleEarthEngine,
+  ];
+}
+
 extension type const BigqueryAnalyticsHubListingDiscoveryType._(TfArg<String> _)
     implements TfArg<String> {
   BigqueryAnalyticsHubListingDiscoveryType.variable(String name)
@@ -278,7 +380,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
   GoogleBigqueryAnalyticsHubListing(
     super.localName, {
     TfArg<bool>? allowOnlyMetadataSharing,
-    TfArg<List<String>>? categories,
+    EnumList<BigqueryAnalyticsHubListingCategories>? categories,
     required TfArg<String> dataExchangeId,
     TfArg<bool>? deleteCommercial,
     TfArg<String>? description,

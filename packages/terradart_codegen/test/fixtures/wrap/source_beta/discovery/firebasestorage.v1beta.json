@@ -1,0 +1,14 @@
+{
+  "name": "firebasestorage",
+  "version": "v1beta",
+  "revision": "20261023",
+  "sourceUrl": "https://firebasestorage.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "Bucket": {
+      "properties": {}
+    },
+    "DefaultBucket": {
+      "properties": {}
+    }
+  }
+}

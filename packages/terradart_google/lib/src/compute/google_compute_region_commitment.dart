@@ -84,14 +84,53 @@ extension type const ComputeRegionCommitmentType._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeRegionCommitmentType.arg(TfArg<String> arg) : this._(arg);
 
-  static const memoryOptimized = ComputeRegionCommitmentType._(
-    TfArgLiteral('MEMORY_OPTIMIZED'),
-  );
   static const acceleratorOptimized = ComputeRegionCommitmentType._(
     TfArgLiteral('ACCELERATOR_OPTIMIZED'),
   );
+  static const acceleratorOptimizedA3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('ACCELERATOR_OPTIMIZED_A3'),
+  );
+  static const acceleratorOptimizedA3Mega = ComputeRegionCommitmentType._(
+    TfArgLiteral('ACCELERATOR_OPTIMIZED_A3_MEGA'),
+  );
+  static const acceleratorOptimizedA3Ultra = ComputeRegionCommitmentType._(
+    TfArgLiteral('ACCELERATOR_OPTIMIZED_A3_ULTRA'),
+  );
+  static const acceleratorOptimizedA4 = ComputeRegionCommitmentType._(
+    TfArgLiteral('ACCELERATOR_OPTIMIZED_A4'),
+  );
+  static const computeOptimized = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED'),
+  );
+  static const computeOptimizedC2d = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_C2D'),
+  );
+  static const computeOptimizedC3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_C3'),
+  );
+  static const computeOptimizedC3d = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_C3D'),
+  );
+  static const computeOptimizedH3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_H3'),
+  );
+  static const computeOptimizedH4d = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_H4D'),
+  );
   static const generalPurpose = ComputeRegionCommitmentType._(
     TfArgLiteral('GENERAL_PURPOSE'),
+  );
+  static const generalPurposeC4 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_C4'),
+  );
+  static const generalPurposeC4a = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_C4A'),
+  );
+  static const generalPurposeC4d = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_C4D'),
+  );
+  static const generalPurposeE2 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_E2'),
   );
   static const generalPurposeN2 = ComputeRegionCommitmentType._(
     TfArgLiteral('GENERAL_PURPOSE_N2'),
@@ -99,37 +138,138 @@ extension type const ComputeRegionCommitmentType._(TfArg<String> _)
   static const generalPurposeN2d = ComputeRegionCommitmentType._(
     TfArgLiteral('GENERAL_PURPOSE_N2D'),
   );
-  static const generalPurposeE2 = ComputeRegionCommitmentType._(
-    TfArgLiteral('GENERAL_PURPOSE_E2'),
+  static const generalPurposeN4 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_N4'),
+  );
+  static const generalPurposeN4a = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_N4A'),
+  );
+  static const generalPurposeN4d = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_N4D'),
   );
   static const generalPurposeT2d = ComputeRegionCommitmentType._(
     TfArgLiteral('GENERAL_PURPOSE_T2D'),
   );
-  static const generalPurposeC3 = ComputeRegionCommitmentType._(
-    TfArgLiteral('GENERAL_PURPOSE_C3'),
+  static const graphicsOptimized = ComputeRegionCommitmentType._(
+    TfArgLiteral('GRAPHICS_OPTIMIZED'),
   );
-  static const computeOptimizedC2 = ComputeRegionCommitmentType._(
-    TfArgLiteral('COMPUTE_OPTIMIZED_C2'),
+  static const graphicsOptimizedG4 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GRAPHICS_OPTIMIZED_G4'),
   );
-  static const computeOptimizedC2d = ComputeRegionCommitmentType._(
-    TfArgLiteral('COMPUTE_OPTIMIZED_C2D'),
+  static const graphicsOptimizedG4Vgpu = ComputeRegionCommitmentType._(
+    TfArgLiteral('GRAPHICS_OPTIMIZED_G4_VGPU'),
   );
-  static const graphicsOptimizedG2 = ComputeRegionCommitmentType._(
-    TfArgLiteral('GRAPHICS_OPTIMIZED_G2'),
+  static const memoryOptimized = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED'),
+  );
+  static const memoryOptimizedM3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_M3'),
+  );
+  static const memoryOptimizedM4 = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_M4'),
+  );
+  static const memoryOptimizedM46tb = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_M4_6TB'),
+  );
+  static const memoryOptimizedX4144024t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_1440_24T'),
+  );
+  static const memoryOptimizedX416tb = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_16TB'),
+  );
+  static const memoryOptimizedX4192032t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_1920_32T'),
+  );
+  static const memoryOptimizedX424tb = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_24TB'),
+  );
+  static const memoryOptimizedX432tb = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_32TB'),
+  );
+  static const memoryOptimizedX44806t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_480_6T'),
+  );
+  static const memoryOptimizedX44808t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_480_8T'),
+  );
+  static const memoryOptimizedX496012t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_960_12T'),
+  );
+  static const memoryOptimizedX496016t = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED_X4_960_16T'),
+  );
+  static const networkOptimizedC4n = ComputeRegionCommitmentType._(
+    TfArgLiteral('NETWORK_OPTIMIZED_C4N'),
+  );
+  static const networkOptimizedU4c = ComputeRegionCommitmentType._(
+    TfArgLiteral('NETWORK_OPTIMIZED_U4C'),
+  );
+  static const networkOptimizedU4p = ComputeRegionCommitmentType._(
+    TfArgLiteral('NETWORK_OPTIMIZED_U4P'),
+  );
+  static const networkOptimizedU4s = ComputeRegionCommitmentType._(
+    TfArgLiteral('NETWORK_OPTIMIZED_U4S'),
+  );
+  static const storageOptimizedZ3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('STORAGE_OPTIMIZED_Z3'),
+  );
+  static const storageOptimizedZ4d4t = ComputeRegionCommitmentType._(
+    TfArgLiteral('STORAGE_OPTIMIZED_Z4D4T'),
+  );
+  static const storageOptimizedZ4dh = ComputeRegionCommitmentType._(
+    TfArgLiteral('STORAGE_OPTIMIZED_Z4DH'),
+  );
+  static const storageOptimizedZ4ds = ComputeRegionCommitmentType._(
+    TfArgLiteral('STORAGE_OPTIMIZED_Z4DS'),
   );
 
   static const List<ComputeRegionCommitmentType> values = [
-    memoryOptimized,
     acceleratorOptimized,
+    acceleratorOptimizedA3,
+    acceleratorOptimizedA3Mega,
+    acceleratorOptimizedA3Ultra,
+    acceleratorOptimizedA4,
+    computeOptimized,
+    computeOptimizedC2d,
+    computeOptimizedC3,
+    computeOptimizedC3d,
+    computeOptimizedH3,
+    computeOptimizedH4d,
     generalPurpose,
+    generalPurposeC4,
+    generalPurposeC4a,
+    generalPurposeC4d,
+    generalPurposeE2,
     generalPurposeN2,
     generalPurposeN2d,
-    generalPurposeE2,
+    generalPurposeN4,
+    generalPurposeN4a,
+    generalPurposeN4d,
     generalPurposeT2d,
-    generalPurposeC3,
-    computeOptimizedC2,
-    computeOptimizedC2d,
-    graphicsOptimizedG2,
+    graphicsOptimized,
+    graphicsOptimizedG4,
+    graphicsOptimizedG4Vgpu,
+    memoryOptimized,
+    memoryOptimizedM3,
+    memoryOptimizedM4,
+    memoryOptimizedM46tb,
+    memoryOptimizedX4144024t,
+    memoryOptimizedX416tb,
+    memoryOptimizedX4192032t,
+    memoryOptimizedX424tb,
+    memoryOptimizedX432tb,
+    memoryOptimizedX44806t,
+    memoryOptimizedX44808t,
+    memoryOptimizedX496012t,
+    memoryOptimizedX496016t,
+    networkOptimizedC4n,
+    networkOptimizedU4c,
+    networkOptimizedU4p,
+    networkOptimizedU4s,
+    storageOptimizedZ3,
+    storageOptimizedZ4d4t,
+    storageOptimizedZ4dh,
+    storageOptimizedZ4ds,
   ];
 }
 

@@ -2265,9 +2265,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_revocation_action_type',
           dartName: 'keyRevocationActionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageKeyRevocationActionType',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -11031,16 +11031,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'task_completion_behavior',
           dartName: 'taskCompletionBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesEvaluationTaskCompletionBehavior',
         ),
         MigrateSlot(
           tfName: 'user_goal_behavior',
           dartName: 'userGoalBehavior',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'CesEvaluationUserGoalBehavior',
         ),
         MigrateSlot(
           tfName: 'variable_overrides',
@@ -11909,7 +11909,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'networkTier',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ComputeInstanceFromMachineImageNetworkTier',
+          dartType: 'ComputeInstanceFromMachineImageAccessConfigNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -12110,9 +12110,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -12193,9 +12194,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageIgmpQuery',
         ),
         MigrateSlot(
           tfName: 'internal_ipv6_prefix_length',
@@ -12264,9 +12265,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageStackType',
         ),
         MigrateSlot(
           tfName: 'subnetwork',
@@ -12353,9 +12354,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operator',
           dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageOperator',
         ),
         MigrateSlot(
           tfName: 'values',
@@ -12456,16 +12457,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_termination_action',
           dartName: 'instanceTerminationAction',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageInstanceTerminationAction',
         ),
         MigrateSlot(
           tfName: 'maintenance_interval',
           dartName: 'maintenanceInterval',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageMaintenanceInterval',
         ),
         MigrateSlot(
           tfName: 'min_node_cpus',
@@ -15328,9 +15329,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'TpuV2VmType',
         ),
       ],
     ),
@@ -15894,6 +15895,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'NEVER': 'never',
       },
     ),
+    'CesEvaluationTaskCompletionBehavior': MigrateEnum(
+      name: 'CesEvaluationTaskCompletionBehavior',
+      members: <String, String>{
+        'TASK_SATISFIED': 'taskSatisfied',
+        'TASK_REJECTED': 'taskRejected',
+      },
+    ),
+    'CesEvaluationUserGoalBehavior': MigrateEnum(
+      name: 'CesEvaluationUserGoalBehavior',
+      members: <String, String>{
+        'USER_GOAL_SATISFIED': 'userGoalSatisfied',
+        'USER_GOAL_REJECTED': 'userGoalRejected',
+        'USER_GOAL_IGNORED': 'userGoalIgnored',
+      },
+    ),
     'CesSecuritySettingsEnforcementScope': MigrateEnum(
       name: 'CesSecuritySettingsEnforcementScope',
       members: <String, String>{
@@ -15974,6 +15990,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'UNSPECIFIED': 'unspecified',
       },
     ),
+    'ComputeInstanceFromMachineImageAccessConfigNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageAccessConfigNetworkTier',
+      members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
+    ),
     'ComputeInstanceFromMachineImageConfidentialInstanceType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageConfidentialInstanceType',
       members: <String, String>{
@@ -15990,9 +16010,37 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'TERMINATED': 'terminated',
       },
     ),
-    'ComputeInstanceFromMachineImageNetworkTier': MigrateEnum(
-      name: 'ComputeInstanceFromMachineImageNetworkTier',
-      members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
+    'ComputeInstanceFromMachineImageIgmpQuery': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageIgmpQuery',
+      members: <String, String>{
+        'IGMP_QUERY_DISABLED': 'igmpQueryDisabled',
+        'IGMP_QUERY_V2': 'igmpQueryV2',
+      },
+    ),
+    'ComputeInstanceFromMachineImageInstanceTerminationAction': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageInstanceTerminationAction',
+      members: <String, String>{'DELETE': 'delete', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier',
+      members: <String, String>{
+        'FIXED_STANDARD': 'fixedStandard',
+        'PREMIUM': 'premium',
+        'STANDARD': 'standard',
+        'STANDARD_OVERRIDES_FIXED_STANDARD': 'standardOverridesFixedStandard',
+      },
+    ),
+    'ComputeInstanceFromMachineImageKeyRevocationActionType': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageKeyRevocationActionType',
+      members: <String, String>{'NONE': 'none', 'STOP': 'stop'},
+    ),
+    'ComputeInstanceFromMachineImageMaintenanceInterval': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageMaintenanceInterval',
+      members: <String, String>{
+        'AS_NEEDED': 'asNeeded',
+        'PERIODIC': 'periodic',
+        'RECURRENT': 'recurrent',
+      },
     ),
     'ComputeInstanceFromMachineImageNicType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageNicType',
@@ -16007,6 +16055,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
     'ComputeInstanceFromMachineImageOnHostMaintenance': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageOnHostMaintenance',
       members: <String, String>{'MIGRATE': 'migrate', 'TERMINATE': 'terminate'},
+    ),
+    'ComputeInstanceFromMachineImageOperator': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageOperator',
+      members: <String, String>{'IN': 'inCase', 'NOT_IN': 'notIn'},
     ),
     'ComputeInstanceFromMachineImagePerformanceMonitoringUnit': MigrateEnum(
       name: 'ComputeInstanceFromMachineImagePerformanceMonitoringUnit',
@@ -16023,6 +16075,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'SPOT': 'spot',
         'FLEX_START': 'flexStart',
         'RESERVATION_BOUND': 'reservationBound',
+      },
+    ),
+    'ComputeInstanceFromMachineImageStackType': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageStackType',
+      members: <String, String>{
+        'IPV4_IPV6': 'ipv4Ipv6',
+        'IPV4_ONLY': 'ipv4Only',
+        'IPV6_ONLY': 'ipv6Only',
       },
     ),
     'ComputeInstanceFromMachineImageTotalEgressBandwidthTier': MigrateEnum(
@@ -16413,6 +16473,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       members: <String, String>{
         'READ_WRITE': 'readWrite',
         'READ_ONLY': 'readOnly',
+      },
+    ),
+    'TpuV2VmType': MigrateEnum(
+      name: 'TpuV2VmType',
+      members: <String, String>{
+        'V2': 'v2',
+        'V3': 'v3',
+        'V4': 'v4',
+        'V5LITE_POD': 'v5litePod',
+        'V5P': 'v5p',
+        'V6E': 'v6e',
       },
     ),
     'VertexAiModelGardenEnableModelEnablementState': MigrateEnum(

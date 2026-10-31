@@ -1,8 +1,4 @@
 outputDir: ces
-enumValues:
-  remote_a2a_agent.a2a_config.api_authentication.oauth_config.oauth_grant_type:
-    - CLIENT_CREDENTIAL
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

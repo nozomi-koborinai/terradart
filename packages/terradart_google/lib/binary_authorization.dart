@@ -9,6 +9,7 @@ export 'src/binary_authorization/google_binary_authorization_attestor.dart'
         BinaryAuthorizationAttestorAttestationAuthorityNote,
         BinaryAuthorizationAttestorPkixPublicKey,
         BinaryAuthorizationAttestorPublicKeys,
+        BinaryAuthorizationAttestorSignatureAlgorithm,
         GoogleBinaryAuthorizationAttestor;
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_binding.dart'
     show

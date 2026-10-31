@@ -1,0 +1,22 @@
+{
+  "name": "vpcaccess",
+  "version": "v1",
+  "revision": "20261011",
+  "sourceUrl": "https://vpcaccess.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Connector": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "CREATING",
+            "DELETING",
+            "ERROR",
+            "UPDATING"
+          ]
+        }
+      }
+    }
+  }
+}

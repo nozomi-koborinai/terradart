@@ -325,8 +325,28 @@ class BigqueryDatasetView {
   };
 }
 
+/// `access.dataset.target_types` — what of the authorized dataset the binding grants.
+extension type const BigqueryDatasetAccessTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryDatasetAccessTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatasetAccessTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatasetAccessTargetType.arg(TfArg<String> arg) : this._(arg);
+
+  /// Its views.
+  static const views = BigqueryDatasetAccessTargetType._(TfArgLiteral('VIEWS'));
+
+  /// Its routines.
+  static const routines = BigqueryDatasetAccessTargetType._(
+    TfArgLiteral('ROUTINES'),
+  );
+
+  static const List<BigqueryDatasetAccessTargetType> values = [views, routines];
+}
+
 /// `access.dataset` sub-block — pairs a [dataset] reference with the
-/// [targetTypes] this binding applies to (currently only `VIEWS`).
+/// [targetTypes] this binding applies to.
 @immutable
 class BigqueryDatasetAccessChild {
   const BigqueryDatasetAccessChild({
@@ -335,12 +355,12 @@ class BigqueryDatasetAccessChild {
   });
 
   final BigqueryDatasetReference dataset;
-  final List<TfArg<String>> targetTypes;
+  final EnumList<BigqueryDatasetAccessTargetType> targetTypes;
 
   @internal
   Map<String, Object?> encode() => {
     'dataset': [dataset.encode()],
-    'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
+    'target_types': targetTypes.toTfJson(),
   };
 }
 

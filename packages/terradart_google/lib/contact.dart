@@ -29,6 +29,7 @@ export 'src/contact/google_contact_center_insights_qa_question.dart'
         ContactCenterInsightsQaQuestionAnswerChoices,
         ContactCenterInsightsQaQuestionConversationDataOptions,
         ContactCenterInsightsQaQuestionDataOptions,
+        ContactCenterInsightsQaQuestionDatasetValidationWarnings,
         ContactCenterInsightsQaQuestionPredefinedQuestionConfig,
         ContactCenterInsightsQaQuestionPredefinedQuestionConfigType,
         ContactCenterInsightsQaQuestionTuningMetadata,

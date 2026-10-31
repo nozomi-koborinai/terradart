@@ -15,18 +15,42 @@ extension type const ComputeTargetPoolSessionAffinity._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ComputeTargetPoolSessionAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  static const none = ComputeTargetPoolSessionAffinity._(TfArgLiteral('NONE'));
   static const clientIp = ComputeTargetPoolSessionAffinity._(
     TfArgLiteral('CLIENT_IP'),
+  );
+  static const clientIpNoDestination = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_NO_DESTINATION'),
+  );
+  static const clientIpPortProto = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PORT_PROTO'),
   );
   static const clientIpProto = ComputeTargetPoolSessionAffinity._(
     TfArgLiteral('CLIENT_IP_PROTO'),
   );
+  static const generatedCookie = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('GENERATED_COOKIE'),
+  );
+  static const headerField = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('HEADER_FIELD'),
+  );
+  static const httpCookie = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('HTTP_COOKIE'),
+  );
+  static const none = ComputeTargetPoolSessionAffinity._(TfArgLiteral('NONE'));
+  static const strongCookieAffinity = ComputeTargetPoolSessionAffinity._(
+    TfArgLiteral('STRONG_COOKIE_AFFINITY'),
+  );
 
   static const List<ComputeTargetPoolSessionAffinity> values = [
-    none,
     clientIp,
+    clientIpNoDestination,
+    clientIpPortProto,
     clientIpProto,
+    generatedCookie,
+    headerField,
+    httpCookie,
+    none,
+    strongCookieAffinity,
   ];
 }
 

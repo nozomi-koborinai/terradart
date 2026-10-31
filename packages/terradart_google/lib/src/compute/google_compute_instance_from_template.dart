@@ -48,6 +48,29 @@ extension type const ComputeInstanceFromTemplateDesiredStatus._(TfArg<String> _)
   ];
 }
 
+/// Compute Instance From Template Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceFromTemplateKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateKeyRevocationActionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const none = ComputeInstanceFromTemplateKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceFromTemplateKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceFromTemplateKeyRevocationActionType> values =
+      [none, stop];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_instance_from_template` (derived from provider schema).
 @immutable
@@ -530,7 +553,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceFromTemplateIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -548,7 +571,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceFromTemplateStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -587,6 +610,29 @@ final class ComputeInstanceFromTemplateNetworkInterface {
   };
 }
 
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateIgmpQuery.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateIgmpQuery.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceFromTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceFromTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceFromTemplateIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
 /// `nic_type` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
     implements TfArg<String> {
@@ -621,6 +667,33 @@ extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
   ];
 }
 
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateStackType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = ComputeInstanceFromTemplateStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeInstanceFromTemplateStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
+  ];
+}
+
 /// Typed helper for the `network_interface.access_config` block of
 /// `google_compute_instance_from_template` (derived from provider schema).
 @immutable
@@ -633,7 +706,7 @@ final class ComputeInstanceFromTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final ComputeInstanceFromTemplateNetworkTier? networkTier;
+  final ComputeInstanceFromTemplateAccessConfigNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -646,26 +719,26 @@ final class ComputeInstanceFromTemplateAccessConfig {
 }
 
 /// `network_tier` — derived from the provider schema description.
-extension type const ComputeInstanceFromTemplateNetworkTier._(TfArg<String> _)
-    implements TfArg<String> {
-  ComputeInstanceFromTemplateNetworkTier.variable(String name)
+extension type const ComputeInstanceFromTemplateAccessConfigNetworkTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateAccessConfigNetworkTier.variable(String name)
     : this._(TfArg.variable(name));
-  ComputeInstanceFromTemplateNetworkTier.expression(String template)
+  ComputeInstanceFromTemplateAccessConfigNetworkTier.expression(String template)
     : this._(TfArg.expression(template));
-  const ComputeInstanceFromTemplateNetworkTier.arg(TfArg<String> arg)
-    : this._(arg);
+  const ComputeInstanceFromTemplateAccessConfigNetworkTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const premium = ComputeInstanceFromTemplateNetworkTier._(
+  static const premium = ComputeInstanceFromTemplateAccessConfigNetworkTier._(
     TfArgLiteral('PREMIUM'),
   );
-  static const standard = ComputeInstanceFromTemplateNetworkTier._(
+  static const standard = ComputeInstanceFromTemplateAccessConfigNetworkTier._(
     TfArgLiteral('STANDARD'),
   );
 
-  static const List<ComputeInstanceFromTemplateNetworkTier> values = [
-    premium,
-    standard,
-  ];
+  static const List<ComputeInstanceFromTemplateAccessConfigNetworkTier> values =
+      [premium, standard];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -706,7 +779,7 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
 
   final TfArg<String>? name;
 
-  final TfArg<String> networkTier;
+  final ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -718,6 +791,40 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
     'network_tier': networkTier.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const fixedStandard =
+      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
+        TfArgLiteral('FIXED_STANDARD'),
+      );
+  static const premium =
+      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
+        TfArgLiteral('PREMIUM'),
+      );
+  static const standard =
+      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
+        TfArgLiteral('STANDARD'),
+      );
+  static const standardOverridesFixedStandard =
+      ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier._(
+        TfArgLiteral('STANDARD_OVERRIDES_FIXED_STANDARD'),
+      );
+
+  static const List<ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier>
+  values = [fixedStandard, premium, standard, standardOverridesFixedStandard];
 }
 
 /// Typed helper for the `network_performance_config` block of
@@ -843,7 +950,8 @@ final class ComputeInstanceFromTemplateScheduling {
 
   final TfArg<num>? hostErrorTimeoutSeconds;
 
-  final TfArg<String>? instanceTerminationAction;
+  final ComputeInstanceFromTemplateInstanceTerminationAction?
+  instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
@@ -885,6 +993,30 @@ final class ComputeInstanceFromTemplateScheduling {
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
     'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
+}
+
+/// `instance_termination_action` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateInstanceTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateInstanceTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateInstanceTerminationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateInstanceTerminationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const delete = ComputeInstanceFromTemplateInstanceTerminationAction._(
+    TfArgLiteral('DELETE'),
+  );
+  static const stop = ComputeInstanceFromTemplateInstanceTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceFromTemplateInstanceTerminationAction>
+  values = [delete, stop];
 }
 
 /// `on_host_maintenance` — derived from the provider schema description.
@@ -996,7 +1128,7 @@ final class ComputeInstanceFromTemplateNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceFromTemplateOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -1006,6 +1138,29 @@ final class ComputeInstanceFromTemplateNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inCase = ComputeInstanceFromTemplateOperator._(
+    TfArgLiteral('IN'),
+  );
+  static const notIn = ComputeInstanceFromTemplateOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<ComputeInstanceFromTemplateOperator> values = [
+    inCase,
+    notIn,
+  ];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -1165,7 +1320,7 @@ final class GoogleComputeInstanceFromTemplate extends Resource {
     ComputeInstanceFromTemplateDesiredStatus? desiredStatus,
     TfArg<bool>? enableDisplay,
     TfArg<String>? hostname,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceFromTemplateKeyRevocationActionType? keyRevocationActionType,
     TfArg<String>? minCpuPlatform,
     TfArg<List<String>>? resourcePolicies,
     TfArg<String>? project,

@@ -1,0 +1,22 @@
+{
+  "name": "privilegedaccessmanager",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://privilegedaccessmanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Entitlement": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "AVAILABLE",
+            "DELETING",
+            "DELETED",
+            "UPDATING"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -14,6 +14,44 @@ const Set<String> _googleAlloydbClusterSensitive = <String>{
   'initial_user.password',
 };
 
+/// Alloydb Cluster Database enum for `database_version`.
+extension type const AlloydbClusterDatabaseVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbClusterDatabaseVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  AlloydbClusterDatabaseVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbClusterDatabaseVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const postgres13 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_13'),
+  );
+  static const postgres14 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_14'),
+  );
+  static const postgres15 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_15'),
+  );
+  static const postgres16 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_16'),
+  );
+  static const postgres17 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_17'),
+  );
+  static const postgres18 = AlloydbClusterDatabaseVersion._(
+    TfArgLiteral('POSTGRES_18'),
+  );
+
+  static const List<AlloydbClusterDatabaseVersion> values = [
+    postgres13,
+    postgres14,
+    postgres15,
+    postgres16,
+    postgres17,
+    postgres18,
+  ];
+}
+
 /// Alloydb Cluster Subscription enum for `subscription_type`.
 extension type const AlloydbClusterSubscriptionType._(TfArg<String> _)
     implements TfArg<String> {
@@ -779,7 +817,7 @@ final class GoogleAlloydbCluster extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
     TfArg<Map<String, String>>? annotations,
-    TfArg<String>? databaseVersion,
+    AlloydbClusterDatabaseVersion? databaseVersion,
     TfArg<String>? etag,
     TfArg<String>? project,
     TfArg<bool>? skipAwaitMajorVersionUpgrade,

@@ -256,13 +256,35 @@ final class ComputeSecurityPolicyRuleRedirectOptions {
 
   final TfArg<String>? target;
 
-  final TfArg<String>? type;
+  final ComputeSecurityPolicyRuleType? type;
 
   @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeSecurityPolicyRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSecurityPolicyRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSecurityPolicyRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSecurityPolicyRuleType.arg(TfArg<String> arg) : this._(arg);
+
+  static const external302 = ComputeSecurityPolicyRuleType._(
+    TfArgLiteral('EXTERNAL_302'),
+  );
+  static const googleRecaptcha = ComputeSecurityPolicyRuleType._(
+    TfArgLiteral('GOOGLE_RECAPTCHA'),
+  );
+
+  static const List<ComputeSecurityPolicyRuleType> values = [
+    external302,
+    googleRecaptcha,
+  ];
 }
 
 /// Factory wrapper for `google_compute_security_policy_rule`.

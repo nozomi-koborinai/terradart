@@ -1,0 +1,125 @@
+{
+  "name": "osconfig",
+  "version": "v1beta",
+  "revision": "20261022",
+  "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "AptRepository": {
+      "properties": {
+        "archiveType": {
+          "enum": [
+            "ARCHIVE_TYPE_UNSPECIFIED",
+            "DEB",
+            "DEB_SRC"
+          ]
+        }
+      }
+    },
+    "GuestPolicy": {
+      "properties": {
+        "packages": {
+          "items": {
+            "$ref": "Package"
+          }
+        },
+        "recipes": {
+          "items": {
+            "$ref": "SoftwareRecipe"
+          }
+        },
+        "packageRepositories": {
+          "items": {
+            "$ref": "PackageRepository"
+          }
+        }
+      }
+    },
+    "Package": {
+      "properties": {
+        "desiredState": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "UPDATED",
+            "REMOVED"
+          ]
+        },
+        "manager": {
+          "enum": [
+            "MANAGER_UNSPECIFIED",
+            "ANY",
+            "APT",
+            "YUM",
+            "ZYPPER",
+            "GOO"
+          ]
+        }
+      }
+    },
+    "PackageRepository": {
+      "properties": {
+        "apt": {
+          "$ref": "AptRepository"
+        }
+      }
+    },
+    "SoftwareRecipe": {
+      "properties": {
+        "desiredState": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "UPDATED",
+            "REMOVED"
+          ]
+        },
+        "updateSteps": {
+          "items": {
+            "$ref": "SoftwareRecipeStep"
+          }
+        },
+        "installSteps": {
+          "items": {
+            "$ref": "SoftwareRecipeStep"
+          }
+        }
+      }
+    },
+    "SoftwareRecipeStep": {
+      "properties": {
+        "archiveExtraction": {
+          "$ref": "SoftwareRecipeStepExtractArchive"
+        },
+        "scriptRun": {
+          "$ref": "SoftwareRecipeStepRunScript"
+        }
+      }
+    },
+    "SoftwareRecipeStepExtractArchive": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ARCHIVE_TYPE_UNSPECIFIED",
+            "TAR",
+            "TAR_GZIP",
+            "TAR_BZIP",
+            "TAR_LZMA",
+            "TAR_XZ",
+            "ZIP"
+          ]
+        }
+      }
+    },
+    "SoftwareRecipeStepRunScript": {
+      "properties": {
+        "interpreter": {
+          "enum": [
+            "INTERPRETER_UNSPECIFIED",
+            "SHELL",
+            "POWERSHELL"
+          ]
+        }
+      }
+    }
+  }
+}

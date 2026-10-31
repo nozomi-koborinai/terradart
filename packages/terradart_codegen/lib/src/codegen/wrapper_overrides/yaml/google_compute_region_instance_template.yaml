@@ -1,9 +1,3 @@
-enumValues:
-  network_interface.access_config.network_tier:
-    - "PREMIUM"
-    - "STANDARD"
-    - "FIXED_STANDARD"
-
 outputDir: compute
 
 deriveClassDoc: true

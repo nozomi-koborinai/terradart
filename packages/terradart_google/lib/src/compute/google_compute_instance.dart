@@ -50,6 +50,29 @@ extension type const ComputeInstanceDesiredStatus._(TfArg<String> _)
   ];
 }
 
+/// Compute Instance Key Revocation Action enum for `key_revocation_action_type`.
+extension type const ComputeInstanceKeyRevocationActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceKeyRevocationActionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ComputeInstanceKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = ComputeInstanceKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<ComputeInstanceKeyRevocationActionType> values = [
+    none,
+    stop,
+  ];
+}
+
 // ===========================================================================
 // Enums
 // ===========================================================================
@@ -657,7 +680,7 @@ final class ComputeInstanceNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -675,7 +698,7 @@ final class ComputeInstanceNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -712,6 +735,46 @@ final class ComputeInstanceNetworkInterface {
     if (ipv6AccessConfig != null)
       'ipv6_access_config': [for (final e in ipv6AccessConfig!) e.encode()],
   };
+}
+
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceIgmpQuery.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceIgmpQuery.arg(TfArg<String> arg) : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceStackType.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceStackType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceStackType._(TfArgLiteral('IPV4_IPV6'));
+  static const ipv4Only = ComputeInstanceStackType._(TfArgLiteral('IPV4_ONLY'));
+  static const ipv6Only = ComputeInstanceStackType._(TfArgLiteral('IPV6_ONLY'));
+
+  static const List<ComputeInstanceStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -979,7 +1042,7 @@ final class ComputeInstanceNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -989,6 +1052,20 @@ final class ComputeInstanceNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceOperator.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ComputeInstanceOperator._(TfArgLiteral('IN'));
+  static const notIn = ComputeInstanceOperator._(TfArgLiteral('NOT_IN'));
+
+  static const List<ComputeInstanceOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
@@ -1166,7 +1243,7 @@ final class GoogleComputeInstance extends Resource {
     TfArg<String>? minCpuPlatform,
     TfArg<bool>? enableDisplay,
     TfArg<List<String>>? resourcePolicies,
-    TfArg<String>? keyRevocationActionType,
+    ComputeInstanceKeyRevocationActionType? keyRevocationActionType,
     required ComputeInstanceBootDisk bootDisk,
     required List<ComputeInstanceNetworkInterface> networkInterface,
     List<ComputeInstanceAttachedDisk>? attachedDisk,

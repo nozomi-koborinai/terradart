@@ -1,0 +1,499 @@
+{
+  "name": "cloudbuild",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "ApprovalResult": {
+      "properties": {
+        "decision": {
+          "enum": [
+            "DECISION_UNSPECIFIED",
+            "APPROVED",
+            "REJECTED"
+          ]
+        }
+      }
+    },
+    "BitbucketServerConfig": {
+      "properties": {}
+    },
+    "BitbucketServerTriggerConfig": {
+      "properties": {
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
+        }
+      }
+    },
+    "Build": {
+      "properties": {
+        "failureInfo": {
+          "$ref": "FailureInfo"
+        },
+        "approval": {
+          "$ref": "BuildApproval"
+        },
+        "source": {
+          "$ref": "Source"
+        },
+        "options": {
+          "$ref": "BuildOptions"
+        },
+        "results": {
+          "$ref": "Results"
+        },
+        "steps": {
+          "items": {
+            "$ref": "BuildStep"
+          }
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warning"
+          }
+        },
+        "sourceProvenance": {
+          "$ref": "SourceProvenance"
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNKNOWN",
+            "PENDING",
+            "QUEUED",
+            "WORKING",
+            "SUCCESS",
+            "FAILURE",
+            "INTERNAL_ERROR",
+            "TIMEOUT",
+            "CANCELLED",
+            "EXPIRED"
+          ]
+        }
+      }
+    },
+    "BuildApproval": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "CANCELLED"
+          ]
+        },
+        "result": {
+          "$ref": "ApprovalResult"
+        }
+      }
+    },
+    "BuildOptions": {
+      "properties": {
+        "machineType": {
+          "enum": [
+            "UNSPECIFIED",
+            "N1_HIGHCPU_8",
+            "N1_HIGHCPU_32",
+            "E2_HIGHCPU_8",
+            "E2_HIGHCPU_32",
+            "E2_MEDIUM",
+            "E2_STANDARD_2"
+          ]
+        },
+        "sourceProvenanceHash": {
+          "items": {
+            "enum": [
+              "NONE",
+              "SHA256",
+              "MD5",
+              "GO_MODULE_H1",
+              "SHA512",
+              "DIRSUM_SHA256"
+            ]
+          }
+        },
+        "requestedVerifyOption": {
+          "enum": [
+            "NOT_VERIFIED",
+            "VERIFIED",
+            "BEST_EFFORT"
+          ]
+        },
+        "logStreamingOption": {
+          "enum": [
+            "STREAM_DEFAULT",
+            "STREAM_ON",
+            "STREAM_OFF"
+          ]
+        },
+        "defaultLogsBucketBehavior": {
+          "enum": [
+            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
+          ]
+        },
+        "logging": {
+          "enum": [
+            "LOGGING_UNSPECIFIED",
+            "LEGACY",
+            "GCS_ONLY",
+            "STACKDRIVER_ONLY",
+            "CLOUD_LOGGING_ONLY",
+            "NONE"
+          ]
+        },
+        "substitutionOption": {
+          "enum": [
+            "MUST_MATCH",
+            "ALLOW_LOOSE"
+          ]
+        },
+        "rankedMachineSeries": {
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ]
+          }
+        }
+      }
+    },
+    "BuildStep": {
+      "properties": {
+        "status": {
+          "enum": [
+            "STATUS_UNKNOWN",
+            "PENDING",
+            "QUEUED",
+            "WORKING",
+            "SUCCESS",
+            "FAILURE",
+            "INTERNAL_ERROR",
+            "TIMEOUT",
+            "CANCELLED",
+            "EXPIRED"
+          ]
+        }
+      }
+    },
+    "BuildTrigger": {
+      "properties": {
+        "gitFileSource": {
+          "$ref": "GitFileSource"
+        },
+        "build": {
+          "$ref": "Build"
+        },
+        "pubsubConfig": {
+          "$ref": "PubsubConfig"
+        },
+        "webhookConfig": {
+          "$ref": "WebhookConfig"
+        },
+        "bitbucketServerTriggerConfig": {
+          "$ref": "BitbucketServerTriggerConfig"
+        },
+        "eventType": {
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "REPO",
+            "WEBHOOK",
+            "PUBSUB",
+            "MANUAL"
+          ]
+        },
+        "developerConnectEventConfig": {
+          "$ref": "DeveloperConnectEventConfig"
+        },
+        "includeBuildLogs": {
+          "enum": [
+            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
+            "INCLUDE_BUILD_LOGS_WITH_STATUS"
+          ]
+        },
+        "repositoryEventConfig": {
+          "$ref": "RepositoryEventConfig"
+        },
+        "github": {
+          "$ref": "GitHubEventsConfig"
+        },
+        "sourceToBuild": {
+          "$ref": "GitRepoSource"
+        }
+      }
+    },
+    "BuiltImage": {
+      "properties": {
+        "ociMediaType": {
+          "enum": [
+            "OCI_MEDIA_TYPE_UNSPECIFIED",
+            "IMAGE_MANIFEST",
+            "IMAGE_INDEX"
+          ]
+        }
+      }
+    },
+    "DeveloperConnectEventConfig": {
+      "properties": {
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
+        },
+        "gitRepositoryLinkType": {
+          "enum": [
+            "GIT_REPOSITORY_LINK_TYPE_UNSPECIFIED",
+            "GITHUB",
+            "GITHUB_ENTERPRISE",
+            "GITLAB",
+            "GITLAB_ENTERPRISE",
+            "BITBUCKET_DATA_CENTER",
+            "BITBUCKET_CLOUD"
+          ]
+        }
+      }
+    },
+    "FailureInfo": {
+      "properties": {
+        "type": {
+          "enum": [
+            "FAILURE_TYPE_UNSPECIFIED",
+            "PUSH_FAILED",
+            "PUSH_IMAGE_NOT_FOUND",
+            "PUSH_NOT_AUTHORIZED",
+            "LOGGING_FAILURE",
+            "USER_BUILD_STEP",
+            "FETCH_SOURCE_FAILED"
+          ]
+        }
+      }
+    },
+    "FileHashes": {
+      "properties": {
+        "fileHash": {
+          "items": {
+            "$ref": "Hash"
+          }
+        }
+      }
+    },
+    "GitFileSource": {
+      "properties": {
+        "repoType": {
+          "enum": [
+            "UNKNOWN",
+            "CLOUD_SOURCE_REPOSITORIES",
+            "GITHUB",
+            "BITBUCKET_SERVER",
+            "GITLAB",
+            "BITBUCKET_CLOUD"
+          ]
+        }
+      }
+    },
+    "GitHubEventsConfig": {
+      "properties": {
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
+        }
+      }
+    },
+    "GitRepoSource": {
+      "properties": {
+        "repoType": {
+          "enum": [
+            "UNKNOWN",
+            "CLOUD_SOURCE_REPOSITORIES",
+            "GITHUB",
+            "BITBUCKET_SERVER",
+            "GITLAB",
+            "BITBUCKET_CLOUD"
+          ]
+        }
+      }
+    },
+    "Hash": {
+      "properties": {
+        "type": {
+          "enum": [
+            "NONE",
+            "SHA256",
+            "MD5",
+            "GO_MODULE_H1",
+            "SHA512",
+            "DIRSUM_SHA256"
+          ]
+        }
+      }
+    },
+    "PubsubConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OK",
+            "SUBSCRIPTION_DELETED",
+            "TOPIC_DELETED",
+            "SUBSCRIPTION_MISCONFIGURED"
+          ]
+        }
+      }
+    },
+    "PullRequestFilter": {
+      "properties": {
+        "commentControl": {
+          "enum": [
+            "COMMENTS_DISABLED",
+            "COMMENTS_ENABLED",
+            "COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY"
+          ]
+        }
+      }
+    },
+    "RepositoryEventConfig": {
+      "properties": {
+        "repositoryType": {
+          "enum": [
+            "REPOSITORY_TYPE_UNSPECIFIED",
+            "GITHUB",
+            "GITHUB_ENTERPRISE",
+            "GITLAB_ENTERPRISE",
+            "BITBUCKET_DATA_CENTER",
+            "BITBUCKET_CLOUD"
+          ]
+        },
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
+        }
+      }
+    },
+    "Results": {
+      "properties": {
+        "genericArtifacts": {
+          "items": {
+            "$ref": "UploadedGenericArtifact"
+          }
+        },
+        "goModules": {
+          "items": {
+            "$ref": "UploadedGoModule"
+          }
+        },
+        "pythonPackages": {
+          "items": {
+            "$ref": "UploadedPythonPackage"
+          }
+        },
+        "images": {
+          "items": {
+            "$ref": "BuiltImage"
+          }
+        },
+        "npmPackages": {
+          "items": {
+            "$ref": "UploadedNpmPackage"
+          }
+        },
+        "mavenArtifacts": {
+          "items": {
+            "$ref": "UploadedMavenArtifact"
+          }
+        }
+      }
+    },
+    "Source": {
+      "properties": {
+        "storageSource": {
+          "$ref": "StorageSource"
+        }
+      }
+    },
+    "SourceProvenance": {
+      "properties": {
+        "fileHashes": {
+          "additionalProperties": {
+            "$ref": "FileHashes"
+          }
+        },
+        "resolvedStorageSource": {
+          "$ref": "StorageSource"
+        }
+      }
+    },
+    "StorageSource": {
+      "properties": {
+        "sourceFetcher": {
+          "enum": [
+            "SOURCE_FETCHER_UNSPECIFIED",
+            "GSUTIL",
+            "GCS_FETCHER"
+          ]
+        }
+      }
+    },
+    "UploadedGenericArtifact": {
+      "properties": {
+        "fileHashes": {
+          "additionalProperties": {
+            "$ref": "FileHashes"
+          }
+        },
+        "artifactFingerprint": {
+          "$ref": "FileHashes"
+        }
+      }
+    },
+    "UploadedGoModule": {
+      "properties": {
+        "fileHashes": {
+          "$ref": "FileHashes"
+        }
+      }
+    },
+    "UploadedMavenArtifact": {
+      "properties": {
+        "fileHashes": {
+          "$ref": "FileHashes"
+        }
+      }
+    },
+    "UploadedNpmPackage": {
+      "properties": {
+        "fileHashes": {
+          "$ref": "FileHashes"
+        }
+      }
+    },
+    "UploadedPythonPackage": {
+      "properties": {
+        "fileHashes": {
+          "$ref": "FileHashes"
+        }
+      }
+    },
+    "Warning": {
+      "properties": {
+        "priority": {
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "INFO",
+            "WARNING",
+            "ALERT"
+          ]
+        }
+      }
+    },
+    "WebhookConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OK",
+            "SECRET_DELETED"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -248,7 +248,7 @@ final class ApihubPluginAuthConfigTemplate {
     this.serviceAccount,
   });
 
-  final TfArg<List<String>> supportedAuthTypes;
+  final EnumList<ApihubPluginSupportedAuthTypes> supportedAuthTypes;
 
   final ApihubPluginServiceAccount? serviceAccount;
 
@@ -257,6 +257,40 @@ final class ApihubPluginAuthConfigTemplate {
     'supported_auth_types': supportedAuthTypes.toTfJson(),
     'service_account': ?serviceAccount?.encode(),
   };
+}
+
+/// `supported_auth_types` — derived from the provider schema description.
+extension type const ApihubPluginSupportedAuthTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ApihubPluginSupportedAuthTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ApihubPluginSupportedAuthTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApihubPluginSupportedAuthTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const noAuth = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('NO_AUTH'),
+  );
+  static const googleServiceAccount = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('GOOGLE_SERVICE_ACCOUNT'),
+  );
+  static const userPassword = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('USER_PASSWORD'),
+  );
+  static const apiKey = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('API_KEY'),
+  );
+  static const oauth2ClientCredentials = ApihubPluginSupportedAuthTypes._(
+    TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+  );
+
+  static const List<ApihubPluginSupportedAuthTypes> values = [
+    noAuth,
+    googleServiceAccount,
+    userPassword,
+    apiKey,
+    oauth2ClientCredentials,
+  ];
 }
 
 /// Typed helper for the `config_template.auth_config_template.service_account` block of

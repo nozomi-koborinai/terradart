@@ -1,0 +1,11 @@
+{
+  "name": "iam",
+  "version": "v2",
+  "revision": "20261023",
+  "sourceUrl": "https://iam.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "GoogleIamV2Policy": {
+      "properties": {}
+    }
+  }
+}

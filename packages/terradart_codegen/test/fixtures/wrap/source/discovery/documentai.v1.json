@@ -1,0 +1,73 @@
+{
+  "name": "documentai",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://documentai.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDocumentaiV1DocumentSchema": {
+      "properties": {
+        "entityTypes": {
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentSchemaEntityType"
+          }
+        }
+      }
+    },
+    "GoogleCloudDocumentaiV1DocumentSchemaEntityType": {
+      "properties": {
+        "properties": {
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty"
+          }
+        }
+      }
+    },
+    "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty": {
+      "properties": {
+        "occurrenceType": {
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ]
+        },
+        "method": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE",
+            "RELAXED_EXTRACT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDocumentaiV1NextSchema": {
+      "properties": {}
+    },
+    "GoogleCloudDocumentaiV1Processor": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "ENABLING",
+            "DISABLING",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDocumentaiV1SchemaVersion": {
+      "properties": {
+        "schema": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentSchema"
+        }
+      }
+    }
+  }
+}

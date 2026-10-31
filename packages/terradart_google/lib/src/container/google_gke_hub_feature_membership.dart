@@ -19,7 +19,7 @@ final class GkeHubFeatureMembershipConfigmanagement {
     this.policyController,
   });
 
-  final TfArg<String>? management;
+  final GkeHubFeatureMembershipConfigmanagementManagement? management;
 
   final TfArg<String>? version;
 
@@ -37,6 +37,30 @@ final class GkeHubFeatureMembershipConfigmanagement {
     'hierarchy_controller': ?hierarchyController?.encode(),
     'policy_controller': ?policyController?.encode(),
   };
+}
+
+/// `management` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipConfigmanagementManagement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeHubFeatureMembershipConfigmanagementManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipConfigmanagementManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipConfigmanagementManagement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const managementAutomatic =
+      GkeHubFeatureMembershipConfigmanagementManagement._(
+        TfArgLiteral('MANAGEMENT_AUTOMATIC'),
+      );
+  static const managementManual =
+      GkeHubFeatureMembershipConfigmanagementManagement._(
+        TfArgLiteral('MANAGEMENT_MANUAL'),
+      );
+
+  static const List<GkeHubFeatureMembershipConfigmanagementManagement> values =
+      [managementAutomatic, managementManual];
 }
 
 /// Typed helper for the `configmanagement.config_sync` block of
@@ -362,10 +386,32 @@ final class GkeHubFeatureMembershipPolicyController {
 final class GkeHubFeatureMembershipMonitoring {
   const GkeHubFeatureMembershipMonitoring({this.backends});
 
-  final TfArg<List<String>>? backends;
+  final EnumList<GkeHubFeatureMembershipBackends>? backends;
 
   @internal
   Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
+}
+
+/// `backends` — derived from the provider schema description.
+extension type const GkeHubFeatureMembershipBackends._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipBackends.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipBackends.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipBackends.arg(TfArg<String> arg) : this._(arg);
+
+  static const prometheus = GkeHubFeatureMembershipBackends._(
+    TfArgLiteral('PROMETHEUS'),
+  );
+  static const cloudMonitoring = GkeHubFeatureMembershipBackends._(
+    TfArgLiteral('CLOUD_MONITORING'),
+  );
+
+  static const List<GkeHubFeatureMembershipBackends> values = [
+    prometheus,
+    cloudMonitoring,
+  ];
 }
 
 /// Typed helper for the `mesh` block of
@@ -376,7 +422,7 @@ final class GkeHubFeatureMembershipMesh {
 
   final GkeHubFeatureMembershipControlPlane? controlPlane;
 
-  final GkeHubFeatureMembershipManagement? management;
+  final GkeHubFeatureMembershipMeshManagement? management;
 
   @internal
   Map<String, Object?> encode() => {
@@ -414,25 +460,26 @@ extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
 }
 
 /// `management` — derived from the provider schema description.
-extension type const GkeHubFeatureMembershipManagement._(TfArg<String> _)
+extension type const GkeHubFeatureMembershipMeshManagement._(TfArg<String> _)
     implements TfArg<String> {
-  GkeHubFeatureMembershipManagement.variable(String name)
+  GkeHubFeatureMembershipMeshManagement.variable(String name)
     : this._(TfArg.variable(name));
-  GkeHubFeatureMembershipManagement.expression(String template)
+  GkeHubFeatureMembershipMeshManagement.expression(String template)
     : this._(TfArg.expression(template));
-  const GkeHubFeatureMembershipManagement.arg(TfArg<String> arg) : this._(arg);
+  const GkeHubFeatureMembershipMeshManagement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const managementUnspecified = GkeHubFeatureMembershipManagement._(
+  static const managementUnspecified = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
   );
-  static const managementAutomatic = GkeHubFeatureMembershipManagement._(
+  static const managementAutomatic = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_AUTOMATIC'),
   );
-  static const managementManual = GkeHubFeatureMembershipManagement._(
+  static const managementManual = GkeHubFeatureMembershipMeshManagement._(
     TfArgLiteral('MANAGEMENT_MANUAL'),
   );
 
-  static const List<GkeHubFeatureMembershipManagement> values = [
+  static const List<GkeHubFeatureMembershipMeshManagement> values = [
     managementUnspecified,
     managementAutomatic,
     managementManual,

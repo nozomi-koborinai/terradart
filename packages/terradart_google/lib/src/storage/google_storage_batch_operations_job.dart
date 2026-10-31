@@ -321,15 +321,61 @@ final class StorageBatchOperationsJobPutObjectHold {
     this.temporaryHold,
   });
 
-  final TfArg<String>? eventBasedHold;
+  final StorageBatchOperationsJobEventBasedHold? eventBasedHold;
 
-  final TfArg<String>? temporaryHold;
+  final StorageBatchOperationsJobTemporaryHold? temporaryHold;
 
   @internal
   Map<String, Object?> encode() => {
     'event_based_hold': ?eventBasedHold?.toTfJson(),
     'temporary_hold': ?temporaryHold?.toTfJson(),
   };
+}
+
+/// `event_based_hold` — derived from the provider schema description.
+extension type const StorageBatchOperationsJobEventBasedHold._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBatchOperationsJobEventBasedHold.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBatchOperationsJobEventBasedHold.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBatchOperationsJobEventBasedHold.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const set = StorageBatchOperationsJobEventBasedHold._(
+    TfArgLiteral('SET'),
+  );
+  static const unset = StorageBatchOperationsJobEventBasedHold._(
+    TfArgLiteral('UNSET'),
+  );
+
+  static const List<StorageBatchOperationsJobEventBasedHold> values = [
+    set,
+    unset,
+  ];
+}
+
+/// `temporary_hold` — derived from the provider schema description.
+extension type const StorageBatchOperationsJobTemporaryHold._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBatchOperationsJobTemporaryHold.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBatchOperationsJobTemporaryHold.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBatchOperationsJobTemporaryHold.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const set = StorageBatchOperationsJobTemporaryHold._(
+    TfArgLiteral('SET'),
+  );
+  static const unset = StorageBatchOperationsJobTemporaryHold._(
+    TfArgLiteral('UNSET'),
+  );
+
+  static const List<StorageBatchOperationsJobTemporaryHold> values = [
+    set,
+    unset,
+  ];
 }
 
 /// Typed helper for the `rewrite_object` block of

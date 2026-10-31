@@ -976,10 +976,48 @@ final class ComputeBackendServiceCustomPolicy {
 final class ComputeBackendServicePolicy {
   const ComputeBackendServicePolicy({required this.name});
 
-  final LocalityLbPolicy name;
+  final ComputeBackendServicePolicyName name;
 
   @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
+/// `name` — derived from the provider schema description.
+extension type const ComputeBackendServicePolicyName._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeBackendServicePolicyName.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeBackendServicePolicyName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeBackendServicePolicyName.arg(TfArg<String> arg) : this._(arg);
+
+  static const roundRobin = ComputeBackendServicePolicyName._(
+    TfArgLiteral('ROUND_ROBIN'),
+  );
+  static const leastRequest = ComputeBackendServicePolicyName._(
+    TfArgLiteral('LEAST_REQUEST'),
+  );
+  static const ringHash = ComputeBackendServicePolicyName._(
+    TfArgLiteral('RING_HASH'),
+  );
+  static const random = ComputeBackendServicePolicyName._(
+    TfArgLiteral('RANDOM'),
+  );
+  static const originalDestination = ComputeBackendServicePolicyName._(
+    TfArgLiteral('ORIGINAL_DESTINATION'),
+  );
+  static const maglev = ComputeBackendServicePolicyName._(
+    TfArgLiteral('MAGLEV'),
+  );
+
+  static const List<ComputeBackendServicePolicyName> values = [
+    roundRobin,
+    leastRequest,
+    ringHash,
+    random,
+    originalDestination,
+    maglev,
+  ];
 }
 
 /// Typed helper for the `log_config` block of

@@ -7,24 +7,24 @@ final class _EnumListStack extends Stack {
     add(
       GoogleResourceManagerCapabilityConfig(
         'literal',
-        capabilityConfigId: .literal('cc'),
-        parent: .literal('folders/1'),
-        types: .literal([.appManagement, .agentManagement]),
+        capabilityConfigId: const .literal('cc'),
+        parent: const .literal('folders/1'),
+        types: const .literal([.appManagement, .agentManagement]),
       ),
     );
     add(
       GoogleResourceManagerCapabilityConfig(
         'variable',
-        capabilityConfigId: .literal('cc'),
-        parent: .literal('folders/1'),
+        capabilityConfigId: const .literal('cc'),
+        parent: const .literal('folders/1'),
         types: .variable('types'),
       ),
     );
     add(
       GoogleResourceManagerCapabilityConfig(
         'expression',
-        capabilityConfigId: .literal('cc'),
-        parent: .literal('folders/1'),
+        capabilityConfigId: const .literal('cc'),
+        parent: const .literal('folders/1'),
         types: .expression(r'${tolist(var.types)}'),
       ),
     );

@@ -1,0 +1,14 @@
+{
+  "name": "iap",
+  "version": "v1",
+  "revision": "20261012",
+  "sourceUrl": "https://iap.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "CsmSettings": {
+      "properties": {}
+    },
+    "TunnelDestGroup": {
+      "properties": {}
+    }
+  }
+}

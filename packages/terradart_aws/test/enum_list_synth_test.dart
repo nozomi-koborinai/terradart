@@ -8,21 +8,21 @@ final class _EnumListStack extends Stack {
     add(
       AwsCloudformationStack(
         'literal',
-        name: .literal('app'),
-        capabilities: .literal([.capabilityIam, .capabilityNamedIam]),
+        name: const .literal('app'),
+        capabilities: const .literal([.capabilityIam, .capabilityNamedIam]),
       ),
     );
     add(
       AwsCloudformationStack(
         'variable',
-        name: .literal('app'),
+        name: const .literal('app'),
         capabilities: .variable('capabilities'),
       ),
     );
     add(
       AwsCloudformationStack(
         'expression',
-        name: .literal('app'),
+        name: const .literal('app'),
         capabilities: .expression(r'${tolist(var.capabilities)}'),
       ),
     );

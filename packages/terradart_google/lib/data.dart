@@ -799,7 +799,10 @@ export 'src/data/google_sql_database_instance.dart'
 export 'src/data/google_sql_database_instance_latest_recovery_time.dart'
     show DataGoogleSqlDatabaseInstanceLatestRecoveryTime;
 export 'src/data/google_sql_database_instances.dart'
-    show DataGoogleSqlDatabaseInstances, DataSqlDatabaseInstancesState;
+    show
+        DataGoogleSqlDatabaseInstances,
+        DataSqlDatabaseInstancesDatabaseVersion,
+        DataSqlDatabaseInstancesState;
 export 'src/data/google_sql_databases.dart' show DataGoogleSqlDatabases;
 export 'src/data/google_sql_tiers.dart' show DataGoogleSqlTiers;
 export 'src/data/google_storage_bucket.dart' show DataGoogleStorageBucket;

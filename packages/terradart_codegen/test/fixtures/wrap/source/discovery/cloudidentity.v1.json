@@ -1,0 +1,109 @@
+{
+  "name": "cloudidentity",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://cloudidentity.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "DynamicGroupMetadata": {
+      "properties": {
+        "status": {
+          "$ref": "DynamicGroupStatus"
+        },
+        "queries": {
+          "items": {
+            "$ref": "DynamicGroupQuery"
+          }
+        }
+      }
+    },
+    "DynamicGroupQuery": {
+      "properties": {
+        "resourceType": {
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "USER"
+          ]
+        }
+      }
+    },
+    "DynamicGroupStatus": {
+      "properties": {
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "UP_TO_DATE",
+            "UPDATING_MEMBERSHIPS",
+            "INVALID_QUERY"
+          ]
+        }
+      }
+    },
+    "Group": {
+      "properties": {
+        "dynamicGroupMetadata": {
+          "$ref": "DynamicGroupMetadata"
+        }
+      }
+    },
+    "Membership": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "SERVICE_ACCOUNT",
+            "GROUP",
+            "SHARED_DRIVE",
+            "CBCM_BROWSER",
+            "CHROME_OS_DEVICE",
+            "PERSONAL_AGENT",
+            "COWORKER_AGENT",
+            "OTHER"
+          ]
+        },
+        "roles": {
+          "items": {
+            "$ref": "MembershipRole"
+          }
+        },
+        "deliverySetting": {
+          "enum": [
+            "DELIVERY_SETTING_UNSPECIFIED",
+            "ALL_MAIL",
+            "DIGEST",
+            "DAILY",
+            "NONE",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "MembershipRole": {
+      "properties": {
+        "restrictionEvaluations": {
+          "$ref": "RestrictionEvaluations"
+        }
+      }
+    },
+    "MembershipRoleRestrictionEvaluation": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "COMPLIANT",
+            "FORWARD_COMPLIANT",
+            "NON_COMPLIANT",
+            "EVALUATING"
+          ]
+        }
+      }
+    },
+    "RestrictionEvaluations": {
+      "properties": {
+        "memberRestrictionEvaluation": {
+          "$ref": "MembershipRoleRestrictionEvaluation"
+        }
+      }
+    }
+  }
+}

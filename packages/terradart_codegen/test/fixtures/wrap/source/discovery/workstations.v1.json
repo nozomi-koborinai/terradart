@@ -1,0 +1,74 @@
+{
+  "name": "workstations",
+  "version": "v1",
+  "revision": "20261014",
+  "sourceUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GceHyperdiskBalancedHighAvailability": {
+      "properties": {
+        "reclaimPolicy": {
+          "enum": [
+            "RECLAIM_POLICY_UNSPECIFIED",
+            "DELETE",
+            "RETAIN"
+          ]
+        }
+      }
+    },
+    "GceRegionalPersistentDisk": {
+      "properties": {
+        "reclaimPolicy": {
+          "enum": [
+            "RECLAIM_POLICY_UNSPECIFIED",
+            "DELETE",
+            "RETAIN"
+          ]
+        }
+      }
+    },
+    "PersistentDirectory": {
+      "properties": {
+        "gcePd": {
+          "$ref": "GceRegionalPersistentDisk"
+        },
+        "gceHd": {
+          "$ref": "GceHyperdiskBalancedHighAvailability"
+        }
+      }
+    },
+    "Workstation": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_STARTING",
+            "STATE_RUNNING",
+            "STATE_STOPPING",
+            "STATE_STOPPED",
+            "STATE_SUSPENDING",
+            "STATE_SUSPENDED"
+          ]
+        }
+      }
+    },
+    "WorkstationCluster": {
+      "properties": {}
+    },
+    "WorkstationConfig": {
+      "properties": {
+        "idleAction": {
+          "enum": [
+            "IDLE_ACTION_UNSPECIFIED",
+            "STOP",
+            "SUSPEND"
+          ]
+        },
+        "persistentDirectories": {
+          "items": {
+            "$ref": "PersistentDirectory"
+          }
+        }
+      }
+    }
+  }
+}

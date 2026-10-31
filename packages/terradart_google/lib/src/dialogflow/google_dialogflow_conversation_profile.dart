@@ -388,10 +388,46 @@ extension type const DialogflowConversationProfileSectionTypes._(
 final class DialogflowConversationProfileSuggestionFeature {
   const DialogflowConversationProfileSuggestionFeature({this.type});
 
-  final TfArg<String>? type;
+  final DialogflowConversationProfileType? type;
 
   @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DialogflowConversationProfileType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowConversationProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileType.arg(TfArg<String> arg) : this._(arg);
+
+  static const articleSuggestion = DialogflowConversationProfileType._(
+    TfArgLiteral('ARTICLE_SUGGESTION'),
+  );
+  static const faq = DialogflowConversationProfileType._(TfArgLiteral('FAQ'));
+  static const smartReply = DialogflowConversationProfileType._(
+    TfArgLiteral('SMART_REPLY'),
+  );
+  static const conversationSummarization = DialogflowConversationProfileType._(
+    TfArgLiteral('CONVERSATION_SUMMARIZATION'),
+  );
+  static const knowledgeSearch = DialogflowConversationProfileType._(
+    TfArgLiteral('KNOWLEDGE_SEARCH'),
+  );
+  static const knowledgeAssist = DialogflowConversationProfileType._(
+    TfArgLiteral('KNOWLEDGE_ASSIST'),
+  );
+
+  static const List<DialogflowConversationProfileType> values = [
+    articleSuggestion,
+    faq,
+    smartReply,
+    conversationSummarization,
+    knowledgeSearch,
+    knowledgeAssist,
+  ];
 }
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.suggestion_trigger_settings` block of

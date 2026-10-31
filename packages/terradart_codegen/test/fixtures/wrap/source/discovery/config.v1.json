@@ -1,0 +1,67 @@
+{
+  "name": "config",
+  "version": "v1",
+  "revision": "20261016",
+  "sourceUrl": "https://config.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Deployment": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "FAILED",
+            "SUSPENDED",
+            "DELETED"
+          ]
+        },
+        "providerConfig": {
+          "$ref": "ProviderConfig"
+        },
+        "errorCode": {
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "REVISION_FAILED",
+            "CLOUD_BUILD_PERMISSION_DENIED",
+            "DELETE_BUILD_API_FAILED",
+            "DELETE_BUILD_RUN_FAILED",
+            "BUCKET_CREATION_PERMISSION_DENIED",
+            "BUCKET_CREATION_FAILED",
+            "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
+          ]
+        },
+        "lockState": {
+          "enum": [
+            "LOCK_STATE_UNSPECIFIED",
+            "LOCKED",
+            "UNLOCKED",
+            "LOCKING",
+            "UNLOCKING",
+            "LOCK_FAILED",
+            "UNLOCK_FAILED"
+          ]
+        },
+        "quotaValidation": {
+          "enum": [
+            "QUOTA_VALIDATION_UNSPECIFIED",
+            "ENABLED",
+            "ENFORCED"
+          ]
+        }
+      }
+    },
+    "ProviderConfig": {
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "PROVIDER_SOURCE_UNSPECIFIED",
+            "SERVICE_MAINTAINED"
+          ]
+        }
+      }
+    }
+  }
+}

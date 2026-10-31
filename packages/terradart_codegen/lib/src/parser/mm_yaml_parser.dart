@@ -67,11 +67,23 @@ class MmResourceOverrides {
   /// (`Router`, `selfLink`).
   final Map<String, MmResourceRef> resourceRefs;
 
+  /// The REST schema the resource is, in the API's Discovery document:
+  /// `api_resource_type_kind` when upstream sets it, else [name].
+  final String? apiResource;
+
+  /// The REST field path (Discovery property names, `flatten_object` levels
+  /// kept) of every property, by dotted Terraform path: `purpose` of
+  /// `google_compute_address` is `[purpose]`, a `flatten_object` child is
+  /// `[parentApiName, childApiName]` at its lifted Terraform path.
+  final Map<String, List<String>> restPathsByPath;
+
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
     this.product,
     this.name,
+    this.apiResource,
+    this.restPathsByPath = const {},
     this.exactlyOneOfGroups = const [],
     this.exactlyOneOfPaths = const [],
     this.atMostOneOfPaths = const [],
@@ -99,10 +111,12 @@ class MmYamlParser {
     final paths = _Relations();
     final enums = <String, List<String>>{};
     final beta = <String>{};
+    final rest = <String, List<String>>{};
     for (final list in [doc['parameters'], doc['properties']]) {
       if (list is YamlList) {
         _terraformPaths(list, const [], paths.known, beta);
         _enumPaths(list, const [], enums);
+        _restPaths(list, const [], const [], rest);
       }
     }
 
@@ -141,6 +155,9 @@ class MmYamlParser {
       description: doc['description'] as String?,
       product: doc['product'] as String?,
       name: doc['name'] as String?,
+      apiResource:
+          doc['api_resource_type_kind'] as String? ?? doc['name'] as String?,
+      restPathsByPath: rest,
       resourceRefs: refs,
       exactlyOneOfGroups: groups,
       exactlyOneOfPaths: combined.exactlyOne,
@@ -310,7 +327,8 @@ class MmYamlParser {
 
   /// Adds the `enum_values` of every property under [props] to [sink], by
   /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
-  /// levels dropped, as [_terraformPaths]). `api_name` is the REST field:
+  /// levels dropped, as [_terraformPaths]; a `Map`'s `value_type` fields sit
+  /// in the block it becomes). `api_name` is the REST field:
   /// `backends` with `name: backend` is the Terraform block `backend`.
   void _enumPaths(
     YamlList props,
@@ -326,11 +344,41 @@ class MmYamlParser {
         sink[path.join('.')] = values;
       }
       final item = raw['item_type'];
+      final value = raw['value_type'];
       for (final nested in [
         raw['properties'],
         if (item is YamlMap) item['properties'],
+        if (value is YamlMap) value['properties'],
       ]) {
         if (nested is YamlList) _enumPaths(nested, path, sink);
+      }
+    }
+  }
+
+  /// Adds the REST field path of every property under [props] to [sink],
+  /// keyed by its Terraform path (as [_enumPaths]); [restPrefix] keeps the
+  /// `flatten_object` levels Terraform drops.
+  void _restPaths(
+    YamlList props,
+    List<String> prefix,
+    List<String> restPrefix,
+    Map<String, List<String>> sink,
+  ) {
+    for (final raw in props) {
+      if (raw is! YamlMap || raw['name'] is! String) continue;
+      final name = raw['name'] as String;
+      final flat = raw['flatten_object'] == true;
+      final path = flat ? prefix : [...prefix, _toSnakeCase(name)];
+      final restPath = [...restPrefix, raw['api_name'] as String? ?? name];
+      if (!flat) sink[path.join('.')] = restPath;
+      final item = raw['item_type'];
+      final value = raw['value_type'];
+      for (final nested in [
+        raw['properties'],
+        if (item is YamlMap) item['properties'],
+        if (value is YamlMap) value['properties'],
+      ]) {
+        if (nested is YamlList) _restPaths(nested, path, restPath, sink);
       }
     }
   }

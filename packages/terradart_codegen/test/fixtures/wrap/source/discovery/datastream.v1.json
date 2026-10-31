@@ -1,0 +1,196 @@
+{
+  "name": "datastream",
+  "version": "v1",
+  "revision": "20261014",
+  "sourceUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BigQueryDestinationConfig": {
+      "properties": {
+        "blmtConfig": {
+          "$ref": "BlmtConfig"
+        }
+      }
+    },
+    "BigQueryPartitioning": {
+      "properties": {
+        "ingestionTimePartition": {
+          "$ref": "IngestionTimePartition"
+        },
+        "timeUnitPartition": {
+          "$ref": "TimeUnitPartition"
+        }
+      }
+    },
+    "BlmtConfig": {
+      "properties": {
+        "fileFormat": {
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "PARQUET"
+          ]
+        },
+        "tableFormat": {
+          "enum": [
+            "TABLE_FORMAT_UNSPECIFIED",
+            "ICEBERG"
+          ]
+        }
+      }
+    },
+    "ConnectionProfile": {
+      "properties": {}
+    },
+    "CustomizationRule": {
+      "properties": {
+        "bigqueryPartitioning": {
+          "$ref": "BigQueryPartitioning"
+        }
+      }
+    },
+    "DestinationConfig": {
+      "properties": {
+        "bigqueryDestinationConfig": {
+          "$ref": "BigQueryDestinationConfig"
+        },
+        "gcsDestinationConfig": {
+          "$ref": "GcsDestinationConfig"
+        }
+      }
+    },
+    "GcsDestinationConfig": {
+      "properties": {
+        "jsonFileFormat": {
+          "$ref": "JsonFileFormat"
+        }
+      }
+    },
+    "IngestionTimePartition": {
+      "properties": {
+        "partitioningTimeGranularity": {
+          "enum": [
+            "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+            "PARTITIONING_TIME_GRANULARITY_HOUR",
+            "PARTITIONING_TIME_GRANULARITY_DAY",
+            "PARTITIONING_TIME_GRANULARITY_MONTH",
+            "PARTITIONING_TIME_GRANULARITY_YEAR"
+          ]
+        }
+      }
+    },
+    "JsonFileFormat": {
+      "properties": {
+        "compression": {
+          "enum": [
+            "JSON_COMPRESSION_UNSPECIFIED",
+            "NO_COMPRESSION",
+            "GZIP"
+          ]
+        },
+        "schemaFileFormat": {
+          "enum": [
+            "SCHEMA_FILE_FORMAT_UNSPECIFIED",
+            "NO_SCHEMA_FILE",
+            "AVRO_SCHEMA_FILE"
+          ]
+        }
+      }
+    },
+    "MongodbSourceConfig": {
+      "properties": {
+        "jsonMode": {
+          "enum": [
+            "MONGODB_JSON_MODE_UNSPECIFIED",
+            "STRICT",
+            "CANONICAL"
+          ]
+        }
+      }
+    },
+    "PrivateConnection": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "CREATED",
+            "FAILED",
+            "DELETING",
+            "FAILED_TO_DELETE"
+          ]
+        }
+      }
+    },
+    "RuleSet": {
+      "properties": {
+        "customizationRules": {
+          "items": {
+            "$ref": "CustomizationRule"
+          }
+        }
+      }
+    },
+    "SourceConfig": {
+      "properties": {
+        "spannerSourceConfig": {
+          "$ref": "SpannerSourceConfig"
+        },
+        "mongodbSourceConfig": {
+          "$ref": "MongodbSourceConfig"
+        }
+      }
+    },
+    "SpannerSourceConfig": {
+      "properties": {
+        "spannerRpcPriority": {
+          "enum": [
+            "SPANNER_RPC_PRIORITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        }
+      }
+    },
+    "Stream": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_STARTED",
+            "RUNNING",
+            "PAUSED",
+            "MAINTENANCE",
+            "FAILED",
+            "FAILED_PERMANENTLY",
+            "STARTING",
+            "DRAINING"
+          ]
+        },
+        "destinationConfig": {
+          "$ref": "DestinationConfig"
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig"
+        },
+        "ruleSets": {
+          "items": {
+            "$ref": "RuleSet"
+          }
+        }
+      }
+    },
+    "TimeUnitPartition": {
+      "properties": {
+        "partitioningTimeGranularity": {
+          "enum": [
+            "PARTITIONING_TIME_GRANULARITY_UNSPECIFIED",
+            "PARTITIONING_TIME_GRANULARITY_HOUR",
+            "PARTITIONING_TIME_GRANULARITY_DAY",
+            "PARTITIONING_TIME_GRANULARITY_MONTH",
+            "PARTITIONING_TIME_GRANULARITY_YEAR"
+          ]
+        }
+      }
+    }
+  }
+}

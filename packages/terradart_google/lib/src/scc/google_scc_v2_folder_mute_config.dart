@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_scc_v2_folder_mute_config`.
 const Set<String> _googleSccV2FolderMuteConfigSensitive = <String>{};
 
+/// Scc V2 Folder Mute Config enum for `type`.
+extension type const SccV2FolderMuteConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  SccV2FolderMuteConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  SccV2FolderMuteConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccV2FolderMuteConfigType.arg(TfArg<String> arg) : this._(arg);
+
+  static const static = SccV2FolderMuteConfigType._(TfArgLiteral('STATIC'));
+  static const dynamic = SccV2FolderMuteConfigType._(TfArgLiteral('DYNAMIC'));
+
+  static const List<SccV2FolderMuteConfigType> values = [static, dynamic];
+}
+
 /// Factory wrapper for `google_scc_v2_folder_mute_config`.
 ///
 /// Mute Findings is a volume management feature in Security Command Center that
@@ -29,7 +44,7 @@ final class GoogleSccV2FolderMuteConfig extends Resource {
     required TfArg<String> folder,
     TfArg<String>? location,
     required TfArg<String> muteConfigId,
-    required TfArg<String> type,
+    required SccV2FolderMuteConfigType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

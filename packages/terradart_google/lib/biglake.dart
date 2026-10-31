@@ -8,7 +8,7 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/biglake/google_biglake_catalog.dart' show GoogleBiglakeCatalog;
 export 'src/biglake/google_biglake_database.dart'
-    show BiglakeDatabaseHiveOptions, GoogleBiglakeDatabase;
+    show BiglakeDatabaseHiveOptions, BiglakeDatabaseType, GoogleBiglakeDatabase;
 export 'src/biglake/google_biglake_hive_catalog.dart'
     show GoogleBiglakeHiveCatalog;
 export 'src/biglake/google_biglake_hive_catalog_iam_binding.dart'

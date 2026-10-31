@@ -171,7 +171,7 @@ final class GkeonpremBareMetalClusterNodePoolConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? operatingSystem;
+  final GkeonpremBareMetalClusterOperatingSystem? operatingSystem;
 
   final List<GkeonpremBareMetalClusterNodeConfigs>? nodeConfigs;
 
@@ -185,6 +185,23 @@ final class GkeonpremBareMetalClusterNodePoolConfig {
       'node_configs': [for (final e in nodeConfigs!) e.encode()],
     if (taints != null) 'taints': [for (final e in taints!) e.encode()],
   };
+}
+
+/// `operating_system` — derived from the provider schema description.
+extension type const GkeonpremBareMetalClusterOperatingSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalClusterOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterOperatingSystem.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const linux = GkeonpremBareMetalClusterOperatingSystem._(
+    TfArgLiteral('LINUX'),
+  );
+
+  static const List<GkeonpremBareMetalClusterOperatingSystem> values = [linux];
 }
 
 /// Typed helper for the `control_plane.control_plane_node_pool_config.node_pool_config.node_configs` block of
@@ -469,7 +486,7 @@ final class GkeonpremBareMetalClusterLoadBalancerNodePoolConfigNodePoolConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? operatingSystem;
+  final GkeonpremBareMetalClusterOperatingSystem? operatingSystem;
 
   final GkeonpremBareMetalClusterKubeletConfig? kubeletConfig;
 

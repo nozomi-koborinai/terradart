@@ -1,0 +1,221 @@
+{
+  "name": "metastore",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "BackendMetastore": {
+      "properties": {
+        "metastoreType": {
+          "enum": [
+            "METASTORE_TYPE_UNSPECIFIED",
+            "BIGQUERY",
+            "DATAPROC_METASTORE"
+          ]
+        }
+      }
+    },
+    "Federation": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "ERROR"
+          ]
+        },
+        "backendMetastores": {
+          "additionalProperties": {
+            "$ref": "BackendMetastore"
+          }
+        }
+      }
+    },
+    "HiveMetastoreConfig": {
+      "properties": {
+        "endpointProtocol": {
+          "enum": [
+            "ENDPOINT_PROTOCOL_UNSPECIFIED",
+            "THRIFT",
+            "GRPC"
+          ]
+        }
+      }
+    },
+    "LatestBackup": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "MaintenanceWindow": {
+      "properties": {
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "MetadataExport": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ]
+        },
+        "databaseDumpType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MYSQL",
+            "AVRO"
+          ]
+        }
+      }
+    },
+    "MetadataManagementActivity": {
+      "properties": {
+        "restores": {
+          "items": {
+            "$ref": "Restore"
+          }
+        },
+        "metadataExports": {
+          "items": {
+            "$ref": "MetadataExport"
+          }
+        }
+      }
+    },
+    "Restore": {
+      "properties": {
+        "type": {
+          "enum": [
+            "RESTORE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA_ONLY"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ]
+        }
+      }
+    },
+    "ScalingConfig": {
+      "properties": {
+        "instanceSize": {
+          "enum": [
+            "INSTANCE_SIZE_UNSPECIFIED",
+            "EXTRA_SMALL",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "EXTRA_LARGE"
+          ]
+        }
+      }
+    },
+    "ScheduledBackup": {
+      "properties": {
+        "latestBackup": {
+          "$ref": "LatestBackup"
+        }
+      }
+    },
+    "Service": {
+      "properties": {
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig"
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "metadataManagementActivity": {
+          "$ref": "MetadataManagementActivity"
+        },
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig"
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "DEVELOPER",
+            "ENTERPRISE"
+          ]
+        },
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "MYSQL",
+            "SPANNER"
+          ]
+        },
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "CANARY",
+            "STABLE"
+          ]
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "SUSPENDING",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "ERROR",
+            "AUTOSCALING",
+            "MIGRATING",
+            "PROXY"
+          ]
+        }
+      }
+    },
+    "TelemetryConfig": {
+      "properties": {
+        "logFormat": {
+          "enum": [
+            "LOG_FORMAT_UNSPECIFIED",
+            "LEGACY",
+            "JSON"
+          ]
+        }
+      }
+    }
+  }
+}

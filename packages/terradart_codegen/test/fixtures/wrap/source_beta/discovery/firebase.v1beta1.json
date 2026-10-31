@@ -1,0 +1,52 @@
+{
+  "name": "firebase",
+  "version": "v1beta1",
+  "revision": "20261023",
+  "sourceUrl": "https://firebase.googleapis.com/$discovery/rest?version=v1beta1",
+  "schemas": {
+    "AndroidApp": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "FirebaseProject": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "IosApp": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    },
+    "WebApp": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        }
+      }
+    }
+  }
+}

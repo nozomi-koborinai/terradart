@@ -1,0 +1,37 @@
+{
+  "name": "cloudkms",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://cloudkms.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "KeyAccessJustificationsPolicy": {
+      "properties": {
+        "allowedAccessReasons": {
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "CUSTOMER_INITIATED_SUPPORT",
+              "GOOGLE_INITIATED_SERVICE",
+              "THIRD_PARTY_DATA_REQUEST",
+              "GOOGLE_INITIATED_REVIEW",
+              "CUSTOMER_INITIATED_ACCESS",
+              "GOOGLE_INITIATED_SYSTEM_OPERATION",
+              "REASON_NOT_EXPECTED",
+              "MODIFIED_CUSTOMER_INITIATED_ACCESS",
+              "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION",
+              "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+              "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING"
+            ]
+          }
+        }
+      }
+    },
+    "KeyAccessJustificationsPolicyConfig": {
+      "properties": {
+        "defaultKeyAccessJustificationPolicy": {
+          "$ref": "KeyAccessJustificationsPolicy"
+        }
+      }
+    }
+  }
+}

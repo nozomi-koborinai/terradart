@@ -362,7 +362,7 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceTemplateInterface? interface;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -443,6 +443,21 @@ extension type const ComputeInstanceTemplateArchitecture._(TfArg<String> _)
     arm64,
     x8664,
   ];
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const nvme = ComputeInstanceTemplateInterface._(TfArgLiteral('NVME'));
+  static const scsi = ComputeInstanceTemplateInterface._(TfArgLiteral('SCSI'));
+
+  static const List<ComputeInstanceTemplateInterface> values = [nvme, scsi];
 }
 
 /// `type` — derived from the provider schema description.
@@ -584,7 +599,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<bool>? enableVpcScopedDns;
 
-  final TfArg<String>? igmpQuery;
+  final ComputeInstanceTemplateIgmpQuery? igmpQuery;
 
   final TfArg<num>? internalIpv6PrefixLength;
 
@@ -602,7 +617,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<String>? serviceClassId;
 
-  final TfArg<String>? stackType;
+  final ComputeInstanceTemplateStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -639,6 +654,54 @@ final class ComputeInstanceTemplateNetworkInterface {
     if (ipv6AccessConfig != null)
       'ipv6_access_config': [for (final e in ipv6AccessConfig!) e.encode()],
   };
+}
+
+/// `igmp_query` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateIgmpQuery._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateIgmpQuery.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateIgmpQuery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateIgmpQuery.arg(TfArg<String> arg) : this._(arg);
+
+  static const igmpQueryDisabled = ComputeInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_DISABLED'),
+  );
+  static const igmpQueryV2 = ComputeInstanceTemplateIgmpQuery._(
+    TfArgLiteral('IGMP_QUERY_V2'),
+  );
+
+  static const List<ComputeInstanceTemplateIgmpQuery> values = [
+    igmpQueryDisabled,
+    igmpQueryV2,
+  ];
+}
+
+/// `stack_type` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateStackType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4Ipv6 = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = ComputeInstanceTemplateStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeInstanceTemplateStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -897,7 +960,7 @@ final class ComputeInstanceTemplateNodeAffinities {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final ComputeInstanceTemplateOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -907,6 +970,23 @@ final class ComputeInstanceTemplateNodeAffinities {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const inCase = ComputeInstanceTemplateOperator._(TfArgLiteral('IN'));
+  static const notIn = ComputeInstanceTemplateOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<ComputeInstanceTemplateOperator> values = [inCase, notIn];
 }
 
 /// Typed helper for the `scheduling.on_instance_stop_action` block of

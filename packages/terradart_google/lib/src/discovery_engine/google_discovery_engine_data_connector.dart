@@ -9,6 +9,38 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_data_connector`.
 const Set<String> _googleDiscoveryEngineDataConnectorSensitive = <String>{};
 
+/// Discovery Engine Data Connector enum for `connector_modes`.
+extension type const DiscoveryEngineDataConnectorModes._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorModes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorModes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorModes.arg(TfArg<String> arg) : this._(arg);
+
+  static const dataIngestion = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('DATA_INGESTION'),
+  );
+  static const actions = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('ACTIONS'),
+  );
+  static const federated = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('FEDERATED'),
+  );
+  static const eua = DiscoveryEngineDataConnectorModes._(TfArgLiteral('EUA'));
+  static const federatedAndEua = DiscoveryEngineDataConnectorModes._(
+    TfArgLiteral('FEDERATED_AND_EUA'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorModes> values = [
+    dataIngestion,
+    actions,
+    federated,
+    eua,
+    federatedAndEua,
+  ];
+}
+
 /// Discovery Engine Data Connector enum for `location`.
 extension type const DiscoveryEngineDataConnectorLocation._(TfArg<String> _)
     implements TfArg<String> {
@@ -29,6 +61,29 @@ extension type const DiscoveryEngineDataConnectorLocation._(TfArg<String> _)
     global,
     us,
     eu,
+  ];
+}
+
+/// Discovery Engine Data Connector Sync enum for `sync_mode`.
+extension type const DiscoveryEngineDataConnectorSyncMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorSyncMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorSyncMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorSyncMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const periodic = DiscoveryEngineDataConnectorSyncMode._(
+    TfArgLiteral('PERIODIC'),
+  );
+  static const streaming = DiscoveryEngineDataConnectorSyncMode._(
+    TfArgLiteral('STREAMING'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorSyncMode> values = [
+    periodic,
+    streaming,
   ];
 }
 
@@ -402,7 +457,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<bool>? autoRunDisabled,
     required TfArg<String> collectionDisplayName,
     required TfArg<String> collectionId,
-    TfArg<List<String>>? connectorModes,
+    EnumList<DiscoveryEngineDataConnectorModes>? connectorModes,
     required TfArg<String> dataSource,
     TfArg<num>? dataSourceVersion,
     TfArg<String>? deletionPolicy,
@@ -414,7 +469,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<String>? project,
     required TfArg<String> refreshInterval,
     TfArg<bool>? staticIpEnabled,
-    TfArg<String>? syncMode,
+    DiscoveryEngineDataConnectorSyncMode? syncMode,
     DiscoveryEngineDataConnectorActionConfig? actionConfig,
     DiscoveryEngineDataConnectorBapConfig? bapConfig,
     List<DiscoveryEngineDataConnectorDestinationConfigs>? destinationConfigs,

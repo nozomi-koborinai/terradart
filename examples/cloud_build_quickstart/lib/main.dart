@@ -156,7 +156,7 @@ final class CloudBuildStack extends Stack {
         'lb_ar',
         location: .literal(region),
         repositoryId: .literal('myapp-images'),
-        format: .literal('DOCKER'),
+        format: .docker,
         mode: .standardRepository,
         description: .literal('Container images built by Cloud Build'),
         dependsOn: apiDeps,

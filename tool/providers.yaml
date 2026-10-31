@@ -61,6 +61,15 @@
 #                    enum typing stays the merged IR's (google GA, whose
 #                    MM YAML sync_mm_yaml.dart refreshes on every bump).
 #                    Exclusive with mmHints and providerEnums.
+#   discovery:       (optional, default false, needs mmHints or mmGroups)
+#                    wrap --discovery-enums: an input the Magic Modules YAML
+#                    and its description give no values takes the enum of
+#                    the Google API Discovery copy in <schemaDir>/discovery.
+#                    tool/fetch_discovery_enums.dart writes it, at the API
+#                    each type's MM product.yaml names plus the hand roots
+#                    of tool/discovery_sources.yaml. tool/wrap_lanes.dart
+#                    re-fetches on regen when its roots.yaml is stale and
+#                    fails the wrap gate on it.
 #   mmSync:          (optional) sync <schemaDir>/mm from the fixture itself
 #                    instead of a hand-kept manifest: tool/sync_lane_mm_yaml.dart
 #                    resolves every schema.json resource through the header of
@@ -126,6 +135,7 @@ providers:
     schemaMode: full
     mm: true
     mmGroups: true
+    discovery: true
     outputPackage: packages/terradart_google
     typePrefix: google_
     siteTitle: Google Cloud
@@ -151,6 +161,7 @@ providers:
     schemaMode: filtered
     mm: true
     mmHints: true
+    discovery: true
     mmSync:
       providerRepo: hashicorp/terraform-provider-google-beta
       servicesDir: google-beta/services

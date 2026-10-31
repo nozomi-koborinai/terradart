@@ -560,21 +560,11 @@ extension type const ColabScheduleReservationAffinityType._(TfArg<String> _)
   static const specificReservation = ColabScheduleReservationAffinityType._(
     TfArgLiteral('SPECIFIC_RESERVATION'),
   );
-  static const specificThenAnyReservation =
-      ColabScheduleReservationAffinityType._(
-        TfArgLiteral('SPECIFIC_THEN_ANY_RESERVATION'),
-      );
-  static const specificThenNoReservation =
-      ColabScheduleReservationAffinityType._(
-        TfArgLiteral('SPECIFIC_THEN_NO_RESERVATION'),
-      );
 
   static const List<ColabScheduleReservationAffinityType> values = [
     noReservation,
     anyReservation,
     specificReservation,
-    specificThenAnyReservation,
-    specificThenNoReservation,
   ];
 }
 

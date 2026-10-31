@@ -1,0 +1,295 @@
+{
+  "name": "osconfig",
+  "version": "v1",
+  "revision": "20261022",
+  "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AptSettings": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DIST",
+            "UPGRADE"
+          ]
+        }
+      }
+    },
+    "ExecStep": {
+      "properties": {
+        "windowsExecStepConfig": {
+          "$ref": "ExecStepConfig"
+        },
+        "linuxExecStepConfig": {
+          "$ref": "ExecStepConfig"
+        }
+      }
+    },
+    "ExecStepConfig": {
+      "properties": {
+        "interpreter": {
+          "enum": [
+            "INTERPRETER_UNSPECIFIED",
+            "NONE",
+            "SHELL",
+            "POWERSHELL"
+          ]
+        }
+      }
+    },
+    "MonthlySchedule": {
+      "properties": {
+        "weekDayOfMonth": {
+          "$ref": "WeekDayOfMonth"
+        }
+      }
+    },
+    "OSPolicy": {
+      "properties": {
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VALIDATION",
+            "ENFORCEMENT"
+          ]
+        }
+      }
+    },
+    "OSPolicyAssignment": {
+      "properties": {
+        "rolloutState": {
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ]
+        },
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
+        }
+      }
+    },
+    "OSPolicyResource": {
+      "properties": {
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
+        },
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
+        },
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource"
+        }
+      }
+    },
+    "OSPolicyResourceExecResource": {
+      "properties": {
+        "validate": {
+          "$ref": "OSPolicyResourceExecResourceExec"
+        },
+        "enforce": {
+          "$ref": "OSPolicyResourceExecResourceExec"
+        }
+      }
+    },
+    "OSPolicyResourceExecResourceExec": {
+      "properties": {
+        "interpreter": {
+          "enum": [
+            "INTERPRETER_UNSPECIFIED",
+            "NONE",
+            "SHELL",
+            "POWERSHELL"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceFileResource": {
+      "properties": {
+        "state": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "PRESENT",
+            "ABSENT",
+            "CONTENTS_MATCH"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceGroup": {
+      "properties": {
+        "resources": {
+          "items": {
+            "$ref": "OSPolicyResource"
+          }
+        }
+      }
+    },
+    "OSPolicyResourcePackageResource": {
+      "properties": {
+        "desiredState": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "REMOVED"
+          ]
+        }
+      }
+    },
+    "OSPolicyResourceRepositoryResource": {
+      "properties": {
+        "apt": {
+          "$ref": "OSPolicyResourceRepositoryResourceAptRepository"
+        }
+      }
+    },
+    "OSPolicyResourceRepositoryResourceAptRepository": {
+      "properties": {
+        "archiveType": {
+          "enum": [
+            "ARCHIVE_TYPE_UNSPECIFIED",
+            "DEB",
+            "DEB_SRC"
+          ]
+        }
+      }
+    },
+    "PatchConfig": {
+      "properties": {
+        "apt": {
+          "$ref": "AptSettings"
+        },
+        "preStep": {
+          "$ref": "ExecStep"
+        },
+        "windowsUpdate": {
+          "$ref": "WindowsUpdateSettings"
+        },
+        "postStep": {
+          "$ref": "ExecStep"
+        },
+        "rebootConfig": {
+          "enum": [
+            "REBOOT_CONFIG_UNSPECIFIED",
+            "DEFAULT",
+            "ALWAYS",
+            "NEVER"
+          ]
+        }
+      }
+    },
+    "PatchDeployment": {
+      "properties": {
+        "recurringSchedule": {
+          "$ref": "RecurringSchedule"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED"
+          ]
+        },
+        "patchConfig": {
+          "$ref": "PatchConfig"
+        },
+        "rollout": {
+          "$ref": "PatchRollout"
+        }
+      }
+    },
+    "PatchRollout": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "ZONE_BY_ZONE",
+            "CONCURRENT_ZONES"
+          ]
+        }
+      }
+    },
+    "RecurringSchedule": {
+      "properties": {
+        "frequency": {
+          "enum": [
+            "FREQUENCY_UNSPECIFIED",
+            "WEEKLY",
+            "MONTHLY",
+            "DAILY"
+          ]
+        },
+        "monthly": {
+          "$ref": "MonthlySchedule"
+        },
+        "weekly": {
+          "$ref": "WeeklySchedule"
+        }
+      }
+    },
+    "WeekDayOfMonth": {
+      "properties": {
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "WeeklySchedule": {
+      "properties": {
+        "dayOfWeek": {
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ]
+        }
+      }
+    },
+    "WindowsUpdateSettings": {
+      "properties": {
+        "classifications": {
+          "items": {
+            "enum": [
+              "CLASSIFICATION_UNSPECIFIED",
+              "CRITICAL",
+              "SECURITY",
+              "DEFINITION",
+              "DRIVER",
+              "FEATURE_PACK",
+              "SERVICE_PACK",
+              "TOOL",
+              "UPDATE_ROLLUP",
+              "UPDATE"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -53,7 +53,7 @@ final class ArtifactRegistryStack extends Stack {
         'docker',
         repositoryId: .literal(repositoryId),
         location: .literal(location),
-        format: .literal('DOCKER'),
+        format: .docker,
         description: .literal('TerraDart smoke Docker repository'),
         dependsOn: [apiAr],
       ),

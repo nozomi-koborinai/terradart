@@ -10,6 +10,7 @@ export 'src/alloydb/google_alloydb_cluster.dart'
     show
         AlloydbClusterAutomatedBackupPolicy,
         AlloydbClusterContinuousBackupConfig,
+        AlloydbClusterDatabaseVersion,
         AlloydbClusterDataplexConfig,
         AlloydbClusterDayOfWeek,
         AlloydbClusterDaysOfWeek,

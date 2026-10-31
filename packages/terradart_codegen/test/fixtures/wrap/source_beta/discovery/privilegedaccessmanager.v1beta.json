@@ -1,0 +1,152 @@
+{
+  "name": "privilegedaccessmanager",
+  "version": "v1beta",
+  "revision": "20261021",
+  "sourceUrl": "https://privilegedaccessmanager.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "Settings": {
+      "properties": {
+        "emailNotificationSettings": {
+          "$ref": "Settings_EmailNotificationSettings"
+        }
+      }
+    },
+    "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications": {
+      "properties": {
+        "grantEnded": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExternallyModified": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationScheduled": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivated": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "SettingsEmailNotificationSettingsCustomNotificationBehavior_ApproverNotifications": {
+      "properties": {
+        "pendingApproval": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications": {
+      "properties": {
+        "entitlementAssigned": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExternallyModified": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantRevoked": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationScheduled": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivated": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantDenied": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantEnded": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExpired": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        }
+      }
+    },
+    "SettingsEmailNotificationSettings_CustomNotificationBehavior": {
+      "properties": {
+        "approverNotifications": {
+          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_ApproverNotifications"
+        },
+        "requesterNotifications": {
+          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications"
+        },
+        "adminNotifications": {
+          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications"
+        }
+      }
+    },
+    "Settings_EmailNotificationSettings": {
+      "properties": {
+        "customNotificationBehavior": {
+          "$ref": "SettingsEmailNotificationSettings_CustomNotificationBehavior"
+        }
+      }
+    }
+  }
+}

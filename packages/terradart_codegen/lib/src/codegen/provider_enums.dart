@@ -8,6 +8,7 @@ import '../ir/nested_block.dart';
 import '../ir/provider_schema_ir.dart';
 import '../ir/resource_def.dart';
 import '../ir/type_def.dart';
+import '../parser/discovery_enums.dart';
 import '../parser/mm_yaml_parser.dart';
 import 'enum_value_parser.dart';
 import 'exactly_one_placement.dart';
@@ -120,7 +121,11 @@ final class ProviderEnums {
     this.caseInsensitive = false,
     this.availableValuesDialect = false,
     required this.hasGroupSource,
-  }) : _tables = tables;
+    DiscoveryEnums? discovery,
+    Map<String, MmResourceOverrides> mm = const {},
+  }) : _tables = tables,
+       _discovery = discovery,
+       _mm = mm;
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(
@@ -137,7 +142,9 @@ final class ProviderEnums {
     this.availableValuesDialect = true,
   }) : enabled = true,
        _tables = (resources: resources, dataSources: dataSources),
-       hasGroupSource = true;
+       hasGroupSource = true,
+       _discovery = null,
+       _mm = const {};
 
   /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
   /// source — each resource's `enum_values` by path, its `exactly_one_of`
@@ -257,6 +264,29 @@ final class ProviderEnums {
 
   final ByKind<KindHints> _tables;
 
+  /// `wrap --discovery-enums`: the lane's Google API Discovery copy, the
+  /// last source an input's value set comes from, and the Magic Modules
+  /// YAML whose REST paths reach it.
+  final DiscoveryEnums? _discovery;
+  final Map<String, MmResourceOverrides> _mm;
+
+  /// These hints with [discovery] as the last value-set source: an input
+  /// neither the hint table nor its description gives values takes the
+  /// enum its Discovery schema declares, without the `*_UNSPECIFIED`
+  /// sentinel ([discoveryInputValues]).
+  ProviderEnums withDiscovery(
+    DiscoveryEnums discovery,
+    Map<String, MmResourceOverrides> mm,
+  ) => ProviderEnums._(
+    enabled: enabled,
+    tables: _tables,
+    caseInsensitive: caseInsensitive,
+    availableValuesDialect: availableValuesDialect,
+    hasGroupSource: hasGroupSource,
+    discovery: discovery,
+    mm: mm,
+  );
+
   /// Whether hints or Magic Modules groups were loaded, even ones that
   /// declare no group. Without a source, a `sealedNames` key that matches
   /// no group cannot be judged stale. Copies keep the flag, so trimming a
@@ -272,6 +302,8 @@ final class ProviderEnums {
     caseInsensitive: caseInsensitive,
     availableValuesDialect: availableValuesDialect,
     hasGroupSource: hasGroupSource,
+    discovery: _discovery,
+    mm: _mm,
   );
 
   /// Each table's groups without the members its own kind's definitions in
@@ -443,7 +475,7 @@ final class ProviderEnums {
   /// The hints [override]'s derived nested types read.
   NestedHints nestedHints(String terraformType, WrapperOverride override) {
     final table = _tables.of(override.kind);
-    final derived = _resolver(table, terraformType);
+    final derived = _resolver(override.kind, terraformType);
     final own = override.enumValues;
     final EnumValuesResolver enumValues = own == null
         ? derived
@@ -470,14 +502,48 @@ final class ProviderEnums {
     );
   }
 
-  EnumValuesResolver _resolver(KindHints table, String terraformType) {
+  EnumValuesResolver _resolver(WrapperOverrideKind kind, String terraformType) {
     if (!enabled) return descriptionEnumValues;
     final typeHints =
-        table.enums[terraformType] ?? const <String, List<String>>{};
-    return (path, description) =>
-        typeHints[path.join('.')] ??
-        parseEnumValuesFromDescription(description) ??
-        (availableValuesDialect ? parseAvailableValues(description) : null);
+        _tables.of(kind).enums[terraformType] ?? const <String, List<String>>{};
+    final discovery = _discovery;
+    final dataSource = kind == WrapperOverrideKind.dataSource;
+    final passthrough =
+        (dataSource
+                ? (_mm['data_$terraformType'] ?? _mm[terraformType])
+                : _mm[terraformType]) !=
+            null ||
+        ((dataSource
+                    ? discovery?.dataSources
+                    : discovery?.resources)?[terraformType]
+                ?.passthrough ??
+            false);
+    return (path, description) {
+      if (typeHints[path.join('.')] case final values?) return values;
+      final described =
+          parseEnumValuesFromDescription(description) ??
+          (availableValuesDialect ? parseAvailableValues(description) : null);
+      final declared = discovery == null
+          ? null
+          : discoveryInputValues(
+              discovery,
+              _mm,
+              kind,
+              terraformType,
+              path.join('.'),
+            );
+      // A Magic Modules resource sends the value to the REST API as is, so
+      // a description the API's own enum contradicts is the stale one.
+      if (passthrough &&
+          described != null &&
+          declared != null &&
+          !declared.toSet().containsAll(
+            described.where((v) => !isDiscoverySentinel(v)),
+          )) {
+        return declared;
+      }
+      return described ?? declared;
+    };
   }
 
   /// [ir] with `enumValues` filled on every top-level string or
@@ -488,7 +554,7 @@ final class ProviderEnums {
     if (!enabled) return ir;
     Map<String, ResourceDef> enriched(WrapperOverrideKind kind) => {
       for (final e in ir.of(kind).entries)
-        e.key: _enrich(e.value, _resolver(_tables.of(kind), e.key)),
+        e.key: _enrich(e.value, _resolver(kind, e.key)),
     };
     return ProviderSchemaIR(
       providerName: ir.providerName,
@@ -516,7 +582,7 @@ final class ProviderEnums {
         final own = o.enumValues;
         if (own == null) continue;
         final def = defs[type];
-        final resolve = _resolver(_tables.of(kind), type);
+        final resolve = _resolver(kind, type);
         final top = <String, List<String>>{};
         for (final MapEntry(key: path, value: values) in own.entries) {
           final label = '${kind.label(type)} enumValues $path';
@@ -627,6 +693,34 @@ final class ProviderEnums {
     if (derived.isEmpty) return o;
     return o.withDartTypeOverrides({...derived, ...explicit});
   }
+}
+
+/// The values the Discovery schema of [type] declares for its input at
+/// [path], reached through the REST path its Magic Modules YAML records
+/// (a data source without its own reads its resource's), without the
+/// `*_UNSPECIFIED` sentinel no caller sets; null when none resolves or
+/// only the sentinel is left.
+List<String>? discoveryInputValues(
+  DiscoveryEnums discovery,
+  Map<String, MmResourceOverrides> mm,
+  WrapperOverrideKind kind,
+  String type,
+  String path,
+) {
+  final dataSource = kind == WrapperOverrideKind.dataSource;
+  final yaml = dataSource ? (mm['data_$type'] ?? mm[type]) : mm[type];
+  final found = discovery.lookup(
+    type,
+    path,
+    dataSource: dataSource,
+    restPath: yaml?.restPathsByPath[path],
+  );
+  if (found == null) return null;
+  final values = [
+    for (final v in found.values)
+      if (!isDiscoverySentinel(v)) v,
+  ];
+  return values.isEmpty ? null : values;
 }
 
 /// The enum every top-level input of [def] carrying `enumValues` takes when

@@ -149,7 +149,9 @@ final class ConstructorSlots {
         null => _helperMember(
           dartName: attr.dartName,
           tfName: attr.tfName,
-          elementType: _enumList(attr) ? 'List<${attr.dartType}>' : attr.dartType,
+          elementType: _enumList(attr)
+              ? 'List<${attr.dartType}>'
+              : attr.dartType,
           required: attr.required,
           repeated: attr.repeated && !_enumList(attr),
           keyed: false,

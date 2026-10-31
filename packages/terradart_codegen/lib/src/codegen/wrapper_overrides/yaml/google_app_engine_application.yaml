@@ -2,6 +2,7 @@ outputDir: app
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
+deriveEnums: true
 deriveOutputGetters: true
 
 curatedDoc: |-

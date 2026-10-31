@@ -1,0 +1,199 @@
+{
+  "name": "notebooks",
+  "version": "v2",
+  "revision": "20261020",
+  "sourceUrl": "https://notebooks.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "AcceleratorConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ACCELERATOR_TYPE_UNSPECIFIED",
+            "NVIDIA_TESLA_P100",
+            "NVIDIA_TESLA_V100",
+            "NVIDIA_TESLA_P4",
+            "NVIDIA_TESLA_T4",
+            "NVIDIA_TESLA_A100",
+            "NVIDIA_A100_80GB",
+            "NVIDIA_L4",
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
+            "NVIDIA_H200_141GB",
+            "NVIDIA_TESLA_T4_VWS",
+            "NVIDIA_TESLA_P100_VWS",
+            "NVIDIA_TESLA_P4_VWS",
+            "NVIDIA_B200",
+            "NVIDIA_RTX6000"
+          ]
+        }
+      }
+    },
+    "BootDisk": {
+      "properties": {
+        "diskType": {
+          "enum": [
+            "DISK_TYPE_UNSPECIFIED",
+            "PD_STANDARD",
+            "PD_SSD",
+            "PD_BALANCED",
+            "PD_EXTREME",
+            "HYPERDISK_BALANCED",
+            "HYPERDISK_EXTREME",
+            "HYPERDISK_THROUGHPUT",
+            "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
+            "HYPERDISK_ML"
+          ]
+        },
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
+        }
+      }
+    },
+    "ConfidentialInstanceConfig": {
+      "properties": {
+        "confidentialInstanceType": {
+          "enum": [
+            "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+            "SEV"
+          ]
+        }
+      }
+    },
+    "DataDisk": {
+      "properties": {
+        "diskType": {
+          "enum": [
+            "DISK_TYPE_UNSPECIFIED",
+            "PD_STANDARD",
+            "PD_SSD",
+            "PD_BALANCED",
+            "PD_EXTREME",
+            "HYPERDISK_BALANCED",
+            "HYPERDISK_EXTREME",
+            "HYPERDISK_THROUGHPUT",
+            "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
+            "HYPERDISK_ML"
+          ]
+        },
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
+        }
+      }
+    },
+    "GceSetup": {
+      "properties": {
+        "bootDisk": {
+          "$ref": "BootDisk"
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "DataDisk"
+          }
+        },
+        "acceleratorConfigs": {
+          "items": {
+            "$ref": "AcceleratorConfig"
+          }
+        },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
+        },
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTING",
+            "PROVISIONING",
+            "ACTIVE",
+            "STOPPING",
+            "STOPPED",
+            "DELETED",
+            "UPGRADING",
+            "INITIALIZING",
+            "SUSPENDING",
+            "SUSPENDED",
+            "ORPHANED"
+          ]
+        },
+        "gceSetup": {
+          "$ref": "GceSetup"
+        },
+        "healthState": {
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "AGENT_NOT_INSTALLED",
+            "AGENT_NOT_RUNNING"
+          ]
+        },
+        "upgradeHistory": {
+          "items": {
+            "$ref": "UpgradeHistoryEntry"
+          }
+        }
+      }
+    },
+    "NetworkInterface": {
+      "properties": {
+        "nicType": {
+          "enum": [
+            "NIC_TYPE_UNSPECIFIED",
+            "VIRTIO_NET",
+            "GVNIC"
+          ]
+        }
+      }
+    },
+    "ReservationAffinity": {
+      "properties": {
+        "consumeReservationType": {
+          "enum": [
+            "RESERVATION_UNSPECIFIED",
+            "RESERVATION_NONE",
+            "RESERVATION_ANY",
+            "RESERVATION_SPECIFIC"
+          ]
+        }
+      }
+    },
+    "UpgradeHistoryEntry": {
+      "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "UPGRADE",
+            "ROLLBACK"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "SUCCEEDED",
+            "FAILED"
+          ]
+        }
+      }
+    }
+  }
+}

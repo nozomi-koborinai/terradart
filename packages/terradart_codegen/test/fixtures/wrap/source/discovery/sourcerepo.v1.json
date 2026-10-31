@@ -1,0 +1,28 @@
+{
+  "name": "sourcerepo",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://sourcerepo.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "PubsubConfig": {
+      "properties": {
+        "messageFormat": {
+          "enum": [
+            "MESSAGE_FORMAT_UNSPECIFIED",
+            "PROTOBUF",
+            "JSON"
+          ]
+        }
+      }
+    },
+    "Repo": {
+      "properties": {
+        "pubsubConfigs": {
+          "additionalProperties": {
+            "$ref": "PubsubConfig"
+          }
+        }
+      }
+    }
+  }
+}

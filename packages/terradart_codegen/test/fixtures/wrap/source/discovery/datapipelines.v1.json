@@ -1,0 +1,99 @@
+{
+  "name": "datapipelines",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://datapipelines.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment": {
+      "properties": {
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ]
+        },
+        "flexrsGoal": {
+          "enum": [
+            "FLEXRS_UNSPECIFIED",
+            "FLEXRS_SPEED_OPTIMIZED",
+            "FLEXRS_COST_OPTIMIZED"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter": {
+      "properties": {
+        "environment": {
+          "$ref": "GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment"
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest": {
+      "properties": {
+        "launchParameter": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter"
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1LaunchTemplateParameters": {
+      "properties": {
+        "environment": {
+          "$ref": "GoogleCloudDatapipelinesV1RuntimeEnvironment"
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1LaunchTemplateRequest": {
+      "properties": {
+        "launchParameters": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchTemplateParameters"
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1Pipeline": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "PIPELINE_TYPE_BATCH",
+            "PIPELINE_TYPE_STREAMING"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_RESUMING",
+            "STATE_ACTIVE",
+            "STATE_STOPPING",
+            "STATE_ARCHIVED",
+            "STATE_PAUSED"
+          ]
+        },
+        "workload": {
+          "$ref": "GoogleCloudDatapipelinesV1Workload"
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1RuntimeEnvironment": {
+      "properties": {
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDatapipelinesV1Workload": {
+      "properties": {
+        "dataflowFlexTemplateRequest": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest"
+        },
+        "dataflowLaunchTemplateRequest": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchTemplateRequest"
+        }
+      }
+    }
+  }
+}

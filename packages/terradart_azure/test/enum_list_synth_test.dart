@@ -7,30 +7,30 @@ final class _EnumListStack extends Stack {
     add(
       AzurermApiManagementApi(
         'literal',
-        apiManagementName: .literal('apim'),
-        name: .literal('api'),
+        apiManagementName: const .literal('apim'),
+        name: const .literal('api'),
         resourceGroupName: .literal('rg'),
-        revision: .literal('1'),
-        protocols: .literal([.https, .ws]),
+        revision: const .literal('1'),
+        protocols: const .literal([.https, .ws]),
       ),
     );
     add(
       AzurermApiManagementApi(
         'variable',
-        apiManagementName: .literal('apim'),
-        name: .literal('api'),
+        apiManagementName: const .literal('apim'),
+        name: const .literal('api'),
         resourceGroupName: .literal('rg'),
-        revision: .literal('1'),
+        revision: const .literal('1'),
         protocols: .variable('protocols'),
       ),
     );
     add(
       AzurermApiManagementApi(
         'expression',
-        apiManagementName: .literal('apim'),
-        name: .literal('api'),
+        apiManagementName: const .literal('apim'),
+        name: const .literal('api'),
         resourceGroupName: .literal('rg'),
-        revision: .literal('1'),
+        revision: const .literal('1'),
         protocols: .expression(r'${tolist(var.protocols)}'),
       ),
     );

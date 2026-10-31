@@ -34,6 +34,7 @@ export 'src/gkeonprem/google_gkeonprem_bare_metal_admin_cluster.dart'
         GkeonpremBareMetalAdminClusterNodeConfigs,
         GkeonpremBareMetalAdminClusterNodePoolConfig,
         GkeonpremBareMetalAdminClusterNodePoolConfigTaints,
+        GkeonpremBareMetalAdminClusterOperatingSystem,
         GkeonpremBareMetalAdminClusterOperations,
         GkeonpremBareMetalAdminClusterPortConfig,
         GkeonpremBareMetalAdminClusterProxy,
@@ -41,6 +42,7 @@ export 'src/gkeonprem/google_gkeonprem_bare_metal_admin_cluster.dart'
         GkeonpremBareMetalAdminClusterState,
         GkeonpremBareMetalAdminClusterStorage,
         GkeonpremBareMetalAdminClusterTaints,
+        GkeonpremBareMetalAdminClusterTaintsEffect,
         GkeonpremBareMetalAdminClusterVipConfig,
         GoogleGkeonpremBareMetalAdminCluster;
 export 'src/gkeonprem/google_gkeonprem_bare_metal_cluster.dart'
@@ -79,6 +81,7 @@ export 'src/gkeonprem/google_gkeonprem_bare_metal_cluster.dart'
         GkeonpremBareMetalClusterNodeConfig,
         GkeonpremBareMetalClusterNodeConfigs,
         GkeonpremBareMetalClusterNodePoolConfig,
+        GkeonpremBareMetalClusterOperatingSystem,
         GkeonpremBareMetalClusterOperations,
         GkeonpremBareMetalClusterOsEnvironmentConfig,
         GkeonpremBareMetalClusterPolicy,
@@ -97,6 +100,7 @@ export 'src/gkeonprem/google_gkeonprem_bare_metal_node_pool.dart'
         GkeonpremBareMetalNodePoolConfig,
         GkeonpremBareMetalNodePoolEffect,
         GkeonpremBareMetalNodePoolNodeConfigs,
+        GkeonpremBareMetalNodePoolOperatingSystem,
         GkeonpremBareMetalNodePoolState,
         GkeonpremBareMetalNodePoolTaints,
         GoogleGkeonpremBareMetalNodePool;

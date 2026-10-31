@@ -1,0 +1,44 @@
+{
+  "name": "datalineage",
+  "version": "v1",
+  "revision": "20261017",
+  "sourceUrl": "https://datalineage.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
+      "properties": {
+        "ingestion": {
+          "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule"
+          }
+        }
+      }
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule": {
+      "properties": {
+        "integrationSelector": {
+          "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector"
+        }
+      }
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector": {
+      "properties": {
+        "integration": {
+          "enum": [
+            "INTEGRATION_UNSPECIFIED",
+            "BIGQUERY",
+            "DATAPROC",
+            "LOOKER_CORE",
+            "MANAGED_AIRFLOW"
+          ]
+        }
+      }
+    }
+  }
+}

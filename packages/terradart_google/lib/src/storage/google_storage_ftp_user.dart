@@ -66,7 +66,7 @@ final class StorageFtpUserCredentials {
 
   final TfArg<String>? credentialName;
 
-  final TfArg<String>? credentialType;
+  final StorageFtpUserCredentialType? credentialType;
 
   final TfArg<String>? sshPublicKeyBody;
 
@@ -76,6 +76,22 @@ final class StorageFtpUserCredentials {
     'credential_type': ?credentialType?.toTfJson(),
     'ssh_public_key_body': ?sshPublicKeyBody?.toTfJson(),
   };
+}
+
+/// `credential_type` — derived from the provider schema description.
+extension type const StorageFtpUserCredentialType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageFtpUserCredentialType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageFtpUserCredentialType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageFtpUserCredentialType.arg(TfArg<String> arg) : this._(arg);
+
+  static const publicKey = StorageFtpUserCredentialType._(
+    TfArgLiteral('PUBLIC_KEY'),
+  );
+
+  static const List<StorageFtpUserCredentialType> values = [publicKey];
 }
 
 /// Factory wrapper for `google_storage_ftp_user`.

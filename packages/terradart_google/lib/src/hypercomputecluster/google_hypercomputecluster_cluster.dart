@@ -595,6 +595,10 @@ extension type const HypercomputeclusterClusterStorageClass._(TfArg<String> _)
   const HypercomputeclusterClusterStorageClass.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const storageClassUnspecified =
+      HypercomputeclusterClusterStorageClass._(
+        TfArgLiteral('STORAGE_CLASS_UNSPECIFIED'),
+      );
   static const standard = HypercomputeclusterClusterStorageClass._(
     TfArgLiteral('STANDARD'),
   );
@@ -609,6 +613,7 @@ extension type const HypercomputeclusterClusterStorageClass._(TfArg<String> _)
   );
 
   static const List<HypercomputeclusterClusterStorageClass> values = [
+    storageClassUnspecified,
     standard,
     nearline,
     coldline,

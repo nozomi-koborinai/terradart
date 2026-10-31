@@ -795,7 +795,7 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
     required this.name,
   });
 
-  final TfArg<String>? egressSetting;
+  final AppEngineStandardAppVersionEgressSetting? egressSetting;
 
   final TfArg<String> name;
 
@@ -804,6 +804,29 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
     'egress_setting': ?egressSetting?.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `egress_setting` — derived from the provider schema description.
+extension type const AppEngineStandardAppVersionEgressSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionEgressSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionEgressSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionEgressSetting.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allTraffic = AppEngineStandardAppVersionEgressSetting._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateIpRanges = AppEngineStandardAppVersionEgressSetting._(
+    TfArgLiteral('PRIVATE_IP_RANGES'),
+  );
+
+  static const List<AppEngineStandardAppVersionEgressSetting> values = [
+    allTraffic,
+    privateIpRanges,
+  ];
 }
 
 /// Factory wrapper for `google_app_engine_standard_app_version`.

@@ -48,9 +48,8 @@ prelude: |
     static const unspecified = DataprocMetastoreFederationBackendType._(TfArgLiteral('METASTORE_TYPE_UNSPECIFIED'));
     static const dataprocMetastore = DataprocMetastoreFederationBackendType._(TfArgLiteral('DATAPROC_METASTORE'));
     static const bigquery = DataprocMetastoreFederationBackendType._(TfArgLiteral('BIGQUERY'));
-    static const dataplex = DataprocMetastoreFederationBackendType._(TfArgLiteral('DATAPLEX'));
 
-    static const List<DataprocMetastoreFederationBackendType> values = [unspecified, dataprocMetastore, bigquery, dataplex];
+    static const List<DataprocMetastoreFederationBackendType> values = [unspecified, dataprocMetastore, bigquery];
   }
 
   /// One `backend_metastores` entry on a federation.

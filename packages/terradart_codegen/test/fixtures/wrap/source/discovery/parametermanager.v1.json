@@ -1,0 +1,31 @@
+{
+  "name": "parametermanager",
+  "version": "v1",
+  "revision": "20260923",
+  "sourceUrl": "https://parametermanager.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Parameter": {
+      "properties": {
+        "format": {
+          "enum": [
+            "PARAMETER_FORMAT_UNSPECIFIED",
+            "UNFORMATTED",
+            "YAML",
+            "JSON"
+          ]
+        }
+      }
+    },
+    "ParameterVersion": {
+      "properties": {
+        "checksumSource": {
+          "enum": [
+            "CHECKSUM_SOURCE_UNSPECIFIED",
+            "SERVER_GENERATED",
+            "USER_SPECIFIED"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -429,48 +429,45 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
       expect(formatted, isNot(contains('resources!')));
     });
 
-    test(
-      'a repeated enum attribute renders EnumList<EnumClass>?',
-      () {
-        final repeatedEnumAttr = const NestedAttrSpec(
-          tfName: 'allowed_statuses',
-          dartName: 'allowedStatuses',
-          dartType: 'FooThingAllowedStatuses',
-          required: false,
-          enumValues: ['ESSENTIAL', 'FULL'],
-          repeated: true,
-        );
-        final spec = NestedBlockSpec(
-          tfName: 'thing',
-          path: const ['thing'],
-          className: 'FooThing',
-          repeated: false,
-          required: false,
-          attrs: [repeatedEnumAttr],
-          children: const [],
-          excludedChildren: const [],
-        );
+    test('a repeated enum attribute renders EnumList<EnumClass>?', () {
+      final repeatedEnumAttr = const NestedAttrSpec(
+        tfName: 'allowed_statuses',
+        dartName: 'allowedStatuses',
+        dartType: 'FooThingAllowedStatuses',
+        required: false,
+        enumValues: ['ESSENTIAL', 'FULL'],
+        repeated: true,
+      );
+      final spec = NestedBlockSpec(
+        tfName: 'thing',
+        path: const ['thing'],
+        className: 'FooThing',
+        repeated: false,
+        required: false,
+        attrs: [repeatedEnumAttr],
+        children: const [],
+        excludedChildren: const [],
+      );
 
-        final formatted = _fmt(
-          renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
-        );
+      final formatted = _fmt(
+        renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+      );
 
-        expect(
-          formatted,
-          contains('final EnumList<FooThingAllowedStatuses>? allowedStatuses;'),
-        );
-        expect(
-          formatted,
-          contains("'allowed_statuses': ?allowedStatuses?.toTfJson(),"),
-        );
-        expect(
-          formatted,
-          contains('extension type const FooThingAllowedStatuses._('),
-        );
-        expect(formatted, contains("TfArgLiteral('ESSENTIAL')"));
-        expect(formatted, contains("TfArgLiteral('FULL')"));
-      },
-    );
+      expect(
+        formatted,
+        contains('final EnumList<FooThingAllowedStatuses>? allowedStatuses;'),
+      );
+      expect(
+        formatted,
+        contains("'allowed_statuses': ?allowedStatuses?.toTfJson(),"),
+      );
+      expect(
+        formatted,
+        contains('extension type const FooThingAllowedStatuses._('),
+      );
+      expect(formatted, contains("TfArgLiteral('ESSENTIAL')"));
+      expect(formatted, contains("TfArgLiteral('FULL')"));
+    });
 
     test('hyphenated schema enum values become legal Dart members', () {
       final retryConditions = const NestedAttrSpec(

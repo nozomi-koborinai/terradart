@@ -1,0 +1,219 @@
+{
+  "name": "storagetransfer",
+  "version": "v1",
+  "revision": "20261016",
+  "sourceUrl": "https://storagetransfer.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AwsS3CompatibleData": {
+      "properties": {
+        "s3Metadata": {
+          "$ref": "S3CompatibleMetadata"
+        }
+      }
+    },
+    "LoggingConfig": {
+      "properties": {
+        "logActionStates": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_STATE_UNSPECIFIED",
+              "SUCCEEDED",
+              "FAILED",
+              "SKIPPED"
+            ]
+          }
+        },
+        "logActions": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_UNSPECIFIED",
+              "FIND",
+              "DELETE",
+              "COPY"
+            ]
+          }
+        }
+      }
+    },
+    "MetadataOptions": {
+      "properties": {
+        "gid": {
+          "enum": [
+            "GID_UNSPECIFIED",
+            "GID_SKIP",
+            "GID_NUMBER"
+          ]
+        },
+        "uid": {
+          "enum": [
+            "UID_UNSPECIFIED",
+            "UID_SKIP",
+            "UID_NUMBER"
+          ]
+        },
+        "timeCreated": {
+          "enum": [
+            "TIME_CREATED_UNSPECIFIED",
+            "TIME_CREATED_SKIP",
+            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
+          ]
+        },
+        "kmsKey": {
+          "enum": [
+            "KMS_KEY_UNSPECIFIED",
+            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+            "KMS_KEY_PRESERVE"
+          ]
+        },
+        "symlink": {
+          "enum": [
+            "SYMLINK_UNSPECIFIED",
+            "SYMLINK_SKIP",
+            "SYMLINK_PRESERVE"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "MODE_SKIP",
+            "MODE_PRESERVE"
+          ]
+        },
+        "storageClass": {
+          "enum": [
+            "STORAGE_CLASS_UNSPECIFIED",
+            "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT",
+            "STORAGE_CLASS_PRESERVE",
+            "STORAGE_CLASS_STANDARD",
+            "STORAGE_CLASS_NEARLINE",
+            "STORAGE_CLASS_COLDLINE",
+            "STORAGE_CLASS_ARCHIVE"
+          ]
+        },
+        "temporaryHold": {
+          "enum": [
+            "TEMPORARY_HOLD_UNSPECIFIED",
+            "TEMPORARY_HOLD_SKIP",
+            "TEMPORARY_HOLD_PRESERVE"
+          ]
+        },
+        "acl": {
+          "enum": [
+            "ACL_UNSPECIFIED",
+            "ACL_DESTINATION_BUCKET_DEFAULT",
+            "ACL_PRESERVE"
+          ]
+        }
+      }
+    },
+    "NotificationConfig": {
+      "properties": {
+        "payloadFormat": {
+          "enum": [
+            "PAYLOAD_FORMAT_UNSPECIFIED",
+            "NONE",
+            "JSON"
+          ]
+        },
+        "eventTypes": {
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "TRANSFER_OPERATION_SUCCESS",
+              "TRANSFER_OPERATION_FAILED",
+              "TRANSFER_OPERATION_ABORTED"
+            ]
+          }
+        }
+      }
+    },
+    "ReplicationSpec": {
+      "properties": {
+        "transferOptions": {
+          "$ref": "TransferOptions"
+        }
+      }
+    },
+    "S3CompatibleMetadata": {
+      "properties": {
+        "requestModel": {
+          "enum": [
+            "REQUEST_MODEL_UNSPECIFIED",
+            "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
+            "REQUEST_MODEL_PATH_STYLE"
+          ]
+        },
+        "authMethod": {
+          "enum": [
+            "AUTH_METHOD_UNSPECIFIED",
+            "AUTH_METHOD_AWS_SIGNATURE_V4",
+            "AUTH_METHOD_AWS_SIGNATURE_V2"
+          ]
+        },
+        "listApi": {
+          "enum": [
+            "LIST_API_UNSPECIFIED",
+            "LIST_OBJECTS_V2",
+            "LIST_OBJECTS"
+          ]
+        },
+        "protocol": {
+          "enum": [
+            "NETWORK_PROTOCOL_UNSPECIFIED",
+            "NETWORK_PROTOCOL_HTTPS",
+            "NETWORK_PROTOCOL_HTTP"
+          ]
+        }
+      }
+    },
+    "TransferJob": {
+      "properties": {
+        "notificationConfig": {
+          "$ref": "NotificationConfig"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "DELETED"
+          ]
+        },
+        "transferSpec": {
+          "$ref": "TransferSpec"
+        },
+        "replicationSpec": {
+          "$ref": "ReplicationSpec"
+        }
+      }
+    },
+    "TransferOptions": {
+      "properties": {
+        "overwriteWhen": {
+          "enum": [
+            "OVERWRITE_WHEN_UNSPECIFIED",
+            "DIFFERENT",
+            "NEVER",
+            "ALWAYS"
+          ]
+        },
+        "metadataOptions": {
+          "$ref": "MetadataOptions"
+        }
+      }
+    },
+    "TransferSpec": {
+      "properties": {
+        "transferOptions": {
+          "$ref": "TransferOptions"
+        },
+        "awsS3CompatibleDataSource": {
+          "$ref": "AwsS3CompatibleData"
+        }
+      }
+    }
+  }
+}

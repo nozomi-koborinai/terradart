@@ -1,0 +1,115 @@
+{
+  "name": "developerconnect",
+  "version": "v1",
+  "revision": "20261025",
+  "sourceUrl": "https://developerconnect.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AccountConnector": {
+      "properties": {
+        "providerOauthConfig": {
+          "$ref": "ProviderOAuthConfig"
+        },
+        "customOauthConfig": {
+          "$ref": "CustomOAuthConfig"
+        }
+      }
+    },
+    "Connection": {
+      "properties": {
+        "installationState": {
+          "$ref": "InstallationState"
+        },
+        "githubConfig": {
+          "$ref": "GitHubConfig"
+        }
+      }
+    },
+    "CustomOAuthConfig": {
+      "properties": {
+        "scmProvider": {
+          "enum": [
+            "SCM_PROVIDER_UNKNOWN",
+            "GITHUB_ENTERPRISE",
+            "GITLAB_ENTERPRISE",
+            "BITBUCKET_DATA_CENTER"
+          ]
+        }
+      }
+    },
+    "GitHubConfig": {
+      "properties": {
+        "githubApp": {
+          "enum": [
+            "GIT_HUB_APP_UNSPECIFIED",
+            "DEVELOPER_CONNECT",
+            "FIREBASE",
+            "GEMINI_CODE_ASSIST",
+            "DATAFORM"
+          ]
+        }
+      }
+    },
+    "GitRepositoryLink": {
+      "properties": {}
+    },
+    "InsightsConfig": {
+      "properties": {
+        "runtimeConfigs": {
+          "items": {
+            "$ref": "RuntimeConfig"
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "COMPLETE",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "InstallationState": {
+      "properties": {
+        "stage": {
+          "enum": [
+            "STAGE_UNSPECIFIED",
+            "PENDING_CREATE_APP",
+            "PENDING_USER_OAUTH",
+            "PENDING_INSTALL_APP",
+            "COMPLETE"
+          ]
+        }
+      }
+    },
+    "ProviderOAuthConfig": {
+      "properties": {
+        "systemProviderId": {
+          "enum": [
+            "SYSTEM_PROVIDER_UNSPECIFIED",
+            "GITHUB",
+            "GITLAB",
+            "GOOGLE",
+            "SENTRY",
+            "ROVO",
+            "NEW_RELIC",
+            "DATASTAX",
+            "DYNATRACE",
+            "BITBUCKET_CLOUD"
+          ]
+        }
+      }
+    },
+    "RuntimeConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "LINKED",
+            "UNLINKED"
+          ]
+        }
+      }
+    }
+  }
+}

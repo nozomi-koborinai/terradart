@@ -8,24 +8,24 @@ final class _EnumListStack extends Stack {
     add(
       GoogleSecurityScannerScanConfig(
         'literal',
-        displayName: .literal('scan'),
-        startingUrls: .literal(['https://example.com']),
-        targetPlatforms: .literal([.appEngine, .compute]),
+        displayName: const .literal('scan'),
+        startingUrls: const .literal(['https://example.com']),
+        targetPlatforms: const .literal([.appEngine, .compute]),
       ),
     );
     add(
       GoogleSecurityScannerScanConfig(
         'variable',
-        displayName: .literal('scan'),
-        startingUrls: .literal(['https://example.com']),
+        displayName: const .literal('scan'),
+        startingUrls: const .literal(['https://example.com']),
         targetPlatforms: .variable('platforms'),
       ),
     );
     add(
       GoogleSecurityScannerScanConfig(
         'expression',
-        displayName: .literal('scan'),
-        startingUrls: .literal(['https://example.com']),
+        displayName: const .literal('scan'),
+        startingUrls: const .literal(['https://example.com']),
         targetPlatforms: .expression(r'${tolist(var.platforms)}'),
       ),
     );

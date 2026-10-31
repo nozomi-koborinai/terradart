@@ -1,0 +1,157 @@
+{
+  "name": "clouddeploy",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://clouddeploy.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Automation": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "AutomationRule"
+          }
+        }
+      }
+    },
+    "AutomationRule": {
+      "properties": {
+        "repairRolloutRule": {
+          "$ref": "RepairRolloutRule"
+        }
+      }
+    },
+    "CustomTargetType": {
+      "properties": {}
+    },
+    "DeliveryPipeline": {
+      "properties": {}
+    },
+    "DeployPolicy": {
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "PolicyRule"
+          }
+        }
+      }
+    },
+    "ExecutionConfig": {
+      "properties": {
+        "usages": {
+          "items": {
+            "enum": [
+              "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED",
+              "RENDER",
+              "DEPLOY",
+              "VERIFY",
+              "PREDEPLOY",
+              "POSTDEPLOY",
+              "ANALYSIS"
+            ]
+          }
+        }
+      }
+    },
+    "PolicyRule": {
+      "properties": {
+        "rolloutRestriction": {
+          "$ref": "RolloutRestriction"
+        }
+      }
+    },
+    "RepairPhaseConfig": {
+      "properties": {
+        "retry": {
+          "$ref": "Retry"
+        }
+      }
+    },
+    "RepairRolloutRule": {
+      "properties": {
+        "repairPhases": {
+          "items": {
+            "$ref": "RepairPhaseConfig"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "properties": {
+        "backoffMode": {
+          "enum": [
+            "BACKOFF_MODE_UNSPECIFIED",
+            "BACKOFF_MODE_LINEAR",
+            "BACKOFF_MODE_EXPONENTIAL"
+          ]
+        }
+      }
+    },
+    "RolloutRestriction": {
+      "properties": {
+        "timeWindows": {
+          "$ref": "TimeWindows"
+        },
+        "actions": {
+          "items": {
+            "enum": [
+              "ROLLOUT_ACTIONS_UNSPECIFIED",
+              "ADVANCE",
+              "APPROVE",
+              "CANCEL",
+              "CREATE",
+              "IGNORE_JOB",
+              "RETRY_JOB",
+              "ROLLBACK",
+              "TERMINATE_JOBRUN"
+            ]
+          }
+        },
+        "invokers": {
+          "items": {
+            "enum": [
+              "INVOKER_UNSPECIFIED",
+              "USER",
+              "DEPLOY_AUTOMATION"
+            ]
+          }
+        }
+      }
+    },
+    "Target": {
+      "properties": {
+        "executionConfigs": {
+          "items": {
+            "$ref": "ExecutionConfig"
+          }
+        }
+      }
+    },
+    "TimeWindows": {
+      "properties": {
+        "weeklyWindows": {
+          "items": {
+            "$ref": "WeeklyWindow"
+          }
+        }
+      }
+    },
+    "WeeklyWindow": {
+      "properties": {
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

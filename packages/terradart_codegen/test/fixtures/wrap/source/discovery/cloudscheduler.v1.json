@@ -1,0 +1,59 @@
+{
+  "name": "cloudscheduler",
+  "version": "v1",
+  "revision": "20261020",
+  "sourceUrl": "https://cloudscheduler.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AppEngineHttpTarget": {
+      "properties": {
+        "httpMethod": {
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ]
+        }
+      }
+    },
+    "HttpTarget": {
+      "properties": {
+        "httpMethod": {
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ]
+        }
+      }
+    },
+    "Job": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "PAUSED",
+            "DISABLED",
+            "UPDATE_FAILED"
+          ]
+        },
+        "httpTarget": {
+          "$ref": "HttpTarget"
+        },
+        "appEngineHttpTarget": {
+          "$ref": "AppEngineHttpTarget"
+        }
+      }
+    }
+  }
+}

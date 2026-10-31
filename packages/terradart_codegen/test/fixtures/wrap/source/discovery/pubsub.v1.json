@@ -1,0 +1,261 @@
+{
+  "name": "pubsub",
+  "version": "v1",
+  "revision": "20261020",
+  "sourceUrl": "https://pubsub.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AwsKinesis": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "KINESIS_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "STREAM_NOT_FOUND",
+            "CONSUMER_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
+          ]
+        }
+      }
+    },
+    "AwsMsk": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "MSK_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "CLUSTER_NOT_FOUND",
+            "TOPIC_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
+          ]
+        }
+      }
+    },
+    "AzureEventHubs": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "EVENT_HUBS_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "NAMESPACE_NOT_FOUND",
+            "EVENT_HUB_NOT_FOUND",
+            "SUBSCRIPTION_NOT_FOUND",
+            "RESOURCE_GROUP_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
+          ]
+        }
+      }
+    },
+    "BigQueryConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PERMISSION_DENIED",
+            "NOT_FOUND",
+            "SCHEMA_MISMATCH",
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "VERTEX_AI_LOCATION_RESTRICTION"
+          ]
+        }
+      }
+    },
+    "BigtableConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "NOT_FOUND",
+            "APP_PROFILE_MISCONFIGURED",
+            "PERMISSION_DENIED",
+            "SCHEMA_MISMATCH",
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "VERTEX_AI_LOCATION_RESTRICTION"
+          ]
+        }
+      }
+    },
+    "CloudStorage": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CLOUD_STORAGE_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "BUCKET_NOT_FOUND",
+            "TOO_MANY_OBJECTS",
+            "CONFLICTING_REGION_CONSTRAINTS"
+          ]
+        }
+      }
+    },
+    "CloudStorageConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PERMISSION_DENIED",
+            "NOT_FOUND",
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "SCHEMA_MISMATCH",
+            "VERTEX_AI_LOCATION_RESTRICTION"
+          ]
+        }
+      }
+    },
+    "Compression": {
+      "properties": {
+        "compressionMode": {
+          "enum": [
+            "COMPRESSION_MODE_UNSPECIFIED",
+            "COMPRESS",
+            "DECOMPRESS"
+          ]
+        },
+        "compressionAlgorithm": {
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB"
+          ]
+        }
+      }
+    },
+    "ConfluentCloud": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CONFLUENT_CLOUD_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "UNREACHABLE_BOOTSTRAP_SERVER",
+            "CLUSTER_NOT_FOUND",
+            "TOPIC_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
+          ]
+        }
+      }
+    },
+    "IngestionDataSourceSettings": {
+      "properties": {
+        "awsMsk": {
+          "$ref": "AwsMsk"
+        },
+        "cloudStorage": {
+          "$ref": "CloudStorage"
+        },
+        "confluentCloud": {
+          "$ref": "ConfluentCloud"
+        },
+        "awsKinesis": {
+          "$ref": "AwsKinesis"
+        },
+        "platformLogsSettings": {
+          "$ref": "PlatformLogsSettings"
+        },
+        "azureEventHubs": {
+          "$ref": "AzureEventHubs"
+        }
+      }
+    },
+    "MessageTransform": {
+      "properties": {
+        "compression": {
+          "$ref": "Compression"
+        }
+      }
+    },
+    "PlatformLogsSettings": {
+      "properties": {
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "DISABLED",
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        }
+      }
+    },
+    "Schema": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PROTOCOL_BUFFER",
+            "AVRO"
+          ]
+        }
+      }
+    },
+    "SchemaSettings": {
+      "properties": {
+        "encoding": {
+          "enum": [
+            "ENCODING_UNSPECIFIED",
+            "JSON",
+            "BINARY"
+          ]
+        }
+      }
+    },
+    "Subscription": {
+      "properties": {
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig"
+        },
+        "cloudStorageConfig": {
+          "$ref": "CloudStorageConfig"
+        },
+        "bigtableConfig": {
+          "$ref": "BigtableConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "RESOURCE_ERROR"
+          ]
+        },
+        "messageTransforms": {
+          "items": {
+            "$ref": "MessageTransform"
+          }
+        }
+      }
+    },
+    "Topic": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INGESTION_RESOURCE_ERROR"
+          ]
+        },
+        "messageTransforms": {
+          "items": {
+            "$ref": "MessageTransform"
+          }
+        },
+        "schemaSettings": {
+          "$ref": "SchemaSettings"
+        },
+        "ingestionDataSourceSettings": {
+          "$ref": "IngestionDataSourceSettings"
+        }
+      }
+    }
+  }
+}

@@ -43,6 +43,7 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryRepositoryDockerRepository,
         ArtifactRegistryRepositoryDockerRepositoryCustomRepository,
         ArtifactRegistryRepositoryDockerRepositoryPublicRepository,
+        ArtifactRegistryRepositoryFormat,
         ArtifactRegistryRepositoryMavenConfig,
         ArtifactRegistryRepositoryMavenRepository,
         ArtifactRegistryRepositoryMavenRepositoryCustomRepository,

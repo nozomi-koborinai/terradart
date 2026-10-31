@@ -1,0 +1,93 @@
+{
+  "name": "storage",
+  "version": "v1",
+  "revision": "20261026",
+  "sourceUrl": "https://storage.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AnywhereCache": {
+      "properties": {}
+    },
+    "Bucket": {
+      "properties": {
+        "encryption": {
+          "properties": {
+            "googleManagedEncryptionEnforcementConfig": {
+              "properties": {
+                "restrictionMode": {
+                  "enum": [
+                    "NotRestricted",
+                    "FullyRestricted"
+                  ]
+                }
+              }
+            },
+            "customerManagedEncryptionEnforcementConfig": {
+              "properties": {
+                "restrictionMode": {
+                  "enum": [
+                    "NotRestricted",
+                    "FullyRestricted"
+                  ]
+                }
+              }
+            },
+            "customerSuppliedEncryptionEnforcementConfig": {
+              "properties": {
+                "restrictionMode": {
+                  "enum": [
+                    "NotRestricted",
+                    "FullyRestricted"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "BucketAccessControl": {
+      "properties": {}
+    },
+    "Folder": {
+      "properties": {}
+    },
+    "HmacKeyMetadata": {
+      "properties": {}
+    },
+    "ManagedFolder": {
+      "properties": {
+        "rapidCacheConfig": {
+          "$ref": "RapidCacheConfig"
+        }
+      }
+    },
+    "Notification": {
+      "properties": {}
+    },
+    "Object": {
+      "properties": {}
+    },
+    "ObjectAccessControl": {
+      "properties": {}
+    },
+    "RapidCacheConfig": {
+      "properties": {
+        "policies": {
+          "additionalProperties": {
+            "$ref": "RapidCachePolicy"
+          }
+        }
+      }
+    },
+    "RapidCachePolicy": {
+      "properties": {
+        "ingestOnWrite": {
+          "enum": [
+            "enabled",
+            "unspecified"
+          ]
+        }
+      }
+    }
+  }
+}

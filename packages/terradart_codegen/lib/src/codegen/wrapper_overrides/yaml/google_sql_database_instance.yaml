@@ -1,12 +1,4 @@
 outputDir: sql
-enumValues:
-  instance_type:
-    - CLOUD_SQL_INSTANCE
-    - ON_PREMISES_INSTANCE
-    - READ_REPLICA_INSTANCE
-    - READ_POOL_INSTANCE
-    - GREEN_INSTANCE
-
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
@@ -158,9 +150,8 @@ prelude: |
     static const sqlserver2025Standard = DatabaseVersion._(TfArgLiteral('SQLSERVER_2025_STANDARD'));
     static const sqlserver2025Enterprise = DatabaseVersion._(TfArgLiteral('SQLSERVER_2025_ENTERPRISE'));
     static const sqlserver2025Express = DatabaseVersion._(TfArgLiteral('SQLSERVER_2025_EXPRESS'));
-    static const sqlserver2025Web = DatabaseVersion._(TfArgLiteral('SQLSERVER_2025_WEB'));
 
-    static const List<DatabaseVersion> values = [mysql56, mysql57, mysql80, mysql84, postgres96, postgres10, postgres11, postgres12, postgres13, postgres14, postgres15, postgres16, postgres17, postgres18, sqlserver2022Standard, sqlserver2022Enterprise, sqlserver2022Express, sqlserver2022Web, sqlserver2025Standard, sqlserver2025Enterprise, sqlserver2025Express, sqlserver2025Web];
+    static const List<DatabaseVersion> values = [mysql56, mysql57, mysql80, mysql84, postgres96, postgres10, postgres11, postgres12, postgres13, postgres14, postgres15, postgres16, postgres17, postgres18, sqlserver2022Standard, sqlserver2022Enterprise, sqlserver2022Express, sqlserver2022Web, sqlserver2025Standard, sqlserver2025Enterprise, sqlserver2025Express];
   }
 
   /// `settings.availability_type`. `regional` is HA (across 2 zones in the

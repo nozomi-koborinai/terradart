@@ -127,6 +127,7 @@ export 'src/clouddeploy/google_clouddeploy_target.dart'
         ClouddeployTargetMultiTarget,
         ClouddeployTargetPrivatePool,
         ClouddeployTargetRun,
+        ClouddeployTargetUsages,
         GoogleClouddeployTarget;
 export 'src/clouddeploy/google_clouddeploy_target_iam_binding.dart'
     show

@@ -1,0 +1,59 @@
+{
+  "name": "accessapproval",
+  "version": "v1",
+  "revision": "20261023",
+  "sourceUrl": "https://accessapproval.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AccessApprovalSettings": {
+      "properties": {
+        "enrolledServices": {
+          "items": {
+            "$ref": "EnrolledService"
+          }
+        },
+        "effectiveApprovalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
+        },
+        "requestScopeMaxWidthPreference": {
+          "enum": [
+            "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
+            "ORGANIZATION",
+            "FOLDER",
+            "PROJECT"
+          ]
+        },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
+        },
+        "ancestorsEnrolledServices": {
+          "items": {
+            "$ref": "EnrolledService"
+          }
+        }
+      }
+    },
+    "CustomerApprovalApprovalPolicy": {
+      "properties": {
+        "justificationBasedApprovalPolicy": {
+          "enum": [
+            "JUSTIFICATION_BASED_APPROVAL_POLICY_UNSPECIFIED",
+            "JUSTIFICATION_BASED_APPROVAL_ENABLED_ALL",
+            "JUSTIFICATION_BASED_APPROVAL_ENABLED_EXTERNAL_JUSTIFICATIONS",
+            "JUSTIFICATION_BASED_APPROVAL_NOT_ENABLED",
+            "JUSTIFICATION_BASED_APPROVAL_INHERITED"
+          ]
+        }
+      }
+    },
+    "EnrolledService": {
+      "properties": {
+        "enrollmentLevel": {
+          "enum": [
+            "ENROLLMENT_LEVEL_UNSPECIFIED",
+            "BLOCK_ALL"
+          ]
+        }
+      }
+    }
+  }
+}

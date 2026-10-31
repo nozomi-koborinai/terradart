@@ -1,0 +1,44 @@
+{
+  "name": "gkehub",
+  "version": "v1beta",
+  "revision": "20261017",
+  "sourceUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta",
+  "schemas": {
+    "RBACRoleBinding": {
+      "properties": {
+        "state": {
+          "$ref": "RBACRoleBindingLifecycleState"
+        },
+        "role": {
+          "$ref": "Role"
+        }
+      }
+    },
+    "RBACRoleBindingLifecycleState": {
+      "properties": {
+        "code": {
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "Role": {
+      "properties": {
+        "predefinedRole": {
+          "enum": [
+            "UNKNOWN",
+            "ADMIN",
+            "EDIT",
+            "VIEW",
+            "ANTHOS_SUPPORT"
+          ]
+        }
+      }
+    }
+  }
+}

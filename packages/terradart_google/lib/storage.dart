@@ -36,6 +36,7 @@ export 'src/storage/google_storage_batch_operations_job.dart'
         StorageBatchOperationsJobBucketList,
         StorageBatchOperationsJobBuckets,
         StorageBatchOperationsJobDeleteObject,
+        StorageBatchOperationsJobEventBasedHold,
         StorageBatchOperationsJobManifest,
         StorageBatchOperationsJobObjects,
         StorageBatchOperationsJobObjectsManifest,
@@ -48,7 +49,8 @@ export 'src/storage/google_storage_batch_operations_job.dart'
         StorageBatchOperationsJobPrefixList,
         StorageBatchOperationsJobPutMetadata,
         StorageBatchOperationsJobPutObjectHold,
-        StorageBatchOperationsJobRewriteObject;
+        StorageBatchOperationsJobRewriteObject,
+        StorageBatchOperationsJobTemporaryHold;
 export 'src/storage/google_storage_bucket.dart'
     show
         BucketStorageClass,
@@ -70,6 +72,7 @@ export 'src/storage/google_storage_bucket.dart'
         StorageBucketMatchesStorageClass,
         StorageBucketMode,
         StorageBucketPublicNetworkSource,
+        StorageBucketRestrictionMode,
         StorageBucketRetentionPolicy,
         StorageBucketSoftDeletePolicy,
         StorageBucketTerminalStorageClass,
@@ -119,6 +122,7 @@ export 'src/storage/google_storage_ftp_server.dart'
 export 'src/storage/google_storage_ftp_user.dart'
     show
         GoogleStorageFtpUser,
+        StorageFtpUserCredentialType,
         StorageFtpUserCredentials,
         StorageFtpUserPermission,
         StorageFtpUserStorageDirectoryMappings;
@@ -186,30 +190,48 @@ export 'src/storage/google_storage_transfer_agent_pool.dart'
 export 'src/storage/google_storage_transfer_job.dart'
     show
         GoogleStorageTransferJob,
+        StorageTransferJobAcl,
+        StorageTransferJobAuthMethod,
         StorageTransferJobAwsAccessKey,
         StorageTransferJobAwsS3CompatibleDataSource,
         StorageTransferJobAwsS3DataSource,
         StorageTransferJobAzureBlobStorageDataSource,
         StorageTransferJobAzureCredentials,
         StorageTransferJobEventStream,
+        StorageTransferJobEventTypes,
         StorageTransferJobFederatedIdentityConfig,
         StorageTransferJobGcsDataSink,
         StorageTransferJobGcsDataSource,
+        StorageTransferJobGid,
         StorageTransferJobHdfsDataSource,
         StorageTransferJobHttpDataSource,
+        StorageTransferJobKmsKey,
+        StorageTransferJobListApi,
+        StorageTransferJobLogActionStates,
+        StorageTransferJobLogActions,
         StorageTransferJobLoggingConfig,
         StorageTransferJobMetadataOptions,
+        StorageTransferJobMode,
         StorageTransferJobNotificationConfig,
         StorageTransferJobObjectConditions,
+        StorageTransferJobOverwriteWhen,
         StorageTransferJobPayloadFormat,
         StorageTransferJobPosixDataSink,
         StorageTransferJobPosixDataSource,
+        StorageTransferJobProtocol,
         StorageTransferJobReplicationSpec,
+        StorageTransferJobRequestModel,
         StorageTransferJobS3Metadata,
         StorageTransferJobSchedule,
         StorageTransferJobScheduleEndDate,
         StorageTransferJobScheduleStartDate,
         StorageTransferJobStartTimeOfDay,
+        StorageTransferJobStatus,
+        StorageTransferJobStorageClass,
+        StorageTransferJobSymlink,
+        StorageTransferJobTemporaryHold,
+        StorageTransferJobTimeCreated,
         StorageTransferJobTransferManifest,
         StorageTransferJobTransferOptions,
-        StorageTransferJobTransferSpec;
+        StorageTransferJobTransferSpec,
+        StorageTransferJobUid;

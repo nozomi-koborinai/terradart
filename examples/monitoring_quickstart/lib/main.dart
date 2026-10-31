@@ -234,7 +234,7 @@ final class LatencyAlertStack extends Stack {
         parent: .literal('projects/$projectId'),
         email: .literal('platform-notices@example.com'),
         languageTag: .literal('en-US'),
-        notificationCategorySubscriptions: .literal(const ['TECHNICAL']),
+        notificationCategorySubscriptions: .literal([.technical]),
         dependsOn: [apiEssentialContacts],
       ),
     );

@@ -1,0 +1,455 @@
+{
+  "name": "compute",
+  "version": "beta",
+  "revision": "20261016",
+  "sourceUrl": "https://compute.googleapis.com/$discovery/rest?version=beta",
+  "schemas": {
+    "AccessConfig": {
+      "properties": {
+        "networkTier": {
+          "enum": [
+            "FIXED_STANDARD",
+            "PREMIUM",
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
+          ]
+        },
+        "type": {
+          "enum": [
+            "DIRECT_IPV6",
+            "ONE_TO_ONE_NAT"
+          ]
+        }
+      }
+    },
+    "AdvancedMachineFeatures": {
+      "properties": {
+        "performanceMonitoringUnit": {
+          "enum": [
+            "ARCHITECTURAL",
+            "ENHANCED",
+            "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED",
+            "STANDARD"
+          ]
+        }
+      }
+    },
+    "AttachedDisk": {
+      "properties": {
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
+        },
+        "initializeParams": {
+          "$ref": "AttachedDiskInitializeParams"
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        },
+        "savedState": {
+          "enum": [
+            "DISK_SAVED_STATE_UNSPECIFIED",
+            "PRESERVED"
+          ]
+        },
+        "interface": {
+          "enum": [
+            "NVME",
+            "SCSI"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "READ_ONLY",
+            "READ_WRITE"
+          ]
+        },
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
+        },
+        "type": {
+          "enum": [
+            "PERSISTENT",
+            "SCRATCH"
+          ]
+        }
+      }
+    },
+    "AttachedDiskInitializeParams": {
+      "properties": {
+        "onUpdateAction": {
+          "enum": [
+            "RECREATE_DISK",
+            "RECREATE_DISK_IF_SOURCE_CHANGED",
+            "USE_EXISTING_DISK"
+          ]
+        },
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        }
+      }
+    },
+    "ConfidentialInstanceConfig": {
+      "properties": {
+        "confidentialInstanceType": {
+          "enum": [
+            "BMSAI",
+            "CCA",
+            "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+            "SEV",
+            "SEV_SNP",
+            "TDX"
+          ]
+        }
+      }
+    },
+    "FileContentBuffer": {
+      "properties": {
+        "fileType": {
+          "enum": [
+            "BIN",
+            "UNDEFINED",
+            "X509"
+          ]
+        }
+      }
+    },
+    "GuestOsFeature": {
+      "properties": {
+        "type": {
+          "enum": [
+            "BARE_METAL_LINUX_COMPATIBLE",
+            "BMSAI_CAPABLE",
+            "CCA_CAPABLE",
+            "FEATURE_TYPE_UNSPECIFIED",
+            "GVNIC",
+            "IDPF",
+            "MULTI_IP_SUBNET",
+            "SECURE_BOOT",
+            "SEV_CAPABLE",
+            "SEV_LIVE_MIGRATABLE",
+            "SEV_LIVE_MIGRATABLE_V2",
+            "SEV_SNP_CAPABLE",
+            "SNP_SVSM_CAPABLE",
+            "SUSPEND_SAFE_FPR",
+            "TDX_CAPABLE",
+            "UEFI_COMPATIBLE",
+            "VIRTIO_SCSI_MULTIQUEUE",
+            "WINDOWS"
+          ]
+        }
+      }
+    },
+    "InitialStateConfig": {
+      "properties": {
+        "pk": {
+          "$ref": "FileContentBuffer"
+        },
+        "keks": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        },
+        "dbs": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        },
+        "dbxs": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        }
+      }
+    },
+    "Instance": {
+      "properties": {
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
+        },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
+        },
+        "scheduling": {
+          "$ref": "Scheduling"
+        },
+        "keyRevocationActionType": {
+          "enum": [
+            "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "NONE",
+            "STOP"
+          ]
+        },
+        "disks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "resourceStatus": {
+          "$ref": "ResourceStatus"
+        },
+        "status": {
+          "enum": [
+            "DEPROVISIONING",
+            "PENDING",
+            "PENDING_STOP",
+            "PROVISIONING",
+            "REPAIRING",
+            "RUNNING",
+            "STAGING",
+            "STOPPED",
+            "STOPPING",
+            "SUSPENDED",
+            "SUSPENDING",
+            "TERMINATED"
+          ]
+        },
+        "privateIpv6GoogleAccess": {
+          "enum": [
+            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
+            "INHERIT_FROM_SUBNETWORK"
+          ]
+        },
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
+        },
+        "localSsdEncryptionMode": {
+          "enum": [
+            "CMEK_ENCRYPTION",
+            "EPHEMERAL_KEY_ENCRYPTION",
+            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+            "STANDARD_ENCRYPTION"
+          ]
+        },
+        "postKeyRevocationActionType": {
+          "enum": [
+            "NOOP",
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
+          ]
+        }
+      }
+    },
+    "NetworkInterface": {
+      "properties": {
+        "stackType": {
+          "enum": [
+            "IPV4_IPV6",
+            "IPV4_ONLY",
+            "IPV6_ONLY"
+          ]
+        },
+        "nicType": {
+          "enum": [
+            "GVNIC",
+            "IDPF",
+            "IRDMA",
+            "MRDMA",
+            "UNSPECIFIED_NIC_TYPE",
+            "VIRTIO_NET"
+          ]
+        },
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
+        },
+        "accessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
+        "igmpQuery": {
+          "enum": [
+            "IGMP_QUERY_DISABLED",
+            "IGMP_QUERY_V2"
+          ]
+        },
+        "ipv6AccessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        }
+      }
+    },
+    "NetworkPerformanceConfig": {
+      "properties": {
+        "totalEgressBandwidthTier": {
+          "enum": [
+            "DEFAULT",
+            "TIER_1"
+          ]
+        }
+      }
+    },
+    "ReservationAffinity": {
+      "properties": {
+        "consumeReservationType": {
+          "enum": [
+            "ANY_RESERVATION",
+            "ANY_RESERVATION_THEN_FAIL",
+            "NO_RESERVATION",
+            "SPECIFIC_RESERVATION",
+            "SPECIFIC_THEN_ANY_RESERVATION",
+            "SPECIFIC_THEN_NO_RESERVATION",
+            "UNSPECIFIED"
+          ]
+        }
+      }
+    },
+    "ResourceStatus": {
+      "properties": {
+        "shutdownDetails": {
+          "$ref": "ResourceStatusShutdownDetails"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        }
+      }
+    },
+    "ResourceStatusShutdownDetails": {
+      "properties": {
+        "stopState": {
+          "enum": [
+            "PENDING_STOP",
+            "STOPPING"
+          ]
+        },
+        "targetState": {
+          "enum": [
+            "DELETED",
+            "STOPPED"
+          ]
+        }
+      }
+    },
+    "Scheduling": {
+      "properties": {
+        "instanceTerminationAction": {
+          "enum": [
+            "DELETE",
+            "INSTANCE_TERMINATION_ACTION_UNSPECIFIED",
+            "STOP"
+          ]
+        },
+        "onHostMaintenance": {
+          "enum": [
+            "MIGRATE",
+            "TERMINATE"
+          ]
+        },
+        "nodeAffinities": {
+          "items": {
+            "$ref": "SchedulingNodeAffinity"
+          }
+        },
+        "maintenanceInterval": {
+          "enum": [
+            "AS_NEEDED",
+            "PERIODIC",
+            "RECURRENT"
+          ]
+        },
+        "provisioningModel": {
+          "enum": [
+            "FLEX_START",
+            "RESERVATION_BOUND",
+            "SPOT",
+            "STANDARD"
+          ]
+        }
+      }
+    },
+    "SchedulingNodeAffinity": {
+      "properties": {
+        "operator": {
+          "enum": [
+            "IN",
+            "NOT_IN",
+            "OPERATOR_UNSPECIFIED"
+          ]
+        }
+      }
+    },
+    "UpcomingMaintenance": {
+      "properties": {
+        "maintenanceStatus": {
+          "enum": [
+            "ONGOING",
+            "PENDING",
+            "UNKNOWN"
+          ]
+        },
+        "type": {
+          "enum": [
+            "MULTIPLE",
+            "SCHEDULED",
+            "UNKNOWN_TYPE",
+            "UNSCHEDULED"
+          ]
+        },
+        "maintenanceReasons": {
+          "items": {
+            "enum": [
+              "FAILURE_DISK",
+              "FAILURE_GPU",
+              "FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED",
+              "FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED",
+              "FAILURE_GPU_TEMPERATURE",
+              "FAILURE_GPU_XID",
+              "FAILURE_INFRA",
+              "FAILURE_INTERFACE",
+              "FAILURE_MEMORY",
+              "FAILURE_NETWORK",
+              "FAILURE_NVLINK",
+              "FAILURE_REDUNDANT_HARDWARE_FAULT",
+              "FAILURE_TPU",
+              "INFRASTRUCTURE_RELOCATION",
+              "MAINTENANCE_REASON_UNKNOWN",
+              "PLANNED_NETWORK_UPDATE",
+              "PLANNED_UPDATE"
+            ]
+          }
+        }
+      }
+    },
+    "WorkloadIdentityConfig": {
+      "properties": {
+        "identityType": {
+          "enum": [
+            "AGENT_IDENTITY",
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "SERVICE_ACCOUNT"
+          ]
+        }
+      }
+    }
+  }
+}

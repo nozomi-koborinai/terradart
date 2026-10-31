@@ -132,7 +132,9 @@ export 'src/network/google_network_management_connectivity_test.dart'
         NetworkManagementConnectivityTestSource,
         NetworkManagementConnectivityTestSourceNetworkType;
 export 'src/network/google_network_management_network_monitoring_provider.dart'
-    show GoogleNetworkManagementNetworkMonitoringProvider;
+    show
+        GoogleNetworkManagementNetworkMonitoringProvider,
+        NetworkManagementNetworkMonitoringProviderType;
 export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
     show
         GoogleNetworkManagementOrganizationVpcFlowLogsConfig,
@@ -459,6 +461,7 @@ export 'src/network/google_network_services_http_route.dart'
         NetworkServicesHttpRouteRegexMatch,
         NetworkServicesHttpRouteRequestHeaderModifier,
         NetworkServicesHttpRouteRequestMirrorPolicy,
+        NetworkServicesHttpRouteResponseCode,
         NetworkServicesHttpRouteResponseHeaderModifier,
         NetworkServicesHttpRouteRetryPolicy,
         NetworkServicesHttpRouteRules,
@@ -469,7 +472,8 @@ export 'src/network/google_network_services_lb_edge_extension.dart'
         NetworkServicesLbEdgeExtensionChains,
         NetworkServicesLbEdgeExtensionExtensions,
         NetworkServicesLbEdgeExtensionLoadBalancingScheme,
-        NetworkServicesLbEdgeExtensionMatchCondition;
+        NetworkServicesLbEdgeExtensionMatchCondition,
+        NetworkServicesLbEdgeExtensionSupportedEvents;
 export 'src/network/google_network_services_lb_route_extension.dart'
     show
         GoogleNetworkServicesLbRouteExtension,

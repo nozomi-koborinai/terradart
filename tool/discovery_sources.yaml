@@ -1,0 +1,164 @@
+# tool/discovery_sources.yaml — the hand roots of tool/fetch_discovery_enums.dart.
+#
+# A google lane type with Magic Modules YAML resolves to its Discovery schema
+# by itself (the product's base_url and the resource's api_resource_type_kind
+# or name). The entries below cover the rest. Per lane:
+#   products: MM product → {api, version}, for a product whose base_url
+#             names no API version
+#   types:    Terraform type (`data.<type>` for a data source; a data source
+#             without an entry uses its resource's) →
+#     api, version: the Discovery document
+#                   (www.googleapis.com/discovery/v1/apis/<api>/<version>/rest)
+#     url:          (optional) the document URL when the directory has none
+#     schema:       (optional for an MM type) the schema the type is
+#     paths:        (optional) Terraform path or path prefix → REST field
+#                   path, for a block whose Terraform name or nesting is not
+#                   the REST one
+#     passthrough:  (optional) true when the hand-written resource sends
+#                   its inputs to the REST API unchanged, as a Magic Modules
+#                   one does: wrap then takes the Discovery enum over a
+#                   description it contradicts
+# A hand-written provider resource with no entry has no Discovery root; its
+# enum sites are compared against tool/enum_prose_sources.yaml instead.
+# Editing this file makes the lane's discovery/roots.yaml stale, so the next
+# `dart tool/wrap_lanes.dart --gate regen` re-fetches.
+google:
+  products:
+    monitoring: {api: monitoring, version: v3}
+  types:
+    google_app_engine_application: {api: appengine, version: v1, schema: Application}
+    google_assured_workloads_workload: {api: assuredworkloads, version: v1, schema: GoogleCloudAssuredworkloadsV1Workload, passthrough: true}
+    google_bigtable_instance:
+      api: bigtableadmin
+      version: v2
+      schema: Instance
+      paths:
+        instance_type: type
+    google_composer_environment: {api: composer, version: v1, schema: Environment}
+    google_compute_attached_disk: {api: compute, version: v1, schema: AttachedDisk}
+    google_compute_global_address: {api: compute, version: v1, schema: Address}
+    google_compute_instance: &compute_instance
+      api: compute
+      version: v1
+      schema: Instance
+      paths:
+        boot_disk: disks
+        attached_disk: disks
+        scratch_disk: disks
+    google_compute_instance_from_template: *compute_instance
+    google_compute_instance_template: &compute_instance_template
+      api: compute
+      version: v1
+      schema: InstanceTemplate
+      paths:
+        advanced_machine_features: properties.advancedMachineFeatures
+        confidential_instance_config: properties.confidentialInstanceConfig
+        disk: properties.disks
+        disk.type: properties.disks.type
+        disk.architecture: properties.disks.architecture
+        network_interface: properties.networkInterfaces
+        network_performance_config: properties.networkPerformanceConfig
+        reservation_affinity: properties.reservationAffinity
+        scheduling: properties.scheduling
+    google_compute_region_instance_template: *compute_instance_template
+    google_compute_instance_group_manager: &instance_group_manager
+      api: compute
+      version: v1
+      schema: InstanceGroupManager
+      paths:
+        stateful_disk.delete_rule: statefulPolicy.preservedState.disks.autoDelete
+        stateful_internal_ip.delete_rule: statefulPolicy.preservedState.internalIPs.autoDelete
+        stateful_external_ip.delete_rule: statefulPolicy.preservedState.externalIPs.autoDelete
+        distribution_policy_target_shape: distributionPolicy.targetShape
+    google_compute_region_instance_group_manager: *instance_group_manager
+    google_compute_per_instance_config: &per_instance_config
+      api: compute
+      version: v1
+      schema: PerInstanceConfig
+      paths:
+        preserved_state.external_ip.auto_delete: preservedState.externalIPs.autoDelete
+        preserved_state.internal_ip.auto_delete: preservedState.internalIPs.autoDelete
+    google_compute_region_per_instance_config: *per_instance_config
+    google_compute_network_peering: {api: compute, version: v1, schema: NetworkPeering}
+    google_compute_project_default_network_tier:
+      api: compute
+      version: v1
+      schema: Project
+      paths:
+        network_tier: defaultNetworkTier
+    google_compute_router_nat: {api: compute, version: v1, schema: RouterNat}
+    google_compute_router_peer: {api: compute, version: v1, schema: RouterBgpPeer}
+    google_compute_security_policy: {api: compute, version: v1, schema: SecurityPolicy}
+    google_compute_security_policy_rule: {api: compute, version: v1, schema: SecurityPolicyRule}
+    google_compute_target_pool: {api: compute, version: v1, schema: TargetPool}
+    google_container_cluster:
+      api: container
+      version: v1
+      schema: Cluster
+      paths:
+        logging_config.enable_components: loggingConfig.componentConfig.enableComponents
+        monitoring_config.enable_components: monitoringConfig.componentConfig.enableComponents
+        node_config.logging_variant: nodeConfig.loggingConfig.variantConfig.variant
+        node_pool.node_config.logging_variant: nodePools.config.loggingConfig.variantConfig.variant
+        node_pool.node_config: nodePools.config
+        node_pool_defaults.node_config_defaults.logging_variant: nodePoolDefaults.nodeConfigDefaults.loggingConfig.variantConfig.variant
+    google_container_node_pool:
+      api: container
+      version: v1
+      schema: NodePool
+      paths:
+        node_config: config
+        node_config.logging_variant: config.loggingConfig.variantConfig.variant
+    google_dataflow_job: {api: dataflow, version: v1b3, schema: RuntimeEnvironment}
+    google_dataplex_asset: {api: dataplex, version: v1, schema: GoogleCloudDataplexV1Asset}
+    google_dataplex_zone: {api: dataplex, version: v1, schema: GoogleCloudDataplexV1Zone}
+    google_dataproc_cluster:
+      api: dataproc
+      version: v1
+      schema: Cluster
+      paths:
+        cluster_config: config
+    google_dataproc_workflow_template: {api: dataproc, version: v1, schema: WorkflowTemplate}
+    google_dns_record_set: {api: dns, version: v1, schema: ResourceRecordSet}
+    google_firebaserules_ruleset: {api: firebaserules, version: v1, schema: Ruleset}
+    google_folder_iam_audit_config: &audit_config
+      api: cloudresourcemanager
+      version: v1
+      schema: AuditConfig
+      paths:
+        audit_log_config: auditLogConfigs
+    google_organization_iam_audit_config: *audit_config
+    google_project_iam_audit_config: *audit_config
+    google_gke_hub_feature_membership: {api: gkehub, version: v1, schema: MembershipFeatureSpec}
+    google_model_armor_floorsetting: {api: modelarmor, version: v1, schema: FloorSetting}
+    google_network_connectivity_internal_range: {api: networkconnectivity, version: v1, schema: InternalRange}
+    google_network_management_organization_vpc_flow_logs_config: {api: networkmanagement, version: v1, schema: VpcFlowLogsConfig}
+    google_os_config_os_policy_assignment: {api: osconfig, version: v1, schema: OSPolicyAssignment}
+    google_project_iam_custom_role: {api: iam, version: v1, schema: Role}
+    google_recaptcha_enterprise_key: {api: recaptchaenterprise, version: v1, schema: GoogleCloudRecaptchaenterpriseV1Key}
+    google_service_account_key: {api: iam, version: v1, schema: ServiceAccountKey}
+    google_sql_database_instance: {api: sqladmin, version: v1, schema: DatabaseInstance, passthrough: true}
+    data.google_sql_database_instances: {api: sqladmin, version: v1, schema: DatabaseInstance}
+    google_sql_user: {api: sqladmin, version: v1, schema: User}
+    google_storage_bucket:
+      api: storage
+      version: v1
+      schema: Bucket
+      paths:
+        lifecycle_rule: lifecycle.rule
+    google_storage_bucket_object: {api: storage, version: v1, schema: Object}
+    google_storage_notification: {api: storage, version: v1, schema: Notification}
+    google_storage_transfer_job: {api: storagetransfer, version: v1, schema: TransferJob}
+google-beta:
+  products:
+    monitoring: {api: monitoring, version: v3}
+  types:
+    google_compute_instance_from_machine_image:
+      api: compute
+      version: beta
+      schema: Instance
+      paths:
+        boot_disk: disks
+        attached_disk: disks
+        scratch_disk: disks
+    google_firebase_database_instance: {api: firebasedatabase, version: v1beta, schema: DatabaseInstance}

@@ -81,7 +81,7 @@ final class ColabRuntimeTemplateMachineSpec {
 
   final TfArg<num>? acceleratorCount;
 
-  final TfArg<String>? acceleratorType;
+  final ColabRuntimeTemplateAcceleratorType? acceleratorType;
 
   final TfArg<String>? machineType;
 
@@ -91,6 +91,93 @@ final class ColabRuntimeTemplateMachineSpec {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
   };
+}
+
+/// `accelerator_type` — derived from the provider schema description.
+extension type const ColabRuntimeTemplateAcceleratorType._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabRuntimeTemplateAcceleratorType.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabRuntimeTemplateAcceleratorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabRuntimeTemplateAcceleratorType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvidiaTeslaK80 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_K80'),
+  );
+  static const nvidiaTeslaP100 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_P100'),
+  );
+  static const nvidiaTeslaV100 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_V100'),
+  );
+  static const nvidiaTeslaP4 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_P4'),
+  );
+  static const nvidiaTeslaT4 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_T4'),
+  );
+  static const nvidiaTeslaA100 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_TESLA_A100'),
+  );
+  static const nvidiaA10080gb = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_A100_80GB'),
+  );
+  static const nvidiaL4 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_L4'),
+  );
+  static const nvidiaH10080gb = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_H100_80GB'),
+  );
+  static const nvidiaH100Mega80gb = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_H100_MEGA_80GB'),
+  );
+  static const nvidiaH200141gb = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_H200_141GB'),
+  );
+  static const nvidiaB200 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_B200'),
+  );
+  static const nvidiaGb200 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_GB200'),
+  );
+  static const nvidiaRtxPro6000 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('NVIDIA_RTX_PRO_6000'),
+  );
+  static const tpuV2 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('TPU_V2'),
+  );
+  static const tpuV3 = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('TPU_V3'),
+  );
+  static const tpuV4Pod = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('TPU_V4_POD'),
+  );
+  static const tpuV5Litepod = ColabRuntimeTemplateAcceleratorType._(
+    TfArgLiteral('TPU_V5_LITEPOD'),
+  );
+
+  static const List<ColabRuntimeTemplateAcceleratorType> values = [
+    nvidiaTeslaK80,
+    nvidiaTeslaP100,
+    nvidiaTeslaV100,
+    nvidiaTeslaP4,
+    nvidiaTeslaT4,
+    nvidiaTeslaA100,
+    nvidiaA10080gb,
+    nvidiaL4,
+    nvidiaH10080gb,
+    nvidiaH100Mega80gb,
+    nvidiaH200141gb,
+    nvidiaB200,
+    nvidiaGb200,
+    nvidiaRtxPro6000,
+    tpuV2,
+    tpuV3,
+    tpuV4Pod,
+    tpuV5Litepod,
+  ];
 }
 
 /// Typed helper for the `network_spec` block of

@@ -9,6 +9,57 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_compute_subnetwork`.
 const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 
+/// Compute Subnetwork Ipv6 Gce enum for `ipv6_gce_endpoint`.
+extension type const ComputeSubnetworkIpv6GceEndpoint._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSubnetworkIpv6GceEndpoint.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSubnetworkIpv6GceEndpoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSubnetworkIpv6GceEndpoint.arg(TfArg<String> arg) : this._(arg);
+
+  static const vmAndFr = ComputeSubnetworkIpv6GceEndpoint._(
+    TfArgLiteral('VM_AND_FR'),
+  );
+  static const vmOnly = ComputeSubnetworkIpv6GceEndpoint._(
+    TfArgLiteral('VM_ONLY'),
+  );
+
+  static const List<ComputeSubnetworkIpv6GceEndpoint> values = [
+    vmAndFr,
+    vmOnly,
+  ];
+}
+
+/// Compute Subnetwork Private Ipv6 Google enum for `private_ipv6_google_access`.
+extension type const ComputeSubnetworkPrivateIpv6GoogleAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSubnetworkPrivateIpv6GoogleAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSubnetworkPrivateIpv6GoogleAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSubnetworkPrivateIpv6GoogleAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const disableGoogleAccess = ComputeSubnetworkPrivateIpv6GoogleAccess._(
+    TfArgLiteral('DISABLE_GOOGLE_ACCESS'),
+  );
+  static const enableBidirectionalAccessToGoogle =
+      ComputeSubnetworkPrivateIpv6GoogleAccess._(
+        TfArgLiteral('ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE'),
+      );
+  static const enableOutboundVmAccessToGoogle =
+      ComputeSubnetworkPrivateIpv6GoogleAccess._(
+        TfArgLiteral('ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE'),
+      );
+
+  static const List<ComputeSubnetworkPrivateIpv6GoogleAccess> values = [
+    disableGoogleAccess,
+    enableBidirectionalAccessToGoogle,
+    enableOutboundVmAccessToGoogle,
+  ];
+}
+
 /// Purpose of the subnetwork. Defaults to [private] when unspecified.
 ///
 /// `regionalManagedProxy` / `globalManagedProxy` reserve the subnet for
@@ -354,7 +405,7 @@ final class GoogleComputeSubnetwork extends Resource {
     SubnetworkRole? role,
     List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange,
     TfArg<bool>? privateIpGoogleAccess,
-    TfArg<String>? privateIpv6GoogleAccess,
+    ComputeSubnetworkPrivateIpv6GoogleAccess? privateIpv6GoogleAccess,
     ComputeSubnetworkLogConfig? logConfig,
     SubnetworkStackType? stackType,
     SubnetworkIpv6AccessType? ipv6AccessType,

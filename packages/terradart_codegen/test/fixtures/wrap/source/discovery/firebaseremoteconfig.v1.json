@@ -1,0 +1,92 @@
+{
+  "name": "firebaseremoteconfig",
+  "version": "v1",
+  "revision": "20261028",
+  "sourceUrl": "https://firebaseremoteconfig.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "RemoteConfig": {
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "RemoteConfigParameter"
+          }
+        },
+        "parameterGroups": {
+          "additionalProperties": {
+            "$ref": "RemoteConfigParameterGroup"
+          }
+        },
+        "version": {
+          "$ref": "Version"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "RemoteConfigCondition"
+          }
+        }
+      }
+    },
+    "RemoteConfigCondition": {
+      "properties": {
+        "tagColor": {
+          "enum": [
+            "CONDITION_DISPLAY_COLOR_UNSPECIFIED",
+            "BLUE",
+            "BROWN",
+            "CYAN",
+            "DEEP_ORANGE",
+            "GREEN",
+            "INDIGO",
+            "LIME",
+            "ORANGE",
+            "PINK",
+            "PURPLE",
+            "TEAL"
+          ]
+        }
+      }
+    },
+    "RemoteConfigParameter": {
+      "properties": {
+        "valueType": {
+          "enum": [
+            "PARAMETER_VALUE_TYPE_UNSPECIFIED",
+            "STRING",
+            "BOOLEAN",
+            "NUMBER",
+            "JSON"
+          ]
+        }
+      }
+    },
+    "RemoteConfigParameterGroup": {
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "RemoteConfigParameter"
+          }
+        }
+      }
+    },
+    "Version": {
+      "properties": {
+        "updateOrigin": {
+          "enum": [
+            "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED",
+            "CONSOLE",
+            "REST_API",
+            "ADMIN_SDK_NODE"
+          ]
+        },
+        "updateType": {
+          "enum": [
+            "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED",
+            "INCREMENTAL_UPDATE",
+            "FORCED_UPDATE",
+            "ROLLBACK"
+          ]
+        }
+      }
+    }
+  }
+}

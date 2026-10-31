@@ -302,25 +302,12 @@ extension type const AssuredWorkloadsWorkloadKajEnrollmentType._(
   const AssuredWorkloadsWorkloadKajEnrollmentType.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const kajEnrollmentTypeUnspecified =
-      AssuredWorkloadsWorkloadKajEnrollmentType._(
-        TfArgLiteral('KAJ_ENROLLMENT_TYPE_UNSPECIFIED'),
-      );
-  static const fullKaj = AssuredWorkloadsWorkloadKajEnrollmentType._(
-    TfArgLiteral('FULL_KAJ'),
-  );
-  static const ekmOnly = AssuredWorkloadsWorkloadKajEnrollmentType._(
-    TfArgLiteral('EKM_ONLY'),
-  );
   static const keyAccessTransparencyOff =
       AssuredWorkloadsWorkloadKajEnrollmentType._(
         TfArgLiteral('KEY_ACCESS_TRANSPARENCY_OFF'),
       );
 
   static const List<AssuredWorkloadsWorkloadKajEnrollmentType> values = [
-    kajEnrollmentTypeUnspecified,
-    fullKaj,
-    ekmOnly,
     keyAccessTransparencyOff,
   ];
 }

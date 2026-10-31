@@ -671,6 +671,33 @@ class ComputeRegionInstanceGroupManagerInstanceSelection {
 // standby_policy block (max_items=1)
 // ===========================================================================
 
+/// `standby_policy.mode`. How the MIG resumes standby VMs.
+extension type const RegionInstanceGroupManagerStandbyPolicyMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerStandbyPolicyMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerStandbyPolicyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerStandbyPolicyMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  /// The MIG resumes or starts standby VMs only on an explicit resize.
+  static const manual = RegionInstanceGroupManagerStandbyPolicyMode._(
+    TfArgLiteral('MANUAL'),
+  );
+
+  /// The MIG resumes or starts standby VMs as it scales out.
+  static const scaleOutPool = RegionInstanceGroupManagerStandbyPolicyMode._(
+    TfArgLiteral('SCALE_OUT_POOL'),
+  );
+
+  static const List<RegionInstanceGroupManagerStandbyPolicyMode> values = [
+    manual,
+    scaleOutPool,
+  ];
+}
+
 /// `standby_policy` block — controls how the MIG resumes VMs from a
 /// standby pool during scale-out.
 @immutable
@@ -684,8 +711,8 @@ class ComputeRegionInstanceGroupManagerStandbyPolicy {
   /// transitions (0-3600, default 0).
   final TfArg<int>? initialDelaySec;
 
-  /// Standby mode. Defaults to `MANUAL`.
-  final TfArg<String>? mode;
+  /// Standby mode. Defaults to [RegionInstanceGroupManagerStandbyPolicyMode.manual].
+  final RegionInstanceGroupManagerStandbyPolicyMode? mode;
 
   Map<String, Object?> toArgMap() => {
     if (initialDelaySec != null)
@@ -698,6 +725,33 @@ class ComputeRegionInstanceGroupManagerStandbyPolicy {
 // target_size_policy block (nesting=list, no max_items)
 // ===========================================================================
 
+/// `target_size_policy.mode`. How the MIG creates VMs to reach its target size.
+extension type const RegionInstanceGroupManagerTargetSizePolicyMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerTargetSizePolicyMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerTargetSizePolicyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerTargetSizePolicyMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  /// All VMs at once; the MIG creates none until it can create every one.
+  static const bulk = RegionInstanceGroupManagerTargetSizePolicyMode._(
+    TfArgLiteral('BULK'),
+  );
+
+  /// Each VM on its own, as soon as it can be created.
+  static const individual = RegionInstanceGroupManagerTargetSizePolicyMode._(
+    TfArgLiteral('INDIVIDUAL'),
+  );
+
+  static const List<RegionInstanceGroupManagerTargetSizePolicyMode> values = [
+    bulk,
+    individual,
+  ];
+}
+
 /// One entry in [targetSizePolicies]. Configures whether the MIG
 /// creates VMs individually or all at once to reach
 /// [GoogleComputeRegionInstanceGroupManager.targetSize].
@@ -705,8 +759,8 @@ class ComputeRegionInstanceGroupManagerStandbyPolicy {
 class ComputeRegionInstanceGroupManagerTargetSizePolicy {
   const ComputeRegionInstanceGroupManagerTargetSizePolicy({required this.mode});
 
-  /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
-  final TfArg<String> mode;
+  /// Required. The provisioning mode.
+  final RegionInstanceGroupManagerTargetSizePolicyMode mode;
 
   Map<String, Object?> toArgMap() => {'mode': mode};
 }

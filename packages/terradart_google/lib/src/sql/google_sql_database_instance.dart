@@ -99,9 +99,6 @@ extension type const DatabaseVersion._(TfArg<String> _)
   static const sqlserver2025Express = DatabaseVersion._(
     TfArgLiteral('SQLSERVER_2025_EXPRESS'),
   );
-  static const sqlserver2025Web = DatabaseVersion._(
-    TfArgLiteral('SQLSERVER_2025_WEB'),
-  );
 
   static const List<DatabaseVersion> values = [
     mysql56,
@@ -125,7 +122,6 @@ extension type const DatabaseVersion._(TfArg<String> _)
     sqlserver2025Standard,
     sqlserver2025Enterprise,
     sqlserver2025Express,
-    sqlserver2025Web,
   ];
 }
 
@@ -433,9 +429,9 @@ final class SqlDatabaseInstanceSettings {
 
   final TfArg<String>? collation;
 
-  final TfArg<String>? connectorEnforcement;
+  final SqlDatabaseInstanceConnectorEnforcement? connectorEnforcement;
 
-  final TfArg<String>? dataApiAccess;
+  final SqlDatabaseInstanceDataApiAccess? dataApiAccess;
 
   final TfArg<num>? dataDiskProvisionedIops;
 
@@ -457,7 +453,7 @@ final class SqlDatabaseInstanceSettings {
 
   final TfArg<bool>? enableGoogleMlIntegration;
 
-  final TfArg<String>? pricingPlan;
+  final SqlDatabaseInstancePricingPlan? pricingPlan;
 
   final TfArg<num>? replicationLagMaxSeconds;
 
@@ -549,6 +545,70 @@ final class SqlDatabaseInstanceSettings {
   };
 }
 
+/// `connector_enforcement` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceConnectorEnforcement._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceConnectorEnforcement.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceConnectorEnforcement.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceConnectorEnforcement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const notRequired = SqlDatabaseInstanceConnectorEnforcement._(
+    TfArgLiteral('NOT_REQUIRED'),
+  );
+  static const required = SqlDatabaseInstanceConnectorEnforcement._(
+    TfArgLiteral('REQUIRED'),
+  );
+
+  static const List<SqlDatabaseInstanceConnectorEnforcement> values = [
+    notRequired,
+    required,
+  ];
+}
+
+/// `data_api_access` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceDataApiAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceDataApiAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceDataApiAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceDataApiAccess.arg(TfArg<String> arg) : this._(arg);
+
+  static const disallowDataApi = SqlDatabaseInstanceDataApiAccess._(
+    TfArgLiteral('DISALLOW_DATA_API'),
+  );
+  static const allowDataApi = SqlDatabaseInstanceDataApiAccess._(
+    TfArgLiteral('ALLOW_DATA_API'),
+  );
+
+  static const List<SqlDatabaseInstanceDataApiAccess> values = [
+    disallowDataApi,
+    allowDataApi,
+  ];
+}
+
+/// `pricing_plan` — derived from the provider schema description.
+extension type const SqlDatabaseInstancePricingPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstancePricingPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstancePricingPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstancePricingPlan.arg(TfArg<String> arg) : this._(arg);
+
+  static const package = SqlDatabaseInstancePricingPlan._(
+    TfArgLiteral('PACKAGE'),
+  );
+  static const perUse = SqlDatabaseInstancePricingPlan._(
+    TfArgLiteral('PER_USE'),
+  );
+
+  static const List<SqlDatabaseInstancePricingPlan> values = [package, perUse];
+}
+
 /// Typed helper for the `settings.active_directory_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
@@ -567,7 +627,7 @@ final class SqlDatabaseInstanceActiveDirectoryConfig {
 
   final TfArg<String> domain;
 
-  final TfArg<String>? mode;
+  final SqlDatabaseInstanceMode? mode;
 
   final TfArg<String>? organizationalUnit;
 
@@ -579,6 +639,31 @@ final class SqlDatabaseInstanceActiveDirectoryConfig {
     'mode': ?mode?.toTfJson(),
     'organizational_unit': ?organizationalUnit?.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceMode.variable(String name) : this._(TfArg.variable(name));
+  SqlDatabaseInstanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const managedActiveDirectory = SqlDatabaseInstanceMode._(
+    TfArgLiteral('MANAGED_ACTIVE_DIRECTORY'),
+  );
+  static const selfManagedActiveDirectory = SqlDatabaseInstanceMode._(
+    TfArgLiteral('SELF_MANAGED_ACTIVE_DIRECTORY'),
+  );
+  static const customerManagedActiveDirectory = SqlDatabaseInstanceMode._(
+    TfArgLiteral('CUSTOMER_MANAGED_ACTIVE_DIRECTORY'),
+  );
+
+  static const List<SqlDatabaseInstanceMode> values = [
+    managedActiveDirectory,
+    selfManagedActiveDirectory,
+    customerManagedActiveDirectory,
+  ];
 }
 
 /// Typed helper for the `settings.advanced_machine_features` block of
@@ -646,13 +731,29 @@ final class SqlDatabaseInstanceBackupRetentionSettings {
 
   final TfArg<num> retainedBackups;
 
-  final TfArg<String>? retentionUnit;
+  final SqlDatabaseInstanceRetentionUnit? retentionUnit;
 
   @internal
   Map<String, Object?> encode() => {
     'retained_backups': retainedBackups.toTfJson(),
     'retention_unit': ?retentionUnit?.toTfJson(),
   };
+}
+
+/// `retention_unit` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceRetentionUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceRetentionUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceRetentionUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceRetentionUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const count = SqlDatabaseInstanceRetentionUnit._(
+    TfArgLiteral('COUNT'),
+  );
+
+  static const List<SqlDatabaseInstanceRetentionUnit> values = [count];
 }
 
 /// Typed helper for the `settings.connection_pool_config` block of
@@ -852,13 +953,14 @@ final class SqlDatabaseInstanceIpConfiguration {
 
   final RefTo<GoogleComputeNetwork>? privateNetwork;
 
-  final TfArg<String>? serverCaMode;
+  final SqlDatabaseInstanceServerCaMode? serverCaMode;
 
   final TfArg<String>? serverCaPool;
 
-  final TfArg<String>? serverCertificateRotationMode;
+  final SqlDatabaseInstanceServerCertificateRotationMode?
+  serverCertificateRotationMode;
 
-  final TfArg<String>? sslMode;
+  final SqlDatabaseInstanceSslMode? sslMode;
 
   final List<SqlDatabaseInstanceAuthorizedNetworks>? authorizedNetworks;
 
@@ -883,6 +985,84 @@ final class SqlDatabaseInstanceIpConfiguration {
     if (pscConfig != null)
       'psc_config': [for (final e in pscConfig!) e.encode()],
   };
+}
+
+/// `server_ca_mode` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceServerCaMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceServerCaMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceServerCaMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceServerCaMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const googleManagedInternalCa = SqlDatabaseInstanceServerCaMode._(
+    TfArgLiteral('GOOGLE_MANAGED_INTERNAL_CA'),
+  );
+  static const googleManagedCasCa = SqlDatabaseInstanceServerCaMode._(
+    TfArgLiteral('GOOGLE_MANAGED_CAS_CA'),
+  );
+  static const customerManagedCasCa = SqlDatabaseInstanceServerCaMode._(
+    TfArgLiteral('CUSTOMER_MANAGED_CAS_CA'),
+  );
+
+  static const List<SqlDatabaseInstanceServerCaMode> values = [
+    googleManagedInternalCa,
+    googleManagedCasCa,
+    customerManagedCasCa,
+  ];
+}
+
+/// `server_certificate_rotation_mode` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceServerCertificateRotationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SqlDatabaseInstanceServerCertificateRotationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceServerCertificateRotationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceServerCertificateRotationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noAutomaticRotation =
+      SqlDatabaseInstanceServerCertificateRotationMode._(
+        TfArgLiteral('NO_AUTOMATIC_ROTATION'),
+      );
+  static const automaticRotationDuringMaintenance =
+      SqlDatabaseInstanceServerCertificateRotationMode._(
+        TfArgLiteral('AUTOMATIC_ROTATION_DURING_MAINTENANCE'),
+      );
+
+  static const List<SqlDatabaseInstanceServerCertificateRotationMode> values = [
+    noAutomaticRotation,
+    automaticRotationDuringMaintenance,
+  ];
+}
+
+/// `ssl_mode` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceSslMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceSslMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceSslMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceSslMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowUnencryptedAndEncrypted = SqlDatabaseInstanceSslMode._(
+    TfArgLiteral('ALLOW_UNENCRYPTED_AND_ENCRYPTED'),
+  );
+  static const encryptedOnly = SqlDatabaseInstanceSslMode._(
+    TfArgLiteral('ENCRYPTED_ONLY'),
+  );
+  static const trustedClientCertificateRequired = SqlDatabaseInstanceSslMode._(
+    TfArgLiteral('TRUSTED_CLIENT_CERTIFICATE_REQUIRED'),
+  );
+
+  static const List<SqlDatabaseInstanceSslMode> values = [
+    allowUnencryptedAndEncrypted,
+    encryptedOnly,
+    trustedClientCertificateRequired,
+  ];
 }
 
 /// Typed helper for the `settings.ip_configuration.authorized_networks` block of
@@ -1009,7 +1189,7 @@ final class SqlDatabaseInstanceMaintenanceWindow {
 
   final TfArg<num>? hour;
 
-  final TfArg<String>? updateTrack;
+  final SqlDatabaseInstanceUpdateTrack? updateTrack;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1017,6 +1197,30 @@ final class SqlDatabaseInstanceMaintenanceWindow {
     'hour': ?hour?.toTfJson(),
     'update_track': ?updateTrack?.toTfJson(),
   };
+}
+
+/// `update_track` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceUpdateTrack._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceUpdateTrack.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceUpdateTrack.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceUpdateTrack.arg(TfArg<String> arg) : this._(arg);
+
+  static const canary = SqlDatabaseInstanceUpdateTrack._(
+    TfArgLiteral('canary'),
+  );
+  static const stable = SqlDatabaseInstanceUpdateTrack._(
+    TfArgLiteral('stable'),
+  );
+  static const week5 = SqlDatabaseInstanceUpdateTrack._(TfArgLiteral('week5'));
+
+  static const List<SqlDatabaseInstanceUpdateTrack> values = [
+    canary,
+    stable,
+    week5,
+  ];
 }
 
 /// Typed helper for the `settings.password_validation_policy` block of
@@ -1032,7 +1236,7 @@ final class SqlDatabaseInstancePasswordValidationPolicy {
     this.reuseInterval,
   });
 
-  final TfArg<String>? complexity;
+  final SqlDatabaseInstanceComplexity? complexity;
 
   final TfArg<bool>? disallowUsernameSubstring;
 
@@ -1053,6 +1257,22 @@ final class SqlDatabaseInstancePasswordValidationPolicy {
     'password_change_interval': ?passwordChangeInterval?.toTfJson(),
     'reuse_interval': ?reuseInterval?.toTfJson(),
   };
+}
+
+/// `complexity` — derived from the provider schema description.
+extension type const SqlDatabaseInstanceComplexity._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlDatabaseInstanceComplexity.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceComplexity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceComplexity.arg(TfArg<String> arg) : this._(arg);
+
+  static const complexityDefault = SqlDatabaseInstanceComplexity._(
+    TfArgLiteral('COMPLEXITY_DEFAULT'),
+  );
+
+  static const List<SqlDatabaseInstanceComplexity> values = [complexityDefault];
 }
 
 /// Typed helper for the `settings.read_pool_auto_scale_config` block of

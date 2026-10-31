@@ -1,0 +1,205 @@
+{
+  "name": "identitytoolkit",
+  "version": "v2",
+  "revision": "20261013",
+  "sourceUrl": "https://identitytoolkit.googleapis.com/$discovery/rest?version=v2",
+  "schemas": {
+    "GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig": {
+      "properties": {}
+    },
+    "GoogleCloudIdentitytoolkitAdminV2HashConfig": {
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "HASH_ALGORITHM_UNSPECIFIED",
+            "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_MD5",
+            "SCRYPT",
+            "PBKDF_SHA1",
+            "MD5",
+            "HMAC_SHA512",
+            "SHA1",
+            "BCRYPT",
+            "PBKDF2_SHA256",
+            "SHA256",
+            "SHA512",
+            "STANDARD_SCRYPT"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig": {
+      "properties": {}
+    },
+    "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig": {
+      "properties": {
+        "domain": {
+          "enum": [
+            "DOMAIN_UNSPECIFIED",
+            "FIREBASE_DYNAMIC_LINK_DOMAIN",
+            "HOSTING_DOMAIN"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig": {
+      "properties": {
+        "providerConfigs": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig"
+          }
+        },
+        "enabledProviders": {
+          "items": {
+            "enum": [
+              "PROVIDER_UNSPECIFIED",
+              "PHONE_SMS"
+            ]
+          }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "MANDATORY"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig": {
+      "properties": {}
+    },
+    "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig": {
+      "properties": {
+        "passwordPolicyEnforcementState": {
+          "enum": [
+            "PASSWORD_POLICY_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "ENFORCE"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2ProviderConfig": {
+      "properties": {
+        "state": {
+          "enum": [
+            "MFA_STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "MANDATORY"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig": {
+      "properties": {
+        "managedRules": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule"
+          }
+        },
+        "emailPasswordEnforcementState": {
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ]
+        },
+        "recaptchaKeys": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey"
+          }
+        },
+        "phoneEnforcementState": {
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ]
+        },
+        "tollFraudManagedRules": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
+          }
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey": {
+      "properties": {
+        "type": {
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "WEB",
+            "IOS",
+            "ANDROID"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule": {
+      "properties": {
+        "action": {
+          "enum": [
+            "RECAPTCHA_ACTION_UNSPECIFIED",
+            "BLOCK"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule": {
+      "properties": {
+        "action": {
+          "enum": [
+            "RECAPTCHA_ACTION_UNSPECIFIED",
+            "BLOCK"
+          ]
+        }
+      }
+    },
+    "GoogleCloudIdentitytoolkitAdminV2Tenant": {
+      "properties": {
+        "hashConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2HashConfig"
+        },
+        "passwordPolicyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig"
+        },
+        "mfaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig"
+        },
+        "mobileLinksConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig"
+        },
+        "recaptchaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig"
+        }
+      }
+    },
+    "GoogleIamV1AuditConfig": {
+      "properties": {
+        "auditLogConfigs": {
+          "items": {
+            "$ref": "GoogleIamV1AuditLogConfig"
+          }
+        }
+      }
+    },
+    "GoogleIamV1AuditLogConfig": {
+      "properties": {
+        "logType": {
+          "enum": [
+            "LOG_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "DATA_WRITE",
+            "DATA_READ"
+          ]
+        }
+      }
+    }
+  }
+}

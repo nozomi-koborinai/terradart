@@ -569,13 +569,13 @@ extension type const DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
       DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
         TfArgLiteral('POSTGRES_9_6'),
       );
-  static const postgres10 =
-      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
-        TfArgLiteral('POSTGRES_10'),
-      );
   static const postgres11 =
       DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
         TfArgLiteral('POSTGRES_11'),
+      );
+  static const postgres10 =
+      DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
+        TfArgLiteral('POSTGRES_10'),
       );
   static const postgres12 =
       DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
@@ -617,8 +617,8 @@ extension type const DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
     mysql8037,
     mysql84,
     postgres96,
-    postgres10,
     postgres11,
+    postgres10,
     postgres12,
     postgres13,
     postgres14,

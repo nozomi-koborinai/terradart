@@ -556,6 +556,32 @@ class ComputeSecurityPolicyRulesEnforceOnKeyConfig {
   };
 }
 
+/// `redirect_options.type` / `exceed_redirect_options.type` -- where a
+/// redirect action sends the request.
+extension type const SecurityPolicyRedirectType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyRedirectType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyRedirectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyRedirectType.arg(TfArg<String> arg) : this._(arg);
+
+  /// A 302 to [ComputeSecurityPolicyRulesRedirectOptions.target].
+  static const external302 = SecurityPolicyRedirectType._(
+    TfArgLiteral('EXTERNAL_302'),
+  );
+
+  /// A Google-hosted reCAPTCHA challenge; set no target.
+  static const googleRecaptcha = SecurityPolicyRedirectType._(
+    TfArgLiteral('GOOGLE_RECAPTCHA'),
+  );
+
+  static const List<SecurityPolicyRedirectType> values = [
+    external302,
+    googleRecaptcha,
+  ];
+}
+
 /// `rule.redirect_options` -- redirect target shape, also reused as
 /// `rate_limit_options.exceed_redirect_options`. Two flavors:
 /// `'EXTERNAL_302'` requires [target] (an HTTPS URL Cloud Armor 302s
@@ -568,13 +594,12 @@ class ComputeSecurityPolicyRulesRedirectOptions {
     this.target,
   });
 
-  /// `'EXTERNAL_302'` or `'GOOGLE_RECAPTCHA'`. Surfaced as a raw
-  /// string to avoid yet another enum for a binary choice; validate
-  /// with a comment at the call site.
-  final TfArg<String> type;
+  /// The redirect flavor.
+  final SecurityPolicyRedirectType type;
 
-  /// HTTPS redirect target. Required for `EXTERNAL_302`; rejected for
-  /// `GOOGLE_RECAPTCHA`.
+  /// HTTPS redirect target. Required for
+  /// [SecurityPolicyRedirectType.external302]; rejected for
+  /// [SecurityPolicyRedirectType.googleRecaptcha].
   final TfArg<String>? target;
 
   Map<String, Object?> toArgMap() => {
@@ -857,6 +882,33 @@ class ComputeSecurityPolicyAdaptiveProtectionThresholdConfig {
   };
 }
 
+/// `traffic_granularity_configs.type` -- the request attribute a
+/// granular traffic unit is keyed on.
+extension type const SecurityPolicyTrafficGranularityType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyTrafficGranularityType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyTrafficGranularityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyTrafficGranularityType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  /// The `Host` header.
+  static const httpHeaderHost = SecurityPolicyTrafficGranularityType._(
+    TfArgLiteral('HTTP_HEADER_HOST'),
+  );
+
+  /// The URL path.
+  static const httpPath = SecurityPolicyTrafficGranularityType._(
+    TfArgLiteral('HTTP_PATH'),
+  );
+
+  static const List<SecurityPolicyTrafficGranularityType> values = [
+    httpHeaderHost,
+    httpPath,
+  ];
+}
+
 /// One entry in `traffic_granularity_configs`. [enableEachUniqueValue]
 /// (true) and [value] (non-empty string) are mutually exclusive: the
 /// schema rejects setting both.
@@ -868,9 +920,8 @@ class ComputeSecurityPolicyTrafficGranularityConfig {
     this.value,
   });
 
-  /// Granularity dimension (`'HTTP_HEADER_HOST'`, `'HTTP_PATH'`, ...).
-  /// See the Cloud Armor docs for the supported types.
-  final TfArg<String> type;
+  /// Granularity dimension.
+  final SecurityPolicyTrafficGranularityType type;
 
   /// When true, each unique value of [type] constitutes a separate
   /// traffic unit. Mutually exclusive with [value].

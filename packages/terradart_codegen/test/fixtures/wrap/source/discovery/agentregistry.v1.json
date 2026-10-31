@@ -1,0 +1,73 @@
+{
+  "name": "agentregistry",
+  "version": "v1",
+  "revision": "20261021",
+  "sourceUrl": "https://agentregistry.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AgentSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC",
+            "A2A_AGENT_CARD"
+          ]
+        }
+      }
+    },
+    "Binding": {
+      "properties": {}
+    },
+    "EndpointSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC"
+          ]
+        }
+      }
+    },
+    "Interface": {
+      "properties": {
+        "protocolBinding": {
+          "enum": [
+            "PROTOCOL_BINDING_UNSPECIFIED",
+            "JSONRPC",
+            "GRPC",
+            "HTTP_JSON"
+          ]
+        }
+      }
+    },
+    "McpServerSpec": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC",
+            "TOOL_SPEC"
+          ]
+        }
+      }
+    },
+    "Service": {
+      "properties": {
+        "endpointSpec": {
+          "$ref": "EndpointSpec"
+        },
+        "agentSpec": {
+          "$ref": "AgentSpec"
+        },
+        "mcpServerSpec": {
+          "$ref": "McpServerSpec"
+        },
+        "interfaces": {
+          "items": {
+            "$ref": "Interface"
+          }
+        }
+      }
+    }
+  }
+}

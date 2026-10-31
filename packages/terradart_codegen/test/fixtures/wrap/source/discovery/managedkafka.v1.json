@@ -1,0 +1,69 @@
+{
+  "name": "managedkafka",
+  "version": "v1",
+  "revision": "20261001",
+  "sourceUrl": "https://managedkafka.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "Acl": {
+      "properties": {}
+    },
+    "Cluster": {
+      "properties": {
+        "rebalanceConfig": {
+          "$ref": "RebalanceConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        }
+      }
+    },
+    "ConnectCluster": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "DETACHED"
+          ]
+        }
+      }
+    },
+    "Connector": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UNASSIGNED",
+            "RUNNING",
+            "PAUSED",
+            "FAILED",
+            "RESTARTING",
+            "STOPPED"
+          ]
+        }
+      }
+    },
+    "RebalanceConfig": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "NO_REBALANCE",
+            "AUTO_REBALANCE_ON_SCALE_UP"
+          ]
+        }
+      }
+    },
+    "Topic": {
+      "properties": {}
+    }
+  }
+}

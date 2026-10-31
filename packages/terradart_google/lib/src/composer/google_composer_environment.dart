@@ -41,11 +41,11 @@ final class ComposerEnvironmentConfig {
 
   final TfArg<bool>? enablePrivateEnvironment;
 
-  final TfArg<String>? environmentSize;
+  final ComposerEnvironmentSize? environmentSize;
 
   final TfArg<num>? nodeCount;
 
-  final TfArg<String>? resilienceMode;
+  final ComposerEnvironmentResilienceMode? resilienceMode;
 
   final ComposerEnvironmentDataRetentionConfig? dataRetentionConfig;
 
@@ -97,6 +97,53 @@ final class ComposerEnvironmentConfig {
   };
 }
 
+/// `environment_size` — derived from the provider schema description.
+extension type const ComposerEnvironmentSize._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentSize.variable(String name) : this._(TfArg.variable(name));
+  ComposerEnvironmentSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentSize.arg(TfArg<String> arg) : this._(arg);
+
+  static const environmentSizeSmall = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_SMALL'),
+  );
+  static const environmentSizeMedium = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_MEDIUM'),
+  );
+  static const environmentSizeLarge = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_LARGE'),
+  );
+  static const environmentSizeExtraLarge = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_EXTRA_LARGE'),
+  );
+
+  static const List<ComposerEnvironmentSize> values = [
+    environmentSizeSmall,
+    environmentSizeMedium,
+    environmentSizeLarge,
+    environmentSizeExtraLarge,
+  ];
+}
+
+/// `resilience_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentResilienceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentResilienceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentResilienceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentResilienceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const highResilience = ComposerEnvironmentResilienceMode._(
+    TfArgLiteral('HIGH_RESILIENCE'),
+  );
+
+  static const List<ComposerEnvironmentResilienceMode> values = [
+    highResilience,
+  ];
+}
+
 /// Typed helper for the `config.data_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
@@ -136,7 +183,7 @@ final class ComposerEnvironmentAirflowMetadataRetentionConfig {
 
   final TfArg<num>? retentionDays;
 
-  final TfArg<String>? retentionMode;
+  final ComposerEnvironmentRetentionMode? retentionMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -145,16 +192,60 @@ final class ComposerEnvironmentAirflowMetadataRetentionConfig {
   };
 }
 
+/// `retention_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentRetentionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentRetentionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentRetentionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentRetentionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const retentionModeEnabled = ComposerEnvironmentRetentionMode._(
+    TfArgLiteral('RETENTION_MODE_ENABLED'),
+  );
+  static const retentionModeDisabled = ComposerEnvironmentRetentionMode._(
+    TfArgLiteral('RETENTION_MODE_DISABLED'),
+  );
+
+  static const List<ComposerEnvironmentRetentionMode> values = [
+    retentionModeEnabled,
+    retentionModeDisabled,
+  ];
+}
+
 /// Typed helper for the `config.data_retention_config.task_logs_retention_config` block of
 /// `google_composer_environment` (derived from provider schema).
 @immutable
 final class ComposerEnvironmentTaskLogsRetentionConfig {
   const ComposerEnvironmentTaskLogsRetentionConfig({this.storageMode});
 
-  final TfArg<String>? storageMode;
+  final ComposerEnvironmentStorageMode? storageMode;
 
   @internal
   Map<String, Object?> encode() => {'storage_mode': ?storageMode?.toTfJson()};
+}
+
+/// `storage_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentStorageMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentStorageMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentStorageMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentStorageMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudLoggingAndCloudStorage = ComposerEnvironmentStorageMode._(
+    TfArgLiteral('CLOUD_LOGGING_AND_CLOUD_STORAGE'),
+  );
+  static const cloudLoggingOnly = ComposerEnvironmentStorageMode._(
+    TfArgLiteral('CLOUD_LOGGING_ONLY'),
+  );
+
+  static const List<ComposerEnvironmentStorageMode> values = [
+    cloudLoggingAndCloudStorage,
+    cloudLoggingOnly,
+  ];
 }
 
 /// Typed helper for the `config.database_config` block of

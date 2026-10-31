@@ -9,6 +9,38 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_secret_manager_regional_secret`.
 const Set<String> _googleSecretManagerRegionalSecretSensitive = <String>{};
 
+/// Secret Manager Regional Secret enum for `secret_type`.
+extension type const SecretManagerRegionalSecretType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecretManagerRegionalSecretType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecretManagerRegionalSecretType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecretManagerRegionalSecretType.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudSqlDbCredentials = SecretManagerRegionalSecretType._(
+    TfArgLiteral('CLOUD_SQL_DB_CREDENTIALS'),
+  );
+  static const accessKey = SecretManagerRegionalSecretType._(
+    TfArgLiteral('ACCESS_KEY'),
+  );
+  static const certificate = SecretManagerRegionalSecretType._(
+    TfArgLiteral('CERTIFICATE'),
+  );
+  static const otherDbCredentials = SecretManagerRegionalSecretType._(
+    TfArgLiteral('OTHER_DB_CREDENTIALS'),
+  );
+  static const other = SecretManagerRegionalSecretType._(TfArgLiteral('OTHER'));
+
+  static const List<SecretManagerRegionalSecretType> values = [
+    cloudSqlDbCredentials,
+    accessKey,
+    certificate,
+    otherDbCredentials,
+    other,
+  ];
+}
+
 /// Typed helper for the `customer_managed_encryption` block of
 /// `google_secret_manager_regional_secret` (derived from provider schema).
 @immutable
@@ -77,7 +109,7 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
-    TfArg<String>? secretType,
+    SecretManagerRegionalSecretType? secretType,
     SecretManagerRegionalSecretCustomerManagedEncryption?
     customerManagedEncryption,
     SecretManagerRegionalSecretRotation? rotation,

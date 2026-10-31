@@ -1,8 +1,3 @@
-enumValues:
-  ip_configuration:
-    - "WORKER_IP_PUBLIC"
-    - "WORKER_IP_PRIVATE"
-
 outputDir: dataflow
 deriveClassDoc: true
 deriveExactlyOne: true

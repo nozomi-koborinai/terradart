@@ -128,7 +128,7 @@ final class CloudSchedulerJobAppEngineHttpTarget {
 
   final TfArg<Map<String, String>>? headers;
 
-  final TfArg<String>? httpMethod;
+  final CloudSchedulerJobHttpMethod? httpMethod;
 
   final TfArg<String> relativeUri;
 
@@ -142,6 +142,34 @@ final class CloudSchedulerJobAppEngineHttpTarget {
     'relative_uri': relativeUri.toTfJson(),
     'app_engine_routing': ?appEngineRouting?.encode(),
   };
+}
+
+/// `http_method` — derived from the provider schema description.
+extension type const CloudSchedulerJobHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudSchedulerJobHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudSchedulerJobHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudSchedulerJobHttpMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const post = CloudSchedulerJobHttpMethod._(TfArgLiteral('POST'));
+  static const get = CloudSchedulerJobHttpMethod._(TfArgLiteral('GET'));
+  static const head = CloudSchedulerJobHttpMethod._(TfArgLiteral('HEAD'));
+  static const put = CloudSchedulerJobHttpMethod._(TfArgLiteral('PUT'));
+  static const delete = CloudSchedulerJobHttpMethod._(TfArgLiteral('DELETE'));
+  static const patch = CloudSchedulerJobHttpMethod._(TfArgLiteral('PATCH'));
+  static const options = CloudSchedulerJobHttpMethod._(TfArgLiteral('OPTIONS'));
+
+  static const List<CloudSchedulerJobHttpMethod> values = [
+    post,
+    get,
+    head,
+    put,
+    delete,
+    patch,
+    options,
+  ];
 }
 
 /// Typed helper for the `app_engine_http_target.app_engine_routing` block of
@@ -185,7 +213,7 @@ final class CloudSchedulerJobHttpTarget {
 
   final TfArg<Map<String, String>>? headers;
 
-  final TfArg<String>? httpMethod;
+  final CloudSchedulerJobHttpMethod? httpMethod;
 
   final TfArg<String> uri;
 

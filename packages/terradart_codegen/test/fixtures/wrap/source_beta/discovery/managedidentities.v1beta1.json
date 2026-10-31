@@ -1,0 +1,21 @@
+{
+  "name": "managedidentities",
+  "version": "v1beta1",
+  "revision": "20261019",
+  "sourceUrl": "https://managedidentities.googleapis.com/$discovery/rest?version=v1beta1",
+  "schemas": {
+    "Peering": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "CONNECTED",
+            "DISCONNECTED",
+            "DELETING"
+          ]
+        }
+      }
+    }
+  }
+}
