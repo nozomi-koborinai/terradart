@@ -25,6 +25,6 @@ import 'tf_arg.dart';
 /// resolves goes in the literal list through the enum's own `.variable`,
 /// `.expression` or `.arg`.
 ///
-/// Synth writes a literal list member by member; each member is a
-/// `TfArg<String>` already.
+/// A literal list encodes member by member: `toTfJson()` gives each
+/// member's own value, so a helper's `encode()` holds plain strings.
 typedef EnumList<E extends TfArg<String>> = TfArg<List<E>>;

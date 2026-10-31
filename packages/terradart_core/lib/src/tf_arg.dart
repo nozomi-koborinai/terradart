@@ -159,7 +159,8 @@ sealed class TfArg<T> {
 
   /// Value emitted into Terraform JSON.
   ///
-  /// - `TfArgLiteral`    → the actual value (string, int, etc.)
+  /// - `TfArgLiteral`    → the actual value (string, int, etc.), with each
+  ///   `TfArg` inside a list or map replaced by its own value
   /// - `TfRef`           → an interpolation string `'${...}'`
   /// - `TfArgVariable`   → an interpolation string `'${var.<name>}'`
   /// - `TfArgExpression` → its template string, verbatim
@@ -185,8 +186,24 @@ final class TfArgLiteral<T> extends TfArg<T> {
         'enums the provider packages declare are TfArgs already.',
       );
     }
-    return value;
+    return _members(v);
   }
+
+  static Object? _members(Object? v) => switch (v) {
+    TfArg<dynamic>() => v.toTfJson(),
+    List<dynamic>() when _holdsArg(v) => [for (final e in v) _members(e)],
+    Map<dynamic, dynamic>() when _holdsArg(v.values) => {
+      for (final e in v.entries) e.key: _members(e.value),
+    },
+    _ => v,
+  };
+
+  static bool _holdsArg(Iterable<dynamic> values) => values.any(
+    (e) =>
+        e is TfArg<dynamic> ||
+        (e is List<dynamic> && _holdsArg(e)) ||
+        (e is Map<dynamic, dynamic> && _holdsArg(e.values)),
+  );
 }
 
 /// What an argument Terraform marks sensitive takes: a variable, an

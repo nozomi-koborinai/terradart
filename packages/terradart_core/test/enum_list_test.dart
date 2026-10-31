@@ -89,6 +89,44 @@ void main() {
     ]);
   });
 
+  test('a helper encodes a literal list as its members\' values', () {
+    expect(const _FakeGrantRule(modes: .literal([.read, .write])).encode(), {
+      'modes': ['READ', 'WRITE'],
+    });
+    expect(
+      _FakeGrantRule(
+        modes: .literal([.read, _Mode.variable('extra')]),
+      ).encode(),
+      {
+        'modes': ['READ', r'${var.extra}'],
+      },
+    );
+    expect(_FakeGrantRule(modes: .variable('modes')).encode(), {
+      'modes': r'${var.modes}',
+    });
+  });
+
+  test('a literal leaves a list and a map without a TfArg as they are', () {
+    const list = ['a', 'b'];
+    const map = {
+      'k': [1, 2],
+    };
+    expect(identical(const TfArg.literal(list).toTfJson(), list), isTrue);
+    expect(identical(const TfArg.literal(map).toTfJson(), map), isTrue);
+    expect(
+      const TfArg<Object?>.literal({
+        'nested': [
+          {'mode': _Mode.read},
+        ],
+      }).toTfJson(),
+      {
+        'nested': [
+          {'mode': 'READ'},
+        ],
+      },
+    );
+  });
+
   test('synth requires the variable a whole list names', () {
     expect(
       () => _synth(
