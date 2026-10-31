@@ -595,7 +595,7 @@ final class BigqueryJobLoad {
 
   final TfArg<String>? quote;
 
-  final List<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
+  final EnumList<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<num>? skipLeadingRows;
 
@@ -628,10 +628,7 @@ final class BigqueryJobLoad {
     'null_marker': ?nullMarker?.toTfJson(),
     'projection_fields': ?projectionFields?.toTfJson(),
     'quote': ?quote?.toTfJson(),
-    if (schemaUpdateOptions != null)
-      'schema_update_options': [
-        for (final e in schemaUpdateOptions!) e.toTfJson(),
-      ],
+    'schema_update_options': ?schemaUpdateOptions?.toTfJson(),
     'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
     'source_format': ?sourceFormat?.toTfJson(),
     'source_uris': sourceUris.toTfJson(),
@@ -765,7 +762,7 @@ final class BigqueryJobQuery {
 
   final TfArg<String> query;
 
-  final List<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
+  final EnumList<BigqueryJobSchemaUpdateOptions>? schemaUpdateOptions;
 
   final TfArg<bool>? useLegacySql;
 
@@ -797,10 +794,7 @@ final class BigqueryJobQuery {
     'parameter_mode': ?parameterMode?.toTfJson(),
     'priority': ?priority?.toTfJson(),
     'query': query.toTfJson(),
-    if (schemaUpdateOptions != null)
-      'schema_update_options': [
-        for (final e in schemaUpdateOptions!) e.toTfJson(),
-      ],
+    'schema_update_options': ?schemaUpdateOptions?.toTfJson(),
     'use_legacy_sql': ?useLegacySql?.toTfJson(),
     'use_query_cache': ?useQueryCache?.toTfJson(),
     'write_disposition': ?writeDisposition?.toTfJson(),

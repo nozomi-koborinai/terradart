@@ -122,7 +122,7 @@ final class DataProtectionBackupPolicyKubernetesClusterCriteria {
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
@@ -131,8 +131,7 @@ final class DataProtectionBackupPolicyKubernetesClusterCriteria {
     'days_of_week': ?daysOfWeek?.toTfJson(),
     'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

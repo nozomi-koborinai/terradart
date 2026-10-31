@@ -57,7 +57,7 @@ final class FirewallNetworkRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final List<FirewallNetworkRuleCollectionProtocols> protocols;
+  final EnumList<FirewallNetworkRuleCollectionProtocols> protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -71,7 +71,7 @@ final class FirewallNetworkRuleCollectionRule {
     'destination_ip_groups': ?destinationIpGroups?.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };

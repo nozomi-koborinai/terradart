@@ -105,7 +105,7 @@ final class RumAppMonitorConfiguration {
 
   final TfArg<num>? sessionSampleRate;
 
-  final List<RumAppMonitorTelemetries>? telemetries;
+  final EnumList<RumAppMonitorTelemetries>? telemetries;
 
   @internal
   Map<String, Object?> encode() => {
@@ -117,8 +117,7 @@ final class RumAppMonitorConfiguration {
     'identity_pool_id': ?identityPoolId?.toTfJson(),
     'included_pages': ?includedPages?.toTfJson(),
     'session_sample_rate': ?sessionSampleRate?.toTfJson(),
-    if (telemetries != null)
-      'telemetries': [for (final e in telemetries!) e.toTfJson()],
+    'telemetries': ?telemetries?.toTfJson(),
   };
 }
 

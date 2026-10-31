@@ -196,7 +196,7 @@ sealed class BudgetsBudgetMeasure {
 
   /// Sets `metrics`.
   const factory BudgetsBudgetMeasure.metrics(
-    List<BudgetsBudgetMetrics> metrics,
+    EnumList<BudgetsBudgetMetrics> metrics,
   ) = BudgetsBudgetMeasureMetrics;
 
   /// The Terraform argument this choice sets.
@@ -237,7 +237,7 @@ final class BudgetsBudgetMeasureCostTypes extends BudgetsBudgetMeasure {
 final class BudgetsBudgetMeasureMetrics extends BudgetsBudgetMeasure {
   const BudgetsBudgetMeasureMetrics(this.metrics);
 
-  final List<BudgetsBudgetMetrics> metrics;
+  final EnumList<BudgetsBudgetMetrics> metrics;
 
   @internal
   @override
@@ -245,15 +245,11 @@ final class BudgetsBudgetMeasureMetrics extends BudgetsBudgetMeasure {
 
   @internal
   @override
-  Map<String, Object?> encode() => {
-    'metrics': [for (final e in metrics) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'metrics': metrics.toTfJson()};
 
   @internal
   @override
-  Map<String, TfArg<Object?>> get argMap => {
-    'metrics': TfArg.literal([for (final e in metrics) e.toTfJson()]),
-  };
+  Map<String, TfArg<Object?>> get argMap => {'metrics': metrics};
 }
 
 /// At most one of `name`, `name_prefix` on `aws_budgets_budget`: the provider rejects
@@ -666,15 +662,14 @@ final class BudgetsBudgetCostCategories {
 
   final TfArg<String>? key;
 
-  final List<BudgetsBudgetMatchOptions>? matchOptions;
+  final EnumList<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -731,15 +726,14 @@ final class BudgetsBudgetDimensions {
 
   final BudgetsBudgetKey key;
 
-  final List<BudgetsBudgetMatchOptions>? matchOptions;
+  final EnumList<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>> values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -943,15 +937,14 @@ final class BudgetsBudgetFilterExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<BudgetsBudgetMatchOptions>? matchOptions;
+  final EnumList<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }

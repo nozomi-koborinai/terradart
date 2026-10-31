@@ -592,7 +592,7 @@ final class ContainerRegistryTaskSourceTrigger {
 
   final TfArg<bool>? enabled;
 
-  final List<ContainerRegistryTaskEvents> events;
+  final EnumList<ContainerRegistryTaskEvents> events;
 
   final TfArg<String> name;
 
@@ -606,7 +606,7 @@ final class ContainerRegistryTaskSourceTrigger {
   Map<String, Object?> encode() => {
     'branch': ?branch?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
-    'events': [for (final e in events) e.toTfJson()],
+    'events': events.toTfJson(),
     'name': name.toTfJson(),
     'repository_url': repositoryUrl.toTfJson(),
     'source_type': sourceType.toTfJson(),

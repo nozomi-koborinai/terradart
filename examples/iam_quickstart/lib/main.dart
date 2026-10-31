@@ -449,7 +449,7 @@ final class IamShowcaseStack extends Stack {
         'demo_oauth',
         oauthClientId: .literal('terradart-oauth'),
         location: .literal('global'),
-        allowedGrantTypes: .literal(['AUTHORIZATION_CODE_GRANT']),
+        allowedGrantTypes: .literal([.authorizationCodeGrant]),
         allowedRedirectUris: .literal(['https://www.example.com']),
         allowedScopes: .literal(['openid']),
         clientType: .publicClient,

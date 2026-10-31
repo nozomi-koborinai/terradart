@@ -865,7 +865,7 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
     TfArg<bool>? enableAdvancedCluster,
     TfArg<bool>? disableBundledIngress,
     TfArg<bool>? vmTrackingEnabled,
-    List<GkeonpremVmwareClusterSkipValidations>? skipValidations,
+    EnumList<GkeonpremVmwareClusterSkipValidations>? skipValidations,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -902,10 +902,7 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
            'enable_advanced_cluster': ?enableAdvancedCluster,
            'disable_bundled_ingress': ?disableBundledIngress,
            'vm_tracking_enabled': ?vmTrackingEnabled,
-           if (skipValidations != null)
-             'skip_validations': TfArg.literal([
-               for (final e in skipValidations) e.toTfJson(),
-             ]),
+           'skip_validations': ?skipValidations,
            'annotations': ?annotations,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

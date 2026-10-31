@@ -1206,9 +1206,9 @@ final class ApplicationGatewaySslPolicy {
     this.policyType,
   });
 
-  final List<ApplicationGatewayCipherSuites>? cipherSuites;
+  final EnumList<ApplicationGatewayCipherSuites>? cipherSuites;
 
-  final List<ApplicationGatewayDisabledProtocols>? disabledProtocols;
+  final EnumList<ApplicationGatewayDisabledProtocols>? disabledProtocols;
 
   final ApplicationGatewayMinProtocolVersion? minProtocolVersion;
 
@@ -1218,10 +1218,8 @@ final class ApplicationGatewaySslPolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    if (cipherSuites != null)
-      'cipher_suites': [for (final e in cipherSuites!) e.toTfJson()],
-    if (disabledProtocols != null)
-      'disabled_protocols': [for (final e in disabledProtocols!) e.toTfJson()],
+    'cipher_suites': ?cipherSuites?.toTfJson(),
+    'disabled_protocols': ?disabledProtocols?.toTfJson(),
     'min_protocol_version': ?minProtocolVersion?.toTfJson(),
     'policy_name': ?policyName?.toTfJson(),
     'policy_type': ?policyType?.toTfJson(),

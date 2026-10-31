@@ -668,7 +668,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<String>? customAmiId,
     TfArg<num>? ebsRootVolumeSize,
     TfArg<bool>? keepJobFlowAliveWhenNoSteps,
-    List<EmrClusterListStepsStates>? listStepsStates,
+    EnumList<EmrClusterListStepsStates>? listStepsStates,
     TfArg<String>? logEncryptionKmsKeyId,
     TfArg<String>? logUri,
     required TfArg<String> name,
@@ -707,10 +707,7 @@ final class AwsEmrCluster extends Resource {
            'custom_ami_id': ?customAmiId,
            'ebs_root_volume_size': ?ebsRootVolumeSize,
            'keep_job_flow_alive_when_no_steps': ?keepJobFlowAliveWhenNoSteps,
-           if (listStepsStates != null)
-             'list_steps_states': TfArg.literal([
-               for (final e in listStepsStates) e.toTfJson(),
-             ]),
+           'list_steps_states': ?listStepsStates,
            'log_encryption_kms_key_id': ?logEncryptionKmsKeyId,
            'log_uri': ?logUri,
            'name': name,

@@ -44,7 +44,7 @@ final class AwsInspector2Enabler extends Resource {
     super.localName, {
     required TfArg<List<String>> accountIds,
     TfArg<String>? region,
-    required List<Inspector2EnablerResourceTypes> resourceTypes,
+    required EnumList<Inspector2EnablerResourceTypes> resourceTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -54,9 +54,7 @@ final class AwsInspector2Enabler extends Resource {
          argMap: {
            'account_ids': accountIds,
            'region': ?region,
-           'resource_types': TfArg.literal([
-             for (final e in resourceTypes) e.toTfJson(),
-           ]),
+           'resource_types': resourceTypes,
          },
        );
 

@@ -27,13 +27,10 @@ final class GkeHubRolloutSequenceAutoUpgradeConfig {
 final class GkeHubRolloutSequenceRolloutCreationScope {
   const GkeHubRolloutSequenceRolloutCreationScope({this.upgradeTypes});
 
-  final List<GkeHubRolloutSequenceUpgradeTypes>? upgradeTypes;
+  final EnumList<GkeHubRolloutSequenceUpgradeTypes>? upgradeTypes;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (upgradeTypes != null)
-      'upgrade_types': [for (final e in upgradeTypes!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'upgrade_types': ?upgradeTypes?.toTfJson()};
 }
 
 /// `upgrade_types` — derived from the provider schema description.

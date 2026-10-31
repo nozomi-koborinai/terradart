@@ -64,7 +64,7 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
     required TfArg<num> dataRetention,
     TfArg<bool>? disabled,
     TfArg<String>? region,
-    List<ChimeVoiceConnectorStreamingNotificationTargets>?
+    EnumList<ChimeVoiceConnectorStreamingNotificationTargets>?
     streamingNotificationTargets,
     required TfArg<String> voiceConnectorId,
     ChimeVoiceConnectorStreamingMediaInsightsConfiguration?
@@ -79,10 +79,7 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
            'data_retention': dataRetention,
            'disabled': ?disabled,
            'region': ?region,
-           if (streamingNotificationTargets != null)
-             'streaming_notification_targets': TfArg.literal([
-               for (final e in streamingNotificationTargets) e.toTfJson(),
-             ]),
+           'streaming_notification_targets': ?streamingNotificationTargets,
            'voice_connector_id': voiceConnectorId,
            if (mediaInsightsConfiguration != null)
              'media_insights_configuration': TfArg.literal(

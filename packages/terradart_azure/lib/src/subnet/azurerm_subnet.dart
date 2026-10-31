@@ -151,13 +151,13 @@ final class SubnetDelegation {
 final class SubnetServiceDelegation {
   const SubnetServiceDelegation({this.actions, required this.name});
 
-  final List<SubnetActions>? actions;
+  final EnumList<SubnetActions>? actions;
 
   final SubnetServiceDelegationName name;
 
   @internal
   Map<String, Object?> encode() => {
-    if (actions != null) 'actions': [for (final e in actions!) e.toTfJson()],
+    'actions': ?actions?.toTfJson(),
     'name': name.toTfJson(),
   };
 }

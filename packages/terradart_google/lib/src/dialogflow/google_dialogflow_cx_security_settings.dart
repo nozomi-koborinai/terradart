@@ -275,7 +275,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
     TfArg<String>? inspectTemplate,
     TfArg<String>? deidentifyTemplate,
     DialogflowCxSecuritySettingsRetention? retention,
-    List<DialogflowCxSecuritySettingsPurgeDataTypes>? purgeDataTypes,
+    EnumList<DialogflowCxSecuritySettingsPurgeDataTypes>? purgeDataTypes,
     DialogflowCxSecuritySettingsAudioExportSettings? audioExportSettings,
     DialogflowCxSecuritySettingsInsightsExportSettings? insightsExportSettings,
     TfArg<String>? deletionPolicy,
@@ -294,10 +294,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
            'inspect_template': ?inspectTemplate,
            'deidentify_template': ?deidentifyTemplate,
            ...?retention?.argMap,
-           if (purgeDataTypes != null)
-             'purge_data_types': TfArg.literal([
-               for (final e in purgeDataTypes) e.toTfJson(),
-             ]),
+           'purge_data_types': ?purgeDataTypes,
            if (audioExportSettings != null)
              'audio_export_settings': TfArg.literal(
                audioExportSettings.encode(),

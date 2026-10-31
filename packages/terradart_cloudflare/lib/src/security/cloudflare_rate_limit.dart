@@ -128,7 +128,7 @@ extension type const RateLimitOp._(TfArg<String> _) implements TfArg<String> {
 final class RateLimitRequest {
   const RateLimitRequest({this.methods, this.schemes, this.url});
 
-  final List<RateLimitMethods>? methods;
+  final EnumList<RateLimitMethods>? methods;
 
   final TfArg<List<String>>? schemes;
 
@@ -136,7 +136,7 @@ final class RateLimitRequest {
 
   @internal
   Map<String, Object?> encode() => {
-    if (methods != null) 'methods': [for (final e in methods!) e.toTfJson()],
+    'methods': ?methods?.toTfJson(),
     'schemes': ?schemes?.toTfJson(),
     'url': ?url?.toTfJson(),
   };

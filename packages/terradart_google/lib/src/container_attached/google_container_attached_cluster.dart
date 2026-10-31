@@ -124,12 +124,11 @@ final class ContainerAttachedClusterLoggingConfig {
 final class ContainerAttachedClusterComponentConfig {
   const ContainerAttachedClusterComponentConfig({this.enableComponents});
 
-  final List<ContainerAttachedClusterEnableComponents>? enableComponents;
+  final EnumList<ContainerAttachedClusterEnableComponents>? enableComponents;
 
   @internal
   Map<String, Object?> encode() => {
-    if (enableComponents != null)
-      'enable_components': [for (final e in enableComponents!) e.toTfJson()],
+    'enable_components': ?enableComponents?.toTfJson(),
   };
 }
 

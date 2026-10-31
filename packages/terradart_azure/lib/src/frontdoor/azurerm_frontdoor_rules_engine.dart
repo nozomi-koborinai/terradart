@@ -151,7 +151,7 @@ final class FrontdoorRulesEngineMatchCondition {
 
   final TfArg<String>? selector;
 
-  final List<FrontdoorRulesEngineTransform>? transform;
+  final EnumList<FrontdoorRulesEngineTransform>? transform;
 
   final TfArg<List<String>>? value;
 
@@ -162,8 +162,7 @@ final class FrontdoorRulesEngineMatchCondition {
     'negate_condition': ?negateCondition?.toTfJson(),
     'operator': operator.toTfJson(),
     'selector': ?selector?.toTfJson(),
-    if (transform != null)
-      'transform': [for (final e in transform!) e.toTfJson()],
+    'transform': ?transform?.toTfJson(),
     'value': ?value?.toTfJson(),
     'variable': ?variable?.toTfJson(),
   };

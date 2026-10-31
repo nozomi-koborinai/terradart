@@ -1616,22 +1616,17 @@ final class SagemakerUserProfileStudioWebPortalSettings {
     this.hiddenMlTools,
   });
 
-  final List<SagemakerUserProfileHiddenAppTypes>? hiddenAppTypes;
+  final EnumList<SagemakerUserProfileHiddenAppTypes>? hiddenAppTypes;
 
-  final List<SagemakerUserProfileHiddenInstanceTypes>? hiddenInstanceTypes;
+  final EnumList<SagemakerUserProfileHiddenInstanceTypes>? hiddenInstanceTypes;
 
-  final List<SagemakerUserProfileHiddenMlTools>? hiddenMlTools;
+  final EnumList<SagemakerUserProfileHiddenMlTools>? hiddenMlTools;
 
   @internal
   Map<String, Object?> encode() => {
-    if (hiddenAppTypes != null)
-      'hidden_app_types': [for (final e in hiddenAppTypes!) e.toTfJson()],
-    if (hiddenInstanceTypes != null)
-      'hidden_instance_types': [
-        for (final e in hiddenInstanceTypes!) e.toTfJson(),
-      ],
-    if (hiddenMlTools != null)
-      'hidden_ml_tools': [for (final e in hiddenMlTools!) e.toTfJson()],
+    'hidden_app_types': ?hiddenAppTypes?.toTfJson(),
+    'hidden_instance_types': ?hiddenInstanceTypes?.toTfJson(),
+    'hidden_ml_tools': ?hiddenMlTools?.toTfJson(),
   };
 }
 

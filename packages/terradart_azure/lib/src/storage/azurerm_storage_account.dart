@@ -436,7 +436,7 @@ final class StorageAccountCorsRule {
 
   final TfArg<List<String>> allowedHeaders;
 
-  final List<StorageAccountAllowedMethods> allowedMethods;
+  final EnumList<StorageAccountAllowedMethods> allowedMethods;
 
   final TfArg<List<String>> allowedOrigins;
 
@@ -447,7 +447,7 @@ final class StorageAccountCorsRule {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': allowedHeaders.toTfJson(),
-    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
+    'allowed_methods': allowedMethods.toTfJson(),
     'allowed_origins': allowedOrigins.toTfJson(),
     'exposed_headers': exposedHeaders.toTfJson(),
     'max_age_in_seconds': maxAgeInSeconds.toTfJson(),
@@ -621,7 +621,7 @@ final class StorageAccountNetworkRules {
     this.privateLinkAccess,
   });
 
-  final List<StorageAccountBypass>? bypass;
+  final EnumList<StorageAccountBypass>? bypass;
 
   final StorageAccountDefaultAction defaultAction;
 
@@ -633,7 +633,7 @@ final class StorageAccountNetworkRules {
 
   @internal
   Map<String, Object?> encode() => {
-    if (bypass != null) 'bypass': [for (final e in bypass!) e.toTfJson()],
+    'bypass': ?bypass?.toTfJson(),
     'default_action': defaultAction.toTfJson(),
     'ip_rules': ?ipRules?.toTfJson(),
     'virtual_network_subnet_ids': ?virtualNetworkSubnetIds?.toTfJson(),
@@ -828,33 +828,25 @@ final class StorageAccountSmb {
     this.versions,
   });
 
-  final List<StorageAccountAuthenticationTypes>? authenticationTypes;
+  final EnumList<StorageAccountAuthenticationTypes>? authenticationTypes;
 
-  final List<StorageAccountChannelEncryptionType>? channelEncryptionType;
+  final EnumList<StorageAccountChannelEncryptionType>? channelEncryptionType;
 
-  final List<StorageAccountKerberosTicketEncryptionType>?
+  final EnumList<StorageAccountKerberosTicketEncryptionType>?
   kerberosTicketEncryptionType;
 
   final TfArg<bool>? multichannelEnabled;
 
-  final List<StorageAccountVersions>? versions;
+  final EnumList<StorageAccountVersions>? versions;
 
   @internal
   Map<String, Object?> encode() => {
-    if (authenticationTypes != null)
-      'authentication_types': [
-        for (final e in authenticationTypes!) e.toTfJson(),
-      ],
-    if (channelEncryptionType != null)
-      'channel_encryption_type': [
-        for (final e in channelEncryptionType!) e.toTfJson(),
-      ],
-    if (kerberosTicketEncryptionType != null)
-      'kerberos_ticket_encryption_type': [
-        for (final e in kerberosTicketEncryptionType!) e.toTfJson(),
-      ],
+    'authentication_types': ?authenticationTypes?.toTfJson(),
+    'channel_encryption_type': ?channelEncryptionType?.toTfJson(),
+    'kerberos_ticket_encryption_type': ?kerberosTicketEncryptionType
+        ?.toTfJson(),
     'multichannel_enabled': ?multichannelEnabled?.toTfJson(),
-    if (versions != null) 'versions': [for (final e in versions!) e.toTfJson()],
+    'versions': ?versions?.toTfJson(),
   };
 }
 

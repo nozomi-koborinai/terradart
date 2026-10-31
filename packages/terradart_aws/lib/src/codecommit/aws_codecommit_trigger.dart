@@ -25,7 +25,7 @@ final class CodecommitTrigger {
 
   final TfArg<String> destinationArn;
 
-  final List<CodecommitTriggerEvents> events;
+  final EnumList<CodecommitTriggerEvents> events;
 
   final TfArg<String> name;
 
@@ -34,7 +34,7 @@ final class CodecommitTrigger {
     'branches': ?branches?.toTfJson(),
     'custom_data': ?customData?.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
-    'events': [for (final e in events) e.toTfJson()],
+    'events': events.toTfJson(),
     'name': name.toTfJson(),
   };
 }

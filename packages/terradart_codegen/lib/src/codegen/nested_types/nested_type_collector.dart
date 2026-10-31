@@ -10,9 +10,9 @@ import 'nested_type_names.dart';
 /// One attribute surfaced on a derived nested-type helper class.
 ///
 /// [dartType] is the *inner* type only (e.g. `'String'`, an enum class
-/// name, `'Map<String, String>'`) — the emitter (Task 3) wraps it in
-/// `TfArg<...>` (or `List<TfArg<...>>`-shaped when [repeated]) and applies
-/// nullability from [required].
+/// name, `'Map<String, String>'`) — the emitter wraps it in `TfArg<...>`
+/// (an `EnumList<...>` when [repeated]) and applies nullability from
+/// [required].
 final class NestedAttrSpec {
   final String tfName;
   final String dartName;

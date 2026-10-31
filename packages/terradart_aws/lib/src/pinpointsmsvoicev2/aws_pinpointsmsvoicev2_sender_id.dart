@@ -37,7 +37,7 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
     super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> isoCountryCode,
-    List<Pinpointsmsvoicev2SenderIdMessageTypes>? messageTypes,
+    EnumList<Pinpointsmsvoicev2SenderIdMessageTypes>? messageTypes,
     TfArg<String>? region,
     required TfArg<String> senderId,
     TfArg<Map<String, String>>? tags,
@@ -50,10 +50,7 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
          argMap: {
            'deletion_protection_enabled': ?deletionProtectionEnabled,
            'iso_country_code': isoCountryCode,
-           if (messageTypes != null)
-             'message_types': TfArg.literal([
-               for (final e in messageTypes) e.toTfJson(),
-             ]),
+           'message_types': ?messageTypes,
            'region': ?region,
            'sender_id': senderId,
            'tags': ?tags,

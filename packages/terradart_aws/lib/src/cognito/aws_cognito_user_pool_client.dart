@@ -271,7 +271,7 @@ final class AwsCognitoUserPoolClient extends Resource {
   AwsCognitoUserPoolClient(
     super.localName, {
     TfArg<num>? accessTokenValidity,
-    List<CognitoUserPoolClientAllowedOauthFlows>? allowedOauthFlows,
+    EnumList<CognitoUserPoolClientAllowedOauthFlows>? allowedOauthFlows,
     TfArg<bool>? allowedOauthFlowsUserPoolClient,
     TfArg<List<String>>? allowedOauthScopes,
     TfArg<num>? authSessionValidity,
@@ -279,7 +279,7 @@ final class AwsCognitoUserPoolClient extends Resource {
     TfArg<String>? defaultRedirectUri,
     TfArg<bool>? enablePropagateAdditionalUserContextData,
     TfArg<bool>? enableTokenRevocation,
-    List<CognitoUserPoolClientExplicitAuthFlows>? explicitAuthFlows,
+    EnumList<CognitoUserPoolClientExplicitAuthFlows>? explicitAuthFlows,
     TfArg<bool>? generateSecret,
     TfArg<num>? idTokenValidity,
     TfArg<List<String>>? logoutUrls,
@@ -302,10 +302,7 @@ final class AwsCognitoUserPoolClient extends Resource {
          terraformType: tfType,
          argMap: {
            'access_token_validity': ?accessTokenValidity,
-           if (allowedOauthFlows != null)
-             'allowed_oauth_flows': TfArg.literal([
-               for (final e in allowedOauthFlows) e.toTfJson(),
-             ]),
+           'allowed_oauth_flows': ?allowedOauthFlows,
            'allowed_oauth_flows_user_pool_client':
                ?allowedOauthFlowsUserPoolClient,
            'allowed_oauth_scopes': ?allowedOauthScopes,
@@ -315,10 +312,7 @@ final class AwsCognitoUserPoolClient extends Resource {
            'enable_propagate_additional_user_context_data':
                ?enablePropagateAdditionalUserContextData,
            'enable_token_revocation': ?enableTokenRevocation,
-           if (explicitAuthFlows != null)
-             'explicit_auth_flows': TfArg.literal([
-               for (final e in explicitAuthFlows) e.toTfJson(),
-             ]),
+           'explicit_auth_flows': ?explicitAuthFlows,
            'generate_secret': ?generateSecret,
            'id_token_validity': ?idTokenValidity,
            'logout_urls': ?logoutUrls,

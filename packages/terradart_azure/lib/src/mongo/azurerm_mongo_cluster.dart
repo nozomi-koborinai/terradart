@@ -236,7 +236,7 @@ final class AzurermMongoCluster extends Resource {
     super.localName, {
     Sensitive<String>? administratorPassword,
     TfArg<String>? administratorUsername,
-    List<MongoClusterAuthenticationMethods>? authenticationMethods,
+    EnumList<MongoClusterAuthenticationMethods>? authenticationMethods,
     MongoClusterComputeTier? computeTier,
     TfArg<bool>? cosmosDbNetworkBypassEnabled,
     MongoClusterCreateMode? createMode,
@@ -266,10 +266,7 @@ final class AzurermMongoCluster extends Resource {
          argMap: {
            'administrator_password': ?administratorPassword,
            'administrator_username': ?administratorUsername,
-           if (authenticationMethods != null)
-             'authentication_methods': TfArg.literal([
-               for (final e in authenticationMethods) e.toTfJson(),
-             ]),
+           'authentication_methods': ?authenticationMethods,
            'compute_tier': ?computeTier,
            'cosmos_db_network_bypass_enabled': ?cosmosDbNetworkBypassEnabled,
            'create_mode': ?createMode,

@@ -153,8 +153,8 @@ final class AwsCurReportDefinition extends Resource {
 
   AwsCurReportDefinition(
     super.localName, {
-    List<CurReportDefinitionAdditionalArtifacts>? additionalArtifacts,
-    required List<CurReportDefinitionAdditionalSchemaElements>
+    EnumList<CurReportDefinitionAdditionalArtifacts>? additionalArtifacts,
+    required EnumList<CurReportDefinitionAdditionalSchemaElements>
     additionalSchemaElements,
     required CurReportDefinitionCompression compression,
     required CurReportDefinitionFormat format,
@@ -173,13 +173,8 @@ final class AwsCurReportDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalArtifacts != null)
-             'additional_artifacts': TfArg.literal([
-               for (final e in additionalArtifacts) e.toTfJson(),
-             ]),
-           'additional_schema_elements': TfArg.literal([
-             for (final e in additionalSchemaElements) e.toTfJson(),
-           ]),
+           'additional_artifacts': ?additionalArtifacts,
+           'additional_schema_elements': additionalSchemaElements,
            'compression': compression,
            'format': format,
            'refresh_closed_reports': ?refreshClosedReports,

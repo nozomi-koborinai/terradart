@@ -441,7 +441,7 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
 
   final TfArg<bool>? enableRestriction;
 
-  final List<
+  final EnumList<
     AccessContextManagerServicePerimetersServicePatternsEnforcementScopes
   >?
   servicePatternsEnforcementScopes;
@@ -453,10 +453,8 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
   Map<String, Object?> encode() => {
     'allowed_services': ?allowedServices?.toTfJson(),
     'enable_restriction': ?enableRestriction?.toTfJson(),
-    if (servicePatternsEnforcementScopes != null)
-      'service_patterns_enforcement_scopes': [
-        for (final e in servicePatternsEnforcementScopes!) e.toTfJson(),
-      ],
+    'service_patterns_enforcement_scopes': ?servicePatternsEnforcementScopes
+        ?.toTfJson(),
     if (allowedServicePatterns != null)
       'allowed_service_patterns': [
         for (final e in allowedServicePatterns!) e.encode(),

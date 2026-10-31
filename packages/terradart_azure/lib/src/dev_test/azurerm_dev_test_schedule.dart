@@ -103,13 +103,12 @@ final class DevTestScheduleWeeklyRecurrence {
 
   final TfArg<String> time;
 
-  final List<DevTestScheduleWeekDays>? weekDays;
+  final EnumList<DevTestScheduleWeekDays>? weekDays;
 
   @internal
   Map<String, Object?> encode() => {
     'time': time.toTfJson(),
-    if (weekDays != null)
-      'week_days': [for (final e in weekDays!) e.toTfJson()],
+    'week_days': ?weekDays?.toTfJson(),
   };
 }
 

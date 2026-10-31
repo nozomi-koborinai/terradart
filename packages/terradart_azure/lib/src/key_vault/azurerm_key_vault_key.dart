@@ -199,7 +199,7 @@ final class AzurermKeyVaultKey extends Resource {
     super.localName, {
     KeyVaultKeyParameter? keyParameter,
     TfArg<String>? expirationDate,
-    required List<KeyVaultKeyOpts> keyOpts,
+    required EnumList<KeyVaultKeyOpts> keyOpts,
     required KeyVaultKeyType keyType,
     required RefTo<AzurermKeyVault> keyVaultId,
     required TfArg<String> name,
@@ -216,7 +216,7 @@ final class AzurermKeyVaultKey extends Resource {
          argMap: {
            ...?keyParameter?.argMap,
            'expiration_date': ?expirationDate,
-           'key_opts': TfArg.literal([for (final e in keyOpts) e.toTfJson()]),
+           'key_opts': keyOpts,
            'key_type': keyType,
            'key_vault_id': keyVaultId.encodeAs('id'),
            'name': name,

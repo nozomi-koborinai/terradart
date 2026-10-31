@@ -131,7 +131,7 @@ final class DatabricksWorkspaceEnhancedSecurityCompliance {
 
   final TfArg<bool>? complianceSecurityProfileEnabled;
 
-  final List<DatabricksWorkspaceComplianceSecurityProfileStandards>?
+  final EnumList<DatabricksWorkspaceComplianceSecurityProfileStandards>?
   complianceSecurityProfileStandards;
 
   final TfArg<bool>? enhancedSecurityMonitoringEnabled;
@@ -142,10 +142,8 @@ final class DatabricksWorkspaceEnhancedSecurityCompliance {
         ?.toTfJson(),
     'compliance_security_profile_enabled': ?complianceSecurityProfileEnabled
         ?.toTfJson(),
-    if (complianceSecurityProfileStandards != null)
-      'compliance_security_profile_standards': [
-        for (final e in complianceSecurityProfileStandards!) e.toTfJson(),
-      ],
+    'compliance_security_profile_standards': ?complianceSecurityProfileStandards
+        ?.toTfJson(),
     'enhanced_security_monitoring_enabled': ?enhancedSecurityMonitoringEnabled
         ?.toTfJson(),
   };

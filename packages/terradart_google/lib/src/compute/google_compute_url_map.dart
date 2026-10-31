@@ -725,15 +725,14 @@ final class ComputeUrlMapRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final List<ComputeUrlMapRetryConditions>? retryConditions;
+  final EnumList<ComputeUrlMapRetryConditions>? retryConditions;
 
   final ComputeUrlMapPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
-    if (retryConditions != null)
-      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
+    'retry_conditions': ?retryConditions?.toTfJson(),
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
 }
@@ -1538,15 +1537,14 @@ final class ComputeUrlMapPathRuleRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final List<ComputeUrlMapRetryConditions>? retryConditions;
+  final EnumList<ComputeUrlMapRetryConditions>? retryConditions;
 
   final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
-    if (retryConditions != null)
-      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
+    'retry_conditions': ?retryConditions?.toTfJson(),
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
 }
@@ -1968,15 +1966,14 @@ final class ComputeUrlMapRouteRulesRetryPolicy {
 
   final TfArg<num> numRetries;
 
-  final List<ComputeUrlMapRetryConditions>? retryConditions;
+  final EnumList<ComputeUrlMapRetryConditions>? retryConditions;
 
   final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
-    if (retryConditions != null)
-      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
+    'retry_conditions': ?retryConditions?.toTfJson(),
     'per_try_timeout': ?perTryTimeout?.encode(),
   };
 }

@@ -205,7 +205,7 @@ final class MonitorAutoscaleSettingRecurrence {
     this.timezone,
   });
 
-  final List<MonitorAutoscaleSettingDays> days;
+  final EnumList<MonitorAutoscaleSettingDays> days;
 
   final TfArg<List<num>> hours;
 
@@ -215,7 +215,7 @@ final class MonitorAutoscaleSettingRecurrence {
 
   @internal
   Map<String, Object?> encode() => {
-    'days': [for (final e in days) e.toTfJson()],
+    'days': days.toTfJson(),
     'hours': hours.toTfJson(),
     'minutes': minutes.toTfJson(),
     'timezone': ?timezone?.toTfJson(),

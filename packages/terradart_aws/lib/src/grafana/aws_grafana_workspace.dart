@@ -189,15 +189,16 @@ final class AwsGrafanaWorkspace extends Resource {
   AwsGrafanaWorkspace(
     super.localName, {
     required GrafanaWorkspaceAccountAccessType accountAccessType,
-    required List<GrafanaWorkspaceAuthenticationProviders>
+    required EnumList<GrafanaWorkspaceAuthenticationProviders>
     authenticationProviders,
     TfArg<String>? configuration,
-    List<GrafanaWorkspaceDataSources>? dataSources,
+    EnumList<GrafanaWorkspaceDataSources>? dataSources,
     TfArg<String>? description,
     TfArg<String>? grafanaVersion,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? name,
-    List<GrafanaWorkspaceNotificationDestinations>? notificationDestinations,
+    EnumList<GrafanaWorkspaceNotificationDestinations>?
+    notificationDestinations,
     TfArg<String>? organizationRoleName,
     TfArg<List<String>>? organizationalUnits,
     required GrafanaWorkspacePermissionType permissionType,
@@ -215,22 +216,14 @@ final class AwsGrafanaWorkspace extends Resource {
          terraformType: tfType,
          argMap: {
            'account_access_type': accountAccessType,
-           'authentication_providers': TfArg.literal([
-             for (final e in authenticationProviders) e.toTfJson(),
-           ]),
+           'authentication_providers': authenticationProviders,
            'configuration': ?configuration,
-           if (dataSources != null)
-             'data_sources': TfArg.literal([
-               for (final e in dataSources) e.toTfJson(),
-             ]),
+           'data_sources': ?dataSources,
            'description': ?description,
            'grafana_version': ?grafanaVersion,
            'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': ?name,
-           if (notificationDestinations != null)
-             'notification_destinations': TfArg.literal([
-               for (final e in notificationDestinations) e.toTfJson(),
-             ]),
+           'notification_destinations': ?notificationDestinations,
            'organization_role_name': ?organizationRoleName,
            'organizational_units': ?organizationalUnits,
            'permission_type': permissionType,

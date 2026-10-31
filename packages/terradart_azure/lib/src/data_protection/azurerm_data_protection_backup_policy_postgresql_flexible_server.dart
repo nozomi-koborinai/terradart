@@ -117,27 +117,28 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerCriteria {
   final DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteCriteria?
   absoluteCriteria;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek>?
+  final EnumList<DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek>?
   daysOfWeek;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear>?
+  final EnumList<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear
+  >?
   monthsOfYear;
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth>?
+  final EnumList<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth
+  >?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

@@ -36,18 +36,14 @@ final class AwsIamOrganizationsFeatures extends Resource {
 
   AwsIamOrganizationsFeatures(
     super.localName, {
-    required List<IamOrganizationsFeaturesEnabledFeatures> enabledFeatures,
+    required EnumList<IamOrganizationsFeaturesEnabledFeatures> enabledFeatures,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'enabled_features': TfArg.literal([
-             for (final e in enabledFeatures) e.toTfJson(),
-           ]),
-         },
+         argMap: {'enabled_features': enabledFeatures},
        );
 
   @override

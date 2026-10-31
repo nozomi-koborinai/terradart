@@ -239,7 +239,7 @@ final class FrontdoorRoutingRule {
     this.redirectConfiguration,
   });
 
-  final List<FrontdoorAcceptedProtocols> acceptedProtocols;
+  final EnumList<FrontdoorAcceptedProtocols> acceptedProtocols;
 
   final TfArg<bool>? enabled;
 
@@ -255,7 +255,7 @@ final class FrontdoorRoutingRule {
 
   @internal
   Map<String, Object?> encode() => {
-    'accepted_protocols': [for (final e in acceptedProtocols) e.toTfJson()],
+    'accepted_protocols': acceptedProtocols.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
     'frontend_endpoints': frontendEndpoints.toTfJson(),
     'name': name.toTfJson(),

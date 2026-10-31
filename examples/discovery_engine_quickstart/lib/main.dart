@@ -49,7 +49,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         displayName: .literal('Quickstart documents'),
         industryVertical: .generic,
         contentConfig: .noContent,
-        solutionTypes: [.solutionTypeSearch],
+        solutionTypes: .literal([.solutionTypeSearch]),
         dependsOn: apiDeps,
       ),
     );
@@ -112,7 +112,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         displayName: .literal('Quickstart schema store'),
         industryVertical: .generic,
         contentConfig: .noContent,
-        solutionTypes: [.solutionTypeSearch],
+        solutionTypes: .literal([.solutionTypeSearch]),
         skipDefaultSchemaCreation: .literal(true),
         dependsOn: apiDeps,
       ),
@@ -140,7 +140,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         controlId: .literal('terradart-synonyms'),
         displayName: .literal('terradart synonyms'),
         solutionType: .solutionTypeSearch,
-        useCases: [.searchUseCaseSearch],
+        useCases: .literal([.searchUseCaseSearch]),
         action: .synonymsAction(
           .new(synonyms: .literal(['quickstart', 'demo'])),
         ),

@@ -454,7 +454,7 @@ final class WorkersScriptBindings {
 
   final WorkersScriptType type;
 
-  final List<WorkersScriptUsages>? usages;
+  final EnumList<WorkersScriptUsages>? usages;
 
   final TfArg<String>? versionId;
 
@@ -506,7 +506,7 @@ final class WorkersScriptBindings {
     'text': ?text?.toTfJson(),
     'tunnel_id': ?tunnelId?.toTfJson(),
     'type': type.toTfJson(),
-    if (usages != null) 'usages': [for (final e in usages!) e.toTfJson()],
+    'usages': ?usages?.toTfJson(),
     'version_id': ?versionId?.toTfJson(),
     'workflow_name': ?workflowName?.toTfJson(),
     'outbound': ?outbound?.encode(),

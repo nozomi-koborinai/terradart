@@ -328,13 +328,10 @@ final class DialogflowConversationProfileKnowledgeBaseQuerySource {
 final class DialogflowConversationProfileSections {
   const DialogflowConversationProfileSections({this.sectionTypes});
 
-  final List<DialogflowConversationProfileSectionTypes>? sectionTypes;
+  final EnumList<DialogflowConversationProfileSectionTypes>? sectionTypes;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (sectionTypes != null)
-      'section_types': [for (final e in sectionTypes!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'section_types': ?sectionTypes?.toTfJson()};
 }
 
 /// `section_types` — derived from the provider schema description.

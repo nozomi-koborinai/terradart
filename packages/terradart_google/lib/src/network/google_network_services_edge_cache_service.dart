@@ -546,7 +546,7 @@ final class NetworkServicesEdgeCacheServiceAddSignatures {
     this.tokenTtl,
   });
 
-  final List<NetworkServicesEdgeCacheServiceActions> actions;
+  final EnumList<NetworkServicesEdgeCacheServiceActions> actions;
 
   final TfArg<List<String>>? copiedParameters;
 
@@ -558,7 +558,7 @@ final class NetworkServicesEdgeCacheServiceAddSignatures {
 
   @internal
   Map<String, Object?> encode() => {
-    'actions': [for (final e in actions) e.toTfJson()],
+    'actions': actions.toTfJson(),
     'copied_parameters': ?copiedParameters?.toTfJson(),
     'keyset': ?keyset?.toTfJson(),
     'token_query_parameter': ?tokenQueryParameter?.toTfJson(),
@@ -644,17 +644,14 @@ final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
     this.tokenQueryParameter,
   });
 
-  final List<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>?
+  final EnumList<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>?
   allowedSignatureAlgorithms;
 
   final TfArg<String>? tokenQueryParameter;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedSignatureAlgorithms != null)
-      'allowed_signature_algorithms': [
-        for (final e in allowedSignatureAlgorithms!) e.toTfJson(),
-      ],
+    'allowed_signature_algorithms': ?allowedSignatureAlgorithms?.toTfJson(),
     'token_query_parameter': ?tokenQueryParameter?.toTfJson(),
   };
 }

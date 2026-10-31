@@ -46,7 +46,7 @@ final class NetappVolumeGroupSapHanaVolume {
 
   final NetappVolumeGroupSapHanaNetworkFeatures? networkFeatures;
 
-  final List<NetappVolumeGroupSapHanaProtocols> protocols;
+  final EnumList<NetappVolumeGroupSapHanaProtocols> protocols;
 
   final TfArg<String>? proximityPlacementGroupId;
 
@@ -85,7 +85,7 @@ final class NetappVolumeGroupSapHanaVolume {
     'key_vault_private_endpoint_id': ?keyVaultPrivateEndpointId?.toTfJson(),
     'name': name.toTfJson(),
     'network_features': ?networkFeatures?.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'proximity_placement_group_id': ?proximityPlacementGroupId?.toTfJson(),
     'security_style': securityStyle.toTfJson(),
     'service_level': serviceLevel.toTfJson(),

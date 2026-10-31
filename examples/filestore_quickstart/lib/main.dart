@@ -57,7 +57,10 @@ final class FilestoreSnapshotStack extends Stack {
           capacityGb: .literal(10240),
         ),
         networks: [
-          FilestoreInstanceNetworks(network: nfsVpc.ref, modes: [.modeIpv4]),
+          FilestoreInstanceNetworks(
+            network: nfsVpc.ref,
+            modes: .literal([.modeIpv4]),
+          ),
         ],
         dependsOn: apiDeps,
       ),

@@ -24,7 +24,7 @@ final class IapSettingsAccessSettings {
     this.workforceIdentitySettings,
   });
 
-  final List<IapSettingsIdentitySources>? identitySources;
+  final EnumList<IapSettingsIdentitySources>? identitySources;
 
   final IapSettingsAllowedDomainsSettings? allowedDomainsSettings;
 
@@ -40,8 +40,7 @@ final class IapSettingsAccessSettings {
 
   @internal
   Map<String, Object?> encode() => {
-    if (identitySources != null)
-      'identity_sources': [for (final e in identitySources!) e.toTfJson()],
+    'identity_sources': ?identitySources?.toTfJson(),
     'allowed_domains_settings': ?allowedDomainsSettings?.encode(),
     'cors_settings': ?corsSettings?.encode(),
     'gcip_settings': ?gcipSettings?.encode(),
@@ -308,14 +307,13 @@ final class IapSettingsAttributePropagationSettings {
 
   final TfArg<String>? expression;
 
-  final List<IapSettingsOutputCredentials>? outputCredentials;
+  final EnumList<IapSettingsOutputCredentials>? outputCredentials;
 
   @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'expression': ?expression?.toTfJson(),
-    if (outputCredentials != null)
-      'output_credentials': [for (final e in outputCredentials!) e.toTfJson()],
+    'output_credentials': ?outputCredentials?.toTfJson(),
   };
 }
 

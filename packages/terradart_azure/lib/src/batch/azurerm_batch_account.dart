@@ -225,7 +225,8 @@ final class AzurermBatchAccount extends Resource {
 
   AzurermBatchAccount(
     super.localName, {
-    List<BatchAccountAllowedAuthenticationModes>? allowedAuthenticationModes,
+    EnumList<BatchAccountAllowedAuthenticationModes>?
+    allowedAuthenticationModes,
     TfArg<List<Map<String, Object?>>>? encryption,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -247,10 +248,7 @@ final class AzurermBatchAccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedAuthenticationModes != null)
-             'allowed_authentication_modes': TfArg.literal([
-               for (final e in allowedAuthenticationModes) e.toTfJson(),
-             ]),
+           'allowed_authentication_modes': ?allowedAuthenticationModes,
            'encryption': ?encryption,
            'location': location,
            'name': name,

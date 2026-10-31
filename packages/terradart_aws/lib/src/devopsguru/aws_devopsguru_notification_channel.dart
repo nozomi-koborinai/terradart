@@ -18,16 +18,14 @@ final class DevopsguruNotificationChannelFilters {
     this.severities,
   });
 
-  final List<DevopsguruNotificationChannelMessageTypes>? messageTypes;
+  final EnumList<DevopsguruNotificationChannelMessageTypes>? messageTypes;
 
-  final List<DevopsguruNotificationChannelSeverities>? severities;
+  final EnumList<DevopsguruNotificationChannelSeverities>? severities;
 
   @internal
   Map<String, Object?> encode() => {
-    if (messageTypes != null)
-      'message_types': [for (final e in messageTypes!) e.toTfJson()],
-    if (severities != null)
-      'severities': [for (final e in severities!) e.toTfJson()],
+    'message_types': ?messageTypes?.toTfJson(),
+    'severities': ?severities?.toTfJson(),
   };
 }
 

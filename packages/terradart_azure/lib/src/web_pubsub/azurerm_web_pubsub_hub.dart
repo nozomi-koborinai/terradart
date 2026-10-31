@@ -18,7 +18,7 @@ final class WebPubsubHubEventHandler {
     this.auth,
   });
 
-  final List<WebPubsubHubSystemEvents>? systemEvents;
+  final EnumList<WebPubsubHubSystemEvents>? systemEvents;
 
   final TfArg<String> urlTemplate;
 
@@ -28,8 +28,7 @@ final class WebPubsubHubEventHandler {
 
   @internal
   Map<String, Object?> encode() => {
-    if (systemEvents != null)
-      'system_events': [for (final e in systemEvents!) e.toTfJson()],
+    'system_events': ?systemEvents?.toTfJson(),
     'url_template': urlTemplate.toTfJson(),
     'user_event_pattern': ?userEventPattern?.toTfJson(),
     'auth': ?auth?.encode(),
@@ -88,7 +87,7 @@ final class WebPubsubHubEventListener {
 
   final TfArg<String> eventhubNamespaceName;
 
-  final List<WebPubsubHubSystemEventNameFilter>? systemEventNameFilter;
+  final EnumList<WebPubsubHubSystemEventNameFilter>? systemEventNameFilter;
 
   final TfArg<List<String>>? userEventNameFilter;
 
@@ -96,10 +95,7 @@ final class WebPubsubHubEventListener {
   Map<String, Object?> encode() => {
     'eventhub_name': eventhubName.toTfJson(),
     'eventhub_namespace_name': eventhubNamespaceName.toTfJson(),
-    if (systemEventNameFilter != null)
-      'system_event_name_filter': [
-        for (final e in systemEventNameFilter!) e.toTfJson(),
-      ],
+    'system_event_name_filter': ?systemEventNameFilter?.toTfJson(),
     'user_event_name_filter': ?userEventNameFilter?.toTfJson(),
   };
 }

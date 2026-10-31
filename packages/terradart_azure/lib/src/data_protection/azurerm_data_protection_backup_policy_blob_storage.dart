@@ -59,7 +59,8 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyBlobStorageWeeksOfMonth>? weeksOfMonth;
+  final EnumList<DataProtectionBackupPolicyBlobStorageWeeksOfMonth>?
+  weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
@@ -68,8 +69,7 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
     'days_of_week': ?daysOfWeek?.toTfJson(),
     'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

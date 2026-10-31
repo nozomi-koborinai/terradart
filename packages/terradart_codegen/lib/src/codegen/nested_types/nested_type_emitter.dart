@@ -223,8 +223,10 @@ List<_Member> _members(NestedBlockSpec spec) {
           null => _variant(
             tfName: attr.tfName,
             ident: safeDartIdentifier(attr.dartName),
-            elementType: attr.dartType,
-            repeated: attr.repeated,
+            elementType: attr.repeated && isEnumTypeName(attr.dartType)
+                ? 'List<${attr.dartType}>'
+                : attr.dartType,
+            repeated: attr.repeated && !isEnumTypeName(attr.dartType),
             wrapInTfArg: true,
             sensitive: attr.sensitive,
           ),

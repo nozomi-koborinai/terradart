@@ -87,12 +87,11 @@ final class Sesv2ConfigurationSetSendingOptions {
 final class Sesv2ConfigurationSetSuppressionOptions {
   const Sesv2ConfigurationSetSuppressionOptions({this.suppressedReasons});
 
-  final List<Sesv2ConfigurationSetSuppressedReasons>? suppressedReasons;
+  final EnumList<Sesv2ConfigurationSetSuppressedReasons>? suppressedReasons;
 
   @internal
   Map<String, Object?> encode() => {
-    if (suppressedReasons != null)
-      'suppressed_reasons': [for (final e in suppressedReasons!) e.toTfJson()],
+    'suppressed_reasons': ?suppressedReasons?.toTfJson(),
   };
 }
 

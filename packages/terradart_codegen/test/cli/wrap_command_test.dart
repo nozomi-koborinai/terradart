@@ -1463,29 +1463,15 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       },
     );
 
-    test('on: a list of strings takes one enum per element', () async {
+    test('on: a list of strings takes an EnumList', () async {
       final (code, _) = await wrap(providerEnums: true);
       expect(code, CliExitCodes.success);
       final src = emitted();
-      expect(src, contains('List<XThingRegions>? regions'));
-      expect(src, contains('required List<XThingGrants> grants'));
+      expect(src, contains('EnumList<XThingRegions>? regions'));
+      expect(src, contains('required EnumList<XThingGrants> grants'));
       expect(src, contains("TfArgLiteral('WNAM')"));
-      expect(
-        src,
-        matches(
-          RegExp(
-            r"if \(regions != null\)\s+'regions': "
-            r'TfArg\.literal\(\[for \(final e in regions\) e\.toTfJson\(\)\]\)',
-          ),
-        ),
-      );
-      expect(
-        src,
-        contains(
-          "'grants': "
-          'TfArg.literal([for (final e in grants) e.toTfJson()])',
-        ),
-      );
+      expect(src, contains("'regions': ?regions,"));
+      expect(src, contains("'grants': grants,"));
     });
 
     test('a hint file at another release fails closed (E405)', () async {

@@ -21,7 +21,9 @@ final class S3BucketServerSideEncryptionConfigurationRule {
     this.applyServerSideEncryptionByDefault,
   });
 
-  final List<S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes>?
+  final EnumList<
+    S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes
+  >?
   blockedEncryptionTypes;
 
   final TfArg<bool>? bucketKeyEnabled;
@@ -31,10 +33,7 @@ final class S3BucketServerSideEncryptionConfigurationRule {
 
   @internal
   Map<String, Object?> encode() => {
-    if (blockedEncryptionTypes != null)
-      'blocked_encryption_types': [
-        for (final e in blockedEncryptionTypes!) e.toTfJson(),
-      ],
+    'blocked_encryption_types': ?blockedEncryptionTypes?.toTfJson(),
     'bucket_key_enabled': ?bucketKeyEnabled?.toTfJson(),
     'apply_server_side_encryption_by_default':
         ?applyServerSideEncryptionByDefault?.encode(),

@@ -122,7 +122,7 @@ final class CloudflareD1Database extends Resource {
   CloudflareD1Database(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    List<D1DatabaseFields>? fields,
+    EnumList<D1DatabaseFields>? fields,
     D1DatabaseJurisdiction? jurisdiction,
     required TfArg<String> name,
     D1DatabasePrimaryLocationHint? primaryLocationHint,
@@ -135,8 +135,7 @@ final class CloudflareD1Database extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (fields != null)
-             'fields': TfArg.literal([for (final e in fields) e.toTfJson()]),
+           'fields': ?fields,
            'jurisdiction': ?jurisdiction,
            'name': name,
            'primary_location_hint': ?primaryLocationHint,

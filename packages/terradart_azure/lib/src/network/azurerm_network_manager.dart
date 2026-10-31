@@ -60,7 +60,7 @@ final class AzurermNetworkManager extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    List<NetworkManagerScopeAccesses>? scopeAccesses,
+    EnumList<NetworkManagerScopeAccesses>? scopeAccesses,
     TfArg<Map<String, String>>? tags,
     required NetworkManagerScope scope,
     super.lifecycle,
@@ -74,10 +74,7 @@ final class AzurermNetworkManager extends Resource {
            'location': location,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
-           if (scopeAccesses != null)
-             'scope_accesses': TfArg.literal([
-               for (final e in scopeAccesses) e.toTfJson(),
-             ]),
+           'scope_accesses': ?scopeAccesses,
            'tags': ?tags,
            'scope': TfArg.literal(scope.encode()),
          },

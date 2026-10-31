@@ -329,7 +329,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
     required this.uiComponent,
   });
 
-  final List<DiscoveryEngineWidgetConfigDeviceVisibility>? deviceVisibility;
+  final EnumList<DiscoveryEngineWidgetConfigDeviceVisibility>? deviceVisibility;
 
   final TfArg<String>? displayTemplate;
 
@@ -339,8 +339,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
 
   @internal
   Map<String, Object?> encode() => {
-    if (deviceVisibility != null)
-      'device_visibility': [for (final e in deviceVisibility!) e.toTfJson()],
+    'device_visibility': ?deviceVisibility?.toTfJson(),
     'display_template': ?displayTemplate?.toTfJson(),
     'field': field.toTfJson(),
     'ui_component': uiComponent.toTfJson(),

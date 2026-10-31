@@ -151,7 +151,7 @@ final class PipesPipeLogConfiguration {
     this.s3LogDestination,
   });
 
-  final List<PipesPipeIncludeExecutionData>? includeExecutionData;
+  final EnumList<PipesPipeIncludeExecutionData>? includeExecutionData;
 
   final PipesPipeLevel level;
 
@@ -163,10 +163,7 @@ final class PipesPipeLogConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    if (includeExecutionData != null)
-      'include_execution_data': [
-        for (final e in includeExecutionData!) e.toTfJson(),
-      ],
+    'include_execution_data': ?includeExecutionData?.toTfJson(),
     'level': level.toTfJson(),
     'cloudwatch_logs_log_destination': ?cloudwatchLogsLogDestination?.encode(),
     'firehose_log_destination': ?firehoseLogDestination?.encode(),

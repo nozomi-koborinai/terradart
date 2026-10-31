@@ -23,11 +23,11 @@ final class MaintenanceAssignmentDynamicScopeFilter {
 
   final TfArg<List<String>>? locations;
 
-  final List<MaintenanceAssignmentDynamicScopeOsTypes>? osTypes;
+  final EnumList<MaintenanceAssignmentDynamicScopeOsTypes>? osTypes;
 
   final TfArg<List<String>>? resourceGroups;
 
-  final List<MaintenanceAssignmentDynamicScopeResourceTypes>? resourceTypes;
+  final EnumList<MaintenanceAssignmentDynamicScopeResourceTypes>? resourceTypes;
 
   final MaintenanceAssignmentDynamicScopeTagFilter? tagFilter;
 
@@ -36,10 +36,9 @@ final class MaintenanceAssignmentDynamicScopeFilter {
   @internal
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
-    if (osTypes != null) 'os_types': [for (final e in osTypes!) e.toTfJson()],
+    'os_types': ?osTypes?.toTfJson(),
     'resource_groups': ?resourceGroups?.toTfJson(),
-    if (resourceTypes != null)
-      'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
+    'resource_types': ?resourceTypes?.toTfJson(),
     'tag_filter': ?tagFilter?.toTfJson(),
     if (tags != null) 'tags': [for (final e in tags!) e.encode()],
   };

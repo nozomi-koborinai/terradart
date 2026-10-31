@@ -389,7 +389,7 @@ final class StorageBucketCondition {
 
   final TfArg<List<String>>? matchesPrefix;
 
-  final List<StorageBucketMatchesStorageClass>? matchesStorageClass;
+  final EnumList<StorageBucketMatchesStorageClass>? matchesStorageClass;
 
   final TfArg<List<String>>? matchesSuffix;
 
@@ -419,10 +419,7 @@ final class StorageBucketCondition {
     'days_since_custom_time': ?daysSinceCustomTime?.toTfJson(),
     'days_since_noncurrent_time': ?daysSinceNoncurrentTime?.toTfJson(),
     'matches_prefix': ?matchesPrefix?.toTfJson(),
-    if (matchesStorageClass != null)
-      'matches_storage_class': [
-        for (final e in matchesStorageClass!) e.toTfJson(),
-      ],
+    'matches_storage_class': ?matchesStorageClass?.toTfJson(),
     'matches_suffix': ?matchesSuffix?.toTfJson(),
     'noncurrent_time_before': ?noncurrentTimeBefore?.toTfJson(),
     'num_newer_versions': ?numNewerVersions?.toTfJson(),

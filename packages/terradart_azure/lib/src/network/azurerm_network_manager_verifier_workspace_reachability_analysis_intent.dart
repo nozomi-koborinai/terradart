@@ -25,7 +25,9 @@ final class NetworkManagerVerifierWorkspaceReachabilityAnalysisIntentIpTraffic {
 
   final TfArg<List<String>> destinationPorts;
 
-  final List<NetworkManagerVerifierWorkspaceReachabilityAnalysisIntentProtocols>
+  final EnumList<
+    NetworkManagerVerifierWorkspaceReachabilityAnalysisIntentProtocols
+  >
   protocols;
 
   final TfArg<List<String>> sourceIps;
@@ -36,7 +38,7 @@ final class NetworkManagerVerifierWorkspaceReachabilityAnalysisIntentIpTraffic {
   Map<String, Object?> encode() => {
     'destination_ips': destinationIps.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_ips': sourceIps.toTfJson(),
     'source_ports': sourcePorts.toTfJson(),
   };

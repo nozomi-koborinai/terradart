@@ -590,7 +590,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
     required TfArg<String> displayName,
     required DiscoveryEngineControlSolutionType solutionType,
     required DiscoveryEngineControlAction action,
-    List<DiscoveryEngineControlUseCases>? useCases,
+    EnumList<DiscoveryEngineControlUseCases>? useCases,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     List<DiscoveryEngineControlConditions>? conditions,
@@ -607,10 +607,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
            'control_id': controlId,
            'display_name': displayName,
            'solution_type': solutionType,
-           if (useCases != null)
-             'use_cases': TfArg.literal([
-               for (final e in useCases) e.toTfJson(),
-             ]),
+           'use_cases': ?useCases,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
            ...action.argMap,

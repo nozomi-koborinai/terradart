@@ -284,15 +284,13 @@ final class ComputeRouterNatSubnetwork {
 
   final TfArg<List<String>>? secondaryIpRangeNames;
 
-  final List<ComputeRouterNatSourceIpRangesToNat> sourceIpRangesToNat;
+  final EnumList<ComputeRouterNatSourceIpRangesToNat> sourceIpRangesToNat;
 
   @internal
   Map<String, Object?> encode() => {
     'name': name.encodeAs('self_link').toTfJson(),
     'secondary_ip_range_names': ?secondaryIpRangeNames?.toTfJson(),
-    'source_ip_ranges_to_nat': [
-      for (final e in sourceIpRangesToNat) e.toTfJson(),
-    ],
+    'source_ip_ranges_to_nat': sourceIpRangesToNat.toTfJson(),
   };
 }
 
@@ -359,7 +357,7 @@ final class GoogleComputeRouterNat extends Resource {
     TfArg<num>? tcpTimeWaitTimeoutSec,
     TfArg<num>? udpIdleTimeoutSec,
     ComputeRouterNatAutoNetworkTier? autoNetworkTier,
-    List<ComputeRouterNatEndpointTypes>? endpointTypes,
+    EnumList<ComputeRouterNatEndpointTypes>? endpointTypes,
     ComputeRouterNatSourceSubnetworkIpRangesToNat64?
     sourceSubnetworkIpRangesToNat64,
     TfArg<String>? deletionPolicy,
@@ -395,10 +393,7 @@ final class GoogleComputeRouterNat extends Resource {
            'tcp_time_wait_timeout_sec': ?tcpTimeWaitTimeoutSec,
            'udp_idle_timeout_sec': ?udpIdleTimeoutSec,
            'auto_network_tier': ?autoNetworkTier,
-           if (endpointTypes != null)
-             'endpoint_types': TfArg.literal([
-               for (final e in endpointTypes) e.toTfJson(),
-             ]),
+           'endpoint_types': ?endpointTypes,
            'source_subnetwork_ip_ranges_to_nat64':
                ?sourceSubnetworkIpRangesToNat64,
            'deletion_policy': ?deletionPolicy,

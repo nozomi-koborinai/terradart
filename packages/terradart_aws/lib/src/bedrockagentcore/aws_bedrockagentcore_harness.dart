@@ -706,14 +706,13 @@ final class BedrockagentcoreHarnessManagedMemoryConfiguration {
 
   final TfArg<num>? eventExpiryDuration;
 
-  final List<BedrockagentcoreHarnessStrategies>? strategies;
+  final EnumList<BedrockagentcoreHarnessStrategies>? strategies;
 
   @internal
   Map<String, Object?> encode() => {
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
     'event_expiry_duration': ?eventExpiryDuration?.toTfJson(),
-    if (strategies != null)
-      'strategies': [for (final e in strategies!) e.toTfJson()],
+    'strategies': ?strategies?.toTfJson(),
   };
 }
 

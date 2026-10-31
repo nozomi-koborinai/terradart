@@ -132,7 +132,7 @@ final class AzurermIotSecuritySolution extends Resource {
     TfArg<List<String>>? disabledDataSources,
     required TfArg<String> displayName,
     TfArg<bool>? enabled,
-    List<IotSecuritySolutionEventsToExport>? eventsToExport,
+    EnumList<IotSecuritySolutionEventsToExport>? eventsToExport,
     required TfArg<List<String>> iothubIds,
     required TfArg<String> location,
     TfArg<String>? logAnalyticsWorkspaceId,
@@ -154,10 +154,7 @@ final class AzurermIotSecuritySolution extends Resource {
            'disabled_data_sources': ?disabledDataSources,
            'display_name': displayName,
            'enabled': ?enabled,
-           if (eventsToExport != null)
-             'events_to_export': TfArg.literal([
-               for (final e in eventsToExport) e.toTfJson(),
-             ]),
+           'events_to_export': ?eventsToExport,
            'iothub_ids': iothubIds,
            'location': location,
            'log_analytics_workspace_id': ?logAnalyticsWorkspaceId,

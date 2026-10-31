@@ -256,7 +256,7 @@ final class EcsServiceLifecycleHook {
 
   final TfArg<String>? hookTargetArn;
 
-  final List<EcsServiceLifecycleStages> lifecycleStages;
+  final EnumList<EcsServiceLifecycleStages> lifecycleStages;
 
   final RefTo<AwsIamRole>? roleArn;
 
@@ -268,7 +268,7 @@ final class EcsServiceLifecycleHook {
   Map<String, Object?> encode() => {
     'hook_details': ?hookDetails?.toTfJson(),
     'hook_target_arn': ?hookTargetArn?.toTfJson(),
-    'lifecycle_stages': [for (final e in lifecycleStages) e.toTfJson()],
+    'lifecycle_stages': lifecycleStages.toTfJson(),
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'target_type': ?targetType?.toTfJson(),
     'timeout_configuration': ?timeoutConfiguration?.encode(),

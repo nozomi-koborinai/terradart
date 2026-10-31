@@ -185,7 +185,7 @@ extension type const NetworkConnectivityTransportStackType._(TfArg<String> _)
 ///   remoteProfile: TfArg.literal(
 ///     'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1',
 ///   ),
-///   bandwidth: TfArg.literal('BPS_1G'),
+///   bandwidth: .bps1g,
 /// );
 /// ```
 final class GoogleNetworkConnectivityTransport extends Resource {

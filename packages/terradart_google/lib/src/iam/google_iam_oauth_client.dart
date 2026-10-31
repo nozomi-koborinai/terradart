@@ -81,7 +81,7 @@ extension type const IamOauthClientType._(TfArg<String> _)
 ///   'demo',
 ///   oauthClientId: TfArg.literal('terradart-oauth'),
 ///   location: TfArg.literal('global'),
-///   allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
+///   allowedGrantTypes: .literal([.authorizationCodeGrant]),
 ///   allowedRedirectUris: TfArg.literal(['https://www.example.com']),
 ///   allowedScopes: TfArg.literal(['openid']),
 ///   clientType: .publicClient,
@@ -95,7 +95,7 @@ final class GoogleIamOauthClient extends Resource {
     super.localName, {
     required TfArg<String> oauthClientId,
     required TfArg<String> location,
-    required List<IamOauthClientAllowedGrantTypes> allowedGrantTypes,
+    required EnumList<IamOauthClientAllowedGrantTypes> allowedGrantTypes,
     required TfArg<List<String>> allowedRedirectUris,
     required TfArg<List<String>> allowedScopes,
     IamOauthClientType? clientType,
@@ -113,9 +113,7 @@ final class GoogleIamOauthClient extends Resource {
          argMap: {
            'oauth_client_id': oauthClientId,
            'location': location,
-           'allowed_grant_types': TfArg.literal([
-             for (final e in allowedGrantTypes) e.toTfJson(),
-           ]),
+           'allowed_grant_types': allowedGrantTypes,
            'allowed_redirect_uris': allowedRedirectUris,
            'allowed_scopes': allowedScopes,
            'client_type': ?clientType,

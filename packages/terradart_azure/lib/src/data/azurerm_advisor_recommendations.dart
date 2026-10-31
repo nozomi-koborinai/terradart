@@ -49,7 +49,7 @@ final class DataAzurermAdvisorRecommendations extends Data {
 
   DataAzurermAdvisorRecommendations(
     super.localName, {
-    List<DataAdvisorRecommendationsFilterByCategory>? filterByCategory,
+    EnumList<DataAdvisorRecommendationsFilterByCategory>? filterByCategory,
     TfArg<List<String>>? filterByRecommendationTypeGuids,
     TfArg<List<String>>? filterByResourceGroups,
     TfArg<List<String>>? filterByResourceIds,
@@ -58,10 +58,7 @@ final class DataAzurermAdvisorRecommendations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filterByCategory != null)
-             'filter_by_category': TfArg.literal([
-               for (final e in filterByCategory) e.toTfJson(),
-             ]),
+           'filter_by_category': ?filterByCategory,
            'filter_by_recommendation_type_guids':
                ?filterByRecommendationTypeGuids,
            'filter_by_resource_groups': ?filterByResourceGroups,

@@ -53,7 +53,7 @@ final class AwsAcmpcaPermission extends Resource {
 
   AwsAcmpcaPermission(
     super.localName, {
-    required List<AcmpcaPermissionActions> actions,
+    required EnumList<AcmpcaPermissionActions> actions,
     required TfArg<String> certificateAuthorityArn,
     required AcmpcaPermissionPrincipal principal,
     TfArg<String>? region,
@@ -65,7 +65,7 @@ final class AwsAcmpcaPermission extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'actions': TfArg.literal([for (final e in actions) e.toTfJson()]),
+           'actions': actions,
            'certificate_authority_arn': certificateAuthorityArn,
            'principal': principal,
            'region': ?region,

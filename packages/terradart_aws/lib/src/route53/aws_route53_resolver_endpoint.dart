@@ -112,7 +112,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
     super.localName, {
     required Route53ResolverEndpointDirection direction,
     TfArg<String>? name,
-    List<Route53ResolverEndpointProtocols>? protocols,
+    EnumList<Route53ResolverEndpointProtocols>? protocols,
     TfArg<String>? region,
     Route53ResolverEndpointType? resolverEndpointType,
     TfArg<bool>? rniEnhancedMetricsEnabled,
@@ -129,10 +129,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
          argMap: {
            'direction': direction,
            'name': ?name,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'region': ?region,
            'resolver_endpoint_type': ?resolverEndpointType,
            'rni_enhanced_metrics_enabled': ?rniEnhancedMetricsEnabled,

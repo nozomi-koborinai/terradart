@@ -606,7 +606,7 @@ final class CloudbuildTriggerOptions {
 
   final TfArg<List<String>>? secretEnv;
 
-  final List<CloudbuildTriggerSourceProvenanceHash>? sourceProvenanceHash;
+  final EnumList<CloudbuildTriggerSourceProvenanceHash>? sourceProvenanceHash;
 
   final CloudbuildTriggerSubstitutionOption? substitutionOption;
 
@@ -624,10 +624,7 @@ final class CloudbuildTriggerOptions {
     'machine_type': ?machineType?.toTfJson(),
     'requested_verify_option': ?requestedVerifyOption?.toTfJson(),
     'secret_env': ?secretEnv?.toTfJson(),
-    if (sourceProvenanceHash != null)
-      'source_provenance_hash': [
-        for (final e in sourceProvenanceHash!) e.toTfJson(),
-      ],
+    'source_provenance_hash': ?sourceProvenanceHash?.toTfJson(),
     'substitution_option': ?substitutionOption?.toTfJson(),
     'worker_pool': ?workerPool?.toTfJson(),
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],

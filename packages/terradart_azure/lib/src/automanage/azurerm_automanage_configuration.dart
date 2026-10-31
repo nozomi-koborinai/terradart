@@ -349,7 +349,7 @@ final class AutomanageConfigurationSchedulePolicy {
 
   final AutomanageConfigurationSchedulePolicyType? schedulePolicyType;
 
-  final List<AutomanageConfigurationScheduleRunDays>? scheduleRunDays;
+  final EnumList<AutomanageConfigurationScheduleRunDays>? scheduleRunDays;
 
   final AutomanageConfigurationScheduleRunFrequency? scheduleRunFrequency;
 
@@ -358,8 +358,7 @@ final class AutomanageConfigurationSchedulePolicy {
   @internal
   Map<String, Object?> encode() => {
     'schedule_policy_type': ?schedulePolicyType?.toTfJson(),
-    if (scheduleRunDays != null)
-      'schedule_run_days': [for (final e in scheduleRunDays!) e.toTfJson()],
+    'schedule_run_days': ?scheduleRunDays?.toTfJson(),
     'schedule_run_frequency': ?scheduleRunFrequency?.toTfJson(),
     'schedule_run_times': ?scheduleRunTimes?.toTfJson(),
   };

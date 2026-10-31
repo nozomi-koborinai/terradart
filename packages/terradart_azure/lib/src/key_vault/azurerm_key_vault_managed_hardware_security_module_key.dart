@@ -120,7 +120,7 @@ final class AzurermKeyVaultManagedHardwareSecurityModuleKey extends Resource {
     super.localName, {
     KeyVaultManagedHardwareSecurityModuleKeyCurve? curve,
     TfArg<String>? expirationDate,
-    required List<KeyVaultManagedHardwareSecurityModuleKeyOpts> keyOpts,
+    required EnumList<KeyVaultManagedHardwareSecurityModuleKeyOpts> keyOpts,
     TfArg<num>? keySize,
     required KeyVaultManagedHardwareSecurityModuleKeyType keyType,
     required TfArg<String> managedHsmId,
@@ -136,7 +136,7 @@ final class AzurermKeyVaultManagedHardwareSecurityModuleKey extends Resource {
          argMap: {
            'curve': ?curve,
            'expiration_date': ?expirationDate,
-           'key_opts': TfArg.literal([for (final e in keyOpts) e.toTfJson()]),
+           'key_opts': keyOpts,
            'key_size': ?keySize,
            'key_type': keyType,
            'managed_hsm_id': managedHsmId,

@@ -132,13 +132,12 @@ final class NetworkServicesGrpcRouteRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final List<NetworkServicesGrpcRouteRetryConditions>? retryConditions;
+  final EnumList<NetworkServicesGrpcRouteRetryConditions>? retryConditions;
 
   @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
-    if (retryConditions != null)
-      'retry_conditions': [for (final e in retryConditions!) e.toTfJson()],
+    'retry_conditions': ?retryConditions?.toTfJson(),
   };
 }
 

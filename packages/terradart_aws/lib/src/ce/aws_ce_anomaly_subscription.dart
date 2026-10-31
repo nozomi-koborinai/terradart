@@ -213,15 +213,14 @@ final class CeAnomalySubscriptionCostCategory {
 
   final TfArg<String>? key;
 
-  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
+  final EnumList<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -284,15 +283,14 @@ final class CeAnomalySubscriptionDimension {
 
   final CeAnomalySubscriptionKey? key;
 
-  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
+  final EnumList<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -498,15 +496,14 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
+  final EnumList<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
-    if (matchOptions != null)
-      'match_options': [for (final e in matchOptions!) e.toTfJson()],
+    'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }

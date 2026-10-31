@@ -208,7 +208,7 @@ final class MssqlVirtualMachineManualSchedule {
     required this.logBackupFrequencyInMinutes,
   });
 
-  final List<MssqlVirtualMachineDaysOfWeek>? daysOfWeek;
+  final EnumList<MssqlVirtualMachineDaysOfWeek>? daysOfWeek;
 
   final MssqlVirtualMachineFullBackupFrequency fullBackupFrequency;
 
@@ -220,8 +220,7 @@ final class MssqlVirtualMachineManualSchedule {
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'full_backup_frequency': fullBackupFrequency.toTfJson(),
     'full_backup_start_hour': fullBackupStartHour.toTfJson(),
     'full_backup_window_in_hours': fullBackupWindowInHours.toTfJson(),

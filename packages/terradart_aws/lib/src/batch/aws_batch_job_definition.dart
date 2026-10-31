@@ -683,7 +683,7 @@ final class AwsBatchJobDefinition extends Resource {
     TfArg<bool>? deregisterOnNewRevision,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    List<BatchJobDefinitionPlatformCapabilities>? platformCapabilities,
+    EnumList<BatchJobDefinitionPlatformCapabilities>? platformCapabilities,
     TfArg<bool>? propagateTags,
     TfArg<String>? region,
     TfArg<num>? schedulingPriority,
@@ -702,10 +702,7 @@ final class AwsBatchJobDefinition extends Resource {
            'deregister_on_new_revision': ?deregisterOnNewRevision,
            'name': name,
            'parameters': ?parameters,
-           if (platformCapabilities != null)
-             'platform_capabilities': TfArg.literal([
-               for (final e in platformCapabilities) e.toTfJson(),
-             ]),
+           'platform_capabilities': ?platformCapabilities,
            'propagate_tags': ?propagateTags,
            'region': ?region,
            'scheduling_priority': ?schedulingPriority,

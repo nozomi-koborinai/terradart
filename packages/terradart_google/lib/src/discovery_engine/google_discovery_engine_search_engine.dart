@@ -165,15 +165,14 @@ final class DiscoveryEngineSearchEngineConfig {
   final DiscoveryEngineSearchEngineRequiredSubscriptionTier?
   requiredSubscriptionTier;
 
-  final List<DiscoveryEngineSearchEngineConfigSearchAddOns>? searchAddOns;
+  final EnumList<DiscoveryEngineSearchEngineConfigSearchAddOns>? searchAddOns;
 
   final DiscoveryEngineSearchEngineTier? searchTier;
 
   @internal
   Map<String, Object?> encode() => {
     'required_subscription_tier': ?requiredSubscriptionTier?.toTfJson(),
-    if (searchAddOns != null)
-      'search_add_ons': [for (final e in searchAddOns!) e.toTfJson()],
+    'search_add_ons': ?searchAddOns?.toTfJson(),
     'search_tier': ?searchTier?.toTfJson(),
   };
 }

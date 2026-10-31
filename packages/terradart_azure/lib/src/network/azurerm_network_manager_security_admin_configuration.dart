@@ -47,7 +47,7 @@ final class AzurermNetworkManagerSecurityAdminConfiguration extends Resource {
 
   AzurermNetworkManagerSecurityAdminConfiguration(
     super.localName, {
-    List<
+    EnumList<
       NetworkManagerSecurityAdminConfigurationApplyOnNetworkIntentPolicyBasedServices
     >?
     applyOnNetworkIntentPolicyBasedServices,
@@ -61,11 +61,8 @@ final class AzurermNetworkManagerSecurityAdminConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyOnNetworkIntentPolicyBasedServices != null)
-             'apply_on_network_intent_policy_based_services': TfArg.literal([
-               for (final e in applyOnNetworkIntentPolicyBasedServices)
-                 e.toTfJson(),
-             ]),
+           'apply_on_network_intent_policy_based_services':
+               ?applyOnNetworkIntentPolicyBasedServices,
            'description': ?description,
            'name': name,
            'network_manager_id': networkManagerId,

@@ -167,7 +167,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoles,
     RefTo<AwsKmsKey>? kmsKeyId,
-    List<RedshiftserverlessNamespaceLogExports>? logExports,
+    EnumList<RedshiftserverlessNamespaceLogExports>? logExports,
     required TfArg<String> namespaceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -186,10 +186,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
            'default_iam_role_arn': ?defaultIamRoleArn,
            'iam_roles': ?iamRoles,
            'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
-           if (logExports != null)
-             'log_exports': TfArg.literal([
-               for (final e in logExports) e.toTfJson(),
-             ]),
+           'log_exports': ?logExports,
            'namespace_name': namespaceName,
            'region': ?region,
            'tags': ?tags,

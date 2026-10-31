@@ -199,7 +199,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
     super.localName, {
     TfArg<bool>? copyTagsToSnapshots,
     FsxOpenzfsVolumeDataCompressionType? dataCompressionType,
-    List<FsxOpenzfsVolumeDeleteVolumeOptions>? deleteVolumeOptions,
+    EnumList<FsxOpenzfsVolumeDeleteVolumeOptions>? deleteVolumeOptions,
     required TfArg<String> name,
     required TfArg<String> parentVolumeId,
     TfArg<bool>? readOnly,
@@ -221,10 +221,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
          argMap: {
            'copy_tags_to_snapshots': ?copyTagsToSnapshots,
            'data_compression_type': ?dataCompressionType,
-           if (deleteVolumeOptions != null)
-             'delete_volume_options': TfArg.literal([
-               for (final e in deleteVolumeOptions) e.toTfJson(),
-             ]),
+           'delete_volume_options': ?deleteVolumeOptions,
            'name': name,
            'parent_volume_id': parentVolumeId,
            'read_only': ?readOnly,

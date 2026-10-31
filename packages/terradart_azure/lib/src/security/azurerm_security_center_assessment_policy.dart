@@ -98,13 +98,13 @@ final class AzurermSecurityCenterAssessmentPolicy extends Resource {
 
   AzurermSecurityCenterAssessmentPolicy(
     super.localName, {
-    List<SecurityCenterAssessmentPolicyCategories>? categories,
+    EnumList<SecurityCenterAssessmentPolicyCategories>? categories,
     required TfArg<String> description,
     required TfArg<String> displayName,
     TfArg<String>? implementationEffort,
     TfArg<String>? remediationDescription,
     TfArg<String>? severity,
-    List<SecurityCenterAssessmentPolicyThreats>? threats,
+    EnumList<SecurityCenterAssessmentPolicyThreats>? threats,
     TfArg<String>? userImpact,
     super.lifecycle,
     super.dependsOn,
@@ -113,17 +113,13 @@ final class AzurermSecurityCenterAssessmentPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (categories != null)
-             'categories': TfArg.literal([
-               for (final e in categories) e.toTfJson(),
-             ]),
+           'categories': ?categories,
            'description': description,
            'display_name': displayName,
            'implementation_effort': ?implementationEffort,
            'remediation_description': ?remediationDescription,
            'severity': ?severity,
-           if (threats != null)
-             'threats': TfArg.literal([for (final e in threats) e.toTfJson()]),
+           'threats': ?threats,
            'user_impact': ?userImpact,
          },
        );

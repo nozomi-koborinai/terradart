@@ -1108,11 +1108,12 @@ final class ContainerClusterPodCidrOverprovisionConfig {
 final class ContainerClusterLoggingConfig {
   const ContainerClusterLoggingConfig({required this.enableComponents});
 
-  final List<ContainerClusterLoggingConfigEnableComponents> enableComponents;
+  final EnumList<ContainerClusterLoggingConfigEnableComponents>
+  enableComponents;
 
   @internal
   Map<String, Object?> encode() => {
-    'enable_components': [for (final e in enableComponents) e.toTfJson()],
+    'enable_components': enableComponents.toTfJson(),
   };
 }
 
@@ -1496,7 +1497,7 @@ final class ContainerClusterMonitoringConfig {
     this.managedPrometheus,
   });
 
-  final List<ContainerClusterMonitoringConfigEnableComponents>?
+  final EnumList<ContainerClusterMonitoringConfigEnableComponents>?
   enableComponents;
 
   final ContainerClusterAdvancedDatapathObservabilityConfig?
@@ -1506,8 +1507,7 @@ final class ContainerClusterMonitoringConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (enableComponents != null)
-      'enable_components': [for (final e in enableComponents!) e.toTfJson()],
+    'enable_components': ?enableComponents?.toTfJson(),
     'advanced_datapath_observability_config':
         ?advancedDatapathObservabilityConfig?.encode(),
     'managed_prometheus': ?managedPrometheus?.encode(),
@@ -3713,12 +3713,10 @@ final class ContainerClusterPubsub {
 final class ContainerClusterFilter {
   const ContainerClusterFilter({required this.eventType});
 
-  final List<ContainerClusterEventType> eventType;
+  final EnumList<ContainerClusterEventType> eventType;
 
   @internal
-  Map<String, Object?> encode() => {
-    'event_type': [for (final e in eventType) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'event_type': eventType.toTfJson()};
 }
 
 /// `event_type` — derived from the provider schema description.

@@ -305,12 +305,13 @@ final class AzurermKeyVaultAccessPolicy extends Resource {
   AzurermKeyVaultAccessPolicy(
     super.localName, {
     TfArg<String>? applicationId,
-    List<KeyVaultAccessPolicyCertificatePermissions>? certificatePermissions,
-    List<KeyVaultAccessPolicyKeyPermissions>? keyPermissions,
+    EnumList<KeyVaultAccessPolicyCertificatePermissions>?
+    certificatePermissions,
+    EnumList<KeyVaultAccessPolicyKeyPermissions>? keyPermissions,
     required RefTo<AzurermKeyVault> keyVaultId,
     required TfArg<String> objectId,
-    List<KeyVaultAccessPolicySecretPermissions>? secretPermissions,
-    List<KeyVaultAccessPolicyStoragePermissions>? storagePermissions,
+    EnumList<KeyVaultAccessPolicySecretPermissions>? secretPermissions,
+    EnumList<KeyVaultAccessPolicyStoragePermissions>? storagePermissions,
     required TfArg<String> tenantId,
     super.lifecycle,
     super.dependsOn,
@@ -320,24 +321,12 @@ final class AzurermKeyVaultAccessPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': ?applicationId,
-           if (certificatePermissions != null)
-             'certificate_permissions': TfArg.literal([
-               for (final e in certificatePermissions) e.toTfJson(),
-             ]),
-           if (keyPermissions != null)
-             'key_permissions': TfArg.literal([
-               for (final e in keyPermissions) e.toTfJson(),
-             ]),
+           'certificate_permissions': ?certificatePermissions,
+           'key_permissions': ?keyPermissions,
            'key_vault_id': keyVaultId.encodeAs('id'),
            'object_id': objectId,
-           if (secretPermissions != null)
-             'secret_permissions': TfArg.literal([
-               for (final e in secretPermissions) e.toTfJson(),
-             ]),
-           if (storagePermissions != null)
-             'storage_permissions': TfArg.literal([
-               for (final e in storagePermissions) e.toTfJson(),
-             ]),
+           'secret_permissions': ?secretPermissions,
+           'storage_permissions': ?storagePermissions,
            'tenant_id': tenantId,
          },
        );

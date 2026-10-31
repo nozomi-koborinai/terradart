@@ -210,7 +210,7 @@ sealed class AppEngineStandardAppVersionLegacyServices {
 
   /// Sets `app_engine_bundled_services`.
   const factory AppEngineStandardAppVersionLegacyServices.appEngineBundledServices(
-    List<AppEngineStandardAppVersionAppEngineBundledServices>
+    EnumList<AppEngineStandardAppVersionAppEngineBundledServices>
     appEngineBundledServices,
   ) = AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices;
 
@@ -258,7 +258,7 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
     this.appEngineBundledServices,
   );
 
-  final List<AppEngineStandardAppVersionAppEngineBundledServices>
+  final EnumList<AppEngineStandardAppVersionAppEngineBundledServices>
   appEngineBundledServices;
 
   @internal
@@ -268,17 +268,13 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
   @internal
   @override
   Map<String, Object?> encode() => {
-    'app_engine_bundled_services': [
-      for (final e in appEngineBundledServices) e.toTfJson(),
-    ],
+    'app_engine_bundled_services': appEngineBundledServices.toTfJson(),
   };
 
   @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'app_engine_bundled_services': TfArg.literal([
-      for (final e in appEngineBundledServices) e.toTfJson(),
-    ]),
+    'app_engine_bundled_services': appEngineBundledServices,
   };
 }
 
@@ -839,7 +835,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<bool>? noopOnDestroy,
     RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<bool>? threadsafe,
-    List<AppEngineStandardAppVersionInboundServices>? inboundServices,
+    EnumList<AppEngineStandardAppVersionInboundServices>? inboundServices,
     TfArg<String>? project,
     List<AppEngineStandardAppVersionLibraries>? libraries,
     super.lifecycle,
@@ -868,10 +864,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'noop_on_destroy': ?noopOnDestroy,
            'service_account': ?serviceAccount?.encodeAs('email'),
            'threadsafe': ?threadsafe,
-           if (inboundServices != null)
-             'inbound_services': TfArg.literal([
-               for (final e in inboundServices) e.toTfJson(),
-             ]),
+           'inbound_services': ?inboundServices,
            'project': ?project,
            if (libraries != null)
              'libraries': TfArg.literal([

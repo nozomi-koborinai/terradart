@@ -276,7 +276,7 @@ final class AzurermSharedImage extends Resource {
     SharedImageSecurityType? securityType,
     TfArg<String>? description,
     TfArg<bool>? diskControllerTypeNvmeEnabled,
-    List<SharedImageDiskTypesNotAllowed>? diskTypesNotAllowed,
+    EnumList<SharedImageDiskTypesNotAllowed>? diskTypesNotAllowed,
     TfArg<String>? endOfLifeDate,
     TfArg<String>? eula,
     required TfArg<String> galleryName,
@@ -309,10 +309,7 @@ final class AzurermSharedImage extends Resource {
            ...?securityType?.argMap,
            'description': ?description,
            'disk_controller_type_nvme_enabled': ?diskControllerTypeNvmeEnabled,
-           if (diskTypesNotAllowed != null)
-             'disk_types_not_allowed': TfArg.literal([
-               for (final e in diskTypesNotAllowed) e.toTfJson(),
-             ]),
+           'disk_types_not_allowed': ?diskTypesNotAllowed,
            'end_of_life_date': ?endOfLifeDate,
            'eula': ?eula,
            'gallery_name': galleryName,

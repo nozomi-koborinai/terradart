@@ -331,7 +331,7 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
 
   final TfArg<List<String>>? excludeHtmlIds;
 
-  final List<DiscoveryEngineDataStoreStructuredContentTypes>?
+  final EnumList<DiscoveryEngineDataStoreStructuredContentTypes>?
   structuredContentTypes;
 
   @internal
@@ -343,10 +343,7 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
     'exclude_html_classes': ?excludeHtmlClasses?.toTfJson(),
     'exclude_html_elements': ?excludeHtmlElements?.toTfJson(),
     'exclude_html_ids': ?excludeHtmlIds?.toTfJson(),
-    if (structuredContentTypes != null)
-      'structured_content_types': [
-        for (final e in structuredContentTypes!) e.toTfJson(),
-      ],
+    'structured_content_types': ?structuredContentTypes?.toTfJson(),
   };
 }
 
@@ -429,7 +426,7 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
     required TfArg<String> displayName,
     required DiscoveryEngineDataStoreIndustryVertical industryVertical,
     DiscoveryEngineDataStoreContentConfig? contentConfig,
-    List<DiscoveryEngineDataStoreSolutionTypes>? solutionTypes,
+    EnumList<DiscoveryEngineDataStoreSolutionTypes>? solutionTypes,
     TfArg<bool>? skipDefaultSchemaCreation,
     TfArg<String>? project,
     TfArg<bool>? aclEnabled,
@@ -449,10 +446,7 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
            'display_name': displayName,
            'industry_vertical': industryVertical,
            'content_config': ?contentConfig,
-           if (solutionTypes != null)
-             'solution_types': TfArg.literal([
-               for (final e in solutionTypes) e.toTfJson(),
-             ]),
+           'solution_types': ?solutionTypes,
            'skip_default_schema_creation': ?skipDefaultSchemaCreation,
            'project': ?project,
            'acl_enabled': ?aclEnabled,

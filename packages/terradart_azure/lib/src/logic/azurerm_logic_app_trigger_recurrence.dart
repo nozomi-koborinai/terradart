@@ -57,14 +57,13 @@ final class LogicAppTriggerRecurrenceSchedule {
 
   final TfArg<List<num>>? atTheseMinutes;
 
-  final List<LogicAppTriggerRecurrenceOnTheseDays>? onTheseDays;
+  final EnumList<LogicAppTriggerRecurrenceOnTheseDays>? onTheseDays;
 
   @internal
   Map<String, Object?> encode() => {
     'at_these_hours': ?atTheseHours?.toTfJson(),
     'at_these_minutes': ?atTheseMinutes?.toTfJson(),
-    if (onTheseDays != null)
-      'on_these_days': [for (final e in onTheseDays!) e.toTfJson()],
+    'on_these_days': ?onTheseDays?.toTfJson(),
   };
 }
 

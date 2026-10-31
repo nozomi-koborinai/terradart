@@ -119,7 +119,7 @@ final class StorageBlobInventoryPolicyFilter {
     this.prefixMatch,
   });
 
-  final List<StorageBlobInventoryPolicyBlobTypes> blobTypes;
+  final EnumList<StorageBlobInventoryPolicyBlobTypes> blobTypes;
 
   final TfArg<num>? createdWithinDays;
 
@@ -135,7 +135,7 @@ final class StorageBlobInventoryPolicyFilter {
 
   @internal
   Map<String, Object?> encode() => {
-    'blob_types': [for (final e in blobTypes) e.toTfJson()],
+    'blob_types': blobTypes.toTfJson(),
     'created_within_days': ?createdWithinDays?.toTfJson(),
     'exclude_prefixes': ?excludePrefixes?.toTfJson(),
     'include_blob_versions': ?includeBlobVersions?.toTfJson(),

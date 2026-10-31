@@ -64,7 +64,7 @@ final class AwsCloudformationStack extends Resource {
 
   AwsCloudformationStack(
     super.localName, {
-    List<CloudformationStackCapabilities>? capabilities,
+    EnumList<CloudformationStackCapabilities>? capabilities,
     TfArg<bool>? disableRollback,
     RefTo<AwsIamRole>? iamRoleArn,
     required TfArg<String> name,
@@ -85,10 +85,7 @@ final class AwsCloudformationStack extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (capabilities != null)
-             'capabilities': TfArg.literal([
-               for (final e in capabilities) e.toTfJson(),
-             ]),
+           'capabilities': ?capabilities,
            'disable_rollback': ?disableRollback,
            'iam_role_arn': ?iamRoleArn?.encodeAs('arn'),
            'name': name,

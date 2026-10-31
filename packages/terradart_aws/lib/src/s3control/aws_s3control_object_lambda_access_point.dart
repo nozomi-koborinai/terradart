@@ -20,7 +20,8 @@ final class S3controlObjectLambdaAccessPointConfiguration {
     required this.transformationConfiguration,
   });
 
-  final List<S3controlObjectLambdaAccessPointAllowedFeatures>? allowedFeatures;
+  final EnumList<S3controlObjectLambdaAccessPointAllowedFeatures>?
+  allowedFeatures;
 
   final TfArg<bool>? cloudWatchMetricsEnabled;
 
@@ -31,8 +32,7 @@ final class S3controlObjectLambdaAccessPointConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedFeatures != null)
-      'allowed_features': [for (final e in allowedFeatures!) e.toTfJson()],
+    'allowed_features': ?allowedFeatures?.toTfJson(),
     'cloud_watch_metrics_enabled': ?cloudWatchMetricsEnabled?.toTfJson(),
     'supporting_access_point': supportingAccessPoint.toTfJson(),
     'transformation_configuration': [
@@ -86,14 +86,14 @@ final class S3controlObjectLambdaAccessPointTransformationConfiguration {
     required this.contentTransformation,
   });
 
-  final List<S3controlObjectLambdaAccessPointActions> actions;
+  final EnumList<S3controlObjectLambdaAccessPointActions> actions;
 
   final S3controlObjectLambdaAccessPointContentTransformation
   contentTransformation;
 
   @internal
   Map<String, Object?> encode() => {
-    'actions': [for (final e in actions) e.toTfJson()],
+    'actions': actions.toTfJson(),
     'content_transformation': contentTransformation.encode(),
   };
 }

@@ -372,7 +372,7 @@ final class AwsCloudformationStackSet extends Resource {
     super.localName, {
     TfArg<String>? administrationRoleArn,
     CloudformationStackSetCallAs? callAs,
-    List<CloudformationStackSetCapabilities>? capabilities,
+    EnumList<CloudformationStackSetCapabilities>? capabilities,
     TfArg<String>? description,
     TfArg<String>? executionRoleName,
     required TfArg<String> name,
@@ -393,10 +393,7 @@ final class AwsCloudformationStackSet extends Resource {
          argMap: {
            'administration_role_arn': ?administrationRoleArn,
            'call_as': ?callAs,
-           if (capabilities != null)
-             'capabilities': TfArg.literal([
-               for (final e in capabilities) e.toTfJson(),
-             ]),
+           'capabilities': ?capabilities,
            'description': ?description,
            'execution_role_name': ?executionRoleName,
            'name': name,

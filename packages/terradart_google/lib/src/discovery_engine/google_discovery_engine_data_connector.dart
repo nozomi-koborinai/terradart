@@ -131,19 +131,15 @@ final class DiscoveryEngineDataConnectorBapConfig {
     this.supportedConnectorModes,
   });
 
-  final List<DiscoveryEngineDataConnectorEnabledActions>? enabledActions;
+  final EnumList<DiscoveryEngineDataConnectorEnabledActions>? enabledActions;
 
-  final List<DiscoveryEngineDataConnectorSupportedConnectorModes>?
+  final EnumList<DiscoveryEngineDataConnectorSupportedConnectorModes>?
   supportedConnectorModes;
 
   @internal
   Map<String, Object?> encode() => {
-    if (enabledActions != null)
-      'enabled_actions': [for (final e in enabledActions!) e.toTfJson()],
-    if (supportedConnectorModes != null)
-      'supported_connector_modes': [
-        for (final e in supportedConnectorModes!) e.toTfJson(),
-      ],
+    'enabled_actions': ?enabledActions?.toTfJson(),
+    'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
   };
 }
 

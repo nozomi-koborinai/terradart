@@ -42,7 +42,8 @@ final class AwsVpcEndpointService extends Resource {
     TfArg<List<String>>? networkLoadBalancerArns,
     TfArg<String>? privateDnsName,
     TfArg<String>? region,
-    List<VpcEndpointServiceSupportedIpAddressTypes>? supportedIpAddressTypes,
+    EnumList<VpcEndpointServiceSupportedIpAddressTypes>?
+    supportedIpAddressTypes,
     TfArg<List<String>>? supportedRegions,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -58,10 +59,7 @@ final class AwsVpcEndpointService extends Resource {
            'network_load_balancer_arns': ?networkLoadBalancerArns,
            'private_dns_name': ?privateDnsName,
            'region': ?region,
-           if (supportedIpAddressTypes != null)
-             'supported_ip_address_types': TfArg.literal([
-               for (final e in supportedIpAddressTypes) e.toTfJson(),
-             ]),
+           'supported_ip_address_types': ?supportedIpAddressTypes,
            'supported_regions': ?supportedRegions,
            'tags': ?tags,
          },

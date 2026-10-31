@@ -224,7 +224,7 @@ final class StackHciDeploymentSettingIntent {
 
   final TfArg<bool>? qosPolicyOverrideEnabled;
 
-  final List<StackHciDeploymentSettingTrafficType> trafficType;
+  final EnumList<StackHciDeploymentSettingTrafficType> trafficType;
 
   final TfArg<bool>? virtualSwitchConfigurationOverrideEnabled;
 
@@ -243,7 +243,7 @@ final class StackHciDeploymentSettingIntent {
         ?.toTfJson(),
     'name': name.toTfJson(),
     'qos_policy_override_enabled': ?qosPolicyOverrideEnabled?.toTfJson(),
-    'traffic_type': [for (final e in trafficType) e.toTfJson()],
+    'traffic_type': trafficType.toTfJson(),
     'virtual_switch_configuration_override_enabled':
         ?virtualSwitchConfigurationOverrideEnabled?.toTfJson(),
     'adapter_property_override': ?adapterPropertyOverride?.encode(),

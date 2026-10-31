@@ -179,13 +179,12 @@ final class ApigeeApiProductGraphqlOperationGroupOperations {
 
   final TfArg<String>? operation;
 
-  final List<ApigeeApiProductOperationTypes>? operationTypes;
+  final EnumList<ApigeeApiProductOperationTypes>? operationTypes;
 
   @internal
   Map<String, Object?> encode() => {
     'operation': ?operation?.toTfJson(),
-    if (operationTypes != null)
-      'operation_types': [for (final e in operationTypes!) e.toTfJson()],
+    'operation_types': ?operationTypes?.toTfJson(),
   };
 }
 

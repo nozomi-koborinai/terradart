@@ -316,7 +316,7 @@ final class S3BucketGrant {
 
   final TfArg<String>? id;
 
-  final List<S3BucketPermissions> permissions;
+  final EnumList<S3BucketPermissions> permissions;
 
   final S3BucketType type;
 
@@ -325,7 +325,7 @@ final class S3BucketGrant {
   @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
-    'permissions': [for (final e in permissions) e.toTfJson()],
+    'permissions': permissions.toTfJson(),
     'type': type.toTfJson(),
     'uri': ?uri?.toTfJson(),
   };

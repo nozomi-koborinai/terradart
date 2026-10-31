@@ -430,7 +430,7 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
     });
 
     test(
-      'a repeated enum attribute renders List<EnumClass>? and encodes each element',
+      'a repeated enum attribute renders EnumList<EnumClass>?',
       () {
         final repeatedEnumAttr = const NestedAttrSpec(
           tfName: 'allowed_statuses',
@@ -457,14 +457,11 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
 
         expect(
           formatted,
-          contains('final List<FooThingAllowedStatuses>? allowedStatuses;'),
+          contains('final EnumList<FooThingAllowedStatuses>? allowedStatuses;'),
         );
-        expect(formatted, contains('if (allowedStatuses != null)'));
         expect(
           formatted,
-          contains(
-            "'allowed_statuses': [for (final e in allowedStatuses!) e.toTfJson()],",
-          ),
+          contains("'allowed_statuses': ?allowedStatuses?.toTfJson(),"),
         );
         expect(
           formatted,

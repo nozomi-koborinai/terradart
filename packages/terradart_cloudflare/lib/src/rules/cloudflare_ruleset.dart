@@ -435,11 +435,11 @@ final class RulesetActionParameters {
 
   final TfArg<bool>? originErrorPagePassthru;
 
-  final List<RulesetPhases>? phases;
+  final EnumList<RulesetPhases>? phases;
 
   final RulesetPolish? polish;
 
-  final List<RulesetProducts>? products;
+  final EnumList<RulesetProducts>? products;
 
   final TfArg<num>? readTimeout;
 
@@ -569,9 +569,9 @@ final class RulesetActionParameters {
     'opportunistic_encryption': ?opportunisticEncryption?.toTfJson(),
     'origin_cache_control': ?originCacheControl?.toTfJson(),
     'origin_error_page_passthru': ?originErrorPagePassthru?.toTfJson(),
-    if (phases != null) 'phases': [for (final e in phases!) e.toTfJson()],
+    'phases': ?phases?.toTfJson(),
     'polish': ?polish?.toTfJson(),
-    if (products != null) 'products': [for (final e in products!) e.toTfJson()],
+    'products': ?products?.toTfJson(),
     'read_timeout': ?readTimeout?.toTfJson(),
     'redirects_for_ai_training': ?redirectsForAiTraining?.toTfJson(),
     'request_body_buffering': ?requestBodyBuffering?.toTfJson(),

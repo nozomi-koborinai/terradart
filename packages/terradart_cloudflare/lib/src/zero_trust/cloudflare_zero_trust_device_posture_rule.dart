@@ -163,7 +163,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<num>? activeThreats;
 
-  final List<ZeroTrustDevicePostureRuleAuthState>? authState;
+  final EnumList<ZeroTrustDevicePostureRuleAuthState>? authState;
 
   final TfArg<String>? certificateId;
 
@@ -187,7 +187,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final TfArg<bool>? exists;
 
-  final List<ZeroTrustDevicePostureRuleExtendedKeyUsage>? extendedKeyUsage;
+  final EnumList<ZeroTrustDevicePostureRuleExtendedKeyUsage>? extendedKeyUsage;
 
   final TfArg<String>? id;
 
@@ -250,8 +250,7 @@ final class ZeroTrustDevicePostureRuleInput {
   @internal
   Map<String, Object?> encode() => {
     'active_threats': ?activeThreats?.toTfJson(),
-    if (authState != null)
-      'auth_state': [for (final e in authState!) e.toTfJson()],
+    'auth_state': ?authState?.toTfJson(),
     'certificate_id': ?certificateId?.toTfJson(),
     'check_disks': ?checkDisks?.toTfJson(),
     'check_private_key': ?checkPrivateKey?.toTfJson(),
@@ -263,8 +262,7 @@ final class ZeroTrustDevicePostureRuleInput {
     'eid_last_seen': ?eidLastSeen?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
     'exists': ?exists?.toTfJson(),
-    if (extendedKeyUsage != null)
-      'extended_key_usage': [for (final e in extendedKeyUsage!) e.toTfJson()],
+    'extended_key_usage': ?extendedKeyUsage?.toTfJson(),
     'id': ?id?.toTfJson(),
     'infected': ?infected?.toTfJson(),
     'is_active': ?isActive?.toTfJson(),
@@ -701,13 +699,12 @@ final class ZeroTrustDevicePostureRuleLocations {
 
   final TfArg<List<String>>? paths;
 
-  final List<ZeroTrustDevicePostureRuleTrustStores>? trustStores;
+  final EnumList<ZeroTrustDevicePostureRuleTrustStores>? trustStores;
 
   @internal
   Map<String, Object?> encode() => {
     'paths': ?paths?.toTfJson(),
-    if (trustStores != null)
-      'trust_stores': [for (final e in trustStores!) e.toTfJson()],
+    'trust_stores': ?trustStores?.toTfJson(),
   };
 }
 

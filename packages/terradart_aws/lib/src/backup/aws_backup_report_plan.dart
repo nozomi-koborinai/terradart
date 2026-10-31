@@ -19,7 +19,7 @@ final class BackupReportPlanReportDeliveryChannel {
     this.s3KeyPrefix,
   });
 
-  final List<BackupReportPlanFormats>? formats;
+  final EnumList<BackupReportPlanFormats>? formats;
 
   final RefTo<AwsS3Bucket> s3BucketName;
 
@@ -27,7 +27,7 @@ final class BackupReportPlanReportDeliveryChannel {
 
   @internal
   Map<String, Object?> encode() => {
-    if (formats != null) 'formats': [for (final e in formats!) e.toTfJson()],
+    'formats': ?formats?.toTfJson(),
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
   };

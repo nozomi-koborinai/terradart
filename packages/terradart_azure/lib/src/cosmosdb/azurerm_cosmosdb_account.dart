@@ -436,7 +436,7 @@ final class CosmosdbAccountCorsRule {
 
   final TfArg<List<String>> allowedHeaders;
 
-  final List<CosmosdbAccountAllowedMethods> allowedMethods;
+  final EnumList<CosmosdbAccountAllowedMethods> allowedMethods;
 
   final TfArg<List<String>> allowedOrigins;
 
@@ -447,7 +447,7 @@ final class CosmosdbAccountCorsRule {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': allowedHeaders.toTfJson(),
-    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
+    'allowed_methods': allowedMethods.toTfJson(),
     'allowed_origins': allowedOrigins.toTfJson(),
     'exposed_headers': exposedHeaders.toTfJson(),
     'max_age_in_seconds': ?maxAgeInSeconds?.toTfJson(),

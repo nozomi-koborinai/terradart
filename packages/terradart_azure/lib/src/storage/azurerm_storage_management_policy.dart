@@ -227,7 +227,7 @@ final class StorageManagementPolicyFilters {
     this.matchBlobIndexTag,
   });
 
-  final List<StorageManagementPolicyBlobTypes> blobTypes;
+  final EnumList<StorageManagementPolicyBlobTypes> blobTypes;
 
   final TfArg<List<String>>? prefixMatch;
 
@@ -235,7 +235,7 @@ final class StorageManagementPolicyFilters {
 
   @internal
   Map<String, Object?> encode() => {
-    'blob_types': [for (final e in blobTypes) e.toTfJson()],
+    'blob_types': blobTypes.toTfJson(),
     'prefix_match': ?prefixMatch?.toTfJson(),
     if (matchBlobIndexTag != null)
       'match_blob_index_tag': [for (final e in matchBlobIndexTag!) e.encode()],

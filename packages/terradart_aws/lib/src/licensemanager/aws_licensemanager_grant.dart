@@ -56,7 +56,7 @@ final class AwsLicensemanagerGrant extends Resource {
 
   AwsLicensemanagerGrant(
     super.localName, {
-    required List<LicensemanagerGrantAllowedOperations> allowedOperations,
+    required EnumList<LicensemanagerGrantAllowedOperations> allowedOperations,
     required TfArg<String> licenseArn,
     required TfArg<String> name,
     required TfArg<String> principal,
@@ -68,9 +68,7 @@ final class AwsLicensemanagerGrant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'allowed_operations': TfArg.literal([
-             for (final e in allowedOperations) e.toTfJson(),
-           ]),
+           'allowed_operations': allowedOperations,
            'license_arn': licenseArn,
            'name': name,
            'principal': principal,

@@ -44,20 +44,19 @@ final class DataProtectionBackupPolicyCosmosdbAccountMonthlyRetentionRule {
     this.weeksOfMonth,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 
@@ -143,14 +142,14 @@ final class DataProtectionBackupPolicyCosmosdbAccountWeeklyRetentionRule {
     required this.duration,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
   };
 }
@@ -166,25 +165,23 @@ final class DataProtectionBackupPolicyCosmosdbAccountYearlyRetentionRule {
     this.weeksOfMonth,
   });
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear>?
   monthsOfYear;
 
-  final List<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'months_of_year': ?monthsOfYear?.toTfJson(),
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

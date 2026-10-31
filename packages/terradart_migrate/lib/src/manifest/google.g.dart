@@ -128983,6 +128983,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'MonitoringUptimeCheckRegion',
         ),
         MigrateSlot(
@@ -168015,6 +168016,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'StorageNotificationEventType',
         ),
         MigrateSlot(
@@ -190587,6 +190589,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
+          wrapped: false,
           dartType: 'BigqueryDatasetAccessDatasetTargetType',
         ),
       ],
@@ -277158,6 +277161,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
+          wrapped: false,
           dartType: 'GkeBackupBackupPlanDayOfWeek',
         ),
       ],

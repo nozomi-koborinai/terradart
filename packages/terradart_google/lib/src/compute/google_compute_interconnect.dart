@@ -241,7 +241,7 @@ final class GoogleComputeInterconnect extends Resource {
     TfArg<bool>? macsecEnabled,
     TfArg<String>? nocContactEmail,
     TfArg<String>? remoteLocation,
-    List<ComputeInterconnectRequestedFeatures>? requestedFeatures,
+    EnumList<ComputeInterconnectRequestedFeatures>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
     ComputeInterconnectMacsec? macsec,
     ComputeInterconnectParams? params,
@@ -265,10 +265,7 @@ final class GoogleComputeInterconnect extends Resource {
            'macsec_enabled': ?macsecEnabled,
            'noc_contact_email': ?nocContactEmail,
            'remote_location': ?remoteLocation,
-           if (requestedFeatures != null)
-             'requested_features': TfArg.literal([
-               for (final e in requestedFeatures) e.toTfJson(),
-             ]),
+           'requested_features': ?requestedFeatures,
            'labels': ?labels,
            if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
            if (params != null) 'params': TfArg.literal(params.encode()),

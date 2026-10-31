@@ -232,7 +232,7 @@ final class ApigeeSecurityActionConditionConfig {
 
   final TfArg<List<String>>? developers;
 
-  final List<ApigeeSecurityActionHttpMethods>? httpMethods;
+  final EnumList<ApigeeSecurityActionHttpMethods>? httpMethods;
 
   final TfArg<List<String>>? ipAddressRanges;
 
@@ -249,8 +249,7 @@ final class ApigeeSecurityActionConditionConfig {
     'bot_reasons': ?botReasons?.toTfJson(),
     'developer_apps': ?developerApps?.toTfJson(),
     'developers': ?developers?.toTfJson(),
-    if (httpMethods != null)
-      'http_methods': [for (final e in httpMethods!) e.toTfJson()],
+    'http_methods': ?httpMethods?.toTfJson(),
     'ip_address_ranges': ?ipAddressRanges?.toTfJson(),
     'region_codes': ?regionCodes?.toTfJson(),
     'user_agents': ?userAgents?.toTfJson(),

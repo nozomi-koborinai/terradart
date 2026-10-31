@@ -54,7 +54,7 @@ final class VirtualDesktopScalingPlanSchedule {
     required this.rampUpStartTime,
   });
 
-  final List<VirtualDesktopScalingPlanDaysOfWeek> daysOfWeek;
+  final EnumList<VirtualDesktopScalingPlanDaysOfWeek> daysOfWeek;
 
   final TfArg<String> name;
 
@@ -96,7 +96,7 @@ final class VirtualDesktopScalingPlanSchedule {
 
   @internal
   Map<String, Object?> encode() => {
-    'days_of_week': [for (final e in daysOfWeek) e.toTfJson()],
+    'days_of_week': daysOfWeek.toTfJson(),
     'name': name.toTfJson(),
     'off_peak_load_balancing_algorithm': offPeakLoadBalancingAlgorithm
         .toTfJson(),

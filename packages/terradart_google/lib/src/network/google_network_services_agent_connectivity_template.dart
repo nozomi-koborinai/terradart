@@ -242,7 +242,7 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
     required TfArg<String> agentConnectivityTemplateId,
     required TfArg<String> location,
     required NetworkServicesAgentConnectivityTemplateAccessPath accessPath,
-    List<NetworkServicesAgentConnectivityTemplateAccessTypes>? accessTypes,
+    EnumList<NetworkServicesAgentConnectivityTemplateAccessTypes>? accessTypes,
     NetworkServicesAgentConnectivityTemplateEgressNetworkConfig?
     egressNetworkConfig,
     TfArg<String>? description,
@@ -259,10 +259,7 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
            'agent_connectivity_template_id': agentConnectivityTemplateId,
            'location': location,
            'access_path': accessPath,
-           if (accessTypes != null)
-             'access_types': TfArg.literal([
-               for (final e in accessTypes) e.toTfJson(),
-             ]),
+           'access_types': ?accessTypes,
            if (egressNetworkConfig != null)
              'egress_network_config': TfArg.literal(
                egressNetworkConfig.encode(),

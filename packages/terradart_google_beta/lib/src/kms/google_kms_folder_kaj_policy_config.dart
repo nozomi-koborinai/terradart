@@ -15,15 +15,12 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
     this.allowedAccessReasons,
   });
 
-  final List<KmsFolderKajPolicyConfigAllowedAccessReasons>?
+  final EnumList<KmsFolderKajPolicyConfigAllowedAccessReasons>?
   allowedAccessReasons;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedAccessReasons != null)
-      'allowed_access_reasons': [
-        for (final e in allowedAccessReasons!) e.toTfJson(),
-      ],
+    'allowed_access_reasons': ?allowedAccessReasons?.toTfJson(),
   };
 }
 

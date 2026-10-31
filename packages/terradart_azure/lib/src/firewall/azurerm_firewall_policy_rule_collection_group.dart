@@ -273,7 +273,7 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final List<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>
+  final EnumList<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>
   protocols;
 
   final TfArg<List<String>>? sourceAddresses;
@@ -292,7 +292,7 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollectionRule {
     'destination_address': ?destinationAddress?.toTfJson(),
     'destination_ports': ?destinationPorts?.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
     'translated_address': ?translatedAddress?.toTfJson(),
@@ -384,7 +384,9 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final List<FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols>
+  final EnumList<
+    FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols
+  >
   protocols;
 
   final TfArg<List<String>>? sourceAddresses;
@@ -399,7 +401,7 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
     'destination_ip_groups': ?destinationIpGroups?.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': [for (final e in protocols) e.toTfJson()],
+    'protocols': protocols.toTfJson(),
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };

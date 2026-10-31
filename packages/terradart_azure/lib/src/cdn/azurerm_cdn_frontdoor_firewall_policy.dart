@@ -183,7 +183,7 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
 
   final TfArg<String>? selector;
 
-  final List<CdnFrontdoorFirewallPolicyTransforms>? transforms;
+  final EnumList<CdnFrontdoorFirewallPolicyTransforms>? transforms;
 
   @internal
   Map<String, Object?> encode() => {
@@ -192,8 +192,7 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
     'negation_condition': ?negationCondition?.toTfJson(),
     'operator': operator.toTfJson(),
     'selector': ?selector?.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
   };
 }
 

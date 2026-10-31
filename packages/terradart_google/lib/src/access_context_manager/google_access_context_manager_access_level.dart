@@ -181,10 +181,10 @@ final class AccessContextManagerAccessLevelDevicePolicy {
     this.osConstraints,
   });
 
-  final List<AccessContextManagerAccessLevelAllowedDeviceManagementLevels>?
+  final EnumList<AccessContextManagerAccessLevelAllowedDeviceManagementLevels>?
   allowedDeviceManagementLevels;
 
-  final List<AccessContextManagerAccessLevelAllowedEncryptionStatuses>?
+  final EnumList<AccessContextManagerAccessLevelAllowedEncryptionStatuses>?
   allowedEncryptionStatuses;
 
   final TfArg<bool>? requireAdminApproval;
@@ -197,14 +197,9 @@ final class AccessContextManagerAccessLevelDevicePolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedDeviceManagementLevels != null)
-      'allowed_device_management_levels': [
-        for (final e in allowedDeviceManagementLevels!) e.toTfJson(),
-      ],
-    if (allowedEncryptionStatuses != null)
-      'allowed_encryption_statuses': [
-        for (final e in allowedEncryptionStatuses!) e.toTfJson(),
-      ],
+    'allowed_device_management_levels': ?allowedDeviceManagementLevels
+        ?.toTfJson(),
+    'allowed_encryption_statuses': ?allowedEncryptionStatuses?.toTfJson(),
     'require_admin_approval': ?requireAdminApproval?.toTfJson(),
     'require_corp_owned': ?requireCorpOwned?.toTfJson(),
     'require_screen_lock': ?requireScreenLock?.toTfJson(),

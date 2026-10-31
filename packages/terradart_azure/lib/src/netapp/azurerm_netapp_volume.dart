@@ -348,7 +348,7 @@ final class NetappVolumeExportPolicyRule {
 
   final TfArg<bool>? kerberos5pReadWriteEnabled;
 
-  final List<NetappVolumeProtocol>? protocol;
+  final EnumList<NetappVolumeProtocol>? protocol;
 
   final TfArg<bool>? rootAccessEnabled;
 
@@ -367,7 +367,7 @@ final class NetappVolumeExportPolicyRule {
     'kerberos_5i_read_write_enabled': ?kerberos5iReadWriteEnabled?.toTfJson(),
     'kerberos_5p_read_only_enabled': ?kerberos5pReadOnlyEnabled?.toTfJson(),
     'kerberos_5p_read_write_enabled': ?kerberos5pReadWriteEnabled?.toTfJson(),
-    if (protocol != null) 'protocol': [for (final e in protocol!) e.toTfJson()],
+    'protocol': ?protocol?.toTfJson(),
     'root_access_enabled': ?rootAccessEnabled?.toTfJson(),
     'rule_index': ruleIndex.toTfJson(),
     'unix_read_only': ?unixReadOnly?.toTfJson(),
@@ -410,7 +410,7 @@ final class AzurermNetappVolume extends Resource {
     required TfArg<String> name,
     NetappVolumeNetworkFeatures? networkFeatures,
     required TfArg<String> poolName,
-    List<NetappVolumeProtocols>? protocols,
+    EnumList<NetappVolumeProtocols>? protocols,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     AzurermNetappVolumeSecurityStyle? securityStyle,
     required NetappVolumeServiceLevel serviceLevel,
@@ -454,10 +454,7 @@ final class AzurermNetappVolume extends Resource {
            'name': name,
            'network_features': ?networkFeatures,
            'pool_name': poolName,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'security_style': ?securityStyle,
            'service_level': serviceLevel,

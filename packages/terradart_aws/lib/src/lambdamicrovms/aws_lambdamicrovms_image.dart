@@ -71,7 +71,8 @@ final class AwsLambdamicrovmsImage extends Resource {
 
   AwsLambdamicrovmsImage(
     super.localName, {
-    List<LambdamicrovmsImageAdditionalOsCapabilities>? additionalOsCapabilities,
+    EnumList<LambdamicrovmsImageAdditionalOsCapabilities>?
+    additionalOsCapabilities,
     required TfArg<String> baseImageArn,
     TfArg<String>? baseImageVersion,
     required TfArg<String> buildRoleArn,
@@ -90,10 +91,7 @@ final class AwsLambdamicrovmsImage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalOsCapabilities != null)
-             'additional_os_capabilities': TfArg.literal([
-               for (final e in additionalOsCapabilities) e.toTfJson(),
-             ]),
+           'additional_os_capabilities': ?additionalOsCapabilities,
            'base_image_arn': baseImageArn,
            'base_image_version': ?baseImageVersion,
            'build_role_arn': buildRoleArn,

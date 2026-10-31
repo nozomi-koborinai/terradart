@@ -200,7 +200,7 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
     required TfArg<String> location,
     required NetworkServicesAgentGatewayDeployment deployment,
     TfArg<String>? description,
-    List<NetworkServicesAgentGatewayProtocols>? protocols,
+    EnumList<NetworkServicesAgentGatewayProtocols>? protocols,
     TfArg<List<String>>? registries,
     NetworkServicesAgentGatewayNetworkConfig? networkConfig,
     TfArg<Map<String, String>>? labels,
@@ -216,10 +216,7 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
            'name': name,
            'location': location,
            'description': ?description,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'registries': ?registries,
            if (networkConfig != null)
              'network_config': TfArg.literal(networkConfig.encode()),

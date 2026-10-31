@@ -194,15 +194,12 @@ final class NetworkServicesEdgeCacheOriginUrlRewrite {
 final class NetworkServicesEdgeCacheOriginRedirect {
   const NetworkServicesEdgeCacheOriginRedirect({this.redirectConditions});
 
-  final List<NetworkServicesEdgeCacheOriginRedirectConditions>?
+  final EnumList<NetworkServicesEdgeCacheOriginRedirectConditions>?
   redirectConditions;
 
   @internal
   Map<String, Object?> encode() => {
-    if (redirectConditions != null)
-      'redirect_conditions': [
-        for (final e in redirectConditions!) e.toTfJson(),
-      ],
+    'redirect_conditions': ?redirectConditions?.toTfJson(),
   };
 }
 
@@ -300,7 +297,7 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
     NetworkServicesEdgeCacheOriginProtocol? protocol,
     TfArg<num>? port,
     TfArg<num>? maxAttempts,
-    List<NetworkServicesEdgeCacheOriginRetryConditions>? retryConditions,
+    EnumList<NetworkServicesEdgeCacheOriginRetryConditions>? retryConditions,
     TfArg<String>? failoverOrigin,
     NetworkServicesEdgeCacheOriginTimeout? timeout,
     NetworkServicesEdgeCacheOriginAwsV4Authentication? awsV4Authentication,
@@ -323,10 +320,7 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
            'protocol': ?protocol,
            'port': ?port,
            'max_attempts': ?maxAttempts,
-           if (retryConditions != null)
-             'retry_conditions': TfArg.literal([
-               for (final e in retryConditions) e.toTfJson(),
-             ]),
+           'retry_conditions': ?retryConditions,
            'failover_origin': ?failoverOrigin,
            if (timeout != null) 'timeout': TfArg.literal(timeout.encode()),
            if (awsV4Authentication != null)

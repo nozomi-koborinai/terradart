@@ -570,19 +570,19 @@ final class AwsVpnConnection extends Resource {
     VpnConnectionTunnel1DpdTimeoutAction? tunnel1DpdTimeoutAction,
     TfArg<num>? tunnel1DpdTimeoutSeconds,
     TfArg<bool>? tunnel1EnableTunnelLifecycleControl,
-    List<VpnConnectionTunnel1IkeVersions>? tunnel1IkeVersions,
+    EnumList<VpnConnectionTunnel1IkeVersions>? tunnel1IkeVersions,
     TfArg<String>? tunnel1InsideCidr,
     TfArg<String>? tunnel1InsideIpv6Cidr,
     TfArg<List<num>>? tunnel1Phase1DhGroupNumbers,
-    List<VpnConnectionTunnel1Phase1EncryptionAlgorithms>?
+    EnumList<VpnConnectionTunnel1Phase1EncryptionAlgorithms>?
     tunnel1Phase1EncryptionAlgorithms,
-    List<VpnConnectionTunnel1Phase1IntegrityAlgorithms>?
+    EnumList<VpnConnectionTunnel1Phase1IntegrityAlgorithms>?
     tunnel1Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel1Phase2DhGroupNumbers,
-    List<VpnConnectionTunnel1Phase2EncryptionAlgorithms>?
+    EnumList<VpnConnectionTunnel1Phase2EncryptionAlgorithms>?
     tunnel1Phase2EncryptionAlgorithms,
-    List<VpnConnectionTunnel1Phase2IntegrityAlgorithms>?
+    EnumList<VpnConnectionTunnel1Phase2IntegrityAlgorithms>?
     tunnel1Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase2LifetimeSeconds,
     Sensitive<String>? tunnel1PresharedKey,
@@ -593,19 +593,19 @@ final class AwsVpnConnection extends Resource {
     VpnConnectionTunnel2DpdTimeoutAction? tunnel2DpdTimeoutAction,
     TfArg<num>? tunnel2DpdTimeoutSeconds,
     TfArg<bool>? tunnel2EnableTunnelLifecycleControl,
-    List<VpnConnectionTunnel2IkeVersions>? tunnel2IkeVersions,
+    EnumList<VpnConnectionTunnel2IkeVersions>? tunnel2IkeVersions,
     TfArg<String>? tunnel2InsideCidr,
     TfArg<String>? tunnel2InsideIpv6Cidr,
     TfArg<List<num>>? tunnel2Phase1DhGroupNumbers,
-    List<VpnConnectionTunnel2Phase1EncryptionAlgorithms>?
+    EnumList<VpnConnectionTunnel2Phase1EncryptionAlgorithms>?
     tunnel2Phase1EncryptionAlgorithms,
-    List<VpnConnectionTunnel2Phase1IntegrityAlgorithms>?
+    EnumList<VpnConnectionTunnel2Phase1IntegrityAlgorithms>?
     tunnel2Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel2Phase2DhGroupNumbers,
-    List<VpnConnectionTunnel2Phase2EncryptionAlgorithms>?
+    EnumList<VpnConnectionTunnel2Phase2EncryptionAlgorithms>?
     tunnel2Phase2EncryptionAlgorithms,
-    List<VpnConnectionTunnel2Phase2IntegrityAlgorithms>?
+    EnumList<VpnConnectionTunnel2Phase2IntegrityAlgorithms>?
     tunnel2Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase2LifetimeSeconds,
     Sensitive<String>? tunnel2PresharedKey,
@@ -645,31 +645,20 @@ final class AwsVpnConnection extends Resource {
            'tunnel1_dpd_timeout_seconds': ?tunnel1DpdTimeoutSeconds,
            'tunnel1_enable_tunnel_lifecycle_control':
                ?tunnel1EnableTunnelLifecycleControl,
-           if (tunnel1IkeVersions != null)
-             'tunnel1_ike_versions': TfArg.literal([
-               for (final e in tunnel1IkeVersions) e.toTfJson(),
-             ]),
+           'tunnel1_ike_versions': ?tunnel1IkeVersions,
            'tunnel1_inside_cidr': ?tunnel1InsideCidr,
            'tunnel1_inside_ipv6_cidr': ?tunnel1InsideIpv6Cidr,
            'tunnel1_phase1_dh_group_numbers': ?tunnel1Phase1DhGroupNumbers,
-           if (tunnel1Phase1EncryptionAlgorithms != null)
-             'tunnel1_phase1_encryption_algorithms': TfArg.literal([
-               for (final e in tunnel1Phase1EncryptionAlgorithms) e.toTfJson(),
-             ]),
-           if (tunnel1Phase1IntegrityAlgorithms != null)
-             'tunnel1_phase1_integrity_algorithms': TfArg.literal([
-               for (final e in tunnel1Phase1IntegrityAlgorithms) e.toTfJson(),
-             ]),
+           'tunnel1_phase1_encryption_algorithms':
+               ?tunnel1Phase1EncryptionAlgorithms,
+           'tunnel1_phase1_integrity_algorithms':
+               ?tunnel1Phase1IntegrityAlgorithms,
            'tunnel1_phase1_lifetime_seconds': ?tunnel1Phase1LifetimeSeconds,
            'tunnel1_phase2_dh_group_numbers': ?tunnel1Phase2DhGroupNumbers,
-           if (tunnel1Phase2EncryptionAlgorithms != null)
-             'tunnel1_phase2_encryption_algorithms': TfArg.literal([
-               for (final e in tunnel1Phase2EncryptionAlgorithms) e.toTfJson(),
-             ]),
-           if (tunnel1Phase2IntegrityAlgorithms != null)
-             'tunnel1_phase2_integrity_algorithms': TfArg.literal([
-               for (final e in tunnel1Phase2IntegrityAlgorithms) e.toTfJson(),
-             ]),
+           'tunnel1_phase2_encryption_algorithms':
+               ?tunnel1Phase2EncryptionAlgorithms,
+           'tunnel1_phase2_integrity_algorithms':
+               ?tunnel1Phase2IntegrityAlgorithms,
            'tunnel1_phase2_lifetime_seconds': ?tunnel1Phase2LifetimeSeconds,
            'tunnel1_preshared_key': ?tunnel1PresharedKey,
            'tunnel1_rekey_fuzz_percentage': ?tunnel1RekeyFuzzPercentage,
@@ -680,31 +669,20 @@ final class AwsVpnConnection extends Resource {
            'tunnel2_dpd_timeout_seconds': ?tunnel2DpdTimeoutSeconds,
            'tunnel2_enable_tunnel_lifecycle_control':
                ?tunnel2EnableTunnelLifecycleControl,
-           if (tunnel2IkeVersions != null)
-             'tunnel2_ike_versions': TfArg.literal([
-               for (final e in tunnel2IkeVersions) e.toTfJson(),
-             ]),
+           'tunnel2_ike_versions': ?tunnel2IkeVersions,
            'tunnel2_inside_cidr': ?tunnel2InsideCidr,
            'tunnel2_inside_ipv6_cidr': ?tunnel2InsideIpv6Cidr,
            'tunnel2_phase1_dh_group_numbers': ?tunnel2Phase1DhGroupNumbers,
-           if (tunnel2Phase1EncryptionAlgorithms != null)
-             'tunnel2_phase1_encryption_algorithms': TfArg.literal([
-               for (final e in tunnel2Phase1EncryptionAlgorithms) e.toTfJson(),
-             ]),
-           if (tunnel2Phase1IntegrityAlgorithms != null)
-             'tunnel2_phase1_integrity_algorithms': TfArg.literal([
-               for (final e in tunnel2Phase1IntegrityAlgorithms) e.toTfJson(),
-             ]),
+           'tunnel2_phase1_encryption_algorithms':
+               ?tunnel2Phase1EncryptionAlgorithms,
+           'tunnel2_phase1_integrity_algorithms':
+               ?tunnel2Phase1IntegrityAlgorithms,
            'tunnel2_phase1_lifetime_seconds': ?tunnel2Phase1LifetimeSeconds,
            'tunnel2_phase2_dh_group_numbers': ?tunnel2Phase2DhGroupNumbers,
-           if (tunnel2Phase2EncryptionAlgorithms != null)
-             'tunnel2_phase2_encryption_algorithms': TfArg.literal([
-               for (final e in tunnel2Phase2EncryptionAlgorithms) e.toTfJson(),
-             ]),
-           if (tunnel2Phase2IntegrityAlgorithms != null)
-             'tunnel2_phase2_integrity_algorithms': TfArg.literal([
-               for (final e in tunnel2Phase2IntegrityAlgorithms) e.toTfJson(),
-             ]),
+           'tunnel2_phase2_encryption_algorithms':
+               ?tunnel2Phase2EncryptionAlgorithms,
+           'tunnel2_phase2_integrity_algorithms':
+               ?tunnel2Phase2IntegrityAlgorithms,
            'tunnel2_phase2_lifetime_seconds': ?tunnel2Phase2LifetimeSeconds,
            'tunnel2_preshared_key': ?tunnel2PresharedKey,
            'tunnel2_rekey_fuzz_percentage': ?tunnel2RekeyFuzzPercentage,

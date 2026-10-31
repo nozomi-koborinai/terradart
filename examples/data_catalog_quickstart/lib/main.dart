@@ -62,7 +62,7 @@ final class DataCatalogStack extends Stack {
         'pii',
         displayName: .literal('terradart_pii_taxonomy'),
         description: .literal('Policy tags for PII columns'),
-        activatedPolicyTypes: [.fineGrainedAccessControl],
+        activatedPolicyTypes: .literal([.fineGrainedAccessControl]),
         region: .literal('us-central1'),
         dependsOn: [apiDataCatalog],
       ),

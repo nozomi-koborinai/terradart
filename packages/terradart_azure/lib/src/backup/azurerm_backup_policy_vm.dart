@@ -140,7 +140,7 @@ final class BackupPolicyVmRetentionMonthly {
 
   final TfArg<List<String>>? weekdays;
 
-  final List<BackupPolicyVmWeeks>? weeks;
+  final EnumList<BackupPolicyVmWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -148,7 +148,7 @@ final class BackupPolicyVmRetentionMonthly {
     'days': ?days?.toTfJson(),
     'include_last_days': ?includeLastDays?.toTfJson(),
     'weekdays': ?weekdays?.toTfJson(),
-    if (weeks != null) 'weeks': [for (final e in weeks!) e.toTfJson()],
+    'weeks': ?weeks?.toTfJson(),
   };
 }
 
@@ -218,7 +218,7 @@ final class BackupPolicyVmRetentionYearly {
 
   final TfArg<List<String>>? weekdays;
 
-  final List<BackupPolicyVmWeeks>? weeks;
+  final EnumList<BackupPolicyVmWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -227,7 +227,7 @@ final class BackupPolicyVmRetentionYearly {
     'include_last_days': ?includeLastDays?.toTfJson(),
     'months': months.toTfJson(),
     'weekdays': ?weekdays?.toTfJson(),
-    if (weeks != null) 'weeks': [for (final e in weeks!) e.toTfJson()],
+    'weeks': ?weeks?.toTfJson(),
   };
 }
 

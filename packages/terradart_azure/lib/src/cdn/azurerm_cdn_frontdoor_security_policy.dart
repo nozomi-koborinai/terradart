@@ -48,13 +48,13 @@ final class CdnFrontdoorSecurityPolicyAssociation {
     required this.domain,
   });
 
-  final List<CdnFrontdoorSecurityPolicyPatternsToMatch> patternsToMatch;
+  final EnumList<CdnFrontdoorSecurityPolicyPatternsToMatch> patternsToMatch;
 
   final List<CdnFrontdoorSecurityPolicyDomain> domain;
 
   @internal
   Map<String, Object?> encode() => {
-    'patterns_to_match': [for (final e in patternsToMatch) e.toTfJson()],
+    'patterns_to_match': patternsToMatch.toTfJson(),
     'domain': [for (final e in domain) e.encode()],
   };
 }

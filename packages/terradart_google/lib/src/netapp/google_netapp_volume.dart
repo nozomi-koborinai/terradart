@@ -736,11 +736,11 @@ final class GoogleNetappVolume extends Resource {
     required TfArg<String> location,
     required TfArg<String> storagePool,
     required TfArg<String> capacityGib,
-    required List<GoogleNetappVolumeProtocols> protocols,
+    required EnumList<GoogleNetappVolumeProtocols> protocols,
     TfArg<String>? shareName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    List<NetappVolumeSmbSettings>? smbSettings,
+    EnumList<NetappVolumeSmbSettings>? smbSettings,
     TfArg<String>? unixPermissions,
     TfArg<bool>? snapshotDirectory,
     NetappVolumeSecurityStyle? securityStyle,
@@ -753,7 +753,7 @@ final class GoogleNetappVolume extends Resource {
     TfArg<String>? project,
     TfArg<bool>? largeCapacity,
     TfArg<bool>? multipleEndpoints,
-    List<NetappVolumeRestrictedActions>? restrictedActions,
+    EnumList<NetappVolumeRestrictedActions>? restrictedActions,
     TfArg<num>? throughputMibps,
     List<NetappVolumeBlockDevices>? blockDevices,
     NetappVolumeCacheParameters? cacheParameters,
@@ -771,16 +771,11 @@ final class GoogleNetappVolume extends Resource {
            'location': location,
            'storage_pool': storagePool,
            'capacity_gib': capacityGib,
-           'protocols': TfArg.literal([
-             for (final e in protocols) e.toTfJson(),
-           ]),
+           'protocols': protocols,
            'share_name': ?shareName,
            'description': ?description,
            'labels': ?labels,
-           if (smbSettings != null)
-             'smb_settings': TfArg.literal([
-               for (final e in smbSettings) e.toTfJson(),
-             ]),
+           'smb_settings': ?smbSettings,
            'unix_permissions': ?unixPermissions,
            'snapshot_directory': ?snapshotDirectory,
            'security_style': ?securityStyle,
@@ -797,10 +792,7 @@ final class GoogleNetappVolume extends Resource {
            'project': ?project,
            'large_capacity': ?largeCapacity,
            'multiple_endpoints': ?multipleEndpoints,
-           if (restrictedActions != null)
-             'restricted_actions': TfArg.literal([
-               for (final e in restrictedActions) e.toTfJson(),
-             ]),
+           'restricted_actions': ?restrictedActions,
            'throughput_mibps': ?throughputMibps,
            if (blockDevices != null)
              'block_devices': TfArg.literal([

@@ -101,15 +101,14 @@ final class EksClusterComputeConfig {
 
   final TfArg<bool>? enabled;
 
-  final List<EksClusterNodePools>? nodePools;
+  final EnumList<EksClusterNodePools>? nodePools;
 
   final TfArg<String>? nodeRoleArn;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
-    if (nodePools != null)
-      'node_pools': [for (final e in nodePools!) e.toTfJson()],
+    'node_pools': ?nodePools?.toTfJson(),
     'node_role_arn': ?nodeRoleArn?.toTfJson(),
   };
 }
@@ -174,13 +173,13 @@ final class EksClusterEncryptionConfig {
     required this.provider,
   });
 
-  final List<EksClusterResources> resources;
+  final EnumList<EksClusterResources> resources;
 
   final EksClusterProvider provider;
 
   @internal
   Map<String, Object?> encode() => {
-    'resources': [for (final e in resources) e.toTfJson()],
+    'resources': resources.toTfJson(),
     'provider': provider.encode(),
   };
 }
@@ -681,7 +680,7 @@ final class AwsEksCluster extends Resource {
     super.localName, {
     TfArg<bool>? bootstrapSelfManagedAddons,
     TfArg<bool>? deletionProtection,
-    List<EksClusterEnabledClusterLogTypes>? enabledClusterLogTypes,
+    EnumList<EksClusterEnabledClusterLogTypes>? enabledClusterLogTypes,
     TfArg<bool>? forceUpdateVersion,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -711,10 +710,7 @@ final class AwsEksCluster extends Resource {
          argMap: {
            'bootstrap_self_managed_addons': ?bootstrapSelfManagedAddons,
            'deletion_protection': ?deletionProtection,
-           if (enabledClusterLogTypes != null)
-             'enabled_cluster_log_types': TfArg.literal([
-               for (final e in enabledClusterLogTypes) e.toTfJson(),
-             ]),
+           'enabled_cluster_log_types': ?enabledClusterLogTypes,
            'force_update_version': ?forceUpdateVersion,
            'name': name,
            'region': ?region,

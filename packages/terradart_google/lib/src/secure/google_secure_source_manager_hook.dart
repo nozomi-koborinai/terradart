@@ -66,7 +66,7 @@ final class GoogleSecureSourceManagerHook extends Resource {
     required TfArg<String> location,
     required TfArg<String> repositoryId,
     required TfArg<String> targetUri,
-    List<SecureSourceManagerHookEvents>? events,
+    EnumList<SecureSourceManagerHookEvents>? events,
     TfArg<bool>? disabled,
     Sensitive<String>? sensitiveQueryString,
     SecureSourceManagerHookPushOption? pushOption,
@@ -83,8 +83,7 @@ final class GoogleSecureSourceManagerHook extends Resource {
            'location': location,
            'repository_id': repositoryId,
            'target_uri': targetUri,
-           if (events != null)
-             'events': TfArg.literal([for (final e in events) e.toTfJson()]),
+           'events': ?events,
            'disabled': ?disabled,
            'sensitive_query_string': ?sensitiveQueryString,
            if (pushOption != null)

@@ -847,7 +847,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? runtimeMainExecutablePath,
     RefTo<GoogleServiceAccount>? serviceAccount,
     AppEngineFlexibleAppVersionServingStatus? servingStatus,
-    List<AppEngineFlexibleAppVersionInboundServices>? inboundServices,
+    EnumList<AppEngineFlexibleAppVersionInboundServices>? inboundServices,
     TfArg<String>? project,
     AppEngineFlexibleAppVersionApiConfig? apiConfig,
     AppEngineFlexibleAppVersionDeployment? deployment,
@@ -885,10 +885,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
            'runtime_main_executable_path': ?runtimeMainExecutablePath,
            'service_account': ?serviceAccount?.encodeAs('email'),
            'serving_status': ?servingStatus,
-           if (inboundServices != null)
-             'inbound_services': TfArg.literal([
-               for (final e in inboundServices) e.toTfJson(),
-             ]),
+           'inbound_services': ?inboundServices,
            'project': ?project,
            if (apiConfig != null)
              'api_config': TfArg.literal(apiConfig.encode()),

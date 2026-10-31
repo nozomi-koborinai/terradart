@@ -444,17 +444,14 @@ final class WorkspacesDirectoryAccessEndpointConfig {
     required this.accessEndpoints,
   });
 
-  final List<WorkspacesDirectoryInternetFallbackProtocols>?
+  final EnumList<WorkspacesDirectoryInternetFallbackProtocols>?
   internetFallbackProtocols;
 
   final List<WorkspacesDirectoryAccessEndpoints> accessEndpoints;
 
   @internal
   Map<String, Object?> encode() => {
-    if (internetFallbackProtocols != null)
-      'internet_fallback_protocols': [
-        for (final e in internetFallbackProtocols!) e.toTfJson(),
-      ],
+    'internet_fallback_protocols': ?internetFallbackProtocols?.toTfJson(),
     'access_endpoints': [for (final e in accessEndpoints) e.encode()],
   };
 }

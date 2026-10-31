@@ -103,7 +103,8 @@ final class GoogleDialogflowIntent extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? action,
-    List<DialogflowIntentDefaultResponsePlatforms>? defaultResponsePlatforms,
+    EnumList<DialogflowIntentDefaultResponsePlatforms>?
+    defaultResponsePlatforms,
     TfArg<List<String>>? events,
     TfArg<List<String>>? inputContextNames,
     TfArg<bool>? isFallback,
@@ -123,10 +124,7 @@ final class GoogleDialogflowIntent extends Resource {
          argMap: {
            'display_name': displayName,
            'action': ?action,
-           if (defaultResponsePlatforms != null)
-             'default_response_platforms': TfArg.literal([
-               for (final e in defaultResponsePlatforms) e.toTfJson(),
-             ]),
+           'default_response_platforms': ?defaultResponsePlatforms,
            'events': ?events,
            'input_context_names': ?inputContextNames,
            'is_fallback': ?isFallback,

@@ -70,14 +70,14 @@ final class R2BucketCorsAllowed {
 
   final TfArg<List<String>>? headers;
 
-  final List<R2BucketCorsMethods> methods;
+  final EnumList<R2BucketCorsMethods> methods;
 
   final TfArg<List<String>> origins;
 
   @internal
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
-    'methods': [for (final e in methods) e.toTfJson()],
+    'methods': methods.toTfJson(),
     'origins': origins.toTfJson(),
   };
 }

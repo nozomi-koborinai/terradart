@@ -390,7 +390,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? healthCheckId;
 
-  final List<NotificationPolicyIncidentImpact>? incidentImpact;
+  final EnumList<NotificationPolicyIncidentImpact>? incidentImpact;
 
   final TfArg<List<String>>? inputId;
 
@@ -438,7 +438,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? tokenId;
 
-  final List<NotificationPolicyTrafficExclusions>? trafficExclusions;
+  final EnumList<NotificationPolicyTrafficExclusions>? trafficExclusions;
 
   final TfArg<List<String>>? tunnelId;
 
@@ -467,8 +467,7 @@ final class NotificationPolicyFilters {
     'event_type': ?eventType?.toTfJson(),
     'group_by': ?groupBy?.toTfJson(),
     'health_check_id': ?healthCheckId?.toTfJson(),
-    if (incidentImpact != null)
-      'incident_impact': [for (final e in incidentImpact!) e.toTfJson()],
+    'incident_impact': ?incidentImpact?.toTfJson(),
     'input_id': ?inputId?.toTfJson(),
     'insight_class': ?insightClass?.toTfJson(),
     'limit': ?limit?.toTfJson(),
@@ -492,8 +491,7 @@ final class NotificationPolicyFilters {
     'target_ip': ?targetIp?.toTfJson(),
     'target_zone_name': ?targetZoneName?.toTfJson(),
     'token_id': ?tokenId?.toTfJson(),
-    if (trafficExclusions != null)
-      'traffic_exclusions': [for (final e in trafficExclusions!) e.toTfJson()],
+    'traffic_exclusions': ?trafficExclusions?.toTfJson(),
     'tunnel_id': ?tunnelId?.toTfJson(),
     'tunnel_name': ?tunnelName?.toTfJson(),
     'type': ?type?.toTfJson(),

@@ -251,7 +251,7 @@ final class MonitoringAlertPolicyAlertStrategy {
 
   final TfArg<String>? autoClose;
 
-  final List<MonitoringAlertPolicyNotificationPrompts>? notificationPrompts;
+  final EnumList<MonitoringAlertPolicyNotificationPrompts>? notificationPrompts;
 
   final List<MonitoringAlertPolicyNotificationChannelStrategy>?
   notificationChannelStrategy;
@@ -261,10 +261,7 @@ final class MonitoringAlertPolicyAlertStrategy {
   @internal
   Map<String, Object?> encode() => {
     'auto_close': ?autoClose?.toTfJson(),
-    if (notificationPrompts != null)
-      'notification_prompts': [
-        for (final e in notificationPrompts!) e.toTfJson(),
-      ],
+    'notification_prompts': ?notificationPrompts?.toTfJson(),
     if (notificationChannelStrategy != null)
       'notification_channel_strategy': [
         for (final e in notificationChannelStrategy!) e.encode(),

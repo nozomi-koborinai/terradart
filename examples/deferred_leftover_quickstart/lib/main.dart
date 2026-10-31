@@ -492,9 +492,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         folderId: .literal('folders/123456789'),
         enrolledServices: [
-          FolderAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .all,
-          ),
+          FolderAccessApprovalSettingsEnrolledServices(cloudProduct: .all),
         ],
       ),
     );
@@ -505,9 +503,7 @@ final class DeferredLeftoverStack extends Stack {
         folder: .literal('folders/123456789'),
         service: .literal('allServices'),
         auditLogConfig: [
-          FolderIamAuditConfigAuditLogConfig(
-            logType: .adminRead,
-          ),
+          FolderIamAuditConfigAuditLogConfig(logType: .adminRead),
         ],
       ),
     );
@@ -848,9 +844,7 @@ final class DeferredLeftoverStack extends Stack {
         orgId: .literal('organizations/123456789'),
         service: .literal('allServices'),
         auditLogConfig: [
-          OrganizationIamAuditConfigAuditLogConfig(
-            logType: .adminRead,
-          ),
+          OrganizationIamAuditConfigAuditLogConfig(logType: .adminRead),
         ],
       ),
     );
@@ -905,9 +899,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         projectId: .literal(projectId),
         enrolledServices: [
-          ProjectAccessApprovalSettingsEnrolledServices(
-            cloudProduct: .all,
-          ),
+          ProjectAccessApprovalSettingsEnrolledServices(cloudProduct: .all),
         ],
       ),
     );

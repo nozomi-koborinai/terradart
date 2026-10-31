@@ -93,7 +93,7 @@ final class DataLossPreventionContentPolicyInspectConfig {
     this.ruleSet,
   });
 
-  final List<DataLossPreventionContentPolicyContentOptions>? contentOptions;
+  final EnumList<DataLossPreventionContentPolicyContentOptions>? contentOptions;
 
   final TfArg<bool>? excludeInfoTypes;
 
@@ -114,8 +114,7 @@ final class DataLossPreventionContentPolicyInspectConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (contentOptions != null)
-      'content_options': [for (final e in contentOptions!) e.toTfJson()],
+    'content_options': ?contentOptions?.toTfJson(),
     'exclude_info_types': ?excludeInfoTypes?.toTfJson(),
     'include_quote': ?includeQuote?.toTfJson(),
     'min_likelihood': ?minLikelihood?.toTfJson(),

@@ -544,7 +544,7 @@ final class AwsEcsTaskDefinition extends Resource {
     EcsTaskDefinitionNetworkMode? networkMode,
     EcsTaskDefinitionPidMode? pidMode,
     TfArg<String>? region,
-    List<EcsTaskDefinitionRequiresCompatibilities>? requiresCompatibilities,
+    EnumList<EcsTaskDefinitionRequiresCompatibilities>? requiresCompatibilities,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsIamRole>? taskRoleArn,
@@ -571,10 +571,7 @@ final class AwsEcsTaskDefinition extends Resource {
            'network_mode': ?networkMode,
            'pid_mode': ?pidMode,
            'region': ?region,
-           if (requiresCompatibilities != null)
-             'requires_compatibilities': TfArg.literal([
-               for (final e in requiresCompatibilities) e.toTfJson(),
-             ]),
+           'requires_compatibilities': ?requiresCompatibilities,
            'skip_destroy': ?skipDestroy,
            'tags': ?tags,
            'task_role_arn': ?taskRoleArn?.encodeAs('arn'),

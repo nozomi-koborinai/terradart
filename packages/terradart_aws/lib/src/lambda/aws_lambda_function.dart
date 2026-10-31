@@ -647,7 +647,7 @@ final class AwsLambdaFunction extends Resource {
 
   AwsLambdaFunction(
     super.localName, {
-    List<LambdaFunctionArchitectures>? architectures,
+    EnumList<LambdaFunctionArchitectures>? architectures,
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,
     TfArg<String>? description,
@@ -693,10 +693,7 @@ final class AwsLambdaFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (architectures != null)
-             'architectures': TfArg.literal([
-               for (final e in architectures) e.toTfJson(),
-             ]),
+           'architectures': ?architectures,
            'code_sha256': ?codeSha256,
            'code_signing_config_arn': ?codeSigningConfigArn,
            'description': ?description,

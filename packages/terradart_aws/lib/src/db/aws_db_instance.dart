@@ -500,7 +500,8 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? domainFqdn,
     TfArg<String>? domainIamRoleName,
     TfArg<String>? domainOu,
-    List<DbInstanceEnabledCloudwatchLogsExports>? enabledCloudwatchLogsExports,
+    EnumList<DbInstanceEnabledCloudwatchLogsExports>?
+    enabledCloudwatchLogsExports,
     TfArg<String>? engine,
     DbInstanceEngineLifecycleSupport? engineLifecycleSupport,
     TfArg<String>? engineVersion,
@@ -577,10 +578,7 @@ final class AwsDbInstance extends Resource {
            'domain_fqdn': ?domainFqdn,
            'domain_iam_role_name': ?domainIamRoleName,
            'domain_ou': ?domainOu,
-           if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': TfArg.literal([
-               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
-             ]),
+           'enabled_cloudwatch_logs_exports': ?enabledCloudwatchLogsExports,
            'engine': ?engine,
            'engine_lifecycle_support': ?engineLifecycleSupport,
            'engine_version': ?engineVersion,

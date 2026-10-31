@@ -217,7 +217,7 @@ final class SpringCloudGatewayCors {
 
   final TfArg<List<String>>? allowedHeaders;
 
-  final List<SpringCloudGatewayAllowedMethods>? allowedMethods;
+  final EnumList<SpringCloudGatewayAllowedMethods>? allowedMethods;
 
   final TfArg<List<String>>? allowedOriginPatterns;
 
@@ -232,8 +232,7 @@ final class SpringCloudGatewayCors {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': ?allowedHeaders?.toTfJson(),
-    if (allowedMethods != null)
-      'allowed_methods': [for (final e in allowedMethods!) e.toTfJson()],
+    'allowed_methods': ?allowedMethods?.toTfJson(),
     'allowed_origin_patterns': ?allowedOriginPatterns?.toTfJson(),
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'credentials_allowed': ?credentialsAllowed?.toTfJson(),
@@ -368,7 +367,7 @@ final class AzurermSpringCloudGateway extends Resource {
   AzurermSpringCloudGateway(
     super.localName, {
     TfArg<List<String>>? applicationPerformanceMonitoringIds,
-    List<SpringCloudGatewayApplicationPerformanceMonitoringTypes>?
+    EnumList<SpringCloudGatewayApplicationPerformanceMonitoringTypes>?
     applicationPerformanceMonitoringTypes,
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<bool>? httpsOnly,
@@ -392,11 +391,8 @@ final class AzurermSpringCloudGateway extends Resource {
          argMap: {
            'application_performance_monitoring_ids':
                ?applicationPerformanceMonitoringIds,
-           if (applicationPerformanceMonitoringTypes != null)
-             'application_performance_monitoring_types': TfArg.literal([
-               for (final e in applicationPerformanceMonitoringTypes)
-                 e.toTfJson(),
-             ]),
+           'application_performance_monitoring_types':
+               ?applicationPerformanceMonitoringTypes,
            'environment_variables': ?environmentVariables,
            'https_only': ?httpsOnly,
            'instance_count': ?instanceCount,

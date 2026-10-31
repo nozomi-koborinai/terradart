@@ -186,7 +186,7 @@ sealed class MonitorActivityLogAlertCriteriaLevel {
 
   /// Sets `levels`.
   const factory MonitorActivityLogAlertCriteriaLevel.levels(
-    List<MonitorActivityLogAlertLevels> levels,
+    EnumList<MonitorActivityLogAlertLevels> levels,
   ) = MonitorActivityLogAlertCriteriaLevelLevels;
 
   /// The Terraform argument this choice sets.
@@ -218,7 +218,7 @@ final class MonitorActivityLogAlertCriteriaLevelLevels
     extends MonitorActivityLogAlertCriteriaLevel {
   const MonitorActivityLogAlertCriteriaLevelLevels(this.levels);
 
-  final List<MonitorActivityLogAlertLevels> levels;
+  final EnumList<MonitorActivityLogAlertLevels> levels;
 
   @internal
   @override
@@ -226,9 +226,7 @@ final class MonitorActivityLogAlertCriteriaLevelLevels
 
   @internal
   @override
-  Map<String, Object?> encode() => {
-    'levels': [for (final e in levels) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'levels': levels.toTfJson()};
 }
 
 /// At most one of `resource_group`, `resource_groups` on the `criteria` block of `azurerm_monitor_activity_log_alert`: the provider rejects
@@ -771,17 +769,17 @@ final class MonitorActivityLogAlertResourceHealth {
     this.reason,
   });
 
-  final List<MonitorActivityLogAlertCurrent>? current;
+  final EnumList<MonitorActivityLogAlertCurrent>? current;
 
-  final List<MonitorActivityLogAlertPrevious>? previous;
+  final EnumList<MonitorActivityLogAlertPrevious>? previous;
 
-  final List<MonitorActivityLogAlertReason>? reason;
+  final EnumList<MonitorActivityLogAlertReason>? reason;
 
   @internal
   Map<String, Object?> encode() => {
-    if (current != null) 'current': [for (final e in current!) e.toTfJson()],
-    if (previous != null) 'previous': [for (final e in previous!) e.toTfJson()],
-    if (reason != null) 'reason': [for (final e in reason!) e.toTfJson()],
+    'current': ?current?.toTfJson(),
+    'previous': ?previous?.toTfJson(),
+    'reason': ?reason?.toTfJson(),
   };
 }
 
@@ -881,7 +879,7 @@ final class MonitorActivityLogAlertServiceHealth {
     this.services,
   });
 
-  final List<MonitorActivityLogAlertEvents>? events;
+  final EnumList<MonitorActivityLogAlertEvents>? events;
 
   final TfArg<List<String>>? locations;
 
@@ -889,7 +887,7 @@ final class MonitorActivityLogAlertServiceHealth {
 
   @internal
   Map<String, Object?> encode() => {
-    if (events != null) 'events': [for (final e in events!) e.toTfJson()],
+    'events': ?events?.toTfJson(),
     'locations': ?locations?.toTfJson(),
     'services': ?services?.toTfJson(),
   };

@@ -96,7 +96,7 @@ final class AwsLambdaStack extends Stack {
       role: role.ref,
       runtime: .providedAl2023,
       handler: .literal('bootstrap'),
-      architectures: [.x8664],
+      architectures: .literal([.x8664]),
       code: .filename(.literal('../build/bootstrap.zip')),
       memorySize: .literal(128),
       timeout: .literal(10),

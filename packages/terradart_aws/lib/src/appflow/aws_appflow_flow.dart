@@ -503,15 +503,14 @@ final class AppflowFlowS3PrefixConfig {
 
   final AppflowFlowPrefixFormat? prefixFormat;
 
-  final List<AppflowFlowPrefixHierarchy>? prefixHierarchy;
+  final EnumList<AppflowFlowPrefixHierarchy>? prefixHierarchy;
 
   final AppflowFlowPrefixType? prefixType;
 
   @internal
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
-    if (prefixHierarchy != null)
-      'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
+    'prefix_hierarchy': ?prefixHierarchy?.toTfJson(),
     'prefix_type': ?prefixType?.toTfJson(),
   };
 }
@@ -793,15 +792,14 @@ final class AppflowFlowUpsolverPrefixConfig {
 
   final AppflowFlowPrefixFormat? prefixFormat;
 
-  final List<AppflowFlowPrefixHierarchy>? prefixHierarchy;
+  final EnumList<AppflowFlowPrefixHierarchy>? prefixHierarchy;
 
   final AppflowFlowPrefixType prefixType;
 
   @internal
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
-    if (prefixHierarchy != null)
-      'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
+    'prefix_hierarchy': ?prefixHierarchy?.toTfJson(),
     'prefix_type': prefixType.toTfJson(),
   };
 }

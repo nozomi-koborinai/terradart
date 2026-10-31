@@ -639,12 +639,12 @@ final class CdnFrontdoorRuleDeviceType {
 
   final CdnFrontdoorRuleDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorRuleDeviceTypeValues> values;
+  final EnumList<CdnFrontdoorRuleDeviceTypeValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -704,15 +704,14 @@ final class CdnFrontdoorRuleHostName {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -764,12 +763,12 @@ final class CdnFrontdoorRuleHttpVersion {
 
   final CdnFrontdoorRuleDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorRuleHttpVersionValues> values;
+  final EnumList<CdnFrontdoorRuleHttpVersionValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -810,7 +809,7 @@ final class CdnFrontdoorRulePostArgument {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -818,8 +817,7 @@ final class CdnFrontdoorRulePostArgument {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -836,15 +834,14 @@ final class CdnFrontdoorRuleQueryString {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -912,15 +909,14 @@ final class CdnFrontdoorRuleRequestBody {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -940,7 +936,7 @@ final class CdnFrontdoorRuleRequestCookies {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -948,8 +944,7 @@ final class CdnFrontdoorRuleRequestCookies {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -966,15 +961,14 @@ final class CdnFrontdoorRuleRequestFileExtension {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -991,15 +985,14 @@ final class CdnFrontdoorRuleRequestFilename {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -1019,7 +1012,7 @@ final class CdnFrontdoorRuleRequestHeader {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
@@ -1027,8 +1020,7 @@ final class CdnFrontdoorRuleRequestHeader {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -1044,12 +1036,12 @@ final class CdnFrontdoorRuleRequestMethod {
 
   final CdnFrontdoorRuleDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorRuleRequestMethodValues> values;
+  final EnumList<CdnFrontdoorRuleRequestMethodValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -1104,15 +1096,14 @@ final class CdnFrontdoorRuleRequestPath {
 
   final CdnFrontdoorRuleRequestPathOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -1229,12 +1220,12 @@ final class CdnFrontdoorRuleRequestScheme {
 
   final CdnFrontdoorRuleDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorRuleRequestSchemeValues> values;
+  final EnumList<CdnFrontdoorRuleRequestSchemeValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -1270,15 +1261,14 @@ final class CdnFrontdoorRuleRequestUrl {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleTransforms>? transforms;
+  final EnumList<CdnFrontdoorRuleTransforms>? transforms;
 
   final TfArg<List<String>>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'values': ?values?.toTfJson(),
   };
 }
@@ -1291,12 +1281,12 @@ final class CdnFrontdoorRuleServerPort {
 
   final CdnFrontdoorRuleClientPortOperator operator;
 
-  final List<CdnFrontdoorRuleServerPortValues>? values;
+  final EnumList<CdnFrontdoorRuleServerPortValues>? values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (values != null) 'values': [for (final e in values!) e.toTfJson()],
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1369,12 +1359,12 @@ final class CdnFrontdoorRuleSslProtocol {
 
   final CdnFrontdoorRuleDeviceTypeOperator operator;
 
-  final List<CdnFrontdoorRuleSslProtocolValues> values;
+  final EnumList<CdnFrontdoorRuleSslProtocolValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 

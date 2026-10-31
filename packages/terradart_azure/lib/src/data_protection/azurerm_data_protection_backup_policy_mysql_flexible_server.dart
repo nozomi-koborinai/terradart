@@ -112,27 +112,24 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerCriteria {
   final DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriteria?
   absoluteCriteria;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek>?
   daysOfWeek;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear>?
   monthsOfYear;
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

@@ -141,7 +141,7 @@ final class MaintenanceConfigurationLinux {
     this.packageNamesMaskToInclude,
   });
 
-  final List<MaintenanceConfigurationLinuxClassificationsToInclude>?
+  final EnumList<MaintenanceConfigurationLinuxClassificationsToInclude>?
   classificationsToInclude;
 
   final TfArg<List<String>>? packageNamesMaskToExclude;
@@ -150,10 +150,7 @@ final class MaintenanceConfigurationLinux {
 
   @internal
   Map<String, Object?> encode() => {
-    if (classificationsToInclude != null)
-      'classifications_to_include': [
-        for (final e in classificationsToInclude!) e.toTfJson(),
-      ],
+    'classifications_to_include': ?classificationsToInclude?.toTfJson(),
     'package_names_mask_to_exclude': ?packageNamesMaskToExclude?.toTfJson(),
     'package_names_mask_to_include': ?packageNamesMaskToInclude?.toTfJson(),
   };
@@ -198,7 +195,7 @@ final class MaintenanceConfigurationWindows {
     this.kbNumbersToInclude,
   });
 
-  final List<MaintenanceConfigurationWindowsClassificationsToInclude>?
+  final EnumList<MaintenanceConfigurationWindowsClassificationsToInclude>?
   classificationsToInclude;
 
   final TfArg<List<String>>? kbNumbersToExclude;
@@ -207,10 +204,7 @@ final class MaintenanceConfigurationWindows {
 
   @internal
   Map<String, Object?> encode() => {
-    if (classificationsToInclude != null)
-      'classifications_to_include': [
-        for (final e in classificationsToInclude!) e.toTfJson(),
-      ],
+    'classifications_to_include': ?classificationsToInclude?.toTfJson(),
     'kb_numbers_to_exclude': ?kbNumbersToExclude?.toTfJson(),
     'kb_numbers_to_include': ?kbNumbersToInclude?.toTfJson(),
   };

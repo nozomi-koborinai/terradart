@@ -849,12 +849,12 @@ final class BedrockagentcoreGatewayTargetToolFilter {
 
   final TfArg<String> filterPath;
 
-  final List<BedrockagentcoreGatewayTargetMethods> methods;
+  final EnumList<BedrockagentcoreGatewayTargetMethods> methods;
 
   @internal
   Map<String, Object?> encode() => {
     'filter_path': filterPath.toTfJson(),
-    'methods': [for (final e in methods) e.toTfJson()],
+    'methods': methods.toTfJson(),
   };
 }
 

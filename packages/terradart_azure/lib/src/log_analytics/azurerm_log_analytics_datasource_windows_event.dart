@@ -43,7 +43,7 @@ final class AzurermLogAnalyticsDatasourceWindowsEvent extends Resource {
   AzurermLogAnalyticsDatasourceWindowsEvent(
     super.localName, {
     required TfArg<String> eventLogName,
-    required List<LogAnalyticsDatasourceWindowsEventTypes> eventTypes,
+    required EnumList<LogAnalyticsDatasourceWindowsEventTypes> eventTypes,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> workspaceName,
@@ -55,9 +55,7 @@ final class AzurermLogAnalyticsDatasourceWindowsEvent extends Resource {
          terraformType: tfType,
          argMap: {
            'event_log_name': eventLogName,
-           'event_types': TfArg.literal([
-             for (final e in eventTypes) e.toTfJson(),
-           ]),
+           'event_types': eventTypes,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'workspace_name': workspaceName,

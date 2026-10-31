@@ -458,12 +458,10 @@ final class GkeHubFeaturePodToleration {
 final class GkeHubFeatureMonitoring {
   const GkeHubFeatureMonitoring({this.backends});
 
-  final List<GkeHubFeatureBackends>? backends;
+  final EnumList<GkeHubFeatureBackends>? backends;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (backends != null) 'backends': [for (final e in backends!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
 
 /// `backends` — derived from the provider schema description.

@@ -69,7 +69,7 @@ final class AwsCloudwatchomniDomain extends Resource {
 
   AwsCloudwatchomniDomain(
     super.localName, {
-    required List<CloudwatchomniDomainIdentityProviders> identityProviders,
+    required EnumList<CloudwatchomniDomainIdentityProviders> identityProviders,
     required TfArg<String> name,
     TfArg<String>? region,
     List<CloudwatchomniDomainIdentityProviderConfiguration>?
@@ -81,9 +81,7 @@ final class AwsCloudwatchomniDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'identity_providers': TfArg.literal([
-             for (final e in identityProviders) e.toTfJson(),
-           ]),
+           'identity_providers': identityProviders,
            'name': name,
            'region': ?region,
            if (identityProviderConfiguration != null)

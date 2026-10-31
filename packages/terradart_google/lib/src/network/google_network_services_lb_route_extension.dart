@@ -92,7 +92,8 @@ final class NetworkServicesLbRouteExtensionExtensions {
 
   final TfArg<String> service;
 
-  final List<NetworkServicesLbRouteExtensionSupportedEvents>? supportedEvents;
+  final EnumList<NetworkServicesLbRouteExtensionSupportedEvents>?
+  supportedEvents;
 
   final TfArg<String>? timeout;
 
@@ -107,8 +108,7 @@ final class NetworkServicesLbRouteExtensionExtensions {
     'observability_mode': ?observabilityMode?.toTfJson(),
     'request_body_send_mode': ?requestBodySendMode?.toTfJson(),
     'service': service.toTfJson(),
-    if (supportedEvents != null)
-      'supported_events': [for (final e in supportedEvents!) e.toTfJson()],
+    'supported_events': ?supportedEvents?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
   };
 }

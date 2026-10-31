@@ -588,8 +588,8 @@ final class ProviderEnums {
   /// [overrides] with a `dartTypeOverrides` entry naming the derived enum
   /// ([topLevelEnums]) for every top-level string attribute of its kind's
   /// definition in [ir] — so the constructor parameter takes the enum the
-  /// wrapper declares — and `List<Enum>` for a list or set of strings, the
-  /// element-wise shape nested helpers use ([isEnumListType]). An explicit
+  /// wrapper declares — and `List<Enum>` for a list or set of strings,
+  /// which the input takes as an `EnumList` ([isEnumListType]). An explicit
   /// `dartTypeOverrides` entry or a custom slot wins.
   LoadedOverrides typeDerivedEnums(
     LoadedOverrides overrides,
@@ -733,12 +733,14 @@ ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {
   );
 }
 
-/// Whether a `dartTypeOverrides` value is the element-wise enum list shape
-/// (`List<Enum>`): the constructor takes it bare, not in a `TfArg`, and the
-/// argMap encodes it element by element.
-bool isEnumListType(String dartType) {
+/// Whether a `dartTypeOverrides` value is a list of enum members
+/// (`List<Enum>`): the input takes an `EnumList<Enum>`, a literal list of
+/// members or one value that is the whole list.
+bool isEnumListType(String dartType) => _enumListElement(dartType) != null;
+
+String? _enumListElement(String dartType) {
   final m = RegExp(r'^List<(\w+)>$').firstMatch(dartType);
-  return m != null && isEnumTypeName(m.group(1)!);
+  return m != null && isEnumTypeName(m.group(1)!) ? m.group(1) : null;
 }
 
 /// Whether [dartType] names a generated or prelude enum. Enums are the only
@@ -751,16 +753,17 @@ bool isEnumTypeName(String dartType) =>
     dartType != 'Object';
 
 /// The parameter or field type for an input whose payload is [dartType]:
-/// an enum, or a list of one, is itself a `TfArg` and goes in bare;
-/// anything else is wrapped in `TfArg<...>`, or in `Sensitive<...>` when the
-/// provider schema marks the input [sensitive] — a type with no `.literal`,
-/// so a secret never lands in `main.tf.json`.
+/// an enum is itself a `TfArg` and goes in bare, a list of one takes an
+/// `EnumList`, and anything else is wrapped in `TfArg<...>`, or in
+/// `Sensitive<...>` when the provider schema marks the input [sensitive] —
+/// a type with no `.literal`, so a secret never lands in `main.tf.json`.
 String argTypeFor(String dartType, {bool sensitive = false}) =>
-    isEnumTypeName(dartType) || isEnumListType(dartType)
-    ? dartType
-    : sensitive
-    ? 'Sensitive<$dartType>'
-    : 'TfArg<$dartType>';
+    switch (_enumListElement(dartType)) {
+      final element? => 'EnumList<$element>',
+      null when isEnumTypeName(dartType) => dartType,
+      null when sensitive => 'Sensitive<$dartType>',
+      null => 'TfArg<$dartType>',
+    };
 
 /// Whether an input takes `Sensitive<T>`: the provider schema marks it
 /// sensitive. A write-only `_wo` input is too — its value stays out of

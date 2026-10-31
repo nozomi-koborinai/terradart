@@ -1514,7 +1514,7 @@ final class KubernetesClusterNetworkProfile {
 
   final TfArg<String>? dnsServiceIp;
 
-  final List<KubernetesClusterIpVersions>? ipVersions;
+  final EnumList<KubernetesClusterIpVersions>? ipVersions;
 
   final KubernetesClusterLoadBalancerSku? loadBalancerSku;
 
@@ -1547,8 +1547,7 @@ final class KubernetesClusterNetworkProfile {
   @internal
   Map<String, Object?> encode() => {
     'dns_service_ip': ?dnsServiceIp?.toTfJson(),
-    if (ipVersions != null)
-      'ip_versions': [for (final e in ipVersions!) e.toTfJson()],
+    'ip_versions': ?ipVersions?.toTfJson(),
     'load_balancer_sku': ?loadBalancerSku?.toTfJson(),
     'network_data_plane': ?networkDataPlane?.toTfJson(),
     'network_mode': ?networkMode?.toTfJson(),

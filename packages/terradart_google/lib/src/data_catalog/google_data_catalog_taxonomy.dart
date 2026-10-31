@@ -64,7 +64,7 @@ final class GoogleDataCatalogTaxonomy extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? description,
-    List<DataCatalogTaxonomyActivatedPolicyTypes>? activatedPolicyTypes,
+    EnumList<DataCatalogTaxonomyActivatedPolicyTypes>? activatedPolicyTypes,
     TfArg<String>? region,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
@@ -77,10 +77,7 @@ final class GoogleDataCatalogTaxonomy extends Resource {
          argMap: {
            'display_name': displayName,
            'description': ?description,
-           if (activatedPolicyTypes != null)
-             'activated_policy_types': TfArg.literal([
-               for (final e in activatedPolicyTypes) e.toTfJson(),
-             ]),
+           'activated_policy_types': ?activatedPolicyTypes,
            'region': ?region,
            'project': ?project,
            'deletion_policy': ?deletionPolicy,

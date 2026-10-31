@@ -438,7 +438,7 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
     this.interceptor,
   });
 
-  final List<BedrockagentcoreGatewayInterceptionPoints> interceptionPoints;
+  final EnumList<BedrockagentcoreGatewayInterceptionPoints> interceptionPoints;
 
   final List<BedrockagentcoreGatewayInputConfiguration>? inputConfiguration;
 
@@ -446,7 +446,7 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    'interception_points': [for (final e in interceptionPoints) e.toTfJson()],
+    'interception_points': interceptionPoints.toTfJson(),
     if (inputConfiguration != null)
       'input_configuration': [for (final e in inputConfiguration!) e.encode()],
     if (interceptor != null)

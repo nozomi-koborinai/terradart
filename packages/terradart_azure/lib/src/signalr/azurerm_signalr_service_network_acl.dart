@@ -40,22 +40,18 @@ final class SignalrServiceNetworkAclPrivateEndpoint {
     required this.id,
   });
 
-  final List<SignalrServiceNetworkAclAllowedRequestTypes>? allowedRequestTypes;
+  final EnumList<SignalrServiceNetworkAclAllowedRequestTypes>?
+  allowedRequestTypes;
 
-  final List<SignalrServiceNetworkAclDeniedRequestTypes>? deniedRequestTypes;
+  final EnumList<SignalrServiceNetworkAclDeniedRequestTypes>?
+  deniedRequestTypes;
 
   final TfArg<String> id;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedRequestTypes != null)
-      'allowed_request_types': [
-        for (final e in allowedRequestTypes!) e.toTfJson(),
-      ],
-    if (deniedRequestTypes != null)
-      'denied_request_types': [
-        for (final e in deniedRequestTypes!) e.toTfJson(),
-      ],
+    'allowed_request_types': ?allowedRequestTypes?.toTfJson(),
+    'denied_request_types': ?deniedRequestTypes?.toTfJson(),
     'id': id.toTfJson(),
   };
 }
@@ -146,12 +142,12 @@ sealed class SignalrServiceNetworkAclPublicNetworkRequestTypes {
 
   /// Sets `allowed_request_types`.
   const factory SignalrServiceNetworkAclPublicNetworkRequestTypes.allowedRequestTypes(
-    List<SignalrServiceNetworkAclAllowedRequestTypes> allowedRequestTypes,
+    EnumList<SignalrServiceNetworkAclAllowedRequestTypes> allowedRequestTypes,
   ) = SignalrServiceNetworkAclPublicNetworkAllowedRequestTypes;
 
   /// Sets `denied_request_types`.
   const factory SignalrServiceNetworkAclPublicNetworkRequestTypes.deniedRequestTypes(
-    List<SignalrServiceNetworkAclDeniedRequestTypes> deniedRequestTypes,
+    EnumList<SignalrServiceNetworkAclDeniedRequestTypes> deniedRequestTypes,
   ) = SignalrServiceNetworkAclPublicNetworkDeniedRequestTypes;
 
   /// The Terraform argument this choice sets.
@@ -169,7 +165,8 @@ final class SignalrServiceNetworkAclPublicNetworkAllowedRequestTypes
     this.allowedRequestTypes,
   );
 
-  final List<SignalrServiceNetworkAclAllowedRequestTypes> allowedRequestTypes;
+  final EnumList<SignalrServiceNetworkAclAllowedRequestTypes>
+  allowedRequestTypes;
 
   @internal
   @override
@@ -178,9 +175,7 @@ final class SignalrServiceNetworkAclPublicNetworkAllowedRequestTypes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'allowed_request_types': [
-      for (final e in allowedRequestTypes) e.toTfJson(),
-    ],
+    'allowed_request_types': allowedRequestTypes.toTfJson(),
   };
 }
 
@@ -191,7 +186,7 @@ final class SignalrServiceNetworkAclPublicNetworkDeniedRequestTypes
     this.deniedRequestTypes,
   );
 
-  final List<SignalrServiceNetworkAclDeniedRequestTypes> deniedRequestTypes;
+  final EnumList<SignalrServiceNetworkAclDeniedRequestTypes> deniedRequestTypes;
 
   @internal
   @override
@@ -200,7 +195,7 @@ final class SignalrServiceNetworkAclPublicNetworkDeniedRequestTypes
   @internal
   @override
   Map<String, Object?> encode() => {
-    'denied_request_types': [for (final e in deniedRequestTypes) e.toTfJson()],
+    'denied_request_types': deniedRequestTypes.toTfJson(),
   };
 }
 

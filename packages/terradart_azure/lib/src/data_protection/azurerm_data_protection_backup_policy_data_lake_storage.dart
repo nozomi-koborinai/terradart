@@ -25,32 +25,30 @@ final class DataProtectionBackupPolicyDataLakeStorageRetentionRule {
   final DataProtectionBackupPolicyDataLakeStorageAbsoluteCriteria?
   absoluteCriteria;
 
-  final List<DataProtectionBackupPolicyDataLakeStorageDaysOfWeek>? daysOfWeek;
+  final EnumList<DataProtectionBackupPolicyDataLakeStorageDaysOfWeek>?
+  daysOfWeek;
 
   final TfArg<String> duration;
 
-  final List<DataProtectionBackupPolicyDataLakeStorageMonthsOfYear>?
+  final EnumList<DataProtectionBackupPolicyDataLakeStorageMonthsOfYear>?
   monthsOfYear;
 
   final TfArg<String> name;
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final List<DataProtectionBackupPolicyDataLakeStorageWeeksOfMonth>?
+  final EnumList<DataProtectionBackupPolicyDataLakeStorageWeeksOfMonth>?
   weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'duration': duration.toTfJson(),
-    if (monthsOfYear != null)
-      'months_of_year': [for (final e in monthsOfYear!) e.toTfJson()],
+    'months_of_year': ?monthsOfYear?.toTfJson(),
     'name': name.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    if (weeksOfMonth != null)
-      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
 }
 

@@ -116,7 +116,7 @@ final class IdentityPlatformConfigMfa {
     this.providerConfigs,
   });
 
-  final List<IdentityPlatformConfigEnabledProviders>? enabledProviders;
+  final EnumList<IdentityPlatformConfigEnabledProviders>? enabledProviders;
 
   final IdentityPlatformConfigState? state;
 
@@ -124,8 +124,7 @@ final class IdentityPlatformConfigMfa {
 
   @internal
   Map<String, Object?> encode() => {
-    if (enabledProviders != null)
-      'enabled_providers': [for (final e in enabledProviders!) e.toTfJson()],
+    'enabled_providers': ?enabledProviders?.toTfJson(),
     'state': ?state?.toTfJson(),
     if (providerConfigs != null)
       'provider_configs': [for (final e in providerConfigs!) e.encode()],

@@ -288,17 +288,14 @@ final class ApiManagementApiOpenidAuthentication {
     required this.openidProviderName,
   });
 
-  final List<ApiManagementApiBearerTokenSendingMethods>?
+  final EnumList<ApiManagementApiBearerTokenSendingMethods>?
   bearerTokenSendingMethods;
 
   final TfArg<String> openidProviderName;
 
   @internal
   Map<String, Object?> encode() => {
-    if (bearerTokenSendingMethods != null)
-      'bearer_token_sending_methods': [
-        for (final e in bearerTokenSendingMethods!) e.toTfJson(),
-      ],
+    'bearer_token_sending_methods': ?bearerTokenSendingMethods?.toTfJson(),
     'openid_provider_name': openidProviderName.toTfJson(),
   };
 }
@@ -360,7 +357,7 @@ final class AzurermApiManagementApi extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> name,
     TfArg<String>? path,
-    List<ApiManagementApiProtocols>? protocols,
+    EnumList<ApiManagementApiProtocols>? protocols,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> revision,
     TfArg<String>? revisionDescription,
@@ -390,10 +387,7 @@ final class AzurermApiManagementApi extends Resource {
            'display_name': ?displayName,
            'name': name,
            'path': ?path,
-           if (protocols != null)
-             'protocols': TfArg.literal([
-               for (final e in protocols) e.toTfJson(),
-             ]),
+           'protocols': ?protocols,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'revision': revision,
            'revision_description': ?revisionDescription,

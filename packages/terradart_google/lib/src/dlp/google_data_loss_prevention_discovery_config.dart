@@ -396,7 +396,7 @@ final class DataLossPreventionDiscoveryConfigTagResources {
 
   final TfArg<bool>? lowerDataRiskToLow;
 
-  final List<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>?
+  final EnumList<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>?
   profileGenerationsToTag;
 
   final List<DataLossPreventionDiscoveryConfigTagConditions>? tagConditions;
@@ -404,10 +404,7 @@ final class DataLossPreventionDiscoveryConfigTagResources {
   @internal
   Map<String, Object?> encode() => {
     'lower_data_risk_to_low': ?lowerDataRiskToLow?.toTfJson(),
-    if (profileGenerationsToTag != null)
-      'profile_generations_to_tag': [
-        for (final e in profileGenerationsToTag!) e.toTfJson(),
-      ],
+    'profile_generations_to_tag': ?profileGenerationsToTag?.toTfJson(),
     if (tagConditions != null)
       'tag_conditions': [for (final e in tagConditions!) e.encode()],
   };
@@ -769,12 +766,12 @@ final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
 
   final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final List<DataLossPreventionDiscoveryConfigCadenceTypes>? types;
+  final EnumList<DataLossPreventionDiscoveryConfigCadenceTypes>? types;
 
   @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
-    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
+    'types': ?types?.toTfJson(),
   };
 }
 
@@ -815,12 +812,13 @@ final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
 
   final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final List<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>? types;
+  final EnumList<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>?
+  types;
 
   @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
-    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
+    'types': ?types?.toTfJson(),
   };
 }
 
@@ -927,12 +925,10 @@ final class DataLossPreventionDiscoveryConfigOrConditions {
 final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
   const DataLossPreventionDiscoveryConfigBigQueryTargetTypes({this.types});
 
-  final List<DataLossPreventionDiscoveryConfigTypesTypes>? types;
+  final EnumList<DataLossPreventionDiscoveryConfigTypesTypes>? types;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'types': ?types?.toTfJson()};
 }
 
 /// `types` — derived from the provider schema description.
@@ -1120,15 +1116,15 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
     this.types,
   });
 
-  final List<DataLossPreventionDiscoveryConfigDatabaseEngines>? databaseEngines;
+  final EnumList<DataLossPreventionDiscoveryConfigDatabaseEngines>?
+  databaseEngines;
 
-  final List<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>? types;
+  final EnumList<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>? types;
 
   @internal
   Map<String, Object?> encode() => {
-    if (databaseEngines != null)
-      'database_engines': [for (final e in databaseEngines!) e.toTfJson()],
-    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
+    'database_engines': ?databaseEngines?.toTfJson(),
+    'types': ?types?.toTfJson(),
   };
 }
 
@@ -1364,12 +1360,13 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCade
 
   final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final List<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>? types;
+  final EnumList<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>?
+  types;
 
   @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
-    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
+    'types': ?types?.toTfJson(),
   };
 }
 
@@ -1463,22 +1460,16 @@ final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
     this.includedObjectAttributes,
   });
 
-  final List<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>?
+  final EnumList<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>?
   includedBucketAttributes;
 
-  final List<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>?
+  final EnumList<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>?
   includedObjectAttributes;
 
   @internal
   Map<String, Object?> encode() => {
-    if (includedBucketAttributes != null)
-      'included_bucket_attributes': [
-        for (final e in includedBucketAttributes!) e.toTfJson(),
-      ],
-    if (includedObjectAttributes != null)
-      'included_object_attributes': [
-        for (final e in includedObjectAttributes!) e.toTfJson(),
-      ],
+    'included_bucket_attributes': ?includedBucketAttributes?.toTfJson(),
+    'included_object_attributes': ?includedObjectAttributes?.toTfJson(),
   };
 }
 
@@ -1815,19 +1806,15 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
     this.objectStorageClasses,
   });
 
-  final List<DataLossPreventionDiscoveryConfigBucketTypes>? bucketTypes;
+  final EnumList<DataLossPreventionDiscoveryConfigBucketTypes>? bucketTypes;
 
-  final List<DataLossPreventionDiscoveryConfigObjectStorageClasses>?
+  final EnumList<DataLossPreventionDiscoveryConfigObjectStorageClasses>?
   objectStorageClasses;
 
   @internal
   Map<String, Object?> encode() => {
-    if (bucketTypes != null)
-      'bucket_types': [for (final e in bucketTypes!) e.toTfJson()],
-    if (objectStorageClasses != null)
-      'object_storage_classes': [
-        for (final e in objectStorageClasses!) e.toTfJson(),
-      ],
+    'bucket_types': ?bucketTypes?.toTfJson(),
+    'object_storage_classes': ?objectStorageClasses?.toTfJson(),
   };
 }
 

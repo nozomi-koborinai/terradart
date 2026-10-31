@@ -395,14 +395,13 @@ final class EcsDaemonTaskDefinitionDevice {
 
   final TfArg<String> hostPath;
 
-  final List<EcsDaemonTaskDefinitionPermissions>? permissions;
+  final EnumList<EcsDaemonTaskDefinitionPermissions>? permissions;
 
   @internal
   Map<String, Object?> encode() => {
     'container_path': ?containerPath?.toTfJson(),
     'host_path': hostPath.toTfJson(),
-    if (permissions != null)
-      'permissions': [for (final e in permissions!) e.toTfJson()],
+    'permissions': ?permissions?.toTfJson(),
   };
 }
 

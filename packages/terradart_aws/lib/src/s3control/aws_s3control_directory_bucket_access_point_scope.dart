@@ -17,14 +17,14 @@ final class S3controlDirectoryBucketAccessPointScope {
     this.prefixes,
   });
 
-  final List<S3controlDirectoryBucketAccessPointScopePermissions>? permissions;
+  final EnumList<S3controlDirectoryBucketAccessPointScopePermissions>?
+  permissions;
 
   final TfArg<List<String>>? prefixes;
 
   @internal
   Map<String, Object?> encode() => {
-    if (permissions != null)
-      'permissions': [for (final e in permissions!) e.toTfJson()],
+    'permissions': ?permissions?.toTfJson(),
     'prefixes': ?prefixes?.toTfJson(),
   };
 }

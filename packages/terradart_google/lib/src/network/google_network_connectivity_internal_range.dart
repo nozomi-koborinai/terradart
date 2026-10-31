@@ -193,7 +193,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
     NetworkConnectivityInternalRangeAllocationOptions? allocationOptions,
     TfArg<String>? description,
     TfArg<List<String>>? targetCidrRange,
-    List<NetworkConnectivityInternalRangeOverlaps>? overlaps,
+    EnumList<NetworkConnectivityInternalRangeOverlaps>? overlaps,
     TfArg<Map<String, String>>? labels,
     NetworkConnectivityInternalRangeMigration? migration,
     TfArg<String>? project,
@@ -214,10 +214,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
              'allocation_options': TfArg.literal([allocationOptions.encode()]),
            'description': ?description,
            'target_cidr_range': ?targetCidrRange,
-           if (overlaps != null)
-             'overlaps': TfArg.literal([
-               for (final e in overlaps) e.toTfJson(),
-             ]),
+           'overlaps': ?overlaps,
            'labels': ?labels,
            if (migration != null)
              'migration': TfArg.literal(migration.encode()),

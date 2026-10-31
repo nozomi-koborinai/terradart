@@ -543,7 +543,7 @@ final class OsConfigPatchDeploymentWindowsUpdate {
     this.exclusivePatches,
   });
 
-  final List<OsConfigPatchDeploymentClassifications>? classifications;
+  final EnumList<OsConfigPatchDeploymentClassifications>? classifications;
 
   final TfArg<List<String>>? excludes;
 
@@ -551,8 +551,7 @@ final class OsConfigPatchDeploymentWindowsUpdate {
 
   @internal
   Map<String, Object?> encode() => {
-    if (classifications != null)
-      'classifications': [for (final e in classifications!) e.toTfJson()],
+    'classifications': ?classifications?.toTfJson(),
     'excludes': ?excludes?.toTfJson(),
     'exclusive_patches': ?exclusivePatches?.toTfJson(),
   };

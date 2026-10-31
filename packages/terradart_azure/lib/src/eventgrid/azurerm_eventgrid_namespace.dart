@@ -105,7 +105,7 @@ final class EventgridNamespaceTopicSpacesConfiguration {
     this.staticRoutingEnrichment,
   });
 
-  final List<EventgridNamespaceAlternativeAuthenticationNameSource>?
+  final EnumList<EventgridNamespaceAlternativeAuthenticationNameSource>?
   alternativeAuthenticationNameSource;
 
   final TfArg<num>? maximumClientSessionsPerAuthenticationName;
@@ -122,10 +122,8 @@ final class EventgridNamespaceTopicSpacesConfiguration {
 
   @internal
   Map<String, Object?> encode() => {
-    if (alternativeAuthenticationNameSource != null)
-      'alternative_authentication_name_source': [
-        for (final e in alternativeAuthenticationNameSource!) e.toTfJson(),
-      ],
+    'alternative_authentication_name_source':
+        ?alternativeAuthenticationNameSource?.toTfJson(),
     'maximum_client_sessions_per_authentication_name':
         ?maximumClientSessionsPerAuthenticationName?.toTfJson(),
     'maximum_session_expiry_in_hours': ?maximumSessionExpiryInHours?.toTfJson(),

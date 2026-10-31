@@ -70,7 +70,8 @@ final class ZeroTrustOrganizationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<ZeroTrustOrganizationAllowedAuthenticators>? allowedAuthenticators;
+  final EnumList<ZeroTrustOrganizationAllowedAuthenticators>?
+  allowedAuthenticators;
 
   final TfArg<String>? amrMatchingSessionDuration;
 
@@ -80,10 +81,7 @@ final class ZeroTrustOrganizationMfaConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedAuthenticators != null)
-      'allowed_authenticators': [
-        for (final e in allowedAuthenticators!) e.toTfJson(),
-      ],
+    'allowed_authenticators': ?allowedAuthenticators?.toTfJson(),
     'amr_matching_session_duration': ?amrMatchingSessionDuration?.toTfJson(),
     'required_aaguids': ?requiredAaguids?.toTfJson(),
     'session_duration': ?sessionDuration?.toTfJson(),
@@ -144,7 +142,7 @@ final class ZeroTrustOrganizationMfaPivKeyRequirements {
 
   final TfArg<List<num>>? sshKeySize;
 
-  final List<ZeroTrustOrganizationSshKeyType>? sshKeyType;
+  final EnumList<ZeroTrustOrganizationSshKeyType>? sshKeyType;
 
   final ZeroTrustOrganizationTouchPolicy? touchPolicy;
 
@@ -153,8 +151,7 @@ final class ZeroTrustOrganizationMfaPivKeyRequirements {
     'pin_policy': ?pinPolicy?.toTfJson(),
     'require_fips_device': ?requireFipsDevice?.toTfJson(),
     'ssh_key_size': ?sshKeySize?.toTfJson(),
-    if (sshKeyType != null)
-      'ssh_key_type': [for (final e in sshKeyType!) e.toTfJson()],
+    'ssh_key_type': ?sshKeyType?.toTfJson(),
     'touch_policy': ?touchPolicy?.toTfJson(),
   };
 }

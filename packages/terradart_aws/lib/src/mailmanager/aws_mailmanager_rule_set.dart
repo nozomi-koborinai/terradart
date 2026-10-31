@@ -794,12 +794,12 @@ final class MailmanagerRuleSetDmarcExpression {
 
   final MailmanagerRuleSetDmarcExpressionOperator operator;
 
-  final List<MailmanagerRuleSetDmarcExpressionValues> values;
+  final EnumList<MailmanagerRuleSetDmarcExpressionValues> values;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
   };
 }
 
@@ -1314,14 +1314,14 @@ final class MailmanagerRuleSetVerdictExpression {
 
   final MailmanagerRuleSetDmarcExpressionOperator operator;
 
-  final List<MailmanagerRuleSetVerdictExpressionValues> values;
+  final EnumList<MailmanagerRuleSetVerdictExpressionValues> values;
 
   final List<MailmanagerRuleSetVerdictExpressionEvaluate>? evaluate;
 
   @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    'values': [for (final e in values) e.toTfJson()],
+    'values': values.toTfJson(),
     if (evaluate != null) 'evaluate': [for (final e in evaluate!) e.encode()],
   };
 }

@@ -192,7 +192,7 @@ final class WebApplicationFirewallPolicyMatchConditions {
 
   final WebApplicationFirewallPolicyOperator operator;
 
-  final List<WebApplicationFirewallPolicyTransforms>? transforms;
+  final EnumList<WebApplicationFirewallPolicyTransforms>? transforms;
 
   final List<WebApplicationFirewallPolicyMatchVariables> matchVariables;
 
@@ -201,8 +201,7 @@ final class WebApplicationFirewallPolicyMatchConditions {
     'match_values': ?matchValues?.toTfJson(),
     'negation_condition': ?negationCondition?.toTfJson(),
     'operator': operator.toTfJson(),
-    if (transforms != null)
-      'transforms': [for (final e in transforms!) e.toTfJson()],
+    'transforms': ?transforms?.toTfJson(),
     'match_variables': [for (final e in matchVariables) e.encode()],
   };
 }

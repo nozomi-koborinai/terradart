@@ -755,7 +755,7 @@ final class MssqlDatabaseThreatDetectionPolicy {
     this.storageEndpoint,
   });
 
-  final List<MssqlDatabaseDisabledAlerts>? disabledAlerts;
+  final EnumList<MssqlDatabaseDisabledAlerts>? disabledAlerts;
 
   final TfArg<bool>? emailAccountAdminsEnabled;
 
@@ -771,8 +771,7 @@ final class MssqlDatabaseThreatDetectionPolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    if (disabledAlerts != null)
-      'disabled_alerts': [for (final e in disabledAlerts!) e.toTfJson()],
+    'disabled_alerts': ?disabledAlerts?.toTfJson(),
     'email_account_admins_enabled': ?emailAccountAdminsEnabled?.toTfJson(),
     'email_addresses': ?emailAddresses?.toTfJson(),
     'retention_days': ?retentionDays?.toTfJson(),

@@ -157,7 +157,7 @@ final class CloudflareHealthcheck extends Resource {
   CloudflareHealthcheck(
     super.localName, {
     required TfArg<String> address,
-    List<HealthcheckCheckRegions>? checkRegions,
+    EnumList<HealthcheckCheckRegions>? checkRegions,
     TfArg<num>? consecutiveFails,
     TfArg<num>? consecutiveSuccesses,
     TfArg<String>? description,
@@ -178,10 +178,7 @@ final class CloudflareHealthcheck extends Resource {
          terraformType: tfType,
          argMap: {
            'address': address,
-           if (checkRegions != null)
-             'check_regions': TfArg.literal([
-               for (final e in checkRegions) e.toTfJson(),
-             ]),
+           'check_regions': ?checkRegions,
            'consecutive_fails': ?consecutiveFails,
            'consecutive_successes': ?consecutiveSuccesses,
            'description': ?description,

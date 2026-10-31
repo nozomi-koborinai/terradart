@@ -335,13 +335,13 @@ final class RekognitionStreamProcessorConnectedHome {
     this.minConfidence,
   });
 
-  final List<RekognitionStreamProcessorLabels>? labels;
+  final EnumList<RekognitionStreamProcessorLabels>? labels;
 
   final TfArg<num>? minConfidence;
 
   @internal
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': [for (final e in labels!) e.toTfJson()],
+    'labels': ?labels?.toTfJson(),
     'min_confidence': ?minConfidence?.toTfJson(),
   };
 }

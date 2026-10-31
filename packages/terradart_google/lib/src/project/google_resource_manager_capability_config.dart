@@ -44,7 +44,7 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? managementProject,
     required TfArg<String> parent,
-    required List<ResourceManagerCapabilityConfigTypes> types,
+    required EnumList<ResourceManagerCapabilityConfigTypes> types,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -57,7 +57,7 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
            'display_name': ?displayName,
            'management_project': ?managementProject,
            'parent': parent,
-           'types': TfArg.literal([for (final e in types) e.toTfJson()]),
+           'types': types,
          },
        );
 

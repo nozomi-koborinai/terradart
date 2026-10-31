@@ -434,13 +434,10 @@ final class DataprocBatchRuntimeConfig {
 final class DataprocBatchAutotuningConfig {
   const DataprocBatchAutotuningConfig({this.scenarios});
 
-  final List<DataprocBatchScenarios>? scenarios;
+  final EnumList<DataprocBatchScenarios>? scenarios;
 
   @internal
-  Map<String, Object?> encode() => {
-    if (scenarios != null)
-      'scenarios': [for (final e in scenarios!) e.toTfJson()],
-  };
+  Map<String, Object?> encode() => {'scenarios': ?scenarios?.toTfJson()};
 }
 
 /// `scenarios` — derived from the provider schema description.

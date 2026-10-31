@@ -261,15 +261,14 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
     required this.actions,
   });
 
-  final List<CognitoRiskConfigurationEventFilter>? eventFilter;
+  final EnumList<CognitoRiskConfigurationEventFilter>? eventFilter;
 
   final CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions
   actions;
 
   @internal
   Map<String, Object?> encode() => {
-    if (eventFilter != null)
-      'event_filter': [for (final e in eventFilter!) e.toTfJson()],
+    'event_filter': ?eventFilter?.toTfJson(),
     'actions': actions.encode(),
   };
 }

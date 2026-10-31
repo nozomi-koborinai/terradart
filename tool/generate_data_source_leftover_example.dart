@@ -83,7 +83,7 @@ final class _GoogleDataSourceStack implements CoverageStackGenerator {
     final unplaceable = <String, String>{};
 
     for (final file in files) {
-      final src = file.readAsStringSync();
+      final src = readWrapperSource(file);
       final classMatch = RegExp(
         r'final class (\w+)\s+extends Data \{',
       ).firstMatch(src);

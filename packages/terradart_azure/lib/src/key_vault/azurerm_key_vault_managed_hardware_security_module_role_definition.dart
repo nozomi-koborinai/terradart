@@ -22,22 +22,24 @@ final class KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission {
 
   final TfArg<List<String>>? actions;
 
-  final List<KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions>?
+  final EnumList<
+    KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions
+  >?
   dataActions;
 
   final TfArg<List<String>>? notActions;
 
-  final List<KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions>?
+  final EnumList<
+    KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions
+  >?
   notDataActions;
 
   @internal
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
-    if (dataActions != null)
-      'data_actions': [for (final e in dataActions!) e.toTfJson()],
+    'data_actions': ?dataActions?.toTfJson(),
     'not_actions': ?notActions?.toTfJson(),
-    if (notDataActions != null)
-      'not_data_actions': [for (final e in notDataActions!) e.toTfJson()],
+    'not_data_actions': ?notDataActions?.toTfJson(),
   };
 }
 

@@ -154,7 +154,7 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<bool>? customDatatypeConfigured;
 
-  final List<GlueClassifierCustomDatatypes>? customDatatypes;
+  final EnumList<GlueClassifierCustomDatatypes>? customDatatypes;
 
   final TfArg<String>? delimiter;
 
@@ -171,8 +171,7 @@ final class GlueClassifierCsvClassifier {
     'allow_single_column': ?allowSingleColumn?.toTfJson(),
     'contains_header': ?containsHeader?.toTfJson(),
     'custom_datatype_configured': ?customDatatypeConfigured?.toTfJson(),
-    if (customDatatypes != null)
-      'custom_datatypes': [for (final e in customDatatypes!) e.toTfJson()],
+    'custom_datatypes': ?customDatatypes?.toTfJson(),
     'delimiter': ?delimiter?.toTfJson(),
     'disable_value_trimming': ?disableValueTrimming?.toTfJson(),
     'header': ?header?.toTfJson(),

@@ -343,7 +343,7 @@ final class CloudflareWaitingRoom extends Resource {
     WaitingRoomDefaultTemplateLanguage? defaultTemplateLanguage,
     TfArg<String>? description,
     TfArg<bool>? disableSessionRenewal,
-    List<WaitingRoomEnabledOriginCommands>? enabledOriginCommands,
+    EnumList<WaitingRoomEnabledOriginCommands>? enabledOriginCommands,
     required TfArg<String> host,
     TfArg<bool>? jsonResponseEnabled,
     required TfArg<String> name,
@@ -372,10 +372,7 @@ final class CloudflareWaitingRoom extends Resource {
            'default_template_language': ?defaultTemplateLanguage,
            'description': ?description,
            'disable_session_renewal': ?disableSessionRenewal,
-           if (enabledOriginCommands != null)
-             'enabled_origin_commands': TfArg.literal([
-               for (final e in enabledOriginCommands) e.toTfJson(),
-             ]),
+           'enabled_origin_commands': ?enabledOriginCommands,
            'host': host,
            'json_response_enabled': ?jsonResponseEnabled,
            'name': name,

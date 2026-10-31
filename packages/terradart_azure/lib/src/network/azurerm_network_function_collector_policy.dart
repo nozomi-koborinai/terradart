@@ -15,11 +15,12 @@ final class NetworkFunctionCollectorPolicyIpfxEmission {
     required this.destinationTypes,
   });
 
-  final List<NetworkFunctionCollectorPolicyDestinationTypes> destinationTypes;
+  final EnumList<NetworkFunctionCollectorPolicyDestinationTypes>
+  destinationTypes;
 
   @internal
   Map<String, Object?> encode() => {
-    'destination_types': [for (final e in destinationTypes) e.toTfJson()],
+    'destination_types': destinationTypes.toTfJson(),
   };
 }
 

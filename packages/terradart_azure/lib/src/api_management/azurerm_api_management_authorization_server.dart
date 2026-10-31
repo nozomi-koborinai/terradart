@@ -169,11 +169,11 @@ final class AzurermApiManagementAuthorizationServer extends Resource {
     super.localName, {
     required TfArg<String> apiManagementName,
     required TfArg<String> authorizationEndpoint,
-    required List<ApiManagementAuthorizationServerAuthorizationMethods>
+    required EnumList<ApiManagementAuthorizationServerAuthorizationMethods>
     authorizationMethods,
-    List<ApiManagementAuthorizationServerBearerTokenSendingMethods>?
+    EnumList<ApiManagementAuthorizationServerBearerTokenSendingMethods>?
     bearerTokenSendingMethods,
-    List<ApiManagementAuthorizationServerClientAuthenticationMethod>?
+    EnumList<ApiManagementAuthorizationServerClientAuthenticationMethod>?
     clientAuthenticationMethod,
     required TfArg<String> clientId,
     required TfArg<String> clientRegistrationEndpoint,
@@ -181,7 +181,7 @@ final class AzurermApiManagementAuthorizationServer extends Resource {
     TfArg<String>? defaultScope,
     TfArg<String>? description,
     required TfArg<String> displayName,
-    required List<ApiManagementAuthorizationServerGrantTypes> grantTypes,
+    required EnumList<ApiManagementAuthorizationServerGrantTypes> grantTypes,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     Sensitive<String>? resourceOwnerPassword,
@@ -199,26 +199,16 @@ final class AzurermApiManagementAuthorizationServer extends Resource {
          argMap: {
            'api_management_name': apiManagementName,
            'authorization_endpoint': authorizationEndpoint,
-           'authorization_methods': TfArg.literal([
-             for (final e in authorizationMethods) e.toTfJson(),
-           ]),
-           if (bearerTokenSendingMethods != null)
-             'bearer_token_sending_methods': TfArg.literal([
-               for (final e in bearerTokenSendingMethods) e.toTfJson(),
-             ]),
-           if (clientAuthenticationMethod != null)
-             'client_authentication_method': TfArg.literal([
-               for (final e in clientAuthenticationMethod) e.toTfJson(),
-             ]),
+           'authorization_methods': authorizationMethods,
+           'bearer_token_sending_methods': ?bearerTokenSendingMethods,
+           'client_authentication_method': ?clientAuthenticationMethod,
            'client_id': clientId,
            'client_registration_endpoint': clientRegistrationEndpoint,
            'client_secret': ?clientSecret,
            'default_scope': ?defaultScope,
            'description': ?description,
            'display_name': displayName,
-           'grant_types': TfArg.literal([
-             for (final e in grantTypes) e.toTfJson(),
-           ]),
+           'grant_types': grantTypes,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'resource_owner_password': ?resourceOwnerPassword,

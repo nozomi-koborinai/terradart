@@ -196,16 +196,13 @@ final class CodebuildProjectRestrictions {
     this.maximumBuildsAllowed,
   });
 
-  final List<CodebuildProjectComputeTypesAllowed>? computeTypesAllowed;
+  final EnumList<CodebuildProjectComputeTypesAllowed>? computeTypesAllowed;
 
   final TfArg<num>? maximumBuildsAllowed;
 
   @internal
   Map<String, Object?> encode() => {
-    if (computeTypesAllowed != null)
-      'compute_types_allowed': [
-        for (final e in computeTypesAllowed!) e.toTfJson(),
-      ],
+    'compute_types_allowed': ?computeTypesAllowed?.toTfJson(),
     'maximum_builds_allowed': ?maximumBuildsAllowed?.toTfJson(),
   };
 }
@@ -288,7 +285,7 @@ final class CodebuildProjectCache {
 
   final TfArg<String>? location;
 
-  final List<CodebuildProjectModes>? modes;
+  final EnumList<CodebuildProjectModes>? modes;
 
   final CodebuildProjectCacheType? type;
 
@@ -296,7 +293,7 @@ final class CodebuildProjectCache {
   Map<String, Object?> encode() => {
     'cache_namespace': ?cacheNamespace?.toTfJson(),
     'location': ?location?.toTfJson(),
-    if (modes != null) 'modes': [for (final e in modes!) e.toTfJson()],
+    'modes': ?modes?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
 }

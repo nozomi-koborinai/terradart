@@ -39,7 +39,7 @@ final class StorageDiscoveryWorkspaceScope {
 
   final TfArg<String> displayName;
 
-  final List<StorageDiscoveryWorkspaceResourceTypes> resourceTypes;
+  final EnumList<StorageDiscoveryWorkspaceResourceTypes> resourceTypes;
 
   final TfArg<List<String>>? tagKeysOnly;
 
@@ -48,7 +48,7 @@ final class StorageDiscoveryWorkspaceScope {
   @internal
   Map<String, Object?> encode() => {
     'display_name': displayName.toTfJson(),
-    'resource_types': [for (final e in resourceTypes) e.toTfJson()],
+    'resource_types': resourceTypes.toTfJson(),
     'tag_keys_only': ?tagKeysOnly?.toTfJson(),
     'tags': ?tags?.toTfJson(),
   };

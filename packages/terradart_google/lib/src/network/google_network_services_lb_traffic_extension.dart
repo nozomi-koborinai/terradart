@@ -88,7 +88,8 @@ final class NetworkServicesLbTrafficExtensionExtensions {
 
   final TfArg<String> service;
 
-  final List<NetworkServicesLbTrafficExtensionSupportedEvents>? supportedEvents;
+  final EnumList<NetworkServicesLbTrafficExtensionSupportedEvents>?
+  supportedEvents;
 
   final TfArg<String>? timeout;
 
@@ -101,8 +102,7 @@ final class NetworkServicesLbTrafficExtensionExtensions {
     'metadata': ?metadata?.toTfJson(),
     'name': name.toTfJson(),
     'service': service.toTfJson(),
-    if (supportedEvents != null)
-      'supported_events': [for (final e in supportedEvents!) e.toTfJson()],
+    'supported_events': ?supportedEvents?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
   };
 }

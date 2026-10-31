@@ -650,7 +650,7 @@ final class CloudfrontDistributionCustomOriginConfig {
 
   final TfArg<num>? originReadTimeout;
 
-  final List<CloudfrontDistributionOriginSslProtocols> originSslProtocols;
+  final EnumList<CloudfrontDistributionOriginSslProtocols> originSslProtocols;
 
   final CloudfrontDistributionOriginMtlsConfig? originMtlsConfig;
 
@@ -662,7 +662,7 @@ final class CloudfrontDistributionCustomOriginConfig {
     'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
     'origin_protocol_policy': originProtocolPolicy.toTfJson(),
     'origin_read_timeout': ?originReadTimeout?.toTfJson(),
-    'origin_ssl_protocols': [for (final e in originSslProtocols) e.toTfJson()],
+    'origin_ssl_protocols': originSslProtocols.toTfJson(),
     'origin_mtls_config': ?originMtlsConfig?.encode(),
   };
 }

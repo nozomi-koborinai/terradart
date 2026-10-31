@@ -101,8 +101,10 @@ final class MigrateSlot {
 
   /// Whether a [MigrateSlotKind.scalar] element is `TfArg`-wrapped (the
   /// norm) or a bare Dart value (a curator-flagged exception). An enum is a
-  /// `TfArg<String>` itself, so a [MigrateSlotKind.enumValue] slot is always
-  /// wrapped. For a
+  /// `TfArg<String>` itself, so a single [MigrateSlotKind.enumValue] slot is
+  /// always wrapped; a [repeated] one is wrapped when the parameter is an
+  /// `EnumList<E>` (one `TfArg` holding the list, so a whole-list variable
+  /// or expression fits) and not when it is a bare `List<E>`. For a
   /// [MigrateSlotKind.passthrough] payload: whether the parameter is
   /// `TfArg<Map<...>>` (an IAM `condition`) or a bare `Map` / `List`
   /// (`advancedExtra` on a hand-written helper, spread into the block) —

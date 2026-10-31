@@ -424,14 +424,14 @@ final class MonitorDataCollectionRulePrometheusForwarder {
 
   final TfArg<String> name;
 
-  final List<MonitorDataCollectionRuleStreams> streams;
+  final EnumList<MonitorDataCollectionRuleStreams> streams;
 
   final List<MonitorDataCollectionRuleLabelIncludeFilter>? labelIncludeFilter;
 
   @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    'streams': [for (final e in streams) e.toTfJson()],
+    'streams': streams.toTfJson(),
     if (labelIncludeFilter != null)
       'label_include_filter': [for (final e in labelIncludeFilter!) e.encode()],
   };
@@ -504,9 +504,9 @@ final class MonitorDataCollectionRuleSyslog {
     required this.streams,
   });
 
-  final List<MonitorDataCollectionRuleFacilityNames> facilityNames;
+  final EnumList<MonitorDataCollectionRuleFacilityNames> facilityNames;
 
-  final List<MonitorDataCollectionRuleLogLevels> logLevels;
+  final EnumList<MonitorDataCollectionRuleLogLevels> logLevels;
 
   final TfArg<String> name;
 
@@ -514,8 +514,8 @@ final class MonitorDataCollectionRuleSyslog {
 
   @internal
   Map<String, Object?> encode() => {
-    'facility_names': [for (final e in facilityNames) e.toTfJson()],
-    'log_levels': [for (final e in logLevels) e.toTfJson()],
+    'facility_names': facilityNames.toTfJson(),
+    'log_levels': logLevels.toTfJson(),
     'name': name.toTfJson(),
     'streams': streams.toTfJson(),
   };

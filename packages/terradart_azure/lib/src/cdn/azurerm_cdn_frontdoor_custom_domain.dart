@@ -127,14 +127,14 @@ extension type const CdnFrontdoorCustomDomainType._(TfArg<String> _)
 final class CdnFrontdoorCustomDomainCustomCiphers {
   const CdnFrontdoorCustomDomainCustomCiphers({this.tls12, this.tls13});
 
-  final List<CdnFrontdoorCustomDomainTls12>? tls12;
+  final EnumList<CdnFrontdoorCustomDomainTls12>? tls12;
 
-  final List<CdnFrontdoorCustomDomainTls13>? tls13;
+  final EnumList<CdnFrontdoorCustomDomainTls13>? tls13;
 
   @internal
   Map<String, Object?> encode() => {
-    if (tls12 != null) 'tls12': [for (final e in tls12!) e.toTfJson()],
-    if (tls13 != null) 'tls13': [for (final e in tls13!) e.toTfJson()],
+    'tls12': ?tls12?.toTfJson(),
+    'tls13': ?tls13?.toTfJson(),
   };
 }
 

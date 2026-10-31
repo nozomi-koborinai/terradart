@@ -50,7 +50,7 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
 
   final TfArg<bool>? inputEnabled;
 
-  final List<BedrockGuardrailInputModalities>? inputModalities;
+  final EnumList<BedrockGuardrailInputModalities>? inputModalities;
 
   final BedrockGuardrailInputStrength inputStrength;
 
@@ -58,7 +58,7 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
 
   final TfArg<bool>? outputEnabled;
 
-  final List<BedrockGuardrailOutputModalities>? outputModalities;
+  final EnumList<BedrockGuardrailOutputModalities>? outputModalities;
 
   final BedrockGuardrailOutputStrength outputStrength;
 
@@ -68,13 +68,11 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
     'input_enabled': ?inputEnabled?.toTfJson(),
-    if (inputModalities != null)
-      'input_modalities': [for (final e in inputModalities!) e.toTfJson()],
+    'input_modalities': ?inputModalities?.toTfJson(),
     'input_strength': inputStrength.toTfJson(),
     'output_action': ?outputAction?.toTfJson(),
     'output_enabled': ?outputEnabled?.toTfJson(),
-    if (outputModalities != null)
-      'output_modalities': [for (final e in outputModalities!) e.toTfJson()],
+    'output_modalities': ?outputModalities?.toTfJson(),
     'output_strength': outputStrength.toTfJson(),
     'type': type.toTfJson(),
   };

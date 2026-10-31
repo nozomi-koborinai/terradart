@@ -374,14 +374,13 @@ final class AlloydbClusterWeeklySchedule {
     required this.startTimes,
   });
 
-  final List<AlloydbClusterDaysOfWeek>? daysOfWeek;
+  final EnumList<AlloydbClusterDaysOfWeek>? daysOfWeek;
 
   final List<AlloydbClusterStartTimes> startTimes;
 
   @internal
   Map<String, Object?> encode() => {
-    if (daysOfWeek != null)
-      'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
+    'days_of_week': ?daysOfWeek?.toTfJson(),
     'start_times': [for (final e in startTimes) e.encode()],
   };
 }

@@ -225,13 +225,13 @@ final class AzureLeftoverStack extends Stack {
         'api_management_authorization_server',
         apiManagementName: .literal(leftover),
         authorizationEndpoint: .literal(leftover),
-        authorizationMethods: [.delete],
+        authorizationMethods: .literal([.delete]),
         clientId: .literal(
           '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
         ),
         clientRegistrationEndpoint: .literal(leftover),
         displayName: .literal(leftover),
-        grantTypes: [.authorizationcode],
+        grantTypes: .literal([.authorizationcode]),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
       ),
@@ -277,7 +277,7 @@ final class AzureLeftoverStack extends Stack {
         body: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         subject: .literal(leftover),
-        templateName: .literal('AccountClosedDeveloper'),
+        templateName: .accountcloseddeveloper,
       ),
     );
 
@@ -4188,7 +4188,7 @@ final class AzureLeftoverStack extends Stack {
             destinationAddresses: .literal([leftover]),
             destinationPorts: .literal([leftover]),
             name: .literal(leftover),
-            protocols: [.any],
+            protocols: .literal([.any]),
             translatedAddress: .literal(leftover),
             translatedPort: .literal(leftover),
           ),
@@ -4208,7 +4208,7 @@ final class AzureLeftoverStack extends Stack {
           FirewallNetworkRuleCollectionRule(
             destinationPorts: .literal([leftover]),
             name: .literal(leftover),
-            protocols: [.any],
+            protocols: .literal([.any]),
           ),
         ],
       ),
@@ -4277,7 +4277,7 @@ final class AzureLeftoverStack extends Stack {
         ],
         routingRule: [
           FrontdoorRoutingRule(
-            acceptedProtocols: [.http],
+            acceptedProtocols: .literal([.http]),
             frontendEndpoints: .literal([leftover]),
             name: .literal(leftover),
             patternsToMatch: .literal([leftover]),
@@ -4880,7 +4880,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermKeyVaultKey(
         'key_vault_key',
-        keyOpts: [.decrypt],
+        keyOpts: .literal([.decrypt]),
         keyType: .ec,
         keyVaultId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue',
@@ -5410,7 +5410,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermLogAnalyticsDatasourceWindowsEvent(
         'log_analytics_datasource_windows_event',
         eventLogName: .literal(leftover),
-        eventTypes: [.error],
+        eventTypes: .literal([.error]),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         workspaceName: .literal(leftover),
@@ -5545,7 +5545,7 @@ final class AzureLeftoverStack extends Stack {
         logicAppId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName',
         ),
-        method: .literal('DELETE'),
+        method: .delete,
         name: .literal(leftover),
         uri: .literal('https://example.com'),
       ),
@@ -5886,7 +5886,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Balanced_B0'),
+        skuName: .balancedB0,
       ),
     );
 
@@ -6682,7 +6682,7 @@ final class AzureLeftoverStack extends Stack {
               '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
             ),
             name: .literal(leftover),
-            protocols: [.nfsv4p1],
+            protocols: .literal([.nfsv4p1]),
             securityStyle: .ntfs,
             serviceLevel: .premium,
             snapshotDirectoryVisible: .literal(true),
@@ -6707,7 +6707,7 @@ final class AzureLeftoverStack extends Stack {
               '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
             ),
             name: .literal(leftover),
-            protocols: [.nfsv4p1],
+            protocols: .literal([.nfsv4p1]),
             securityStyle: .ntfs,
             serviceLevel: .premium,
             snapshotDirectoryVisible: .literal(true),
@@ -6797,7 +6797,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName',
         ),
         ipfxEmission: NetworkFunctionCollectorPolicyIpfxEmission(
-          destinationTypes: [.azuremonitor],
+          destinationTypes: .literal([.azuremonitor]),
         ),
         ipfxIngestion: NetworkFunctionCollectorPolicyIpfxIngestion(
           sourceResourceIds: .literal([
@@ -8482,7 +8482,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         name: .literal(leftover),
         productFilter: .azureActiveDirectoryIdentityProtection,
-        severityFilter: [.high],
+        severityFilter: .literal([.high]),
       ),
     );
 
@@ -8804,7 +8804,7 @@ final class AzureLeftoverStack extends Stack {
         name: .literal(leftover),
         osType: .linux,
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('B1'),
+        skuName: .b1,
       ),
     );
 
@@ -8960,7 +8960,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRName',
         ),
         publicNetwork: SignalrServiceNetworkAclPublicNetwork(
-          requestTypes: .allowedRequestTypes([.clientconnection]),
+          requestTypes: .allowedRequestTypes(.literal([.clientconnection])),
         ),
       ),
     );
@@ -10832,7 +10832,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         routingPolicy: [
           VirtualHubRoutingIntentRoutingPolicy(
-            destinations: [.internet],
+            destinations: .literal([.internet]),
             name: .literal(leftover),
             nextHop: .literal(
               '/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/leftover',
@@ -11212,7 +11212,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        vpnAuthenticationTypes: [.aad],
+        vpnAuthenticationTypes: .literal([.aad]),
       ),
     );
 
@@ -11321,7 +11321,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubName',
         ),
         publicNetwork: WebPubsubNetworkAclPublicNetwork(
-          requestTypes: .allowedRequestTypes([.clientconnection]),
+          requestTypes: .allowedRequestTypes(.literal([.clientconnection])),
         ),
       ),
     );

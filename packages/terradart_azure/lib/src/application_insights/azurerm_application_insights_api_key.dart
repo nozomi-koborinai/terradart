@@ -75,8 +75,8 @@ final class AzurermApplicationInsightsApiKey extends Resource {
     super.localName, {
     required TfArg<String> applicationInsightsId,
     required TfArg<String> name,
-    List<ApplicationInsightsApiKeyReadPermissions>? readPermissions,
-    List<ApplicationInsightsApiKeyWritePermissions>? writePermissions,
+    EnumList<ApplicationInsightsApiKeyReadPermissions>? readPermissions,
+    EnumList<ApplicationInsightsApiKeyWritePermissions>? writePermissions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -86,14 +86,8 @@ final class AzurermApplicationInsightsApiKey extends Resource {
          argMap: {
            'application_insights_id': applicationInsightsId,
            'name': name,
-           if (readPermissions != null)
-             'read_permissions': TfArg.literal([
-               for (final e in readPermissions) e.toTfJson(),
-             ]),
-           if (writePermissions != null)
-             'write_permissions': TfArg.literal([
-               for (final e in writePermissions) e.toTfJson(),
-             ]),
+           'read_permissions': ?readPermissions,
+           'write_permissions': ?writePermissions,
          },
        );
 

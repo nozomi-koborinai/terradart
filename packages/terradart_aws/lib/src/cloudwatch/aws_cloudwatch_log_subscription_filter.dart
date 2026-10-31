@@ -70,7 +70,7 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
     TfArg<bool>? applyOnTransformedLogs,
     required TfArg<String> destinationArn,
     CloudwatchLogSubscriptionFilterDistribution? distribution,
-    List<CloudwatchLogSubscriptionFilterEmitSystemFields>? emitSystemFields,
+    EnumList<CloudwatchLogSubscriptionFilterEmitSystemFields>? emitSystemFields,
     required TfArg<String> filterPattern,
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,
@@ -86,10 +86,7 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
            'apply_on_transformed_logs': ?applyOnTransformedLogs,
            'destination_arn': destinationArn,
            'distribution': ?distribution,
-           if (emitSystemFields != null)
-             'emit_system_fields': TfArg.literal([
-               for (final e in emitSystemFields) e.toTfJson(),
-             ]),
+           'emit_system_fields': ?emitSystemFields,
            'filter_pattern': filterPattern,
            'log_group_name': logGroupName.encodeAs('name'),
            'name': name,

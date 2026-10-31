@@ -198,7 +198,7 @@ sealed class ZeroTrustAccessApplicationMethods {
 
   /// Sets `allowed_methods`.
   const factory ZeroTrustAccessApplicationMethods.allowedMethods(
-    List<ZeroTrustAccessApplicationAllowedMethods> allowedMethods,
+    EnumList<ZeroTrustAccessApplicationAllowedMethods> allowedMethods,
   ) = ZeroTrustAccessApplicationAllowedMethodsChoice;
 
   /// The Terraform argument this choice sets.
@@ -232,7 +232,7 @@ final class ZeroTrustAccessApplicationAllowedMethodsChoice
     extends ZeroTrustAccessApplicationMethods {
   const ZeroTrustAccessApplicationAllowedMethodsChoice(this.allowedMethods);
 
-  final List<ZeroTrustAccessApplicationAllowedMethods> allowedMethods;
+  final EnumList<ZeroTrustAccessApplicationAllowedMethods> allowedMethods;
 
   @internal
   @override
@@ -241,7 +241,7 @@ final class ZeroTrustAccessApplicationAllowedMethodsChoice
   @internal
   @override
   Map<String, Object?> encode() => {
-    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
+    'allowed_methods': allowedMethods.toTfJson(),
   };
 }
 
@@ -598,7 +598,7 @@ final class ZeroTrustAccessApplicationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<ZeroTrustAccessApplicationAllowedAuthenticators>?
+  final EnumList<ZeroTrustAccessApplicationAllowedAuthenticators>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -607,10 +607,7 @@ final class ZeroTrustAccessApplicationMfaConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedAuthenticators != null)
-      'allowed_authenticators': [
-        for (final e in allowedAuthenticators!) e.toTfJson(),
-      ],
+    'allowed_authenticators': ?allowedAuthenticators?.toTfJson(),
     'mfa_disabled': ?mfaDisabled?.toTfJson(),
     'session_duration': ?sessionDuration?.toTfJson(),
   };
@@ -875,22 +872,22 @@ final class ZeroTrustAccessApplicationRdp {
     this.allowedClipboardRemoteToLocalFormats,
   });
 
-  final List<ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats>?
+  final EnumList<
+    ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats
+  >?
   allowedClipboardLocalToRemoteFormats;
 
-  final List<ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats>?
+  final EnumList<
+    ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats
+  >?
   allowedClipboardRemoteToLocalFormats;
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedClipboardLocalToRemoteFormats != null)
-      'allowed_clipboard_local_to_remote_formats': [
-        for (final e in allowedClipboardLocalToRemoteFormats!) e.toTfJson(),
-      ],
-    if (allowedClipboardRemoteToLocalFormats != null)
-      'allowed_clipboard_remote_to_local_formats': [
-        for (final e in allowedClipboardRemoteToLocalFormats!) e.toTfJson(),
-      ],
+    'allowed_clipboard_local_to_remote_formats':
+        ?allowedClipboardLocalToRemoteFormats?.toTfJson(),
+    'allowed_clipboard_remote_to_local_formats':
+        ?allowedClipboardRemoteToLocalFormats?.toTfJson(),
   };
 }
 
@@ -1586,7 +1583,7 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
     this.sessionDuration,
   });
 
-  final List<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>?
+  final EnumList<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -1595,10 +1592,7 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    if (allowedAuthenticators != null)
-      'allowed_authenticators': [
-        for (final e in allowedAuthenticators!) e.toTfJson(),
-      ],
+    'allowed_authenticators': ?allowedAuthenticators?.toTfJson(),
     'mfa_disabled': ?mfaDisabled?.toTfJson(),
     'session_duration': ?sessionDuration?.toTfJson(),
   };
@@ -1785,7 +1779,7 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? defaultRelayState;
 
-  final List<ZeroTrustAccessApplicationGrantTypes>? grantTypes;
+  final EnumList<ZeroTrustAccessApplicationGrantTypes>? grantTypes;
 
   final TfArg<String>? groupFilterRegex;
 
@@ -1799,7 +1793,7 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? samlAttributeTransformJsonata;
 
-  final List<ZeroTrustAccessApplicationScopes>? scopes;
+  final EnumList<ZeroTrustAccessApplicationScopes>? scopes;
 
   final TfArg<String>? spEntityId;
 
@@ -1823,8 +1817,7 @@ final class ZeroTrustAccessApplicationSaasApp {
     'auth_type': ?authType?.toTfJson(),
     'consumer_service_url': ?consumerServiceUrl?.toTfJson(),
     'default_relay_state': ?defaultRelayState?.toTfJson(),
-    if (grantTypes != null)
-      'grant_types': [for (final e in grantTypes!) e.toTfJson()],
+    'grant_types': ?grantTypes?.toTfJson(),
     'group_filter_regex': ?groupFilterRegex?.toTfJson(),
     'idp_entity_id': ?idpEntityId?.toTfJson(),
     'name_id_format': ?nameIdFormat?.toTfJson(),
@@ -1832,7 +1825,7 @@ final class ZeroTrustAccessApplicationSaasApp {
     'redirect_uris': ?redirectUris?.toTfJson(),
     'saml_attribute_transform_jsonata': ?samlAttributeTransformJsonata
         ?.toTfJson(),
-    if (scopes != null) 'scopes': [for (final e in scopes!) e.toTfJson()],
+    'scopes': ?scopes?.toTfJson(),
     'sp_entity_id': ?spEntityId?.toTfJson(),
     'sso_endpoint': ?ssoEndpoint?.toTfJson(),
     if (customAttributes != null)

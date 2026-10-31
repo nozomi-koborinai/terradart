@@ -310,7 +310,7 @@ final class AwsS3BucketInventory extends Resource {
     TfArg<bool>? enabled,
     required S3BucketInventoryIncludedObjectVersions includedObjectVersions,
     required TfArg<String> name,
-    List<S3BucketInventoryOptionalFields>? optionalFields,
+    EnumList<S3BucketInventoryOptionalFields>? optionalFields,
     TfArg<String>? region,
     required S3BucketInventoryDestination destination,
     S3BucketInventoryFilter? filter,
@@ -326,10 +326,7 @@ final class AwsS3BucketInventory extends Resource {
            'enabled': ?enabled,
            'included_object_versions': includedObjectVersions,
            'name': name,
-           if (optionalFields != null)
-             'optional_fields': TfArg.literal([
-               for (final e in optionalFields) e.toTfJson(),
-             ]),
+           'optional_fields': ?optionalFields,
            'region': ?region,
            'destination': TfArg.literal(destination.encode()),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),

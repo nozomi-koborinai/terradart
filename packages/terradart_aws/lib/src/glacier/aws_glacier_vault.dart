@@ -18,13 +18,13 @@ final class GlacierVaultNotification {
     required this.snsTopic,
   });
 
-  final List<GlacierVaultEvents> events;
+  final EnumList<GlacierVaultEvents> events;
 
   final RefTo<AwsSnsTopic> snsTopic;
 
   @internal
   Map<String, Object?> encode() => {
-    'events': [for (final e in events) e.toTfJson()],
+    'events': events.toTfJson(),
     'sns_topic': snsTopic.encodeAs('arn').toTfJson(),
   };
 }

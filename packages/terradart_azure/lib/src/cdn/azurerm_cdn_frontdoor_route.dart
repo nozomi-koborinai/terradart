@@ -67,7 +67,8 @@ final class CdnFrontdoorRouteCache {
 
   final TfArg<bool>? compressionEnabled;
 
-  final List<CdnFrontdoorRouteContentTypesToCompress>? contentTypesToCompress;
+  final EnumList<CdnFrontdoorRouteContentTypesToCompress>?
+  contentTypesToCompress;
 
   final CdnFrontdoorRouteQueryStringCachingBehavior? queryStringCachingBehavior;
 
@@ -76,10 +77,7 @@ final class CdnFrontdoorRouteCache {
   @internal
   Map<String, Object?> encode() => {
     'compression_enabled': ?compressionEnabled?.toTfJson(),
-    if (contentTypesToCompress != null)
-      'content_types_to_compress': [
-        for (final e in contentTypesToCompress!) e.toTfJson(),
-      ],
+    'content_types_to_compress': ?contentTypesToCompress?.toTfJson(),
     'query_string_caching_behavior': ?queryStringCachingBehavior?.toTfJson(),
     'query_strings': ?queryStrings?.toTfJson(),
   };
@@ -323,7 +321,7 @@ final class AzurermCdnFrontdoorRoute extends Resource {
     TfArg<bool>? linkToDefaultDomain,
     required TfArg<String> name,
     required TfArg<List<String>> patternsToMatch,
-    required List<CdnFrontdoorRouteSupportedProtocols> supportedProtocols,
+    required EnumList<CdnFrontdoorRouteSupportedProtocols> supportedProtocols,
     CdnFrontdoorRouteCache? cache,
     super.lifecycle,
     super.dependsOn,
@@ -344,9 +342,7 @@ final class AzurermCdnFrontdoorRoute extends Resource {
            'link_to_default_domain': ?linkToDefaultDomain,
            'name': name,
            'patterns_to_match': patternsToMatch,
-           'supported_protocols': TfArg.literal([
-             for (final e in supportedProtocols) e.toTfJson(),
-           ]),
+           'supported_protocols': supportedProtocols,
            if (cache != null) 'cache': TfArg.literal(cache.encode()),
          },
        );

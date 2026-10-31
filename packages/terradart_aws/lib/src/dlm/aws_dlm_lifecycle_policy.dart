@@ -77,11 +77,11 @@ final class DlmLifecyclePolicyDetails {
 
   final DlmLifecyclePolicyType? policyType;
 
-  final List<DlmLifecyclePolicyResourceLocations>? resourceLocations;
+  final EnumList<DlmLifecyclePolicyResourceLocations>? resourceLocations;
 
   final DlmLifecyclePolicyResourceType? resourceType;
 
-  final List<DlmLifecyclePolicyResourceTypes>? resourceTypes;
+  final EnumList<DlmLifecyclePolicyResourceTypes>? resourceTypes;
 
   final TfArg<num>? retainInterval;
 
@@ -104,11 +104,9 @@ final class DlmLifecyclePolicyDetails {
     'extend_deletion': ?extendDeletion?.toTfJson(),
     'policy_language': ?policyLanguage?.toTfJson(),
     'policy_type': ?policyType?.toTfJson(),
-    if (resourceLocations != null)
-      'resource_locations': [for (final e in resourceLocations!) e.toTfJson()],
+    'resource_locations': ?resourceLocations?.toTfJson(),
     'resource_type': ?resourceType?.toTfJson(),
-    if (resourceTypes != null)
-      'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
+    'resource_types': ?resourceTypes?.toTfJson(),
     'retain_interval': ?retainInterval?.toTfJson(),
     'target_tags': ?targetTags?.toTfJson(),
     'action': ?action?.encode(),
@@ -685,7 +683,7 @@ final class DlmLifecyclePolicyScripts {
 
   final TfArg<num>? maximumRetryCount;
 
-  final List<DlmLifecyclePolicyStages>? stages;
+  final EnumList<DlmLifecyclePolicyStages>? stages;
 
   @internal
   Map<String, Object?> encode() => {
@@ -695,7 +693,7 @@ final class DlmLifecyclePolicyScripts {
     'execution_handler_service': ?executionHandlerService?.toTfJson(),
     'execution_timeout': ?executionTimeout?.toTfJson(),
     'maximum_retry_count': ?maximumRetryCount?.toTfJson(),
-    if (stages != null) 'stages': [for (final e in stages!) e.toTfJson()],
+    'stages': ?stages?.toTfJson(),
   };
 }
 

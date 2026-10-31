@@ -298,9 +298,9 @@ final class VirtualNetworkGatewayVpnClientConfiguration {
 
   final Sensitive<String>? radiusServerSecret;
 
-  final List<VirtualNetworkGatewayVpnAuthTypes>? vpnAuthTypes;
+  final EnumList<VirtualNetworkGatewayVpnAuthTypes>? vpnAuthTypes;
 
-  final List<VirtualNetworkGatewayVpnClientProtocols>? vpnClientProtocols;
+  final EnumList<VirtualNetworkGatewayVpnClientProtocols>? vpnClientProtocols;
 
   final VirtualNetworkGatewayIpsecPolicy? ipsecPolicy;
 
@@ -321,12 +321,8 @@ final class VirtualNetworkGatewayVpnClientConfiguration {
     'address_space': addressSpace.toTfJson(),
     'radius_server_address': ?radiusServerAddress?.toTfJson(),
     'radius_server_secret': ?radiusServerSecret?.toTfJson(),
-    if (vpnAuthTypes != null)
-      'vpn_auth_types': [for (final e in vpnAuthTypes!) e.toTfJson()],
-    if (vpnClientProtocols != null)
-      'vpn_client_protocols': [
-        for (final e in vpnClientProtocols!) e.toTfJson(),
-      ],
+    'vpn_auth_types': ?vpnAuthTypes?.toTfJson(),
+    'vpn_client_protocols': ?vpnClientProtocols?.toTfJson(),
     'ipsec_policy': ?ipsecPolicy?.encode(),
     if (radiusServer != null)
       'radius_server': [for (final e in radiusServer!) e.encode()],

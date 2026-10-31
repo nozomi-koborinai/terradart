@@ -308,7 +308,7 @@ final class ModelArmorTemplateMetadata {
 
   final TfArg<bool>? logTemplateOperations;
 
-  final List<ModelArmorTemplateModalities>? modalities;
+  final EnumList<ModelArmorTemplateModalities>? modalities;
 
   final ModelArmorTemplateFilterVersionSelector? filterVersionSelector;
 
@@ -328,8 +328,7 @@ final class ModelArmorTemplateMetadata {
         ?.toTfJson(),
     'log_sanitize_operations': ?logSanitizeOperations?.toTfJson(),
     'log_template_operations': ?logTemplateOperations?.toTfJson(),
-    if (modalities != null)
-      'modalities': [for (final e in modalities!) e.toTfJson()],
+    'modalities': ?modalities?.toTfJson(),
     'filter_version_selector': ?filterVersionSelector?.encode(),
     'multi_language_detection': ?multiLanguageDetection?.encode(),
   };

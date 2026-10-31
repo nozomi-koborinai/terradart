@@ -258,7 +258,10 @@ final class NetworkStack extends Stack {
           capacityGb: .literal(1024),
         ),
         networks: [
-          FilestoreInstanceNetworks(network: mainVpc.ref, modes: [.modeIpv4]),
+          FilestoreInstanceNetworks(
+            network: mainVpc.ref,
+            modes: .literal([.modeIpv4]),
+          ),
         ],
         dependsOn: apiDeps,
       ),

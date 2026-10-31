@@ -1016,13 +1016,13 @@ final class AzurermLogAnalyticsQueryPackQuery extends Resource {
     super.localName, {
     TfArg<String>? additionalSettingsJson,
     required TfArg<String> body,
-    List<LogAnalyticsQueryPackQueryCategories>? categories,
+    EnumList<LogAnalyticsQueryPackQueryCategories>? categories,
     TfArg<String>? description,
     required TfArg<String> displayName,
     TfArg<String>? name,
     required TfArg<String> queryPackId,
-    List<LogAnalyticsQueryPackQueryResourceTypes>? resourceTypes,
-    List<LogAnalyticsQueryPackQuerySolutions>? solutions,
+    EnumList<LogAnalyticsQueryPackQueryResourceTypes>? resourceTypes,
+    EnumList<LogAnalyticsQueryPackQuerySolutions>? solutions,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -1033,22 +1033,13 @@ final class AzurermLogAnalyticsQueryPackQuery extends Resource {
          argMap: {
            'additional_settings_json': ?additionalSettingsJson,
            'body': body,
-           if (categories != null)
-             'categories': TfArg.literal([
-               for (final e in categories) e.toTfJson(),
-             ]),
+           'categories': ?categories,
            'description': ?description,
            'display_name': displayName,
            'name': ?name,
            'query_pack_id': queryPackId,
-           if (resourceTypes != null)
-             'resource_types': TfArg.literal([
-               for (final e in resourceTypes) e.toTfJson(),
-             ]),
-           if (solutions != null)
-             'solutions': TfArg.literal([
-               for (final e in solutions) e.toTfJson(),
-             ]),
+           'resource_types': ?resourceTypes,
+           'solutions': ?solutions,
            'tags': ?tags,
          },
        );

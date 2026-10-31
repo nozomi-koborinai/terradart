@@ -186,13 +186,13 @@ final class CloudfrontMultitenantDistributionAllowedMethods {
     required this.items,
   });
 
-  final List<CloudfrontMultitenantDistributionCachedMethods> cachedMethods;
+  final EnumList<CloudfrontMultitenantDistributionCachedMethods> cachedMethods;
 
   final TfArg<List<String>> items;
 
   @internal
   Map<String, Object?> encode() => {
-    'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
+    'cached_methods': cachedMethods.toTfJson(),
     'items': items.toTfJson(),
   };
 }
@@ -551,7 +551,7 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
 
   final TfArg<num>? originReadTimeout;
 
-  final List<CloudfrontMultitenantDistributionOriginSslProtocols>
+  final EnumList<CloudfrontMultitenantDistributionOriginSslProtocols>
   originSslProtocols;
 
   final List<CloudfrontMultitenantDistributionOriginMtlsConfig>?
@@ -565,7 +565,7 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
     'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
     'origin_protocol_policy': originProtocolPolicy.toTfJson(),
     'origin_read_timeout': ?originReadTimeout?.toTfJson(),
-    'origin_ssl_protocols': [for (final e in originSslProtocols) e.toTfJson()],
+    'origin_ssl_protocols': originSslProtocols.toTfJson(),
     if (originMtlsConfig != null)
       'origin_mtls_config': [for (final e in originMtlsConfig!) e.encode()],
   };
