@@ -232,7 +232,7 @@ void main() {
     );
   });
 
-  final forwardProxy = (
+  const forwardProxy = (
     CatalogKind.resource,
     'azurerm_linux_web_app',
     'auth_settings_v2.forward_proxy_convention',
@@ -257,7 +257,7 @@ void main() {
   });
 
   test('the Bigtable allowance admits only its two values', () {
-    final bigtable = (
+    const bigtable = (
       CatalogKind.resource,
       'google_bigtable_instance',
       'cluster.node_scaling_factor',

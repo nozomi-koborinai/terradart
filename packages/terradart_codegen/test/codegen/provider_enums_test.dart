@@ -417,11 +417,11 @@ properties:
         providerSource: ir.providerSource,
         providerVersion: ir.providerVersion,
         resources: {
-          'x_thing': ResourceDef(
+          'x_thing': const ResourceDef(
             terraformType: 'x_thing',
             root: BlockDef(
               attributes: [
-                const Attribute(
+                Attribute(
                   name: 'status',
                   type: StringType(),
                   constraints: Constraints(
