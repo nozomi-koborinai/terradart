@@ -7,6 +7,7 @@ import 'package:terradart_core/internal.dart'
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import '../migrate_manifest.dart';
+import '../report.dart' show MigratedShape;
 import 'blocker.dart';
 import 'body_map.dart';
 import 'context.dart';
@@ -141,6 +142,9 @@ final class ValueEmitter {
 
   final Set<String> usedTargets = {};
   final Set<String> usedVariables = {};
+
+  /// The typed API shapes the emitted arguments use.
+  final Set<MigratedShape> shapes = {};
 
   /// Declared variables whose handle local a value read.
   final Set<String> usedHandles = {};
@@ -630,6 +634,7 @@ final class ValueEmitter {
         usedTargets.add(address);
         final getter = target.getter(attribute);
         if (getter != null && getter.dartType == type) {
+          shapes.add(MigratedShape.outputGetter);
           return '${target.dartName}.${getter.dartName}';
         }
         return 'TfRef.attribute<$type>('
@@ -702,6 +707,7 @@ final class ValueEmitter {
     usedTargets.add(c.address);
     final getter = target.getter(c.attribute);
     if (getter != null) {
+      shapes.add(MigratedShape.outputGetter);
       return '${target.dartName}.${getter.dartName}.interpolation';
     }
     return 'TfRef.attribute<String>(${target.dartName}, '
@@ -756,6 +762,7 @@ final class ValueEmitter {
         final target = ctx.targets[c.address];
         if (target != null && _reads(target, className)) {
           usedTargets.add(c.address);
+          shapes.add(MigratedShape.reference);
           final attribute = c.attribute;
           return attribute == slot.attribute
               ? '${target.dartName}.ref'
@@ -1054,6 +1061,19 @@ final class ValueEmitter {
         e is! LiteralExpr &&
         e is! TupleExpr &&
         e is! ObjectExpr;
+    String enumCall(String typedArg) {
+      final own =
+          typedArg.startsWith('.variable(') ||
+          typedArg.startsWith('.expression(');
+      if (typedArg.startsWith('.variable(')) {
+        shapes.add(MigratedShape.enumVariable);
+      } else if (typedArg.startsWith('.expression(')) {
+        shapes.add(MigratedShape.enumExpression);
+      }
+      final call = own ? typedArg : '.arg($typedArg)';
+      return _typed ? call : '$enumName$call';
+    }
+
     String member(Expr e) {
       final raw = e.constantString;
       if (raw == null) {
@@ -1063,13 +1083,27 @@ final class ValueEmitter {
         );
       }
       final exact = members[raw];
-      if (exact != null) return _enumMember(enumName, exact);
+      if (exact != null) {
+        shapes.add(MigratedShape.enumMember);
+        return _enumMember(enumName, exact);
+      }
       final folded = _caseInsensitiveMember(members, raw);
       if (folded == null) {
-        throw MigrateBlocker(
-          'argument "$path": "$raw" is not a member of $enumName',
+        // A value the machine source does not list still synthesizes as
+        // written through the enum's own `.expression`. One that reads as
+        // a template would be interpolated there, so it stays a blocker.
+        if (hasTemplateSequence(raw)) {
+          throw MigrateBlocker(
+            'argument "$path": "$raw" is not a member of $enumName',
+          );
+        }
+        ctx.warnings.add(
+          'argument "$path": "$raw" is not a member of $enumName; it is '
+          'written $enumName.expression(...)',
         );
+        return enumCall('.expression(${dartString(raw)})');
       }
+      shapes.add(MigratedShape.enumMember);
       ctx.warnings.add(
         'argument "$path": "$raw" becomes $enumName.${folded.value}, which '
         'synthesizes as "${folded.key}" (the provider matches enum values '
@@ -1081,13 +1115,6 @@ final class ValueEmitter {
     // An enum is a `TfArg<String>`: a member, `.variable(...)` /
     // `.expression(...)` (constructors every enum declares), or any other
     // `TfArg<String>` — a reference, a lifted workspace — through `.arg(...)`.
-    String enumCall(String typedArg) {
-      final own =
-          typedArg.startsWith('.variable(') ||
-          typedArg.startsWith('.expression(');
-      final call = own ? typedArg : '.arg($typedArg)';
-      return _typed ? call : '$enumName$call';
-    }
 
     String element(Expr e) {
       if (!isExpression(e)) return member(e);
@@ -1103,6 +1130,7 @@ final class ValueEmitter {
       // An `EnumList<E>`: a literal list of members, or one value that is
       // the whole list.
       if (value is TupleExpr) {
+        shapes.add(MigratedShape.enumListLiteral);
         return _arg('literal([${value.elements.map(element).join(', ')}])');
       }
       if (!isExpression(value)) {
@@ -1114,9 +1142,11 @@ final class ValueEmitter {
       if (singleReference(value) case final ref?) {
         if (classifyTraversal(ref) case VariableReference(:final name)) {
           usedVariables.add(name);
+          shapes.add(MigratedShape.enumListVariable);
           return _arg('variable(${dartString(name)})');
         }
       }
+      shapes.add(MigratedShape.enumListExpression);
       return _expression(value);
     }
     if (slot.repeated) {
@@ -1282,6 +1312,11 @@ final class ValueEmitter {
       sub.checkClaimed();
       candidate.claimed.add(key);
     }
+    shapes.add(
+      slot.required
+          ? MigratedShape.sealedExactlyOne
+          : MigratedShape.sealedAtMostOne,
+    );
     final shorthand = helper.shorthand;
     return shorthand == null ? '$className($args)' : '.$shorthand($args)';
   }

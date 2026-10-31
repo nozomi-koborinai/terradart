@@ -569,18 +569,18 @@ resource "aws_s3_bucket" "logs" {
       );
     });
 
-    test('an enum value the wrapper does not know', () {
+    test('an enum template that names no member', () {
       final r = _migrateJson({
         'terraform': _google,
         'resource': {
           'google_pubsub_schema': {
-            's': {'name': 's', 'type': 'YAML'},
+            's': {'name': 's', 'type': r'$${YAML}'},
           },
         },
       });
       expect(
         reasonOf(r, 'google_pubsub_schema.s'),
-        contains('"YAML" is not a member of PubsubSchemaType'),
+        contains(r'"${YAML}" is not a member of PubsubSchemaType'),
       );
     });
 
@@ -817,11 +817,19 @@ resource "google_pubsub_topic" "t" {
         ],
       );
 
-      test('stays in Terraform for a case-sensitive provider', () {
+      test('is written as the enum expression for a case-sensitive '
+          'provider', () {
+        final r = migrate(caseInsensitive: false);
+        expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
         expect(
-          reasonOf(migrate(caseInsensitive: false), 'google_pubsub_schema.s'),
+          r.files['lib/demo_stack.dart'],
+          contains("type: .expression('avro')"),
+        );
+        expect(
+          r.report.warnings.single,
           contains('"avro" is not a member of PubsubSchemaType'),
         );
+        expect(r.report.shapes, contains(MigratedShape.enumExpression));
       });
 
       test('names the canonical member, with a warning, otherwise', () {

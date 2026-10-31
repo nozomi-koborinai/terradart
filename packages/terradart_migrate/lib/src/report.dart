@@ -86,6 +86,40 @@ final class KeptItem {
 }
 
 /// The report of one module's migration.
+/// A typed API shape a migrated argument is written in.
+enum MigratedShape {
+  /// An enum member (`.premium`) for a literal that names one.
+  enumMember,
+
+  /// An enum's `.variable(...)`.
+  enumVariable,
+
+  /// An enum's `.expression(...)`, for a Terraform expression or a literal
+  /// that names no member.
+  enumExpression,
+
+  /// An `EnumList` literal of members.
+  enumListLiteral,
+
+  /// An `EnumList` that is one whole-list `.variable(...)`.
+  enumListVariable,
+
+  /// An `EnumList` that is one whole-list `.expression(...)`.
+  enumListExpression,
+
+  /// A variant of a required sealed argument (an exactly-one group).
+  sealedExactlyOne,
+
+  /// A variant of a nullable sealed argument (an at-most-one group).
+  sealedAtMostOne,
+
+  /// A `RefTo` filled with a migrated block's `ref`.
+  reference,
+
+  /// A migrated block's output getter (`topic.name`).
+  outputGetter,
+}
+
 final class MigrationReport {
   /// Creates the report for [module], migrated into [stackClass].
   const MigrationReport({
@@ -97,6 +131,7 @@ final class MigrationReport {
     required this.packages,
     this.providers = const [],
     this.expanded = const [],
+    this.shapes = const {},
   });
 
   /// The module name (its directory, or the name the caller gave).
@@ -121,6 +156,9 @@ final class MigrationReport {
   /// Provider local names the Stack registers (`google`, `time`, ...): their
   /// `required_providers` entries are the Stack's, never the sidecar's.
   final List<String> providers;
+
+  /// The typed API shapes the migrated resources' arguments use.
+  final Set<MigratedShape> shapes;
 
   /// `count` / `for_each` blocks unrolled into one resource per instance;
   /// their instances are listed in [migrated] under the new addresses.
