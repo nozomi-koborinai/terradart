@@ -9,8 +9,32 @@ import 'migrate_shape_fixtures.dart';
 void main() {
   final renamed = renamedTypes(File('MIGRATING.md').readAsStringSync());
 
-  test('the rename table is found', () {
+  test('the rename tables are found', () {
     expect(renamed, contains('Wafv2WebAclRuleNamed'));
+    expect(
+      renamedTypes('''
+### One
+| Before | After |
+|---|---|
+| `GoogleThing('t', mode: .x)` | `GoogleThing('t', mode: .y)` |
+| `OldName` | `NewName` |
+
+### Two
+| Before | After |
+|---|---|
+| `OtherOld` | `OtherNew` |
+'''),
+      {'NewName', 'OtherNew'},
+    );
+  });
+
+  test('a MIGRATING.md with no rename fails loudly', () {
+    expect(
+      () => renamedTypes(
+        '### Renames\n| Old | New |\n|---|---|\n| `A` | `B` |\n',
+      ),
+      throwsStateError,
+    );
   });
 
   for (final manifest in allMigrateManifests) {

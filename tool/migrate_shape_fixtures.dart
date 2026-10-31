@@ -65,21 +65,33 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
   return out;
 }
 
-/// The new names of the latest rename table in MIGRATING.md: the `After`
-/// column of "Long and repeated type names are shorter".
+/// The new names MIGRATING.md records for renamed types: every row of a
+/// `| Before | After |` table whose two cells are each one type name.
+/// Throws when there is none, so a reworded table cannot turn the renamed
+/// type check off.
 Set<String> renamedTypes(String migratingMd) {
-  const heading = '### Long and repeated type names are shorter';
-  final start = migratingMd.indexOf(heading);
-  if (start < 0) return const {};
-  final end = migratingMd.indexOf('\n### ', start + heading.length);
-  final section = migratingMd.substring(start, end < 0 ? null : end);
-  return {
-    for (final m in RegExp(
-      r'^\| `[^`]+` \| `([^`]+)` \|$',
-      multiLine: true,
-    ).allMatches(section))
-      m.group(1)!,
-  };
+  final header = RegExp(r'^\| *Before *\| *After *\|$');
+  final rename = RegExp(
+    r'^\| `[A-Z][A-Za-z0-9]*` \| `([A-Z][A-Za-z0-9]*)` \|$',
+  );
+  final out = <String>{};
+  var inTable = false;
+  for (final line in migratingMd.split('\n')) {
+    if (header.hasMatch(line)) {
+      inTable = true;
+    } else if (!line.startsWith('|')) {
+      inTable = false;
+    } else if (inTable) {
+      if (rename.firstMatch(line) case final m?) out.add(m.group(1)!);
+    }
+  }
+  if (out.isEmpty) {
+    throw StateError(
+      'MIGRATING.md has no Before / After row that renames a type; the '
+      'shape fixtures cannot check renamed types',
+    );
+  }
+  return out;
 }
 
 /// Why [report], the migration of [manifest]'s shape fixture, does not cover
