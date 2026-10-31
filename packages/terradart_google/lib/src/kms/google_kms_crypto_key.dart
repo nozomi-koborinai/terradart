@@ -321,7 +321,7 @@ class KmsCryptoKeyVersionTemplate {
 ///   // Duration into the `"{seconds}s"` form Terraform expects.
 ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
 ///   versionTemplate: KmsCryptoKeyVersionTemplate(
-///     algorithm: .literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
+///     algorithm: .googleSymmetricEncryption,
 ///     protectionLevel: KmsProtectionLevel.software,
 ///   ),
 /// );

@@ -51,9 +51,7 @@ extension type const DataCatalogTaxonomyActivatedPolicyTypes._(TfArg<String> _)
 ///   'pii',
 ///   displayName: TfArg.literal('PII taxonomy'),
 ///   description: TfArg.literal('Policy tags for PII columns'),
-///   activatedPolicyTypes: [
-///     DataCatalogTaxonomyActivatedPolicyTypes.fineGrainedAccessControl,
-///   ],
+///   activatedPolicyTypes: .literal([.fineGrainedAccessControl]),
 ///   region: TfArg.literal('us-central1'),
 /// );
 /// ```

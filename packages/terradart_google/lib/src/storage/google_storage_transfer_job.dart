@@ -1127,7 +1127,7 @@ final class StorageTransferJobTransferManifest {
 /// GoogleStorageTransferJob(
 ///   'copy',
 ///   description: TfArg.literal('terradart disabled gcs copy'),
-///   status: TfArg.literal('DISABLED'),
+///   status: .disabled,
 ///   transferSpec: StorageTransferJobTransferSpec(
 ///     gcsDataSource: .new(
 ///       bucketName: src.ref,

@@ -296,7 +296,7 @@ final class VertexAiIndexTreeAhConfig {
 ///   'idx',
 ///   displayName: TfArg.literal('terradart-idx'),
 ///   region: TfArg.literal('us-central1'),
-///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
+///   indexUpdateMethod: .streamUpdate,
 ///   metadata: VertexAiIndexMetadata(
 ///     config: .new(
 ///       dimensions: TfArg.literal(128),

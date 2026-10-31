@@ -416,7 +416,7 @@ final class ClouddeployDeployPolicyTarget {
 ///     ClouddeployDeployPolicyRules(
 ///       rolloutRestriction: .new(
 ///         id: TfArg.literal('no-automation'),
-///         invokers: [.deployAutomation],
+///         invokers: .literal([.deployAutomation]),
 ///       ),
 ///     ),
 ///   ],

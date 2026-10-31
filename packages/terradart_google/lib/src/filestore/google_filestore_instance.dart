@@ -453,7 +453,7 @@ final class FilestoreInstanceIopsPerTb {
 ///   networks: [
 ///     FilestoreInstanceNetworks(
 ///       network: vpc.ref,
-///       modes: [.modeIpv4],
+///       modes: .literal([.modeIpv4]),
 ///     ),
 ///   ],
 /// );

@@ -1041,7 +1041,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///       intervalSec: TfArg.literal(60),
 ///     ),
 ///     exceedRedirectOptions: .new(
-///       type: TfArg.literal('GOOGLE_RECAPTCHA'),
+///       type: .googleRecaptcha,
 ///     ),
 ///   ),
 /// );

@@ -937,7 +937,7 @@ final class ComposerEnvironmentStorageConfig {
 ///   name: TfArg.literal('terradart-composer'),
 ///   region: TfArg.literal('us-central1'),
 ///   config: ComposerEnvironmentConfig(
-///     environmentSize: TfArg.literal('ENVIRONMENT_SIZE_SMALL'),
+///     environmentSize: .environmentSizeSmall,
 ///   ),
 /// );
 /// ```
