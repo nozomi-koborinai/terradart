@@ -27,8 +27,9 @@ void main() {
 
   test('a migrated Stack whose synth differs from its input fails', () async {
     final changed = jsonDecode(jsonEncode(input)) as Map<String, dynamic>;
-    (changed['resource'] as Map)['time_sleep']['first']['create_duration'] =
-        '60s';
+    final resources = changed['resource'] as Map<String, dynamic>;
+    final sleeps = resources['time_sleep'] as Map<String, dynamic>;
+    (sleeps['first'] as Map<String, dynamic>)['create_duration'] = '60s';
     final errors = <String>[];
     final ok = await compareMigratedStacks(
       {'same': stack, 'changed': stack},
