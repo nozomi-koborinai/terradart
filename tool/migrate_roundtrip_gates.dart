@@ -1,14 +1,16 @@
 // migrate_roundtrip_gates.dart — the migrator's correctness oracle.
 //
-// For every quickstart: migrate its synth output (`tf-out/main.tf.json`) to
-// Dart with `terradart_migrate`, put every generated Stack into one
-// temporary package, analyze it once, synthesize each Stack and deep-compare
-// the result with the original — `synth(migrate(synth(S))) == synth(S)`.
+// For every quickstart's synth output (`tf-out/main.tf.json`) and every
+// shape fixture (tool/migrate_shape_fixtures.dart): migrate it to Dart with
+// `terradart_migrate`, put every generated Stack into one temporary
+// package, analyze it once, synthesize each Stack and deep-compare the
+// result with the original — `synth(migrate(synth(S))) == synth(S)`.
 //
-// Strict examples must round-trip completely. A resource the migrator keeps
-// in Terraform needs a reasoned entry in tool/migrate_roundtrip_debt.yaml
-// (slug → address → reason); an entry whose resource round-trips again is
-// stale and fails the gate, so the ledger only ratchets down.
+// Strict examples and every shape fixture must round-trip completely. A
+// resource the migrator keeps in Terraform needs a reasoned entry in
+// tool/migrate_roundtrip_debt.yaml (slug → address → reason); an entry whose
+// resource round-trips again is stale and fails the gate, so the ledger only
+// ratchets down. A shape fixture can never be ledgered.
 //
 // Run from repo root: dart tool/migrate_roundtrip_gates.dart
 //   --reuse-tf-out   use the tf-out the synth gates already wrote (default:
@@ -25,6 +27,7 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:yaml/yaml.dart';
 
 import 'example_synth_gates.dart' show synthExample;
+import 'migrate_shape_fixtures.dart';
 import 'lane_surface.dart';
 import 'wrap_lanes.dart';
 
@@ -61,25 +64,38 @@ Future<bool> runMigrateRoundtripGates(
   bool keepTemp = false,
   Set<String>? only,
 }) async {
-  final repoRoot = Directory.current.path;
   final ledger = _loadLedger(File(_ledgerPath));
-  final slugs = _quickstartSlugs().where(
-    (s) => only == null || only.contains(s),
-  );
+  final shapeFixtures = {
+    for (final m in allMigrateManifests) shapeFixtureSlug(m.package): m,
+  };
+  final slugs = [
+    ..._quickstartSlugs(),
+    ...shapeFixtures.keys,
+  ].where((s) => only == null || only.contains(s));
 
   final temp = Directory.systemTemp.createTempSync(
     'terradart_migrate_roundtrip_',
   );
   final originals = <String, Map<String, dynamic>>{};
-  final stackClasses = <String, String>{};
-  final stackFiles = <String, String>{};
+  final stacks = <String, MigratedStack>{};
   final packages = <String>{'terradart_core'};
   var migratedResources = 0;
   var keptResources = 0;
 
   for (final slug in slugs) {
-    final tfOut = File('examples/$slug/tf-out/main.tf.json');
+    final isShape = shapeFixtures.containsKey(slug);
+    final tfOut = File(
+      isShape
+          ? shapeFixturePath(shapeFixtures[slug]!.package)
+          : 'examples/$slug/tf-out/main.tf.json',
+    );
     Map<String, dynamic>? json;
+    if (isShape && !tfOut.existsSync()) {
+      errors.add(
+        '$slug: ${tfOut.path} is missing; every manifest has a shape fixture',
+      );
+      continue;
+    }
     if (tfOut.existsSync()) {
       json = jsonDecode(tfOut.readAsStringSync()) as Map<String, dynamic>;
     } else if (!File('examples/$slug/bin/infra.dart').existsSync()) {
@@ -102,12 +118,12 @@ Future<bool> runMigrateRoundtripGates(
       errors.add('$slug: migrateModule threw $e\n$st');
       continue;
     }
-    stackClasses[slug] = result.stackClass;
-    stackFiles[slug] = result.stackFile;
+    stacks[slug] = (
+      stackClass: result.stackClass,
+      stackFile: result.stackFile,
+      source: result.stackSource,
+    );
     packages.addAll(result.report.packages);
-    File('${temp.path}/lib/${result.stackFile}.dart')
-      ..createSync(recursive: true)
-      ..writeAsStringSync(result.stackSource);
 
     // Kept resources (and providers without a factory) must be ledgered;
     // ledgered addresses must still be kept.
@@ -146,6 +162,13 @@ Future<bool> runMigrateRoundtripGates(
         .length;
   }
   for (final slug in ledger.keys) {
+    if (shapeFixtures.containsKey(slug)) {
+      errors.add(
+        '$_ledgerPath lists the shape fixture "$slug"; a shape fixture '
+        'migrates completely or fails',
+      );
+      continue;
+    }
     if (!originals.containsKey(slug) && (only == null || only.contains(slug))) {
       errors.add('$_ledgerPath lists unknown example "$slug"');
     }
@@ -155,9 +178,55 @@ Future<bool> runMigrateRoundtripGates(
     return false;
   }
 
+  final okCount = await compareMigratedStacks(
+    stacks,
+    expected: {
+      for (final slug in stacks.keys)
+        slug: _withoutKept(originals[slug]!, ledger[slug]?.keys ?? const []),
+    },
+    packages: packages,
+    temp: temp,
+    errors: errors,
+  );
+  final shapeCount = stacks.keys.where(shapeFixtures.containsKey).length;
+  print(
+    'migrate_roundtrip_gates: ${okCount ?? 0}/${stacks.length} round-trip '
+    '(${stacks.length - shapeCount} examples, $shapeCount shape fixtures); '
+    '$migratedResources resources migrated, $keptResources kept (ledgered)',
+  );
+  final failed = errors.isNotEmpty;
+  if (!failed && !keepTemp) {
+    temp.deleteSync(recursive: true);
+  } else {
+    print('  temporary package: ${temp.path}');
+  }
+  return !failed;
+}
+
+/// A migrated Stack: its class, its file under `lib/` (no extension) and
+/// its source.
+typedef MigratedStack = ({String stackClass, String stackFile, String source});
+
+/// Puts [stacks] into one package under [temp] that depends on [packages],
+/// analyzes it, synthesizes every Stack and compares each with [expected]
+/// (keyed like [stacks]). Returns how many Stacks matched, or null when the
+/// package did not resolve, analyze or run.
+Future<int?> compareMigratedStacks(
+  Map<String, MigratedStack> stacks, {
+  required Map<String, Object?> expected,
+  required Set<String> packages,
+  required Directory temp,
+  required List<String> errors,
+}) async {
   // One package holding every Stack, analyzed once, synthesized once. The
   // workspace packages are wired in through dependency_overrides so their
   // own hosted `terradart_core: ^x` constraints resolve to the checkout.
+  final repoRoot = Directory.current.path;
+  for (final e in stacks.entries) {
+    File('${temp.path}/lib/${e.value.stackFile}.dart')
+      ..createSync(recursive: true)
+      ..writeAsStringSync(e.value.source);
+  }
   final deps = StringBuffer();
   final overrides = StringBuffer();
   for (final p in packages.toList()..sort()) {
@@ -190,10 +259,10 @@ analyzer:
     ..writeln("import 'dart:convert';")
     ..writeln("import 'dart:io';")
     ..writeln();
-  final sorted = stackClasses.keys.toList()..sort();
+  final sorted = stacks.keys.toList()..sort();
   for (final slug in sorted) {
     synthAll.writeln(
-      "import 'package:terradart_migrate_roundtrip/${stackFiles[slug]}.dart' "
+      "import 'package:terradart_migrate_roundtrip/${stacks[slug]!.stackFile}.dart' "
       'as ${_alias(slug)};',
     );
   }
@@ -205,7 +274,7 @@ analyzer:
     synthAll
       ..writeln('  try {')
       ..writeln(
-        "    File('out/$slug.json').writeAsStringSync(jsonEncode(${_alias(slug)}.${stackClasses[slug]}().synth().tfJson));",
+        "    File('out/$slug.json').writeAsStringSync(jsonEncode(${_alias(slug)}.${stacks[slug]!.stackClass}().synth().tfJson));",
       )
       ..writeln('  } on Object catch (e) {')
       ..writeln("    File('out/$slug.error').writeAsStringSync('\$e');")
@@ -229,7 +298,7 @@ analyzer:
   }
   if (pubGet.exitCode != 0) {
     errors.add('dart pub get failed in ${temp.path}:\n${pubGet.stderr}');
-    return false;
+    return null;
   }
   final analyze = await Process.run('dart', [
     'analyze',
@@ -243,7 +312,7 @@ analyzer:
       'dart analyze of the migrated Stacks failed (package kept at '
       '${temp.path}):\n${analyze.stdout}${analyze.stderr}',
     );
-    return false;
+    return null;
   }
   final run = await Process.run('dart', [
     'run',
@@ -254,7 +323,7 @@ analyzer:
       'synthesizing the migrated Stacks failed (package kept at '
       '${temp.path}):\n${run.stdout}${run.stderr}',
     );
-    return false;
+    return null;
   }
 
   var okCount = 0;
@@ -262,19 +331,15 @@ analyzer:
     final errFile = File('${temp.path}/out/$slug.error');
     if (errFile.existsSync()) {
       errors.add(
-        '$slug: synth of ${stackClasses[slug]} threw: ${errFile.readAsStringSync()}',
+        '$slug: synth of ${stacks[slug]!.stackClass} threw: ${errFile.readAsStringSync()}',
       );
       continue;
     }
     final actual = jsonDecode(
       File('${temp.path}/out/$slug.json').readAsStringSync(),
     );
-    final expected = _withoutKept(
-      originals[slug]!,
-      ledger[slug]?.keys ?? const [],
-    );
     final diffs = <String>[];
-    _diff(expected, actual, r'$', diffs);
+    _diff(expected[slug], actual, r'$', diffs);
     if (diffs.isEmpty) {
       okCount++;
     } else {
@@ -286,17 +351,7 @@ analyzer:
     }
   }
 
-  print(
-    'migrate_roundtrip_gates: $okCount/${sorted.length} examples round-trip; '
-    '$migratedResources resources migrated, $keptResources kept (ledgered)',
-  );
-  final failed = errors.isNotEmpty;
-  if (!failed && !keepTemp) {
-    temp.deleteSync(recursive: true);
-  } else {
-    print('  temporary package: ${temp.path}');
-  }
-  return !failed;
+  return okCount;
 }
 
 String _alias(String slug) =>

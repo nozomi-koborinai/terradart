@@ -1,0 +1,57 @@
+/// ShapesAppwriteStack — migrated from `shapes_appwrite` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_appwrite/functions.dart';
+import 'package:terradart_appwrite/provider.dart';
+import 'package:terradart_appwrite/storage.dart';
+
+final class ShapesAppwriteStack extends Stack {
+  ShapesAppwriteStack()
+    : super(
+        providers: [const AppwriteProvider()],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('compression');
+    final fn = add(
+      AppwriteFunction(
+        'fn',
+        schedule: .schedule(.literal('0 * * * *')),
+        name: .literal('shapes'),
+        runtime: .literal('dart-3.5'),
+      ),
+    );
+    add(
+      AppwriteFunctionVariable(
+        'mode',
+        functionId: fn.ref,
+        key: .literal('FUNCTION_NAME'),
+        value: .value(fn.name),
+      ),
+    );
+    add(
+      AppwriteStorageBucket(
+        'literal',
+        name: .literal('literal'),
+        compression: .gzip,
+      ),
+    );
+    add(
+      AppwriteStorageBucket(
+        'variable',
+        name: .literal('variable'),
+        compression: .variable('compression'),
+      ),
+    );
+    add(
+      AppwriteStorageBucket(
+        'expression',
+        name: .literal('expression'),
+        compression: .expression(r'${lower(var.compression)}'),
+      ),
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
@@ -58,6 +59,34 @@ void main() {
         expect(actual[e.key], e.value, reason: '${e.key} changed; $hint');
       }
       expect(project.copies, isEmpty);
+    });
+  }
+
+  final shapes = Directory('$_fixtures/shapes').listSync()
+    ..sort((a, b) => a.path.compareTo(b.path));
+  for (final dir in shapes.whereType<Directory>()) {
+    final lane = p.basename(dir.path);
+    test('the $lane shape fixture migrates to its golden Stack', () {
+      final file = File(p.join(dir.path, 'main.tf.json'));
+      final result = migrateModule(
+        TfModule.fromTfJson(file.readAsStringSync(), fileName: file.path),
+        name: 'shapes_$lane',
+      );
+      final actual = result.stackSource.replaceAll(
+        packageVersion,
+        '{{version}}',
+      );
+      final golden = File('$_goldenRoot/shapes/$lane.dart.golden');
+      if (_update) {
+        golden
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync(actual);
+      }
+      expect(
+        actual,
+        golden.readAsStringSync(),
+        reason: 'run `UPDATE_GOLDENS=1 dart test test/golden_test.dart`',
+      );
     });
   }
 }

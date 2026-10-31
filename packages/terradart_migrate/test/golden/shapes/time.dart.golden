@@ -1,0 +1,22 @@
+/// ShapesTimeStack — migrated from `shapes_time` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_time/terradart_time.dart';
+
+final class ShapesTimeStack extends Stack {
+  ShapesTimeStack()
+    : super(providers: [const TimeProvider()], requiredVersion: '>= 1.11.0') {
+    final first = add(TimeSleep('first', createDuration: .literal('30s')));
+    add(
+      TimeSleep(
+        'second',
+        createDuration: .literal('30s'),
+        triggers: .literal({'after': first.id.interpolation}),
+      ),
+    );
+  }
+}

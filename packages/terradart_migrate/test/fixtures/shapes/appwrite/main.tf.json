@@ -1,0 +1,46 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "appwrite": {
+        "source": "appwrite/appwrite",
+        "version": "2.3.0"
+      }
+    }
+  },
+  "variable": {
+    "compression": {
+      "type": "string"
+    }
+  },
+  "resource": {
+    "appwrite_function": {
+      "fn": {
+        "name": "shapes",
+        "runtime": "dart-3.5",
+        "schedule": "0 * * * *"
+      }
+    },
+    "appwrite_function_variable": {
+      "mode": {
+        "function_id": "${appwrite_function.fn.id}",
+        "key": "FUNCTION_NAME",
+        "value": "${appwrite_function.fn.name}"
+      }
+    },
+    "appwrite_storage_bucket": {
+      "literal": {
+        "name": "literal",
+        "compression": "gzip"
+      },
+      "variable": {
+        "name": "variable",
+        "compression": "${var.compression}"
+      },
+      "expression": {
+        "name": "expression",
+        "compression": "${lower(var.compression)}"
+      }
+    }
+  }
+}

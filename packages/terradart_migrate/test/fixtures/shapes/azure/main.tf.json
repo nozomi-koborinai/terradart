@@ -1,0 +1,85 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "azurerm": {
+        "source": "hashicorp/azurerm",
+        "version": "5.12.0"
+      }
+    }
+  },
+  "variable": {
+    "default_action": {
+      "type": "string"
+    },
+    "bypass": {
+      "type": "list(string)"
+    },
+    "service_endpoint": {
+      "type": "string",
+      "sensitive": true
+    }
+  },
+  "provider": {
+    "azurerm": {
+      "features": [
+        {}
+      ]
+    }
+  },
+  "resource": {
+    "azurerm_resource_group": {
+      "rg": {
+        "name": "shapes",
+        "location": "westeurope"
+      }
+    },
+    "azurerm_storage_account": {
+      "sa": {
+        "name": "shapesstorage",
+        "resource_group_name": "${azurerm_resource_group.rg.name}",
+        "location": "${azurerm_resource_group.rg.location}",
+        "account_tier": "Standard",
+        "account_replication_type": "LRS"
+      }
+    },
+    "azurerm_storage_account_network_rules": {
+      "literal": {
+        "storage_account_id": "${azurerm_storage_account.sa.id}",
+        "default_action": "Deny",
+        "bypass": [
+          "AzureServices"
+        ]
+      },
+      "variable": {
+        "storage_account_id": "${azurerm_storage_account.sa.id}",
+        "default_action": "${var.default_action}",
+        "bypass": "${var.bypass}"
+      },
+      "expression": {
+        "storage_account_id": "${azurerm_storage_account.sa.id}",
+        "default_action": "${title(var.default_action)}",
+        "bypass": "${distinct(var.bypass)}"
+      }
+    },
+    "azurerm_data_factory_linked_service_azure_blob_storage": {
+      "blob": {
+        "name": "shapes",
+        "data_factory_id": "/subscriptions/shapes/resourceGroups/shapes/providers/Microsoft.DataFactory/factories/shapes",
+        "service_endpoint": "${var.service_endpoint}",
+        "use_managed_identity": true
+      }
+    },
+    "azurerm_mssql_virtual_machine": {
+      "sql": {
+        "virtual_machine_id": "/subscriptions/shapes/resourceGroups/shapes/providers/Microsoft.Compute/virtualMachines/shapes",
+        "assessment": {
+          "schedule": {
+            "day_of_week": "Monday",
+            "start_time": "02:00"
+          }
+        }
+      }
+    }
+  }
+}

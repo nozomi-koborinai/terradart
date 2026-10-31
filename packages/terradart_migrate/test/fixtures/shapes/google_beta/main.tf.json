@@ -1,0 +1,105 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 8.0"
+      },
+      "google-beta": {
+        "source": "hashicorp/google-beta",
+        "version": "~> 8.0"
+      }
+    }
+  },
+  "variable": {
+    "user_agent": {
+      "type": "string"
+    },
+    "export": {
+      "type": "string"
+    },
+    "target_platforms": {
+      "type": "list(string)"
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "shapes-project",
+      "region": "us-central1"
+    },
+    "google-beta": {
+      "project": "shapes-project",
+      "region": "us-central1"
+    }
+  },
+  "resource": {
+    "google_storage_bucket": {
+      "assets": {
+        "name": "shapes-assets",
+        "location": "US"
+      }
+    },
+    "google_compute_region_backend_bucket": {
+      "backend": {
+        "name": "shapes",
+        "region": "us-central1",
+        "bucket_name": "${google_storage_bucket.assets.name}",
+        "load_balancing_scheme": "EXTERNAL_MANAGED",
+        "provider": "google-beta"
+      }
+    },
+    "google_security_scanner_scan_config": {
+      "literal": {
+        "display_name": "${google_compute_region_backend_bucket.backend.name}",
+        "starting_urls": [
+          "https://shapes.example.com"
+        ],
+        "target_platforms": [
+          "COMPUTE"
+        ],
+        "user_agent": "${var.user_agent}",
+        "export_to_security_command_center": "${upper(var.export)}",
+        "provider": "google-beta"
+      },
+      "variable": {
+        "display_name": "variable",
+        "starting_urls": [
+          "https://shapes.example.com"
+        ],
+        "target_platforms": "${var.target_platforms}",
+        "provider": "google-beta"
+      },
+      "expression": {
+        "display_name": "expression",
+        "starting_urls": [
+          "https://shapes.example.com"
+        ],
+        "target_platforms": "${distinct(var.target_platforms)}",
+        "provider": "google-beta"
+      }
+    },
+    "google_api_gateway_api_config": {
+      "config": {
+        "api": "shapes",
+        "openapi_documents": [
+          {
+            "document": {
+              "path": "spec.yaml",
+              "contents": "b3BlbmFwaTogMy4wLjA="
+            }
+          }
+        ],
+        "provider": "google-beta"
+      }
+    },
+    "google_firebase_hosting_channel": {
+      "preview": {
+        "site_id": "shapes",
+        "channel_id": "preview",
+        "ttl": "86400s",
+        "provider": "google-beta"
+      }
+    }
+  }
+}
