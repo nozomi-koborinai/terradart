@@ -11,6 +11,5 @@
 # entries naming its own overrides, and `tool/wrap_lanes.dart` fails on an
 # entry that names an override in no lane.
 
-google_chronicle_dashboard_chart: ChronicleDashboardChartVisualization spreads a `...axisType.encode()` enum into the block; the manifest has no merged-enum shape
 google_compute_image: ComputeImageSourceRawDisk.rawDisk holds the derived ComputeImageRawDisk helper; the YAML-only lint cannot see deriveNestedTypes symbols, while the generated manifest derives the variant as a helper
 google_network_connectivity_policy_based_route: NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice.routes holds the derived NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes enum; the YAML-only lint cannot see deriveEnums symbols, while the generated manifest derives the variant as an enum value

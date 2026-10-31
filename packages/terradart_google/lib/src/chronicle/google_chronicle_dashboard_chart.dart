@@ -690,7 +690,8 @@ class ChronicleDashboardChartVisualization {
     this.columnRenderType,
     this.tooltipTrigger,
     this.visualMapType,
-    this.axisType,
+    this.xAxisType,
+    this.yAxisType,
   });
 
   final List<ChronicleDashboardChartSeries>? series;
@@ -702,7 +703,8 @@ class ChronicleDashboardChartVisualization {
   final ChronicleDashboardChartColumnRenderType? columnRenderType;
   final ChronicleDashboardChartTooltipTrigger? tooltipTrigger;
   final ChronicleDashboardChartVisualMapType? visualMapType;
-  final ChronicleDashboardChartAxisType? axisType;
+  final ChronicleDashboardChartAxisType? xAxisType;
+  final ChronicleDashboardChartAxisType? yAxisType;
 
   Map<String, Object?> toArgMap() => {
     if (series != null) 'series': series!.map((s) => s.toArgMap()).toList(),
@@ -747,14 +749,14 @@ class ChronicleDashboardChartVisualization {
       'visual_maps': [
         {'visual_map_type': visualMapType!.toTfJson()},
       ],
-    if (axisType != null) ...{
+    if (xAxisType != null)
       'x_axes': [
-        {'axis_type': axisType!.toTfJson()},
+        {'axis_type': xAxisType!.toTfJson()},
       ],
+    if (yAxisType != null)
       'y_axes': [
-        {'axis_type': axisType!.toTfJson()},
+        {'axis_type': yAxisType!.toTfJson()},
       ],
-    },
   };
 }
 

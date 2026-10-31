@@ -6,8 +6,3 @@
 # the migrator cannot translate is listed here with the blocker as the reason
 # (a reviewed decision, not a default) and removed once it round-trips again
 # — a listed resource that round-trips fails the gate as stale.
-
-chronicle_quickstart:
-  google_chronicle_dashboard_chart.dns_events: >-
-    dashboard_chart.visualization.axisType is a spread-merged enum — ledgered as a
-    manual field in tool/migrate_manifest_debt.yaml
