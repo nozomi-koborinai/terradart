@@ -774,6 +774,73 @@ paramOrder:
     });
   });
 
+  group('WrapCommand --discovery-enums', () {
+    late Directory tmpSrc;
+    late Directory tmpOut;
+    setUp(() async {
+      tmpSrc = await Directory.systemTemp.createTemp('wrap_discovery_src_');
+      tmpOut = await Directory.systemTemp.createTemp('wrap_discovery_out_');
+      File(p.join(tmpSrc.path, 'schema.json')).writeAsStringSync(
+        File(
+          p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
+        ).readAsStringSync(),
+      );
+    });
+    tearDown(() async {
+      await tmpSrc.delete(recursive: true);
+      await tmpOut.delete(recursive: true);
+    });
+
+    Future<(int?, String)> wrap(List<String> flags) async {
+      final errBuf = StringBuffer();
+      final code = await IOOverrides.runZoned(
+        () => buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          ...flags,
+          '--discovery-enums',
+          '--source',
+          tmpSrc.path,
+          '--output',
+          _libSrcOut(tmpOut),
+          '--only',
+          'google_pubsub_schema',
+        ]),
+        stderr: () => _BufferSink(errBuf),
+      );
+      return (code, errBuf.toString());
+    }
+
+    test('needs --mm-groups or --mm-hints', () async {
+      final (code, err) = await wrap(const []);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('needs --mm-groups or --mm-hints'));
+    });
+
+    test('fails closed without a Discovery copy (E405)', () async {
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, allOf(contains('[E405]'), contains('roots.yaml')));
+    });
+
+    test('fails on a malformed Discovery copy (E405)', () async {
+      final dir = Directory(p.join(tmpSrc.path, 'discovery'))..createSync();
+      File(p.join(dir.path, 'roots.yaml')).writeAsStringSync('{}');
+      File(p.join(dir.path, 'pubsub.v1.json')).writeAsStringSync('{}');
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, allOf(contains('[E405]'), contains('malformed Discovery')));
+    });
+
+    test('wraps against a valid copy', () async {
+      final dir = Directory(p.join(tmpSrc.path, 'discovery'))..createSync();
+      File(p.join(dir.path, 'roots.yaml')).writeAsStringSync('{}');
+      final (code, err) = await wrap(const ['--mm-groups']);
+      expect(code, CliExitCodes.success, reason: err);
+    });
+  });
+
   group('WrapCommand fixture-driven', () {
     // Fixture files are stored with a `.dart.golden` suffix (matching the
     // project-wide golden naming convention under `test/golden/`) so they
@@ -2083,7 +2150,7 @@ deriveExactlyOne: true
     });
     tearDown(() => tmp.deleteSync(recursive: true));
 
-    Future<(int, String)> wrap(List<String> flags) async {
+    Future<(int?, String)> wrap(List<String> flags) async {
       final err = StringBuffer();
       final code = await IOOverrides.runZoned(
         () => buildCliRunner().run([

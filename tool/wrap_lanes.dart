@@ -27,7 +27,9 @@
 // matches the fixture, its MM ref, its wrapped types or its
 // tool/discovery_sources.yaml entries (staleDiscovery), regen first
 // re-fetches the Google API Discovery copy (tool/fetch_discovery_enums.dart,
-// network) and the wrap gate fails instead.
+// network) and the wrap gate fails instead. After a `discovery` lane's
+// regen, `tool/google_enum_sources.dart --fix` records the lane's new prose
+// enum sets; tool/google_enum_sources_test.dart fails on a new disagreement.
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
@@ -566,6 +568,17 @@ Future<int> _refetchDiscovery(WrapLane lane, String repoRoot) async {
   return process.exitCode;
 }
 
+Future<int> _recordProseSources(String repoRoot) async {
+  print('>> google_enum_sources --fix');
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    ['run', 'tool/google_enum_sources.dart', '--fix'],
+    workingDirectory: repoRoot,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
+}
+
 Never _usage(String message) {
   print('wrap_lanes: $message');
   print(
@@ -734,6 +747,10 @@ Future<void> main(List<String> args) async {
             '>> repin migrate lane fixtures (${lane.name}): '
             '${moved.join(', ')}',
           );
+        }
+        if (lane.discovery) {
+          final code = await _recordProseSources(repoRoot);
+          if (code != 0) failed.add('${lane.name} (prose sources, exit $code)');
         }
       }
     }

@@ -32,7 +32,7 @@ void main() {
         '--output ../terradart_google/lib/src '
         '--overrides-root lib/src/codegen/wrapper_overrides/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
-        '--mm-groups '
+        '--mm-groups --discovery-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
         '--typed-references '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
@@ -50,7 +50,7 @@ void main() {
         '--overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml '
         '--resource-provider google-beta '
-        '--mm-hints '
+        '--mm-hints --discovery-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
         '--typed-references '
         '--reference-lane test/fixtures/wrap/source=../terradart_google/lib/src '
@@ -210,6 +210,40 @@ providers:
             'lane x: providerEnums must be a bool',
           ),
         ),
+      );
+    });
+
+    test('discovery: true adds --discovery-enums and needs MM hints', () {
+      expect(parseWrapLanes(lane).single.discovery, isFalse);
+      final x = parseWrapLanes(
+        '$lane    mmGroups: true\n    discovery: true\n',
+      ).single;
+      expect(WrapGate.wrap.args(x), contains('--discovery-enums'));
+      expect(WrapGate.regen.args(x), contains('--discovery-enums'));
+      expect(WrapGate.lint.args(x), isNot(contains('--discovery-enums')));
+      for (final bad in ['    discovery: true\n', '    discovery: maybe\n']) {
+        expect(
+          () => parseWrapLanes('$lane$bad'),
+          throwsA(
+            isA<FormatException>().having(
+              (e) => e.message,
+              'message',
+              contains('lane x: discovery must be a bool'),
+            ),
+          ),
+          reason: bad,
+        );
+      }
+    });
+
+    test('the google lanes read their Discovery copy', () {
+      final lanes = parseWrapLanes(File(providersPath).readAsStringSync());
+      expect(
+        [
+          for (final l in lanes)
+            if (l.discovery) l.name,
+        ],
+        ['google', 'google-beta'],
       );
     });
 

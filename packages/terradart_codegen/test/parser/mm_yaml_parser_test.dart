@@ -537,4 +537,40 @@ properties:
       'tier': ['BASIC'],
     });
   });
+
+  test('Map value_type properties carry enum and REST paths', () {
+    final result = const MmYamlParser().parseString('''
+name: Federation
+api_resource_type_kind: MetastoreFederation
+properties:
+  - name: backendMetastores
+    type: Map
+    key_name: rank
+    value_type:
+      type: NestedObject
+      properties:
+        - name: metastoreType
+          type: Enum
+          enum_values: [BIGQUERY, DATAPROC_METASTORE]
+  - name: settings
+    type: NestedObject
+    flatten_object: true
+    properties:
+      - name: tierName
+        api_name: tier
+        type: String
+''');
+    expect(result.apiResource, 'MetastoreFederation');
+    expect(result.enumValuesByPath, {
+      'backend_metastores.metastore_type': ['BIGQUERY', 'DATAPROC_METASTORE'],
+    });
+    expect(result.restPathsByPath, {
+      'backend_metastores': ['backendMetastores'],
+      'backend_metastores.metastore_type': [
+        'backendMetastores',
+        'metastoreType',
+      ],
+      'tier_name': ['settings', 'tier'],
+    });
+  });
 }

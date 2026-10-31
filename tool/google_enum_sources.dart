@@ -225,8 +225,7 @@ typedef SourceCheck = ({
 });
 
 bool _sameList(List<String> a, List<String> b) =>
-    a.length == b.length &&
-    [for (var i = 0; i < a.length; i++) a[i] == b[i]].every((x) => x);
+    a.length == b.length && a.indexed.every((e) => e.$2 == b[e.$1]);
 
 /// Compares [inputs] (from [stringInputs]) with [sources] and [prose].
 SourceCheck checkSources(
