@@ -222,9 +222,7 @@ final class ComputeFirewallParams {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource` for runtime behavior. The
-/// single `log_config` block is modeled as a helper class in the
-/// `prelude` below.
+/// The single `log_config` block is [ComputeFirewallLogConfig].
 final class GoogleComputeFirewall extends Resource {
   static const String tfType = 'google_compute_firewall';
 

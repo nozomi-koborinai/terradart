@@ -31,9 +31,7 @@ curatedDoc: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource` for runtime behavior. The
-  /// single `log_config` block is modeled as a helper class in the
-  /// `prelude` below.
+  /// The single `log_config` block is [ComputeFirewallLogConfig].
 
 paramOrder:
   - name

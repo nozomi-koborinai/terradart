@@ -72,10 +72,9 @@ extension type const MonitoringUptimeCheckCheckerType._(TfArg<String> _)
 /// The Terraform schema declares `selected_regions` as a plain
 /// `list(string)` (no `enum_values` block) — the valid set is documented
 /// in the GCP Cloud Monitoring uptime check API reference. The values
-/// below mirror that documented set. Callers that need a region not
-/// covered here can still pass a raw `TfArg<List<String>>` via
-/// [GoogleMonitoringUptimeCheckConfig.selectedRegions] (the API
-/// surface accepts string values directly).
+/// below mirror that documented set. A region not covered here goes
+/// through `.arg(.literal('...'))` as one member of
+/// [GoogleMonitoringUptimeCheckConfig.selectedRegions].
 extension type const MonitoringUptimeCheckRegion._(TfArg<String> _)
     implements TfArg<String> {
   MonitoringUptimeCheckRegion.variable(String name)
