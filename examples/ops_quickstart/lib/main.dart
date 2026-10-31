@@ -224,7 +224,7 @@ final class AuditPipelineStack extends Stack {
         'audit_spanner',
         config: .literal('regional-asia-northeast1'),
         displayName: .literal('Audit metadata store'),
-        numNodes: .literal(1),
+        capacity: .numNodes(.literal(1)),
         dependsOn: [apiSpanner],
       ),
     );

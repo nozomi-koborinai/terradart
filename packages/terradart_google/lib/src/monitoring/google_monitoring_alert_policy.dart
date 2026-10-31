@@ -180,24 +180,6 @@ extension type const Reducer._(TfArg<String> _) implements TfArg<String> {
   ];
 }
 
-/// Notification prompt for `alert_strategy.notification_prompts` —
-/// controls when notifications fire across the incident lifecycle.
-extension type const NotificationPrompt._(TfArg<String> _)
-    implements TfArg<String> {
-  NotificationPrompt.variable(String name) : this._(TfArg.variable(name));
-  NotificationPrompt.expression(String template)
-    : this._(TfArg.expression(template));
-  const NotificationPrompt.arg(TfArg<String> arg) : this._(arg);
-
-  static const unspecified = NotificationPrompt._(
-    TfArgLiteral('NOTIFICATION_PROMPT_UNSPECIFIED'),
-  );
-  static const opened = NotificationPrompt._(TfArgLiteral('OPENED'));
-  static const closed = NotificationPrompt._(TfArgLiteral('CLOSED'));
-
-  static const List<NotificationPrompt> values = [unspecified, opened, closed];
-}
-
 // ===========================================================================
 // MonitoringAlertPolicyAggregations helper (shared by condition_threshold + condition_absent)
 // ===========================================================================

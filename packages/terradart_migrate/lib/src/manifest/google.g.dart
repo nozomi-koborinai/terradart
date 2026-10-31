@@ -88638,11 +88638,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'app_hub_application',
-          dartName: 'appHubApplication',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'scope',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'app_hub_application':
+                'DeveloperConnectInsightsConfigScopeAppHubApplication',
+            'target_projects':
+                'DeveloperConnectInsightsConfigScopeTargetProjects',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -88687,14 +88694,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'DeveloperConnectInsightsConfigArtifactConfigs',
-        ),
-        MigrateSlot(
-          tfName: 'target_projects',
-          dartName: 'targetProjects',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DeveloperConnectInsightsConfigTargetProjects',
         ),
       ],
       getters: <MigrateGetter>[
@@ -162211,18 +162210,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'num_nodes',
-          dartName: 'numNodes',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'capacity',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'processing_units',
-          dartName: 'processingUnits',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'num_nodes': 'SpannerInstanceCapacityNumNodes',
+            'processing_units': 'SpannerInstanceCapacityProcessingUnits',
+            'autoscaling_config': 'SpannerInstanceCapacityAutoscalingConfig',
+          },
         ),
         MigrateSlot(
           tfName: 'edition',
@@ -162272,14 +162270,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'autoscaling_config',
-          dartName: 'autoscalingConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'SpannerInstanceAutoscalingConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -266176,6 +266166,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DeveloperConnectInsightsConfigScopeAppHubApplication': MigrateHelper(
+      className: 'DeveloperConnectInsightsConfigScopeAppHubApplication',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'app_hub_application',
+          dartName: 'appHubApplication',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'appHubApplication',
+    ),
+    'DeveloperConnectInsightsConfigScopeTargetProjects': MigrateHelper(
+      className: 'DeveloperConnectInsightsConfigScopeTargetProjects',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target_projects',
+          dartName: 'targetProjects',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DeveloperConnectInsightsConfigTargetProjects',
+        ),
+      ],
+      shorthand: 'targetProjects',
+    ),
     'DeveloperConnectInsightsConfigTargetProjects': MigrateHelper(
       className: 'DeveloperConnectInsightsConfigTargetProjects',
       slots: <MigrateSlot>[
@@ -315978,6 +315997,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SpannerInstanceCapacityAutoscalingConfig': MigrateHelper(
+      className: 'SpannerInstanceCapacityAutoscalingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'autoscaling_config',
+          dartName: 'autoscalingConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SpannerInstanceAutoscalingConfig',
+        ),
+      ],
+      shorthand: 'autoscalingConfig',
+    ),
+    'SpannerInstanceCapacityNumNodes': MigrateHelper(
+      className: 'SpannerInstanceCapacityNumNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'num_nodes',
+          dartName: 'numNodes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'numNodes',
+    ),
+    'SpannerInstanceCapacityProcessingUnits': MigrateHelper(
+      className: 'SpannerInstanceCapacityProcessingUnits',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'processing_units',
+          dartName: 'processingUnits',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'processingUnits',
+    ),
     'SpannerInstanceConfigReplicas': MigrateHelper(
       className: 'SpannerInstanceConfigReplicas',
       slots: <MigrateSlot>[
@@ -334824,6 +334886,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'POSTGRES_16': 'postgres16',
       },
     ),
+    'DatabaseMigrationServiceConnectionProfileDbprovider': MigrateEnum(
+      name: 'DatabaseMigrationServiceConnectionProfileDbprovider',
+      members: <String, String>{
+        'CLOUDSQL': 'cloudsql',
+        'RDS': 'rds',
+        'AURORA': 'aurora',
+        'ALLOYDB': 'alloydb',
+      },
+    ),
     'DatabaseMigrationServiceConnectionProfileEdition': MigrateEnum(
       name: 'DatabaseMigrationServiceConnectionProfileEdition',
       members: <String, String>{
@@ -334903,8 +334974,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DatabaseMigrationServiceMigrationJobState': MigrateEnum(
       name: 'DatabaseMigrationServiceMigrationJobState',
       members: <String, String>{
+        'DRAFT': 'draft',
         'NOT_STARTED': 'notStarted',
         'RUNNING': 'running',
+        'COMPLETED': 'completed',
+        'STOPPED': 'stopped',
+        'FAILED': 'failed',
       },
     ),
     'DatabaseMigrationServiceMigrationJobType': MigrateEnum(
@@ -339673,14 +339748,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
         'IDPF': 'idpf',
-      },
-    ),
-    'NotificationPrompt': MigrateEnum(
-      name: 'NotificationPrompt',
-      members: <String, String>{
-        'NOTIFICATION_PROMPT_UNSPECIFIED': 'unspecified',
-        'OPENED': 'opened',
-        'CLOSED': 'closed',
       },
     ),
     'ObjectMetadata': MigrateEnum(

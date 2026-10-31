@@ -35,6 +35,7 @@
 // an input must be an enum.
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -116,6 +117,270 @@ Map<InputKey, InputSite> stringInputs(MigrateManifest manifest) {
     walk(entry.kind, entry.tfType, entry.slots, const [], {});
   }
   return out;
+}
+
+/// The Dart enum types [manifest]'s constructor slots, helper fields and
+/// sealed variants reach.
+Set<String> reachedEnums(MigrateManifest manifest) {
+  final out = <String>{};
+  final seen = <String>{};
+  void walk(List<MigrateSlot> slots) {
+    for (final slot in slots) {
+      switch (slot.kind) {
+        case MigrateSlotKind.enumValue:
+          if (slot.dartType case final t?) out.add(t);
+        case MigrateSlotKind.helper:
+          if (manifest.helpers[slot.helper] case final h?
+              when seen.add(h.className)) {
+            walk(h.slots);
+          }
+        case MigrateSlotKind.sealed:
+          for (final name in (slot.variants ?? const {}).values) {
+            if (manifest.helpers[name] case final h? when seen.add(name)) {
+              walk(h.slots);
+            }
+          }
+        default:
+      }
+    }
+  }
+
+  for (final entry in manifest.entries) {
+    walk(entry.slots);
+  }
+  return out;
+}
+
+const enumSitesPath = 'tool/enum_sites.yaml';
+
+/// One enum a lane's generated wrappers declare: the factory file it sits
+/// in, the field leaf its derived doc names (null for a `prelude` enum),
+/// and its wire values in declaration order.
+typedef EmittedEnum = ({
+  String name,
+  CatalogKind kind,
+  String tfType,
+  String? leaf,
+  List<String> values,
+});
+
+final _enumDeclaration = RegExp(
+  r'((?:^///.*\n)*)extension type const (\w+)\._\(\s*TfArg<String> _,?\s*\)',
+  multiLine: true,
+);
+final _derivedLeaf = RegExp(r'enum for `([^`]+)`\.');
+final _literal = RegExp(r"TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'");
+
+/// Every enum declared in the generated wrappers under
+/// `<outputPackage>/lib/src` (files with wrap's `// GENERATED FILE` header).
+List<EmittedEnum> emittedEnums(String outputPackage) {
+  final out = <EmittedEnum>[];
+  final root = Directory(p.join(outputPackage, 'lib', 'src'));
+  final files =
+      root
+          .listSync(recursive: true)
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.dart'))
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
+  for (final file in files) {
+    final text = file.readAsStringSync();
+    if (!text.startsWith('// GENERATED FILE')) continue;
+    final kind = p.split(file.path).contains('data')
+        ? CatalogKind.dataSource
+        : CatalogKind.resource;
+    for (final m in _enumDeclaration.allMatches(text)) {
+      final end = text.indexOf('\n}', m.end);
+      final body = text.substring(m.end, end < 0 ? text.length : end);
+      final values = [
+        for (final v in _literal.allMatches(body))
+          v.group(1)!.replaceAllMapped(RegExp(r'\\(.)'), (e) => e.group(1)!),
+      ];
+      if (values.isEmpty) continue;
+      out.add((
+        name: m.group(2)!,
+        kind: kind,
+        tfType: p.basenameWithoutExtension(file.path),
+        leaf: _derivedLeaf.firstMatch(m.group(1)!)?.group(1),
+        values: values,
+      ));
+    }
+  }
+  return out;
+}
+
+/// Every dotted input and attribute path of each resource and data source
+/// in a provider `schema.json`, keyed by kind and type.
+Map<(CatalogKind, String), List<String>> schemaPaths(String schemaJson) {
+  final doc = jsonDecode(schemaJson) as Map<String, dynamic>;
+  final out = <(CatalogKind, String), List<String>>{};
+  void walk(Map<String, dynamic> block, String prefix, List<String> into) {
+    for (final MapEntry(key: name, :value)
+        in (block['attributes'] as Map? ?? const {}).entries) {
+      into.add('$prefix$name');
+      final nested = (value as Map)['nested_type'] as Map?;
+      if (nested != null) {
+        walk(nested.cast<String, dynamic>(), '$prefix$name.', into);
+      }
+    }
+    for (final MapEntry(:key, :value)
+        in (block['block_types'] as Map? ?? const {}).entries) {
+      into.add('$prefix$key');
+      walk(
+        ((value as Map)['block'] as Map).cast<String, dynamic>(),
+        '$prefix$key.',
+        into,
+      );
+    }
+  }
+
+  for (final provider
+      in (doc['provider_schemas'] as Map<String, dynamic>).values) {
+    for (final (kind, section) in [
+      (CatalogKind.resource, 'resource_schemas'),
+      (CatalogKind.dataSource, 'data_source_schemas'),
+    ]) {
+      for (final MapEntry(:key, :value)
+          in ((provider as Map)[section] as Map? ?? const {}).entries) {
+        walk(
+          ((value as Map)['block'] as Map).cast<String, dynamic>(),
+          '',
+          out[(kind, '$key')] = [],
+        );
+      }
+    }
+  }
+  return out;
+}
+
+/// Parses one lane's section of tool/enum_sites.yaml: enum type → the
+/// [inputLabel]s it is the value set of, for an enum no manifest slot
+/// reaches and whose derived doc does not place it.
+Map<String, List<String>> parseEnumSites(String yamlText, String lane) {
+  final doc = loadYaml(yamlText);
+  final section = doc is YamlMap ? doc[lane] : null;
+  if (section == null) return const {};
+  return {
+    for (final MapEntry(:key, :value) in (section as YamlMap).entries)
+      '$key': switch (value) {
+        {'sites': final YamlList sites, 'reason': final String _} => [
+          for (final s in sites) '$s',
+        ],
+        _ => throw FormatException(
+          '$enumSitesPath: $lane.$key needs sites and a reason',
+        ),
+      },
+  };
+}
+
+InputKey _parseLabel(String label) {
+  final data = label.startsWith('data.');
+  final rest = data ? label.substring(5) : label;
+  final dot = rest.indexOf('.');
+  return (
+    data ? CatalogKind.dataSource : CatalogKind.resource,
+    rest.substring(0, dot),
+    rest.substring(dot + 1),
+  );
+}
+
+/// The enum sites of one lane, from the enums its wrappers emit rather than
+/// the slots its manifest walks: [inputs] (from [stringInputs]) plus one
+/// site per emitted enum no slot reaches, placed by its derived doc's leaf
+/// when [paths] has exactly one path with that leaf, else by [ledger]
+/// (tool/enum_sites.yaml). An enum neither places, a ledger entry for an
+/// enum a slot reaches or the wrappers do not emit, and an emitted enum the
+/// manifest records with other values all fail.
+({Map<InputKey, InputSite> sites, List<String> failures}) enumSites(
+  Map<InputKey, InputSite> inputs,
+  MigrateManifest manifest,
+  List<EmittedEnum> emitted,
+  Map<(CatalogKind, String), List<String>> paths,
+  Map<String, List<String>> ledger,
+) {
+  final sites = {...inputs};
+  final failures = <String>[];
+  final reached = reachedEnums(manifest);
+  final names = <String>{};
+  void place(EmittedEnum e, InputKey key) {
+    final label = inputLabel(key);
+    if (!sites.containsKey(key)) {
+      sites[key] = e.values;
+    } else if (sites[key] == null) {
+      failures.add(
+        '$label: a plain string, but the wrappers emit ${e.name} for it; '
+        'type the input with it or drop the enum',
+      );
+    } else if (!_sameList(sites[key]!, e.values)) {
+      failures.add(
+        '$label: ${e.name} ${e.values} and the input enum ${sites[key]} '
+        'differ',
+      );
+    }
+  }
+
+  for (final e in emitted) {
+    names.add(e.name);
+    final recorded = manifest.enums[e.name]?.members.keys.toList();
+    if (recorded == null || !_sameList(recorded, e.values)) {
+      failures.add(
+        '${e.name}: the wrappers emit ${e.values}, the migration manifest '
+        'records ${recorded ?? 'no enum'}; re-wrap',
+      );
+    }
+    final listed = ledger[e.name];
+    if (reached.contains(e.name)) {
+      if (listed != null) {
+        failures.add(
+          '${e.name}: stale $enumSitesPath entry (a manifest slot reaches it)',
+        );
+      }
+      continue;
+    }
+    if (listed != null) {
+      for (final label in listed) {
+        final key = _parseLabel(label);
+        if (key.$1 != e.kind || key.$2 != e.tfType) {
+          failures.add(
+            '${e.name}: $enumSitesPath names $label, but the enum is emitted '
+            'for ${inputLabel((e.kind, e.tfType, ''))}',
+          );
+          continue;
+        }
+        if (!(paths[(key.$1, key.$2)] ?? const []).contains(key.$3)) {
+          failures.add(
+            '${e.name}: $enumSitesPath names $label, which the provider '
+            'schema does not have',
+          );
+          continue;
+        }
+        place(e, key);
+      }
+      continue;
+    }
+    final matches = [
+      for (final path in paths[(e.kind, e.tfType)] ?? const <String>[])
+        if (e.leaf != null && path.split('.').last == e.leaf) path,
+    ];
+    if (matches.length == 1) {
+      place(e, (e.kind, e.tfType, matches.single));
+      continue;
+    }
+    failures.add(
+      '${e.name}: emitted for ${inputLabel((e.kind, e.tfType, ''))}, but no '
+      'manifest slot reaches it and ${e.leaf == null ? 'it has no derived '
+                'doc' : 'its leaf `${e.leaf}` names ${matches.length} paths'}; '
+      'list its sites in $enumSitesPath with a reason',
+    );
+  }
+  for (final name in ledger.keys) {
+    if (!names.contains(name)) {
+      failures.add(
+        '$name: stale $enumSitesPath entry (the wrappers emit no such enum)',
+      );
+    }
+  }
+  return (sites: sites, failures: failures);
 }
 
 /// The machine sources of one discovery lane.
@@ -386,15 +651,42 @@ SourceCheck checkSources(
 }
 
 /// The lanes `tool/providers.yaml` marks `discovery: true`, with their
-/// schema directories.
-Map<String, String> discoveryLanes(String providersYaml) {
+/// schema directories and output packages.
+Map<String, ({String schemaDir, String outputPackage})> discoveryLanes(
+  String providersYaml,
+) {
   final providers =
       (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
   return {
     for (final MapEntry(:key, :value) in providers.entries)
       if ((value as YamlMap)['discovery'] == true)
-        '$key': value['schemaDir'] as String,
+        '$key': (
+          schemaDir: value['schemaDir'] as String,
+          outputPackage: value['outputPackage'] as String,
+        ),
   };
+}
+
+/// [enumSites] of [lane] read from the checked-in wrappers, manifest,
+/// schema fixture and tool/enum_sites.yaml.
+({Map<InputKey, InputSite> sites, List<String> failures}) laneEnumSites(
+  String providersYaml,
+  String lane,
+) {
+  final coordinates = discoveryLanes(providersYaml)[lane]!;
+  final manifest = laneManifests(providersYaml, [lane]).single;
+  final ledger = File(enumSitesPath);
+  return enumSites(
+    stringInputs(manifest),
+    manifest,
+    emittedEnums(coordinates.outputPackage),
+    schemaPaths(
+      File(p.join(coordinates.schemaDir, 'schema.json')).readAsStringSync(),
+    ),
+    ledger.existsSync()
+        ? parseEnumSites(ledger.readAsStringSync(), lane)
+        : const {},
+  );
 }
 
 String renderProseSources(Map<String, Map<String, ProseEntry>> lanes) {
@@ -419,9 +711,7 @@ String renderProseSources(Map<String, Map<String, ProseEntry>> lanes) {
       '#                         the provider takes the emitted values (a '
       'human decision; --fix keeps it while',
     )
-    ..writeln(
-      '#                         both lists match).',
-    )
+    ..writeln('#                         both lists match).')
     ..writeln(
       '# Values are exact and in emitted order; --fix rewrites the source '
       'entries, never a note.',
@@ -459,22 +749,24 @@ void main(List<String> args) {
   final proseText = proseFile.existsSync() ? proseFile.readAsStringSync() : '';
   final wanted = <String, Map<String, ProseEntry>>{};
   var failed = false;
-  for (final MapEntry(key: lane, value: schemaDir) in discoveryLanes(
+  for (final MapEntry(key: lane, value: coordinates) in discoveryLanes(
     providersYaml,
   ).entries) {
+    final universe = laneEnumSites(providersYaml, lane);
     final check = checkSources(
-      stringInputs(laneManifests(providersYaml, [lane]).single),
-      LaneSources.load(schemaDir),
+      universe.sites,
+      LaneSources.load(coordinates.schemaDir),
       parseProseSources(proseText, lane),
     );
+    final failures = [...universe.failures, ...check.failures];
     wanted[lane] = check.wanted;
     print(
       'google_enum_sources ($lane): ${check.mm} Magic Modules, '
       '${check.discovery} Discovery, prose ${check.prose}, '
-      '${check.failures.length} failures',
+      '${failures.length} failures',
     );
-    if (!fix) check.failures.forEach(print);
-    failed = failed || check.failures.isNotEmpty;
+    if (!fix) failures.forEach(print);
+    failed = failed || failures.isNotEmpty;
   }
   if (fix) {
     proseFile.writeAsStringSync(renderProseSources(wanted));

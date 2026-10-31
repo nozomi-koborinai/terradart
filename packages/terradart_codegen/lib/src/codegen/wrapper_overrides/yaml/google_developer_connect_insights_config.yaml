@@ -4,6 +4,9 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
+sealedNames:
+  "app_hub_application, target_projects": scope
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

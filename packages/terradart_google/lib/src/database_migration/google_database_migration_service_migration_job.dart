@@ -108,16 +108,32 @@ extension type const DatabaseMigrationServiceMigrationJobState._(
   const DatabaseMigrationServiceMigrationJobState.arg(TfArg<String> arg)
     : this._(arg);
 
+  static const draft = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('DRAFT'),
+  );
   static const notStarted = DatabaseMigrationServiceMigrationJobState._(
     TfArgLiteral('NOT_STARTED'),
   );
   static const running = DatabaseMigrationServiceMigrationJobState._(
     TfArgLiteral('RUNNING'),
   );
+  static const completed = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('COMPLETED'),
+  );
+  static const stopped = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('STOPPED'),
+  );
+  static const failed = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('FAILED'),
+  );
 
   static const List<DatabaseMigrationServiceMigrationJobState> values = [
+    draft,
     notStarted,
     running,
+    completed,
+    stopped,
+    failed,
   ];
 }
 

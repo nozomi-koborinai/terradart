@@ -7,6 +7,7 @@ deriveEnums: true
 deriveNestedTypes: true
 
 sealedNames:
+  "autoscaling_config, num_nodes, processing_units": capacity
   "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_processing_units": max
   "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_processing_units": min
   "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": max
@@ -37,7 +38,8 @@ curatedDoc: |-
   /// - [config]: instance configuration name (e.g. `regional-asia-northeast1`).
   /// - [displayName]: user-visible label.
   ///
-  /// Set exactly one of [numNodes] or [processingUnits] for capacity.
+  /// Size it with [capacity]: `.numNodes(...)`, `.processingUnits(...)` or
+  /// `.autoscalingConfig(...)`, at most one (the provider rejects two).
   ///
   /// Enable `spanner.googleapis.com` via [GoogleProjectService] before apply.
   ///
@@ -47,6 +49,6 @@ curatedDoc: |-
   ///   'app',
   ///   config: .literal('regional-asia-northeast1'),
   ///   displayName: TfArg.literal('App Spanner'),
-  ///   numNodes: TfArg.literal(1),
+  ///   capacity: .numNodes(.literal(1)),
   /// );
   /// ```

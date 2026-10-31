@@ -7,6 +7,85 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_developer_connect_insights_config`.
 const Set<String> _googleDeveloperConnectInsightsConfigSensitive = <String>{};
 
+/// At most one of `app_hub_application`, `target_projects` on `google_developer_connect_insights_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.appHubApplication(...)`.
+sealed class DeveloperConnectInsightsConfigScope {
+  const DeveloperConnectInsightsConfigScope();
+
+  /// Sets `app_hub_application`.
+  const factory DeveloperConnectInsightsConfigScope.appHubApplication(
+    TfArg<String> appHubApplication,
+  ) = DeveloperConnectInsightsConfigScopeAppHubApplication;
+
+  /// Sets `target_projects`.
+  const factory DeveloperConnectInsightsConfigScope.targetProjects(
+    DeveloperConnectInsightsConfigTargetProjects targetProjects,
+  ) = DeveloperConnectInsightsConfigScopeTargetProjects;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DeveloperConnectInsightsConfigScope.appHubApplication] choice: sets `app_hub_application`.
+final class DeveloperConnectInsightsConfigScopeAppHubApplication
+    extends DeveloperConnectInsightsConfigScope {
+  const DeveloperConnectInsightsConfigScopeAppHubApplication(
+    this.appHubApplication,
+  );
+
+  final TfArg<String> appHubApplication;
+
+  @internal
+  @override
+  String get blockKey => 'app_hub_application';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'app_hub_application': appHubApplication.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'app_hub_application': appHubApplication,
+  };
+}
+
+/// The [DeveloperConnectInsightsConfigScope.targetProjects] choice: sets `target_projects`.
+final class DeveloperConnectInsightsConfigScopeTargetProjects
+    extends DeveloperConnectInsightsConfigScope {
+  const DeveloperConnectInsightsConfigScopeTargetProjects(this.targetProjects);
+
+  final DeveloperConnectInsightsConfigTargetProjects targetProjects;
+
+  @internal
+  @override
+  String get blockKey => 'target_projects';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'target_projects': targetProjects.encode()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'target_projects': TfArg.literal(targetProjects.encode()),
+  };
+}
+
 /// Typed helper for the `artifact_configs` block of
 /// `google_developer_connect_insights_config` (derived from provider schema).
 @immutable
@@ -95,14 +174,13 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
   GoogleDeveloperConnectInsightsConfig(
     super.localName, {
     TfArg<Map<String, String>>? annotations,
-    TfArg<String>? appHubApplication,
+    DeveloperConnectInsightsConfigScope? scope,
     TfArg<String>? deletionPolicy,
     required TfArg<String> insightsConfigId,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     TfArg<String>? project,
     List<DeveloperConnectInsightsConfigArtifactConfigs>? artifactConfigs,
-    DeveloperConnectInsightsConfigTargetProjects? targetProjects,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -111,7 +189,7 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'annotations': ?annotations,
-           'app_hub_application': ?appHubApplication,
+           ...?scope?.argMap,
            'deletion_policy': ?deletionPolicy,
            'insights_config_id': insightsConfigId,
            'labels': ?labels,
@@ -121,8 +199,6 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
              'artifact_configs': TfArg.literal([
                for (final e in artifactConfigs) e.encode(),
              ]),
-           if (targetProjects != null)
-             'target_projects': TfArg.literal(targetProjects.encode()),
          },
        );
 

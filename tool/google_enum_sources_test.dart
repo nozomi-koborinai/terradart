@@ -81,10 +81,46 @@ void main() {
       expect(lanes.keys, unorderedEquals(['google', 'google-beta']));
     });
 
-    for (final MapEntry(key: lane, value: schemaDir) in lanes.entries) {
-      final inputs = stringInputs(laneManifests(providersYaml, [lane]).single);
-      final sources = LaneSources.load(schemaDir);
+    for (final MapEntry(key: lane, value: coordinates) in lanes.entries) {
+      final manifest = laneManifests(providersYaml, [lane]).single;
+      final universe = laneEnumSites(providersYaml, lane);
+      final inputs = universe.sites;
+      final sources = LaneSources.load(coordinates.schemaDir);
       final prose = parseProseSources(proseText, lane);
+
+      test('$lane: every emitted enum is placed on a site', () {
+        expect(universe.failures, isEmpty);
+        final emitted = emittedEnums(coordinates.outputPackage);
+        expect(
+          emitted.map((e) => e.name).toSet(),
+          manifest.enums.keys.toSet(),
+        );
+        expect(
+          inputs.length,
+          greaterThan(stringInputs(manifest).length),
+          reason: 'the wrappers emit enums no manifest slot reaches',
+        );
+      });
+
+      test('$lane: a seeded unplaced enum fails', () {
+        final ledger = File(enumSitesPath).existsSync()
+            ? parseEnumSites(File(enumSitesPath).readAsStringSync(), lane)
+            : const <String, List<String>>{};
+        if (ledger.isEmpty) return;
+        final dropped = ledger.keys.first;
+        final check = enumSites(
+          stringInputs(manifest),
+          manifest,
+          emittedEnums(coordinates.outputPackage),
+          schemaPaths(
+            File('${coordinates.schemaDir}/schema.json').readAsStringSync(),
+          ),
+          {...ledger}..remove(dropped),
+        );
+        expect(check.failures, [
+          allOf(startsWith('$dropped: emitted for'), contains(enumSitesPath)),
+        ]);
+      });
 
       test('$lane: every enum site is compared, with no failure', () {
         final check = checkSources(inputs, sources, prose);
@@ -214,6 +250,219 @@ void main() {
         expect(check.failures, [contains('$label: $proseSourcesPath lists')]);
       });
     }
+  });
+
+  group('enumSites', () {
+    const manifest = MigrateManifest(
+      package: 'test',
+      entries: [
+        MigrateEntry(
+          tfType: 'google_x_job',
+          className: 'GoogleXJob',
+          barrel: 'x',
+          kind: CatalogKind.resource,
+          slots: [
+            MigrateSlot(
+              dartName: 'mode',
+              tfName: 'mode',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType: 'XJobMode',
+            ),
+          ],
+          getters: [],
+        ),
+      ],
+      helpers: {},
+      enums: {
+        'XJobMode': MigrateEnum(name: 'XJobMode', members: {'ON': 'on'}),
+        'XJobState': MigrateEnum(
+          name: 'XJobState',
+          members: {'DRAFT': 'draft', 'DONE': 'done'},
+        ),
+        'XJobKind': MigrateEnum(name: 'XJobKind', members: {'A': 'a'}),
+      },
+    );
+    EmittedEnum emitted(String name, String? leaf, List<String> values) => (
+      name: name,
+      kind: CatalogKind.resource,
+      tfType: 'google_x_job',
+      leaf: leaf,
+      values: values,
+    );
+    final all = [
+      emitted('XJobMode', 'mode', ['ON']),
+      emitted('XJobState', 'state', ['DRAFT', 'DONE']),
+      emitted('XJobKind', null, ['A']),
+    ];
+    final paths = {
+      (CatalogKind.resource, 'google_x_job'): [
+        'mode',
+        'state',
+        'kind',
+        'step',
+        'step.state',
+      ],
+    };
+    final inputs = {
+      _key('google_x_job', 'mode'): ['ON'],
+    };
+
+    test('places an unreached enum by its leaf or the ledger', () {
+      final check = enumSites(
+        inputs,
+        manifest,
+        [
+          emitted('XJobMode', 'mode', ['ON']),
+          emitted('XJobState', 'step', ['DRAFT', 'DONE']),
+          emitted('XJobKind', null, ['A']),
+        ],
+        paths,
+        {
+          'XJobKind': ['google_x_job.kind'],
+        },
+      );
+      expect(check.failures, isEmpty);
+      expect(check.sites, {
+        _key('google_x_job', 'mode'): ['ON'],
+        _key('google_x_job', 'step'): ['DRAFT', 'DONE'],
+        _key('google_x_job', 'kind'): ['A'],
+      });
+    });
+
+    test('a leaf naming two paths needs the ledger', () {
+      final check = enumSites(inputs, manifest, all, paths, {
+        'XJobKind': ['google_x_job.kind'],
+      });
+      expect(check.failures, [
+        allOf(startsWith('XJobState:'), contains('names 2 paths')),
+      ]);
+    });
+
+    test('a prelude enum without an entry fails', () {
+      final check = enumSites(inputs, manifest, all, paths, {
+        'XJobState': ['google_x_job.state'],
+      });
+      expect(check.failures, [
+        allOf(startsWith('XJobKind:'), contains('no derived doc')),
+      ]);
+    });
+
+    test('stale, foreign and unknown ledger sites fail', () {
+      final check = enumSites(inputs, manifest, all, paths, {
+        'XJobMode': ['google_x_job.mode'],
+        'XJobState': ['google_y_job.state'],
+        'XJobKind': ['google_x_job.nope'],
+        'XGone': ['google_x_job.kind'],
+      });
+      expect(check.failures, [
+        contains('XJobMode: stale'),
+        contains('XJobState: $enumSitesPath names google_y_job.state'),
+        contains('which the provider schema does not have'),
+        contains('XGone: stale'),
+      ]);
+    });
+
+    test('an enum the manifest records otherwise fails', () {
+      final check = enumSites(
+        inputs,
+        manifest,
+        [
+          emitted('XJobMode', 'mode', ['ON', 'OFF']),
+        ],
+        paths,
+        const {},
+      );
+      expect(check.failures, [contains('the migration manifest records [ON]')]);
+    });
+
+    test('an enum placed on a plain string input fails', () {
+      final check = enumSites(
+        {
+          ...inputs,
+          _key('google_x_job', 'kind'): null,
+        },
+        manifest,
+        [
+          emitted('XJobState', 'kind', ['DRAFT', 'DONE']),
+        ],
+        paths,
+        const {},
+      );
+      expect(check.failures, [
+        contains('google_x_job.kind: a plain string, but the wrappers emit'),
+      ]);
+    });
+
+    test('emittedEnums reads derived and multi-line declarations', () {
+      final dir = Directory.systemTemp.createTempSync('emitted');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      File('${dir.path}/lib/src/x/google_x_job.dart')
+        ..createSync(recursive: true)
+        ..writeAsStringSync('''// GENERATED FILE - DO NOT EDIT
+/// X Job enum for `state`.
+extension type const XJobState._(TfArg<String> _) implements TfArg<String> {
+  static const draft = XJobState._(TfArgLiteral('DRAFT'));
+  static const done = XJobState._(
+    TfArgLiteral('DONE'),
+  );
+}
+
+/// Hand-written.
+extension type const XJobKind._(
+  TfArg<String> _
+) implements TfArg<String> {
+  static const a = XJobKind._(TfArgLiteral('A'));
+}
+''');
+      File('${dir.path}/lib/src/data/google_x_jobs.dart')
+        ..createSync(recursive: true)
+        ..writeAsStringSync('''// GENERATED FILE - DO NOT EDIT
+/// X Jobs enum for `kind`.
+extension type const XJobsKind._(TfArg<String> _) implements TfArg<String> {
+  static const b = XJobsKind._(TfArgLiteral('B'));
+}
+''');
+      File('${dir.path}/lib/src/hand.dart').writeAsStringSync(
+        "extension type const Hand._(TfArg<String> _) {\n"
+        "  static const c = Hand._(TfArgLiteral('C'));\n}\n",
+      );
+      expect(
+        [
+          for (final e in emittedEnums(dir.path))
+            '${e.kind.name} ${e.tfType} ${e.name} ${e.leaf} ${e.values}',
+        ],
+        [
+          'dataSource google_x_jobs XJobsKind kind [B]',
+          'resource google_x_job XJobState state [DRAFT, DONE]',
+          'resource google_x_job XJobKind null [A]',
+        ],
+      );
+    });
+
+    test('schemaPaths walks attributes, nested types and blocks', () {
+      expect(
+        schemaPaths('''
+{"provider_schemas": {"p": {
+  "resource_schemas": {"google_x_job": {"block": {
+    "attributes": {"state": {}, "o": {"nested_type": {"attributes": {"k": {}}}}},
+    "block_types": {"step": {"block": {"attributes": {"state": {}}}}}
+  }}},
+  "data_source_schemas": {"google_x_jobs": {"block": {"attributes": {"id": {}}}}}
+}}}
+'''),
+        {
+          (CatalogKind.resource, 'google_x_job'): [
+            'state',
+            'o',
+            'o.k',
+            'step',
+            'step.state',
+          ],
+          (CatalogKind.dataSource, 'google_x_jobs'): ['id'],
+        },
+      );
+    });
   });
 
   group('checkSources', () {

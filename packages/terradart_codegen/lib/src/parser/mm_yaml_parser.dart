@@ -255,9 +255,8 @@ class MmYamlParser {
     List<List<String>>? groupSink,
     _Relations pathSink,
   ) {
-    final apiName =
-        (prop['api_name'] as String?) ?? _toSnakeCase(prop['name'] as String);
-    final fullKey = prefix.isEmpty ? apiName : '$prefix.$apiName';
+    final tfName = _toSnakeCase(prop['name'] as String);
+    final fullKey = prefix.isEmpty ? tfName : '$prefix.$tfName';
     // Terraform lifts a `flatten_object` property's fields into its parent.
     final childPrefix = prop['flatten_object'] == true ? prefix : fullKey;
     if (prop['flatten_object'] == true) pathSink.flattened.add(fullKey);
@@ -308,8 +307,7 @@ class MmYamlParser {
             (n) => pathSink.outputs.contains(
               [
                 if (childPrefix.isNotEmpty) childPrefix,
-                (n as YamlMap)['api_name'] as String? ??
-                    _toSnakeCase(n['name'] as String),
+                _toSnakeCase((n as YamlMap)['name'] as String),
               ].join('.'),
             ),
           )) {
@@ -446,9 +444,8 @@ class MmYamlParser {
       c.enumValues != null ||
       c.deprecationMessage != null;
 
-  /// MM YAML uses lowerCamelCase for the `name` field, but the canonical
-  /// Terraform JSON name comes from `api_name`. When `api_name` is absent
-  /// we synthesise a snake_case from the camelCase name the way the provider
+  /// The Terraform name of an MM `name` (lowerCamelCase; `api_name` is the
+  /// REST field, never the Terraform one), snake-cased the way the provider
   /// generator's `google.Underscore` does, so an acronym run stays one word
   /// (`IPProtocol` is `ip_protocol`).
   String _toSnakeCase(String camel) => camel

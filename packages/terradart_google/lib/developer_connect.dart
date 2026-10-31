@@ -40,5 +40,8 @@ export 'src/developer_connect/google_developer_connect_insights_config.dart'
         DeveloperConnectInsightsConfigArtifactConfigs,
         DeveloperConnectInsightsConfigGoogleArtifactAnalysis,
         DeveloperConnectInsightsConfigGoogleArtifactRegistry,
+        DeveloperConnectInsightsConfigScope,
+        DeveloperConnectInsightsConfigScopeAppHubApplication,
+        DeveloperConnectInsightsConfigScopeTargetProjects,
         DeveloperConnectInsightsConfigTargetProjects,
         GoogleDeveloperConnectInsightsConfig;

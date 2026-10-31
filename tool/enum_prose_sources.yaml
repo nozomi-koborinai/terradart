@@ -39,6 +39,9 @@ google:
   google_agentic_applications_analyst_agent_persona.artifacts_config.visualization_options.visualization_mode:
     values: [VISUALIZATION_MODE_EXPLICIT_ONLY, VISUALIZATION_MODE_WHEN_NECESSARY, VISUALIZATION_MODE_WHEN_HELPFUL, VISUALIZATION_MODE_ALWAYS]
     source: no-document
+  google_agentic_applications_analyst_agent_persona.math_rendering_mode:
+    values: [MATH_RENDERING_MODE_LATEX, MATH_RENDERING_MODE_PLAIN_TEXT]
+    source: no-document
   google_agentic_applications_analyst_agent_persona.role:
     values: [ANALYST_ROLE_GENERIC_FINANCE_ANALYST, ANALYST_ROLE_CORPORATE_FINANCE_ANALYST, ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST, ANALYST_ROLE_KYC_ANALYST, ANALYST_ROLE_SALES_TRADER, ANALYST_ROLE_QUANT_ANALYST, ANALYST_ROLE_EXCHANGE_MANAGER, ANALYST_ROLE_PORTFOLIO_MANAGER, ANALYST_ROLE_WEALTH_MANAGER, ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST, ANALYST_ROLE_MNA_EXECUTION_ANALYST, ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST, ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST, ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST, ANALYST_ROLE_CORPORATE_BANKING_ANALYST, ANALYST_ROLE_CREDIT_RISK_STRATEGIST, ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST, ANALYST_ROLE_FUND_ACCOUNTANT, ANALYST_ROLE_MODEL_VALIDATION_AUDITOR, ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST, ANALYST_ROLE_TREASURY_ANALYST, ANALYST_ROLE_VENTURE_CAPITAL_ANALYST, ANALYST_ROLE_AML_INVESTIGATOR, ANALYST_ROLE_DUE_DILIGENCE_ANALYST, ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST, ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER, ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER]
     source: no-document
@@ -308,6 +311,10 @@ google:
   google_cloud_tasks_queue.desired_state:
     values: [RUNNING, PAUSED]
     source: no-enum
+  google_cloudfunctions_function.status:
+    values: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTIVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
+    upstream: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTOVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
+    disagrees: 'Magic Modules misspells ACTIVE as ACTOVE; the Cloud Functions v1 API (CloudFunction.status) and the provider report ACTIVE'
   google_colab_runtime.desired_state:
     values: [RUNNING, STOPPED]
     source: no-enum
@@ -337,6 +344,10 @@ google:
     values: [VPC_PEERING, PRIVATE_SERVICE_CONNECT]
     upstream: [DNS_RESOLVER, GCE_ENDPOINT, IPSEC_INTERCONNECT, NAT_AUTO, PRIVATE_SERVICE_CONNECT, SERVERLESS, SHARED_LOADBALANCER_VIP, VPC_PEERING]
     disagrees: 'Address.purpose is shared by regional and global addresses; the API description and the provider document only VPC_PEERING and PRIVATE_SERVICE_CONNECT for a global address, and the other purposes are regional'
+  google_compute_health_check.type:
+    values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
+    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
+    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
   google_compute_instance.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
@@ -378,6 +389,10 @@ google:
     values: [PREMIUM, STANDARD]
     upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
     disagrees: 'the hand-written provider resource validates PREMIUM and STANDARD only (resource_compute_project_default_network_tier.go StringInSlice), as the API description says; STANDARD_OVERRIDES_FIXED_STANDARD is output only'
+  google_compute_region_health_check.type:
+    values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
+    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
+    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
   google_compute_region_instant_snapshot.deletion_policy:
     values: [DELETE, PREVENT, ABANDON]
     source: no-document

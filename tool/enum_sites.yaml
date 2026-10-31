@@ -1,0 +1,29 @@
+# The google-lane enums no migration manifest slot reaches and whose derived
+# doc leaf does not name exactly one schema path, with the inputs or
+# attributes each is the value set of (tool/google_enum_sources.dart). Labels
+# are `<type>.<dotted path>` (`data.<type>...` for a data source). An entry
+# for an enum a slot reaches, or one the wrappers no longer emit, is stale.
+google:
+  ChronicleDashboardChartAxisType:
+    sites:
+      - google_chronicle_dashboard_chart.dashboard_chart.visualization.x_axes.axis_type
+      - google_chronicle_dashboard_chart.dashboard_chart.visualization.y_axes.axis_type
+    reason: a manual slot spreads one axisType into both axes maps
+  DataFusionInstanceState:
+    sites:
+      - google_data_fusion_instance.state
+    reason: the instance state output; accelerators.state is its own enum
+  HealthCheckType:
+    sites:
+      - google_compute_health_check.type
+    reason: a prelude enum for the computed type, set by the sealed check block
+  IntegrationsAuthConfigCredentialType:
+    sites:
+      - google_integrations_auth_config.credential_type
+    reason: >-
+      the encrypted credential's type output; decrypted_credential.credential_type
+      is the input reference
+  RegionHealthCheckType:
+    sites:
+      - google_compute_region_health_check.type
+    reason: a prelude enum for the computed type, set by the sealed check block

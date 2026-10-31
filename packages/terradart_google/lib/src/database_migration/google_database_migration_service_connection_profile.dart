@@ -27,6 +27,36 @@ const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
       'postgresql.ssl.client_key',
     };
 
+/// Database Migration Service Connection Profile enum for `dbprovider`.
+extension type const DatabaseMigrationServiceConnectionProfileDbprovider._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileDbprovider.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileDbprovider.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileDbprovider.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const cloudsql = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('CLOUDSQL'),
+  );
+  static const rds = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('RDS'),
+  );
+  static const aurora = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('AURORA'),
+  );
+  static const alloydb = DatabaseMigrationServiceConnectionProfileDbprovider._(
+    TfArgLiteral('ALLOYDB'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileDbprovider>
+  values = [cloudsql, rds, aurora, alloydb];
+}
+
 /// Database Migration Service Connection Profile enum for `role`.
 extension type const DatabaseMigrationServiceConnectionProfileRole._(
   TfArg<String> _

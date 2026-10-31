@@ -43,6 +43,27 @@ properties:
       ]);
     });
 
+    test('constraints key by the Terraform name, never api_name', () {
+      final result = const MmYamlParser().parseString('''
+name: Job
+properties:
+  - name: 'state'
+    type: Enum
+    output: true
+    enum_values: [DRAFT, RUNNING, FAILED]
+  - name: 'desiredState'
+    api_name: state
+    type: Enum
+    enum_values: [RUNNING]
+''');
+      expect(result.fieldOverrides['state']!.enumValues, [
+        'DRAFT',
+        'RUNNING',
+        'FAILED',
+      ]);
+      expect(result.fieldOverrides['desired_state']!.enumValues, ['RUNNING']);
+    });
+
     test('validation.regex / minLength / maxLength are surfaced', () {
       final result = const MmYamlParser().parseString(yaml);
       final c = result.fieldOverrides['name']!;
