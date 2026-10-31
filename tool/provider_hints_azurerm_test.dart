@@ -53,12 +53,36 @@ func (r Registration) SupportedResources() map[string]*Resource {
 	}
 }
 ''');
+    write('internal/services/demo/helpers/auth_schema.go', '''
+package helpers
+
+import (
+	"github.com/hashicorp/go-azure-sdk/resource-manager/demo"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+)
+
+func AuthSchema() *Schema {
+	return &Schema{
+		Type: TypeList,
+		Elem: &Resource{
+			Schema: map[string]*Schema{
+				"convention": {
+					Type: TypeString,
+					ValidateFunc: validation.StringInSlice(demo.PossibleValuesForWidgetKind(), false),
+					Description: "Possible values include `WidgetKindA`, `WidgetKindB`.",
+				},
+			},
+		},
+	}
+}
+''');
     write('internal/services/demo/widget_resource.go', '''
 package demo
 
 import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/demo"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+	"github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/helpers"
 )
 
 var modes = []string{"on", "off"}
@@ -119,6 +143,9 @@ func resourceWidgetSchema() map[string]*Schema {
 					Schema: encryptionSchema(),
 				},
 			},
+			"auth": helpers.AuthSchema(),
+			"auth_slot": helpers.AuthSchema(),
+			"retention": retentionSchema(),
 			"circuit_breaker_rule": {
 				Type: TypeList,
 				Elem: &Resource{
@@ -142,6 +169,20 @@ func resourceWidgetSchema() map[string]*Schema {
 				},
 			},
 		}
+}
+
+func retentionSchema() *Schema {
+	return &Schema{
+		Type: TypeList,
+		Elem: &Resource{
+			Schema: map[string]*Schema{
+				"unit": {
+					Type: TypeString,
+					ValidateFunc: validation.StringInSlice([]string{"Day", "Hour"}, false),
+				},
+			},
+		},
+	}
 }
 
 func encryptionSchema() map[string]*Schema {
@@ -204,6 +245,12 @@ func resourceTyped() *Resource { return nil }
     expect(hints['mode']!.values, ['on', 'off']);
     expect(hints['mode']!.caseInsensitive, isTrue);
     expect(hints['encryption.enforcement']!.values, ['allow', 'drop']);
+    // A schema-map value that calls a schema function, in this package or an
+    // imported one, is scanned at its key's path: the validated set wins over
+    // a description that names Go constants.
+    expect(hints['auth.convention']!.values, ['a', 'b']);
+    expect(hints['auth_slot.convention']!.values, ['a', 'b']);
+    expect(hints['retention.unit']!.values, ['Day', 'Hour']);
     expect(
       widget.groups.map((g) => g.map((m) => m.join('.')).toList()),
       unorderedEquals([

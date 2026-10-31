@@ -31,6 +31,11 @@ AwsHintsScan scanAzurermProvider(Directory root) {
   }
   _FuncRef? samePackage(_FuncRef from, String name) =>
       byKey['${from.file.packagePath} $name'];
+  _FuncRef? resolve(_FuncRef from, String? qualifier, String name) {
+    if (qualifier == null) return samePackage(from, name);
+    final importPath = from.file.imports[qualifier];
+    return importPath == null ? null : byKey['$importPath $name'];
+  }
   final result = AwsHintsScan({});
   final schemas = byKind((_) => <String, List<_FuncRef>>{});
 
@@ -76,7 +81,7 @@ AwsHintsScan scanAzurermProvider(Directory root) {
       },
       result,
       index,
-      samePackage,
+      resolve,
     );
   }
   return result;
@@ -89,7 +94,7 @@ void _collect(
   Map<String, AwsTypeHints> out,
   AwsHintsScan result,
   _PackageIndex index,
-  _FuncRef? Function(_FuncRef from, String name) samePackage,
+  _SchemaCall resolve,
 ) {
   for (final type in schemas.keys.toList()..sort()) {
     final hints = <String, GoEnumHint>{};
@@ -99,7 +104,7 @@ void _collect(
     String? sourcePath;
     for (final ref in schemas[type]!) {
       sourcePath ??= ref.file.rel;
-      final found = _scanBody(ref, index, samePackage);
+      final found = _scanBody(ref, index, resolve);
       result.validators += found.validators;
       result.unresolved += found.unresolved;
       result.groupValidators += found.relations;
@@ -312,15 +317,21 @@ final class _BodyScan {
   var unresolvedRelations = 0;
 }
 
+/// Resolves a call to a schema function: `Name()` in the caller's package
+/// when [qualifier] is null, else `qualifier.Name()` through its imports.
+typedef _SchemaCall =
+    _FuncRef? Function(_FuncRef from, String? qualifier, String name);
+
 _BodyScan _scanBody(
   _FuncRef ref,
   _PackageIndex index,
-  _FuncRef? Function(_FuncRef from, String name) lookup,
+  _SchemaCall lookup,
 ) {
   final found = _BodyScan();
   final seen = <String>{};
   void scan(_FuncRef current, List<String> path) {
-    final id = '${current.file.rel}:${current.bodyStart}';
+    // A shared schema function is scanned once per path it is mounted at.
+    final id = '${current.file.rel}:${current.bodyStart} ${path.join('.')}';
     if (!seen.add(id)) return;
     final target = _schemaTarget(current);
     _walk(
@@ -381,7 +392,7 @@ void _walk(
   _BodyScan found,
   _PackageIndex index,
   _FuncRef ref,
-  _FuncRef? Function(_FuncRef from, String name) lookup,
+  _SchemaCall lookup,
   void Function(_FuncRef current, List<String> path) follow, {
   required bool schemaMap,
 }) {
@@ -411,6 +422,13 @@ void _walk(
         i = close + 1;
         continue;
       }
+      final call = _schemaCallAt(t, i, end);
+      if (call != null) {
+        final target = lookup(ref, call.qualifier, call.name);
+        if (target != null) follow(target, [...path, key]);
+        i = call.next;
+        continue;
+      }
       i = _skipValue(t, i, end);
       continue;
     }
@@ -438,7 +456,7 @@ void _walk(
           t[i + 2].kind == GoTok.ident &&
           t[i + 3].text == '(' &&
           t[i + 4].text == ')') {
-        final target = lookup(ref, t[i + 2].text);
+        final target = lookup(ref, null, t[i + 2].text);
         if (target != null) follow(target, path);
         i += 5;
         continue;
@@ -547,6 +565,28 @@ void _recordRelation(
   } else {
     found.exactly.add(group);
   }
+}
+
+/// The schema-function call `Name(...)` or `pkg.Name(...)` that starts at
+/// [i] as a whole schema-map value (a comma or the map's end follows it).
+({String? qualifier, String name, int next})? _schemaCallAt(
+  List<GoToken> t,
+  int i,
+  int end,
+) {
+  if (i >= end || t[i].kind != GoTok.ident) return null;
+  String? qualifier;
+  var j = i;
+  if (j + 2 < end && t[j + 1].text == '.' && t[j + 2].kind == GoTok.ident) {
+    qualifier = t[j].text;
+    j += 2;
+  }
+  if (j + 1 >= end || t[j + 1].text != '(') return null;
+  final close = _matchParen(t, j + 1);
+  if (close >= end) return null;
+  final next = close + 1;
+  if (next < end && t[next].text != ',') return null;
+  return (qualifier: qualifier, name: t[j].text, next: next);
 }
 
 /// `Any(...)` makes a `StringInSlice` one alternative, not the value set.

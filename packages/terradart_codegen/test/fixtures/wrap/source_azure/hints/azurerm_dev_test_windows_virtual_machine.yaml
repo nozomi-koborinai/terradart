@@ -3,6 +3,12 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: inbound_nat_rule
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Tcp"
+          - "Udp"
   - api_name: storage_type
     enum_values:
       - "Standard"

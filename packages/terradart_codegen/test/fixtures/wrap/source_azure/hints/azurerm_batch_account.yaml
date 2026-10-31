@@ -8,6 +8,20 @@ properties:
       - "AAD"
       - "SharedKey"
       - "TaskAuthenticationToken"
+  - api_name: network_profile
+    properties:
+      - api_name: account_access
+        properties:
+          - api_name: default_action
+            enum_values:
+              - "Allow"
+              - "Deny"
+      - api_name: node_management_access
+        properties:
+          - api_name: default_action
+            enum_values:
+              - "Allow"
+              - "Deny"
   - api_name: pool_allocation_mode
     enum_values:
       - "BatchService"

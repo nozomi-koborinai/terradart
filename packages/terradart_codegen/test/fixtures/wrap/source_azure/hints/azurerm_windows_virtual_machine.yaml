@@ -3,6 +3,12 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: additional_unattend_content
+    properties:
+      - api_name: setting
+        enum_values:
+          - "AutoLogon"
+          - "FirstLogonCommands"
   - api_name: disk_controller_type
     enum_values:
       - "NVMe"
@@ -16,6 +22,20 @@ properties:
       - "None"
       - "Windows_Client"
       - "Windows_Server"
+  - api_name: os_disk
+    properties:
+      - api_name: caching
+        enum_values:
+          - "None"
+          - "ReadOnly"
+          - "ReadWrite"
+      - api_name: diff_disk_settings
+        properties:
+          - api_name: placement
+            enum_values:
+              - "CacheDisk"
+              - "NvmeDisk"
+              - "ResourceDisk"
   - api_name: patch_assessment_mode
     enum_values:
       - "AutomaticByPlatform"
@@ -25,8 +45,15 @@ properties:
       - "AutomaticByOS"
       - "AutomaticByPlatform"
       - "Manual"
+  - api_name: winrm_listener
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Http"
+          - "Https"
 exactly_one_of_groups:
   - ["admin_username", "os_managed_disk_id"]
   - ["os_managed_disk_id", "source_image_id", "source_image_reference"]
 at_most_one_of_groups:
   - ["dedicated_host_group_id", "dedicated_host_id"]
+  - ["os_disk.disk_encryption_set_id", "os_disk.secure_vm_disk_encryption_set_id"]

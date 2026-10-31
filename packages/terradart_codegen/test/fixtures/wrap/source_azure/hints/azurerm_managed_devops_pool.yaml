@@ -12,6 +12,28 @@ properties:
               - "CreatorOnly"
               - "Inherit"
               - "SpecificAccounts"
+  - api_name: stateful_agent
+    properties:
+      - api_name: automatic_resource_prediction
+        properties:
+          - api_name: prediction_preference
+            enum_values:
+              - "Balanced"
+              - "BestPerformance"
+              - "MoreCostEffective"
+              - "MorePerformance"
+              - "MostCostEffective"
+  - api_name: stateless_agent
+    properties:
+      - api_name: automatic_resource_prediction
+        properties:
+          - api_name: prediction_preference
+            enum_values:
+              - "Balanced"
+              - "BestPerformance"
+              - "MoreCostEffective"
+              - "MorePerformance"
+              - "MostCostEffective"
   - api_name: virtual_machine_scale_set_fabric
     properties:
       - api_name: os_disk_storage_account_type

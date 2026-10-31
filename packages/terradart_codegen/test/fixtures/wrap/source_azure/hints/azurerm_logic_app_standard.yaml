@@ -23,5 +23,55 @@ properties:
           - "SQLAzure"
           - "SQLServer"
           - "ServiceBus"
+  - api_name: site_config
+    properties:
+      - api_name: dotnet_framework_version
+        enum_values:
+          - "v4.0"
+          - "v5.0"
+          - "v6.0"
+          - "v8.0"
+          - "v10.0"
+      - api_name: ftps_state
+        enum_values:
+          - "AllAllowed"
+          - "Disabled"
+          - "FtpsOnly"
+      - api_name: ip_restriction
+        properties:
+          - api_name: action
+            enum_values:
+              - "Allow"
+              - "Deny"
+      - api_name: ip_restriction_default_action
+        enum_values:
+          - "Allow"
+          - "Deny"
+      - api_name: scm_ip_restriction
+        properties:
+          - api_name: action
+            enum_values:
+              - "Allow"
+              - "Deny"
+      - api_name: scm_ip_restriction_default_action
+        enum_values:
+          - "Allow"
+          - "Deny"
+      - api_name: scm_type
+        enum_values:
+          - "BitbucketGit"
+          - "BitbucketHg"
+          - "CodePlexGit"
+          - "CodePlexHg"
+          - "Dropbox"
+          - "ExternalGit"
+          - "ExternalHg"
+          - "GitHub"
+          - "LocalGit"
+          - "None"
+          - "OneDrive"
+          - "Tfs"
+          - "VSO"
+          - "VSTSRM"
 exactly_one_of_groups:
   - ["storage_account_name", "storage_key_vault_secret_id"]

@@ -7,3 +7,16 @@ properties:
     enum_values:
       - "Append"
       - "Once"
+  - api_name: serialization
+    properties:
+      - api_name: field_delimiter
+        enum_values:
+          - " "
+          - ","
+          - "\t"
+          - "|"
+          - ";"
+      - api_name: format
+        enum_values:
+          - "Array"
+          - "LineSeparated"

@@ -3,6 +3,24 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: container
+    properties:
+      - api_name: liveness_probe
+        properties:
+          - api_name: http_get
+            properties:
+              - api_name: scheme
+                enum_values:
+                  - "http"
+                  - "https"
+      - api_name: readiness_probe
+        properties:
+          - api_name: http_get
+            properties:
+              - api_name: scheme
+                enum_values:
+                  - "http"
+                  - "https"
   - api_name: diagnostics
     properties:
       - api_name: log_analytics

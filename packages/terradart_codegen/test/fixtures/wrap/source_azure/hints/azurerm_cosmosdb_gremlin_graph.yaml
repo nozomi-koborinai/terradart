@@ -3,8 +3,22 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: conflict_resolution_policy
+    properties:
+      - api_name: mode
+        enum_values:
+          - "Custom"
+          - "LastWriterWins"
   - api_name: index_policy
     properties:
+      - api_name: composite_index
+        properties:
+          - api_name: index
+            properties:
+              - api_name: order
+                enum_values:
+                  - "ascending"
+                  - "descending"
       - api_name: indexing_mode
         enum_values:
           - "consistent"

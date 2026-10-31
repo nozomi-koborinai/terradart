@@ -3,6 +3,70 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: backend_request
+    properties:
+      - api_name: data_masking
+        properties:
+          - api_name: headers
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+          - api_name: query_params
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+  - api_name: backend_response
+    properties:
+      - api_name: data_masking
+        properties:
+          - api_name: headers
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+          - api_name: query_params
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+  - api_name: frontend_request
+    properties:
+      - api_name: data_masking
+        properties:
+          - api_name: headers
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+          - api_name: query_params
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+  - api_name: frontend_response
+    properties:
+      - api_name: data_masking
+        properties:
+          - api_name: headers
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
+          - api_name: query_params
+            properties:
+              - api_name: mode
+                enum_values:
+                  - "Hide"
+                  - "Mask"
   - api_name: http_correlation_protocol
     enum_values:
       - "Legacy"

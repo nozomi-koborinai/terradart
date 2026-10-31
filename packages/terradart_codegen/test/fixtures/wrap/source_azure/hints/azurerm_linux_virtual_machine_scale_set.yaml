@@ -3,10 +3,68 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: automatic_instance_repair
+    properties:
+      - api_name: action
+        enum_values:
+          - "Reimage"
+          - "Replace"
+          - "Restart"
+  - api_name: data_disk
+    properties:
+      - api_name: caching
+        enum_values:
+          - "None"
+          - "ReadOnly"
+          - "ReadWrite"
+      - api_name: storage_account_type
+        enum_values:
+          - "Premium_LRS"
+          - "PremiumV2_LRS"
+          - "Premium_ZRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
+          - "StandardSSD_ZRS"
+          - "UltraSSD_LRS"
   - api_name: eviction_policy
     enum_values:
       - "Deallocate"
       - "Delete"
+  - api_name: network_interface
+    properties:
+      - api_name: ip_configuration
+        properties:
+          - api_name: public_ip_address
+            properties:
+              - api_name: version
+                enum_values:
+                  - "IPv4"
+                  - "IPv6"
+          - api_name: version
+            enum_values:
+              - "IPv4"
+              - "IPv6"
+  - api_name: os_disk
+    properties:
+      - api_name: caching
+        enum_values:
+          - "None"
+          - "ReadOnly"
+          - "ReadWrite"
+      - api_name: diff_disk_settings
+        properties:
+          - api_name: placement
+            enum_values:
+              - "CacheDisk"
+              - "NvmeDisk"
+              - "ResourceDisk"
+  - api_name: scale_in
+    properties:
+      - api_name: rule
+        enum_values:
+          - "Default"
+          - "NewestVM"
+          - "OldestVM"
   - api_name: upgrade_mode
     enum_values:
       - "Automatic"
@@ -16,3 +74,5 @@ exactly_one_of_groups:
   - ["source_image_id", "source_image_reference"]
 at_most_one_of_groups:
   - ["capacity_reservation_group_id", "proximity_placement_group_id"]
+  - ["extension.protected_settings", "extension.protected_settings_from_key_vault"]
+  - ["os_disk.disk_encryption_set_id", "os_disk.secure_vm_disk_encryption_set_id"]
