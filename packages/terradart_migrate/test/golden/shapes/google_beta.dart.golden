@@ -74,6 +74,16 @@ final class ShapesGoogleBetaStack extends Stack {
       ),
     );
     add(
+      GoogleSecurityScannerScanConfig(
+        'unlisted',
+        displayName: backendComputeRegionBackendBucket.name,
+        exportToSecurityCommandCenter: .arg(.literal('UNLISTED_EXPORT')),
+        startingUrls: .literal(['https://shapes.example.com']),
+        targetPlatforms: .literal([.compute]),
+        userAgent: .variable('user_agent'),
+      ),
+    );
+    add(
       GoogleApiGatewayApiConfig(
         'config',
         api: .literal('shapes'),

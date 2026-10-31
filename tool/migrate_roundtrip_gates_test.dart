@@ -68,4 +68,55 @@ void main() {
     expect(ok, isNull);
     expect(errors, [startsWith('dart analyze of the migrated Stacks failed')]);
   }, timeout: const Timeout(Duration(minutes: 3)));
+
+  test('an enum literal no member names synthesizes as written', () async {
+    final google =
+        jsonDecode(
+              File(shapeFixturePath('terradart_google')).readAsStringSync(),
+            )
+            as Map<String, dynamic>;
+    final module = {
+      for (final e in google.entries)
+        if (e.key != 'resource' && e.key != 'variable') e.key: e.value,
+      'resource': {
+        'google_pubsub_schema': {
+          's': {'name': 's', 'type': 'avro'},
+        },
+      },
+    };
+    final r = migrateModule(
+      TfModule.fromTfJson(jsonEncode(module), fileName: 'main.tf.json'),
+      name: 'unlisted',
+      manifests: [
+        MigrateManifest(
+          package: googleMigrateManifest.package,
+          entries: googleMigrateManifest.entries,
+          helpers: googleMigrateManifest.helpers,
+          enums: googleMigrateManifest.enums,
+        ),
+      ],
+    );
+    expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
+    expect(
+      r.report.warnings.single,
+      contains('"avro" is not a member of PubsubSchemaType'),
+    );
+    expect(r.report.shapes, contains(MigratedShape.enumUnlisted));
+    final errors = <String>[];
+    final ok = await compareMigratedStacks(
+      {
+        'unlisted': (
+          stackClass: r.stackClass,
+          stackFile: r.stackFile,
+          source: r.stackSource,
+        ),
+      },
+      expected: {'unlisted': module},
+      packages: r.report.packages.toSet(),
+      temp: temp,
+      errors: errors,
+    );
+    expect(errors, isEmpty);
+    expect(ok, 1);
+  }, timeout: const Timeout(Duration(minutes: 3)));
 }

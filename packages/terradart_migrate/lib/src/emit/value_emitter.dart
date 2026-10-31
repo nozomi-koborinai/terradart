@@ -1099,9 +1099,9 @@ final class ValueEmitter {
       }
       final folded = _caseInsensitiveMember(members, raw);
       if (folded == null) {
-        // A value the machine source does not list still synthesizes as
-        // written through the enum's own `.expression`. One that reads as
-        // a template would be interpolated there, so it stays a blocker.
+        // A value the machine source does not list is passed through as a
+        // literal. One that reads as a template would be interpolated by
+        // Terraform, so it stays a blocker.
         if (hasTemplateSequence(raw)) {
           throw MigrateBlocker(
             'argument "$path": "$raw" is not a member of $enumName',
@@ -1109,9 +1109,12 @@ final class ValueEmitter {
         }
         ctx.warnings.add(
           'argument "$path": "$raw" is not a member of $enumName; it is '
-          'written $enumName.expression(...)',
+          'written $enumName.arg(.literal(...))',
         );
-        return enumCall('.expression(${dartString(raw)})');
+        shapes.add(MigratedShape.enumUnlisted);
+        return enumCall(
+          _inPosition(true, () => _arg('literal(${dartString(raw)})')),
+        );
       }
       shapes.add(MigratedShape.enumMember);
       ctx.warnings.add(

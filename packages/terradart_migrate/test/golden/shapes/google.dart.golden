@@ -107,6 +107,16 @@ final class ShapesGoogleStack extends Stack {
       ),
     );
     add(
+      GoogleDialogflowCxSecuritySettings(
+        'unlisted',
+        displayName: repo.name,
+        location: .literal('global'),
+        redactionScope: .arg(.literal('UNLISTED_SCOPE')),
+        retention: .retentionWindowDays(.literal(30)),
+        purgeDataTypes: .literal([.dialogflowHistory]),
+      ),
+    );
+    add(
       GoogleDataLossPreventionDeidentifyTemplate(
         'template',
         parent: .literal('projects/shapes-project'),

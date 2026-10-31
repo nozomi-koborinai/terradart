@@ -93,9 +93,11 @@ enum MigratedShape {
   /// An enum's `.variable(...)`.
   enumVariable,
 
-  /// An enum's `.expression(...)`, for a Terraform expression or a literal
-  /// that names no member.
+  /// An enum's `.expression(...)`, for a Terraform expression.
   enumExpression,
+
+  /// An enum's `.arg(.literal(...))`, for a literal that names no member.
+  enumUnlisted,
 
   /// An `EnumList` literal of members.
   enumListLiteral,

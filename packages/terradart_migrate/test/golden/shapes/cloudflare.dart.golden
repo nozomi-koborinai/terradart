@@ -83,5 +83,14 @@ final class ShapesCloudflareStack extends Stack {
         name: .literal('expression'),
       ),
     );
+    add(
+      CloudflareZeroTrustGatewayPolicy(
+        'unlisted',
+        accountId: .literal('shapes-account'),
+        action: .arg(.literal('unlisted')),
+        filters: .literal([.dns]),
+        name: .literal('unlisted'),
+      ),
+    );
   }
 }

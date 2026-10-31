@@ -65,6 +65,14 @@ final class ShapesAzureStack extends Stack {
       ),
     );
     add(
+      AzurermStorageAccountNetworkRules(
+        'unlisted',
+        bypass: .literal([.azureservices]),
+        defaultAction: .arg(.literal('Unlisted')),
+        storageAccountId: sa.ref,
+      ),
+    );
+    add(
       AzurermDataFactoryLinkedServiceAzureBlobStorage(
         'blob',
         connection: .serviceEndpoint(serviceEndpoint),

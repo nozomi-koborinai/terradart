@@ -817,21 +817,6 @@ resource "google_pubsub_topic" "t" {
         ],
       );
 
-      test('is written as the enum expression for a case-sensitive '
-          'provider', () {
-        final r = migrate(caseInsensitive: false);
-        expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
-        expect(
-          r.files['lib/demo_stack.dart'],
-          contains("type: .expression('avro')"),
-        );
-        expect(
-          r.report.warnings.single,
-          contains('"avro" is not a member of PubsubSchemaType'),
-        );
-        expect(r.report.shapes, contains(MigratedShape.enumExpression));
-      });
-
       test('names the canonical member, with a warning, otherwise', () {
         final r = migrate(caseInsensitive: true);
         expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));

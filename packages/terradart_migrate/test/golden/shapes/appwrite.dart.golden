@@ -54,5 +54,13 @@ final class ShapesAppwriteStack extends Stack {
         compression: .expression(r'${lower(var.compression)}'),
       ),
     );
+    add(
+      AppwriteStorageBucket(
+        'unlisted',
+        name: .literal('unlisted'),
+        compression: .arg(.literal('unlisted')),
+        permissions: .literal([.read(.any), .write(.users())]),
+      ),
+    );
   }
 }

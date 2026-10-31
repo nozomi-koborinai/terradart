@@ -53,6 +53,15 @@ final class ShapesAwsStack extends Stack {
       ),
     );
     add(
+      AwsCloudformationStack(
+        'unlisted',
+        capabilities: .literal([.capabilityIam]),
+        iamRoleArn: stack.ref,
+        name: .literal('unlisted'),
+        onFailure: .arg(.literal('UNLISTED')),
+      ),
+    );
+    add(
       AwsAcmCertificate(
         'cert',
         source: .domainName(.literal('shapes.example.com')),
