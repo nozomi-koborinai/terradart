@@ -67,6 +67,51 @@ extension type const MongoClusterComputeTier._(TfArg<String> _)
   ];
 }
 
+/// Mongo Cluster Create enum for `create_mode`.
+extension type const MongoClusterCreateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoClusterCreateMode.variable(String name) : this._(TfArg.variable(name));
+  MongoClusterCreateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoClusterCreateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = MongoClusterCreateMode._(TfArgLiteral('Default'));
+  static const georeplica = MongoClusterCreateMode._(
+    TfArgLiteral('GeoReplica'),
+  );
+  static const pointintimerestore = MongoClusterCreateMode._(
+    TfArgLiteral('PointInTimeRestore'),
+  );
+
+  static const List<MongoClusterCreateMode> values = [
+    defaultCase,
+    georeplica,
+    pointintimerestore,
+  ];
+}
+
+/// Mongo Cluster High Availability enum for `high_availability_mode`.
+extension type const MongoClusterHighAvailabilityMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoClusterHighAvailabilityMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MongoClusterHighAvailabilityMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoClusterHighAvailabilityMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = MongoClusterHighAvailabilityMode._(
+    TfArgLiteral('Disabled'),
+  );
+  static const zoneredundantpreferred = MongoClusterHighAvailabilityMode._(
+    TfArgLiteral('ZoneRedundantPreferred'),
+  );
+
+  static const List<MongoClusterHighAvailabilityMode> values = [
+    disabled,
+    zoneredundantpreferred,
+  ];
+}
+
 /// Mongo Cluster Public Network enum for `public_network_access`.
 extension type const MongoClusterPublicNetworkAccess._(TfArg<String> _)
     implements TfArg<String> {
@@ -194,9 +239,9 @@ final class AzurermMongoCluster extends Resource {
     List<MongoClusterAuthenticationMethods>? authenticationMethods,
     MongoClusterComputeTier? computeTier,
     TfArg<bool>? cosmosDbNetworkBypassEnabled,
-    TfArg<String>? createMode,
+    MongoClusterCreateMode? createMode,
     TfArg<bool>? dataApiModeEnabled,
-    TfArg<String>? highAvailabilityMode,
+    MongoClusterHighAvailabilityMode? highAvailabilityMode,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<List<String>>? previewFeatures,

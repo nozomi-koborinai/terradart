@@ -3,6 +3,27 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: authentication
+    properties:
+      - api_name: type
+        enum_values:
+          - "secret"
+          - "servicePrincipalSecret"
+          - "servicePrincipalCertificate"
+          - "systemAssignedIdentity"
+          - "userAssignedIdentity"
+  - api_name: client_type
+    enum_values:
+      - "none"
+      - "dotnet"
+      - "java"
+      - "python"
+      - "go"
+      - "php"
+      - "ruby"
+      - "django"
+      - "nodejs"
+      - "springBoot"
   - api_name: vnet_solution
     enum_values:
       - "privateLink"

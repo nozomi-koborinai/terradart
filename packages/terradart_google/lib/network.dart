@@ -350,7 +350,6 @@ export 'src/network/google_network_services_edge_cache_origin.dart'
         GoogleNetworkServicesEdgeCacheOrigin,
         NetworkServicesEdgeCacheOriginAwsV4Authentication,
         NetworkServicesEdgeCacheOriginFlexShielding,
-        NetworkServicesEdgeCacheOriginFlexShieldingRegions,
         NetworkServicesEdgeCacheOriginHeaderAction,
         NetworkServicesEdgeCacheOriginOverrideAction,
         NetworkServicesEdgeCacheOriginProtocol,

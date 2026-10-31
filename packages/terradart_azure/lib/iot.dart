@@ -8,9 +8,11 @@ export 'src/iot/azurerm_iot_security_device_group.dart'
     show
         AzurermIotSecurityDeviceGroup,
         IotSecurityDeviceGroupAllowRule,
-        IotSecurityDeviceGroupRangeRule;
+        IotSecurityDeviceGroupRangeRule,
+        IotSecurityDeviceGroupType;
 export 'src/iot/azurerm_iot_security_solution.dart'
     show
         AzurermIotSecuritySolution,
         IotSecuritySolutionAdditionalWorkspace,
+        IotSecuritySolutionEventsToExport,
         IotSecuritySolutionRecommendations;

@@ -109,7 +109,7 @@ final class PrivateLinkServiceNatIpConfiguration {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<String>? privateIpAddressVersion;
+  final PrivateLinkServicePrivateIpAddressVersion? privateIpAddressVersion;
 
   final TfArg<String> subnetId;
 
@@ -121,6 +121,24 @@ final class PrivateLinkServiceNatIpConfiguration {
     'private_ip_address_version': ?privateIpAddressVersion?.toTfJson(),
     'subnet_id': subnetId.toTfJson(),
   };
+}
+
+/// `private_ip_address_version` — derived from the provider schema description.
+extension type const PrivateLinkServicePrivateIpAddressVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivateLinkServicePrivateIpAddressVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivateLinkServicePrivateIpAddressVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivateLinkServicePrivateIpAddressVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipv4 = PrivateLinkServicePrivateIpAddressVersion._(
+    TfArgLiteral('IPv4'),
+  );
+
+  static const List<PrivateLinkServicePrivateIpAddressVersion> values = [ipv4];
 }
 
 /// Factory wrapper for `azurerm_private_link_service`.

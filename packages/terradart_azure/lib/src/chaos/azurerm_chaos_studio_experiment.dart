@@ -95,7 +95,7 @@ final class ChaosStudioExperimentActions {
     this.urn,
   });
 
-  final TfArg<String> actionType;
+  final ChaosStudioExperimentActionType actionType;
 
   final TfArg<String>? duration;
 
@@ -113,6 +113,30 @@ final class ChaosStudioExperimentActions {
     'selector_name': ?selectorName?.toTfJson(),
     'urn': ?urn?.toTfJson(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const ChaosStudioExperimentActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChaosStudioExperimentActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChaosStudioExperimentActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChaosStudioExperimentActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const continuous = ChaosStudioExperimentActionType._(
+    TfArgLiteral('continuous'),
+  );
+  static const delay = ChaosStudioExperimentActionType._(TfArgLiteral('delay'));
+  static const discrete = ChaosStudioExperimentActionType._(
+    TfArgLiteral('discrete'),
+  );
+
+  static const List<ChaosStudioExperimentActionType> values = [
+    continuous,
+    delay,
+    discrete,
+  ];
 }
 
 /// Factory wrapper for `azurerm_chaos_studio_experiment`.

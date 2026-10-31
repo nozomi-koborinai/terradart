@@ -11,6 +11,7 @@ export 'src/notification/azurerm_notification_hub.dart'
     show
         AzurermNotificationHub,
         NotificationHubApnsCredential,
+        NotificationHubApplicationMode,
         NotificationHubBrowserCredential,
         NotificationHubGcmCredential;
 export 'src/notification/azurerm_notification_hub_authorization_rule.dart'

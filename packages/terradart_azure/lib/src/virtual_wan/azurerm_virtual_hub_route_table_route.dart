@@ -34,6 +34,23 @@ extension type const VirtualHubRouteTableRouteDestinationsType._(
   ];
 }
 
+/// Virtual Hub Route Table Route Next Hop enum for `next_hop_type`.
+extension type const VirtualHubRouteTableRouteNextHopType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualHubRouteTableRouteNextHopType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualHubRouteTableRouteNextHopType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualHubRouteTableRouteNextHopType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const resourceid = VirtualHubRouteTableRouteNextHopType._(
+    TfArgLiteral('ResourceId'),
+  );
+
+  static const List<VirtualHubRouteTableRouteNextHopType> values = [resourceid];
+}
+
 /// Factory wrapper for `azurerm_virtual_hub_route_table_route`.
 final class AzurermVirtualHubRouteTableRoute extends Resource {
   static const String tfType = 'azurerm_virtual_hub_route_table_route';
@@ -44,7 +61,7 @@ final class AzurermVirtualHubRouteTableRoute extends Resource {
     required VirtualHubRouteTableRouteDestinationsType destinationsType,
     required TfArg<String> name,
     required TfArg<String> nextHop,
-    TfArg<String>? nextHopType,
+    VirtualHubRouteTableRouteNextHopType? nextHopType,
     required TfArg<String> routeTableId,
     super.lifecycle,
     super.dependsOn,

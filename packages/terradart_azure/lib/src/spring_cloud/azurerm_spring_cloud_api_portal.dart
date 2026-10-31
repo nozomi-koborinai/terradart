@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_api_portal`.
 const Set<String> _azurermSpringCloudApiPortalSensitive = <String>{};
 
+/// Spring Cloud Api Portal enum for `name`.
+extension type const SpringCloudApiPortalName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudApiPortalName.variable(String name) : this._(TfArg.variable(name));
+  SpringCloudApiPortalName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudApiPortalName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudApiPortalName._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpringCloudApiPortalName> values = [defaultCase];
+}
+
 /// Typed helper for the `sso` block of
 /// `azurerm_spring_cloud_api_portal` (derived from provider schema).
 @immutable
@@ -45,7 +60,7 @@ final class AzurermSpringCloudApiPortal extends Resource {
     TfArg<List<String>>? gatewayIds,
     TfArg<bool>? httpsOnlyEnabled,
     TfArg<num>? instanceCount,
-    required TfArg<String> name,
+    required SpringCloudApiPortalName name,
     TfArg<bool>? publicNetworkAccessEnabled,
     required TfArg<String> springCloudServiceId,
     SpringCloudApiPortalSso? sso,

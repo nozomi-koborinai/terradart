@@ -197,6 +197,28 @@ void main() {
         ['HTTP1', 'HTTP2'],
       );
     });
+    test('a list the description calls partial stays a string', () {
+      const flexShielding =
+          'You must specify exactly one FlexShieldingRegion. Possible values '
+          'include `AFRICA_SOUTH1`, `ME_CENTRAL1`, `EUROPE_WEST3`, and '
+          '`US_EAST5`. See [FlexShieldingRegion](https://cloud.google.com/'
+          'media-cdn/docs/reference/rest/v1/projects.locations.'
+          'edgeCacheOrigins#FlexShieldingRegion) for the full list of '
+          'supported regions.';
+      const complianceModes =
+          'Currently supported values are `fips` (FIPS-approved curves) and '
+          '`pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be '
+          'added; clients should treat unknown values as opaque strings.';
+      for (final d in [flexShielding, complianceModes]) {
+        expect(describesOpenSet(d), isTrue, reason: d);
+        expect(parseEnumValuesFromDescription(d), isNull, reason: d);
+      }
+      expect(
+        describesOpenSet('Possible values are `READ` and `WRITE`.'),
+        isFalse,
+      );
+    });
+
     test('near misses stay a string', () {
       expect(
         parseEnumValuesFromDescription(

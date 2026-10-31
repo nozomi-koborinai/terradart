@@ -7,6 +7,7 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/container_registry/azurerm_container_connected_registry.dart'
     show
         AzurermContainerConnectedRegistry,
+        ContainerConnectedRegistryAction,
         ContainerConnectedRegistryLogLevel,
         ContainerConnectedRegistryMode,
         ContainerConnectedRegistryNotification;
@@ -16,7 +17,8 @@ export 'src/container_registry/azurerm_container_registry.dart'
         ContainerRegistryGeoreplications,
         ContainerRegistryIdentity,
         ContainerRegistryNetworkRuleBypassOption,
-        ContainerRegistryRoleAssignmentMode;
+        ContainerRegistryRoleAssignmentMode,
+        ContainerRegistrySku;
 export 'src/container_registry/azurerm_container_registry_agent_pool.dart'
     show AzurermContainerRegistryAgentPool, ContainerRegistryAgentPoolTier;
 export 'src/container_registry/azurerm_container_registry_cache_rule.dart'

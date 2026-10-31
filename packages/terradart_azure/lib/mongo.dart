@@ -9,7 +9,9 @@ export 'src/mongo/azurerm_mongo_cluster.dart'
         AzurermMongoCluster,
         MongoClusterAuthenticationMethods,
         MongoClusterComputeTier,
+        MongoClusterCreateMode,
         MongoClusterCustomerManagedKey,
+        MongoClusterHighAvailabilityMode,
         MongoClusterIdentity,
         MongoClusterPublicNetworkAccess,
         MongoClusterRestore,
@@ -20,5 +22,7 @@ export 'src/mongo/azurerm_mongo_cluster_firewall_rule.dart'
 export 'src/mongo/azurerm_mongo_cluster_user.dart'
     show
         AzurermMongoClusterUser,
+        MongoClusterUserIdentityProviderType,
+        MongoClusterUserName,
         MongoClusterUserPrincipalType,
         MongoClusterUserRole;

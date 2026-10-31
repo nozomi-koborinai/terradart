@@ -1039,7 +1039,7 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -1057,7 +1057,7 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final LinuxFunctionAppSlotActiveDirectoryV2ClientSecret? clientSecret;
+  final LinuxFunctionAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -1076,7 +1076,7 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -1091,18 +1091,18 @@ final class LinuxFunctionAppSlotActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class LinuxFunctionAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppSlotActiveDirectoryV2ClientSecret();
+sealed class LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory LinuxFunctionAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory LinuxFunctionAppSlotClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory LinuxFunctionAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory LinuxFunctionAppSlotClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName;
+  ) = LinuxFunctionAppSlotClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1112,10 +1112,10 @@ sealed class LinuxFunctionAppSlotActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [LinuxFunctionAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends LinuxFunctionAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [LinuxFunctionAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -1133,10 +1133,10 @@ final class LinuxFunctionAppSlotActiveDirectoryV2ClientSecretCertificateThumbpri
   };
 }
 
-/// The [LinuxFunctionAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName
-    extends LinuxFunctionAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppSlotActiveDirectoryV2ClientSecretSettingName(
+/// The [LinuxFunctionAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppSlotClientCredentialClientSecretSettingName
+    extends LinuxFunctionAppSlotClientCredential {
+  const LinuxFunctionAppSlotClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1754,7 +1754,7 @@ final class LinuxFunctionAppSlotSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxFunctionAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
@@ -2072,6 +2072,26 @@ extension type const LinuxFunctionAppSlotMinimumTlsVersion._(TfArg<String> _)
     v1p3,
     v1p2,
     v1p0,
+  ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppSlotRemoteDebuggingVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = LinuxFunctionAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxFunctionAppSlotRemoteDebuggingVersion> values = [
+    vs2022,
   ];
 }
 

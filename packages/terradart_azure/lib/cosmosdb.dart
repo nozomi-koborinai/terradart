@@ -7,6 +7,7 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/cosmosdb/azurerm_cosmosdb_account.dart'
     show
         AzurermCosmosdbAccount,
+        CosmosdbAccountAllowedMethods,
         CosmosdbAccountAnalyticalStorage,
         CosmosdbAccountBackup,
         CosmosdbAccountCapabilities,
@@ -21,7 +22,9 @@ export 'src/cosmosdb/azurerm_cosmosdb_account.dart'
         CosmosdbAccountGremlinDatabase,
         CosmosdbAccountIdentity,
         CosmosdbAccountKind,
+        CosmosdbAccountMinimalTlsVersion,
         CosmosdbAccountMongoServerVersion,
+        CosmosdbAccountOfferType,
         CosmosdbAccountRestore,
         CosmosdbAccountSchemaType,
         CosmosdbAccountStorageRedundancy,
@@ -31,6 +34,7 @@ export 'src/cosmosdb/azurerm_cosmosdb_account.dart'
 export 'src/cosmosdb/azurerm_cosmosdb_cassandra_cluster.dart'
     show
         AzurermCosmosdbCassandraCluster,
+        CosmosdbCassandraClusterAuthenticationMethod,
         CosmosdbCassandraClusterIdentity,
         CosmosdbCassandraClusterVersion;
 export 'src/cosmosdb/azurerm_cosmosdb_cassandra_datacenter.dart'
@@ -104,9 +108,11 @@ export 'src/cosmosdb/azurerm_cosmosdb_sql_container.dart'
         CosmosdbSqlContainerExcludedPath,
         CosmosdbSqlContainerIncludedPath,
         CosmosdbSqlContainerIndex,
+        CosmosdbSqlContainerIndexingMode,
         CosmosdbSqlContainerIndexingPolicy,
         CosmosdbSqlContainerMode,
         CosmosdbSqlContainerOrder,
+        CosmosdbSqlContainerPartitionKeyKind,
         CosmosdbSqlContainerSpatialIndex,
         CosmosdbSqlContainerUniqueKey;
 export 'src/cosmosdb/azurerm_cosmosdb_sql_database.dart'

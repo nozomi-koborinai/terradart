@@ -9,6 +9,42 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_eventgrid_namespace`.
 const Set<String> _azurermEventgridNamespaceSensitive = <String>{};
 
+/// Eventgrid Namespace Public Network enum for `public_network_access`.
+extension type const EventgridNamespacePublicNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridNamespacePublicNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridNamespacePublicNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridNamespacePublicNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = EventgridNamespacePublicNetworkAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = EventgridNamespacePublicNetworkAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<EventgridNamespacePublicNetworkAccess> values = [
+    enabled,
+    disabled,
+  ];
+}
+
+/// Eventgrid Namespace enum for `sku`.
+extension type const EventgridNamespaceSku._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridNamespaceSku.variable(String name) : this._(TfArg.variable(name));
+  EventgridNamespaceSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridNamespaceSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = EventgridNamespaceSku._(TfArgLiteral('Standard'));
+
+  static const List<EventgridNamespaceSku> values = [standard];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_eventgrid_namespace` (derived from provider schema).
 @immutable
@@ -32,7 +68,7 @@ final class EventgridNamespaceIdentity {
 final class EventgridNamespaceInboundIpRule {
   const EventgridNamespaceInboundIpRule({this.action, required this.ipMask});
 
-  final TfArg<String>? action;
+  final EventgridNamespaceAction? action;
 
   final TfArg<String> ipMask;
 
@@ -41,6 +77,19 @@ final class EventgridNamespaceInboundIpRule {
     'action': ?action?.toTfJson(),
     'ip_mask': ipMask.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const EventgridNamespaceAction._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridNamespaceAction.variable(String name) : this._(TfArg.variable(name));
+  EventgridNamespaceAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridNamespaceAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = EventgridNamespaceAction._(TfArgLiteral('Allow'));
+
+  static const List<EventgridNamespaceAction> values = [allow];
 }
 
 /// Typed helper for the `topic_spaces_configuration` block of
@@ -185,9 +234,9 @@ final class AzurermEventgridNamespace extends Resource {
     TfArg<num>? capacity,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? publicNetworkAccess,
+    EventgridNamespacePublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? sku,
+    EventgridNamespaceSku? sku,
     TfArg<Map<String, String>>? tags,
     EventgridNamespaceIdentity? identity,
     List<EventgridNamespaceInboundIpRule>? inboundIpRule,

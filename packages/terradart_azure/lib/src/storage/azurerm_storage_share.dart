@@ -9,6 +9,44 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_storage_share`.
 const Set<String> _azurermStorageShareSensitive = <String>{};
 
+/// Storage Share Access enum for `access_tier`.
+extension type const StorageShareAccessTier._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageShareAccessTier.variable(String name) : this._(TfArg.variable(name));
+  StorageShareAccessTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageShareAccessTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = StorageShareAccessTier._(TfArgLiteral('Premium'));
+  static const hot = StorageShareAccessTier._(TfArgLiteral('Hot'));
+  static const cool = StorageShareAccessTier._(TfArgLiteral('Cool'));
+  static const transactionoptimized = StorageShareAccessTier._(
+    TfArgLiteral('TransactionOptimized'),
+  );
+
+  static const List<StorageShareAccessTier> values = [
+    premium,
+    hot,
+    cool,
+    transactionoptimized,
+  ];
+}
+
+/// Storage Share Enabled enum for `enabled_protocol`.
+extension type const StorageShareEnabledProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageShareEnabledProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageShareEnabledProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageShareEnabledProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const smb = StorageShareEnabledProtocol._(TfArgLiteral('SMB'));
+  static const nfs = StorageShareEnabledProtocol._(TfArgLiteral('NFS'));
+
+  static const List<StorageShareEnabledProtocol> values = [smb, nfs];
+}
+
 /// Typed helper for the `acl` block of
 /// `azurerm_storage_share` (derived from provider schema).
 @immutable
@@ -57,8 +95,8 @@ final class AzurermStorageShare extends Resource {
 
   AzurermStorageShare(
     super.localName, {
-    TfArg<String>? accessTier,
-    TfArg<String>? enabledProtocol,
+    StorageShareAccessTier? accessTier,
+    StorageShareEnabledProtocol? enabledProtocol,
     TfArg<Map<String, String>>? metadata,
     required TfArg<String> name,
     required TfArg<num> quota,

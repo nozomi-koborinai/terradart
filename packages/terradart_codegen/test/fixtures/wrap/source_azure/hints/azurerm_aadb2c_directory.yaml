@@ -10,3 +10,7 @@ properties:
       - "Europe"
       - "Global"
       - "United States"
+  - api_name: sku_name
+    enum_values:
+      - "PremiumP1"
+      - "PremiumP2"

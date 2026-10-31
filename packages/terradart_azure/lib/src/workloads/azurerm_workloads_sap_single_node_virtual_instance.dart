@@ -436,13 +436,35 @@ final class WorkloadsSapSingleNodeVirtualInstanceDataDisk {
 
   final TfArg<List<String>> names;
 
-  final TfArg<String> volumeName;
+  final WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName volumeName;
 
   @internal
   Map<String, Object?> encode() => {
     'names': names.toTfJson(),
     'volume_name': volumeName.toTfJson(),
   };
+}
+
+/// `volume_name` — derived from the provider schema description.
+extension type const WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const defaultCase =
+      WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName._(
+        TfArgLiteral('default'),
+      );
+
+  static const List<WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName>
+  values = [defaultCase];
 }
 
 /// Factory wrapper for `azurerm_workloads_sap_single_node_virtual_instance`.

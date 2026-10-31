@@ -860,7 +860,7 @@ final class LinuxWebAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -878,7 +878,7 @@ final class LinuxWebAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final LinuxWebAppSlotActiveDirectoryV2ClientSecret? clientSecret;
+  final LinuxWebAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -897,7 +897,7 @@ final class LinuxWebAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -912,18 +912,18 @@ final class LinuxWebAppSlotActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class LinuxWebAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxWebAppSlotActiveDirectoryV2ClientSecret();
+sealed class LinuxWebAppSlotClientCredential {
+  const LinuxWebAppSlotClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory LinuxWebAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory LinuxWebAppSlotClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = LinuxWebAppSlotClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory LinuxWebAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory LinuxWebAppSlotClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName;
+  ) = LinuxWebAppSlotClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -933,10 +933,10 @@ sealed class LinuxWebAppSlotActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [LinuxWebAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends LinuxWebAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [LinuxWebAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxWebAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends LinuxWebAppSlotClientCredential {
+  const LinuxWebAppSlotClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -954,10 +954,10 @@ final class LinuxWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [LinuxWebAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName
-    extends LinuxWebAppSlotActiveDirectoryV2ClientSecret {
-  const LinuxWebAppSlotActiveDirectoryV2ClientSecretSettingName(
+/// The [LinuxWebAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppSlotClientCredentialClientSecretSettingName
+    extends LinuxWebAppSlotClientCredential {
+  const LinuxWebAppSlotClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1568,7 +1568,7 @@ final class LinuxWebAppSlotApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final LinuxWebAppSlotLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -1580,6 +1580,29 @@ final class LinuxWebAppSlotApplicationLogsAzureBlobStorage {
     'retention_in_days': retentionInDays.toTfJson(),
     'sas_url': sasUrl.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+extension type const LinuxWebAppSlotLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotLevel.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppSlotLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = LinuxWebAppSlotLevel._(TfArgLiteral('Error'));
+  static const information = LinuxWebAppSlotLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const verbose = LinuxWebAppSlotLevel._(TfArgLiteral('Verbose'));
+  static const warning = LinuxWebAppSlotLevel._(TfArgLiteral('Warning'));
+
+  static const List<LinuxWebAppSlotLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
 }
 
 /// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_linux_web_app_slot`: the provider rejects
@@ -1758,7 +1781,7 @@ final class LinuxWebAppSlotSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxWebAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final LinuxWebAppSlotScmIpRestrictionDefaultAction?
   scmIpRestrictionDefaultAction;
@@ -2049,6 +2072,23 @@ extension type const LinuxWebAppSlotMinimumTlsVersion._(TfArg<String> _)
     v1p2,
     v1p0,
   ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxWebAppSlotRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = LinuxWebAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxWebAppSlotRemoteDebuggingVersion> values = [vs2022];
 }
 
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
@@ -2364,7 +2404,7 @@ final class LinuxWebAppSlotAction {
     this.minimumProcessExecutionTime,
   });
 
-  final TfArg<String> actionType;
+  final LinuxWebAppSlotActionType actionType;
 
   final TfArg<String>? minimumProcessExecutionTime;
 
@@ -2373,6 +2413,20 @@ final class LinuxWebAppSlotAction {
     'action_type': actionType.toTfJson(),
     'minimum_process_execution_time': ?minimumProcessExecutionTime?.toTfJson(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const LinuxWebAppSlotActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const recycle = LinuxWebAppSlotActionType._(TfArgLiteral('Recycle'));
+
+  static const List<LinuxWebAppSlotActionType> values = [recycle];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting.trigger` block of

@@ -2,5 +2,10 @@
 # v5.12.0 internal/services/appconfiguration/resources/app_configuration_key/r_schema.go. Never hand-edit;
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
+properties:
+  - api_name: type
+    enum_values:
+      - "vault"
+      - "kv"
 at_most_one_of_groups:
   - ["value", "vault_key_reference"]

@@ -123,6 +123,26 @@ extension type const FunctionAppFlexConsumptionStorageAuthenticationType._(
   ];
 }
 
+/// Function App Flex Consumption Storage Container enum for `storage_container_type`.
+extension type const FunctionAppFlexConsumptionStorageContainerType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionStorageContainerType.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionStorageContainerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionStorageContainerType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const blobcontainer = FunctionAppFlexConsumptionStorageContainerType._(
+    TfArgLiteral('blobContainer'),
+  );
+
+  static const List<FunctionAppFlexConsumptionStorageContainerType> values = [
+    blobcontainer,
+  ];
+}
+
 /// Typed helper for the `always_ready` block of
 /// `azurerm_function_app_flex_consumption` (derived from provider schema).
 @immutable
@@ -972,7 +992,7 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -990,7 +1010,7 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret? clientSecret;
+  final FunctionAppFlexConsumptionClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -1009,7 +1029,7 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -1024,18 +1044,18 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
-  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret();
+sealed class FunctionAppFlexConsumptionClientCredential {
+  const FunctionAppFlexConsumptionClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory FunctionAppFlexConsumptionClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = FunctionAppFlexConsumptionClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory FunctionAppFlexConsumptionClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName;
+  ) = FunctionAppFlexConsumptionClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1045,10 +1065,10 @@ sealed class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
-  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [FunctionAppFlexConsumptionClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class FunctionAppFlexConsumptionClientCredentialClientSecretCertificateThumbprint
+    extends FunctionAppFlexConsumptionClientCredential {
+  const FunctionAppFlexConsumptionClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -1066,10 +1086,10 @@ final class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretCertificateTh
   };
 }
 
-/// The [FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName
-    extends FunctionAppFlexConsumptionActiveDirectoryV2ClientSecret {
-  const FunctionAppFlexConsumptionActiveDirectoryV2ClientSecretSettingName(
+/// The [FunctionAppFlexConsumptionClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class FunctionAppFlexConsumptionClientCredentialClientSecretSettingName
+    extends FunctionAppFlexConsumptionClientCredential {
+  const FunctionAppFlexConsumptionClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -2063,7 +2083,8 @@ final class AzurermFunctionAppFlexConsumption extends Resource {
     required FunctionAppFlexConsumptionStorageAuthenticationType
     storageAuthenticationType,
     required TfArg<String> storageContainerEndpoint,
-    required TfArg<String> storageContainerType,
+    required FunctionAppFlexConsumptionStorageContainerType
+    storageContainerType,
     TfArg<String>? storageUserAssignedIdentityId,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? virtualNetworkSubnetId,

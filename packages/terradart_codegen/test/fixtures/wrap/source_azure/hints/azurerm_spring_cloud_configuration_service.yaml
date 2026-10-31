@@ -7,3 +7,6 @@ properties:
     enum_values:
       - "Gen1"
       - "Gen2"
+  - api_name: name
+    enum_values:
+      - "default"

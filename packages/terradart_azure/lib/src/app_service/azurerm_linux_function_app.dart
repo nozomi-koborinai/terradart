@@ -1026,7 +1026,7 @@ final class LinuxFunctionAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -1044,7 +1044,7 @@ final class LinuxFunctionAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final LinuxFunctionAppActiveDirectoryV2ClientSecret? clientSecret;
+  final LinuxFunctionAppClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -1063,7 +1063,7 @@ final class LinuxFunctionAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -1078,18 +1078,18 @@ final class LinuxFunctionAppActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class LinuxFunctionAppActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppActiveDirectoryV2ClientSecret();
+sealed class LinuxFunctionAppClientCredential {
+  const LinuxFunctionAppClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory LinuxFunctionAppClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = LinuxFunctionAppClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory LinuxFunctionAppClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName;
+  ) = LinuxFunctionAppClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1099,10 +1099,10 @@ sealed class LinuxFunctionAppActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends LinuxFunctionAppActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [LinuxFunctionAppClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxFunctionAppClientCredentialClientSecretCertificateThumbprint
+    extends LinuxFunctionAppClientCredential {
+  const LinuxFunctionAppClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -1120,10 +1120,10 @@ final class LinuxFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [LinuxFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName
-    extends LinuxFunctionAppActiveDirectoryV2ClientSecret {
-  const LinuxFunctionAppActiveDirectoryV2ClientSecretSettingName(
+/// The [LinuxFunctionAppClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxFunctionAppClientCredentialClientSecretSettingName
+    extends LinuxFunctionAppClientCredential {
+  const LinuxFunctionAppClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1733,7 +1733,7 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxFunctionAppRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
@@ -2034,6 +2034,23 @@ extension type const LinuxFunctionAppMinimumTlsVersion._(TfArg<String> _)
     v1p2,
     v1p0,
   ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = LinuxFunctionAppRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxFunctionAppRemoteDebuggingVersion> values = [vs2022];
 }
 
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.

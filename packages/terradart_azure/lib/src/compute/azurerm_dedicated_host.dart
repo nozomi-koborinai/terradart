@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_dedicated_host`.
 const Set<String> _azurermDedicatedHostSensitive = <String>{};
 
+/// Dedicated Host License enum for `license_type`.
+extension type const DedicatedHostLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  DedicatedHostLicenseType.variable(String name) : this._(TfArg.variable(name));
+  DedicatedHostLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DedicatedHostLicenseType.arg(TfArg<String> arg) : this._(arg);
+
+  static const windowsServerHybrid = DedicatedHostLicenseType._(
+    TfArgLiteral('Windows_Server_Hybrid'),
+  );
+  static const windowsServerPerpetual = DedicatedHostLicenseType._(
+    TfArgLiteral('Windows_Server_Perpetual'),
+  );
+
+  static const List<DedicatedHostLicenseType> values = [
+    windowsServerHybrid,
+    windowsServerPerpetual,
+  ];
+}
+
 /// Dedicated Host Sku enum for `sku_name`.
 extension type const DedicatedHostSkuName._(TfArg<String> _)
     implements TfArg<String> {
@@ -131,7 +152,7 @@ final class AzurermDedicatedHost extends Resource {
     super.localName, {
     TfArg<bool>? autoReplaceOnFailure,
     required TfArg<String> dedicatedHostGroupId,
-    TfArg<String>? licenseType,
+    DedicatedHostLicenseType? licenseType,
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<num> platformFaultDomain,

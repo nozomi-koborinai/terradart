@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_servicebus_topic`.
 const Set<String> _azurermServicebusTopicSensitive = <String>{};
 
+/// Servicebus Topic enum for `status`.
+extension type const ServicebusTopicStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicebusTopicStatus.variable(String name) : this._(TfArg.variable(name));
+  ServicebusTopicStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicebusTopicStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = ServicebusTopicStatus._(TfArgLiteral('Active'));
+  static const disabled = ServicebusTopicStatus._(TfArgLiteral('Disabled'));
+
+  static const List<ServicebusTopicStatus> values = [active, disabled];
+}
+
 /// Factory wrapper for `azurerm_servicebus_topic`.
 final class AzurermServicebusTopic extends Resource {
   static const String tfType = 'azurerm_servicebus_topic';
@@ -23,7 +37,7 @@ final class AzurermServicebusTopic extends Resource {
     required TfArg<String> namespaceId,
     TfArg<bool>? partitioningEnabled,
     TfArg<bool>? requiresDuplicateDetection,
-    TfArg<String>? status,
+    ServicebusTopicStatus? status,
     TfArg<bool>? supportOrdering,
     super.lifecycle,
     super.dependsOn,

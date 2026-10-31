@@ -2,5 +2,26 @@
 # v5.12.0 internal/services/keyvault/key_vault_key_resource.go. Never hand-edit;
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
+properties:
+  - api_name: curve
+    enum_values:
+      - "P-256"
+      - "P-256K"
+      - "P-384"
+      - "P-521"
+  - api_name: key_opts
+    enum_values:
+      - "decrypt"
+      - "encrypt"
+      - "sign"
+      - "unwrapKey"
+      - "verify"
+      - "wrapKey"
+  - api_name: key_type
+    enum_values:
+      - "EC"
+      - "EC-HSM"
+      - "RSA"
+      - "RSA-HSM"
 at_most_one_of_groups:
   - ["curve", "key_size"]

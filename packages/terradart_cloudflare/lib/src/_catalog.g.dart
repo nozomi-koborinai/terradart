@@ -5685,7 +5685,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `cloudflare_origin_tls_compliance_modes`.',
     constructorParams: <String>['localName', 'value', 'zoneId'],
-    nestedTypes: <String>['OriginTlsComplianceModesValue'],
+    nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_origin_tls_compliance_modes`.',
   ),

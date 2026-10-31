@@ -41,6 +41,29 @@ extension type const LogicAppStandardClientCertificateMode._(TfArg<String> _)
   ];
 }
 
+/// Logic App Standard Public Network enum for `public_network_access`.
+extension type const LogicAppStandardPublicNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardPublicNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardPublicNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardPublicNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = LogicAppStandardPublicNetworkAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = LogicAppStandardPublicNetworkAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<LogicAppStandardPublicNetworkAccess> values = [
+    enabled,
+    disabled,
+  ];
+}
+
 /// Exactly one of `storage_account_name`, `storage_key_vault_secret_id` on `azurerm_logic_app_standard`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -243,7 +266,7 @@ final class LogicAppStandardSiteConfig {
 
   final TfArg<String>? linuxFxVersion;
 
-  final TfArg<String>? minTlsVersion;
+  final LogicAppStandardMinTlsVersion? minTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
@@ -252,7 +275,7 @@ final class LogicAppStandardSiteConfig {
   final LogicAppStandardScmIpRestrictionDefaultAction?
   scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinTlsVersion;
+  final LogicAppStandardScmMinTlsVersion? scmMinTlsVersion;
 
   final LogicAppStandardScmType? scmType;
 
@@ -382,6 +405,21 @@ extension type const LogicAppStandardIpRestrictionDefaultAction._(
   ];
 }
 
+/// `min_tls_version` — derived from the provider schema description.
+extension type const LogicAppStandardMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = LogicAppStandardMinTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = LogicAppStandardMinTlsVersion._(TfArgLiteral('1.3'));
+
+  static const List<LogicAppStandardMinTlsVersion> values = [v1p2, v1p3];
+}
+
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const LogicAppStandardScmIpRestrictionDefaultAction._(
   TfArg<String> _
@@ -404,6 +442,21 @@ extension type const LogicAppStandardScmIpRestrictionDefaultAction._(
     allow,
     deny,
   ];
+}
+
+/// `scm_min_tls_version` — derived from the provider schema description.
+extension type const LogicAppStandardScmMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardScmMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppStandardScmMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardScmMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = LogicAppStandardScmMinTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = LogicAppStandardScmMinTlsVersion._(TfArgLiteral('1.3'));
+
+  static const List<LogicAppStandardScmMinTlsVersion> values = [v1p2, v1p3];
 }
 
 /// `scm_type` — derived from the provider schema description.
@@ -595,7 +648,7 @@ final class AzurermLogicAppStandard extends Resource {
     TfArg<String>? keyVaultReferenceIdentityId,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? publicNetworkAccess,
+    LogicAppStandardPublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? scmPublishBasicAuthenticationEnabled,
     Sensitive<String>? storageAccountAccessKey,

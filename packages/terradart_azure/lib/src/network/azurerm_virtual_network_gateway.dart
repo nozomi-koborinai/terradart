@@ -36,6 +36,23 @@ extension type const VirtualNetworkGatewayGeneration._(TfArg<String> _)
   ];
 }
 
+/// Virtual Network Gateway enum for `type`.
+extension type const VirtualNetworkGatewayType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualNetworkGatewayType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualNetworkGatewayType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualNetworkGatewayType.arg(TfArg<String> arg) : this._(arg);
+
+  static const expressroute = VirtualNetworkGatewayType._(
+    TfArgLiteral('ExpressRoute'),
+  );
+  static const vpn = VirtualNetworkGatewayType._(TfArgLiteral('Vpn'));
+
+  static const List<VirtualNetworkGatewayType> values = [expressroute, vpn];
+}
+
 /// Virtual Network Gateway Vpn enum for `vpn_type`.
 extension type const VirtualNetworkGatewayVpnType._(TfArg<String> _)
     implements TfArg<String> {
@@ -766,7 +783,7 @@ final class AzurermVirtualNetworkGateway extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> sku,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required VirtualNetworkGatewayType type,
     TfArg<bool>? virtualWanTrafficEnabled,
     VirtualNetworkGatewayVpnType? vpnType,
     VirtualNetworkGatewayBgpSettings? bgpSettings,

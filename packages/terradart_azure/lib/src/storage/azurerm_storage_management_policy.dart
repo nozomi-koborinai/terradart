@@ -276,7 +276,7 @@ final class StorageManagementPolicyMatchBlobIndexTag {
 
   final TfArg<String> name;
 
-  final TfArg<String>? operation;
+  final StorageManagementPolicyOperation? operation;
 
   final TfArg<String> value;
 
@@ -286,6 +286,20 @@ final class StorageManagementPolicyMatchBlobIndexTag {
     'operation': ?operation?.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+extension type const StorageManagementPolicyOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageManagementPolicyOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageManagementPolicyOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageManagementPolicyOperation.arg(TfArg<String> arg) : this._(arg);
+
+  static const eq = StorageManagementPolicyOperation._(TfArgLiteral('=='));
+
+  static const List<StorageManagementPolicyOperation> values = [eq];
 }
 
 /// Factory wrapper for `azurerm_storage_management_policy`.

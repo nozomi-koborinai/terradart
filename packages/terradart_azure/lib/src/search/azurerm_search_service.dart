@@ -80,6 +80,23 @@ extension type const SearchServiceNetworkRuleBypassOption._(TfArg<String> _)
   ];
 }
 
+/// Search Service Semantic Search enum for `semantic_search_sku`.
+extension type const SearchServiceSemanticSearchSku._(TfArg<String> _)
+    implements TfArg<String> {
+  SearchServiceSemanticSearchSku.variable(String name)
+    : this._(TfArg.variable(name));
+  SearchServiceSemanticSearchSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const SearchServiceSemanticSearchSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const free = SearchServiceSemanticSearchSku._(TfArgLiteral('free'));
+  static const standard = SearchServiceSemanticSearchSku._(
+    TfArgLiteral('standard'),
+  );
+
+  static const List<SearchServiceSemanticSearchSku> values = [free, standard];
+}
+
 /// Search Service enum for `sku`.
 extension type const SearchServiceSku._(TfArg<String> _)
     implements TfArg<String> {
@@ -146,7 +163,7 @@ final class AzurermSearchService extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     TfArg<num>? replicaCount,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? semanticSearchSku,
+    SearchServiceSemanticSearchSku? semanticSearchSku,
     required SearchServiceSku sku,
     TfArg<Map<String, String>>? tags,
     SearchServiceIdentity? identity,

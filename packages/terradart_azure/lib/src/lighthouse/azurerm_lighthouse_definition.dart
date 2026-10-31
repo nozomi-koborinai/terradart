@@ -75,7 +75,7 @@ final class LighthouseDefinitionJustInTimeAccessPolicy {
 
   final TfArg<String>? maximumActivationDuration;
 
-  final TfArg<String>? multiFactorAuthProvider;
+  final LighthouseDefinitionMultiFactorAuthProvider? multiFactorAuthProvider;
 
   final List<LighthouseDefinitionApprover>? approver;
 
@@ -85,6 +85,26 @@ final class LighthouseDefinitionJustInTimeAccessPolicy {
     'multi_factor_auth_provider': ?multiFactorAuthProvider?.toTfJson(),
     if (approver != null) 'approver': [for (final e in approver!) e.encode()],
   };
+}
+
+/// `multi_factor_auth_provider` — derived from the provider schema description.
+extension type const LighthouseDefinitionMultiFactorAuthProvider._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LighthouseDefinitionMultiFactorAuthProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  LighthouseDefinitionMultiFactorAuthProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const LighthouseDefinitionMultiFactorAuthProvider.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azure = LighthouseDefinitionMultiFactorAuthProvider._(
+    TfArgLiteral('Azure'),
+  );
+
+  static const List<LighthouseDefinitionMultiFactorAuthProvider> values = [
+    azure,
+  ];
 }
 
 /// Typed helper for the `eligible_authorization.just_in_time_access_policy.approver` block of

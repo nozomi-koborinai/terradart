@@ -19,7 +19,7 @@ export 'src/route/azurerm_route_map.dart'
         RouteMapRule,
         RouteMapType;
 export 'src/route/azurerm_route_server.dart'
-    show AzurermRouteServer, RouteServerHubRoutingPreference;
+    show AzurermRouteServer, RouteServerHubRoutingPreference, RouteServerSku;
 export 'src/route/azurerm_route_server_bgp_connection.dart'
     show AzurermRouteServerBgpConnection;
 export 'src/route/azurerm_route_table.dart' show AzurermRouteTable;

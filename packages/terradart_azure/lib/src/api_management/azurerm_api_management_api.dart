@@ -156,7 +156,7 @@ final class ApiManagementApiImport {
     this.wsdlSelector,
   });
 
-  final TfArg<String> contentFormat;
+  final ApiManagementApiContentFormat contentFormat;
 
   final TfArg<String> contentValue;
 
@@ -168,6 +168,58 @@ final class ApiManagementApiImport {
     'content_value': contentValue.toTfJson(),
     'wsdl_selector': ?wsdlSelector?.encode(),
   };
+}
+
+/// `content_format` — derived from the provider schema description.
+extension type const ApiManagementApiContentFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiManagementApiContentFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiManagementApiContentFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiManagementApiContentFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const openapi = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi'),
+  );
+  static const openapiJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi+json'),
+  );
+  static const openapiJsonLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi+json-link'),
+  );
+  static const openapiLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('openapi-link'),
+  );
+  static const swaggerJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('swagger-json'),
+  );
+  static const swaggerLinkJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('swagger-link-json'),
+  );
+  static const wadlLinkJson = ApiManagementApiContentFormat._(
+    TfArgLiteral('wadl-link-json'),
+  );
+  static const wadlXml = ApiManagementApiContentFormat._(
+    TfArgLiteral('wadl-xml'),
+  );
+  static const wsdl = ApiManagementApiContentFormat._(TfArgLiteral('wsdl'));
+  static const wsdlLink = ApiManagementApiContentFormat._(
+    TfArgLiteral('wsdl-link'),
+  );
+
+  static const List<ApiManagementApiContentFormat> values = [
+    openapi,
+    openapiJson,
+    openapiJsonLink,
+    openapiLink,
+    swaggerJson,
+    swaggerLinkJson,
+    wadlLinkJson,
+    wadlXml,
+    wsdl,
+    wsdlLink,
+  ];
 }
 
 /// Typed helper for the `import.wsdl_selector` block of

@@ -88,6 +88,8 @@ import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 
+import 'package:yaml/yaml.dart';
+
 import 'http_retry.dart';
 import 'provider_hints_aws.dart';
 import 'provider_hints_azurerm.dart';
@@ -741,6 +743,42 @@ const _awsSources =
     'aws-sdk-go-v2 `types/enums.go` at the version the provider\'s `go.mod`\n'
     'requires';
 
+/// `tool/provider_hints_unresolved.yaml`'s reviewed reasons for
+/// [provider]'s validators the scanner cannot evaluate: `<type> <path>` →
+/// reason.
+Map<String, String> readUnresolvedLedger(
+  String provider, {
+  String path = 'tool/provider_hints_unresolved.yaml',
+}) {
+  final file = File(path);
+  if (!file.existsSync()) return const {};
+  final doc = loadYaml(file.readAsStringSync());
+  final section = doc is YamlMap ? doc[provider] : null;
+  if (section is! YamlMap) return const {};
+  return {
+    for (final MapEntry(:key, :value) in section.entries)
+      key as String: value as String,
+  };
+}
+
+/// An unresolved value-set validator in [sites] with no [ledger] reason,
+/// and a [ledger] entry that names no unresolved validator.
+List<String> unresolvedSiteErrors(
+  List<String> sites,
+  Map<String, String> ledger,
+) {
+  final found = sites.toSet();
+  return [
+    for (final site in found.toList()..sort())
+      if (!ledger.containsKey(site))
+        'unresolved value-set validator: $site (resolve it in the scanner, '
+            'or give a reason in tool/provider_hints_unresolved.yaml)',
+    for (final key in ledger.keys.toList()..sort())
+      if (!found.contains(key))
+        'stale tool/provider_hints_unresolved.yaml entry: $key',
+  ];
+}
+
 Never _fail(int code, String message) {
   stderr.writeln('extract_provider_hints: $message');
   exit(code);
@@ -863,6 +901,13 @@ Future<void> main(List<String> args) async {
       'in resource and data source schemas, ${scan.unresolved} not '
       'evaluable (dropped)',
     );
+    final unresolved = unresolvedSiteErrors(
+      scan.unresolvedSites,
+      readUnresolvedLedger(provider),
+    );
+    if (unresolved.isNotEmpty) {
+      _fail(_exitData, unresolved.join('\n'));
+    }
     print(
       'extract_provider_hints: ${scan.groupValidators} relation '
       'validator(s), ${scan.unresolvedGroups} not evaluable (dropped)',

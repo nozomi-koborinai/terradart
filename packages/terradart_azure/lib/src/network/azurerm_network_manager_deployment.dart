@@ -6,6 +6,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_network_manager_deployment`.
 const Set<String> _azurermNetworkManagerDeploymentSensitive = <String>{};
 
+/// Network Manager Deployment Scope enum for `scope_access`.
+extension type const NetworkManagerDeploymentScopeAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkManagerDeploymentScopeAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagerDeploymentScopeAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkManagerDeploymentScopeAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectivity = NetworkManagerDeploymentScopeAccess._(
+    TfArgLiteral('Connectivity'),
+  );
+  static const securityadmin = NetworkManagerDeploymentScopeAccess._(
+    TfArgLiteral('SecurityAdmin'),
+  );
+  static const routing = NetworkManagerDeploymentScopeAccess._(
+    TfArgLiteral('Routing'),
+  );
+
+  static const List<NetworkManagerDeploymentScopeAccess> values = [
+    connectivity,
+    securityadmin,
+    routing,
+  ];
+}
+
 /// Factory wrapper for `azurerm_network_manager_deployment`.
 final class AzurermNetworkManagerDeployment extends Resource {
   static const String tfType = 'azurerm_network_manager_deployment';
@@ -15,7 +42,7 @@ final class AzurermNetworkManagerDeployment extends Resource {
     required TfArg<List<String>> configurationIds,
     required TfArg<String> location,
     required TfArg<String> networkManagerId,
-    required TfArg<String> scopeAccess,
+    required NetworkManagerDeploymentScopeAccess scopeAccess,
     TfArg<Map<String, String>>? triggers,
     super.lifecycle,
     super.dependsOn,

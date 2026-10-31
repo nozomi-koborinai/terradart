@@ -58,6 +58,23 @@ extension type const NetappVolumeEncryptionKeySource._(TfArg<String> _)
   ];
 }
 
+/// Netapp Volume Network enum for `network_features`.
+extension type const NetappVolumeNetworkFeatures._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeNetworkFeatures.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeNetworkFeatures.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeNetworkFeatures.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = NetappVolumeNetworkFeatures._(TfArgLiteral('Basic'));
+  static const standard = NetappVolumeNetworkFeatures._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<NetappVolumeNetworkFeatures> values = [basic, standard];
+}
+
 /// Netapp Volume enum for `protocols`.
 extension type const NetappVolumeProtocols._(TfArg<String> _)
     implements TfArg<String> {
@@ -86,6 +103,27 @@ extension type const AzurermNetappVolumeSecurityStyle._(TfArg<String> _)
   static const unix = AzurermNetappVolumeSecurityStyle._(TfArgLiteral('unix'));
 
   static const List<AzurermNetappVolumeSecurityStyle> values = [ntfs, unix];
+}
+
+/// Netapp Volume Service enum for `service_level`.
+extension type const NetappVolumeServiceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeServiceLevel.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeServiceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeServiceLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium = NetappVolumeServiceLevel._(TfArgLiteral('Premium'));
+  static const standard = NetappVolumeServiceLevel._(TfArgLiteral('Standard'));
+  static const ultra = NetappVolumeServiceLevel._(TfArgLiteral('Ultra'));
+  static const flexible = NetappVolumeServiceLevel._(TfArgLiteral('Flexible'));
+
+  static const List<NetappVolumeServiceLevel> values = [
+    premium,
+    standard,
+    ultra,
+    flexible,
+  ];
 }
 
 /// Typed helper for the `cool_access` block of
@@ -205,7 +243,7 @@ final class NetappVolumeDataProtectionReplication {
     required this.replicationFrequency,
   });
 
-  final TfArg<String>? endpointType;
+  final NetappVolumeEndpointType? endpointType;
 
   final TfArg<String> remoteVolumeLocation;
 
@@ -220,6 +258,19 @@ final class NetappVolumeDataProtectionReplication {
     'remote_volume_resource_id': remoteVolumeResourceId.toTfJson(),
     'replication_frequency': replicationFrequency.toTfJson(),
   };
+}
+
+/// `endpoint_type` — derived from the provider schema description.
+extension type const NetappVolumeEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeEndpointType.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeEndpointType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dst = NetappVolumeEndpointType._(TfArgLiteral('dst'));
+
+  static const List<NetappVolumeEndpointType> values = [dst];
 }
 
 /// `replication_frequency` — derived from the provider schema description.
@@ -357,12 +408,12 @@ final class AzurermNetappVolume extends Resource {
     TfArg<bool>? largeVolumeEnabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? networkFeatures,
+    NetappVolumeNetworkFeatures? networkFeatures,
     required TfArg<String> poolName,
     List<NetappVolumeProtocols>? protocols,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     AzurermNetappVolumeSecurityStyle? securityStyle,
-    required TfArg<String> serviceLevel,
+    required NetappVolumeServiceLevel serviceLevel,
     TfArg<bool>? smb3ProtocolEncryptionEnabled,
     TfArg<bool>? smbAccessBasedEnumerationEnabled,
     TfArg<bool>? smbContinuousAvailabilityEnabled,

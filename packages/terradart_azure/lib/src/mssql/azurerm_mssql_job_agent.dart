@@ -7,6 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_mssql_job_agent`.
 const Set<String> _azurermMssqlJobAgentSensitive = <String>{};
 
+/// Mssql Job Agent enum for `sku`.
+extension type const MssqlJobAgentSku._(TfArg<String> _)
+    implements TfArg<String> {
+  MssqlJobAgentSku.variable(String name) : this._(TfArg.variable(name));
+  MssqlJobAgentSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const MssqlJobAgentSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const ja100 = MssqlJobAgentSku._(TfArgLiteral('JA100'));
+  static const ja200 = MssqlJobAgentSku._(TfArgLiteral('JA200'));
+  static const ja400 = MssqlJobAgentSku._(TfArgLiteral('JA400'));
+  static const ja800 = MssqlJobAgentSku._(TfArgLiteral('JA800'));
+
+  static const List<MssqlJobAgentSku> values = [ja100, ja200, ja400, ja800];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_mssql_job_agent` (derived from provider schema).
 @immutable
@@ -33,7 +49,7 @@ final class AzurermMssqlJobAgent extends Resource {
     required TfArg<String> databaseId,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? sku,
+    MssqlJobAgentSku? sku,
     TfArg<Map<String, String>>? tags,
     MssqlJobAgentIdentity? identity,
     super.lifecycle,

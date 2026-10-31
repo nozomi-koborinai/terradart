@@ -106,48 +106,12 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
     this.flexShieldingRegions,
   });
 
-  final List<NetworkServicesEdgeCacheOriginFlexShieldingRegions>?
-  flexShieldingRegions;
+  final TfArg<List<String>>? flexShieldingRegions;
 
   @internal
   Map<String, Object?> encode() => {
-    if (flexShieldingRegions != null)
-      'flex_shielding_regions': [
-        for (final e in flexShieldingRegions!) e.toTfJson(),
-      ],
+    'flex_shielding_regions': ?flexShieldingRegions?.toTfJson(),
   };
-}
-
-/// `flex_shielding_regions` — derived from the provider schema description.
-extension type const NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
-  TfArg<String> _
-) implements TfArg<String> {
-  NetworkServicesEdgeCacheOriginFlexShieldingRegions.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkServicesEdgeCacheOriginFlexShieldingRegions.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkServicesEdgeCacheOriginFlexShieldingRegions.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const africaSouth1 =
-      NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
-        TfArgLiteral('AFRICA_SOUTH1'),
-      );
-  static const meCentral1 =
-      NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
-        TfArgLiteral('ME_CENTRAL1'),
-      );
-  static const europeWest3 =
-      NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
-        TfArgLiteral('EUROPE_WEST3'),
-      );
-  static const usEast5 = NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
-    TfArgLiteral('US_EAST5'),
-  );
-
-  static const List<NetworkServicesEdgeCacheOriginFlexShieldingRegions> values =
-      [africaSouth1, meCentral1, europeWest3, usEast5];
 }
 
 /// Typed helper for the `origin_override_action` block of

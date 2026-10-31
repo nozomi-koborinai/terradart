@@ -23,6 +23,12 @@ properties:
         properties:
           - api_name: caching
             properties:
+              - api_name: behaviour
+                enum_values:
+                  - "HonorOrigin"
+                  - "OverrideAlways"
+                  - "OverrideIfOriginMissing"
+                  - "Disabled"
               - api_name: query_string_behaviour
                 enum_values:
                   - "IgnoreQueryString"

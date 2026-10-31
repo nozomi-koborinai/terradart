@@ -21,5 +21,6 @@ export 'src/redhat/azurerm_redhat_openshift_cluster.dart'
         RedhatOpenshiftClusterPlatformWorkloadIdentityProfile,
         RedhatOpenshiftClusterProfile,
         RedhatOpenshiftClusterServicePrincipal,
+        RedhatOpenshiftClusterType,
         RedhatOpenshiftClusterVisibility,
         RedhatOpenshiftClusterWorkerProfile;

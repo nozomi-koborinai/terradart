@@ -34,6 +34,29 @@ properties:
       - "Single"
   - api_name: template
     properties:
+      - api_name: container
+        properties:
+          - api_name: liveness_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
+          - api_name: readiness_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
+          - api_name: startup_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
       - api_name: custom_scale_rule
         properties:
           - api_name: custom_rule_type

@@ -9,6 +9,30 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_network_manager`.
 const Set<String> _azurermNetworkManagerSensitive = <String>{};
 
+/// Network Manager Scope enum for `scope_accesses`.
+extension type const NetworkManagerScopeAccesses._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkManagerScopeAccesses.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagerScopeAccesses.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkManagerScopeAccesses.arg(TfArg<String> arg) : this._(arg);
+
+  static const connectivity = NetworkManagerScopeAccesses._(
+    TfArgLiteral('Connectivity'),
+  );
+  static const routing = NetworkManagerScopeAccesses._(TfArgLiteral('Routing'));
+  static const securityadmin = NetworkManagerScopeAccesses._(
+    TfArgLiteral('SecurityAdmin'),
+  );
+
+  static const List<NetworkManagerScopeAccesses> values = [
+    connectivity,
+    routing,
+    securityadmin,
+  ];
+}
+
 /// Typed helper for the `scope` block of
 /// `azurerm_network_manager` (derived from provider schema).
 @immutable
@@ -36,7 +60,7 @@ final class AzurermNetworkManager extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<List<String>>? scopeAccesses,
+    List<NetworkManagerScopeAccesses>? scopeAccesses,
     TfArg<Map<String, String>>? tags,
     required NetworkManagerScope scope,
     super.lifecycle,
@@ -50,7 +74,10 @@ final class AzurermNetworkManager extends Resource {
            'location': location,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
-           'scope_accesses': ?scopeAccesses,
+           if (scopeAccesses != null)
+             'scope_accesses': TfArg.literal([
+               for (final e in scopeAccesses) e.toTfJson(),
+             ]),
            'tags': ?tags,
            'scope': TfArg.literal(scope.encode()),
          },

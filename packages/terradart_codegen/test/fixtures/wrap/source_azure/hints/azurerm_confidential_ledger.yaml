@@ -17,3 +17,7 @@ properties:
           - "Administrator"
           - "Contributor"
           - "Reader"
+  - api_name: ledger_type
+    enum_values:
+      - "Private"
+      - "Public"

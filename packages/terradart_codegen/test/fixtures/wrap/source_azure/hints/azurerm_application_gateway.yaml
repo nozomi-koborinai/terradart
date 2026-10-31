@@ -3,12 +3,22 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: backend
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Tcp"
+          - "Tls"
   - api_name: backend_http_settings
     properties:
       - api_name: cookie_based_affinity
         enum_values:
           - "Disabled"
           - "Enabled"
+      - api_name: protocol
+        enum_values:
+          - "Http"
+          - "Https"
   - api_name: custom_error_configuration
     properties:
       - api_name: status_code
@@ -43,6 +53,16 @@ properties:
               - "HttpStatus405"
               - "HttpStatus404"
               - "HttpStatus403"
+      - api_name: protocol
+        enum_values:
+          - "Http"
+          - "Https"
+  - api_name: listener
+    properties:
+      - api_name: protocol
+        enum_values:
+          - "Tcp"
+          - "Tls"
   - api_name: private_link_configuration
     properties:
       - api_name: ip_configuration
@@ -206,6 +226,9 @@ properties:
               - "Custom"
               - "CustomV2"
               - "Predefined"
+      - api_name: verify_client_certificate_revocation
+        enum_values:
+          - "OCSP"
   - api_name: waf_configuration
     properties:
       - api_name: exclusion

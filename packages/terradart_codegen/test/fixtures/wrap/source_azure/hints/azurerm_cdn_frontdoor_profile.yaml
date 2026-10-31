@@ -10,3 +10,7 @@ properties:
           - "QueryStringArgNames"
           - "RequestIPAddress"
           - "RequestUri"
+  - api_name: sku_name
+    enum_values:
+      - "Premium_AzureFrontDoor"
+      - "Standard_AzureFrontDoor"

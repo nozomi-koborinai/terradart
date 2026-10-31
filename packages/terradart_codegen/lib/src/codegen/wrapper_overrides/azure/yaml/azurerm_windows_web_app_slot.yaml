@@ -7,3 +7,6 @@ deriveExactlyOne: true
 
 typeNames:
   site_config.auto_heal_setting.action: WindowsWebAppSlotAction
+
+sealedNames:
+  "auth_settings_v2.active_directory_v2.client_secret_certificate_thumbprint, auth_settings_v2.active_directory_v2.client_secret_setting_name": client_credential

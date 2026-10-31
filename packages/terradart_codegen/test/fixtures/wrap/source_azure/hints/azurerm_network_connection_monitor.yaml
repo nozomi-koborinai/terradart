@@ -13,6 +13,25 @@ properties:
           - "Default"
           - "Full"
           - "Low"
+      - api_name: filter
+        properties:
+          - api_name: item
+            properties:
+              - api_name: type
+                enum_values:
+                  - "AgentAddress"
+          - api_name: type
+            enum_values:
+              - "Include"
+      - api_name: target_resource_type
+        enum_values:
+          - "AzureArcVM"
+          - "AzureSubnet"
+          - "AzureVM"
+          - "AzureVNet"
+          - "ExternalAddress"
+          - "MMAWorkspaceMachine"
+          - "MMAWorkspaceNetwork"
   - api_name: test_configuration
     properties:
       - api_name: http_configuration

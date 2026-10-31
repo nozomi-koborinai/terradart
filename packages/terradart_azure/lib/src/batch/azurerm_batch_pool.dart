@@ -40,6 +40,21 @@ extension type const BatchPoolInterNodeCommunication._(TfArg<String> _)
   ];
 }
 
+/// Batch Pool Os Disk enum for `os_disk_placement`.
+extension type const BatchPoolOsDiskPlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolOsDiskPlacement.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolOsDiskPlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolOsDiskPlacement.arg(TfArg<String> arg) : this._(arg);
+
+  static const cachedisk = BatchPoolOsDiskPlacement._(
+    TfArgLiteral('CacheDisk'),
+  );
+
+  static const List<BatchPoolOsDiskPlacement> values = [cachedisk];
+}
+
 /// Batch Pool Target Node Communication enum for `target_node_communication_mode`.
 extension type const BatchPoolTargetNodeCommunicationMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -125,7 +140,7 @@ final class BatchPoolDataDisks {
 
   final TfArg<num> lun;
 
-  final TfArg<String>? storageAccountType;
+  final BatchPoolStorageAccountType? storageAccountType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -149,6 +164,28 @@ extension type const BatchPoolCaching._(TfArg<String> _)
   static const readwrite = BatchPoolCaching._(TfArgLiteral('ReadWrite'));
 
   static const List<BatchPoolCaching> values = [none, readonly, readwrite];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const BatchPoolStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolStorageAccountType.arg(TfArg<String> arg) : this._(arg);
+
+  static const standardLrs = BatchPoolStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const premiumLrs = BatchPoolStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+
+  static const List<BatchPoolStorageAccountType> values = [
+    standardLrs,
+    premiumLrs,
+  ];
 }
 
 /// Typed helper for the `disk_encryption` block of
@@ -1115,7 +1152,7 @@ final class AzurermBatchPool extends Resource {
     TfArg<Map<String, String>>? metadata,
     required TfArg<String> name,
     required TfArg<String> nodeAgentSkuId,
-    TfArg<String>? osDiskPlacement,
+    BatchPoolOsDiskPlacement? osDiskPlacement,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? stopPendingResizeOperation,
     BatchPoolTargetNodeCommunicationMode? targetNodeCommunicationMode,

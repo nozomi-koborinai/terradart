@@ -7,6 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermCognitiveAccountConnectionCustomKeysSensitive =
     <String>{'custom_keys'};
 
+/// Cognitive Account Connection Custom Keys enum for `category`.
+extension type const CognitiveAccountConnectionCustomKeysCategory._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitiveAccountConnectionCustomKeysCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitiveAccountConnectionCustomKeysCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountConnectionCustomKeysCategory.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const customkeys = CognitiveAccountConnectionCustomKeysCategory._(
+    TfArgLiteral('CustomKeys'),
+  );
+  static const remotea2a = CognitiveAccountConnectionCustomKeysCategory._(
+    TfArgLiteral('RemoteA2A'),
+  );
+  static const remotetool = CognitiveAccountConnectionCustomKeysCategory._(
+    TfArgLiteral('RemoteTool'),
+  );
+
+  static const List<CognitiveAccountConnectionCustomKeysCategory> values = [
+    customkeys,
+    remotea2a,
+    remotetool,
+  ];
+}
+
 /// Factory wrapper for `azurerm_cognitive_account_connection_custom_keys`.
 final class AzurermCognitiveAccountConnectionCustomKeys extends Resource {
   static const String tfType =
@@ -14,7 +42,7 @@ final class AzurermCognitiveAccountConnectionCustomKeys extends Resource {
 
   AzurermCognitiveAccountConnectionCustomKeys(
     super.localName, {
-    required TfArg<String> category,
+    required CognitiveAccountConnectionCustomKeysCategory category,
     required TfArg<String> cognitiveAccountId,
     required Sensitive<Map<String, String>> customKeys,
     TfArg<Map<String, String>>? metadata,

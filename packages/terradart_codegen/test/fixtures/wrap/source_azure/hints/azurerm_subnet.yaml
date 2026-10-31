@@ -95,5 +95,8 @@ properties:
       - "Enabled"
       - "NetworkSecurityGroupEnabled"
       - "RouteTableEnabled"
+  - api_name: sharing_scope
+    enum_values:
+      - "Tenant"
 exactly_one_of_groups:
   - ["address_prefixes", "ip_address_pool"]

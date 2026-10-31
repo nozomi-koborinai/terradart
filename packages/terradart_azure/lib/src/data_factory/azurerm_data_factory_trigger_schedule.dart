@@ -7,6 +7,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_trigger_schedule`.
 const Set<String> _azurermDataFactoryTriggerScheduleSensitive = <String>{};
 
+/// Data Factory Trigger Schedule enum for `frequency`.
+extension type const DataFactoryTriggerScheduleFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryTriggerScheduleFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryTriggerScheduleFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryTriggerScheduleFrequency.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const minute = DataFactoryTriggerScheduleFrequency._(
+    TfArgLiteral('Minute'),
+  );
+  static const hour = DataFactoryTriggerScheduleFrequency._(
+    TfArgLiteral('Hour'),
+  );
+  static const day = DataFactoryTriggerScheduleFrequency._(TfArgLiteral('Day'));
+  static const week = DataFactoryTriggerScheduleFrequency._(
+    TfArgLiteral('Week'),
+  );
+  static const month = DataFactoryTriggerScheduleFrequency._(
+    TfArgLiteral('Month'),
+  );
+
+  static const List<DataFactoryTriggerScheduleFrequency> values = [
+    minute,
+    hour,
+    day,
+    week,
+    month,
+  ];
+}
+
 /// Exactly one of `pipeline`, `pipeline_name` on `azurerm_data_factory_trigger_schedule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -161,7 +194,7 @@ final class AzurermDataFactoryTriggerSchedule extends Resource {
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? endTime,
-    TfArg<String>? frequency,
+    DataFactoryTriggerScheduleFrequency? frequency,
     TfArg<num>? interval,
     required TfArg<String> name,
     required DataFactoryTriggerSchedulePipelineTarget pipelineTarget,

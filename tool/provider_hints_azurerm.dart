@@ -36,6 +36,7 @@ AwsHintsScan scanAzurermProvider(Directory root) {
     final importPath = from.file.imports[qualifier];
     return importPath == null ? null : byKey['$importPath $name'];
   }
+
   final result = AwsHintsScan({});
   final schemas = byKind((_) => <String, List<_FuncRef>>{});
 
@@ -107,6 +108,11 @@ void _collect(
       final found = _scanBody(ref, index, resolve);
       result.validators += found.validators;
       result.unresolved += found.unresolved;
+      for (final path in found.unresolvedPaths) {
+        result.unresolvedSites.add(
+          '${kind == WrapperOverrideKind.dataSource ? 'data.' : ''}$type $path',
+        );
+      }
       result.groupValidators += found.relations;
       result.unresolvedGroups += found.unresolvedRelations;
       for (final hint in found.hints) {
@@ -315,6 +321,9 @@ final class _BodyScan {
   var unresolved = 0;
   var relations = 0;
   var unresolvedRelations = 0;
+
+  /// The schema path of each value-set validator not evaluated.
+  final unresolvedPaths = <String>[];
 }
 
 /// Resolves a call to a schema function: `Name()` in the caller's package
@@ -322,11 +331,7 @@ final class _BodyScan {
 typedef _SchemaCall =
     _FuncRef? Function(_FuncRef from, String? qualifier, String name);
 
-_BodyScan _scanBody(
-  _FuncRef ref,
-  _PackageIndex index,
-  _SchemaCall lookup,
-) {
+_BodyScan _scanBody(_FuncRef ref, _PackageIndex index, _SchemaCall lookup) {
   final found = _BodyScan();
   final seen = <String>{};
   void scan(_FuncRef current, List<String> path) {
@@ -497,8 +502,9 @@ void _walk(
         !_insideAny(t, i)) {
       found.validators++;
       final values = _sliceValues(t, i, end, index, ref);
-      if (values == null || values.length < 2) {
+      if (values == null || values.isEmpty) {
         found.unresolved++;
+        found.unresolvedPaths.add(path.join('.'));
       } else {
         found.hints.add(
           GoEnumHint(
@@ -646,7 +652,7 @@ List<String>? _sliceValues(
       t[i + 2].text == 'string') {
     final brace = t.indexWhere((tok) => tok.text == '{', i);
     if (brace < 0 || brace >= end) return null;
-    return _elements(t, brace, index, ref.file.packagePath);
+    return _elements(t, brace, index, ref.file.packagePath, ref.file.imports);
   }
   if (i + 3 < t.length &&
       t[i].kind == GoTok.ident &&
@@ -658,7 +664,62 @@ List<String>? _sliceValues(
     return values ?? index.lookup(importPath, t[i + 2].text);
   }
   if (i < t.length && t[i].kind == GoTok.ident) {
-    return index.lookup(ref.file.packagePath, t[i].text);
+    return _localSlice(t, ref.bodyStart, at, t[i].text, index, ref) ??
+        index.lookup(ref.file.packagePath, t[i].text);
+  }
+  return null;
+}
+
+/// The last `name := []string{...}` or `name := [pkg.]Func()` before [at]
+/// in the function body starting at [from].
+List<String>? _localSlice(
+  List<GoToken> t,
+  int from,
+  int at,
+  String name,
+  _PackageIndex index,
+  _FuncRef ref,
+) {
+  for (var j = at - 1; j >= from; j--) {
+    if (t[j].text != name || j + 6 >= at) continue;
+    var k = j + 1;
+    if (t[k].text == ':') k++;
+    if (t[k].text != '=') continue;
+    if (_callValues(t, k + 1, index, ref) case final values?) return values;
+    if (t[k + 1].text != '[' ||
+        t[k + 2].text != ']' ||
+        t[k + 3].text != 'string' ||
+        t[k + 4].text != '{') {
+      continue;
+    }
+    return _elements(t, k + 4, index, ref.file.packagePath, ref.file.imports);
+  }
+  return null;
+}
+
+/// The values of the zero-argument slice function `[pkg.]Func()` at [i].
+List<String>? _callValues(
+  List<GoToken> t,
+  int i,
+  _PackageIndex index,
+  _FuncRef ref,
+) {
+  if (i + 4 < t.length &&
+      t[i].kind == GoTok.ident &&
+      t[i + 1].text == '.' &&
+      t[i + 2].kind == GoTok.ident &&
+      t[i + 3].text == '(' &&
+      t[i + 4].text == ')') {
+    final importPath = ref.file.imports[t[i].text];
+    return importPath == null
+        ? null
+        : index.possible(importPath, t[i + 2].text);
+  }
+  if (i + 2 < t.length &&
+      t[i].kind == GoTok.ident &&
+      t[i + 1].text == '(' &&
+      t[i + 2].text == ')') {
+    return index.possible(ref.file.packagePath, t[i].text);
   }
   return null;
 }
@@ -684,8 +745,9 @@ List<String>? _elements(
   List<GoToken> t,
   int brace,
   _PackageIndex index,
-  String packagePath,
-) {
+  String packagePath, [
+  Map<String, String> imports = const {},
+]) {
   final close = _matchBrace(t, brace);
   final out = <String>[];
   for (var k = brace + 1; k < close; k++) {
@@ -702,6 +764,44 @@ List<String>? _elements(
       if (value == null) return null;
       out.add(value);
       k += 3;
+      continue;
+    }
+    if (t[k].text == 'string' &&
+        k + 5 < close &&
+        t[k + 1].text == '(' &&
+        t[k + 2].kind == GoTok.ident &&
+        t[k + 3].text == '.' &&
+        t[k + 4].kind == GoTok.ident &&
+        t[k + 5].text == ')') {
+      final importPath = imports[t[k + 2].text];
+      final value = importPath == null
+          ? null
+          : index.constant(importPath, t[k + 4].text);
+      if (value == null) return null;
+      out.add(value);
+      k += 5;
+      continue;
+    }
+    if (t[k].kind == GoTok.ident &&
+        t[k].text != 'string' &&
+        (k + 1 == close || t[k + 1].text == ',')) {
+      final value = index.constant(packagePath, t[k].text);
+      if (value == null) return null;
+      out.add(value);
+      continue;
+    }
+    if (t[k].kind == GoTok.ident &&
+        k + 2 < close &&
+        t[k + 1].text == '.' &&
+        t[k + 2].kind == GoTok.ident &&
+        (k + 3 == close || t[k + 3].text == ',')) {
+      final importPath = imports[t[k].text];
+      final value = importPath == null
+          ? null
+          : index.constant(importPath, t[k + 2].text);
+      if (value == null) return null;
+      out.add(value);
+      k += 2;
       continue;
     }
     if (t[k].kind == GoTok.ident && t[k].text != 'string') return null;
@@ -757,16 +857,18 @@ final class _PackageIndex {
             .toList()
           ..sort((a, b) => a.path.compareTo(b.path));
     final tokenized = [
-      for (final file in files) tokenizeGo(file.readAsStringSync()),
+      for (final file in files)
+        if (file.readAsStringSync() case final src)
+          (tokens: tokenizeGo(src), imports: parseGoImports(src)),
     ];
-    for (final tokens in tokenized) {
+    for (final (:tokens, imports: _) in tokenized) {
       _readConstDecls(pkg, tokens);
     }
-    for (final tokens in tokenized) {
-      _readVars(pkg, tokens, importPath);
+    for (final (:tokens, :imports) in tokenized) {
+      _readVars(pkg, tokens, importPath, imports);
     }
-    for (final tokens in tokenized) {
-      _readPossibleValues(pkg, tokens, importPath);
+    for (final (:tokens, :imports) in tokenized) {
+      _readSliceFuncs(pkg, tokens, importPath, imports);
     }
     return pkg;
   }
@@ -795,7 +897,12 @@ final class _PackageIndex {
     }
   }
 
-  void _readVars(_Package pkg, List<GoToken> t, String importPath) {
+  void _readVars(
+    _Package pkg,
+    List<GoToken> t,
+    String importPath,
+    Map<String, String> imports,
+  ) {
     for (var i = 0; i < t.length; i++) {
       if (t[i].text != 'var') continue;
       if (i + 1 < t.length && t[i + 1].text == '(') {
@@ -809,27 +916,37 @@ final class _PackageIndex {
       _readOneConst(pkg, t, i + 1);
       final brace = _sliceBrace(t, i + 2);
       if (brace == null) continue;
-      final values = _elements(t, brace, this, importPath);
-      if (values != null && values.length >= 2) pkg.vars[name] = values;
+      final values = _elements(t, brace, this, importPath, imports);
+      if (values != null && values.isNotEmpty) pkg.vars[name] = values;
     }
   }
 
-  void _readPossibleValues(_Package pkg, List<GoToken> t, String importPath) {
-    for (var i = 0; i < t.length; i++) {
+  /// `func Name() []string { return []string{...} }`: a function whose
+  /// whole body returns one slice literal.
+  void _readSliceFuncs(
+    _Package pkg,
+    List<GoToken> t,
+    String importPath,
+    Map<String, String> imports,
+  ) {
+    for (var i = 0; i + 8 < t.length; i++) {
       if (t[i].text != 'func' ||
-          i + 1 >= t.length ||
           t[i + 1].kind != GoTok.ident ||
-          !t[i + 1].text.startsWith('PossibleValuesFor')) {
+          t[i + 2].text != '(' ||
+          t[i + 3].text != ')' ||
+          t[i + 4].text != '[' ||
+          t[i + 5].text != ']' ||
+          t[i + 6].text != 'string' ||
+          t[i + 7].text != '{' ||
+          t[i + 8].text != 'return') {
         continue;
       }
       final name = t[i + 1].text;
-      final open = t.indexWhere((tok) => tok.text == '{', i);
-      if (open < 0) continue;
-      final close = _matchBrace(t, open);
-      final brace = _sliceBrace(t, open + 1, close);
-      if (brace != null) {
-        final values = _elements(t, brace, this, importPath);
-        if (values != null && values.length >= 2) pkg.funcs[name] = values;
+      final close = _matchBrace(t, i + 7);
+      final brace = _sliceBrace(t, i + 9, close);
+      if (brace != null && _matchBrace(t, brace) + 1 == close) {
+        final values = _elements(t, brace, this, importPath, imports);
+        if (values != null && values.isNotEmpty) pkg.funcs[name] = values;
       }
       i = close;
     }

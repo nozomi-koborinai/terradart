@@ -151,6 +151,9 @@ properties:
           - "1.3"
           - "1.2"
           - "1.0"
+      - api_name: remote_debugging_version
+        enum_values:
+          - "VS2022"
       - api_name: scm_ip_restriction
         properties:
           - api_name: action
@@ -167,6 +170,11 @@ properties:
           - "1.3"
           - "1.2"
           - "1.0"
+  - api_name: storage_account
+    properties:
+      - api_name: type
+        enum_values:
+          - "AzureFiles"
 exactly_one_of_groups:
   - ["auth_settings.facebook.app_secret", "auth_settings.facebook.app_secret_setting_name"]
   - ["auth_settings.github.client_secret", "auth_settings.github.client_secret_setting_name"]

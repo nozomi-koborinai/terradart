@@ -9,5 +9,13 @@ properties:
         enum_values:
           - "Optimal"
           - "Fastest"
+      - api_name: type
+        enum_values:
+          - "BZip2"
+          - "Deflate"
+          - "GZip"
+          - "Tar"
+          - "TarGZip"
+          - "ZipDeflate"
 at_most_one_of_groups:
   - ["azure_blob_storage_location", "http_server_location", "sftp_server_location"]

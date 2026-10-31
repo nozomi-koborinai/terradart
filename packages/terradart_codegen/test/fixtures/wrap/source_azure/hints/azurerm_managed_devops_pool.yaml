@@ -51,6 +51,10 @@ properties:
                   - "Root"
       - api_name: storage
         properties:
+          - api_name: caching
+            enum_values:
+              - "ReadOnly"
+              - "ReadWrite"
           - api_name: storage_account_type
             enum_values:
               - "Premium_LRS"

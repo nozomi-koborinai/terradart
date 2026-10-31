@@ -34,6 +34,23 @@ extension type const SpringCloudConfigurationServiceGeneration._(
   ];
 }
 
+/// Spring Cloud Configuration Service enum for `name`.
+extension type const SpringCloudConfigurationServiceName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudConfigurationServiceName.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudConfigurationServiceName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudConfigurationServiceName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const defaultCase = SpringCloudConfigurationServiceName._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpringCloudConfigurationServiceName> values = [defaultCase];
+}
+
 /// Typed helper for the `repository` block of
 /// `azurerm_spring_cloud_configuration_service` (derived from provider schema).
 @immutable
@@ -101,7 +118,7 @@ final class AzurermSpringCloudConfigurationService extends Resource {
   AzurermSpringCloudConfigurationService(
     super.localName, {
     SpringCloudConfigurationServiceGeneration? generation,
-    required TfArg<String> name,
+    required SpringCloudConfigurationServiceName name,
     TfArg<num>? refreshIntervalInSeconds,
     required TfArg<String> springCloudServiceId,
     List<SpringCloudConfigurationServiceRepository>? repository,

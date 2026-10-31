@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_machine_learning_compute_instance`.
 const Set<String> _azurermMachineLearningComputeInstanceSensitive = <String>{};
 
+/// Machine Learning Compute Instance Authorization enum for `authorization_type`.
+extension type const MachineLearningComputeInstanceAuthorizationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MachineLearningComputeInstanceAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  MachineLearningComputeInstanceAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MachineLearningComputeInstanceAuthorizationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const personal = MachineLearningComputeInstanceAuthorizationType._(
+    TfArgLiteral('personal'),
+  );
+
+  static const List<MachineLearningComputeInstanceAuthorizationType> values = [
+    personal,
+  ];
+}
+
 /// Typed helper for the `assign_to_user` block of
 /// `azurerm_machine_learning_compute_instance` (derived from provider schema).
 @immutable
@@ -65,7 +85,7 @@ final class AzurermMachineLearningComputeInstance extends Resource {
 
   AzurermMachineLearningComputeInstance(
     super.localName, {
-    TfArg<String>? authorizationType,
+    MachineLearningComputeInstanceAuthorizationType? authorizationType,
     TfArg<String>? description,
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> machineLearningWorkspaceId,

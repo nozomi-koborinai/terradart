@@ -5,6 +5,16 @@ provider_version: "5.12.0"
 properties:
   - api_name: capture_description
     properties:
+      - api_name: destination
+        properties:
+          - api_name: name
+            enum_values:
+              - "EventHubArchive.AzureBlockBlob"
+          - api_name: storage_authentication_type
+            enum_values:
+              - "StorageSAS"
+              - "SystemAssigned"
+              - "UserAssigned"
       - api_name: encoding
         enum_values:
           - "Avro"
@@ -15,6 +25,11 @@ properties:
         enum_values:
           - "Compact"
           - "Delete"
+  - api_name: status
+    enum_values:
+      - "Active"
+      - "Disabled"
+      - "SendDisabled"
 exactly_one_of_groups:
   - ["message_retention", "retention_description"]
   - ["retention_description.retention_time_in_hours", "retention_description.tombstone_retention_time_in_hours"]

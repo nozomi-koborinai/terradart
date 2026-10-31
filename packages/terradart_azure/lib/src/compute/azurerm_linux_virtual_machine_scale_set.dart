@@ -37,6 +37,29 @@ extension type const LinuxVirtualMachineScaleSetEvictionPolicy._(
   ];
 }
 
+/// Linux Virtual Machine Scale Set enum for `priority`.
+extension type const LinuxVirtualMachineScaleSetPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetPriority.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const regular = LinuxVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = LinuxVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Spot'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetPriority> values = [
+    regular,
+    spot,
+  ];
+}
+
 /// Linux Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
 extension type const LinuxVirtualMachineScaleSetUpgradeMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -364,7 +387,7 @@ final class LinuxVirtualMachineScaleSetDataDisk {
 
   final LinuxVirtualMachineScaleSetCaching caching;
 
-  final TfArg<String>? createOption;
+  final LinuxVirtualMachineScaleSetCreateOption? createOption;
 
   final TfArg<String>? diskEncryptionSetId;
 
@@ -378,7 +401,8 @@ final class LinuxVirtualMachineScaleSetDataDisk {
 
   final TfArg<String>? name;
 
-  final LinuxVirtualMachineScaleSetStorageAccountType storageAccountType;
+  final LinuxVirtualMachineScaleSetDataDiskStorageAccountType
+  storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -423,40 +447,73 @@ extension type const LinuxVirtualMachineScaleSetCaching._(TfArg<String> _)
   ];
 }
 
-/// `storage_account_type` — derived from the provider schema description.
-extension type const LinuxVirtualMachineScaleSetStorageAccountType._(
-  TfArg<String> _
-) implements TfArg<String> {
-  LinuxVirtualMachineScaleSetStorageAccountType.variable(String name)
+/// `create_option` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetCreateOption._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetCreateOption.variable(String name)
     : this._(TfArg.variable(name));
-  LinuxVirtualMachineScaleSetStorageAccountType.expression(String template)
+  LinuxVirtualMachineScaleSetCreateOption.expression(String template)
     : this._(TfArg.expression(template));
-  const LinuxVirtualMachineScaleSetStorageAccountType.arg(TfArg<String> arg)
+  const LinuxVirtualMachineScaleSetCreateOption.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const premiumLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Premium_LRS'),
+  static const empty = LinuxVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('Empty'),
   );
-  static const premiumv2Lrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('PremiumV2_LRS'),
-  );
-  static const premiumZrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Premium_ZRS'),
-  );
-  static const standardLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Standard_LRS'),
-  );
-  static const standardssdLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('StandardSSD_LRS'),
-  );
-  static const standardssdZrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('StandardSSD_ZRS'),
-  );
-  static const ultrassdLrs = LinuxVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('UltraSSD_LRS'),
+  static const fromimage = LinuxVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('FromImage'),
   );
 
-  static const List<LinuxVirtualMachineScaleSetStorageAccountType> values = [
+  static const List<LinuxVirtualMachineScaleSetCreateOption> values = [
+    empty,
+    fromimage,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineScaleSetDataDiskStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetDataDiskStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetDataDiskStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumv2Lrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('PremiumV2_LRS'),
+      );
+  static const premiumZrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
+  static const standardssdLrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_LRS'),
+      );
+  static const standardssdZrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_ZRS'),
+      );
+  static const ultrassdLrs =
+      LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('UltraSSD_LRS'),
+      );
+
+  static const List<LinuxVirtualMachineScaleSetDataDiskStorageAccountType>
+  values = [
     premiumLrs,
     premiumv2Lrs,
     premiumZrs,
@@ -673,9 +730,9 @@ final class LinuxVirtualMachineScaleSetNetworkInterface {
 
   final TfArg<bool>? acceleratedNetworkingEnabled;
 
-  final TfArg<String>? auxiliaryMode;
+  final LinuxVirtualMachineScaleSetAuxiliaryMode? auxiliaryMode;
 
-  final TfArg<String>? auxiliarySku;
+  final LinuxVirtualMachineScaleSetAuxiliarySku? auxiliarySku;
 
   final TfArg<List<String>>? dnsServers;
 
@@ -701,6 +758,61 @@ final class LinuxVirtualMachineScaleSetNetworkInterface {
     'primary': ?primary?.toTfJson(),
     'ip_configuration': [for (final e in ipConfiguration) e.encode()],
   };
+}
+
+/// `auxiliary_mode` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetAuxiliaryMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetAuxiliaryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetAuxiliaryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetAuxiliaryMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const acceleratedconnections =
+      LinuxVirtualMachineScaleSetAuxiliaryMode._(
+        TfArgLiteral('AcceleratedConnections'),
+      );
+  static const floating = LinuxVirtualMachineScaleSetAuxiliaryMode._(
+    TfArgLiteral('Floating'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetAuxiliaryMode> values = [
+    acceleratedconnections,
+    floating,
+  ];
+}
+
+/// `auxiliary_sku` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetAuxiliarySku._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetAuxiliarySku.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetAuxiliarySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetAuxiliarySku.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const a8 = LinuxVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A8'),
+  );
+  static const a4 = LinuxVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A4'),
+  );
+  static const a1 = LinuxVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A1'),
+  );
+  static const a2 = LinuxVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A2'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetAuxiliarySku> values = [
+    a8,
+    a4,
+    a1,
+    a2,
+  ];
 }
 
 /// Typed helper for the `network_interface.ip_configuration` block of
@@ -850,9 +962,10 @@ final class LinuxVirtualMachineScaleSetOsDisk {
 
   final TfArg<num>? diskSizeGb;
 
-  final TfArg<String>? securityEncryptionType;
+  final LinuxVirtualMachineScaleSetSecurityEncryptionType?
+  securityEncryptionType;
 
-  final TfArg<String> storageAccountType;
+  final LinuxVirtualMachineScaleSetOsDiskStorageAccountType storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -936,6 +1049,74 @@ final class LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId
   };
 }
 
+/// `security_encryption_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetSecurityEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineScaleSetSecurityEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetSecurityEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetSecurityEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vmgueststateonly =
+      LinuxVirtualMachineScaleSetSecurityEncryptionType._(
+        TfArgLiteral('VMGuestStateOnly'),
+      );
+  static const diskwithvmgueststate =
+      LinuxVirtualMachineScaleSetSecurityEncryptionType._(
+        TfArgLiteral('DiskWithVMGuestState'),
+      );
+
+  static const List<LinuxVirtualMachineScaleSetSecurityEncryptionType> values =
+      [vmgueststateonly, diskwithvmgueststate];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineScaleSetOsDiskStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetOsDiskStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetOsDiskStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumZrs =
+      LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
+  static const standardssdLrs =
+      LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_LRS'),
+      );
+  static const standardssdZrs =
+      LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_ZRS'),
+      );
+
+  static const List<LinuxVirtualMachineScaleSetOsDiskStorageAccountType>
+  values = [
+    premiumLrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+  ];
+}
+
 /// Typed helper for the `os_disk.diff_disk_settings` block of
 /// `azurerm_linux_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -945,7 +1126,7 @@ final class LinuxVirtualMachineScaleSetDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final LinuxVirtualMachineScaleSetOption option;
 
   final LinuxVirtualMachineScaleSetPlacement? placement;
 
@@ -954,6 +1135,22 @@ final class LinuxVirtualMachineScaleSetDiffDiskSettings {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `option` — derived from the provider schema description.
+extension type const LinuxVirtualMachineScaleSetOption._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetOption.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const local = LinuxVirtualMachineScaleSetOption._(
+    TfArgLiteral('Local'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetOption> values = [local];
 }
 
 /// `placement` — derived from the provider schema description.
@@ -1219,7 +1416,7 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
     required TfArg<String> name,
     TfArg<bool>? overprovision,
     TfArg<num>? platformFaultDomainCount,
-    TfArg<String>? priority,
+    LinuxVirtualMachineScaleSetPriority? priority,
     TfArg<bool>? provisionVmAgent,
     TfArg<bool>? resilientVmCreationEnabled,
     TfArg<bool>? resilientVmDeletionEnabled,

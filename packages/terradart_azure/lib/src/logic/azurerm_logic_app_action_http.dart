@@ -18,13 +18,43 @@ final class LogicAppActionHttpRunAfter {
 
   final TfArg<String> actionName;
 
-  final TfArg<String> actionResult;
+  final LogicAppActionHttpActionResult actionResult;
 
   @internal
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
     'action_result': actionResult.toTfJson(),
   };
+}
+
+/// `action_result` — derived from the provider schema description.
+extension type const LogicAppActionHttpActionResult._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppActionHttpActionResult.variable(String name)
+    : this._(TfArg.variable(name));
+  LogicAppActionHttpActionResult.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppActionHttpActionResult.arg(TfArg<String> arg) : this._(arg);
+
+  static const succeeded = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Succeeded'),
+  );
+  static const failed = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Failed'),
+  );
+  static const skipped = LogicAppActionHttpActionResult._(
+    TfArgLiteral('Skipped'),
+  );
+  static const timedout = LogicAppActionHttpActionResult._(
+    TfArgLiteral('TimedOut'),
+  );
+
+  static const List<LogicAppActionHttpActionResult> values = [
+    succeeded,
+    failed,
+    skipped,
+    timedout,
+  ];
 }
 
 /// Factory wrapper for `azurerm_logic_app_action_http`.

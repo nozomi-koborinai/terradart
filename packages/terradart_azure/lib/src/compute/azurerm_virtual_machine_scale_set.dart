@@ -58,6 +58,23 @@ extension type const VirtualMachineScaleSetLicenseType._(TfArg<String> _)
   ];
 }
 
+/// Virtual Machine Scale Set enum for `priority`.
+extension type const VirtualMachineScaleSetPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualMachineScaleSetPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineScaleSetPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineScaleSetPriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const low = VirtualMachineScaleSetPriority._(TfArgLiteral('Low'));
+  static const regular = VirtualMachineScaleSetPriority._(
+    TfArgLiteral('Regular'),
+  );
+
+  static const List<VirtualMachineScaleSetPriority> values = [low, regular];
+}
+
 /// Virtual Machine Scale Set Upgrade Policy enum for `upgrade_policy_mode`.
 extension type const VirtualMachineScaleSetUpgradePolicyMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -574,7 +591,7 @@ final class VirtualMachineScaleSetStorageProfileDataDisk {
 
   final TfArg<num> lun;
 
-  final TfArg<String>? managedDiskType;
+  final VirtualMachineScaleSetManagedDiskType? managedDiskType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -584,6 +601,33 @@ final class VirtualMachineScaleSetStorageProfileDataDisk {
     'lun': lun.toTfJson(),
     'managed_disk_type': ?managedDiskType?.toTfJson(),
   };
+}
+
+/// `managed_disk_type` — derived from the provider schema description.
+extension type const VirtualMachineScaleSetManagedDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualMachineScaleSetManagedDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineScaleSetManagedDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineScaleSetManagedDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = VirtualMachineScaleSetManagedDiskType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = VirtualMachineScaleSetManagedDiskType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = VirtualMachineScaleSetManagedDiskType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+
+  static const List<VirtualMachineScaleSetManagedDiskType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+  ];
 }
 
 /// Typed helper for the `storage_profile_image_reference` block of
@@ -638,7 +682,7 @@ final class VirtualMachineScaleSetStorageProfileOsDisk {
 
   final TfArg<String>? image;
 
-  final TfArg<String>? managedDiskType;
+  final VirtualMachineScaleSetManagedDiskType? managedDiskType;
 
   final TfArg<String>? name;
 
@@ -671,7 +715,7 @@ final class AzurermVirtualMachineScaleSet extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<bool>? overprovision,
-    TfArg<String>? priority,
+    VirtualMachineScaleSetPriority? priority,
     TfArg<String>? proximityPlacementGroupId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? singlePlacementGroup,

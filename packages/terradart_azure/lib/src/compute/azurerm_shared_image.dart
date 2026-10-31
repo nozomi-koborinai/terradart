@@ -23,6 +23,28 @@ extension type const SharedImageArchitecture._(TfArg<String> _)
   static const List<SharedImageArchitecture> values = [arm64, x64];
 }
 
+/// Shared Image Disk Types Not enum for `disk_types_not_allowed`.
+extension type const SharedImageDiskTypesNotAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageDiskTypesNotAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageDiskTypesNotAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageDiskTypesNotAllowed.arg(TfArg<String> arg) : this._(arg);
+
+  static const standardLrs = SharedImageDiskTypesNotAllowed._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const premiumLrs = SharedImageDiskTypesNotAllowed._(
+    TfArgLiteral('Premium_LRS'),
+  );
+
+  static const List<SharedImageDiskTypesNotAllowed> values = [
+    standardLrs,
+    premiumLrs,
+  ];
+}
+
 /// Shared Image Hyper V enum for `hyper_v_generation`.
 extension type const SharedImageHyperVGeneration._(TfArg<String> _)
     implements TfArg<String> {
@@ -254,7 +276,7 @@ final class AzurermSharedImage extends Resource {
     SharedImageSecurityType? securityType,
     TfArg<String>? description,
     TfArg<bool>? diskControllerTypeNvmeEnabled,
-    TfArg<List<String>>? diskTypesNotAllowed,
+    List<SharedImageDiskTypesNotAllowed>? diskTypesNotAllowed,
     TfArg<String>? endOfLifeDate,
     TfArg<String>? eula,
     required TfArg<String> galleryName,
@@ -287,7 +309,10 @@ final class AzurermSharedImage extends Resource {
            ...?securityType?.argMap,
            'description': ?description,
            'disk_controller_type_nvme_enabled': ?diskControllerTypeNvmeEnabled,
-           'disk_types_not_allowed': ?diskTypesNotAllowed,
+           if (diskTypesNotAllowed != null)
+             'disk_types_not_allowed': TfArg.literal([
+               for (final e in diskTypesNotAllowed) e.toTfJson(),
+             ]),
            'end_of_life_date': ?endOfLifeDate,
            'eula': ?eula,
            'gallery_name': galleryName,

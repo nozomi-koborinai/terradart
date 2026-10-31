@@ -9,6 +9,28 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_cdn_frontdoor_profile`.
 const Set<String> _azurermCdnFrontdoorProfileSensitive = <String>{};
 
+/// Cdn Frontdoor Profile Sku enum for `sku_name`.
+extension type const CdnFrontdoorProfileSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorProfileSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorProfileSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorProfileSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const premiumAzurefrontdoor = CdnFrontdoorProfileSkuName._(
+    TfArgLiteral('Premium_AzureFrontDoor'),
+  );
+  static const standardAzurefrontdoor = CdnFrontdoorProfileSkuName._(
+    TfArgLiteral('Standard_AzureFrontDoor'),
+  );
+
+  static const List<CdnFrontdoorProfileSkuName> values = [
+    premiumAzurefrontdoor,
+    standardAzurefrontdoor,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_cdn_frontdoor_profile` (derived from provider schema).
 @immutable
@@ -73,7 +95,7 @@ final class AzurermCdnFrontdoorProfile extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<num>? responseTimeoutSeconds,
-    required TfArg<String> skuName,
+    required CdnFrontdoorProfileSkuName skuName,
     TfArg<Map<String, String>>? tags,
     CdnFrontdoorProfileIdentity? identity,
     List<CdnFrontdoorProfileLogScrubbingRule>? logScrubbingRule,

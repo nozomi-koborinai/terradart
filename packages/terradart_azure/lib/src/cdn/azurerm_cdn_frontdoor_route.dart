@@ -67,7 +67,7 @@ final class CdnFrontdoorRouteCache {
 
   final TfArg<bool>? compressionEnabled;
 
-  final TfArg<List<String>>? contentTypesToCompress;
+  final List<CdnFrontdoorRouteContentTypesToCompress>? contentTypesToCompress;
 
   final CdnFrontdoorRouteQueryStringCachingBehavior? queryStringCachingBehavior;
 
@@ -76,10 +76,198 @@ final class CdnFrontdoorRouteCache {
   @internal
   Map<String, Object?> encode() => {
     'compression_enabled': ?compressionEnabled?.toTfJson(),
-    'content_types_to_compress': ?contentTypesToCompress?.toTfJson(),
+    if (contentTypesToCompress != null)
+      'content_types_to_compress': [
+        for (final e in contentTypesToCompress!) e.toTfJson(),
+      ],
     'query_string_caching_behavior': ?queryStringCachingBehavior?.toTfJson(),
     'query_strings': ?queryStrings?.toTfJson(),
   };
+}
+
+/// `content_types_to_compress` — derived from the provider schema description.
+extension type const CdnFrontdoorRouteContentTypesToCompress._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRouteContentTypesToCompress.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRouteContentTypesToCompress.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRouteContentTypesToCompress.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const applicationEot = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/eot'),
+  );
+  static const applicationFont = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/font'),
+  );
+  static const applicationFontSfnt = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/font-sfnt'),
+  );
+  static const applicationJavascript =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('application/javascript'),
+      );
+  static const applicationJson = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/json'),
+  );
+  static const applicationOpentype = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/opentype'),
+  );
+  static const applicationOtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/otf'),
+  );
+  static const applicationPkcs7Mime = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/pkcs7-mime'),
+  );
+  static const applicationTruetype = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/truetype'),
+  );
+  static const applicationTtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/ttf'),
+  );
+  static const applicationVndMsFontobject =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('application/vnd.ms-fontobject'),
+      );
+  static const applicationXhtmlXml = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/xhtml+xml'),
+  );
+  static const applicationXml = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/xml'),
+  );
+  static const applicationXmlRss = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/xml+rss'),
+  );
+  static const applicationXFontOpentype =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('application/x-font-opentype'),
+      );
+  static const applicationXFontTruetype =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('application/x-font-truetype'),
+      );
+  static const applicationXFontTtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-font-ttf'),
+  );
+  static const applicationXHttpdCgi = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-httpd-cgi'),
+  );
+  static const applicationXMpegurl = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-mpegurl'),
+  );
+  static const applicationXOpentype = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-opentype'),
+  );
+  static const applicationXOtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-otf'),
+  );
+  static const applicationXPerl = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-perl'),
+  );
+  static const applicationXTtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('application/x-ttf'),
+  );
+  static const applicationXJavascript =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('application/x-javascript'),
+      );
+  static const fontEot = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('font/eot'),
+  );
+  static const fontTtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('font/ttf'),
+  );
+  static const fontOtf = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('font/otf'),
+  );
+  static const fontOpentype = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('font/opentype'),
+  );
+  static const imageSvgXml = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('image/svg+xml'),
+  );
+  static const textCss = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/css'),
+  );
+  static const textCsv = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/csv'),
+  );
+  static const textHtml = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/html'),
+  );
+  static const textJavascript = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/javascript'),
+  );
+  static const textJs = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/js'),
+  );
+  static const textPlain = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/plain'),
+  );
+  static const textRichtext = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/richtext'),
+  );
+  static const textTabSeparatedValues =
+      CdnFrontdoorRouteContentTypesToCompress._(
+        TfArgLiteral('text/tab-separated-values'),
+      );
+  static const textXml = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/xml'),
+  );
+  static const textXScript = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/x-script'),
+  );
+  static const textXComponent = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/x-component'),
+  );
+  static const textXJavaSource = CdnFrontdoorRouteContentTypesToCompress._(
+    TfArgLiteral('text/x-java-source'),
+  );
+
+  static const List<CdnFrontdoorRouteContentTypesToCompress> values = [
+    applicationEot,
+    applicationFont,
+    applicationFontSfnt,
+    applicationJavascript,
+    applicationJson,
+    applicationOpentype,
+    applicationOtf,
+    applicationPkcs7Mime,
+    applicationTruetype,
+    applicationTtf,
+    applicationVndMsFontobject,
+    applicationXhtmlXml,
+    applicationXml,
+    applicationXmlRss,
+    applicationXFontOpentype,
+    applicationXFontTruetype,
+    applicationXFontTtf,
+    applicationXHttpdCgi,
+    applicationXMpegurl,
+    applicationXOpentype,
+    applicationXOtf,
+    applicationXPerl,
+    applicationXTtf,
+    applicationXJavascript,
+    fontEot,
+    fontTtf,
+    fontOtf,
+    fontOpentype,
+    imageSvgXml,
+    textCss,
+    textCsv,
+    textHtml,
+    textJavascript,
+    textJs,
+    textPlain,
+    textRichtext,
+    textTabSeparatedValues,
+    textXml,
+    textXScript,
+    textXComponent,
+    textXJavaSource,
+  ];
 }
 
 /// `query_string_caching_behavior` — derived from the provider schema description.

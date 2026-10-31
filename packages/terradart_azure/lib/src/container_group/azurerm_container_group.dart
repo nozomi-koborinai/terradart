@@ -53,6 +53,26 @@ extension type const ContainerGroupDnsNameLabelReusePolicy._(TfArg<String> _)
   ];
 }
 
+/// Container Group Ip Address enum for `ip_address_type`.
+extension type const ContainerGroupIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerGroupIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupIpAddressType.arg(TfArg<String> arg) : this._(arg);
+
+  static const public = ContainerGroupIpAddressType._(TfArgLiteral('Public'));
+  static const private = ContainerGroupIpAddressType._(TfArgLiteral('Private'));
+  static const none = ContainerGroupIpAddressType._(TfArgLiteral('None'));
+
+  static const List<ContainerGroupIpAddressType> values = [
+    public,
+    private,
+    none,
+  ];
+}
+
 /// Container Group Os enum for `os_type`.
 extension type const ContainerGroupOsType._(TfArg<String> _)
     implements TfArg<String> {
@@ -350,13 +370,27 @@ final class ContainerGroupPorts {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? protocol;
+  final ContainerGroupProtocol? protocol;
 
   @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const ContainerGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupProtocol.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = ContainerGroupProtocol._(TfArgLiteral('TCP'));
+  static const udp = ContainerGroupProtocol._(TfArgLiteral('UDP'));
+
+  static const List<ContainerGroupProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `container.readiness_probe` block of
@@ -667,7 +701,7 @@ final class AzurermContainerGroup extends Resource {
     ContainerGroupAddress? address,
     ContainerGroupDnsNameLabelReusePolicy? dnsNameLabelReusePolicy,
     TfArg<List<Map<String, Object?>>>? exposedPort,
-    TfArg<String>? ipAddressType,
+    ContainerGroupIpAddressType? ipAddressType,
     TfArg<String>? keyVaultKeyId,
     TfArg<String>? keyVaultUserAssignedIdentityId,
     required TfArg<String> location,

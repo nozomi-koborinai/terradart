@@ -14,6 +14,26 @@ const Set<String> _azurermServicebusNamespaceSensitive = <String>{
   'default_secondary_key',
 };
 
+/// Servicebus Namespace Minimum Tls enum for `minimum_tls_version`.
+extension type const ServicebusNamespaceMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicebusNamespaceMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicebusNamespaceMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicebusNamespaceMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p2 = ServicebusNamespaceMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p3 = ServicebusNamespaceMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+
+  static const List<ServicebusNamespaceMinimumTlsVersion> values = [v1p2, v1p3];
+}
+
 /// Servicebus Namespace enum for `sku`.
 extension type const ServicebusNamespaceSku._(TfArg<String> _)
     implements TfArg<String> {
@@ -151,7 +171,7 @@ final class AzurermServicebusNamespace extends Resource {
     TfArg<num>? capacity,
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> location,
-    TfArg<String>? minimumTlsVersion,
+    ServicebusNamespaceMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
     TfArg<num>? premiumMessagingPartitions,
     TfArg<bool>? publicNetworkAccessEnabled,

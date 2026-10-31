@@ -39,6 +39,27 @@ extension type const StorageAccountAccessTier._(TfArg<String> _)
   ];
 }
 
+/// Storage Account enum for `account_kind`.
+extension type const StorageAccountKind._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageAccountKind.variable(String name) : this._(TfArg.variable(name));
+  StorageAccountKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAccountKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const blockblobstorage = StorageAccountKind._(
+    TfArgLiteral('BlockBlobStorage'),
+  );
+  static const filestorage = StorageAccountKind._(TfArgLiteral('FileStorage'));
+  static const storagev2 = StorageAccountKind._(TfArgLiteral('StorageV2'));
+
+  static const List<StorageAccountKind> values = [
+    blockblobstorage,
+    filestorage,
+    storagev2,
+  ];
+}
+
 /// Storage Account Replication enum for `account_replication_type`.
 extension type const StorageAccountReplicationType._(TfArg<String> _)
     implements TfArg<String> {
@@ -121,6 +142,38 @@ extension type const StorageAccountDnsEndpointType._(TfArg<String> _)
     azurednszone,
     standard,
   ];
+}
+
+/// Storage Account Min Tls enum for `min_tls_version`.
+extension type const StorageAccountMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageAccountMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageAccountMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAccountMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const tls12 = StorageAccountMinTlsVersion._(TfArgLiteral('TLS1_2'));
+
+  static const List<StorageAccountMinTlsVersion> values = [tls12];
+}
+
+/// Storage Account Provisioned Billing Model enum for `provisioned_billing_model_version`.
+extension type const StorageAccountProvisionedBillingModelVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StorageAccountProvisionedBillingModelVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageAccountProvisionedBillingModelVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAccountProvisionedBillingModelVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v2 = StorageAccountProvisionedBillingModelVersion._(
+    TfArgLiteral('V2'),
+  );
+
+  static const List<StorageAccountProvisionedBillingModelVersion> values = [v2];
 }
 
 /// Storage Account Public Network enum for `public_network_access`.
@@ -207,7 +260,7 @@ final class StorageAccountAzureFilesAuthentication {
 
   final StorageAccountDefaultShareLevelPermission? defaultShareLevelPermission;
 
-  final TfArg<String> directoryType;
+  final StorageAccountDirectoryType directoryType;
 
   final StorageAccountActiveDirectory? activeDirectory;
 
@@ -252,6 +305,22 @@ extension type const StorageAccountDefaultShareLevelPermission._(
     storagefiledatasmbshareelevatedcontributor,
     storagefiledatasmbsharereader,
   ];
+}
+
+/// `directory_type` — derived from the provider schema description.
+extension type const StorageAccountDirectoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageAccountDirectoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageAccountDirectoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAccountDirectoryType.arg(TfArg<String> arg) : this._(arg);
+
+  static const aadds = StorageAccountDirectoryType._(TfArgLiteral('AADDS'));
+  static const aadkerb = StorageAccountDirectoryType._(TfArgLiteral('AADKERB'));
+  static const ad = StorageAccountDirectoryType._(TfArgLiteral('AD'));
+
+  static const List<StorageAccountDirectoryType> values = [aadds, aadkerb, ad];
 }
 
 /// Typed helper for the `azure_files_authentication.active_directory` block of
@@ -367,7 +436,7 @@ final class StorageAccountCorsRule {
 
   final TfArg<List<String>> allowedHeaders;
 
-  final TfArg<List<String>> allowedMethods;
+  final List<StorageAccountAllowedMethods> allowedMethods;
 
   final TfArg<List<String>> allowedOrigins;
 
@@ -378,11 +447,41 @@ final class StorageAccountCorsRule {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': allowedHeaders.toTfJson(),
-    'allowed_methods': allowedMethods.toTfJson(),
+    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
     'allowed_origins': allowedOrigins.toTfJson(),
     'exposed_headers': exposedHeaders.toTfJson(),
     'max_age_in_seconds': maxAgeInSeconds.toTfJson(),
   };
+}
+
+/// `allowed_methods` — derived from the provider schema description.
+extension type const StorageAccountAllowedMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageAccountAllowedMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageAccountAllowedMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAccountAllowedMethods.arg(TfArg<String> arg) : this._(arg);
+
+  static const delete = StorageAccountAllowedMethods._(TfArgLiteral('DELETE'));
+  static const get = StorageAccountAllowedMethods._(TfArgLiteral('GET'));
+  static const head = StorageAccountAllowedMethods._(TfArgLiteral('HEAD'));
+  static const merge = StorageAccountAllowedMethods._(TfArgLiteral('MERGE'));
+  static const post = StorageAccountAllowedMethods._(TfArgLiteral('POST'));
+  static const options = StorageAccountAllowedMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const put = StorageAccountAllowedMethods._(TfArgLiteral('PUT'));
+
+  static const List<StorageAccountAllowedMethods> values = [
+    delete,
+    get,
+    head,
+    merge,
+    post,
+    options,
+    put,
+  ];
 }
 
 /// Typed helper for the `blob_properties.delete_retention_policy` block of
@@ -854,7 +953,7 @@ final class AzurermStorageAccount extends Resource {
   AzurermStorageAccount(
     super.localName, {
     StorageAccountAccessTier? accessTier,
-    TfArg<String>? accountKind,
+    StorageAccountKind? accountKind,
     required StorageAccountReplicationType accountReplicationType,
     required StorageAccountTier accountTier,
     TfArg<bool>? allowNestedItemsToBePublic,
@@ -869,10 +968,11 @@ final class AzurermStorageAccount extends Resource {
     TfArg<bool>? largeFileShareEnabled,
     TfArg<bool>? localUserEnabled,
     required TfArg<String> location,
-    TfArg<String>? minTlsVersion,
+    StorageAccountMinTlsVersion? minTlsVersion,
     required TfArg<String> name,
     TfArg<bool>? nfsv3Enabled,
-    TfArg<String>? provisionedBillingModelVersion,
+    StorageAccountProvisionedBillingModelVersion?
+    provisionedBillingModelVersion,
     StorageAccountPublicNetworkAccess? publicNetworkAccess,
     TfArg<bool>? publicNetworkAccessEnabled,
     StorageAccountQueueEncryptionKeyType? queueEncryptionKeyType,

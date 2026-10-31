@@ -178,7 +178,7 @@ extension type const BatchAccountDefaultAction._(TfArg<String> _)
 final class BatchAccountIpRule {
   const BatchAccountIpRule({this.action, required this.ipRange});
 
-  final TfArg<String>? action;
+  final BatchAccountAction? action;
 
   final TfArg<String> ipRange;
 
@@ -187,6 +187,19 @@ final class BatchAccountIpRule {
     'action': ?action?.toTfJson(),
     'ip_range': ipRange.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const BatchAccountAction._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountAction.variable(String name) : this._(TfArg.variable(name));
+  BatchAccountAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = BatchAccountAction._(TfArgLiteral('Allow'));
+
+  static const List<BatchAccountAction> values = [allow];
 }
 
 /// Typed helper for the `network_profile.node_management_access` block of

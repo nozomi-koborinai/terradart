@@ -36,7 +36,7 @@ final class DataProtectionBackupPolicyKubernetesClusterLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyKubernetesClusterDataStoreType dataStoreType;
 
   final TfArg<String> duration;
 
@@ -45,6 +45,32 @@ final class DataProtectionBackupPolicyKubernetesClusterLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyKubernetesClusterDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyKubernetesClusterDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyKubernetesClusterDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const operationalstore =
+      DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+        TfArgLiteral('OperationalStore'),
+      );
+  static const vaultstore =
+      DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<DataProtectionBackupPolicyKubernetesClusterDataStoreType>
+  values = [operationalstore, vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of

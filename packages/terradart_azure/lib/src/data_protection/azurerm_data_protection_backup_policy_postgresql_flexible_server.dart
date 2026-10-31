@@ -36,7 +36,8 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType
+  dataStoreType;
 
   final TfArg<String> duration;
 
@@ -45,6 +46,31 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vaultstore =
+      DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<
+    DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType
+  >
+  values = [vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of

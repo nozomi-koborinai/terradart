@@ -37,3 +37,7 @@ properties:
               - "Thursday"
               - "Tuesday"
               - "Wednesday"
+  - api_name: type
+    enum_values:
+      - "Personal"
+      - "Pooled"

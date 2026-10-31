@@ -6,6 +6,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_servicebus_queue`.
 const Set<String> _azurermServicebusQueueSensitive = <String>{};
 
+/// Servicebus Queue enum for `status`.
+extension type const ServicebusQueueStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicebusQueueStatus.variable(String name) : this._(TfArg.variable(name));
+  ServicebusQueueStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicebusQueueStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = ServicebusQueueStatus._(TfArgLiteral('Active'));
+  static const creating = ServicebusQueueStatus._(TfArgLiteral('Creating'));
+  static const deleting = ServicebusQueueStatus._(TfArgLiteral('Deleting'));
+  static const disabled = ServicebusQueueStatus._(TfArgLiteral('Disabled'));
+  static const receivedisabled = ServicebusQueueStatus._(
+    TfArgLiteral('ReceiveDisabled'),
+  );
+  static const renaming = ServicebusQueueStatus._(TfArgLiteral('Renaming'));
+  static const senddisabled = ServicebusQueueStatus._(
+    TfArgLiteral('SendDisabled'),
+  );
+  static const unknown = ServicebusQueueStatus._(TfArgLiteral('Unknown'));
+
+  static const List<ServicebusQueueStatus> values = [
+    active,
+    creating,
+    deleting,
+    disabled,
+    receivedisabled,
+    renaming,
+    senddisabled,
+    unknown,
+  ];
+}
+
 /// Factory wrapper for `azurerm_servicebus_queue`.
 final class AzurermServicebusQueue extends Resource {
   static const String tfType = 'azurerm_servicebus_queue';
@@ -29,7 +62,7 @@ final class AzurermServicebusQueue extends Resource {
     TfArg<bool>? partitioningEnabled,
     TfArg<bool>? requiresDuplicateDetection,
     TfArg<bool>? requiresSession,
-    TfArg<String>? status,
+    ServicebusQueueStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

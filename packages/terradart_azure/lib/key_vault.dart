@@ -16,7 +16,7 @@ export 'src/data/azurerm_key_vault_certificate_issuer.dart'
 export 'src/data/azurerm_key_vault_certificates.dart'
     show DataAzurermKeyVaultCertificates;
 export 'src/data/azurerm_key_vault_encrypted_value.dart'
-    show DataAzurermKeyVaultEncryptedValue;
+    show DataAzurermKeyVaultEncryptedValue, DataKeyVaultEncryptedValueAlgorithm;
 export 'src/data/azurerm_key_vault_key.dart' show DataAzurermKeyVaultKey;
 export 'src/data/azurerm_key_vault_managed_hardware_security_module.dart'
     show DataAzurermKeyVaultManagedHardwareSecurityModule;
@@ -42,7 +42,7 @@ export 'src/key_vault/azurerm_key_vault.dart'
         KeyVaultNetworkAcls,
         KeyVaultSkuName;
 export 'src/key_vault/azurerm_key_vault_access_policy.dart'
-    show AzurermKeyVaultAccessPolicy;
+    show AzurermKeyVaultAccessPolicy, KeyVaultAccessPolicyStoragePermissions;
 export 'src/key_vault/azurerm_key_vault_certificate.dart'
     show
         AzurermKeyVaultCertificate,
@@ -50,6 +50,7 @@ export 'src/key_vault/azurerm_key_vault_certificate.dart'
         KeyVaultCertificateAction,
         KeyVaultCertificateIssuerParameters,
         KeyVaultCertificateKeyProperties,
+        KeyVaultCertificateKeyType,
         KeyVaultCertificateLifetimeAction,
         KeyVaultCertificatePolicy,
         KeyVaultCertificateSecretProperties,
@@ -67,19 +68,27 @@ export 'src/key_vault/azurerm_key_vault_key.dart'
     show
         AzurermKeyVaultKey,
         KeyVaultKeyAutomatic,
+        KeyVaultKeyCurve,
+        KeyVaultKeyOpts,
         KeyVaultKeyParameter,
         KeyVaultKeyParameterCurve,
         KeyVaultKeyParameterKeySize,
         KeyVaultKeyReleasePolicy,
-        KeyVaultKeyRotationPolicy;
+        KeyVaultKeyRotationPolicy,
+        KeyVaultKeyType;
 export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module.dart'
     show
         AzurermKeyVaultManagedHardwareSecurityModule,
         KeyVaultManagedHardwareSecurityModuleBypass,
         KeyVaultManagedHardwareSecurityModuleDefaultAction,
-        KeyVaultManagedHardwareSecurityModuleNetworkAcls;
+        KeyVaultManagedHardwareSecurityModuleNetworkAcls,
+        KeyVaultManagedHardwareSecurityModuleSkuName;
 export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module_key.dart'
-    show AzurermKeyVaultManagedHardwareSecurityModuleKey;
+    show
+        AzurermKeyVaultManagedHardwareSecurityModuleKey,
+        KeyVaultManagedHardwareSecurityModuleKeyCurve,
+        KeyVaultManagedHardwareSecurityModuleKeyOpts,
+        KeyVaultManagedHardwareSecurityModuleKeyType;
 export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module_key_rotation_policy.dart'
     show
         AzurermKeyVaultManagedHardwareSecurityModuleKeyRotationPolicy,

@@ -502,8 +502,9 @@ final class ProviderEnums {
   /// [ir] with each override's `enumValues` in place of the value set of
   /// the top-level attribute it names; nested paths reach the derived types
   /// through [nestedHints]. [error] hears an entry that names no string
-  /// attribute of its kind's definition, or whose values the derivation
-  /// already gives (stale once upstream is fixed), as `type path: reason`.
+  /// attribute of its kind's definition, or every one of whose values the
+  /// derivation already gives (stale once upstream fixes the value, even if
+  /// it also adds others), as `type path: reason`.
   ProviderSchemaIR withOverrideEnums(
     LoadedOverrides overrides,
     ProviderSchemaIR ir, {
@@ -528,12 +529,10 @@ final class ProviderEnums {
           final derived = segments.length == 1
               ? attr.constraints.enumValues
               : resolve(segments, attr.description);
-          if (derived != null &&
-              derived.length == values.length &&
-              derived.toSet().containsAll(values)) {
+          if (derived != null && derived.toSet().containsAll(values)) {
             error(
-              '$label: the derivation already gives these values; '
-              'remove the entry',
+              '$label: the derivation already gives every one of these '
+              'values; remove the entry',
             );
             continue;
           }

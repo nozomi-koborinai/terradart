@@ -26,9 +26,11 @@ export 'src/data/azurerm_oracle_database_system_versions.dart'
     show
         DataAzurermOracleDatabaseSystemVersions,
         DataOracleDatabaseSystemVersionsDatabaseSystemShape,
+        DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice,
         DataOracleDatabaseSystemVersionsShape,
         DataOracleDatabaseSystemVersionsShapeFamily,
-        DataOracleDatabaseSystemVersionsShapeFamilyChoice;
+        DataOracleDatabaseSystemVersionsShapeFamilyChoice,
+        DataOracleDatabaseSystemVersionsStorageManagement;
 export 'src/data/azurerm_oracle_db_nodes.dart' show DataAzurermOracleDbNodes;
 export 'src/data/azurerm_oracle_db_servers.dart'
     show DataAzurermOracleDbServers;
@@ -50,7 +52,9 @@ export 'src/oracle/azurerm_oracle_autonomous_database.dart'
         OracleAutonomousDatabaseLongTermBackupSchedule,
         OracleAutonomousDatabaseRepeatCadence;
 export 'src/oracle/azurerm_oracle_autonomous_database_backup.dart'
-    show AzurermOracleAutonomousDatabaseBackup;
+    show
+        AzurermOracleAutonomousDatabaseBackup,
+        OracleAutonomousDatabaseBackupType;
 export 'src/oracle/azurerm_oracle_autonomous_database_clone_from_backup.dart'
     show
         AzurermOracleAutonomousDatabaseCloneFromBackup,

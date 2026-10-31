@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_app_configuration_key`.
 const Set<String> _azurermAppConfigurationKeySensitive = <String>{};
 
+/// App Configuration Key enum for `type`.
+extension type const AppConfigurationKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppConfigurationKeyType.variable(String name) : this._(TfArg.variable(name));
+  AppConfigurationKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppConfigurationKeyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const vault = AppConfigurationKeyType._(TfArgLiteral('vault'));
+  static const kv = AppConfigurationKeyType._(TfArgLiteral('kv'));
+
+  static const List<AppConfigurationKeyType> values = [vault, kv];
+}
+
 /// At most one of `value`, `vault_key_reference` on `azurerm_app_configuration_key`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -93,7 +107,7 @@ final class AzurermAppConfigurationKey extends Resource {
     TfArg<String>? label,
     TfArg<bool>? locked,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    AppConfigurationKeyType? type,
     AppConfigurationKeySource? source,
     super.lifecycle,
     super.dependsOn,

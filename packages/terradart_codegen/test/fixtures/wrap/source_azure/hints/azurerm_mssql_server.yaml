@@ -8,6 +8,9 @@ properties:
       - "Default"
       - "Proxy"
       - "Redirect"
+  - api_name: minimum_tls_version
+    enum_values:
+      - "1.2"
   - api_name: version
     enum_values:
       - "2.0"

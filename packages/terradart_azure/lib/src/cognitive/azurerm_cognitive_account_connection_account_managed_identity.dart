@@ -7,6 +7,40 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _azurermCognitiveAccountConnectionAccountManagedIdentitySensitive = <String>{};
 
+/// Cognitive Account Connection Account Managed Identity enum for `category`.
+extension type const CognitiveAccountConnectionAccountManagedIdentityCategory._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitiveAccountConnectionAccountManagedIdentityCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitiveAccountConnectionAccountManagedIdentityCategory.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CognitiveAccountConnectionAccountManagedIdentityCategory.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const aiservices =
+      CognitiveAccountConnectionAccountManagedIdentityCategory._(
+        TfArgLiteral('AIServices'),
+      );
+  static const azurekeyvault =
+      CognitiveAccountConnectionAccountManagedIdentityCategory._(
+        TfArgLiteral('AzureKeyVault'),
+      );
+  static const azureopenai =
+      CognitiveAccountConnectionAccountManagedIdentityCategory._(
+        TfArgLiteral('AzureOpenAI'),
+      );
+  static const azurestorageaccount =
+      CognitiveAccountConnectionAccountManagedIdentityCategory._(
+        TfArgLiteral('AzureStorageAccount'),
+      );
+
+  static const List<CognitiveAccountConnectionAccountManagedIdentityCategory>
+  values = [aiservices, azurekeyvault, azureopenai, azurestorageaccount];
+}
+
 /// Factory wrapper for `azurerm_cognitive_account_connection_account_managed_identity`.
 final class AzurermCognitiveAccountConnectionAccountManagedIdentity
     extends Resource {
@@ -15,7 +49,7 @@ final class AzurermCognitiveAccountConnectionAccountManagedIdentity
 
   AzurermCognitiveAccountConnectionAccountManagedIdentity(
     super.localName, {
-    required TfArg<String> category,
+    required CognitiveAccountConnectionAccountManagedIdentityCategory category,
     required TfArg<String> cognitiveAccountId,
     required TfArg<Map<String, String>> metadata,
     required TfArg<String> name,

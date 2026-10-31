@@ -13,3 +13,6 @@ properties:
         enum_values:
           - "Allow"
           - "Deny"
+  - api_name: sku_name
+    enum_values:
+      - "Standard_B1"

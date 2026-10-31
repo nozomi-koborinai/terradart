@@ -8,3 +8,6 @@ properties:
       - "ASPath"
       - "ExpressRoute"
       - "VpnGateway"
+  - api_name: sku
+    enum_values:
+      - "Standard"

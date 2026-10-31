@@ -9,3 +9,10 @@ properties:
         enum_values:
           - "CNIChaining"
           - "InitContainers"
+  - api_name: web_app_routing_ingress
+    properties:
+      - api_name: default_nginx_controller
+        enum_values:
+          - "AnnotationControlled"
+          - "Internal"
+          - "External"

@@ -33,6 +33,17 @@ properties:
             enum_values:
               - "Daily"
               - "Weekly"
+  - api_name: auto_patching
+    properties:
+      - api_name: day_of_week
+        enum_values:
+          - "Monday"
+          - "Tuesday"
+          - "Wednesday"
+          - "Thursday"
+          - "Friday"
+          - "Saturday"
+          - "Sunday"
   - api_name: sql_connectivity_type
     enum_values:
       - "LOCAL"

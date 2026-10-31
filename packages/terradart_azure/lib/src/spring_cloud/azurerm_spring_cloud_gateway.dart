@@ -47,6 +47,19 @@ extension type const SpringCloudGatewayApplicationPerformanceMonitoringTypes._(
   values = [appdynamics, applicationinsights, dynatrace, elasticapm, newrelic];
 }
 
+/// Spring Cloud Gateway enum for `name`.
+extension type const SpringCloudGatewayName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudGatewayName.variable(String name) : this._(TfArg.variable(name));
+  SpringCloudGatewayName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudGatewayName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudGatewayName._(TfArgLiteral('default'));
+
+  static const List<SpringCloudGatewayName> values = [defaultCase];
+}
+
 /// At most one of `local_response_cache_per_instance`, `local_response_cache_per_route` on `azurerm_spring_cloud_gateway`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -360,7 +373,7 @@ final class AzurermSpringCloudGateway extends Resource {
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<bool>? httpsOnly,
     TfArg<num>? instanceCount,
-    required TfArg<String> name,
+    required SpringCloudGatewayName name,
     TfArg<bool>? publicNetworkAccessEnabled,
     Sensitive<Map<String, String>>? sensitiveEnvironmentVariables,
     required TfArg<String> springCloudServiceId,

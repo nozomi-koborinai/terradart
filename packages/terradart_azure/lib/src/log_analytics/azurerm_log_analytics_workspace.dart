@@ -70,6 +70,45 @@ extension type const LogAnalyticsWorkspaceInternetQueryAccessType._(
   ];
 }
 
+/// Log Analytics Workspace enum for `sku`.
+extension type const LogAnalyticsWorkspaceSku._(TfArg<String> _)
+    implements TfArg<String> {
+  LogAnalyticsWorkspaceSku.variable(String name) : this._(TfArg.variable(name));
+  LogAnalyticsWorkspaceSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogAnalyticsWorkspaceSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const pergb2018 = LogAnalyticsWorkspaceSku._(
+    TfArgLiteral('PerGB2018'),
+  );
+  static const pernode = LogAnalyticsWorkspaceSku._(TfArgLiteral('PerNode'));
+  static const premium = LogAnalyticsWorkspaceSku._(TfArgLiteral('Premium'));
+  static const standalone = LogAnalyticsWorkspaceSku._(
+    TfArgLiteral('Standalone'),
+  );
+  static const standard = LogAnalyticsWorkspaceSku._(TfArgLiteral('Standard'));
+  static const capacityreservation = LogAnalyticsWorkspaceSku._(
+    TfArgLiteral('CapacityReservation'),
+  );
+  static const lacluster = LogAnalyticsWorkspaceSku._(
+    TfArgLiteral('LACluster'),
+  );
+  static const unlimited = LogAnalyticsWorkspaceSku._(
+    TfArgLiteral('Unlimited'),
+  );
+
+  static const List<LogAnalyticsWorkspaceSku> values = [
+    pergb2018,
+    pernode,
+    premium,
+    standalone,
+    standard,
+    capacityreservation,
+    lacluster,
+    unlimited,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_log_analytics_workspace` (derived from provider schema).
 @immutable
@@ -107,7 +146,7 @@ final class AzurermLogAnalyticsWorkspace extends Resource {
     TfArg<num>? reservationCapacityInGbPerDay,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<num>? retentionInDays,
-    TfArg<String>? sku,
+    LogAnalyticsWorkspaceSku? sku,
     TfArg<Map<String, String>>? tags,
     LogAnalyticsWorkspaceIdentity? identity,
     super.lifecycle,

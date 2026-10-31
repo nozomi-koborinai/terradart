@@ -10,6 +10,48 @@ const Set<String> _azurermFunctionAppConnectionSensitive = <String>{
   'authentication.secret',
 };
 
+/// Function App Connection Client enum for `client_type`.
+extension type const FunctionAppConnectionClientType._(TfArg<String> _)
+    implements TfArg<String> {
+  FunctionAppConnectionClientType.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppConnectionClientType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppConnectionClientType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dotnet = FunctionAppConnectionClientType._(
+    TfArgLiteral('dotnet'),
+  );
+  static const java = FunctionAppConnectionClientType._(TfArgLiteral('java'));
+  static const python = FunctionAppConnectionClientType._(
+    TfArgLiteral('python'),
+  );
+  static const go = FunctionAppConnectionClientType._(TfArgLiteral('go'));
+  static const php = FunctionAppConnectionClientType._(TfArgLiteral('php'));
+  static const ruby = FunctionAppConnectionClientType._(TfArgLiteral('ruby'));
+  static const django = FunctionAppConnectionClientType._(
+    TfArgLiteral('django'),
+  );
+  static const nodejs = FunctionAppConnectionClientType._(
+    TfArgLiteral('nodejs'),
+  );
+  static const springboot = FunctionAppConnectionClientType._(
+    TfArgLiteral('springBoot'),
+  );
+
+  static const List<FunctionAppConnectionClientType> values = [
+    dotnet,
+    java,
+    python,
+    go,
+    php,
+    ruby,
+    django,
+    nodejs,
+    springboot,
+  ];
+}
+
 /// Function App Connection Vnet enum for `vnet_solution`.
 extension type const FunctionAppConnectionVnetSolution._(TfArg<String> _)
     implements TfArg<String> {
@@ -58,7 +100,7 @@ final class FunctionAppConnectionAuthentication {
 
   final TfArg<String>? subscriptionId;
 
-  final TfArg<String> type;
+  final FunctionAppConnectionType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -70,6 +112,38 @@ final class FunctionAppConnectionAuthentication {
     'subscription_id': ?subscriptionId?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const FunctionAppConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FunctionAppConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppConnectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const secret = FunctionAppConnectionType._(TfArgLiteral('secret'));
+  static const serviceprincipalsecret = FunctionAppConnectionType._(
+    TfArgLiteral('servicePrincipalSecret'),
+  );
+  static const serviceprincipalcertificate = FunctionAppConnectionType._(
+    TfArgLiteral('servicePrincipalCertificate'),
+  );
+  static const systemassignedidentity = FunctionAppConnectionType._(
+    TfArgLiteral('systemAssignedIdentity'),
+  );
+  static const userassignedidentity = FunctionAppConnectionType._(
+    TfArgLiteral('userAssignedIdentity'),
+  );
+
+  static const List<FunctionAppConnectionType> values = [
+    secret,
+    serviceprincipalsecret,
+    serviceprincipalcertificate,
+    systemassignedidentity,
+    userassignedidentity,
+  ];
 }
 
 /// Typed helper for the `secret_store` block of
@@ -90,7 +164,7 @@ final class AzurermFunctionAppConnection extends Resource {
 
   AzurermFunctionAppConnection(
     super.localName, {
-    TfArg<String>? clientType,
+    FunctionAppConnectionClientType? clientType,
     required TfArg<String> functionAppId,
     required TfArg<String> name,
     required TfArg<String> targetResourceId,

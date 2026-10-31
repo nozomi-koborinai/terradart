@@ -9,6 +9,7 @@ export 'src/chaos/azurerm_chaos_studio_capability.dart'
 export 'src/chaos/azurerm_chaos_studio_experiment.dart'
     show
         AzurermChaosStudioExperiment,
+        ChaosStudioExperimentActionType,
         ChaosStudioExperimentActions,
         ChaosStudioExperimentBranch,
         ChaosStudioExperimentIdentity,

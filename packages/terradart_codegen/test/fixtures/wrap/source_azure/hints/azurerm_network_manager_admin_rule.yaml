@@ -8,6 +8,12 @@ properties:
       - "Allow"
       - "AlwaysAllow"
       - "Deny"
+  - api_name: destination
+    properties:
+      - api_name: address_prefix_type
+        enum_values:
+          - "IPPrefix"
+          - "ServiceTag"
   - api_name: direction
     enum_values:
       - "Inbound"
@@ -20,3 +26,9 @@ properties:
       - "Icmp"
       - "Tcp"
       - "Udp"
+  - api_name: source
+    properties:
+      - api_name: address_prefix_type
+        enum_values:
+          - "IPPrefix"
+          - "ServiceTag"

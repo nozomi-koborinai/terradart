@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_lb_outbound_rule`.
 const Set<String> _azurermLbOutboundRuleSensitive = <String>{};
 
+/// Lb Outbound Rule enum for `protocol`.
+extension type const LbOutboundRuleProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  LbOutboundRuleProtocol.variable(String name) : this._(TfArg.variable(name));
+  LbOutboundRuleProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbOutboundRuleProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = LbOutboundRuleProtocol._(TfArgLiteral('All'));
+  static const tcp = LbOutboundRuleProtocol._(TfArgLiteral('Tcp'));
+  static const udp = LbOutboundRuleProtocol._(TfArgLiteral('Udp'));
+
+  static const List<LbOutboundRuleProtocol> values = [all, tcp, udp];
+}
+
 /// Typed helper for the `frontend_ip_configuration` block of
 /// `azurerm_lb_outbound_rule` (derived from provider schema).
 @immutable
@@ -30,7 +45,7 @@ final class AzurermLbOutboundRule extends Resource {
     TfArg<num>? idleTimeoutInMinutes,
     required TfArg<String> loadbalancerId,
     required TfArg<String> name,
-    required TfArg<String> protocol,
+    required LbOutboundRuleProtocol protocol,
     TfArg<bool>? tcpResetEnabled,
     List<LbOutboundRuleFrontendIpConfiguration>? frontendIpConfiguration,
     super.lifecycle,

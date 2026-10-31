@@ -52,7 +52,7 @@ final class NetappVolumeGroupSapHanaVolume {
 
   final NetappVolumeGroupSapHanaSecurityStyle securityStyle;
 
-  final TfArg<String> serviceLevel;
+  final NetappVolumeGroupSapHanaServiceLevel serviceLevel;
 
   final TfArg<bool> snapshotDirectoryVisible;
 
@@ -201,6 +201,37 @@ extension type const NetappVolumeGroupSapHanaSecurityStyle._(TfArg<String> _)
   static const List<NetappVolumeGroupSapHanaSecurityStyle> values = [
     ntfs,
     unix,
+  ];
+}
+
+/// `service_level` — derived from the provider schema description.
+extension type const NetappVolumeGroupSapHanaServiceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeGroupSapHanaServiceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeGroupSapHanaServiceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeGroupSapHanaServiceLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = NetappVolumeGroupSapHanaServiceLevel._(
+    TfArgLiteral('Premium'),
+  );
+  static const standard = NetappVolumeGroupSapHanaServiceLevel._(
+    TfArgLiteral('Standard'),
+  );
+  static const ultra = NetappVolumeGroupSapHanaServiceLevel._(
+    TfArgLiteral('Ultra'),
+  );
+  static const flexible = NetappVolumeGroupSapHanaServiceLevel._(
+    TfArgLiteral('Flexible'),
+  );
+
+  static const List<NetappVolumeGroupSapHanaServiceLevel> values = [
+    premium,
+    standard,
+    ultra,
+    flexible,
   ];
 }
 

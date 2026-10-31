@@ -12,6 +12,31 @@ const Set<String> _azurermStreamAnalyticsStreamInputBlobSensitive = <String>{
   'storage_account_key',
 };
 
+/// Stream Analytics Stream Input Blob Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsStreamInputBlobAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputBlobAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputBlobAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputBlobAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectionstring =
+      StreamAnalyticsStreamInputBlobAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+  static const msi = StreamAnalyticsStreamInputBlobAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+
+  static const List<StreamAnalyticsStreamInputBlobAuthenticationMode> values = [
+    connectionstring,
+    msi,
+  ];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_stream_input_blob` (derived from provider schema).
 @immutable
@@ -22,11 +47,11 @@ final class StreamAnalyticsStreamInputBlobSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsStreamInputBlobEncoding? encoding;
 
   final StreamAnalyticsStreamInputBlobFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String> type;
+  final StreamAnalyticsStreamInputBlobType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -34,6 +59,23 @@ final class StreamAnalyticsStreamInputBlobSerialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputBlobEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputBlobEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputBlobEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputBlobEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsStreamInputBlobEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsStreamInputBlobEncoding> values = [utf8];
 }
 
 /// `field_delimiter` — derived from the provider schema description.
@@ -72,13 +114,37 @@ extension type const StreamAnalyticsStreamInputBlobFieldDelimiter._(
   ];
 }
 
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputBlobType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputBlobType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputBlobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputBlobType.arg(TfArg<String> arg) : this._(arg);
+
+  static const avro = StreamAnalyticsStreamInputBlobType._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsStreamInputBlobType._(TfArgLiteral('Csv'));
+  static const json = StreamAnalyticsStreamInputBlobType._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<StreamAnalyticsStreamInputBlobType> values = [
+    avro,
+    csv,
+    json,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_stream_input_blob`.
 final class AzurermStreamAnalyticsStreamInputBlob extends Resource {
   static const String tfType = 'azurerm_stream_analytics_stream_input_blob';
 
   AzurermStreamAnalyticsStreamInputBlob(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsStreamInputBlobAuthenticationMode? authenticationMode,
     required TfArg<String> dateFormat,
     required TfArg<String> name,
     required TfArg<String> pathPattern,

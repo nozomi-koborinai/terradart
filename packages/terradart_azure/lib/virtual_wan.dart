@@ -31,11 +31,13 @@ export 'src/virtual_wan/azurerm_virtual_hub_route_table.dart'
     show
         AzurermVirtualHubRouteTable,
         VirtualHubRouteTableDestinationsType,
+        VirtualHubRouteTableNextHopType,
         VirtualHubRouteTableRoute;
 export 'src/virtual_wan/azurerm_virtual_hub_route_table_route.dart'
     show
         AzurermVirtualHubRouteTableRoute,
-        VirtualHubRouteTableRouteDestinationsType;
+        VirtualHubRouteTableRouteDestinationsType,
+        VirtualHubRouteTableRouteNextHopType;
 export 'src/virtual_wan/azurerm_virtual_hub_routing_intent.dart'
     show
         AzurermVirtualHubRoutingIntent,

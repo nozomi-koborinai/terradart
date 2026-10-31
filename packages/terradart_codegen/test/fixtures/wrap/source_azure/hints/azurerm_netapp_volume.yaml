@@ -20,6 +20,9 @@ properties:
           - "SnapshotOnly"
   - api_name: data_protection_replication
     properties:
+      - api_name: endpoint_type
+        enum_values:
+          - "dst"
       - api_name: replication_frequency
         enum_values:
           - "10minutes"
@@ -36,6 +39,10 @@ properties:
           - "NFSv3"
           - "NFSv4.1"
           - "CIFS"
+  - api_name: network_features
+    enum_values:
+      - "Basic"
+      - "Standard"
   - api_name: protocols
     enum_values:
       - "NFSv3"
@@ -45,3 +52,9 @@ properties:
     enum_values:
       - "ntfs"
       - "unix"
+  - api_name: service_level
+    enum_values:
+      - "Premium"
+      - "Standard"
+      - "Ultra"
+      - "Flexible"

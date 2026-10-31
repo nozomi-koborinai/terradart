@@ -28,6 +28,8 @@ export 'src/maintenance/azurerm_maintenance_configuration.dart'
         MaintenanceConfigurationLinux,
         MaintenanceConfigurationLinuxClassificationsToInclude,
         MaintenanceConfigurationReboot,
+        MaintenanceConfigurationScope,
+        MaintenanceConfigurationVisibility,
         MaintenanceConfigurationWindow,
         MaintenanceConfigurationWindows,
         MaintenanceConfigurationWindowsClassificationsToInclude;

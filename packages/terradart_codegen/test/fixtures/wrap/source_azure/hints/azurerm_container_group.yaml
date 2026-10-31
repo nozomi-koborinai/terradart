@@ -13,6 +13,12 @@ properties:
                 enum_values:
                   - "http"
                   - "https"
+      - api_name: ports
+        properties:
+          - api_name: protocol
+            enum_values:
+              - "TCP"
+              - "UDP"
       - api_name: readiness_probe
         properties:
           - api_name: http_get
@@ -36,6 +42,11 @@ properties:
       - "SubscriptionReuse"
       - "TenantReuse"
       - "Unsecure"
+  - api_name: ip_address_type
+    enum_values:
+      - "Public"
+      - "Private"
+      - "None"
   - api_name: os_type
     enum_values:
       - "Linux"

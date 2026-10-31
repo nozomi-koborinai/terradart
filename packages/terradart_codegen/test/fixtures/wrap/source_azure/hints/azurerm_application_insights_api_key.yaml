@@ -11,3 +11,6 @@ properties:
       - "draft"
       - "extendqueries"
       - "search"
+  - api_name: write_permissions
+    enum_values:
+      - "annotations"

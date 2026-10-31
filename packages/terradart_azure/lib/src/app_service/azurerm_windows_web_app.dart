@@ -850,7 +850,7 @@ final class WindowsWebAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -868,7 +868,7 @@ final class WindowsWebAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final WindowsWebAppActiveDirectoryV2ClientSecret? clientSecret;
+  final WindowsWebAppClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -887,7 +887,7 @@ final class WindowsWebAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -902,18 +902,18 @@ final class WindowsWebAppActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class WindowsWebAppActiveDirectoryV2ClientSecret {
-  const WindowsWebAppActiveDirectoryV2ClientSecret();
+sealed class WindowsWebAppClientCredential {
+  const WindowsWebAppClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory WindowsWebAppClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = WindowsWebAppClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory WindowsWebAppClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = WindowsWebAppActiveDirectoryV2ClientSecretSettingName;
+  ) = WindowsWebAppClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -923,10 +923,10 @@ sealed class WindowsWebAppActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends WindowsWebAppActiveDirectoryV2ClientSecret {
-  const WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [WindowsWebAppClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsWebAppClientCredentialClientSecretCertificateThumbprint
+    extends WindowsWebAppClientCredential {
+  const WindowsWebAppClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -944,10 +944,10 @@ final class WindowsWebAppActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [WindowsWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class WindowsWebAppActiveDirectoryV2ClientSecretSettingName
-    extends WindowsWebAppActiveDirectoryV2ClientSecret {
-  const WindowsWebAppActiveDirectoryV2ClientSecretSettingName(
+/// The [WindowsWebAppClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppClientCredentialClientSecretSettingName
+    extends WindowsWebAppClientCredential {
+  const WindowsWebAppClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1381,7 +1381,7 @@ final class WindowsWebAppConnectionString {
 
   final TfArg<String> name;
 
-  final WindowsWebAppType type;
+  final WindowsWebAppConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -1394,28 +1394,49 @@ final class WindowsWebAppConnectionString {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const WindowsWebAppType._(TfArg<String> _)
+extension type const WindowsWebAppConnectionStringType._(TfArg<String> _)
     implements TfArg<String> {
-  WindowsWebAppType.variable(String name) : this._(TfArg.variable(name));
-  WindowsWebAppType.expression(String template)
+  WindowsWebAppConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppConnectionStringType.expression(String template)
     : this._(TfArg.expression(template));
-  const WindowsWebAppType.arg(TfArg<String> arg) : this._(arg);
+  const WindowsWebAppConnectionStringType.arg(TfArg<String> arg) : this._(arg);
 
-  static const apihub = WindowsWebAppType._(TfArgLiteral('ApiHub'));
-  static const custom = WindowsWebAppType._(TfArgLiteral('Custom'));
-  static const docdb = WindowsWebAppType._(TfArgLiteral('DocDb'));
-  static const eventhub = WindowsWebAppType._(TfArgLiteral('EventHub'));
-  static const mysql = WindowsWebAppType._(TfArgLiteral('MySql'));
-  static const notificationhub = WindowsWebAppType._(
+  static const apihub = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = WindowsWebAppConnectionStringType._(
     TfArgLiteral('NotificationHub'),
   );
-  static const postgresql = WindowsWebAppType._(TfArgLiteral('PostgreSQL'));
-  static const rediscache = WindowsWebAppType._(TfArgLiteral('RedisCache'));
-  static const sqlazure = WindowsWebAppType._(TfArgLiteral('SQLAzure'));
-  static const sqlserver = WindowsWebAppType._(TfArgLiteral('SQLServer'));
-  static const servicebus = WindowsWebAppType._(TfArgLiteral('ServiceBus'));
+  static const postgresql = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = WindowsWebAppConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
 
-  static const List<WindowsWebAppType> values = [
+  static const List<WindowsWebAppConnectionStringType> values = [
     apihub,
     custom,
     docdb,
@@ -1535,7 +1556,7 @@ final class WindowsWebAppApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final WindowsWebAppLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -1547,6 +1568,27 @@ final class WindowsWebAppApplicationLogsAzureBlobStorage {
     'retention_in_days': retentionInDays.toTfJson(),
     'sas_url': sasUrl.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+extension type const WindowsWebAppLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppLevel.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = WindowsWebAppLevel._(TfArgLiteral('Error'));
+  static const information = WindowsWebAppLevel._(TfArgLiteral('Information'));
+  static const verbose = WindowsWebAppLevel._(TfArgLiteral('Verbose'));
+  static const warning = WindowsWebAppLevel._(TfArgLiteral('Warning'));
+
+  static const List<WindowsWebAppLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
 }
 
 /// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_windows_web_app`: the provider rejects
@@ -1724,7 +1766,7 @@ final class WindowsWebAppSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final WindowsWebAppRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final WindowsWebAppScmIpRestrictionDefaultAction?
   scmIpRestrictionDefaultAction;
@@ -2018,6 +2060,23 @@ extension type const WindowsWebAppMinimumTlsVersion._(TfArg<String> _)
   ];
 }
 
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const WindowsWebAppRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = WindowsWebAppRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<WindowsWebAppRemoteDebuggingVersion> values = [vs2022];
+}
+
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsWebAppScmIpRestrictionDefaultAction._(
   TfArg<String> _
@@ -2096,7 +2155,7 @@ final class WindowsWebAppApplicationStack {
 
   final TfArg<String>? dockerRegistryUsername;
 
-  final TfArg<String>? dotnetCoreVersion;
+  final WindowsWebAppDotnetCoreVersion? dotnetCoreVersion;
 
   final WindowsWebAppDotnetVersion? dotnetVersion;
 
@@ -2110,7 +2169,7 @@ final class WindowsWebAppApplicationStack {
 
   final WindowsWebAppNodeVersion? nodeVersion;
 
-  final TfArg<String>? phpVersion;
+  final WindowsWebAppPhpVersion? phpVersion;
 
   final TfArg<bool>? python;
 
@@ -2162,6 +2221,20 @@ extension type const WindowsWebAppCurrentStack._(TfArg<String> _)
     php,
     java,
   ];
+}
+
+/// `dotnet_core_version` — derived from the provider schema description.
+extension type const WindowsWebAppDotnetCoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppDotnetCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppDotnetCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppDotnetCoreVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v4p0 = WindowsWebAppDotnetCoreVersion._(TfArgLiteral('v4.0'));
+
+  static const List<WindowsWebAppDotnetCoreVersion> values = [v4p0];
 }
 
 /// `dotnet_version` — derived from the provider schema description.
@@ -2235,6 +2308,21 @@ extension type const WindowsWebAppNodeVersion._(TfArg<String> _)
     v22,
     v24,
   ];
+}
+
+/// `php_version` — derived from the provider schema description.
+extension type const WindowsWebAppPhpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppPhpVersion.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppPhpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppPhpVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v7p1 = WindowsWebAppPhpVersion._(TfArgLiteral('7.1'));
+  static const v7p4 = WindowsWebAppPhpVersion._(TfArgLiteral('7.4'));
+  static const off = WindowsWebAppPhpVersion._(TfArgLiteral('Off'));
+
+  static const List<WindowsWebAppPhpVersion> values = [v7p1, v7p4, off];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting` block of
@@ -2695,7 +2783,7 @@ final class WindowsWebAppStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final WindowsWebAppStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -2706,6 +2794,22 @@ final class WindowsWebAppStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsWebAppStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppStorageAccountType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurefiles = WindowsWebAppStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<WindowsWebAppStorageAccountType> values = [azurefiles];
 }
 
 /// Factory wrapper for `azurerm_windows_web_app`.

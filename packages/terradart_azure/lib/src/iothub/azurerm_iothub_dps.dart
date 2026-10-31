@@ -112,13 +112,26 @@ final class IothubDpsSku {
 
   final TfArg<num> capacity;
 
-  final TfArg<String> name;
+  final IothubDpsSkuName name;
 
   @internal
   Map<String, Object?> encode() => {
     'capacity': capacity.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const IothubDpsSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  IothubDpsSkuName.variable(String name) : this._(TfArg.variable(name));
+  IothubDpsSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const IothubDpsSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const s1 = IothubDpsSkuName._(TfArgLiteral('S1'));
+
+  static const List<IothubDpsSkuName> values = [s1];
 }
 
 /// Factory wrapper for `azurerm_iothub_dps`.

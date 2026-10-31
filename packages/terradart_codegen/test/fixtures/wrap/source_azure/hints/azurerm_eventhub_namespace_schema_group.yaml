@@ -8,3 +8,8 @@ properties:
       - "Backward"
       - "Forward"
       - "None"
+  - api_name: schema_type
+    enum_values:
+      - "Unknown"
+      - "Avro"
+      - "Json"

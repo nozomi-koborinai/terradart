@@ -10,6 +10,31 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermStreamAnalyticsOutputServicebusQueueSensitive =
     <String>{'shared_access_policy_key'};
 
+/// Stream Analytics Output Servicebus Queue Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsOutputServicebusQueueAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusQueueAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusQueueAuthenticationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusQueueAuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const connectionstring =
+      StreamAnalyticsOutputServicebusQueueAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+  static const msi = StreamAnalyticsOutputServicebusQueueAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusQueueAuthenticationMode>
+  values = [connectionstring, msi];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_output_servicebus_queue` (derived from provider schema).
 @immutable
@@ -21,13 +46,13 @@ final class StreamAnalyticsOutputServicebusQueueSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsOutputServicebusQueueEncoding? encoding;
 
   final StreamAnalyticsOutputServicebusQueueFieldDelimiter? fieldDelimiter;
 
   final StreamAnalyticsOutputServicebusQueueFormat? format;
 
-  final TfArg<String> type;
+  final StreamAnalyticsOutputServicebusQueueType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -36,6 +61,26 @@ final class StreamAnalyticsOutputServicebusQueueSerialization {
     'format': ?format?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusQueueEncoding._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsOutputServicebusQueueEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusQueueEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusQueueEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsOutputServicebusQueueEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusQueueEncoding> values = [
+    utf8,
+  ];
 }
 
 /// `field_delimiter` — derived from the provider schema description.
@@ -94,6 +139,37 @@ extension type const StreamAnalyticsOutputServicebusQueueFormat._(
   ];
 }
 
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsOutputServicebusQueueType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsOutputServicebusQueueType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsOutputServicebusQueueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsOutputServicebusQueueType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const avro = StreamAnalyticsOutputServicebusQueueType._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsOutputServicebusQueueType._(
+    TfArgLiteral('Csv'),
+  );
+  static const json = StreamAnalyticsOutputServicebusQueueType._(
+    TfArgLiteral('Json'),
+  );
+  static const parquet = StreamAnalyticsOutputServicebusQueueType._(
+    TfArgLiteral('Parquet'),
+  );
+
+  static const List<StreamAnalyticsOutputServicebusQueueType> values = [
+    avro,
+    csv,
+    json,
+    parquet,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_output_servicebus_queue`.
 final class AzurermStreamAnalyticsOutputServicebusQueue extends Resource {
   static const String tfType =
@@ -101,7 +177,7 @@ final class AzurermStreamAnalyticsOutputServicebusQueue extends Resource {
 
   AzurermStreamAnalyticsOutputServicebusQueue(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsOutputServicebusQueueAuthenticationMode? authenticationMode,
     required TfArg<String> name,
     TfArg<List<String>>? propertyColumns,
     required TfArg<String> queueName,

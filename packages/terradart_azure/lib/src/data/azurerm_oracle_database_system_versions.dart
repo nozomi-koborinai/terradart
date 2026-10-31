@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_oracle_database_system_versions`.
 const Set<String> _azurermOracleDatabaseSystemVersionsSensitive = <String>{};
 
+/// Data Oracle Database System Versions Database System enum for `database_system_shape`.
+extension type const DataOracleDatabaseSystemVersionsDatabaseSystemShape._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataOracleDatabaseSystemVersionsDatabaseSystemShape.variable(String name)
+    : this._(TfArg.variable(name));
+  DataOracleDatabaseSystemVersionsDatabaseSystemShape.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataOracleDatabaseSystemVersionsDatabaseSystemShape.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vmStandardX86 =
+      DataOracleDatabaseSystemVersionsDatabaseSystemShape._(
+        TfArgLiteral('VM.Standard.x86'),
+      );
+
+  static const List<DataOracleDatabaseSystemVersionsDatabaseSystemShape>
+  values = [vmStandardX86];
+}
+
 /// Data Oracle Database System Versions Shape enum for `shape_family`.
 extension type const DataOracleDatabaseSystemVersionsShapeFamily._(
   TfArg<String> _
@@ -39,6 +61,25 @@ extension type const DataOracleDatabaseSystemVersionsShapeFamily._(
   ];
 }
 
+/// Data Oracle Database System Versions Storage enum for `storage_management`.
+extension type const DataOracleDatabaseSystemVersionsStorageManagement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataOracleDatabaseSystemVersionsStorageManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  DataOracleDatabaseSystemVersionsStorageManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataOracleDatabaseSystemVersionsStorageManagement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const lvm = DataOracleDatabaseSystemVersionsStorageManagement._(
+    TfArgLiteral('LVM'),
+  );
+
+  static const List<DataOracleDatabaseSystemVersionsStorageManagement> values =
+      [lvm];
+}
+
 /// At most one of `database_system_shape`, `shape_family` on `data.azurerm_oracle_database_system_versions`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -49,8 +90,8 @@ sealed class DataOracleDatabaseSystemVersionsShape {
 
   /// Sets `database_system_shape`.
   const factory DataOracleDatabaseSystemVersionsShape.databaseSystemShape(
-    TfArg<String> databaseSystemShape,
-  ) = DataOracleDatabaseSystemVersionsDatabaseSystemShape;
+    DataOracleDatabaseSystemVersionsDatabaseSystemShape databaseSystemShape,
+  ) = DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice;
 
   /// Sets `shape_family`.
   const factory DataOracleDatabaseSystemVersionsShape.shapeFamily(
@@ -71,13 +112,13 @@ sealed class DataOracleDatabaseSystemVersionsShape {
 }
 
 /// The [DataOracleDatabaseSystemVersionsShape.databaseSystemShape] choice: sets `database_system_shape`.
-final class DataOracleDatabaseSystemVersionsDatabaseSystemShape
+final class DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice
     extends DataOracleDatabaseSystemVersionsShape {
-  const DataOracleDatabaseSystemVersionsDatabaseSystemShape(
+  const DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice(
     this.databaseSystemShape,
   );
 
-  final TfArg<String> databaseSystemShape;
+  final DataOracleDatabaseSystemVersionsDatabaseSystemShape databaseSystemShape;
 
   @internal
   @override
@@ -125,7 +166,7 @@ final class DataAzurermOracleDatabaseSystemVersions extends Data {
     TfArg<bool>? databaseSoftwareImageSupported,
     DataOracleDatabaseSystemVersionsShape? shape,
     required TfArg<String> location,
-    TfArg<String>? storageManagement,
+    DataOracleDatabaseSystemVersionsStorageManagement? storageManagement,
     TfArg<bool>? upgradeSupported,
     super.provider,
     super.timeouts,

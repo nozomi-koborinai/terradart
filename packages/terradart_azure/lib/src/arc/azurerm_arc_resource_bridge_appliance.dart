@@ -9,6 +9,22 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_arc_resource_bridge_appliance`.
 const Set<String> _azurermArcResourceBridgeApplianceSensitive = <String>{};
 
+/// Arc Resource Bridge Appliance enum for `distro`.
+extension type const ArcResourceBridgeApplianceDistro._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcResourceBridgeApplianceDistro.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcResourceBridgeApplianceDistro.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcResourceBridgeApplianceDistro.arg(TfArg<String> arg) : this._(arg);
+
+  static const aksedge = ArcResourceBridgeApplianceDistro._(
+    TfArgLiteral('AKSEdge'),
+  );
+
+  static const List<ArcResourceBridgeApplianceDistro> values = [aksedge];
+}
+
 /// Arc Resource Bridge Appliance Infrastructure enum for `infrastructure_provider`.
 extension type const ArcResourceBridgeApplianceInfrastructureProvider._(
   TfArg<String> _
@@ -55,7 +71,7 @@ final class AzurermArcResourceBridgeAppliance extends Resource {
 
   AzurermArcResourceBridgeAppliance(
     super.localName, {
-    required TfArg<String> distro,
+    required ArcResourceBridgeApplianceDistro distro,
     required ArcResourceBridgeApplianceInfrastructureProvider
     infrastructureProvider,
     required TfArg<String> location,

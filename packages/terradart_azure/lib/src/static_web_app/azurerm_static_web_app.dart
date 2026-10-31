@@ -13,6 +13,34 @@ const Set<String> _azurermStaticWebAppSensitive = <String>{
   'repository_token',
 };
 
+/// Static Web App Sku enum for `sku_size`.
+extension type const StaticWebAppSkuSize._(TfArg<String> _)
+    implements TfArg<String> {
+  StaticWebAppSkuSize.variable(String name) : this._(TfArg.variable(name));
+  StaticWebAppSkuSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const StaticWebAppSkuSize.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = StaticWebAppSkuSize._(TfArgLiteral('Standard'));
+  static const free = StaticWebAppSkuSize._(TfArgLiteral('Free'));
+
+  static const List<StaticWebAppSkuSize> values = [standard, free];
+}
+
+/// Static Web App Sku enum for `sku_tier`.
+extension type const StaticWebAppSkuTier._(TfArg<String> _)
+    implements TfArg<String> {
+  StaticWebAppSkuTier.variable(String name) : this._(TfArg.variable(name));
+  StaticWebAppSkuTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const StaticWebAppSkuTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = StaticWebAppSkuTier._(TfArgLiteral('Standard'));
+  static const free = StaticWebAppSkuTier._(TfArgLiteral('Free'));
+
+  static const List<StaticWebAppSkuTier> values = [standard, free];
+}
+
 /// Typed helper for the `basic_auth` block of
 /// `azurerm_static_web_app` (derived from provider schema).
 @immutable
@@ -22,7 +50,7 @@ final class StaticWebAppBasicAuth {
     required this.password,
   });
 
-  final TfArg<String> environments;
+  final StaticWebAppEnvironments environments;
 
   final Sensitive<String> password;
 
@@ -31,6 +59,27 @@ final class StaticWebAppBasicAuth {
     'environments': environments.toTfJson(),
     'password': password.toTfJson(),
   };
+}
+
+/// `environments` — derived from the provider schema description.
+extension type const StaticWebAppEnvironments._(TfArg<String> _)
+    implements TfArg<String> {
+  StaticWebAppEnvironments.variable(String name) : this._(TfArg.variable(name));
+  StaticWebAppEnvironments.expression(String template)
+    : this._(TfArg.expression(template));
+  const StaticWebAppEnvironments.arg(TfArg<String> arg) : this._(arg);
+
+  static const allenvironments = StaticWebAppEnvironments._(
+    TfArgLiteral('AllEnvironments'),
+  );
+  static const stagingenvironments = StaticWebAppEnvironments._(
+    TfArgLiteral('StagingEnvironments'),
+  );
+
+  static const List<StaticWebAppEnvironments> values = [
+    allenvironments,
+    stagingenvironments,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -66,8 +115,8 @@ final class AzurermStaticWebApp extends Resource {
     Sensitive<String>? repositoryToken,
     TfArg<String>? repositoryUrl,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? skuSize,
-    TfArg<String>? skuTier,
+    StaticWebAppSkuSize? skuSize,
+    StaticWebAppSkuTier? skuTier,
     TfArg<Map<String, String>>? tags,
     StaticWebAppBasicAuth? basicAuth,
     StaticWebAppIdentity? identity,

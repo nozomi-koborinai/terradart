@@ -10,6 +10,31 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermStreamAnalyticsStreamInputEventhubSensitive =
     <String>{'shared_access_policy_key'};
 
+/// Stream Analytics Stream Input Eventhub Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsStreamInputEventhubAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubAuthenticationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubAuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const msi = StreamAnalyticsStreamInputEventhubAuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsStreamInputEventhubAuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsStreamInputEventhubAuthenticationMode>
+  values = [msi, connectionstring];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_stream_input_eventhub` (derived from provider schema).
 @immutable
@@ -20,11 +45,11 @@ final class StreamAnalyticsStreamInputEventhubSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsStreamInputEventhubEncoding? encoding;
 
   final StreamAnalyticsStreamInputEventhubFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String> type;
+  final StreamAnalyticsStreamInputEventhubType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -32,6 +57,24 @@ final class StreamAnalyticsStreamInputEventhubSerialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputEventhubEncoding._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsStreamInputEventhubEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsStreamInputEventhubEncoding> values = [utf8];
 }
 
 /// `field_delimiter` — derived from the provider schema description.
@@ -70,13 +113,40 @@ extension type const StreamAnalyticsStreamInputEventhubFieldDelimiter._(
   ];
 }
 
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputEventhubType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const avro = StreamAnalyticsStreamInputEventhubType._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsStreamInputEventhubType._(
+    TfArgLiteral('Csv'),
+  );
+  static const json = StreamAnalyticsStreamInputEventhubType._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<StreamAnalyticsStreamInputEventhubType> values = [
+    avro,
+    csv,
+    json,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_stream_input_eventhub`.
 final class AzurermStreamAnalyticsStreamInputEventhub extends Resource {
   static const String tfType = 'azurerm_stream_analytics_stream_input_eventhub';
 
   AzurermStreamAnalyticsStreamInputEventhub(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsStreamInputEventhubAuthenticationMode? authenticationMode,
     TfArg<String>? eventhubConsumerGroupName,
     required TfArg<String> eventhubName,
     required TfArg<String> name,

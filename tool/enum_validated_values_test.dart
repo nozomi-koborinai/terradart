@@ -7,11 +7,14 @@
 // (azurerm's `forward_proxy_convention` lists the Go constant names
 // `ForwardProxyConventionNoProxy`, ... while the provider accepts `NoProxy`),
 // so an emitted value outside the validated set of its input fails here.
+// The comparison is exact: a validator may ignore case, but some do not
+// (`forward_proxy_convention` uses `StringInSlice(..., false)`), and the
+// spelling a hint lists is accepted by either kind.
 //
 // Where no hint covers an input, a value set whose every value is the
 // input's own PascalCase name plus a suffix is the shape of a Go constant
 // leaking from a description, and fails unless [_goConstantLike] gives the
-// reason the provider really accepts it.
+// reason the provider really accepts it, and its exact values.
 
 // The tool/ test convention keeps this file outside test/, so the analyzer
 // does not recognize it as a test for @visibleForTesting purposes.
@@ -28,11 +31,15 @@ import 'package:yaml/yaml.dart';
 
 import 'bump_api_surface.dart' show laneManifests;
 
-/// `type.path` → why values shaped like Go constants are the wire values.
+/// `type.path` → the Go-constant-shaped values that are the wire values,
+/// and why.
 const _goConstantLike = {
-  'google_bigtable_instance.cluster.node_scaling_factor':
-      'the Bigtable API enum values are NodeScalingFactor1X / '
-      'NodeScalingFactor2X, and the provider sends them unchanged',
+  'google_bigtable_instance.cluster.node_scaling_factor': (
+    values: ['NodeScalingFactor1X', 'NodeScalingFactor2X'],
+    reason:
+        'the Bigtable API enum values are NodeScalingFactor1X / '
+        'NodeScalingFactor2X, and the provider sends them unchanged',
+  ),
 };
 
 final _root = Directory.current.path;
@@ -102,13 +109,32 @@ Map<(CatalogKind, String, String), List<String>> validatedSets(
   return out;
 }
 
-/// Inputs whose every value is the input's PascalCase name plus a suffix.
-List<String> goConstantShaped(
-  Map<(CatalogKind, String, String), List<String>> enums,
+/// Each emitted value [validated] does not list exactly for its input.
+List<String> wireMismatches(
+  Map<(CatalogKind, String, String), List<String>> emitted,
+  Map<(CatalogKind, String, String), List<String>> validated,
 ) => [
-  for (final MapEntry(key: (_, type, path), value: values) in enums.entries)
-    if (_allPrefixed(path.split('.').last, values)) '$type.$path: $values',
+  for (final MapEntry(:key, value: values) in emitted.entries)
+    if (validated[key] case final allowed?)
+      for (final v in values)
+        if (!allowed.contains(v))
+          '${key.$2}.${key.$3}: emits "$v", provider validates $allowed',
 ];
+
+/// Inputs whose every value is the input's PascalCase name plus a suffix,
+/// unless [allowed] gives exactly those values for the input.
+List<String> goConstantShaped(
+  Map<(CatalogKind, String, String), List<String>> enums, {
+  Map<String, ({List<String> values, String reason})> allowed = const {},
+}) => [
+  for (final MapEntry(key: (_, type, path), value: values) in enums.entries)
+    if (_allPrefixed(path.split('.').last, values) &&
+        !_sameValues(allowed['$type.$path']?.values, values))
+      '$type.$path: $values',
+];
+
+bool _sameValues(List<String>? a, List<String> b) =>
+    a != null && a.length == b.length && a.toSet().containsAll(b);
 
 bool _allPrefixed(String leaf, List<String> values) {
   final prefix = snakeToPascal(leaf);
@@ -134,19 +160,10 @@ void main() {
         (lanes[lane] as YamlMap)['schemaDir'] as String,
       );
       final manifest = laneManifests(_providersYaml, [lane]).single;
-      final validated = validatedSets(schemaDir);
-      final fold = manifest.caseInsensitiveEnums
-          ? (String v) => v.toLowerCase()
-          : (String v) => v;
-      final mismatches = [
-        for (final MapEntry(:key, value: emitted) in emittedEnums(
-          manifest,
-        ).entries)
-          if (validated[key] case final allowed?)
-            for (final v in emitted)
-              if (!allowed.map(fold).contains(fold(v)))
-                '${key.$2}.${key.$3}: emits "$v", provider validates $allowed',
-      ];
+      final mismatches = wireMismatches(
+        emittedEnums(manifest),
+        validatedSets(schemaDir),
+      );
       expect(
         mismatches,
         isEmpty,
@@ -164,11 +181,10 @@ void main() {
     for (final MapEntry(:key) in lanes.entries) {
       final manifest = laneManifests(_providersYaml, [key as String]).single;
       final enums = emittedEnums(manifest);
-      for (final line in goConstantShaped(enums)) {
-        final input = line.split(':').first;
-        seen.add(input);
-        if (!_goConstantLike.containsKey(input)) shaped.add(line);
+      for (final (_, type, path) in enums.keys) {
+        seen.add('$type.$path');
       }
+      shaped.addAll(goConstantShaped(enums, allowed: _goConstantLike));
     }
     expect(shaped, isEmpty);
     expect(
@@ -212,6 +228,50 @@ void main() {
           'Custom',
         ],
       }),
+      hasLength(1),
+    );
+  });
+
+  final forwardProxy = (
+    CatalogKind.resource,
+    'azurerm_linux_web_app',
+    'auth_settings_v2.forward_proxy_convention',
+  );
+  final validatedProxy = {
+    forwardProxy: ['Custom', 'NoProxy', 'Standard'],
+  };
+
+  test('a case-only wire error fails', () {
+    expect(
+      wireMismatches({
+        forwardProxy: ['Custom', 'noproxy', 'Standard'],
+      }, validatedProxy),
+      [contains('emits "noproxy"')],
+    );
+    expect(
+      wireMismatches({
+        forwardProxy: ['Custom', 'NoProxy', 'Standard'],
+      }, validatedProxy),
+      isEmpty,
+    );
+  });
+
+  test('the Bigtable allowance admits only its two values', () {
+    final bigtable = (
+      CatalogKind.resource,
+      'google_bigtable_instance',
+      'cluster.node_scaling_factor',
+    );
+    expect(
+      goConstantShaped({
+        bigtable: ['NodeScalingFactor1X', 'NodeScalingFactor2X'],
+      }, allowed: _goConstantLike),
+      isEmpty,
+    );
+    expect(
+      goConstantShaped({
+        bigtable: ['NodeScalingFactorBogus', 'NodeScalingFactorWrong'],
+      }, allowed: _goConstantLike),
       hasLength(1),
     );
   });

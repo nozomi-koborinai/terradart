@@ -59,6 +59,21 @@ extension type const ContainerRegistryRoleAssignmentMode._(TfArg<String> _)
   ];
 }
 
+/// Container Registry enum for `sku`.
+extension type const ContainerRegistrySku._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistrySku.variable(String name) : this._(TfArg.variable(name));
+  ContainerRegistrySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistrySku.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = ContainerRegistrySku._(TfArgLiteral('Basic'));
+  static const standard = ContainerRegistrySku._(TfArgLiteral('Standard'));
+  static const premium = ContainerRegistrySku._(TfArgLiteral('Premium'));
+
+  static const List<ContainerRegistrySku> values = [basic, standard, premium];
+}
+
 /// Typed helper for the `georeplications` block of
 /// `azurerm_container_registry` (derived from provider schema).
 @immutable
@@ -126,7 +141,7 @@ final class AzurermContainerRegistry extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<num>? retentionPolicyInDays,
     ContainerRegistryRoleAssignmentMode? roleAssignmentMode,
-    required TfArg<String> sku,
+    required ContainerRegistrySku sku,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? zoneRedundancyEnabled,
     List<ContainerRegistryGeoreplications>? georeplications,

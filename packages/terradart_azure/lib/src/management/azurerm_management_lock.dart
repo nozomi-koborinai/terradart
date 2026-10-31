@@ -6,13 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_management_lock`.
 const Set<String> _azurermManagementLockSensitive = <String>{};
 
+/// Management Lock enum for `lock_level`.
+extension type const ManagementLockLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagementLockLevel.variable(String name) : this._(TfArg.variable(name));
+  ManagementLockLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagementLockLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const cannotdelete = ManagementLockLevel._(
+    TfArgLiteral('CanNotDelete'),
+  );
+  static const readonly = ManagementLockLevel._(TfArgLiteral('ReadOnly'));
+
+  static const List<ManagementLockLevel> values = [cannotdelete, readonly];
+}
+
 /// Factory wrapper for `azurerm_management_lock`.
 final class AzurermManagementLock extends Resource {
   static const String tfType = 'azurerm_management_lock';
 
   AzurermManagementLock(
     super.localName, {
-    required TfArg<String> lockLevel,
+    required ManagementLockLevel lockLevel,
     required TfArg<String> name,
     TfArg<String>? notes,
     required TfArg<String> scope,

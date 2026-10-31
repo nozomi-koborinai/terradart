@@ -65,6 +65,29 @@ extension type const WindowsVirtualMachineScaleSetLicenseType._(TfArg<String> _)
   ];
 }
 
+/// Windows Virtual Machine Scale Set enum for `priority`.
+extension type const WindowsVirtualMachineScaleSetPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineScaleSetPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetPriority.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const regular = WindowsVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = WindowsVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Spot'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetPriority> values = [
+    regular,
+    spot,
+  ];
+}
+
 /// Windows Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
 extension type const WindowsVirtualMachineScaleSetUpgradeMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -416,7 +439,7 @@ final class WindowsVirtualMachineScaleSetDataDisk {
 
   final WindowsVirtualMachineScaleSetCaching caching;
 
-  final TfArg<String>? createOption;
+  final WindowsVirtualMachineScaleSetCreateOption? createOption;
 
   final TfArg<String>? diskEncryptionSetId;
 
@@ -430,7 +453,8 @@ final class WindowsVirtualMachineScaleSetDataDisk {
 
   final TfArg<String>? name;
 
-  final WindowsVirtualMachineScaleSetStorageAccountType storageAccountType;
+  final WindowsVirtualMachineScaleSetDataDiskStorageAccountType
+  storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -476,42 +500,74 @@ extension type const WindowsVirtualMachineScaleSetCaching._(TfArg<String> _)
   ];
 }
 
-/// `storage_account_type` — derived from the provider schema description.
-extension type const WindowsVirtualMachineScaleSetStorageAccountType._(
+/// `create_option` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetCreateOption._(
   TfArg<String> _
 ) implements TfArg<String> {
-  WindowsVirtualMachineScaleSetStorageAccountType.variable(String name)
+  WindowsVirtualMachineScaleSetCreateOption.variable(String name)
     : this._(TfArg.variable(name));
-  WindowsVirtualMachineScaleSetStorageAccountType.expression(String template)
+  WindowsVirtualMachineScaleSetCreateOption.expression(String template)
     : this._(TfArg.expression(template));
-  const WindowsVirtualMachineScaleSetStorageAccountType.arg(TfArg<String> arg)
+  const WindowsVirtualMachineScaleSetCreateOption.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const premiumLrs = WindowsVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Premium_LRS'),
+  static const empty = WindowsVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('Empty'),
   );
-  static const premiumv2Lrs = WindowsVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('PremiumV2_LRS'),
+  static const fromimage = WindowsVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('FromImage'),
   );
-  static const premiumZrs = WindowsVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Premium_ZRS'),
-  );
-  static const standardLrs = WindowsVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('Standard_LRS'),
-  );
+
+  static const List<WindowsVirtualMachineScaleSetCreateOption> values = [
+    empty,
+    fromimage,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetDataDiskStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetDataDiskStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetDataDiskStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumv2Lrs =
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('PremiumV2_LRS'),
+      );
+  static const premiumZrs =
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
   static const standardssdLrs =
-      WindowsVirtualMachineScaleSetStorageAccountType._(
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('StandardSSD_LRS'),
       );
   static const standardssdZrs =
-      WindowsVirtualMachineScaleSetStorageAccountType._(
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('StandardSSD_ZRS'),
       );
-  static const ultrassdLrs = WindowsVirtualMachineScaleSetStorageAccountType._(
-    TfArgLiteral('UltraSSD_LRS'),
-  );
+  static const ultrassdLrs =
+      WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
+        TfArgLiteral('UltraSSD_LRS'),
+      );
 
-  static const List<WindowsVirtualMachineScaleSetStorageAccountType> values = [
+  static const List<WindowsVirtualMachineScaleSetDataDiskStorageAccountType>
+  values = [
     premiumLrs,
     premiumv2Lrs,
     premiumZrs,
@@ -728,9 +784,9 @@ final class WindowsVirtualMachineScaleSetNetworkInterface {
 
   final TfArg<bool>? acceleratedNetworkingEnabled;
 
-  final TfArg<String>? auxiliaryMode;
+  final WindowsVirtualMachineScaleSetAuxiliaryMode? auxiliaryMode;
 
-  final TfArg<String>? auxiliarySku;
+  final WindowsVirtualMachineScaleSetAuxiliarySku? auxiliarySku;
 
   final TfArg<List<String>>? dnsServers;
 
@@ -756,6 +812,63 @@ final class WindowsVirtualMachineScaleSetNetworkInterface {
     'primary': ?primary?.toTfJson(),
     'ip_configuration': [for (final e in ipConfiguration) e.encode()],
   };
+}
+
+/// `auxiliary_mode` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetAuxiliaryMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetAuxiliaryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetAuxiliaryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetAuxiliaryMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const acceleratedconnections =
+      WindowsVirtualMachineScaleSetAuxiliaryMode._(
+        TfArgLiteral('AcceleratedConnections'),
+      );
+  static const floating = WindowsVirtualMachineScaleSetAuxiliaryMode._(
+    TfArgLiteral('Floating'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetAuxiliaryMode> values = [
+    acceleratedconnections,
+    floating,
+  ];
+}
+
+/// `auxiliary_sku` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetAuxiliarySku._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetAuxiliarySku.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetAuxiliarySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetAuxiliarySku.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const a8 = WindowsVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A8'),
+  );
+  static const a4 = WindowsVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A4'),
+  );
+  static const a1 = WindowsVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A1'),
+  );
+  static const a2 = WindowsVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A2'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetAuxiliarySku> values = [
+    a8,
+    a4,
+    a1,
+    a2,
+  ];
 }
 
 /// Typed helper for the `network_interface.ip_configuration` block of
@@ -906,9 +1019,11 @@ final class WindowsVirtualMachineScaleSetOsDisk {
 
   final TfArg<num>? diskSizeGb;
 
-  final TfArg<String>? securityEncryptionType;
+  final WindowsVirtualMachineScaleSetSecurityEncryptionType?
+  securityEncryptionType;
 
-  final TfArg<String> storageAccountType;
+  final WindowsVirtualMachineScaleSetOsDiskStorageAccountType
+  storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -992,6 +1107,76 @@ final class WindowsVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetI
   };
 }
 
+/// `security_encryption_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetSecurityEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetSecurityEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetSecurityEncryptionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetSecurityEncryptionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vmgueststateonly =
+      WindowsVirtualMachineScaleSetSecurityEncryptionType._(
+        TfArgLiteral('VMGuestStateOnly'),
+      );
+  static const diskwithvmgueststate =
+      WindowsVirtualMachineScaleSetSecurityEncryptionType._(
+        TfArgLiteral('DiskWithVMGuestState'),
+      );
+
+  static const List<WindowsVirtualMachineScaleSetSecurityEncryptionType>
+  values = [vmgueststateonly, diskwithvmgueststate];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetOsDiskStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetOsDiskStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetOsDiskStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumZrs =
+      WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
+  static const standardssdLrs =
+      WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_LRS'),
+      );
+  static const standardssdZrs =
+      WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_ZRS'),
+      );
+
+  static const List<WindowsVirtualMachineScaleSetOsDiskStorageAccountType>
+  values = [
+    premiumLrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+  ];
+}
+
 /// Typed helper for the `os_disk.diff_disk_settings` block of
 /// `azurerm_windows_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -1001,7 +1186,7 @@ final class WindowsVirtualMachineScaleSetDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final WindowsVirtualMachineScaleSetOption option;
 
   final WindowsVirtualMachineScaleSetPlacement? placement;
 
@@ -1010,6 +1195,23 @@ final class WindowsVirtualMachineScaleSetDiffDiskSettings {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `option` — derived from the provider schema description.
+extension type const WindowsVirtualMachineScaleSetOption._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineScaleSetOption.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const local = WindowsVirtualMachineScaleSetOption._(
+    TfArgLiteral('Local'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetOption> values = [local];
 }
 
 /// `placement` — derived from the provider schema description.
@@ -1327,7 +1529,7 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
     required TfArg<String> name,
     TfArg<bool>? overprovision,
     TfArg<num>? platformFaultDomainCount,
-    TfArg<String>? priority,
+    WindowsVirtualMachineScaleSetPriority? priority,
     TfArg<bool>? provisionVmAgent,
     TfArg<bool>? resilientVmCreationEnabled,
     TfArg<bool>? resilientVmDeletionEnabled,

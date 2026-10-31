@@ -43,6 +43,7 @@ export 'src/storage/azurerm_storage_account.dart'
         StorageAccountAccessTier,
         StorageAccountActiveDirectory,
         StorageAccountAllowedCopyScope,
+        StorageAccountAllowedMethods,
         StorageAccountAuthenticationTypes,
         StorageAccountAzureFilesAuthentication,
         StorageAccountBlobProperties,
@@ -56,13 +57,17 @@ export 'src/storage/azurerm_storage_account.dart'
         StorageAccountDefaultAction,
         StorageAccountDefaultShareLevelPermission,
         StorageAccountDeleteRetentionPolicy,
+        StorageAccountDirectoryType,
         StorageAccountDnsEndpointType,
         StorageAccountExpirationAction,
         StorageAccountIdentity,
         StorageAccountImmutabilityPolicy,
         StorageAccountKerberosTicketEncryptionType,
+        StorageAccountKind,
+        StorageAccountMinTlsVersion,
         StorageAccountNetworkRules,
         StorageAccountPrivateLinkAccess,
+        StorageAccountProvisionedBillingModelVersion,
         StorageAccountPublicNetworkAccess,
         StorageAccountQueueEncryptionKeyType,
         StorageAccountReplicationType,
@@ -110,7 +115,7 @@ export 'src/storage/azurerm_storage_account_table_properties.dart'
         StorageAccountTablePropertiesLogging,
         StorageAccountTablePropertiesMinuteMetrics;
 export 'src/storage/azurerm_storage_blob.dart'
-    show AzurermStorageBlob, StorageBlobType;
+    show AzurermStorageBlob, StorageBlobAccessTier, StorageBlobType;
 export 'src/storage/azurerm_storage_blob_inventory_policy.dart'
     show
         AzurermStorageBlobInventoryPolicy,
@@ -121,7 +126,7 @@ export 'src/storage/azurerm_storage_blob_inventory_policy.dart'
         StorageBlobInventoryPolicySchedule,
         StorageBlobInventoryPolicyScope;
 export 'src/storage/azurerm_storage_container.dart'
-    show AzurermStorageContainer;
+    show AzurermStorageContainer, StorageContainerAccessType;
 export 'src/storage/azurerm_storage_container_immutability_policy.dart'
     show AzurermStorageContainerImmutabilityPolicy;
 export 'src/storage/azurerm_storage_data_lake_gen2_filesystem.dart'
@@ -134,11 +139,13 @@ export 'src/storage/azurerm_storage_data_lake_gen2_path.dart'
     show
         AzurermStorageDataLakeGen2Path,
         StorageDataLakeGen2PathAce,
+        StorageDataLakeGen2PathResource,
         StorageDataLakeGen2PathScope,
         StorageDataLakeGen2PathType;
 export 'src/storage/azurerm_storage_discovery_workspace.dart'
     show
         AzurermStorageDiscoveryWorkspace,
+        StorageDiscoveryWorkspaceResourceTypes,
         StorageDiscoveryWorkspaceScope,
         StorageDiscoveryWorkspaceSku;
 export 'src/storage/azurerm_storage_encryption_scope.dart'
@@ -151,6 +158,7 @@ export 'src/storage/azurerm_storage_management_policy.dart'
         StorageManagementPolicyBlobTypes,
         StorageManagementPolicyFilters,
         StorageManagementPolicyMatchBlobIndexTag,
+        StorageManagementPolicyOperation,
         StorageManagementPolicyRule,
         StorageManagementPolicySnapshot,
         StorageManagementPolicyVersion;
@@ -171,7 +179,12 @@ export 'src/storage/azurerm_storage_object_replication.dart'
     show AzurermStorageObjectReplication, StorageObjectReplicationRules;
 export 'src/storage/azurerm_storage_queue.dart' show AzurermStorageQueue;
 export 'src/storage/azurerm_storage_share.dart'
-    show AzurermStorageShare, StorageShareAccessPolicy, StorageShareAcl;
+    show
+        AzurermStorageShare,
+        StorageShareAccessPolicy,
+        StorageShareAccessTier,
+        StorageShareAcl,
+        StorageShareEnabledProtocol;
 export 'src/storage/azurerm_storage_share_directory.dart'
     show AzurermStorageShareDirectory;
 export 'src/storage/azurerm_storage_share_file.dart'

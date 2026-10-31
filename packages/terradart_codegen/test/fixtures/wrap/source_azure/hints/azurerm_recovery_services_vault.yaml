@@ -12,3 +12,8 @@ properties:
     enum_values:
       - "RS0"
       - "Standard"
+  - api_name: storage_mode_type
+    enum_values:
+      - "GeoRedundant"
+      - "LocallyRedundant"
+      - "ZoneRedundant"

@@ -842,7 +842,7 @@ final class LinuxWebAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -860,7 +860,7 @@ final class LinuxWebAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final LinuxWebAppActiveDirectoryV2ClientSecret? clientSecret;
+  final LinuxWebAppClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -879,7 +879,7 @@ final class LinuxWebAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -894,18 +894,18 @@ final class LinuxWebAppActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class LinuxWebAppActiveDirectoryV2ClientSecret {
-  const LinuxWebAppActiveDirectoryV2ClientSecret();
+sealed class LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory LinuxWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory LinuxWebAppClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = LinuxWebAppClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory LinuxWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory LinuxWebAppClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = LinuxWebAppActiveDirectoryV2ClientSecretSettingName;
+  ) = LinuxWebAppClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -915,10 +915,10 @@ sealed class LinuxWebAppActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [LinuxWebAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends LinuxWebAppActiveDirectoryV2ClientSecret {
-  const LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [LinuxWebAppClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class LinuxWebAppClientCredentialClientSecretCertificateThumbprint
+    extends LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -936,10 +936,10 @@ final class LinuxWebAppActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [LinuxWebAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class LinuxWebAppActiveDirectoryV2ClientSecretSettingName
-    extends LinuxWebAppActiveDirectoryV2ClientSecret {
-  const LinuxWebAppActiveDirectoryV2ClientSecretSettingName(
+/// The [LinuxWebAppClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class LinuxWebAppClientCredentialClientSecretSettingName
+    extends LinuxWebAppClientCredential {
+  const LinuxWebAppClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1538,7 +1538,7 @@ final class LinuxWebAppApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final LinuxWebAppLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -1550,6 +1550,27 @@ final class LinuxWebAppApplicationLogsAzureBlobStorage {
     'retention_in_days': retentionInDays.toTfJson(),
     'sas_url': sasUrl.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+extension type const LinuxWebAppLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppLevel.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = LinuxWebAppLevel._(TfArgLiteral('Error'));
+  static const information = LinuxWebAppLevel._(TfArgLiteral('Information'));
+  static const verbose = LinuxWebAppLevel._(TfArgLiteral('Verbose'));
+  static const warning = LinuxWebAppLevel._(TfArgLiteral('Warning'));
+
+  static const List<LinuxWebAppLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
 }
 
 /// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_linux_web_app`: the provider rejects
@@ -1725,7 +1746,7 @@ final class LinuxWebAppSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final LinuxWebAppRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final LinuxWebAppScmIpRestrictionDefaultAction? scmIpRestrictionDefaultAction;
 
@@ -2004,6 +2025,22 @@ extension type const LinuxWebAppMinimumTlsVersion._(TfArg<String> _)
     v1p2,
     v1p0,
   ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const LinuxWebAppRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppRemoteDebuggingVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const vs2022 = LinuxWebAppRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<LinuxWebAppRemoteDebuggingVersion> values = [vs2022];
 }
 
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
@@ -2293,7 +2330,7 @@ final class LinuxWebAppAction {
     this.minimumProcessExecutionTime,
   });
 
-  final TfArg<String> actionType;
+  final LinuxWebAppActionType actionType;
 
   final TfArg<String>? minimumProcessExecutionTime;
 
@@ -2302,6 +2339,19 @@ final class LinuxWebAppAction {
     'action_type': actionType.toTfJson(),
     'minimum_process_execution_time': ?minimumProcessExecutionTime?.toTfJson(),
   };
+}
+
+/// `action_type` — derived from the provider schema description.
+extension type const LinuxWebAppActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppActionType.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppActionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const recycle = LinuxWebAppActionType._(TfArgLiteral('Recycle'));
+
+  static const List<LinuxWebAppActionType> values = [recycle];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting.trigger` block of

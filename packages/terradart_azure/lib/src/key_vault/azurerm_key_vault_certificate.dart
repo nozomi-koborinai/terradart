@@ -92,7 +92,7 @@ final class KeyVaultCertificateKeyProperties {
 
   final TfArg<num>? keySize;
 
-  final TfArg<String> keyType;
+  final KeyVaultCertificateKeyType keyType;
 
   final TfArg<bool> reuseKey;
 
@@ -104,6 +104,30 @@ final class KeyVaultCertificateKeyProperties {
     'key_type': keyType.toTfJson(),
     'reuse_key': reuseKey.toTfJson(),
   };
+}
+
+/// `key_type` — derived from the provider schema description.
+extension type const KeyVaultCertificateKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyVaultCertificateKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultCertificateKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultCertificateKeyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const ec = KeyVaultCertificateKeyType._(TfArgLiteral('EC'));
+  static const ecHsm = KeyVaultCertificateKeyType._(TfArgLiteral('EC-HSM'));
+  static const rsa = KeyVaultCertificateKeyType._(TfArgLiteral('RSA'));
+  static const rsaHsm = KeyVaultCertificateKeyType._(TfArgLiteral('RSA-HSM'));
+  static const oct = KeyVaultCertificateKeyType._(TfArgLiteral('oct'));
+
+  static const List<KeyVaultCertificateKeyType> values = [
+    ec,
+    ecHsm,
+    rsa,
+    rsaHsm,
+    oct,
+  ];
 }
 
 /// Typed helper for the `certificate_policy.lifetime_action` block of

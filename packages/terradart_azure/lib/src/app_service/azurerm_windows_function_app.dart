@@ -1027,7 +1027,7 @@ final class WindowsFunctionAppActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -1045,7 +1045,7 @@ final class WindowsFunctionAppActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final WindowsFunctionAppActiveDirectoryV2ClientSecret? clientSecret;
+  final WindowsFunctionAppClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -1064,7 +1064,7 @@ final class WindowsFunctionAppActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -1079,18 +1079,18 @@ final class WindowsFunctionAppActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class WindowsFunctionAppActiveDirectoryV2ClientSecret {
-  const WindowsFunctionAppActiveDirectoryV2ClientSecret();
+sealed class WindowsFunctionAppClientCredential {
+  const WindowsFunctionAppClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory WindowsFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory WindowsFunctionAppClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = WindowsFunctionAppClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory WindowsFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory WindowsFunctionAppClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName;
+  ) = WindowsFunctionAppClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1100,10 +1100,10 @@ sealed class WindowsFunctionAppActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [WindowsFunctionAppActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends WindowsFunctionAppActiveDirectoryV2ClientSecret {
-  const WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [WindowsFunctionAppClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsFunctionAppClientCredentialClientSecretCertificateThumbprint
+    extends WindowsFunctionAppClientCredential {
+  const WindowsFunctionAppClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -1121,10 +1121,10 @@ final class WindowsFunctionAppActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [WindowsFunctionAppActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName
-    extends WindowsFunctionAppActiveDirectoryV2ClientSecret {
-  const WindowsFunctionAppActiveDirectoryV2ClientSecretSettingName(
+/// The [WindowsFunctionAppClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsFunctionAppClientCredentialClientSecretSettingName
+    extends WindowsFunctionAppClientCredential {
+  const WindowsFunctionAppClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1563,7 +1563,7 @@ final class WindowsFunctionAppConnectionString {
 
   final TfArg<String> name;
 
-  final WindowsFunctionAppType type;
+  final WindowsFunctionAppConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -1576,34 +1576,50 @@ final class WindowsFunctionAppConnectionString {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const WindowsFunctionAppType._(TfArg<String> _)
+extension type const WindowsFunctionAppConnectionStringType._(TfArg<String> _)
     implements TfArg<String> {
-  WindowsFunctionAppType.variable(String name) : this._(TfArg.variable(name));
-  WindowsFunctionAppType.expression(String template)
+  WindowsFunctionAppConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppConnectionStringType.expression(String template)
     : this._(TfArg.expression(template));
-  const WindowsFunctionAppType.arg(TfArg<String> arg) : this._(arg);
+  const WindowsFunctionAppConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const apihub = WindowsFunctionAppType._(TfArgLiteral('ApiHub'));
-  static const custom = WindowsFunctionAppType._(TfArgLiteral('Custom'));
-  static const docdb = WindowsFunctionAppType._(TfArgLiteral('DocDb'));
-  static const eventhub = WindowsFunctionAppType._(TfArgLiteral('EventHub'));
-  static const mysql = WindowsFunctionAppType._(TfArgLiteral('MySql'));
-  static const notificationhub = WindowsFunctionAppType._(
+  static const apihub = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = WindowsFunctionAppConnectionStringType._(
     TfArgLiteral('NotificationHub'),
   );
-  static const postgresql = WindowsFunctionAppType._(
+  static const postgresql = WindowsFunctionAppConnectionStringType._(
     TfArgLiteral('PostgreSQL'),
   );
-  static const rediscache = WindowsFunctionAppType._(
+  static const rediscache = WindowsFunctionAppConnectionStringType._(
     TfArgLiteral('RedisCache'),
   );
-  static const sqlazure = WindowsFunctionAppType._(TfArgLiteral('SQLAzure'));
-  static const sqlserver = WindowsFunctionAppType._(TfArgLiteral('SQLServer'));
-  static const servicebus = WindowsFunctionAppType._(
+  static const sqlazure = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = WindowsFunctionAppConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = WindowsFunctionAppConnectionStringType._(
     TfArgLiteral('ServiceBus'),
   );
 
-  static const List<WindowsFunctionAppType> values = [
+  static const List<WindowsFunctionAppConnectionStringType> values = [
     apihub,
     custom,
     docdb,
@@ -1717,7 +1733,7 @@ final class WindowsFunctionAppSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final WindowsFunctionAppRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final TfArg<bool>? runtimeScaleMonitoringEnabled;
 
@@ -2030,6 +2046,23 @@ extension type const WindowsFunctionAppMinimumTlsVersion._(TfArg<String> _)
     v1p2,
     v1p0,
   ];
+}
+
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = WindowsFunctionAppRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<WindowsFunctionAppRemoteDebuggingVersion> values = [vs2022];
 }
 
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
@@ -2526,7 +2559,7 @@ final class WindowsFunctionAppStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final WindowsFunctionAppStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -2537,6 +2570,23 @@ final class WindowsFunctionAppStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsFunctionAppStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurefiles = WindowsFunctionAppStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<WindowsFunctionAppStorageAccountType> values = [azurefiles];
 }
 
 /// Factory wrapper for `azurerm_windows_function_app`.

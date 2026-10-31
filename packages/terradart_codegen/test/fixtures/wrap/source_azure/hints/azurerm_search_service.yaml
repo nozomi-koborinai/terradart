@@ -15,6 +15,10 @@ properties:
     enum_values:
       - "AzureServices"
       - "None"
+  - api_name: semantic_search_sku
+    enum_values:
+      - "free"
+      - "standard"
   - api_name: sku
     enum_values:
       - "basic"

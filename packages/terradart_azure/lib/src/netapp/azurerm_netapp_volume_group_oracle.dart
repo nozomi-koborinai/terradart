@@ -52,7 +52,7 @@ final class NetappVolumeGroupOracleVolume {
 
   final NetappVolumeGroupOracleSecurityStyle securityStyle;
 
-  final TfArg<String> serviceLevel;
+  final NetappVolumeGroupOracleServiceLevel serviceLevel;
 
   final TfArg<bool> snapshotDirectoryVisible;
 
@@ -195,6 +195,37 @@ extension type const NetappVolumeGroupOracleSecurityStyle._(TfArg<String> _)
   );
 
   static const List<NetappVolumeGroupOracleSecurityStyle> values = [ntfs, unix];
+}
+
+/// `service_level` — derived from the provider schema description.
+extension type const NetappVolumeGroupOracleServiceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeGroupOracleServiceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeGroupOracleServiceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeGroupOracleServiceLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = NetappVolumeGroupOracleServiceLevel._(
+    TfArgLiteral('Premium'),
+  );
+  static const standard = NetappVolumeGroupOracleServiceLevel._(
+    TfArgLiteral('Standard'),
+  );
+  static const ultra = NetappVolumeGroupOracleServiceLevel._(
+    TfArgLiteral('Ultra'),
+  );
+  static const flexible = NetappVolumeGroupOracleServiceLevel._(
+    TfArgLiteral('Flexible'),
+  );
+
+  static const List<NetappVolumeGroupOracleServiceLevel> values = [
+    premium,
+    standard,
+    ultra,
+    flexible,
+  ];
 }
 
 /// `volume_spec_name` — derived from the provider schema description.

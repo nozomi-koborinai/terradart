@@ -7,6 +7,10 @@ properties:
     enum_values:
       - "Arm64"
       - "x64"
+  - api_name: disk_types_not_allowed
+    enum_values:
+      - "Standard_LRS"
+      - "Premium_LRS"
   - api_name: hyper_v_generation
     enum_values:
       - "V1"

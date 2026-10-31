@@ -3,6 +3,10 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: logs_destination
+    enum_values:
+      - "azure-monitor"
+      - "log-analytics"
   - api_name: public_network_access
     enum_values:
       - "Disabled"

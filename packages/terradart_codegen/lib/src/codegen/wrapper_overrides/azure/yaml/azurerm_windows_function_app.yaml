@@ -6,5 +6,6 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
+  "auth_settings_v2.active_directory_v2.client_secret_certificate_thumbprint, auth_settings_v2.active_directory_v2.client_secret_setting_name": client_credential
   "site_config.application_stack.dotnet_version, site_config.application_stack.java_version, site_config.application_stack.node_version, site_config.application_stack.powershell_core_version, site_config.application_stack.use_custom_runtime": runtime
   "storage_account_access_key, storage_uses_managed_identity": storage_access

@@ -35,6 +35,16 @@ func PossibleValuesForWidgetKind() []string {
 		string(WidgetKindB),
 	}
 }
+
+type Encoding string
+
+const EncodingUTFEight Encoding = "UTF8"
+
+func PossibleValuesForEncoding() []string {
+	return []string{
+		string(EncodingUTFEight),
+	}
+}
 ''',
     );
     write('internal/services/demo/registration.go', '''
@@ -87,6 +97,11 @@ import (
 
 var modes = []string{"on", "off"}
 
+const (
+	ShapeRound  = "round"
+	ShapeSquare = "square"
+)
+
 func dataSourceWidget() *Resource {
 	return &Resource{
 		Schema: map[string]*Schema{
@@ -105,7 +120,31 @@ func resourceWidget() *Resource {
 }
 
 func resourceWidgetSchema() map[string]*Schema {
+	allowedMethods := []string{"GET", "PUT"}
 	return map[string]*Schema{
+			"auth_mode": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice([]string{
+					string(demo.WidgetKindA),
+					string(demo.WidgetKindB),
+				}, false),
+			},
+			"encoding": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice(demo.PossibleValuesForEncoding(), false),
+			},
+			"shape": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice([]string{ShapeRound, ShapeSquare}, false),
+			},
+			"method": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice(allowedMethods, false),
+			},
+			"computed": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice(append(modes, "auto"), false),
+			},
 			"kind": {
 				Type: TypeString,
 				ValidateFunc: validation.StringInSlice(demo.PossibleValuesForWidgetKind(), false),
@@ -245,6 +284,13 @@ func resourceTyped() *Resource { return nil }
     expect(hints['mode']!.values, ['on', 'off']);
     expect(hints['mode']!.caseInsensitive, isTrue);
     expect(hints['encryption.enforcement']!.values, ['allow', 'drop']);
+    // Qualified and bare constants, a one-value set and a local slice.
+    expect(hints['auth_mode']!.values, ['a', 'b']);
+    expect(hints['encoding']!.values, ['UTF8']);
+    expect(hints['shape']!.values, ['round', 'square']);
+    expect(hints['method']!.values, ['GET', 'PUT']);
+    expect(hints.containsKey('computed'), isFalse);
+    expect(scan.unresolvedSites, ['azurerm_widget computed']);
     // A schema-map value that calls a schema function, in this package or an
     // imported one, is scanned at its key's path: the validated set wins over
     // a description that names Go constants.

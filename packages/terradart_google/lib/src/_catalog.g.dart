@@ -34745,7 +34745,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'NetworkServicesEdgeCacheOriginRetryConditions',
       'NetworkServicesEdgeCacheOriginAwsV4Authentication',
       'NetworkServicesEdgeCacheOriginFlexShielding',
-      'NetworkServicesEdgeCacheOriginFlexShieldingRegions',
       'NetworkServicesEdgeCacheOriginOverrideAction',
       'NetworkServicesEdgeCacheOriginHeaderAction',
       'NetworkServicesEdgeCacheOriginRequestHeadersToAdd',

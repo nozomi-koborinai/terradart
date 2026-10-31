@@ -14,3 +14,9 @@ properties:
           - "Thursday"
           - "Tuesday"
           - "Wednesday"
+  - api_name: root_squash
+    properties:
+      - api_name: mode
+        enum_values:
+          - "All"
+          - "RootOnly"

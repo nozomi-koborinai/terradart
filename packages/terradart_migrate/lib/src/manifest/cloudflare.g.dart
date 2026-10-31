@@ -22902,10 +22902,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value',
           dartName: 'value',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          repeated: true,
-          dartType: 'OriginTlsComplianceModesValue',
+          dartType: 'List<String>',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -80339,10 +80338,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'gcp': 'gcp',
         'oci': 'oci',
       },
-    ),
-    'OriginTlsComplianceModesValue': MigrateEnum(
-      name: 'OriginTlsComplianceModesValue',
-      members: <String, String>{'fips': 'fips', 'pqh': 'pqh'},
     ),
     'PageRuleAutomaticHttpsRewrites': MigrateEnum(
       name: 'PageRuleAutomaticHttpsRewrites',

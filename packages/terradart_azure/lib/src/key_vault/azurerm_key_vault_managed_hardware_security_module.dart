@@ -10,6 +10,26 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermKeyVaultManagedHardwareSecurityModuleSensitive =
     <String>{'security_domain_encrypted_data'};
 
+/// Key Vault Managed Hardware Security Module Sku enum for `sku_name`.
+extension type const KeyVaultManagedHardwareSecurityModuleSkuName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KeyVaultManagedHardwareSecurityModuleSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultManagedHardwareSecurityModuleSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultManagedHardwareSecurityModuleSkuName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standardB1 = KeyVaultManagedHardwareSecurityModuleSkuName._(
+    TfArgLiteral('Standard_B1'),
+  );
+
+  static const List<KeyVaultManagedHardwareSecurityModuleSkuName> values = [
+    standardB1,
+  ];
+}
+
 /// Typed helper for the `network_acls` block of
 /// `azurerm_key_vault_managed_hardware_security_module` (derived from provider schema).
 @immutable
@@ -92,7 +112,7 @@ final class AzurermKeyVaultManagedHardwareSecurityModule extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<List<String>>? securityDomainKeyVaultCertificateIds,
     TfArg<num>? securityDomainQuorum,
-    required TfArg<String> skuName,
+    required KeyVaultManagedHardwareSecurityModuleSkuName skuName,
     TfArg<num>? softDeleteRetentionDays,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> tenantId,

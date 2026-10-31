@@ -52,6 +52,41 @@ extension type const KubernetesClusterNodePoolGpuDriver._(TfArg<String> _)
   ];
 }
 
+/// Kubernetes Cluster Node Pool Gpu enum for `gpu_instance`.
+extension type const KubernetesClusterNodePoolGpuInstance._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolGpuInstance.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolGpuInstance.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolGpuInstance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mig1g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG1g'),
+  );
+  static const mig2g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG2g'),
+  );
+  static const mig3g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG3g'),
+  );
+  static const mig4g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG4g'),
+  );
+  static const mig7g = KubernetesClusterNodePoolGpuInstance._(
+    TfArgLiteral('MIG7g'),
+  );
+
+  static const List<KubernetesClusterNodePoolGpuInstance> values = [
+    mig1g,
+    mig2g,
+    mig3g,
+    mig4g,
+    mig7g,
+  ];
+}
+
 /// Kubernetes Cluster Node Pool Kubelet Disk enum for `kubelet_disk_type`.
 extension type const KubernetesClusterNodePoolKubeletDiskType._(TfArg<String> _)
     implements TfArg<String> {
@@ -75,6 +110,21 @@ extension type const KubernetesClusterNodePoolKubeletDiskType._(TfArg<String> _)
   ];
 }
 
+/// Kubernetes Cluster Node Pool enum for `mode`.
+extension type const KubernetesClusterNodePoolMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const system = KubernetesClusterNodePoolMode._(TfArgLiteral('System'));
+  static const user = KubernetesClusterNodePoolMode._(TfArgLiteral('User'));
+
+  static const List<KubernetesClusterNodePoolMode> values = [system, user];
+}
+
 /// Kubernetes Cluster Node Pool Os Disk enum for `os_disk_type`.
 extension type const KubernetesClusterNodePoolOsDiskType._(TfArg<String> _)
     implements TfArg<String> {
@@ -95,6 +145,52 @@ extension type const KubernetesClusterNodePoolOsDiskType._(TfArg<String> _)
   static const List<KubernetesClusterNodePoolOsDiskType> values = [
     ephemeral,
     managed,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Os enum for `os_sku`.
+extension type const KubernetesClusterNodePoolOsSku._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolOsSku.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolOsSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolOsSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurelinux = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('AzureLinux'),
+  );
+  static const azurelinux3 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('AzureLinux3'),
+  );
+  static const ubuntu = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu'),
+  );
+  static const ubuntu2204 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu2204'),
+  );
+  static const ubuntu2404 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Ubuntu2404'),
+  );
+  static const windows2019 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2019'),
+  );
+  static const windows2022 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2022'),
+  );
+  static const windows2025 = KubernetesClusterNodePoolOsSku._(
+    TfArgLiteral('Windows2025'),
+  );
+
+  static const List<KubernetesClusterNodePoolOsSku> values = [
+    azurelinux,
+    azurelinux3,
+    ubuntu,
+    ubuntu2204,
+    ubuntu2404,
+    windows2019,
+    windows2022,
+    windows2025,
   ];
 }
 
@@ -583,14 +679,14 @@ extension type const KubernetesClusterNodePoolProtocol._(TfArg<String> _)
 final class KubernetesClusterNodePoolUpgradeSettings {
   const KubernetesClusterNodePoolUpgradeSettings({
     this.drainTimeoutInMinutes,
-    this.surgeLimit,
+    this.upgradeCapacity,
     this.nodeSoakDurationInMinutes,
     this.undrainableNodeBehavior,
   });
 
   final TfArg<num>? drainTimeoutInMinutes;
 
-  final KubernetesClusterNodePoolSurgeLimit? surgeLimit;
+  final KubernetesClusterNodePoolUpgradeCapacity? upgradeCapacity;
 
   final TfArg<num>? nodeSoakDurationInMinutes;
 
@@ -600,7 +696,7 @@ final class KubernetesClusterNodePoolUpgradeSettings {
   @internal
   Map<String, Object?> encode() => {
     'drain_timeout_in_minutes': ?drainTimeoutInMinutes?.toTfJson(),
-    ...?surgeLimit?.encode(),
+    ...?upgradeCapacity?.encode(),
     'node_soak_duration_in_minutes': ?nodeSoakDurationInMinutes?.toTfJson(),
     'undrainable_node_behavior': ?undrainableNodeBehavior?.toTfJson(),
   };
@@ -611,18 +707,18 @@ final class KubernetesClusterNodePoolUpgradeSettings {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxSurge(...)`.
-sealed class KubernetesClusterNodePoolSurgeLimit {
-  const KubernetesClusterNodePoolSurgeLimit();
+sealed class KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacity();
 
   /// Sets `max_surge`.
-  const factory KubernetesClusterNodePoolSurgeLimit.maxSurge(
+  const factory KubernetesClusterNodePoolUpgradeCapacity.maxSurge(
     TfArg<String> maxSurge,
-  ) = KubernetesClusterNodePoolSurgeLimitMaxSurge;
+  ) = KubernetesClusterNodePoolUpgradeCapacityMaxSurge;
 
   /// Sets `max_unavailable`.
-  const factory KubernetesClusterNodePoolSurgeLimit.maxUnavailable(
+  const factory KubernetesClusterNodePoolUpgradeCapacity.maxUnavailable(
     TfArg<String> maxUnavailable,
-  ) = KubernetesClusterNodePoolSurgeLimitMaxUnavailable;
+  ) = KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -632,10 +728,10 @@ sealed class KubernetesClusterNodePoolSurgeLimit {
   Map<String, Object?> encode();
 }
 
-/// The [KubernetesClusterNodePoolSurgeLimit.maxSurge] choice: sets `max_surge`.
-final class KubernetesClusterNodePoolSurgeLimitMaxSurge
-    extends KubernetesClusterNodePoolSurgeLimit {
-  const KubernetesClusterNodePoolSurgeLimitMaxSurge(this.maxSurge);
+/// The [KubernetesClusterNodePoolUpgradeCapacity.maxSurge] choice: sets `max_surge`.
+final class KubernetesClusterNodePoolUpgradeCapacityMaxSurge
+    extends KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacityMaxSurge(this.maxSurge);
 
   final TfArg<String> maxSurge;
 
@@ -648,10 +744,12 @@ final class KubernetesClusterNodePoolSurgeLimitMaxSurge
   Map<String, Object?> encode() => {'max_surge': maxSurge.toTfJson()};
 }
 
-/// The [KubernetesClusterNodePoolSurgeLimit.maxUnavailable] choice: sets `max_unavailable`.
-final class KubernetesClusterNodePoolSurgeLimitMaxUnavailable
-    extends KubernetesClusterNodePoolSurgeLimit {
-  const KubernetesClusterNodePoolSurgeLimitMaxUnavailable(this.maxUnavailable);
+/// The [KubernetesClusterNodePoolUpgradeCapacity.maxUnavailable] choice: sets `max_unavailable`.
+final class KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable
+    extends KubernetesClusterNodePoolUpgradeCapacity {
+  const KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable(
+    this.maxUnavailable,
+  );
 
   final TfArg<String> maxUnavailable;
 
@@ -715,7 +813,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     KubernetesClusterNodePoolEvictionPolicy? evictionPolicy,
     TfArg<bool>? fipsEnabled,
     KubernetesClusterNodePoolGpuDriver? gpuDriver,
-    TfArg<String>? gpuInstance,
+    KubernetesClusterNodePoolGpuInstance? gpuInstance,
     TfArg<bool>? hostEncryptionEnabled,
     TfArg<String>? hostGroupId,
     KubernetesClusterNodePoolKubeletDiskType? kubeletDiskType,
@@ -723,7 +821,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<num>? maxCount,
     TfArg<num>? maxPods,
     TfArg<num>? minCount,
-    TfArg<String>? mode,
+    KubernetesClusterNodePoolMode? mode,
     required TfArg<String> name,
     TfArg<num>? nodeCount,
     TfArg<Map<String, String>>? nodeLabels,
@@ -733,7 +831,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<String>? orchestratorVersion,
     TfArg<num>? osDiskSizeGb,
     KubernetesClusterNodePoolOsDiskType? osDiskType,
-    TfArg<String>? osSku,
+    KubernetesClusterNodePoolOsSku? osSku,
     KubernetesClusterNodePoolOsType? osType,
     TfArg<String>? podSubnetId,
     KubernetesClusterNodePoolPriority? priority,

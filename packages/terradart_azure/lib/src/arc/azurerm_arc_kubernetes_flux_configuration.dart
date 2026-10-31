@@ -502,7 +502,7 @@ final class ArcKubernetesFluxConfigurationGitRepository {
 
   final TfArg<String>? localAuthReference;
 
-  final TfArg<String> referenceType;
+  final ArcKubernetesFluxConfigurationReferenceType referenceType;
 
   final TfArg<String> referenceValue;
 
@@ -530,6 +530,38 @@ final class ArcKubernetesFluxConfigurationGitRepository {
     'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
     'url': url.toTfJson(),
   };
+}
+
+/// `reference_type` — derived from the provider schema description.
+extension type const ArcKubernetesFluxConfigurationReferenceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcKubernetesFluxConfigurationReferenceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcKubernetesFluxConfigurationReferenceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcKubernetesFluxConfigurationReferenceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const branch = ArcKubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('branch'),
+  );
+  static const commit = ArcKubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('commit'),
+  );
+  static const semver = ArcKubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('semver'),
+  );
+  static const tag = ArcKubernetesFluxConfigurationReferenceType._(
+    TfArgLiteral('tag'),
+  );
+
+  static const List<ArcKubernetesFluxConfigurationReferenceType> values = [
+    branch,
+    commit,
+    semver,
+    tag,
+  ];
 }
 
 /// Typed helper for the `kustomizations` block of

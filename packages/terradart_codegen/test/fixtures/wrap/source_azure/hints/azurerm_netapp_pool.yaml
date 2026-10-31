@@ -11,3 +11,9 @@ properties:
     enum_values:
       - "Auto"
       - "Manual"
+  - api_name: service_level
+    enum_values:
+      - "Premium"
+      - "Standard"
+      - "Ultra"
+      - "Flexible"

@@ -1,0 +1,59 @@
+# Value-set validators the azurerm hint extractor cannot evaluate statically.
+# tool/extract_provider_hints.dart fails on an unresolved validator not
+# listed here and on an entry that no longer names one, so a fixed set is
+# either a hint or a reviewed reason. Key: `<type> <path>` (`data.<type>`
+# for a data source).
+azurerm:
+  "azurerm_api_management_email_template template_name": each value is titleCase applied to an SDK constant at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.client_port.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.device_type.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.host_name.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.http_version.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.post_argument.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.query_string.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.remote_address.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_body.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_cookies.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_file_extension.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_filename.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_header.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_method.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_path.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_scheme.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.request_url.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.server_port.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.socket_address.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_batch_rule_set rule.conditions.ssl_protocol.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.client_port.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.device_type.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.host_name.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.http_version.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.post_argument.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.query_string.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.remote_address.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_body.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_cookies.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_file_extension.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_filename.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_header.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_method.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_path.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_scheme.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.request_url.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.server_port.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.socket_address.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_cdn_frontdoor_rule conditions.ssl_protocol.operator": CdnFrontDoorRuleConditionOperatorPossibleValues pairs each SDK operator with a Not-prefixed twin at run time
+  "azurerm_key_vault access_policy.certificate_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault_access_policy certificate_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault access_policy.key_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault_access_policy key_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault access_policy.secret_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault_access_policy secret_permissions": the permission set is an append of several helper slices
+  "azurerm_key_vault_managed_hardware_security_module_role_definition permission.data_actions": the action set is built by a closure looping over the SDK constants
+  "azurerm_key_vault_managed_hardware_security_module_role_definition permission.not_data_actions": the action set is built by a closure looping over the SDK constants
+  "azurerm_logic_app_action_http method": the values are Go standard library net/http constants, which the provider tree does not vendor
+  "azurerm_logic_app_trigger_http_request method": the values are Go standard library net/http constants, which the provider tree does not vendor
+  "azurerm_managed_lustre_file_system sku_name": the SKU set is filtered from an SDK list in a loop at run time
+  "azurerm_managed_redis default_database.persistence_append_only_file_backup_frequency": the SKU set is filtered from an SDK list in a loop at run time
+  "azurerm_managed_redis sku_name": the SKU set is filtered from an SDK list in a loop at run time
+  "azurerm_service_plan sku_name": the SKU set is an append of several package slices

@@ -863,7 +863,7 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
     this.allowedGroups,
     this.allowedIdentities,
     required this.clientId,
-    this.clientSecret,
+    this.clientCredential,
     this.jwtAllowedClientApplications,
     this.jwtAllowedGroups,
     this.loginParameters,
@@ -881,7 +881,7 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
 
   final TfArg<String> clientId;
 
-  final WindowsWebAppSlotActiveDirectoryV2ClientSecret? clientSecret;
+  final WindowsWebAppSlotClientCredential? clientCredential;
 
   final TfArg<List<String>>? jwtAllowedClientApplications;
 
@@ -900,7 +900,7 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
     'allowed_groups': ?allowedGroups?.toTfJson(),
     'allowed_identities': ?allowedIdentities?.toTfJson(),
     'client_id': clientId.toTfJson(),
-    ...?clientSecret?.encode(),
+    ...?clientCredential?.encode(),
     'jwt_allowed_client_applications': ?jwtAllowedClientApplications
         ?.toTfJson(),
     'jwt_allowed_groups': ?jwtAllowedGroups?.toTfJson(),
@@ -915,18 +915,18 @@ final class WindowsWebAppSlotActiveDirectoryV2 {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecretCertificateThumbprint(...)`.
-sealed class WindowsWebAppSlotActiveDirectoryV2ClientSecret {
-  const WindowsWebAppSlotActiveDirectoryV2ClientSecret();
+sealed class WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredential();
 
   /// Sets `client_secret_certificate_thumbprint`.
-  const factory WindowsWebAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint(
+  const factory WindowsWebAppSlotClientCredential.clientSecretCertificateThumbprint(
     TfArg<String> clientSecretCertificateThumbprint,
-  ) = WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint;
+  ) = WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint;
 
   /// Sets `client_secret_setting_name`.
-  const factory WindowsWebAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName(
+  const factory WindowsWebAppSlotClientCredential.clientSecretSettingName(
     TfArg<String> clientSecretSettingName,
-  ) = WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName;
+  ) = WindowsWebAppSlotClientCredentialClientSecretSettingName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -936,10 +936,10 @@ sealed class WindowsWebAppSlotActiveDirectoryV2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [WindowsWebAppSlotActiveDirectoryV2ClientSecret.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
-final class WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint
-    extends WindowsWebAppSlotActiveDirectoryV2ClientSecret {
-  const WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint(
+/// The [WindowsWebAppSlotClientCredential.clientSecretCertificateThumbprint] choice: sets `client_secret_certificate_thumbprint`.
+final class WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint
+    extends WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredentialClientSecretCertificateThumbprint(
     this.clientSecretCertificateThumbprint,
   );
 
@@ -957,10 +957,10 @@ final class WindowsWebAppSlotActiveDirectoryV2ClientSecretCertificateThumbprint
   };
 }
 
-/// The [WindowsWebAppSlotActiveDirectoryV2ClientSecret.clientSecretSettingName] choice: sets `client_secret_setting_name`.
-final class WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName
-    extends WindowsWebAppSlotActiveDirectoryV2ClientSecret {
-  const WindowsWebAppSlotActiveDirectoryV2ClientSecretSettingName(
+/// The [WindowsWebAppSlotClientCredential.clientSecretSettingName] choice: sets `client_secret_setting_name`.
+final class WindowsWebAppSlotClientCredentialClientSecretSettingName
+    extends WindowsWebAppSlotClientCredential {
+  const WindowsWebAppSlotClientCredentialClientSecretSettingName(
     this.clientSecretSettingName,
   );
 
@@ -1398,7 +1398,7 @@ final class WindowsWebAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final WindowsWebAppSlotType type;
+  final WindowsWebAppSlotConnectionStringType type;
 
   final Sensitive<String> value;
 
@@ -1411,28 +1411,50 @@ final class WindowsWebAppSlotConnectionString {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const WindowsWebAppSlotType._(TfArg<String> _)
+extension type const WindowsWebAppSlotConnectionStringType._(TfArg<String> _)
     implements TfArg<String> {
-  WindowsWebAppSlotType.variable(String name) : this._(TfArg.variable(name));
-  WindowsWebAppSlotType.expression(String template)
+  WindowsWebAppSlotConnectionStringType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotConnectionStringType.expression(String template)
     : this._(TfArg.expression(template));
-  const WindowsWebAppSlotType.arg(TfArg<String> arg) : this._(arg);
+  const WindowsWebAppSlotConnectionStringType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const apihub = WindowsWebAppSlotType._(TfArgLiteral('ApiHub'));
-  static const custom = WindowsWebAppSlotType._(TfArgLiteral('Custom'));
-  static const docdb = WindowsWebAppSlotType._(TfArgLiteral('DocDb'));
-  static const eventhub = WindowsWebAppSlotType._(TfArgLiteral('EventHub'));
-  static const mysql = WindowsWebAppSlotType._(TfArgLiteral('MySql'));
-  static const notificationhub = WindowsWebAppSlotType._(
+  static const apihub = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('ApiHub'),
+  );
+  static const custom = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('Custom'),
+  );
+  static const docdb = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('DocDb'),
+  );
+  static const eventhub = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const mysql = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('MySql'),
+  );
+  static const notificationhub = WindowsWebAppSlotConnectionStringType._(
     TfArgLiteral('NotificationHub'),
   );
-  static const postgresql = WindowsWebAppSlotType._(TfArgLiteral('PostgreSQL'));
-  static const rediscache = WindowsWebAppSlotType._(TfArgLiteral('RedisCache'));
-  static const sqlazure = WindowsWebAppSlotType._(TfArgLiteral('SQLAzure'));
-  static const sqlserver = WindowsWebAppSlotType._(TfArgLiteral('SQLServer'));
-  static const servicebus = WindowsWebAppSlotType._(TfArgLiteral('ServiceBus'));
+  static const postgresql = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+  static const rediscache = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const sqlazure = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const sqlserver = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const servicebus = WindowsWebAppSlotConnectionStringType._(
+    TfArgLiteral('ServiceBus'),
+  );
 
-  static const List<WindowsWebAppSlotType> values = [
+  static const List<WindowsWebAppSlotConnectionStringType> values = [
     apihub,
     custom,
     docdb,
@@ -1554,7 +1576,7 @@ final class WindowsWebAppSlotApplicationLogsAzureBlobStorage {
     required this.sasUrl,
   });
 
-  final TfArg<String> level;
+  final WindowsWebAppSlotLevel level;
 
   final TfArg<num> retentionInDays;
 
@@ -1566,6 +1588,29 @@ final class WindowsWebAppSlotApplicationLogsAzureBlobStorage {
     'retention_in_days': retentionInDays.toTfJson(),
     'sas_url': sasUrl.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+extension type const WindowsWebAppSlotLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotLevel.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppSlotLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const error = WindowsWebAppSlotLevel._(TfArgLiteral('Error'));
+  static const information = WindowsWebAppSlotLevel._(
+    TfArgLiteral('Information'),
+  );
+  static const verbose = WindowsWebAppSlotLevel._(TfArgLiteral('Verbose'));
+  static const warning = WindowsWebAppSlotLevel._(TfArgLiteral('Warning'));
+
+  static const List<WindowsWebAppSlotLevel> values = [
+    error,
+    information,
+    verbose,
+    warning,
+  ];
 }
 
 /// At most one of `azure_blob_storage`, `file_system` on the `logs.http_logs` block of `azurerm_windows_web_app_slot`: the provider rejects
@@ -1747,7 +1792,7 @@ final class WindowsWebAppSlotSiteConfig {
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
-  final TfArg<String>? remoteDebuggingVersion;
+  final WindowsWebAppSlotRemoteDebuggingVersion? remoteDebuggingVersion;
 
   final WindowsWebAppSlotScmIpRestrictionDefaultAction?
   scmIpRestrictionDefaultAction;
@@ -2056,6 +2101,23 @@ extension type const WindowsWebAppSlotMinimumTlsVersion._(TfArg<String> _)
   ];
 }
 
+/// `remote_debugging_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotRemoteDebuggingVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotRemoteDebuggingVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotRemoteDebuggingVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotRemoteDebuggingVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vs2022 = WindowsWebAppSlotRemoteDebuggingVersion._(
+    TfArgLiteral('VS2022'),
+  );
+
+  static const List<WindowsWebAppSlotRemoteDebuggingVersion> values = [vs2022];
+}
+
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsWebAppSlotScmIpRestrictionDefaultAction._(
   TfArg<String> _
@@ -2143,7 +2205,7 @@ final class WindowsWebAppSlotApplicationStack {
 
   final TfArg<String>? dockerRegistryUsername;
 
-  final TfArg<String>? dotnetCoreVersion;
+  final WindowsWebAppSlotDotnetCoreVersion? dotnetCoreVersion;
 
   final WindowsWebAppSlotDotnetVersion? dotnetVersion;
 
@@ -2157,7 +2219,7 @@ final class WindowsWebAppSlotApplicationStack {
 
   final WindowsWebAppSlotNodeVersion? nodeVersion;
 
-  final TfArg<String>? phpVersion;
+  final WindowsWebAppSlotPhpVersion? phpVersion;
 
   final TfArg<bool>? python;
 
@@ -2209,6 +2271,22 @@ extension type const WindowsWebAppSlotCurrentStack._(TfArg<String> _)
     php,
     java,
   ];
+}
+
+/// `dotnet_core_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotDotnetCoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotDotnetCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotDotnetCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotDotnetCoreVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v4p0 = WindowsWebAppSlotDotnetCoreVersion._(
+    TfArgLiteral('v4.0'),
+  );
+
+  static const List<WindowsWebAppSlotDotnetCoreVersion> values = [v4p0];
 }
 
 /// `dotnet_version` — derived from the provider schema description.
@@ -2289,6 +2367,22 @@ extension type const WindowsWebAppSlotNodeVersion._(TfArg<String> _)
     v22,
     v24,
   ];
+}
+
+/// `php_version` — derived from the provider schema description.
+extension type const WindowsWebAppSlotPhpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotPhpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotPhpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotPhpVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v7p1 = WindowsWebAppSlotPhpVersion._(TfArgLiteral('7.1'));
+  static const v7p4 = WindowsWebAppSlotPhpVersion._(TfArgLiteral('7.4'));
+  static const off = WindowsWebAppSlotPhpVersion._(TfArgLiteral('Off'));
+
+  static const List<WindowsWebAppSlotPhpVersion> values = [v7p1, v7p4, off];
 }
 
 /// Typed helper for the `site_config.auto_heal_setting` block of
@@ -2747,7 +2841,7 @@ final class WindowsWebAppSlotStorageAccount {
 
   final TfArg<String> shareName;
 
-  final TfArg<String> type;
+  final WindowsWebAppSlotStorageAccountType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -2758,6 +2852,23 @@ final class WindowsWebAppSlotStorageAccount {
     'share_name': shareName.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsWebAppSlotStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azurefiles = WindowsWebAppSlotStorageAccountType._(
+    TfArgLiteral('AzureFiles'),
+  );
+
+  static const List<WindowsWebAppSlotStorageAccountType> values = [azurefiles];
 }
 
 /// Factory wrapper for `azurerm_windows_web_app_slot`.

@@ -14,6 +14,51 @@ const Set<String> _azurermWebPubsubSocketioSensitive = <String>{
   'secondary_connection_string',
 };
 
+/// Web Pubsub Socketio Public Network enum for `public_network_access`.
+extension type const WebPubsubSocketioPublicNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  WebPubsubSocketioPublicNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  WebPubsubSocketioPublicNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebPubsubSocketioPublicNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = WebPubsubSocketioPublicNetworkAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = WebPubsubSocketioPublicNetworkAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<WebPubsubSocketioPublicNetworkAccess> values = [
+    enabled,
+    disabled,
+  ];
+}
+
+/// Web Pubsub Socketio Service enum for `service_mode`.
+extension type const WebPubsubSocketioServiceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WebPubsubSocketioServiceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WebPubsubSocketioServiceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebPubsubSocketioServiceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = WebPubsubSocketioServiceMode._(
+    TfArgLiteral('Default'),
+  );
+  static const serverless = WebPubsubSocketioServiceMode._(
+    TfArgLiteral('Serverless'),
+  );
+
+  static const List<WebPubsubSocketioServiceMode> values = [
+    defaultCase,
+    serverless,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_web_pubsub_socketio` (derived from provider schema).
 @immutable
@@ -39,13 +84,40 @@ final class WebPubsubSocketioSku {
 
   final TfArg<num>? capacity;
 
-  final TfArg<String> name;
+  final WebPubsubSocketioSkuName name;
 
   @internal
   Map<String, Object?> encode() => {
     'capacity': ?capacity?.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+extension type const WebPubsubSocketioSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  WebPubsubSocketioSkuName.variable(String name) : this._(TfArg.variable(name));
+  WebPubsubSocketioSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebPubsubSocketioSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const freeF1 = WebPubsubSocketioSkuName._(TfArgLiteral('Free_F1'));
+  static const standardS1 = WebPubsubSocketioSkuName._(
+    TfArgLiteral('Standard_S1'),
+  );
+  static const premiumP1 = WebPubsubSocketioSkuName._(
+    TfArgLiteral('Premium_P1'),
+  );
+  static const premiumP2 = WebPubsubSocketioSkuName._(
+    TfArgLiteral('Premium_P2'),
+  );
+
+  static const List<WebPubsubSocketioSkuName> values = [
+    freeF1,
+    standardS1,
+    premiumP1,
+    premiumP2,
+  ];
 }
 
 /// Factory wrapper for `azurerm_web_pubsub_socketio`.
@@ -62,9 +134,9 @@ final class AzurermWebPubsubSocketio extends Resource {
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? publicNetworkAccess,
+    WebPubsubSocketioPublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? serviceMode,
+    WebPubsubSocketioServiceMode? serviceMode,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? tlsClientCertEnabled,
     WebPubsubSocketioIdentity? identity,

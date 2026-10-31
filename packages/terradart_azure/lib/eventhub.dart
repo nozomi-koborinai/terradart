@@ -21,6 +21,7 @@ export 'src/eventhub/azurerm_eventhub.dart'
         EventhubCaptureDescription,
         EventhubCleanupPolicy,
         EventhubDestination,
+        EventhubDestinationName,
         EventhubDuration,
         EventhubDurationRetentionTimeInHours,
         EventhubDurationTombstoneRetentionTimeInHours,
@@ -28,7 +29,9 @@ export 'src/eventhub/azurerm_eventhub.dart'
         EventhubMessageRetention,
         EventhubRetention,
         EventhubRetentionDescription,
-        EventhubRetentionDescriptionChoice;
+        EventhubRetentionDescriptionChoice,
+        EventhubStatus,
+        EventhubStorageAuthenticationType;
 export 'src/eventhub/azurerm_eventhub_authorization_rule.dart'
     show AzurermEventhubAuthorizationRule;
 export 'src/eventhub/azurerm_eventhub_cluster.dart' show AzurermEventhubCluster;
@@ -38,6 +41,7 @@ export 'src/eventhub/azurerm_eventhub_namespace.dart'
     show
         AzurermEventhubNamespace,
         EventhubNamespaceIdentity,
+        EventhubNamespaceMinimumTlsVersion,
         EventhubNamespaceSku;
 export 'src/eventhub/azurerm_eventhub_namespace_authorization_rule.dart'
     show AzurermEventhubNamespaceAuthorizationRule;
@@ -48,4 +52,5 @@ export 'src/eventhub/azurerm_eventhub_namespace_disaster_recovery_config.dart'
 export 'src/eventhub/azurerm_eventhub_namespace_schema_group.dart'
     show
         AzurermEventhubNamespaceSchemaGroup,
-        EventhubNamespaceSchemaGroupSchemaCompatibility;
+        EventhubNamespaceSchemaGroupSchemaCompatibility,
+        EventhubNamespaceSchemaGroupSchemaType;

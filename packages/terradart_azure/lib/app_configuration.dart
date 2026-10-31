@@ -25,6 +25,7 @@ export 'src/app_configuration/azurerm_app_configuration_key.dart'
         AppConfigurationKeySource,
         AppConfigurationKeySourceValue,
         AppConfigurationKeySourceVaultKeyReference,
+        AppConfigurationKeyType,
         AzurermAppConfigurationKey;
 export 'src/data/azurerm_app_configuration.dart'
     show DataAzurermAppConfiguration;

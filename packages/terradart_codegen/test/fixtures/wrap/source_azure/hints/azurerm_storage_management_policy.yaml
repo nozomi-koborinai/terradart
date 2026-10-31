@@ -11,3 +11,8 @@ properties:
             enum_values:
               - "blockBlob"
               - "appendBlob"
+          - api_name: match_blob_index_tag
+            properties:
+              - api_name: operation
+                enum_values:
+                  - "=="

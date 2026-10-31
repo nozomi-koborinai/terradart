@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_storage_blob`.
 const Set<String> _azurermStorageBlobSensitive = <String>{};
 
+/// Storage Blob Access enum for `access_tier`.
+extension type const StorageBlobAccessTier._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBlobAccessTier.variable(String name) : this._(TfArg.variable(name));
+  StorageBlobAccessTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBlobAccessTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const archive = StorageBlobAccessTier._(TfArgLiteral('Archive'));
+  static const cool = StorageBlobAccessTier._(TfArgLiteral('Cool'));
+  static const hot = StorageBlobAccessTier._(TfArgLiteral('Hot'));
+
+  static const List<StorageBlobAccessTier> values = [archive, cool, hot];
+}
+
 /// Storage Blob enum for `type`.
 extension type const StorageBlobType._(TfArg<String> _)
     implements TfArg<String> {
@@ -27,7 +42,7 @@ final class AzurermStorageBlob extends Resource {
 
   AzurermStorageBlob(
     super.localName, {
-    TfArg<String>? accessTier,
+    StorageBlobAccessTier? accessTier,
     TfArg<String>? cacheControl,
     TfArg<String>? contentMd5,
     TfArg<String>? contentType,

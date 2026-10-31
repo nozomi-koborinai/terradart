@@ -168,7 +168,7 @@ final class DataFactoryDatasetBinaryCompression {
 
   final DataFactoryDatasetBinaryLevel? level;
 
-  final TfArg<String> type;
+  final DataFactoryDatasetBinaryType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -194,6 +194,38 @@ extension type const DataFactoryDatasetBinaryLevel._(TfArg<String> _)
   );
 
   static const List<DataFactoryDatasetBinaryLevel> values = [optimal, fastest];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetBinaryType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetBinaryType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetBinaryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetBinaryType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bzip2 = DataFactoryDatasetBinaryType._(TfArgLiteral('BZip2'));
+  static const deflate = DataFactoryDatasetBinaryType._(
+    TfArgLiteral('Deflate'),
+  );
+  static const gzip = DataFactoryDatasetBinaryType._(TfArgLiteral('GZip'));
+  static const tar = DataFactoryDatasetBinaryType._(TfArgLiteral('Tar'));
+  static const targzip = DataFactoryDatasetBinaryType._(
+    TfArgLiteral('TarGZip'),
+  );
+  static const zipdeflate = DataFactoryDatasetBinaryType._(
+    TfArgLiteral('ZipDeflate'),
+  );
+
+  static const List<DataFactoryDatasetBinaryType> values = [
+    bzip2,
+    deflate,
+    gzip,
+    tar,
+    targzip,
+    zipdeflate,
+  ];
 }
 
 /// Typed helper for the `http_server_location` block of

@@ -8,6 +8,77 @@ import '../key_vault/azurerm_key_vault.dart' show AzurermKeyVault;
 /// Sensitive field paths for `azurerm_key_vault_access_policy`.
 const Set<String> _azurermKeyVaultAccessPolicySensitive = <String>{};
 
+/// Key Vault Access Policy Storage enum for `storage_permissions`.
+extension type const KeyVaultAccessPolicyStoragePermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyVaultAccessPolicyStoragePermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyVaultAccessPolicyStoragePermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyVaultAccessPolicyStoragePermissions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const backup = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Backup'),
+  );
+  static const delete = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Delete'),
+  );
+  static const deletesas = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('DeleteSAS'),
+  );
+  static const get = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Get'),
+  );
+  static const getsas = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('GetSAS'),
+  );
+  static const list = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('List'),
+  );
+  static const listsas = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('ListSAS'),
+  );
+  static const purge = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Purge'),
+  );
+  static const recover = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Recover'),
+  );
+  static const regeneratekey = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('RegenerateKey'),
+  );
+  static const restore = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Restore'),
+  );
+  static const set = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Set'),
+  );
+  static const setsas = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('SetSAS'),
+  );
+  static const update = KeyVaultAccessPolicyStoragePermissions._(
+    TfArgLiteral('Update'),
+  );
+
+  static const List<KeyVaultAccessPolicyStoragePermissions> values = [
+    backup,
+    delete,
+    deletesas,
+    get,
+    getsas,
+    list,
+    listsas,
+    purge,
+    recover,
+    regeneratekey,
+    restore,
+    set,
+    setsas,
+    update,
+  ];
+}
+
 /// Factory wrapper for `azurerm_key_vault_access_policy`.
 final class AzurermKeyVaultAccessPolicy extends Resource {
   static const String tfType = 'azurerm_key_vault_access_policy';
@@ -20,7 +91,7 @@ final class AzurermKeyVaultAccessPolicy extends Resource {
     required RefTo<AzurermKeyVault> keyVaultId,
     required TfArg<String> objectId,
     TfArg<List<String>>? secretPermissions,
-    TfArg<List<String>>? storagePermissions,
+    List<KeyVaultAccessPolicyStoragePermissions>? storagePermissions,
     required TfArg<String> tenantId,
     super.lifecycle,
     super.dependsOn,
@@ -35,7 +106,10 @@ final class AzurermKeyVaultAccessPolicy extends Resource {
            'key_vault_id': keyVaultId.encodeAs('id'),
            'object_id': objectId,
            'secret_permissions': ?secretPermissions,
-           'storage_permissions': ?storagePermissions,
+           if (storagePermissions != null)
+             'storage_permissions': TfArg.literal([
+               for (final e in storagePermissions) e.toTfJson(),
+             ]),
            'tenant_id': tenantId,
          },
        );

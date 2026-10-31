@@ -132,6 +132,49 @@ extension type const WindowsVirtualMachinePatchMode._(TfArg<String> _)
   ];
 }
 
+/// Windows Virtual Machine enum for `priority`.
+extension type const WindowsVirtualMachinePriority._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePriority.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const regular = WindowsVirtualMachinePriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = WindowsVirtualMachinePriority._(TfArgLiteral('Spot'));
+
+  static const List<WindowsVirtualMachinePriority> values = [regular, spot];
+}
+
+/// Windows Virtual Machine Reboot enum for `reboot_setting`.
+extension type const WindowsVirtualMachineRebootSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineRebootSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineRebootSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineRebootSetting.arg(TfArg<String> arg) : this._(arg);
+
+  static const always = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('Always'),
+  );
+  static const ifrequired = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('IfRequired'),
+  );
+  static const never = WindowsVirtualMachineRebootSetting._(
+    TfArgLiteral('Never'),
+  );
+
+  static const List<WindowsVirtualMachineRebootSetting> values = [
+    always,
+    ifrequired,
+    never,
+  ];
+}
+
 /// Exactly one of these input sets on `azurerm_windows_virtual_machine`. The provider rejects any other mix of them.
 ///
 /// - `.image` sets `admin_username` and one of `source_image_id` or `source_image_reference`.
@@ -530,9 +573,9 @@ final class WindowsVirtualMachineOsDisk {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? securityEncryptionType;
+  final WindowsVirtualMachineSecurityEncryptionType? securityEncryptionType;
 
-  final TfArg<String>? storageAccountType;
+  final WindowsVirtualMachineStorageAccountType? storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -641,6 +684,66 @@ extension type const WindowsVirtualMachineCaching._(TfArg<String> _)
   ];
 }
 
+/// `security_encryption_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineSecurityEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineSecurityEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineSecurityEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineSecurityEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vmgueststateonly = WindowsVirtualMachineSecurityEncryptionType._(
+    TfArgLiteral('VMGuestStateOnly'),
+  );
+  static const diskwithvmgueststate =
+      WindowsVirtualMachineSecurityEncryptionType._(
+        TfArgLiteral('DiskWithVMGuestState'),
+      );
+
+  static const List<WindowsVirtualMachineSecurityEncryptionType> values = [
+    vmgueststateonly,
+    diskwithvmgueststate,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const WindowsVirtualMachineStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const standardssdZrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('StandardSSD_ZRS'),
+  );
+  static const premiumZrs = WindowsVirtualMachineStorageAccountType._(
+    TfArgLiteral('Premium_ZRS'),
+  );
+
+  static const List<WindowsVirtualMachineStorageAccountType> values = [
+    premiumLrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    premiumZrs,
+  ];
+}
+
 /// Typed helper for the `os_disk.diff_disk_settings` block of
 /// `azurerm_windows_virtual_machine` (derived from provider schema).
 @immutable
@@ -650,7 +753,7 @@ final class WindowsVirtualMachineDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final WindowsVirtualMachineOption option;
 
   final WindowsVirtualMachinePlacement? placement;
 
@@ -659,6 +762,20 @@ final class WindowsVirtualMachineDiffDiskSettings {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `option` — derived from the provider schema description.
+extension type const WindowsVirtualMachineOption._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineOption.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineOption.arg(TfArg<String> arg) : this._(arg);
+
+  static const local = WindowsVirtualMachineOption._(TfArgLiteral('Local'));
+
+  static const List<WindowsVirtualMachineOption> values = [local];
 }
 
 /// `placement` — derived from the provider schema description.
@@ -693,10 +810,24 @@ extension type const WindowsVirtualMachinePlacement._(TfArg<String> _)
 final class WindowsVirtualMachineOsImageNotification {
   const WindowsVirtualMachineOsImageNotification({this.timeout});
 
-  final TfArg<String>? timeout;
+  final WindowsVirtualMachineTimeout? timeout;
 
   @internal
   Map<String, Object?> encode() => {'timeout': ?timeout?.toTfJson()};
+}
+
+/// `timeout` — derived from the provider schema description.
+extension type const WindowsVirtualMachineTimeout._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineTimeout.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineTimeout.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineTimeout.arg(TfArg<String> arg) : this._(arg);
+
+  static const pt15m = WindowsVirtualMachineTimeout._(TfArgLiteral('PT15M'));
+
+  static const List<WindowsVirtualMachineTimeout> values = [pt15m];
 }
 
 /// Typed helper for the `plan` block of
@@ -876,10 +1007,10 @@ final class AzurermWindowsVirtualMachine extends Resource {
     WindowsVirtualMachinePatchAssessmentMode? patchAssessmentMode,
     WindowsVirtualMachinePatchMode? patchMode,
     TfArg<num>? platformFaultDomain,
-    TfArg<String>? priority,
+    WindowsVirtualMachinePriority? priority,
     TfArg<bool>? provisionVmAgent,
     TfArg<String>? proximityPlacementGroupId,
-    TfArg<String>? rebootSetting,
+    WindowsVirtualMachineRebootSetting? rebootSetting,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     required TfArg<String> size,

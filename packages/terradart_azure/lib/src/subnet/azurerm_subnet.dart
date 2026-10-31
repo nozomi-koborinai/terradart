@@ -41,6 +41,19 @@ extension type const SubnetPrivateEndpointNetworkPolicies._(TfArg<String> _)
   ];
 }
 
+/// Subnet Sharing enum for `sharing_scope`.
+extension type const SubnetSharingScope._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetSharingScope.variable(String name) : this._(TfArg.variable(name));
+  SubnetSharingScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetSharingScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const tenant = SubnetSharingScope._(TfArgLiteral('Tenant'));
+
+  static const List<SubnetSharingScope> values = [tenant];
+}
+
 /// Exactly one of `address_prefixes`, `ip_address_pool` on `azurerm_subnet`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -579,7 +592,7 @@ final class AzurermSubnet extends Resource {
     TfArg<String>? routeTableIdWo,
     TfArg<num>? routeTableIdWoVersion,
     TfArg<List<String>>? serviceEndpointPolicyIds,
-    TfArg<String>? sharingScope,
+    SubnetSharingScope? sharingScope,
     required TfArg<String> virtualNetworkName,
     List<SubnetDelegation>? delegation,
     List<SubnetServiceEndpoint>? serviceEndpoint,

@@ -17,6 +17,10 @@ properties:
           - "None"
           - "ReadOnly"
           - "ReadWrite"
+      - api_name: create_option
+        enum_values:
+          - "Empty"
+          - "FromImage"
       - api_name: storage_account_type
         enum_values:
           - "Premium_LRS"
@@ -32,6 +36,16 @@ properties:
       - "Delete"
   - api_name: network_interface
     properties:
+      - api_name: auxiliary_mode
+        enum_values:
+          - "AcceleratedConnections"
+          - "Floating"
+      - api_name: auxiliary_sku
+        enum_values:
+          - "A8"
+          - "A4"
+          - "A1"
+          - "A2"
       - api_name: ip_configuration
         properties:
           - api_name: public_ip_address
@@ -53,11 +67,29 @@ properties:
           - "ReadWrite"
       - api_name: diff_disk_settings
         properties:
+          - api_name: option
+            enum_values:
+              - "Local"
           - api_name: placement
             enum_values:
               - "CacheDisk"
               - "NvmeDisk"
               - "ResourceDisk"
+      - api_name: security_encryption_type
+        enum_values:
+          - "VMGuestStateOnly"
+          - "DiskWithVMGuestState"
+      - api_name: storage_account_type
+        enum_values:
+          - "Premium_LRS"
+          - "Premium_ZRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
+          - "StandardSSD_ZRS"
+  - api_name: priority
+    enum_values:
+      - "Regular"
+      - "Spot"
   - api_name: scale_in
     properties:
       - api_name: rule

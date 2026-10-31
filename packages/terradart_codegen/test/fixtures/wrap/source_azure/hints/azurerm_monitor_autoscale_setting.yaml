@@ -3,6 +3,12 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: predictive
+    properties:
+      - api_name: scale_mode
+        enum_values:
+          - "Enabled"
+          - "ForecastOnly"
   - api_name: profile
     properties:
       - api_name: recurrence
@@ -34,6 +40,12 @@ properties:
                   - "LessThan"
                   - "LessThanOrEqual"
                   - "NotEquals"
+              - api_name: statistic
+                enum_values:
+                  - "Average"
+                  - "Max"
+                  - "Min"
+                  - "Sum"
               - api_name: time_aggregation
                 enum_values:
                   - "Average"
@@ -44,6 +56,10 @@ properties:
                   - "Total"
           - api_name: scale_action
             properties:
+              - api_name: direction
+                enum_values:
+                  - "Decrease"
+                  - "Increase"
               - api_name: type
                 enum_values:
                   - "ChangeCount"

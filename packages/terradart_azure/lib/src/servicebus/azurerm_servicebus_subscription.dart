@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_servicebus_subscription`.
 const Set<String> _azurermServicebusSubscriptionSensitive = <String>{};
 
+/// Servicebus Subscription enum for `status`.
+extension type const ServicebusSubscriptionStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicebusSubscriptionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicebusSubscriptionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicebusSubscriptionStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = ServicebusSubscriptionStatus._(TfArgLiteral('Active'));
+  static const disabled = ServicebusSubscriptionStatus._(
+    TfArgLiteral('Disabled'),
+  );
+  static const receivedisabled = ServicebusSubscriptionStatus._(
+    TfArgLiteral('ReceiveDisabled'),
+  );
+
+  static const List<ServicebusSubscriptionStatus> values = [
+    active,
+    disabled,
+    receivedisabled,
+  ];
+}
+
 /// Typed helper for the `client_scoped_subscription` block of
 /// `azurerm_servicebus_subscription` (derived from provider schema).
 @immutable
@@ -46,7 +70,7 @@ final class AzurermServicebusSubscription extends Resource {
     required TfArg<num> maxDeliveryCount,
     required TfArg<String> name,
     TfArg<bool>? requiresSession,
-    TfArg<String>? status,
+    ServicebusSubscriptionStatus? status,
     required TfArg<String> topicId,
     ServicebusSubscriptionClientScopedSubscription? clientScopedSubscription,
     super.lifecycle,

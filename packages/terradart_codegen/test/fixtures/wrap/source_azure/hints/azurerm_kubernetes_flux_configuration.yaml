@@ -10,6 +10,22 @@ properties:
           - "Azure"
           - "Generic"
           - "GitHub"
+      - api_name: reference_type
+        enum_values:
+          - "branch"
+          - "commit"
+          - "semver"
+          - "tag"
+  - api_name: kustomizations
+    properties:
+      - api_name: post_build
+        properties:
+          - api_name: substitute_from
+            properties:
+              - api_name: kind
+                enum_values:
+                  - "ConfigMap"
+                  - "Secret"
   - api_name: scope
     enum_values:
       - "cluster"

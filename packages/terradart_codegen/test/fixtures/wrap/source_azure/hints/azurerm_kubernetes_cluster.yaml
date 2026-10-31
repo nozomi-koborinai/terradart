@@ -11,6 +11,12 @@ properties:
           - "most-pods"
           - "priority"
           - "random"
+  - api_name: automatic_upgrade_channel
+    enum_values:
+      - "patch"
+      - "rapid"
+      - "stable"
+      - "node-image"
   - api_name: bootstrap_profile
     properties:
       - api_name: artifact_source
@@ -113,6 +119,14 @@ properties:
           - "azure"
           - "kubenet"
           - "none"
+      - api_name: network_plugin_mode
+        enum_values:
+          - "overlay"
+      - api_name: network_policy
+        enum_values:
+          - "calico"
+          - "azure"
+          - "cilium"
       - api_name: outbound_type
         enum_values:
           - "loadBalancer"
@@ -136,6 +150,11 @@ properties:
         enum_values:
           - "Auto"
           - "Manual"
+  - api_name: service_mesh_profile
+    properties:
+      - api_name: mode
+        enum_values:
+          - "Istio"
   - api_name: sku_tier
     enum_values:
       - "Free"
@@ -153,6 +172,11 @@ properties:
           - "External"
           - "Internal"
           - "None"
+  - api_name: windows_profile
+    properties:
+      - api_name: license
+        enum_values:
+          - "Windows_Server"
 exactly_one_of_groups:
   - ["dns_prefix", "dns_prefix_private_cluster"]
   - ["identity", "service_principal"]

@@ -34,7 +34,8 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType
+  dataStoreType;
 
   final TfArg<String> duration;
 
@@ -43,6 +44,29 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vaultstore =
+      DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType>
+  values = [vaultstore];
 }
 
 /// Typed helper for the `retention_rule` block of

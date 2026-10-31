@@ -3,6 +3,17 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: auxiliary_mode
+    enum_values:
+      - "AcceleratedConnections"
+      - "Floating"
+      - "MaxConnections"
+  - api_name: auxiliary_sku
+    enum_values:
+      - "A8"
+      - "A4"
+      - "A1"
+      - "A2"
   - api_name: ip_configuration
     properties:
       - api_name: private_ip_address_allocation

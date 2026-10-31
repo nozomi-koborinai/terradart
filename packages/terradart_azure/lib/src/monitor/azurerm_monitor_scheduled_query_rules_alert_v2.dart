@@ -361,7 +361,7 @@ final class MonitorScheduledQueryRulesAlertV2Criteria {
 
   final TfArg<String>? metricMeasureColumn;
 
-  final TfArg<String> operator;
+  final MonitorScheduledQueryRulesAlertV2Operator operator;
 
   final TfArg<String> query;
 
@@ -388,6 +388,42 @@ final class MonitorScheduledQueryRulesAlertV2Criteria {
       'dimension': [for (final e in dimension!) e.encode()],
     'failing_periods': ?failingPeriods?.encode(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const MonitorScheduledQueryRulesAlertV2Operator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MonitorScheduledQueryRulesAlertV2Operator.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorScheduledQueryRulesAlertV2Operator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorScheduledQueryRulesAlertV2Operator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equal = MonitorScheduledQueryRulesAlertV2Operator._(
+    TfArgLiteral('Equal'),
+  );
+  static const greaterthan = MonitorScheduledQueryRulesAlertV2Operator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const greaterthanorequal = MonitorScheduledQueryRulesAlertV2Operator._(
+    TfArgLiteral('GreaterThanOrEqual'),
+  );
+  static const lessthan = MonitorScheduledQueryRulesAlertV2Operator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const lessthanorequal = MonitorScheduledQueryRulesAlertV2Operator._(
+    TfArgLiteral('LessThanOrEqual'),
+  );
+
+  static const List<MonitorScheduledQueryRulesAlertV2Operator> values = [
+    equal,
+    greaterthan,
+    greaterthanorequal,
+    lessthan,
+    lessthanorequal,
+  ];
 }
 
 /// `time_aggregation_method` — derived from the provider schema description.
@@ -438,7 +474,7 @@ final class MonitorScheduledQueryRulesAlertV2Dimension {
 
   final TfArg<String> name;
 
-  final MonitorScheduledQueryRulesAlertV2Operator operator;
+  final MonitorScheduledQueryRulesAlertV2DimensionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -451,27 +487,26 @@ final class MonitorScheduledQueryRulesAlertV2Dimension {
 }
 
 /// `operator` — derived from the provider schema description.
-extension type const MonitorScheduledQueryRulesAlertV2Operator._(
+extension type const MonitorScheduledQueryRulesAlertV2DimensionOperator._(
   TfArg<String> _
 ) implements TfArg<String> {
-  MonitorScheduledQueryRulesAlertV2Operator.variable(String name)
+  MonitorScheduledQueryRulesAlertV2DimensionOperator.variable(String name)
     : this._(TfArg.variable(name));
-  MonitorScheduledQueryRulesAlertV2Operator.expression(String template)
+  MonitorScheduledQueryRulesAlertV2DimensionOperator.expression(String template)
     : this._(TfArg.expression(template));
-  const MonitorScheduledQueryRulesAlertV2Operator.arg(TfArg<String> arg)
-    : this._(arg);
+  const MonitorScheduledQueryRulesAlertV2DimensionOperator.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const exclude = MonitorScheduledQueryRulesAlertV2Operator._(
+  static const exclude = MonitorScheduledQueryRulesAlertV2DimensionOperator._(
     TfArgLiteral('Exclude'),
   );
-  static const include = MonitorScheduledQueryRulesAlertV2Operator._(
+  static const include = MonitorScheduledQueryRulesAlertV2DimensionOperator._(
     TfArgLiteral('Include'),
   );
 
-  static const List<MonitorScheduledQueryRulesAlertV2Operator> values = [
-    exclude,
-    include,
-  ];
+  static const List<MonitorScheduledQueryRulesAlertV2DimensionOperator> values =
+      [exclude, include];
 }
 
 /// Typed helper for the `criteria.failing_periods` block of

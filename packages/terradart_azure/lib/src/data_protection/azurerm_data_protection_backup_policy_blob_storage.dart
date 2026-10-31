@@ -151,7 +151,7 @@ final class DataProtectionBackupPolicyBlobStorageLifeCycle {
     required this.duration,
   });
 
-  final TfArg<String> dataStoreType;
+  final DataProtectionBackupPolicyBlobStorageDataStoreType dataStoreType;
 
   final TfArg<String> duration;
 
@@ -160,6 +160,27 @@ final class DataProtectionBackupPolicyBlobStorageLifeCycle {
     'data_store_type': dataStoreType.toTfJson(),
     'duration': duration.toTfJson(),
   };
+}
+
+/// `data_store_type` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyBlobStorageDataStoreType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyBlobStorageDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyBlobStorageDataStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyBlobStorageDataStoreType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vaultstore =
+      DataProtectionBackupPolicyBlobStorageDataStoreType._(
+        TfArgLiteral('VaultStore'),
+      );
+
+  static const List<DataProtectionBackupPolicyBlobStorageDataStoreType> values =
+      [vaultstore];
 }
 
 /// Factory wrapper for `azurerm_data_protection_backup_policy_blob_storage`.

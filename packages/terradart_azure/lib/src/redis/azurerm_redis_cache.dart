@@ -32,6 +32,20 @@ extension type const RedisCacheFamily._(TfArg<String> _)
   static const List<RedisCacheFamily> values = [c, p];
 }
 
+/// Redis Cache Minimum Tls enum for `minimum_tls_version`.
+extension type const RedisCacheMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisCacheMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisCacheMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisCacheMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p2 = RedisCacheMinimumTlsVersion._(TfArgLiteral('1.2'));
+
+  static const List<RedisCacheMinimumTlsVersion> values = [v1p2];
+}
+
 /// Redis Cache Redis enum for `redis_version`.
 extension type const RedisCacheRedisVersion._(TfArg<String> _)
     implements TfArg<String> {
@@ -218,7 +232,7 @@ final class AzurermRedisCache extends Resource {
     required TfArg<num> capacity,
     required RedisCacheFamily family,
     required TfArg<String> location,
-    TfArg<String>? minimumTlsVersion,
+    RedisCacheMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
     TfArg<bool>? nonSslPortEnabled,
     TfArg<String>? privateStaticIpAddress,

@@ -15,3 +15,6 @@ properties:
           - "group"
           - "mask"
           - "other"
+  - api_name: resource
+    enum_values:
+      - "directory"

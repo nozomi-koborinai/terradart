@@ -7,6 +7,7 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/cdn/azurerm_cdn_endpoint.dart'
     show
         AzurermCdnEndpoint,
+        CdnEndpointAction,
         CdnEndpointCacheExpirationAction,
         CdnEndpointCacheKeyQueryStringAction,
         CdnEndpointCookiesCondition,
@@ -37,12 +38,14 @@ export 'src/cdn/azurerm_cdn_endpoint_custom_domain.dart'
         CdnEndpointCustomDomainCdnManagedHttps,
         CdnEndpointCustomDomainCdnManagedHttpsChoice,
         CdnEndpointCustomDomainManagedHttps,
+        CdnEndpointCustomDomainTlsVersion,
         CdnEndpointCustomDomainUserManagedHttps,
         CdnEndpointCustomDomainUserManagedHttpsChoice;
 export 'src/cdn/azurerm_cdn_frontdoor_batch_rule_set.dart'
     show
         AzurermCdnFrontdoorBatchRuleSet,
         CdnFrontdoorBatchRuleSetActions,
+        CdnFrontdoorBatchRuleSetBehaviour,
         CdnFrontdoorBatchRuleSetBehaviourOnMatch,
         CdnFrontdoorBatchRuleSetCaching,
         CdnFrontdoorBatchRuleSetClientPort,
@@ -87,10 +90,14 @@ export 'src/cdn/azurerm_cdn_frontdoor_batch_rule_set.dart'
 export 'src/cdn/azurerm_cdn_frontdoor_custom_domain.dart'
     show
         AzurermCdnFrontdoorCustomDomain,
+        CdnFrontdoorCustomDomainCertificateType,
         CdnFrontdoorCustomDomainCipherSuite,
         CdnFrontdoorCustomDomainCustomCiphers,
+        CdnFrontdoorCustomDomainMinimumVersion,
         CdnFrontdoorCustomDomainTls,
-        CdnFrontdoorCustomDomainTls13;
+        CdnFrontdoorCustomDomainTls12,
+        CdnFrontdoorCustomDomainTls13,
+        CdnFrontdoorCustomDomainType;
 export 'src/cdn/azurerm_cdn_frontdoor_custom_domain_association.dart'
     show AzurermCdnFrontdoorCustomDomainAssociation;
 export 'src/cdn/azurerm_cdn_frontdoor_endpoint.dart'
@@ -98,22 +105,25 @@ export 'src/cdn/azurerm_cdn_frontdoor_endpoint.dart'
 export 'src/cdn/azurerm_cdn_frontdoor_firewall_policy.dart'
     show
         AzurermCdnFrontdoorFirewallPolicy,
-        CdnFrontdoorFirewallPolicyAction,
         CdnFrontdoorFirewallPolicyCustomRule,
+        CdnFrontdoorFirewallPolicyCustomRuleAction,
         CdnFrontdoorFirewallPolicyExclusion,
         CdnFrontdoorFirewallPolicyExclusionMatchVariable,
         CdnFrontdoorFirewallPolicyExclusionOperator,
         CdnFrontdoorFirewallPolicyLogScrubbing,
         CdnFrontdoorFirewallPolicyManagedRule,
+        CdnFrontdoorFirewallPolicyManagedRuleAction,
         CdnFrontdoorFirewallPolicyMatchCondition,
         CdnFrontdoorFirewallPolicyMatchConditionMatchVariable,
         CdnFrontdoorFirewallPolicyMatchConditionOperator,
         CdnFrontdoorFirewallPolicyMode,
         CdnFrontdoorFirewallPolicyOverride,
         CdnFrontdoorFirewallPolicyRule,
+        CdnFrontdoorFirewallPolicyRuleAction,
         CdnFrontdoorFirewallPolicyScrubbingRule,
         CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable,
         CdnFrontdoorFirewallPolicyScrubbingRuleOperator,
+        CdnFrontdoorFirewallPolicySkuName,
         CdnFrontdoorFirewallPolicyTransforms,
         CdnFrontdoorFirewallPolicyType;
 export 'src/cdn/azurerm_cdn_frontdoor_origin.dart'
@@ -125,17 +135,21 @@ export 'src/cdn/azurerm_cdn_frontdoor_origin_group.dart'
     show
         AzurermCdnFrontdoorOriginGroup,
         CdnFrontdoorOriginGroupHealthProbe,
-        CdnFrontdoorOriginGroupLoadBalancing;
+        CdnFrontdoorOriginGroupLoadBalancing,
+        CdnFrontdoorOriginGroupProtocol,
+        CdnFrontdoorOriginGroupRequestType;
 export 'src/cdn/azurerm_cdn_frontdoor_profile.dart'
     show
         AzurermCdnFrontdoorProfile,
         CdnFrontdoorProfileIdentity,
         CdnFrontdoorProfileLogScrubbingRule,
-        CdnFrontdoorProfileMatchVariable;
+        CdnFrontdoorProfileMatchVariable,
+        CdnFrontdoorProfileSkuName;
 export 'src/cdn/azurerm_cdn_frontdoor_route.dart'
     show
         AzurermCdnFrontdoorRoute,
         CdnFrontdoorRouteCache,
+        CdnFrontdoorRouteContentTypesToCompress,
         CdnFrontdoorRouteForwardingProtocol,
         CdnFrontdoorRouteQueryStringCachingBehavior,
         CdnFrontdoorRouteSupportedProtocols;
@@ -143,6 +157,7 @@ export 'src/cdn/azurerm_cdn_frontdoor_rule.dart'
     show
         AzurermCdnFrontdoorRule,
         CdnFrontdoorRuleActions,
+        CdnFrontdoorRuleBehaviour,
         CdnFrontdoorRuleBehaviourOnMatch,
         CdnFrontdoorRuleCaching,
         CdnFrontdoorRuleClientPort,
@@ -196,8 +211,9 @@ export 'src/cdn/azurerm_cdn_frontdoor_security_policy.dart'
         CdnFrontdoorSecurityPolicyAssociation,
         CdnFrontdoorSecurityPolicyDomain,
         CdnFrontdoorSecurityPolicyFirewall,
+        CdnFrontdoorSecurityPolicyPatternsToMatch,
         CdnFrontdoorSecurityPolicySecurityPolicies;
-export 'src/cdn/azurerm_cdn_profile.dart' show AzurermCdnProfile;
+export 'src/cdn/azurerm_cdn_profile.dart' show AzurermCdnProfile, CdnProfileSku;
 export 'src/data/azurerm_cdn_frontdoor_batch_rule_set.dart'
     show DataAzurermCdnFrontdoorBatchRuleSet;
 export 'src/data/azurerm_cdn_frontdoor_custom_domain.dart'

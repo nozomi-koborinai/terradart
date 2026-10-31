@@ -62,6 +62,33 @@ extension type const VirtualNetworkGatewayConnectionProtocol._(TfArg<String> _)
   ];
 }
 
+/// Virtual Network Gateway Connection enum for `type`.
+extension type const VirtualNetworkGatewayConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualNetworkGatewayConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualNetworkGatewayConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualNetworkGatewayConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const expressroute = VirtualNetworkGatewayConnectionType._(
+    TfArgLiteral('ExpressRoute'),
+  );
+  static const ipsec = VirtualNetworkGatewayConnectionType._(
+    TfArgLiteral('IPsec'),
+  );
+  static const vnet2vnet = VirtualNetworkGatewayConnectionType._(
+    TfArgLiteral('Vnet2Vnet'),
+  );
+
+  static const List<VirtualNetworkGatewayConnectionType> values = [
+    expressroute,
+    ipsec,
+    vnet2vnet,
+  ];
+}
+
 /// Typed helper for the `custom_bgp_addresses` block of
 /// `azurerm_virtual_network_gateway_connection` (derived from provider schema).
 @immutable
@@ -445,7 +472,7 @@ final class AzurermVirtualNetworkGatewayConnection extends Resource {
     TfArg<num>? routingWeight,
     Sensitive<String>? sharedKey,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required VirtualNetworkGatewayConnectionType type,
     TfArg<bool>? usePolicyBasedTrafficSelectors,
     required TfArg<String> virtualNetworkGatewayId,
     VirtualNetworkGatewayConnectionCustomBgpAddresses? customBgpAddresses,

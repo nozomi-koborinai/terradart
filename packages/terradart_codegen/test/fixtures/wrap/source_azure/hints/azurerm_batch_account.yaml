@@ -16,12 +16,22 @@ properties:
             enum_values:
               - "Allow"
               - "Deny"
+          - api_name: ip_rule
+            properties:
+              - api_name: action
+                enum_values:
+                  - "Allow"
       - api_name: node_management_access
         properties:
           - api_name: default_action
             enum_values:
               - "Allow"
               - "Deny"
+          - api_name: ip_rule
+            properties:
+              - api_name: action
+                enum_values:
+                  - "Allow"
   - api_name: pool_allocation_mode
     enum_values:
       - "BatchService"

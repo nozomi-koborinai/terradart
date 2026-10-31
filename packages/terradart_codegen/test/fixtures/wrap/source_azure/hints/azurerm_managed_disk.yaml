@@ -3,6 +3,15 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: create_option
+    enum_values:
+      - "Copy"
+      - "Empty"
+      - "FromImage"
+      - "Import"
+      - "ImportSecure"
+      - "Restore"
+      - "Upload"
   - api_name: hyper_v_generation
     enum_values:
       - "V1"
@@ -16,6 +25,11 @@ properties:
     enum_values:
       - "Linux"
       - "Windows"
+  - api_name: security_type
+    enum_values:
+      - "ConfidentialVM_VMGuestStateOnlyEncryptedWithPlatformKey"
+      - "ConfidentialVM_DiskEncryptedWithPlatformKey"
+      - "ConfidentialVM_DiskEncryptedWithCustomerKey"
   - api_name: storage_account_type
     enum_values:
       - "Premium_LRS"

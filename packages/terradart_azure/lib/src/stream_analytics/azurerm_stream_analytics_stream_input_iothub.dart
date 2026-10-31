@@ -21,11 +21,11 @@ final class StreamAnalyticsStreamInputIothubSerialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsStreamInputIothubEncoding? encoding;
 
   final StreamAnalyticsStreamInputIothubFieldDelimiter? fieldDelimiter;
 
-  final TfArg<String> type;
+  final StreamAnalyticsStreamInputIothubType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -33,6 +33,23 @@ final class StreamAnalyticsStreamInputIothubSerialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputIothubEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputIothubEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputIothubEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputIothubEncoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsStreamInputIothubEncoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsStreamInputIothubEncoding> values = [utf8];
 }
 
 /// `field_delimiter` — derived from the provider schema description.
@@ -68,6 +85,33 @@ extension type const StreamAnalyticsStreamInputIothubFieldDelimiter._(
     value3,
     value4,
     value5,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputIothubType._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputIothubType.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputIothubType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputIothubType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const avro = StreamAnalyticsStreamInputIothubType._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsStreamInputIothubType._(
+    TfArgLiteral('Csv'),
+  );
+  static const json = StreamAnalyticsStreamInputIothubType._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<StreamAnalyticsStreamInputIothubType> values = [
+    avro,
+    csv,
+    json,
   ];
 }
 

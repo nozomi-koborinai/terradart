@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermAppServiceSlotCustomHostnameBindingSensitive =
     <String>{};
 
+/// App Service Slot Custom Hostname Binding Ssl enum for `ssl_state`.
+extension type const AppServiceSlotCustomHostnameBindingSslState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppServiceSlotCustomHostnameBindingSslState.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceSlotCustomHostnameBindingSslState.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceSlotCustomHostnameBindingSslState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipbasedenabled = AppServiceSlotCustomHostnameBindingSslState._(
+    TfArgLiteral('IpBasedEnabled'),
+  );
+  static const snienabled = AppServiceSlotCustomHostnameBindingSslState._(
+    TfArgLiteral('SniEnabled'),
+  );
+
+  static const List<AppServiceSlotCustomHostnameBindingSslState> values = [
+    ipbasedenabled,
+    snienabled,
+  ];
+}
+
 /// Factory wrapper for `azurerm_app_service_slot_custom_hostname_binding`.
 final class AzurermAppServiceSlotCustomHostnameBinding extends Resource {
   static const String tfType =
@@ -16,7 +40,7 @@ final class AzurermAppServiceSlotCustomHostnameBinding extends Resource {
     super.localName, {
     required TfArg<String> appServiceSlotId,
     required TfArg<String> hostname,
-    TfArg<String>? sslState,
+    AppServiceSlotCustomHostnameBindingSslState? sslState,
     TfArg<String>? thumbprint,
     super.lifecycle,
     super.dependsOn,

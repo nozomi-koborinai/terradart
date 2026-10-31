@@ -120,6 +120,9 @@ properties:
       - "StorageAccountConnectionString"
       - "SystemAssignedIdentity"
       - "UserAssignedIdentity"
+  - api_name: storage_container_type
+    enum_values:
+      - "blobContainer"
 exactly_one_of_groups:
   - ["auth_settings.facebook.app_secret", "auth_settings.facebook.app_secret_setting_name"]
   - ["auth_settings.github.client_secret", "auth_settings.github.client_secret_setting_name"]

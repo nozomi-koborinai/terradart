@@ -63,10 +63,13 @@ export 'src/eventgrid/azurerm_eventgrid_event_subscription.dart'
 export 'src/eventgrid/azurerm_eventgrid_namespace.dart'
     show
         AzurermEventgridNamespace,
+        EventgridNamespaceAction,
         EventgridNamespaceAlternativeAuthenticationNameSource,
         EventgridNamespaceDynamicRoutingEnrichment,
         EventgridNamespaceIdentity,
         EventgridNamespaceInboundIpRule,
+        EventgridNamespacePublicNetworkAccess,
+        EventgridNamespaceSku,
         EventgridNamespaceStaticRoutingEnrichment,
         EventgridNamespaceTopicSpacesConfiguration;
 export 'src/eventgrid/azurerm_eventgrid_namespace_topic.dart'
@@ -78,6 +81,7 @@ export 'src/eventgrid/azurerm_eventgrid_partner_configuration.dart'
 export 'src/eventgrid/azurerm_eventgrid_partner_namespace.dart'
     show
         AzurermEventgridPartnerNamespace,
+        EventgridPartnerNamespaceAction,
         EventgridPartnerNamespaceInboundIpRule,
         EventgridPartnerNamespacePartnerTopicRoutingMode,
         EventgridPartnerNamespacePublicNetworkAccess;

@@ -25,7 +25,7 @@ final class WebApplicationFirewallPolicyCustomRules {
     required this.matchConditions,
   });
 
-  final TfArg<String> action;
+  final WebApplicationFirewallPolicyAction action;
 
   final TfArg<bool>? enabled;
 
@@ -55,6 +55,34 @@ final class WebApplicationFirewallPolicyCustomRules {
     'rule_type': ruleType.toTfJson(),
     'match_conditions': [for (final e in matchConditions) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const WebApplicationFirewallPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WebApplicationFirewallPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WebApplicationFirewallPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebApplicationFirewallPolicyAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = WebApplicationFirewallPolicyAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const block = WebApplicationFirewallPolicyAction._(
+    TfArgLiteral('Block'),
+  );
+  static const log = WebApplicationFirewallPolicyAction._(TfArgLiteral('Log'));
+  static const jschallenge = WebApplicationFirewallPolicyAction._(
+    TfArgLiteral('JSChallenge'),
+  );
+
+  static const List<WebApplicationFirewallPolicyAction> values = [
+    allow,
+    block,
+    log,
+    jschallenge,
+  ];
 }
 
 /// `group_rate_limit_by` — derived from the provider schema description.
@@ -586,7 +614,7 @@ final class WebApplicationFirewallPolicyRuleGroupOverrideRule {
     required this.id,
   });
 
-  final WebApplicationFirewallPolicyAction? action;
+  final WebApplicationFirewallPolicyRuleAction? action;
 
   final TfArg<bool>? enabled;
 
@@ -601,32 +629,35 @@ final class WebApplicationFirewallPolicyRuleGroupOverrideRule {
 }
 
 /// `action` — derived from the provider schema description.
-extension type const WebApplicationFirewallPolicyAction._(TfArg<String> _)
+extension type const WebApplicationFirewallPolicyRuleAction._(TfArg<String> _)
     implements TfArg<String> {
-  WebApplicationFirewallPolicyAction.variable(String name)
+  WebApplicationFirewallPolicyRuleAction.variable(String name)
     : this._(TfArg.variable(name));
-  WebApplicationFirewallPolicyAction.expression(String template)
+  WebApplicationFirewallPolicyRuleAction.expression(String template)
     : this._(TfArg.expression(template));
-  const WebApplicationFirewallPolicyAction.arg(TfArg<String> arg) : this._(arg);
+  const WebApplicationFirewallPolicyRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const allow = WebApplicationFirewallPolicyAction._(
+  static const allow = WebApplicationFirewallPolicyRuleAction._(
     TfArgLiteral('Allow'),
   );
-  static const anomalyscoring = WebApplicationFirewallPolicyAction._(
+  static const anomalyscoring = WebApplicationFirewallPolicyRuleAction._(
     TfArgLiteral('AnomalyScoring'),
   );
-  static const block = WebApplicationFirewallPolicyAction._(
+  static const block = WebApplicationFirewallPolicyRuleAction._(
     TfArgLiteral('Block'),
   );
-  static const captcha = WebApplicationFirewallPolicyAction._(
+  static const captcha = WebApplicationFirewallPolicyRuleAction._(
     TfArgLiteral('CAPTCHA'),
   );
-  static const jschallenge = WebApplicationFirewallPolicyAction._(
+  static const jschallenge = WebApplicationFirewallPolicyRuleAction._(
     TfArgLiteral('JSChallenge'),
   );
-  static const log = WebApplicationFirewallPolicyAction._(TfArgLiteral('Log'));
+  static const log = WebApplicationFirewallPolicyRuleAction._(
+    TfArgLiteral('Log'),
+  );
 
-  static const List<WebApplicationFirewallPolicyAction> values = [
+  static const List<WebApplicationFirewallPolicyRuleAction> values = [
     allow,
     anomalyscoring,
     block,

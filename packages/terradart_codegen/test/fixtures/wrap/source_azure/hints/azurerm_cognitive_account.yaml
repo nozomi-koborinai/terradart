@@ -52,6 +52,11 @@ properties:
         enum_values:
           - "Allow"
           - "Deny"
+  - api_name: network_injection
+    properties:
+      - api_name: scenario
+        enum_values:
+          - "agent"
   - api_name: sku_name
     enum_values:
       - "C2"

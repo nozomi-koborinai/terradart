@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_synapse_sql_pool`.
 const Set<String> _azurermSynapseSqlPoolSensitive = <String>{};
 
+/// Synapse Sql Pool Create enum for `create_mode`.
+extension type const SynapseSqlPoolCreateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SynapseSqlPoolCreateMode.variable(String name) : this._(TfArg.variable(name));
+  SynapseSqlPoolCreateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SynapseSqlPoolCreateMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SynapseSqlPoolCreateMode._(
+    TfArgLiteral('Default'),
+  );
+  static const recovery = SynapseSqlPoolCreateMode._(TfArgLiteral('Recovery'));
+  static const pointintimerestore = SynapseSqlPoolCreateMode._(
+    TfArgLiteral('PointInTimeRestore'),
+  );
+
+  static const List<SynapseSqlPoolCreateMode> values = [
+    defaultCase,
+    recovery,
+    pointintimerestore,
+  ];
+}
+
 /// Synapse Sql Pool Sku enum for `sku_name`.
 extension type const SynapseSqlPoolSkuName._(TfArg<String> _)
     implements TfArg<String> {
@@ -153,7 +176,7 @@ final class AzurermSynapseSqlPool extends Resource {
   AzurermSynapseSqlPool(
     super.localName, {
     TfArg<String>? collation,
-    TfArg<String>? createMode,
+    SynapseSqlPoolCreateMode? createMode,
     TfArg<bool>? dataEncrypted,
     TfArg<bool>? geoBackupPolicyEnabled,
     required TfArg<String> name,

@@ -19,8 +19,10 @@ export 'src/iothub/azurerm_iothub.dart'
         IothubFileUpload,
         IothubIdentity,
         IothubIpRule,
+        IothubMinTlsVersion,
         IothubNetworkRuleSet,
-        IothubSku;
+        IothubSku,
+        IothubSource;
 export 'src/iothub/azurerm_iothub_certificate.dart'
     show AzurermIothubCertificate;
 export 'src/iothub/azurerm_iothub_consumer_group.dart'
@@ -41,6 +43,7 @@ export 'src/iothub/azurerm_iothub_dps.dart'
         IothubDpsIpFilterRule,
         IothubDpsLinkedHub,
         IothubDpsSku,
+        IothubDpsSkuName,
         IothubDpsTarget;
 export 'src/iothub/azurerm_iothub_dps_certificate.dart'
     show AzurermIothubDpsCertificate;
@@ -74,9 +77,10 @@ export 'src/iothub/azurerm_iothub_endpoint_storage_container.dart'
         IothubEndpointStorageContainerConnectionString;
 export 'src/iothub/azurerm_iothub_enrichment.dart' show AzurermIothubEnrichment;
 export 'src/iothub/azurerm_iothub_fallback_route.dart'
-    show AzurermIothubFallbackRoute;
+    show AzurermIothubFallbackRoute, IothubFallbackRouteSource;
 export 'src/iothub/azurerm_iothub_file_upload.dart'
     show AzurermIothubFileUpload;
-export 'src/iothub/azurerm_iothub_route.dart' show AzurermIothubRoute;
+export 'src/iothub/azurerm_iothub_route.dart'
+    show AzurermIothubRoute, IothubRouteSource;
 export 'src/iothub/azurerm_iothub_shared_access_policy.dart'
     show AzurermIothubSharedAccessPolicy;

@@ -19,6 +19,15 @@ properties:
       - "M60"
       - "M80"
       - "M200"
+  - api_name: create_mode
+    enum_values:
+      - "Default"
+      - "GeoReplica"
+      - "PointInTimeRestore"
+  - api_name: high_availability_mode
+    enum_values:
+      - "Disabled"
+      - "ZoneRedundantPreferred"
   - api_name: public_network_access
     enum_values:
       - "Disabled"

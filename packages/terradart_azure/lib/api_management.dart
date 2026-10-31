@@ -33,6 +33,7 @@ export 'src/api_management/azurerm_api_management_api.dart'
         ApiManagementApiAuthOpenidAuthentication,
         ApiManagementApiBearerTokenSendingMethods,
         ApiManagementApiContact,
+        ApiManagementApiContentFormat,
         ApiManagementApiImport,
         ApiManagementApiLicense,
         ApiManagementApiOauth2Authorization,
@@ -244,6 +245,8 @@ export 'src/api_management/azurerm_api_management_redis_cache.dart'
 export 'src/api_management/azurerm_api_management_standalone_gateway.dart'
     show
         ApiManagementStandaloneGatewaySku,
+        ApiManagementStandaloneGatewaySkuName,
+        ApiManagementStandaloneGatewayVirtualNetworkType,
         AzurermApiManagementStandaloneGateway;
 export 'src/api_management/azurerm_api_management_subscription.dart'
     show
@@ -255,7 +258,10 @@ export 'src/api_management/azurerm_api_management_subscription.dart'
 export 'src/api_management/azurerm_api_management_tag.dart'
     show AzurermApiManagementTag;
 export 'src/api_management/azurerm_api_management_user.dart'
-    show ApiManagementUserConfirmation, AzurermApiManagementUser;
+    show
+        ApiManagementUserConfirmation,
+        ApiManagementUserState,
+        AzurermApiManagementUser;
 export 'src/api_management/azurerm_api_management_workspace.dart'
     show AzurermApiManagementWorkspace;
 export 'src/api_management/azurerm_api_management_workspace_api_version_set.dart'

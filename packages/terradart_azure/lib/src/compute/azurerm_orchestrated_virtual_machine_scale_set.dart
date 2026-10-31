@@ -95,6 +95,30 @@ extension type const OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
   values = [v2022x11x01, v2020x11x01];
 }
 
+/// Orchestrated Virtual Machine Scale Set enum for `priority`.
+extension type const OrchestratedVirtualMachineScaleSetPriority._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetPriority.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const regular = OrchestratedVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = OrchestratedVirtualMachineScaleSetPriority._(
+    TfArgLiteral('Spot'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetPriority> values = [
+    regular,
+    spot,
+  ];
+}
+
 /// Orchestrated Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
 extension type const OrchestratedVirtualMachineScaleSetUpgradeMode._(
   TfArg<String> _
@@ -387,7 +411,7 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
 
   final OrchestratedVirtualMachineScaleSetCaching caching;
 
-  final TfArg<String>? createOption;
+  final OrchestratedVirtualMachineScaleSetCreateOption? createOption;
 
   final TfArg<String>? diskEncryptionSetId;
 
@@ -399,7 +423,8 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
 
   final TfArg<num>? lun;
 
-  final OrchestratedVirtualMachineScaleSetStorageAccountType storageAccountType;
+  final OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType
+  storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -445,49 +470,76 @@ extension type const OrchestratedVirtualMachineScaleSetCaching._(
   ];
 }
 
-/// `storage_account_type` — derived from the provider schema description.
-extension type const OrchestratedVirtualMachineScaleSetStorageAccountType._(
+/// `create_option` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetCreateOption._(
   TfArg<String> _
 ) implements TfArg<String> {
-  OrchestratedVirtualMachineScaleSetStorageAccountType.variable(String name)
+  OrchestratedVirtualMachineScaleSetCreateOption.variable(String name)
     : this._(TfArg.variable(name));
-  OrchestratedVirtualMachineScaleSetStorageAccountType.expression(
+  OrchestratedVirtualMachineScaleSetCreateOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetCreateOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const empty = OrchestratedVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('Empty'),
+  );
+  static const fromimage = OrchestratedVirtualMachineScaleSetCreateOption._(
+    TfArgLiteral('FromImage'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetCreateOption> values = [
+    empty,
+    fromimage,
+  ];
+}
+
+/// `storage_account_type` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType.expression(
     String template,
   ) : this._(TfArg.expression(template));
-  const OrchestratedVirtualMachineScaleSetStorageAccountType.arg(
+  const OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType.arg(
     TfArg<String> arg,
   ) : this._(arg);
 
   static const premiumLrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('Premium_LRS'),
       );
   static const premiumv2Lrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('PremiumV2_LRS'),
       );
   static const premiumZrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('Premium_ZRS'),
       );
   static const standardLrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('Standard_LRS'),
       );
   static const standardssdLrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('StandardSSD_LRS'),
       );
   static const standardssdZrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('StandardSSD_ZRS'),
       );
   static const ultrassdLrs =
-      OrchestratedVirtualMachineScaleSetStorageAccountType._(
+      OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
         TfArgLiteral('UltraSSD_LRS'),
       );
 
-  static const List<OrchestratedVirtualMachineScaleSetStorageAccountType>
+  static const List<
+    OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType
+  >
   values = [
     premiumLrs,
     premiumv2Lrs,
@@ -681,9 +733,9 @@ final class OrchestratedVirtualMachineScaleSetNetworkInterface {
 
   final TfArg<bool>? acceleratedNetworkingEnabled;
 
-  final TfArg<String>? auxiliaryMode;
+  final OrchestratedVirtualMachineScaleSetAuxiliaryMode? auxiliaryMode;
 
-  final TfArg<String>? auxiliarySku;
+  final OrchestratedVirtualMachineScaleSetAuxiliarySku? auxiliarySku;
 
   final TfArg<List<String>>? dnsServers;
 
@@ -712,6 +764,63 @@ final class OrchestratedVirtualMachineScaleSetNetworkInterface {
     'tags': ?tags?.toTfJson(),
     'ip_configuration': [for (final e in ipConfiguration) e.encode()],
   };
+}
+
+/// `auxiliary_mode` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetAuxiliaryMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetAuxiliaryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetAuxiliaryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetAuxiliaryMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const acceleratedconnections =
+      OrchestratedVirtualMachineScaleSetAuxiliaryMode._(
+        TfArgLiteral('AcceleratedConnections'),
+      );
+  static const floating = OrchestratedVirtualMachineScaleSetAuxiliaryMode._(
+    TfArgLiteral('Floating'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetAuxiliaryMode> values = [
+    acceleratedconnections,
+    floating,
+  ];
+}
+
+/// `auxiliary_sku` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetAuxiliarySku._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetAuxiliarySku.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetAuxiliarySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetAuxiliarySku.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const a8 = OrchestratedVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A8'),
+  );
+  static const a4 = OrchestratedVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A4'),
+  );
+  static const a1 = OrchestratedVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A1'),
+  );
+  static const a2 = OrchestratedVirtualMachineScaleSetAuxiliarySku._(
+    TfArgLiteral('A2'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetAuxiliarySku> values = [
+    a8,
+    a4,
+    a1,
+    a2,
+  ];
 }
 
 /// Typed helper for the `network_interface.ip_configuration` block of
@@ -865,7 +974,8 @@ final class OrchestratedVirtualMachineScaleSetOsDisk {
 
   final TfArg<num>? diskSizeGb;
 
-  final TfArg<String> storageAccountType;
+  final OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType
+  storageAccountType;
 
   final TfArg<bool>? writeAcceleratorEnabled;
 
@@ -882,6 +992,51 @@ final class OrchestratedVirtualMachineScaleSetOsDisk {
   };
 }
 
+/// `storage_account_type` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const premiumLrs =
+      OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_LRS'),
+      );
+  static const premiumZrs =
+      OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Premium_ZRS'),
+      );
+  static const standardLrs =
+      OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('Standard_LRS'),
+      );
+  static const standardssdLrs =
+      OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_LRS'),
+      );
+  static const standardssdZrs =
+      OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
+        TfArgLiteral('StandardSSD_ZRS'),
+      );
+
+  static const List<OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType>
+  values = [
+    premiumLrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+  ];
+}
+
 /// Typed helper for the `os_disk.diff_disk_settings` block of
 /// `azurerm_orchestrated_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -891,7 +1046,7 @@ final class OrchestratedVirtualMachineScaleSetDiffDiskSettings {
     this.placement,
   });
 
-  final TfArg<String> option;
+  final OrchestratedVirtualMachineScaleSetOption option;
 
   final OrchestratedVirtualMachineScaleSetPlacement? placement;
 
@@ -900,6 +1055,23 @@ final class OrchestratedVirtualMachineScaleSetDiffDiskSettings {
     'option': option.toTfJson(),
     'placement': ?placement?.toTfJson(),
   };
+}
+
+/// `option` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetOption._(TfArg<String> _)
+    implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetOption.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const local = OrchestratedVirtualMachineScaleSetOption._(
+    TfArgLiteral('Local'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetOption> values = [local];
 }
 
 /// `placement` — derived from the provider schema description.
@@ -1573,7 +1745,7 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
     required TfArg<String> name,
     OrchestratedVirtualMachineScaleSetNetworkApiVersion? networkApiVersion,
     required TfArg<num> platformFaultDomainCount,
-    TfArg<String>? priority,
+    OrchestratedVirtualMachineScaleSetPriority? priority,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? singlePlacementGroup,
     TfArg<String>? skuName,

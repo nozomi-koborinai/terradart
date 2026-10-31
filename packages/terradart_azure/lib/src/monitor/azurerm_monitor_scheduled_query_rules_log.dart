@@ -41,7 +41,7 @@ final class MonitorScheduledQueryRulesLogDimension {
 
   final TfArg<String> name;
 
-  final TfArg<String>? operator;
+  final MonitorScheduledQueryRulesLogOperator? operator;
 
   final TfArg<List<String>> values;
 
@@ -51,6 +51,23 @@ final class MonitorScheduledQueryRulesLogDimension {
     'operator': ?operator?.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const MonitorScheduledQueryRulesLogOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorScheduledQueryRulesLogOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorScheduledQueryRulesLogOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorScheduledQueryRulesLogOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const include = MonitorScheduledQueryRulesLogOperator._(
+    TfArgLiteral('Include'),
+  );
+
+  static const List<MonitorScheduledQueryRulesLogOperator> values = [include];
 }
 
 /// Factory wrapper for `azurerm_monitor_scheduled_query_rules_log`.

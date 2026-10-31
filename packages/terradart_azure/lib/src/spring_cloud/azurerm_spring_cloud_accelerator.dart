@@ -6,13 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_accelerator`.
 const Set<String> _azurermSpringCloudAcceleratorSensitive = <String>{};
 
+/// Spring Cloud Accelerator enum for `name`.
+extension type const SpringCloudAcceleratorName._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudAcceleratorName.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudAcceleratorName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudAcceleratorName.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = SpringCloudAcceleratorName._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpringCloudAcceleratorName> values = [defaultCase];
+}
+
 /// Factory wrapper for `azurerm_spring_cloud_accelerator`.
 final class AzurermSpringCloudAccelerator extends Resource {
   static const String tfType = 'azurerm_spring_cloud_accelerator';
 
   AzurermSpringCloudAccelerator(
     super.localName, {
-    required TfArg<String> name,
+    required SpringCloudAcceleratorName name,
     required TfArg<String> springCloudServiceId,
     super.lifecycle,
     super.dependsOn,

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-/// Parses schema descriptions that document a finite value set.
+/// Parses schema descriptions that document a finite value set. A
+/// description that calls its list partial ([describesOpenSet]) documents
+/// none.
 List<String>? parseEnumValuesFromDescription(String? description) {
-  if (description == null) return null;
+  if (description == null || describesOpenSet(description)) return null;
 
   final bracket = RegExp(r'Possible values:\s*(\[[^\]]+\])');
   final m = bracket.firstMatch(description);
@@ -53,6 +55,19 @@ List<String>? parseEnumValuesFromDescription(String? description) {
   }
   return null;
 }
+
+/// Whether [description] says the values it lists are not all the values
+/// the input takes: `See [FlexShieldingRegion](...) for the full list`,
+/// `Future modes (e.g. cnsa2) may be added; clients should treat unknown
+/// values as opaque strings.` Such an input stays a string.
+bool describesOpenSet(String description) => _openSet.hasMatch(description);
+
+final RegExp _openSet = RegExp(
+  r'\bfor\s+the\s+(?:full|complete)\s+list\b'
+  r'|\b(?:values|modes|options|types)\b[^.]{0,40}\bmay\s+be\s+added\b'
+  r'|\bunknown\s+values\b',
+  caseSensitive: false,
+);
 
 /// The values [token] reads from [list], or none when one is a path, URL or
 /// template (`'https://.../hyperdisk-balanced'`, `'projects/{project}'`):

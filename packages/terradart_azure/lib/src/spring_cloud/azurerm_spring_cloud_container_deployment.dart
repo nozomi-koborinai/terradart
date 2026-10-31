@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_container_deployment`.
 const Set<String> _azurermSpringCloudContainerDeploymentSensitive = <String>{};
 
+/// Spring Cloud Container Deployment Language enum for `language_framework`.
+extension type const SpringCloudContainerDeploymentLanguageFramework._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SpringCloudContainerDeploymentLanguageFramework.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudContainerDeploymentLanguageFramework.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudContainerDeploymentLanguageFramework.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const springboot = SpringCloudContainerDeploymentLanguageFramework._(
+    TfArgLiteral('springboot'),
+  );
+
+  static const List<SpringCloudContainerDeploymentLanguageFramework> values = [
+    springboot,
+  ];
+}
+
 /// Typed helper for the `quota` block of
 /// `azurerm_spring_cloud_container_deployment` (derived from provider schema).
 @immutable
@@ -37,7 +57,7 @@ final class AzurermSpringCloudContainerDeployment extends Resource {
     TfArg<Map<String, String>>? environmentVariables,
     required TfArg<String> image,
     TfArg<num>? instanceCount,
-    TfArg<String>? languageFramework,
+    SpringCloudContainerDeploymentLanguageFramework? languageFramework,
     required TfArg<String> name,
     required TfArg<String> server,
     required TfArg<String> springCloudAppId,

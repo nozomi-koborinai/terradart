@@ -25,12 +25,14 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_blob_storage.d
         AzurermDataProtectionBackupPolicyBlobStorage,
         DataProtectionBackupPolicyBlobStorageAbsoluteCriteria,
         DataProtectionBackupPolicyBlobStorageCriteria,
+        DataProtectionBackupPolicyBlobStorageDataStoreType,
         DataProtectionBackupPolicyBlobStorageLifeCycle,
         DataProtectionBackupPolicyBlobStorageRetentionRule,
         DataProtectionBackupPolicyBlobStorageWeeksOfMonth;
 export 'src/data_protection/azurerm_data_protection_backup_policy_cosmosdb_account.dart'
     show
         AzurermDataProtectionBackupPolicyCosmosdbAccount,
+        DataProtectionBackupPolicyCosmosdbAccountBackupFrequency,
         DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek,
         DataProtectionBackupPolicyCosmosdbAccountMonthlyRetentionRule,
         DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear,
@@ -56,6 +58,7 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_kubernetes_clu
         AzurermDataProtectionBackupPolicyKubernetesCluster,
         DataProtectionBackupPolicyKubernetesClusterAbsoluteCriteria,
         DataProtectionBackupPolicyKubernetesClusterCriteria,
+        DataProtectionBackupPolicyKubernetesClusterDataStoreType,
         DataProtectionBackupPolicyKubernetesClusterDefaultRetentionRule,
         DataProtectionBackupPolicyKubernetesClusterLifeCycle,
         DataProtectionBackupPolicyKubernetesClusterRetentionRule,
@@ -65,6 +68,7 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_mysql_flexible
         AzurermDataProtectionBackupPolicyMysqlFlexibleServer,
         DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriteria,
         DataProtectionBackupPolicyMysqlFlexibleServerCriteria,
+        DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType,
         DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek,
         DataProtectionBackupPolicyMysqlFlexibleServerDefaultRetentionRule,
         DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle,
@@ -76,6 +80,7 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_postgresql_fle
         AzurermDataProtectionBackupPolicyPostgresqlFlexibleServer,
         DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteCriteria,
         DataProtectionBackupPolicyPostgresqlFlexibleServerCriteria,
+        DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType,
         DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek,
         DataProtectionBackupPolicyPostgresqlFlexibleServerDefaultRetentionRule,
         DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle,

@@ -8,6 +8,23 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_application_insights_web_test`.
 const Set<String> _azurermApplicationInsightsWebTestSensitive = <String>{};
 
+/// Application Insights Web Test enum for `kind`.
+extension type const ApplicationInsightsWebTestKind._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationInsightsWebTestKind.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsWebTestKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsWebTestKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const multistep = ApplicationInsightsWebTestKind._(
+    TfArgLiteral('multistep'),
+  );
+  static const ping = ApplicationInsightsWebTestKind._(TfArgLiteral('ping'));
+
+  static const List<ApplicationInsightsWebTestKind> values = [multistep, ping];
+}
+
 /// Factory wrapper for `azurerm_application_insights_web_test`.
 final class AzurermApplicationInsightsWebTest extends Resource {
   static const String tfType = 'azurerm_application_insights_web_test';
@@ -20,7 +37,7 @@ final class AzurermApplicationInsightsWebTest extends Resource {
     TfArg<bool>? enabled,
     TfArg<num>? frequency,
     required TfArg<List<String>> geoLocations,
-    required TfArg<String> kind,
+    required ApplicationInsightsWebTestKind kind,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,

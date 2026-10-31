@@ -13,6 +13,7 @@ export 'src/managed_devops/azurerm_managed_devops_pool.dart'
         ManagedDevopsPoolAgent,
         ManagedDevopsPoolAutomaticResourcePrediction,
         ManagedDevopsPoolAzureDevopsOrganization,
+        ManagedDevopsPoolCaching,
         ManagedDevopsPoolCertificateStoreName,
         ManagedDevopsPoolFridaySchedule,
         ManagedDevopsPoolIdentity,

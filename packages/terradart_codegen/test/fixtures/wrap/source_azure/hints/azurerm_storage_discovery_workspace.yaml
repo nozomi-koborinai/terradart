@@ -3,6 +3,11 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: scope
+    properties:
+      - api_name: resource_types
+        enum_values:
+          - "Microsoft.Storage/storageAccounts"
   - api_name: sku
     enum_values:
       - "Free"

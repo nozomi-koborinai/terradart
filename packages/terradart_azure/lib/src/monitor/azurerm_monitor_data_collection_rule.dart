@@ -424,17 +424,35 @@ final class MonitorDataCollectionRulePrometheusForwarder {
 
   final TfArg<String> name;
 
-  final TfArg<List<String>> streams;
+  final List<MonitorDataCollectionRuleStreams> streams;
 
   final List<MonitorDataCollectionRuleLabelIncludeFilter>? labelIncludeFilter;
 
   @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    'streams': streams.toTfJson(),
+    'streams': [for (final e in streams) e.toTfJson()],
     if (labelIncludeFilter != null)
       'label_include_filter': [for (final e in labelIncludeFilter!) e.encode()],
   };
+}
+
+/// `streams` — derived from the provider schema description.
+extension type const MonitorDataCollectionRuleStreams._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorDataCollectionRuleStreams.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorDataCollectionRuleStreams.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorDataCollectionRuleStreams.arg(TfArg<String> arg) : this._(arg);
+
+  static const microsoftPrometheusmetrics = MonitorDataCollectionRuleStreams._(
+    TfArgLiteral('Microsoft-PrometheusMetrics'),
+  );
+
+  static const List<MonitorDataCollectionRuleStreams> values = [
+    microsoftPrometheusmetrics,
+  ];
 }
 
 /// Typed helper for the `data_sources.prometheus_forwarder.label_include_filter` block of
@@ -446,7 +464,7 @@ final class MonitorDataCollectionRuleLabelIncludeFilter {
     required this.value,
   });
 
-  final TfArg<String> label;
+  final MonitorDataCollectionRuleLabel label;
 
   final TfArg<String> value;
 
@@ -455,6 +473,24 @@ final class MonitorDataCollectionRuleLabelIncludeFilter {
     'label': label.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `label` — derived from the provider schema description.
+extension type const MonitorDataCollectionRuleLabel._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorDataCollectionRuleLabel.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorDataCollectionRuleLabel.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorDataCollectionRuleLabel.arg(TfArg<String> arg) : this._(arg);
+
+  static const microsoftMetricsIncludeLabel = MonitorDataCollectionRuleLabel._(
+    TfArgLiteral('microsoft_metrics_include_label'),
+  );
+
+  static const List<MonitorDataCollectionRuleLabel> values = [
+    microsoftMetricsIncludeLabel,
+  ];
 }
 
 /// Typed helper for the `data_sources.syslog` block of

@@ -8,6 +8,7 @@ export 'src/batch/azurerm_batch_account.dart'
     show
         AzurermBatchAccount,
         BatchAccountAccess,
+        BatchAccountAction,
         BatchAccountAllowedAuthenticationModes,
         BatchAccountDefaultAction,
         BatchAccountIdentity,
@@ -50,6 +51,7 @@ export 'src/batch/azurerm_batch_pool.dart'
         BatchPoolNodeDeallocationMethod,
         BatchPoolNodeFillType,
         BatchPoolNodePlacement,
+        BatchPoolOsDiskPlacement,
         BatchPoolPolicy,
         BatchPoolProtocol,
         BatchPoolPublicAddressProvisioningType,
@@ -59,6 +61,7 @@ export 'src/batch/azurerm_batch_pool.dart'
         BatchPoolSecurityProfile,
         BatchPoolSecurityType,
         BatchPoolStartTask,
+        BatchPoolStorageAccountType,
         BatchPoolStorageImageReference,
         BatchPoolTargetNodeCommunicationMode,
         BatchPoolTaskSchedulingPolicy,

@@ -7,7 +7,14 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_palo_alto_local_rulestack.dart'
     show DataAzurermPaloAltoLocalRulestack;
 export 'src/palo_alto/azurerm_palo_alto_local_rulestack.dart'
-    show AzurermPaloAltoLocalRulestack;
+    show
+        AzurermPaloAltoLocalRulestack,
+        PaloAltoLocalRulestackAntiSpywareProfile,
+        PaloAltoLocalRulestackAntiVirusProfile,
+        PaloAltoLocalRulestackDnsSubscription,
+        PaloAltoLocalRulestackFileBlockingProfile,
+        PaloAltoLocalRulestackUrlFilteringProfile,
+        PaloAltoLocalRulestackVulnerabilityProfile;
 export 'src/palo_alto/azurerm_palo_alto_local_rulestack_certificate.dart'
     show
         AzurermPaloAltoLocalRulestackCertificate,

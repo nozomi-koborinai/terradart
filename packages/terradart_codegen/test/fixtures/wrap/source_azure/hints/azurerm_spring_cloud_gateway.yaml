@@ -21,5 +21,8 @@ properties:
           - "POST"
           - "OPTIONS"
           - "PUT"
+  - api_name: name
+    enum_values:
+      - "default"
 at_most_one_of_groups:
   - ["local_response_cache_per_instance", "local_response_cache_per_route"]

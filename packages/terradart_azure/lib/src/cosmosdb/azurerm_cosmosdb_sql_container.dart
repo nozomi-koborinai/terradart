@@ -9,6 +9,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_cosmosdb_sql_container`.
 const Set<String> _azurermCosmosdbSqlContainerSensitive = <String>{};
 
+/// Cosmosdb Sql Container Partition Key enum for `partition_key_kind`.
+extension type const CosmosdbSqlContainerPartitionKeyKind._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerPartitionKeyKind.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerPartitionKeyKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerPartitionKeyKind.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const hash = CosmosdbSqlContainerPartitionKeyKind._(
+    TfArgLiteral('Hash'),
+  );
+  static const multihash = CosmosdbSqlContainerPartitionKeyKind._(
+    TfArgLiteral('MultiHash'),
+  );
+
+  static const List<CosmosdbSqlContainerPartitionKeyKind> values = [
+    hash,
+    multihash,
+  ];
+}
+
 /// Typed helper for the `autoscale_settings` block of
 /// `azurerm_cosmosdb_sql_container` (derived from provider schema).
 @immutable
@@ -75,7 +98,7 @@ final class CosmosdbSqlContainerIndexingPolicy {
     this.spatialIndex,
   });
 
-  final TfArg<String>? indexingMode;
+  final CosmosdbSqlContainerIndexingMode? indexingMode;
 
   final List<CosmosdbSqlContainerCompositeIndex>? compositeIndex;
 
@@ -97,6 +120,26 @@ final class CosmosdbSqlContainerIndexingPolicy {
     if (spatialIndex != null)
       'spatial_index': [for (final e in spatialIndex!) e.encode()],
   };
+}
+
+/// `indexing_mode` — derived from the provider schema description.
+extension type const CosmosdbSqlContainerIndexingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbSqlContainerIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbSqlContainerIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbSqlContainerIndexingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const consistent = CosmosdbSqlContainerIndexingMode._(
+    TfArgLiteral('consistent'),
+  );
+  static const none = CosmosdbSqlContainerIndexingMode._(TfArgLiteral('none'));
+
+  static const List<CosmosdbSqlContainerIndexingMode> values = [
+    consistent,
+    none,
+  ];
 }
 
 /// Typed helper for the `indexing_policy.composite_index` block of
@@ -208,7 +251,7 @@ final class AzurermCosmosdbSqlContainer extends Resource {
     required TfArg<String> databaseName,
     TfArg<num>? defaultTtl,
     required TfArg<String> name,
-    TfArg<String>? partitionKeyKind,
+    CosmosdbSqlContainerPartitionKeyKind? partitionKeyKind,
     required TfArg<List<String>> partitionKeyPaths,
     TfArg<num>? partitionKeyVersion,
     required RefTo<AzurermResourceGroup> resourceGroupName,

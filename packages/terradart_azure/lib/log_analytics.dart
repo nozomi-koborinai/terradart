@@ -49,7 +49,8 @@ export 'src/log_analytics/azurerm_log_analytics_workspace.dart'
         AzurermLogAnalyticsWorkspace,
         LogAnalyticsWorkspaceIdentity,
         LogAnalyticsWorkspaceInternetIngestionAccessType,
-        LogAnalyticsWorkspaceInternetQueryAccessType;
+        LogAnalyticsWorkspaceInternetQueryAccessType,
+        LogAnalyticsWorkspaceSku;
 export 'src/log_analytics/azurerm_log_analytics_workspace_table.dart'
     show AzurermLogAnalyticsWorkspaceTable, LogAnalyticsWorkspaceTablePlan;
 export 'src/log_analytics/azurerm_log_analytics_workspace_table_custom_log.dart'

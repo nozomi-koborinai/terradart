@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_app_service_certificate_binding`.
 const Set<String> _azurermAppServiceCertificateBindingSensitive = <String>{};
 
+/// App Service Certificate Binding Ssl enum for `ssl_state`.
+extension type const AppServiceCertificateBindingSslState._(TfArg<String> _)
+    implements TfArg<String> {
+  AppServiceCertificateBindingSslState.variable(String name)
+    : this._(TfArg.variable(name));
+  AppServiceCertificateBindingSslState.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppServiceCertificateBindingSslState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ipbasedenabled = AppServiceCertificateBindingSslState._(
+    TfArgLiteral('IpBasedEnabled'),
+  );
+  static const snienabled = AppServiceCertificateBindingSslState._(
+    TfArgLiteral('SniEnabled'),
+  );
+
+  static const List<AppServiceCertificateBindingSslState> values = [
+    ipbasedenabled,
+    snienabled,
+  ];
+}
+
 /// Factory wrapper for `azurerm_app_service_certificate_binding`.
 final class AzurermAppServiceCertificateBinding extends Resource {
   static const String tfType = 'azurerm_app_service_certificate_binding';
@@ -14,7 +37,7 @@ final class AzurermAppServiceCertificateBinding extends Resource {
     super.localName, {
     required TfArg<String> certificateId,
     required TfArg<String> hostnameBindingId,
-    required TfArg<String> sslState,
+    required AppServiceCertificateBindingSslState sslState,
     super.lifecycle,
     super.dependsOn,
     super.provider,

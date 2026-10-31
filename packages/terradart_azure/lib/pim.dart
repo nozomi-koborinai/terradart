@@ -16,6 +16,7 @@ export 'src/pim/azurerm_pim_active_role_assignment.dart'
 export 'src/pim/azurerm_pim_eligible_role_assignment.dart'
     show
         AzurermPimEligibleRoleAssignment,
+        PimEligibleRoleAssignmentConditionVersion,
         PimEligibleRoleAssignmentExpiration,
         PimEligibleRoleAssignmentExpirationDurationDays,
         PimEligibleRoleAssignmentExpirationDurationHours,

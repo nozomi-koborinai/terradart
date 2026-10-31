@@ -42,4 +42,5 @@ export 'src/management/azurerm_management_group_template_deployment.dart'
         ManagementGroupTemplateDeploymentTemplate,
         ManagementGroupTemplateDeploymentTemplateContent,
         ManagementGroupTemplateDeploymentTemplateSpecVersionId;
-export 'src/management/azurerm_management_lock.dart' show AzurermManagementLock;
+export 'src/management/azurerm_management_lock.dart'
+    show AzurermManagementLock, ManagementLockLevel;

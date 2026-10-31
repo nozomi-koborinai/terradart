@@ -60,6 +60,22 @@ extension type const CosmosdbAccountKind._(TfArg<String> _)
   ];
 }
 
+/// Cosmosdb Account Minimal Tls enum for `minimal_tls_version`.
+extension type const CosmosdbAccountMinimalTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbAccountMinimalTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbAccountMinimalTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbAccountMinimalTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const tls12 = CosmosdbAccountMinimalTlsVersion._(
+    TfArgLiteral('Tls12'),
+  );
+
+  static const List<CosmosdbAccountMinimalTlsVersion> values = [tls12];
+}
+
 /// Cosmosdb Account Mongo Server enum for `mongo_server_version`.
 extension type const CosmosdbAccountMongoServerVersion._(TfArg<String> _)
     implements TfArg<String> {
@@ -86,6 +102,19 @@ extension type const CosmosdbAccountMongoServerVersion._(TfArg<String> _)
     v3p6,
     v3p2,
   ];
+}
+
+/// Cosmosdb Account Offer enum for `offer_type`.
+extension type const CosmosdbAccountOfferType._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbAccountOfferType.variable(String name) : this._(TfArg.variable(name));
+  CosmosdbAccountOfferType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbAccountOfferType.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = CosmosdbAccountOfferType._(TfArgLiteral('Standard'));
+
+  static const List<CosmosdbAccountOfferType> values = [standard];
 }
 
 /// Typed helper for the `analytical_storage` block of
@@ -407,7 +436,7 @@ final class CosmosdbAccountCorsRule {
 
   final TfArg<List<String>> allowedHeaders;
 
-  final TfArg<List<String>> allowedMethods;
+  final List<CosmosdbAccountAllowedMethods> allowedMethods;
 
   final TfArg<List<String>> allowedOrigins;
 
@@ -418,11 +447,43 @@ final class CosmosdbAccountCorsRule {
   @internal
   Map<String, Object?> encode() => {
     'allowed_headers': allowedHeaders.toTfJson(),
-    'allowed_methods': allowedMethods.toTfJson(),
+    'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
     'allowed_origins': allowedOrigins.toTfJson(),
     'exposed_headers': exposedHeaders.toTfJson(),
     'max_age_in_seconds': ?maxAgeInSeconds?.toTfJson(),
   };
+}
+
+/// `allowed_methods` — derived from the provider schema description.
+extension type const CosmosdbAccountAllowedMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbAccountAllowedMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbAccountAllowedMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbAccountAllowedMethods.arg(TfArg<String> arg) : this._(arg);
+
+  static const delete = CosmosdbAccountAllowedMethods._(TfArgLiteral('DELETE'));
+  static const get = CosmosdbAccountAllowedMethods._(TfArgLiteral('GET'));
+  static const head = CosmosdbAccountAllowedMethods._(TfArgLiteral('HEAD'));
+  static const merge = CosmosdbAccountAllowedMethods._(TfArgLiteral('MERGE'));
+  static const post = CosmosdbAccountAllowedMethods._(TfArgLiteral('POST'));
+  static const options = CosmosdbAccountAllowedMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const put = CosmosdbAccountAllowedMethods._(TfArgLiteral('PUT'));
+  static const patch = CosmosdbAccountAllowedMethods._(TfArgLiteral('PATCH'));
+
+  static const List<CosmosdbAccountAllowedMethods> values = [
+    delete,
+    get,
+    head,
+    merge,
+    post,
+    options,
+    put,
+    patch,
+  ];
 }
 
 /// Typed helper for the `geo_location` block of
@@ -573,13 +634,13 @@ final class AzurermCosmosdbAccount extends Resource {
     CosmosdbAccountKind? kind,
     TfArg<bool>? localAuthenticationEnabled,
     required TfArg<String> location,
-    TfArg<String>? minimalTlsVersion,
+    CosmosdbAccountMinimalTlsVersion? minimalTlsVersion,
     CosmosdbAccountMongoServerVersion? mongoServerVersion,
     TfArg<bool>? multipleWriteLocationsEnabled,
     required TfArg<String> name,
     TfArg<bool>? networkAclBypassForAzureServices,
     TfArg<List<String>>? networkAclBypassIds,
-    required TfArg<String> offerType,
+    required CosmosdbAccountOfferType offerType,
     TfArg<bool>? partitionMergeEnabled,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,

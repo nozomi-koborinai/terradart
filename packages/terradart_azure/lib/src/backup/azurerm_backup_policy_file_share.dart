@@ -40,7 +40,7 @@ final class BackupPolicyFileShareBackup {
     required this.schedule,
   });
 
-  final TfArg<String> frequency;
+  final BackupPolicyFileShareFrequency frequency;
 
   final BackupPolicyFileShareSchedule schedule;
 
@@ -107,6 +107,23 @@ final class BackupPolicyFileShareScheduleTime
   Map<String, Object?> encode() => {'time': time.toTfJson()};
 }
 
+/// `frequency` — derived from the provider schema description.
+extension type const BackupPolicyFileShareFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyFileShareFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyFileShareFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyFileShareFrequency.arg(TfArg<String> arg) : this._(arg);
+
+  static const daily = BackupPolicyFileShareFrequency._(TfArgLiteral('Daily'));
+  static const hourly = BackupPolicyFileShareFrequency._(
+    TfArgLiteral('Hourly'),
+  );
+
+  static const List<BackupPolicyFileShareFrequency> values = [daily, hourly];
+}
+
 /// Typed helper for the `backup.hourly` block of
 /// `azurerm_backup_policy_file_share` (derived from provider schema).
 @immutable
@@ -163,7 +180,7 @@ final class BackupPolicyFileShareRetentionMonthly {
 
   final TfArg<List<String>>? weekdays;
 
-  final TfArg<List<String>>? weeks;
+  final List<BackupPolicyFileShareWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -171,8 +188,32 @@ final class BackupPolicyFileShareRetentionMonthly {
     'days': ?days?.toTfJson(),
     'include_last_days': ?includeLastDays?.toTfJson(),
     'weekdays': ?weekdays?.toTfJson(),
-    'weeks': ?weeks?.toTfJson(),
+    if (weeks != null) 'weeks': [for (final e in weeks!) e.toTfJson()],
   };
+}
+
+/// `weeks` — derived from the provider schema description.
+extension type const BackupPolicyFileShareWeeks._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPolicyFileShareWeeks.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupPolicyFileShareWeeks.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPolicyFileShareWeeks.arg(TfArg<String> arg) : this._(arg);
+
+  static const first = BackupPolicyFileShareWeeks._(TfArgLiteral('First'));
+  static const second = BackupPolicyFileShareWeeks._(TfArgLiteral('Second'));
+  static const third = BackupPolicyFileShareWeeks._(TfArgLiteral('Third'));
+  static const fourth = BackupPolicyFileShareWeeks._(TfArgLiteral('Fourth'));
+  static const last = BackupPolicyFileShareWeeks._(TfArgLiteral('Last'));
+
+  static const List<BackupPolicyFileShareWeeks> values = [
+    first,
+    second,
+    third,
+    fourth,
+    last,
+  ];
 }
 
 /// Typed helper for the `retention_weekly` block of
@@ -218,7 +259,7 @@ final class BackupPolicyFileShareRetentionYearly {
 
   final TfArg<List<String>>? weekdays;
 
-  final TfArg<List<String>>? weeks;
+  final List<BackupPolicyFileShareWeeks>? weeks;
 
   @internal
   Map<String, Object?> encode() => {
@@ -227,7 +268,7 @@ final class BackupPolicyFileShareRetentionYearly {
     'include_last_days': ?includeLastDays?.toTfJson(),
     'months': months.toTfJson(),
     'weekdays': ?weekdays?.toTfJson(),
-    'weeks': ?weeks?.toTfJson(),
+    if (weeks != null) 'weeks': [for (final e in weeks!) e.toTfJson()],
   };
 }
 

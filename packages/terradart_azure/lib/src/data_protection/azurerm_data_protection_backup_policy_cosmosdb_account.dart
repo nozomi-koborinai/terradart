@@ -8,6 +8,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermDataProtectionBackupPolicyCosmosdbAccountSensitive =
     <String>{};
 
+/// Data Protection Backup Policy Cosmosdb Account Backup enum for `backup_frequency`.
+extension type const DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const daily =
+      DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+        TfArgLiteral('Daily'),
+      );
+  static const weekly =
+      DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
+        TfArgLiteral('Weekly'),
+      );
+
+  static const List<DataProtectionBackupPolicyCosmosdbAccountBackupFrequency>
+  values = [daily, weekly];
+}
+
 /// Typed helper for the `monthly_retention_rule` block of
 /// `azurerm_data_protection_backup_policy_cosmosdb_account` (derived from provider schema).
 @immutable
@@ -242,7 +268,7 @@ final class AzurermDataProtectionBackupPolicyCosmosdbAccount extends Resource {
 
   AzurermDataProtectionBackupPolicyCosmosdbAccount(
     super.localName, {
-    TfArg<String>? backupFrequency,
+    DataProtectionBackupPolicyCosmosdbAccountBackupFrequency? backupFrequency,
     required TfArg<String> backupSchedule,
     required TfArg<String> dataProtectionBackupVaultId,
     required TfArg<String> defaultRetentionDuration,

@@ -3,6 +3,9 @@
 # re-extract with the command in README.md.
 provider_version: "5.12.0"
 properties:
+  - api_name: distro
+    enum_values:
+      - "AKSEdge"
   - api_name: infrastructure_provider
     enum_values:
       - "HCI"

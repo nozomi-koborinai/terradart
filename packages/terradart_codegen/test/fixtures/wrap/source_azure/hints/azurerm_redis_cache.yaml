@@ -7,6 +7,9 @@ properties:
     enum_values:
       - "C"
       - "P"
+  - api_name: minimum_tls_version
+    enum_values:
+      - "1.2"
   - api_name: redis_configuration
     properties:
       - api_name: data_persistence_authentication_method

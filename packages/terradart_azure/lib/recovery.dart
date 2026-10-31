@@ -13,6 +13,7 @@ export 'src/recovery/azurerm_recovery_services_vault.dart'
         RecoveryServicesVaultIdentity,
         RecoveryServicesVaultImmutability,
         RecoveryServicesVaultMonitoring,
-        RecoveryServicesVaultSku;
+        RecoveryServicesVaultSku,
+        RecoveryServicesVaultStorageModeType;
 export 'src/recovery/azurerm_recovery_services_vault_resource_guard_association.dart'
     show AzurermRecoveryServicesVaultResourceGuardAssociation;

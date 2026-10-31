@@ -297076,10 +297076,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'flex_shielding_regions',
           dartName: 'flexShieldingRegions',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          dartType: 'NetworkServicesEdgeCacheOriginFlexShieldingRegions',
+          dartType: 'List<String>',
         ),
       ],
     ),
@@ -337438,15 +337437,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'WIRE_FORMAT_UNSPECIFIED': 'wireFormatUnspecified',
         'EXT_PROC_GRPC': 'extProcGrpc',
         'EXT_AUTHZ_GRPC': 'extAuthzGrpc',
-      },
-    ),
-    'NetworkServicesEdgeCacheOriginFlexShieldingRegions': MigrateEnum(
-      name: 'NetworkServicesEdgeCacheOriginFlexShieldingRegions',
-      members: <String, String>{
-        'AFRICA_SOUTH1': 'africaSouth1',
-        'ME_CENTRAL1': 'meCentral1',
-        'EUROPE_WEST3': 'europeWest3',
-        'US_EAST5': 'usEast5',
       },
     ),
     'NetworkServicesEdgeCacheOriginProtocol': MigrateEnum(

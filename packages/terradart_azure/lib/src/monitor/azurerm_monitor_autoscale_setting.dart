@@ -83,13 +83,35 @@ final class MonitorAutoscaleSettingPredictive {
 
   final TfArg<String>? lookAheadTime;
 
-  final TfArg<String> scaleMode;
+  final MonitorAutoscaleSettingScaleMode scaleMode;
 
   @internal
   Map<String, Object?> encode() => {
     'look_ahead_time': ?lookAheadTime?.toTfJson(),
     'scale_mode': scaleMode.toTfJson(),
   };
+}
+
+/// `scale_mode` — derived from the provider schema description.
+extension type const MonitorAutoscaleSettingScaleMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorAutoscaleSettingScaleMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorAutoscaleSettingScaleMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorAutoscaleSettingScaleMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const enabled = MonitorAutoscaleSettingScaleMode._(
+    TfArgLiteral('Enabled'),
+  );
+  static const forecastonly = MonitorAutoscaleSettingScaleMode._(
+    TfArgLiteral('ForecastOnly'),
+  );
+
+  static const List<MonitorAutoscaleSettingScaleMode> values = [
+    enabled,
+    forecastonly,
+  ];
 }
 
 /// Typed helper for the `profile` block of
@@ -282,7 +304,7 @@ final class MonitorAutoscaleSettingMetricTrigger {
 
   final MonitorAutoscaleSettingOperator operator;
 
-  final TfArg<String> statistic;
+  final MonitorAutoscaleSettingStatistic statistic;
 
   final TfArg<num> threshold;
 
@@ -346,6 +368,30 @@ extension type const MonitorAutoscaleSettingOperator._(TfArg<String> _)
     lessthan,
     lessthanorequal,
     notequals,
+  ];
+}
+
+/// `statistic` — derived from the provider schema description.
+extension type const MonitorAutoscaleSettingStatistic._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorAutoscaleSettingStatistic.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorAutoscaleSettingStatistic.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorAutoscaleSettingStatistic.arg(TfArg<String> arg) : this._(arg);
+
+  static const average = MonitorAutoscaleSettingStatistic._(
+    TfArgLiteral('Average'),
+  );
+  static const max = MonitorAutoscaleSettingStatistic._(TfArgLiteral('Max'));
+  static const min = MonitorAutoscaleSettingStatistic._(TfArgLiteral('Min'));
+  static const sum = MonitorAutoscaleSettingStatistic._(TfArgLiteral('Sum'));
+
+  static const List<MonitorAutoscaleSettingStatistic> values = [
+    average,
+    max,
+    min,
+    sum,
   ];
 }
 
@@ -449,7 +495,7 @@ final class MonitorAutoscaleSettingScaleAction {
 
   final TfArg<String> cooldown;
 
-  final TfArg<String> direction;
+  final MonitorAutoscaleSettingDirection direction;
 
   final MonitorAutoscaleSettingType type;
 
@@ -462,6 +508,28 @@ final class MonitorAutoscaleSettingScaleAction {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const MonitorAutoscaleSettingDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitorAutoscaleSettingDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitorAutoscaleSettingDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitorAutoscaleSettingDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const decrease = MonitorAutoscaleSettingDirection._(
+    TfArgLiteral('Decrease'),
+  );
+  static const increase = MonitorAutoscaleSettingDirection._(
+    TfArgLiteral('Increase'),
+  );
+
+  static const List<MonitorAutoscaleSettingDirection> values = [
+    decrease,
+    increase,
+  ];
 }
 
 /// `type` — derived from the provider schema description.

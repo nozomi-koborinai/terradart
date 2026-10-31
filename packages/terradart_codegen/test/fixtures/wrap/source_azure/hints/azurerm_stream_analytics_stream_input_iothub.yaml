@@ -5,6 +5,9 @@ provider_version: "5.12.0"
 properties:
   - api_name: serialization
     properties:
+      - api_name: encoding
+        enum_values:
+          - "UTF8"
       - api_name: field_delimiter
         enum_values:
           - " "
@@ -12,3 +15,8 @@ properties:
           - "\t"
           - "|"
           - ";"
+      - api_name: type
+        enum_values:
+          - "Avro"
+          - "Csv"
+          - "Json"

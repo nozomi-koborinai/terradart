@@ -410,6 +410,41 @@ properties:
       expect(errors, hasLength(2));
       expect(errors, everyElement(contains('remove the entry')));
     });
+
+    test('fails once upstream fixes the value and adds another', () {
+      final fixed = ProviderSchemaIR(
+        providerName: ir.providerName,
+        providerSource: ir.providerSource,
+        providerVersion: ir.providerVersion,
+        resources: {
+          'x_thing': ResourceDef(
+            terraformType: 'x_thing',
+            root: BlockDef(
+              attributes: [
+                const Attribute(
+                  name: 'status',
+                  type: StringType(),
+                  constraints: Constraints(
+                    computed: true,
+                    enumValues: ['ACTIVE', 'OFFLINE', 'NEW_STATUS'],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        },
+        dataSources: const {},
+      );
+      final errors = <String>[];
+      const ProviderEnums.on().withOverrideEnums(
+        lane({
+          'status': ['ACTIVE', 'OFFLINE'],
+        }),
+        fixed,
+        error: errors.add,
+      );
+      expect(errors, [contains('enumValues status: the derivation already')]);
+    });
   });
 
   test('top-level string and list-of-string inputs are enriched', () {

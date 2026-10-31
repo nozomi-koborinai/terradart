@@ -39,7 +39,7 @@ final class StorageDiscoveryWorkspaceScope {
 
   final TfArg<String> displayName;
 
-  final TfArg<List<String>> resourceTypes;
+  final List<StorageDiscoveryWorkspaceResourceTypes> resourceTypes;
 
   final TfArg<List<String>>? tagKeysOnly;
 
@@ -48,10 +48,30 @@ final class StorageDiscoveryWorkspaceScope {
   @internal
   Map<String, Object?> encode() => {
     'display_name': displayName.toTfJson(),
-    'resource_types': resourceTypes.toTfJson(),
+    'resource_types': [for (final e in resourceTypes) e.toTfJson()],
     'tag_keys_only': ?tagKeysOnly?.toTfJson(),
     'tags': ?tags?.toTfJson(),
   };
+}
+
+/// `resource_types` — derived from the provider schema description.
+extension type const StorageDiscoveryWorkspaceResourceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageDiscoveryWorkspaceResourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageDiscoveryWorkspaceResourceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageDiscoveryWorkspaceResourceTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const microsoftStorageStorageaccounts =
+      StorageDiscoveryWorkspaceResourceTypes._(
+        TfArgLiteral('Microsoft.Storage/storageAccounts'),
+      );
+
+  static const List<StorageDiscoveryWorkspaceResourceTypes> values = [
+    microsoftStorageStorageaccounts,
+  ];
 }
 
 /// Factory wrapper for `azurerm_storage_discovery_workspace`.

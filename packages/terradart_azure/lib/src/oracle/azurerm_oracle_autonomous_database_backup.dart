@@ -6,6 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_oracle_autonomous_database_backup`.
 const Set<String> _azurermOracleAutonomousDatabaseBackupSensitive = <String>{};
 
+/// Oracle Autonomous Database Backup enum for `type`.
+extension type const OracleAutonomousDatabaseBackupType._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleAutonomousDatabaseBackupType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleAutonomousDatabaseBackupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleAutonomousDatabaseBackupType.arg(TfArg<String> arg) : this._(arg);
+
+  static const longterm = OracleAutonomousDatabaseBackupType._(
+    TfArgLiteral('LongTerm'),
+  );
+
+  static const List<OracleAutonomousDatabaseBackupType> values = [longterm];
+}
+
 /// Factory wrapper for `azurerm_oracle_autonomous_database_backup`.
 final class AzurermOracleAutonomousDatabaseBackup extends Resource {
   static const String tfType = 'azurerm_oracle_autonomous_database_backup';
@@ -15,7 +31,7 @@ final class AzurermOracleAutonomousDatabaseBackup extends Resource {
     required TfArg<String> autonomousDatabaseId,
     required TfArg<String> name,
     required TfArg<num> retentionPeriodInDays,
-    TfArg<String>? type,
+    OracleAutonomousDatabaseBackupType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

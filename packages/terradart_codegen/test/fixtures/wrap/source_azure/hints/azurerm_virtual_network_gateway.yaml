@@ -23,6 +23,10 @@ properties:
               - "AADGroupId"
               - "CertificateGroupId"
               - "RadiusAzureGroupId"
+  - api_name: type
+    enum_values:
+      - "ExpressRoute"
+      - "Vpn"
   - api_name: vpn_client_configuration
     properties:
       - api_name: ipsec_policy

@@ -147,7 +147,7 @@ final class ManagedLustreFileSystemRootSquash {
     this.squashUid,
   });
 
-  final TfArg<String> mode;
+  final ManagedLustreFileSystemMode mode;
 
   final TfArg<String> noSquashNids;
 
@@ -162,6 +162,23 @@ final class ManagedLustreFileSystemRootSquash {
     'squash_gid': ?squashGid?.toTfJson(),
     'squash_uid': ?squashUid?.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ManagedLustreFileSystemMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedLustreFileSystemMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedLustreFileSystemMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedLustreFileSystemMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = ManagedLustreFileSystemMode._(TfArgLiteral('All'));
+  static const rootonly = ManagedLustreFileSystemMode._(
+    TfArgLiteral('RootOnly'),
+  );
+
+  static const List<ManagedLustreFileSystemMode> values = [all, rootonly];
 }
 
 /// Factory wrapper for `azurerm_managed_lustre_file_system`.

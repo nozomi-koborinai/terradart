@@ -52,7 +52,7 @@ final class IotSecurityDeviceGroupRangeRule {
 
   final TfArg<num> min;
 
-  final TfArg<String> type;
+  final IotSecurityDeviceGroupType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -61,6 +61,91 @@ final class IotSecurityDeviceGroupRangeRule {
     'min': min.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const IotSecurityDeviceGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  IotSecurityDeviceGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotSecurityDeviceGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotSecurityDeviceGroupType.arg(TfArg<String> arg) : this._(arg);
+
+  static const activeconnectionsnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('ActiveConnectionsNotInAllowedRange'),
+      );
+  static const amqpc2dmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('AmqpC2DMessagesNotInAllowedRange'),
+  );
+  static const mqttc2dmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('MqttC2DMessagesNotInAllowedRange'),
+  );
+  static const httpc2dmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('HttpC2DMessagesNotInAllowedRange'),
+  );
+  static const amqpc2drejectedmessagesnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('AmqpC2DRejectedMessagesNotInAllowedRange'),
+      );
+  static const mqttc2drejectedmessagesnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('MqttC2DRejectedMessagesNotInAllowedRange'),
+      );
+  static const httpc2drejectedmessagesnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('HttpC2DRejectedMessagesNotInAllowedRange'),
+      );
+  static const amqpd2cmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('AmqpD2CMessagesNotInAllowedRange'),
+  );
+  static const mqttd2cmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('MqttD2CMessagesNotInAllowedRange'),
+  );
+  static const httpd2cmessagesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('HttpD2CMessagesNotInAllowedRange'),
+  );
+  static const directmethodinvokesnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('DirectMethodInvokesNotInAllowedRange'),
+      );
+  static const failedlocalloginsnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('FailedLocalLoginsNotInAllowedRange'),
+      );
+  static const fileuploadsnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('FileUploadsNotInAllowedRange'),
+  );
+  static const queuepurgesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('QueuePurgesNotInAllowedRange'),
+  );
+  static const twinupdatesnotinallowedrange = IotSecurityDeviceGroupType._(
+    TfArgLiteral('TwinUpdatesNotInAllowedRange'),
+  );
+  static const unauthorizedoperationsnotinallowedrange =
+      IotSecurityDeviceGroupType._(
+        TfArgLiteral('UnauthorizedOperationsNotInAllowedRange'),
+      );
+
+  static const List<IotSecurityDeviceGroupType> values = [
+    activeconnectionsnotinallowedrange,
+    amqpc2dmessagesnotinallowedrange,
+    mqttc2dmessagesnotinallowedrange,
+    httpc2dmessagesnotinallowedrange,
+    amqpc2drejectedmessagesnotinallowedrange,
+    mqttc2drejectedmessagesnotinallowedrange,
+    httpc2drejectedmessagesnotinallowedrange,
+    amqpd2cmessagesnotinallowedrange,
+    mqttd2cmessagesnotinallowedrange,
+    httpd2cmessagesnotinallowedrange,
+    directmethodinvokesnotinallowedrange,
+    failedlocalloginsnotinallowedrange,
+    fileuploadsnotinallowedrange,
+    queuepurgesnotinallowedrange,
+    twinupdatesnotinallowedrange,
+    unauthorizedoperationsnotinallowedrange,
+  ];
 }
 
 /// Factory wrapper for `azurerm_iot_security_device_group`.

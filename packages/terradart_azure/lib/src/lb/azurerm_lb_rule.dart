@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_lb_rule`.
 const Set<String> _azurermLbRuleSensitive = <String>{};
 
+/// Lb Rule enum for `protocol`.
+extension type const LbRuleProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  LbRuleProtocol.variable(String name) : this._(TfArg.variable(name));
+  LbRuleProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbRuleProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = LbRuleProtocol._(TfArgLiteral('All'));
+  static const tcp = LbRuleProtocol._(TfArgLiteral('Tcp'));
+  static const udp = LbRuleProtocol._(TfArgLiteral('Udp'));
+
+  static const List<LbRuleProtocol> values = [all, tcp, udp];
+}
+
 /// Factory wrapper for `azurerm_lb_rule`.
 final class AzurermLbRule extends Resource {
   static const String tfType = 'azurerm_lb_rule';
@@ -23,7 +38,7 @@ final class AzurermLbRule extends Resource {
     required TfArg<String> loadbalancerId,
     required TfArg<String> name,
     TfArg<String>? probeId,
-    required TfArg<String> protocol,
+    required LbRuleProtocol protocol,
     TfArg<bool>? tcpResetEnabled,
     super.lifecycle,
     super.dependsOn,

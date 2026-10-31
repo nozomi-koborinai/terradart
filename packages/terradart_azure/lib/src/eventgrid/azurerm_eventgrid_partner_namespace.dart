@@ -68,7 +68,7 @@ final class EventgridPartnerNamespaceInboundIpRule {
     required this.ipMask,
   });
 
-  final TfArg<String>? action;
+  final EventgridPartnerNamespaceAction? action;
 
   final TfArg<String> ipMask;
 
@@ -77,6 +77,20 @@ final class EventgridPartnerNamespaceInboundIpRule {
     'action': ?action?.toTfJson(),
     'ip_mask': ipMask.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const EventgridPartnerNamespaceAction._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridPartnerNamespaceAction.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridPartnerNamespaceAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridPartnerNamespaceAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = EventgridPartnerNamespaceAction._(TfArgLiteral('Allow'));
+
+  static const List<EventgridPartnerNamespaceAction> values = [allow];
 }
 
 /// Factory wrapper for `azurerm_eventgrid_partner_namespace`.

@@ -332,7 +332,7 @@ final class CognitiveAccountNetworkInjection {
     required this.subnetId,
   });
 
-  final TfArg<String> scenario;
+  final CognitiveAccountScenario scenario;
 
   final TfArg<String> subnetId;
 
@@ -341,6 +341,19 @@ final class CognitiveAccountNetworkInjection {
     'scenario': scenario.toTfJson(),
     'subnet_id': subnetId.toTfJson(),
   };
+}
+
+/// `scenario` — derived from the provider schema description.
+extension type const CognitiveAccountScenario._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitiveAccountScenario.variable(String name) : this._(TfArg.variable(name));
+  CognitiveAccountScenario.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountScenario.arg(TfArg<String> arg) : this._(arg);
+
+  static const agent = CognitiveAccountScenario._(TfArgLiteral('agent'));
+
+  static const List<CognitiveAccountScenario> values = [agent];
 }
 
 /// Typed helper for the `storage` block of

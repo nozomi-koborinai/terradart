@@ -33,11 +33,30 @@ properties:
           - "ReadWrite"
       - api_name: diff_disk_settings
         properties:
+          - api_name: option
+            enum_values:
+              - "Local"
           - api_name: placement
             enum_values:
               - "CacheDisk"
               - "NvmeDisk"
               - "ResourceDisk"
+      - api_name: security_encryption_type
+        enum_values:
+          - "VMGuestStateOnly"
+          - "DiskWithVMGuestState"
+      - api_name: storage_account_type
+        enum_values:
+          - "Premium_LRS"
+          - "Standard_LRS"
+          - "StandardSSD_LRS"
+          - "StandardSSD_ZRS"
+          - "Premium_ZRS"
+  - api_name: os_image_notification
+    properties:
+      - api_name: timeout
+        enum_values:
+          - "PT15M"
   - api_name: patch_assessment_mode
     enum_values:
       - "AutomaticByPlatform"
@@ -46,6 +65,15 @@ properties:
     enum_values:
       - "AutomaticByPlatform"
       - "ImageDefault"
+  - api_name: priority
+    enum_values:
+      - "Regular"
+      - "Spot"
+  - api_name: reboot_setting
+    enum_values:
+      - "Always"
+      - "IfRequired"
+      - "Never"
 exactly_one_of_groups:
   - ["admin_username", "os_managed_disk_id"]
   - ["os_managed_disk_id", "source_image_id", "source_image_reference"]

@@ -22,9 +22,9 @@ final class CdnFrontdoorOriginGroupHealthProbe {
 
   final TfArg<String>? path;
 
-  final TfArg<String> protocol;
+  final CdnFrontdoorOriginGroupProtocol protocol;
 
-  final TfArg<String>? requestType;
+  final CdnFrontdoorOriginGroupRequestType? requestType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -33,6 +33,38 @@ final class CdnFrontdoorOriginGroupHealthProbe {
     'protocol': protocol.toTfJson(),
     'request_type': ?requestType?.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const CdnFrontdoorOriginGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorOriginGroupProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorOriginGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorOriginGroupProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = CdnFrontdoorOriginGroupProtocol._(TfArgLiteral('Http'));
+  static const https = CdnFrontdoorOriginGroupProtocol._(TfArgLiteral('Https'));
+
+  static const List<CdnFrontdoorOriginGroupProtocol> values = [http, https];
+}
+
+/// `request_type` — derived from the provider schema description.
+extension type const CdnFrontdoorOriginGroupRequestType._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorOriginGroupRequestType.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorOriginGroupRequestType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorOriginGroupRequestType.arg(TfArg<String> arg) : this._(arg);
+
+  static const get = CdnFrontdoorOriginGroupRequestType._(TfArgLiteral('GET'));
+  static const head = CdnFrontdoorOriginGroupRequestType._(
+    TfArgLiteral('HEAD'),
+  );
+
+  static const List<CdnFrontdoorOriginGroupRequestType> values = [get, head];
 }
 
 /// Typed helper for the `load_balancing` block of

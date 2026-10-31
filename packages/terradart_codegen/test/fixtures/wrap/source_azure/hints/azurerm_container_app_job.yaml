@@ -73,6 +73,29 @@ properties:
                   - "github-runner"
   - api_name: template
     properties:
+      - api_name: container
+        properties:
+          - api_name: liveness_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
+          - api_name: readiness_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
+          - api_name: startup_probe
+            properties:
+              - api_name: transport
+                enum_values:
+                  - "TCP"
+                  - "HTTP"
+                  - "HTTPS"
       - api_name: volume
         properties:
           - api_name: storage_type

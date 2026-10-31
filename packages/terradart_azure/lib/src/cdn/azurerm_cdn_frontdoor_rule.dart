@@ -166,7 +166,7 @@ final class CdnFrontdoorRuleCaching {
     this.queryStringParameters,
   });
 
-  final TfArg<String> behaviour;
+  final CdnFrontdoorRuleBehaviour behaviour;
 
   final TfArg<bool>? compressionEnabled;
 
@@ -184,6 +184,34 @@ final class CdnFrontdoorRuleCaching {
     'query_string_behaviour': ?queryStringBehaviour?.toTfJson(),
     'query_string_parameters': ?queryStringParameters?.toTfJson(),
   };
+}
+
+/// `behaviour` — derived from the provider schema description.
+extension type const CdnFrontdoorRuleBehaviour._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRuleBehaviour.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRuleBehaviour.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRuleBehaviour.arg(TfArg<String> arg) : this._(arg);
+
+  static const honororigin = CdnFrontdoorRuleBehaviour._(
+    TfArgLiteral('HonorOrigin'),
+  );
+  static const overridealways = CdnFrontdoorRuleBehaviour._(
+    TfArgLiteral('OverrideAlways'),
+  );
+  static const overrideiforiginmissing = CdnFrontdoorRuleBehaviour._(
+    TfArgLiteral('OverrideIfOriginMissing'),
+  );
+  static const disabled = CdnFrontdoorRuleBehaviour._(TfArgLiteral('Disabled'));
+
+  static const List<CdnFrontdoorRuleBehaviour> values = [
+    honororigin,
+    overridealways,
+    overrideiforiginmissing,
+    disabled,
+  ];
 }
 
 /// `query_string_behaviour` — derived from the provider schema description.

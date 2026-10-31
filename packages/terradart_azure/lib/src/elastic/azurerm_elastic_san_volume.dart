@@ -18,13 +18,41 @@ final class ElasticSanVolumeCreateSource {
 
   final TfArg<String> sourceId;
 
-  final TfArg<String> sourceType;
+  final ElasticSanVolumeSourceType sourceType;
 
   @internal
   Map<String, Object?> encode() => {
     'source_id': sourceId.toTfJson(),
     'source_type': sourceType.toTfJson(),
   };
+}
+
+/// `source_type` — derived from the provider schema description.
+extension type const ElasticSanVolumeSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticSanVolumeSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticSanVolumeSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticSanVolumeSourceType.arg(TfArg<String> arg) : this._(arg);
+
+  static const disk = ElasticSanVolumeSourceType._(TfArgLiteral('Disk'));
+  static const diskrestorepoint = ElasticSanVolumeSourceType._(
+    TfArgLiteral('DiskRestorePoint'),
+  );
+  static const disksnapshot = ElasticSanVolumeSourceType._(
+    TfArgLiteral('DiskSnapshot'),
+  );
+  static const volumesnapshot = ElasticSanVolumeSourceType._(
+    TfArgLiteral('VolumeSnapshot'),
+  );
+
+  static const List<ElasticSanVolumeSourceType> values = [
+    disk,
+    diskrestorepoint,
+    disksnapshot,
+    volumesnapshot,
+  ];
 }
 
 /// Factory wrapper for `azurerm_elastic_san_volume`.

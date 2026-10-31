@@ -9,6 +9,20 @@ properties:
       - "http"
       - "soap"
       - "websocket"
+  - api_name: import
+    properties:
+      - api_name: content_format
+        enum_values:
+          - "openapi"
+          - "openapi+json"
+          - "openapi+json-link"
+          - "openapi-link"
+          - "swagger-json"
+          - "swagger-link-json"
+          - "wadl-link-json"
+          - "wadl-xml"
+          - "wsdl"
+          - "wsdl-link"
   - api_name: openid_authentication
     properties:
       - api_name: bearer_token_sending_methods

@@ -241,15 +241,33 @@ List<String>? cueValues(String? description) {
   return null;
 }
 
+final _enumLink = RegExp(
+  r'https?://\S*/reference/rest/\S*#[A-Z][A-Za-z0-9]*\b',
+);
+
+/// Whether [description] carries a value-set cue (`Possible values`, `Valid
+/// options`, `One of`, `either`) or links a REST reference anchor that may
+/// name a canonical enum, whatever tokens follow it. The tokens decide
+/// nothing: every such string input is typed or has a reasoned line in
+/// tool/enum_gap_cue_prose.yaml.
+bool hasValueSetCue(String? description) =>
+    description != null &&
+    (_cue.hasMatch(description) || _enumLink.hasMatch(description));
+
 /// The value set the gap report holds an input to: Magic Modules
 /// `enum_values`, else the parser's reading, else [cueValues] (`cueOnly`).
+/// None for a description the parser's [describesOpenSet] calls partial:
+/// the same rule keeps that input a string in `wrap`.
 ({List<String> values, bool cueOnly})? describedValues(
   String? description,
   List<String>? mm,
 ) {
   final known = mm ?? parseEnumValuesFromDescription(description);
   if (known != null) return (values: known, cueOnly: false);
-  final cue = cueValues(description);
+  if (description != null && describesOpenSet(description)) return null;
+  final cue =
+      cueValues(description) ??
+      (hasValueSetCue(description) ? const <String>[] : null);
   return cue == null ? null : (values: cue, cueOnly: true);
 }
 
@@ -463,6 +481,163 @@ String? helperClassText(String genText, List<String> blockPath) {
   return genText.substring(start, end < 0 ? genText.length : end + 2);
 }
 
+/// The classes that hold [blockPath]'s fields in [genText]: the block's
+/// class, found by following field types from the resource class down
+/// (else by the doc comment [helperClassText] finds), plus the variants of
+/// any sealed field it holds. Null when neither reaches a class (a
+/// hand-written helper), never the whole file: a field name repeats across
+/// helpers, and another block's field says nothing about this one.
+String? blockClassText(String genText, List<String> blockPath) {
+  var text = _classText(
+    genText,
+    RegExp(
+      r'^(?:final\s+)?class\s+\w+\s+extends\s+(?:Resource|Data)\b',
+      multiLine: true,
+    ),
+  );
+  for (final segment in blockPath) {
+    if (text == null) break;
+    text = _childClassText(genText, text, segment);
+  }
+  text ??= helperClassText(genText, blockPath);
+  return text == null ? null : _withSealedFields(genText, text);
+}
+
+String? _namedClassText(String genText, String name) => _classText(
+  genText,
+  RegExp(
+    '^(?:(?:final|sealed|abstract|base|interface)\\s+)*class\\s+'
+    '${RegExp.escape(name)}\\b',
+    multiLine: true,
+  ),
+);
+
+/// The helper type names of [parent]'s field or constructor parameter
+/// [field].
+Iterable<String> _fieldTypeNames(String parent, String field) sync* {
+  for (final type in [
+    ..._declaredFieldTypes(parent, field),
+    for (final m in RegExp(
+      '([A-Z][A-Za-z0-9_<>?]*)\\s+$field\\s*[,)]',
+    ).allMatches(parent))
+      m.group(1)!,
+  ]) {
+    if (_helperTypeName(type) case final name?) yield name;
+  }
+}
+
+/// The class of [parent]'s `segment` block: the type of the field its
+/// encode map writes under that key (`'boot_disk': ?bootDisk?.encode()`)
+/// or of the field named after it; a variant of a sealed field of
+/// [parent] whose `blockKey` is [segment] (a block a sealed argument
+/// holds); else the one variant in the file with that `blockKey`.
+String? _childClassText(String genText, String parent, String segment) {
+  final keyed = RegExp(
+    "'${RegExp.escape(segment)}':\\s*(?:TfArg\\.literal\\()?"
+    "\\??\\[?\\s*\\??(\\w+)",
+  ).firstMatch(parent)?.group(1);
+  for (final field in [?keyed, _camel(segment)]) {
+    for (final name in _fieldTypeNames(parent, field)) {
+      final found = _namedClassText(genText, name);
+      if (found == null) continue;
+      if (!found.startsWith('sealed')) {
+        return _unwrapped(genText, found, segment);
+      }
+      final variant = _variantClassText(genText, segment, of: name);
+      if (variant != null) return _unwrapped(genText, variant, segment);
+      return _sealedFamilyText(genText, name, found);
+    }
+  }
+  for (final name in _sealedFieldTypes(genText, parent)) {
+    final variant = _variantClassText(genText, segment, of: name);
+    if (variant != null) return _unwrapped(genText, variant, segment);
+  }
+  final variant = _variantClassText(genText, segment);
+  return variant == null ? null : _unwrapped(genText, variant, segment);
+}
+
+/// The sealed classes [parent]'s fields and parameters are typed with.
+List<String> _sealedFieldTypes(String genText, String parent) => [
+  for (final m in RegExp(
+    r'(?:final\s+|^\s*(?:required\s+)?)([A-Z][A-Za-z0-9_<>?]*)\s+\w+\s*[;,)]',
+    multiLine: true,
+  ).allMatches(parent))
+    if (_helperTypeName(m.group(1)!) case final name?)
+      if (_namedClassText(genText, name)?.startsWith('sealed') ?? false) name,
+];
+
+/// [text] plus the variants of every sealed field it holds, whose classes
+/// set the block's own fields (`...mode.encode()`).
+String _withSealedFields(String genText, String text) {
+  final out = StringBuffer(text);
+  for (final name in _sealedFieldTypes(genText, text).toSet()) {
+    if (text.startsWith('sealed class $name')) continue;
+    out.write(_sealedFamilyText(genText, name, ''));
+  }
+  return out.toString();
+}
+
+String? _classText(String genText, RegExp start) {
+  final m = start.firstMatch(genText);
+  if (m == null) return null;
+  final end = genText.indexOf('\n}\n', m.start);
+  return genText.substring(m.start, end < 0 ? genText.length : end + 2);
+}
+
+/// `List<FooBar>?` → `FooBar`; null for a `TfArg` or other non-helper type.
+String? _helperTypeName(String type) {
+  if (type.startsWith('TfArg<')) return null;
+  final names = RegExp(r'[A-Z][A-Za-z0-9_]*')
+      .allMatches(type)
+      .map((m) => m.group(0)!)
+      .where((n) => n != 'List' && n != 'Map' && n != 'String');
+  return names.isEmpty ? null : names.last;
+}
+
+/// A variant that holds its block in its one field (`final BigqueryJobCopy
+/// copy;`) stands for that field's class.
+String _unwrapped(String genText, String found, String segment) {
+  if (!found.contains("blockKey => '$segment'")) return found;
+  final fields = RegExp(r'final ([^;]+?)\s+\w+\s*;').allMatches(found).toList();
+  if (fields.length != 1) return found;
+  final name = _helperTypeName(fields.single.group(1)!.replaceAll(' ', ''));
+  if (name == null) return found;
+  final inner = _namedClassText(genText, name);
+  if (inner == null) return found;
+  return inner.startsWith('sealed')
+      ? _sealedFamilyText(genText, name, inner)
+      : inner;
+}
+
+/// A block that is one sealed choice of its fields: the sealed class and
+/// every variant class that extends it, each variant setting one field.
+String _sealedFamilyText(String genText, String name, String sealed) {
+  final out = StringBuffer(sealed);
+  for (final m in _variantStarts(genText, name)) {
+    final end = genText.indexOf('\n}\n', m.start);
+    out.write(genText.substring(m.start, end < 0 ? genText.length : end + 2));
+  }
+  return out.toString();
+}
+
+Iterable<RegExpMatch> _variantStarts(String genText, String? of) => RegExp(
+  '^(?:final\\s+)?class\\s+\\w+\\s+extends\\s+'
+  '${of == null ? '\\w+' : RegExp.escape(of)}\\b',
+  multiLine: true,
+).allMatches(genText);
+
+/// The variant whose `blockKey` is [segment]: among [of]'s variants, or
+/// the one such class in the file.
+String? _variantClassText(String genText, String segment, {String? of}) {
+  final found = <String>[];
+  for (final m in _variantStarts(genText, of)) {
+    final end = genText.indexOf('\n}\n', m.start);
+    final text = genText.substring(m.start, end < 0 ? genText.length : end + 2);
+    if (text.contains("String get blockKey => '$segment';")) found.add(text);
+  }
+  return found.length == 1 ? found.single : null;
+}
+
 bool nestedEnumFieldIsGap(String genText, String camel) {
   var sawRaw = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
@@ -602,11 +777,8 @@ void main(List<String> args) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
       final frozen = _isFrozenByExclude(ov, site.blockPath);
-      final ownClass = helperClassText(genTextRaw!, site.blockPath);
-      final scoped = ownClass == null ? null : _normalizeWhitespace(ownClass);
-      final genText = scoped != null && _nestedFieldDeclared(scoped, camel)
-          ? scoped
-          : fileText;
+      final ownClass = blockClassText(genTextRaw!, site.blockPath);
+      final genText = ownClass == null ? '' : _normalizeWhitespace(ownClass);
 
       if (!_nestedFieldDeclared(genText, camel)) {
         if (encodesFixedValue(genText, site.attr, site.values)) continue;

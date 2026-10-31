@@ -33,6 +33,56 @@ extension type const MaintenanceConfigurationInGuestUserPatchMode._(
   ];
 }
 
+/// Maintenance Configuration enum for `scope`.
+extension type const MaintenanceConfigurationScope._(TfArg<String> _)
+    implements TfArg<String> {
+  MaintenanceConfigurationScope.variable(String name)
+    : this._(TfArg.variable(name));
+  MaintenanceConfigurationScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const MaintenanceConfigurationScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const extension = MaintenanceConfigurationScope._(
+    TfArgLiteral('Extension'),
+  );
+  static const host = MaintenanceConfigurationScope._(TfArgLiteral('Host'));
+  static const inguestpatch = MaintenanceConfigurationScope._(
+    TfArgLiteral('InGuestPatch'),
+  );
+  static const osimage = MaintenanceConfigurationScope._(
+    TfArgLiteral('OSImage'),
+  );
+  static const sqldb = MaintenanceConfigurationScope._(TfArgLiteral('SQLDB'));
+  static const sqlmanagedinstance = MaintenanceConfigurationScope._(
+    TfArgLiteral('SQLManagedInstance'),
+  );
+
+  static const List<MaintenanceConfigurationScope> values = [
+    extension,
+    host,
+    inguestpatch,
+    osimage,
+    sqldb,
+    sqlmanagedinstance,
+  ];
+}
+
+/// Maintenance Configuration enum for `visibility`.
+extension type const MaintenanceConfigurationVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  MaintenanceConfigurationVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  MaintenanceConfigurationVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const MaintenanceConfigurationVisibility.arg(TfArg<String> arg) : this._(arg);
+
+  static const custom = MaintenanceConfigurationVisibility._(
+    TfArgLiteral('Custom'),
+  );
+
+  static const List<MaintenanceConfigurationVisibility> values = [custom];
+}
+
 /// Typed helper for the `install_patches` block of
 /// `azurerm_maintenance_configuration` (derived from provider schema).
 @immutable
@@ -268,9 +318,9 @@ final class AzurermMaintenanceConfiguration extends Resource {
     required TfArg<String> name,
     TfArg<Map<String, String>>? properties,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> scope,
+    required MaintenanceConfigurationScope scope,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? visibility,
+    MaintenanceConfigurationVisibility? visibility,
     MaintenanceConfigurationInstallPatches? installPatches,
     MaintenanceConfigurationWindow? window,
     super.lifecycle,

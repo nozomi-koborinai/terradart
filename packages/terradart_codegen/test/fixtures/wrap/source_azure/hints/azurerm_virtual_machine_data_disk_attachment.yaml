@@ -8,3 +8,7 @@ properties:
       - "None"
       - "ReadOnly"
       - "ReadWrite"
+  - api_name: create_option
+    enum_values:
+      - "Attach"
+      - "Empty"

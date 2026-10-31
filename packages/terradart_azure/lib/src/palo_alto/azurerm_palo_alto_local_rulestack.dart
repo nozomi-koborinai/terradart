@@ -8,22 +8,163 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_palo_alto_local_rulestack`.
 const Set<String> _azurermPaloAltoLocalRulestackSensitive = <String>{};
 
+/// Palo Alto Local Rulestack Anti Spyware enum for `anti_spyware_profile`.
+extension type const PaloAltoLocalRulestackAntiSpywareProfile._(TfArg<String> _)
+    implements TfArg<String> {
+  PaloAltoLocalRulestackAntiSpywareProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackAntiSpywareProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackAntiSpywareProfile.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackAntiSpywareProfile._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackAntiSpywareProfile._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackAntiSpywareProfile> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
+/// Palo Alto Local Rulestack Anti Virus enum for `anti_virus_profile`.
+extension type const PaloAltoLocalRulestackAntiVirusProfile._(TfArg<String> _)
+    implements TfArg<String> {
+  PaloAltoLocalRulestackAntiVirusProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackAntiVirusProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackAntiVirusProfile.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackAntiVirusProfile._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackAntiVirusProfile._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackAntiVirusProfile> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
+/// Palo Alto Local Rulestack Dns enum for `dns_subscription`.
+extension type const PaloAltoLocalRulestackDnsSubscription._(TfArg<String> _)
+    implements TfArg<String> {
+  PaloAltoLocalRulestackDnsSubscription.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackDnsSubscription.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackDnsSubscription.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackDnsSubscription._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackDnsSubscription._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackDnsSubscription> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
+/// Palo Alto Local Rulestack File Blocking enum for `file_blocking_profile`.
+extension type const PaloAltoLocalRulestackFileBlockingProfile._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoLocalRulestackFileBlockingProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackFileBlockingProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackFileBlockingProfile.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackFileBlockingProfile._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackFileBlockingProfile._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackFileBlockingProfile> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
+/// Palo Alto Local Rulestack Url Filtering enum for `url_filtering_profile`.
+extension type const PaloAltoLocalRulestackUrlFilteringProfile._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoLocalRulestackUrlFilteringProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackUrlFilteringProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackUrlFilteringProfile.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackUrlFilteringProfile._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackUrlFilteringProfile._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackUrlFilteringProfile> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
+/// Palo Alto Local Rulestack Vulnerability enum for `vulnerability_profile`.
+extension type const PaloAltoLocalRulestackVulnerabilityProfile._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaloAltoLocalRulestackVulnerabilityProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  PaloAltoLocalRulestackVulnerabilityProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaloAltoLocalRulestackVulnerabilityProfile.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const custom = PaloAltoLocalRulestackVulnerabilityProfile._(
+    TfArgLiteral('Custom'),
+  );
+  static const bestpractice = PaloAltoLocalRulestackVulnerabilityProfile._(
+    TfArgLiteral('BestPractice'),
+  );
+
+  static const List<PaloAltoLocalRulestackVulnerabilityProfile> values = [
+    custom,
+    bestpractice,
+  ];
+}
+
 /// Factory wrapper for `azurerm_palo_alto_local_rulestack`.
 final class AzurermPaloAltoLocalRulestack extends Resource {
   static const String tfType = 'azurerm_palo_alto_local_rulestack';
 
   AzurermPaloAltoLocalRulestack(
     super.localName, {
-    TfArg<String>? antiSpywareProfile,
-    TfArg<String>? antiVirusProfile,
+    PaloAltoLocalRulestackAntiSpywareProfile? antiSpywareProfile,
+    PaloAltoLocalRulestackAntiVirusProfile? antiVirusProfile,
     TfArg<String>? description,
-    TfArg<String>? dnsSubscription,
-    TfArg<String>? fileBlockingProfile,
+    PaloAltoLocalRulestackDnsSubscription? dnsSubscription,
+    PaloAltoLocalRulestackFileBlockingProfile? fileBlockingProfile,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? urlFilteringProfile,
-    TfArg<String>? vulnerabilityProfile,
+    PaloAltoLocalRulestackUrlFilteringProfile? urlFilteringProfile,
+    PaloAltoLocalRulestackVulnerabilityProfile? vulnerabilityProfile,
     super.lifecycle,
     super.dependsOn,
     super.provider,

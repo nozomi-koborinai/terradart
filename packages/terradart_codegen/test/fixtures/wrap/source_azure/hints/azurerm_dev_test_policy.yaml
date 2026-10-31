@@ -7,3 +7,13 @@ properties:
     enum_values:
       - "AllowedValuesPolicy"
       - "MaxValuePolicy"
+  - api_name: name
+    enum_values:
+      - "GalleryImage"
+      - "LabPremiumVmCount"
+      - "LabTargetCost"
+      - "LabVmCount"
+      - "LabVmSize"
+      - "UserOwnedLabPremiumVmCount"
+      - "UserOwnedLabVmCount"
+      - "UserOwnedLabVmCountInSubnet"

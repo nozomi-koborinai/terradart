@@ -21,16 +21,16 @@ extension type const ContainerAppEnvironmentLogsDestination._(TfArg<String> _)
   const ContainerAppEnvironmentLogsDestination.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const logAnalytics = ContainerAppEnvironmentLogsDestination._(
-    TfArgLiteral('log-analytics'),
-  );
   static const azureMonitor = ContainerAppEnvironmentLogsDestination._(
     TfArgLiteral('azure-monitor'),
   );
+  static const logAnalytics = ContainerAppEnvironmentLogsDestination._(
+    TfArgLiteral('log-analytics'),
+  );
 
   static const List<ContainerAppEnvironmentLogsDestination> values = [
-    logAnalytics,
     azureMonitor,
+    logAnalytics,
   ];
 }
 

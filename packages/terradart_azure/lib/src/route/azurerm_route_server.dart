@@ -35,6 +35,19 @@ extension type const RouteServerHubRoutingPreference._(TfArg<String> _)
   ];
 }
 
+/// Route Server enum for `sku`.
+extension type const RouteServerSku._(TfArg<String> _)
+    implements TfArg<String> {
+  RouteServerSku.variable(String name) : this._(TfArg.variable(name));
+  RouteServerSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const RouteServerSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = RouteServerSku._(TfArgLiteral('Standard'));
+
+  static const List<RouteServerSku> values = [standard];
+}
+
 /// Factory wrapper for `azurerm_route_server`.
 final class AzurermRouteServer extends Resource {
   static const String tfType = 'azurerm_route_server';
@@ -47,7 +60,7 @@ final class AzurermRouteServer extends Resource {
     required TfArg<String> name,
     required TfArg<String> publicIpAddressId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> sku,
+    required RouteServerSku sku,
     required RefTo<AzurermSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

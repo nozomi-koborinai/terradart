@@ -13,3 +13,13 @@ properties:
       - "Disabled"
       - "Enabled"
       - "SecuredByPerimeter"
+  - api_name: sku
+    enum_values:
+      - "PerGB2018"
+      - "PerNode"
+      - "Premium"
+      - "Standalone"
+      - "Standard"
+      - "CapacityReservation"
+      - "LACluster"
+      - "Unlimited"

@@ -7,6 +7,44 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_spring_cloud_build_pack_binding`.
 const Set<String> _azurermSpringCloudBuildPackBindingSensitive = <String>{};
 
+/// Spring Cloud Build Pack Binding enum for `binding_type`.
+extension type const SpringCloudBuildPackBindingType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpringCloudBuildPackBindingType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpringCloudBuildPackBindingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpringCloudBuildPackBindingType.arg(TfArg<String> arg) : this._(arg);
+
+  static const applicationinsights = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('ApplicationInsights'),
+  );
+  static const apacheskywalking = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('ApacheSkyWalking'),
+  );
+  static const appdynamics = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('AppDynamics'),
+  );
+  static const dynatrace = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('Dynatrace'),
+  );
+  static const newrelic = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('NewRelic'),
+  );
+  static const elasticapm = SpringCloudBuildPackBindingType._(
+    TfArgLiteral('ElasticAPM'),
+  );
+
+  static const List<SpringCloudBuildPackBindingType> values = [
+    applicationinsights,
+    apacheskywalking,
+    appdynamics,
+    dynatrace,
+    newrelic,
+    elasticapm,
+  ];
+}
+
 /// Typed helper for the `launch` block of
 /// `azurerm_spring_cloud_build_pack_binding` (derived from provider schema).
 @immutable
@@ -30,7 +68,7 @@ final class AzurermSpringCloudBuildPackBinding extends Resource {
 
   AzurermSpringCloudBuildPackBinding(
     super.localName, {
-    TfArg<String>? bindingType,
+    SpringCloudBuildPackBindingType? bindingType,
     required TfArg<String> name,
     required TfArg<String> springCloudBuilderId,
     SpringCloudBuildPackBindingLaunch? launch,

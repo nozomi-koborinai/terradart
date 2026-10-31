@@ -681,7 +681,7 @@ final class ManagedDevopsPoolStorage {
     this.storageAccountType,
   });
 
-  final TfArg<String>? caching;
+  final ManagedDevopsPoolCaching? caching;
 
   final TfArg<num> diskSizeInGb;
 
@@ -696,6 +696,22 @@ final class ManagedDevopsPoolStorage {
     'drive_letter': ?driveLetter?.toTfJson(),
     'storage_account_type': ?storageAccountType?.toTfJson(),
   };
+}
+
+/// `caching` — derived from the provider schema description.
+extension type const ManagedDevopsPoolCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDevopsPoolCaching.variable(String name) : this._(TfArg.variable(name));
+  ManagedDevopsPoolCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDevopsPoolCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const readonly = ManagedDevopsPoolCaching._(TfArgLiteral('ReadOnly'));
+  static const readwrite = ManagedDevopsPoolCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<ManagedDevopsPoolCaching> values = [readonly, readwrite];
 }
 
 /// `storage_account_type` — derived from the provider schema description.

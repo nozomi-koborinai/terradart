@@ -180,7 +180,7 @@ final class AutomanageConfigurationRetentionPolicy {
     this.weeklySchedule,
   });
 
-  final TfArg<String>? retentionPolicyType;
+  final AutomanageConfigurationRetentionPolicyType? retentionPolicyType;
 
   final AutomanageConfigurationDailySchedule? dailySchedule;
 
@@ -194,6 +194,27 @@ final class AutomanageConfigurationRetentionPolicy {
   };
 }
 
+/// `retention_policy_type` — derived from the provider schema description.
+extension type const AutomanageConfigurationRetentionPolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutomanageConfigurationRetentionPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomanageConfigurationRetentionPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomanageConfigurationRetentionPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const longtermretentionpolicy =
+      AutomanageConfigurationRetentionPolicyType._(
+        TfArgLiteral('LongTermRetentionPolicy'),
+      );
+
+  static const List<AutomanageConfigurationRetentionPolicyType> values = [
+    longtermretentionpolicy,
+  ];
+}
+
 /// Typed helper for the `backup.retention_policy.daily_schedule` block of
 /// `azurerm_automanage_configuration` (derived from provider schema).
 @immutable
@@ -205,7 +226,8 @@ final class AutomanageConfigurationDailySchedule {
 
   final TfArg<List<String>>? retentionTimes;
 
-  final AutomanageConfigurationRetentionDuration? retentionDuration;
+  final AutomanageConfigurationDailyScheduleRetentionDuration?
+  retentionDuration;
 
   @internal
   Map<String, Object?> encode() => {
@@ -216,23 +238,42 @@ final class AutomanageConfigurationDailySchedule {
 
 /// Typed helper for the `backup.retention_policy.daily_schedule.retention_duration` block of
 /// `azurerm_automanage_configuration` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
-final class AutomanageConfigurationRetentionDuration {
-  const AutomanageConfigurationRetentionDuration({
+final class AutomanageConfigurationDailyScheduleRetentionDuration {
+  const AutomanageConfigurationDailyScheduleRetentionDuration({
     this.count,
     this.durationType,
   });
 
   final TfArg<num>? count;
 
-  final TfArg<String>? durationType;
+  final AutomanageConfigurationDailyScheduleDurationType? durationType;
 
   @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'duration_type': ?durationType?.toTfJson(),
   };
+}
+
+/// `duration_type` — derived from the provider schema description.
+extension type const AutomanageConfigurationDailyScheduleDurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutomanageConfigurationDailyScheduleDurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomanageConfigurationDailyScheduleDurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomanageConfigurationDailyScheduleDurationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const days = AutomanageConfigurationDailyScheduleDurationType._(
+    TfArgLiteral('Days'),
+  );
+
+  static const List<AutomanageConfigurationDailyScheduleDurationType> values = [
+    days,
+  ];
 }
 
 /// Typed helper for the `backup.retention_policy.weekly_schedule` block of
@@ -246,13 +287,53 @@ final class AutomanageConfigurationWeeklySchedule {
 
   final TfArg<List<String>>? retentionTimes;
 
-  final AutomanageConfigurationRetentionDuration? retentionDuration;
+  final AutomanageConfigurationWeeklyScheduleRetentionDuration?
+  retentionDuration;
 
   @internal
   Map<String, Object?> encode() => {
     'retention_times': ?retentionTimes?.toTfJson(),
     'retention_duration': ?retentionDuration?.encode(),
   };
+}
+
+/// Typed helper for the `backup.retention_policy.weekly_schedule.retention_duration` block of
+/// `azurerm_automanage_configuration` (derived from provider schema).
+@immutable
+final class AutomanageConfigurationWeeklyScheduleRetentionDuration {
+  const AutomanageConfigurationWeeklyScheduleRetentionDuration({
+    this.count,
+    this.durationType,
+  });
+
+  final TfArg<num>? count;
+
+  final AutomanageConfigurationWeeklyScheduleDurationType? durationType;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'count': ?count?.toTfJson(),
+    'duration_type': ?durationType?.toTfJson(),
+  };
+}
+
+/// `duration_type` — derived from the provider schema description.
+extension type const AutomanageConfigurationWeeklyScheduleDurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutomanageConfigurationWeeklyScheduleDurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomanageConfigurationWeeklyScheduleDurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomanageConfigurationWeeklyScheduleDurationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const weeks = AutomanageConfigurationWeeklyScheduleDurationType._(
+    TfArgLiteral('Weeks'),
+  );
+
+  static const List<AutomanageConfigurationWeeklyScheduleDurationType> values =
+      [weeks];
 }
 
 /// Typed helper for the `backup.schedule_policy` block of
@@ -266,7 +347,7 @@ final class AutomanageConfigurationSchedulePolicy {
     this.scheduleRunTimes,
   });
 
-  final TfArg<String>? schedulePolicyType;
+  final AutomanageConfigurationSchedulePolicyType? schedulePolicyType;
 
   final List<AutomanageConfigurationScheduleRunDays>? scheduleRunDays;
 
@@ -282,6 +363,27 @@ final class AutomanageConfigurationSchedulePolicy {
     'schedule_run_frequency': ?scheduleRunFrequency?.toTfJson(),
     'schedule_run_times': ?scheduleRunTimes?.toTfJson(),
   };
+}
+
+/// `schedule_policy_type` — derived from the provider schema description.
+extension type const AutomanageConfigurationSchedulePolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutomanageConfigurationSchedulePolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomanageConfigurationSchedulePolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomanageConfigurationSchedulePolicyType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const simpleschedulepolicy =
+      AutomanageConfigurationSchedulePolicyType._(
+        TfArgLiteral('SimpleSchedulePolicy'),
+      );
+
+  static const List<AutomanageConfigurationSchedulePolicyType> values = [
+    simpleschedulepolicy,
+  ];
 }
 
 /// `schedule_run_days` — derived from the provider schema description.

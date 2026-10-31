@@ -19,3 +19,11 @@ properties:
                 enum_values:
                   - "ascending"
                   - "descending"
+      - api_name: indexing_mode
+        enum_values:
+          - "consistent"
+          - "none"
+  - api_name: partition_key_kind
+    enum_values:
+      - "Hash"
+      - "MultiHash"

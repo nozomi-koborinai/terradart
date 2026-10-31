@@ -8,6 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermStreamAnalyticsStreamInputEventhubV2Sensitive =
     <String>{'shared_access_policy_key'};
 
+/// Stream Analytics Stream Input Eventhub V2 Authentication enum for `authentication_mode`.
+extension type const StreamAnalyticsStreamInputEventhubV2AuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubV2AuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubV2AuthenticationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubV2AuthenticationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const msi = StreamAnalyticsStreamInputEventhubV2AuthenticationMode._(
+    TfArgLiteral('Msi'),
+  );
+  static const connectionstring =
+      StreamAnalyticsStreamInputEventhubV2AuthenticationMode._(
+        TfArgLiteral('ConnectionString'),
+      );
+
+  static const List<StreamAnalyticsStreamInputEventhubV2AuthenticationMode>
+  values = [msi, connectionstring];
+}
+
 /// Typed helper for the `serialization` block of
 /// `azurerm_stream_analytics_stream_input_eventhub_v2` (derived from provider schema).
 @immutable
@@ -18,11 +43,11 @@ final class StreamAnalyticsStreamInputEventhubV2Serialization {
     required this.type,
   });
 
-  final TfArg<String>? encoding;
+  final StreamAnalyticsStreamInputEventhubV2Encoding? encoding;
 
   final StreamAnalyticsStreamInputEventhubV2FieldDelimiter? fieldDelimiter;
 
-  final TfArg<String> type;
+  final StreamAnalyticsStreamInputEventhubV2Type type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -30,6 +55,26 @@ final class StreamAnalyticsStreamInputEventhubV2Serialization {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputEventhubV2Encoding._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubV2Encoding.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubV2Encoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubV2Encoding.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const utf8 = StreamAnalyticsStreamInputEventhubV2Encoding._(
+    TfArgLiteral('UTF8'),
+  );
+
+  static const List<StreamAnalyticsStreamInputEventhubV2Encoding> values = [
+    utf8,
+  ];
 }
 
 /// `field_delimiter` — derived from the provider schema description.
@@ -64,6 +109,33 @@ extension type const StreamAnalyticsStreamInputEventhubV2FieldDelimiter._(
       [value, value2, value3, value4, value5];
 }
 
+/// `type` — derived from the provider schema description.
+extension type const StreamAnalyticsStreamInputEventhubV2Type._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamAnalyticsStreamInputEventhubV2Type.variable(String name)
+    : this._(TfArg.variable(name));
+  StreamAnalyticsStreamInputEventhubV2Type.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamAnalyticsStreamInputEventhubV2Type.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const avro = StreamAnalyticsStreamInputEventhubV2Type._(
+    TfArgLiteral('Avro'),
+  );
+  static const csv = StreamAnalyticsStreamInputEventhubV2Type._(
+    TfArgLiteral('Csv'),
+  );
+  static const json = StreamAnalyticsStreamInputEventhubV2Type._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<StreamAnalyticsStreamInputEventhubV2Type> values = [
+    avro,
+    csv,
+    json,
+  ];
+}
+
 /// Factory wrapper for `azurerm_stream_analytics_stream_input_eventhub_v2`.
 final class AzurermStreamAnalyticsStreamInputEventhubV2 extends Resource {
   static const String tfType =
@@ -71,7 +143,7 @@ final class AzurermStreamAnalyticsStreamInputEventhubV2 extends Resource {
 
   AzurermStreamAnalyticsStreamInputEventhubV2(
     super.localName, {
-    TfArg<String>? authenticationMode,
+    StreamAnalyticsStreamInputEventhubV2AuthenticationMode? authenticationMode,
     TfArg<String>? eventhubConsumerGroupName,
     required TfArg<String> eventhubName,
     required TfArg<String> name,

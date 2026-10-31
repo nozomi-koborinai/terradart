@@ -68,6 +68,14 @@ properties:
     properties:
       - api_name: application_logs
         properties:
+          - api_name: azure_blob_storage
+            properties:
+              - api_name: level
+                enum_values:
+                  - "Error"
+                  - "Information"
+                  - "Verbose"
+                  - "Warning"
           - api_name: file_system_level
             enum_values:
               - "Error"
@@ -87,6 +95,9 @@ properties:
               - "python"
               - "php"
               - "java"
+          - api_name: dotnet_core_version
+            enum_values:
+              - "v4.0"
           - api_name: dotnet_version
             enum_values:
               - "v2.0"
@@ -111,6 +122,11 @@ properties:
               - "~20"
               - "~22"
               - "~24"
+          - api_name: php_version
+            enum_values:
+              - "7.1"
+              - "7.4"
+              - "Off"
       - api_name: auto_heal_setting
         properties:
           - api_name: action
@@ -172,6 +188,9 @@ properties:
           - "1.3"
           - "1.2"
           - "1.0"
+      - api_name: remote_debugging_version
+        enum_values:
+          - "VS2022"
       - api_name: scm_ip_restriction
         properties:
           - api_name: action
@@ -188,6 +207,11 @@ properties:
           - "1.3"
           - "1.2"
           - "1.0"
+  - api_name: storage_account
+    properties:
+      - api_name: type
+        enum_values:
+          - "AzureFiles"
 exactly_one_of_groups:
   - ["auth_settings.facebook.app_secret", "auth_settings.facebook.app_secret_setting_name"]
   - ["auth_settings.github.client_secret", "auth_settings.github.client_secret_setting_name"]

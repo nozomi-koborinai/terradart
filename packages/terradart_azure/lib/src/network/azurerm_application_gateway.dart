@@ -59,7 +59,7 @@ final class ApplicationGatewayBackend {
 
   final TfArg<String>? probeName;
 
-  final TfArg<String> protocol;
+  final ApplicationGatewayBackendProtocol protocol;
 
   final TfArg<num>? timeoutInSeconds;
 
@@ -76,6 +76,21 @@ final class ApplicationGatewayBackend {
     'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
     'trusted_root_certificate_names': ?trustedRootCertificateNames?.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const ApplicationGatewayBackendProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationGatewayBackendProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayBackendProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayBackendProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = ApplicationGatewayBackendProtocol._(TfArgLiteral('Tcp'));
+  static const tls = ApplicationGatewayBackendProtocol._(TfArgLiteral('Tls'));
+
+  static const List<ApplicationGatewayBackendProtocol> values = [tcp, tls];
 }
 
 /// Typed helper for the `backend_address_pool` block of
@@ -145,7 +160,7 @@ final class ApplicationGatewayBackendHttpSettings {
 
   final TfArg<String>? probeName;
 
-  final TfArg<String> protocol;
+  final ApplicationGatewayBackendHttpSettingsProtocol protocol;
 
   final TfArg<num>? requestTimeout;
 
@@ -201,6 +216,30 @@ extension type const ApplicationGatewayCookieBasedAffinity._(TfArg<String> _)
   static const List<ApplicationGatewayCookieBasedAffinity> values = [
     disabled,
     enabled,
+  ];
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const ApplicationGatewayBackendHttpSettingsProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApplicationGatewayBackendHttpSettingsProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayBackendHttpSettingsProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationGatewayBackendHttpSettingsProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = ApplicationGatewayBackendHttpSettingsProtocol._(
+    TfArgLiteral('Http'),
+  );
+  static const https = ApplicationGatewayBackendHttpSettingsProtocol._(
+    TfArgLiteral('Https'),
+  );
+
+  static const List<ApplicationGatewayBackendHttpSettingsProtocol> values = [
+    http,
+    https,
   ];
 }
 
@@ -447,7 +486,7 @@ final class ApplicationGatewayHttpListener {
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final ApplicationGatewayBackendHttpSettingsProtocol protocol;
 
   final TfArg<bool>? requireSni;
 
@@ -516,7 +555,7 @@ final class ApplicationGatewayListener {
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final ApplicationGatewayBackendProtocol protocol;
 
   final TfArg<String>? sslCertificateName;
 
@@ -620,7 +659,7 @@ final class ApplicationGatewayProbe {
 
   final TfArg<num>? port;
 
-  final ApplicationGatewayProtocol protocol;
+  final ApplicationGatewayProbeProtocol protocol;
 
   final TfArg<bool>? proxyProtocolHeaderEnabled;
 
@@ -649,20 +688,20 @@ final class ApplicationGatewayProbe {
 }
 
 /// `protocol` — derived from the provider schema description.
-extension type const ApplicationGatewayProtocol._(TfArg<String> _)
+extension type const ApplicationGatewayProbeProtocol._(TfArg<String> _)
     implements TfArg<String> {
-  ApplicationGatewayProtocol.variable(String name)
+  ApplicationGatewayProbeProtocol.variable(String name)
     : this._(TfArg.variable(name));
-  ApplicationGatewayProtocol.expression(String template)
+  ApplicationGatewayProbeProtocol.expression(String template)
     : this._(TfArg.expression(template));
-  const ApplicationGatewayProtocol.arg(TfArg<String> arg) : this._(arg);
+  const ApplicationGatewayProbeProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  static const http = ApplicationGatewayProtocol._(TfArgLiteral('Http'));
-  static const https = ApplicationGatewayProtocol._(TfArgLiteral('Https'));
-  static const tcp = ApplicationGatewayProtocol._(TfArgLiteral('Tcp'));
-  static const tls = ApplicationGatewayProtocol._(TfArgLiteral('Tls'));
+  static const http = ApplicationGatewayProbeProtocol._(TfArgLiteral('Http'));
+  static const https = ApplicationGatewayProbeProtocol._(TfArgLiteral('Https'));
+  static const tcp = ApplicationGatewayProbeProtocol._(TfArgLiteral('Tcp'));
+  static const tls = ApplicationGatewayProbeProtocol._(TfArgLiteral('Tls'));
 
-  static const List<ApplicationGatewayProtocol> values = [
+  static const List<ApplicationGatewayProbeProtocol> values = [
     http,
     https,
     tcp,
@@ -1430,7 +1469,8 @@ final class ApplicationGatewaySslProfile {
 
   final TfArg<bool>? verifyClientCertificateIssuerDn;
 
-  final TfArg<String>? verifyClientCertificateRevocation;
+  final ApplicationGatewayVerifyClientCertificateRevocation?
+  verifyClientCertificateRevocation;
 
   final ApplicationGatewaySslPolicy? sslPolicy;
 
@@ -1470,6 +1510,27 @@ extension type const ApplicationGatewayClientAuthenticationMode._(
     passthrough,
     strict,
   ];
+}
+
+/// `verify_client_certificate_revocation` — derived from the provider schema description.
+extension type const ApplicationGatewayVerifyClientCertificateRevocation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApplicationGatewayVerifyClientCertificateRevocation.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationGatewayVerifyClientCertificateRevocation.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ApplicationGatewayVerifyClientCertificateRevocation.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const ocsp = ApplicationGatewayVerifyClientCertificateRevocation._(
+    TfArgLiteral('OCSP'),
+  );
+
+  static const List<ApplicationGatewayVerifyClientCertificateRevocation>
+  values = [ocsp];
 }
 
 /// Typed helper for the `trusted_client_certificate` block of

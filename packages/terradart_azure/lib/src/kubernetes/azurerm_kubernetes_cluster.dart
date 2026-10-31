@@ -17,6 +17,37 @@ const Set<String> _azurermKubernetesClusterSensitive = <String>{
   'windows_profile.admin_password',
 };
 
+/// Kubernetes Cluster Automatic Upgrade enum for `automatic_upgrade_channel`.
+extension type const KubernetesClusterAutomaticUpgradeChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterAutomaticUpgradeChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterAutomaticUpgradeChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterAutomaticUpgradeChannel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const patch = KubernetesClusterAutomaticUpgradeChannel._(
+    TfArgLiteral('patch'),
+  );
+  static const rapid = KubernetesClusterAutomaticUpgradeChannel._(
+    TfArgLiteral('rapid'),
+  );
+  static const stable = KubernetesClusterAutomaticUpgradeChannel._(
+    TfArgLiteral('stable'),
+  );
+  static const nodeImage = KubernetesClusterAutomaticUpgradeChannel._(
+    TfArgLiteral('node-image'),
+  );
+
+  static const List<KubernetesClusterAutomaticUpgradeChannel> values = [
+    patch,
+    rapid,
+    stable,
+    nodeImage,
+  ];
+}
+
 /// Kubernetes Cluster Node Os Upgrade enum for `node_os_upgrade_channel`.
 extension type const KubernetesClusterNodeOsUpgradeChannel._(TfArg<String> _)
     implements TfArg<String> {
@@ -1493,9 +1524,9 @@ final class KubernetesClusterNetworkProfile {
 
   final KubernetesClusterNetworkPlugin networkPlugin;
 
-  final TfArg<String>? networkPluginMode;
+  final KubernetesClusterNetworkPluginMode? networkPluginMode;
 
-  final TfArg<String>? networkPolicy;
+  final KubernetesClusterNetworkPolicy? networkPolicy;
 
   final KubernetesClusterOutboundType? outboundType;
 
@@ -1630,6 +1661,46 @@ extension type const KubernetesClusterNetworkPlugin._(TfArg<String> _)
     azure,
     kubenet,
     none,
+  ];
+}
+
+/// `network_plugin_mode` — derived from the provider schema description.
+extension type const KubernetesClusterNetworkPluginMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNetworkPluginMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNetworkPluginMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNetworkPluginMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const overlay = KubernetesClusterNetworkPluginMode._(
+    TfArgLiteral('overlay'),
+  );
+
+  static const List<KubernetesClusterNetworkPluginMode> values = [overlay];
+}
+
+/// `network_policy` — derived from the provider schema description.
+extension type const KubernetesClusterNetworkPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNetworkPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNetworkPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNetworkPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const calico = KubernetesClusterNetworkPolicy._(
+    TfArgLiteral('calico'),
+  );
+  static const azure = KubernetesClusterNetworkPolicy._(TfArgLiteral('azure'));
+  static const cilium = KubernetesClusterNetworkPolicy._(
+    TfArgLiteral('cilium'),
+  );
+
+  static const List<KubernetesClusterNetworkPolicy> values = [
+    calico,
+    azure,
+    cilium,
   ];
 }
 
@@ -1778,7 +1849,7 @@ final class KubernetesClusterNodeProvisioningProfile {
 
   final KubernetesClusterDefaultNodePools? defaultNodePools;
 
-  final KubernetesClusterMode? mode;
+  final KubernetesClusterNodeProvisioningProfileMode? mode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1803,17 +1874,27 @@ extension type const KubernetesClusterDefaultNodePools._(TfArg<String> _)
 }
 
 /// `mode` — derived from the provider schema description.
-extension type const KubernetesClusterMode._(TfArg<String> _)
-    implements TfArg<String> {
-  KubernetesClusterMode.variable(String name) : this._(TfArg.variable(name));
-  KubernetesClusterMode.expression(String template)
+extension type const KubernetesClusterNodeProvisioningProfileMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterNodeProvisioningProfileMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodeProvisioningProfileMode.expression(String template)
     : this._(TfArg.expression(template));
-  const KubernetesClusterMode.arg(TfArg<String> arg) : this._(arg);
+  const KubernetesClusterNodeProvisioningProfileMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const auto = KubernetesClusterMode._(TfArgLiteral('Auto'));
-  static const manual = KubernetesClusterMode._(TfArgLiteral('Manual'));
+  static const auto = KubernetesClusterNodeProvisioningProfileMode._(
+    TfArgLiteral('Auto'),
+  );
+  static const manual = KubernetesClusterNodeProvisioningProfileMode._(
+    TfArgLiteral('Manual'),
+  );
 
-  static const List<KubernetesClusterMode> values = [auto, manual];
+  static const List<KubernetesClusterNodeProvisioningProfileMode> values = [
+    auto,
+    manual,
+  ];
 }
 
 /// Typed helper for the `oms_agent` block of
@@ -1856,7 +1937,7 @@ final class KubernetesClusterServiceMeshProfile {
 
   final TfArg<bool>? internalIngressGatewayEnabled;
 
-  final TfArg<String> mode;
+  final KubernetesClusterServiceMeshProfileMode mode;
 
   final TfArg<List<String>> revisions;
 
@@ -1872,6 +1953,23 @@ final class KubernetesClusterServiceMeshProfile {
     'revisions': revisions.toTfJson(),
     'certificate_authority': ?certificateAuthority?.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const KubernetesClusterServiceMeshProfileMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterServiceMeshProfileMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterServiceMeshProfileMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterServiceMeshProfileMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const istio = KubernetesClusterServiceMeshProfileMode._(
+    TfArgLiteral('Istio'),
+  );
+
+  static const List<KubernetesClusterServiceMeshProfileMode> values = [istio];
 }
 
 /// Typed helper for the `service_mesh_profile.certificate_authority` block of
@@ -2040,7 +2138,7 @@ final class KubernetesClusterWindowsProfile {
 
   final TfArg<String> adminUsername;
 
-  final TfArg<String>? license;
+  final KubernetesClusterLicense? license;
 
   final KubernetesClusterGmsa? gmsa;
 
@@ -2051,6 +2149,21 @@ final class KubernetesClusterWindowsProfile {
     'license': ?license?.toTfJson(),
     'gmsa': ?gmsa?.encode(),
   };
+}
+
+/// `license` — derived from the provider schema description.
+extension type const KubernetesClusterLicense._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterLicense.variable(String name) : this._(TfArg.variable(name));
+  KubernetesClusterLicense.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterLicense.arg(TfArg<String> arg) : this._(arg);
+
+  static const windowsServer = KubernetesClusterLicense._(
+    TfArgLiteral('Windows_Server'),
+  );
+
+  static const List<KubernetesClusterLicense> values = [windowsServer];
 }
 
 /// Typed helper for the `windows_profile.gmsa` block of
@@ -2101,7 +2214,7 @@ final class AzurermKubernetesCluster extends Resource {
   AzurermKubernetesCluster(
     super.localName, {
     TfArg<bool>? aiToolchainOperatorEnabled,
-    TfArg<String>? automaticUpgradeChannel,
+    KubernetesClusterAutomaticUpgradeChannel? automaticUpgradeChannel,
     TfArg<bool>? azurePolicyEnabled,
     TfArg<bool>? costAnalysisEnabled,
     TfArg<List<String>>? customCaTrustCertificatesBase64,
