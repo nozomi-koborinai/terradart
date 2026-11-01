@@ -53,6 +53,26 @@ void main() {
       );
     });
 
+    List<String> spans(String text) => [
+      for (final c in extractMigratingCells(text))
+        '${c.line} ${c.section} ${c.before} ${c.code} ${c.packages}',
+    ];
+
+    test('reads the top section once a release names it', () {
+      final released = doc.replaceFirst('## Unreleased', '## 0.35.x → 0.36.0');
+      expect(spans(released), spans(doc));
+    });
+
+    test('reads the same cells of MIGRATING.md after the release rename', () {
+      final text = File(migratingPath).readAsStringSync();
+      final released = text.replaceFirst(
+        RegExp(r'^## Unreleased$', multiLine: true),
+        '## 0.35.x → 0.36.0',
+      );
+      expect(spans(text), isNotEmpty);
+      expect(spans(released), spans(text));
+    });
+
     test('takes the packages of a lead that spans lines', () {
       final cells = extractMigratingCells(doc);
       expect(cells.first.packages, {'terradart_google', 'terradart_azure'});
@@ -101,9 +121,45 @@ void main() {
     expect(failures, isEmpty, reason: failures.join('\n'));
   });
 
+  test('an empty top section fails', () async {
+    const seeded = '''
+# Migrating terradart
+
+## Unreleased
+
+## 0.34.x → 0.35.0
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(failures, [contains('MIGRATING.md:3:')]);
+  });
+
+  test('a top section with an unknown heading fails', () async {
+    const seeded = '''
+# Migrating terradart
+
+## Next release
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(failures, [contains('MIGRATING.md:3:')]);
+  });
+
   test('a cell that does not compile fails', () async {
     const seeded = '''
-## Unreleased
+## 0.35.x → 0.36.0
 
 ### Seeded
 
