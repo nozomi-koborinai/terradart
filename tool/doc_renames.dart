@@ -24,7 +24,9 @@
 // - the last release on pub.dev declared: a type, a member of a type
 //   (`Type.member`; constructors, fields, getters, methods, enum values),
 //   or a top-level name, which only a top-level declaration of the same
-//   name keeps (a parameter or member spelled the same does not).
+//   name keeps (a parameter or member spelled the same does not). A
+//   type's members include those of its supertypes, and a typedef's those
+//   of the type it aliases.
 //
 // Declarations are read with the analyzer, so a member is declared only when
 // its type, a supertype (exported or not), or an exported extension on it
@@ -32,10 +34,11 @@
 //
 // A mention is a removed or internal symbol anywhere in a document (prose,
 // a code span, a fence) outside the before column of its rename tables, or
-// anywhere in a `///` doc comment. Code spans are read the CommonMark way
-// (tool/code_spans.dart), so a span split across lines counts. In prose, a
-// one-word name (`Network`, `Settings`) is English, so it counts only in
-// code. The doc comment of a declaration a dependent sees (an exported
+// anywhere in a `///` doc comment, behind a lowercase prefix
+// (`cli.runTerradart`) or not. Code spans are read by tool/code_spans.dart,
+// so a span split across lines counts. In prose, a one-word name
+// (`Network`, `Settings`) and a name with no capital letter are English, so
+// they count only in code. The doc comment of a declaration a dependent sees (an exported
 // declaration, a public member of one, an entrypoint's library comment) is
 // held to the public API alone; the others, and the doc comments of the
 // examples and recipes, may also name what their own `lib/` declares. The documents are those tool/doc_snippets.dart
