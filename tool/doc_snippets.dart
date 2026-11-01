@@ -505,14 +505,13 @@ Future<List<String>> checkDocSnippets(
     }
 
     var diagnostics = await analyzeDiagnostics(sandbox.path);
-    // A lowerCamel name a doc-comment fence leaves undefined stands for a
-    // value the example does not build; declare it and analyze again.
+    // A lowerCamel name a doc-comment fence reads but leaves undefined
+    // stands for a value the example does not build; declare it and analyze
+    // again. A call to an undefined function is never a stand-in.
     final undefined = <String, Set<String>>{};
     for (final d in diagnostics) {
       if (!standInFiles.contains(d.file)) continue;
-      if (d.code != 'UNDEFINED_IDENTIFIER' && d.code != 'UNDEFINED_FUNCTION') {
-        continue;
-      }
+      if (d.code != 'UNDEFINED_IDENTIFIER') continue;
       final name = RegExp(r"'([a-z_]\w*)'").firstMatch(d.message)?.group(1);
       if (name != null) undefined.putIfAbsent(d.file, () => {}).add(name);
     }
