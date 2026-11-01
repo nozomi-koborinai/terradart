@@ -10,7 +10,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.35.0"
-  terradart-sha256: "0c6ed2268217f07f24caab3143513b4fd7924996593ac07d58d6f7ff4caffdbe"
+  terradart-sha256: "998495fd575a6e16f9ba8c270ef95f70e034fce445be16b659c3ed7eaa37ff4b"
 ---
 
 # TerraDart
@@ -84,20 +84,22 @@ rg -l "GooglePubsubTopic\(" examples/*/lib/main.dart
 <!-- argument-rules:start -->
 Pick the form by where the value comes from. The argument's type tells you which forms it takes, and a dot shorthand (`.literal`, `.new`, `.providedAl2023`) names the constructor of that type.
 
-| The value is | Write | Example |
-|---|---|---|
-| known when you synth | `.literal(...)` | `functionName: .literal('hello')` |
-| another resource of this Stack (a `RefTo<R>` input) | its `ref` | `role: role.ref` |
-| one attribute of another block | its getter | `assumeRolePolicy: trust.json` |
-| a resource outside this Stack (a `RefTo<R>` input) | `.literal(id)` | `zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353')` |
-| one of a fixed set (an enum) | the member | `runtime: .providedAl2023` |
-| one of several exclusive arguments (a sealed type) | the variant | `code: .filename(.literal('build/fn.zip'))` |
-| a nested block | its helper class; `.new(...)` inside another block or a variant | `environment: LambdaFunctionEnvironment(...)` |
-| a Terraform variable | the handle `variable<T>()` returns | `memorySize: memory` |
-| a variable in an enum or `RefTo<R>` input | `.arg(handle)` | `runtime: .arg(runtimeName)` |
-| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal | `value: .value(dbPassword)` |
-| a reference inside a literal list or map | the getter's `.interpolation` | `{'ROLE_ARN': role.arn.interpolation}` |
-| anything else Terraform evaluates | `.expression(...)` | `.expression(r'${file("trust.json")}')` |
+| The value is | Write |
+|---|---|
+| known when you synth | `.literal(...)` |
+| another resource of this Stack (a `RefTo<R>` input) | its `ref` |
+| one attribute of another block | its getter |
+| a resource outside this Stack (a `RefTo<R>` input) | `.literal(...)` with its name, ID or ARN |
+| one of a fixed set (an enum) | the member |
+| one of several exclusive arguments (a sealed type) | the variant |
+| a nested block | its helper class; `.new(...)` inside another block or a variant |
+| a Terraform variable | the handle `variable<T>()` returns |
+| a variable in an enum or `RefTo<R>` input | `.arg(handle)` |
+| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal |
+| a reference inside a literal list or map | the getter's `.interpolation` |
+| anything else Terraform evaluates | `.expression(...)` |
+
+Each row is an argument of this Stack body, marked with its row:
 
 ```dart
 final memory = variable<num>('memory_mb');
@@ -109,8 +111,9 @@ final trust = add(
     'trust',
     statement: [
       DataIamPolicyDocumentStatement(
-        actions: .literal(['sts:AssumeRole']),
+        actions: .literal(['sts:AssumeRole']), // known when you synth
         principals: [
+          // a nested block inside another block
           .new(
             type: .literal('Service'),
             identifiers: .literal(['lambda.amazonaws.com']),
@@ -120,16 +123,19 @@ final trust = add(
     ],
   ),
 );
+// one attribute of another block
 final role = add(AwsIamRole('hello', assumeRolePolicy: trust.json));
 add(
   AwsLambdaFunction(
     'hello',
     functionName: .literal('hello'),
-    role: role.ref,
-    runtime: .arg(runtimeName),
-    code: .filename(.literal('build/fn.zip')),
-    memorySize: memory,
+    role: role.ref, // another resource of this Stack
+    runtime: .arg(runtimeName), // a variable in an enum input
+    code: .filename(.literal('build/fn.zip')), // a variant
+    memorySize: memory, // a Terraform variable
+    // a nested block
     environment: LambdaFunctionEnvironment(
+      // a reference inside a literal map
       variables: .literal({'ROLE_ARN': role.arn.interpolation}),
     ),
   ),
@@ -138,8 +144,16 @@ add(
   AwsSsmParameter(
     'db_password',
     name: .literal('/hello/db_password'),
-    type: .securestring,
-    value: .value(dbPassword),
+    type: .securestring, // one of a fixed set
+    keyId: .literal('alias/aws/ssm'), // a resource outside this Stack
+    value: .value(dbPassword), // a secret
+  ),
+);
+add(
+  AwsIamRole(
+    'deploy',
+    // anything else Terraform evaluates
+    assumeRolePolicy: .expression(r'${file("trust.json")}'),
   ),
 );
 ```
@@ -148,7 +162,42 @@ add(
 - A dot shorthand needs a context type. Spell out the class only where there is none: `final x = TfArg.literal('a');`. A reference makes Terraform order the blocks, so add `dependsOn` only for an ordering no argument shows.
 - Do not declare Terraform variables. Use Dart values (constructor parameters, environment variables read in `bin/infra.dart`), not `${var.x}`.
 - Do not put credentials in the stack. The provider classes leave them out on purpose; `terradart apply` reads them from the environment.
-- Hand values to the app instead of re-typing them there. `addOutput('service_url', service.uri)` declares a Terraform output for a value known after apply. `addConstant('topicName', .ref(topic.name))` writes a `static const` into the file named by `appExports: AppExports('lib/generated/orders_stack.app.dart')` (a path of your choosing) on the `super(...)` call; `.ref` reads the literal the attribute is set to (every input has a getter named after its attribute, e.g. `topic.name`, so the literal is written once), and synth fails when it is not one, so use `addOutput` for apply-time values. The same file has a `<Stack>Outputs` reader: the app reads an output with `<Stack>Outputs.fromEnvironment(Platform.environment).ordersTopicId` (variable `ORDERS_TOPIC_ID`) or `.fromTerraformJson(...)`, never by re-typing it. Give a Cloud Run service those variables with `env: [for (final (:name, :value) in outputEnvironment()) .new(name: .literal(name), source: .value(value))]` inside the container, or a map-shaped environment with `environment: .new(variables: outputEnvironment().variables)` (an AWS Lambda; `environmentVariables:` on a Cloud Function), registering outputs that read the service itself after it. For a Flutter, web or CLI client, call `addDartDefineOutput()` (one output, `dart_defines`; `only:` and `name:` give each client its own) and read the values with `const <Stack>Outputs.fromDartDefine()`; `terradart apply` and `terradart outputs` write them to the define file the client builds with (section 6). It carries the non-sensitive outputs only, so never build a client from every output of the Stack.
+- Hand values to the app instead of re-typing them there. `addOutput('service_url', service.uri)` declares a Terraform output for a value known after apply. `addConstant('topicName', .ref(topic.name))` writes a `static const` into the file the `appExports` argument of the `super(...)` call names (a path of your choosing); `.ref` reads the literal the attribute is set to (every input has a getter named after its attribute, e.g. `topic.name`, so the literal is written once), and synth fails when it is not one, so use `addOutput` for apply-time values. The same file has a `<Stack>Outputs` reader: the app reads an output with `<Stack>Outputs.fromEnvironment(Platform.environment).ordersTopicId` (variable `ORDERS_TOPIC_ID`) or `.fromTerraformJson(...)`, never by re-typing it. Give a Cloud Run service those variables by turning each entry of `outputEnvironment()` into an `env` entry of its container, or pass `outputEnvironment().variables` to a map-shaped environment (an AWS Lambda's `environment` block; `environmentVariables` on a Cloud Function), registering outputs that read the service itself after it. For a Flutter, web or CLI client, call `addDartDefineOutput()` (one output, `dart_defines`; `only:` and `name:` give each client its own) and read the values with `const <Stack>Outputs.fromDartDefine()`; `terradart apply` and `terradart outputs` write them to the define file the client builds with (section 6). It carries the non-sensitive outputs only, so never build a client from every output of the Stack.
+
+```dart
+// lib/orders_stack.dart
+final class OrdersStack extends Stack {
+  OrdersStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+    addConstant('topicName', .ref(topic.name));
+    addOutput('orders_topic_id', topic.id);
+    final service = add(
+      GoogleCloudRunV2Service(
+        'api',
+        name: .literal('orders-api'),
+        location: .literal('asia-northeast1'),
+        template: CloudRunV2ServiceTemplate(
+          containers: [
+            .new(
+              image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
+              env: [
+                for (final (:name, :value) in outputEnvironment())
+                  .new(name: .literal(name), source: .value(value)),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+    addOutput('service_url', service.uri);
+    addDartDefineOutput();
+  }
+}
+```
 
 ## 5. Check it
 

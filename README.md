@@ -140,7 +140,7 @@ Already have `tofu` or `terraform` installed, or a pipeline that runs one? `terr
 
 What the compiler now checks for you:
 
-- **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every attribute also has a plain getter (`orders.name`, `apiSa.email`) that is itself a `TfArg`, so it passes straight into any argument of its type.
+- **References are typed.** An argument that names another resource takes that resource's `ref`, as the subscription's `topic` and the service's `serviceAccount` do above, and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every attribute also has a plain getter (`orders.name`, `apiSa.email`) that is itself a `TfArg`, so it passes straight into any argument of its type.
 - **Fixed value sets are enums and exclusive blocks are sealed types**, written as Dart 3.10 dot shorthands: `.all`, `.pushConfig(...)`, `.value(...)`. A typo or a second delivery mode is a compile error, not a failed plan.
 - **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice. A Flutter or web client gets the same variables at build time: `addDartDefineOutput()` declares the file `--dart-define-from-file` reads (`terradart apply` and `terradart outputs` write it to `.terradart/dart_defines.json`), and `const OrdersStackOutputs.fromDartDefine()` reads it — see [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 - **It is plain Dart.** Loops, conditionals and your own classes work as they always do. Synth is your own `bin/infra.dart` running; `terradart` only runs it and then the engine.
@@ -152,20 +152,22 @@ Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/), 
 <!-- argument-rules:start -->
 Pick the form by where the value comes from. The argument's type tells you which forms it takes, and a dot shorthand (`.literal`, `.new`, `.providedAl2023`) names the constructor of that type.
 
-| The value is | Write | Example |
-|---|---|---|
-| known when you synth | `.literal(...)` | `functionName: .literal('hello')` |
-| another resource of this Stack (a `RefTo<R>` input) | its `ref` | `role: role.ref` |
-| one attribute of another block | its getter | `assumeRolePolicy: trust.json` |
-| a resource outside this Stack (a `RefTo<R>` input) | `.literal(id)` | `zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353')` |
-| one of a fixed set (an enum) | the member | `runtime: .providedAl2023` |
-| one of several exclusive arguments (a sealed type) | the variant | `code: .filename(.literal('build/fn.zip'))` |
-| a nested block | its helper class; `.new(...)` inside another block or a variant | `environment: LambdaFunctionEnvironment(...)` |
-| a Terraform variable | the handle `variable<T>()` returns | `memorySize: memory` |
-| a variable in an enum or `RefTo<R>` input | `.arg(handle)` | `runtime: .arg(runtimeName)` |
-| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal | `value: .value(dbPassword)` |
-| a reference inside a literal list or map | the getter's `.interpolation` | `{'ROLE_ARN': role.arn.interpolation}` |
-| anything else Terraform evaluates | `.expression(...)` | `.expression(r'${file("trust.json")}')` |
+| The value is | Write |
+|---|---|
+| known when you synth | `.literal(...)` |
+| another resource of this Stack (a `RefTo<R>` input) | its `ref` |
+| one attribute of another block | its getter |
+| a resource outside this Stack (a `RefTo<R>` input) | `.literal(...)` with its name, ID or ARN |
+| one of a fixed set (an enum) | the member |
+| one of several exclusive arguments (a sealed type) | the variant |
+| a nested block | its helper class; `.new(...)` inside another block or a variant |
+| a Terraform variable | the handle `variable<T>()` returns |
+| a variable in an enum or `RefTo<R>` input | `.arg(handle)` |
+| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal |
+| a reference inside a literal list or map | the getter's `.interpolation` |
+| anything else Terraform evaluates | `.expression(...)` |
+
+Each row is an argument of this Stack body, marked with its row:
 
 ```dart
 final memory = variable<num>('memory_mb');
@@ -177,8 +179,9 @@ final trust = add(
     'trust',
     statement: [
       DataIamPolicyDocumentStatement(
-        actions: .literal(['sts:AssumeRole']),
+        actions: .literal(['sts:AssumeRole']), // known when you synth
         principals: [
+          // a nested block inside another block
           .new(
             type: .literal('Service'),
             identifiers: .literal(['lambda.amazonaws.com']),
@@ -188,16 +191,19 @@ final trust = add(
     ],
   ),
 );
+// one attribute of another block
 final role = add(AwsIamRole('hello', assumeRolePolicy: trust.json));
 add(
   AwsLambdaFunction(
     'hello',
     functionName: .literal('hello'),
-    role: role.ref,
-    runtime: .arg(runtimeName),
-    code: .filename(.literal('build/fn.zip')),
-    memorySize: memory,
+    role: role.ref, // another resource of this Stack
+    runtime: .arg(runtimeName), // a variable in an enum input
+    code: .filename(.literal('build/fn.zip')), // a variant
+    memorySize: memory, // a Terraform variable
+    // a nested block
     environment: LambdaFunctionEnvironment(
+      // a reference inside a literal map
       variables: .literal({'ROLE_ARN': role.arn.interpolation}),
     ),
   ),
@@ -206,8 +212,16 @@ add(
   AwsSsmParameter(
     'db_password',
     name: .literal('/hello/db_password'),
-    type: .securestring,
-    value: .value(dbPassword),
+    type: .securestring, // one of a fixed set
+    keyId: .literal('alias/aws/ssm'), // a resource outside this Stack
+    value: .value(dbPassword), // a secret
+  ),
+);
+add(
+  AwsIamRole(
+    'deploy',
+    // anything else Terraform evaluates
+    assumeRolePolicy: .expression(r'${file("trust.json")}'),
   ),
 );
 ```
