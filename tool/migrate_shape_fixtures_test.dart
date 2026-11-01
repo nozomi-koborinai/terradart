@@ -28,6 +28,31 @@ void main() {
     );
   });
 
+  test('a versioned header and a lane note still read as a rename', () {
+    expect(
+      renamedTypes('''
+| Before (0.30) | After |
+|--------|-------|
+| `OldMode` (google-beta) | `NewMode` |
+
+| Before (0.31) | After (0.32) |
+|---|---|
+| `OldKind` | `NewKind` (appwrite) |
+'''),
+      {'NewMode', 'NewKind'},
+    );
+  });
+
+  test('the google-beta and appwrite renames are read', () {
+    expect(
+      renamed,
+      containsAll([
+        'ComputeFutureReservationMode',
+        'MongoBackupStorageProvider',
+      ]),
+    );
+  });
+
   test('a MIGRATING.md with no rename fails loudly', () {
     expect(
       () => renamedTypes(
@@ -91,6 +116,13 @@ void main() {
       expect(
         shapeFixtureFindings(google, without(types: renamed), renamed: renamed),
         [contains('none of the renamed types')],
+      );
+    });
+
+    test('a lane that MIGRATING.md renames nothing in fails', () {
+      expect(
+        shapeFixtureFindings(google, result.report, renamed: {'NotAType'}),
+        [contains('no Before / After row in MIGRATING.md renames a google')],
       );
     });
 

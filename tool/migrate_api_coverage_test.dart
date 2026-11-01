@@ -29,6 +29,41 @@ final class SourceDisk extends Source {
 }
 ''';
 
+const _helpers = '''
+final class ThingConfig {
+  const ThingConfig({this.mode});
+  final TfArg<String>? mode;
+}
+final class OtherConfig {
+  const OtherConfig({this.mode});
+  final TfArg<String>? mode;
+}
+''';
+
+const _modeSlot = MigrateSlot(
+  tfName: 'mode',
+  dartName: 'mode',
+  kind: MigrateSlotKind.scalar,
+  required: false,
+  dartType: 'String',
+);
+
+MigrateSlot _configSlot({
+  MigrateSlotKind kind = MigrateSlotKind.helper,
+  String? helper = 'ThingConfig',
+  bool repeated = false,
+  bool keyed = false,
+}) => MigrateSlot(
+  tfName: 'config',
+  dartName: 'config',
+  kind: kind,
+  required: false,
+  repeated: repeated,
+  keyed: keyed,
+  dartType: kind == MigrateSlotKind.scalar ? 'String' : null,
+  helper: kind == MigrateSlotKind.helper ? helper : null,
+);
+
 String _factory(String params) =>
     '''
 final class GoogleThing extends Resource {
@@ -84,6 +119,8 @@ MigrateManifest _manifest(
         ),
       ],
     ),
+    'ThingConfig': MigrateHelper(className: 'ThingConfig', slots: [_modeSlot]),
+    'OtherConfig': MigrateHelper(className: 'OtherConfig', slots: [_modeSlot]),
   },
   enums: {'Tier': MigrateEnum(name: 'Tier', members: tier)},
 );
@@ -150,7 +187,7 @@ List<String> _findings(
               ],
           tier: tier ?? const {'BASIC': 'basic', 'PREMIUM': 'premium'},
         ),
-  WrapperApi.parse([_enum, _sealed, _factory(params)]),
+  WrapperApi.parse([_enum, _sealed, _helpers, _factory(params)]),
   debt: debt,
   usedDebt: usedDebt,
 );
@@ -287,6 +324,7 @@ void main() {
       final api = WrapperApi.parse([
         _enum,
         _sealed,
+        _helpers,
         _factory(_params).replaceFirst(
           'TfRef<String> get name',
           "IamPrincipal get principal => IamPrincipal.arg(member);\n"
@@ -295,6 +333,67 @@ void main() {
       ]);
       final findings = coverageFindings(_manifest(slots), api);
       expect(findings.single, contains('GoogleThing.principal'));
+    });
+
+    test('a helper input the manifest builds as a string', () {
+      final findings = _findings('$_params, ThingConfig? config', [
+        ...slots,
+        _configSlot(kind: MigrateSlotKind.scalar),
+      ]);
+      expect(
+        findings.single,
+        contains('GoogleThing.config (ThingConfig?): a ThingConfig'),
+      );
+    });
+
+    test('a helper input the manifest builds as another helper', () {
+      final findings = _findings('$_params, ThingConfig? config', [
+        ...slots,
+        _configSlot(helper: 'OtherConfig'),
+      ]);
+      expect(
+        findings.single,
+        contains('a ThingConfig, the manifest builds helper OtherConfig'),
+      );
+    });
+
+    test('a list or map of helpers the manifest builds as one block', () {
+      expect(
+        _findings('$_params, List<ThingConfig>? config', [
+          ...slots,
+          _configSlot(),
+        ]).single,
+        contains('a list of ThingConfig'),
+      );
+      expect(
+        _findings('$_params, Map<String, ThingConfig>? config', [
+          ...slots,
+          _configSlot(repeated: true),
+        ]).single,
+        contains('a map of ThingConfig'),
+      );
+    });
+
+    test('a helper input with no manifest slot', () {
+      final findings = _findings('$_params, ThingConfig? config', slots);
+      expect(findings.single, contains('no manifest slot builds it'));
+    });
+
+    test('a public factory the manifest has no entry for', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(_params),
+        '''
+final class GoogleOther extends Resource {
+  static const String tfType = 'google_other';
+  GoogleOther(super.localName, {TfArg<String>? name, super.lifecycle});
+}
+''',
+      ]);
+      final findings = coverageFindings(_manifest(slots), api);
+      expect(findings.single, contains('GoogleOther'));
     });
 
     test('a typed input with no manifest slot', () {
