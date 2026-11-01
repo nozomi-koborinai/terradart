@@ -76,7 +76,7 @@ void main() {
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code, after: '');
+        (line: 1, section: 's', before: false, code: code);
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -146,35 +146,26 @@ void main() {
 |---|---|---|
 | `GooglePubsubTopic.name` | `DefinitelyNoSuchType()` | `GooglePubsubTopic.name` |
 | `AzurermResourceGroup.name` | `TfArg<String>` | `AzurermResourceGroup.name` |
-| `AzurermResourceGroup.location` | `AzurermResourceGroup('rg', location: .literal('x'))` | `AzurermResourceGroup.location` |
+| `AzurermResourceGroup.location` | `AzurermResourceGroup('rg')` | `AzurermResourceGroup.location` |
 | `AzurermMssqlVirtualMachine.dayOfWeek` | `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
 ''';
     final report = await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-      ledger: '''
-- before: "AzurermResourceGroup('rg', location: .literal('x'))"
-  after: "`AzurermResourceGroup.location`"
-  package: terradart_azure
-  reason: Unpublished.
-- before: MssqlVirtualMachineDayOfWeek
-  after: "`MssqlVirtualMachineScheduleDayOfWeek`"
-  package: terradart_azure
-  reason: Unpublished.
-''',
     );
     expect(report.failures, [
       allOf(
         contains('MIGRATING.md:11: Before'),
         contains('DefinitelyNoSuchType'),
       ),
+      for (final line in [13, 14])
+        allOf(
+          contains('MIGRATING.md:$line: Before'),
+          contains('does not belong in MIGRATING.md'),
+        ),
     ]);
     expect(report.beforeCompiled, 1);
-    expect(report.beforeFailed, 1);
-    expect(
-      [for (final s in report.beforeSkipped) (s.cell.line, s.package)],
-      [(13, 'terradart_azure'), (14, 'terradart_azure')],
-    );
+    expect(report.beforeFailed, 3);
   });
 
   test(
@@ -205,246 +196,6 @@ void main() {
       ]);
     },
   );
-
-  group('the unpublished Before ledger', () {
-    String doc(List<String> rows) => [
-      '# Migrating terradart',
-      '',
-      '## 0.35.x → 0.36.0',
-      '',
-      '| Before | After |',
-      '|---|---|',
-      ...rows,
-      '',
-    ].join('\n');
-    String entry(
-      String before, {
-      String after = 'AzurermResourceGroup.name',
-      String package = 'terradart_azure',
-    }) =>
-        '''
-- before: "$before"
-  after: "`$after`"
-  package: $package
-  reason: The Before API was never published.
-''';
-    Future<MigratingReport> check(List<String> rows, [String ledger = '']) =>
-        checkMigratingCells(
-          Directory.current.path,
-          migrating: doc(rows),
-          ledger: ledger,
-        );
-
-    test('an unpublished name in the After cell does not hide a typo of a '
-        'bare Before name', () async {
-      final report = await check([
-        '| `GooglePubsubTopik` | `ApplicationGatewayProbeProtocol` |',
-      ]);
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:7: Before'),
-          contains('GooglePubsubTopik'),
-        ),
-      ]);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('an unpublished type in a Before cell does not hide a typo beside '
-        'it', () async {
-      final report = await check([
-        "| `AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))` "
-            '| `AzurermResourceGroup.name` |',
-      ]);
-      expect(
-        report.failures,
-        contains(
-          allOf(
-            contains('MIGRATING.md:7: Before'),
-            contains("'GooglePubsubTopik'"),
-          ),
-        ),
-      );
-      expect(report.beforeFailed, 1);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('an unlisted Before cell of an unpublished package fails', () async {
-      final report = await check([
-        "| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |",
-      ]);
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:7: Before'),
-          contains('AzurermResourceGroup'),
-        ),
-      ]);
-      expect(report.beforeFailed, 1);
-    });
-
-    test(
-      'a listed Before cell is skipped with its package and reason',
-      () async {
-        final report = await check([
-          "| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |",
-          '| `TfArg<String>` | `AzurermResourceGroup.name` |',
-        ], entry("AzurermResourceGroup('rg')"));
-        expect(report.failures, isEmpty, reason: report.failures.join('\n'));
-        expect(report.beforeCompiled, 1);
-        expect(
-          [for (final s in report.beforeSkipped) describeSkip(s)],
-          [
-            allOf(
-              contains('MIGRATING.md:7:'),
-              contains('terradart_azure'),
-              contains('The Before API was never published.'),
-            ),
-          ],
-        );
-      },
-    );
-
-    test('an entry that matches no Before cell fails', () async {
-      final report = await check(
-        ["| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |"],
-        entry("AzurermResourceGroup('rg')") +
-            entry("AzurermResourceGroup('renamed')"),
-      );
-      expect(report.failures, [
-        allOf(
-          contains(migratingLedgerPath),
-          contains("AzurermResourceGroup('renamed')"),
-          contains('matches no Before cell'),
-        ),
-      ]);
-    });
-
-    test('an entry whose package has a release in the series fails', () async {
-      final report = await check(
-        ["| `GooglePubsubTopic('t', nosuch: x)` | `GooglePubsubTopic.name` |"],
-        entry(
-          "GooglePubsubTopic('t', nosuch: x)",
-          after: 'GooglePubsubTopic.name',
-          package: 'terradart_google',
-        ),
-      );
-      expect(
-        report.failures,
-        contains(
-          allOf(
-            contains(migratingLedgerPath),
-            contains('terradart_google'),
-            contains('has a 0.35.x release'),
-          ),
-        ),
-      );
-      expect(report.beforeFailed, 1);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('an entry whose Before cell compiles fails', () async {
-      final report = await check([
-        '| `TfArg<String>` | `AzurermResourceGroup.name` |',
-      ], entry('TfArg<String>'));
-      expect(report.failures, [
-        allOf(
-          contains(migratingLedgerPath),
-          contains('TfArg<String>'),
-          contains('compiles'),
-        ),
-      ]);
-    });
-
-    test('an entry covers only the row it was reviewed for', () async {
-      final report = await check(
-        [
-          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
-          '| `ApplicationGatewayProbeProtocol` | `GooglePubsubTopic.name` |',
-        ],
-        '''
-- before: ApplicationGatewayProbeProtocol
-  after: "`AzurermResourceGroup.name`"
-  package: terradart_azure
-  reason: Unpublished.
-''',
-      );
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:8: Before'),
-          contains('ApplicationGatewayProbeProtocol'),
-        ),
-      ]);
-      expect(report.beforeFailed, 1);
-      expect([for (final s in report.beforeSkipped) s.cell.line], [7]);
-    });
-
-    test('a listed cell keeps a typo beside its unpublished call', () async {
-      final report = await check([
-        "| `AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))` "
-            '| `AzurermResourceGroup.name` |',
-      ], entry("AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))"));
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:7: Before'),
-          contains("'GooglePubsubTopik'"),
-        ),
-      ]);
-      expect(report.beforeFailed, 1);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('a listed cell keeps a name the unpublished package does not '
-        'export', () async {
-      final report = await check([
-        '| `AzurermNoSuchGroup` | `AzurermResourceGroup.name` |',
-      ], entry('AzurermNoSuchGroup'));
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:7: Before'),
-          contains("'AzurermNoSuchGroup'"),
-        ),
-      ]);
-      expect(report.beforeFailed, 1);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('a listed cell keeps a dot shorthand outside its unpublished '
-        'call', () async {
-      final report = await check([
-        "| `[AzurermResourceGroup('rg'), .literal('x')]` "
-            '| `AzurermResourceGroup.name` |',
-      ], entry("[AzurermResourceGroup('rg'), .literal('x')]"));
-      expect(
-        report.failures,
-        contains(
-          allOf(contains('MIGRATING.md:7: Before'), contains('DOT_SHORTHAND')),
-        ),
-      );
-      expect(report.beforeFailed, 1);
-      expect(report.beforeSkipped, isEmpty);
-    });
-
-    test('an entry that matches more cells than one fails', () async {
-      final report = await check(
-        [
-          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
-          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
-        ],
-        '''
-- before: ApplicationGatewayProbeProtocol
-  after: "`AzurermResourceGroup.name`"
-  package: terradart_azure
-  reason: Unpublished.
-''',
-      );
-      expect(report.failures, [
-        allOf(
-          contains(migratingLedgerPath),
-          contains('ApplicationGatewayProbeProtocol'),
-          contains('matches 2 Before cells'),
-        ),
-      ]);
-    });
-  });
 
   test('a Before cell of a package the previous release lacks does not '
       'belong in MIGRATING.md', () async {
@@ -495,27 +246,7 @@ void main() {
       File(migratingPath).readAsStringSync(),
     ).where((c) => c.before);
     expect(report.beforeFailed, 0);
-    expect(report.beforeCompiled + report.beforeSkipped.length, before.length);
-    final ledger = parseMigratingLedger(
-      File(migratingLedgerPath).readAsStringSync(),
-    );
-    for (final skip in report.beforeSkipped) {
-      expect(
-        ledger,
-        contains((
-          before: skip.cell.code,
-          after: skip.cell.after,
-          package: skip.package,
-          reason: skip.reason,
-        )),
-        reason: describeSkip(skip),
-      );
-      expect(
-        report.before,
-        isNot(contains(skip.package)),
-        reason: describeSkip(skip),
-      );
-    }
+    expect(report.beforeCompiled, before.length);
   });
 
   test('an empty top section fails', () async {
@@ -571,24 +302,10 @@ void main() {
 | `GooglePubsubTopic('t', name: name)` | `PubsubSubscriptionBigqueryConfig(useTopicSchema: .literal(true))` |
 | `GooglePubsubTopic('t', name: name, ...)` | `warmType: .literal('ultrawarm1.medium.search')` |
 | `GooglePubsubTopic.name` | `NoSuchType` |
-
-### Azure only
-
-**Breaking (`terradart_azure`).** Text.
-
-| Before | After |
-|---|---|
-| `AzurermResourceGroup('rg')` | `GooglePubsubTopic('t', name: name)` |
 ''';
     final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-      ledger: '''
-- before: "AzurermResourceGroup('rg')"
-  after: "`GooglePubsubTopic('t', name: name)`"
-  package: terradart_azure
-  reason: Unpublished.
-''',
     )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
     expect(at(11), contains('UNDEFINED_NAMED_PARAMETER'));

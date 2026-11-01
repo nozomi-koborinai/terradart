@@ -512,8 +512,6 @@ typedef AnalyzerDiagnostic = ({
   String code,
   String file,
   int line,
-  int column,
-  int length,
   String message,
 });
 
@@ -533,8 +531,6 @@ Future<List<AnalyzerDiagnostic>> analyzeDiagnostics(String dir) async {
       code: parts[2],
       file: p.canonicalize(parts[3]),
       line: int.parse(parts[4]),
-      column: int.parse(parts[5]),
-      length: int.parse(parts[6]),
       message: parts.sublist(7).join('|'),
     ));
   }
