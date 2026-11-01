@@ -67,7 +67,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 | Before (0.31) | After (0.32) |
 | --- | --- |
 | `GooglePubsubTopic(localName: 'orders', ...)` | `GooglePubsubTopic('orders', ...)` |
-| `topic.nameRef`, `labels: .ref(other.labels)` | `topic.name`, `labels: other.labels` |
+| `topic.nameRef`, `labels: .ref(topic.labels)` | `topic.name`, `labels: topic.labels` |
 | `routingMode: .literal(.regional)` | `routingMode: .regional` |
 | `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then `location: region` |
 | `dependsOn: [ResourceDependency(api)]`, `addData(...)` | `dependsOn: [api]`, `add(...)` |
@@ -91,7 +91,20 @@ import 'package:terradart_google/pubsub.dart';
 final class PublisherStack extends Stack {
   PublisherStack({required String projectId})
     : super(providers: [GoogleProvider(project: projectId)]) {
-    final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+    final topic = add(
+      GooglePubsubTopic(
+        'orders',
+        name: .literal('orders'),
+        labels: .literal({'team': 'orders'}),
+      ),
+    );
+    add(
+      GooglePubsubTopic(
+        'orders-dlq',
+        name: .literal('orders-dlq'),
+        labels: topic.labels, // was .ref(topic.labels)
+      ),
+    );
     final publisher = add(
       GoogleServiceAccount('publisher', accountId: .literal('orders-publisher')),
     );
@@ -101,6 +114,14 @@ final class PublisherStack extends Stack {
         topic: topic.ref, // was name: .ref(topic.nameRef)
         role: .literal('roles/pubsub.publisher'),
         member: publisher.principal, // was .ref(publisher.iamMember)
+      ),
+    );
+    add(
+      GooglePubsubTopicIamMember(
+        'view',
+        topic: topic.ref,
+        role: .literal('roles/pubsub.viewer'),
+        member: .user('a@example.com'), // was .literal('user:a@example.com')
       ),
     );
     addOutput('orders_topic_id', topic.id);

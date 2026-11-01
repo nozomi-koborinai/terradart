@@ -114,6 +114,19 @@ add(
 
 Every attribute also has a getter (`zone.id`, `role.arn`, `topic.name`) that is a `TfArg` of its type, so it goes into any argument that takes one. A resource outside the Stack goes into a `RefTo<R>` input as `.literal(...)`, its name, ID or ARN. A module output or another string you cannot type goes in as `.arg(...)`, unchecked.
 
+```dart
+add(
+  CloudflareDnsRecord(
+    'apex',
+    zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353'),
+    name: .literal('@'),
+    type: .a,
+    ttl: .literal(1),
+    content: .content(.literal('192.0.2.1')),
+  ),
+);
+```
+
 ## Enums and exclusive arguments
 
 An input with a fixed set of values takes the member, bare: `type: .cname`, `runtime: .providedAl2023`, `ingress: .all`. A list of them is a literal Dart list of members: `architectures: .literal([.x8664])`.
@@ -149,7 +162,22 @@ add(
 );
 ```
 
-A variant whose block has no fields takes no argument (`format: .avroFormat()`).
+A variant whose block has no fields takes no argument (`format: .avroFormat()`):
+
+```dart
+final bucket = add(
+  GoogleStorageBucket('drop', name: .literal('my-project-drop'), location: .literal('EU')),
+);
+add(
+  GooglePubsubTopic(
+    'imports',
+    name: .literal('imports'),
+    ingestionDataSourceSettings: .new(
+      cloudStorage: .new(bucket: bucket.ref, format: .avroFormat()),
+    ),
+  ),
+);
+```
 
 ## Nested blocks
 

@@ -24,7 +24,24 @@ dart compile exe bin/bootstrap.dart -o build/bootstrap \
 
 The binary must be named `bootstrap` and built for Linux. The `--target-os` / `--target-arch` flags cross-compile from macOS or Windows (Dart 3.8 or later). For `arm64` (Graviton), build with `--target-arch arm64` and set `architectures` to `arm64` in `lib/main.dart`.
 
-The stack sets no `source_code_hash`, so `terradart apply` does not notice a rebuilt zip at the same path. Run `terradart apply -- -replace=aws_lambda_function.hello`, or add `sourceCodeHash: TfArg.expression(r'${filebase64sha256("../build/bootstrap.zip")}')` once the zip exists. That expression makes `terradart plan` fail while the zip is missing, which is why the example leaves it out.
+The stack sets no `source_code_hash`, so `terradart apply` does not notice a rebuilt zip at the same path. Run `terradart apply -- -replace=aws_lambda_function.hello`, or add `sourceCodeHash: .expression(r'${filebase64sha256("../build/bootstrap.zip")}')` once the zip exists. That expression makes `terradart plan` fail while the zip is missing, which is why the example leaves it out.
+
+```dart
+final role = add(
+  AwsIamRole('fn', assumeRolePolicy: .expression(r'${file("trust.json")}')),
+);
+add(
+  AwsLambdaFunction(
+    'hello',
+    functionName: .literal('hello'),
+    role: role.ref,
+    runtime: .providedAl2023,
+    handler: .literal('bootstrap'),
+    code: .filename(.literal('../build/bootstrap.zip')),
+    sourceCodeHash: .expression(r'${filebase64sha256("../build/bootstrap.zip")}'),
+  ),
+);
+```
 
 You also need AWS credentials that can manage IAM roles, Lambda, and CloudWatch Logs. The function URL is public (`authorization_type = NONE`); anyone with the URL can invoke it.
 

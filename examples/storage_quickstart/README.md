@@ -128,6 +128,20 @@ The `assets` bucket itself:
 
 `body: .source(...)` (a local file) and `body: .content(...)` (inline text) are the two variants of the sealed `StorageBucketObjectBody` argument: exactly one is required, and the compiler enforces the choice at construction time.
 
+```dart
+final assets = add(
+  GoogleStorageBucket('assets', name: .literal('my-project-assets'), location: .literal('EU')),
+);
+add(
+  GoogleStorageBucketObject(
+    'robots',
+    bucket: assets.ref,
+    name: .literal('robots.txt'),
+    body: .content(.literal('User-agent: *\nDisallow:\n')),
+  ),
+);
+```
+
 ## Next steps
 
 - [bigquery_quickstart](../bigquery_quickstart/) — analytics dataset with a typed `BigqueryDatasetAccess` list.

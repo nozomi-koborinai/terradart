@@ -181,6 +181,7 @@ final class AppStack extends Stack {
       'assets',
       name: .literal(env.assetsName), // "app-dev-assets" / "app-prod-assets"
       location: .literal('ASIA-NORTHEAST1'),
+      storageClass: env.assetsStorageClass,
     ));
     if (env.isProd) {
       add(GoogleStorageBucket(
@@ -199,16 +200,20 @@ final class AppStack extends Stack {
 
 ```dart
 // lib/env.dart
+import 'package:terradart_google/storage.dart';
+
 enum Env {
   dev(
     path: 'dev',
     assetsName: 'app-dev-assets',
+    assetsStorageClass: BucketStorageClass.standard,
     backendBucket: 'app-dev-tfstate',
     backendPrefix: 'infra/dev',
   ),
   prod(
     path: 'prod',
     assetsName: 'app-prod-assets',
+    assetsStorageClass: BucketStorageClass.nearline,
     backendBucket: 'app-prod-tfstate',
     backendPrefix: 'infra/prod',
     isProd: true,
@@ -217,6 +222,7 @@ enum Env {
   const Env({
     required this.path,
     required this.assetsName,
+    required this.assetsStorageClass,
     required this.backendBucket,
     required this.backendPrefix,
     this.isProd = false,
@@ -224,6 +230,7 @@ enum Env {
 
   final String path;
   final String assetsName;
+  final BucketStorageClass assetsStorageClass;
   final String backendBucket;
   final String backendPrefix;
 

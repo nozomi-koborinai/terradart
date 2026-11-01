@@ -27,6 +27,23 @@ The binary must be named `bootstrap` and built for Linux. The `--target-os` / `-
 
 The stack sets no `source_code_hash`, so `terradart apply` does not notice a rebuilt zip at the same path. Run `terradart apply -- -replace=aws_lambda_function.api`, or add `sourceCodeHash: .expression(r'${filebase64sha256("../build/bootstrap.zip")}')` once the zip exists. That expression makes `terradart plan` fail while the zip is missing, which is why the example leaves it out.
 
+```dart
+final role = add(
+  AwsIamRole('fn', assumeRolePolicy: .expression(r'${file("trust.json")}')),
+);
+add(
+  AwsLambdaFunction(
+    'api',
+    functionName: .literal('api'),
+    role: role.ref,
+    runtime: .providedAl2023,
+    handler: .literal('bootstrap'),
+    code: .filename(.literal('../build/bootstrap.zip')),
+    sourceCodeHash: .expression(r'${filebase64sha256("../build/bootstrap.zip")}'),
+  ),
+);
+```
+
 You also need AWS credentials that can manage IAM roles, Lambda, API Gateway, DynamoDB and CloudWatch Logs. The routes are public (`authorization_type = NONE`); anyone with the URL can call them. Lambda, the HTTP API and the on-demand table bill per request.
 
 ## Prerequisites

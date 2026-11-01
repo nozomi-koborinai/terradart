@@ -45,7 +45,7 @@ The output is one Dart package:
 | `tf-out/<dir>/backend.tf`, `variables.tf`, `locals.tf`, `outputs.tf` | the `terraform` settings, variables, locals and outputs the Stack does not own |
 | `MIGRATION.md` | the report: every module, every kept block with its reason and file, warnings, and how the environment roots differ |
 
-A single-module `--dir` synthesizes into `tf-out/` directly. A directory where nothing translates — no curated resource, no known provider and no `module` call it can express — gets no Stack and stays Terraform: its sidecar files are its whole output. A root that only calls modules is a Stack with `providers: []`, since the child modules pin what they use. `--json` prints the report as JSON. Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
+A single-module `--dir` synthesizes into `tf-out/` directly. A directory where nothing translates — no curated resource, no known provider and no `module` call it can express — gets no Stack and stays Terraform: its sidecar files are its whole output. A root that only calls modules is a Stack with an empty `providers` list, since the child modules pin what they use. `--json` prints the report as JSON. Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
 
 **`--report`** runs the migration in memory and writes nothing (no `--out`; `--dir` defaults to the current directory): every `resource` / `data` type with how many blocks translate, how many stay in Terraform and why, the factory each maps to or `not in any catalog`, and the `module` calls whose source is outside the tree. `--json` prints it as JSON. `MigrationCoverage.of(project)` is the library form.
 
@@ -132,6 +132,15 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 - `module` calls: a call into a local directory of the tree uses the typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule('cloud_run_bff', source: '../modules/cloud_run', name: .literal('app-bff'))`, `bff.serviceName`), everything else a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map, whose values spell out `TfArg.literal(...)` because an `Object?` value has no type to resolve a dot shorthand against; `module.x.out` reads like a resource attribute, and the call is ordered with the blocks around it;
 - a literal `count` / `for_each` unrolled into one resource per instance (`google_pubsub_topic.t[0]` → `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` → `google_pubsub_topic.t_eu`): `count.index` / `each.key` / `each.value` substituted, every reference in the module — indexed, splat or bare — pointed at the new addresses (in blocks that stay in Terraform too), and a `moved` entry per instance (`addMoved`) so the plan shows moves only; the module's own `moved` blocks follow their targets into the Stack;
 - blockers, always with a reason: types outside every catalog, a `count` / `for_each` that is not a literal (its instances cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), `dynamic` / `provisioner`, a `timeouts` key that is not a Terraform operation or whose value is not a duration string, a `provider = x.alias` the module does not configure (a child module that does not configure it declares `configuration_aliases` instead; a provider block inside the child stays in Terraform, with the resource that selects it), an argument with no Dart parameter — an input the called module does not declare included, a non-literal `source`, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
+
+A variable whose type Dart cannot say comes out with its `type:` spelled out:
+
+```dart
+final service = variable<Object?>(
+  'service',
+  type: .object({'name': .string, 'port': .optional(.number, 8080)}),
+);
+```
 
 ## Round-trip gate
 
