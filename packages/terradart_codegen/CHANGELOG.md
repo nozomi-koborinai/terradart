@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- The `hashicorp/azurerm` lane. `wrap` generates `terradart_azure` and its migration manifest, the sixth.
+- `wrap --discovery-enums` types a Google input that Magic Modules leaves a plain string with the enum of its API's Discovery document, read from the lane's checked-in `discovery/` copy without the `*_UNSPECIFIED` sentinel. Magic Modules `enum_values` still win, and `wrap` fails on a stale copy.
+- `wrap` emits every enum-list input as `EnumList<E>`. The Magic Modules parser reads `enum_values` at every depth and keys constraints by the Terraform name, never `api_name`. A description that says its set is open stays a string.
+- An `enumValues` override entry fails (E406) once the derived set has every value it lists.
+- The `typeNames` override axis maps an input path to the Dart type it takes, so a new package can rename a type another package already publishes. `wrap` fails on an entry that names no derived enum or helper.
+- More groups seal. A hand-written sealed slot whose variants cover a group counts as sealing it. Magic Modules members written from another block's path seal in their own block. Exactly-one groups that share members join into one argument with a solo variant per shared member and one joint variant. A list enum keeps its name, and the variant class takes a `Choice` suffix.
+- The `unsealedGroups` override axis gives the reason a group stays unsealed. `wrap --check` fails on a group it neither seals nor finds there, on a stale entry, and on a derived helper no constructor reaches. `lint-override` fails on any line in `tool/exactly_one_lint_debt.yaml`, and resolves derived types against the generated wrappers.
+- `wrap` fails (E406) on a reference input it leaves a string, where it used to print `reference input not typed`. Every resource override of every lane sets `deriveOutputGetters`.
+- Data source factories read `hints/data/<type>.yaml`, never the resource hint file of the same name, and render enums and sealed arguments when the override sets `deriveEnums` and `deriveExactlyOne`.
+- A nested block that only shares a top-level slot's name keeps its helper, so `aws_emr_cluster` instance fleets take their `configurations` blocks.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.

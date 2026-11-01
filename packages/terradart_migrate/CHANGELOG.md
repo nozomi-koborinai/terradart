@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- `migrateModule` translates `hashicorp/azurerm` into `terradart_azure` factories through a sixth generated manifest. A migrated `azurerm` provider becomes `AzureProvider` and keeps `subscription_id` and `features`, and its `client_id` and `client_secret` are dropped. An `azurerm` backend that sets only `resource_group_name`, `storage_account_name`, `container_name` and `key` becomes an `AzurermBackend`, and its credential arguments are dropped with a warning. One that sets another argument stays in `backend.tf`.
+- Every Google input is written with the typed shape `terradart_google` exposes, so no quickstart resource stays in Terraform. An enum value outside the member set is written as `.arg(.literal(...))` with a warning instead of keeping the resource in Terraform. An enum filled by a variable takes the enum's own `.variable(...)`. The report records the shapes and types a Stack uses.
+- The manifests follow the breaking provider API of this release: sealed groups, enums, `EnumList` and renamed types.
+- A kept `azurerm` backend drops `client_secret`, `access_key`, `sas_token` and the other credential arguments, in `backend.tf` and in the `Env` enum `--merge-envs` writes. A kept `azuread` provider drops the same ARM client credentials.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.

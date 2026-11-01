@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- **Breaking:** follows `appwrite/appwrite` 2.3.0 (was 2.0.0-beta.1), and synth output pins that version. `AppwriteFunctionVariable` and `AppwriteSiteVariable` take a required `value: .value(...)` or `.valueWo(...)`. See [MIGRATING.md](../../MIGRATING.md#function-and-site-variables-seal-value).
+- **Breaking:** `AppwriteAuthUser.password`, `AppwriteWebhook.authPassword` and `AppwriteFunction.schedule` are sealed choices, with write-only variants for the passwords and `.interval(...)` minutes for the schedule. See [MIGRATING.md](../../MIGRATING.md#user-password-webhook-password-and-function-schedule).
+- `AppwriteProvider` takes `maxRetries` (`max_retries`). `api_key` and `organization_api_key` stay off the class.
+- `AppwriteStorageBucket` takes `projectId` as `RefTo<AppwriteProject>`, like the other Appwrite resources.
+- Factories for the DocumentsDB and VectorsDB databases, collections, documents and indexes, and four data sources.
+- A weekly schema bump moves the pin on Wednesdays.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill; no provider pin moves.

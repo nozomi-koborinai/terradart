@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- **Breaking:** 20 inputs that took a string take an enum of the set Magic Modules lists, else the set of the API's Discovery document. See [MIGRATING.md](../../MIGRATING.md#fixed-value-sets-are-enums).
+- Follows `hashicorp/google-beta` 8.8.1 (was 8.4.0). The beta-only catalog stays at 112 resource factories.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill; no provider pin moves.
