@@ -235,6 +235,7 @@ library;
     () async {
       final tmp = await Directory.systemTemp.createTemp('doc_snippets_reader_');
       addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'pubspec.yaml')).writeAsStringSync('name: demo\n');
       File(p.join(tmp.path, 'app', 'lib', 'generated', 'demo_stack.app.dart'))
         ..createSync(recursive: true)
         ..writeAsStringSync('''
@@ -316,7 +317,7 @@ final url = outputs.apiUrl;
     });
   });
 
-  test('the documents include every example README', () {
+  test('the documents include the example and cookbook READMEs', () {
     final docs = snippetDocuments(Directory.current.path);
     expect(docs, contains('examples/aws_lambda_quickstart/README.md'));
     expect(docs, contains('cookbook/single-project-app/README.md'));

@@ -91,9 +91,7 @@ See [FRICTIONS.md](./FRICTIONS.md) for the full context. This is a GCP / Terrafo
 typed reader to `lib/generated/single_project_app.app.dart`, so an app built
 into the container reads the same values without repeating a variable name:
 
-<!-- doc-snippets: skip: imports the reader the recipe's synth writes; the same code is lib/app_outputs.dart, which tool/check_cookbook.sh analyzes -->
 ```dart
-// lib/app_outputs.dart
 import 'dart:io';
 
 import 'generated/single_project_app.app.dart';
@@ -109,17 +107,17 @@ depend on a small shared package that holds it, without depending on
 `terradart_google`. `coffee_service_uri` is registered after the service:
 a service's environment cannot reference the service itself.
 
-## v0.9 patterns
+## API patterns
 
-This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:
+The recipe uses these parts of the API:
 
-- **`LocalBackend`** — `Stack(backend: const LocalBackend())` emits `terraform.backend.local: {}` in `main.tf.json`. The handwritten `tf-out/terraform.tf` is gone.
-- **`devMode: true`** — `Stack(devMode: true)` flips `deletion_protection: false` on Cloud Run, Cloud SQL, and Secret Manager at synth time. No more per-resource `deletionProtection: TfArg.literal(false)` calls in sample code.
-- **Concrete `synth()`** — `Stack.synth()` is now a concrete default that writes `tf-out/main.tf.json`. The `@override synth(...)` boilerplate and `dart:convert` import are gone from the Stack subclass.
-- **`variable<String>('name', sensitive: true)`** — route secrets through Terraform variable blocks (`${var.db_password}`) instead of masking workarounds.
-- **`.principal` getter** — `GoogleServiceAccount.principal` is the account as an `IamPrincipal`, so an IAM binding takes `member: runSa.principal`.
-- **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceContainers`, `CloudRunV2ServiceEnv`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyConditions`, etc. Prevents name collisions when importing multiple barrels.
-- **Enum name polish** — `Comparison.lessThan` (was `.lt`), `Aligner.alignNextOlder` (was `.nextOlder`).
+- **`LocalBackend`**: `Stack(backend: const LocalBackend())` emits `terraform.backend.local: {}` in `main.tf.json`.
+- **`devMode: true`**: `Stack(devMode: true)` sets `deletion_protection: false` on Cloud Run, Cloud SQL, and Secret Manager at synth time, so no resource sets it by hand.
+- **`synth()`**: `Stack.synth()` writes `tf-out/main.tf.json`; the Stack subclass does not override it.
+- **Secrets**: the database password stays in Secret Manager and reaches the service through `secretKeyRef`. A value the Stack must take from outside goes through `variable<String>('name', sensitive: true)`.
+- **`.principal`**: `GoogleServiceAccount.principal` is the account as an `IamPrincipal`, so an IAM binding takes `member: runSa.principal`.
+- **Service-prefixed helper classes**: `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceContainers`, `CloudRunV2ServiceEnv`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyConditions`, and others, so importing several barrels causes no name collision.
+- **Enums**: `comparison: .lessThan`, `perSeriesAligner: .alignNextOlder`.
 
 ## D1b — GCS backend
 

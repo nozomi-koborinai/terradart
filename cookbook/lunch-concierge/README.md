@@ -130,9 +130,11 @@ const databaseName = 'lunch';
 Synth writes `LunchStackConstants`, and the server imports it — the database
 name and user are never re-typed:
 
-<!-- doc-snippets: skip: needs genkit and postgres; tool/check_cookbook.sh analyzes the recipe -->
+<!-- doc-snippets: skip: needs genkit_vertexai and postgres; tool/check_cookbook.sh analyzes the same calls in server/lib/lunch_flow.dart and server/lib/db.dart -->
 ```dart
+import 'package:genkit_vertexai/genkit_vertexai.dart';
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
+import 'package:postgres/postgres.dart';
 
 // Point Genkit at Agent Platform for the infra-owned project/region.
 vertexAI(
@@ -152,8 +154,12 @@ Endpoint(
 The request/response schemas live once and are shared by both ends of the
 wire:
 
-<!-- doc-snippets: skip: needs genkit, schemantic and flutter; tool/check_cookbook.sh analyzes the recipe -->
+<!-- doc-snippets: skip: needs genkit and schemantic; tool/check_cookbook.sh analyzes the shared schema and the server flow, not the Flutter client -->
 ```dart
+import 'package:genkit/client.dart'; // client
+import 'package:genkit/genkit.dart'; // server
+import 'package:schemantic/schemantic.dart'; // shared
+
 // shared/lib/schema.dart
 @Schema()
 abstract class $LunchRequest {

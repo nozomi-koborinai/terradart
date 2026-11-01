@@ -7,7 +7,8 @@
 // tool/doc_snippets_test.dart runs the same check (CI: `dart test tool/`).
 //
 // Each document gets a sandbox package named `my_app` that depends on the
-// workspace packages under `packages/`, except codegen and the CLI. Within it:
+// workspace packages under `packages/`, except codegen and the CLI (a
+// package's doc-comment sandbox also depends on that package). Within it:
 //
 // - A fence whose first line is a path comment (`// lib/orders_stack.dart`)
 //   is written to that path, so fences of one document can import each
@@ -21,11 +22,15 @@
 //   `outputEnvironment()` resolve.
 // - `bin/*.dart` fences with a `main` run first, in document order, so a
 //   synth writes the generated file the app fences import.
+// - The `lib/generated/*.app.dart` readers checked in under the document's
+//   package directory (an example's `app/lib/generated/`) are in `lib/generated/`,
+//   so a fence can read the outputs of the Stack it documents.
 // - In a README or a website page, `<!-- doc-snippets: skip: <reason> -->`
 //   on the line before a fence leaves it out — only for code that needs a
 //   package outside the workspace (a cookbook recipe's Genkit server, which
 //   the recipe's own build compiles in tool/check_cookbook.sh; a Flutter
-//   app's `lib/main.dart`).
+//   app's `lib/main.dart`). A skipped fence that imports no such package
+//   fails.
 //
 // Then one `dart analyze` checks every sandbox; an error or warning fails.
 //
@@ -124,8 +129,13 @@ final class Snippet {
   );
 }
 
-/// The ```dart fences of [text], the content of [doc].
-List<Snippet> extractSnippets(String doc, String text) {
+/// The ```dart fences of [text], the content of [doc]; [skipped] collects
+/// the fences a skip marker leaves out.
+List<Snippet> extractSnippets(
+  String doc,
+  String text, {
+  List<Snippet>? skipped,
+}) {
   final lines = text.split('\n');
   final out = <Snippet>[];
   final open = RegExp(r'^(\s*)(`{3,}|~{3,})dart\b');
@@ -148,7 +158,8 @@ List<Snippet> extractSnippets(String doc, String text) {
             : l.trimLeft(),
       );
     }
-    if (!skip) out.add(Snippet(doc: doc, line: i + 2, code: body.join('\n')));
+    final snippet = Snippet(doc: doc, line: i + 2, code: body.join('\n'));
+    (skip ? skipped : out)?.add(snippet);
     i = j;
   }
   return out;
@@ -158,6 +169,18 @@ List<Snippet> extractSnippets(String doc, String text) {
 /// marker without a reason does not match.
 final _skip = RegExp(r'^\s*<!--\s*doc-snippets:\s*skip:\s*\S.*-->\s*$');
 
+/// One message per fence of [skipped] that imports no package outside
+/// [workspace], the packages the sandbox can resolve.
+List<String> skipViolations(List<Snippet> skipped, Set<String> workspace) => [
+  for (final s in skipped)
+    if (!RegExp(
+      r'''^\s*import\s+['"]package:(\w+)/''',
+      multiLine: true,
+    ).allMatches(s.code).any((m) => !workspace.contains(m.group(1))))
+      '${s.doc}:${s.line}: a skip marker is only for a fence that needs a '
+          'package outside the workspace; this one compiles in the sandbox',
+];
+
 const statusPath = 'website/src/content/docs/docs/status.md';
 
 /// The packages the 1.0.0 row of the status page ([statusMd]) promises
@@ -166,11 +189,15 @@ Set<String> stablePackages(String statusMd) {
   final row = statusMd
       .split('\n')
       .firstWhere((l) => l.startsWith('| **1.0.0** |'), orElse: () => '');
-  final promise = RegExp(r'Stable SemVer for (.*?)\.(\s|$)').firstMatch(row);
+  final start = row.indexOf('Stable SemVer for ');
+  var promise = start < 0 ? '' : row.substring(start);
+  final outside = RegExp(
+    r'(`terradart_\w+`(,?\s*(and\s+)?`terradart_\w+`)*),?\s*stays?\s+'
+    r'outside the promise',
+  ).firstMatch(promise);
+  if (outside != null) promise = promise.substring(0, outside.start);
   final out = {
-    for (final m in RegExp(
-      r'`(terradart_\w+)`',
-    ).allMatches(promise?.group(1) ?? ''))
+    for (final m in RegExp(r'`(terradart_\w+)`').allMatches(promise))
       m.group(1)!,
   };
   if (out.isEmpty) {
@@ -180,19 +207,13 @@ Set<String> stablePackages(String statusMd) {
 }
 
 /// The packages whose `///` doc comments are a user's dartdoc pages: every
-/// package of [stablePackages], plus the migrator libraries.
-const docCommentPackages = [
-  'terradart_core',
-  'terradart_google',
-  'terradart_google_beta',
-  'terradart_aws',
-  'terradart_cloudflare',
-  'terradart_appwrite',
-  'terradart_azure',
-  'terradart_time',
-  'terradart_cli',
-  'terradart_hcl',
-  'terradart_migrate',
+/// workspace package but the maintainer's `terradart_codegen`, so every
+/// package of [stablePackages].
+final List<String> docCommentPackages = [
+  for (final name in workspacePackageNames(
+    File('pubspec.yaml').readAsStringSync(),
+  ))
+    if (name != 'terradart_codegen') name,
 ];
 
 /// The ```dart fences in the `///` doc comments of [file] ([text] its
@@ -245,12 +266,13 @@ final class SnippetFile {
   final int prefix;
 
   /// This file with a `dynamic` stand-in declared for each of [names],
-  /// on one line before the snippet.
-  SnippetFile withStandIns(Iterable<String> names) {
-    final lines = contents.split('\n');
-    lines.insert(prefix, 'dynamic ${names.join(', ')};');
-    return SnippetFile(path, lines.join('\n'), snippet, prefix + 1);
-  }
+  /// on one line after the snippet, where a directive cannot follow it.
+  SnippetFile withStandIns(Iterable<String> names) => SnippetFile(
+    path,
+    '${contents}dynamic ${names.join(', ')};\n',
+    snippet,
+    prefix,
+  );
 
   /// The document line of sandbox line [line] (1-based).
   int docLine(int line) {
@@ -296,18 +318,18 @@ final List<String> _packages = docSnippetPackages(
   File('pubspec.yaml').readAsStringSync(),
 );
 
-String _pubspec(String root) {
+String _pubspec(String root, List<String> packages) {
   final b = StringBuffer()
     ..writeln('name: my_app')
     ..writeln('publish_to: none')
     ..writeln('environment:')
     ..writeln('  sdk: ^3.10.0')
     ..writeln('dependencies:');
-  for (final pkg in _packages) {
+  for (final pkg in packages) {
     b.writeln('  $pkg: any');
   }
   b.writeln('dependency_overrides:');
-  for (final pkg in _packages) {
+  for (final pkg in packages) {
     b
       ..writeln('  $pkg:')
       ..writeln('    path: ${p.join(root, 'packages', pkg)}');
@@ -316,8 +338,25 @@ String _pubspec(String root) {
 }
 
 /// One sandbox package: the fences of one document, or of one package's
-/// doc comments ([standIns]).
-typedef _Unit = ({String name, List<Snippet> snippets, bool standIns});
+/// doc comments ([standIns]), which also depends on that [package].
+typedef _Unit = ({
+  String name,
+  List<Snippet> snippets,
+  bool standIns,
+  String? package,
+});
+
+/// The checked-in `lib/generated/*.app.dart` readers under [dir], when it
+/// is a package of its own (an example, a cookbook recipe).
+List<File> _checkedInReaders(String dir) => [
+  if (File(p.join(dir, 'pubspec.yaml')).existsSync())
+    for (final f in Directory(dir).listSync(recursive: true).whereType<File>())
+      if (f.path.endsWith('.app.dart') &&
+          p.basename(p.dirname(f.path)) == 'generated' &&
+          p.basename(p.dirname(p.dirname(f.path))) == 'lib' &&
+          !p.split(f.path).any((s) => s.startsWith('.') || s == 'build'))
+        f,
+]..sort((a, b) => a.path.compareTo(b.path));
 
 /// Compiles the Dart fences of [docs] (default: [snippetDocuments]) and of
 /// the `///` doc comments under [libs] (default: the `lib/` of each of
@@ -330,6 +369,7 @@ Future<List<String>> checkDocSnippets(
   docs ??= snippetDocuments(root);
   libs ??= [for (final pkg in docCommentPackages) 'packages/$pkg/lib'];
   final failures = <String>[];
+  final skipped = <Snippet>[];
   final units = <_Unit>[
     for (final doc in docs)
       (
@@ -337,10 +377,20 @@ Future<List<String>> checkDocSnippets(
         snippets: extractSnippets(
           doc,
           File(p.join(root, doc)).readAsStringSync(),
+          skipped: skipped,
         ),
         standIns: false,
+        package: null,
       ),
   ];
+  failures.addAll(
+    skipViolations(
+      skipped,
+      workspacePackageNames(
+        File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
+      ).toSet(),
+    ),
+  );
   for (final dir in libs) {
     final lib = Directory(p.join(root, dir));
     if (!lib.existsSync()) continue;
@@ -357,7 +407,13 @@ Future<List<String>> checkDocSnippets(
       snippets.addAll(found.snippets);
       failures.addAll(found.unlabeled);
     }
-    units.add((name: dir, snippets: snippets, standIns: true));
+    final package = p.basename(p.dirname(p.normalize(lib.path)));
+    units.add((
+      name: dir,
+      snippets: snippets,
+      standIns: true,
+      package: _packages.contains(package) ? null : package,
+    ));
   }
 
   final sandbox = await Directory.systemTemp.createTemp('doc_snippets_');
@@ -374,7 +430,27 @@ Future<List<String>> checkDocSnippets(
       );
       dirs.add(dir);
       Directory(dir).createSync(recursive: true);
-      File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(_pubspec(root));
+      final workspace = workspacePackageNames(
+        File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
+      );
+      File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(
+        _pubspec(root, [
+          ..._packages,
+          if (unit.package != null && workspace.contains(unit.package))
+            unit.package!,
+        ]),
+      );
+      if (!unit.standIns) {
+        for (final reader in _checkedInReaders(
+          p.dirname(p.join(root, unit.name)),
+        )) {
+          reader.copySync(
+            (File(
+              p.join(dir, 'lib', 'generated', p.basename(reader.path)),
+            )..createSync(recursive: true)).path,
+          );
+        }
+      }
       for (final (i, s) in unit.snippets.indexed) {
         var f = renderSnippet(s, i + 1);
         if (unit.standIns && !s.isLibrary) {

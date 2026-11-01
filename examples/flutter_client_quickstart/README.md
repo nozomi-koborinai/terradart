@@ -69,8 +69,9 @@ flutter run --dart-define-from-file=../.terradart/dart_defines.dev.json
 | `api_urls` | `List<String> get apiUrls` | `API_URLS` (JSON) |
 | `uploads_bucket` | `String get uploadsBucket` | `UPLOADS_BUCKET` |
 
-<!-- doc-snippets: skip: lines of the Flutter app's app/lib/main.dart, which imports the reader terradart synth writes into app/lib/generated -->
 ```dart
+import 'generated/flutter_client_stack.app.dart';
+
 const outputs = FlutterClientStackOutputs.fromDartDefine();
 
 Uri endpoint(String path) => Uri.parse(outputs.apiUrl).resolve(path);
