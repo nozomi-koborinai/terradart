@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dart_style/dart_style.dart';
 import 'package:terradart_codegen/src/codegen/constructor_slots.dart';
 import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:test/test.dart';
 
 /// The exact `dart_style` configuration `terradart wrap` formats generated
@@ -13,9 +13,7 @@ import 'package:test/test.dart';
 /// emitter's raw output and the hand-written expected source through this
 /// same formatter, so the test pins the format-stable *contract* rather
 /// than the emitter's own (irrelevant) internal whitespace choices.
-final _formatter = DartFormatter(
-  languageVersion: DartFormatter.latestLanguageVersion,
-);
+final _formatter = packageFormatter('.');
 
 String _fmt(String source) => _formatter.format(source);
 

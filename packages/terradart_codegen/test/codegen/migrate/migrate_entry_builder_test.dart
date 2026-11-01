@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/wrap_cli_common.dart';
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
@@ -9,6 +8,7 @@ import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/generated_file_header.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
@@ -34,9 +34,7 @@ final class _Fixture {
   final String schemaSrc;
   late final Map<String, dynamic> _root =
       jsonDecode(schemaSrc) as Map<String, dynamic>;
-  final _formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-  );
+  final _formatter = packageFormatter('.');
 
   Map<String, dynamic> rawBlock(String tfType, {required String schemasKey}) {
     final schemas = (_root['provider_schemas'] as Map).cast<String, dynamic>();

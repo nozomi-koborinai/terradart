@@ -12,9 +12,9 @@ library;
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dart_style/dart_style.dart';
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/generated_file_header.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -64,9 +64,7 @@ void _emitResource(
     rawResourceSchemas: _rawResourceBlocks(schemaFile),
   );
   final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-  );
+  final formatter = packageFormatter('.');
   final formatted = formatter.format(raw);
   File(goldenPath).writeAsStringSync(formatted);
   print('Written: $goldenPath');
@@ -79,9 +77,7 @@ void _emitDataSource(
 ) {
   final emitter = DataSourceWrapperEmitter(overrides: overrides);
   final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-  final formatter = DartFormatter(
-    languageVersion: DartFormatter.latestLanguageVersion,
-  );
+  final formatter = packageFormatter('.');
   final formatted = formatter.format(raw);
   // Data source goldens carry the wrap-pipeline file header (the
   // emitter doesn't add it; the wrap pipeline does). Match the test's

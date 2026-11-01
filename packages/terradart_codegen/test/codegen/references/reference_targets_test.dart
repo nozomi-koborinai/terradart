@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
@@ -612,15 +612,12 @@ hashicorp/google:
       },
       references: references,
     );
-    final src =
-        DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        ).format(
-          emitter.emit(
-            ir.resources['google_x_vm']!,
-            providerSource: 'hashicorp/google',
-          ),
-        );
+    final src = packageFormatter('.').format(
+      emitter.emit(
+        ir.resources['google_x_vm']!,
+        providerSource: 'hashicorp/google',
+      ),
+    );
 
     test('types top-level and nested inputs and imports the target', () {
       expect(
@@ -803,15 +800,12 @@ class XVmNic {
       resourceDirs: const {'google_x_vm': 'compute', 'google_x_network': 'x'},
       references: references,
     );
-    final src =
-        DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        ).format(
-          emitter.emit(
-            ir.dataSources['google_x_vm']!,
-            providerSource: 'hashicorp/google',
-          ),
-        );
+    final src = packageFormatter('.').format(
+      emitter.emit(
+        ir.dataSources['google_x_vm']!,
+        providerSource: 'hashicorp/google',
+      ),
+    );
 
     test('types a matched input and imports the target', () {
       expect(
@@ -992,15 +986,12 @@ class XVmNic {
       providerEnums: groups,
       references: references,
     );
-    final src =
-        DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        ).format(
-          emitter.emit(
-            ir.resources['google_x_nic']!,
-            providerSource: 'hashicorp/google',
-          ),
-        );
+    final src = packageFormatter('.').format(
+      emitter.emit(
+        ir.resources['google_x_nic']!,
+        providerSource: 'hashicorp/google',
+      ),
+    );
 
     test('a variant of a matched member holds the reference', () {
       expect(derived.skipped, isEmpty);
@@ -1146,15 +1137,12 @@ class XVmNic {
       const override = WrapperOverride(outputDir: 'y');
       final references = resolve().byResource;
       final def = ir.resources['google_y_service_iam_member']!;
-      final src =
-          DartFormatter(
-            languageVersion: DartFormatter.latestLanguageVersion,
-          ).format(
-            WrapperEmitter(
-              overrides: const {'google_y_service_iam_member': override},
-              references: references,
-            ).emit(def, providerSource: 'hashicorp/google'),
-          );
+      final src = packageFormatter('.').format(
+        WrapperEmitter(
+          overrides: const {'google_y_service_iam_member': override},
+          references: references,
+        ).emit(def, providerSource: 'hashicorp/google'),
+      );
       expect(src, contains('required RefTo<GoogleYService> service,'));
       expect(src, contains('TfArg<String>? location,'));
       expect(src, contains("'name': service.encodeAs('name'),"));
@@ -1397,17 +1385,14 @@ hashicorp/google:
       );
       final r = resolve();
       const override = WrapperOverride(outputDir: 'y');
-      String emit(String type) =>
-          DartFormatter(
-            languageVersion: DartFormatter.latestLanguageVersion,
-          ).format(
-            WrapperEmitter(
-              overrides: {type: override},
-              references: r.byResource,
-              principals: r.principalResources,
-              principal: r.principal,
-            ).emit(ir.resources[type]!, providerSource: 'hashicorp/google'),
-          );
+      String emit(String type) => packageFormatter('.').format(
+        WrapperEmitter(
+          overrides: {type: override},
+          references: r.byResource,
+          principals: r.principalResources,
+          principal: r.principal,
+        ).emit(ir.resources[type]!, providerSource: 'hashicorp/google'),
+      );
       final account = emit('google_y_account');
       expect(
         account,

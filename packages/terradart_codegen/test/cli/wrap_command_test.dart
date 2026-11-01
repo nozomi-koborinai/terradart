@@ -5,11 +5,13 @@ import 'dart:isolate';
 import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
+import 'package:pub_semver/pub_semver.dart';
 import 'package:terradart_codegen/src/cli/cli_runner.dart';
 import 'package:terradart_codegen/src/cli/exit_codes.dart';
 import 'package:terradart_codegen/src/codegen/barrels/barrel_emitter.dart';
 import 'package:terradart_codegen/src/codegen/barrels/barrel_manifest.dart';
 import 'package:terradart_codegen/src/codegen/catalog_entry_builder.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/sealed_name_debt.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
@@ -20,6 +22,14 @@ import 'package:test/test.dart';
 /// so every integration test roots its output at `<tmp>/lib/src` and
 /// inspects `<tmp>` recursively.
 String _libSrcOut(Directory tmp) => p.join(tmp.path, 'lib', 'src');
+
+/// Makes [root] a package whose language version, 3.10, wrap formats at.
+void _writePubspec(Directory root, String name) {
+  root.createSync(recursive: true);
+  File(
+    p.join(root.path, 'pubspec.yaml'),
+  ).writeAsStringSync('name: $name\nenvironment:\n  sdk: ^3.10.0\n');
+}
 
 void main() {
   group('WrapCommand args parse', () {
@@ -858,16 +868,14 @@ paramOrder:
   group('WrapCommand fixture-driven', () {
     // Fixture files are stored with a `.dart.golden` suffix (matching the
     // project-wide golden naming convention under `test/golden/`) so they
-    // are byte-frozen and not rewritten by `dart format`. The wrap-emit
-    // pipeline formats with `DartFormatter.latestLanguageVersion`, which
-    // can diverge from this package's pubspec SDK constraint formatter
-    // version; the `.golden` extension keeps `dart format .` from touching
-    // them while still letting the test diff bytes 1:1 against the wrap
-    // output (the `.golden` suffix is stripped when computing actualPath).
+    // are byte-frozen and not rewritten by `dart format`, while still
+    // letting the test diff bytes 1:1 against the wrap output (the
+    // `.golden` suffix is stripped when computing actualPath).
     test(
       'output matches expected_output exactly (13 files; Plan 5.X)',
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('phase4_fix_');
+        _writePubspec(tmpOut, 'terradart_google');
         try {
           final fixtureDir = Directory(
             p.join('test', 'fixtures', 'wrap', 'expected_output'),
@@ -990,9 +998,7 @@ paramOrder:
           },
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('.');
         final formatted = formatter.format(raw);
 
         // The derived helper class + its attribute enum are emitted as
@@ -1235,6 +1241,10 @@ barrels:
             'manifest',
             'g.dart',
           );
+          _writePubspec(
+            Directory(p.join(tmpOut.path, 'migrate')),
+            'terradart_migrate',
+          );
           final code = await buildCliRunner().run([
             'wrap',
             '--provider',
@@ -1275,10 +1285,11 @@ barrels:
             File(p.join(_libSrcOut(tmpOut), '_catalog.g.dart')).existsSync(),
             isTrue,
           );
-          // Already formatted, so a `--check` diff against the committed copy
-          // is byte-exact.
+          // Formatted at the manifest package's language version, as
+          // `dart format` formats it, so a `--check` diff against the
+          // committed copy is byte-exact.
           final formatted = DartFormatter(
-            languageVersion: DartFormatter.latestLanguageVersion,
+            languageVersion: Version(3, 10, 0),
           ).format(src);
           expect(formatted, src);
 

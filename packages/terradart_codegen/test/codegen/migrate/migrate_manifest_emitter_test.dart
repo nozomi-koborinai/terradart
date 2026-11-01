@@ -1,6 +1,6 @@
-import 'package:dart_style/dart_style.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_emitter.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:test/test.dart';
 
 MigrateEntryBuild _build(
@@ -65,9 +65,7 @@ void main() {
           ],
         ),
       ], package: 'terradart_google_beta');
-      final formatted = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      ).format(src);
+      final formatted = packageFormatter('.').format(src);
       expect(formatted, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
       expect(formatted, contains("import '../migrate_manifest.dart';"));
       expect(

@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/generated_file_header.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -81,9 +82,7 @@ void main() {
           _googleProject,
           providerSource: 'hashicorp/google',
         );
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('.');
         final String formatted;
         try {
           formatted = formatter.format(raw);
