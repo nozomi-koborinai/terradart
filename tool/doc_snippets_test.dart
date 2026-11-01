@@ -177,6 +177,29 @@ final class A {}
     );
   });
 
+  group('stablePackages', () {
+    test('reads the packages of the 1.0.0 row', () {
+      expect(
+        stablePackages(
+          '| **1.0.0** | TBD | Two minors. Stable SemVer for `terradart_core`, '
+          'every provider package (`terradart_aws`), and `terradart_cli`. '
+          '`terradart_codegen` stays outside the promise. |',
+        ),
+        {'terradart_core', 'terradart_aws', 'terradart_cli'},
+      );
+    });
+
+    test('fails loudly without a 1.0.0 row', () {
+      expect(() => stablePackages('| **Beta** | TBD |'), throwsStateError);
+    });
+
+    test('every stable package has its doc comments compiled', () {
+      final stable = stablePackages(File(statusPath).readAsStringSync());
+      expect(stable, containsAll(['terradart_azure', 'terradart_cli']));
+      expect(docCommentPackages, containsAll(stable));
+    });
+  });
+
   test('every Dart snippet in the READMEs, the website docs and the doc '
       'comments compiles', () async {
     final failures = await checkDocSnippets(Directory.current.path);

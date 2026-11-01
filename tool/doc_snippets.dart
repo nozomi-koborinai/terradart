@@ -158,7 +158,29 @@ List<Snippet> extractSnippets(String doc, String text) {
 /// marker without a reason does not match.
 final _skip = RegExp(r'^\s*<!--\s*doc-snippets:\s*skip:\s*\S.*-->\s*$');
 
-/// The packages whose `///` doc comments are a user's dartdoc pages.
+const statusPath = 'website/src/content/docs/docs/status.md';
+
+/// The packages the 1.0.0 row of the status page ([statusMd]) promises
+/// stable SemVer for.
+Set<String> stablePackages(String statusMd) {
+  final row = statusMd
+      .split('\n')
+      .firstWhere((l) => l.startsWith('| **1.0.0** |'), orElse: () => '');
+  final promise = RegExp(r'Stable SemVer for (.*?)\.(\s|$)').firstMatch(row);
+  final out = {
+    for (final m in RegExp(
+      r'`(terradart_\w+)`',
+    ).allMatches(promise?.group(1) ?? ''))
+      m.group(1)!,
+  };
+  if (out.isEmpty) {
+    throw StateError('$statusPath has no 1.0.0 row naming the stable packages');
+  }
+  return out;
+}
+
+/// The packages whose `///` doc comments are a user's dartdoc pages: every
+/// package of [stablePackages], plus the migrator libraries.
 const docCommentPackages = [
   'terradart_core',
   'terradart_google',
