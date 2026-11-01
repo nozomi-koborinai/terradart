@@ -1,5 +1,5 @@
 // doc_snippets.dart — compiles every ```dart fence in the README, the
-// website docs, the package and cookbook READMEs, and the `///` doc comments
+// website docs, the package, cookbook and example READMEs, and the `///` doc comments
 // of the published packages against the workspace packages, so a guide or a
 // dartdoc page cannot show code the current release rejects.
 //
@@ -47,10 +47,10 @@ import 'wrap_lanes.dart';
 
 /// The documents whose Dart fences must compile, relative to the repo root:
 /// the README, the user-facing agent skill, the website docs, and the
-/// package and cookbook READMEs.
+/// package, cookbook and example READMEs.
 List<String> snippetDocuments(String root) {
   final docs = <String>['README.md', 'skills/terradart/SKILL.md'];
-  for (final dir in ['packages', 'cookbook']) {
+  for (final dir in ['packages', 'cookbook', 'examples']) {
     final base = Directory(p.join(root, dir));
     if (!base.existsSync()) continue;
     docs.addAll(

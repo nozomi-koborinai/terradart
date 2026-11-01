@@ -200,6 +200,12 @@ final class A {}
     });
   });
 
+  test('the documents include every example README', () {
+    final docs = snippetDocuments(Directory.current.path);
+    expect(docs, contains('examples/aws_lambda_quickstart/README.md'));
+    expect(docs, contains('cookbook/single-project-app/README.md'));
+  });
+
   test('every Dart snippet in the READMEs, the website docs and the doc '
       'comments compiles', () async {
     final failures = await checkDocSnippets(Directory.current.path);
