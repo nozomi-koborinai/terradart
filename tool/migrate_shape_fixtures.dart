@@ -104,6 +104,7 @@ List<String> shapeFixtureFindings(
   MigrateManifest manifest,
   MigrationReport report, {
   required Set<String> renamed,
+  required bool published,
 }) {
   final lane = shapeFixtureLane(manifest.package);
   final findings = <String>[

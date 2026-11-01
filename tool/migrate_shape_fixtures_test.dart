@@ -80,7 +80,12 @@ void main() {
       expect(file.existsSync(), isTrue, reason: '${file.path} is missing');
       final result = _migrate(file);
       expect(
-        shapeFixtureFindings(manifest, result.report, renamed: renamed),
+        shapeFixtureFindings(
+          manifest,
+          result.report,
+          renamed: renamed,
+          published: true,
+        ),
         isEmpty,
       );
     });
@@ -117,6 +122,7 @@ void main() {
             google,
             without(shapes: {shape}),
             renamed: renamed,
+            published: true,
           ),
           [contains('never migrates a ${shape.name}')],
         );
@@ -125,14 +131,24 @@ void main() {
 
     test('a fixture that uses no renamed type fails', () {
       expect(
-        shapeFixtureFindings(google, without(types: renamed), renamed: renamed),
+        shapeFixtureFindings(
+          google,
+          without(types: renamed),
+          renamed: renamed,
+          published: true,
+        ),
         [contains('none of the renamed types')],
       );
     });
 
     test('a lane that MIGRATING.md renames nothing in fails', () {
       expect(
-        shapeFixtureFindings(google, result.report, renamed: {'NotAType'}),
+        shapeFixtureFindings(
+          google,
+          result.report,
+          renamed: {'NotAType'},
+          published: true,
+        ),
         [contains('no Before / After row in MIGRATING.md renames a google')],
       );
     });
@@ -150,6 +166,7 @@ void main() {
             ],
           ),
           renamed: renamed,
+          published: true,
         ),
         [contains('google_kms_key_ring.ring is kept')],
       );
