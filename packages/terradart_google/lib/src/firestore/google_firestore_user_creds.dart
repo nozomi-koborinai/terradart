@@ -29,6 +29,12 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 ///
 /// Example:
 /// ```dart
+/// final db = add(GoogleFirestoreDatabase(
+///   'db',
+///   name: .literal('db'),
+///   locationId: .literal('us-central1'),
+///   type: FirestoreDatabaseType.firestoreNative,
+/// ));
 /// final readerCreds = GoogleFirestoreUserCreds(
 ///   'reader_creds',
 ///   database: db.ref,

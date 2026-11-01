@@ -30,6 +30,12 @@ const Set<String> _googleDocumentAiProcessorDefaultVersionSensitive =
 ///
 /// Example:
 /// ```dart
+/// final ocr = add(GoogleDocumentAiProcessor(
+///   'ocr',
+///   type: .literal('OCR_PROCESSOR'),
+///   displayName: .literal('ocr'),
+///   location: .literal('us-central1'),
+/// ));
 /// GoogleDocumentAiProcessorDefaultVersion(
 ///   'ocr_default',
 ///   processor: ocr.ref,

@@ -210,6 +210,7 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 /// goes in [params], the secret key goes in [sensitiveParams] (the
 /// provider rejects configurations that put the secret in [params]):
 /// ```dart
+/// const awsSecretAccessKey = 'secret';
 /// final params = TfArg.literal(const {
 ///   'data_path': 's3://my-bucket/exports/{run_date}/*.csv',
 ///   'destination_table_name_template': 's3_import_{run_date}',
@@ -244,6 +245,10 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 ///
 /// Example (daily GCS → BigQuery import):
 /// ```dart
+/// final analytics = add(GoogleBigqueryDataset(
+///   'analytics',
+///   datasetId: .literal('analytics'),
+/// ));
 /// final dailyImport = GoogleBigqueryDataTransferConfig(
 ///   'daily_gcs_import',
 ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),

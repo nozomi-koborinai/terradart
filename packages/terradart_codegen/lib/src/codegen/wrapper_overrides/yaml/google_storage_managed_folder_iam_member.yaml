@@ -10,6 +10,20 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final assets = add(GoogleStorageBucket(
+  ///   'assets',
+  ///   name: .literal('assets'),
+  ///   location: .literal('US'),
+  /// ));
+  /// final folder = add(GoogleStorageManagedFolder(
+  ///   'folder',
+  ///   bucket: assets.ref,
+  ///   name: .literal('reports/'),
+  /// ));
+  /// final reader = add(GoogleServiceAccount(
+  ///   'reader',
+  ///   accountId: .literal('reader'),
+  /// ));
   /// GoogleStorageManagedFolderIamMember(
   ///   'folder_viewer',
   ///   managedFolder: folder.ref,

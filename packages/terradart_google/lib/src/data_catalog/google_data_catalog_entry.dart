@@ -100,6 +100,10 @@ final class DataCatalogEntryGcsFilesetSpec {
 ///
 /// Example (custom entry):
 /// ```dart
+/// final group = add(GoogleDataCatalogEntryGroup(
+///   'group',
+///   entryGroupId: .literal('group'),
+/// ));
 /// GoogleDataCatalogEntry(
 ///   'custom',
 ///   entryGroup: group.ref,

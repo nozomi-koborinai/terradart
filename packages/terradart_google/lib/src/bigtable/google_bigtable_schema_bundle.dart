@@ -36,6 +36,15 @@ class BigtableSchemaBundleProtoSchema {
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance(
+///   'instance',
+///   name: .literal('instance'),
+/// ));
+/// final table = add(GoogleBigtableTable(
+///   'table',
+///   instanceName: instance.ref,
+///   name: .literal('events'),
+/// ));
 /// GoogleBigtableSchemaBundle(
 ///   'events_proto',
 ///   schemaBundleId: TfArg.literal('events-proto'),

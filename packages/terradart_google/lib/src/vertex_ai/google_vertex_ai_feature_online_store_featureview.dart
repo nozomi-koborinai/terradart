@@ -234,6 +234,11 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 ///
 /// Example (Feature Registry source):
 /// ```dart
+/// final fos = add(GoogleVertexAiFeatureOnlineStore(
+///   'fos',
+///   name: .literal('fos'),
+///   storage: .optimized(),
+/// ));
 /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
 ///   'fv',
 ///   featureOnlineStore: fos.name,

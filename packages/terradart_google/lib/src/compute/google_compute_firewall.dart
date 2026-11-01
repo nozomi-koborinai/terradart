@@ -209,6 +209,7 @@ final class ComputeFirewallParams {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final allowSsh = GoogleComputeFirewall(
 ///   'allow_ssh',
 ///   name: TfArg.literal('allow-ssh'),

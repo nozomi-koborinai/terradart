@@ -362,6 +362,13 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 ///
 /// Example (external HTTPS L7 Application LB frontend):
 /// ```dart
+/// final urlMap = add(GoogleComputeUrlMap('url_map', name: .literal('url-map')));
+/// final httpsProxy = add(GoogleComputeTargetHttpsProxy(
+///   'https_proxy',
+///   name: .literal('https-proxy'),
+///   urlMap: urlMap.ref,
+/// ));
+/// final lbVip = add(GoogleComputeGlobalAddress('lb_vip', name: .literal('lb-vip')));
 /// final feFwd = GoogleComputeGlobalForwardingRule(
 ///   'fe',
 ///   name: TfArg.literal('lb-https-frontend'),

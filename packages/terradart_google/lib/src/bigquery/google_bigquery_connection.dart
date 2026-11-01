@@ -736,6 +736,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///
 /// Example (Cloud SQL — federated queries against a Postgres replica):
 /// ```dart
+/// final pgPasswordVar = variable<String>('pg_password');
 /// final pg = GoogleBigqueryConnection(
 ///   'analytics_pg',
 ///   connectionId: TfArg.literal('analytics-pg'),

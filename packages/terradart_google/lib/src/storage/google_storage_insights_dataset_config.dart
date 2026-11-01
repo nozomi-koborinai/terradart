@@ -450,6 +450,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///
 /// Example (project scope, unlinked):
 /// ```dart
+/// const projectNumber = '123456789012';
 /// GoogleStorageInsightsDatasetConfig(
 ///   'inventory',
 ///   datasetConfigId: TfArg.literal('terradart-insights'),

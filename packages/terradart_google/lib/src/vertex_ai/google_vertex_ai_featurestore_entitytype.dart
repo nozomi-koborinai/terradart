@@ -188,6 +188,7 @@ final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
 ///
 /// Example:
 /// ```dart
+/// final store = add(GoogleVertexAiFeaturestore('store'));
 /// GoogleVertexAiFeaturestoreEntitytype(
 ///   'user',
 ///   featurestore: store.name,

@@ -34,6 +34,15 @@ class BigtableAuthorizedViewSubsetView {
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance(
+///   'instance',
+///   name: .literal('instance'),
+/// ));
+/// final table = add(GoogleBigtableTable(
+///   'table',
+///   instanceName: instance.ref,
+///   name: .literal('events'),
+/// ));
 /// GoogleBigtableAuthorizedView(
 ///   'tenant_a',
 ///   instanceName: instance.ref,

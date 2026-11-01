@@ -43,6 +43,7 @@ final class BigqueryDatapolicyv2DataPolicyIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// final reader = add(GoogleServiceAccount('reader', accountId: .literal('reader')));
 /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
 ///   'raw_reader',
 ///   dataPolicy: .literal('raw-access'),

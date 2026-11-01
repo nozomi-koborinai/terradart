@@ -2170,6 +2170,8 @@ final class ComputeUrlMapHeaders {
 ///
 /// Example (login backend + static bucket, both routed via host/path):
 /// ```dart
+/// final login = add(GoogleComputeBackendService('login', name: .literal('login')));
+/// final staticBucket = add(GoogleComputeBackendService('static', name: .literal('static')));
 /// final urlMap = GoogleComputeUrlMap(
 ///   'urlmap',
 ///   name: TfArg.literal('urlmap-prod'),

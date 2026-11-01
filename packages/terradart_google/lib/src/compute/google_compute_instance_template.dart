@@ -1155,6 +1155,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 ///
 /// Example (minimal):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final tmpl = GoogleComputeInstanceTemplate(
 ///   'web',
 ///   namePrefix: .literal('web-'),

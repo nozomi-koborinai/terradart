@@ -20,6 +20,28 @@ const Set<String> _googleManagedKafkaTopicSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork(
+///   'subnet',
+///   name: .literal('subnet'),
+///   network: vpc.ref,
+/// ));
+/// final cluster = add(GoogleManagedKafkaCluster(
+///   'cluster',
+///   clusterId: .literal('cluster'),
+///   location: .literal('us-central1'),
+///   capacityConfig: ManagedKafkaClusterCapacityConfig(
+///     memoryBytes: .literal('3221225472'),
+///     vcpuCount: .literal('3'),
+///   ),
+///   gcpConfig: ManagedKafkaClusterGcpConfig(
+///     accessConfig: ManagedKafkaClusterAccessConfig(
+///       networkConfigs: [
+///         ManagedKafkaClusterNetworkConfigs(subnet: subnet.ref),
+///       ],
+///     ),
+///   ),
+/// ));
 /// GoogleManagedKafkaTopic(
 ///   'events',
 ///   topicId: TfArg.literal('events'),

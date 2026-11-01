@@ -25,6 +25,11 @@ const Set<String> _googleStorageFolderSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final assets = add(GoogleStorageBucket(
+///   'assets',
+///   name: .literal('my-app-assets-prod'),
+///   location: .literal('ASIA-NORTHEAST1'),
+/// ));
 /// GoogleStorageFolder(
 ///   'reports',
 ///   bucket: assets.ref,

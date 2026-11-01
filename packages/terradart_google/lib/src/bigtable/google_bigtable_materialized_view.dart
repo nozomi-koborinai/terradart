@@ -22,6 +22,7 @@ const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance('instance', name: .literal('instance')));
 /// GoogleBigtableMaterializedView(
 ///   'daily_counts',
 ///   materializedViewId: TfArg.literal('daily-counts'),

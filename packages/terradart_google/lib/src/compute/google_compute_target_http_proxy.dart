@@ -36,6 +36,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final urlMap = add(GoogleComputeUrlMap('url_map', name: .literal('url-map')));
 /// final httpProxy = GoogleComputeTargetHttpProxy(
 ///   'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),

@@ -29,6 +29,10 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final primary = add(GoogleSqlDatabaseInstance(
+///   'primary',
+///   databaseVersion: DatabaseVersion.postgres15,
+/// ));
 /// final orders = GoogleSqlDatabase(
 ///   'orders',
 ///   instance: primary.ref,

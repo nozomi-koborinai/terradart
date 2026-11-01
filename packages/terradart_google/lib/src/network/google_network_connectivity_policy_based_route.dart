@@ -304,6 +304,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleNetworkConnectivityPolicyBasedRoute(
 ///   'default_pbr',
 ///   name: TfArg.literal('terradart-pbr'),

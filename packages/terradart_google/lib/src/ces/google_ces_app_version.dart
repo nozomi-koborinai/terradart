@@ -26,6 +26,12 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
 /// GoogleCesAppVersion(
 ///   'v1',
 ///   app: app.ref,

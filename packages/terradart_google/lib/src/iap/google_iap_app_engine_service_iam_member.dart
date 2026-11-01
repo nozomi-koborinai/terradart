@@ -47,6 +47,11 @@ final class IapAppEngineServiceIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// final sa = add(GoogleServiceAccount(
+///   'sa',
+///   accountId: .literal('invoker'),
+/// ));
 /// GoogleIapAppEngineServiceIamMember(
 ///   'default_invoker',
 ///   appId: TfArg.literal(projectId),

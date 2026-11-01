@@ -139,6 +139,26 @@ final class DataCatalogTagField {
 ///
 /// Example:
 /// ```dart
+/// final entryGroup = add(GoogleDataCatalogEntryGroup(
+///   'group',
+///   entryGroupId: .literal('group'),
+/// ));
+/// final entry = add(GoogleDataCatalogEntry(
+///   'entry',
+///   entryGroup: entryGroup.ref,
+///   entryId: .literal('entry'),
+///   entryKind: .fileset(),
+/// ));
+/// final template = add(GoogleDataCatalogTagTemplate(
+///   'template',
+///   tagTemplateId: .literal('template'),
+///   fields: [
+///     DataCatalogTagTemplateField(
+///       fieldId: .literal('source'),
+///       type: .primitiveType(.string),
+///     ),
+///   ],
+/// ));
 /// GoogleDataCatalogTag(
 ///   'entry_source',
 ///   parent: entry.id,

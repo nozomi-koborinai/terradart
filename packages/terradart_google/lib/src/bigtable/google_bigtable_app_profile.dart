@@ -281,6 +281,7 @@ extension type const BigtableAppProfilePriority._(TfArg<String> _)
 ///
 /// Example (single-cluster routing):
 /// ```dart
+/// final instance = add(GoogleBigtableInstance('instance', name: .literal('instance')));
 /// GoogleBigtableAppProfile(
 ///   'default',
 ///   appProfileId: TfArg.literal('default'),

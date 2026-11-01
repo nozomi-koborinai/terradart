@@ -53,6 +53,7 @@ extension type const GeminiReleaseChannelSettingBindingProduct._(
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleGeminiReleaseChannelSettingBinding(
 ///   'channel_bind',
 ///   releaseChannelSettingId: .literal('terradart-channel'),

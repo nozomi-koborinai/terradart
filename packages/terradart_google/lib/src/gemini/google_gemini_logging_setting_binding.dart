@@ -44,6 +44,7 @@ extension type const GeminiLoggingSettingBindingProduct._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleGeminiLoggingSettingBinding(
 ///   'logging_bind',
 ///   loggingSettingId: .literal('terradart-logging'),

@@ -35,6 +35,10 @@ const Set<String> _googleIdentityPlatformTenantOauthIdpConfigSensitive =
 ///
 /// Example:
 /// ```dart
+/// final tenant = add(GoogleIdentityPlatformTenant(
+///   'tenant',
+///   displayName: .literal('tenant'),
+/// ));
 /// GoogleIdentityPlatformTenantOauthIdpConfig(
 ///   'demo_oidc',
 ///   name: TfArg.literal('oidc.terradart'),

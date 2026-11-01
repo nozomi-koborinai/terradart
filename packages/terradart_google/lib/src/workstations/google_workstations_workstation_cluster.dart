@@ -60,6 +60,8 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork('subnet', name: .literal('subnet'), network: vpc.ref));
 /// GoogleWorkstationsWorkstationCluster(
 ///   'ws',
 ///   workstationClusterId: TfArg.literal('terradart-ws'),

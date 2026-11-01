@@ -273,6 +273,11 @@ final class StorageBucketObjectCustom {
 ///
 /// Example (file upload):
 /// ```dart
+/// final assets = add(GoogleStorageBucket(
+///   'assets',
+///   name: .literal('my-app-assets-prod'),
+///   location: .literal('ASIA-NORTHEAST1'),
+/// ));
 /// final logo = GoogleStorageBucketObject(
 ///   'logo',
 ///   bucket: assets.ref,

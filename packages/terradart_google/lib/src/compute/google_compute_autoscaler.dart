@@ -430,6 +430,11 @@ class ComputeAutoscalerScalingSchedule {
 ///
 /// Example (CPU-only autoscaler with cooldown):
 /// ```dart
+/// final template = add(GoogleComputeInstanceTemplate(
+///   'template',
+///   machineType: .literal('e2-micro'),
+///   disk: [ComputeInstanceTemplateDisk()],
+/// ));
 /// final igm = GoogleComputeInstanceGroupManager(
 ///   'web_igm',
 ///   name: TfArg.literal('web-igm'),

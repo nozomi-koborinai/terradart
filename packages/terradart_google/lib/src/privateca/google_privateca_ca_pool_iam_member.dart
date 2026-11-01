@@ -46,6 +46,12 @@ final class PrivatecaCaPoolIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// final caPool = add(GooglePrivatecaCaPool(
+///   'ca_pool',
+///   name: .literal('ca-pool'),
+///   location: .literal('us-central1'),
+///   tier: PrivatecaCaPoolTier.devops,
+/// ));
 /// GooglePrivatecaCaPoolIamMember(
 ///   'pool_auditor',
 ///   caPool: caPool.ref,

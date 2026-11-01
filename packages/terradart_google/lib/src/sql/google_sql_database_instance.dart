@@ -1489,6 +1489,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 /// Example (private-IP PostgreSQL primary — see the
 /// `cloud_sql_quickstart` example for the full chain):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final primary = GoogleSqlDatabaseInstance(
 ///   'primary',
 ///   name: TfArg.literal('orders-primary'),

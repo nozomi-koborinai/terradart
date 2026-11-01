@@ -10,6 +10,7 @@ import 'appwrite_auth_user.dart';
 /// expects it:
 ///
 /// ```dart
+/// final editors = add(AppwriteAuthTeam('editors', name: .literal('Editors')));
 /// add(AppwriteStorageBucket(
 ///   'uploads',
 ///   name: .literal('Uploads'),

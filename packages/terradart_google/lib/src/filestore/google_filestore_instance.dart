@@ -441,6 +441,7 @@ final class FilestoreInstanceIopsPerTb {
 ///
 /// Example (basic HDD on an existing VPC):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleFilestoreInstance(
 ///   'nfs',
 ///   name: .literal('shared-nfs'),

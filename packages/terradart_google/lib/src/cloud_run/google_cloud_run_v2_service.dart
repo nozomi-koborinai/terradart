@@ -1420,6 +1420,11 @@ final class CloudRunV2ServiceTraffic {
 ///
 /// Example (with secret-backed env var + GCS volume):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('cache-bucket'),
+///   location: .literal('US'),
+/// ));
 /// final api = GoogleCloudRunV2Service(
 ///   'api',
 ///   name: .literal('api'),

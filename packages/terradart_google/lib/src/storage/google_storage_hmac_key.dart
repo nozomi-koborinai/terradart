@@ -34,6 +34,7 @@ extension type const StorageHmacKeyState._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
 /// GoogleStorageHmacKey(
 ///   'backup_hmac',
 ///   serviceAccountEmail: sa.ref,

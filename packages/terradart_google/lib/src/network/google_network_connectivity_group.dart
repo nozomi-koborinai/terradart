@@ -54,6 +54,7 @@ final class NetworkConnectivityGroupAutoAccept {
 ///
 /// Example:
 /// ```dart
+/// final hub = add(GoogleNetworkConnectivityHub('hub'));
 /// GoogleNetworkConnectivityGroup(
 ///   'center',
 ///   hub: hub.ref,

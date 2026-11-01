@@ -22,6 +22,11 @@ const Set<String> _googleStorageBucketAclSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final legacy = add(GoogleStorageBucket(
+///   'legacy',
+///   name: .literal('legacy'),
+///   location: .literal('US'),
+/// ));
 /// GoogleStorageBucketAcl(
 ///   'legacy_acl',
 ///   bucket: legacy.ref,

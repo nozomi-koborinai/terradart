@@ -44,6 +44,10 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+///   'region_url_map',
+///   name: .literal('region-url-map'),
+/// ));
 /// final httpProxy = GoogleComputeRegionTargetHttpProxy(
 ///   'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),

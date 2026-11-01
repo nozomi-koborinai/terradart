@@ -240,6 +240,10 @@ final class EventarcTriggerPubsub {
 ///
 /// Example (Cloud Storage object finalized -> Cloud Run service):
 /// ```dart
+/// final runner = add(GoogleServiceAccount(
+///   'runner',
+///   accountId: .literal('runner'),
+/// ));
 /// final onUpload = GoogleEventarcTrigger(
 ///   'on_upload',
 ///   name: .literal('on-upload'),

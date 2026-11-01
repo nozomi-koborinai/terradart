@@ -43,6 +43,12 @@ extension type const NetworkConnectivityRegionalEndpointAccessType._(
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork(
+///   'subnet',
+///   name: .literal('subnet'),
+///   network: vpc.ref,
+/// ));
 /// GoogleNetworkConnectivityRegionalEndpoint(
 ///   'storage_rep',
 ///   name: TfArg.literal('terradart-storage-rep'),

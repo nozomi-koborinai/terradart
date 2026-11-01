@@ -74,6 +74,7 @@ final class ComputeRouterNamedSetElements {
 ///
 /// Example:
 /// ```dart
+/// final router = add(GoogleComputeRouter('router', name: .literal('router')));
 /// GoogleComputeRouterNamedSet(
 ///   'prefixes',
 ///   name: TfArg.literal('terradart-prefixes'),

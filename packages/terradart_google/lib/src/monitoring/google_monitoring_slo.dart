@@ -850,6 +850,7 @@ final class MonitoringSloMetricSumInRange {
 ///
 /// Example (availability basic SLI):
 /// ```dart
+/// final apiService = add(GoogleMonitoringCustomService('api'));
 /// GoogleMonitoringSlo(
 ///   'api_availability',
 ///   service: apiService.name,

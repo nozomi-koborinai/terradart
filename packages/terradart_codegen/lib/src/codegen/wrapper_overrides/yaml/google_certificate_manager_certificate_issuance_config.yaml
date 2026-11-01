@@ -35,6 +35,12 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final pool = add(GooglePrivatecaCaPool(
+  ///   'pool',
+  ///   name: .literal('pool'),
+  ///   location: .literal('us-central1'),
+  ///   tier: .devops,
+  /// ));
   /// GoogleCertificateManagerCertificateIssuanceConfig(
   ///   'app_issuance',
   ///   name: TfArg.literal('app-issuance'),

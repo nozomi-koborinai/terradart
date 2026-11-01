@@ -124,6 +124,7 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
 ///
 /// Example:
 /// ```dart
+/// final certMap = add(GoogleCertificateManagerCertificateMap('cert_map', name: .literal('cert-map')));
 /// GoogleCertificateManagerCertificateMapEntry(
 ///   'app_entry',
 ///   name: TfArg.literal('app-entry'),

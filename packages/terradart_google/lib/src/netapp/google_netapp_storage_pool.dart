@@ -165,6 +165,7 @@ extension type const NetappStoragePoolType._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleNetappStoragePool(
 ///   'pool',
 ///   name: TfArg.literal('terradart-pool'),

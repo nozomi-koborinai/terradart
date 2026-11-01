@@ -209,6 +209,17 @@ final class CesExampleToolResponse {
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
+/// final agent = add(GoogleCesAgent(
+///   'agent',
+///   app: app.ref,
+///   displayName: .literal('agent'),
+/// ));
 /// GoogleCesExample(
 ///   'greeting',
 ///   app: app.ref,

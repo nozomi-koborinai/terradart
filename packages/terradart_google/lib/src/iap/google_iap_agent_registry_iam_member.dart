@@ -46,6 +46,7 @@ final class IapAgentRegistryIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
 /// GoogleIapAgentRegistryIamMember(
 ///   'agent_registry_invoker',
 ///   location: TfArg.literal('us-central1'),

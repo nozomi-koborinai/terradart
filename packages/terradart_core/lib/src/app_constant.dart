@@ -11,6 +11,7 @@ import 'tf_arg.dart';
 /// shorthand:
 ///
 /// ```dart
+/// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
 /// addConstant('ordersTopicName', .ref(topic.name)); // the topic's literal name
 /// addConstant('apiVersion', .value('v1'));             // a value of no resource
 /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));

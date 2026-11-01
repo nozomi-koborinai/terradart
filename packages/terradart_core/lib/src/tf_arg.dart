@@ -225,6 +225,9 @@ final class TfArgLiteral<T> extends TfArg<T> {
 /// Dart literal that would be written into `main.tf.json`.
 ///
 /// ```dart
+/// final primary = add(
+///   GoogleSqlDatabaseInstance('primary', databaseVersion: .postgres16),
+/// );
 /// final dbPassword = variable<String>('db_password', sensitive: true);
 /// add(
 ///   GoogleSqlUser(

@@ -412,6 +412,15 @@ final class ClouddeployAutomationTargets {
 ///
 /// Example:
 /// ```dart
+/// final pipeline = add(GoogleClouddeployDeliveryPipeline(
+///   'pipeline',
+///   name: .literal('pipeline'),
+///   location: .literal('us-central1'),
+/// ));
+/// final deployer = add(GoogleServiceAccount(
+///   'deployer',
+///   accountId: .literal('deployer'),
+/// ));
 /// GoogleClouddeployAutomation(
 ///   'promote',
 ///   name: .literal('terradart-automation'),

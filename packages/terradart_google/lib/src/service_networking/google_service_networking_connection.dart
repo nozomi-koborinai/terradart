@@ -49,6 +49,11 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// Example (full Cloud SQL private-IP chain — see also the
 /// `cloud_sql_quickstart` example):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final psaRange = add(GoogleComputeGlobalAddress(
+///   'psa_range',
+///   name: .literal('psa-range'),
+/// ));
 /// final psaPeering = GoogleServiceNetworkingConnection(
 ///   'psa',
 ///   network: vpc.ref,

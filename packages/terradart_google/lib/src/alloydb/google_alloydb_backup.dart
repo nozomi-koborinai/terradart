@@ -61,6 +61,11 @@ final class AlloydbBackupEncryptionConfig {
 ///
 /// Example:
 /// ```dart
+/// final alloyCluster = add(GoogleAlloydbCluster(
+///   'alloy',
+///   clusterId: .literal('alloy'),
+///   location: .literal('asia-northeast1'),
+/// ));
 /// GoogleAlloydbBackup(
 ///   'nightly',
 ///   backupId: TfArg.literal('nightly-backup'),

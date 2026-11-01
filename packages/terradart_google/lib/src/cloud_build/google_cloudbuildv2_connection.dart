@@ -496,6 +496,19 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///
 /// Example (GitHub OAuth connection):
 /// ```dart
+/// final oauthSecret = add(GoogleSecretManagerSecret(
+///   'oauth',
+///   secretId: .literal('oauth'),
+///   replication: .auto(.new()),
+/// ));
+/// final oauthSecretVersion = add(GoogleSecretManagerSecretVersion(
+///   'oauth_v1',
+///   secret: oauthSecret.ref,
+///   payload: .writeOnly(
+///     secretDataWo: .literal('token'),
+///     secretDataWoVersion: .literal('1'),
+///   ),
+/// ));
 /// final ghConn = GoogleCloudbuildv2Connection(
 ///   'github',
 ///   name: TfArg.literal('repo-github'),

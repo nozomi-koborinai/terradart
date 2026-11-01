@@ -35,11 +35,12 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 ///
 /// Example:
 /// ```dart
+/// final uuid = variable<String>('debug_token', sensitive: true);
 /// final ciDebugToken = GoogleFirebaseAppCheckDebugToken(
 ///   'ci_runner',
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   displayName: TfArg.literal('CI runner (e2e tests)'),
-///   token: uuid.result,
+///   token: uuid,
 /// );
 /// ```
 ///

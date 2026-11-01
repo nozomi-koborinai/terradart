@@ -978,6 +978,10 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///
 /// Example (query — SQL SELECT into a destination table):
 /// ```dart
+/// final analyticsProd = add(GoogleBigqueryDataset(
+///   'analytics_prod',
+///   datasetId: .literal('analytics_prod'),
+/// ));
 /// final dailyRollup = GoogleBigqueryJob(
 ///   'daily_rollup',
 ///   // Rotate the job ID to force re-execution on the next apply.
@@ -1007,6 +1011,10 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///
 /// Example (load — GCS file -> table):
 /// ```dart
+/// final staging = add(GoogleBigqueryDataset(
+///   'staging',
+///   datasetId: .literal('staging'),
+/// ));
 /// final ingest = GoogleBigqueryJob(
 ///   'ingest_csv',
 ///   jobId: .literal('ingest_csv_2026_05_19'),

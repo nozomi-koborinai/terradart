@@ -77,6 +77,12 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
 ///
 /// Example (expire cells after 7 days):
 /// ```dart
+/// final instance = add(GoogleBigtableInstance('instance', name: .literal('instance')));
+/// final table = add(GoogleBigtableTable(
+///   'table',
+///   instanceName: instance.ref,
+///   name: .literal('table'),
+/// ));
 /// GoogleBigtableGcPolicy(
 ///   'cf1_max_age',
 ///   instanceName: instance.ref,

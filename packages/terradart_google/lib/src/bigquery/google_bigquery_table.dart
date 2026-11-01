@@ -1103,6 +1103,10 @@ final class BigqueryTableView {
 ///
 /// Example:
 /// ```dart
+/// final dataset = add(GoogleBigqueryDataset(
+///   'dataset',
+///   datasetId: .literal('analytics'),
+/// ));
 /// final events = GoogleBigqueryTable(
 ///   'events',
 ///   datasetId: dataset.ref,

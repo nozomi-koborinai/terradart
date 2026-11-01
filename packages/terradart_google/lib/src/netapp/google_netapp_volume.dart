@@ -717,6 +717,14 @@ extension type const NetappVolumeTierAction._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final pool = add(GoogleNetappStoragePool(
+///   'pool',
+///   name: .literal('pool'),
+///   location: .literal('us-central1'),
+///   network: add(GoogleComputeNetwork('vpc', name: .literal('vpc'))).ref,
+///   serviceLevel: .standard,
+///   capacityGib: .literal('2048'),
+/// ));
 /// GoogleNetappVolume(
 ///   'vol',
 ///   name: TfArg.literal('data'),

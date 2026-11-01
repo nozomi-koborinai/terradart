@@ -21,6 +21,11 @@ const Set<String> _googleStorageDefaultObjectAclSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final legacy = add(GoogleStorageBucket(
+///   'legacy',
+///   name: .literal('legacy'),
+///   location: .literal('US'),
+/// ));
 /// GoogleStorageDefaultObjectAcl(
 ///   'legacy_default',
 ///   bucket: legacy.ref,

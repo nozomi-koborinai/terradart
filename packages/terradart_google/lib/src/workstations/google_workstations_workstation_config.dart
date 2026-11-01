@@ -460,6 +460,18 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork(
+///   'subnet',
+///   name: .literal('subnet'),
+///   network: vpc.ref,
+/// ));
+/// final cluster = add(GoogleWorkstationsWorkstationCluster(
+///   'cluster',
+///   workstationClusterId: .literal('cluster'),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
+/// ));
 /// GoogleWorkstationsWorkstationConfig(
 ///   'cfg',
 ///   workstationConfigId: TfArg.literal('dev'),

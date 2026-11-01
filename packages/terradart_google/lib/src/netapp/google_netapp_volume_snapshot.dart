@@ -25,6 +25,14 @@ const Set<String> _googleNetappVolumeSnapshotSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final vol = add(GoogleNetappVolume(
+///   'vol',
+///   name: .literal('vol'),
+///   location: .literal('us-central1'),
+///   storagePool: .literal('pool'),
+///   capacityGib: .literal('100'),
+///   protocols: .literal([.nfsv3]),
+/// ));
 /// GoogleNetappVolumeSnapshot(
 ///   'snap',
 ///   name: TfArg.literal('daily'),

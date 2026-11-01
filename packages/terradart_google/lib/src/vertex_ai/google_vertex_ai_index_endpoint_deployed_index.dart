@@ -120,6 +120,17 @@ final class VertexAiIndexEndpointDeployedIndexAuthProvider {
 ///
 /// Example:
 /// ```dart
+/// final endpoint = add(GoogleVertexAiIndexEndpoint(
+///   'endpoint',
+///   displayName: .literal('endpoint'),
+/// ));
+/// final index = add(GoogleVertexAiIndex(
+///   'index',
+///   displayName: .literal('index'),
+///   metadata: VertexAiIndexMetadata(
+///     config: VertexAiIndexConfig(dimensions: .literal(128)),
+///   ),
+/// ));
 /// GoogleVertexAiIndexEndpointDeployedIndex(
 ///   'dep',
 ///   deployedIndexId: TfArg.literal('terradart_dep'),

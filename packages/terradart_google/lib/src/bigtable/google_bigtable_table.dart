@@ -54,6 +54,7 @@ final class BigtableTableAutomatedBackupPolicy {
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance('instance', name: .literal('instance')));
 /// GoogleBigtableTable(
 ///   'events',
 ///   instanceName: instance.ref,

@@ -91,6 +91,7 @@ extension type const GlobalAddressIpVersion._(TfArg<String> _)
 /// Example (Cloud SQL private-IP peering range): see also
 /// [GoogleServiceNetworkingConnection].
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final psaRange = GoogleComputeGlobalAddress(
 ///   'psa_range',
 ///   name: TfArg.literal('cloudsql-psa-range'),

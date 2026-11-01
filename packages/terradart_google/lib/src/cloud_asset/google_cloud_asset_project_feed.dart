@@ -126,6 +126,7 @@ final class CloudAssetProjectFeedPubsubDestination {
 ///
 /// Example:
 /// ```dart
+/// final topic = add(GooglePubsubTopic('topic', name: .literal('topic')));
 /// GoogleCloudAssetProjectFeed(
 ///   'project_feed',
 ///   feedId: TfArg.literal('terradart-project-feed'),

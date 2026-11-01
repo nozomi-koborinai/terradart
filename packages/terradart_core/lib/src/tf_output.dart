@@ -41,6 +41,8 @@ final class TfOutput<T> {
 /// where it is one map argument:
 ///
 /// ```dart
+/// final table = add(AwsDynamodbTable('orders', name: .literal('orders')));
+/// final role = add(AwsIamRole('api', assumeRolePolicy: .literal('{}')));
 /// addOutput('table_name', table.name);
 /// add(AwsLambdaFunction(
 ///   'api',

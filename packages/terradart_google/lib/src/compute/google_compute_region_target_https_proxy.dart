@@ -146,6 +146,19 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///
 /// Example (classic regional SSL certificate, regional HTTPS LB):
 /// ```dart
+/// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+///   'region_url_map',
+///   name: .literal('region-url-map'),
+/// ));
+/// final cert = add(GoogleComputeRegionSslCertificate(
+///   'cert',
+///   certificate: .variable('cert_pem'),
+///   privateKey: .privateKeyWo(.literal('key')),
+/// ));
+/// final regionSslPolicy = add(GoogleComputeRegionSslPolicy(
+///   'region_ssl_policy',
+///   name: .literal('region-ssl-policy'),
+/// ));
 /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
 ///   'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),

@@ -91,6 +91,7 @@ class FirebaseAppHostingBackendCodebase {
 ///
 /// Example (regional backend bound to a Developer Connect repo):
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
 /// final backend = GoogleFirebaseAppHostingBackend(
 ///   'web',
 ///   backendId: TfArg.literal('web-backend'),

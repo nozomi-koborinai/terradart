@@ -22,6 +22,10 @@ const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance(
+///   'instance',
+///   name: .literal('instance'),
+/// ));
 /// GoogleBigtableLogicalView(
 ///   'recent_events',
 ///   logicalViewId: TfArg.literal('recent-events'),

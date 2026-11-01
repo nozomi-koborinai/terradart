@@ -19,6 +19,12 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final auditBucket = add(GoogleLoggingProjectBucketConfig(
+///   'audit_bucket',
+///   bucketId: .literal('audit-bucket'),
+///   location: .literal('global'),
+///   project: .literal('my-project'),
+/// ));
 /// final auditView = GoogleLoggingLogView(
 ///   'audit_view',
 ///   bucket: auditBucket.ref,

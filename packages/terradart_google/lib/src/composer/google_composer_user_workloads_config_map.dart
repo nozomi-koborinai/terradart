@@ -19,6 +19,7 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final env = add(GoogleComposerEnvironment('env', name: .literal('env')));
 /// GoogleComposerUserWorkloadsConfigMap(
 ///   'cfg',
 ///   name: TfArg.literal('app-config'),

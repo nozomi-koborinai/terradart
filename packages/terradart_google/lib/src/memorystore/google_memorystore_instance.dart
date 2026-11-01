@@ -722,6 +722,8 @@ extension type const MemorystoreInstanceZoneDistributionConfigMode._(
 ///
 /// Example:
 /// ```dart
+/// final network = add(GoogleComputeNetwork('network', name: .literal('network')));
+/// const projectId = 'my-project';
 /// GoogleMemorystoreInstance(
 ///   'valkey',
 ///   instanceId: TfArg.literal('terradart-valkey'),

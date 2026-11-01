@@ -500,6 +500,17 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
+/// final version = add(GoogleCesAppVersion(
+///   'version',
+///   app: app.ref,
+///   appVersionId: .literal('v1'),
+/// ));
 /// GoogleCesDeployment(
 ///   'api',
 ///   app: app.ref,

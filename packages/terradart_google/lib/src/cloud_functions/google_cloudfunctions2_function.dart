@@ -765,6 +765,11 @@ final class Cloudfunctions2FunctionVersions {
 ///
 /// Example (HTTP-triggered Python function backed by a GCS source archive):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('bucket'),
+///   location: .literal('US'),
+/// ));
 /// final fn = GoogleCloudfunctions2Function(
 ///   'http_fn',
 ///   name: .literal('hello-http'),
@@ -792,6 +797,12 @@ final class Cloudfunctions2FunctionVersions {
 ///
 /// Example (Pub/Sub event-triggered function):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('bucket'),
+///   location: .literal('US'),
+/// ));
+/// final orders = add(GooglePubsubTopic('orders', name: .literal('orders')));
 /// final fn = GoogleCloudfunctions2Function(
 ///   'sub_fn',
 ///   name: .literal('order-handler'),

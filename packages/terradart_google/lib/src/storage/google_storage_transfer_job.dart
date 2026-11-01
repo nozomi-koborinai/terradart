@@ -1124,6 +1124,8 @@ final class StorageTransferJobTransferManifest {
 ///
 /// Example (disabled GCS→GCS, no bytes moved):
 /// ```dart
+/// final src = add(GoogleStorageBucket('src', name: .literal('src'), location: .literal('US')));
+/// final dst = add(GoogleStorageBucket('dst', name: .literal('dst'), location: .literal('US')));
 /// GoogleStorageTransferJob(
 ///   'copy',
 ///   description: TfArg.literal('terradart disabled gcs copy'),

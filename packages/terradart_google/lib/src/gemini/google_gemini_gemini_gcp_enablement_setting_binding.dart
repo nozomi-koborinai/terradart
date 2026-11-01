@@ -30,6 +30,7 @@ const Set<String> _googleGeminiGeminiGcpEnablementSettingBindingSensitive =
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleGeminiGeminiGcpEnablementSettingBinding(
 ///   'enablement_bind',
 ///   geminiGcpEnablementSettingId: .literal('terradart-enablement'),

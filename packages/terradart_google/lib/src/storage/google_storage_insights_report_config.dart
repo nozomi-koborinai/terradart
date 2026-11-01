@@ -250,6 +250,16 @@ final class StorageInsightsReportConfigStorageFilters {
 ///
 /// Example:
 /// ```dart
+/// final reports = add(GoogleStorageBucket(
+///   'reports',
+///   name: .literal('reports'),
+///   location: .literal('US'),
+/// ));
+/// final source = add(GoogleStorageBucket(
+///   'source',
+///   name: .literal('source'),
+///   location: .literal('US'),
+/// ));
 /// GoogleStorageInsightsReportConfig(
 ///   'inventory',
 ///   location: TfArg.literal('asia-northeast1'),

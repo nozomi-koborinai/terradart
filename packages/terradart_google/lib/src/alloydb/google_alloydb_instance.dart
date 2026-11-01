@@ -329,6 +329,11 @@ final class AlloydbInstanceReadPoolConfig {
 ///
 /// Example:
 /// ```dart
+/// final cluster = add(GoogleAlloydbCluster(
+///   'cluster',
+///   clusterId: .literal('cluster'),
+///   location: .literal('us-central1'),
+/// ));
 /// GoogleAlloydbInstance(
 ///   'primary',
 ///   cluster: cluster.ref,

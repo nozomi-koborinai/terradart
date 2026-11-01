@@ -82,6 +82,7 @@ extension type const BackupDrManagementServerPeeringMode._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final network = add(GoogleComputeNetwork('network', name: .literal('network')));
 /// GoogleBackupDrManagementServer(
 ///   'ms',
 ///   name: TfArg.literal('terradart-bdr-ms'),

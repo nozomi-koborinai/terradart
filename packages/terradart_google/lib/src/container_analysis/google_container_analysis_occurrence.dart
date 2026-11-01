@@ -61,6 +61,16 @@ final class ContainerAnalysisOccurrenceSignatures {
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// final note = add(GoogleContainerAnalysisNote(
+///   'note',
+///   name: .literal('note'),
+///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
+///     hint: ContainerAnalysisNoteHint(
+///       humanReadableName: .literal('Attestation note'),
+///     ),
+///   ),
+/// ));
 /// GoogleContainerAnalysisOccurrence(
 ///   'image_attestation',
 ///   noteName: note.id,

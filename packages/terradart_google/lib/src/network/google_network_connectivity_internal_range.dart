@@ -170,6 +170,7 @@ final class NetworkConnectivityInternalRangeMigration {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleNetworkConnectivityInternalRange(
 ///   'reserved',
 ///   name: TfArg.literal('terradart-ir'),

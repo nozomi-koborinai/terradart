@@ -72,6 +72,17 @@ class FirebaseAppHostingDomainRedirect {
 ///
 /// Example (custom domain serving the backend's live content):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('backend'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:1234567890:web:abcdef'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'sa',
+///     accountId: .literal('app-hosting'),
+///   )).ref,
+///   servingLocality: AppHostingServingLocality.regionalStrict,
+/// ));
 /// final www = GoogleFirebaseAppHostingDomain(
 ///   'www',
 ///   backend: backend.ref,
@@ -82,6 +93,17 @@ class FirebaseAppHostingDomainRedirect {
 ///
 /// Example (apex domain redirecting to `www`):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('backend'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:1234567890:web:abcdef'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'sa',
+///     accountId: .literal('app-hosting'),
+///   )).ref,
+///   servingLocality: AppHostingServingLocality.regionalStrict,
+/// ));
 /// final apex = GoogleFirebaseAppHostingDomain(
 ///   'apex',
 ///   backend: backend.ref,

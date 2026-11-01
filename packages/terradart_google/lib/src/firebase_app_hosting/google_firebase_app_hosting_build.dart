@@ -117,6 +117,17 @@ final class FirebaseAppHostingBuildContainer {
 ///
 /// Example (build from a git branch HEAD):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:123:web:abc'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'hosting',
+///     accountId: .literal('hosting'),
+///   )).ref,
+///   servingLocality: .regionalStrict,
+/// ));
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   'v1',
 ///   backend: backend.ref,
@@ -131,6 +142,17 @@ final class FirebaseAppHostingBuildContainer {
 ///
 /// Example (build from a prebuilt image):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:123:web:abc'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'hosting',
+///     accountId: .literal('hosting'),
+///   )).ref,
+///   servingLocality: .regionalStrict,
+/// ));
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   'v1',
 ///   backend: backend.ref,

@@ -1120,6 +1120,12 @@ extension type const CesToolType._(TfArg<String> _) implements TfArg<String> {
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
 /// GoogleCesTool(
 ///   'search',
 ///   app: app.ref,

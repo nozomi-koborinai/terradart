@@ -48,6 +48,11 @@ curatedDoc: |-
   ///
   /// Example (serverless NEG fronting a Cloud Run service):
   /// ```dart
+  /// final cloudRunService = add(GoogleCloudRunService(
+  ///   'run',
+  ///   name: .literal('run'),
+  ///   location: .literal('asia-northeast1'),
+  /// ));
   /// final crNeg = GoogleComputeRegionNetworkEndpointGroup(
   ///   'cr_neg',
   ///   name: TfArg.literal('cloudrun-neg'),

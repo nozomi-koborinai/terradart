@@ -271,6 +271,23 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 ///
 /// Example (Regional Internal Application LB frontend):
 /// ```dart
+/// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+///   'region_url_map',
+///   name: .literal('region-url-map'),
+/// ));
+/// final regionTargetHttpsProxy = add(GoogleComputeRegionTargetHttpsProxy(
+///   'proxy',
+///   name: .literal('proxy'),
+///   urlMap: regionUrlMap.ref,
+///   region: .literal('us-central1'),
+/// ));
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final ilbSubnet = add(GoogleComputeSubnetwork(
+///   'ilb_subnet',
+///   name: .literal('ilb-subnet'),
+///   network: vpc.ref,
+/// ));
+/// final ilbVip = add(GoogleComputeAddress('ilb_vip', name: .literal('ilb-vip')));
 /// final ilbFwd = GoogleComputeForwardingRule(
 ///   'ilb',
 ///   name: TfArg.literal('ilb-https-frontend'),

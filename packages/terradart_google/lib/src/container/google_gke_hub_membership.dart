@@ -66,6 +66,7 @@ final class GkeHubMembershipGkeCluster {
 ///
 /// Example:
 /// ```dart
+/// final cluster = add(GoogleContainerCluster('cluster', name: .literal('cluster')));
 /// final membership = GoogleGkeHubMembership(
 ///   'main',
 ///   membershipId: TfArg.literal('main-cluster'),
@@ -76,7 +77,7 @@ final class GkeHubMembershipGkeCluster {
 ///   ),
 ///   authority: GkeHubMembershipAuthority(
 ///     issuer: TfArg.literal(
-///       'https://container.googleapis.com/v1/${cluster.id}',
+///       'https://container.googleapis.com/v1/${cluster.id.interpolation}',
 ///     ),
 ///   ),
 /// );

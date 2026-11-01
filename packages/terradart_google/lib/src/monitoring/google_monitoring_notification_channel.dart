@@ -253,6 +253,18 @@ final class MonitoringNotificationChannelCredentialServiceKeyWo
 ///
 /// Example (Slack channel):
 /// ```dart
+/// final slackBotTokenSecret = add(GoogleSecretManagerSecretVersion(
+///   'slack',
+///   secret: add(GoogleSecretManagerSecret(
+///     'slack_bot',
+///     secretId: .literal('slack-bot'),
+///     replication: .auto(const SecretManagerSecretAuto()),
+///   )).ref,
+///   payload: SecretManagerSecretVersionWriteOnlyPayload(
+///     secretDataWo: .literal('xoxb-token'),
+///     secretDataWoVersion: .literal('1'),
+///   ),
+/// ));
 /// final slack = GoogleMonitoringNotificationChannel(
 ///   'oncall_slack',
 ///   displayName: .literal('#oncall alerts'),

@@ -27,6 +27,12 @@ const Set<String> _googleComputeNetworkEndpointSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final neg = add(GoogleComputeNetworkEndpointGroup(
+///   'neg',
+///   name: .literal('neg'),
+///   network: vpc.ref,
+/// ));
 /// GoogleComputeNetworkEndpoint(
 ///   'onprem_vm',
 ///   networkEndpointGroup: neg.ref,

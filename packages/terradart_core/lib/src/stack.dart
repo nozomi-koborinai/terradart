@@ -317,9 +317,11 @@ abstract base class Stack {
   /// Declare `output "<name>" { value = <value> }`.
   ///
   /// ```dart
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+  /// final dbPassword = variable<String>('db_password', sensitive: true);
   /// addOutput('orders_topic_id', topic.id);
-  /// addOutput('service_url', service.uri, description: 'Cloud Run URL');
-  /// addOutput('db_password', secret.secretData, sensitive: true);
+  /// addOutput('orders_topic_name', topic.name, description: 'Orders topic');
+  /// addOutput('db_password', dbPassword, sensitive: true);
   /// ```
   ///
   /// With [appExports] set, a non-sensitive output is also a getter of the
@@ -374,6 +376,8 @@ abstract base class Stack {
   /// `String` output, its JSON for any other.
   ///
   /// ```dart
+  /// const image = 'us-docker.pkg.dev/cloudrun/container/hello';
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
   /// addOutput('orders_topic_id', topic.id);
   /// final service = add(GoogleCloudRunV2Service(
   ///   'orders',
@@ -452,7 +456,8 @@ abstract base class Stack {
   /// app is built with.
   ///
   /// ```dart
-  /// addOutput('api_url', service.uri);
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+  /// addOutput('orders_topic_id', topic.id);
   /// addDartDefineOutput();
   /// ```
   ///
@@ -564,6 +569,7 @@ abstract base class Stack {
   /// class of the [appExports] file.
   ///
   /// ```dart
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
   /// addConstant('ordersTopicName', .ref(topic.name));
   /// addConstant('maxRetries', .value(5));
   /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));

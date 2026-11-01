@@ -106,6 +106,11 @@ extension type const AccessContextManagerAuthorizedOrgsDescAuthorizationDirectio
 ///
 /// Example:
 /// ```dart
+/// final policy = add(GoogleAccessContextManagerAccessPolicy(
+///   'policy',
+///   parent: .literal('organizations/12345'),
+///   title: .literal('policy'),
+/// ));
 /// GoogleAccessContextManagerAuthorizedOrgsDesc(
 ///   'demo_orgs',
 ///   parent: TfArg.literal(

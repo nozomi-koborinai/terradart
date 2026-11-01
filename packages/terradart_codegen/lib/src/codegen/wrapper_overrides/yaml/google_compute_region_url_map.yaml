@@ -107,6 +107,14 @@ curatedDoc: |-
   /// Example (login backend + static bucket, both routed via host/path, in
   /// `us-central1`):
   /// ```dart
+  /// final login = add(GoogleComputeRegionBackendService(
+  ///   'login',
+  ///   name: .literal('login'),
+  /// ));
+  /// final staticBucket = add(GoogleComputeRegionBackendService(
+  ///   'static',
+  ///   name: .literal('static'),
+  /// ));
   /// final urlMap = GoogleComputeRegionUrlMap(
   ///   'urlmap',
   ///   name: TfArg.literal('regionurlmap-prod'),

@@ -20,6 +20,16 @@ const Set<String> _googleContactCenterInsightsEncryptionSpecSensitive =
 ///
 /// Example:
 /// ```dart
+/// final ring = add(GoogleKmsKeyRing(
+///   'ring',
+///   name: .literal('ring'),
+///   location: .literal('asia-northeast1'),
+/// ));
+/// final paymentsKey = add(GoogleKmsCryptoKey(
+///   'payments_key',
+///   name: .literal('payments'),
+///   keyRing: ring.ref,
+/// ));
 /// GoogleContactCenterInsightsEncryptionSpec(
 ///   'insights_cmek',
 ///   location: TfArg.literal('asia-northeast1'),

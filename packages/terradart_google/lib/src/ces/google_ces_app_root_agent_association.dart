@@ -39,6 +39,17 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us'),
+///   appId: .literal('app'),
+///   displayName: .literal('App'),
+/// ));
+/// final agent = add(GoogleCesAgent(
+///   'agent',
+///   app: app.ref,
+///   displayName: .literal('Agent'),
+/// ));
 /// GoogleCesAppRootAgentAssociation(
 ///   'root',
 ///   appId: app.ref,
