@@ -121,6 +121,44 @@ final kind = FencedKind();
       expect(released.symbols, containsAll(['runStack', 'runTerradart']));
     });
 
+    test('an unexported declaration is no public API', () {
+      Directory workspace(String exports) {
+        final tmp = Directory.systemTemp.createTempSync('doc_renames_cli_');
+        addTearDown(() => tmp.deleteSync(recursive: true));
+        final lib = p.join(tmp.path, 'packages', 'terradart_cli', 'lib');
+        Directory(p.join(lib, 'src')).createSync(recursive: true);
+        File(
+          p.join(lib, 'terradart_cli.dart'),
+        ).writeAsStringSync("export 'src/cli.dart' show $exports;\n");
+        File(p.join(lib, 'src', 'cli.dart')).writeAsStringSync('''
+Future<void> runStack(List<String> args) async {}
+Future<int> runTerradart(List<String> args) async => 0;
+''');
+        return tmp;
+      }
+
+      final current = PublicApi.workspace(workspace('runStack').path);
+      expect(current.declares('runStack'), isTrue);
+      expect(current.declares('runTerradart'), isFalse);
+      final removed = removedSymbols(
+        migrating: const {},
+        current: current,
+        released: (
+          version: '0.35.0',
+          api: PublicApi.workspace(workspace('runStack, runTerradart').path),
+        ),
+      );
+      expect(removed.keys, contains('runTerradart'));
+      expect(
+        staleMentions(
+          'guide.md',
+          'Call runTerradart(args) from your own main.\n',
+          removed,
+        ),
+        [(file: 'guide.md', line: 1, symbol: 'runTerradart')],
+      );
+    });
+
     test('a removed top-level name in prose fails', () {
       final tmp = Directory.systemTemp.createTempSync('doc_renames_top_');
       addTearDown(() => tmp.deleteSync(recursive: true));
