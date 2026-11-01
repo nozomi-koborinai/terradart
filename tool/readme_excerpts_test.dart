@@ -124,7 +124,7 @@ void main() {
           '# Example\n\n$open\n$stale\n$close\n',
           synth,
         ),
-        [startsWith(r'README.md:4: $.provider.google[0].project')],
+        [startsWith(r'README.md:3: $.provider.google[0].project')],
         reason: open,
       );
     }

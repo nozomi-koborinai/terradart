@@ -1,7 +1,7 @@
 // readme_excerpts.dart — the JSON excerpts of an example README must be what
 // the example synthesizes.
 //
-// Every ```json fence of `examples/<slug>/README.md` is an excerpt of that
+// Every JSON fence of `examples/<slug>/README.md` is an excerpt of that
 // example's `tf-out/main.tf.json`: each object key it shows exists with the
 // value it shows, each list element matches a synthesized element in the same
 // order, and each scalar is equal. An excerpt may leave keys and elements out;
@@ -19,17 +19,10 @@ List<String> excerptMismatches(
   Map<String, dynamic> synth,
 ) {
   final out = <String>[];
-  final lines = readme.split('\n');
-  for (var i = 0; i < lines.length; i++) {
-    if (lines[i].trim() != '```json') continue;
-    final start = i + 1;
-    final body = <String>[];
-    for (i++; i < lines.length && lines[i].trim() != '```'; i++) {
-      body.add(lines[i]);
-    }
+  for (final (:start, :body) in _jsonFences(readme)) {
     final Object? excerpt;
     try {
-      excerpt = jsonDecode(body.join('\n'));
+      excerpt = jsonDecode(body);
     } on FormatException catch (e) {
       out.add('$path:$start: the JSON fence does not parse (${e.message})');
       continue;
@@ -40,6 +33,39 @@ List<String> excerptMismatches(
         '$path:$start: $miss; the fence must be an excerpt of '
         'tf-out/main.tf.json',
       );
+    }
+  }
+  return out;
+}
+
+final _open = RegExp(r'^( {0,3})(`{3,}|~{3,})(.*)$');
+
+/// The body of each fenced code block of [md] whose info string names
+/// `json` (any case), with the line its opening fence is on. A fence is
+/// any CommonMark one: three or more backticks or tildes, indented up to
+/// three spaces, closed by a run of the same character at least as long.
+List<({int start, String body})> _jsonFences(String md) {
+  final out = <({int start, String body})>[];
+  final lines = md.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    final m = _open.firstMatch(lines[i]);
+    if (m == null) continue;
+    final indent = m.group(1)!.length;
+    final fence = m.group(2)!;
+    final info = m.group(3)!.trim();
+    if (fence.startsWith('`') && info.contains('`')) continue;
+    final close = RegExp(
+      '^ {0,3}${RegExp.escape(fence[0])}{${fence.length},}\\s*\$',
+    );
+    final start = i + 1;
+    final body = <String>[];
+    for (i++; i < lines.length && !close.hasMatch(lines[i]); i++) {
+      final line = lines[i];
+      final strip = line.length - line.trimLeft().length;
+      body.add(line.substring(strip < indent ? strip : indent));
+    }
+    if (info.split(RegExp(r'\s')).first.toLowerCase() == 'json') {
+      out.add((start: start, body: body.join('\n')));
     }
   }
   return out;
