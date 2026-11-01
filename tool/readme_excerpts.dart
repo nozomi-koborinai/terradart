@@ -39,18 +39,40 @@ List<String> excerptMismatches(
 }
 
 final _open = RegExp(r'^( {0,3})(`{3,}|~{3,})(.*)$');
+final _quote = RegExp(r'^(?: {0,3}> ?)+');
+final _item = RegExp(r'^ {0,3}([-*+]|\d{1,9}[.)]) {1,4}');
 
 /// The body of each fenced code block of [md] whose info string names
 /// `json` (any case), with the line its opening fence is on. A fence is
-/// any CommonMark one: three or more backticks or tildes, indented up to
-/// three spaces, closed by a run of the same character at least as long.
+/// three or more backticks or tildes, closed by a run of the same character
+/// at least as long, indented up to three spaces past its container: the
+/// document, a block quote (its `>` markers dropped), or the content of the
+/// list item above it, the fence on the item's own line included. Line
+/// endings may be CRLF.
 List<({int start, String body})> _jsonFences(String md) {
   final out = <({int start, String body})>[];
-  final lines = md.split('\n');
+  final lines = [
+    for (final l in md.split('\n'))
+      l.replaceFirst(RegExp(r'\r$'), '').replaceFirst(_quote, ''),
+  ];
+  var list = 0;
   for (var i = 0; i < lines.length; i++) {
-    final m = _open.firstMatch(lines[i]);
+    var line = lines[i];
+    var base = 0;
+    if (_item.firstMatch(line) case final item?) {
+      list = base = item.end;
+      line = line.substring(base);
+    } else if (line.trim().isNotEmpty) {
+      final indent = line.length - line.trimLeft().length;
+      if (indent < list && (i == 0 || lines[i - 1].trim().isEmpty)) list = 0;
+      if (indent >= list) {
+        base = list;
+        line = line.substring(base);
+      }
+    }
+    final m = _open.firstMatch(line);
     if (m == null) continue;
-    final indent = m.group(1)!.length;
+    final indent = base + m.group(1)!.length;
     final fence = m.group(2)!;
     final info = m.group(3)!.trim();
     if (fence.startsWith('`') && info.contains('`')) continue;
@@ -59,10 +81,13 @@ List<({int start, String body})> _jsonFences(String md) {
     );
     final start = i + 1;
     final body = <String>[];
-    for (i++; i < lines.length && !close.hasMatch(lines[i]); i++) {
-      final line = lines[i];
-      final strip = line.length - line.trimLeft().length;
-      body.add(line.substring(strip < indent ? strip : indent));
+    String strip(String line) {
+      final lead = line.length - line.trimLeft().length;
+      return line.substring(lead < indent ? lead : indent);
+    }
+
+    for (i++; i < lines.length && !close.hasMatch(strip(lines[i])); i++) {
+      body.add(strip(lines[i]));
     }
     if (info.split(RegExp(r'\s')).first.toLowerCase() == 'json') {
       out.add((start: start, body: body.join('\n')));
