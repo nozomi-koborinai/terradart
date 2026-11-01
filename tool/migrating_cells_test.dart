@@ -221,6 +221,137 @@ void main() {
     },
   );
 
+  group('the unpublished Before ledger', () {
+    String doc(List<String> rows) => [
+      '# Migrating terradart',
+      '',
+      '## 0.35.x → 0.36.0',
+      '',
+      '| Before | After |',
+      '|---|---|',
+      ...rows,
+      '',
+    ].join('\n');
+    String entry(String before, {String package = 'terradart_azure'}) =>
+        '''
+- before: "$before"
+  package: $package
+  reason: The Before API was never published.
+''';
+    Future<MigratingReport> check(List<String> rows, [String ledger = '']) =>
+        checkMigratingCells(
+          Directory.current.path,
+          migrating: doc(rows),
+          ledger: ledger,
+        );
+
+    test('an unpublished name in the After cell does not hide a typo of a '
+        'bare Before name', () async {
+      final report = await check([
+        '| `GooglePubsubTopik` | `ApplicationGatewayProbeProtocol` |',
+      ]);
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:7: Before'),
+          contains('GooglePubsubTopik'),
+        ),
+      ]);
+      expect(report.beforeSkipped, isEmpty);
+    });
+
+    test('an unpublished type in a Before cell does not hide a typo beside '
+        'it', () async {
+      final report = await check([
+        "| `AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))` "
+            '| `AzurermResourceGroup.name` |',
+      ]);
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:7: Before'),
+          contains('GooglePubsubTopik'),
+        ),
+      ]);
+      expect(report.beforeSkipped, isEmpty);
+    });
+
+    test('an unlisted Before cell of an unpublished package fails', () async {
+      final report = await check([
+        "| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |",
+      ]);
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:7: Before'),
+          contains('AzurermResourceGroup'),
+        ),
+      ]);
+      expect(report.beforeFailed, 1);
+    });
+
+    test(
+      'a listed Before cell is skipped with its package and reason',
+      () async {
+        final report = await check([
+          "| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |",
+          '| `TfArg<String>` | `AzurermResourceGroup.name` |',
+        ], entry("AzurermResourceGroup('rg')"));
+        expect(report.failures, isEmpty, reason: report.failures.join('\n'));
+        expect(report.beforeCompiled, 1);
+        expect(
+          [for (final s in report.beforeSkipped) describeSkip(s)],
+          [
+            allOf(
+              contains('MIGRATING.md:7:'),
+              contains('terradart_azure'),
+              contains('The Before API was never published.'),
+            ),
+          ],
+        );
+      },
+    );
+
+    test('an entry that matches no Before cell fails', () async {
+      final report = await check(
+        ["| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |"],
+        entry("AzurermResourceGroup('rg')") +
+            entry("AzurermResourceGroup('renamed')"),
+      );
+      expect(report.failures, [
+        allOf(
+          contains(migratingLedgerPath),
+          contains("AzurermResourceGroup('renamed')"),
+          contains('matches no Before cell'),
+        ),
+      ]);
+    });
+
+    test('an entry whose package has a release in the series fails', () async {
+      final report = await check(
+        ["| `GooglePubsubTopic('t', nosuch: x)` | `GooglePubsubTopic.name` |"],
+        entry("GooglePubsubTopic('t', nosuch: x)", package: 'terradart_google'),
+      );
+      expect(report.failures, [
+        allOf(
+          contains(migratingLedgerPath),
+          contains('terradart_google'),
+          contains('has a 0.35.x release'),
+        ),
+      ]);
+    });
+
+    test('an entry whose Before cell compiles fails', () async {
+      final report = await check([
+        '| `TfArg<String>` | `AzurermResourceGroup.name` |',
+      ], entry('TfArg<String>'));
+      expect(report.failures, [
+        allOf(
+          contains(migratingLedgerPath),
+          contains('TfArg<String>'),
+          contains('compiles'),
+        ),
+      ]);
+    });
+  });
+
   test('a document without the `# Migrating terradart` title fails', () async {
     const seeded = '''
 # Migrating
