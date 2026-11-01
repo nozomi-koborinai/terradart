@@ -1,13 +1,16 @@
-// The migrator's API coverage gate: every typed input a provider package
-// declares (an enum, an EnumList, a sealed choice, a RefTo) and every
-// output getter must have a recipe in that package's migration manifest
-// that builds the same shape, so `terradart migrate` never falls back to a
+// The migrator's API coverage gate: every public factory a provider package
+// declares needs a manifest entry, and every typed input (an enum, an
+// EnumList, a sealed choice, a RefTo, an IAM principal, a helper block) and
+// output getter needs a recipe in that package's migration manifest that
+// builds the same shape, so `terradart migrate` never falls back to a
 // string where the API is typed.
 //
 // The wrapper side is read from the package sources with the analyzer, the
 // manifest side from `allMigrateManifests`; nothing is hand-listed. A
 // `manual` slot or a helper with a reason is a finding unless
-// tool/migrate_manifest_debt.yaml names a Terraform type that reaches it.
+// tool/migrate_manifest_debt.yaml names a Terraform type that reaches it,
+// and a factory without an entry is one unless
+// tool/migrate_unmanifested_factories.yaml gives the reason.
 import 'dart:io';
 
 import 'package:analyzer/dart/analysis/utilities.dart';
@@ -39,6 +42,10 @@ final class WrapperApi {
 
   /// Classes with a `principal` getter, the IAM principal of their `member`.
   final Set<String> principalGetters = {};
+
+  /// Public classes that extend `Resource` or `Data`: the factories a
+  /// manifest entry must describe.
+  final Set<String> factories = {};
 
   /// Every `.dart` file under `packages/<package>/lib`.
   static WrapperApi readPackage(String repoRoot, String package) {
@@ -91,6 +98,7 @@ final class WrapperApi {
     _fields[name] = fields;
     if (d.extendsClause?.superclass.name.lexeme case final s?) {
       _superclass[name] = s;
+      if (s == 'Resource' || s == 'Data') factories.add(name);
     }
     final constructors = members.whereType<ConstructorDeclaration>().toList();
     if (d.sealedKeyword != null) {
@@ -225,9 +233,23 @@ sealed class InputShape {
     if (inner('List<') case final e?) {
       if (api.enums.containsKey(e)) return BareEnumListInput(e);
       if (api.sealed.containsKey(e)) return SealedInput(e, repeated: true);
+      if (api.inputs.containsKey(e)) return HelperInput(e, repeated: true);
     }
+    if (inner('Map<String, ') case final h? when api.inputs.containsKey(h)) {
+      return HelperInput(h, keyed: true);
+    }
+    if (api.inputs.containsKey(t)) return HelperInput(t);
     return null;
   }
+}
+
+/// A class of the package passed bare: one block, a list of blocks, or a
+/// map of blocks keyed by name.
+final class HelperInput extends InputShape {
+  const HelperInput(this.type, {this.repeated = false, this.keyed = false});
+  final String type;
+  final bool repeated;
+  final bool keyed;
 }
 
 final class EnumInput extends InputShape {
@@ -271,19 +293,52 @@ Map<String, String> loadMigrateManifestDebt(File file) {
   return {for (final e in doc.entries) '${e.key}': '${e.value}'};
 }
 
+const unmanifestedFactoriesPath = 'tool/migrate_unmanifested_factories.yaml';
+
+/// Package → factory class → why its manifest has no entry for it.
+Map<String, Map<String, String>> loadUnmanifestedFactories(File file) {
+  if (!file.existsSync()) return {};
+  final doc = loadYaml(file.readAsStringSync());
+  if (doc is! YamlMap) return {};
+  return {
+    for (final MapEntry(:key, :value) in doc.entries)
+      '$key': {
+        if (value is YamlMap)
+          for (final c in value.entries) '${c.key}': '${c.value ?? ''}'.trim(),
+      },
+  };
+}
+
 /// What keeps [manifest] from expressing [api]. Each finding names the
 /// class and input, the shape the API has, and what the manifest records.
 /// [debt] maps a Terraform type to the reason its manual shapes are
 /// deliberate; a manual shape a ledgered type reaches is not a finding.
 /// [usedDebt] collects the ledgered types that excused something.
+/// [unmanifested] maps a factory class the manifest omits on purpose to the
+/// reason; [usedUnmanifested] collects the ones that excused an omission.
 List<String> coverageFindings(
   MigrateManifest manifest,
   WrapperApi api, {
   Map<String, String> debt = const {},
   Set<String>? usedDebt,
+  Map<String, String> unmanifested = const {},
+  Set<String>? usedUnmanifested,
 }) {
   final findings = <String>[];
   final reachedBy = _reachingTypes(manifest);
+  final entries = {for (final e in manifest.entries) e.className};
+  for (final f in api.factories.toList()..sort()) {
+    if (entries.contains(f)) continue;
+    final reason = unmanifested[f];
+    if (reason != null && reason.isNotEmpty) {
+      usedUnmanifested?.add(f);
+      continue;
+    }
+    findings.add(
+      '$f: a public factory of ${manifest.package} with no manifest entry, '
+      'so terradart migrate never builds it',
+    );
+  }
 
   bool excused(String owner) {
     final types = reachedBy[owner] ?? const <String>{};
@@ -405,7 +460,8 @@ String? _mismatch(
       if (slot.kind == MigrateSlotKind.enumValue ||
           slot.kind == MigrateSlotKind.sealed ||
           slot.kind == MigrateSlotKind.reference ||
-          slot.kind == MigrateSlotKind.principal) {
+          slot.kind == MigrateSlotKind.principal ||
+          slot.kind == MigrateSlotKind.helper) {
         return 'the manifest builds ${got()} for an input the package does '
             'not type that way';
       }
@@ -448,6 +504,22 @@ String? _mismatch(
               slot.dartType == type
           ? null
           : 'an IAM principal ($type), the manifest builds ${got()}';
+    case HelperInput(:final type, :final repeated, :final keyed):
+      final shape = keyed
+          ? 'a map of $type blocks'
+          : repeated
+          ? 'a list of $type blocks'
+          : 'one $type block';
+      if (slot.kind != MigrateSlotKind.helper ||
+          slot.helper != type ||
+          slot.repeated != repeated ||
+          slot.keyed != keyed) {
+        return '$shape, the manifest builds ${got()}'
+            '${slot.helper == null ? '' : ' ${slot.helper}'}';
+      }
+      return manifest.helpers.containsKey(type)
+          ? null
+          : '$shape, the manifest has no helper $type';
     case RefInput(:final type, :final repeated):
       return slot.kind == MigrateSlotKind.reference &&
               slot.repeated == repeated &&

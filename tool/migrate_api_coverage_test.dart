@@ -196,21 +196,40 @@ void main() {
   group('every provider package', () {
     final debt = loadMigrateManifestDebt(File(migrateManifestDebtPath));
     final used = <String>{};
+    final unmanifested = loadUnmanifestedFactories(
+      File(unmanifestedFactoriesPath),
+    );
     for (final manifest in allMigrateManifests) {
       test('${manifest.package}: the manifest builds every typed input', () {
         final api = WrapperApi.readPackage(
           Directory.current.path,
           manifest.package,
         );
+        final excused = unmanifested[manifest.package] ?? const {};
+        final usedExcuses = <String>{};
         final findings = coverageFindings(
           manifest,
           api,
           debt: debt,
           usedDebt: used,
+          unmanifested: excused,
+          usedUnmanifested: usedExcuses,
         );
         expect(findings, isEmpty, reason: findings.join('\n'));
+        expect(
+          excused.keys.where((c) => !usedExcuses.contains(c)),
+          isEmpty,
+          reason:
+              '$unmanifestedFactoriesPath names classes that have a manifest '
+              'entry, have no reason, or are no factory of '
+              '${manifest.package}; delete or explain them',
+        );
       });
     }
+    test('$unmanifestedFactoriesPath names only provider packages', () {
+      final packages = {for (final m in allMigrateManifests) m.package};
+      expect(unmanifested.keys.where((p) => !packages.contains(p)), isEmpty);
+    });
     test('$migrateManifestDebtPath has no stale line', () {
       final stale = debt.keys.where((t) => !used.contains(t)).toList();
       expect(
@@ -342,7 +361,7 @@ void main() {
       ]);
       expect(
         findings.single,
-        contains('GoogleThing.config (ThingConfig?): a ThingConfig'),
+        contains('GoogleThing.config (ThingConfig?): one ThingConfig block'),
       );
     });
 
@@ -353,7 +372,9 @@ void main() {
       ]);
       expect(
         findings.single,
-        contains('a ThingConfig, the manifest builds helper OtherConfig'),
+        contains(
+          'one ThingConfig block, the manifest builds helper OtherConfig',
+        ),
       );
     });
 
@@ -363,14 +384,14 @@ void main() {
           ...slots,
           _configSlot(),
         ]).single,
-        contains('a list of ThingConfig'),
+        contains('a list of ThingConfig blocks'),
       );
       expect(
         _findings('$_params, Map<String, ThingConfig>? config', [
           ...slots,
           _configSlot(repeated: true),
         ]).single,
-        contains('a map of ThingConfig'),
+        contains('a map of ThingConfig blocks'),
       );
     });
 
@@ -392,8 +413,29 @@ final class GoogleOther extends Resource {
 }
 ''',
       ]);
-      final findings = coverageFindings(_manifest(slots), api);
-      expect(findings.single, contains('GoogleOther'));
+      expect(
+        coverageFindings(_manifest(slots), api).single,
+        contains('GoogleOther: a public factory'),
+      );
+      final used = <String>{};
+      expect(
+        coverageFindings(
+          _manifest(slots),
+          api,
+          unmanifested: const {'GoogleOther': 'built through another lane'},
+          usedUnmanifested: used,
+        ),
+        isEmpty,
+      );
+      expect(used, {'GoogleOther'});
+      expect(
+        coverageFindings(
+          _manifest(slots),
+          api,
+          unmanifested: const {'GoogleOther': ''},
+        ).single,
+        contains('GoogleOther: a public factory'),
+      );
     });
 
     test('a typed input with no manifest slot', () {

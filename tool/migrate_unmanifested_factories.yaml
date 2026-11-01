@@ -1,0 +1,17 @@
+# Public factory classes a migration manifest leaves out on purpose.
+#
+# tool/migrate_api_coverage_test.dart fails on a class that extends
+# `Resource` or `Data` in a provider package and has no entry in that
+# package's manifest, unless this file names it here with a reason. An
+# entry fails too once the class gains a manifest entry, stops being a
+# factory of the package, or loses its reason.
+#
+# package:
+#   ClassName: why terradart migrate builds this Terraform type another way
+
+terradart_google:
+  GoogleProjectServiceIdentity: >-
+    Hand-written in terradart_google's google_beta library, which predates
+    the beta lane. terradart_google_beta generates the same class for
+    google_project_service_identity, and terradart migrate writes that
+    package's manifest entry for it.
