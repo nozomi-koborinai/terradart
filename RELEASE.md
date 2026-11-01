@@ -22,7 +22,7 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
 
   This updates all 12 package pubspecs, the `terradart-migrate --version` const, their inter-package carets, the example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
 - [ ] Add `## <version> - YYYY-MM-DD` entry to root `CHANGELOG.md` and to each package `CHANGELOG.md` file. Release notes are prose — the bump script intentionally does not generate them.
-- [ ] If the release is breaking, rename the `## Unreleased` section of `MIGRATING.md` to `## 0.W.x → 0.X.Y`, where `0.W` is the previous release series, under the single `# Migrating terradart` title (`## 0.35.x → 0.36.0`). `tool/migrating_cells_test.dart` checks the top section under either heading, and compiles its Before cells against the newest `0.W` release on pub.dev. Entries of `tool/migrating_unpublished_cells.yaml` (Before cells of a package with no `0.W` release) stay until the next section replaces their cells; the check then fails on each one, so delete them.
+- [ ] If the release is breaking, rename the `## Unreleased` section of `MIGRATING.md` to `## 0.W.x → 0.X.Y`, where `0.W` is the previous release series, under the single `# Migrating terradart` title (`## 0.35.x → 0.36.0`). `tool/migrating_cells_test.dart` checks the top section under either heading, and compiles its Before cells against the newest `0.W` release on pub.dev. A package with no `0.W` release has no upgrading user, so the section has no row about it.
 - [ ] Run pana score check on each package:
 
   ```bash
