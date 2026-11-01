@@ -75,14 +75,23 @@ void main() {
       final constantsOnly = _source(
         _stack()..addConstant('s', const .value('v1')),
       );
-      for (final unused in [
-        "import 'dart:convert'",
-        '_read(',
-        '_as<',
-        '_Source',
-      ]) {
-        expect(constantsOnly, isNot(contains(unused)));
+      final allSensitive = _source(
+        _stack()
+          ..addOutput('pw', .literal('secret'), sensitive: true)
+          ..addOutput('token', .literal('t'), sensitive: true),
+      );
+      for (final source in [constantsOnly, allSensitive]) {
+        for (final unused in [
+          "import 'dart:convert'",
+          '_read(',
+          '_as<',
+          '_Source',
+        ]) {
+          expect(source, isNot(contains(unused)));
+        }
+        expect(source, contains('const TestStackOutputs.fromDartDefine();'));
       }
+      expect(allSensitive, isNot(contains(' get pw')));
       final stringOnly = _source(_stack()..addOutput('x', .literal('v')));
       expect(stringOnly, contains("import 'dart:convert'"));
       expect(stringOnly, contains('Object? _read('));
