@@ -19,6 +19,10 @@ notApi:
 # Mentions that are not the Dart symbol: path (or directory ending in /) to
 # symbol to reason.
 mentions:
+  packages/terradart_google/lib/src/clouddeploy/google_clouddeploy_custom_target_type.dart:
+    Target: the upstream description names the Cloud Deploy API resource
+  packages/terradart_google/lib/src/clouddeploy/google_clouddeploy_target.dart:
+    Target: the upstream description names the Cloud Deploy API resource
   packages/terradart_google/lib/src/model_armor/google_model_armor_template.dart:
     Template: the upstream description names the Model Armor API resource
   packages/terradart_google/lib/src/monitoring/google_monitoring_dashboard.dart:

@@ -9,11 +9,12 @@ void main() {
   final root = Directory.current.path;
 
   group('inlineFragments', () {
-    test('reads Dart argument spans, not keys, scalars or before cells', () {
+    test('reads every argument span but snake_case scalars and before '
+        'cells', () {
       const text = '''
 Pass `role: role.ref`, `name: .literal('x')`, `memorySize: memory` and
 `dir: (env) => env.name`, `Bucket('b', labels: other.labels)`, not
-`skip_wait: true`, `regions: 2`, `Bucket(user:a)`,
+`skip_wait: true`, `max_instances: 2`, `Bucket(user:a)`,
 `deriveEnums: true` or `env: dev (default)`.
 
 ```dart
@@ -30,6 +31,9 @@ final inFence = `ignored: .literal(1)`;
         (line: 1, fragment: 'memorySize: memory'),
         (line: 2, fragment: 'dir: (env) => env.name'),
         (line: 2, fragment: "Bucket('b', labels: other.labels)"),
+        (line: 3, fragment: 'Bucket(user:a)'),
+        (line: 4, fragment: 'deriveEnums: true'),
+        (line: 4, fragment: 'env: dev (default)'),
         (line: 12, fragment: 'labels: other.labels'),
       ]);
     });

@@ -1,15 +1,22 @@
 // inline_fragments.dart — a guide teaches an argument in a compiled fence,
 // never in an inline code span.
 //
-// A fragment is a backtick span outside a fence of a document
-// tool/doc_snippets.dart compiles that holds a `name: value` argument, on
-// its own or inside a call (`Foo(name: value)`), where `name`
-// is a lowerCamel argument and `value` is Dart: a dot shorthand
-// (`.literal('x')`), a constructor or static call (`Foo(...)`, `Foo.bar`),
-// a getter read (`scope.ref`), a variable (`memory`), a closure, a raw
-// string, a list or a `const` value. A snake_case key or a bare `true`,
-// `false`, `null` or number (`skip_wait: true`, `regions: 2`) reads the same
-// in YAML, JSON and Terraform, so it is no fragment.
+// A fragment is a code span, outside a fence, that holds a `name: value`
+// argument, on its own or inside a call (`Foo(name: value)`): a lowerCamel
+// or snake_case name, any spacing around the colon, and any value. Spans
+// are read the CommonMark way (tool/code_spans.dart), so a span split
+// across lines or opened by a longer backtick run counts. The documents are
+// those tool/doc_snippets.dart compiles and the `///` doc comments of the
+// packages it compiles doc comments for.
+//
+// A snake_case name with a plain scalar (`skip_wait: true`,
+// `max_instances: 2`, `machine_type: e2-micro`) reads the same in YAML,
+// JSON and Terraform, so it is no fragment. A lowerCamel one with the same
+// value (`proxied: true`) is a Dart argument that skips its `.literal`. A
+// span that opens on a colon with no space around it and a plain value
+// (`dart:io`, `user:<email>`, `arn:aws:iam::...`) is a URI or a principal;
+// the same pair inside a call or collection (`Bucket(user:a)`), or with a
+// Dart value (`name:.literal('x')`), is an argument.
 //
 // Every fragment fails. A span says nothing about the call it belongs to,
 // so no text match can tell `service: apiService.ref` from
@@ -25,52 +32,75 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import 'code_spans.dart';
 import 'doc_renames.dart' show beforeColumns;
-import 'doc_snippets.dart' show snippetDocuments;
+import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
 
-final _span = RegExp(r'(?<!`)`([^`\n]+)`(?!`)');
-final _fence = RegExp(r'^\s*(`{3,}|~{3,})');
-final _fragment = RegExp(
-  r'''(^|[(,{\[]\s*)[a-z][A-Za-z0-9]*: (\.|r'|\[|\(|const\b|[A-Z]\w*[(.<]|[a-z]\w*\.[a-z]|(?!(true|false|null)\b)[a-z][A-Za-z0-9]*(?=$|\s*[,)\]}]))''',
+final _argument = RegExp(
+  r'(?:^|[(,{\[])\s*([a-z][A-Za-z0-9_]*)\s*:(?![/:])\s*',
 );
+final _scalar = RegExp(
+  r"""^(true|false|null|-?\d[\w.]*|'[^']*'|"[^"]*"|[A-Za-z][\w.-]*)"""
+  r'\s*($|[,)\]}\s])',
+);
+final _call = RegExp(r'\w\(');
+final _dartValue = RegExp(r'''^([.\[('"]|r'|const\b|[A-Z]\w*[(.<])''');
 
-/// The fragments of [text] outside fences and before cells, with their line.
-List<({int line, String fragment})> inlineFragments(String text) {
-  final out = <({int line, String fragment})>[];
-  final before = beforeColumns(text);
-  final lines = text.split('\n');
-  String? fence;
-  for (var i = 0; i < lines.length; i++) {
-    final marker = _fence.firstMatch(lines[i])?.group(1);
-    if (marker != null) {
-      if (fence == null) {
-        fence = marker;
-      } else if (marker.startsWith(fence)) {
-        fence = null;
-      }
+/// Whether code [span] holds a `name: value` argument.
+bool isFragment(String span) {
+  for (final m in _argument.allMatches(span)) {
+    final value = span.substring(m.end);
+    if (value.isEmpty) {
+      if (_call.hasMatch(span)) return true;
       continue;
     }
-    if (fence != null) continue;
-    var line = lines[i];
-    if (before[i + 1] case final column?) {
-      final cells = line.split('|');
-      // `| a | b |` splits into an empty first cell.
-      if (column + 1 < cells.length) cells[column + 1] = '';
-      line = cells.join('|');
-    }
-    for (final m in _span.allMatches(line)) {
-      final span = m.group(1)!.trim().replaceFirst(RegExp(r',$'), '');
-      if (_fragment.hasMatch(span)) out.add((line: i + 1, fragment: span));
-    }
+    if (m.group(1)!.contains('_') && _scalar.hasMatch(value)) continue;
+    final tight = !m.group(0)!.contains(RegExp(r'\s'));
+    if (tight && m.start == 0 && !_dartValue.hasMatch(value)) continue;
+    return true;
   }
-  return out;
+  return false;
 }
 
-/// One message per fragment of [docs] (default: [snippetDocuments]).
+/// The fragments of [text] outside fences and before cells, with their
+/// line; with [dart], of its `///` doc comments.
+List<({int line, String fragment})> inlineFragments(
+  String text, {
+  bool dart = false,
+}) {
+  final lines = dart ? docCommentLines(text) : <String?>[...text.split('\n')];
+  final before = beforeColumns([for (final l in lines) l ?? ''].join('\n'));
+  for (final MapEntry(key: n, value: column) in before.entries) {
+    final cells = lines[n - 1]!.split('|');
+    // `| a | b |` splits into an empty first cell.
+    if (column + 1 < cells.length) cells[column + 1] = '';
+    lines[n - 1] = cells.join('|');
+  }
+  return [
+    for (final (:code, :line) in scanMarkdown(lines).spans)
+      if (code.trim().replaceFirst(RegExp(r',$'), '') case final span
+          when isFragment(span))
+        (line: line, fragment: span),
+  ];
+}
+
+/// The documents [checkInlineFragments] reads by default: [snippetDocuments]
+/// and the Dart files of each of [docCommentPackages].
+List<String> inlineDocuments(String root) => [
+  ...snippetDocuments(root),
+  for (final pkg in docCommentPackages)
+    for (final f in Directory(
+      p.join(root, 'packages', pkg, 'lib'),
+    ).listSync(recursive: true).whereType<File>())
+      if (f.path.endsWith('.dart')) p.relative(f.path, from: root),
+];
+
+/// One message per fragment of [docs] (default: [inlineDocuments]).
 List<String> checkInlineFragments(String root, {List<String>? docs}) => [
-  for (final d in docs ?? snippetDocuments(root))
+  for (final d in docs ?? inlineDocuments(root))
     for (final (:line, :fragment) in inlineFragments(
       File(p.isAbsolute(d) ? d : p.join(root, d)).readAsStringSync(),
+      dart: d.endsWith('.dart'),
     ))
       '$d:$line: `$fragment` is an argument in an inline span; show it in '
           'a compiled fence of the document, or say it in prose',

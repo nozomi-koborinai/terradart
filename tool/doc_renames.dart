@@ -11,29 +11,40 @@
 // the packages of the last release, plus the SDK's `dart:` libraries. A
 // declaration under `lib/src/` that no entrypoint exports is not API.
 //
+// A doc may name only the public API. A type, `Type.member` or top-level
+// name a workspace package declares but no entrypoint exports is internal
+// (`AppExportsEmitter`), and naming it fails like naming a removed one.
+//
 // A removed symbol is one the public API no longer declares, and that either
 //
 // - MIGRATING.md names in a backtick span (prose, any table cell, indented
 //   tables included): a type (`OldName`, `Foo<Bar>`, `OldName(...)`, outside
 //   string literals), a member through its type (`Type.member`), or a whole
 //   lowerCamel span (`addExport`), or
-// - the last release on pub.dev declared: a type, or a member of a type
-//   (`Type.member`; constructors, fields, getters, methods, enum values).
+// - the last release on pub.dev declared: a type, a member of a type
+//   (`Type.member`; constructors, fields, getters, methods, enum values),
+//   or a top-level name, which only a top-level declaration of the same
+//   name keeps (a parameter or member spelled the same does not).
 //
 // Declarations are read with the analyzer, so a member is declared only when
 // its type, a supertype (exported or not), or an exported extension on it
-// declares it.
+// declares it; a supertype outside the libraries read declares nothing.
 //
-// A mention is a removed symbol anywhere in a document (prose, a backtick
-// span, a fence) outside the before column of its rename tables, or anywhere
-// in a `///` doc comment. In prose, a one-word name (`Network`, `Settings`)
-// is English, so it counts only in code. The documents are those tool/doc_snippets.dart
+// A mention is a removed or internal symbol anywhere in a document (prose,
+// a code span, a fence) outside the before column of its rename tables, or
+// anywhere in a `///` doc comment. Code spans are read the CommonMark way
+// (tool/code_spans.dart), so a span split across lines counts. In prose, a
+// one-word name (`Network`, `Settings`) is English, so it counts only in
+// code. The doc comment of a declaration a dependent sees (an exported
+// declaration, a public member of one, an entrypoint's library comment) is
+// held to the public API alone; the others, and the doc comments of the
+// examples and recipes, may also name what their own `lib/` declares. The documents are those tool/doc_snippets.dart
 // compiles plus the `terradart help` topics; the doc comments are those of
 // the doc-comment packages, the examples and the cookbook recipes.
 // A `[Type]` or `[Type.member]` reference of a doc comment must also name a
-// declared symbol: of the public API, of the package's own `lib/` (internal
-// declarations included), or of the example or recipe the comment belongs
-// to.
+// declared symbol: of the public API, or, outside the doc comment of a
+// declaration a dependent sees, of the package's own `lib/` (internal
+// declarations included) or of the example or recipe it belongs to.
 // MIGRATING.md and the CHANGELOG.md files are the record of what each
 // release changed and keep the old names. A mention that is not the Dart
 // symbol (an upstream description naming an API resource) goes in
@@ -52,6 +63,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
+import 'code_spans.dart';
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
 import 'migrating_cells.dart' show lastRelease;
 
@@ -83,6 +95,9 @@ final _words = RegExp(r'^[\w-]+( [\w-]+)+$');
 final _word = RegExp(r'^[A-Z][a-z0-9]+$');
 final _docComment = RegExp(r'^\s*/// ?(.*)$');
 final _fence = RegExp(r'^\s*(`{3,}|~{3,})');
+
+/// A `Type.\nmember` span reads `Type. member`; the member is still one.
+final _splitMember = RegExp(r'\.\s+(?=[a-z])');
 
 List<String> _cells(String row) {
   final inner = row.trim();
@@ -193,8 +208,10 @@ final class PublicApi {
     this.supertypes,
     this.names,
     this.topLevel,
-    this._declaredTypes,
-  );
+    this._declaredTypes, {
+    this.internal = const {},
+    this.exported = const {},
+  });
 
   /// The public types.
   final Set<String> types;
@@ -211,6 +228,13 @@ final class PublicApi {
   final Set<String> topLevel;
 
   final Set<String> _declaredTypes;
+
+  /// The types and top-level names declared under a package's `lib/` that
+  /// no entrypoint exports, private ones aside.
+  final Set<String> internal;
+
+  /// The exported top-level declarations, by declaring file and name.
+  final Set<(String, String)> exported;
 
   /// Every declaration of the `.dart` files under [dirs].
   factory PublicApi.read(Iterable<String> dirs) =>
@@ -229,10 +253,57 @@ final class PublicApi {
         if (pkg is Directory && p.basename(pkg.path) != 'terradart_codegen')
           pkg.path,
     ];
+    final exported = await _exported(root, packages);
     return (_Declarations()
           ..readAll(_sdkLibraries())
-          ..readPackages(packages, await _exported(root, packages)))
-        .api;
+          ..readPackages(packages, exported))
+        .api
+        ._withExports(exported);
+  }
+
+  PublicApi _withExports(Set<(String, String)> exported) => PublicApi._(
+    types,
+    members,
+    supertypes,
+    names,
+    topLevel,
+    _declaredTypes,
+    internal: internal,
+    exported: exported,
+  );
+
+  /// These declarations and [other]'s, as one set of libraries.
+  PublicApi merge(PublicApi other) {
+    Map<String, Set<String>> union(
+      Map<String, Set<String>> a,
+      Map<String, Set<String>> b,
+    ) => {
+      for (final k in {...a.keys, ...b.keys}) k: {...?a[k], ...?b[k]},
+    };
+    return PublicApi._(
+      {...types, ...other.types},
+      union(members, other.members),
+      union(supertypes, other.supertypes),
+      {...names, ...other.names},
+      {...topLevel, ...other.topLevel},
+      {..._declaredTypes, ...other._declaredTypes},
+      internal: internal,
+      exported: exported,
+    );
+  }
+
+  /// Each internal symbol — an unexported type, a member of one, or an
+  /// unexported top-level name — with why naming it fails.
+  Map<String, String> get internalSymbols {
+    const reason = 'not exported by any package entrypoint';
+    return {
+      for (final s in internal)
+        if (!declares(s)) s: reason,
+      for (final t in internal)
+        if (t.startsWith(RegExp('[A-Z]')))
+          for (final m in members[t] ?? const <String>{})
+            if (!m.startsWith('_') && !declares('$t.$m')) '$t.$m': reason,
+    };
   }
 
   /// What the entrypoints of the last release's packages on pub.dev export,
@@ -301,8 +372,7 @@ final class PublicApi {
   }
 
   /// Whether [symbol] — a type, a `Type.member`, or a lowerCamel name — is
-  /// declared. A member of a type with a supertype outside these libraries
-  /// counts as declared.
+  /// declared. A supertype outside these libraries declares no member.
   bool declares(String symbol) {
     final dot = symbol.indexOf('.');
     if (dot < 0) {
@@ -317,7 +387,6 @@ final class PublicApi {
       final type = queue.removeLast();
       if (!seen.add(type)) continue;
       if (seen.length == 1 && !types.contains(type)) return type == 'Object';
-      if (!_declaredTypes.contains(type)) return true;
       if (members[type]?.contains(member) ?? false) return true;
       queue.addAll(supertypes[type] ?? const {});
     }
@@ -410,6 +479,7 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   final supertypes = <String, Set<String>>{};
   final names = <String>{};
   final topLevel = <String>{};
+  final internal = <String>{};
 
   /// The exported `(file, name)` pairs; null when every declaration is
   /// public.
@@ -418,8 +488,19 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   String _file = '';
   bool _public = true;
 
-  PublicApi get api =>
-      PublicApi._(types, members, supertypes, names, topLevel, declaredTypes);
+  PublicApi get api => PublicApi._(
+    types,
+    members,
+    supertypes,
+    names,
+    topLevel,
+    declaredTypes,
+    internal: {
+      for (final n in internal)
+        if (!n.startsWith('_') && !types.contains(n) && !topLevel.contains(n))
+          n,
+    },
+  );
 
   /// Every declaration under [dirs] is public.
   void readAll(Iterable<String> dirs) {
@@ -474,6 +555,7 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   }) {
     declaredTypes.add(name);
     if (_public) types.add(name);
+    if (!_public && _exported != null) internal.add(name);
     supertypes.putIfAbsent(name, () => {}).addAll([
       for (final s in supers) s.name.lexeme,
     ]);
@@ -624,6 +706,7 @@ final class _Declarations extends RecursiveAstVisitor<void> {
       return;
     }
     final public = _exports(node.name.lexeme);
+    if (!public && _exported != null) internal.add(node.name.lexeme);
     _topLevel(public, () {
       if (public) {
         names.add(node.name.lexeme);
@@ -639,6 +722,12 @@ final class _Declarations extends RecursiveAstVisitor<void> {
       for (final v in node.variables.variables)
         if (_exports(v.name.lexeme)) v.name.lexeme,
     ];
+    if (_exported != null) {
+      internal.addAll([
+        for (final v in node.variables.variables)
+          if (!_exports(v.name.lexeme)) v.name.lexeme,
+      ]);
+    }
     names.addAll(declared);
     topLevel.addAll(declared);
     _topLevel(declared.isNotEmpty, () {
@@ -672,7 +761,10 @@ Map<String, String> removedSymbols({
   }
   if (released != null) {
     for (final s in released.api.symbols) {
-      if (!out.containsKey(s) && !current.declares(s)) {
+      final kept = released.api.topLevel.contains(s)
+          ? current.topLevel.contains(s)
+          : current.declares(s);
+      if (!out.containsKey(s) && !kept) {
         out[s] = 'declared in ${released.version}';
       }
     }
@@ -733,46 +825,39 @@ List<StaleMention> staleMentions(
   bool docComments = false,
 }) {
   if (removed.isEmpty) return const [];
-  final before = docComments ? const <int, int>{} : beforeColumns(text);
-  final out = <StaleMention>[];
-  final lines = text.split('\n');
-  String? fence;
-  var dartFence = false;
-  for (var i = 0; i < lines.length; i++) {
-    final n = i + 1;
-    var line = lines[i];
-    if (docComments) {
-      final m = _docComment.firstMatch(line);
-      if (m == null) {
-        fence = null;
-        continue;
-      }
-      line = m.group(1)!;
+  final List<String?> lines = docComments
+      ? docCommentLines(text)
+      : text.split('\n');
+  if (!docComments) {
+    for (final MapEntry(key: n, value: column) in beforeColumns(text).entries) {
+      lines[n - 1] = (_cells(lines[n - 1]!)..removeAt(column)).join(' | ');
     }
-    final marker = _fence.firstMatch(line)?.group(1);
-    if (marker != null) {
-      if (fence == null) {
-        fence = marker;
-        final language = line.trim().substring(marker.length).trim();
-        dartFence = language.isEmpty
-            ? docComments
-            : language.startsWith('dart');
-      } else if (marker.startsWith(fence)) {
-        fence = null;
-      }
+  }
+  final scan = scanMarkdown(lines);
+  final spans = <int, List<String>>{};
+  for (final (:code, :line) in scan.spans) {
+    if (_words.hasMatch(code.trim())) continue;
+    spans
+        .putIfAbsent(line, () => [])
+        .add(code.replaceAll(_quoted, "''").replaceAll(_splitMember, '.'));
+  }
+  final out = <StaleMention>[];
+  for (var i = 0; i < scan.lines.length; i++) {
+    final n = i + 1;
+    final (:prose, :fence) = scan.lines[i];
+    final List<(String, bool)> segments;
+    if (prose != null) {
+      segments = [
+        (prose, false),
+        for (final code in spans[n] ?? const <String>[]) (code, true),
+      ];
+    } else if (fence != null) {
+      final dart = fence.isEmpty ? docComments : fence.startsWith('dart');
+      final line = lines[i]!;
+      segments = [(dart ? line.replaceAll(_quoted, "''") : line, dart)];
+    } else {
       continue;
     }
-    if (before[n] case final column?) {
-      line = (_cells(line)..removeAt(column)).join(' | ');
-    }
-    final segments = fence != null
-        ? [(dartFence ? line.replaceAll(_quoted, "''") : line, dartFence)]
-        : [
-            (line.replaceAll(_span, ' '), false),
-            for (final m in _span.allMatches(line))
-              if (!_words.hasMatch(m.group(1)!.trim()))
-                (m.group(1)!.replaceAll(_quoted, "''"), true),
-          ];
     final seen = <String>{};
     for (final (segment, code) in segments) {
       for (final m in _token.allMatches(segment)) {
@@ -792,6 +877,79 @@ List<StaleMention> staleMentions(
           out.add((file: file, line: n, symbol: symbol));
         }
       }
+    }
+  }
+  return out;
+}
+
+/// The lines of the `///` doc comments in Dart [text] ([path]) that a
+/// dependent reads: those of an exported declaration (by [exported]), of a
+/// public member of one, and, in an [entrypoint], of its library directive.
+Set<int> publicDocLines(
+  String path,
+  String text,
+  Set<(String, String)> exported, {
+  required bool entrypoint,
+}) {
+  final unit = parseString(content: text, throwIfDiagnostics: false).unit;
+  final out = <int>{};
+  final file = p.normalize(p.absolute(path));
+  void add(Comment? doc) {
+    if (doc == null) return;
+    final first = unit.lineInfo.getLocation(doc.offset).lineNumber;
+    final last = unit.lineInfo.getLocation(doc.end).lineNumber;
+    for (var l = first; l <= last; l++) {
+      out.add(l);
+    }
+  }
+
+  for (final directive in unit.directives) {
+    if (entrypoint && directive is LibraryDirective) {
+      add(directive.documentationComment);
+    }
+  }
+  for (final d in unit.declarations) {
+    final name = switch (d) {
+      ClassDeclaration(:final namePart) => namePart.typeName.lexeme,
+      EnumDeclaration(:final namePart) => namePart.typeName.lexeme,
+      ExtensionTypeDeclaration(:final primaryConstructor) =>
+        primaryConstructor.typeName.lexeme,
+      MixinDeclaration(:final name) => name.lexeme,
+      FunctionDeclaration(:final name) => name.lexeme,
+      TypeAlias(:final name) => name.lexeme,
+      ExtensionDeclaration(:final name) => name?.lexeme,
+      TopLevelVariableDeclaration(:final variables) =>
+        variables.variables.first.name.lexeme,
+      _ => null,
+    };
+    final public = name == null ? entrypoint : exported.contains((file, name));
+    if (!public) continue;
+    add(d.documentationComment);
+    final (members, constants) = switch (d) {
+      ClassDeclaration(:final body) => (body.members, const <AstNode>[]),
+      MixinDeclaration(:final body) => (body.members, const <AstNode>[]),
+      EnumDeclaration(:final body) => (body.members, body.constants),
+      ExtensionTypeDeclaration(:final body) => (
+        body.members,
+        const <AstNode>[],
+      ),
+      ExtensionDeclaration(:final body) => (body.members, const <AstNode>[]),
+      _ => (const <ClassMember>[], const <AstNode>[]),
+    };
+    for (final c in constants) {
+      if (c is EnumConstantDeclaration) add(c.documentationComment);
+    }
+    for (final m in members) {
+      final private = switch (m) {
+        ConstructorDeclaration(:final name) =>
+          name?.lexeme.startsWith('_') ?? false,
+        MethodDeclaration(:final name) => name.lexeme.startsWith('_'),
+        FieldDeclaration(:final fields) => fields.variables.every(
+          (v) => v.name.lexeme.startsWith('_'),
+        ),
+        _ => true,
+      };
+      if (!private) add(m.documentationComment);
     }
   }
   return out;
@@ -884,6 +1042,7 @@ Future<List<String>> checkDocRenames(
     current: current,
     released: released ? await PublicApi.released(root) : null,
   );
+  final internal = current.internalSymbols;
   final out = <String>[];
   for (final MapEntry(key: s) in allow.notApi.entries) {
     if (removed.remove(s) == null) {
@@ -893,18 +1052,21 @@ Future<List<String>> checkDocRenames(
       );
     }
   }
-  final targets = renameScanTargets(root);
+  final forbidden = {...internal, ...removed};
+  final targets = docs != null && libs != null
+      ? (docs: docs, libs: libs)
+      : renameScanTargets(root);
   final mentions = <StaleMention>[];
   for (final doc in docs ?? targets.docs) {
     final file = File(p.isAbsolute(doc) ? doc : p.join(root, doc));
-    mentions.addAll(staleMentions(doc, file.readAsStringSync(), removed));
+    mentions.addAll(staleMentions(doc, file.readAsStringSync(), forbidden));
   }
   final unresolved = <StaleMention>[];
   for (final dir in libs ?? targets.libs) {
     final lib = Directory(p.isAbsolute(dir) ? dir : p.join(root, dir));
     if (!lib.existsSync()) continue;
-    final local = PublicApi.read(_siblingLibs(root, dir));
-    bool declared(String s) => current.declares(s) || local.declares(s);
+    final package = p.split(dir).first == 'packages';
+    final withLocal = current.merge(PublicApi.read(_siblingLibs(root, dir)));
     final files = [
       for (final f in lib.listSync(recursive: true).whereType<File>())
         if (f.path.endsWith('.dart')) f,
@@ -912,15 +1074,25 @@ Future<List<String>> checkDocRenames(
     for (final f in files) {
       final rel = p.relative(f.path, from: root);
       final text = f.readAsStringSync();
+      final public = package
+          ? publicDocLines(
+              f.path,
+              text,
+              current.exported,
+              entrypoint:
+                  p.split(p.relative(f.path, from: lib.path)).first != 'src',
+            )
+          : const <int>{};
       mentions.addAll(
-        staleMentions(
-          rel,
-          text,
-          removed,
-          docComments: true,
-        ).where((m) => !local.declares(m.symbol)),
+        staleMentions(rel, text, forbidden, docComments: true).where(
+          (m) => public.contains(m.line) || !withLocal.declares(m.symbol),
+        ),
       );
-      unresolved.addAll(unresolvedReferences(rel, text, declared));
+      unresolved.addAll(
+        unresolvedReferences(rel, text, current.declares).where(
+          (m) => public.contains(m.line) || !withLocal.declares(m.symbol),
+        ),
+      );
     }
   }
   final used = <(String, String)>{};
@@ -936,8 +1108,11 @@ Future<List<String>> checkDocRenames(
       continue;
     }
     out.add(
-      '${m.file}:${m.line}: `${m.symbol}` was removed or renamed '
-      '(${removed[m.symbol]})',
+      removed.containsKey(m.symbol)
+          ? '${m.file}:${m.line}: `${m.symbol}` was removed or renamed '
+                '(${removed[m.symbol]})'
+          : '${m.file}:${m.line}: `${m.symbol}` is internal '
+                '(${internal[m.symbol]}); name the public API',
     );
   }
   for (final m in unresolved) {
