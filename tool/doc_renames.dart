@@ -81,7 +81,6 @@ final _afterLabel = RegExp(
   caseSensitive: false,
 );
 final _separator = RegExp(r'^\s*\|[-: |]+\|\s*$');
-final _span = RegExp(r'`([^`]+)`');
 final _type = RegExp(r'(?<![\w$.*…])[A-Z][A-Z0-9]*[a-z][A-Za-z0-9]*(?![\w$*])');
 final _token = RegExp(
   r'(?<![\w$.*…])([A-Z][A-Z0-9]*[a-z][A-Za-z0-9]*)(?:\.([a-z][A-Za-z0-9]*))?'
@@ -94,7 +93,12 @@ final _memberSpan = RegExp(r'^([A-Z]\w*\.[a-z]\w*|[a-z][a-zA-Z0-9]*[A-Z]\w*)$');
 final _words = RegExp(r'^[\w-]+( [\w-]+)+$');
 final _word = RegExp(r'^[A-Z][a-z0-9]+$');
 final _docComment = RegExp(r'^\s*/// ?(.*)$');
-final _fence = RegExp(r'^\s*(`{3,}|~{3,})');
+
+/// An import prefix (`cli.`, `api.`), or a receiver, before a name.
+final _prefix = RegExp(r'(?<![\w$.])[a-z][a-z0-9_]*\.(?=[A-Za-z])');
+
+/// An all-lowercase name, which `_token` leaves to code.
+final _lowercase = RegExp(r'(?<![\w$.])[a-z][a-z0-9_]*(?![\w$])');
 
 /// A `Type.\nmember` span reads `Type. member`; the member is still one.
 final _splitMember = RegExp(r'\.\s+(?=[a-z])');
@@ -177,23 +181,9 @@ bool _isLabel(String code, RegExpMatch m) =>
 /// Each symbol a backtick span of [md] names, with the first line naming it.
 Map<String, int> migratingSymbols(String md) {
   final out = <String, int>{};
-  final lines = md.split('\n');
-  String? fence;
-  for (var i = 0; i < lines.length; i++) {
-    final marker = _fence.firstMatch(lines[i])?.group(1);
-    if (marker != null) {
-      if (fence == null) {
-        fence = marker;
-      } else if (marker.startsWith(fence)) {
-        fence = null;
-      }
-      continue;
-    }
-    if (fence != null) continue;
-    for (final m in _span.allMatches(lines[i])) {
-      for (final s in spanSymbols(m.group(1)!)) {
-        out.putIfAbsent(s, () => i + 1);
-      }
+  for (final (:code, :line) in scanMarkdown(md.split('\n')).spans) {
+    for (final s in spanSymbols(code.replaceAll(_splitMember, '.'))) {
+      out.putIfAbsent(s, () => line);
     }
   }
   return out;
@@ -394,17 +384,31 @@ final class PublicApi {
   }
 
   /// Every type, `Type.member` and top-level name these libraries declare,
-  /// private ones aside.
+  /// private ones aside; a type's members include what its supertypes (a
+  /// typedef's aliased type among them) declare.
   Set<String> get symbols => {
     for (final n in topLevel)
       if (!n.startsWith('_')) n,
     for (final t in types)
       if (!t.startsWith('_')) ...[
         t,
-        for (final m in members[t] ?? const <String>{})
+        for (final m in _inherited(t))
           if (!m.startsWith('_')) '$t.$m',
       ],
   };
+
+  Set<String> _inherited(String type) {
+    final out = <String>{};
+    final seen = <String>{};
+    final queue = [type];
+    while (queue.isNotEmpty) {
+      final t = queue.removeLast();
+      if (!seen.add(t)) continue;
+      out.addAll(members[t] ?? const {});
+      queue.addAll(supertypes[t] ?? const {});
+    }
+    return out;
+  }
 }
 
 /// The SDK's `dart:` libraries the docs name.
@@ -859,7 +863,16 @@ List<StaleMention> staleMentions(
       continue;
     }
     final seen = <String>{};
-    for (final (segment, code) in segments) {
+    for (final (raw, code) in segments) {
+      final segment = raw.replaceAll(_prefix, '');
+      if (code) {
+        for (final m in _lowercase.allMatches(segment)) {
+          final name = m.group(0)!;
+          if (removed.containsKey(name) && seen.add(name)) {
+            out.add((file: file, line: n, symbol: name));
+          }
+        }
+      }
       for (final m in _token.allMatches(segment)) {
         if (m.group(1) != null &&
             ((!code && _word.hasMatch(m.group(1)!)) || _isLabel(segment, m))) {
