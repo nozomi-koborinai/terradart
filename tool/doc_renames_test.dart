@@ -6,106 +6,114 @@ import 'package:test/test.dart';
 import 'doc_renames.dart';
 
 void main() {
-  Set<String> removed(String md) => {
-    for (final r in RenameRecord.parse(md).rows) ...r.removed,
-  };
-
-  group('RenameRecord', () {
-    test('reads every rename table header form', () {
+  group('migratingSymbols', () {
+    test('reads every backtick span, prose and indented tables included', () {
       expect(
-        removed('''
+        migratingSymbols('''
+`OldProseType` is gone.
+
 | Before | After |
 |---|---|
-| `OldMode` (google-beta) | `NewMode` |
+| `GoogleThing('t', mode: OldThingMode.x)` | `GoogleThing('t', mode: .x)` |
+| `Comparison.lt` | `Comparison.lessThan` |
 
-| 0.31 | 0.32 |
-|---|---|
-| `dependsOn: [ResourceDependency(api)]` | `dependsOn: [api]` |
+1. In a list:
 
-| Old (0.8.0-dev) | New (0.9.0) | Barrel |
-|---|---|---|
-| `Settings(` | `SqlDatabaseInstanceSettings(` | `sql` |
+   | Old | New |
+   |---|---|
+   | `addExport` | `addOutput` |
 
-| Input | Before | After |
-|---|---|---|
-| `Foo.mode` | `OldFooMode` | `FooMode` |
-
-| Removed factory (google 8.0) | Move to |
-|---|---|
-| `GoogleNotebooksInstance` | `GoogleWorkbenchInstance` |
-
-| Removed factory | Terraform type |
-|---|---|
-| `GoogleIapBrand` | `google_iap_brand` |
-'''),
+```dart
+final kind = FencedKind();
+```
+''').keys.toSet(),
         {
-          'OldMode',
-          'ResourceDependency',
-          'Settings',
-          'OldFooMode',
-          'GoogleNotebooksInstance',
-          'GoogleIapBrand',
+          'OldProseType',
+          'GoogleThing',
+          'OldThingMode',
+          'OldThingMode.x',
+          'Comparison.lt',
+          'Comparison.lessThan',
+          'addExport',
+          'addOutput',
         },
       );
     });
 
-    test('a type both cells name is kept, a renamed member is removed', () {
+    test('literals, patterns, labels and plain words name nothing', () {
       expect(
-        removed('''
-| Before | After |
-|---|---|
-| `Comparison.lt` | `Comparison.lessThan` |
-| `GoogleThing('t', mode: OldThingMode.x)` | `GoogleThing('t', mode: .x)` |
-'''),
-        {'Comparison.lt', 'OldThingMode'},
+        migratingSymbols('''
+`Foo(type: 'NONE')`, `Health<Protocol>Config`, `*IamMember`,
+`{Aws,Oidc}Trust`, `…ServerTlsPolicy`, `Zone Settings Read`,
+`Next: terradart plan`
+''').keys.toSet(),
+        {'Foo'},
       );
     });
 
-    test('string literals, patterns, globs and plain words name nothing', () {
+    test('the repo MIGRATING.md names removed types in prose', () {
       expect(
-        removed('''
-| Before | After |
-|---|---|
-| `Foo(type: 'NONE')` | `Foo(type: .none)` |
-| `Health<Protocol>Config` | `HealthCheck<Protocol>Config` |
-| `*IamMember` factories | `IamMember` |
-| `Zone Settings Read` | `Zone Settings Write` |
-'''),
-        isEmpty,
-      );
-    });
-
-    test('a table without a before column is no rename table', () {
-      expect(
-        removed('''
-| Before you apply | After that |
-|---|---|
-| `OldMode` | `NewMode` |
-
-| Change | Why |
-|---|---|
-| `OldKind` | renamed |
-'''),
-        isEmpty,
-      );
-    });
-
-    test('finds the Unreleased section', () {
-      final record = RenameRecord.parse(
-        '# M\n\n## Unreleased\n\n### A\n\ntext\n\n## 0.1.x → 0.2.0\n',
-      );
-      expect(record.unreleased, (3, 8));
-      expect(record.sectionOf(7), 5);
-    });
-
-    test('the repo MIGRATING.md has rename rows', () {
-      expect(
-        removed(File(migratingPath).readAsStringSync()),
+        migratingSymbols(File(migratingPath).readAsStringSync()).keys,
         containsAll([
           'ResourceDependency',
-          'CloudRunV2ServiceServiceContainer',
+          'ComputeFirewallAllowPolicy',
+          'CloudRunV2WorkerPoolInstanceSplit',
         ]),
       );
+    });
+  });
+
+  group('beforeColumns', () {
+    test('finds the before column of every rename table form', () {
+      expect(
+        beforeColumns('''
+| Input | Before | After |
+|---|---|---|
+| a | b | c |
+
+| 0.31 | 0.32 |
+|---|---|
+| a | b |
+
+  | Removed flag | Instead |
+  |---|---|
+  | a | b |
+
+| Before you apply | After that |
+|---|---|
+| a | b |
+'''),
+        {3: 1, 7: 0, 11: 0},
+      );
+    });
+  });
+
+  group('PublicApi', () {
+    final api = PublicApi.workspace(Directory.current.path);
+
+    test('a member is declared by its type, a supertype or an extension', () {
+      expect(api.declares('GoogleCloudRunV2Service.uri'), isTrue);
+      expect(api.declares('GoogleCloudRunV2Service.ref'), isTrue);
+      expect(api.declares('RefTo.literal'), isTrue);
+      expect(api.declares('LambdaFunctionArchitectures.x8664'), isTrue);
+      expect(api.declares('Stack.addOutput'), isTrue);
+    });
+
+    test('a word in the declaring file is no member', () {
+      expect(api.declares('CloudflareApiShieldDiscoveryOperation.id'), isFalse);
+      expect(api.declares('GoogleCloudRunV2Service.nameRef'), isFalse);
+    });
+
+    test('a type of the last release the workspace lacks is removed', () {
+      final released = PublicApi.released(Directory.current.path);
+      final removed = removedSymbols(
+        migrating: const {},
+        current: api,
+        released: released,
+      );
+      expect(released.api.declares('GoogleCloudRunV2Service'), isTrue);
+      expect(removed.keys, contains('ComputeFirewallAllowPolicy'));
+      expect(removed.keys, isNot(contains('GoogleCloudRunV2Service')));
     });
   });
 
@@ -156,7 +164,14 @@ void main() {
     tearDown(() => tmp.deleteSync(recursive: true));
 
     List<String> check({List<String> docs = const [], String? lib}) =>
-        checkDocRenames(root, migrating: migrating, docs: docs, libs: [?lib]);
+        checkDocRenames(
+          root,
+          migrating: migrating,
+          docs: docs,
+          libs: [?lib],
+          allow: (notApi: const {}, mentions: const {}),
+          released: false,
+        );
 
     test('fails on a guide that still names a removed type', () {
       final doc = p.join(tmp.path, 'guide.md');
@@ -184,17 +199,17 @@ Use OldProseType, or `OldIndentedType`.
       expect(check(docs: [doc]), [
         startsWith('$doc:3: `OldTopicKind` was removed or renamed'),
         startsWith('$doc:6: `OldHelperType` was removed or renamed'),
-        startsWith('$doc:13: `OldIndentedType` was removed or renamed'),
         startsWith('$doc:13: `OldProseType` was removed or renamed'),
+        startsWith('$doc:13: `OldIndentedType` was removed or renamed'),
       ]);
     });
 
     test('fails on a removed member whose name the file still spells', () {
       final doc = p.join(tmp.path, 'guide.md');
-      File(doc).writeAsStringSync(
-        'Read `CloudflareApiShieldDiscoveryOperation.id`.\n',
-      );
-      expect(checkDocRenames(root, docs: [doc], libs: []), [
+      File(
+        doc,
+      ).writeAsStringSync('Read `CloudflareApiShieldDiscoveryOperation.id`.\n');
+      expect(checkDocRenames(root, docs: [doc], libs: [], released: false), [
         startsWith(
           '$doc:1: `CloudflareApiShieldDiscoveryOperation.id` was removed',
         ),
@@ -223,6 +238,21 @@ final class A {}
       ]);
     });
 
+    test('fails on a doc comment reference no declaration resolves', () {
+      final lib = Directory(p.join(tmp.path, 'lib'))..createSync();
+      final file = File(p.join(lib.path, 'a.dart'))
+        ..writeAsStringSync('''
+/// Wraps [GooglePubsubTopic] and [GoogleCloudRunV2Service.uri], not
+/// [CloudRunV2ServiceEmptyDirVolume] or [GooglePubsubTopic.nameRef].
+final class A {}
+''');
+      final rel = p.relative(file.path, from: root);
+      expect(check(lib: lib.path), [
+        '$rel:2: [CloudRunV2ServiceEmptyDirVolume] names no declared symbol',
+        '$rel:2: [GooglePubsubTopic.nameRef] names no declared symbol',
+      ]);
+    });
+
     test('a symbol the public API still declares is not removed', () {
       final doc = p.join(tmp.path, 'guide.md');
       File(doc).writeAsStringSync('Use `GooglePubsubTopic`.\n');
@@ -234,13 +264,27 @@ final class A {}
       expect(check(docs: [doc]), isEmpty);
     });
 
-    test('a MIGRATING.md with no rename row fails loudly', () {
+    test('a stale allow-list entry fails', () {
+      expect(
+        checkDocRenames(
+          root,
+          migrating: migrating,
+          docs: const [],
+          libs: const [],
+          allow: (notApi: const {'NeverNamed': 'gone'}, mentions: const {}),
+          released: false,
+        ),
+        [contains('notApi `NeverNamed`')],
+      );
+    });
+
+    test('a MIGRATING.md that names no symbol fails loudly', () {
       File(migrating).writeAsStringSync('# Migrating\n');
       expect(check, throwsStateError);
     });
   });
 
-  test('no doc names a symbol a MIGRATING.md rename table removed', () {
+  test('no doc names a symbol the public API removed', () {
     final failures = checkDocRenames(Directory.current.path);
     expect(failures, isEmpty, reason: failures.join('\n'));
   });
