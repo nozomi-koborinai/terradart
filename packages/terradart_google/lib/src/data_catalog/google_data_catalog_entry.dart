@@ -34,7 +34,7 @@ sealed class DataCatalogEntryKind {
   /// Scalar value for that key.
   TfArg<String> get value;
 
-  /// Flat `{blockKey: value}` payload (Gate 6 / callers that need a map).
+  /// Flat one-entry `blockKey` map payload (Gate 6 / callers that need a map).
   @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }

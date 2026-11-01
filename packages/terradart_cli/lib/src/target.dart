@@ -21,7 +21,7 @@ enum EnvSource {
 
   const EnvSource(this.label, this.id);
 
-  /// What `env: <name> (<label>)` says.
+  /// The label the `env` line prints after the name (`default`, `--env`).
   final String label;
 
   /// `env.source` in the `--json` result.

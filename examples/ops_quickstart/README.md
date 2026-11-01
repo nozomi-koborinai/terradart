@@ -34,7 +34,7 @@ terradart apply
 ## What gets created
 
 - A BigQuery dataset `audit_logs` in `asia-northeast1` as the sink destination.
-- A logging project sink `audit-to-bq` routing entries matching `logName:"cloudaudit.googleapis.com"`:
+- A logging project sink `audit-to-bq` routing the entries whose `logName` contains `cloudaudit.googleapis.com`:
   - `LoggingProjectSinkBigqueryOptions` with partitioned tables, so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
   - A unique writer identity — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
 - A project-level `GoogleLoggingProjectExclusion` `drop-dns-noise` dropping `resource.type="dns_query"` entries before any sink sees them.

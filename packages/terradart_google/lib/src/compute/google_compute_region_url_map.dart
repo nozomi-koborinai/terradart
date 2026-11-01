@@ -1736,7 +1736,7 @@ final class ComputeRegionUrlMapTest {
 ///   buckets are a global resource and are also valid targets for a
 ///   regional URL map). The GCP API distinguishes by URL segment, not by
 ///   a separate field. Mutually exclusive with
-///   `defaultAction: .defaultUrlRedirect(...)` -- exactly one of the two
+///   the `.defaultUrlRedirect` variant of `defaultAction` -- exactly one of the two
 ///   must be set when no [pathMatcher] entries are present.
 ///
 /// Matching pipeline (request flow):

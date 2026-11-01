@@ -302,8 +302,8 @@ class ComputeBackendBucketParams {
 ///   `google_compute_security_policy` of type `CLOUD_ARMOR_EDGE`
 ///   (distinct from a regular Cloud Armor policy — edge policies attach
 ///   at the load balancer's edge, ahead of the cache). Use
-///   `var.security_policy_id` in real configs:
-///   `edgeSecurityPolicy: TfArg.literal('projects/p/global/securityPolicies/edge-deny-all')`.
+///   `var.security_policy_id` in real configs, such as
+///   `projects/p/global/securityPolicies/edge-deny-all`.
 /// - The compositional inverse is at a URL map: a
 ///   `google_compute_url_map.path_rule.service` references this
 ///   bucket's [selfLink].

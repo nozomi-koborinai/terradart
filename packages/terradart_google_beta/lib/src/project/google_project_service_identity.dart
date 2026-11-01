@@ -18,8 +18,8 @@ const Set<String> _googleProjectServiceIdentitySensitive = <String>{};
 /// it. Terraform destroy removes only the Terraform record — the service
 /// agent itself persists (upstream behavior).
 ///
-/// The [member] / [email] outputs feed IAM grants directly:
-/// `GoogleProjectIamMember(member: identity.member, ...)`.
+/// Pass [principal] as the `member` of an IAM grant such as
+/// [GoogleProjectIamMember]; [email] is the agent's bare address.
 final class GoogleProjectServiceIdentity extends Resource {
   static const String tfType = 'google_project_service_identity';
 

@@ -561,8 +561,8 @@ final class PrivatecaCertificatePolicyIds {
 /// - [pool]: CAS pool — `pool.id` from [GooglePrivatecaCaPool].
 /// - [location]: regional location (match the pool).
 ///
-/// Issue via CSR (`request: .pemCsr(...)`) or an inline config
-/// (`request: .config(...)`: subject + public key).
+/// Issue via CSR (the `.pemCsr` request) or an inline config
+/// (the `.config` request: subject + public key).
 ///
 /// Example (CSR-based issuance from a root CA):
 /// ```dart

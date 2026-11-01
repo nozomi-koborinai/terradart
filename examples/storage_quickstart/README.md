@@ -36,11 +36,11 @@ terradart apply
 ## What gets created
 
 - A GCS bucket `my-app-assets-prod` in `ASIA-NORTHEAST1` on `STANDARD` storage class.
-- A second bucket `my-app-assets-prod-eu` in `EUROPE-WEST1`, created through the aliased provider configuration (`final eu = addProvider(GoogleProvider(alias: 'eu', ...))` selected with the bucket's `provider` argument — the `provider "google" { alias = "eu" }` / `provider = google.eu` pattern in HCL), with a `moved` block (`addMoved('google_storage_bucket.assets_europe', 'google_storage_bucket.assets_eu')`) carrying the state of its earlier name.
+- A second bucket `my-app-assets-prod-eu` in `EUROPE-WEST1`, created through the aliased provider configuration (the `GoogleProvider` with the `eu` alias that `addProvider` registers, selected with the bucket's `provider` argument — the `provider "google" { alias = "eu" }` / `provider = google.eu` pattern in HCL), with a `moved` block (`addMoved('google_storage_bucket.assets_europe', 'google_storage_bucket.assets_eu')`) carrying the state of its earlier name.
 - Object versioning enabled through `StorageBucketVersioning`, and a `timeouts` block (a `TfTimeouts` of 10 minutes to create, 5 to read and 10 to update — `google_storage_bucket` declares no `delete` timeout, and the provider rejects one).
 - One `StorageBucketLifecycleRule` transitioning objects to `ARCHIVE` storage class after 365 days.
 - One object `config/app.json` uploaded from the local file `./config/app.json` through the `.source(...)` variant of its body.
-- A local Terraform module `modules/object_prefix` called with `addModule(ModuleCall(source: '../modules/object_prefix', ...))`; its `prefix` output feeds the object-notification filter as a `TfRef` (`objectPrefix.output<String>('prefix')`).
+- A local Terraform module `modules/object_prefix` called through `addModule` with a `ModuleCall` whose `source` is `../modules/object_prefix`; its `prefix` output feeds the object-notification filter as a `TfRef` (`objectPrefix.output<String>('prefix')`).
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 

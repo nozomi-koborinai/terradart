@@ -108,7 +108,7 @@ final class UploadsStack extends Stack {
 
 It synthesizes to the provider's strings (`read("any")`, `write("team:${appwrite_auth_team.editors.id}/owner")`). The roles are `.any`, `.guests`, `.users()`, `.user(user.ref)`, `.team(team.ref)`, `.member(id)` and `.label(name)`; `.literal('read("any")')` takes a permission string as it is.
 
-Inputs with a fixed value set are Dart enums, taken from the provider's validators. A sensitive input, such as a backup provider's secret key, is best passed as a sensitive Terraform variable (the handle `variable<String>('backup_secret_key', sensitive: true)` returns) so its value arrives at apply time rather than in the Dart source.
+Inputs with a fixed value set are Dart enums, taken from the provider's validators. A sensitive input, such as a backup provider's secret key, is best passed as a sensitive Terraform variable (the handle a `variable<String>` declared sensitive returns) so its value arrives at apply time rather than in the Dart source.
 
 ## Examples
 

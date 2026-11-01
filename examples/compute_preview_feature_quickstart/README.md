@@ -1,7 +1,7 @@
 # Compute Engine preview feature quickstart
 
 End-to-end terradart example for `google_compute_preview_feature` with
-`name: alpha-api-access` (no VMs).
+named `alpha-api-access` (no VMs).
 
 ## Prerequisites
 

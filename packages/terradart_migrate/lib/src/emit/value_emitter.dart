@@ -204,7 +204,7 @@ final class ValueEmitter {
   // ---------------------------------------------------------------------
 
   /// Constructor arguments for [slots] read from [level]: positional
-  /// arguments first, then `name: value`. Claims what it consumes.
+  /// arguments first, then the named ones. Claims what it consumes.
   List<String> emitArgs(List<MigrateSlot> slots, BodyLevel level) =>
       _inPosition(true, () => _emitArgs(slots, level));
 
@@ -934,7 +934,7 @@ final class ValueEmitter {
   // ---------------------------------------------------------------------
 
   /// One `AppwritePermission`: a named constructor of its action and role
-  /// (`.read(.any)`, `.write(.team(.literal('t'), role: 'owner'))`) for a
+  /// (`.read(.any)`, or `.write` of a team and a role) for a
   /// literal, else the value wrapped as it is.
   String _permissionValue(Expr value, {required String path}) {
     final text = constantText(value);

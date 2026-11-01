@@ -16,20 +16,20 @@ curatedDoc: |-
   /// Common `type` values and the channel-specific keys they expect in
   /// [labels] (the canonical reference is the `NotificationChannelDescriptor`
   /// for each type):
-  /// - `"email"` — `labels: {'email_address': 'oncall@example.com'}`.
-  /// - `"slack"` — `labels: {'channel_name': '#alerts',
-  ///   'team': 'T01234ABCD'}`. The bot OAuth token goes in
-  ///   `sensitiveLabels` as `credential: .authToken(...)` (NOT in `labels`).
-  /// - `"pagerduty"` — `labels: {'service_name': 'prod-oncall'}`. The
-  ///   integration service key goes in `credential: .serviceKey(...)`.
-  /// - `"sms"` — `labels: {'number': '+15551234567'}` (E.164 format,
+  /// - `"email"` — the `email_address` label (`oncall@example.com`).
+  /// - `"slack"` — the `channel_name` (`#alerts`) and `team`
+  ///   (`T01234ABCD`) labels. The bot OAuth token goes in
+  ///   `sensitiveLabels` as its `.authToken` credential (NOT in `labels`).
+  /// - `"pagerduty"` — the `service_name` label (`prod-oncall`). The
+  ///   integration service key is the `.serviceKey` credential.
+  /// - `"sms"` — the `number` label (`+15551234567`; E.164 format,
   ///   pre-verified phone numbers only).
-  /// - `"webhook_basicauth"` — `labels: {'url': 'https://...'}` +
-  ///   `credential: .password(...)` (with the basic-auth username embedded
+  /// - `"webhook_basicauth"` — the `url` label and the `.password`
+  ///   credential (with the basic-auth username embedded
   ///   in the URL or in `labels`).
-  /// - `"webhook_tokenauth"` — `labels: {'url': 'https://...'}` +
-  ///   `credential: .authToken(...)` for the bearer token.
-  /// - `"pubsub"` — `labels: {'topic': 'projects/<p>/topics/<t>'}`. The
+  /// - `"webhook_tokenauth"` — the `url` label and the `.authToken`
+  ///   credential for the bearer token.
+  /// - `"pubsub"` — the `topic` label (`projects/<p>/topics/<t>`). The
   ///   service account that posts to the topic is managed via IAM, not
   ///   via this resource.
   ///

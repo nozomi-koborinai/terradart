@@ -53,7 +53,7 @@ dart pub global activate terradart_cli
 terradart apply
 ```
 
-Wrappers in this package automatically pin the `provider = google-beta` meta-argument. Pass a registered `GoogleBetaProvider(alias: '<alias>', ...)` instance as `provider:` to select that aliased configuration instead.
+Wrappers in this package automatically pin the `provider = google-beta` meta-argument. Pass a registered `GoogleBetaProvider` with an `alias` as the `provider` argument to select that aliased configuration instead.
 
 ## Curated surface
 

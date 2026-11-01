@@ -10,7 +10,7 @@ part 'tf_ref.dart';
 ///
 /// `T` is the Dart type the factory parameter accepts. Resource factories
 /// accept `TfArg<T>` (or `TfArg<T>?`) for every settable field, so an
-/// attribute getter fills one as is: `pushEndpoint: api.uri`.
+/// attribute getter such as `api.uri` fills one as is.
 ///
 /// ## Writing arguments
 ///
@@ -236,7 +236,8 @@ final class TfArgLiteral<T> extends TfArg<T> {
 /// );
 /// ```
 ///
-/// There is no `.literal`: `password: .literal('pw')` does not compile.
+/// There is no `.literal`, so a secret written as a literal does not
+/// compile.
 sealed class Sensitive<T> implements TfArg<T> {
   /// `var.<name>`, as [TfArg.variable].
   factory Sensitive.variable(String name) = TfArgVariable<T>;

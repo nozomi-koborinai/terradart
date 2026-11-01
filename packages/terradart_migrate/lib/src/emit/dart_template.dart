@@ -83,7 +83,7 @@ extension type const _Part._((bool, String) _value) {
 
 /// Index of the `}` closing the sequence opening at [start], or `null` when
 /// it is unterminated. Braces nest and quoted strings are skipped, as they
-/// are in `templateSequenceBodies`.
+/// are when terradart_core reads a template's sequences.
 int? _sequenceEnd(String s, int start) {
   var depth = 1;
   var j = start + 2;

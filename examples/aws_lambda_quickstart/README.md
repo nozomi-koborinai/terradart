@@ -69,10 +69,23 @@ terradart plan
 The function URL exists only after apply, so the Stack declares it as an output and adds a define file a client is built with:
 
 ```dart
+final role = add(
+  AwsIamRole('fn', assumeRolePolicy: .expression(r'${file("trust.json")}')),
+);
+final fn = add(
+  AwsLambdaFunction(
+    'hello',
+    functionName: .literal('hello'),
+    role: role.ref,
+    runtime: .providedAl2023,
+    handler: .literal('bootstrap'),
+    code: .filename(.literal('../build/bootstrap.zip')),
+  ),
+);
 final url = add(
   AwsLambdaFunctionUrl(
     'hello',
-    functionName: .literal('terradart-hello'),
+    functionName: fn.ref,
     authorizationType: .none,
   ),
 );

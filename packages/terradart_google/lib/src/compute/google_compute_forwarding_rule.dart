@@ -23,7 +23,7 @@ const Set<String> _googleComputeForwardingRuleSensitive = <String>{};
 /// [sctp] / [icmp].
 ///
 /// [l3Default] is regional-only: it attaches the rule to a backend
-/// service with `UNSPECIFIED` protocol, and pairs with `allPorts: true`
+/// service with `UNSPECIFIED` protocol, and pairs with `allPorts` set to true
 /// for internal protocol forwarding. It is rejected when the backend
 /// service explicitly declares `TCP` or `UDP`.
 extension type const ForwardingRuleIpProtocol._(TfArg<String> _)
@@ -236,7 +236,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 /// - `portRange`: a single port (e.g. `'443'`) or a range (e.g.
 ///   `'80-443'`). Required for proxy / Application LBs.
 ///
-/// For Internal forwarding rules (`loadBalancingScheme: INTERNAL` or
+/// For Internal forwarding rules (a `loadBalancingScheme` of `INTERNAL` or
 /// `INTERNAL_MANAGED`):
 /// - `network`: self-link of the VPC the rule's VIP belongs to.
 /// - `subnetwork`: self-link of the subnet the VIP is allocated from.

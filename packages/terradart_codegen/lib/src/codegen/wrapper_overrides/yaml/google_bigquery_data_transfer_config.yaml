@@ -82,8 +82,8 @@ curatedDoc: |-
   /// - `"1st,3rd monday of month 15:30"` (multi-anchor)
   /// - `""` (empty) — fall back to the data source's default cadence.
   ///
-  /// Manual-only mode: set [scheduleOptions]
-  /// `disableAutoScheduling: .literal(true)` to suppress the cron
+  /// Manual-only mode: set `disableAutoScheduling` of [scheduleOptions]
+  /// to true to suppress the cron
   /// entirely; runs must then be triggered via
   /// `transferConfigs.startManualRuns`.
   ///

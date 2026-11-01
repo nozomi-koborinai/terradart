@@ -238,7 +238,7 @@ extension type const ApphubApplicationType._(TfArg<String> _)
 /// App Hub application — functional grouping of services and workloads.
 ///
 /// Enable `apphub.googleapis.com` before apply. Set [scope] to `REGIONAL`
-/// (match [location] to a region) or `GLOBAL` (use `location: global`).
+/// (match [location] to a region) or `GLOBAL` (set [location] to `global`).
 ///
 /// Example:
 /// ```dart

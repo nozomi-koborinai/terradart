@@ -82,7 +82,7 @@ Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current 
 
 A working or target directory holding `*.tf` or `*.tf.json` files, at any depth, gets no scaffold: `terradart init` names the directories that hold them (`Found Terraform in envs/dev, modules/net.`), prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 64 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
 
-Picking `appwrite` writes `terradart: engine: terraform` into `pubspec.yaml`: an Appwrite project plans and applies with Terraform on your `PATH` ([The engine](#the-engine)).
+Picking `appwrite` sets the `engine` of the `terradart` section of `pubspec.yaml` to `terraform`: an Appwrite project plans and applies with Terraform on your `PATH` ([The engine](#the-engine)).
 
 ## The entry point
 
@@ -136,7 +136,7 @@ terradart: --env is required: bin/infra.dart declares dev, stg, prd and no defau
   Next: terradart plan --env dev
 ```
 
-The engine gets `-input=false` whenever nobody can answer. `--quiet` (`-q`) leaves out the values terradart picks by itself (`env: dev (default)`, `Using OpenTofu ...`); errors and warnings still print.
+The engine gets `-input=false` whenever nobody can answer. `--quiet` (`-q`) leaves out the values terradart picks by itself (the environment it defaulted to, `Using OpenTofu ...`); errors and warnings still print.
 
 ## JSON and exit codes
 

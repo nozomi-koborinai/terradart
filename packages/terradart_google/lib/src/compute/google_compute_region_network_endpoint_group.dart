@@ -347,7 +347,8 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 /// `.cloudFunction(...)` / `.appEngine(...)`.
 ///
 /// PSC consumer NEG: set
-/// `networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,
+/// `networkEndpointType` to
+/// [RegionNetworkEndpointGroupType.privateServiceConnect],
 /// `pscTargetService` (Google API bundle name or producer Service Attachment
 /// self-link), and typically also `network` (optionally `subnetwork`).
 ///

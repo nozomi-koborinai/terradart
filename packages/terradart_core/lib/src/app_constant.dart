@@ -24,7 +24,7 @@ sealed class AppConstant<T> {
   const AppConstant({this.description});
 
   /// The literal an attribute of this Stack is set to:
-  /// `.ref(topic.name)` for `name: .literal('orders-prod')` becomes
+  /// `.ref(topic.name)` for a `name` of `.literal('orders-prod')` becomes
   /// `static const String ordersTopicName = r'orders-prod';`.
   ///
   /// Synth fails when the attribute is not a literal — set by a reference,

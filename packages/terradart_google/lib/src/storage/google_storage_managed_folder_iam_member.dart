@@ -44,7 +44,6 @@ final class StorageManagedFolderIamMemberCondition {
 /// ```dart
 /// GoogleStorageManagedFolderIamMember(
 ///   'folder_viewer',
-///   bucket: assets.ref,
 ///   managedFolder: folder.ref,
 ///   role: TfArg.literal('roles/storage.objectViewer'),
 ///   member: reader.principal,

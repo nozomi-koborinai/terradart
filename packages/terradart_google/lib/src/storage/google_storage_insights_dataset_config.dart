@@ -67,7 +67,7 @@ sealed class StorageInsightsDatasetConfigSource {
   @internal
   String get blockKey;
 
-  /// Flat `{blockKey: value}` so mixed nested-block / bool members share
+  /// Flat one-entry `blockKey` map so mixed nested-block / bool members share
   /// one argMap dispatch (see [GoogleColabNotebookExecution] compute).
   @internal
   Map<String, Object?> encode();

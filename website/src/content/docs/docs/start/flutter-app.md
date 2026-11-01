@@ -222,7 +222,7 @@ cd ..
 flutter build apk --dart-define-from-file=infra/.terradart/dart_defines.prd.json
 ```
 
-For that job to see the state, it has to live in a bucket rather than in `infra/tf-out/` on your machine: create one, set the Stack's `backend:` to `GcsBackend(bucket: 'my-app-tfstate', prefix: 'my_app_infra/${env.name}')`, and run `terradart state migrate --env dev` and `terradart state migrate --env prd` once, from `infra/`. Each asks before it copies the state.
+For that job to see the state, it has to live in a bucket rather than in `infra/tf-out/` on your machine: create one, set the Stack's `backend` to a `GcsBackend` on that bucket with the prefix `my_app_infra/<env>`, and run `terradart state migrate --env dev` and `terradart state migrate --env prd` once, from `infra/`. Each asks before it copies the state.
 
 Only public values belong in a client: anything compiled into an app can be read by whoever has it. The define file leaves sensitive outputs out, and secrets stay on a server — see [Outputs in client apps](/docs/client-outputs/#secrets-stay-out).
 

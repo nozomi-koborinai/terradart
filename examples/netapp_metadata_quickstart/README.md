@@ -3,7 +3,7 @@
 End-to-end terradart example for **control-plane only** NetApp resources:
 
 - `google_netapp_backup_vault` (empty vault — no backup data)
-- `google_netapp_backup_policy` (`enabled: false` — not attached to any volume)
+- `google_netapp_backup_policy` (disabled — not attached to any volume)
 - `google_netapp_host_group` (iSCSI initiator list with a smoke-only IQN)
 
 **Does not** create `google_netapp_storage_pool` / volumes (those bill for

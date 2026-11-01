@@ -22,7 +22,7 @@ Each of these is one path you can paste, from installing the `terradart` command
 
 - Dart SDK ≥ 3.10
 - Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
-- Appwrite only: [Terraform](https://developer.hashicorp.com/terraform/install) on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, so OpenTofu cannot install it, and an Appwrite Stack runs on Terraform (`--engine terraform`, or `terradart: engine: terraform` in `pubspec.yaml`).
+- Appwrite only: [Terraform](https://developer.hashicorp.com/terraform/install) on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, so OpenTofu cannot install it, and an Appwrite Stack runs on Terraform (`--engine terraform`, or `terraform` as the `engine` of the `terradart` section of `pubspec.yaml`).
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, `APPWRITE_API_KEY`, or `ARM_CLIENT_ID` and the other `ARM_*` variables. Synth needs none, and none are written into the output.
 
 ## 1. Create a project
@@ -40,7 +40,7 @@ terradart plan --env dev
 
 | File | Holds |
 |---|---|
-| `pubspec.yaml` | `terradart_core` and the provider packages, at the command's own version; `terradart: engine: terraform` with Appwrite |
+| `pubspec.yaml` | `terradart_core` and the provider packages, at the command's own version; with Appwrite, the `terraform` engine in its `terradart` section |
 | `lib/env.dart` | the `Env` enum: each environment and its values — project or account ID, region, state bucket |
 | `lib/stack.dart` | a Stack with the provider, the backend, one resource and one output |
 | `bin/infra.dart` | the entry point, which hands the environments to `runEnvironments` |

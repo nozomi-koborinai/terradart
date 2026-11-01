@@ -72,11 +72,12 @@ extension type const GlobalAddressIpVersion._(TfArg<String> _)
 ///
 /// Reserves a global (regionless) IP range. Two complementary use cases:
 ///
-/// 1. **HTTP(S) LB VIP** — `addressType: GlobalAddressType.external`,
-///    `purpose` unset. Allocates a single anycast IPv4 (or IPv6) routed
-///    across Google's edge.
-/// 2. **Private-services peering range** — `addressType: internal`,
-///    `purpose: GlobalAddressPurpose.vpcPeering`, `network` pointing at a
+/// 1. **HTTP(S) LB VIP**: [addressType] is [GlobalAddressType.external]
+///    and [purpose] is unset. Allocates a single anycast IPv4 (or IPv6)
+///    routed across Google's edge.
+/// 2. **Private-services peering range**: [addressType] is
+///    [GlobalAddressType.internal], [purpose] is
+///    [GlobalAddressPurpose.vpcPeering], and [network] points at a
 ///    [GoogleComputeNetwork]. Reserves an internal CIDR that
 ///    [GoogleServiceNetworkingConnection] peers with Google's service
 ///    producer VPC (Cloud SQL private IP, Memorystore, etc.).

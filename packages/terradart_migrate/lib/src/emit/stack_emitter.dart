@@ -117,7 +117,7 @@ final class EmittedStack {
   /// The `import` lines [source] opens with, `terradart_core` included.
   final List<String> imports;
 
-  /// The `super(...)` arguments (`providers: [...], backend: ...`).
+  /// The `super(...)` arguments (the `providers` and the `backend`).
   final String ctorInit;
 
   /// `env.<field>` → the Dart type the argument it filled expects.
@@ -1450,7 +1450,7 @@ final class StackEmitter {
     return true;
   }
 
-  /// `param: value` arguments of [recipe]'s constructor for the provider
+  /// The named arguments of [recipe]'s constructor for the provider
   /// configuration [block] (`alias` excluded); anything the constructor
   /// cannot take is dropped with a warning naming [label].
   ({List<String> args, bool isConst}) _providerArgs(
@@ -1858,7 +1858,8 @@ final class StackEmitter {
     dartType: dartType,
   );
 
-  /// `providers: {'google': googleEuProvider}` — the Stack's configurations
+  /// The `providers` of a module call (`{'google': googleEuProvider}`) — the
+  /// Stack's configurations
   /// the call hands down, recorded in [selected] so they get registered.
   String _moduleProviders(Expr value, List<String> selected) {
     final m = objectMap(value);
@@ -2026,7 +2027,7 @@ final class StackEmitter {
     return '[${out.join(', ')}]';
   }
 
-  /// `timeouts: const TfTimeouts(create: Duration(minutes: 30))` for a
+  /// The `timeouts` argument, a `const TfTimeouts`, for a
   /// `timeouts { ... }`
   /// block. Terraform forbids references here — the values are literal Go
   /// duration strings — so nothing but a constant translates.
@@ -2068,7 +2069,7 @@ final class StackEmitter {
     return 'const TfTimeouts(${args.join(', ')})';
   }
 
-  /// `Duration(hours: 1, minutes: 30)`: [d] in its largest units.
+  /// The `Duration` source of [d], in its largest units.
   static String _durationSource(Duration d) {
     final parts = [
       ('hours', d.inHours),

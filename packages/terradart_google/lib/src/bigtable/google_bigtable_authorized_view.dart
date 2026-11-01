@@ -28,7 +28,7 @@ class BigtableAuthorizedViewSubsetView {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [instanceName]: parent instance ID.
-/// - [tableName]: parent table ID — pass `table.name`.
+/// - [tableName]: parent table ID — pass `table.ref`.
 /// - [name]: authorized view ID.
 /// - [subsetView]: optional [BigtableAuthorizedViewSubsetView] filter.
 ///

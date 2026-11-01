@@ -31,10 +31,10 @@
 ///
 /// Each IAM resource has a slightly different identity surface (topic name
 /// vs. subscription name vs. queue name+location vs. secret_id) -- this
-/// example shows the right `TfRef` getter for each. The service account
-/// member string is wired via `sa.member` (the pre-formatted
-/// `serviceAccount:<email>` attribute) so no manual prefix concatenation
-/// is needed.
+/// example shows the right `TfRef` getter for each. Each grant names the
+/// service account through its `principal` getter, which emits the
+/// `serviceAccount:<email>` member string, so no manual prefix
+/// concatenation is needed.
 library;
 
 import 'package:terradart_google/cloud_tasks.dart';
@@ -87,9 +87,10 @@ final class IamShowcaseStack extends Stack {
 
     // ---- Service account -------------------------------------------------
     //
-    // The SA the four bindings below grant roles to. `sa.member` is the
-    // computed `serviceAccount:<email>` string -- pass it straight to each
-    // `_iam_member` resource without manually prepending `serviceAccount:`.
+    // The SA the four bindings below grant roles to. `sa.principal` is the
+    // account as an IAM principal (`serviceAccount:<email>`) -- pass it
+    // straight to each `_iam_member` resource without prepending
+    // `serviceAccount:`.
 
     final sa = add(
       GoogleServiceAccount(

@@ -18,8 +18,8 @@ curatedDoc: |-
   /// - [field]: dot-separated path inside the document (e.g. `'user_id'`,
   ///   `'metadata.tags'`).
   ///
-  /// Use [indexConfig] to override single-field indexing. An empty
-  /// `FirestoreFieldIndexConfig(indexes: [])` **disables** all single-field indexes on
+  /// Use [indexConfig] to override single-field indexing. A
+  /// [FirestoreFieldIndexConfig] with empty `indexes` **disables** all single-field indexes on
   /// the field (overriding the database's automatic indexing); a non-empty
   /// list adds explicit per-field indexes.
   ///

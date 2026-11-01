@@ -273,7 +273,7 @@ extension type const BigtableAppProfilePriority._(TfArg<String> _)
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [appProfileId]: profile ID within the instance.
-/// - [instance]: parent instance — pass `instance.name`.
+/// - [instance]: parent instance — pass `instance.ref`.
 /// - [routing]: pick exactly one [BigtableAppProfileRouting] variant
 ///   (single-cluster, or multi-cluster across
 ///   [multiClusterRoutingClusterIds]). [isolation] optionally picks

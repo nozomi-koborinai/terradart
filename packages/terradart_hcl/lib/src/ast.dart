@@ -291,7 +291,7 @@ final class TupleExpr extends Expr {
   String toString() => 'Tuple(${elements.join(', ')})';
 }
 
-/// One `key = value` (or `key: value`) item of an [ObjectExpr].
+/// One `key = value` item of an [ObjectExpr], or one with a colon for `=`.
 final class ObjectItem extends HclNode {
   /// Creates the item `key = value`.
   const ObjectItem(this.key, this.value, this.range, {this.colon = false});
@@ -306,7 +306,7 @@ final class ObjectItem extends HclNode {
   @override
   final SourceRange range;
 
-  /// True when written `key: value`.
+  /// True when written with a colon instead of `=`.
   final bool colon;
 
   /// The key text when it is a plain string.

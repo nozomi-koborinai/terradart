@@ -5,7 +5,7 @@ import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/synth/stack_validator.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 
-/// Bundle returned by [StackSynth.synth].
+/// Bundle returned by [Stack.synth].
 class SynthResult {
   const SynthResult({
     required this.tfJson,

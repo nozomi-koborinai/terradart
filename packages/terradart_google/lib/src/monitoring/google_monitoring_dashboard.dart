@@ -27,8 +27,8 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 ///    `gcloud monitoring dashboards describe DASHBOARD_ID --format=json`
 ///    against an existing dashboard, replacing `DASHBOARD_ID` with the
 ///    resource ID.)
-/// 3. Paste the JSON into your Dart source as a raw String and pass it via
-///    `dashboardJson: TfArg.literal(...)`.
+/// 3. Paste the JSON into your Dart source as a raw String and pass it to
+///    `dashboardJson` as a literal.
 ///
 /// Programmatic assembly is also fine — `jsonEncode(Map<String, dynamic>)`
 /// from `dart:convert` produces an equivalent String. Both forms are

@@ -66,7 +66,7 @@ Future<void> main(List<String> args) =>
 3. the `defaultEnv` the entry point gives `runEnvironments`;
 4. the only environment, when the enum has one member.
 
-With none of these, the command stops and lists the names. It prints which one it chose and why — `env: dev (--env)`, `env: dev (TERRADART_ENV)`, `env: dev (default)`, `env: dev (only environment)`:
+With none of these, the command stops and lists the names. It prints which one it chose and why on its `env` line: `dev (--env)`, `dev (TERRADART_ENV)`, `dev (default)` or `dev (only environment)`:
 
 ```dart
 // bin/infra_default_env.dart

@@ -7,8 +7,8 @@ deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
-  /// Use `addressType: AddressType.internal` for VPC-private addresses,
-  /// `AddressType.external` for public IPs. Regional resources live under a
+  /// Set [addressType] to [AddressType.internal] for VPC-private
+  /// addresses, [AddressType.external] for public IPs. Regional resources live under a
   /// `region`; the global counterpart is [GoogleComputeGlobalAddress].
   ///
   /// Required identity:

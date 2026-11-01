@@ -21,8 +21,8 @@ curatedDoc: |-
   /// factory never creates `google_ces_deployment` and never sends
   /// sessions. Enable `ces.googleapis.com` via [StackApis.enableApis] before apply.
   ///
-  /// When pairing with [GoogleCesAppRootAgentAssociation], set
-  /// `lifecycle: .new(ignoreChanges: .of(['root_agent']))` so
+  /// When pairing with [GoogleCesAppRootAgentAssociation], give
+  /// it a `lifecycle` that ignores changes to `root_agent`, so
   /// Terraform does not fight the association over `root_agent`.
   ///
   /// Example:

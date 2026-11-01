@@ -60,7 +60,7 @@ for col in feature_flags pricing_tiers i18n regions; do
 done
 ```
 
-Expected counts: `feature_flags: 3`, `pricing_tiers: 3`, `i18n: 3`, `regions: 2`.
+Expected counts: 3 documents in `feature_flags`, 3 in `pricing_tiers`, 3 in `i18n`, and 2 in `regions`.
 
 To inspect a specific document's encoded field types:
 

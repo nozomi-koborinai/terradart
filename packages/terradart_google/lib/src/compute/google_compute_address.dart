@@ -120,8 +120,8 @@ extension type const Ipv6EndpointType._(TfArg<String> _)
 /// instance is assigned a new internal IP address, either by Compute Engine or
 /// by you. External IP addresses can be either ephemeral or static.
 ///
-/// Use `addressType: AddressType.internal` for VPC-private addresses,
-/// `AddressType.external` for public IPs. Regional resources live under a
+/// Set [addressType] to [AddressType.internal] for VPC-private
+/// addresses, [AddressType.external] for public IPs. Regional resources live under a
 /// `region`; the global counterpart is [GoogleComputeGlobalAddress].
 ///
 /// Required identity:

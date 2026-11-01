@@ -56,7 +56,7 @@ dart pub global activate terradart_cli
 terradart apply
 ```
 
-Register a second configuration with `final eu = addProvider(GoogleProvider(alias: 'eu', ...))` and select it on a resource with its `provider` argument — every factory and data source takes `provider:` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.
+Register a second configuration, a `GoogleProvider` with an `alias`, through `addProvider`, and select it on a resource with its `provider` argument — every factory and data source takes a `provider` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.
 
 ```dart
 final eu = addProvider(GoogleProvider(alias: 'eu', region: 'europe-west1'));

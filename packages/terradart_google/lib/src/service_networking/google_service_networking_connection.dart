@@ -19,7 +19,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// The pipeline is a three-resource chain:
 ///
 /// 1. [GoogleComputeNetwork] — the consumer VPC.
-/// 2. [GoogleComputeGlobalAddress] with `purpose: vpcPeering` —
+/// 2. [GoogleComputeGlobalAddress] for [GlobalAddressPurpose.vpcPeering] —
 ///    pre-reserves an internal CIDR on that VPC for Google's services
 ///    to peer into.
 /// 3. [GoogleServiceNetworkingConnection] (this resource) — peers
@@ -41,9 +41,10 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 ///   as a plain string so callers can target other producer services
 ///   should Google introduce them.
 /// - `reservedPeeringRanges`: one or more `name` values from
-///   [GoogleComputeGlobalAddress] resources with
-///   `purpose: vpcPeering`. The provider rejects full self_links here —
-///   pass `psaRange.name`.
+///   [GoogleComputeGlobalAddress] resources whose purpose is
+///   [GlobalAddressPurpose.vpcPeering]. The provider rejects full
+///   self_links here, so the list holds each range's `name` getter as
+///   its `.interpolation`, as in the example.
 ///
 /// Example (full Cloud SQL private-IP chain — see also the
 /// `cloud_sql_quickstart` example):
@@ -52,9 +53,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 ///   'psa',
 ///   network: vpc.ref,
 ///   service: TfArg.literal('servicenetworking.googleapis.com'),
-///   reservedPeeringRanges: TfArg.literal([
-///     '\${google_compute_global_address.psa_range.name}',
-///   ]),
+///   reservedPeeringRanges: TfArg.literal([psaRange.name.interpolation]),
 /// );
 /// ```
 final class GoogleServiceNetworkingConnection extends Resource {

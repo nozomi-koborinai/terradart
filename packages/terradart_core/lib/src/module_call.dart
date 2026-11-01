@@ -24,8 +24,8 @@ import 'tf_arg.dart';
 ///
 /// `terradart-migrate` generates a typed subclass per local module directory,
 /// with a named parameter per `variable` block and a getter per `output`:
-/// `ServiceAccountModule('sa_bff', source: '...', accountId: ...)`
-/// and `sa.member`.
+/// a `ServiceAccountModule` takes its `source` and an `accountId`, and its
+/// `member` getter reads the module's `member` output.
 ///
 /// `base` rather than `final` for exactly that: a subclass may narrow the
 /// constructor, but the fields synth reads stay this class's.

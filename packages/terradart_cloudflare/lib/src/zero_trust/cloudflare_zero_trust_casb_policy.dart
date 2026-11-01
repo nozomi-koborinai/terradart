@@ -68,7 +68,7 @@ final class ZeroTrustCasbPolicyWebhookConfigs {
 /// CASB policy: runs [ZeroTrustCasbPolicyActions] (webhooks and at most
 /// one remediation) when a finding of `findingTypeId` is raised.
 ///
-/// Set `appliesToAllIntegrations: .literal(true)`, or `false` together
+/// Set [appliesToAllIntegrations] to true, or to false together
 /// with `integrationIds` — the provider requires the list when the flag
 /// is false.
 final class CloudflareZeroTrustCasbPolicy extends Resource {

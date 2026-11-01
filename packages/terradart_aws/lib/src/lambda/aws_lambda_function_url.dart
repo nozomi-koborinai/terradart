@@ -91,8 +91,9 @@ final class LambdaFunctionUrlCors {
 /// A dedicated HTTPS endpoint for an [AwsLambdaFunction], without API
 /// Gateway in front.
 ///
-/// `authorizationType: TfArg.literal('NONE')` makes the URL public;
-/// `AWS_IAM` requires SigV4-signed callers. Read the endpoint through
+/// [LambdaFunctionUrlAuthorizationType.none] makes the URL public;
+/// [LambdaFunctionUrlAuthorizationType.awsIam] requires SigV4-signed
+/// callers. Read the endpoint through
 /// [functionUrl].
 final class AwsLambdaFunctionUrl extends Resource {
   static const String tfType = 'aws_lambda_function_url';

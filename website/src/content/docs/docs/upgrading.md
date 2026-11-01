@@ -21,7 +21,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart pub global activate terradart_cli` for the new command.
 2. **Optional: name a default environment.** Passing a `defaultEnv` member to `runEnvironments` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
 3. **Appwrite Stacks run on Terraform.** The `terradart` command now picks the `terraform` on `PATH` for a Stack that uses `terradart_appwrite`, and stops before `init` when there is none or OpenTofu is asked for.
-4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set `terradart: engine:` in `pubspec.yaml`, in CI.
+4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set the `engine` of the `terradart` section in `pubspec.yaml`, in CI.
 
 ## 0.32.x → 0.33.0
 
@@ -71,13 +71,13 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 | `routingMode: .literal(.regional)` | the member itself (the network's routing mode below) |
 | `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then the handle itself (the service's location below) |
 | `dependsOn: [ResourceDependency(api)]`, `addData(...)` | the resource itself (the service's `dependsOn` below), `add(...)` |
-| `provider: 'google.eu'` | the handle `addProvider(GoogleProvider(alias: 'eu'))` returns (the EU topic's provider below) |
+| `provider: 'google.eu'` | the handle `addProvider` returns for a `GoogleProvider` with the `eu` alias (the EU topic's provider below) |
 | `setBackend(...)`, `TfTimeouts(create: '30m')` | the `backend` of the `super(...)` call, and a `Duration` per `TfTimeouts` operation (the service's timeouts below) |
 | `Apis.enable(this, barrels: [Barrels.cloudRun])` | `enableApis([.cloudRun])` |
 | `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | the account's `principal`, or `.user('a@example.com')` (the two topic IAM members below) |
 | `name: .ref(api.nameRef), location: ...` on an IAM member | the parent's `ref` (the service IAM member below) |
 | `password: .literal('...')` on a sensitive argument | a variable or an expression; `Sensitive<T>` has no `.literal` |
-| `ignoreChanges: ['target_size']` | `.of([...])` (the service's lifecycle below) |
+| `ignoreChanges: ['client']` | `.of([...])` (the service's lifecycle below) |
 | `on StateError` / `on SensitiveLiteralError` around `synth()` | `on SynthException`, or `stack.validate()` |
 
 Together:
