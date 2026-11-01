@@ -4,7 +4,11 @@
 // sealed choice and its keys, a RefTo, an IAM principal, a helper block) and
 // output getter needs a recipe in that package's migration manifest that
 // builds the same shape, so `terradart migrate` never falls back to a
-// string where the API is typed.
+// string where the API is typed. A sealed choice must also be encoded where
+// its slot says (merged into the block or under its key), each variant's
+// shorthand must be a factory constructor on the sealed type that redirects
+// to that variant, a RefTo must emit the attribute its slot names, and
+// getters a factory inherits count as its own.
 //
 // The wrapper side is read from the package sources with the analyzer, the
 // manifest side from `allMigrateManifests`; nothing is hand-listed. A
@@ -17,6 +21,7 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/references/resolved_reference.dart'
     show principalTypes;
@@ -47,6 +52,15 @@ final class WrapperApi {
 
   /// Classes with a `principal` getter, the IAM principal of their `member`.
   final Set<String> principalGetters = {};
+
+  /// Class → value → the attribute its `encodeAs('...')` emits: what a
+  /// `RefTo` input writes.
+  final Map<String, Map<String, String>> refAttributes = {};
+
+  /// Class → value → how its encoding is keyed: the Terraform key of a map
+  /// entry that holds it, or null when it lands in the enclosing block
+  /// (`x.blockKey: x.value`, `...x.encode()`).
+  final Map<String, Map<String, String?>> encodedUnder = {};
 
   /// Concrete public classes that extend `Resource` or `Data`, directly or
   /// through package classes: the factories a manifest entry must describe,
@@ -80,6 +94,20 @@ final class WrapperApi {
       if (fields == null) continue;
       for (final param in pending) {
         if (fields[param] case final type?) api.inputs[name]![param] = type;
+      }
+    }
+    // A getter a package superclass declares is part of the subclass API.
+    for (final name in api._superclass.keys) {
+      final seen = <String>{name};
+      for (
+        var s = api._superclass[name];
+        s != null && seen.add(s);
+        s = api._superclass[s]
+      ) {
+        if (api.getters[s] case final inherited?) {
+          api.getters[name] = {...inherited, ...?api.getters[name]};
+        }
+        if (api.principalGetters.contains(s)) api.principalGetters.add(name);
       }
     }
     for (final name in api._superclass.keys) {
@@ -133,6 +161,12 @@ final class WrapperApi {
       return;
     }
     if (_terraformType(members) case final t?) _tfTypes[name] = t;
+    final encoding = _EncodingVisitor();
+    d.accept(encoding);
+    if (encoding.attributes.isNotEmpty) {
+      refAttributes[name] = encoding.attributes;
+    }
+    if (encoding.under.isNotEmpty) encodedUnder[name] = encoding.under;
     final unnamed = constructors.where((c) => c.name == null).firstOrNull;
     if (unnamed != null) {
       final params = <String, String>{};
@@ -255,6 +289,68 @@ final class WrapperApi {
   }
 }
 
+/// Reads how a class encodes its values: `x?.encodeAs('id')` for a
+/// reference, and the map entry or spread that holds `x`.
+final class _EncodingVisitor extends RecursiveAstVisitor<void> {
+  final Map<String, String> attributes = {};
+  final Map<String, String?> under = {};
+
+  static String? _root(Expression? e) => switch (e) {
+    SimpleIdentifier(:final name) => name,
+    PrefixedIdentifier(:final prefix) => prefix.name,
+    PropertyAccess(:final target) => _root(target),
+    MethodInvocation(:final target) => _root(target),
+    PostfixExpression(:final operand) => _root(operand),
+    ParenthesizedExpression(:final expression) => _root(expression),
+    _ => null,
+  };
+
+  @override
+  void visitMethodInvocation(MethodInvocation node) {
+    if (node.methodName.name == 'encodeAs') {
+      final args = node.argumentList.arguments;
+      final root = _root(node.target);
+      if (root != null && args.length == 1) {
+        if (args.single.argumentExpression case final SimpleStringLiteral a) {
+          attributes[root] = a.value;
+        }
+      }
+    }
+    super.visitMethodInvocation(node);
+  }
+
+  @override
+  void visitMapLiteralEntry(MapLiteralEntry node) {
+    final key = node.key;
+    if (key is PrefixedIdentifier && key.identifier.name == 'blockKey') {
+      under.putIfAbsent(key.prefix.name, () => null);
+    } else if (key is SimpleStringLiteral) {
+      final names = _Identifiers();
+      node.value.accept(names);
+      for (final v in names.found) {
+        under.putIfAbsent(v, () => key.value);
+      }
+    }
+    super.visitMapLiteralEntry(node);
+  }
+
+  @override
+  void visitSpreadElement(SpreadElement node) {
+    if (_root(node.expression) case final v?) under.putIfAbsent(v, () => null);
+    super.visitSpreadElement(node);
+  }
+}
+
+final class _Identifiers extends RecursiveAstVisitor<void> {
+  final Set<String> found = {};
+
+  @override
+  void visitSimpleIdentifier(SimpleIdentifier node) {
+    found.add(node.name);
+    super.visitSimpleIdentifier(node);
+  }
+}
+
 /// The shape a declared input type has, which the manifest slot for it must
 /// build.
 sealed class InputShape {
@@ -308,6 +404,17 @@ sealed class InputShape {
     // `Sensitive<T>` is a `TfArg<T>` the migrator fills from a variable, and
     // the manifest records a payload without its `?`.
     final wrapped = inner('TfArg<') ?? inner('Sensitive<');
+    final element = switch (wrapped) {
+      final w? when w.startsWith('List<') && w.endsWith('>') => w.substring(
+        'List<'.length,
+        w.length - 1,
+      ),
+      final w => w,
+    };
+    if (element != null &&
+        (api.inputs.containsKey(element) || api.sealed.containsKey(element))) {
+      return WrappedClassInput(element);
+    }
     var payload = wrapped ?? t;
     if (payload.endsWith('?')) {
       payload = payload.substring(0, payload.length - 1);
@@ -321,6 +428,13 @@ sealed class InputShape {
     'Map<String, dynamic>',
     'List<Map<String, dynamic>>',
   };
+}
+
+/// A `TfArg<C>` or `TfArg<List<C>>` of a package class: no slot kind builds
+/// one, so it is always a finding.
+final class WrappedClassInput extends InputShape {
+  const WrappedClassInput(this.type);
+  final String type;
 }
 
 /// A `TfArg<T>` (or bare `T`) value: a string, number, flag or collection.
@@ -469,6 +583,8 @@ List<String> coverageFindings(
   final byPackage = {
     for (final m in manifests ?? allMigrateManifests) m.package: m,
   };
+  // Excused omissions: the alternate entry must build this package's class.
+  final alternates = <(MigrateEntry, MigrateManifest)>[];
   for (final MapEntry(key: f, value: (:tfType, :kind))
       in api.factories.entries.toList()
         ..sort((a, b) => a.key.compareTo(b.key))) {
@@ -514,6 +630,7 @@ List<String> coverageFindings(
       );
     } else {
       usedUnmanifested?.add(f);
+      alternates.add((built.first, alternate));
     }
   }
 
@@ -524,7 +641,7 @@ List<String> coverageFindings(
     return hit.isNotEmpty;
   }
 
-  void checkOwner(String owner, List<MigrateSlot> slots) {
+  void checkOwner(String owner, List<MigrateSlot> slots, MigrateManifest m) {
     final declared = api.inputs[owner];
     if (declared == null) {
       findings.add(
@@ -547,7 +664,7 @@ List<String> coverageFindings(
         }
         continue;
       }
-      final problem = _mismatch(shape, slot, api, manifest);
+      final problem = _mismatch(shape, slot, api, m, owner);
       if (problem != null) findings.add('$owner.$name ($type): $problem');
     }
     for (final slot in slots) {
@@ -560,8 +677,8 @@ List<String> coverageFindings(
     }
   }
 
-  for (final e in manifest.entries) {
-    checkOwner(e.className, e.slots);
+  void checkEntry(MigrateEntry e, MigrateManifest m) {
+    checkOwner(e.className, e.slots, m);
     final hasPrincipal = api.principalGetters.contains(e.className);
     if (hasPrincipal != e.principal) {
       findings.add(
@@ -597,14 +714,31 @@ List<String> coverageFindings(
       }
     }
   }
-  for (final h in manifest.helpers.values) {
+
+  void checkHelper(MigrateHelper h, MigrateManifest m) {
     if (h.reason != null) {
       if (!excused(h.className)) {
         findings.add('${h.className}: manual helper, ${h.reason}');
       }
-      continue;
+      return;
     }
-    checkOwner(h.className, h.slots);
+    checkOwner(h.className, h.slots, m);
+  }
+
+  for (final e in manifest.entries) {
+    checkEntry(e, manifest);
+  }
+  for (final h in manifest.helpers.values) {
+    checkHelper(h, manifest);
+  }
+  for (final (e, m) in alternates) {
+    checkEntry(e, m);
+    for (final h in _reachingTypes(m).entries) {
+      if (!h.value.contains(e.tfType) || h.key == e.className) continue;
+      if (m.helpers[h.key] case final helper?) {
+        if (!manifest.helpers.containsKey(h.key)) checkHelper(helper, m);
+      }
+    }
   }
   for (final MapEntry(key: name, value: e) in manifest.enums.entries) {
     final declared = api.enums[name];
@@ -625,6 +759,7 @@ String? _mismatch(
   MigrateSlot slot,
   WrapperApi api,
   MigrateManifest manifest,
+  String owner,
 ) {
   String got() =>
       '${slot.kind.name}${slot.repeated ? ' repeated' : ''}'
@@ -675,9 +810,28 @@ String? _mismatch(
         return 'sealed variants ${declared.values.toSet()}, the manifest '
             'knows $variants';
       }
+      final encodings = api.encodedUnder[owner] ?? const <String, String?>{};
+      if (!encodings.containsKey(slot.dartName)) {
+        return 'a sealed choice the gate cannot see $owner encode';
+      }
+      final under = encodings[slot.dartName];
+      if (slot.merged != (under == null) ||
+          (under != null && slot.tfName != under)) {
+        return 'a sealed choice encoded '
+            '${under == null ? 'into the enclosing block' : 'under `$under`'}, '
+            'the manifest reads it '
+            '${slot.merged ? 'merged' : 'under `${slot.tfName}`'}';
+      }
       for (final MapEntry(key: key, value: v) in keyed.entries) {
-        if (manifest.helpers[v] == null) {
+        final helper = manifest.helpers[v];
+        if (helper == null) {
           return 'variant $v has no manifest helper';
+        }
+        // The migrator writes `.<shorthand>(...)`, or `V(...)` without one.
+        if (helper.shorthand case final shorthand?
+            when declared[shorthand] != v) {
+          return 'variant $v is written `.$shorthand(...)`, but $type.'
+              '$shorthand builds ${declared[shorthand] ?? 'nothing'}';
         }
         // A variant names its Terraform key in `blockKey`; a derived one
         // without it is the constructor named after the key.
@@ -716,11 +870,22 @@ String? _mismatch(
           ? null
           : '$shape, the manifest has no helper $type';
     case RefInput(:final type, :final repeated):
-      return slot.kind == MigrateSlotKind.reference &&
-              slot.repeated == repeated &&
-              slot.dartType == type
+      if (slot.kind != MigrateSlotKind.reference ||
+          slot.repeated != repeated ||
+          slot.dartType != type) {
+        return 'a RefTo<$type>, the manifest builds ${got()}';
+      }
+      final emitted = api.refAttributes[owner]?[slot.dartName];
+      if (emitted == null) {
+        return 'a RefTo<$type> the gate cannot see $owner encode';
+      }
+      return emitted == slot.attribute
           ? null
-          : 'a RefTo<$type>, the manifest builds ${got()}';
+          : 'a RefTo<$type> that emits `$emitted`, the manifest records '
+                '`${slot.attribute}`';
+    case WrappedClassInput(:final type):
+      return 'a TfArg of the package class $type, which no manifest slot '
+          'kind builds';
   }
 }
 
