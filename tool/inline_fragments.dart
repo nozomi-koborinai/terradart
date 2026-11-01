@@ -62,7 +62,7 @@ List<({int line, String fragment})> inlineFragments(String text) {
       line = cells.join('|');
     }
     for (final m in _span.allMatches(line)) {
-      final span = m.group(1)!.trim();
+      final span = m.group(1)!.trim().replaceFirst(RegExp(r',$'), '');
       if (_fragment.hasMatch(span)) out.add((line: i + 1, fragment: span));
     }
   }
