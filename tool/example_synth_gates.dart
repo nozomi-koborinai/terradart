@@ -14,6 +14,8 @@
 //   depend on the enabling service. Examples that enable nothing are exempt
 //   (documented manual-enablement mode) — the gate ratchets as examples
 //   migrate to `enableApis`.
+// - README excerpts: every ```json fence of an example README is an excerpt
+//   of that example's synth output (tool/readme_excerpts.dart).
 //
 // Run from repo root: dart tool/example_synth_gates.dart
 // Pass --skip-validate to skip the init/validate pass (CI runs the
@@ -28,6 +30,7 @@ import 'package:yaml/yaml.dart';
 
 import 'example_synth_env.dart';
 import 'lane_surface.dart';
+import 'readme_excerpts.dart';
 import 'terraform_api_requirements.dart';
 import 'validate_engine.dart';
 import 'wrap_lanes.dart';
@@ -62,6 +65,7 @@ Future<void> runExampleSynthGates(
     final json = await synthExample(slug, errors);
     if (json == null) continue;
     synthByExample[slug] = json;
+    checkReadmeExcerpts(slug, json, errors);
     allResourceTypes.addAll(_resourceTfTypes(json));
     allDataTypes.addAll(_dataTfTypes(json));
   }
