@@ -170,6 +170,52 @@ void main() {
     ]);
   });
 
+  test(
+    'an unpublished type elsewhere in the row does not hide a typo',
+    () async {
+      const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+### Mixed
+
+**Breaking (`terradart_google`, `terradart_azure`).** Text.
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopik('t')` | `ApplicationGatewayProbeProtocol` |
+''';
+      final failures = (await checkMigratingCells(
+        Directory.current.path,
+        migrating: seeded,
+      )).failures;
+      expect(failures, [
+        allOf(
+          contains('MIGRATING.md:11: Before'),
+          contains('GooglePubsubTopik'),
+        ),
+      ]);
+    },
+  );
+
+  test('a document without the `# Migrating terradart` title fails', () async {
+    const seeded = '''
+# Migrating
+
+## Unreleased
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = (await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    )).failures;
+    expect(failures, [contains('MIGRATING.md:1:')]);
+  });
+
   test('every Before and After cell of MIGRATING.md compiles', () async {
     final report = await checkMigratingCells(Directory.current.path);
     expect(report.failures, isEmpty, reason: report.failures.join('\n'));
