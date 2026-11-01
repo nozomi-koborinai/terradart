@@ -1954,7 +1954,6 @@ are unchanged. Only the type name moves. A dot shorthand (`.new(...)`,
 | `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |
 | `AutomanageConfigurationRetentionDuration` | `AutomanageConfigurationDailyScheduleRetentionDuration` |
 | `AutomanageConfigurationRetentionDuration` | `AutomanageConfigurationWeeklyScheduleRetentionDuration` |
-| `BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration` | `BedrockagentDataSourceContextEnrichmentModelConfiguration` |
 | `CdnFrontdoorFirewallPolicyAction` | `CdnFrontdoorFirewallPolicyRuleAction` |
 | `DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation` | `DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation` |
 | `DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig` | `DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig` |
