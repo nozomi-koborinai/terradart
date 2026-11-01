@@ -14,9 +14,10 @@
 // JSON and Terraform, so it is no fragment. A lowerCamel one with the same
 // value (`proxied: true`) is a Dart argument that skips its `.literal`. A
 // span that opens on a colon with no space around it and a plain value
-// (`dart:io`, `user:<email>`, `arn:aws:iam::...`) is a URI or a principal;
-// the same pair inside a call or collection (`Bucket(user:a)`), or with a
-// Dart value (`name:.literal('x')`), is an argument.
+// (`dart:io`, `user:<email>`, `iam:PassRole`, `localhost:8080`) is a URI,
+// a principal, an action or a port; the same pair inside a call or
+// collection (`Bucket(user:a)`), or with a Dart value (`name:.literal('x')`,
+// `service:api.ref`, `name:make()`, `proxied:true`), is an argument.
 //
 // Every fragment fails. A span says nothing about the call it belongs to,
 // so no text match can tell `service: apiService.ref` from
@@ -45,6 +46,7 @@ final _scalar = RegExp(
 );
 final _call = RegExp(r'\w\(');
 final _dartValue = RegExp(r'''^([.\[('"]|r'|const\b|[A-Z]\w*[(.<])''');
+final _tightDart = RegExp(r'^(true|false|null|[a-z]\w*(\.[A-Za-z_]\w*)+)$|\(');
 
 /// Whether code [span] holds a `name: value` argument.
 bool isFragment(String span) {
@@ -56,7 +58,12 @@ bool isFragment(String span) {
     }
     if (m.group(1)!.contains('_') && _scalar.hasMatch(value)) continue;
     final tight = !m.group(0)!.contains(RegExp(r'\s'));
-    if (tight && m.start == 0 && !_dartValue.hasMatch(value)) continue;
+    if (tight &&
+        m.start == 0 &&
+        !_dartValue.hasMatch(value) &&
+        !_tightDart.hasMatch(value)) {
+      continue;
+    }
     return true;
   }
   return false;
