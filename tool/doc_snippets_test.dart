@@ -177,6 +177,31 @@ final class A {}
     );
   });
 
+  test(
+    'a doc-comment fence may not call a function nothing declares',
+    () async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_fn_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final file = p.join(tmp.path, 'a.dart');
+      File(file).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_core/terradart_core.dart';
+///
+/// final removed = removedTopLevelHelper(projectId: 'p');
+/// ```
+final class A {}
+''');
+      final failures = await checkDocSnippets(root, docs: [], libs: [tmp.path]);
+      final rel = p.relative(file, from: root);
+      expect(failures, [
+        startsWith(
+          "$rel:4: The function 'removedTopLevelHelper' isn't defined",
+        ),
+      ]);
+    },
+  );
+
   test('a doc-comment fence compiles against its own package', () async {
     final root = Directory.current.path;
     final tmp = await Directory.systemTemp.createTemp('doc_snippets_cli_');
