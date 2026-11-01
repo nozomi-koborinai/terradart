@@ -121,6 +121,17 @@
         "role": "roles/viewer",
         "provider": "google-beta"
       }
+    },
+    "google_compute_future_reservation": {
+      "calendar": {
+        "provider": "google-beta",
+        "name": "shapes-calendar",
+        "reservation_mode": "CALENDAR",
+        "time_window": {
+          "start_time": "2026-01-01T00:00:00Z",
+          "end_time": "2026-01-02T00:00:00Z"
+        }
+      }
     }
   }
 }

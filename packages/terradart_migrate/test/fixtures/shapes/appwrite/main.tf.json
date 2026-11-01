@@ -11,6 +11,14 @@
   "variable": {
     "compression": {
       "type": "string"
+    },
+    "backup_access_key": {
+      "type": "string",
+      "sensitive": true
+    },
+    "backup_secret_key": {
+      "type": "string",
+      "sensitive": true
     }
   },
   "resource": {
@@ -52,6 +60,20 @@
           "read(\"any\")",
           "write(\"users\")"
         ]
+      }
+    },
+    "appwrite_mongo_database": {
+      "mongo": {
+        "name": "shapes"
+      }
+    },
+    "appwrite_mongo_backup_storage": {
+      "backups": {
+        "database_id": "${appwrite_mongo_database.mongo.id}",
+        "storage_provider": "s3",
+        "bucket": "shapes-backups",
+        "access_key": "${var.backup_access_key}",
+        "secret_key": "${var.backup_secret_key}"
       }
     }
   }

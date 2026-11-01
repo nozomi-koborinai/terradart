@@ -1071,6 +1071,10 @@ final class ValueEmitter {
         e is! LiteralExpr &&
         e is! TupleExpr &&
         e is! ObjectExpr;
+
+    // An enum is a `TfArg<String>`: a member, `.variable(...)` /
+    // `.expression(...)` (constructors every enum declares), or any other
+    // `TfArg<String>` — a reference, a lifted workspace — through `.arg(...)`.
     String enumCall(String typedArg) {
       final own =
           typedArg.startsWith('.variable(') ||
@@ -1124,10 +1128,6 @@ final class ValueEmitter {
       );
       return _enumMember(enumName, folded.value);
     }
-
-    // An enum is a `TfArg<String>`: a member, `.variable(...)` /
-    // `.expression(...)` (constructors every enum declares), or any other
-    // `TfArg<String>` — a reference, a lifted workspace — through `.arg(...)`.
 
     String element(Expr e) {
       if (!isExpression(e)) return member(e);

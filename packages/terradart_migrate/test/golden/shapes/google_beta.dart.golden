@@ -114,5 +114,16 @@ final class ShapesGoogleBetaStack extends Stack {
         role: .literal('roles/viewer'),
       ),
     );
+    add(
+      GoogleComputeFutureReservation(
+        'calendar',
+        name: .literal('shapes-calendar'),
+        reservationMode: .calendar,
+        timeWindow: ComputeFutureReservationTimeWindow(
+          endTime: .literal('2026-01-02T00:00:00Z'),
+          startTime: .literal('2026-01-01T00:00:00Z'),
+        ),
+      ),
+    );
   }
 }

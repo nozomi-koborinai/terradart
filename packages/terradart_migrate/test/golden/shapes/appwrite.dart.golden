@@ -6,6 +6,7 @@
 library;
 
 import 'package:terradart_appwrite/functions.dart';
+import 'package:terradart_appwrite/mongo.dart';
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
 
@@ -16,6 +17,14 @@ final class ShapesAppwriteStack extends Stack {
         requiredVersion: '>= 1.11.0',
       ) {
     variable<String>('compression');
+    final backupAccessKey = variable<String>(
+      'backup_access_key',
+      sensitive: true,
+    );
+    final backupSecretKey = variable<String>(
+      'backup_secret_key',
+      sensitive: true,
+    );
     final fn = add(
       AppwriteFunction(
         'fn',
@@ -60,6 +69,17 @@ final class ShapesAppwriteStack extends Stack {
         name: .literal('unlisted'),
         compression: .arg(.literal('unlisted')),
         permissions: .literal([.read(.any), .write(.users())]),
+      ),
+    );
+    final mongo = add(AppwriteMongoDatabase('mongo', name: .literal('shapes')));
+    add(
+      AppwriteMongoBackupStorage(
+        'backups',
+        accessKey: backupAccessKey,
+        bucket: .literal('shapes-backups'),
+        databaseId: mongo.ref,
+        secretKey: backupSecretKey,
+        storageProvider: .s3,
       ),
     );
   }

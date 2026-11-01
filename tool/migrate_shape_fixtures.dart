@@ -66,13 +66,16 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
 }
 
 /// The new names MIGRATING.md records for renamed types: every row of a
-/// `| Before | After |` table whose two cells are each one type name.
-/// Throws when there is none, so a reworded table cannot turn the renamed
-/// type check off.
+/// Before / After table (`| Before | After |`, `| Before (0.30) | After |`)
+/// whose two cells are each one type name, with an optional note in
+/// parentheses (`(google-beta)`). Throws when there is none, and
+/// [shapeFixtureFindings] fails a lane none of them names, so a reworded
+/// table cannot turn the renamed type check off.
 Set<String> renamedTypes(String migratingMd) {
-  final header = RegExp(r'^\| *Before *\| *After *\|$');
+  final header = RegExp(r'^\| *Before\b[^|]*\| *After\b[^|]*\|$');
+  const note = r'(?: \([^()|]*\))?';
   final rename = RegExp(
-    r'^\| `[A-Z][A-Za-z0-9]*` \| `([A-Z][A-Za-z0-9]*)` \|$',
+    '^\\| `[A-Z][A-Za-z0-9]*`$note \\| `([A-Z][A-Za-z0-9]*)`$note \\|\$',
   );
   final out = <String>{};
   var inTable = false;
@@ -111,11 +114,16 @@ List<String> shapeFixtureFindings(
   for (final shape in missing.toList()..sort(_byIndex)) {
     findings.add('$lane: the fixture never migrates a ${shape.name}');
   }
-  final declared = renamed.intersection({
-    ...manifest.helpers.keys,
-    ...manifest.enums.keys,
-  }).toList();
-  if (declared.isNotEmpty && report.types.intersection(renamed).isEmpty) {
+  final types = {...manifest.helpers.keys, ...manifest.enums.keys};
+  final declared = renamed.intersection(types).toList();
+  if (declared.isEmpty && types.isNotEmpty) {
+    findings.add(
+      '$lane: no Before / After row in MIGRATING.md renames a $lane type, '
+      'so the fixture cannot check one; a rename table this lane has is '
+      'not being read',
+    );
+  } else if (declared.isNotEmpty &&
+      report.types.intersection(renamed).isEmpty) {
     findings.add(
       '$lane: the fixture uses none of the renamed types '
       '${(declared..sort()).join(', ')}',
