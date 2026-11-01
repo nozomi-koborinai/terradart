@@ -1,6 +1,7 @@
 // The migrator's API coverage gate: every public factory a provider package
-// declares needs a manifest entry, and every typed input (an enum, an
-// EnumList, a sealed choice, a RefTo, an IAM principal, a helper block) and
+// declares needs a manifest entry for its Terraform type and kind, and every
+// constructor input (a scalar, an untyped block, an enum, an EnumList, a
+// sealed choice and its keys, a RefTo, an IAM principal, a helper block) and
 // output getter needs a recipe in that package's migration manifest that
 // builds the same shape, so `terradart migrate` never falls back to a
 // string where the API is typed.
@@ -10,7 +11,8 @@
 // `manual` slot or a helper with a reason is a finding unless
 // tool/migrate_manifest_debt.yaml names a Terraform type that reaches it,
 // and a factory without an entry is one unless
-// tool/migrate_unmanifested_factories.yaml gives the reason.
+// tool/migrate_unmanifested_factories.yaml names another package whose
+// manifest builds it.
 import 'dart:io';
 
 import 'package:analyzer/dart/analysis/utilities.dart';
