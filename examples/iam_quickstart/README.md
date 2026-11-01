@@ -39,7 +39,7 @@ Workload identity pools and providers are soft-deleted for 30 days, so applying 
 ```bash
 dart pub get
 
-# Edit bin/infra.dart -- replace YOUR-PROJECT-ID with your project ID.
+export GCP_PROJECT_ID=your-project-id
 
 terradart apply
 ```
@@ -57,16 +57,15 @@ terradart apply
   "resource": {
     "google_service_account": {
       "demo": {
-        "account_id": "demo",
+        "account_id": "demo-sa",
         "display_name": "IAM quickstart demo SA"
       }
     },
     "google_pubsub_topic_iam_member": {
       "topic_publisher": {
-        "topic": "${google_pubsub_topic.demo.name}",
+        "topic": "${google_pubsub_topic.demo.id}",
         "role": "roles/pubsub.publisher",
-        "member": "${google_service_account.demo.member}",
-        "project": "${google_pubsub_topic.demo.project}"
+        "member": "${google_service_account.demo.member}"
       }
     },
     "google_pubsub_subscription_iam_member": {

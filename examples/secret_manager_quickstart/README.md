@@ -13,7 +13,7 @@ Demonstrates the **write-only** field pattern (`secret_data_wo` + `secret_data_w
 ```bash
 dart pub get
 
-# Edit lib/main.dart -- replace YOUR-PROJECT-ID with your real project.
+export GCP_PROJECT_ID=your-project-id
 
 # Pass the cleartext via env var. Never commit this.
 export DB_PASSWORD='your-real-password-here'
@@ -42,6 +42,8 @@ The version field tells Terraform "the upstream value changed -- push a new Secr
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
+Synthesized with the CI placeholder `DB_PASSWORD=ci-synth-placeholder` (`tool/example_synth_env.dart`); your run carries your own value.
+
 ```json
 {
   "terraform": {
@@ -51,22 +53,26 @@ The version field tells Terraform "the upstream value changed -- push a new Secr
     "google_secret_manager_secret": {
       "db_password": {
         "secret_id": "db-password",
-        "replication": { "auto": {} },
-        "labels": { "managed-by": "terradart" }
+        "replication": {
+          "auto": {}
+        },
+        "labels": {
+          "managed-by": "terradart"
+        }
       }
     },
     "google_secret_manager_secret_version": {
       "db_password_v1": {
         "secret": "${google_secret_manager_secret.db_password.id}",
-        "secret_data_wo": "your-real-password-here",
-        "secret_data_wo_version": 1
+        "secret_data_wo": "ci-synth-placeholder",
+        "secret_data_wo_version": "1"
       }
     },
     "google_secret_manager_secret_iam_member": {
       "db_password_accessor": {
         "secret_id": "${google_secret_manager_secret.db_password.secret_id}",
         "role": "roles/secretmanager.secretAccessor",
-        "member": "serviceAccount:app@YOUR-PROJECT-ID.iam.gserviceaccount.com",
+        "member": "${google_service_account.app.member}",
         "project": "${google_secret_manager_secret.db_password.project}"
       }
     }

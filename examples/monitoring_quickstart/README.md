@@ -52,28 +52,28 @@ The alert policy notifies the in-stack `oncall_email` notification channel throu
         "conditions": [
           {
             "display_name": "p95 > 1500ms for 5m",
-            "condition_threshold": [
-              {
-                "filter": "metric.type=\"run.googleapis.com/request_latencies\" AND resource.label.service_name=\"api\"",
-                "comparison": "COMPARISON_GT",
-                "duration": "300s",
-                "threshold_value": 1500,
-                "evaluation_missing_data": "EVALUATION_MISSING_DATA_NO_OP",
-                "aggregations": [
-                  {
-                    "alignment_period": "60s",
-                    "per_series_aligner": "ALIGN_PERCENTILE_95",
-                    "cross_series_reducer": "REDUCE_PERCENTILE_95",
-                    "group_by_fields": ["resource.label.revision_name"]
-                  }
-                ]
-              }
-            ]
+            "condition_threshold": {
+              "filter": "metric.type=\"run.googleapis.com/request_latencies\" AND resource.type=\"cloud_run_revision\" AND resource.label.service_name=\"api\"",
+              "comparison": "COMPARISON_GT",
+              "duration": "300s",
+              "threshold_value": 1500,
+              "evaluation_missing_data": "EVALUATION_MISSING_DATA_NO_OP",
+              "aggregations": [
+                {
+                  "alignment_period": "60s",
+                  "per_series_aligner": "ALIGN_PERCENTILE_95",
+                  "cross_series_reducer": "REDUCE_PERCENTILE_95",
+                  "group_by_fields": [
+                    "resource.label.revision_name"
+                  ]
+                }
+              ]
+            }
           }
         ],
-        "alert_strategy": [
-          { "auto_close": "1800s", "notification_rate_limit": [{ "period": "300s" }] }
-        ]
+        "alert_strategy": {
+          "auto_close": "1800s"
+        }
       }
     }
   }

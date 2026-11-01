@@ -1,6 +1,6 @@
 # Cloud DNS quickstart
 
-End-to-end terradart example for a private Cloud DNS managed zone with DNSSEC. Provisions a VPC network, then a private DNS zone (`internal.corp.`) scoped to that VPC via `DnsManagedZonePrivateVisibilityConfig`. DNSSEC is not configured: it is a public-zone feature, and a private zone rejects `dnssec_config`.
+End-to-end terradart example for a private Cloud DNS managed zone. Provisions a VPC network, then a private DNS zone (`internal.corp.`) scoped to that VPC via `DnsManagedZonePrivateVisibilityConfig`. DNSSEC is not configured: it is a public-zone feature, and a private zone rejects `dnssec_config`.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ End-to-end terradart example for a private Cloud DNS managed zone with DNSSEC. P
 
 ```
 examples/dns_quickstart/
-├── lib/main.dart        # InternalDnsStack: VPC + private zone + DNSSEC
+├── lib/main.dart        # InternalDnsStack: VPC + private zone
 ├── bin/infra.dart       # Synth entry
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml

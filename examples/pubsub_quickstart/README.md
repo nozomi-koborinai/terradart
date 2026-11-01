@@ -50,22 +50,37 @@ terradart apply
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
+Synthesized with the CI placeholder `GCP_PROJECT_ID=ci-test-project-id` (`tool/example_synth_env.dart`); your run carries your own value.
+
 ```json
 {
   "terraform": {
     "required_version": ">= 1.11.0",
     "required_providers": {
-      "google": { "source": "hashicorp/google", "version": "~> 8.0" }
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 8.0"
+      }
     }
   },
-  "provider": { "google": [{ "project": "YOUR-PROJECT-ID", "region": "us-central1" }] },
+  "provider": {
+    "google": {
+      "project": "ci-test-project-id",
+      "region": "us-central1"
+    }
+  },
   "resource": {
     "google_pubsub_topic": {
-      "orders": { "name": "orders-prod", "message_retention_duration": "604800s" }
+      "orders": {
+        "name": "orders-prod",
+        "message_retention_duration": "604800s"
+      }
     }
   },
   "output": {
-    "orders_topic_id": { "value": "${google_pubsub_topic.orders.id}" }
+    "orders_topic_id": {
+      "value": "${google_pubsub_topic.orders.id}"
+    }
   }
 }
 ```

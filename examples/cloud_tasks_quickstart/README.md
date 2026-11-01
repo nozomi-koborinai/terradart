@@ -17,7 +17,7 @@ A deleted Cloud Tasks queue name stays reserved for about seven days, so destroy
 ```bash
 dart pub get
 
-# Edit lib/main.dart -- replace YOUR-PROJECT-ID with your real project.
+export GCP_PROJECT_ID=your-project-id
 
 terradart apply
 ```
@@ -55,7 +55,7 @@ terradart apply
         "name": "${google_cloud_tasks_queue.email_jobs.name}",
         "location": "${google_cloud_tasks_queue.email_jobs.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "serviceAccount:enqueuer@YOUR-PROJECT-ID.iam.gserviceaccount.com",
+        "member": "${google_service_account.enqueuer.member}",
         "project": "${google_cloud_tasks_queue.email_jobs.project}"
       }
     }

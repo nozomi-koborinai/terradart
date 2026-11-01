@@ -58,27 +58,44 @@ terradart apply
         "name": "api",
         "location": "asia-northeast1",
         "ingress": "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
-        "template": [
-          {
-            "containers": [
-              {
-                "image": "gcr.io/cloudrun/hello",
-                "env": [
-                  { "name": "LOG_LEVEL", "value": "info" },
-                  {
-                    "name": "DB_PASSWORD",
-                    "value_source": [
-                      { "secret_key_ref": [{ "secret": "api-db-password", "version": "latest" }] }
-                    ]
+        "template": {
+          "containers": [
+            {
+              "image": "gcr.io/cloudrun/hello",
+              "env": [
+                {
+                  "name": "LOG_LEVEL",
+                  "value": "info"
+                },
+                {
+                  "name": "DB_PASSWORD",
+                  "value_source": {
+                    "secret_key_ref": {
+                      "secret": "api-db-password",
+                      "version": "latest"
+                    }
                   }
-                ],
-                "ports": [{ "container_port": 8080 }],
-                "resources": [{ "limits": { "cpu": "1", "memory": "512Mi" }, "cpu_idle": true, "startup_cpu_boost": true }]
+                }
+              ],
+              "ports": {
+                "container_port": 8080
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "1",
+                  "memory": "512Mi"
+                },
+                "cpu_idle": true,
+                "startup_cpu_boost": true
               }
-            ]
-          }
-        ],
-        "scaling": [{ "min_instance_count": 0, "max_instance_count": 4, "scaling_mode": "AUTOMATIC" }]
+            }
+          ]
+        },
+        "scaling": {
+          "min_instance_count": 0,
+          "max_instance_count": 4,
+          "scaling_mode": "AUTOMATIC"
+        }
       }
     }
   }

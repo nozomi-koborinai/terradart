@@ -53,8 +53,14 @@ terradart apply
         "default_table_expiration_ms": 2592000000,
         "storage_billing_model": "LOGICAL",
         "access": [
-          { "user_by_email": "data-eng@example.com", "role": "OWNER" },
-          { "special_group": "allAuthenticatedUsers", "role": "READER" }
+          {
+            "user_by_email": "${google_service_account.analytics_reader.email}",
+            "role": "OWNER"
+          },
+          {
+            "special_group": "allAuthenticatedUsers",
+            "role": "READER"
+          }
         ]
       }
     }

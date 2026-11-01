@@ -44,12 +44,21 @@ terradart apply
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
+Synthesized with the CI placeholder `GCP_PROJECT_ID=ci-test-project-id` (`tool/example_synth_env.dart`); your run carries your own value.
+
 ```json
 {
   "provider": {
     "google": [
-      { "project": "your-project-id", "region": "asia-northeast1" },
-      { "alias": "eu", "project": "your-project-id", "region": "europe-west1" }
+      {
+        "project": "ci-test-project-id",
+        "region": "asia-northeast1"
+      },
+      {
+        "alias": "eu",
+        "project": "ci-test-project-id",
+        "region": "europe-west1"
+      }
     ]
   },
   "resource": {
@@ -63,12 +72,16 @@ terradart apply
         "provider": "google.eu"
       },
       "assets": {
-        "...": "..."
+        "name": "my-app-assets-prod",
+        "location": "ASIA-NORTHEAST1"
       }
     }
   },
   "moved": [
-    { "from": "google_storage_bucket.assets_europe", "to": "google_storage_bucket.assets_eu" }
+    {
+      "from": "google_storage_bucket.assets_europe",
+      "to": "google_storage_bucket.assets_eu"
+    }
   ]
 }
 ```
@@ -85,11 +98,18 @@ The `assets` bucket itself:
         "storage_class": "STANDARD",
         "force_destroy": false,
         "uniform_bucket_level_access": true,
-        "versioning": [{ "enabled": true }],
+        "versioning": {
+          "enabled": true
+        },
         "lifecycle_rule": [
           {
-            "action": [{ "type": "SetStorageClass", "storage_class": "ARCHIVE" }],
-            "condition": [{ "age": 365 }]
+            "action": {
+              "type": "SetStorageClass",
+              "storage_class": "ARCHIVE"
+            },
+            "condition": {
+              "age": 365
+            }
           }
         ]
       }
@@ -98,7 +118,6 @@ The `assets` bucket itself:
       "config": {
         "bucket": "${google_storage_bucket.assets.name}",
         "name": "config/app.json",
-        "content": "...",
         "content_type": "application/json",
         "storage_class": "STANDARD"
       }

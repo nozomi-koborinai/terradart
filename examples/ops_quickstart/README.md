@@ -41,23 +41,36 @@ terradart apply
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
+Synthesized with the CI placeholder `GCP_PROJECT_ID=ci-test-project-id` (`tool/example_synth_env.dart`); your run carries your own value.
+
 ```json
 {
   "resource": {
     "google_bigquery_dataset": {
-      "audit_logs": { "dataset_id": "audit_logs", "location": "asia-northeast1" }
+      "audit_logs": {
+        "dataset_id": "audit_logs",
+        "location": "asia-northeast1"
+      }
     },
     "google_logging_project_sink": {
       "audit_to_bq": {
         "name": "audit-to-bq",
-        "destination": "bigquery.googleapis.com/projects/your-project-id/datasets/audit_logs",
+        "destination": "bigquery.googleapis.com/projects/ci-test-project-id/datasets/audit_logs",
         "filter": "logName:\"cloudaudit.googleapis.com\"",
         "unique_writer_identity": true,
-        "bigquery_options": [{ "use_partitioned_tables": true }]
+        "bigquery_options": [
+          {
+            "use_partitioned_tables": true
+          }
+        ]
       }
     },
     "google_logging_project_exclusion": {
-      "drop_dns_noise": { "name": "drop-dns-noise", "filter": "resource.type=\"dns_query\"", "description": "Skip high-volume DNS query logs." }
+      "drop_dns_noise": {
+        "name": "drop-dns-noise",
+        "filter": "resource.type=\"dns_query\"",
+        "description": "Skip high-volume DNS query logs."
+      }
     }
   }
 }
