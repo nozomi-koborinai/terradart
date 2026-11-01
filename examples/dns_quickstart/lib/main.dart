@@ -3,7 +3,8 @@
 /// Defines an `InternalDnsStack` that provisions:
 /// - a VPC network (`gnd-vpc`) the private zone attaches to,
 /// - a private DNS managed zone (`internal.corp.`) scoped to the VPC via
-///   `PrivateVisibilityConfig(networks: [PrivateVisibilityNetwork(...)])`,
+///   [DnsManagedZonePrivateVisibilityConfig] with one
+///   [DnsManagedZonePrivateVisibilityNetwork],
 ///
 /// demonstrating the nested-block helper classes from
 /// `google_dns_managed_zone` and the schema-faithful enums

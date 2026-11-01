@@ -12,7 +12,7 @@
 /// - a change stream on the `messages` collection group, retained for a day.
 ///
 /// Demonstrates the typed enum coverage from `google_firestore_database`
-/// and the sealed `IndexFieldSpec` dispatch from `google_firestore_index`.
+/// and the sealed [FirestoreIndexFieldSpec] of `google_firestore_index`.
 library;
 
 import 'package:terradart_google/firestore.dart';

@@ -1,6 +1,6 @@
 # Monitoring quickstart
 
-End-to-end terradart example for a Cloud Monitoring alert policy. Provisions an alert (`api-p95-latency`) that fires when Cloud Run request latency p95 exceeds 1500ms for 5 minutes. Demonstrates the typed `Comparison`, `Aligner`, `Reducer`, and `EvaluationMissingData` enums and the `AlertStrategy` / `NotificationRateLimit` helper classes.
+End-to-end terradart example for a Cloud Monitoring alert policy. Provisions an alert (`api-p95-latency`) that fires when Cloud Run request latency p95 exceeds 1500ms for 5 minutes. Demonstrates the typed `Comparison`, `Aligner`, `Reducer`, and `EvaluationMissingData` enums and the `MonitoringAlertPolicyAlertStrategy` helper class.
 
 ## Prerequisites
 
@@ -27,17 +27,17 @@ terradart plan
 terradart apply
 ```
 
-Before `terradart apply`, replace the placeholder notification channel path (`projects/your-project/notificationChannels/your-channel-id`) in `lib/main.dart` with a real `channel.id` to a notification channel resource, or with the literal `projects/<p>/notificationChannels/<id>` of an existing channel.
+The alert policy notifies the in-stack `oncall_email` notification channel through its `id`, the server-assigned `projects/<p>/notificationChannels/<id>` path, so nothing needs replacing before `terradart apply`.
 
 ## What gets created
 
 - A monitoring alert policy `api-p95-latency` with:
   - Severity: `AlertSeverity.warning`, combiner: `AlertCombiner.or`.
-  - One `AlertCondition` with `ConditionThreshold` over `metric.type="run.googleapis.com/request_latencies"` for service `api`:
-    - `Comparison.gt`, threshold value 1500, duration 5 minutes (`'300s'`).
+  - One `MonitoringAlertPolicyConditions` entry with a `MonitoringAlertPolicyConditionThreshold` over `metric.type="run.googleapis.com/request_latencies"` for service `api`:
+    - `comparison: .greaterThan`, threshold value 1500, duration 5 minutes (`'300s'`).
     - `EvaluationMissingData.noOp` so missing data does not raise the alert.
     - 60-second alignment via `Aligner.percentile95`, cross-revision reduction via `Reducer.percentile95`, grouped by `resource.label.revision_name`.
-  - `AlertStrategy` with `autoClose: '1800s'` (30-minute auto-resolve) and `NotificationRateLimit(period: '300s')`.
+  - `MonitoringAlertPolicyAlertStrategy` with `autoClose: .literal('1800s')` (30-minute auto-resolve). It sets no notification rate limit: the API accepts one only on log-based alert policies.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
@@ -84,4 +84,4 @@ Before `terradart apply`, replace the placeholder notification channel path (`pr
 
 ## Next steps
 
-- Browse [terradart_google's monitoring source](https://github.com/nozomi-koborinai/terradart/blob/main/packages/terradart_google/lib/src/monitoring/google_monitoring_alert_policy.dart) for the full `AlertCondition` surface (also covers absent / matched_log / MQL / PromQL / SQL condition variants).
+- Browse [terradart_google's monitoring source](https://github.com/nozomi-koborinai/terradart/blob/main/packages/terradart_google/lib/src/monitoring/google_monitoring_alert_policy.dart) for the full `MonitoringAlertPolicyConditions` surface (also covers absent / matched_log / MQL / PromQL / SQL condition variants).

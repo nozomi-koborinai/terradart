@@ -91,13 +91,16 @@ See [FRICTIONS.md](./FRICTIONS.md) for the full context. This is a GCP / Terrafo
 typed reader to `lib/generated/single_project_app.app.dart`, so an app built
 into the container reads the same values without repeating a variable name:
 
-<!-- doc-snippets: skip: imports the reader the recipe's synth writes; tool/check_cookbook.sh analyzes the recipe -->
+<!-- doc-snippets: skip: imports the reader the recipe's synth writes; the same code is lib/app_outputs.dart, which tool/check_cookbook.sh analyzes -->
 ```dart
+// lib/app_outputs.dart
 import 'dart:io';
 
 import 'generated/single_project_app.app.dart';
 
-final outputs = SingleProjectAppOutputs.fromEnvironment(Platform.environment);
+final outputs = SingleProjectAppStackOutputs.fromEnvironment(
+  Platform.environment,
+);
 final instance = outputs.dbInstance; // DB_INSTANCE
 ```
 
@@ -115,7 +118,7 @@ This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:
 - **Concrete `synth()`** — `Stack.synth()` is now a concrete default that writes `tf-out/main.tf.json`. The `@override synth(...)` boilerplate and `dart:convert` import are gone from the Stack subclass.
 - **`variable<String>('name', sensitive: true)`** — route secrets through Terraform variable blocks (`${var.db_password}`) instead of masking workarounds.
 - **`.principal` getter** — `GoogleServiceAccount.principal` is the account as an `IamPrincipal`, so an IAM binding takes `member: runSa.principal`.
-- **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceServiceContainer`, `CloudRunV2ServiceEnvVar`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyAlertCondition`, etc. Prevents name collisions when importing multiple barrels.
+- **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceContainers`, `CloudRunV2ServiceEnv`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyConditions`, etc. Prevents name collisions when importing multiple barrels.
 - **Enum name polish** — `Comparison.lessThan` (was `.lt`), `Aligner.alignNextOlder` (was `.nextOlder`).
 
 ## D1b — GCS backend

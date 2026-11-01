@@ -1,6 +1,6 @@
 # Cloud Run v2 quickstart
 
-End-to-end terradart example for a Cloud Run v2 Service with a secret-backed environment variable, Serverless VPC Access, and Memorystore (Redis + Memcache) reached over Private Service Access. Provisions a Secret Manager secret, API enablement with propagation sleep, a dedicated VPC with a Private Service Access (PSA) peering, a VPC Access connector, Redis and Memcache instances on that VPC, then a Cloud Run service that consumes the secret via the sealed `EnvVarFromSecret` variant of `EnvVarSource` and routes private-range egress through the connector.
+End-to-end terradart example for a Cloud Run v2 Service with a secret-backed environment variable, Serverless VPC Access, and Memorystore (Redis + Memcache) reached over Private Service Access. Provisions a Secret Manager secret, API enablement with propagation sleep, a dedicated VPC with a Private Service Access (PSA) peering, a VPC Access connector, Redis and Memcache instances on that VPC, then a Cloud Run service that consumes the secret via the `.valueSource` variant of the sealed `CloudRunV2ServiceEnvSource` and routes private-range egress through the connector.
 
 ## Before you apply
 
@@ -40,12 +40,12 @@ terradart apply
 - A Memorystore Redis instance `api-cache` (1 GiB, basic tier) on `app-vpc` with `connect_mode = PRIVATE_SERVICE_ACCESS`.
 - A Memorystore Memcache instance `api-sessions` (1 node, 1 vCPU / 1 GiB) on `app-vpc`.
 - A Cloud Run v2 Service `api` running `gcr.io/cloudrun/hello`:
-  - 1 literal env var: `LOG_LEVEL=info` via `EnvVarFromLiteral`.
-  - 1 secret-backed env var: `DB_PASSWORD` via `EnvVarFromSecret(secret: 'api-db-password', version: 'latest')`.
+  - 1 literal env var: `LOG_LEVEL=info` via `source: .value(.literal('info'))`.
+  - 1 secret-backed env var: `DB_PASSWORD` via `source: .valueSource(.new(secretKeyRef: .new(secret: .literal('api-db-password'), version: .literal('latest'))))`.
   - 1 referenced env var: `REDIS_HOST` from the cache's typed `host` ref (`${google_redis_instance.api_cache.host}`).
-  - 1 HTTP port (8080), `ContainerResources(limits: {'cpu': '1', 'memory': '512Mi'}, ...)`.
-  - `ServiceScaling(minInstanceCount: 0, maxInstanceCount: 4, scalingMode: ScalingMode.automatic)`.
-  - `Ingress.internalLoadBalancer` restricting traffic to internal + load balancer sources.
+  - 1 HTTP port (8080), `CloudRunV2ServiceResources(limits: .literal({'cpu': '1', 'memory': '512Mi'}), ...)`.
+  - `CloudRunV2ServiceScaling(minInstanceCount: .literal(0), maxInstanceCount: .literal(4), scalingMode: .automatic)`.
+  - `ingress: .internalLoadBalancer` restricting traffic to internal + load balancer sources.
   - `template.vpcAccess` pinning the revision to the connector with `VpcAccessEgress.privateRangesOnly`.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
@@ -85,7 +85,7 @@ terradart apply
 }
 ```
 
-The sealed `EnvVarSource` keeps the `env.value` vs. `env.value_source.secret_key_ref` mutual exclusion honest at the type level — each `EnvVar.source` is exactly one of `EnvVarFromLiteral` or `EnvVarFromSecret`.
+The sealed `CloudRunV2ServiceEnvSource` keeps the `env.value` vs. `env.value_source` mutual exclusion honest at the type level: each `CloudRunV2ServiceEnv.source` is exactly one of `.value(...)` or `.valueSource(...)`.
 
 ## Next steps
 

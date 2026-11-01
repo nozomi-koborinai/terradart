@@ -2,15 +2,16 @@
 ///
 /// Defines an `ApiServiceStack` that provisions a Cloud Run v2 Service
 /// (`api`) running `gcr.io/cloudrun/hello`, with:
-/// - 1 literal env var (`LOG_LEVEL=info`) via the sealed `EnvVarFromLiteral`,
-/// - 1 secret-backed env var (`DB_PASSWORD` from Secret Manager) via the
-///   sealed `EnvVarFromSecret`,
+/// - 1 literal env var (`LOG_LEVEL=info`) via `source: .value(...)`,
+/// - 1 secret-backed env var (`DB_PASSWORD` from Secret Manager) via
+///   `source: .valueSource(...)`,
 /// - 1 HTTP port (8080),
-/// - service-level scaling capped at 4 instances (`ServiceScaling`),
+/// - service-level scaling capped at 4 instances
+///   ([CloudRunV2ServiceScaling]),
 /// - ingress restricted to internal + load balancer traffic
-///   (`Ingress.internalLoadBalancer`),
+///   (`ingress: .internalLoadBalancer`),
 ///
-/// demonstrating the sealed `EnvVarSource` dispatch and the typed
+/// demonstrating the sealed [CloudRunV2ServiceEnvSource] and the typed
 /// enum/helper coverage from `google_cloud_run_v2_service`.
 ///
 /// Wave 5 Batch 2 also provisions a companion Cloud Run v2 **Job**
@@ -345,7 +346,7 @@ final class ApiServiceStack extends Stack {
     //
     // Wave 5 Batch 3. `allUsers` + `roles/run.invoker` makes the HTTPS
     // endpoint public; the actual network reach is still gated by
-    // `Ingress.internalLoadBalancer` set on the service above. Use both
+    // `ingress: .internalLoadBalancer` set on the service above. Use both
     // -- IAM allows the call, ingress decides whether the packet ever
     // reaches the IAM check.
 

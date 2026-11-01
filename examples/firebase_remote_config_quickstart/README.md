@@ -1,6 +1,6 @@
 # Firebase Remote Config quickstart
 
-End-to-end terradart example for Firebase Remote Config — dynamic configuration templates with parameters, parameter groups, and conditions. Demonstrates the `RemoteConfigParameter` / `RemoteConfigCondition` / `RemoteConfigDefaultValue` helper-class tree.
+End-to-end terradart example for Firebase Remote Config — dynamic configuration templates with parameters, parameter groups, and conditions. Demonstrates the `FirebaseRemoteConfigRemoteConfigParameter` / `FirebaseRemoteConfigRemoteConfigCondition` / `FirebaseRemoteConfigRemoteConfigDefaultValue` helper-class tree.
 
 ## Before you apply
 
@@ -23,7 +23,8 @@ terradart plan
 ## What gets created
 
 - A `GoogleFirebaseRemoteConfigRemoteConfig` template with:
-  - One parameter (`welcome_message`) with a `RemoteConfigDefaultValue` literal and a conditional value tied to a named condition.
-  - One condition (`ios_users`) with an `expression` that targets the iOS platform.
+  - One condition (`is_japan`) with an `expression` that targets users in Japan.
+  - Two top-level parameters (`enable_new_checkout`, `welcome_banner_text`), each with a `FirebaseRemoteConfigRemoteConfigDefaultValue` and a conditional value tied to `is_japan`.
+  - One parameter group (`feature_flags`) holding `enable_dark_mode`.
 
-`RemoteConfigParameter` is reused at both the top-level `parameters` and `parameter_groups[].parameters` nesting depths — the schema's identical sub-block shape lets the helper class serve both call sites without a separate `GroupedParameter` type.
+`FirebaseRemoteConfigRemoteConfigParameter` is reused at both the top-level `parameters` and `parameter_groups[].parameters` nesting depths: the schema's identical sub-block shape lets one helper class serve both call sites.

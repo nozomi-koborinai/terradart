@@ -65,4 +65,4 @@ The `routing_mode`, `address_type`, `network_tier`, and `ip_version` strings are
 
 ## Next steps
 
-- [dns_quickstart](../dns_quickstart/) — private DNS zone attached to a VPC, demonstrating `DnssecConfig` + DNSSEC enums.
+- [dns_quickstart](../dns_quickstart/) — private DNS zone attached to a VPC through `DnsManagedZonePrivateVisibilityConfig`.
