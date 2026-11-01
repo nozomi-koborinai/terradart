@@ -13,7 +13,7 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
-/// final current = stack.add(DataGoogleProject('current'));
+/// final current = add(DataGoogleProject('current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
 ///   'pubsub_cmek',
 ///   topic: topic.ref,
