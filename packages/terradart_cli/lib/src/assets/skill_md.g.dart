@@ -10,7 +10,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.35.0"
-  terradart-sha256: "998495fd575a6e16f9ba8c270ef95f70e034fce445be16b659c3ed7eaa37ff4b"
+  terradart-sha256: "4afd42278099dfdff77641dc341f770d3ded609c1b1ff7093a47787c7b4fbcf1"
 ---
 
 # TerraDart
@@ -280,9 +280,9 @@ Future<void> main(List<String> args) => runEnvironments(
 
 With environments, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` passed to `runEnvironments`, else the only member. With none of these the command stops and lists the names. An entry point that calls `runStack` ignores `TERRADART_ENV` and takes no `--env`. When `TERRADART_ENV` or `defaultEnv` chose the environment, `apply` and `destroy` ask first unless `--auto-approve` is set; `validate` does not ask. `terradart synth` without `--env` writes every environment. Pick where each environment's state lives:
 
-- **A directory per environment** (the default): `tf-out/<env>`, each with the backend its Stack derives from the member — `GcsBackend(bucket: ..., prefix: ...)`, `S3Backend(bucket: ..., key: ..., region: ...)`, `AzurermBackend(storageAccountName: ..., containerName: ..., key: ...)` or `LocalBackend(path: ...)`, as in `AppStack`.
-- **One directory, partial backend configuration**: the Stack sets `const GcsBackend()` (or `const S3Backend()` or `const AzurermBackend()`), and `runEnvironments(..., dir: (_) => 'tf-out', backendConfig: (env) => ['backend/${env.name}.gcs.tfbackend'])` names a `-backend-config` file or `key=value` pairs per environment; `terradart` runs `init -reconfigure` with them.
-- **One directory, workspaces**: `runEnvironments(..., dir: (_) => 'tf-out', workspace: (env) => env.name)`; `terradart` selects the workspace after `init`, creating it on the first `plan` or `apply`.
+- **A directory per environment** (the default): `tf-out/<env>`, each with the backend its Stack derives from the member (a `GcsBackend`, `S3Backend`, `AzurermBackend` or `LocalBackend`), as in `AppStack`.
+- **One directory, partial backend configuration**: the Stack sets `const GcsBackend()` (or `const S3Backend()` or `const AzurermBackend()`), and `runEnvironments` gets a `dir` that puts every environment in `tf-out` and a `backendConfig` that names a `-backend-config` file (`backend/<env>.gcs.tfbackend`) or `key=value` pairs per environment; `terradart` runs `init -reconfigure` with them.
+- **One directory, workspaces**: `runEnvironments` gets a `dir` that puts every environment in `tf-out` and a `workspace` per environment (its name); `terradart` selects the workspace after `init`, creating it on the first `plan` or `apply`.
 
 Two environments may share a directory only when `backendConfig` or `workspace` tells them apart; `runEnvironments` throws otherwise. `--backend-config` and `--workspace` on the command line extend and override them for one run.
 

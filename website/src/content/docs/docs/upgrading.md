@@ -155,7 +155,7 @@ final class PublisherStack extends Stack {
             .new(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
           ],
         ),
-        dependsOn: [vpc], // was [ResourceDependency(vpc)]
+        dependsOn: [vpc],
         timeouts: const TfTimeouts(create: Duration(minutes: 30)),
         lifecycle: .new(ignoreChanges: .of(['client'])), // was ['client']
       ),
