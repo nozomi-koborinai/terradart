@@ -67,6 +67,7 @@ MigrateSlot _configSlot({
 String _factory(String params) =>
     '''
 final class GoogleThing extends Resource {
+  static const String tfType = 'google_thing';
   GoogleThing(super.localName, {$params, super.lifecycle});
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 }
@@ -191,6 +192,13 @@ List<String> _findings(
   debt: debt,
   usedDebt: usedDebt,
 );
+
+Map<String, dynamic> _ledger(String yaml) {
+  final dir = Directory.systemTemp.createTempSync('unmanifested');
+  addTearDown(() => dir.deleteSync(recursive: true));
+  final file = File('${dir.path}/ledger.yaml')..writeAsStringSync(yaml);
+  return loadUnmanifestedFactories(file);
+}
 
 void main() {
   group('every provider package', () {
@@ -400,7 +408,7 @@ void main() {
       expect(findings.single, contains('no manifest slot builds it'));
     });
 
-    test('a public factory the manifest has no entry for', () {
+    group('a public factory the manifest has no entry for', () {
       final api = WrapperApi.parse([
         _enum,
         _sealed,
@@ -413,29 +421,142 @@ final class GoogleOther extends Resource {
 }
 ''',
       ]);
+
+      List<String> findingsWith(String ledger) => coverageFindings(
+        _manifest(slots),
+        api,
+        unmanifested: _ledger('terradart_test:\n$ledger')['terradart_test']!,
+      );
+
+      test('fails with no ledger entry', () {
+        expect(
+          coverageFindings(_manifest(slots), api).single,
+          contains('GoogleOther: a public factory'),
+        );
+      });
+
+      test('fails on a reason alone', () {
+        expect(
+          findingsWith('  GoogleOther: built through another lane\n').single,
+          contains('GoogleOther'),
+        );
+      });
+
+      test('fails when the named manifest has no entry for the class', () {
+        expect(
+          findingsWith(
+            '  GoogleOther:\n'
+            '    builtBy: terradart_google_beta\n'
+            '    reason: the beta lane builds it\n',
+          ).single,
+          contains('GoogleOther'),
+        );
+      });
+
+      for (final value in ['false', '{}', '[]']) {
+        test('fails on a non-string entry ($value)', () {
+          expect(
+            findingsWith('  GoogleOther: $value\n').single,
+            contains('GoogleOther'),
+          );
+        });
+      }
+
+      test('fails on an empty reason', () {
+        expect(
+          findingsWith('  GoogleOther: ""\n').single,
+          contains('GoogleOther'),
+        );
+      });
+    });
+
+    test('a scalar or passthrough input with no manifest slot', () {
+      final findings = _findings(
+        '$_params, TfArg<String>? label, '
+        'TfArg<Map<String, dynamic>>? customization',
+        slots,
+      );
+      expect(findings, hasLength(2));
+      expect(findings, everyElement(contains('no manifest slot builds it')));
+    });
+
+    test('a scalar input the manifest builds with another type', () {
+      final findings = _findings('$_params, TfArg<int>? size', [
+        ...slots,
+        const MigrateSlot(
+          tfName: 'size',
+          dartName: 'size',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ]);
+      expect(findings.single, contains('GoogleThing.size'));
+    });
+
+    test('a factory whose manifest entry names another Terraform type', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(_params).replaceFirst("'google_thing'", "'google_thing_v2'"),
+      ]);
       expect(
         coverageFindings(_manifest(slots), api).single,
-        contains('GoogleOther: a public factory'),
+        contains('google_thing_v2'),
       );
-      final used = <String>{};
+    });
+
+    test('a data source the manifest records as a resource', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(_params).replaceFirst('extends Resource', 'extends Data'),
+      ]);
       expect(
-        coverageFindings(
-          _manifest(slots),
-          api,
-          unmanifested: const {'GoogleOther': 'built through another lane'},
-          usedUnmanifested: used,
+        coverageFindings(_manifest(slots), api).single,
+        contains('GoogleThing'),
+      );
+    });
+
+    test('a factory behind an intermediate class with no entry', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(_params),
+        '''
+abstract class GoogleBase extends Resource {
+  GoogleBase(super.localName, {super.lifecycle});
+}
+final class GoogleSub extends GoogleBase {
+  static const String tfType = 'google_sub';
+  GoogleSub(super.localName, {TfArg<String>? name, super.lifecycle});
+}
+''',
+      ]);
+      expect(
+        coverageFindings(_manifest(slots), api).single,
+        contains('GoogleSub'),
+      );
+    });
+
+    test('a sealed choice whose Terraform keys are swapped', () {
+      final findings = _findings(_params, [
+        _tierSlot,
+        _tiersSlot,
+        const MigrateSlot(
+          tfName: '',
+          dartName: 'source',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          merged: true,
+          variants: {'image': 'SourceDisk', 'disk': 'SourceImage'},
         ),
-        isEmpty,
-      );
-      expect(used, {'GoogleOther'});
-      expect(
-        coverageFindings(
-          _manifest(slots),
-          api,
-          unmanifested: const {'GoogleOther': ''},
-        ).single,
-        contains('GoogleOther: a public factory'),
-      );
+        _networkSlot,
+      ]);
+      expect(findings.single, contains('GoogleThing.source'));
     });
 
     test('a typed input with no manifest slot', () {
