@@ -34,6 +34,6 @@ terradart apply
   - `point_in_time_recovery_enablement = POINT_IN_TIME_RECOVERY_ENABLED` (7-day PITR window).
   - `delete_protection_state = DELETE_PROTECTION_ENABLED` (`terradart destroy` refuses until you flip this).
   - `concurrency_mode = OPTIMISTIC` (Native mode default).
-- `google_firestore_index.messages_by_user_time` -- composite index on the `messages` collection ordered by `user_id ASC, created_at DESC`, modeled via the sealed `FirestoreIndexFieldSpec` (`spec: .order(FirestoreIndexOrder.ascending)` / `.descending`).
+- `google_firestore_index.messages_by_user_time` -- composite index on the `messages` collection ordered by `user_id ASC, created_at DESC`, modeled via the sealed `FirestoreIndexFieldSpec` (the `.order(...)` variant, with `FirestoreIndexOrder.ascending` or `.descending`).
 
 The sealed `FirestoreIndexFieldSpec` keeps the Firestore index `order` / `array_config` / `search_config` / `vector_config` mutual exclusion honest at the type level: each `FirestoreIndexField.spec` is exactly one of `.order(...)`, `.arrayConfig(...)`, `.searchConfig(...)` or `.vectorConfig(...)`.

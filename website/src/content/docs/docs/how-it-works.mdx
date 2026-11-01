@@ -49,7 +49,7 @@ graph LR
 
 `synth()` is pure. It walks the resources you registered with `add(...)`, applies lifecycle wiring, dedups, and produces a `SynthResult` whose `tfJson` field carries the Terraform JSON tree.
 
-`writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. When the Stack was constructed with `appExports: AppExports('lib/generated/orders_stack.app.dart')` (a path of your choosing), it also writes that generated Dart file, rewritten in full on every synth. Synth runs before any write, so a Stack that cannot synthesize throws with nothing written — the failure mode is atomic, never partial.
+`writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. When the Stack was constructed with an `appExports` file (a path of your choosing, as in the example below), it also writes that generated Dart file, rewritten in full on every synth. Synth runs before any write, so a Stack that cannot synthesize throws with nothing written — the failure mode is atomic, never partial.
 
 ### Synth issues
 
@@ -121,7 +121,7 @@ graph LR
 
 - **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', service.uri, description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field.
 - **`addConstant`** declares a `static const` on the generated `<StackName>Constants` class, for a value known at synth. The value is a sealed `AppConstant<T>`, picked with a dot shorthand:
-  - `.ref(topic.name)` — the literal an attribute of the Stack is set to (`name: .literal('orders-prod')`), so the string is written once. Every input has a getter named after its attribute (`topic.name` for `name`), and a `RefTo` input of another resource takes the resource's `ref` (`topic: topic.ref`, as in the example below). Synth reports an `UnresolvableConstant` issue that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
+  - `.ref(topic.name)` — the literal an attribute of the Stack is set to (the topic's `orders-prod` name in the example below), so the string is written once. Every input has a getter named after its attribute (`topic.name` for `name`), and a `RefTo` input of another resource takes the resource's `ref`, as the subscription's `topic` does in the example below. Synth reports an `UnresolvableConstant` issue that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
   - `.value(5)` — a value that belongs to no resource, such as an API version.
   - `.fromEnvironment('API_BASE_URL')` — a `String.fromEnvironment` read at the app's compile time.
 
@@ -233,7 +233,7 @@ add(AwsLambdaFunction(
 ));
 ```
 
-`outputEnvironment(only: [...])` picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.
+`outputEnvironment` takes an `only` list that picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.
 
 ### Building a client with them
 

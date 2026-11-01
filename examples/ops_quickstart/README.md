@@ -35,8 +35,8 @@ terradart apply
 
 - A BigQuery dataset `audit_logs` in `asia-northeast1` as the sink destination.
 - A logging project sink `audit-to-bq` routing entries matching `logName:"cloudaudit.googleapis.com"`:
-  - `LoggingProjectSinkBigqueryOptions(usePartitionedTables: .literal(true))` so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
-  - `uniqueWriterIdentity: .literal(true)` — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
+  - `LoggingProjectSinkBigqueryOptions` with partitioned tables, so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
+  - A unique writer identity — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
 - A project-level `GoogleLoggingProjectExclusion` `drop-dns-noise` dropping `resource.type="dns_query"` entries before any sink sees them.
 
 ## Expected `tf-out/main.tf.json` (excerpt)

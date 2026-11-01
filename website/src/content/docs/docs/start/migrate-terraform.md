@@ -68,9 +68,9 @@ terradart:
   engine: terraform
 ```
 
-`terradart plan` and `apply` then run the `terraform` you already use, on the state it wrote. The section says `engine: tofu` instead when the tree was run with OpenTofu.
+`terradart plan` and `apply` then run the `terraform` you already use, on the state it wrote. The section sets the `engine` to `tofu` instead when the tree was run with OpenTofu.
 
-To leave Terraform behind, change it to `engine: tofu`: `terradart` downloads a checksum-verified OpenTofu when none is on your `PATH`, and OpenTofu rewrites the state for itself at the next apply — after which Terraform may not read it back, so decide this for the whole team. Without the section, `terradart` reads the state before it runs; when the other engine wrote it, it asks in a terminal, and without one stops:
+To leave Terraform behind, change the `engine` to `tofu`: `terradart` downloads a checksum-verified OpenTofu when none is on your `PATH`, and OpenTofu rewrites the state for itself at the next apply — after which Terraform may not read it back, so decide this for the whole team. Without the section, `terradart` reads the state before it runs; when the other engine wrote it, it asks in a terminal, and without one stops:
 
 ```text
 terradart: Stopped before running OpenTofu on a state Terraform wrote. Pass --engine terraform to keep Terraform (or set terradart.engine: terraform in pubspec.yaml), or --engine tofu to move the state to OpenTofu.

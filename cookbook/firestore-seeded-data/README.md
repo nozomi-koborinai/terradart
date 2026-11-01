@@ -82,7 +82,7 @@ terradart destroy
 
 Expected: `Destroy complete! Resources: 15 destroyed.` in a few seconds. The `(default)` database deletes in ~2s.
 
-The recipe sets `deletionPolicy: .literal('DELETE')` on the database resource — without it, the provider's documented default (`ABANDON`) leaves the database in place on destroy. See [`FRICTIONS.md`](FRICTIONS.md) §P1.
+The recipe sets the database resource's deletion policy to `DELETE` — without it, the provider's documented default (`ABANDON`) leaves the database in place on destroy. See [`FRICTIONS.md`](FRICTIONS.md) §P1.
 
 ## Recovery: `(default)` database already exists
 

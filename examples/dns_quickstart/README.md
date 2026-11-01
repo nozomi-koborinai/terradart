@@ -56,7 +56,7 @@ terradart apply
 }
 ```
 
-`visibility: .private` is a typed enum member, so the Dart side stays in enum-land all the way to JSON emission.
+The zone's `.private` visibility is a typed enum member, so the Dart side stays in enum-land all the way to JSON emission.
 
 ## Next steps
 

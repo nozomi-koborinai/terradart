@@ -19,7 +19,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 0.34.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were.
 
 1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart pub global activate terradart_cli` for the new command.
-2. **Optional: name a default environment.** `runEnvironments(args, Env.values, build, defaultEnv: Env.dev)` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
+2. **Optional: name a default environment.** Passing a `defaultEnv` member to `runEnvironments` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
 3. **Appwrite Stacks run on Terraform.** The `terradart` command now picks the `terraform` on `PATH` for a Stack that uses `terradart_appwrite`, and stops before `init` when there is none or OpenTofu is asked for.
 4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set `terradart: engine:` in `pubspec.yaml`, in CI.
 
@@ -67,30 +67,37 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 | Before (0.31) | After (0.32) |
 | --- | --- |
 | `GooglePubsubTopic(localName: 'orders', ...)` | `GooglePubsubTopic('orders', ...)` |
-| `topic.nameRef`, `labels: .ref(topic.labels)` | `topic.name`, `labels: topic.labels` |
-| `routingMode: .literal(.regional)` | `routingMode: .regional` |
-| `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then `location: region` |
-| `dependsOn: [ResourceDependency(api)]`, `addData(...)` | `dependsOn: [api]`, `add(...)` |
-| `provider: 'google.eu'` | `provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'));` |
-| `setBackend(...)`, `TfTimeouts(create: '30m')` | `super(backend: ...)`, `TfTimeouts(create: Duration(minutes: 30))` |
+| `topic.nameRef`, `labels: .ref(topic.labels)` | `topic.name`, and the getter itself (the `orders-dlq` labels below) |
+| `routingMode: .literal(.regional)` | the member itself (the network's routing mode below) |
+| `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then the handle itself (the service's location below) |
+| `dependsOn: [ResourceDependency(api)]`, `addData(...)` | the resource itself (the service's `dependsOn` below), `add(...)` |
+| `provider: 'google.eu'` | the handle `addProvider(GoogleProvider(alias: 'eu'))` returns (the EU topic's provider below) |
+| `setBackend(...)`, `TfTimeouts(create: '30m')` | the `backend` of the `super(...)` call, and a `Duration` per `TfTimeouts` operation (the service's timeouts below) |
 | `Apis.enable(this, barrels: [Barrels.cloudRun])` | `enableApis([.cloudRun])` |
-| `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | `member: sa.principal`, `member: .user('a@example.com')` |
-| `name: .ref(api.nameRef), location: ...` on an IAM member | `service: api.ref` |
+| `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | the account's `principal`, or `.user('a@example.com')` (the two topic IAM members below) |
+| `name: .ref(api.nameRef), location: ...` on an IAM member | the parent's `ref` (the service IAM member below) |
 | `password: .literal('...')` on a sensitive argument | a variable or an expression; `Sensitive<T>` has no `.literal` |
-| `ignoreChanges: ['target_size']` | `ignoreChanges: .of(['target_size'])` |
+| `ignoreChanges: ['target_size']` | `.of([...])` (the service's lifecycle below) |
 | `on StateError` / `on SensitiveLiteralError` around `synth()` | `on SynthException`, or `stack.validate()` |
 
 Together:
 
 ```dart
 // lib/publisher_stack.dart
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
 final class PublisherStack extends Stack {
   PublisherStack({required String projectId})
-    : super(providers: [GoogleProvider(project: projectId)]) {
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        backend: const GcsBackend(bucket: 'my-tf-state', prefix: 'publisher'),
+      ) {
+    final region = variable<String>('region');
+    final eu = addProvider(GoogleProvider(alias: 'eu', region: 'europe-west1'));
     final topic = add(
       GooglePubsubTopic(
         'orders',
@@ -103,6 +110,13 @@ final class PublisherStack extends Stack {
         'orders-dlq',
         name: .literal('orders-dlq'),
         labels: topic.labels, // was .ref(topic.labels)
+      ),
+    );
+    add(
+      GooglePubsubTopic(
+        'orders-eu',
+        name: .literal('orders-eu'),
+        provider: eu, // was 'google.eu'
       ),
     );
     final publisher = add(
@@ -122,6 +136,36 @@ final class PublisherStack extends Stack {
         topic: topic.ref,
         role: .literal('roles/pubsub.viewer'),
         member: .user('a@example.com'), // was .literal('user:a@example.com')
+      ),
+    );
+    final vpc = add(
+      GoogleComputeNetwork(
+        'vpc',
+        name: .literal('orders-vpc'),
+        routingMode: .regional, // was .literal(.regional)
+      ),
+    );
+    final api = add(
+      GoogleCloudRunV2Service(
+        'api',
+        name: .literal('orders-api'),
+        location: region, // was TfArg.variable('region')
+        template: CloudRunV2ServiceTemplate(
+          containers: [
+            .new(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
+          ],
+        ),
+        dependsOn: [vpc], // was [ResourceDependency(vpc)]
+        timeouts: const TfTimeouts(create: Duration(minutes: 30)),
+        lifecycle: .new(ignoreChanges: .of(['client'])), // was ['client']
+      ),
+    );
+    add(
+      GoogleCloudRunV2ServiceIamMember(
+        'invoke',
+        service: api.ref, // was name: .ref(api.nameRef), location: ...
+        role: .literal('roles/run.invoker'),
+        member: publisher.principal,
       ),
     );
     addOutput('orders_topic_id', topic.id);

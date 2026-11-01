@@ -15,10 +15,10 @@ Each IAM resource has a slightly different identity surface; the factory takes t
 
 | Resource | Identity attribute(s) | terradart argument |
 |---|---|---|
-| `google_pubsub_topic_iam_member` | `topic` (name) | `topic: topic.ref` |
-| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription: subscription.ref` |
-| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue: queue.ref` |
-| `google_secret_manager_secret_iam_member` | `secret_id` | `secret: secret.ref` |
+| `google_pubsub_topic_iam_member` | `topic` (name) | `topic`, given the topic's `ref` |
+| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription`, given the subscription's `ref` |
+| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue`, given the queue's `ref` |
+| `google_secret_manager_secret_iam_member` | `secret_id` | `secret`, given the secret's `ref` |
 
 Each grant also carries the parent's `project`, read off the parent, so it cannot drift from the resource it names.
 

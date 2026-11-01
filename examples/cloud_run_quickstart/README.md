@@ -40,12 +40,12 @@ terradart apply
 - A Memorystore Redis instance `api-cache` (1 GiB, basic tier) on `app-vpc` with `connect_mode = PRIVATE_SERVICE_ACCESS`.
 - A Memorystore Memcache instance `api-sessions` (1 node, 1 vCPU / 1 GiB) on `app-vpc`.
 - A Cloud Run v2 Service `api` running `gcr.io/cloudrun/hello`:
-  - 1 literal env var: `LOG_LEVEL=info` via `source: .value(.literal('info'))`.
-  - 1 secret-backed env var: `DB_PASSWORD` via `source: .valueSource(.new(secretKeyRef: .new(secret: .literal('api-db-password'), version: .literal('latest'))))`.
+  - 1 literal env var: `LOG_LEVEL=info` through the `.value(...)` variant of its source.
+  - 1 secret-backed env var: `DB_PASSWORD` through the `.valueSource(...)` variant, which reads the `latest` version of the `api-db-password` secret.
   - 1 referenced env var: `REDIS_HOST` from the cache's typed `host` ref (`${google_redis_instance.api_cache.host}`).
-  - 1 HTTP port (8080), `CloudRunV2ServiceResources(limits: .literal({'cpu': '1', 'memory': '512Mi'}), ...)`.
-  - `CloudRunV2ServiceScaling(minInstanceCount: .literal(0), maxInstanceCount: .literal(4), scalingMode: .automatic)`.
-  - `ingress: .internalLoadBalancer` restricting traffic to internal + load balancer sources.
+  - 1 HTTP port (8080), and `CloudRunV2ServiceResources` limits of 1 CPU and `512Mi` of memory.
+  - `CloudRunV2ServiceScaling` from 0 to 4 instances, with the `.automatic` scaling mode.
+  - Ingress set to `.internalLoadBalancer`, restricting traffic to internal + load balancer sources.
   - `template.vpcAccess` pinning the revision to the connector with `VpcAccessEgress.privateRangesOnly`.
 
 ## Expected `tf-out/main.tf.json` (excerpt)

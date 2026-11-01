@@ -35,10 +35,10 @@ terradart apply
 
 - A BigQuery dataset `analytics_prod` in `asia-northeast1`, friendly name `Production analytics`.
 - Default table expiration: 30 days (`30 * 24 * 60 * 60 * 1000` ms).
-- Storage billing model: `storageBillingModel: .logical` → `LOGICAL`.
+- Storage billing model: the `.logical` member → `LOGICAL`.
 - Two `BigqueryDatasetAccess` entries:
-  - `.userByEmail(userByEmail: reader.email, role: .literal('OWNER'))`, the in-stack reader service account.
-  - `.specialGroup(specialGroup: .allAuthenticatedUsers, role: .literal('READER'))`.
+  - `.userByEmail(...)` with role `OWNER`, for the in-stack reader service account's email.
+  - `.specialGroup(...)` with role `READER`, for all authenticated users.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 

@@ -69,4 +69,4 @@ terradart's curated factories use **additive** `_iam_member` resources only -- t
 
 ## Note on Cloud Tasks IAM identity
 
-`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory takes the queue itself (`queue: queue.ref`) and emits all three keys from it — `name`, `location` and `project` — so the grant cannot drift from the queue it names.
+`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory takes the queue itself, through its `ref`, and emits all three keys from it — `name`, `location` and `project` — so the grant cannot drift from the queue it names.

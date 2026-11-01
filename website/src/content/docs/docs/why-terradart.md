@@ -75,7 +75,7 @@ add(GoogleBigqueryDataset(
 ));
 ```
 
-The compiler enforces that exactly one variant is constructed per entry. Each variant is a factory constructor on the sealed type (`BigqueryDatasetAccess.userByEmail`), so a Dart 3.10 dot shorthand picks it and IDE completion lists the choices. A sealed argument is named for what its members are alternatives of, like a protobuf `oneof`: `AwsLambdaFunction(code: .filename(...))`, `CloudflareDnsRecord(content: .content(...))`.
+The compiler enforces that exactly one variant is constructed per entry. Each variant is a factory constructor on the sealed type (`BigqueryDatasetAccess.userByEmail`), so a Dart 3.10 dot shorthand picks it and IDE completion lists the choices. A sealed argument is named for what its members are alternatives of, like a protobuf `oneof`: an `AwsLambdaFunction` takes its `code`, a `CloudflareDnsRecord` its `content`, each through a variant named after the Terraform argument it sets.
 
 ### Final classes for Stack subclasses
 

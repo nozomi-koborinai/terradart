@@ -34,10 +34,10 @@ The alert policy notifies the in-stack `oncall_email` notification channel throu
 - A monitoring alert policy `api-p95-latency` with:
   - Severity: `AlertSeverity.warning`, combiner: `AlertCombiner.or`.
   - One `MonitoringAlertPolicyConditions` entry with a `MonitoringAlertPolicyConditionThreshold` over `metric.type="run.googleapis.com/request_latencies"` for service `api`:
-    - `comparison: .greaterThan`, threshold value 1500, duration 5 minutes (`'300s'`).
+    - Comparison `.greaterThan`, threshold value 1500, duration 5 minutes (`'300s'`).
     - `EvaluationMissingData.noOp` so missing data does not raise the alert.
     - 60-second alignment via `Aligner.percentile95`, cross-revision reduction via `Reducer.percentile95`, grouped by `resource.label.revision_name`.
-  - `MonitoringAlertPolicyAlertStrategy` with `autoClose: .literal('1800s')` (30-minute auto-resolve). It sets no notification rate limit: the API accepts one only on log-based alert policies.
+  - `MonitoringAlertPolicyAlertStrategy` that auto-closes after `1800s` (30-minute auto-resolve). It sets no notification rate limit: the API accepts one only on log-based alert policies.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
