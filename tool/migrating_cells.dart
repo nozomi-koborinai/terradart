@@ -358,6 +358,7 @@ const migratingTitle = '# Migrating terradart';
 Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
+  String? ledger,
 }) async {
   MigratingReport failed(List<String> failures) => (
     failures: failures,
