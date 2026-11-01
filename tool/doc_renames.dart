@@ -45,7 +45,6 @@ import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
-import 'lane_surface.dart' show docSnippetPackages;
 import 'migrating_cells.dart' show lastRelease;
 
 const migratingPath = 'MIGRATING.md';
@@ -180,7 +179,13 @@ Map<String, int> migratingSymbols(String md) {
 /// The declarations of a set of Dart libraries: types, the members each
 /// declares, its supertypes, and every declared name.
 final class PublicApi {
-  PublicApi._(this.types, this.members, this.supertypes, this.names);
+  PublicApi._(
+    this.types,
+    this.members,
+    this.supertypes,
+    this.names,
+    this.topLevel,
+  );
 
   final Set<String> types;
   final Map<String, Set<String>> members;
@@ -188,6 +193,9 @@ final class PublicApi {
 
   /// Every declared name: members, top-level declarations, parameters.
   final Set<String> names;
+
+  /// The top-level functions, getters and variables.
+  final Set<String> topLevel;
 
   /// The declarations of the `.dart` files under [dirs].
   factory PublicApi.read(Iterable<String> dirs) {
@@ -208,6 +216,7 @@ final class PublicApi {
       collector.members,
       collector.supertypes,
       collector.names,
+      collector.topLevel,
     );
   }
 
@@ -238,10 +247,7 @@ final class PublicApi {
   /// The packages of the last release on pub.dev, fetched into a scratch
   /// package.
   static ({String version, PublicApi api}) released(String root) {
-    final packages = docSnippetPackages(
-      File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
-    );
-    final release = lastRelease(root, packages);
+    final release = lastRelease(root, docCommentPackages);
     final dir = Directory.systemTemp.createTempSync('doc_renames_release_');
     try {
       File(p.join(dir.path, 'pubspec.yaml')).writeAsStringSync(
@@ -314,9 +320,11 @@ final class PublicApi {
     return members['Object']?.contains(member) ?? false;
   }
 
-  /// Every type and `Type.member` these libraries declare, private ones
-  /// aside.
+  /// Every type, `Type.member` and top-level name these libraries declare,
+  /// private ones aside.
   Set<String> get symbols => {
+    for (final n in topLevel)
+      if (!n.startsWith('_')) n,
     for (final t in types)
       if (!t.startsWith('_')) ...[
         t,
@@ -331,6 +339,7 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   final members = <String, Set<String>>{};
   final supertypes = <String, Set<String>>{};
   final names = <String>{};
+  final topLevel = <String>{};
 
   void _type(
     String name,
@@ -459,12 +468,15 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   @override
   void visitFunctionDeclaration(FunctionDeclaration node) {
     names.add(node.name.lexeme);
+    if (node.parent is CompilationUnit) topLevel.add(node.name.lexeme);
     super.visitFunctionDeclaration(node);
   }
 
   @override
   void visitTopLevelVariableDeclaration(TopLevelVariableDeclaration node) {
-    names.addAll([for (final v in node.variables.variables) v.name.lexeme]);
+    final declared = [for (final v in node.variables.variables) v.name.lexeme];
+    names.addAll(declared);
+    topLevel.addAll(declared);
     super.visitTopLevelVariableDeclaration(node);
   }
 
