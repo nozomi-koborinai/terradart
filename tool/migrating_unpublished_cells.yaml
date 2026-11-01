@@ -23,36 +23,6 @@
   package: terradart_azure
   reason: >-
     terradart_azure has no release on pub.dev; its unpublished API took the `action` value as a string before Azure value sets became enums.
-- before: 'ApplicationGatewayProtocol'
-  after: '`ApplicationGatewayProbeProtocol`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'AutomanageConfigurationRetentionDuration'
-  after: '`AutomanageConfigurationDailyScheduleRetentionDuration`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'AutomanageConfigurationRetentionDuration'
-  after: '`AutomanageConfigurationWeeklyScheduleRetentionDuration`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'CdnFrontdoorFirewallPolicyAction'
-  after: '`CdnFrontdoorFirewallPolicyRuleAction`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'FirewallPolicyRuleCollectionGroupAction'
-  after: '`FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'KubernetesClusterMode'
-  after: '`KubernetesClusterNodeProvisioningProfileMode`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
 - before: 'MonitorScheduledQueryRulesAlertV2Operator'
   after: '`MonitorScheduledQueryRulesAlertV2DimensionOperator`'
   package: terradart_azure
@@ -65,11 +35,6 @@
     terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
 - before: 'WebApplicationFirewallPolicyAction'
   after: '`WebApplicationFirewallPolicyRuleAction`'
-  package: terradart_azure
-  reason: >-
-    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
-- before: 'WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName'
-  after: '`WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName`'
   package: terradart_azure
   reason: >-
     terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.

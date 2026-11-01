@@ -1951,18 +1951,12 @@ are unchanged. Only the type name moves. A dot shorthand (`.new(...)`,
 
 | Before | After |
 |---|---|
-| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |
-| `AutomanageConfigurationRetentionDuration` | `AutomanageConfigurationDailyScheduleRetentionDuration` |
-| `AutomanageConfigurationRetentionDuration` | `AutomanageConfigurationWeeklyScheduleRetentionDuration` |
-| `CdnFrontdoorFirewallPolicyAction` | `CdnFrontdoorFirewallPolicyRuleAction` |
 | `DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation` | `DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation` |
 | `DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig` | `DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig` |
 | `DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig` | `DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig` |
 | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions` |
 | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions` |
-| `FirewallPolicyRuleCollectionGroupAction` | `FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction` |
 | `HostnameTlsSettingSettingId` | `HostnameTlsSettingName` |
-| `KubernetesClusterMode` | `KubernetesClusterNodeProvisioningProfileMode` |
 | `MonitorScheduledQueryRulesAlertV2Operator` | `MonitorScheduledQueryRulesAlertV2DimensionOperator` |
 | `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
 | `ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration` | `ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration` |
@@ -1970,7 +1964,6 @@ are unchanged. Only the type name moves. A dot shorthand (`.new(...)`,
 | `ResiliencehubResiliencyPolicyPolicyRegion` | `ResiliencehubResiliencyPolicyRegional` |
 | `Wafv2WebAclRuleRuleLabel` | `Wafv2WebAclRuleNamed` |
 | `WebApplicationFirewallPolicyAction` | `WebApplicationFirewallPolicyRuleAction` |
-| `WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName` | `WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName` |
 | `ZeroTrustGatewaySettingsSettingsMode` | `ZeroTrustGatewaySettingsProxyInspectionMode` |
 
 `Wafv2WebAclRuleNamed` is the `{name}` block that `rule_label`,
