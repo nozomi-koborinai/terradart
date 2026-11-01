@@ -2,7 +2,8 @@
 // never in an inline code span.
 //
 // A fragment is a backtick span outside a fence of a document
-// tool/doc_snippets.dart compiles, of the form `name: value`, where `name`
+// tool/doc_snippets.dart compiles that holds a `name: value` argument, on
+// its own or inside a call (`Foo(name: value)`), where `name`
 // is a lowerCamel argument and `value` is Dart: a dot shorthand
 // (`.literal('x')`), a constructor or static call (`Foo(...)`, `Foo.bar`),
 // a getter read (`scope.ref`), a variable (`memory`), a closure, a raw
@@ -30,7 +31,7 @@ import 'doc_snippets.dart' show snippetDocuments;
 final _span = RegExp(r'(?<!`)`([^`\n]+)`(?!`)');
 final _fence = RegExp(r'^\s*(`{3,}|~{3,})');
 final _fragment = RegExp(
-  r'''^[a-z][A-Za-z0-9]*: (\.|r'|\[|\(|const\b|[A-Z]\w*[(.<]|[a-z]\w*\.[a-z]|(?!(true|false|null)$)[a-z][A-Za-z0-9]*$)''',
+  r'''(^|[(,{\[]\s*)[a-z][A-Za-z0-9]*: (\.|r'|\[|\(|const\b|[A-Z]\w*[(.<]|[a-z]\w*\.[a-z]|(?!(true|false|null)\b)[a-z][A-Za-z0-9]*(?=$|\s*[,)\]}]))''',
 );
 
 /// The fragments of [text] outside fences and before cells, with their line.

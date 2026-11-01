@@ -12,7 +12,8 @@ void main() {
     test('reads Dart argument spans, not keys, scalars or before cells', () {
       const text = '''
 Pass `role: role.ref`, `name: .literal('x')`, `memorySize: memory` and
-`dir: (env) => env.name`, not `skip_wait: true`, `regions: 2`,
+`dir: (env) => env.name`, `Bucket('b', labels: other.labels)`, not
+`skip_wait: true`, `regions: 2`, `Bucket(user:a)`,
 `deriveEnums: true` or `env: dev (default)`.
 
 ```dart
@@ -28,7 +29,8 @@ final inFence = `ignored: .literal(1)`;
         (line: 1, fragment: "name: .literal('x')"),
         (line: 1, fragment: 'memorySize: memory'),
         (line: 2, fragment: 'dir: (env) => env.name'),
-        (line: 11, fragment: 'labels: other.labels'),
+        (line: 2, fragment: "Bucket('b', labels: other.labels)"),
+        (line: 12, fragment: 'labels: other.labels'),
       ]);
     });
   });
