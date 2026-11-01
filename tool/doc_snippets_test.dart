@@ -145,36 +145,66 @@ final topic = add(GooglePubsubTopic(
     },
   );
 
-  test('a doc-comment fence may read values it does not build', () async {
-    final root = Directory.current.path;
-    final tmp = await Directory.systemTemp.createTemp('doc_snippets_lib_');
-    addTearDown(() => tmp.deleteSync(recursive: true));
-    final file = p.join(tmp.path, 'a.dart');
-    File(file).writeAsStringSync('''
+  group('a doc-comment fence declares every value it reads', () {
+    Future<List<String>> check(String body) async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_lib_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'a.dart')).writeAsStringSync('''
 /// ```dart
-/// final build = GoogleFirebaseAppHostingBuild(
-///   'v1',
-///   backend: backend.ref,
-///   location: .literal(region),
-///   buildId: .literal('v1'),
-///   source: .container(
-///     FirebaseAppHostingBuildContainer(image: .literal('img')),
-///   ),
-/// );
-/// ```
-///
-/// ```dart
-/// add(GooglePubsubTopic('o', nmae: .literal(topicName)));
+$body
 /// ```
 final class A {}
 ''');
-    final failures = await checkDocSnippets(root, docs: [], libs: [tmp.path]);
-    final rel = p.relative(file, from: root);
-    expect(failures, everyElement(startsWith('$rel:14: ')));
-    expect(
-      failures,
-      contains(startsWith("$rel:14: The named parameter 'nmae' isn't defined")),
-    );
+      return checkDocSnippets(root, docs: [], libs: [tmp.path]);
+    }
+
+    test('a fence that builds what it reads compiles', () async {
+      expect(
+        await check('''
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// add(GoogleComputeGlobalAddress(
+///   'psa',
+///   name: .literal('psa'),
+///   network: vpc.ref,
+/// ));'''),
+        isEmpty,
+      );
+    });
+
+    for (final (name, body) in [
+      (
+        'an undeclared value',
+        "/// add(GooglePubsubTopic('o', name: .literal(topicName)));",
+      ),
+      (
+        'another resource\'s ref',
+        '''
+/// add(GoogleBigtableAppProfile(
+///   'p',
+///   appProfileId: .literal('p'),
+///   instance: bucket.ref,
+///   routing: .multiClusterRoutingUseAny(.literal(true)),
+/// ));''',
+      ),
+      (
+        'a string getter in a number slot',
+        '''
+/// add(GoogleComputeGlobalAddress(
+///   'psa',
+///   name: .literal('psa'),
+///   prefixLength: vpc.name,
+/// ));''',
+      ),
+      (
+        'a getter no type declares',
+        "/// add(GooglePubsubTopic('o', name: primary.notARealGetter));",
+      ),
+    ]) {
+      test('$name fails', () async {
+        expect(await check(body), contains(contains("Undefined name '")));
+      });
+    }
   });
 
   test(
@@ -202,7 +232,7 @@ final class A {}
     },
   );
 
-  group('a doc-comment stand-in is a value, not an API', () {
+  group('a doc-comment fence may not call through an undeclared name', () {
     Future<List<String>> check(String body) async {
       final root = Directory.current.path;
       final tmp = await Directory.systemTemp.createTemp('doc_snippets_dyn_');

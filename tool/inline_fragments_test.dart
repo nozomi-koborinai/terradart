@@ -59,6 +59,39 @@ final inFence = `ignored: .literal(1)`;
       );
     });
 
+    test('a tight colon with a Dart value', () {
+      expect(
+        found("`service:apiService.ref`, `name:makeName()`, `proxied:true`\n"),
+        hasLength(3),
+      );
+    });
+
+    test('a tight colon with a URI, principal, action or port is none', () {
+      expect(
+        found(
+          '`dart:io`, `serviceAccount:sa@p.iam.gserviceaccount.com`, '
+          '`iam:PassRole`, `localhost:8080`, `user:alice.smith@example.com`\n',
+        ),
+        isEmpty,
+      );
+    });
+
+    test('a span continued on a line starting with #, | or 2.', () {
+      for (final text in [
+        "Pass `name:\n#.literal('x')` here.\n",
+        "Pass `name:\n| .literal('x')` here.\n",
+        "Pass `name:\n2. .literal('x')` here.\n",
+        "Pass `name:\n####### .literal('x')` here.\n",
+      ]) {
+        expect(found(text), hasLength(1), reason: text);
+      }
+    });
+
+    test('a span inside a blockquote', () {
+      expect(found("> Pass `name\n> : .literal('x')` here.\n"), hasLength(1));
+      expect(found("> > Pass `name: .literal('x')` here.\n"), hasLength(1));
+    });
+
     test('a quoted string', () {
       expect(found('`name: \'orders\'` and `name: "orders"`\n'), hasLength(2));
     });

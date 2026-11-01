@@ -130,6 +130,32 @@ void main() {
     }
   });
 
+  test('a CRLF, blockquote or list fence is an excerpt', () {
+    const stale = '{"provider": {"google": [{"project": "stale"}]}}';
+    for (final text in [
+      '# Example\r\n\r\n```json\r\n$stale\r\n```\r\n',
+      '# Example\n\n> ```json\n> $stale\n> ```\n',
+      '# Example\n\n- ```json\n  $stale\n  ```\n',
+      '# Example\n\n1. ```json\n   $stale\n   ```\n',
+      '# Example\n\n- item\n\n    ```json\n    $stale\n    ```\n',
+    ]) {
+      expect(excerptMismatches('README.md', text, synth), [
+        contains(r'$.provider.google[0].project'),
+      ], reason: text);
+    }
+  });
+
+  test('a four-space fence outside a list is indented code', () {
+    expect(
+      excerptMismatches(
+        'README.md',
+        '# Example\n\n    ```json\n    {"stale": 1}\n    ```\n',
+        synth,
+      ),
+      isEmpty,
+    );
+  });
+
   test('a longer fence holds a shorter one, and other languages pass', () {
     expect(
       excerptMismatches(

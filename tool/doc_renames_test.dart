@@ -510,6 +510,90 @@ final class Foo extends Resource {
     });
   });
 
+  group('a removed name counts however a doc spells it', () {
+    Directory dir(String text) {
+      final tmp = Directory.systemTemp.createTempSync('doc_renames_ws_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'lib.dart')).writeAsStringSync(text);
+      return tmp;
+    }
+
+    Set<String> removed(String released, String current) => removedSymbols(
+      migrating: const {},
+      current: PublicApi.read([dir(current).path]),
+      released: (version: '0.0.1', api: PublicApi.read([dir(released).path])),
+    ).keys.toSet();
+
+    test('behind an import prefix', () {
+      expect(
+        {
+          for (final m in staleMentions(
+            'guide.md',
+            'Call `cli.runTerradart(args)`, read `api.OldEnum.oldValue`, '
+                'or `core.AppExportsEmitter.emit`.\n',
+            {
+              'runTerradart': 'internal',
+              'OldEnum.oldValue': 'gone',
+              'AppExportsEmitter.emit': 'internal',
+            },
+          ))
+            m.symbol,
+        },
+        {'runTerradart', 'OldEnum.oldValue', 'AppExportsEmitter.emit'},
+      );
+    });
+
+    test('all lowercase, in code', () {
+      expect(
+        [
+          for (final m in staleMentions(
+            'guide.md',
+            'Call `emit` after synth; emit is a word in prose.\n',
+            {'emit': 'gone'},
+          ))
+            (m.line, m.symbol),
+        ],
+        [(1, 'emit')],
+      );
+    });
+
+    test('a member a subtype inherited', () {
+      expect(
+        removed(
+          'class Base { void gone() {} }\nclass Child extends Base {}\n',
+          'class Base {}\nclass Child extends Base {}\n',
+        ),
+        containsAll(['Base.gone', 'Child.gone']),
+      );
+    });
+
+    test('a member read through a typedef', () {
+      expect(
+        removed(
+          'class Hidden { void gone() {} }\ntypedef PublicName = Hidden;\n',
+          'class Hidden {}\ntypedef PublicName = Hidden;\n',
+        ),
+        contains('PublicName.gone'),
+      );
+    });
+
+    test('a MIGRATING.md span wrapped across lines', () {
+      expect(
+        migratingSymbols(
+          'Pattern: `Outer(policy:\nTfArg.literal(WrappedEnum.redirect))`.\n',
+        ).keys,
+        contains('WrappedEnum'),
+      );
+      expect(
+        migratingSymbols(File(migratingPath).readAsStringSync()).keys,
+        containsAll([
+          'CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy',
+          'WorkspaceswebSessionLoggerEventFilterIncludeOption',
+        ]),
+      );
+    });
+  });
+
   test('no doc names a symbol the public API removed', () async {
     final failures = await checkDocRenames(Directory.current.path);
     expect(failures, isEmpty, reason: failures.join('\n'));
