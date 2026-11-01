@@ -14,7 +14,7 @@ const Set<String> _googleMonitoringGroupSensitive = <String>{};
 /// resource, then that resource is a member of that group.
 ///
 /// A dynamic monitored-resource group used as an uptime-check or alert
-/// target. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].
+/// target. Pair with [MonitoringUptimeCheckConfigTarget.resourceGroup].
 ///
 /// Example:
 /// ```dart

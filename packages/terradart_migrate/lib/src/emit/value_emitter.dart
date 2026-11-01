@@ -119,7 +119,7 @@ final class ValueEmitter {
 
   /// Top-level argument → the Dart expression to emit in place of its
   /// literal (`env.assetsName`), for an argument `--merge-envs` lifted into
-  /// an [Env] constant because it differs between the merged environments.
+  /// a constant of the generated `Env` enum because it differs between the merged environments.
   final Map<String, String> envValues;
 
   /// Environment expression → the Dart type the slot it filled expects, so

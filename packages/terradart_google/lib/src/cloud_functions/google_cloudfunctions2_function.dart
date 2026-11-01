@@ -96,7 +96,7 @@ extension type const DirectVpcEgress._(TfArg<String> _)
 
 /// `service_config.vpc_connector_egress_settings` -- egress policy when
 /// the function attaches via a Serverless VPC Access connector
-/// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
+/// ([Cloudfunctions2FunctionConnection.vpcConnector]). Mutually exclusive in spirit with
 /// [DirectVpcEgress] (which applies when using direct VPC egress).
 extension type const VpcConnectorEgressSettings._(TfArg<String> _)
     implements TfArg<String> {

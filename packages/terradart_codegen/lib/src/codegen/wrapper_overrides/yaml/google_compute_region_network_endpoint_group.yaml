@@ -95,7 +95,7 @@ prelude: |
   ///
   /// - [serverless]: the primary Wave 6 hookup — fronts a Cloud Run service,
   ///   Cloud Functions Gen 2 function, or App Engine flex service. Pair
-  ///   with [GoogleComputeRegionNetworkEndpointGroup.serverless].
+  ///   with [ComputeRegionNetworkEndpointGroupServerless].
   /// - [privateServiceConnect]: PSC consumer NEG fronting a Google API
   ///   bundle or a producer-published Service Attachment. Pair with
   ///   [GoogleComputeRegionNetworkEndpointGroup.pscTargetService] and (for

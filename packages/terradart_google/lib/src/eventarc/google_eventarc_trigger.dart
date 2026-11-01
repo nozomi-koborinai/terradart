@@ -221,7 +221,6 @@ final class EventarcTriggerPubsub {
 ///   `'google.cloud.storage.object.v1.finalized'`).
 /// - `destination`: the [EventarcTriggerDestination] block. Exactly ONE
 ///   of [EventarcTriggerDestination.cloudRunService] /
-///   [EventarcTriggerDestination.cloudFunction] /
 ///   [EventarcTriggerDestination.workflow] /
 ///   [EventarcTriggerDestination.httpEndpoint] /
 ///   [EventarcTriggerDestination.gke] may be set per trigger -- they are

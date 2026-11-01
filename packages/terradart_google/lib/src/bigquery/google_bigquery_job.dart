@@ -32,7 +32,7 @@ extension type const BigqueryJobParameterMode._(TfArg<String> _)
 /// `load.source_format`. From the schema description: for CSV
 /// specify `CSV`; for datastore backups `DATASTORE_BACKUP`; for
 /// newline-delimited JSON `NEWLINE_DELIMITED_JSON`; for Avro `AVRO`;
-/// for Parquet `PARQUET`; for ORC `ORC`; [Beta] for Bigtable
+/// for Parquet `PARQUET`; for ORC `ORC`; in beta, for Bigtable
 /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
 /// formal `enum_values` array, so this list is sourced from the
 /// attribute's `description` prose.

@@ -26,7 +26,8 @@
 ///  17. `google_iam_project_access_policy`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
-/// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
+/// the [IamWorkloadIdentityPoolProviderTrustSource.oidc] trust source for
+/// GitHub Actions.
 ///
 /// Each IAM resource has a slightly different identity surface (topic name
 /// vs. subscription name vs. queue name+location vs. secret_id) -- this

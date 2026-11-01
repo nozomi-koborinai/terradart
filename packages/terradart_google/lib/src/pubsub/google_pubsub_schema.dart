@@ -47,7 +47,7 @@ extension type const PubsubSchemaType._(TfArg<String> _)
 ///
 /// Schemas are versioned: changing [definition] commits a new revision
 /// (up to 20 per schema). Topics that reference the schema can pin to a
-/// revision range via [GooglePubsubTopic.schemaSettings]; otherwise the
+/// revision range via [PubsubTopicSchemaSettings]; otherwise the
 /// latest revision is used.
 ///
 /// Example (Avro schema for an order event):

@@ -14,7 +14,7 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // Enums (sourced from schema "Possible values" prose)
 // ===========================================================================
 
-/// One [FirestoreFieldIndexes.order] direction. `ASCENDING` / `DESCENDING`.
+/// One [FirestoreFieldMode.order] direction. `ASCENDING` / `DESCENDING`.
 extension type const FirestoreFieldOrder._(TfArg<String> _)
     implements TfArg<String> {
   FirestoreFieldOrder.variable(String name) : this._(TfArg.variable(name));

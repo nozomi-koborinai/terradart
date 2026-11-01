@@ -167,7 +167,7 @@ extension type const BigqueryCapacityCommitmentEdition._(TfArg<String> _)
 /// In order to remove annual commitment, its plan needs to be changed to
 /// monthly or flex first.
 ///
-/// Commitments are sliced into [Reservation] buckets via
+/// Commitments are sliced into [GoogleBigqueryReservation] buckets via
 /// `google_bigquery_reservation`, which are then bound to projects /
 /// folders / orgs via `google_bigquery_reservation_assignment`. The
 /// [plan] determines the commitment term; [renewalPlan] picks what the

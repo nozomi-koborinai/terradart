@@ -185,8 +185,8 @@ barrels:
       /// and repository download rules.
       ///
       /// Format is set at creation time and immutable. Pair `format: DOCKER`
-      /// with [ArtifactRegistryRepositoryArtifactRegistryDockerConfig], `format: MAVEN` with
-      /// [ArtifactRegistryRepositoryArtifactRegistryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
+      /// with [ArtifactRegistryRepositoryDockerConfig], `format: MAVEN` with
+      /// [ArtifactRegistryRepositoryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
       /// `VIRTUAL_REPOSITORY` (aggregating proxy), or `REMOTE_REPOSITORY`
       /// (caching proxy).
       ///

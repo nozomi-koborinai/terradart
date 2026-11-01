@@ -127,7 +127,7 @@ prelude: |
     static const List<CloudRunV2JobVpcAccessEgress> values = [allTraffic, privateRangesOnly];
   }
 
-  /// Storage medium for [CloudRunV2JobEmptyDirVolume.medium]. The Cloud Run v2 Job
+  /// Storage medium for [CloudRunV2JobEmptyDir.medium]. The Cloud Run v2 Job
   /// schema documents `MEMORY`; `DISK` is reserved per the Magic-Modules
   /// mirror but rejected by the provider today.
   extension type const CloudRunV2JobEmptyDirMedium._(TfArg<String> _) implements TfArg<String> {
