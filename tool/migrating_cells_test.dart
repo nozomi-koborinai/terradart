@@ -446,6 +446,31 @@ void main() {
     });
   });
 
+  test('a Before cell of a package the previous release lacks does not '
+      'belong in MIGRATING.md', () async {
+    const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+| Before | After |
+|---|---|
+| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |
+''';
+    final report = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(report.failures, [
+      allOf(
+        contains('MIGRATING.md:7: Before'),
+        contains('terradart_azure has no 0.35.x release'),
+        contains('does not belong in MIGRATING.md'),
+      ),
+    ]);
+    expect(report.beforeFailed, 1);
+  });
+
   test('a document without the `# Migrating terradart` title fails', () async {
     const seeded = '''
 # Migrating
