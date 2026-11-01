@@ -1,0 +1,177 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 8.0"
+      }
+    }
+  },
+  "variable": {
+    "repository_mode": {
+      "type": "string"
+    },
+    "deletion_policy": {
+      "type": "string"
+    },
+    "purge_data_types": {
+      "type": "list(string)"
+    },
+    "secret_data": {
+      "type": "string",
+      "sensitive": true
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "shapes-project",
+      "region": "us-central1"
+    }
+  },
+  "resource": {
+    "google_kms_key_ring": {
+      "ring": {
+        "name": "shapes",
+        "location": "us-central1"
+      }
+    },
+    "google_kms_crypto_key": {
+      "key": {
+        "name": "shapes",
+        "key_ring": "${google_kms_key_ring.ring.id}"
+      }
+    },
+    "google_secret_manager_secret": {
+      "secret": {
+        "secret_id": "shapes",
+        "replication": {
+          "auto": {}
+        },
+        "secret_type": "CERTIFICATE"
+      }
+    },
+    "google_secret_manager_secret_version": {
+      "version": {
+        "secret": "${google_secret_manager_secret.secret.id}",
+        "secret_data_wo": "${var.secret_data}",
+        "secret_data_wo_version": "1",
+        "deletion_policy": "${var.deletion_policy}"
+      }
+    },
+    "google_artifact_registry_repository": {
+      "repo": {
+        "repository_id": "shapes",
+        "format": "DOCKER",
+        "mode": "${upper(var.repository_mode)}",
+        "location": "us-central1",
+        "kms_key_name": "${google_kms_crypto_key.key.id}",
+        "virtual_repository_config": {
+          "upstream_policies": [
+            {
+              "id": "upstream",
+              "repository": "projects/shapes-project/locations/us-central1/repositories/upstream",
+              "priority": 1
+            }
+          ]
+        }
+      }
+    },
+    "google_dialogflow_cx_security_settings": {
+      "literal": {
+        "display_name": "${google_artifact_registry_repository.repo.name}",
+        "location": "global",
+        "retention_window_days": 30,
+        "purge_data_types": [
+          "DIALOGFLOW_HISTORY"
+        ]
+      },
+      "variable": {
+        "display_name": "variable",
+        "location": "global",
+        "purge_data_types": "${var.purge_data_types}"
+      },
+      "expression": {
+        "display_name": "expression",
+        "location": "global",
+        "purge_data_types": "${slice(var.purge_data_types, 0, 1)}"
+      },
+      "unlisted": {
+        "display_name": "${google_artifact_registry_repository.repo.name}",
+        "location": "global",
+        "retention_window_days": 30,
+        "purge_data_types": [
+          "DIALOGFLOW_HISTORY"
+        ],
+        "redaction_scope": "UNLISTED_SCOPE"
+      }
+    },
+    "google_data_loss_prevention_deidentify_template": {
+      "template": {
+        "parent": "projects/shapes-project",
+        "deidentify_config": {
+          "record_transformations": {
+            "field_transformations": [
+              {
+                "fields": [
+                  {
+                    "name": "email"
+                  }
+                ],
+                "info_type_transformations": {
+                  "transformations": [
+                    {
+                      "primitive_transformation": {
+                        "redact_config": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "google_compute_autoscaler": {
+      "web": {
+        "name": "shapes",
+        "zone": "us-central1-a",
+        "target": "projects/shapes-project/zones/us-central1-a/instanceGroupManagers/web",
+        "autoscaling_policy": [
+          {
+            "min_replicas": 1,
+            "max_replicas": 5,
+            "scaling_schedules": [
+              {
+                "name": "business-hours",
+                "min_required_replicas": 3,
+                "schedule": "0 9 * * MON-FRI",
+                "duration_sec": 28800
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "google_service_account": {
+      "runtime": {
+        "account_id": "shapes-runtime"
+      }
+    },
+    "google_secret_manager_secret_iam_member": {
+      "runtime": {
+        "secret_id": "${google_secret_manager_secret.secret.secret_id}",
+        "role": "roles/secretmanager.secretAccessor",
+        "member": "${google_service_account.runtime.member}",
+        "project": "${google_secret_manager_secret.secret.project}"
+      },
+      "auditor": {
+        "secret_id": "${google_secret_manager_secret.secret.secret_id}",
+        "role": "roles/secretmanager.viewer",
+        "member": "user:auditor@shapes.example.com",
+        "project": "${google_secret_manager_secret.secret.project}"
+      }
+    }
+  }
+}

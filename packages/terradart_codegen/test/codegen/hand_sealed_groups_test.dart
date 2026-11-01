@@ -222,7 +222,6 @@ void main() {
 
   test('the committed Google prelude seals cover their groups', () {
     const groups = {
-      'google_compute_firewall': ['allow', 'deny'],
       'google_compute_health_check': [
         'grpc_health_check',
         'grpc_tls_health_check',

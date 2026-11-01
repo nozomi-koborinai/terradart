@@ -531,11 +531,19 @@ final class _Emitted {
     this.isData = false,
     this.moduleProviders = const [],
     this.wrapperFile,
+    this.shapes = const {},
+    this.types = const {},
   });
 
   final String address;
   final String tfType;
   final String dartName;
+
+  /// The typed API shapes the call's arguments use.
+  final Set<MigratedShape> shapes;
+
+  /// The generated types the call's arguments construct.
+  final Set<String> types;
 
   /// True for an `addModule(...)` statement: [package] / [barrel] are empty
   /// and the type prefix implies no provider.
@@ -1320,6 +1328,8 @@ final class StackEmitter {
         module: moduleName,
         stackClass: stackClass,
         migrated: List.unmodifiable(_migrated),
+        shapes: Set.unmodifiable({for (final e in emitted.values) ...e.shapes}),
+        types: Set.unmodifiable({for (final e in emitted.values) ...e.types}),
         kept: List.unmodifiable(_kept),
         warnings: List.unmodifiable(ctx.warnings),
         packages: packages,
@@ -1699,6 +1709,8 @@ final class StackEmitter {
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
       usedHandles: emitter.usedHandles,
+      shapes: emitter.shapes,
+      types: emitter.types,
       package: manifest.package,
       barrel: entry.barrel,
       isData: b.isData,

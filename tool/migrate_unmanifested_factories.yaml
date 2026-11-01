@@ -1,0 +1,24 @@
+# Public factory classes a migration manifest leaves out because another
+# provider package's manifest builds the same Terraform type.
+#
+# tool/migrate_api_coverage_test.dart fails on a class that extends
+# `Resource` or `Data` in a provider package and has no entry in that
+# package's manifest. An entry here excuses it only when `builtBy` names
+# another provider package whose manifest has an entry for the same class,
+# Terraform type and kind; a reason alone never does. An entry must be a
+# map of exactly `builtBy` and `reason`, both strings, and fails once the
+# class gains a manifest entry or stops being a factory of the package.
+#
+# package:
+#   ClassName:
+#     builtBy: the provider package whose manifest builds it
+#     reason: why the class exists twice
+
+terradart_google:
+  GoogleProjectServiceIdentity:
+    builtBy: terradart_google_beta
+    reason: >-
+      Hand-written in terradart_google's google_beta library, which predates
+      the beta lane. terradart_google_beta generates the same class for
+      google_project_service_identity, and terradart migrate writes that
+      package's manifest entry for it.

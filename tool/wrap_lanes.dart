@@ -248,6 +248,8 @@ enum WrapGate {
         rel(lane.overridesRoot),
         '--mm-dir',
         rel(p.join(lane.schemaDir, 'mm')),
+        '--generated',
+        rel(p.join(lane.outputPackage, 'lib', 'src')),
       ],
     };
   }

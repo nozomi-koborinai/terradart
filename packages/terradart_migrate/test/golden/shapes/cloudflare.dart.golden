@@ -1,0 +1,96 @@
+/// ShapesCloudflareStack — migrated from `shapes_cloudflare` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_cloudflare/account.dart';
+import 'package:terradart_cloudflare/dns.dart';
+import 'package:terradart_cloudflare/provider.dart';
+import 'package:terradart_cloudflare/ssl.dart';
+import 'package:terradart_cloudflare/zero_trust.dart';
+import 'package:terradart_cloudflare/zone.dart';
+
+final class ShapesCloudflareStack extends Stack {
+  ShapesCloudflareStack()
+    : super(
+        providers: [const CloudflareProvider()],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('member_status');
+    variable<String>('action');
+    variable<List<String>>('filters');
+    final zone = add(
+      CloudflareZone(
+        'zone',
+        name: .literal('shapes.example.com'),
+        account: ZoneAccount(id: .literal('shapes-account')),
+      ),
+    );
+    add(
+      CloudflareDnsRecord(
+        'www',
+        zoneId: zone.ref,
+        name: .literal('www'),
+        type: .cname,
+        ttl: .literal(1),
+        content: .content(zone.name),
+      ),
+    );
+    add(
+      CloudflareHostnameTlsSetting(
+        'tls',
+        hostname: .literal('www.shapes.example.com'),
+        settingId: .minTlsVersion,
+        value: .literal('1.2'),
+        zoneId: zone.ref,
+      ),
+    );
+    add(
+      CloudflareAccountMember(
+        'member',
+        accountId: .literal('shapes-account'),
+        email: .literal('member@shapes.example.com'),
+        access: .roles(.literal(['shapes-role'])),
+        status: .variable('member_status'),
+      ),
+    );
+    add(
+      CloudflareZeroTrustGatewayPolicy(
+        'literal',
+        accountId: .literal('shapes-account'),
+        action: .expression(r'${lower(var.action)}'),
+        filters: .literal([.dns]),
+        name: .literal('literal'),
+      ),
+    );
+    add(
+      CloudflareZeroTrustGatewayPolicy(
+        'variable',
+        accountId: .literal('shapes-account'),
+        action: .block,
+        filters: .variable('filters'),
+        name: .literal('variable'),
+      ),
+    );
+    add(
+      CloudflareZeroTrustGatewayPolicy(
+        'expression',
+        accountId: .literal('shapes-account'),
+        action: .block,
+        filters: .expression(r'${distinct(var.filters)}'),
+        name: .literal('expression'),
+      ),
+    );
+    add(
+      CloudflareZeroTrustGatewayPolicy(
+        'unlisted',
+        accountId: .literal('shapes-account'),
+        action: .arg(.literal('unlisted')),
+        filters: .literal([.dns]),
+        name: .literal('unlisted'),
+      ),
+    );
+  }
+}

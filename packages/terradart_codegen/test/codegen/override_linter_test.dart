@@ -390,6 +390,41 @@ class Policy {
       expect(v.single.detail, contains('field `schedules`'));
     });
 
+    test('resolves a derived type against the generated sources', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        deriveNestedTypes: true,
+        prelude: '''
+class Disk {
+  const Disk({required this.raw});
+  final DiskRaw raw;
+  Map<String, Object?> encode() => {'raw': [raw.encode()]};
+}
+''',
+      );
+      const generated = '''
+final class DiskRaw {
+  const DiskRaw({required this.source});
+  final TfArg<String> source;
+  Map<String, Object?> encode() => {'source': source.toTfJson()};
+}
+''';
+      final unresolved = lintMigrateShapes(
+        'google_x',
+        o,
+        input({'google_x': o}),
+      );
+      expect(unresolved.single.detail, contains('unknown type `DiskRaw`'));
+      final resolved = lintMigrateShapes(
+        'google_x',
+        o,
+        MigrateShapeLintInput(
+          context: preludeShapeContext({'google_x': o}, emitted: [generated]),
+        ),
+      );
+      expect(resolved, isEmpty);
+    });
+
     test('flags a map of helpers only when it is not encoded keyed', () {
       WrapperOverride policy(String encode) => WrapperOverride(
         outputDir: 'x',

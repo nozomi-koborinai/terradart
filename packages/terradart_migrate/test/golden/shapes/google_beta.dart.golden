@@ -1,0 +1,129 @@
+/// ShapesGoogleBetaStack — migrated from `shapes_google_beta` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
+import 'package:terradart_google_beta/api_gateway.dart';
+import 'package:terradart_google_beta/compute.dart';
+import 'package:terradart_google_beta/firebase.dart';
+import 'package:terradart_google_beta/provider.dart';
+import 'package:terradart_google_beta/security_scanner.dart';
+
+final class ShapesGoogleBetaStack extends Stack {
+  ShapesGoogleBetaStack()
+    : super(
+        providers: [
+          const GoogleProvider(
+            project: 'shapes-project',
+            region: 'us-central1',
+          ),
+          const GoogleBetaProvider(
+            project: 'shapes-project',
+            region: 'us-central1',
+          ),
+        ],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('user_agent');
+    variable<String>('export');
+    variable<List<String>>('target_platforms');
+    final assets = add(
+      GoogleStorageBucket(
+        'assets',
+        name: .literal('shapes-assets'),
+        location: .literal('US'),
+      ),
+    );
+    final backendComputeRegionBackendBucket = add(
+      GoogleComputeRegionBackendBucket(
+        'backend',
+        bucketName: assets.ref,
+        loadBalancingScheme: .externalManaged,
+        name: .literal('shapes'),
+        region: .literal('us-central1'),
+      ),
+    );
+    add(
+      GoogleSecurityScannerScanConfig(
+        'literal',
+        displayName: backendComputeRegionBackendBucket.name,
+        exportToSecurityCommandCenter: .expression(r'${upper(var.export)}'),
+        startingUrls: .literal(['https://shapes.example.com']),
+        targetPlatforms: .literal([.compute]),
+        userAgent: .variable('user_agent'),
+      ),
+    );
+    add(
+      GoogleSecurityScannerScanConfig(
+        'variable',
+        displayName: .literal('variable'),
+        startingUrls: .literal(['https://shapes.example.com']),
+        targetPlatforms: .variable('target_platforms'),
+      ),
+    );
+    add(
+      GoogleSecurityScannerScanConfig(
+        'expression',
+        displayName: .literal('expression'),
+        startingUrls: .literal(['https://shapes.example.com']),
+        targetPlatforms: .expression(r'${distinct(var.target_platforms)}'),
+      ),
+    );
+    add(
+      GoogleSecurityScannerScanConfig(
+        'unlisted',
+        displayName: backendComputeRegionBackendBucket.name,
+        exportToSecurityCommandCenter: .arg(.literal('UNLISTED_EXPORT')),
+        startingUrls: .literal(['https://shapes.example.com']),
+        targetPlatforms: .literal([.compute]),
+        userAgent: .variable('user_agent'),
+      ),
+    );
+    add(
+      GoogleApiGatewayApiConfig(
+        'config',
+        api: .literal('shapes'),
+        spec: .openapiDocuments([
+          .new(
+            document: .new(
+              contents: .literal('b3BlbmFwaTogMy4wLjA='),
+              path: .literal('spec.yaml'),
+            ),
+          ),
+        ]),
+      ),
+    );
+    add(
+      GoogleFirebaseHostingChannel(
+        'preview',
+        channelId: .literal('preview'),
+        expiration: .ttl(.literal('86400s')),
+        siteId: .literal('shapes'),
+      ),
+    );
+    add(
+      GoogleApiGatewayApiConfigIamMember(
+        'viewer',
+        api: .literal('shapes'),
+        apiConfig: .literal('shapes'),
+        member: .group('viewers@shapes.example.com'),
+        role: .literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleComputeFutureReservation(
+        'calendar',
+        name: .literal('shapes-calendar'),
+        reservationMode: .calendar,
+        timeWindow: ComputeFutureReservationTimeWindow(
+          endTime: .literal('2026-01-02T00:00:00Z'),
+          startTime: .literal('2026-01-01T00:00:00Z'),
+        ),
+      ),
+    );
+  }
+}

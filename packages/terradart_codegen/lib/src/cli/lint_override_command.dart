@@ -33,6 +33,14 @@ class LintOverrideCommand extends Command<int> {
             'MM YAML fixture directory for phase-2 lint rules. Defaults to '
             'test/fixtures/wrap/source/mm beside the bundled override root.',
         valueHelp: 'DIR',
+      )
+      ..addOption(
+        'generated',
+        help:
+            'The lane\'s generated wrapper directory (`wrap --output`). '
+            'Types the migration-shape rules cannot find in a prelude '
+            'resolve against the derived helpers and enums declared there.',
+        valueHelp: 'DIR',
       );
   }
 
@@ -47,6 +55,7 @@ class LintOverrideCommand extends Command<int> {
   Future<int> run() async {
     final dirArg = argResults!['dir'] as String?;
     final mmDirArg = argResults!['mm-dir'] as String?;
+    final generatedArg = argResults!['generated'] as String?;
 
     final String rootDir;
     if (dirArg != null && dirArg.isNotEmpty) {
@@ -102,7 +111,15 @@ class LintOverrideCommand extends Command<int> {
       }
       return CliExitCodes.dataError;
     }
-    final migrateContext = preludeShapeContext(lintBag);
+    final migrateContext = preludeShapeContext(
+      lintBag,
+      emitted: generatedArg == null
+          ? const []
+          : [
+              for (final f in Directory(generatedArg).listSync(recursive: true))
+                if (f is File && f.path.endsWith('.dart')) f.readAsStringSync(),
+            ],
+    );
     final migrateDebt = laneLedgerEntries(
       _loadLedger(migrateManifestDebtPathForOverrideRoot(rootDir)),
       lintBag.keys,

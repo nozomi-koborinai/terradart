@@ -122,6 +122,30 @@ final Map<String, Object Function()> _syntheticInstances = {
   'BigtableGcPolicyMaxVersion': () =>
       const BigtableGcPolicyMaxVersion(TfArg.literal(1)),
 
+  // --- ComputeSecurityPolicyRulesMatch (2) — compute_security_policy -------
+  'ComputeSecurityPolicyRulesMatchConfigChoice': () =>
+      const ComputeSecurityPolicyRulesMatchConfigChoice(
+        versionedExpr: .srcIpsV1,
+        config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+      ),
+  'ComputeSecurityPolicyRulesMatchExprChoice': () =>
+      const ComputeSecurityPolicyRulesMatchExprChoice(
+        ComputeSecurityPolicyRulesMatchExpr(expression: TfArg.literal('true')),
+      ),
+
+  // --- ComputeRegionSecurityPolicyRulesMatch (2) — region_security_policy --
+  'ComputeRegionSecurityPolicyRulesMatchConfigChoice': () =>
+      const ComputeRegionSecurityPolicyRulesMatchConfigChoice(
+        versionedExpr: .srcIpsV1,
+        config: ComputeRegionSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+      ),
+  'ComputeRegionSecurityPolicyRulesMatchExprChoice': () =>
+      const ComputeRegionSecurityPolicyRulesMatchExprChoice(
+        ComputeRegionSecurityPolicyRulesMatchExpr(
+          expression: TfArg.literal('true'),
+        ),
+      ),
+
   // --- AppEngineFlexibleAppVersionScaling (2) — app_engine_flexible_app_version
   'AppEngineFlexibleAppVersionAutomaticScalingMode': () =>
       const AppEngineFlexibleAppVersionAutomaticScalingMode(TfArg.literal(1)),
@@ -193,16 +217,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const ComputeRegionHealthCheckGrpcTlsHealthCheckConfig(
         port: TfArg.literal(50052),
       ),
-
-  // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
-  'ComputeFirewallAllowPolicy': () => const ComputeFirewallAllowPolicy(
-    protocol: TfArg.literal('tcp'),
-    ports: ['443'],
-  ),
-  'ComputeFirewallDenyPolicy': () => const ComputeFirewallDenyPolicy(
-    protocol: TfArg.literal('tcp'),
-    ports: ['22'],
-  ),
 
   // --- ComputeRouteNextHop (5) — compute_route -----------------------------
   'ComputeRouteGatewayNextHop': () => const ComputeRouteGatewayNextHop(

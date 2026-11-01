@@ -1,0 +1,181 @@
+/// ShapesGoogleStack — migrated from `shapes_google` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_google/artifact_registry.dart';
+import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/dialogflow.dart';
+import 'package:terradart_google/dlp.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/kms.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/secret_manager.dart';
+
+final class ShapesGoogleStack extends Stack {
+  ShapesGoogleStack()
+    : super(
+        providers: [
+          const GoogleProvider(
+            project: 'shapes-project',
+            region: 'us-central1',
+          ),
+        ],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('repository_mode');
+    variable<String>('deletion_policy');
+    variable<List<String>>('purge_data_types');
+    final secretData = variable<String>('secret_data', sensitive: true);
+    final ring = add(
+      GoogleKmsKeyRing(
+        'ring',
+        name: .literal('shapes'),
+        location: .literal('us-central1'),
+      ),
+    );
+    final key = add(
+      GoogleKmsCryptoKey('key', name: .literal('shapes'), keyRing: ring.ref),
+    );
+    final secret = add(
+      GoogleSecretManagerSecret(
+        'secret',
+        secretId: .literal('shapes'),
+        replication: .auto(.new()),
+        secretType: .certificate,
+      ),
+    );
+    add(
+      GoogleSecretManagerSecretVersion(
+        'version',
+        secret: secret.ref,
+        payload: .writeOnly(
+          secretDataWo: secretData,
+          secretDataWoVersion: .literal('1'),
+        ),
+        deletionPolicy: .variable('deletion_policy'),
+      ),
+    );
+    final repo = add(
+      GoogleArtifactRegistryRepository(
+        'repo',
+        repositoryId: .literal('shapes'),
+        format: .docker,
+        mode: .expression(r'${upper(var.repository_mode)}'),
+        location: .literal('us-central1'),
+        kmsKeyName: key.ref,
+        repositoryConfig: .virtualRepositoryConfig(
+          .new(
+            upstreamPolicies: [
+              .new(
+                id: .literal('upstream'),
+                priority: .literal(1),
+                repository: .literal(
+                  'projects/shapes-project/locations/us-central1/repositories/upstream',
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    add(
+      GoogleDialogflowCxSecuritySettings(
+        'literal',
+        displayName: repo.name,
+        location: .literal('global'),
+        retention: .retentionWindowDays(.literal(30)),
+        purgeDataTypes: .literal([.dialogflowHistory]),
+      ),
+    );
+    add(
+      GoogleDialogflowCxSecuritySettings(
+        'variable',
+        displayName: .literal('variable'),
+        location: .literal('global'),
+        purgeDataTypes: .variable('purge_data_types'),
+      ),
+    );
+    add(
+      GoogleDialogflowCxSecuritySettings(
+        'expression',
+        displayName: .literal('expression'),
+        location: .literal('global'),
+        purgeDataTypes: .expression(r'${slice(var.purge_data_types, 0, 1)}'),
+      ),
+    );
+    add(
+      GoogleDialogflowCxSecuritySettings(
+        'unlisted',
+        displayName: repo.name,
+        location: .literal('global'),
+        redactionScope: .arg(.literal('UNLISTED_SCOPE')),
+        retention: .retentionWindowDays(.literal(30)),
+        purgeDataTypes: .literal([.dialogflowHistory]),
+      ),
+    );
+    add(
+      GoogleDataLossPreventionDeidentifyTemplate(
+        'template',
+        parent: .literal('projects/shapes-project'),
+        deidentifyConfig: .recordTransformations(
+          .new(
+            fieldTransformations: [
+              .new(
+                fields: [.new(name: .literal('email'))],
+                infoTypeTransformations: .new(
+                  transformations: [
+                    .new(primitiveTransformation: .new(redactConfig: .new())),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    add(
+      GoogleComputeAutoscaler(
+        'web',
+        name: .literal('shapes'),
+        zone: .literal('us-central1-a'),
+        target: .literal(
+          'projects/shapes-project/zones/us-central1-a/instanceGroupManagers/web',
+        ),
+        autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
+          minReplicas: .literal(1),
+          maxReplicas: .literal(5),
+          scalingSchedules: [
+            .new(
+              name: .literal('business-hours'),
+              minRequiredReplicas: .literal(3),
+              schedule: .literal('0 9 * * MON-FRI'),
+              durationSec: .literal(28800),
+            ),
+          ],
+        ),
+      ),
+    );
+    final runtime = add(
+      GoogleServiceAccount('runtime', accountId: .literal('shapes-runtime')),
+    );
+    add(
+      GoogleSecretManagerSecretIamMember(
+        'runtime',
+        secret: secret.ref,
+        role: .literal('roles/secretmanager.secretAccessor'),
+        member: runtime.principal,
+      ),
+    );
+    add(
+      GoogleSecretManagerSecretIamMember(
+        'auditor',
+        secret: secret.ref,
+        role: .literal('roles/secretmanager.viewer'),
+        member: .user('auditor@shapes.example.com'),
+      ),
+    );
+  }
+}

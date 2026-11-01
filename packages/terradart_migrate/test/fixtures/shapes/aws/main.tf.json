@@ -1,0 +1,89 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "aws": {
+        "source": "hashicorp/aws",
+        "version": "6.70.0"
+      }
+    }
+  },
+  "variable": {
+    "on_failure": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "list(string)"
+    }
+  },
+  "provider": {
+    "aws": {
+      "region": "us-east-1"
+    }
+  },
+  "resource": {
+    "aws_iam_role": {
+      "stack": {
+        "name": "shapes-stack",
+        "assume_role_policy": "{}"
+      }
+    },
+    "aws_cloudformation_stack": {
+      "literal": {
+        "name": "literal",
+        "iam_role_arn": "${aws_iam_role.stack.arn}",
+        "capabilities": [
+          "CAPABILITY_IAM"
+        ],
+        "on_failure": "DELETE"
+      },
+      "variable": {
+        "name": "variable",
+        "capabilities": "${var.capabilities}",
+        "on_failure": "${var.on_failure}"
+      },
+      "expression": {
+        "name": "expression",
+        "capabilities": "${distinct(var.capabilities)}",
+        "on_failure": "${upper(var.on_failure)}"
+      },
+      "unlisted": {
+        "name": "unlisted",
+        "iam_role_arn": "${aws_iam_role.stack.arn}",
+        "capabilities": [
+          "CAPABILITY_IAM"
+        ],
+        "on_failure": "UNLISTED"
+      }
+    },
+    "aws_acm_certificate": {
+      "cert": {
+        "domain_name": "shapes.example.com",
+        "validation_method": "DNS"
+      }
+    },
+    "aws_docdb_cluster": {
+      "docs": {
+        "cluster_identifier_prefix": "shapes-",
+        "manage_master_user_password": true,
+        "master_username": "shapes"
+      }
+    },
+    "aws_resiliencehub_resiliency_policy": {
+      "policy": {
+        "name": "${aws_cloudformation_stack.literal.name}",
+        "tier": "Critical",
+        "policy": [
+          {
+            "region": [
+              {
+                "rpo": "1h",
+                "rto": "1h"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

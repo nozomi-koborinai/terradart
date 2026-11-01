@@ -569,18 +569,18 @@ resource "aws_s3_bucket" "logs" {
       );
     });
 
-    test('an enum value the wrapper does not know', () {
+    test('an enum template that names no member', () {
       final r = _migrateJson({
         'terraform': _google,
         'resource': {
           'google_pubsub_schema': {
-            's': {'name': 's', 'type': 'YAML'},
+            's': {'name': 's', 'type': r'$${YAML}'},
           },
         },
       });
       expect(
         reasonOf(r, 'google_pubsub_schema.s'),
-        contains('"YAML" is not a member of PubsubSchemaType'),
+        contains(r'"${YAML}" is not a member of PubsubSchemaType'),
       );
     });
 
@@ -817,13 +817,6 @@ resource "google_pubsub_topic" "t" {
         ],
       );
 
-      test('stays in Terraform for a case-sensitive provider', () {
-        expect(
-          reasonOf(migrate(caseInsensitive: false), 'google_pubsub_schema.s'),
-          contains('"avro" is not a member of PubsubSchemaType'),
-        );
-      });
-
       test('names the canonical member, with a warning, otherwise', () {
         final r = migrate(caseInsensitive: true);
         expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
@@ -838,9 +831,29 @@ resource "google_pubsub_topic" "t" {
       });
     });
 
+    test('an enum filled by a variable is the enum\'s own variable', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'variable': {
+          'schema_type': {'type': 'string'},
+        },
+        'resource': {
+          'google_pubsub_schema': {
+            's': {'name': 's', 'type': r'${var.schema_type}'},
+          },
+        },
+      });
+      expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
+      expect(
+        r.files['lib/demo_stack.dart'],
+        contains("type: .variable('schema_type')"),
+      );
+      expect(r.report.shapes, contains(MigratedShape.enumVariable));
+      expect(r.report.types, contains('PubsubSchemaType'));
+    });
+
     group('a list of enum values', () {
-      // `selected_regions` is a bare `List<MonitoringUptimeCheckRegion>`:
-      // one member per element, and no single reference fits it.
+      // `selected_regions` is an `EnumList<MonitoringUptimeCheckRegion>`.
       MigrationResult migrate(Object regions) => _migrateJson({
         'terraform': _google,
         'resource': {
@@ -868,11 +881,11 @@ resource "google_pubsub_topic" "t" {
         );
         expect(
           r.files['lib/demo_stack.dart'],
-          contains('selectedRegions: [.usa, .europe]'),
+          contains('selectedRegions: .literal([.usa, .europe])'),
         );
       });
 
-      test('a reference to a whole list stays in Terraform', () {
+      test('a reference to a whole list is the list variable', () {
         final r = _migrateJson({
           'terraform': _google,
           'variable': {
@@ -895,13 +908,10 @@ resource "google_pubsub_topic" "t" {
           },
         });
         expect(
-          reasonOf(r, 'google_monitoring_uptime_check_config.u'),
-          contains(
-            'argument "selected_regions" takes a list of '
-            'MonitoringUptimeCheckRegion values, not a reference to a '
-            'whole list',
-          ),
+          r.files['lib/demo_stack.dart'],
+          contains("selectedRegions: .variable('regions')"),
         );
+        expect(r.report.shapes, contains(MigratedShape.enumListVariable));
       });
     });
 

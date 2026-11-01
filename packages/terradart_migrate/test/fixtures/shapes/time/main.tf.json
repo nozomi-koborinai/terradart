@@ -1,0 +1,24 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "time": {
+        "source": "hashicorp/time",
+        "version": "~> 0.12"
+      }
+    }
+  },
+  "resource": {
+    "time_sleep": {
+      "first": {
+        "create_duration": "30s"
+      },
+      "second": {
+        "create_duration": "30s",
+        "triggers": {
+          "after": "${time_sleep.first.id}"
+        }
+      }
+    }
+  }
+}

@@ -13,9 +13,8 @@ curatedDoc: |-
   /// - `network`: VPC network this rule attaches to. Typically
   ///   `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.
   ///
-  /// Choose exactly one [ComputeFirewallRulePolicy]:
-  /// - [ComputeFirewallAllowPolicy] — permit matching traffic.
-  /// - [ComputeFirewallDenyPolicy] — block matching traffic.
+  /// Choose exactly one [ComputeFirewallRulePolicy]: `.allow([...])`
+  /// permits matching traffic, `.deny([...])` blocks it.
   ///
   /// Example:
   /// ```dart
@@ -25,24 +24,22 @@ curatedDoc: |-
   ///   network: vpc.ref,
   ///   direction: FirewallDirection.ingress,
   ///   priority: TfArg.literal(1000),
-  ///   rulePolicy: ComputeFirewallAllowPolicy(
-  ///     protocol: TfArg.literal('tcp'),
-  ///     ports: ['22'],
-  ///   ),
+  ///   rulePolicy: .allow([
+  ///     .new(protocol: .literal('tcp'), ports: .literal(['22'])),
+  ///   ]),
   ///   sourceRanges: TfArg.literal(['10.0.0.0/8']),
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource` for runtime behavior. The
-  /// `allow` / `deny` list-typed blocks and the single `log_config` block
-  /// are modeled as helper classes in the `prelude` below.
+  /// The single `log_config` block is [ComputeFirewallLogConfig].
 
 paramOrder:
   - name
   - network
   - direction
   - priority
-  - rule_policy
+  - allow
+  - deny
   - source_ranges
   - source_tags
   - source_service_accounts
@@ -73,13 +70,14 @@ argMapOrder:
   - description
   - params
   - project
-  - rule_policy
-
-deriveNestedTypes: true
-nestedTypeExcludes:
   - allow
   - deny
+
+deriveNestedTypes: true
 deriveOutputGetters: true
+
+sealedNames:
+  "allow, deny": rule_policy
 
 extraImports:
   - "import 'package:meta/meta.dart';"
@@ -119,62 +117,6 @@ prelude: |
   }
 
 
-  // ===========================================================================
-  // ComputeFirewallRulePolicy — sealed (allow | deny)
-  // ===========================================================================
-
-  sealed class ComputeFirewallRulePolicy {
-    const ComputeFirewallRulePolicy();
-
-    const factory ComputeFirewallRulePolicy.allow({
-      required TfArg<String> protocol,
-      List<String>? ports,
-      List<ComputeFirewallAllowRule> additionalRules,
-    }) = ComputeFirewallAllowPolicy;
-
-    const factory ComputeFirewallRulePolicy.deny({
-      required TfArg<String> protocol,
-      List<String>? ports,
-      List<ComputeFirewallDenyRule> additionalRules,
-    }) = ComputeFirewallDenyPolicy;
-    @internal
-    String get blockKey;
-    @internal
-    List<Map<String, Object?>> encode();
-  }
-
-  /// One `allow` entry: an IP protocol plus optional list of port specs.
-  ///
-  /// `protocol` is a string rather than an enum because GCP accepts both
-  /// well-known names (`tcp`, `udp`, `icmp`, `esp`, `ah`, `sctp`, `ipip`,
-  /// `all`) and raw IANA protocol numbers (e.g. `'47'` for GRE).
-  ///
-  /// `ports` entries can be a single port (`'22'`) or a range (`'8000-9000'`).
-  /// Leave `ports` null when `protocol` does not support ports
-  /// (e.g. `icmp`, `esp`).
-  class ComputeFirewallAllowRule {
-    const ComputeFirewallAllowRule({required this.protocol, this.ports});
-    final TfArg<String> protocol;
-    final List<String>? ports;
-    Map<String, Object?> toArgMap() => {
-          'protocol': protocol.toTfJson(),
-          if (ports != null) 'ports': ports,
-        };
-  }
-
-  /// One `deny` entry. Same shape as [ComputeFirewallAllowRule]; kept separate so
-  /// caller intent is obvious at the call site (`allow:` vs `deny:` lists
-  /// are mutually exclusive per GCP API).
-  class ComputeFirewallDenyRule {
-    const ComputeFirewallDenyRule({required this.protocol, this.ports});
-    final TfArg<String> protocol;
-    final List<String>? ports;
-    Map<String, Object?> toArgMap() => {
-          'protocol': protocol.toTfJson(),
-          if (ports != null) 'ports': ports,
-        };
-  }
-
   /// Firewall logging configuration (single block, max_items=1).
   /// Setting this enables Cloud Logging export for matched traffic.
   class ComputeFirewallLogConfig {
@@ -185,45 +127,7 @@ prelude: |
         };
   }
 
-
-  @immutable
-  final class ComputeFirewallAllowPolicy extends ComputeFirewallRulePolicy {
-    const ComputeFirewallAllowPolicy({required this.protocol, this.ports, this.additionalRules = const []});
-    final TfArg<String> protocol;
-    final List<String>? ports;
-    final List<ComputeFirewallAllowRule> additionalRules;
-    @override
-    @internal
-    String get blockKey => 'allow';
-    @override
-    @internal
-    List<Map<String, Object?>> encode() => [
-      {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
-      ...additionalRules.map((r) => r.toArgMap()),
-    ];
-  }
-
-  @immutable
-  final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
-    const ComputeFirewallDenyPolicy({required this.protocol, this.ports, this.additionalRules = const []});
-    final TfArg<String> protocol;
-    final List<String>? ports;
-    final List<ComputeFirewallDenyRule> additionalRules;
-    @override
-    @internal
-    String get blockKey => 'deny';
-    @override
-    @internal
-    List<Map<String, Object?>> encode() => [
-      {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
-      ...additionalRules.map((r) => r.toArgMap()),
-    ];
-  }
-
 customSlots:
-  rule_policy:
-    paramDeclaration: 'required ComputeFirewallRulePolicy rulePolicy'
-    argMapEntry: 'rulePolicy.blockKey: TfArg.literal(rulePolicy.encode()),'
   log_config:
     paramDeclaration: 'ComputeFirewallLogConfig? logConfig'
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

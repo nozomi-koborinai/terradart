@@ -1,0 +1,92 @@
+/// ShapesAwsStack — migrated from `shapes_aws` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_aws/acm.dart';
+import 'package:terradart_aws/cloudformation.dart';
+import 'package:terradart_aws/docdb.dart';
+import 'package:terradart_aws/iam.dart';
+import 'package:terradart_aws/provider.dart';
+import 'package:terradart_aws/resiliencehub.dart';
+
+final class ShapesAwsStack extends Stack {
+  ShapesAwsStack()
+    : super(
+        providers: [const AwsProvider(region: 'us-east-1')],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('on_failure');
+    variable<List<String>>('capabilities');
+    final stack = add(
+      AwsIamRole(
+        'stack',
+        assumeRolePolicy: .literal('{}'),
+        name: .name(.literal('shapes-stack')),
+      ),
+    );
+    final literal = add(
+      AwsCloudformationStack(
+        'literal',
+        capabilities: .literal([.capabilityIam]),
+        iamRoleArn: stack.ref,
+        name: .literal('literal'),
+        onFailure: .delete,
+      ),
+    );
+    add(
+      AwsCloudformationStack(
+        'variable',
+        capabilities: .variable('capabilities'),
+        name: .literal('variable'),
+        onFailure: .variable('on_failure'),
+      ),
+    );
+    add(
+      AwsCloudformationStack(
+        'expression',
+        capabilities: .expression(r'${distinct(var.capabilities)}'),
+        name: .literal('expression'),
+        onFailure: .expression(r'${upper(var.on_failure)}'),
+      ),
+    );
+    add(
+      AwsCloudformationStack(
+        'unlisted',
+        capabilities: .literal([.capabilityIam]),
+        iamRoleArn: stack.ref,
+        name: .literal('unlisted'),
+        onFailure: .arg(.literal('UNLISTED')),
+      ),
+    );
+    add(
+      AwsAcmCertificate(
+        'cert',
+        source: .domainName(.literal('shapes.example.com')),
+        validationMethod: .dns,
+      ),
+    );
+    add(
+      AwsDocdbCluster(
+        'docs',
+        clusterIdentifier: .clusterIdentifierPrefix(.literal('shapes-')),
+        masterPassword: .manageMasterUserPassword(.literal(true)),
+        masterUsername: .literal('shapes'),
+      ),
+    );
+    add(
+      AwsResiliencehubResiliencyPolicy(
+        'policy',
+        name: literal.name,
+        tier: .critical,
+        policy: [
+          ResiliencehubResiliencyPolicy(
+            region: [.new(rpo: .literal('1h'), rto: .literal('1h'))],
+          ),
+        ],
+      ),
+    );
+  }
+}

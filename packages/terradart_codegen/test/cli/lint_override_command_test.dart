@@ -12,6 +12,8 @@ void main() {
       'run',
       'bin/terradart.dart',
       'lint-override',
+      '--generated',
+      '../terradart_google/lib/src',
     ], workingDirectory: Directory.current.path);
     expect(
       result.exitCode,

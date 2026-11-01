@@ -110,6 +110,15 @@ final class GoogleProjectServiceIdentity extends Resource {
   /// Google-managed agent email (`service-{number}@gcp-sa-….gserviceaccount.com`).
   TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
+  /// The agent as an IAM member string (`serviceAccount:{email}`).
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Project the agent was minted in.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Service the agent belongs to.
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
+
   /// The agent as an IAM principal (`serviceAccount:{email}`), for the
   /// `member` of an IAM adjunct.
   IamPrincipal get principal =>

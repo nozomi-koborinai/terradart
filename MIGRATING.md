@@ -2,6 +2,52 @@
 
 ## Unreleased
 
+### Google inputs the migrator could not build are typed
+
+**Breaking (`terradart_google`).** `terradart migrate` now writes every
+Google input with its typed shape. Ten inputs had a hand-written shape that
+it could not build for every value, and it kept those resources in
+Terraform. For the four enum lists, that happened only with a whole-list
+variable or expression. They now take the shape the rest of the package
+uses. The Terraform JSON for the same
+value is unchanged.
+
+Four enum lists were a bare Dart list. They take `EnumList<E>`, so the
+members go inside `.literal([...])` and the whole list can be a
+`.variable(...)` or an `.expression(...)`. These are
+`GoogleMonitoringUptimeCheckConfig.selectedRegions`,
+`GoogleStorageNotification.eventTypes`,
+`BigqueryDatasetAccessAuthorizedDataset.targetTypes` and
+`GkeBackupBackupPlanExclusionWindowDaysOfWeek.daysOfWeek`.
+
+The firewall `rulePolicy` is derived from the provider's `allow` / `deny`
+group. `.allow(...)` and `.deny(...)` take a list of `ComputeFirewallAllow`
+or `ComputeFirewallDeny`, whose `ports` is a `TfArg<List<String>>`.
+`ComputeFirewallAllowPolicy`, `ComputeFirewallDenyPolicy`,
+`ComputeFirewallAllowRule` and `ComputeFirewallDenyRule` are removed.
+
+The autoscaler `scalingSchedules` of `ComputeAutoscalerAutoscalingPolicy`
+and `ComputeRegionAutoscalerAutoscalingPolicy` is a list. Each schedule
+takes its `name`, which was the map key.
+
+`ChronicleDashboardChartVisualization.axisType` set both axes. It is
+replaced by `xAxes` and `yAxes`, each a list of `ChronicleDashboardChartAxis`
+with `axisType`, `displayName`, `min` and `max`.
+
+`ComputeSecurityPolicyRulesMatch` and `ComputeRegionSecurityPolicyRulesMatch`
+are sealed. `.config(...)` and `.expr(...)` build them as before. Their
+`versionedExpr`, `config` and `expr` getters are removed.
+
+| Before | After |
+|---|---|
+| `GoogleMonitoringUptimeCheckConfig('u', selectedRegions: [.usa, .europe, .asiaPacific], ...)` | `GoogleMonitoringUptimeCheckConfig('u', selectedRegions: .literal([.usa, .europe, .asiaPacific]), ...)` |
+| `GoogleStorageNotification('n', eventTypes: [.objectFinalize], ...)` | `GoogleStorageNotification('n', eventTypes: .literal([.objectFinalize]), ...)` |
+| `BigqueryDatasetAccessAuthorizedDataset(dataset: ..., targetTypes: [.views])` | `BigqueryDatasetAccessAuthorizedDataset(dataset: ..., targetTypes: .literal([.views]))` |
+| `GkeBackupBackupPlanExclusionWindowDaysOfWeek(daysOfWeek: [.monday])` | `GkeBackupBackupPlanExclusionWindowDaysOfWeek(daysOfWeek: .literal([.monday]))` |
+| `GoogleComputeFirewall('f', rulePolicy: .allow(protocol: .literal('tcp'), ports: ['443']), ...)` | `GoogleComputeFirewall('f', rulePolicy: .allow([.new(protocol: .literal('tcp'), ports: .literal(['443']))]), ...)` |
+| `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: {'peak': .new(minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))}, ...)` | `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: [.new(name: .literal('peak'), minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))], ...)` |
+| `ChronicleDashboardChartVisualization(axisType: .value)` | `ChronicleDashboardChartVisualization(xAxes: [.new(axisType: .value)], yAxes: [.new(axisType: .value)])` |
+
 ### Managed database point-in-time restore is one sealed argument
 
 **Breaking (`terradart_azure`).** The weekly `hashicorp/azurerm` pin moved

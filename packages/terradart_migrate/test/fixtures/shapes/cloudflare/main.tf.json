@@ -1,0 +1,89 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "cloudflare": {
+        "source": "cloudflare/cloudflare",
+        "version": "5.28.1"
+      }
+    }
+  },
+  "variable": {
+    "member_status": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "filters": {
+      "type": "list(string)"
+    }
+  },
+  "resource": {
+    "cloudflare_zone": {
+      "zone": {
+        "account": {
+          "id": "shapes-account"
+        },
+        "name": "shapes.example.com"
+      }
+    },
+    "cloudflare_dns_record": {
+      "www": {
+        "zone_id": "${cloudflare_zone.zone.id}",
+        "name": "www",
+        "type": "CNAME",
+        "ttl": 1,
+        "content": "${cloudflare_zone.zone.name}"
+      }
+    },
+    "cloudflare_hostname_tls_setting": {
+      "tls": {
+        "zone_id": "${cloudflare_zone.zone.id}",
+        "hostname": "www.shapes.example.com",
+        "setting_id": "min_tls_version",
+        "value": "1.2"
+      }
+    },
+    "cloudflare_account_member": {
+      "member": {
+        "account_id": "shapes-account",
+        "email": "member@shapes.example.com",
+        "roles": [
+          "shapes-role"
+        ],
+        "status": "${var.member_status}"
+      }
+    },
+    "cloudflare_zero_trust_gateway_policy": {
+      "literal": {
+        "account_id": "shapes-account",
+        "name": "literal",
+        "action": "${lower(var.action)}",
+        "filters": [
+          "dns"
+        ]
+      },
+      "variable": {
+        "account_id": "shapes-account",
+        "name": "variable",
+        "action": "block",
+        "filters": "${var.filters}"
+      },
+      "expression": {
+        "account_id": "shapes-account",
+        "name": "expression",
+        "action": "block",
+        "filters": "${distinct(var.filters)}"
+      },
+      "unlisted": {
+        "account_id": "shapes-account",
+        "name": "unlisted",
+        "action": "unlisted",
+        "filters": [
+          "dns"
+        ]
+      }
+    }
+  }
+}

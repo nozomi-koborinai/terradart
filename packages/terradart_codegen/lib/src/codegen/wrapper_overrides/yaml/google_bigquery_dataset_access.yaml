@@ -97,12 +97,12 @@ prelude: |
 
     /// Which resource types the entry applies to (currently
     /// [BigqueryDatasetAccessDatasetTargetType.views]).
-    final List<BigqueryDatasetAccessDatasetTargetType> targetTypes;
+    final EnumList<BigqueryDatasetAccessDatasetTargetType> targetTypes;
 
     @internal
     Map<String, Object?> encode() => {
           'dataset': dataset.encode(),
-          'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
+          'target_types': targetTypes.toTfJson(),
         };
   }
 

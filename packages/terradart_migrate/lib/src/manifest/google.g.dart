@@ -44400,8 +44400,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'allow': 'ComputeFirewallAllowPolicy',
-            'deny': 'ComputeFirewallDenyPolicy',
+            'allow': 'ComputeFirewallRulePolicyAllow',
+            'deny': 'ComputeFirewallRulePolicyDeny',
           },
         ),
         MigrateSlot(
@@ -128987,7 +128987,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'MonitoringUptimeCheckRegion',
         ),
         MigrateSlot(
@@ -168012,7 +168011,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'StorageNotificationEventType',
         ),
         MigrateSlot(
@@ -190586,7 +190584,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
-          wrapped: false,
           dartType: 'BigqueryDatasetAccessDatasetTargetType',
         ),
       ],
@@ -198614,6 +198611,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ChronicleDashboardChartAxis': MigrateHelper(
+      className: 'ChronicleDashboardChartAxis',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'axis_type',
+          dartName: 'axisType',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'ChronicleDashboardChartAxisType',
+        ),
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'min',
+          dartName: 'min',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'max',
+          dartName: 'max',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
     'ChronicleDashboardChartFilterOperatorAndValues': MigrateHelper(
       className: 'ChronicleDashboardChartFilterOperatorAndValues',
       slots: <MigrateSlot>[
@@ -198870,12 +198900,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'ChronicleDashboardChartVisualMapType',
         ),
         MigrateSlot(
-          tfName: '',
-          dartName: 'axisType',
-          kind: MigrateSlotKind.manual,
+          tfName: 'x_axes',
+          dartName: 'xAxes',
+          kind: MigrateSlotKind.helper,
           required: false,
-          merged: true,
-          reason: 'spread-merged enum `ChronicleDashboardChartAxisType`',
+          repeated: true,
+          wrapped: false,
+          helper: 'ChronicleDashboardChartAxis',
+        ),
+        MigrateSlot(
+          tfName: 'y_axes',
+          dartName: 'yAxes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ChronicleDashboardChartAxis',
         ),
       ],
     ),
@@ -217942,10 +217982,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scaling_schedules',
           dartName: 'scalingSchedules',
-          kind: MigrateSlotKind.manual,
+          kind: MigrateSlotKind.helper,
           required: false,
-          reason:
-              '`Map<String, ComputeAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeAutoscalerScalingSchedule',
         ),
       ],
     ),
@@ -218062,6 +218103,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeAutoscalerScalingSchedule': MigrateHelper(
       className: 'ComputeAutoscalerScalingSchedule',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'min_required_replicas',
           dartName: 'minRequiredReplicas',
@@ -219558,42 +219606,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeFirewallAllowPolicy': MigrateHelper(
-      className: 'ComputeFirewallAllowPolicy',
+    'ComputeFirewallAllow': MigrateHelper(
+      className: 'ComputeFirewallAllow',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
-          dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
+          tfName: 'ports',
           dartName: 'ports',
           kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
+          dartType: 'List<String>',
         ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'additionalRules',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ComputeFirewallAllowRule',
-        ),
-      ],
-      shorthand: 'allow',
-      reason:
-          'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
-    ),
-    'ComputeFirewallAllowRule': MigrateHelper(
-      className: 'ComputeFirewallAllowRule',
-      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
@@ -219601,67 +219623,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           dartType: 'String',
         ),
+      ],
+    ),
+    'ComputeFirewallDeny': MigrateHelper(
+      className: 'ComputeFirewallDeny',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ports',
           dartName: 'ports',
           kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
+          dartType: 'List<String>',
         ),
-      ],
-    ),
-    'ComputeFirewallDenyPolicy': MigrateHelper(
-      className: 'ComputeFirewallDenyPolicy',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'ports',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'additionalRules',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ComputeFirewallDenyRule',
-        ),
-      ],
-      shorthand: 'deny',
-      reason:
-          'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
-    ),
-    'ComputeFirewallDenyRule': MigrateHelper(
-      className: 'ComputeFirewallDenyRule',
-      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'ports',
-          dartName: 'ports',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          wrapped: false,
           dartType: 'String',
         ),
       ],
@@ -220133,6 +220111,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeFirewallRulePolicyAllow': MigrateHelper(
+      className: 'ComputeFirewallRulePolicyAllow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allow',
+          dartName: 'allow',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeFirewallAllow',
+        ),
+      ],
+      shorthand: 'allow',
+    ),
+    'ComputeFirewallRulePolicyDeny': MigrateHelper(
+      className: 'ComputeFirewallRulePolicyDeny',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'deny',
+          dartName: 'deny',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeFirewallDeny',
+        ),
+      ],
+      shorthand: 'deny',
     ),
     'ComputeForwardingRuleServiceDirectoryRegistration': MigrateHelper(
       className: 'ComputeForwardingRuleServiceDirectoryRegistration',
@@ -226024,10 +226034,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scaling_schedules',
           dartName: 'scalingSchedules',
-          kind: MigrateSlotKind.manual,
+          kind: MigrateSlotKind.helper,
           required: false,
-          reason:
-              '`Map<String, ComputeRegionAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeRegionAutoscalerScalingSchedule',
         ),
       ],
     ),
@@ -226144,6 +226155,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'ComputeRegionAutoscalerScalingSchedule': MigrateHelper(
       className: 'ComputeRegionAutoscalerScalingSchedule',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'min_required_replicas',
           dartName: 'minRequiredReplicas',
@@ -229973,10 +229991,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'ComputeRegionSecurityPolicyRulesMatch',
+          variants: <String, String>{
+            'versioned_expr':
+                'ComputeRegionSecurityPolicyRulesMatchConfigChoice',
+            'expr': 'ComputeRegionSecurityPolicyRulesMatchExprChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'description',
@@ -230029,10 +230051,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeRegionSecurityPolicyRulesMatch': MigrateHelper(
-      className: 'ComputeRegionSecurityPolicyRulesMatch',
-      slots: <MigrateSlot>[],
-    ),
     'ComputeRegionSecurityPolicyRulesMatchConfig': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesMatchConfig',
       slots: <MigrateSlot>[
@@ -230047,6 +230065,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeRegionSecurityPolicyRulesMatchConfigChoice': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchConfigChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'versioned_expr',
+          dartName: 'versionedExpr',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'SecurityPolicyRuleMatchVersionedExpr',
+        ),
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesMatchConfig',
+        ),
+      ],
+      shorthand: 'config',
+    ),
     'ComputeRegionSecurityPolicyRulesMatchExpr': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesMatchExpr',
       slots: <MigrateSlot>[
@@ -230058,6 +230097,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeRegionSecurityPolicyRulesMatchExprChoice': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchExprChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expr',
+          dartName: 'expr',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeRegionSecurityPolicyRulesMatchExpr',
+        ),
+      ],
+      shorthand: 'expr',
     ),
     'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig',
@@ -233854,10 +233908,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'ComputeSecurityPolicyRulesMatch',
+          variants: <String, String>{
+            'versioned_expr': 'ComputeSecurityPolicyRulesMatchConfigChoice',
+            'expr': 'ComputeSecurityPolicyRulesMatchExprChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'description',
@@ -233951,10 +234008,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeSecurityPolicyRulesMatch': MigrateHelper(
-      className: 'ComputeSecurityPolicyRulesMatch',
-      slots: <MigrateSlot>[],
-    ),
     'ComputeSecurityPolicyRulesMatchConfig': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesMatchConfig',
       slots: <MigrateSlot>[
@@ -233969,6 +234022,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeSecurityPolicyRulesMatchConfigChoice': MigrateHelper(
+      className: 'ComputeSecurityPolicyRulesMatchConfigChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'versioned_expr',
+          dartName: 'versionedExpr',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'SecurityPolicyRuleMatchVersionedExpr',
+        ),
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeSecurityPolicyRulesMatchConfig',
+        ),
+      ],
+      shorthand: 'config',
+    ),
     'ComputeSecurityPolicyRulesMatchExpr': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesMatchExpr',
       slots: <MigrateSlot>[
@@ -233980,6 +234054,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeSecurityPolicyRulesMatchExprChoice': MigrateHelper(
+      className: 'ComputeSecurityPolicyRulesMatchExprChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expr',
+          dartName: 'expr',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeSecurityPolicyRulesMatchExpr',
+        ),
+      ],
+      shorthand: 'expr',
     ),
     'ComputeSecurityPolicyRulesRateLimitOptions': MigrateHelper(
       className: 'ComputeSecurityPolicyRulesRateLimitOptions',
@@ -277113,7 +277202,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'GkeBackupBackupPlanDayOfWeek',
         ),
       ],

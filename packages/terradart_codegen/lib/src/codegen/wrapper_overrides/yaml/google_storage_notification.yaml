@@ -38,10 +38,7 @@ curatedDoc: |-
   ///   // the full path the API expects.
   ///   topic: ingestTopic.ref,
   ///   payloadFormat: StorageNotificationPayloadFormat.jsonApiV1,
-  ///   eventTypes: const [
-  ///     StorageNotificationEventType.objectFinalize,
-  ///     StorageNotificationEventType.objectMetadataUpdate,
-  ///   ],
+  ///   eventTypes: .literal([.objectFinalize, .objectMetadataUpdate]),
   ///   objectNamePrefix: TfArg.literal('incoming/'),
   ///   customAttributes: TfArg.literal(const {'source': 'gcs-ingest'}),
   /// );
@@ -117,5 +114,5 @@ prelude: |
 
 customSlots:
   event_types:
-    paramDeclaration: 'List<StorageNotificationEventType>? eventTypes'
-    argMapEntry: "if (eventTypes != null) 'event_types': TfArg.literal(eventTypes.map((e) => e.toTfJson()).toList()),"
+    paramDeclaration: 'EnumList<StorageNotificationEventType>? eventTypes'
+    argMapEntry: "'event_types': ?eventTypes,"

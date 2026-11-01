@@ -1,0 +1,98 @@
+/// ShapesAzureStack — migrated from `shapes_azure` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_azure/data_factory.dart';
+import 'package:terradart_azure/mssql.dart';
+import 'package:terradart_azure/provider.dart';
+import 'package:terradart_azure/resource.dart';
+import 'package:terradart_azure/storage.dart';
+
+final class ShapesAzureStack extends Stack {
+  ShapesAzureStack()
+    : super(
+        providers: [const AzureProvider(features: AzureFeatures())],
+        requiredVersion: '>= 1.11.0',
+      ) {
+    variable<String>('default_action');
+    variable<List<String>>('bypass');
+    final serviceEndpoint = variable<String>(
+      'service_endpoint',
+      sensitive: true,
+    );
+    final rg = add(
+      AzurermResourceGroup(
+        'rg',
+        location: .literal('westeurope'),
+        name: .literal('shapes'),
+      ),
+    );
+    final sa = add(
+      AzurermStorageAccount(
+        'sa',
+        accountReplicationType: .lrs,
+        accountTier: .standard,
+        location: rg.location,
+        name: .literal('shapesstorage'),
+        resourceGroupName: rg.ref,
+      ),
+    );
+    add(
+      AzurermStorageAccountNetworkRules(
+        'literal',
+        bypass: .literal([.azureservices]),
+        defaultAction: .deny,
+        storageAccountId: sa.ref,
+      ),
+    );
+    add(
+      AzurermStorageAccountNetworkRules(
+        'variable',
+        bypass: .variable('bypass'),
+        defaultAction: .variable('default_action'),
+        storageAccountId: sa.ref,
+      ),
+    );
+    add(
+      AzurermStorageAccountNetworkRules(
+        'expression',
+        bypass: .expression(r'${distinct(var.bypass)}'),
+        defaultAction: .expression(r'${title(var.default_action)}'),
+        storageAccountId: sa.ref,
+      ),
+    );
+    add(
+      AzurermStorageAccountNetworkRules(
+        'unlisted',
+        bypass: .literal([.azureservices]),
+        defaultAction: .arg(.literal('Unlisted')),
+        storageAccountId: sa.ref,
+      ),
+    );
+    add(
+      AzurermDataFactoryLinkedServiceAzureBlobStorage(
+        'blob',
+        connection: .serviceEndpoint(serviceEndpoint),
+        dataFactoryId: .literal(
+          '/subscriptions/shapes/resourceGroups/shapes/providers/Microsoft.DataFactory/factories/shapes',
+        ),
+        name: .literal('shapes'),
+        authentication: .useManagedIdentity(.literal(true)),
+      ),
+    );
+    add(
+      AzurermMssqlVirtualMachine(
+        'sql',
+        virtualMachineId: .literal(
+          '/subscriptions/shapes/resourceGroups/shapes/providers/Microsoft.Compute/virtualMachines/shapes',
+        ),
+        assessment: MssqlVirtualMachineAssessment(
+          schedule: .new(dayOfWeek: .monday, startTime: .literal('02:00')),
+        ),
+      ),
+    );
+  }
+}

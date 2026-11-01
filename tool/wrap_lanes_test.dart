@@ -105,16 +105,19 @@ void main() {
       );
     });
 
-    test('lint reads MM YAML from <schemaDir>/mm like wrap does', () {
+    test('lint reads MM YAML from <schemaDir>/mm and types from the '
+        'generated wrappers like wrap does', () {
       expect(
         lint('google'),
         'lint-override --dir lib/src/codegen/wrapper_overrides/yaml '
-        '--mm-dir test/fixtures/wrap/source/mm',
+        '--mm-dir test/fixtures/wrap/source/mm '
+        '--generated ../terradart_google/lib/src',
       );
       expect(
         lint('appwrite'),
         'lint-override --dir lib/src/codegen/wrapper_overrides/appwrite/yaml '
-        '--mm-dir test/fixtures/wrap/source_appwrite/mm',
+        '--mm-dir test/fixtures/wrap/source_appwrite/mm '
+        '--generated ../terradart_appwrite/lib/src',
       );
     });
   });

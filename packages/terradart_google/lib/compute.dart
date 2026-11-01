@@ -145,13 +145,13 @@ export 'src/compute/google_compute_external_vpn_gateway.dart'
         GoogleComputeExternalVpnGateway;
 export 'src/compute/google_compute_firewall.dart'
     show
-        ComputeFirewallAllowPolicy,
-        ComputeFirewallAllowRule,
-        ComputeFirewallDenyPolicy,
-        ComputeFirewallDenyRule,
+        ComputeFirewallAllow,
+        ComputeFirewallDeny,
         ComputeFirewallLogConfig,
         ComputeFirewallParams,
         ComputeFirewallRulePolicy,
+        ComputeFirewallRulePolicyAllow,
+        ComputeFirewallRulePolicyDeny,
         FirewallDirection,
         FirewallLogMetadata,
         GoogleComputeFirewall;
@@ -979,7 +979,9 @@ export 'src/compute/google_compute_region_security_policy.dart'
         ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig,
         ComputeRegionSecurityPolicyRulesMatch,
         ComputeRegionSecurityPolicyRulesMatchConfig,
+        ComputeRegionSecurityPolicyRulesMatchConfigChoice,
         ComputeRegionSecurityPolicyRulesMatchExpr,
+        ComputeRegionSecurityPolicyRulesMatchExprChoice,
         ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig,
         ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion,
         ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch,
@@ -1235,7 +1237,9 @@ export 'src/compute/google_compute_security_policy.dart'
         ComputeSecurityPolicyRulesHeaderAdd,
         ComputeSecurityPolicyRulesMatch,
         ComputeSecurityPolicyRulesMatchConfig,
+        ComputeSecurityPolicyRulesMatchConfigChoice,
         ComputeSecurityPolicyRulesMatchExpr,
+        ComputeSecurityPolicyRulesMatchExprChoice,
         ComputeSecurityPolicyRulesRateLimitOptions,
         ComputeSecurityPolicyRulesRateLimitThreshold,
         ComputeSecurityPolicyRulesRedirectOptions,
