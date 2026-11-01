@@ -1014,7 +1014,8 @@ Every retyped `terradart_azure` input:
 | `ApplicationGatewaySslPolicy.policyType` | `TfArg<String>` | `ApplicationGatewayPolicyType` |
 | `ApplicationGatewaySslProfile.verifyClientCertificateRevocation` | `TfArg<String>` | `ApplicationGatewayVerifyClientCertificateRevocation` |
 | `ArcKubernetesFluxConfigurationGitRepository.referenceType` | `TfArg<String>` | `ArcKubernetesFluxConfigurationReferenceType` |
-| `AutomanageConfigurationRetentionDuration.durationType` | `TfArg<String>` | `AutomanageConfigurationDailyScheduleDurationType, AutomanageConfigurationWeeklyScheduleDurationType` (now in `AutomanageConfigurationDailyScheduleRetentionDuration`, `AutomanageConfigurationWeeklyScheduleRetentionDuration`) |
+| `AutomanageConfigurationDailyScheduleRetentionDuration.durationType` | `TfArg<String>` | `AutomanageConfigurationDailyScheduleDurationType` |
+| `AutomanageConfigurationWeeklyScheduleRetentionDuration.durationType` | `TfArg<String>` | `AutomanageConfigurationWeeklyScheduleDurationType` |
 | `AutomanageConfigurationRetentionPolicy.retentionPolicyType` | `TfArg<String>` | `AutomanageConfigurationRetentionPolicyType` |
 | `AutomanageConfigurationSchedulePolicy.schedulePolicyType` | `TfArg<String>` | `AutomanageConfigurationSchedulePolicyType` |
 | `AzurermAadb2cDirectory.skuName` | `TfArg<String>` | `Aadb2cDirectorySkuName` |
