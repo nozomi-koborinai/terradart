@@ -64,11 +64,18 @@ MigrateSlot _configSlot({
   helper: kind == MigrateSlotKind.helper ? helper : null,
 );
 
-String _factory(String params) =>
+String _factory(String params, {String network = 'id'}) =>
     '''
 final class GoogleThing extends Resource {
   static const String tfType = 'google_thing';
-  GoogleThing(super.localName, {$params, super.lifecycle});
+  GoogleThing(super.localName, {$params, super.lifecycle})
+    : super(
+        terraformType: tfType,
+        argMap: {
+          source.blockKey: source.value,
+          'network': ?network?.encodeAs('$network'),
+        },
+      );
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 }
 ''';
@@ -422,7 +429,18 @@ final class GoogleOther extends Resource {
 ''',
       ]);
 
-      MigrateManifest alternate(String tfType) => MigrateManifest(
+      MigrateManifest alternate(
+        String tfType, {
+        List<MigrateSlot> slots = const [
+          MigrateSlot(
+            tfName: 'name',
+            dartName: 'name',
+            kind: MigrateSlotKind.scalar,
+            required: false,
+            dartType: 'String',
+          ),
+        ],
+      }) => MigrateManifest(
         package: 'terradart_alt',
         entries: [
           MigrateEntry(
@@ -430,7 +448,7 @@ final class GoogleOther extends Resource {
             className: 'GoogleOther',
             barrel: 'other',
             kind: CatalogKind.resource,
-            slots: const [],
+            slots: slots,
             getters: const [],
           ),
         ],
@@ -466,6 +484,16 @@ final class GoogleOther extends Resource {
           isEmpty,
         );
         expect(used, {'GoogleOther'});
+      });
+
+      test('fails when the named manifest misses an input', () {
+        expect(
+          findingsWith(
+            builtByAlt,
+            manifests: [alternate('google_other', slots: const [])],
+          ).single,
+          contains('GoogleOther.name'),
+        );
       });
 
       test('fails when the named manifest builds another type', () {
@@ -625,6 +653,94 @@ final class GoogleSub extends GoogleBase {
           required: true,
           merged: true,
           variants: {'image': 'SourceDisk', 'disk': 'SourceImage'},
+        ),
+        _networkSlot,
+      ]);
+      expect(findings.single, contains('GoogleThing.source'));
+    });
+
+    test('a sealed variant whose shorthand the sealed type lacks', () {
+      final base = _manifest(slots);
+      final manifest = MigrateManifest(
+        package: base.package,
+        entries: base.entries,
+        helpers: {
+          ...base.helpers,
+          'SourceImage': MigrateHelper(
+            className: 'SourceImage',
+            shorthand: 'doesNotExist',
+            slots: base.helpers['SourceImage']!.slots,
+          ),
+        },
+        enums: base.enums,
+      );
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(_params),
+      ]);
+      expect(coverageFindings(manifest, api).single, contains('doesNotExist'));
+    });
+
+    test('an output getter inherited from a package class', () {
+      final api = WrapperApi.parse([
+        _enum,
+        _sealed,
+        _helpers,
+        _factory(
+          _params,
+        ).replaceFirst('extends Resource', 'extends GoogleThingBase'),
+        '''
+abstract class GoogleThingBase extends Resource {
+  GoogleThingBase(super.localName, {super.lifecycle});
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+}
+''',
+      ]);
+      expect(
+        coverageFindings(_manifest(slots), api),
+        contains(contains('GoogleThing.selfLink')),
+      );
+    });
+
+    test('a TfArg-wrapped helper the manifest builds as a scalar', () {
+      final findings = _findings('$_params, TfArg<ThingConfig>? config', [
+        ...slots,
+        const MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'ThingConfig',
+        ),
+      ]);
+      expect(findings.single, contains('GoogleThing.config'));
+    });
+
+    test('a RefTo slot that emits another attribute', () {
+      final findings = coverageFindings(
+        _manifest(slots),
+        WrapperApi.parse([
+          _enum,
+          _sealed,
+          _helpers,
+          _factory(_params, network: 'self_link'),
+        ]),
+      );
+      expect(findings.single, contains('GoogleThing.network'));
+    });
+
+    test('a merged sealed choice the manifest reads under a key', () {
+      final findings = _findings(_params, [
+        _tierSlot,
+        _tiersSlot,
+        const MigrateSlot(
+          tfName: 'source',
+          dartName: 'source',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          variants: {'image': 'SourceImage', 'disk': 'SourceDisk'},
         ),
         _networkSlot,
       ]);
