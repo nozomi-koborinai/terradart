@@ -177,7 +177,123 @@ final class A {}
     );
   });
 
+  test('a doc-comment fence compiles against its own package', () async {
+    final root = Directory.current.path;
+    final tmp = await Directory.systemTemp.createTemp('doc_snippets_cli_');
+    addTearDown(() => tmp.deleteSync(recursive: true));
+    final lib = Directory(p.join(tmp.path, 'terradart_cli', 'lib'))
+      ..createSync(recursive: true);
+    File(p.join(lib.path, 'a.dart')).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_cli/terradart_cli.dart';
+///
+/// final pinned = kOpenTofuVersion;
+/// ```
+library;
+''');
+    final failures = await checkDocSnippets(root, docs: [], libs: [lib.path]);
+    expect(failures, isEmpty, reason: failures.join('\n'));
+  });
+
+  group('skip markers', () {
+    Future<List<String>> check(String fence) async {
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_skip_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final doc = p.join(tmp.path, 'README.md');
+      File(doc).writeAsStringSync(
+        '<!-- doc-snippets: skip: needs a package -->\n'
+        '```dart\n$fence\n```\n',
+      );
+      return checkDocSnippets(Directory.current.path, docs: [doc], libs: []);
+    }
+
+    test('a skipped fence that needs only the workspace fails', () async {
+      final failures = await check(
+        "import 'dart:io';\n\nfinal home = Platform.environment['HOME'];",
+      );
+      expect(failures, [contains('outside the workspace')]);
+      expect(
+        await check(
+          "import 'package:terradart_core/terradart_core.dart';\n\n"
+          'final s = Stack;',
+        ),
+        [contains('outside the workspace')],
+      );
+    });
+
+    test('a skipped fence that imports a package outside the workspace '
+        'passes', () async {
+      expect(
+        await check("import 'package:flutter/material.dart';\n\nvoid f() {}"),
+        isEmpty,
+      );
+    });
+  });
+
+  test(
+    'a fence reads the generated reader checked in beside its document',
+    () async {
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_reader_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'app', 'lib', 'generated', 'demo_stack.app.dart'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('''
+final class DemoStackOutputs {
+  const DemoStackOutputs.fromDartDefine();
+  String get apiUrl => 'https://example.com';
+}
+''');
+      final doc = p.join(tmp.path, 'README.md');
+      File(doc).writeAsStringSync('''
+```dart
+import 'generated/demo_stack.app.dart';
+
+const outputs = DemoStackOutputs.fromDartDefine();
+final url = outputs.apiUrl;
+```
+''');
+      final failures = await checkDocSnippets(
+        Directory.current.path,
+        docs: [doc],
+        libs: [],
+      );
+      expect(failures, isEmpty, reason: failures.join('\n'));
+    },
+  );
+
+  test('doc comments of every workspace package but codegen compile', () {
+    final workspace = File('pubspec.yaml').readAsStringSync();
+    expect(
+      docCommentPackages.toSet(),
+      {
+        for (final m in RegExp(
+          r'^\s+-\s+packages/(terradart_\w+)\s*$',
+          multiLine: true,
+        ).allMatches(workspace))
+          m.group(1)!,
+      }..remove('terradart_codegen'),
+    );
+  });
+
   group('stablePackages', () {
+    test('reads the whole promise, abbreviations included', () {
+      expect(
+        stablePackages(
+          '| **1.0.0** | TBD | Two minors. Stable SemVer for `terradart_core`, '
+          'every provider package (e.g. `terradart_aws`), and `terradart_cli`. '
+          '`terradart_codegen` and `terradart_hcl` stay outside the promise. |',
+        ),
+        {'terradart_core', 'terradart_aws', 'terradart_cli'},
+      );
+    });
+
+    test('names only workspace packages', () {
+      final workspace = File('pubspec.yaml').readAsStringSync();
+      for (final pkg in stablePackages(File(statusPath).readAsStringSync())) {
+        expect(workspace, contains('packages/$pkg'), reason: pkg);
+      }
+    });
+
     test('reads the packages of the 1.0.0 row', () {
       expect(
         stablePackages(
