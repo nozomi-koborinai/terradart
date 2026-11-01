@@ -34,16 +34,11 @@
 //
 // Then one `dart analyze` checks every sandbox; an error or warning fails.
 //
-// Doc-comment fences share one sandbox per package, a file per fence. An
-// example there shows one resource and may name a value it does not build
-// (`instance: primary.name`): a lowerCamel name the fence leaves
-// undefined becomes a stand-in with only the getters the fence reads, typed
-// as a resource's would be (`ref` a `RefTo`, `principal` an `IamPrincipal`,
-// any other an attribute reference). So a method call through a stand-in,
-// or a getter passed where another type goes, fails, and the rest of the
-// fence — class, parameter, enum and helper names — must resolve. A doc-comment fence
-// needs a language: dartdoc renders an unlabeled one as Dart, so a diagram
-// is ```text.
+// Doc-comment fences share one sandbox per package, a file per fence, and
+// compile like any other: a fence declares every value it reads (the
+// resource whose `ref` it passes, a project id), so each argument has the
+// type the real API gives it. A doc-comment fence needs a language:
+// dartdoc renders an unlabeled one as Dart, so a diagram is ```text.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -268,32 +263,6 @@ final class SnippetFile {
   final Snippet snippet;
   final int prefix;
 
-  /// This file with each of [standIns] declared after the snippet, where a
-  /// directive cannot follow it.
-  SnippetFile withStandIns(Map<String, StandIn> standIns) => SnippetFile(
-    path,
-    [
-      contents,
-      for (final MapEntry(key: name, value: s) in standIns.entries)
-        if (s.type case final type?)
-          'external $type get $name;'
-        else ...[
-          'external ${_standInClass(name)} get $name;',
-          'abstract final class ${_standInClass(name)} {',
-          for (final g in s.getters)
-            '  ${switch (g) {
-              'ref' => '$_standInCore.RefTo<Never>',
-              'principal' => '$_standInIam.IamPrincipal',
-              _ => '$_standInCore.TfRef<Never>',
-            }} get $g;',
-          '}',
-        ],
-      '',
-    ].join('\n'),
-    snippet,
-    prefix,
-  );
-
   /// The document line of sandbox line [line] (1-based).
   int docLine(int line) {
     final offset = line - 1 - prefix;
@@ -301,29 +270,6 @@ final class SnippetFile {
     return snippet.line + offset.clamp(0, max);
   }
 }
-
-/// A value a doc-comment fence reads but does not build.
-///
-/// Passed whole, it has the [type] of the parameter or element it fills.
-/// Otherwise it is a value of its own class with only the [getters] the
-/// fence reads, typed as a resource's would be: `ref` a `RefTo`, `principal`
-/// an `IamPrincipal`, any other an attribute reference. So a method call
-/// through it, or a getter passed where another type goes, does not compile.
-final class StandIn {
-  final getters = <String>{};
-  String? type;
-}
-
-const _standInCore = 'standin_core';
-const _standInIam = 'standin_iam';
-
-String _standInClass(String name) => 'StandIn\$$name';
-
-/// The imports a stand-in's getter types resolve through.
-const _standInImports = [
-  "import 'package:terradart_core/terradart_core.dart' as $_standInCore;",
-  "import 'package:terradart_google/iam.dart' as $_standInIam;",
-];
 
 const _ignores =
     '// ignore_for_file: unused_import, unused_local_variable, '
@@ -333,16 +279,10 @@ final List<String> _barrels = docSnippetBarrels(
   parseWrapLanes(File(providersPath).readAsStringSync()),
 );
 
-/// The sandbox file for the [index]-th fence of a document; with
-/// [standIns], one whose stand-ins' types resolve.
-SnippetFile renderSnippet(Snippet s, int index, {bool standIns = false}) {
+/// The sandbox file for the [index]-th fence of a document.
+SnippetFile renderSnippet(Snippet s, int index) {
   final path = s.path ?? 'lib/snippet_$index.dart';
-  final head = <String>[
-    _ignores,
-    if (standIns && !s.code.trimLeft().startsWith('library'))
-      ..._standInImports,
-    if (!s.hasDirectives) ..._barrels,
-  ];
+  final head = <String>[_ignores, if (!s.hasDirectives) ..._barrels];
   if (s.isLibrary) {
     return SnippetFile(path, '${head.join('\n')}\n${s.code}\n', s, head.length);
   }
@@ -387,11 +327,11 @@ String _pubspec(String root, List<String> packages) {
 }
 
 /// One sandbox package: the fences of one document, or of one package's
-/// doc comments ([standIns]), which also depends on that [package].
+/// doc comments ([docComments]), which also depends on that [package].
 typedef _Unit = ({
   String name,
   List<Snippet> snippets,
-  bool standIns,
+  bool docComments,
   String? package,
 });
 
@@ -428,7 +368,7 @@ Future<List<String>> checkDocSnippets(
           File(p.join(root, doc)).readAsStringSync(),
           skipped: skipped,
         ),
-        standIns: false,
+        docComments: false,
         package: null,
       ),
   ];
@@ -460,7 +400,7 @@ Future<List<String>> checkDocSnippets(
     units.add((
       name: dir,
       snippets: snippets,
-      standIns: true,
+      docComments: true,
       package: _packages.contains(package) ? null : package,
     ));
   }
@@ -468,9 +408,6 @@ Future<List<String>> checkDocSnippets(
   final sandbox = await Directory.systemTemp.createTemp('doc_snippets_');
   try {
     final files = <String, SnippetFile>{};
-    // Each doc-comment file as rendered, and the stand-ins it declares.
-    final standInFiles = <String, SnippetFile>{};
-    final standIns = <String, Map<String, StandIn>>{};
     final runs = <(String, String, Snippet)>[];
     final dirs = <String>[];
     for (final unit in units) {
@@ -491,7 +428,7 @@ Future<List<String>> checkDocSnippets(
             unit.package!,
         ]),
       );
-      if (!unit.standIns) {
+      if (!unit.docComments) {
         for (final reader in _checkedInReaders(
           p.dirname(p.join(root, unit.name)),
         )) {
@@ -503,13 +440,7 @@ Future<List<String>> checkDocSnippets(
         }
       }
       for (final (i, s) in unit.snippets.indexed) {
-        final rendered = renderSnippet(s, i + 1, standIns: unit.standIns);
-        final shadowed = {
-          if (unit.standIns && !s.isLibrary)
-            for (final m in stackMembers)
-              if (_readsUndeclared(s, m)) m: StandIn(),
-        };
-        final f = shadowed.isEmpty ? rendered : rendered.withStandIns(shadowed);
+        final f = renderSnippet(s, i + 1);
         final out = File(p.join(dir, f.path));
         if (out.existsSync()) {
           failures.add(
@@ -523,10 +454,6 @@ Future<List<String>> checkDocSnippets(
           ..writeAsStringSync(f.contents);
         final key = p.canonicalize(out.path);
         files[key] = f;
-        if (unit.standIns) {
-          standInFiles[key] = rendered;
-          standIns[key] = shadowed;
-        }
         if (f.path.startsWith('bin/') &&
             RegExp(r'\bmain\s*\(').hasMatch(s.code)) {
           runs.add((dir, f.path, s));
@@ -560,38 +487,7 @@ Future<List<String>> checkDocSnippets(
       }
     }
 
-    var diagnostics = await analyzeDiagnostics(sandbox.path);
-    // A lowerCamel name a doc-comment fence reads but leaves undefined
-    // stands for a value the example does not build; declare it, then the
-    // getters the fence reads on it, then the type of the parameter it is
-    // passed whole to, analyzing again after each. A call to an undefined
-    // function, or to any method of a stand-in, stays an error.
-    for (final pass in [_undefinedName, _standInGetter, _standInWhole]) {
-      var grew = false;
-      for (final d in diagnostics) {
-        if (!standInFiles.containsKey(d.file)) continue;
-        if (pass(d) case (final name, final read)) {
-          final s = standIns[d.file]!.putIfAbsent(name, StandIn.new);
-          switch (read) {
-            case (getter: final g?, type: null):
-              s.getters.add(g);
-            case (getter: null, type: final t?):
-              s.type ??= t;
-            default:
-          }
-          grew = true;
-        }
-      }
-      if (!grew) continue;
-      for (final MapEntry(key: path, value: getters) in standIns.entries) {
-        if (getters.isEmpty) continue;
-        final f = standInFiles[path]!.withStandIns(getters);
-        files[path] = f;
-        File(path).writeAsStringSync(f.contents);
-      }
-      diagnostics = await analyzeDiagnostics(sandbox.path);
-    }
-
+    final diagnostics = await analyzeDiagnostics(sandbox.path);
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
       final message = '${d.message} (${d.code})';
@@ -606,60 +502,6 @@ Future<List<String>> checkDocSnippets(
     sandbox.deleteSync(recursive: true);
   }
   return failures;
-}
-
-typedef _StandInRead = ({String? getter, String? type});
-
-/// The undefined lowerCamel name [d] reports, as a stand-in to declare.
-(String, _StandInRead)? _undefinedName(AnalyzerDiagnostic d) {
-  if (d.code != 'UNDEFINED_IDENTIFIER') return null;
-  final name = RegExp(r"'([a-z_]\w*)'").firstMatch(d.message)?.group(1);
-  return name == null ? null : (name, (getter: null, type: null));
-}
-
-/// The getter [d] reports missing on a stand-in, with the stand-in's name.
-(String, _StandInRead)? _standInGetter(AnalyzerDiagnostic d) {
-  if (d.code != 'UNDEFINED_GETTER') return null;
-  final m = RegExp(
-    r"getter '(\w+)' isn't defined for the type 'StandIn\$(\w+)'",
-  ).firstMatch(d.message);
-  return m == null ? null : (m.group(2)!, (getter: m.group(1)!, type: null));
-}
-
-/// The type a stand-in is passed whole to, as [d] reports it.
-(String, _StandInRead)? _standInWhole(AnalyzerDiagnostic d) {
-  final m = RegExp(
-    r"type 'StandIn\$(\w+)' can't be assigned to the \w+ type '([^']+)'",
-  ).firstMatch(d.message);
-  return m == null ? null : (m.group(1)!, (getter: null, type: m.group(2)!));
-}
-
-/// The getters of `Stack`. A doc-comment fence that reads one of these names
-/// without declaring it means a value of its own (`backend.backendIdRef`),
-/// not the member the Stack-body wrapper would resolve it to.
-const stackMembers = [
-  'appExports',
-  'backend',
-  'constants',
-  'dataSources',
-  'devMode',
-  'externalBlocks',
-  'externalVariables',
-  'modules',
-  'moved',
-  'outputs',
-  'providers',
-  'requiredVersion',
-  'resources',
-  'variables',
-];
-
-bool _readsUndeclared(Snippet s, String name) {
-  final read = RegExp('(?<![\\w.\$\'"])$name(?![\\w\$]|\\s*:)');
-  final declared = RegExp(
-    '\\b(final|var|const|late)\\s+([\\w<>?, ]+\\s+)?$name\\s*[=;]',
-  );
-  return read.hasMatch(s.code) && !declared.hasMatch(s.code);
 }
 
 typedef AnalyzerDiagnostic = ({
