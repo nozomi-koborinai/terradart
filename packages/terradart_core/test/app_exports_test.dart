@@ -71,6 +71,24 @@ void main() {
       expect(source, contains("static const Map<String, int> m = {r'a': 1};"));
     });
 
+    test('a reader with no readable output emits no unused helper', () {
+      final constantsOnly = _source(
+        _stack()..addConstant('s', const .value('v1')),
+      );
+      for (final unused in [
+        "import 'dart:convert'",
+        '_read(',
+        '_as<',
+        '_Source',
+      ]) {
+        expect(constantsOnly, isNot(contains(unused)));
+      }
+      final stringOnly = _source(_stack()..addOutput('x', .literal('v')));
+      expect(stringOnly, contains("import 'dart:convert'"));
+      expect(stringOnly, contains('Object? _read('));
+      expect(stringOnly, contains('_as<String>('));
+    });
+
     test('resolves a .ref to the literal the attribute is set to', () {
       final stack = _stack();
       final topic = _topic(stack, {
