@@ -2,7 +2,8 @@
 // of the top section of MIGRATING.md, so an upgrade table cannot show a call
 // or a type its release does not have. The top section is `## Unreleased`,
 // or `## <from> → <to>` (`## 0.35.x → 0.36.0`) once a release PR names it; any
-// other heading, or a top section without a cell, fails.
+// other heading, a top section without a cell, or a first line other than
+// `# Migrating terradart`, fails.
 //
 // Run from repo root: dart tool/migrating_cells.dart
 // tool/migrating_cells_test.dart runs the same check (CI: `dart test tool/`).
@@ -44,19 +45,21 @@ import 'wrap_lanes.dart';
 
 const migratingPath = 'MIGRATING.md';
 
-/// One code span of a Before or After cell.
+/// One code span of a Before or After cell. [renamedTo] holds, for a Before
+/// span that is a bare type name, the bare type names of its row's After
+/// cell: the names that type was renamed to.
 typedef MigratingCell = ({
   int line,
   String section,
   bool before,
   String code,
-  Set<String> rowNames,
+  List<String> renamedTo,
 });
 
 final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
 final _namedArgument = RegExp(r'^[a-z]\w*:\s');
-final _upperName = RegExp(r'\b[A-Z]\w*');
+final _bareName = RegExp(r'^[A-Z]\w*$');
 
 /// The first `##` heading of [text] and its line.
 ({int line, String heading})? topMigratingHeading(String text) {
@@ -95,22 +98,27 @@ List<MigratingCell> extractMigratingCells(String text) {
       continue;
     }
     if (cells.every((c) => RegExp(r'^:?-+:?$').hasMatch(c))) continue;
-    final rowNames = {
-      for (final m in RegExp(r'`([^`]+)`').allMatches(line))
-        for (final n in _upperName.allMatches(m.group(1)!)) n.group(0)!,
-    };
+    List<String> spans(String cell) => [
+      for (final m in RegExp(r'`([^`]+)`').allMatches(cell)) m.group(1)!.trim(),
+    ];
+    final afterNames = [
+      for (final (j, cell) in cells.indexed)
+        if (j < header.length && header[j] == 'After')
+          ...spans(cell).where(_bareName.hasMatch),
+    ];
     for (final (j, cell) in cells.indexed) {
       final column = j < header.length ? header[j] : '';
       if (column != 'Before' && column != 'After') continue;
-      for (final m in RegExp(r'`([^`]+)`').allMatches(cell)) {
-        final code = m.group(1)!.trim();
+      for (final code in spans(cell)) {
         if (_terraformSpan.hasMatch(code)) continue;
         out.add((
           line: i + 1,
           section: section,
           before: column == 'Before',
           code: code,
-          rowNames: rowNames,
+          renamedTo: column == 'Before' && _bareName.hasMatch(code)
+              ? afterNames
+              : const [],
         ));
       }
     }
@@ -318,30 +326,51 @@ const _undefinedNameCodes = {
   'UNDEFINED_IDENTIFIER',
 };
 
+/// A Before cell not compiled because [name], which it uses, belongs to
+/// [package], which has no release in the series.
+typedef MigratingSkip = ({MigratingCell cell, String name, String package});
+
+String describeSkip(MigratingSkip skip) =>
+    '$migratingPath:${skip.cell.line}: Before `${skip.cell.code}` needs '
+    '${skip.package} (${skip.name})';
+
 /// The outcome of [checkMigratingCells]: its failures, the version each
-/// Before package compiled at, and the Before cells it compiled and skipped.
+/// Before package compiled at, and how many Before cells compiled, failed and
+/// were skipped.
 typedef MigratingReport = ({
   List<String> failures,
   Map<String, String> before,
   int beforeCompiled,
-  List<String> beforeSkipped,
+  int beforeFailed,
+  List<MigratingSkip> beforeSkipped,
 });
+
+const migratingTitle = '# Migrating terradart';
 
 /// Compiles the cells of [migrating] (default: the repo's MIGRATING.md).
 ///
-/// A Before cell is skipped, and listed in `beforeSkipped`, only when it uses
-/// a type that a package without a release in the series declares, or a type
-/// the analyzer cannot resolve in a table row that names such a type (an old
-/// name of that package). Every other Before cell compiles against the
+/// A Before cell is skipped, and listed in `beforeSkipped`, only when a name
+/// it uses and the analyzer cannot resolve belongs to a package without a
+/// release in the series: that package declares it, or the cell is that bare
+/// name and its row's After cell names a type the package declares (an old
+/// name of that type). Every other Before cell compiles against the
 /// published packages.
 Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
 }) async {
-  MigratingReport failed(List<String> failures) =>
-      (failures: failures, before: {}, beforeCompiled: 0, beforeSkipped: []);
+  MigratingReport failed(List<String> failures) => (
+    failures: failures,
+    before: {},
+    beforeCompiled: 0,
+    beforeFailed: 0,
+    beforeSkipped: [],
+  );
   final text =
       migrating ?? File(p.join(root, migratingPath)).readAsStringSync();
+  if (text.split('\n').first.trim() != migratingTitle) {
+    return failed(['$migratingPath:1: the title is not `$migratingTitle`']);
+  }
   final top = topMigratingHeading(text);
   if (top == null) return failed(['$migratingPath: has no `##` section']);
   final at = '$migratingPath:${top.line}: `${top.heading}`';
@@ -362,7 +391,9 @@ Future<MigratingReport> checkMigratingCells(
   ]);
   String? unpublishedOwner(MigratingCell cell, String name) =>
       unpublished[name] ??
-      [for (final n in cell.rowNames) ?unpublished[n]].firstOrNull;
+      (name == cell.code
+          ? [for (final n in cell.renamedTo) ?unpublished[n]].firstOrNull
+          : null);
 
   final failures = <String>[];
   final barrels = docSnippetBarrels(
@@ -375,8 +406,10 @@ Future<MigratingReport> checkMigratingCells(
 
   final after = <MigratingCell>[];
   final before = <MigratingCell>[];
+  final failedBefore = <MigratingCell>{};
   for (final cell in cells) {
     if (cellShapeError(cell) case final error?) {
+      if (cell.before) failedBefore.add(cell);
       failures.add(
         '$migratingPath:${cell.line}: `${cell.code}` $error (${cell.section})',
       );
@@ -385,7 +418,7 @@ Future<MigratingReport> checkMigratingCells(
     }
   }
 
-  final skipped = <MigratingCell, String>{};
+  final skipped = <MigratingCell, MigratingSkip>{};
   final sandbox = await Directory.systemTemp.createTemp('migrating_cells_');
   try {
     final rendered =
@@ -460,9 +493,7 @@ Future<MigratingReport> checkMigratingCells(
       final name = RegExp(r"'([A-Z]\w*)'").firstMatch(d.message)?.group(1);
       if (name == null) continue;
       if (unpublishedOwner(cell, name) case final pkg?) {
-        skipped[cell] ??=
-            '$migratingPath:${cell.line}: Before `${cell.code}` needs $pkg, '
-            'which has no ${series == 'x' ? '' : '$series '}release ($name)';
+        skipped[cell] ??= (cell: cell, name: name, package: pkg);
       }
     }
     for (final d in diagnostics) {
@@ -483,6 +514,7 @@ Future<MigratingReport> checkMigratingCells(
           _memberSpan.hasMatch(cell.code)) {
         continue;
       }
+      if (cell != null && cell.before) failedBefore.add(cell);
       failures.add(
         at == null
             ? '${d.file}:${d.line}: ${d.message} (${d.code})'
@@ -496,7 +528,10 @@ Future<MigratingReport> checkMigratingCells(
   return (
     failures: failures,
     before: release,
-    beforeCompiled: before.length - skipped.length,
+    beforeCompiled: before
+        .where((c) => !skipped.containsKey(c) && !failedBefore.contains(c))
+        .length,
+    beforeFailed: failedBefore.length,
     beforeSkipped: skipped.values.toList(),
   );
 }
@@ -504,12 +539,12 @@ Future<MigratingReport> checkMigratingCells(
 Future<void> main() async {
   final report = await checkMigratingCells(Directory.current.path);
   for (final skip in report.beforeSkipped) {
-    print('  skipped: $skip');
+    print('  skipped: ${describeSkip(skip)}');
   }
   print(
-    'migrating_cells: ${report.beforeCompiled} Before cells compiled against '
-    '${report.before.values.toSet().join(', ')}, '
-    '${report.beforeSkipped.length} skipped',
+    'migrating_cells: Before cells: ${report.beforeCompiled} compiled against '
+    '${report.before.values.toSet().join(', ')}, ${report.beforeFailed} '
+    'failed, ${report.beforeSkipped.length} skipped',
   );
   if (report.failures.isEmpty) {
     print('migrating_cells: OK');

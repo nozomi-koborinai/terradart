@@ -55,7 +55,7 @@ void main() {
 
     List<String> spans(String text) => [
       for (final c in extractMigratingCells(text))
-        '${c.line} ${c.section} ${c.before} ${c.code} ${c.rowNames}',
+        '${c.line} ${c.section} ${c.before} ${c.code} ${c.renamedTo}',
     ];
 
     test('reads the top section once a release names it', () {
@@ -73,16 +73,32 @@ void main() {
       expect(spans(released), spans(text));
     });
 
-    test('takes the type names of the whole row', () {
-      final cells = extractMigratingCells(doc);
-      expect(cells.first.rowNames, {'TfArg', 'String', 'FooKind'});
-      expect(cells.first.section, 'A change');
+    test('pairs a bare Before name with the bare names it was renamed to', () {
+      const renames = '''
+## Unreleased
+
+| Before | After |
+|---|---|
+| `OldName` | `NewName` and `TfArg<String>` |
+| `Old('x')` | `NewName` |
+''';
+      expect(
+        [
+          for (final c in extractMigratingCells(renames))
+            if (c.before) c.renamedTo,
+        ],
+        [
+          ['NewName'],
+          <String>[],
+        ],
+      );
+      expect(extractMigratingCells(doc).first.renamedTo, isEmpty);
     });
   });
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code, rowNames: const {});
+        (line: 1, section: 's', before: false, code: code, renamedTo: const []);
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -140,6 +156,8 @@ void main() {
   test('a section that names an unpublished package still compiles the '
       'Before cells of published packages', () async {
     const seeded = '''
+# Migrating terradart
+
 ## 0.35.x → 0.36.0
 
 ### Mixed
@@ -159,15 +177,19 @@ void main() {
     );
     expect(report.failures, [
       allOf(
-        contains('MIGRATING.md:9: Before'),
+        contains('MIGRATING.md:11: Before'),
         contains('DefinitelyNoSuchType'),
       ),
     ]);
-    expect(report.beforeCompiled, 2);
-    expect(report.beforeSkipped, [
-      allOf(contains('MIGRATING.md:11:'), contains('needs terradart_azure')),
-      allOf(contains('MIGRATING.md:12:'), contains('needs terradart_azure')),
-    ]);
+    expect(report.beforeCompiled, 1);
+    expect(report.beforeFailed, 1);
+    expect(
+      [for (final s in report.beforeSkipped) (s.cell.line, s.name, s.package)],
+      [
+        (13, 'AzurermResourceGroup', 'terradart_azure'),
+        (14, 'Aadb2cDirectorySkuNameBefore036', 'terradart_azure'),
+      ],
+    );
   });
 
   test(
@@ -222,10 +244,34 @@ void main() {
     final before = extractMigratingCells(
       File(migratingPath).readAsStringSync(),
     ).where((c) => c.before);
+    expect(report.beforeFailed, 0);
     expect(report.beforeCompiled + report.beforeSkipped.length, before.length);
+    final sources = <String, String>{};
+    bool names(String pkg, String name) =>
+        RegExp(
+          r'\b'
+          '$name'
+          r'\b',
+        ).hasMatch(
+          sources[pkg] ??= [
+            for (final f in Directory(
+              'packages/$pkg/lib',
+            ).listSync(recursive: true).whereType<File>())
+              if (f.path.endsWith('.dart')) f.readAsStringSync(),
+          ].join('\n'),
+        );
     for (final skip in report.beforeSkipped) {
-      final pkg = RegExp(r' needs (\w+),').firstMatch(skip)![1]!;
-      expect(report.before, isNot(contains(pkg)), reason: skip);
+      final reason = describeSkip(skip);
+      expect(report.before, isNot(contains(skip.package)), reason: reason);
+      expect(
+        names(skip.package, skip.name) ||
+            skip.cell.code == skip.name &&
+                skip.cell.renamedTo.any((n) => names(skip.package, n)),
+        isTrue,
+        reason:
+            '$reason: neither ${skip.package} nor the type it was renamed '
+            'to there names ${skip.name}',
+      );
     }
   });
 
@@ -267,6 +313,8 @@ void main() {
 
   test('a cell that does not compile fails', () async {
     const seeded = '''
+# Migrating terradart
+
 ## 0.35.x → 0.36.0
 
 ### Seeded
@@ -294,17 +342,17 @@ void main() {
       migrating: seeded,
     )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
-    expect(at(9), contains('UNDEFINED_NAMED_PARAMETER'));
-    expect(at(10), contains("'literal'"));
-    expect(at(11), contains('MISSING_REQUIRED_ARGUMENT'));
-    expect(at(12), contains('named-argument fragment'));
-    expect(at(13), contains("Undefined class 'NoSuchType'"));
+    expect(at(11), contains('UNDEFINED_NAMED_PARAMETER'));
+    expect(at(12), contains("'literal'"));
+    expect(at(13), contains('MISSING_REQUIRED_ARGUMENT'));
+    expect(at(14), contains('named-argument fragment'));
+    expect(at(15), contains("Undefined class 'NoSuchType'"));
     expect(
       {
         for (final f in failures)
           int.parse(RegExp(r'^MIGRATING\.md:(\d+):').firstMatch(f)![1]!),
       },
-      {9, 10, 11, 12, 13},
+      {11, 12, 13, 14, 15},
       reason: failures.join('\n'),
     );
     expect(failures.where((f) => f.contains(' Before ')), isEmpty);
