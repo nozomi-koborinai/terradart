@@ -35,6 +35,13 @@
 // failure is red. An entry fails unless it matches exactly one Before cell of
 // the top section, and fails when its package has a release in the series or
 // when its cell compiles.
+//
+// A listed cell still compiles against the published packages, and only two
+// kinds of diagnostic are excused: an undefined name that the workspace copy
+// of the entry's package exports from its barrels (the analyzer resolves it),
+// and a dot shorthand (`.literal(...)`) inside the argument list of such an
+// undefined call, which has no context type to resolve against. Any other
+// diagnostic fails the cell.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -358,6 +365,108 @@ typedef MigratingReport = ({
 
 const migratingTitle = '# Migrating terradart';
 
+Future<String?> _pubGet(String dir) async {
+  var get = await Process.run('dart', [
+    'pub',
+    'get',
+    '--offline',
+  ], workingDirectory: dir);
+  if (get.exitCode != 0) {
+    get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
+  }
+  return get.exitCode == 0
+      ? null
+      : 'dart pub get failed in $dir:\n${get.stderr}';
+}
+
+/// Analyzer codes for a name no import declares.
+const _undefinedNameCodes = {
+  'UNDEFINED_CLASS',
+  'UNDEFINED_FUNCTION',
+  'UNDEFINED_IDENTIFIER',
+};
+
+/// The name [d] reports undefined, or null when it reports something else.
+String? _undefinedName(AnalyzerDiagnostic d) =>
+    _undefinedNameCodes.contains(d.code)
+    ? RegExp(r"'([A-Za-z_]\w*)'").firstMatch(d.message)?.group(1)
+    : null;
+
+/// The parentheses of the argument list that starts at [from] in [line]
+/// (0-based), or null when no `(` starts there.
+({int open, int close})? _argumentList(String line, int from) {
+  var i = from;
+  while (i < line.length && line[i] == ' ') {
+    i++;
+  }
+  if (i >= line.length || line[i] != '(') return null;
+  final open = i;
+  var depth = 0;
+  String? quote;
+  for (; i < line.length; i++) {
+    final c = line[i];
+    if (quote != null) {
+      if (c == r'\') {
+        i++;
+      } else if (c == quote) {
+        quote = null;
+      }
+    } else if (c == "'" || c == '"') {
+      quote = c;
+    } else if (c == '(') {
+      depth++;
+    } else if (c == ')' && --depth == 0) {
+      return (open: open, close: i);
+    }
+  }
+  return null;
+}
+
+/// Which of [wanted] (package → names) each package's public barrels export,
+/// resolved by the analyzer against the workspace packages in [dir].
+Future<({Set<(String, String)> names, String? error})> _exportedNames(
+  String dir,
+  String pubspec,
+  List<String> barrels,
+  Map<String, Set<String>> wanted,
+) async {
+  Directory(p.join(dir, 'lib')).createSync(recursive: true);
+  File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(pubspec);
+  final probes = <String, List<(String, String)>>{};
+  for (final MapEntry(key: pkg, value: names) in wanted.entries) {
+    final head = [
+      _ignores,
+      ...barrels.where((b) => b.contains('package:$pkg/')),
+    ];
+    final file = p.canonicalize(p.join(dir, 'lib', 'probe_$pkg.dart'));
+    final lines = [...head];
+    final at = <(String, String)>[for (final _ in head) ('', '')];
+    for (final (i, name) in (names.toList()..sort()).indexed) {
+      lines.add('final Object? _p$i = $name;');
+      at.add((pkg, name));
+    }
+    File(file).writeAsStringSync('${lines.join('\n')}\n');
+    probes[file] = at;
+  }
+  if (await _pubGet(dir) case final error?) {
+    return (names: <(String, String)>{}, error: error);
+  }
+  final missing = <(String, String)>{
+    for (final d in await analyzeDiagnostics(dir))
+      if (d.severity == 'ERROR')
+        if (probes[d.file] case final at? when d.line <= at.length)
+          at[d.line - 1],
+  };
+  return (
+    names: {
+      for (final at in probes.values)
+        for (final key in at)
+          if (key.$1.isNotEmpty && !missing.contains(key)) key,
+    },
+    error: null,
+  );
+}
+
 /// Compiles the cells of [migrating] (default: the repo's MIGRATING.md)
 /// against [ledger] (default: the repo's ledger with the repo's MIGRATING.md,
 /// else none).
@@ -488,19 +597,8 @@ Future<MigratingReport> checkMigratingCells(
       rendered[file] = (docLines: r.docLines, cells: r.cells);
     }
     for (final dir in dirs) {
-      var get = await Process.run('dart', [
-        'pub',
-        'get',
-        '--offline',
-      ], workingDirectory: dir);
-      if (get.exitCode != 0) {
-        get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
-      }
-      if (get.exitCode != 0) {
-        return failed([
-          ...failures,
-          'dart pub get failed in $dir:\n${get.stderr}',
-        ]);
+      if (await _pubGet(dir) case final error?) {
+        return failed([...failures, error]);
       }
     }
 
@@ -526,7 +624,7 @@ Future<MigratingReport> checkMigratingCells(
       diagnostics = await analyze();
     }
 
-    final errors = <MigratingCell?, List<String>>{};
+    final errors = <MigratingCell?, List<(AnalyzerDiagnostic, String)>>{};
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
       final r = rendered[d.file];
@@ -543,31 +641,93 @@ Future<MigratingReport> checkMigratingCells(
         continue;
       }
       final docLine = inCell ? r.docLines[d.line - 1] : null;
-      errors
-          .putIfAbsent(cell, () => [])
-          .add(
-            docLine == null || cell == null
-                ? '${d.file}:${d.line}: ${d.message} (${d.code})'
-                : '$migratingPath:$docLine: ${cell.before ? 'Before' : 'After'} '
-                      '`${cell.code}`: ${d.message} (${d.code})',
-          );
+      errors.putIfAbsent(cell, () => []).add((
+        d,
+        docLine == null || cell == null
+            ? '${d.file}:${d.line}: ${d.message} (${d.code})'
+            : '$migratingPath:$docLine: ${cell.before ? 'Before' : 'After'} '
+                  '`${cell.code}`: ${d.message} (${d.code})',
+      ));
     }
+
+    final listedErrors =
+        <
+          MigratingCell,
+          (MigratingLedgerEntry, List<(AnalyzerDiagnostic, String)>)
+        >{};
     for (final cell in before) {
       final entry = listed[(cell.code, cell.after)];
       if (entry == null) continue;
-      if (errors.remove(cell) == null) {
+      if (errors.remove(cell) case final found?) {
+        listedErrors[cell] = (entry, found);
+      } else {
         failures.add(
           '$migratingLedgerPath: Before `${cell.code}` compiles against '
           '${release.values.toSet().join(', ')} ($migratingPath:${cell.line}); '
           'delete the entry',
         );
-      } else {
-        skipped.add((cell: cell, package: entry.package, reason: entry.reason));
       }
     }
-    for (final MapEntry(key: cell, value: messages) in errors.entries) {
+    final wanted = <String, Set<String>>{};
+    for (final (entry, found) in listedErrors.values) {
+      for (final (d, _) in found) {
+        if (_undefinedName(d) case final name?) {
+          wanted.putIfAbsent(entry.package, () => {}).add(name);
+        }
+      }
+    }
+    final exported = <(String, String)>{};
+    if (wanted.isNotEmpty) {
+      final probe = await _exportedNames(
+        p.join(sandbox.path, 'unpublished'),
+        _workspacePubspec(root, packages),
+        barrels,
+        wanted,
+      );
+      if (probe.error case final error?) return failed([...failures, error]);
+      exported.addAll(probe.names);
+    }
+    final sourceLines = <String, List<String>>{};
+    for (final MapEntry(key: cell, value: (entry, found))
+        in listedErrors.entries) {
+      bool excusedName(AnalyzerDiagnostic d) => switch (_undefinedName(d)) {
+        final name? => exported.contains((entry.package, name)),
+        null => false,
+      };
+      final calls = [
+        for (final (d, _) in found)
+          if (d.code == 'UNDEFINED_FUNCTION' && excusedName(d))
+            if (_argumentList(
+                  (sourceLines[d.file] ??= File(
+                    d.file,
+                  ).readAsLinesSync())[d.line - 1],
+                  d.column - 1 + d.length,
+                )
+                case final args?)
+              (line: d.line, args: args),
+      ];
+      bool inExcusedCall(AnalyzerDiagnostic d) =>
+          d.code.startsWith('DOT_SHORTHAND_') &&
+          calls.any(
+            (c) =>
+                c.line == d.line &&
+                c.args.open < d.column - 1 &&
+                d.column - 1 < c.args.close,
+          );
+      final kept = [
+        for (final (d, message) in found)
+          if (!excusedName(d) && !inExcusedCall(d)) message,
+      ];
+      if (kept.isEmpty) {
+        skipped.add((cell: cell, package: entry.package, reason: entry.reason));
+      } else {
+        failedBefore.add(cell);
+        failures.addAll(kept);
+      }
+    }
+    for (final MapEntry(key: cell, value: found) in errors.entries) {
       if (cell != null && cell.before) failedBefore.add(cell);
-      failures.addAll(messages);
+      failures.addAll([for (final (_, message) in found) message]);
     }
   } finally {
     sandbox.deleteSync(recursive: true);

@@ -147,7 +147,7 @@ void main() {
 | `GooglePubsubTopic.name` | `DefinitelyNoSuchType()` | `GooglePubsubTopic.name` |
 | `AzurermResourceGroup.name` | `TfArg<String>` | `AzurermResourceGroup.name` |
 | `AzurermResourceGroup.location` | `AzurermResourceGroup('rg', location: .literal('x'))` | `AzurermResourceGroup.location` |
-| `AzurermAadb2cDirectory.skuName` | `Aadb2cDirectorySkuNameBefore036` | `Aadb2cDirectorySkuName` |
+| `AzurermMssqlVirtualMachine.dayOfWeek` | `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
 ''';
     final report = await checkMigratingCells(
       Directory.current.path,
@@ -157,8 +157,8 @@ void main() {
   after: "`AzurermResourceGroup.location`"
   package: terradart_azure
   reason: Unpublished.
-- before: Aadb2cDirectorySkuNameBefore036
-  after: "`Aadb2cDirectorySkuName`"
+- before: MssqlVirtualMachineDayOfWeek
+  after: "`MssqlVirtualMachineScheduleDayOfWeek`"
   package: terradart_azure
   reason: Unpublished.
 ''',
@@ -327,13 +327,18 @@ void main() {
           package: 'terradart_google',
         ),
       );
-      expect(report.failures, [
-        allOf(
-          contains(migratingLedgerPath),
-          contains('terradart_google'),
-          contains('has a 0.35.x release'),
+      expect(
+        report.failures,
+        contains(
+          allOf(
+            contains(migratingLedgerPath),
+            contains('terradart_google'),
+            contains('has a 0.35.x release'),
+          ),
         ),
-      ]);
+      );
+      expect(report.beforeFailed, 1);
+      expect(report.beforeSkipped, isEmpty);
     });
 
     test('an entry whose Before cell compiles fails', () async {
@@ -352,12 +357,12 @@ void main() {
     test('an entry covers only the row it was reviewed for', () async {
       final report = await check(
         [
-          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
-          '| `ApplicationGatewayProtocol` | `GooglePubsubTopic.name` |',
+          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
+          '| `ApplicationGatewayProbeProtocol` | `GooglePubsubTopic.name` |',
         ],
         '''
-- before: ApplicationGatewayProtocol
-  after: "`ApplicationGatewayProbeProtocol`"
+- before: ApplicationGatewayProbeProtocol
+  after: "`AzurermResourceGroup.name`"
   package: terradart_azure
   reason: Unpublished.
 ''',
@@ -365,7 +370,7 @@ void main() {
       expect(report.failures, [
         allOf(
           contains('MIGRATING.md:8: Before'),
-          contains('ApplicationGatewayProtocol'),
+          contains('ApplicationGatewayProbeProtocol'),
         ),
       ]);
       expect(report.beforeFailed, 1);
@@ -421,12 +426,12 @@ void main() {
     test('an entry that matches more cells than one fails', () async {
       final report = await check(
         [
-          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
-          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
+          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
+          '| `ApplicationGatewayProbeProtocol` | `AzurermResourceGroup.name` |',
         ],
         '''
-- before: ApplicationGatewayProtocol
-  after: "`ApplicationGatewayProbeProtocol`"
+- before: ApplicationGatewayProbeProtocol
+  after: "`AzurermResourceGroup.name`"
   package: terradart_azure
   reason: Unpublished.
 ''',
@@ -434,7 +439,7 @@ void main() {
       expect(report.failures, [
         allOf(
           contains(migratingLedgerPath),
-          contains('ApplicationGatewayProtocol'),
+          contains('ApplicationGatewayProbeProtocol'),
           contains('matches 2 Before cells'),
         ),
       ]);

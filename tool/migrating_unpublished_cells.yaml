@@ -7,6 +7,11 @@
 # Each entry is a reviewed decision about one cell: its exact Before text, its
 # row's exact After cell (the text between the pipes), the unpublished
 # package, and why the cell cannot compile against the published packages.
+# A listed cell still compiles: it may only miss names the workspace copy of
+# the package exports, and lose the context of dot shorthands inside those
+# calls; any other diagnostic fails it, and so does a name only the
+# unpublished API had (such a rename row is not a migration any release user
+# needs, so it does not belong in MIGRATING.md).
 # Every Before cell not listed here compiles, and any failure is red. An entry
 # fails the check unless it matches exactly one Before cell (none: the cell was
 # edited or removed; more: give each row its own entry), and fails when its
