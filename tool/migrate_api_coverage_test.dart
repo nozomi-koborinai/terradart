@@ -193,7 +193,7 @@ List<String> _findings(
   usedDebt: usedDebt,
 );
 
-Map<String, dynamic> _ledger(String yaml) {
+Map<String, Map<String, UnmanifestedFactory>> _ledger(String yaml) {
   final dir = Directory.systemTemp.createTempSync('unmanifested');
   addTearDown(() => dir.deleteSync(recursive: true));
   final file = File('${dir.path}/ledger.yaml')..writeAsStringSync(yaml);
@@ -422,16 +422,88 @@ final class GoogleOther extends Resource {
 ''',
       ]);
 
-      List<String> findingsWith(String ledger) => coverageFindings(
+      MigrateManifest alternate(String tfType) => MigrateManifest(
+        package: 'terradart_alt',
+        entries: [
+          MigrateEntry(
+            tfType: tfType,
+            className: 'GoogleOther',
+            barrel: 'other',
+            kind: CatalogKind.resource,
+            slots: const [],
+            getters: const [],
+          ),
+        ],
+        helpers: const {},
+        enums: const {},
+      );
+
+      List<String> findingsWith(
+        String ledger, {
+        Iterable<MigrateManifest>? manifests,
+        Set<String>? used,
+      }) => coverageFindings(
         _manifest(slots),
         api,
         unmanifested: _ledger('terradart_test:\n$ledger')['terradart_test']!,
+        manifests: manifests,
+        usedUnmanifested: used,
       );
+
+      const builtByAlt =
+          '  GoogleOther:\n'
+          '    builtBy: terradart_alt\n'
+          '    reason: the alt lane builds it\n';
+
+      test('passes when the named manifest builds the same type', () {
+        final used = <String>{};
+        expect(
+          findingsWith(
+            builtByAlt,
+            manifests: [alternate('google_other')],
+            used: used,
+          ),
+          isEmpty,
+        );
+        expect(used, {'GoogleOther'});
+      });
+
+      test('fails when the named manifest builds another type', () {
+        expect(
+          findingsWith(
+            builtByAlt,
+            manifests: [alternate('google_other_v2')],
+          ).single,
+          contains('whose manifest has no GoogleOther entry'),
+        );
+      });
+
+      test('fails when the entry names its own package', () {
+        expect(
+          findingsWith(
+            '  GoogleOther:\n'
+            '    builtBy: terradart_test\n'
+            '    reason: itself\n',
+            manifests: [_manifest(slots)],
+          ).single,
+          contains('which is no other provider package'),
+        );
+      });
+
+      test('fails on an entry with a key besides builtBy and reason', () {
+        expect(
+          findingsWith(
+            '$builtByAlt    note: extra\n',
+            manifests: [alternate('google_other')],
+          ).single,
+          contains('not exactly `builtBy` and `reason`'),
+        );
+      });
 
       test('fails with no ledger entry', () {
         expect(
           coverageFindings(_manifest(slots), api).single,
-          contains('GoogleOther: a public factory'),
+          contains('GoogleOther (google_other resource): a public factory'),
         );
       });
 

@@ -33,8 +33,11 @@ final class WrapperApi {
   /// Enum (an extension type over `TfArg<String>`) → raw value → member.
   final Map<String, Map<String, String>> enums = {};
 
-  /// Sealed class → the classes its factory constructors redirect to.
-  final Map<String, Set<String>> sealed = {};
+  /// Sealed class → factory constructor name → the class it redirects to.
+  final Map<String, Map<String, String>> sealed = {};
+
+  /// Sealed variant → the Terraform key its `blockKey` getter returns.
+  final Map<String, String> blockKeys = {};
 
   /// Class → getter → `(attribute, T)` of its `TfRef<T>`.
   final Map<String, Map<String, ({String attribute, String type})>> getters =
@@ -43,9 +46,10 @@ final class WrapperApi {
   /// Classes with a `principal` getter, the IAM principal of their `member`.
   final Set<String> principalGetters = {};
 
-  /// Public classes that extend `Resource` or `Data`: the factories a
-  /// manifest entry must describe.
-  final Set<String> factories = {};
+  /// Concrete public classes that extend `Resource` or `Data`, directly or
+  /// through package classes: the factories a manifest entry must describe,
+  /// with the Terraform type they emit (null when the source does not say).
+  final Map<String, ({String? tfType, CatalogKind kind})> factories = {};
 
   /// Every `.dart` file under `packages/<package>/lib`.
   static WrapperApi readPackage(String repoRoot, String package) {
@@ -76,12 +80,29 @@ final class WrapperApi {
         if (fields[param] case final type?) api.inputs[name]![param] = type;
       }
     }
+    for (final name in api._superclass.keys) {
+      if (api._abstract.contains(name)) continue;
+      final kind = api._kindOf(name, {});
+      if (kind != null) {
+        api.factories[name] = (tfType: api._tfTypes[name], kind: kind);
+      }
+    }
     return api;
   }
 
   final Map<String, Map<String, String>> _fields = {};
   final Map<String, String> _superclass = {};
   final Map<String, List<String>> _superParams = {};
+  final Set<String> _abstract = {};
+  final Map<String, String> _tfTypes = {};
+
+  CatalogKind? _kindOf(String name, Set<String> seen) =>
+      switch (_superclass[name]) {
+        'Resource' => CatalogKind.resource,
+        'Data' => CatalogKind.dataSource,
+        final s? when seen.add(s) => _kindOf(s, seen),
+        _ => null,
+      };
 
   void _class(ClassDeclaration d) {
     final name = d.namePart.typeName.lexeme;
@@ -98,16 +119,18 @@ final class WrapperApi {
     _fields[name] = fields;
     if (d.extendsClause?.superclass.name.lexeme case final s?) {
       _superclass[name] = s;
-      if (s == 'Resource' || s == 'Data') factories.add(name);
     }
+    if (d.abstractKeyword != null) _abstract.add(name);
     final constructors = members.whereType<ConstructorDeclaration>().toList();
     if (d.sealedKeyword != null) {
       sealed[name] = {
         for (final c in constructors)
-          if (c.redirectedConstructor case final r?) r.type.name.lexeme,
+          if ((c.name, c.redirectedConstructor) case (final n?, final r?))
+            n.lexeme: r.type.name.lexeme,
       };
       return;
     }
+    if (_terraformType(members) case final t?) _tfTypes[name] = t;
     final unnamed = constructors.where((c) => c.name == null).firstOrNull;
     if (unnamed != null) {
       final params = <String, String>{};
@@ -128,6 +151,14 @@ final class WrapperApi {
     final refs = <String, ({String attribute, String type})>{};
     for (final m in members.whereType<MethodDeclaration>()) {
       if (!m.isGetter) continue;
+      if (m.name.lexeme == 'blockKey') {
+        if (m.body case ExpressionFunctionBody(
+          expression: final SimpleStringLiteral key,
+        )) {
+          blockKeys[name] = key.value;
+        }
+        continue;
+      }
       if (m.name.lexeme == 'principal' &&
           principalTypes.containsKey(m.returnType?.toSource())) {
         principalGetters.add(name);
@@ -156,6 +187,29 @@ final class WrapperApi {
       );
     }
     if (refs.isNotEmpty) getters[name] = refs;
+  }
+
+  /// `static const String tfType = '...'`, else the `terraformType:` a
+  /// constructor passes to `super`.
+  static String? _terraformType(Iterable<ClassMember> members) {
+    for (final m in members.whereType<FieldDeclaration>()) {
+      if (!m.isStatic) continue;
+      for (final v in m.fields.variables) {
+        if (v.name.lexeme != 'tfType') continue;
+        if (v.initializer case final SimpleStringLiteral lit) return lit.value;
+      }
+    }
+    for (final c in members.whereType<ConstructorDeclaration>()) {
+      for (final i in c.initializers.whereType<SuperConstructorInvocation>()) {
+        for (final a in i.argumentList.arguments.whereType<NamedArgument>()) {
+          if (a.name.lexeme != 'terraformType') continue;
+          if (a.argumentExpression case final SimpleStringLiteral lit) {
+            return lit.value;
+          }
+        }
+      }
+    }
+    return null;
   }
 
   void _enum(ExtensionTypeDeclaration d) {
@@ -199,12 +253,12 @@ final class WrapperApi {
   }
 }
 
-/// The typed shape a declared input type has, or `null` for a scalar,
-/// helper or passthrough input the gate does not judge.
+/// The shape a declared input type has, which the manifest slot for it must
+/// build.
 sealed class InputShape {
   const InputShape();
 
-  static InputShape? of(String typeSource, WrapperApi api) {
+  static InputShape of(String typeSource, WrapperApi api) {
     final t = typeSource.endsWith('?')
         ? typeSource.substring(0, typeSource.length - 1)
         : typeSource;
@@ -234,13 +288,53 @@ sealed class InputShape {
       if (api.enums.containsKey(e)) return BareEnumListInput(e);
       if (api.sealed.containsKey(e)) return SealedInput(e, repeated: true);
       if (api.inputs.containsKey(e)) return HelperInput(e, repeated: true);
+      if (!_passthrough.contains(t)) {
+        final element = e.startsWith('TfArg<') && e.endsWith('>')
+            ? e.substring('TfArg<'.length, e.length - 1)
+            : null;
+        return ScalarInput(
+          element ?? e,
+          wrapped: element != null,
+          repeated: true,
+        );
+      }
     }
     if (inner('Map<String, ') case final h? when api.inputs.containsKey(h)) {
       return HelperInput(h, keyed: true);
     }
     if (api.inputs.containsKey(t)) return HelperInput(t);
-    return null;
+    // `Sensitive<T>` is a `TfArg<T>` the migrator fills from a variable, and
+    // the manifest records a payload without its `?`.
+    final wrapped = inner('TfArg<') ?? inner('Sensitive<');
+    var payload = wrapped ?? t;
+    if (payload.endsWith('?')) {
+      payload = payload.substring(0, payload.length - 1);
+    }
+    return _passthrough.contains(payload)
+        ? PassthroughInput(payload, wrapped: wrapped != null)
+        : ScalarInput(payload, wrapped: wrapped != null);
   }
+
+  static const _passthrough = {
+    'Map<String, dynamic>',
+    'List<Map<String, dynamic>>',
+  };
+}
+
+/// A `TfArg<T>` (or bare `T`) value: a string, number, flag or collection.
+/// [repeated] for a bare `List<T>` or `List<TfArg<T>>` of them.
+final class ScalarInput extends InputShape {
+  const ScalarInput(this.type, {required this.wrapped, this.repeated = false});
+  final String type;
+  final bool wrapped;
+  final bool repeated;
+}
+
+/// An untyped `Map<String, dynamic>` block, or a list of them.
+final class PassthroughInput extends InputShape {
+  const PassthroughInput(this.type, {required this.wrapped});
+  final String type;
+  final bool wrapped;
 }
 
 /// A class of the package passed bare: one block, a list of blocks, or a
@@ -295,16 +389,55 @@ Map<String, String> loadMigrateManifestDebt(File file) {
 
 const unmanifestedFactoriesPath = 'tool/migrate_unmanifested_factories.yaml';
 
-/// Package → factory class → why its manifest has no entry for it.
-Map<String, Map<String, String>> loadUnmanifestedFactories(File file) {
+/// A factory class a manifest omits because another provider package's
+/// manifest builds the same Terraform type: [builtBy] names that package.
+/// [error] says why the ledger entry is malformed, when it is.
+final class UnmanifestedFactory {
+  const UnmanifestedFactory({this.builtBy, this.reason, this.error});
+  final String? builtBy;
+  final String? reason;
+  final String? error;
+}
+
+/// Package → factory class → the manifest that builds it instead. An entry
+/// must be a map of exactly `builtBy` and `reason`, both non-empty strings;
+/// anything else loads with an [UnmanifestedFactory.error].
+Map<String, Map<String, UnmanifestedFactory>> loadUnmanifestedFactories(
+  File file,
+) {
   if (!file.existsSync()) return {};
   final doc = loadYaml(file.readAsStringSync());
   if (doc is! YamlMap) return {};
+  UnmanifestedFactory entry(Object? value) {
+    if (value is! YamlMap) {
+      return const UnmanifestedFactory(
+        error: 'is not a map of `builtBy` and `reason`',
+      );
+    }
+    final keys = {for (final k in value.keys) '$k'};
+    if (!_sameSet(keys, const {'builtBy', 'reason'})) {
+      return UnmanifestedFactory(
+        error: 'has keys $keys, not exactly `builtBy` and `reason`',
+      );
+    }
+    final builtBy = value['builtBy'];
+    final reason = value['reason'];
+    if (builtBy is! String || builtBy.trim().isEmpty) {
+      return const UnmanifestedFactory(
+        error: '`builtBy` is not a package name',
+      );
+    }
+    if (reason is! String || reason.trim().isEmpty) {
+      return const UnmanifestedFactory(error: '`reason` is not prose');
+    }
+    return UnmanifestedFactory(builtBy: builtBy.trim(), reason: reason.trim());
+  }
+
   return {
     for (final MapEntry(:key, :value) in doc.entries)
       '$key': {
         if (value is YamlMap)
-          for (final c in value.entries) '${c.key}': '${c.value ?? ''}'.trim(),
+          for (final c in value.entries) '${c.key}': entry(c.value),
       },
   };
 }
@@ -314,30 +447,72 @@ Map<String, Map<String, String>> loadUnmanifestedFactories(File file) {
 /// [debt] maps a Terraform type to the reason its manual shapes are
 /// deliberate; a manual shape a ledgered type reaches is not a finding.
 /// [usedDebt] collects the ledgered types that excused something.
-/// [unmanifested] maps a factory class the manifest omits on purpose to the
-/// reason; [usedUnmanifested] collects the ones that excused an omission.
+/// [unmanifested] maps a factory class the manifest omits to the package
+/// whose manifest builds it; the omission is excused only when that
+/// manifest has an entry for the same class, Terraform type and kind.
+/// [usedUnmanifested] collects the entries that excused an omission.
+/// [manifests] are the manifests [unmanifested] may name.
 List<String> coverageFindings(
   MigrateManifest manifest,
   WrapperApi api, {
   Map<String, String> debt = const {},
   Set<String>? usedDebt,
-  Map<String, String> unmanifested = const {},
+  Map<String, UnmanifestedFactory> unmanifested = const {},
   Set<String>? usedUnmanifested,
+  Iterable<MigrateManifest>? manifests,
 }) {
   final findings = <String>[];
   final reachedBy = _reachingTypes(manifest);
-  final entries = {for (final e in manifest.entries) e.className};
-  for (final f in api.factories.toList()..sort()) {
-    if (entries.contains(f)) continue;
-    final reason = unmanifested[f];
-    if (reason != null && reason.isNotEmpty) {
-      usedUnmanifested?.add(f);
+  final entries = {for (final e in manifest.entries) e.className: e};
+  final byPackage = {
+    for (final m in manifests ?? allMigrateManifests) m.package: m,
+  };
+  for (final MapEntry(key: f, value: (:tfType, :kind))
+      in api.factories.entries.toList()
+        ..sort((a, b) => a.key.compareTo(b.key))) {
+    final identity = '${tfType ?? '(no Terraform type)'} ${kind.name}';
+    if (tfType == null) {
+      findings.add('$f: the factory names no Terraform type the gate can read');
       continue;
     }
-    findings.add(
-      '$f: a public factory of ${manifest.package} with no manifest entry, '
-      'so terradart migrate never builds it',
+    if (entries[f] case final e?) {
+      if (e.tfType != tfType || e.kind != kind) {
+        findings.add(
+          '$f: the factory is $identity, the manifest entry is '
+          '${e.tfType} ${e.kind.name}',
+        );
+      }
+      continue;
+    }
+    final omitted =
+        '$f ($identity): a public factory of ${manifest.package} '
+        'with no manifest entry';
+    final excuse = unmanifested[f];
+    if (excuse == null) {
+      findings.add('$omitted, so terradart migrate never builds it');
+      continue;
+    }
+    if (excuse.error case final error?) {
+      findings.add('$omitted; its $unmanifestedFactoriesPath entry $error');
+      continue;
+    }
+    final alternate = byPackage[excuse.builtBy];
+    final built = alternate?.entries.where(
+      (e) => e.className == f && e.tfType == tfType && e.kind == kind,
     );
+    if (alternate == null || alternate.package == manifest.package) {
+      findings.add(
+        '$omitted; $unmanifestedFactoriesPath names ${excuse.builtBy}, '
+        'which is no other provider package',
+      );
+    } else if (built!.isEmpty) {
+      findings.add(
+        '$omitted; $unmanifestedFactoriesPath names ${excuse.builtBy}, '
+        'whose manifest has no $f entry for $identity',
+      );
+    } else {
+      usedUnmanifested?.add(f);
+    }
   }
 
   bool excused(String owner) {
@@ -361,9 +536,7 @@ List<String> coverageFindings(
       final shape = InputShape.of(type, api);
       final slot = bySlot[name];
       if (slot == null) {
-        if (shape != null) {
-          findings.add('$owner.$name ($type): no manifest slot builds it');
-        }
+        findings.add('$owner.$name ($type): no manifest slot builds it');
         continue;
       }
       if (slot.kind == MigrateSlotKind.manual) {
@@ -446,7 +619,7 @@ List<String> coverageFindings(
 }
 
 String? _mismatch(
-  InputShape? shape,
+  InputShape shape,
   MigrateSlot slot,
   WrapperApi api,
   MigrateManifest manifest,
@@ -456,16 +629,21 @@ String? _mismatch(
               '${slot.wrapped ? '' : ' bare'} ${slot.dartType ?? ''}'
           .trimRight();
   switch (shape) {
-    case null:
-      if (slot.kind == MigrateSlotKind.enumValue ||
-          slot.kind == MigrateSlotKind.sealed ||
-          slot.kind == MigrateSlotKind.reference ||
-          slot.kind == MigrateSlotKind.principal ||
-          slot.kind == MigrateSlotKind.helper) {
-        return 'the manifest builds ${got()} for an input the package does '
-            'not type that way';
-      }
-      return null;
+    case ScalarInput(:final type, :final wrapped, :final repeated):
+      return slot.kind == MigrateSlotKind.scalar &&
+              slot.dartType == type &&
+              slot.wrapped == wrapped &&
+              slot.repeated == repeated
+          ? null
+          : 'a ${repeated ? 'list of ' : ''}${wrapped ? '' : 'bare '}$type '
+                'value, the manifest builds ${got()}';
+    case PassthroughInput(:final type, :final wrapped):
+      return slot.kind == MigrateSlotKind.passthrough &&
+              slot.dartType == type &&
+              slot.wrapped == wrapped
+          ? null
+          : 'an untyped ${wrapped ? '' : 'bare '}$type, the manifest builds '
+                '${got()}';
     case EnumInput(:final type):
       return slot.kind == MigrateSlotKind.enumValue &&
               !slot.repeated &&
@@ -488,14 +666,29 @@ String? _mismatch(
       if (slot.kind != MigrateSlotKind.sealed || slot.repeated != repeated) {
         return 'a sealed choice, the manifest builds ${got()}';
       }
-      final variants = slot.variants?.values.toSet() ?? const <String>{};
+      final keyed = slot.variants ?? const <String, String>{};
       final declared = api.sealed[type]!;
-      if (!_sameSet(variants, declared)) {
-        return 'sealed variants $declared, the manifest knows $variants';
+      final variants = keyed.values.toSet();
+      if (!_sameSet(variants, declared.values.toSet())) {
+        return 'sealed variants ${declared.values.toSet()}, the manifest '
+            'knows $variants';
       }
-      for (final v in variants) {
-        final h = manifest.helpers[v];
-        if (h == null) return 'variant $v has no manifest helper';
+      for (final MapEntry(key: key, value: v) in keyed.entries) {
+        if (manifest.helpers[v] == null) {
+          return 'variant $v has no manifest helper';
+        }
+        // A variant names its Terraform key in `blockKey`; a derived one
+        // without it is the constructor named after the key.
+        if (api.blockKeys[v] case final own?) {
+          if (own != key) {
+            return 'the manifest reads `$key` as $v, whose blockKey is '
+                '`$own`';
+          }
+        } else if (declared[_lowerCamel(key)] != v) {
+          final ctor = _lowerCamel(key);
+          return 'the manifest reads `$key` as $v, but $type.$ctor builds '
+              '${declared[ctor] ?? 'nothing'}';
+        }
       }
       return null;
     case PrincipalInput(:final type, :final repeated):
@@ -555,3 +748,12 @@ bool _sameMap(Map<String, String> a, Map<String, String> b) =>
 
 bool _sameSet(Set<String> a, Set<String> b) =>
     a.length == b.length && a.containsAll(b);
+
+String _lowerCamel(String snake) {
+  final parts = snake.split('_');
+  return [
+    parts.first,
+    for (final w in parts.skip(1))
+      if (w.isNotEmpty) w[0].toUpperCase() + w.substring(1),
+  ].join();
+}
