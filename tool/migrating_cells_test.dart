@@ -115,27 +115,55 @@ void main() {
     expect(beforeSeries('## Unreleased changes'), isNull);
   });
 
-  group('beforeRelease', () {
-    const published = {
-      'terradart_core': ['0.9.0', '0.34.0', '0.35.0', '0.35.1', '0.36.0-dev'],
-      'terradart_google': ['0.9.0', '0.34.0', '0.35.0'],
-      'terradart_azure': <String>[],
-    };
+  test(
+    'beforeRelease takes each package at its newest release in the series',
+    () {
+      const published = {
+        'terradart_core': ['0.9.0', '0.34.0', '0.35.0', '0.35.1', '0.36.0-dev'],
+        'terradart_google': ['0.9.0', '0.34.0', '0.35.0'],
+        'terradart_azure': <String>[],
+      };
+      const newest = {'terradart_core': '0.35.1', 'terradart_google': '0.35.0'};
+      expect(beforeRelease('x', published), newest);
+      expect(beforeRelease('0.35.x', published), newest);
+      expect(beforeRelease('0.34.x', published), {
+        'terradart_core': '0.34.0',
+        'terradart_google': '0.34.0',
+      });
+      expect(beforeRelease('0.35.0', published), {
+        'terradart_core': '0.35.0',
+        'terradart_google': '0.35.0',
+      });
+      expect(beforeRelease('0.36.x', published), isEmpty);
+    },
+  );
 
-    test('takes the newest published release and its packages', () {
-      final release = beforeRelease('x', published)!;
-      expect(release.version, '0.35.1');
-      expect(release.packages, {'terradart_core'});
-      expect(beforeRelease('0.35.x', published)?.version, '0.35.1');
-    });
+  test('a section that names an unpublished package still compiles the '
+      'Before cells of published packages', () async {
+    const seeded = '''
+## 0.35.x → 0.36.0
 
-    test('stays in the series a release heading names', () {
-      final release = beforeRelease('0.34.x', published)!;
-      expect(release.version, '0.34.0');
-      expect(release.packages, {'terradart_core', 'terradart_google'});
-      expect(beforeRelease('0.35.0', published)?.version, '0.35.0');
-      expect(beforeRelease('0.36.x', published), isNull);
-    });
+### Mixed
+
+**Breaking (`terradart_google`, `terradart_azure`).** Text.
+
+| Input | Before | After |
+|---|---|---|
+| `GooglePubsubTopic.name` | `DefinitelyNoSuchType()` | `GooglePubsubTopic.name` |
+| `AzurermResourceGroup.name` | `TfArg<String>` | `AzurermResourceGroup.name` |
+| `AzurermResourceGroup.location` | `AzurermResourceGroup('rg', location: .literal('x'))` | `AzurermResourceGroup.location` |
+| `AzurermAadb2cDirectory.skuName` | `Aadb2cDirectorySkuNameBefore036` | `Aadb2cDirectorySkuName` |
+''';
+    final failures = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(failures, [
+      allOf(
+        contains('MIGRATING.md:9: Before'),
+        contains('DefinitelyNoSuchType'),
+      ),
+    ]);
   });
 
   test('every Before and After cell of MIGRATING.md compiles', () async {
