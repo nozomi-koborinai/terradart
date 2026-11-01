@@ -311,7 +311,7 @@ How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terra
 
 ## Status
 
-**Alpha** (0.35.x) is where TerraDart gets into people's hands and their feedback shapes the API. There is no SemVer until v1.0.0. Breaking changes land only on **minor** bumps, each with a section in [`MIGRATING.md`](MIGRATING.md). Pin `^0.35.0` and take patch releases freely. **Beta** starts when the API shape is settled. The beta gates are the [path to beta](https://terradart.dev/docs/status/#path-to-beta). **1.0.0** follows beta, after two minor releases in a row ship with no breaking changes.
+**Alpha** (0.35.x) is where TerraDart gets into people's hands and their feedback shapes the API. There is no SemVer until v1.0.0. Breaking changes land only on **minor** bumps, each with a section in [`MIGRATING.md`](MIGRATING.md). Pin `^0.35.0` and take patch releases freely. **Beta** starts when the API shape is settled. The beta gates are checks the maintainer runs, listed under [path to beta](https://terradart.dev/docs/status/#path-to-beta). **1.0.0** follows beta, after two minor releases in a row ship with no breaking changes. Stable SemVer then covers `terradart_core`, every provider package (`terradart_azure` included) and `terradart_cli`.
 
 ## Contributing
 

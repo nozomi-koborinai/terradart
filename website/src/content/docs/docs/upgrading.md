@@ -3,7 +3,7 @@ title: Upgrading
 description: Upgrade notes for every TerraDart package — the 0.34.x → 0.35.0, 0.33.x → 0.34.0, 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
 ---
 
-Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest four.
+Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the recent ones.
 
 ## 0.34.x → 0.35.0
 
