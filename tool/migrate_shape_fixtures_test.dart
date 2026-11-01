@@ -43,6 +43,17 @@ void main() {
     );
   });
 
+  test('a header that only starts with Before / After is no rename table', () {
+    expect(
+      () => renamedTypes('''
+| Before you apply | After that |
+|---|---|
+| `OldMode` | `NewMode` |
+'''),
+      throwsStateError,
+    );
+  });
+
   test('the google-beta and appwrite renames are read', () {
     expect(
       renamed,

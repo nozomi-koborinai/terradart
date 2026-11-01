@@ -72,8 +72,8 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
 /// [shapeFixtureFindings] fails a lane none of them names, so a reworded
 /// table cannot turn the renamed type check off.
 Set<String> renamedTypes(String migratingMd) {
-  final header = RegExp(r'^\| *Before\b[^|]*\| *After\b[^|]*\|$');
   const note = r'(?: \([^()|]*\))?';
+  final header = RegExp('^\\| *Before$note *\\| *After$note *\\|\$');
   final rename = RegExp(
     '^\\| `[A-Z][A-Za-z0-9]*`$note \\| `([A-Z][A-Za-z0-9]*)`$note \\|\$',
   );
