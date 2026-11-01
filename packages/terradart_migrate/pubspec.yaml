@@ -17,6 +17,7 @@ dependencies:
   args: ^2.4.0
   dart_style: ^3.0.0
   path: ^1.9.0
+  pub_semver: ^2.1.0
   terradart_appwrite: ^0.35.0
   terradart_aws: ^0.35.0
   terradart_azure: ^0.35.0

@@ -2,6 +2,7 @@
 library;
 
 import 'package:dart_style/dart_style.dart';
+import 'package:pub_semver/pub_semver.dart';
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'emit/context.dart';
@@ -222,10 +223,13 @@ MigrationResult migrateModule(
 /// The Dart package name for a module name (`my-infra` → `my_infra`).
 String packageNameFor(String name) => snakeCase(name);
 
-/// `dart_style` with the latest language version.
-String formatDart(String source) => DartFormatter(
-  languageVersion: DartFormatter.latestLanguageVersion,
-).format(source);
+/// The SDK floor of a migrated package's pubspec.
+final Version _migratedSdkFloor = Version(3, 10, 0);
+
+/// `dart_style` at the language version of a migrated package, which is
+/// what `dart format` formats its files at.
+String formatDart(String source) =>
+    DartFormatter(languageVersion: _migratedSdkFloor).format(source);
 
 /// One merged environment group in `bin/infra.dart` (`--merge-envs`): the
 /// Stack, the enum it takes, and the `tf-out` prefix its members write under.
@@ -450,7 +454,7 @@ description: Migrated from `$module` by terradart-migrate $packageVersion.
 publish_to: none
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^$_migratedSdkFloor
 
 dependencies:
 $deps
