@@ -55,7 +55,7 @@ void main() {
 
     List<String> spans(String text) => [
       for (final c in extractMigratingCells(text))
-        '${c.line} ${c.section} ${c.before} ${c.code} ${c.packages}',
+        '${c.line} ${c.section} ${c.before} ${c.code} ${c.rowNames}',
     ];
 
     test('reads the top section once a release names it', () {
@@ -73,17 +73,16 @@ void main() {
       expect(spans(released), spans(text));
     });
 
-    test('takes the packages of a lead that spans lines', () {
+    test('takes the type names of the whole row', () {
       final cells = extractMigratingCells(doc);
-      expect(cells.first.packages, {'terradart_google', 'terradart_azure'});
-      expect(cells.last.packages, {'terradart_aws'});
+      expect(cells.first.rowNames, {'TfArg', 'String', 'FooKind'});
       expect(cells.first.section, 'A change');
     });
   });
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code, packages: const {});
+        (line: 1, section: 's', before: false, code: code, rowNames: const {});
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -154,21 +153,34 @@ void main() {
 | `AzurermResourceGroup.location` | `AzurermResourceGroup('rg', location: .literal('x'))` | `AzurermResourceGroup.location` |
 | `AzurermAadb2cDirectory.skuName` | `Aadb2cDirectorySkuNameBefore036` | `Aadb2cDirectorySkuName` |
 ''';
-    final failures = await checkMigratingCells(
+    final report = await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
     );
-    expect(failures, [
+    expect(report.failures, [
       allOf(
         contains('MIGRATING.md:9: Before'),
         contains('DefinitelyNoSuchType'),
       ),
     ]);
+    expect(report.beforeCompiled, 2);
+    expect(report.beforeSkipped, [
+      allOf(contains('MIGRATING.md:11:'), contains('needs terradart_azure')),
+      allOf(contains('MIGRATING.md:12:'), contains('needs terradart_azure')),
+    ]);
   });
 
   test('every Before and After cell of MIGRATING.md compiles', () async {
-    final failures = await checkMigratingCells(Directory.current.path);
-    expect(failures, isEmpty, reason: failures.join('\n'));
+    final report = await checkMigratingCells(Directory.current.path);
+    expect(report.failures, isEmpty, reason: report.failures.join('\n'));
+    final before = extractMigratingCells(
+      File(migratingPath).readAsStringSync(),
+    ).where((c) => c.before);
+    expect(report.beforeCompiled + report.beforeSkipped.length, before.length);
+    for (final skip in report.beforeSkipped) {
+      final pkg = RegExp(r' needs (\w+),').firstMatch(skip)![1]!;
+      expect(report.before, isNot(contains(pkg)), reason: skip);
+    }
   });
 
   test('an empty top section fails', () async {
@@ -183,10 +195,10 @@ void main() {
 |---|---|
 | `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
 ''';
-    final failures = await checkMigratingCells(
+    final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-    );
+    )).failures;
     expect(failures, [contains('MIGRATING.md:3:')]);
   });
 
@@ -200,10 +212,10 @@ void main() {
 |---|---|
 | `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
 ''';
-    final failures = await checkMigratingCells(
+    final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-    );
+    )).failures;
     expect(failures, [contains('MIGRATING.md:3:')]);
   });
 
@@ -229,12 +241,12 @@ void main() {
 
 | Before | After |
 |---|---|
-| `AzurermNotReleased('x')` | `GooglePubsubTopic('t', name: name)` |
+| `AzurermResourceGroup('rg')` | `GooglePubsubTopic('t', name: name)` |
 ''';
-    final failures = await checkMigratingCells(
+    final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-    );
+    )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
     expect(at(9), contains('UNDEFINED_NAMED_PARAMETER'));
     expect(at(10), contains("'literal'"));

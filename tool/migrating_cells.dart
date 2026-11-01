@@ -22,13 +22,14 @@
 // `dynamic` stand-in; an undefined capitalized name (`NoSuchType`) fails.
 //
 // After cells compile against the workspace packages. Before cells compile
-// against the packages pub.dev has at the newest version the heading allows:
-// any version under `## Unreleased`, the `<from>` series under
-// `## <from> → <to>`. A release PR moves the CHANGELOGs to a version pub.dev
-// does not have yet, and the CI checkout has no tags, so pub.dev, which the
-// Before compile resolves against anyway, is the source. A section whose
-// packages pub.dev lacks at that version has no Before API and its Before
-// cells are not compiled.
+// against each package pub.dev has in the series the heading allows (any
+// version under `## Unreleased`, `<from>` under `## <from> → <to>`), at its
+// newest release there. A release PR moves the CHANGELOGs to a version
+// pub.dev does not have yet, and the CI checkout has no tags, so pub.dev,
+// which the Before compile resolves against anyway, is the source. A package
+// with no release in the series has no Before API: a Before cell that uses
+// one of its types is skipped, counted and listed; every other Before cell
+// compiles.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -49,12 +50,13 @@ typedef MigratingCell = ({
   String section,
   bool before,
   String code,
-  Set<String> packages,
+  Set<String> rowNames,
 });
 
 final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
 final _namedArgument = RegExp(r'^[a-z]\w*:\s');
+final _upperName = RegExp(r'\b[A-Z]\w*');
 
 /// The first `##` heading of [text] and its line.
 ({int line, String heading})? topMigratingHeading(String text) {
@@ -70,9 +72,6 @@ List<MigratingCell> extractMigratingCells(String text) {
   final out = <MigratingCell>[];
   var inTop = false;
   var section = '';
-  var packages = <String>{};
-  var readPackages = false;
-  StringBuffer? lead;
   List<String>? header;
   for (final (i, line) in lines.indexed) {
     if (line.startsWith('## ')) {
@@ -83,29 +82,8 @@ List<MigratingCell> extractMigratingCells(String text) {
     if (!inTop) continue;
     if (line.startsWith('### ')) {
       section = line.substring(4).trim();
-      packages = {};
-      readPackages = true;
-      lead = null;
       header = null;
       continue;
-    }
-    if (readPackages && lead == null && line.startsWith('**')) {
-      lead = StringBuffer();
-    }
-    if (lead != null) {
-      lead.writeln(line);
-      final bold = RegExp(
-        r'^\*\*(.*?)\*\*',
-        dotAll: true,
-      ).firstMatch(lead.toString())?.group(1);
-      if (bold != null || line.trim().isEmpty) {
-        packages = {
-          for (final m in RegExp(r'terradart_\w+').allMatches(bold ?? ''))
-            m.group(0)!,
-        };
-        readPackages = false;
-        lead = null;
-      }
     }
     if (!line.startsWith('|')) {
       if (line.trim().isEmpty) header = null;
@@ -117,6 +95,10 @@ List<MigratingCell> extractMigratingCells(String text) {
       continue;
     }
     if (cells.every((c) => RegExp(r'^:?-+:?$').hasMatch(c))) continue;
+    final rowNames = {
+      for (final m in RegExp(r'`([^`]+)`').allMatches(line))
+        for (final n in _upperName.allMatches(m.group(1)!)) n.group(0)!,
+    };
     for (final (j, cell) in cells.indexed) {
       final column = j < header.length ? header[j] : '';
       if (column != 'Before' && column != 'After') continue;
@@ -128,7 +110,7 @@ List<MigratingCell> extractMigratingCells(String text) {
           section: section,
           before: column == 'Before',
           code: code,
-          packages: packages,
+          rowNames: rowNames,
         ));
       }
     }
@@ -171,9 +153,11 @@ String? beforeSeries(String heading) => heading == '## Unreleased'
     ? 'x'
     : _releaseHeading.firstMatch(heading)?.group(1);
 
-/// The newest stable version of [series] in [published] (package → its
-/// pub.dev versions), and the packages published at it; null when none is.
-({String version, Set<String> packages})? beforeRelease(
+/// Each package of [published] (package → its pub.dev versions) with a
+/// stable release in [series], at its newest one: the version a `^` pin of
+/// that series installs, even when a partial publish left the lockstep
+/// packages on different patches.
+Map<String, String> beforeRelease(
   String series,
   Map<String, List<String>> published,
 ) {
@@ -190,19 +174,34 @@ String? beforeSeries(String heading) => heading == '## Unreleased'
   int byParts(List<int> a, List<int> b) => [
     for (final (i, n) in a.indexed) n.compareTo(b[i]),
   ].firstWhere((c) => c != 0, orElse: () => 0);
-  final candidates = [
-    for (final version in published.values.expand((v) => v).toSet())
-      if (parts(version) case final v?) (version: version, parts: v),
-  ]..sort((a, b) => byParts(a.parts, b.parts));
-  if (candidates.isEmpty) return null;
-  final newest = candidates.last.version;
-  return (
-    version: newest,
-    packages: {
-      for (final MapEntry(:key, :value) in published.entries)
-        if (value.contains(newest)) key,
-    },
+  return {
+    for (final MapEntry(key: pkg, value: versions) in published.entries)
+      if (([
+            for (final version in versions)
+              if (parts(version) case final v?) (version: version, parts: v),
+          ]..sort((a, b) => byParts(a.parts, b.parts))).lastOrNull
+          case final newest?)
+        pkg: newest.version,
+  };
+}
+
+/// The type names each of [packages] declares in its `lib/`, mapped to the
+/// package.
+Map<String, String> declaredNames(String root, Iterable<String> packages) {
+  final declaration = RegExp(
+    r'^(?:(?:sealed|abstract|final|base|interface) )*'
+    r'(?:class|enum|typedef|mixin|extension type(?: const)?) ([A-Z]\w*)',
+    multiLine: true,
   );
+  return {
+    for (final pkg in packages)
+      for (final file in Directory(
+        p.join(root, 'packages', pkg, 'lib'),
+      ).listSync(recursive: true).whereType<File>())
+        if (file.path.endsWith('.dart'))
+          for (final m in declaration.allMatches(file.readAsStringSync()))
+            m.group(1)!: pkg,
+  };
 }
 
 /// Every version pub.dev lists for each of [packages]; none for a package
@@ -283,56 +282,95 @@ renderCells(List<MigratingCell> cells, List<String> imports) {
   return (contents: '${lines.join('\n')}\n', docLines: docLines, cells: owners);
 }
 
-String _pubspec(String root, List<String> packages, {String? hostedVersion}) {
-  final b = StringBuffer()
-    ..writeln('name: migrating_cells')
-    ..writeln('publish_to: none')
-    ..writeln('environment:')
-    ..writeln('  sdk: ^3.10.0')
-    ..writeln('dependencies:');
+String _workspacePubspec(String root, List<String> packages) {
+  final b = StringBuffer(_pubspecHead)..writeln('dependencies:');
   for (final pkg in packages) {
-    b.writeln('  $pkg: ${hostedVersion ?? 'any'}');
+    b.writeln('  $pkg: any');
   }
-  if (hostedVersion == null) {
-    b.writeln('dependency_overrides:');
-    for (final pkg in packages) {
-      b
-        ..writeln('  $pkg:')
-        ..writeln('    path: ${p.join(root, 'packages', pkg)}');
-    }
+  b.writeln('dependency_overrides:');
+  for (final pkg in packages) {
+    b
+      ..writeln('  $pkg:')
+      ..writeln('    path: ${p.join(root, 'packages', pkg)}');
   }
   return b.toString();
 }
 
-/// Compiles the cells of [migrating] (default: the repo's MIGRATING.md);
-/// returns one message per failure.
-Future<List<String>> checkMigratingCells(
+String _hostedPubspec(Map<String, String> versions) {
+  final b = StringBuffer(_pubspecHead)..writeln('dependencies:');
+  for (final MapEntry(key: pkg, value: version) in versions.entries) {
+    b.writeln('  $pkg: $version');
+  }
+  return b.toString();
+}
+
+const _pubspecHead = '''
+name: migrating_cells
+publish_to: none
+environment:
+  sdk: ^3.10.0
+''';
+
+/// Analyzer codes that name a type, function or variable no import declares.
+const _undefinedNameCodes = {
+  'UNDEFINED_CLASS',
+  'UNDEFINED_FUNCTION',
+  'UNDEFINED_IDENTIFIER',
+};
+
+/// The outcome of [checkMigratingCells]: its failures, the version each
+/// Before package compiled at, and the Before cells it compiled and skipped.
+typedef MigratingReport = ({
+  List<String> failures,
+  Map<String, String> before,
+  int beforeCompiled,
+  List<String> beforeSkipped,
+});
+
+/// Compiles the cells of [migrating] (default: the repo's MIGRATING.md).
+///
+/// A Before cell is skipped, and listed in `beforeSkipped`, only when it uses
+/// a type that a package without a release in the series declares, or a type
+/// the analyzer cannot resolve in a table row that names such a type (an old
+/// name of that package). Every other Before cell compiles against the
+/// published packages.
+Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
 }) async {
+  MigratingReport failed(List<String> failures) =>
+      (failures: failures, before: {}, beforeCompiled: 0, beforeSkipped: []);
   final text =
       migrating ?? File(p.join(root, migratingPath)).readAsStringSync();
   final top = topMigratingHeading(text);
-  if (top == null) return ['$migratingPath: has no `##` section'];
+  if (top == null) return failed(['$migratingPath: has no `##` section']);
   final at = '$migratingPath:${top.line}: `${top.heading}`';
   final cells = extractMigratingCells(text);
-  if (cells.isEmpty) return ['$at has no Before or After cell'];
+  if (cells.isEmpty) return failed(['$at has no Before or After cell']);
   final series = beforeSeries(top.heading);
   if (series == null) {
-    return ['$at is neither `## Unreleased` nor `## <from> → <to>`'];
+    return failed(['$at is neither `## Unreleased` nor `## <from> → <to>`']);
   }
   final packages = docSnippetPackages(
     File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
   );
   final release = beforeRelease(series, await publishedVersions(packages));
-  if (release == null) return ['$at: pub.dev has no $series release'];
+  if (release.isEmpty) return failed(['$at: pub.dev has no $series release']);
+  final unpublished = declaredNames(root, [
+    for (final pkg in packages)
+      if (!release.containsKey(pkg)) pkg,
+  ]);
+  String? unpublishedOwner(MigratingCell cell, String name) =>
+      unpublished[name] ??
+      [for (final n in cell.rowNames) ?unpublished[n]].firstOrNull;
+
   final failures = <String>[];
   final barrels = docSnippetBarrels(
     parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
   );
   bool releasedImport(String line) {
     final m = RegExp(r"package:(\w+)/").firstMatch(line);
-    return m == null || release.packages.contains(m.group(1));
+    return m == null || release.containsKey(m.group(1));
   }
 
   final after = <MigratingCell>[];
@@ -342,30 +380,24 @@ Future<List<String>> checkMigratingCells(
       failures.add(
         '$migratingPath:${cell.line}: `${cell.code}` $error (${cell.section})',
       );
-      continue;
-    }
-    if (!cell.before) {
-      after.add(cell);
-    } else if (cell.packages.every(release.packages.contains)) {
-      before.add(cell);
+    } else {
+      (cell.before ? before : after).add(cell);
     }
   }
 
+  final skipped = <MigratingCell, String>{};
   final sandbox = await Directory.systemTemp.createTemp('migrating_cells_');
   try {
     final rendered =
         <String, ({List<int?> docLines, List<MigratingCell?> cells})>{};
     final dirs = <String>[];
     for (final (name, group, imports, pubspec) in [
-      ('after', after, barrels, _pubspec(root, packages)),
+      ('after', after, barrels, _workspacePubspec(root, packages)),
       (
         'before',
         before,
         barrels.where(releasedImport).toList(),
-        _pubspec(root, [
-          for (final pkg in packages)
-            if (release.packages.contains(pkg)) pkg,
-        ], hostedVersion: release.version),
+        _hostedPubspec(release),
       ),
     ]) {
       if (group.isEmpty) continue;
@@ -388,8 +420,10 @@ Future<List<String>> checkMigratingCells(
         get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
       }
       if (get.exitCode != 0) {
-        failures.add('dart pub get failed in $dir:\n${get.stderr}');
-        return failures;
+        return failed([
+          ...failures,
+          'dart pub get failed in $dir:\n${get.stderr}',
+        ]);
       }
     }
 
@@ -414,15 +448,31 @@ Future<List<String>> checkMigratingCells(
       }
       diagnostics = await analyze();
     }
+    MigratingCell? cellOf(AnalyzerDiagnostic d) {
+      final r = rendered[d.file];
+      return r == null || d.line > r.cells.length ? null : r.cells[d.line - 1];
+    }
+
+    for (final d in diagnostics) {
+      final cell = cellOf(d);
+      if (cell == null || !cell.before) continue;
+      if (!_undefinedNameCodes.contains(d.code)) continue;
+      final name = RegExp(r"'([A-Z]\w*)'").firstMatch(d.message)?.group(1);
+      if (name == null) continue;
+      if (unpublishedOwner(cell, name) case final pkg?) {
+        skipped[cell] ??=
+            '$migratingPath:${cell.line}: Before `${cell.code}` needs $pkg, '
+            'which has no ${series == 'x' ? '' : '$series '}release ($name)';
+      }
+    }
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
       final r = rendered[d.file];
       final at = r == null || d.line > r.docLines.length
           ? null
           : r.docLines[d.line - 1];
-      final cell = r == null || d.line > r.cells.length
-          ? null
-          : r.cells[d.line - 1];
+      final cell = cellOf(d);
+      if (cell != null && skipped.containsKey(cell)) continue;
       if (cell != null &&
           elisionCodes.contains(d.code) &&
           resolveElisions(cell.code).elided) {
@@ -443,17 +493,30 @@ Future<List<String>> checkMigratingCells(
   } finally {
     sandbox.deleteSync(recursive: true);
   }
-  return failures;
+  return (
+    failures: failures,
+    before: release,
+    beforeCompiled: before.length - skipped.length,
+    beforeSkipped: skipped.values.toList(),
+  );
 }
 
 Future<void> main() async {
-  final failures = await checkMigratingCells(Directory.current.path);
-  if (failures.isEmpty) {
+  final report = await checkMigratingCells(Directory.current.path);
+  for (final skip in report.beforeSkipped) {
+    print('  skipped: $skip');
+  }
+  print(
+    'migrating_cells: ${report.beforeCompiled} Before cells compiled against '
+    '${report.before.values.toSet().join(', ')}, '
+    '${report.beforeSkipped.length} skipped',
+  );
+  if (report.failures.isEmpty) {
     print('migrating_cells: OK');
     return;
   }
   stderr.writeln('migrating_cells: FAILED');
-  for (final f in failures) {
+  for (final f in report.failures) {
     stderr.writeln('  - $f');
   }
   exit(1);
