@@ -52,6 +52,13 @@ terradart plan
 The function URL exists only after apply, so the Stack declares it as an output and adds a define file a client is built with:
 
 ```dart
+final url = add(
+  AwsLambdaFunctionUrl(
+    'hello',
+    functionName: .literal('terradart-hello'),
+    authorizationType: .none,
+  ),
+);
 addOutput('function_url', url.functionUrl, description: 'Public URL of the function.');
 addDartDefineOutput();
 ```
