@@ -66,6 +66,18 @@ add(
     ]);
   });
 
+  test('a fragment cannot borrow validity from another resource', () {
+    final tmp = Directory.systemTemp.createTempSync('inline_fragments_');
+    addTearDown(() => tmp.deleteSync(recursive: true));
+    final doc = p.join(tmp.path, 'google.md');
+    File(doc).writeAsStringSync(
+      'For a Cloud Run IAM member, pass `service: apiService.serviceId`.\n',
+    );
+    expect(checkInlineFragments(root, docs: [doc]), [
+      startsWith('$doc:1: `service: apiService.serviceId`'),
+    ]);
+  });
+
   test('every inline argument a guide teaches is compiled Dart', () {
     final failures = checkInlineFragments(root);
     expect(failures, isEmpty, reason: failures.join('\n'));
