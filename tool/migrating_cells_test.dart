@@ -372,6 +372,52 @@ void main() {
       expect([for (final s in report.beforeSkipped) s.cell.line], [7]);
     });
 
+    test('a listed cell keeps a typo beside its unpublished call', () async {
+      final report = await check([
+        "| `AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))` "
+            '| `AzurermResourceGroup.name` |',
+      ], entry("AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))"));
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:7: Before'),
+          contains("'GooglePubsubTopik'"),
+        ),
+      ]);
+      expect(report.beforeFailed, 1);
+      expect(report.beforeSkipped, isEmpty);
+    });
+
+    test('a listed cell keeps a name the unpublished package does not '
+        'export', () async {
+      final report = await check([
+        '| `AzurermNoSuchGroup` | `AzurermResourceGroup.name` |',
+      ], entry('AzurermNoSuchGroup'));
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:7: Before'),
+          contains("'AzurermNoSuchGroup'"),
+        ),
+      ]);
+      expect(report.beforeFailed, 1);
+      expect(report.beforeSkipped, isEmpty);
+    });
+
+    test('a listed cell keeps a dot shorthand outside its unpublished '
+        'call', () async {
+      final report = await check([
+        "| `[AzurermResourceGroup('rg'), .literal('x')]` "
+            '| `AzurermResourceGroup.name` |',
+      ], entry("[AzurermResourceGroup('rg'), .literal('x')]"));
+      expect(
+        report.failures,
+        contains(
+          allOf(contains('MIGRATING.md:7: Before'), contains('DOT_SHORTHAND')),
+        ),
+      );
+      expect(report.beforeFailed, 1);
+      expect(report.beforeSkipped, isEmpty);
+    });
+
     test('an entry that matches more cells than one fails', () async {
       final report = await check(
         [
