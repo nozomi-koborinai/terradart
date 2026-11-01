@@ -116,7 +116,26 @@ Every attribute also has a getter (`zone.id`, `role.arn`, `topic.name`) that is 
 
 ## Enums and exclusive arguments
 
-An input with a fixed set of values takes the member, bare: `type: .cname`, `runtime: .providedAl2023`, `ingress: .all`. A list of them is a Dart list: `architectures: [.x8664]`.
+An input with a fixed set of values takes the member, bare: `type: .cname`, `runtime: .providedAl2023`, `ingress: .all`. A list of them is a literal Dart list of members: `architectures: .literal([.x8664])`.
+
+```dart
+final role = AwsIamRole(
+  'fn',
+  assumeRolePolicy: .expression(r'${file("trust.json")}'),
+);
+add(role);
+add(
+  AwsLambdaFunction(
+    'hello',
+    functionName: .literal('hello'),
+    role: role.ref,
+    runtime: .providedAl2023,
+    handler: .literal('bootstrap'),
+    architectures: .literal([.x8664]),
+    code: .filename(.literal('build/bootstrap.zip')),
+  ),
+);
+```
 
 When the provider accepts exactly one (or at most one) of several arguments, they are one sealed argument, and each variant sets one of them. Its name is the concept (`code`, `content`, `name`, `delivery`), and its variants are named after the Terraform arguments:
 
