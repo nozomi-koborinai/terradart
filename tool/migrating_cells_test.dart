@@ -76,7 +76,7 @@ void main() {
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code);
+        (line: 1, section: 's', before: false, code: code, after: '');
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -154,9 +154,11 @@ void main() {
       migrating: seeded,
       ledger: '''
 - before: "AzurermResourceGroup('rg', location: .literal('x'))"
+  after: "`AzurermResourceGroup.location`"
   package: terradart_azure
   reason: Unpublished.
 - before: Aadb2cDirectorySkuNameBefore036
+  after: "`Aadb2cDirectorySkuName`"
   package: terradart_azure
   reason: Unpublished.
 ''',
@@ -215,9 +217,14 @@ void main() {
       ...rows,
       '',
     ].join('\n');
-    String entry(String before, {String package = 'terradart_azure'}) =>
+    String entry(
+      String before, {
+      String after = 'AzurermResourceGroup.name',
+      String package = 'terradart_azure',
+    }) =>
         '''
 - before: "$before"
+  after: "`$after`"
   package: $package
   reason: The Before API was never published.
 ''';
@@ -314,7 +321,11 @@ void main() {
     test('an entry whose package has a release in the series fails', () async {
       final report = await check(
         ["| `GooglePubsubTopic('t', nosuch: x)` | `GooglePubsubTopic.name` |"],
-        entry("GooglePubsubTopic('t', nosuch: x)", package: 'terradart_google'),
+        entry(
+          "GooglePubsubTopic('t', nosuch: x)",
+          after: 'GooglePubsubTopic.name',
+          package: 'terradart_google',
+        ),
       );
       expect(report.failures, [
         allOf(
@@ -417,6 +428,7 @@ void main() {
         ledger,
         contains((
           before: skip.cell.code,
+          after: skip.cell.after,
           package: skip.package,
           reason: skip.reason,
         )),
@@ -497,6 +509,7 @@ void main() {
       migrating: seeded,
       ledger: '''
 - before: "AzurermResourceGroup('rg')"
+  after: "`GooglePubsubTopic('t', name: name)`"
   package: terradart_azure
   reason: Unpublished.
 ''',

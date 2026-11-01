@@ -30,10 +30,11 @@
 // which the Before compile resolves against anyway, is the source. A package
 // with no release in the series has no Before API anywhere CI can read, so a
 // Before cell of it is skipped only when tool/migrating_unpublished_cells.yaml
-// lists its exact text, with the package and a reason; it is counted and
-// listed. Every other Before cell compiles, and any failure is red. An entry
-// fails when it matches no Before cell of the top section, when its package
-// has a release in the series, or when its cell compiles.
+// lists its exact text and its row's exact After cell, with the package and a
+// reason; it is counted and listed. Every other Before cell compiles, and any
+// failure is red. An entry fails unless it matches exactly one Before cell of
+// the top section, and fails when its package has a release in the series or
+// when its cell compiles.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -50,8 +51,15 @@ import 'wrap_lanes.dart';
 const migratingPath = 'MIGRATING.md';
 const migratingLedgerPath = 'tool/migrating_unpublished_cells.yaml';
 
-/// One code span of a Before or After cell.
-typedef MigratingCell = ({int line, String section, bool before, String code});
+/// One code span of a Before or After cell; [after] is its row's After cell
+/// as written.
+typedef MigratingCell = ({
+  int line,
+  String section,
+  bool before,
+  String code,
+  String after,
+});
 
 final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
@@ -94,6 +102,10 @@ List<MigratingCell> extractMigratingCells(String text) {
       continue;
     }
     if (cells.every((c) => RegExp(r'^:?-+:?$').hasMatch(c))) continue;
+    final afterColumn = header.indexOf('After');
+    final after = afterColumn >= 0 && afterColumn < cells.length
+        ? cells[afterColumn]
+        : '';
     for (final (j, cell) in cells.indexed) {
       final column = j < header.length ? header[j] : '';
       if (column != 'Before' && column != 'After') continue;
@@ -105,6 +117,7 @@ List<MigratingCell> extractMigratingCells(String text) {
           section: section,
           before: column == 'Before',
           code: code,
+          after: after,
         ));
       }
     }
@@ -179,8 +192,14 @@ Map<String, String> beforeRelease(
   };
 }
 
-/// A reviewed Before cell of a package with no release in the series.
-typedef MigratingLedgerEntry = ({String before, String package, String reason});
+/// A reviewed Before cell of a package with no release in the series: its
+/// text and its row's After cell, as written.
+typedef MigratingLedgerEntry = ({
+  String before,
+  String after,
+  String package,
+  String reason,
+});
 
 /// The entries of the ledger [text]; throws [FormatException] on any other
 /// shape.
@@ -190,7 +209,7 @@ List<MigratingLedgerEntry> parseMigratingLedger(String text) {
   if (doc is! YamlList) {
     throw const FormatException('$migratingLedgerPath: is not a list');
   }
-  const keys = {'before', 'package', 'reason'};
+  const keys = {'before', 'after', 'package', 'reason'};
   return [
     for (final (i, node) in doc.indexed)
       if (node is YamlMap &&
@@ -199,13 +218,14 @@ List<MigratingLedgerEntry> parseMigratingLedger(String text) {
           node.values.every((v) => v is String && v.trim().isNotEmpty))
         (
           before: node['before'] as String,
+          after: node['after'] as String,
           package: node['package'] as String,
           reason: node['reason'] as String,
         )
       else
         throw FormatException(
           '$migratingLedgerPath: entry ${i + 1} needs exactly a non-empty '
-          '`before`, `package` and `reason`',
+          '`before`, `after`, `package` and `reason`',
         ),
   ];
 }
@@ -343,7 +363,7 @@ const migratingTitle = '# Migrating terradart';
 /// else none).
 ///
 /// A Before cell is skipped, and listed in `beforeSkipped`, only when the
-/// ledger lists its exact text and it does not compile. Every other Before
+/// ledger lists its exact text and row and it does not compile. Every other Before
 /// cell compiles against the published packages.
 Future<MigratingReport> checkMigratingCells(
   String root, {
@@ -389,13 +409,13 @@ Future<MigratingReport> checkMigratingCells(
   if (release.isEmpty) return failed(['$at: pub.dev has no $series release']);
 
   final failures = <String>[];
-  final listed = <String, MigratingLedgerEntry>{};
+  final listed = <(String, String), MigratingLedgerEntry>{};
   for (final entry in entries) {
-    final what = '$migratingLedgerPath: Before `${entry.before}`';
-    if (listed.containsKey(entry.before)) {
-      failures.add('$what is listed twice');
-    }
-    listed[entry.before] = entry;
+    final what =
+        '$migratingLedgerPath: Before `${entry.before}` | ${entry.after}';
+    final key = (entry.before, entry.after);
+    if (listed.containsKey(key)) failures.add('$what is listed twice');
+    listed[key] = entry;
     if (!packages.contains(entry.package)) {
       failures.add('$what names ${entry.package}, not a workspace package');
     } else if (release[entry.package] case final version?) {
@@ -404,9 +424,18 @@ Future<MigratingReport> checkMigratingCells(
         'pub.dev; compile the cell and delete the entry',
       );
     }
-    if (!cells.any((c) => c.before && c.code == entry.before)) {
+    final matches = [
+      for (final c in cells)
+        if (c.before && (c.code, c.after) == key) c.line,
+    ];
+    if (matches.isEmpty) {
       failures.add(
         '$what matches no Before cell of the top section of $migratingPath',
+      );
+    } else if (matches.length > 1) {
+      failures.add(
+        '$what matches ${matches.length} Before cells ($migratingPath:'
+        '${matches.join(', ')}); give each row its own entry',
       );
     }
   }
@@ -524,7 +553,7 @@ Future<MigratingReport> checkMigratingCells(
           );
     }
     for (final cell in before) {
-      final entry = listed[cell.code];
+      final entry = listed[(cell.code, cell.after)];
       if (entry == null) continue;
       if (errors.remove(cell) == null) {
         failures.add(
