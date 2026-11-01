@@ -5,7 +5,7 @@ import '_provider_meta.dart';
 
 /// Concrete `StackProvider` for `hashicorp/google ~> 8.0`.
 ///
-/// `StackSynth.synth(...)` reads [source] / [versionConstraint] to populate
+/// `Stack.synth()` reads [source] / [versionConstraint] to populate
 /// the `terraform.required_providers.google` block, and [configArgs] to
 /// populate the `provider.google[]` block.
 ///

@@ -1,3 +1,7 @@
+// Reading the public API resolves every package's export namespace.
+@Timeout(Duration(minutes: 10))
+library;
+
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -7,9 +11,11 @@ import 'doc_renames.dart';
 
 void main() {
   group('migratingSymbols', () {
-    test('reads every backtick span, prose and indented tables included', () {
-      expect(
-        migratingSymbols('''
+    test(
+      'reads every backtick span, prose and indented tables included',
+      () async {
+        expect(
+          migratingSymbols('''
 `OldProseType` is gone.
 
 | Before | After |
@@ -27,20 +33,21 @@ void main() {
 final kind = FencedKind();
 ```
 ''').keys.toSet(),
-        {
-          'OldProseType',
-          'GoogleThing',
-          'OldThingMode',
-          'OldThingMode.x',
-          'Comparison.lt',
-          'Comparison.lessThan',
-          'addExport',
-          'addOutput',
-        },
-      );
-    });
+          {
+            'OldProseType',
+            'GoogleThing',
+            'OldThingMode',
+            'OldThingMode.x',
+            'Comparison.lt',
+            'Comparison.lessThan',
+            'addExport',
+            'addOutput',
+          },
+        );
+      },
+    );
 
-    test('literals, patterns, labels and plain words name nothing', () {
+    test('literals, patterns, labels and plain words name nothing', () async {
       expect(
         migratingSymbols('''
 `Foo(type: 'NONE')`, `Health<Protocol>Config`, `*IamMember`,
@@ -51,7 +58,7 @@ final kind = FencedKind();
       );
     });
 
-    test('the repo MIGRATING.md names removed types in prose', () {
+    test('the repo MIGRATING.md names removed types in prose', () async {
       expect(
         migratingSymbols(File(migratingPath).readAsStringSync()).keys,
         containsAll([
@@ -64,7 +71,7 @@ final kind = FencedKind();
   });
 
   group('beforeColumns', () {
-    test('finds the before column of every rename table form', () {
+    test('finds the before column of every rename table form', () async {
       expect(
         beforeColumns('''
 | Input | Before | After |
@@ -89,23 +96,29 @@ final kind = FencedKind();
   });
 
   group('PublicApi', () {
-    final api = PublicApi.workspace(Directory.current.path);
+    late final PublicApi api;
+    setUpAll(
+      () async => api = await PublicApi.workspace(Directory.current.path),
+    );
 
-    test('a member is declared by its type, a supertype or an extension', () {
-      expect(api.declares('GoogleCloudRunV2Service.uri'), isTrue);
-      expect(api.declares('GoogleCloudRunV2Service.ref'), isTrue);
-      expect(api.declares('RefTo.literal'), isTrue);
-      expect(api.declares('LambdaFunctionArchitectures.x8664'), isTrue);
-      expect(api.declares('Stack.addOutput'), isTrue);
-    });
+    test(
+      'a member is declared by its type, a supertype or an extension',
+      () async {
+        expect(api.declares('GoogleCloudRunV2Service.uri'), isTrue);
+        expect(api.declares('GoogleCloudRunV2Service.ref'), isTrue);
+        expect(api.declares('RefTo.literal'), isTrue);
+        expect(api.declares('LambdaFunctionArchitectures.x8664'), isTrue);
+        expect(api.declares('Stack.addOutput'), isTrue);
+      },
+    );
 
-    test('a word in the declaring file is no member', () {
+    test('a word in the declaring file is no member', () async {
       expect(api.declares('CloudflareApiShieldDiscoveryOperation.id'), isFalse);
       expect(api.declares('GoogleCloudRunV2Service.nameRef'), isFalse);
     });
 
-    test('a type of the last release the workspace lacks is removed', () {
-      final released = PublicApi.released(Directory.current.path);
+    test('a type of the last release the workspace lacks is removed', () async {
+      final released = await PublicApi.released(Directory.current.path);
       final removed = removedSymbols(
         migrating: const {},
         current: api,
@@ -116,12 +129,12 @@ final kind = FencedKind();
       expect(removed.keys, isNot(contains('GoogleCloudRunV2Service')));
     });
 
-    test('the last release includes the CLI and top-level names', () {
-      final released = PublicApi.released(Directory.current.path).api;
+    test('the last release includes the CLI and top-level names', () async {
+      final released = (await PublicApi.released(Directory.current.path)).api;
       expect(released.symbols, containsAll(['runStack', 'runTerradart']));
     });
 
-    test('an unexported declaration is no public API', () {
+    test('an unexported declaration is no public API', () async {
       Directory workspace(String exports) {
         final tmp = Directory.systemTemp.createTempSync('doc_renames_cli_');
         addTearDown(() => tmp.deleteSync(recursive: true));
@@ -137,7 +150,7 @@ Future<int> runTerradart(List<String> args) async => 0;
         return tmp;
       }
 
-      final current = PublicApi.workspace(workspace('runStack').path);
+      final current = await PublicApi.workspace(workspace('runStack').path);
       expect(current.declares('runStack'), isTrue);
       expect(current.declares('runTerradart'), isFalse);
       final removed = removedSymbols(
@@ -145,7 +158,9 @@ Future<int> runTerradart(List<String> args) async => 0;
         current: current,
         released: (
           version: '0.35.0',
-          api: PublicApi.workspace(workspace('runStack, runTerradart').path),
+          api: await PublicApi.workspace(
+            workspace('runStack, runTerradart').path,
+          ),
         ),
       );
       expect(removed.keys, contains('runTerradart'));
@@ -159,7 +174,7 @@ Future<int> runTerradart(List<String> args) async => 0;
       );
     });
 
-    test('a removed top-level name in prose fails', () {
+    test('a removed top-level name in prose fails', () async {
       final tmp = Directory.systemTemp.createTempSync('doc_renames_top_');
       addTearDown(() => tmp.deleteSync(recursive: true));
       File(p.join(tmp.path, 'old.dart')).writeAsStringSync('''
@@ -240,7 +255,7 @@ final class Kept {
     });
     tearDown(() => tmp.deleteSync(recursive: true));
 
-    List<String> check({List<String> docs = const [], String? lib}) =>
+    Future<List<String>> check({List<String> docs = const [], String? lib}) =>
         checkDocRenames(
           root,
           migrating: migrating,
@@ -250,7 +265,7 @@ final class Kept {
           released: false,
         );
 
-    test('fails on a guide that still names a removed type', () {
+    test('fails on a guide that still names a removed type', () async {
       final doc = p.join(tmp.path, 'guide.md');
       File(doc).writeAsStringSync('''
 # Guide
@@ -273,7 +288,7 @@ Use OldProseType, or `OldIndentedType`.
    |---|---|
    | `OldIndentedType` | `.new()` |
 ''');
-      expect(check(docs: [doc]), [
+      expect(await check(docs: [doc]), [
         startsWith('$doc:3: `OldTopicKind` was removed or renamed'),
         startsWith('$doc:6: `OldHelperType` was removed or renamed'),
         startsWith('$doc:13: `OldProseType` was removed or renamed'),
@@ -281,19 +296,25 @@ Use OldProseType, or `OldIndentedType`.
       ]);
     });
 
-    test('fails on a removed member whose name the file still spells', () {
-      final doc = p.join(tmp.path, 'guide.md');
-      File(
-        doc,
-      ).writeAsStringSync('Read `CloudflareApiShieldDiscoveryOperation.id`.\n');
-      expect(checkDocRenames(root, docs: [doc], libs: [], released: false), [
-        startsWith(
-          '$doc:1: `CloudflareApiShieldDiscoveryOperation.id` was removed',
-        ),
-      ]);
-    });
+    test(
+      'fails on a removed member whose name the file still spells',
+      () async {
+        final doc = p.join(tmp.path, 'guide.md');
+        File(doc).writeAsStringSync(
+          'Read `CloudflareApiShieldDiscoveryOperation.id`.\n',
+        );
+        expect(
+          await checkDocRenames(root, docs: [doc], libs: [], released: false),
+          [
+            startsWith(
+              '$doc:1: `CloudflareApiShieldDiscoveryOperation.id` was removed',
+            ),
+          ],
+        );
+      },
+    );
 
-    test('fails on a doc comment reference, fence, span or prose', () {
+    test('fails on a doc comment reference, fence, span or prose', () async {
       final lib = Directory(p.join(tmp.path, 'lib'))..createSync();
       final file = File(p.join(lib.path, 'a.dart'))
         ..writeAsStringSync('''
@@ -307,7 +328,7 @@ Use OldProseType, or `OldIndentedType`.
 final class A {}
 ''');
       final rel = p.relative(file.path, from: root);
-      expect(check(lib: lib.path), [
+      expect(await check(lib: lib.path), [
         startsWith('$rel:1: `OldHelperType`'),
         startsWith('$rel:1: `OldTopicKind`'),
         startsWith('$rel:4: `OldTopicKind`'),
@@ -315,7 +336,7 @@ final class A {}
       ]);
     });
 
-    test('fails on a doc comment reference no declaration resolves', () {
+    test('fails on a doc comment reference no declaration resolves', () async {
       final lib = Directory(p.join(tmp.path, 'lib'))..createSync();
       final file = File(p.join(lib.path, 'a.dart'))
         ..writeAsStringSync('''
@@ -324,13 +345,13 @@ final class A {}
 final class A {}
 ''');
       final rel = p.relative(file.path, from: root);
-      expect(check(lib: lib.path), [
+      expect(await check(lib: lib.path), [
         '$rel:2: [CloudRunV2ServiceEmptyDirVolume] names no declared symbol',
         '$rel:2: [GooglePubsubTopic.nameRef] names no declared symbol',
       ]);
     });
 
-    test('a symbol the public API still declares is not removed', () {
+    test('a symbol the public API still declares is not removed', () async {
       final doc = p.join(tmp.path, 'guide.md');
       File(doc).writeAsStringSync('Use `GooglePubsubTopic`.\n');
       File(migrating).writeAsStringSync('''
@@ -338,12 +359,12 @@ final class A {}
 |---|---|
 | `GooglePubsubTopic` | `GoogleTopic` |
 ''');
-      expect(check(docs: [doc]), isEmpty);
+      expect(await check(docs: [doc]), isEmpty);
     });
 
-    test('a stale allow-list entry fails', () {
+    test('a stale allow-list entry fails', () async {
       expect(
-        checkDocRenames(
+        await checkDocRenames(
           root,
           migrating: migrating,
           docs: const [],
@@ -355,14 +376,14 @@ final class A {}
       );
     });
 
-    test('a MIGRATING.md that names no symbol fails loudly', () {
+    test('a MIGRATING.md that names no symbol fails loudly', () async {
       File(migrating).writeAsStringSync('# Migrating\n');
-      expect(check, throwsStateError);
+      await expectLater(check(), throwsStateError);
     });
   });
 
-  test('no doc names a symbol the public API removed', () {
-    final failures = checkDocRenames(Directory.current.path);
+  test('no doc names a symbol the public API removed', () async {
+    final failures = await checkDocRenames(Directory.current.path);
     expect(failures, isEmpty, reason: failures.join('\n'));
   });
 }

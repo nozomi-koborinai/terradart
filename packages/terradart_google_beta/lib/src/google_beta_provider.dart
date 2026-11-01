@@ -10,7 +10,7 @@ const String kBetaProviderVersionConstraint = '~> 8.0';
 
 /// Concrete `StackProvider` for `hashicorp/google-beta ~> 8.0`.
 ///
-/// `StackSynth.synth(...)` reads [source] / [versionConstraint] to populate
+/// `Stack.synth()` reads [source] / [versionConstraint] to populate
 /// the `terraform.required_providers.google-beta` block, and [configArgs]
 /// to populate the `provider.google-beta[]` block. Composes with
 /// `terradart_google`'s `GoogleProvider` in one `Stack` when a stack mixes

@@ -11,6 +11,7 @@ notApi:
   googleBetaProvider: the variable the migrator writes for a `google-beta` provider
   ServiceAccountModule: the module class the migrator writes for a user's `service_account` module
   Helper: a placeholder for any helper class (`Map<String, Helper>`)
+  Target: a placeholder for the referenced resource type (`RefTo<Target>`)
   Or: the suffix a placeholder sealed name ends with, not a type
   Ref: the suffix of the removed `<input>Ref` getters, not a type
   ExactlyOneOf: the provider schema rule, not a Dart symbol

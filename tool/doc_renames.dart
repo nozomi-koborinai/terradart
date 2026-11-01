@@ -5,9 +5,13 @@
 // Run from repo root: dart tool/doc_renames.dart
 // tool/doc_renames_test.dart runs the same check (CI: `dart test tool/`).
 //
-// A removed symbol is one the public API (the `lib/` of every workspace
-// package but `terradart_codegen`, and the SDK's `dart:` libraries) no longer
-// declares, and that either
+// The public API is what a dependent can import: the analyzer's export
+// namespace of each package's entrypoints (its `lib/` libraries outside
+// `lib/src/`), for every workspace package but `terradart_codegen` and for
+// the packages of the last release, plus the SDK's `dart:` libraries. A
+// declaration under `lib/src/` that no entrypoint exports is not API.
+//
+// A removed symbol is one the public API no longer declares, and that either
 //
 // - MIGRATING.md names in a backtick span (prose, any table cell, indented
 //   tables included): a type (`OldName`, `Foo<Bar>`, `OldName(...)`, outside
@@ -17,7 +21,8 @@
 //   (`Type.member`; constructors, fields, getters, methods, enum values).
 //
 // Declarations are read with the analyzer, so a member is declared only when
-// its type, a supertype, or an extension on it declares it.
+// its type, a supertype (exported or not), or an exported extension on it
+// declares it.
 //
 // A mention is a removed symbol anywhere in a document (prose, a backtick
 // span, a fence) outside the before column of its rename tables, or anywhere
@@ -26,8 +31,9 @@
 // compiles plus the `terradart help` topics; the doc comments are those of
 // the doc-comment packages, the examples and the cookbook recipes.
 // A `[Type]` or `[Type.member]` reference of a doc comment must also name a
-// declared symbol: of the workspace packages, or of the example or recipe
-// the comment belongs to.
+// declared symbol: of the public API, of the package's own `lib/` (internal
+// declarations included), or of the example or recipe the comment belongs
+// to.
 // MIGRATING.md and the CHANGELOG.md files are the record of what each
 // release changed and keep the old names. A mention that is not the Dart
 // symbol (an upstream description naming an API resource) goes in
@@ -38,6 +44,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
+import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
@@ -185,68 +193,59 @@ final class PublicApi {
     this.supertypes,
     this.names,
     this.topLevel,
+    this._declaredTypes,
   );
 
+  /// The public types.
   final Set<String> types;
+
+  /// The members of every declared type, public or not, so a public type
+  /// inherits what an unexported supertype declares.
   final Map<String, Set<String>> members;
   final Map<String, Set<String>> supertypes;
 
-  /// Every declared name: members, top-level declarations, parameters.
+  /// Every public name: members, top-level declarations, parameters.
   final Set<String> names;
 
-  /// The top-level functions, getters and variables.
+  /// The public top-level functions, getters and variables.
   final Set<String> topLevel;
 
-  /// The declarations of the `.dart` files under [dirs].
-  factory PublicApi.read(Iterable<String> dirs) {
-    final collector = _Declarations();
-    for (final dir in dirs) {
-      final d = Directory(dir);
-      if (!d.existsSync()) continue;
-      for (final f in d.listSync(recursive: true).whereType<File>()) {
-        if (!f.path.endsWith('.dart')) continue;
-        parseString(
-          content: f.readAsStringSync(),
-          throwIfDiagnostics: false,
-        ).unit.accept(collector);
-      }
-    }
-    return PublicApi._(
-      collector.types,
-      collector.members,
-      collector.supertypes,
-      collector.names,
-      collector.topLevel,
-    );
-  }
+  final Set<String> _declaredTypes;
 
-  /// The workspace packages' `lib/` but codegen's, and the SDK's `dart:`
-  /// libraries.
-  factory PublicApi.workspace(String root) {
-    final sdk = p.join(
-      File(Platform.resolvedExecutable).parent.parent.path,
-      'lib',
-    );
-    return PublicApi.read([
+  /// Every declaration of the `.dart` files under [dirs].
+  factory PublicApi.read(Iterable<String> dirs) =>
+      (_Declarations()..readAll(dirs)).api;
+
+  /// What the entrypoints of the workspace packages but codegen export, and
+  /// the SDK's `dart:` libraries.
+  static Future<PublicApi> workspace(String root) =>
+      _workspaces[root] ??= _readWorkspace(root);
+
+  static final _workspaces = <String, Future<PublicApi>>{};
+
+  static Future<PublicApi> _readWorkspace(String root) async {
+    final packages = [
       for (final pkg in Directory(p.join(root, 'packages')).listSync())
         if (pkg is Directory && p.basename(pkg.path) != 'terradart_codegen')
-          p.join(pkg.path, 'lib'),
-      for (final lib in [
-        'core',
-        'async',
-        'collection',
-        'convert',
-        'io',
-        'math',
-        'typed_data',
-      ])
-        p.join(sdk, lib),
-    ]);
+          pkg.path,
+    ];
+    return (_Declarations()
+          ..readAll(_sdkLibraries())
+          ..readPackages(packages, await _exported(root, packages)))
+        .api;
   }
 
-  /// The packages of the last release on pub.dev, fetched into a scratch
-  /// package.
-  static ({String version, PublicApi api}) released(String root) {
+  /// What the entrypoints of the last release's packages on pub.dev export,
+  /// fetched into a scratch package.
+  static Future<({String version, PublicApi api})> released(String root) =>
+      _released[root] ??= _readReleased(root);
+
+  static final _released =
+      <String, Future<({String version, PublicApi api})>>{};
+
+  static Future<({String version, PublicApi api})> _readReleased(
+    String root,
+  ) async {
     final release = lastRelease(root, docCommentPackages);
     final dir = Directory.systemTemp.createTempSync('doc_renames_release_');
     try {
@@ -284,13 +283,17 @@ final class PublicApi {
                 ).readAsStringSync(),
               )
               as Map<String, dynamic>;
+      final packages = [
+        for (final pkg in config['packages'] as List)
+          if (release.packages.contains((pkg as Map)['name']))
+            Uri.parse(pkg['rootUri'] as String).toFilePath(),
+      ];
       return (
         version: release.version,
-        api: PublicApi.read([
-          for (final pkg in config['packages'] as List)
-            if (release.packages.contains((pkg as Map)['name']))
-              p.join(Uri.parse(pkg['rootUri'] as String).toFilePath(), 'lib'),
-        ]),
+        api:
+            (_Declarations()
+                  ..readPackages(packages, await _exported(dir.path, packages)))
+                .api,
       );
     } finally {
       dir.deleteSync(recursive: true);
@@ -313,7 +316,8 @@ final class PublicApi {
     while (queue.isNotEmpty) {
       final type = queue.removeLast();
       if (!seen.add(type)) continue;
-      if (!types.contains(type)) return seen.length > 1 || type == 'Object';
+      if (seen.length == 1 && !types.contains(type)) return type == 'Object';
+      if (!_declaredTypes.contains(type)) return true;
       if (members[type]?.contains(member) ?? false) return true;
       queue.addAll(supertypes[type] ?? const {});
     }
@@ -334,12 +338,133 @@ final class PublicApi {
   };
 }
 
+/// The SDK's `dart:` libraries the docs name.
+List<String> _sdkLibraries() {
+  final sdk = p.join(
+    File(Platform.resolvedExecutable).parent.parent.path,
+    'lib',
+  );
+  return [
+    for (final lib in [
+      'core',
+      'async',
+      'collection',
+      'convert',
+      'io',
+      'math',
+      'typed_data',
+    ])
+      p.join(sdk, lib),
+  ];
+}
+
+/// The libraries of [package] a dependent imports: its `lib/` but `lib/src/`.
+Iterable<String> _entrypoints(String package) sync* {
+  final lib = Directory(p.join(package, 'lib'));
+  if (!lib.existsSync()) return;
+  for (final f in lib.listSync(recursive: true).whereType<File>()) {
+    if (!f.path.endsWith('.dart')) continue;
+    if (p.split(p.relative(f.path, from: lib.path)).first == 'src') continue;
+    yield p.normalize(p.absolute(f.path));
+  }
+}
+
+/// The top-level declarations the entrypoints of [packages] export, by
+/// declaring file and name: the analyzer's export namespace of each, with
+/// the `package:` URIs of [contextRoot]'s package config.
+Future<Set<(String, String)>> _exported(
+  String contextRoot,
+  List<String> packages,
+) async {
+  final root = p.normalize(p.absolute(contextRoot));
+  final collection = AnalysisContextCollection(includedPaths: [root]);
+  try {
+    final session = collection.contextFor(root).currentSession;
+    final out = <(String, String)>{};
+    for (final package in packages) {
+      for (final path in _entrypoints(package)) {
+        final uri = session.uriConverter.pathToUri(path) ?? Uri.file(path);
+        final result = await session.getLibraryByUri('$uri');
+        if (result is! LibraryElementResult) continue;
+        final names = result.element.exportNamespace.definedNames2;
+        for (final MapEntry(key: name, value: e) in names.entries) {
+          final file = e.firstFragment.libraryFragment?.source.fullName;
+          if (file == null) continue;
+          out.add((
+            p.normalize(file),
+            name.endsWith('=') ? name.substring(0, name.length - 1) : name,
+          ));
+        }
+      }
+    }
+    return out;
+  } finally {
+    await collection.dispose();
+  }
+}
+
 final class _Declarations extends RecursiveAstVisitor<void> {
   final types = <String>{};
+  final declaredTypes = <String>{};
   final members = <String, Set<String>>{};
   final supertypes = <String, Set<String>>{};
   final names = <String>{};
   final topLevel = <String>{};
+
+  /// The exported `(file, name)` pairs; null when every declaration is
+  /// public.
+  Set<(String, String)>? _exported;
+  Set<String> _entrypointFiles = const {};
+  String _file = '';
+  bool _public = true;
+
+  PublicApi get api =>
+      PublicApi._(types, members, supertypes, names, topLevel, declaredTypes);
+
+  /// Every declaration under [dirs] is public.
+  void readAll(Iterable<String> dirs) {
+    _exported = null;
+    for (final dir in dirs) {
+      final d = Directory(dir);
+      if (!d.existsSync()) continue;
+      for (final f in d.listSync(recursive: true).whereType<File>()) {
+        if (f.path.endsWith('.dart')) _read(f);
+      }
+    }
+  }
+
+  /// Only what [exported] names of the `lib/` of [packages] is public.
+  void readPackages(List<String> packages, Set<(String, String)> exported) {
+    _exported = exported;
+    _entrypointFiles = {for (final pkg in packages) ..._entrypoints(pkg)};
+    for (final pkg in packages) {
+      final lib = Directory(p.join(pkg, 'lib'));
+      if (!lib.existsSync()) continue;
+      for (final f in lib.listSync(recursive: true).whereType<File>()) {
+        if (f.path.endsWith('.dart')) _read(f);
+      }
+    }
+  }
+
+  void _read(File f) {
+    _file = p.normalize(p.absolute(f.path));
+    parseString(
+      content: f.readAsStringSync(),
+      throwIfDiagnostics: false,
+    ).unit.accept(this);
+  }
+
+  bool _exports(String name) =>
+      _exported == null || _exported!.contains((_file, name));
+
+  /// Visits a top-level declaration [name] with [visit], recording what it
+  /// declares as public only when [public].
+  void _topLevel(bool public, void Function() visit) {
+    final was = _public;
+    _public = public;
+    visit();
+    _public = was;
+  }
 
   void _type(
     String name,
@@ -347,15 +472,15 @@ final class _Declarations extends RecursiveAstVisitor<void> {
     Iterable<ClassMember> body, {
     Iterable<String> extra = const [],
   }) {
-    types.add(name);
+    declaredTypes.add(name);
+    if (_public) types.add(name);
     supertypes.putIfAbsent(name, () => {}).addAll([
       for (final s in supers) s.name.lexeme,
     ]);
     final declared = members.putIfAbsent(name, () => {})..addAll(extra);
-    for (final m in body) {
-      declared.addAll(_memberNames(m));
-    }
-    names.addAll(declared);
+    final own = [for (final m in body) ..._memberNames(m)];
+    declared.addAll(own);
+    if (_public) names.addAll([...extra, ...own]);
   }
 
   static Iterable<String> _memberNames(ClassMember m) => switch (m) {
@@ -375,117 +500,160 @@ final class _Declarations extends RecursiveAstVisitor<void> {
 
   @override
   void visitClassDeclaration(ClassDeclaration node) {
-    _type(
-      node.namePart.typeName.lexeme,
-      _supers(node.extendsClause, node.withClause, node.implementsClause),
-      node.body.members,
-      extra: [
-        if (node.namePart case PrimaryConstructorDeclaration(
-          :final constructorName,
-        ))
-          constructorName?.name.lexeme ?? 'new',
-      ],
-    );
-    super.visitClassDeclaration(node);
+    final name = node.namePart.typeName.lexeme;
+    _topLevel(_exports(name), () {
+      _type(
+        name,
+        _supers(node.extendsClause, node.withClause, node.implementsClause),
+        node.body.members,
+        extra: [
+          if (node.namePart case PrimaryConstructorDeclaration(
+            :final constructorName,
+          ))
+            constructorName?.name.lexeme ?? 'new',
+        ],
+      );
+      super.visitClassDeclaration(node);
+    });
   }
 
   @override
   void visitMixinDeclaration(MixinDeclaration node) {
-    _type(node.name.lexeme, [
-      ...?node.onClause?.superclassConstraints,
-      ...?node.implementsClause?.interfaces,
-    ], node.body.members);
-    super.visitMixinDeclaration(node);
+    _topLevel(_exports(node.name.lexeme), () {
+      _type(node.name.lexeme, [
+        ...?node.onClause?.superclassConstraints,
+        ...?node.implementsClause?.interfaces,
+      ], node.body.members);
+      super.visitMixinDeclaration(node);
+    });
   }
 
   @override
   void visitEnumDeclaration(EnumDeclaration node) {
-    _type(
-      node.namePart.typeName.lexeme,
-      [...?node.withClause?.mixinTypes, ...?node.implementsClause?.interfaces],
-      node.body.members,
-      extra: [
-        for (final c in node.body.constants) c.name.lexeme,
-        'values',
-        'name',
-        'index',
-      ],
-    );
-    super.visitEnumDeclaration(node);
+    final name = node.namePart.typeName.lexeme;
+    _topLevel(_exports(name), () {
+      _type(
+        name,
+        [
+          ...?node.withClause?.mixinTypes,
+          ...?node.implementsClause?.interfaces,
+        ],
+        node.body.members,
+        extra: [
+          for (final c in node.body.constants) c.name.lexeme,
+          'values',
+          'name',
+          'index',
+        ],
+      );
+      super.visitEnumDeclaration(node);
+    });
   }
 
   @override
   void visitExtensionTypeDeclaration(ExtensionTypeDeclaration node) {
     final ctor = node.primaryConstructor;
-    _type(
-      ctor.typeName.lexeme,
-      [...?node.implementsClause?.interfaces],
-      node.body.members,
-      extra: [
-        ctor.constructorName?.name.lexeme ?? 'new',
-        for (final f in ctor.formalParameters.parameters)
-          if (f.name case final n?) n.lexeme,
-      ],
-    );
-    super.visitExtensionTypeDeclaration(node);
+    _topLevel(_exports(ctor.typeName.lexeme), () {
+      _type(
+        ctor.typeName.lexeme,
+        [...?node.implementsClause?.interfaces],
+        node.body.members,
+        extra: [
+          ctor.constructorName?.name.lexeme ?? 'new',
+          for (final f in ctor.formalParameters.parameters)
+            if (f.name case final n?) n.lexeme,
+        ],
+      );
+      super.visitExtensionTypeDeclaration(node);
+    });
   }
 
+  /// A named extension is public when exported; an unnamed one, which no
+  /// export carries, when an entrypoint declares it.
   @override
   void visitExtensionDeclaration(ExtensionDeclaration node) {
-    final on = node.onClause?.extendedType;
-    final declared = [for (final m in node.body.members) ..._memberNames(m)];
-    names.addAll(declared);
-    if (node.name case final name?) {
-      types.add(name.lexeme);
-      members.putIfAbsent(name.lexeme, () => {}).addAll(declared);
-    }
-    if (on is NamedType) {
-      members.putIfAbsent(on.name.lexeme, () => {}).addAll(declared);
-    }
-    super.visitExtensionDeclaration(node);
+    final name = node.name?.lexeme;
+    final public = name != null
+        ? _exports(name)
+        : _exported == null || _entrypointFiles.contains(_file);
+    _topLevel(public, () {
+      final on = node.onClause?.extendedType;
+      final declared = [for (final m in node.body.members) ..._memberNames(m)];
+      if (public) names.addAll(declared);
+      if (name != null) {
+        declaredTypes.add(name);
+        if (public) types.add(name);
+        members.putIfAbsent(name, () => {}).addAll(declared);
+      }
+      if (public && on is NamedType) {
+        members.putIfAbsent(on.name.lexeme, () => {}).addAll(declared);
+      }
+      super.visitExtensionDeclaration(node);
+    });
   }
 
   @override
   void visitClassTypeAlias(ClassTypeAlias node) {
-    _type(node.name.lexeme, [
-      node.superclass,
-      ...node.withClause.mixinTypes,
-      ...?node.implementsClause?.interfaces,
-    ], const []);
+    _topLevel(_exports(node.name.lexeme), () {
+      _type(node.name.lexeme, [
+        node.superclass,
+        ...node.withClause.mixinTypes,
+        ...?node.implementsClause?.interfaces,
+      ], const []);
+    });
   }
 
   @override
   void visitGenericTypeAlias(GenericTypeAlias node) {
     final aliased = node.type;
-    _type(node.name.lexeme, [if (aliased is NamedType) aliased], const []);
+    _topLevel(_exports(node.name.lexeme), () {
+      _type(node.name.lexeme, [if (aliased is NamedType) aliased], const []);
+    });
   }
 
   @override
   void visitFunctionTypeAlias(FunctionTypeAlias node) {
-    types.add(node.name.lexeme);
+    declaredTypes.add(node.name.lexeme);
+    if (_exports(node.name.lexeme)) types.add(node.name.lexeme);
   }
 
   @override
   void visitFunctionDeclaration(FunctionDeclaration node) {
-    names.add(node.name.lexeme);
-    if (node.parent is CompilationUnit) topLevel.add(node.name.lexeme);
-    super.visitFunctionDeclaration(node);
+    if (node.parent is! CompilationUnit) {
+      super.visitFunctionDeclaration(node);
+      return;
+    }
+    final public = _exports(node.name.lexeme);
+    _topLevel(public, () {
+      if (public) {
+        names.add(node.name.lexeme);
+        topLevel.add(node.name.lexeme);
+      }
+      super.visitFunctionDeclaration(node);
+    });
   }
 
   @override
   void visitTopLevelVariableDeclaration(TopLevelVariableDeclaration node) {
-    final declared = [for (final v in node.variables.variables) v.name.lexeme];
+    final declared = [
+      for (final v in node.variables.variables)
+        if (_exports(v.name.lexeme)) v.name.lexeme,
+    ];
     names.addAll(declared);
     topLevel.addAll(declared);
-    super.visitTopLevelVariableDeclaration(node);
+    _topLevel(declared.isNotEmpty, () {
+      super.visitTopLevelVariableDeclaration(node);
+    });
   }
 
   @override
   void visitFormalParameterList(FormalParameterList node) {
-    names.addAll([
-      for (final f in node.parameters)
-        if (f.name case final n?) n.lexeme,
-    ]);
+    if (_public) {
+      names.addAll([
+        for (final f in node.parameters)
+          if (f.name case final n?) n.lexeme,
+      ]);
+    }
     super.visitFormalParameterList(node);
   }
 }
@@ -538,10 +706,12 @@ List<StaleMention> unresolvedReferences(
   return out;
 }
 
-/// The `lib/` directories of the example or recipe [lib] belongs to, which
-/// its references may name besides the workspace packages.
+/// What the doc comments of [lib] may name besides the public API: every
+/// declaration of a package's own `lib/`, or the `lib/` directories of the
+/// example or recipe it belongs to.
 List<String> _siblingLibs(String root, String lib) {
   final parts = p.split(lib);
+  if (parts.first == 'packages') return [p.join(root, lib)];
   if (parts.length < 3 || !{'examples', 'cookbook'}.contains(parts.first)) {
     return const [];
   }
@@ -686,14 +856,14 @@ AllowList parseAllowList(String allowYaml) {
 /// the default [docs] and [libs]). [migrating] defaults to the
 /// repo's MIGRATING.md; [released] (default: the last release) adds the
 /// symbols that release declared.
-List<String> checkDocRenames(
+Future<List<String>> checkDocRenames(
   String root, {
   String? migrating,
   List<String>? docs,
   List<String>? libs,
   AllowList? allow,
   bool released = true,
-}) {
+}) async {
   allow ??= parseAllowList(
     File(p.join(root, allowPath)).existsSync()
         ? File(p.join(root, allowPath)).readAsStringSync()
@@ -708,11 +878,11 @@ List<String> checkDocRenames(
       'docs',
     );
   }
-  final current = PublicApi.workspace(root);
+  final current = await PublicApi.workspace(root);
   final removed = removedSymbols(
     migrating: symbols,
     current: current,
-    released: released ? PublicApi.released(root) : null,
+    released: released ? await PublicApi.released(root) : null,
   );
   final out = <String>[];
   for (final MapEntry(key: s) in allow.notApi.entries) {
@@ -742,7 +912,14 @@ List<String> checkDocRenames(
     for (final f in files) {
       final rel = p.relative(f.path, from: root);
       final text = f.readAsStringSync();
-      mentions.addAll(staleMentions(rel, text, removed, docComments: true));
+      mentions.addAll(
+        staleMentions(
+          rel,
+          text,
+          removed,
+          docComments: true,
+        ).where((m) => !local.declares(m.symbol)),
+      );
       unresolved.addAll(unresolvedReferences(rel, text, declared));
     }
   }
@@ -780,8 +957,8 @@ List<String> checkDocRenames(
   return out;
 }
 
-void main() {
-  final failures = checkDocRenames(Directory.current.path);
+Future<void> main() async {
+  final failures = await checkDocRenames(Directory.current.path);
   if (failures.isEmpty) {
     print('doc_renames: OK');
     return;
