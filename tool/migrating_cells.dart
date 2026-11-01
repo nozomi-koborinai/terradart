@@ -1,6 +1,8 @@
 // migrating_cells.dart — compiles the Dart code of every Before / After cell
-// of the Unreleased section of MIGRATING.md, so an upgrade table cannot show
-// a call or a type its release does not have.
+// of the top section of MIGRATING.md, so an upgrade table cannot show a call
+// or a type its release does not have. The top section is `## Unreleased`,
+// or `## <from> → <to>` (`## 0.35.x → 0.36.0`) once a release PR names it; any
+// other heading, or a top section without a cell, fails.
 //
 // Run from repo root: dart tool/migrating_cells.dart
 // tool/migrating_cells_test.dart runs the same check (CI: `dart test tool/`).
@@ -20,17 +22,22 @@
 // `dynamic` stand-in; an undefined capitalized name (`NoSuchType`) fails.
 //
 // After cells compile against the workspace packages. Before cells compile
-// against the published packages of the last release (the version whose
-// `## <version> - <date>` heading tops every released package's
-// CHANGELOG.md); a section whose packages were not released then has no
-// Before API and its Before cells are not compiled.
+// against the packages pub.dev has at the newest version the heading allows:
+// any version under `## Unreleased`, the `<from>` series under
+// `## <from> → <to>`. A release PR moves the CHANGELOGs to a version pub.dev
+// does not have yet, and the CI checkout has no tags, so pub.dev, which the
+// Before compile resolves against anyway, is the source. A section whose
+// packages pub.dev lacks at that version has no Before API and its Before
+// cells are not compiled.
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
 import 'doc_snippets.dart' show AnalyzerDiagnostic, analyzeDiagnostics;
+import 'http_retry.dart';
 import 'lane_surface.dart';
 import 'wrap_lanes.dart';
 
@@ -49,11 +56,19 @@ final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
 final _namedArgument = RegExp(r'^[a-z]\w*:\s');
 
-/// The Before / After code spans of the `## Unreleased` section of [text].
+/// The first `##` heading of [text] and its line.
+({int line, String heading})? topMigratingHeading(String text) {
+  for (final (i, line) in text.split('\n').indexed) {
+    if (line.startsWith('## ')) return (line: i + 1, heading: line.trim());
+  }
+  return null;
+}
+
+/// The Before / After code spans of the top `##` section of [text].
 List<MigratingCell> extractMigratingCells(String text) {
   final lines = text.split('\n');
   final out = <MigratingCell>[];
-  var inUnreleased = false;
+  var inTop = false;
   var section = '';
   var packages = <String>{};
   var readPackages = false;
@@ -61,10 +76,11 @@ List<MigratingCell> extractMigratingCells(String text) {
   List<String>? header;
   for (final (i, line) in lines.indexed) {
     if (line.startsWith('## ')) {
-      inUnreleased = line.trim() == '## Unreleased';
+      if (inTop) break;
+      inTop = true;
       continue;
     }
-    if (!inUnreleased) continue;
+    if (!inTop) continue;
     if (line.startsWith('### ')) {
       section = line.substring(4).trim();
       packages = {};
@@ -145,33 +161,78 @@ String? cellShapeError(MigratingCell cell) {
   return null;
 }
 
-/// The released version: the `## <version> - <date>` heading every package
-/// of [packages] with a dated top heading agrees on, and those packages.
-({String version, Set<String> packages}) lastRelease(
-  String root,
-  List<String> packages,
+final _releaseHeading = RegExp(r'^## (\d+\.\d+\.(?:\d+|x)) → \d+\.\d+\.\d+$');
+final _stableVersion = RegExp(r'^\d+\.\d+\.\d+$');
+
+/// The versions the Before cells under [heading] describe, as dotted parts
+/// where `x` matches any: `x` under `## Unreleased`, `<from>` under
+/// `## <from> → <to>` (`0.35.x`, `0.27.0`); null under any other heading.
+String? beforeSeries(String heading) => heading == '## Unreleased'
+    ? 'x'
+    : _releaseHeading.firstMatch(heading)?.group(1);
+
+/// The newest stable version of [series] in [published] (package → its
+/// pub.dev versions), and the packages published at it; null when none is.
+({String version, Set<String> packages})? beforeRelease(
+  String series,
+  Map<String, List<String>> published,
 ) {
-  final released = <String, String>{};
-  for (final pkg in packages) {
-    final changelog = File(p.join(root, 'packages', pkg, 'CHANGELOG.md'));
-    if (!changelog.existsSync()) continue;
-    final top = RegExp(
-      r'^## (\S+) - \d{4}-\d{2}-\d{2}',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    final heading = RegExp(
-      r'^## ',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    if (top != null && heading != null && top.start == heading.start) {
-      released[pkg] = top.group(1)!;
+  final want = series.split('.');
+  List<int>? parts(String version) {
+    if (!_stableVersion.hasMatch(version)) return null;
+    final have = version.split('.');
+    for (final (i, w) in want.indexed) {
+      if (w != 'x' && w != have[i]) return null;
     }
+    return [for (final n in have) int.parse(n)];
   }
-  final versions = released.values.toSet();
-  if (versions.length != 1) {
-    throw StateError('released packages disagree on a version: $released');
+
+  int byParts(List<int> a, List<int> b) => [
+    for (final (i, n) in a.indexed) n.compareTo(b[i]),
+  ].firstWhere((c) => c != 0, orElse: () => 0);
+  final candidates = [
+    for (final version in published.values.expand((v) => v).toSet())
+      if (parts(version) case final v?) (version: version, parts: v),
+  ]..sort((a, b) => byParts(a.parts, b.parts));
+  if (candidates.isEmpty) return null;
+  final newest = candidates.last.version;
+  return (
+    version: newest,
+    packages: {
+      for (final MapEntry(:key, :value) in published.entries)
+        if (value.contains(newest)) key,
+    },
+  );
+}
+
+/// Every version pub.dev lists for each of [packages]; none for a package
+/// pub.dev does not have.
+Future<Map<String, List<String>>> publishedVersions(
+  List<String> packages,
+) async {
+  final client = HttpClient();
+  final versions = <String, List<String>>{};
+  try {
+    for (final pkg in packages) {
+      final url = Uri.https('pub.dev', '/api/packages/$pkg');
+      final response = await getRetryingTransient(client, url);
+      final body = await response.transform(utf8.decoder).join();
+      if (response.statusCode == HttpStatus.notFound) {
+        versions[pkg] = [];
+        continue;
+      }
+      if (response.statusCode != HttpStatus.ok) {
+        throw HttpException('${response.statusCode} $body', uri: url);
+      }
+      versions[pkg] = [
+        for (final v in (jsonDecode(body) as Map)['versions'] as List)
+          (v as Map)['version'] as String,
+      ];
+    }
+  } finally {
+    client.close();
   }
-  return (version: versions.single, packages: released.keys.toSet());
+  return versions;
 }
 
 final _elidedArgument = RegExp(r'(,\s*)?\.\.\.(?=\s*[)\]])');
@@ -249,14 +310,23 @@ Future<List<String>> checkMigratingCells(
   String root, {
   String? migrating,
 }) async {
-  final cells = extractMigratingCells(
-    migrating ?? File(p.join(root, migratingPath)).readAsStringSync(),
-  );
-  final failures = <String>[];
+  final text =
+      migrating ?? File(p.join(root, migratingPath)).readAsStringSync();
+  final top = topMigratingHeading(text);
+  if (top == null) return ['$migratingPath: has no `##` section'];
+  final at = '$migratingPath:${top.line}: `${top.heading}`';
+  final cells = extractMigratingCells(text);
+  if (cells.isEmpty) return ['$at has no Before or After cell'];
+  final series = beforeSeries(top.heading);
+  if (series == null) {
+    return ['$at is neither `## Unreleased` nor `## <from> → <to>`'];
+  }
   final packages = docSnippetPackages(
     File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
   );
-  final release = lastRelease(root, packages);
+  final release = beforeRelease(series, await publishedVersions(packages));
+  if (release == null) return ['$at: pub.dev has no $series release'];
+  final failures = <String>[];
   final barrels = docSnippetBarrels(
     parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
   );

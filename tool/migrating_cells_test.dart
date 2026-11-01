@@ -107,13 +107,35 @@ void main() {
     });
   });
 
-  test('lastRelease reads the version every released CHANGELOG tops', () {
-    final release = lastRelease(Directory.current.path, [
-      'terradart_core',
-      'terradart_google',
-    ]);
-    expect(release.packages, {'terradart_core', 'terradart_google'});
-    expect(release.version, matches(RegExp(r'^\d+\.\d+\.\d+$')));
+  test('beforeSeries reads the release a top heading upgrades from', () {
+    expect(beforeSeries('## Unreleased'), 'x');
+    expect(beforeSeries('## 0.35.x → 0.36.0'), '0.35.x');
+    expect(beforeSeries('## 0.27.0 → 0.28.0'), '0.27.0');
+    expect(beforeSeries('## 0.36.0'), isNull);
+    expect(beforeSeries('## Unreleased changes'), isNull);
+  });
+
+  group('beforeRelease', () {
+    const published = {
+      'terradart_core': ['0.9.0', '0.34.0', '0.35.0', '0.35.1', '0.36.0-dev'],
+      'terradart_google': ['0.9.0', '0.34.0', '0.35.0'],
+      'terradart_azure': <String>[],
+    };
+
+    test('takes the newest published release and its packages', () {
+      final release = beforeRelease('x', published)!;
+      expect(release.version, '0.35.1');
+      expect(release.packages, {'terradart_core'});
+      expect(beforeRelease('0.35.x', published)?.version, '0.35.1');
+    });
+
+    test('stays in the series a release heading names', () {
+      final release = beforeRelease('0.34.x', published)!;
+      expect(release.version, '0.34.0');
+      expect(release.packages, {'terradart_core', 'terradart_google'});
+      expect(beforeRelease('0.35.0', published)?.version, '0.35.0');
+      expect(beforeRelease('0.36.x', published), isNull);
+    });
   });
 
   test('every Before and After cell of MIGRATING.md compiles', () async {
