@@ -337,6 +337,51 @@ void main() {
         ),
       ]);
     });
+
+    test('an entry covers only the row it was reviewed for', () async {
+      final report = await check(
+        [
+          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
+          '| `ApplicationGatewayProtocol` | `GooglePubsubTopic.name` |',
+        ],
+        '''
+- before: ApplicationGatewayProtocol
+  after: "`ApplicationGatewayProbeProtocol`"
+  package: terradart_azure
+  reason: Unpublished.
+''',
+      );
+      expect(report.failures, [
+        allOf(
+          contains('MIGRATING.md:8: Before'),
+          contains('ApplicationGatewayProtocol'),
+        ),
+      ]);
+      expect(report.beforeFailed, 1);
+      expect([for (final s in report.beforeSkipped) s.cell.line], [7]);
+    });
+
+    test('an entry that matches more cells than one fails', () async {
+      final report = await check(
+        [
+          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
+          '| `ApplicationGatewayProtocol` | `ApplicationGatewayProbeProtocol` |',
+        ],
+        '''
+- before: ApplicationGatewayProtocol
+  after: "`ApplicationGatewayProbeProtocol`"
+  package: terradart_azure
+  reason: Unpublished.
+''',
+      );
+      expect(report.failures, [
+        allOf(
+          contains(migratingLedgerPath),
+          contains('ApplicationGatewayProtocol'),
+          contains('matches 2 Before cells'),
+        ),
+      ]);
+    });
   });
 
   test('a document without the `# Migrating terradart` title fails', () async {
