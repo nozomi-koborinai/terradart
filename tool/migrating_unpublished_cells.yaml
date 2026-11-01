@@ -1,0 +1,110 @@
+# Before cells of the top section of MIGRATING.md that tool/migrating_cells.dart
+# does not compile, because their package has no release in the series the
+# heading upgrades from (`## Unreleased`: any; `## 0.35.x → 0.36.0`: 0.35.x).
+# pub.dev is the only Before API CI can read, so such a cell has nothing to
+# compile against.
+#
+# Each entry is a reviewed decision: the cell's exact Before text, the
+# unpublished package, and why the cell cannot compile against the published
+# packages. Every Before cell not listed here compiles, and any failure is red.
+# An entry fails the check when it matches no Before cell (the cell was edited
+# or removed), when its package has a release in the series, or when its cell
+# compiles. Once the package is published, the next release section starts
+# without entries.
+
+- before: 'AzurermMssqlManagedDatabase(''db'', managedInstanceId: instance.id, name: .literal(''app''), pointInTimeRestore: MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal(''2026-01-01T00:00:00Z''), sourceDatabaseId: source.id))'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took `pointInTimeRestore` before the restore and the recover choice became one sealed argument.
+- before: 'LinuxWebAppIpRestriction(action: .literal(''Allow''), ...)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took the `action` value as a string before Azure value sets became enums.
+- before: 'ApplicationGatewayProtocol'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'AutomanageConfigurationRetentionDuration'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'CdnFrontdoorFirewallPolicyAction'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'FirewallPolicyRuleCollectionGroupAction'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'KubernetesClusterMode'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'MonitorScheduledQueryRulesAlertV2Operator'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'MssqlVirtualMachineDayOfWeek'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'WebApplicationFirewallPolicyAction'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'WorkloadsSapThreeTierVirtualInstanceDataDiskVolumeName'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API named this type before long and repeated type names were shortened.
+- before: 'LinuxWebAppFacebook(appId: id, appSecret: secret)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppFacebook(appId: id, appSecretSettingName: name)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppGithub(clientId: id, clientSecretSettingName: name)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppActiveDirectory(clientId: id, clientSecret: secret)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppActiveDirectoryV2(clientId: id, tenantAuthEndpoint: url, clientSecretSettingName: name)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppLogin(tokenStorePath: path)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxWebAppLogs(httpLogs: .new(fileSystem: fs))'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxFunctionAppApplicationStack(pythonVersion: .literal(''3.12''))'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxVirtualMachineOsDisk(caching: .readwrite, diskEncryptionSetId: set.ref)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'LinuxVirtualMachineScaleSetExtension(protectedSettingsFromKeyVault: kv, ...)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'KubernetesClusterNodePoolUpgradeSettings(maxSurge: .literal(''10%''))'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'KubernetesClusterNodePoolUpgradeSettings(maxUnavailable: .literal(''1''))'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.
+- before: 'AzurermPaloAltoNextGenerationFirewallVirtualNetworkPanorama(''fw'', dnsSettings: .new(useAzureDns: .literal(true)), ...)'
+  package: terradart_azure
+  reason: >-
+    terradart_azure has no release on pub.dev; its unpublished API took each member of this exclusive group as its own argument before the group was sealed.

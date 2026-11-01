@@ -55,7 +55,7 @@ void main() {
 
     List<String> spans(String text) => [
       for (final c in extractMigratingCells(text))
-        '${c.line} ${c.section} ${c.before} ${c.code} ${c.renamedTo}',
+        '${c.line} ${c.section} ${c.before} ${c.code}',
     ];
 
     test('reads the top section once a release names it', () {
@@ -72,33 +72,11 @@ void main() {
       expect(spans(text), isNotEmpty);
       expect(spans(released), spans(text));
     });
-
-    test('pairs a bare Before name with the bare names it was renamed to', () {
-      const renames = '''
-## Unreleased
-
-| Before | After |
-|---|---|
-| `OldName` | `NewName` and `TfArg<String>` |
-| `Old('x')` | `NewName` |
-''';
-      expect(
-        [
-          for (final c in extractMigratingCells(renames))
-            if (c.before) c.renamedTo,
-        ],
-        [
-          ['NewName'],
-          <String>[],
-        ],
-      );
-      expect(extractMigratingCells(doc).first.renamedTo, isEmpty);
-    });
   });
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code, renamedTo: const []);
+        (line: 1, section: 's', before: false, code: code);
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -174,6 +152,14 @@ void main() {
     final report = await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
+      ledger: '''
+- before: "AzurermResourceGroup('rg', location: .literal('x'))"
+  package: terradart_azure
+  reason: Unpublished.
+- before: Aadb2cDirectorySkuNameBefore036
+  package: terradart_azure
+  reason: Unpublished.
+''',
     );
     expect(report.failures, [
       allOf(
@@ -184,11 +170,8 @@ void main() {
     expect(report.beforeCompiled, 1);
     expect(report.beforeFailed, 1);
     expect(
-      [for (final s in report.beforeSkipped) (s.cell.line, s.name, s.package)],
-      [
-        (13, 'AzurermResourceGroup', 'terradart_azure'),
-        (14, 'Aadb2cDirectorySkuNameBefore036', 'terradart_azure'),
-      ],
+      [for (final s in report.beforeSkipped) (s.cell.line, s.package)],
+      [(13, 'terradart_azure'), (14, 'terradart_azure')],
     );
   });
 
@@ -265,12 +248,16 @@ void main() {
         "| `AzurermResourceGroup('rg', location: GooglePubsubTopik('t'))` "
             '| `AzurermResourceGroup.name` |',
       ]);
-      expect(report.failures, [
-        allOf(
-          contains('MIGRATING.md:7: Before'),
-          contains('GooglePubsubTopik'),
+      expect(
+        report.failures,
+        contains(
+          allOf(
+            contains('MIGRATING.md:7: Before'),
+            contains("'GooglePubsubTopik'"),
+          ),
         ),
-      ]);
+      );
+      expect(report.beforeFailed, 1);
       expect(report.beforeSkipped, isEmpty);
     });
 
@@ -377,31 +364,23 @@ void main() {
     ).where((c) => c.before);
     expect(report.beforeFailed, 0);
     expect(report.beforeCompiled + report.beforeSkipped.length, before.length);
-    final sources = <String, String>{};
-    bool names(String pkg, String name) =>
-        RegExp(
-          r'\b'
-          '$name'
-          r'\b',
-        ).hasMatch(
-          sources[pkg] ??= [
-            for (final f in Directory(
-              'packages/$pkg/lib',
-            ).listSync(recursive: true).whereType<File>())
-              if (f.path.endsWith('.dart')) f.readAsStringSync(),
-          ].join('\n'),
-        );
+    final ledger = parseMigratingLedger(
+      File(migratingLedgerPath).readAsStringSync(),
+    );
     for (final skip in report.beforeSkipped) {
-      final reason = describeSkip(skip);
-      expect(report.before, isNot(contains(skip.package)), reason: reason);
       expect(
-        names(skip.package, skip.name) ||
-            skip.cell.code == skip.name &&
-                skip.cell.renamedTo.any((n) => names(skip.package, n)),
-        isTrue,
-        reason:
-            '$reason: neither ${skip.package} nor the type it was renamed '
-            'to there names ${skip.name}',
+        ledger,
+        contains((
+          before: skip.cell.code,
+          package: skip.package,
+          reason: skip.reason,
+        )),
+        reason: describeSkip(skip),
+      );
+      expect(
+        report.before,
+        isNot(contains(skip.package)),
+        reason: describeSkip(skip),
       );
     }
   });
@@ -471,6 +450,11 @@ void main() {
     final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
+      ledger: '''
+- before: "AzurermResourceGroup('rg')"
+  package: terradart_azure
+  reason: Unpublished.
+''',
     )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
     expect(at(11), contains('UNDEFINED_NAMED_PARAMETER'));
