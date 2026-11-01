@@ -109,6 +109,39 @@ void main() {
     );
   });
 
+  test('every Markdown JSON fence form is an excerpt', () {
+    const stale = '{"provider": {"google": [{"project": "stale"}]}}';
+    for (final (open, close) in [
+      ('````json', '````'),
+      ('~~~json', '~~~'),
+      ('```JSON', '```'),
+      ('```json title="main.tf.json"', '```'),
+      ('  ```json', '  ```'),
+    ]) {
+      expect(
+        excerptMismatches(
+          'README.md',
+          '# Example\n\n$open\n$stale\n$close\n',
+          synth,
+        ),
+        [startsWith(r'README.md:4: $.provider.google[0].project')],
+        reason: open,
+      );
+    }
+  });
+
+  test('a longer fence holds a shorter one, and other languages pass', () {
+    expect(
+      excerptMismatches(
+        'README.md',
+        '````markdown\n```json\n{"stale": 1}\n```\n````\n\n'
+            '```jsonc\n{"stale": 1}\n```\n',
+        synth,
+      ),
+      isEmpty,
+    );
+  });
+
   test('a fence that does not parse fails', () {
     expect(excerptMismatches('README.md', readme('{"a": 1,}'), synth), [
       startsWith('README.md:5: the JSON fence does not parse'),

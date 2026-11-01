@@ -202,6 +202,45 @@ final class A {}
     },
   );
 
+  group('a doc-comment stand-in is a value, not an API', () {
+    Future<List<String>> check(String body) async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_dyn_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'a.dart')).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_google/iam.dart';
+///
+$body
+/// ```
+final class A {}
+''');
+      return checkDocSnippets(root, docs: [], libs: [tmp.path]);
+    }
+
+    test('a method call through it fails', () async {
+      expect(
+        await check(
+          "/// final removed = service.removedTopLevelHelper(projectId: 'p');",
+        ),
+        isNotEmpty,
+      );
+    });
+
+    test('a typed argument read through it fails', () async {
+      expect(
+        await check('''
+/// final grant = GoogleProjectIamMember(
+///   'grant',
+///   project: .literal('p'),
+///   role: .literal('roles/viewer'),
+///   member: identity.member,
+/// );'''),
+        isNotEmpty,
+      );
+    });
+  });
+
   test('a doc-comment fence compiles against its own package', () async {
     final root = Directory.current.path;
     final tmp = await Directory.systemTemp.createTemp('doc_snippets_cli_');

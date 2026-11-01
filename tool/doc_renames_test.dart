@@ -382,6 +382,134 @@ final class A {}
     });
   });
 
+  group('a doc names only the public API', () {
+    Directory workspace(Map<String, String> files) {
+      final tmp = Directory.systemTemp.createTempSync('doc_renames_ws_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      for (final MapEntry(key: path, value: text) in files.entries) {
+        File(p.join(tmp.path, path))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(text);
+      }
+      return tmp;
+    }
+
+    const migrating = '''
+| Before | After |
+|---|---|
+| `runTerradart` | `runStack` |
+''';
+
+    test('a guide that names a never-exported declaration fails', () async {
+      final ws = workspace({
+        'MIGRATING.md': migrating,
+        'packages/terradart_core/lib/terradart_core.dart':
+            "export 'src/a.dart' show Stack;\n",
+        'packages/terradart_core/lib/src/a.dart': '''
+final class Stack {}
+
+/// Written by [AppExportsEmitter.emit], which only synth calls.
+final class AppExportsEmitter {
+  void emit(Stack stack) {}
+}
+''',
+        'guide.md': 'Call `AppExportsEmitter.emit(stack)` after synth.\n',
+      });
+      expect(
+        await checkDocRenames(
+          ws.path,
+          migrating: p.join(ws.path, 'MIGRATING.md'),
+          docs: ['guide.md'],
+          libs: ['packages/terradart_core/lib'],
+          allow: (notApi: const {}, mentions: const {}),
+          released: false,
+        ),
+        [startsWith('guide.md:1: `AppExportsEmitter')],
+      );
+    });
+
+    test('a public library page may not name an unexported name', () async {
+      final ws = workspace({
+        'MIGRATING.md': migrating,
+        'packages/terradart_cli/lib/terradart_cli.dart': '''
+/// Call `runTerradart(args)` from your own main.
+library;
+
+export 'src/cli.dart' show runStack;
+''',
+        'packages/terradart_cli/lib/src/cli.dart': '''
+Future<void> runStack(List<String> args) async {}
+
+/// The entry point [runStack] replaced; `runTerradart` stays internal.
+Future<int> runTerradart(List<String> args) async => 0;
+''',
+      });
+      expect(
+        await checkDocRenames(
+          ws.path,
+          migrating: p.join(ws.path, 'MIGRATING.md'),
+          docs: const [],
+          libs: ['packages/terradart_cli/lib'],
+          allow: (notApi: const {}, mentions: const {}),
+          released: false,
+        ),
+        [
+          startsWith(
+            'packages/terradart_cli/lib/terradart_cli.dart:1: `runTerradart`',
+          ),
+        ],
+      );
+    });
+
+    test('a code span split across lines is one span', () async {
+      expect(
+        staleMentions(
+          'guide.md',
+          'Read `CloudflareApiShieldDiscoveryOperation.\nid` instead.\n',
+          {'CloudflareApiShieldDiscoveryOperation.id': 'gone'},
+        ),
+        [
+          (
+            file: 'guide.md',
+            line: 1,
+            symbol: 'CloudflareApiShieldDiscoveryOperation.id',
+          ),
+        ],
+      );
+    });
+
+    test('a supertype outside the libraries declares no member', () async {
+      final tmp = workspace({
+        'lib/foo.dart': '''
+import 'package:terradart_core/terradart_core.dart';
+
+final class Foo extends Resource {
+  Foo() : super('x', 'y');
+  String get real => '';
+}
+''',
+      });
+      final api = PublicApi.read([tmp.path]);
+      expect(api.declares('Foo.real'), isTrue);
+      expect(api.declares('Foo.bogus'), isFalse);
+    });
+
+    test('a removed top-level name is not a parameter of that name', () async {
+      final released = workspace({'old.dart': 'void fooHelper() {}\n'});
+      final current = workspace({
+        'new.dart': 'void other({String? fooHelper}) {}\n',
+      });
+      expect(
+        removedSymbols(
+          migrating: const {},
+          current: PublicApi.read([current.path]),
+          released: (version: '0.0.1', api: PublicApi.read([released.path])),
+        ).keys,
+        contains('fooHelper'),
+      );
+    });
+  });
+
   test('no doc names a symbol the public API removed', () async {
     final failures = await checkDocRenames(Directory.current.path);
     expect(failures, isEmpty, reason: failures.join('\n'));

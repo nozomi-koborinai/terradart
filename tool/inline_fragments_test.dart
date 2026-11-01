@@ -35,6 +35,73 @@ final inFence = `ignored: .literal(1)`;
     });
   });
 
+  group('every inline argument form fails', () {
+    List<String> found(String text) => [
+      for (final f in inlineFragments(text)) f.fragment,
+    ];
+
+    test('a span across lines', () {
+      expect(found("Pass `name:\n.literal('x')` here.\n"), hasLength(1));
+    });
+
+    test('a double-backtick span', () {
+      expect(found("Pass `` name: .literal('x') `` here.\n"), hasLength(1));
+    });
+
+    test('any spacing around the colon', () {
+      expect(
+        found("`name:.literal('x')`, `name:  .literal('x')`, `name : .ref`\n"),
+        hasLength(3),
+      );
+    });
+
+    test('a quoted string', () {
+      expect(found('`name: \'orders\'` and `name: "orders"`\n'), hasLength(2));
+    });
+
+    test('a named argument inside a call span', () {
+      expect(
+        found(
+          "`AppExports(path, name: 'Orders')` and "
+          "`addOutput('url', service.uri, description: 'Cloud Run URL')`\n",
+        ),
+        hasLength(2),
+      );
+    });
+
+    test('a lowerCamel key with a bare value', () {
+      expect(
+        found(
+          '`proxied: true`, `analysisPercentage: 0`, '
+          '`name: alpha-api-access`, `purpose: VPC_PEERING`\n',
+        ),
+        hasLength(4),
+      );
+    });
+
+    test('a snake_case key with a scalar is no Dart argument', () {
+      expect(
+        found("`skip_wait: true`, `ipv4_enabled: false`, `ttl_s: 'x'`\n"),
+        isEmpty,
+      );
+    });
+
+    test('a doc comment of a Dart file, not its code', () {
+      final tmp = Directory.systemTemp.createTempSync('inline_fragments_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final dart = p.join(tmp.path, 'identity.dart');
+      File(dart).writeAsStringSync('''
+/// Grant the agent a role:
+/// `GoogleProjectIamMember(member:
+/// identity.member, ...)`.
+final grant = Foo(name: .literal('x'));
+''');
+      expect(checkInlineFragments(root, docs: [dart]), [
+        startsWith('$dart:2: '),
+      ]);
+    });
+  });
+
   test('a fragment cannot borrow validity from another resource', () {
     final tmp = Directory.systemTemp.createTempSync('inline_fragments_');
     addTearDown(() => tmp.deleteSync(recursive: true));
