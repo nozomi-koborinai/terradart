@@ -143,6 +143,14 @@ void main() {
 | `OldTopicKind` | `GooglePubsubTopic` |
 
 `OldTopicKind` was the old name.
+
+1. Prose in a list:
+
+   | Before | After |
+   |---|---|
+   | `OldIndentedType` | `GooglePubsubTopic` |
+
+`OldProseType` is gone; nothing replaces it.
 ''');
     });
     tearDown(() => tmp.deleteSync(recursive: true));
@@ -155,7 +163,7 @@ void main() {
       File(doc).writeAsStringSync('''
 # Guide
 
-The `OldTopicKind` class is gone, and prose that says OldTopicKind is fine.
+The `OldTopicKind` class is gone, and prose that says OldTopicKind is stale.
 
 ```dart
 add(GooglePubsubTopic('t', retention: OldHelperType()));
@@ -164,34 +172,54 @@ add(GooglePubsubTopic('t', retention: OldHelperType()));
 | Before | After |
 |---|---|
 | `OldHelperType()` | `.new()` |
+
+Use OldProseType, or `OldIndentedType`.
+
+1. An upgrade:
+
+   | Before | After |
+   |---|---|
+   | `OldIndentedType` | `.new()` |
 ''');
       expect(check(docs: [doc]), [
         startsWith('$doc:3: `OldTopicKind` was removed or renamed'),
         startsWith('$doc:6: `OldHelperType` was removed or renamed'),
+        startsWith('$doc:13: `OldIndentedType` was removed or renamed'),
+        startsWith('$doc:13: `OldProseType` was removed or renamed'),
       ]);
     });
 
-    test('fails on a doc comment fence or reference, not a backtick', () {
+    test('fails on a removed member whose name the file still spells', () {
+      final doc = p.join(tmp.path, 'guide.md');
+      File(doc).writeAsStringSync(
+        'Read `CloudflareApiShieldDiscoveryOperation.id`.\n',
+      );
+      expect(checkDocRenames(root, docs: [doc], libs: []), [
+        startsWith(
+          '$doc:1: `CloudflareApiShieldDiscoveryOperation.id` was removed',
+        ),
+      ]);
+    });
+
+    test('fails on a doc comment reference, fence, span or prose', () {
       final lib = Directory(p.join(tmp.path, 'lib'))..createSync();
       final file = File(p.join(lib.path, 'a.dart'))
         ..writeAsStringSync('''
-/// Takes an [OldHelperType]. A `OldTopicKind` in an upstream description.
+/// Takes an [OldHelperType]. A `OldTopicKind` in a description.
 ///
 /// ```dart
 /// final kind = OldTopicKind();
 /// ```
+///
+/// Or an OldProseType.
 final class A {}
 ''');
       final rel = p.relative(file.path, from: root);
       expect(check(lib: lib.path), [
         startsWith('$rel:1: `OldHelperType`'),
+        startsWith('$rel:1: `OldTopicKind`'),
         startsWith('$rel:4: `OldTopicKind`'),
-      ]);
-    });
-
-    test('in MIGRATING.md, only another Unreleased section is stale', () {
-      expect(check(docs: [migrating]), [
-        startsWith('$migrating:17: `OldHelperType` was removed or renamed'),
+        startsWith('$rel:7: `OldProseType`'),
       ]);
     });
 
