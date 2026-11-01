@@ -5,9 +5,16 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
 import 'migrate_shape_fixtures.dart';
+import 'migrating_cells.dart' show publishedVersions;
 
 void main() {
   final renamed = renamedTypes(File('MIGRATING.md').readAsStringSync());
+  late final Map<String, List<String>> releases;
+  setUpAll(() async {
+    releases = await publishedVersions([
+      for (final m in allMigrateManifests) m.package,
+    ]);
+  });
 
   test('the rename tables are found', () {
     expect(renamed, contains('Wafv2WebAclRuleNamed'));
@@ -84,7 +91,7 @@ void main() {
           manifest,
           result.report,
           renamed: renamed,
-          published: true,
+          published: releases[manifest.package]!.isNotEmpty,
         ),
         isEmpty,
       );
