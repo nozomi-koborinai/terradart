@@ -188,7 +188,9 @@ const docCommentPackages = [
   'terradart_aws',
   'terradart_cloudflare',
   'terradart_appwrite',
+  'terradart_azure',
   'terradart_time',
+  'terradart_cli',
   'terradart_hcl',
   'terradart_migrate',
 ];
