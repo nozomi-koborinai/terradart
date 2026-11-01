@@ -153,6 +153,27 @@ void main() {
       );
     });
 
+    test('only a published lane needs a rename row in MIGRATING.md', () {
+      expect(
+        shapeFixtureFindings(
+          google,
+          result.report,
+          renamed: {'NotAType'},
+          published: false,
+        ),
+        isEmpty,
+      );
+      expect(
+        shapeFixtureFindings(
+          google,
+          result.report,
+          renamed: {'NotAType'},
+          published: true,
+        ),
+        [contains('no Before / After row in MIGRATING.md renames a google')],
+      );
+    });
+
     test('a fixture that keeps a block in Terraform fails', () {
       expect(
         shapeFixtureFindings(
