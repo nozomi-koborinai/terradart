@@ -115,6 +115,45 @@ final kind = FencedKind();
       expect(removed.keys, contains('ComputeFirewallAllowPolicy'));
       expect(removed.keys, isNot(contains('GoogleCloudRunV2Service')));
     });
+
+    test('the last release includes the CLI and top-level names', () {
+      final released = PublicApi.released(Directory.current.path).api;
+      expect(released.symbols, containsAll(['runStack', 'runTerradart']));
+    });
+
+    test('a removed top-level name in prose fails', () {
+      final tmp = Directory.systemTemp.createTempSync('doc_renames_top_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'old.dart')).writeAsStringSync('''
+void removedTopLevelHelper({required String projectId}) {}
+const removedTopLevelConstant = 1;
+void _privateHelper() {}
+final class Kept {
+  void localOnly() {
+    void nestedHelper() {}
+  }
+}
+''');
+      final removed = removedSymbols(
+        migrating: const {},
+        current: api,
+        released: (version: '0.0.1', api: PublicApi.read([tmp.path])),
+      );
+      expect(
+        removed.keys,
+        containsAll(['removedTopLevelHelper', 'removedTopLevelConstant']),
+      );
+      expect(removed.keys, isNot(contains('_privateHelper')));
+      expect(removed.keys, isNot(contains('nestedHelper')));
+      expect(
+        staleMentions(
+          'guide.md',
+          'Call removedTopLevelHelper before synth.\n',
+          removed,
+        ),
+        [(file: 'guide.md', line: 1, symbol: 'removedTopLevelHelper')],
+      );
+    });
   });
 
   group('checkDocRenames', () {
