@@ -48,26 +48,6 @@ are sealed. `.config(...)` and `.expr(...)` build them as before. Their
 | `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: {'peak': .new(minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))}, ...)` | `ComputeAutoscalerAutoscalingPolicy(scalingSchedules: [.new(name: .literal('peak'), minRequiredReplicas: .literal(4), schedule: .literal('0 9 * * *'), durationSec: .literal(3600))], ...)` |
 | `ChronicleDashboardChartVisualization(axisType: .value)` | `ChronicleDashboardChartVisualization(xAxes: [.new(axisType: .value)], yAxes: [.new(axisType: .value)])` |
 
-### Managed database point-in-time restore is one sealed argument
-
-**Breaking (`terradart_azure`).** The weekly `hashicorp/azurerm` pin moved
-from 5.11.0 to 5.12.0. `terradart_azure` follows that pin. The schema adds
-the optional string `recover_database_id` on `azurerm_mssql_managed_database`.
-The `point_in_time_restore` block is unchanged. `restore_point_in_time` and
-`source_database_id` stay required. The provider sets `ConflictsWith` between
-`recover_database_id` and `point_in_time_restore`.
-`AzurermMssqlManagedDatabase.pointInTimeRestore` is removed. Pass that
-restore on `pointInTimeRestoreOrRecoverDatabaseId`. A null choice sets
-neither. The Terraform JSON for `point_in_time_restore` is unchanged.
-`MssqlManagedDatabasePointInTimeRestore` is unchanged. A constructor that
-omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
-`recover_database_id` for a cross-region or recovery restore.
-
-| Before | After |
-|---|---|
-| `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestore: MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id))` | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .pointInTimeRestore(MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id)))` |
-| *(not available)* | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .recoverDatabaseId(source.id))` |
-
 ### Fixed value sets are enums
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
@@ -120,7 +100,6 @@ the App Service `forward_proxy_convention`, `thresholds.$key` for
 | `BigqueryDatasetAccessChild(dataset: ..., targetTypes: [.literal('VIEWS')])` | `BigqueryDatasetAccessChild(dataset: ..., targetTypes: .literal([.views]))` |
 | `ComputeInstanceBootDisk(mode: .literal('READ_ONLY'), ...)` | `ComputeInstanceBootDisk(mode: .readOnly, ...)` |
 | `ComputeInstanceBootDisk(interface: .literal('NVME'), ...)` | `ComputeInstanceBootDisk(interface: .nvme, ...)` |
-| `LinuxWebAppIpRestriction(action: .literal('Allow'), ...)` | `LinuxWebAppIpRestriction(action: .allow, ...)` |
 | `DataCloudflareAccessRules('rules', direction: .literal('desc'), ...)` | `DataCloudflareAccessRules('rules', direction: .desc, ...)` |
 
 Some Google enums lose members, or change them, because the checked-in
@@ -1940,7 +1919,7 @@ Every retyped `terradart_cloudflare` input:
 
 ### Long and repeated type names are shorter
 
-**Breaking (`terradart_google`, `terradart_aws`, `terradart_azure` and
+**Breaking (`terradart_google`, `terradart_aws` and
 `terradart_cloudflare`).** These derived types had names over 80 characters,
 repeated words of their resource name, or shared one name across two
 differently shaped inputs. The long and repeated ones were held in
@@ -1957,13 +1936,10 @@ are unchanged. Only the type name moves. A dot shorthand (`.new(...)`,
 | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions` |
 | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions` |
 | `HostnameTlsSettingSettingId` | `HostnameTlsSettingName` |
-| `MonitorScheduledQueryRulesAlertV2Operator` | `MonitorScheduledQueryRulesAlertV2DimensionOperator` |
-| `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
 | `ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration` | `ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration` |
 | `ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration` | `ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration` |
 | `ResiliencehubResiliencyPolicyPolicyRegion` | `ResiliencehubResiliencyPolicyRegional` |
 | `Wafv2WebAclRuleRuleLabel` | `Wafv2WebAclRuleNamed` |
-| `WebApplicationFirewallPolicyAction` | `WebApplicationFirewallPolicyRuleAction` |
 | `ZeroTrustGatewaySettingsSettingsMode` | `ZeroTrustGatewaySettingsProxyInspectionMode` |
 
 `Wafv2WebAclRuleNamed` is the `{name}` block that `rule_label`,
@@ -2026,57 +2002,6 @@ argument. `GoogleAgenticApplicationsAnalystAgentPersona` takes
 `encryptionConfiguration`, `GoogleCesAgent` takes `remoteA2aAgent`,
 `GoogleContainerCluster` takes `managedOpentelemetryConfig`, and
 `GoogleContainerNodePool` takes `bestEffortProvisioning`.
-
-### App Service, VM and firewall exclusive groups are sealed
-
-**Breaking (`terradart_azure`).** The hint extractor now reads the schema
-helper functions an azurerm resource mounts (`helpers.AuthV2SettingsSchema()`
-and others), so their value sets and their `ExactlyOneOf` and
-`ConflictsWith` groups reach `wrap`. Each group is one sealed argument, as
-for the other lanes. The Terraform JSON for the same choice is unchanged.
-The App Service rows hold for the Linux and Windows web and function apps,
-their slots and `azurerm_function_app_flex_consumption`, each with its own
-type prefix.
-
-| Before | After |
-|---|---|
-| `LinuxWebAppFacebook(appId: id, appSecret: secret)` | `LinuxWebAppFacebook(appId: id, appSecret: .appSecret(secret))` |
-| `LinuxWebAppFacebook(appId: id, appSecretSettingName: name)` | `LinuxWebAppFacebook(appId: id, appSecret: .appSecretSettingName(name))` |
-| `LinuxWebAppGithub(clientId: id, clientSecretSettingName: name)` | `LinuxWebAppGithub(clientId: id, clientSecret: .clientSecretSettingName(name))` |
-| `LinuxWebAppActiveDirectory(clientId: id, clientSecret: secret)` | `LinuxWebAppActiveDirectory(clientId: id, clientSecret: .clientSecret(secret))` |
-| `LinuxWebAppActiveDirectoryV2(clientId: id, tenantAuthEndpoint: url, clientSecretSettingName: name)` | `LinuxWebAppActiveDirectoryV2(clientId: id, tenantAuthEndpoint: url, clientCredential: .clientSecretSettingName(name))` |
-| `LinuxWebAppLogin(tokenStorePath: path)` | `LinuxWebAppLogin(tokenStore: .tokenStorePath(path))` |
-| `LinuxWebAppLogs(httpLogs: .new(fileSystem: fs))` | `LinuxWebAppLogs(httpLogs: .fileSystem(fs))` |
-| `LinuxFunctionAppApplicationStack(pythonVersion: .literal('3.12'))` | `LinuxFunctionAppApplicationStack(runtime: .pythonVersion(.v3p12))` |
-| `LinuxVirtualMachineOsDisk(caching: .readwrite, diskEncryptionSetId: set.ref)` | `LinuxVirtualMachineOsDisk(caching: .readwrite, encryptionSet: .diskEncryptionSetId(set.ref))` |
-| `LinuxVirtualMachineScaleSetExtension(protectedSettingsFromKeyVault: kv, ...)` | `LinuxVirtualMachineScaleSetExtension(protectedSettings: .protectedSettingsFromKeyVault(kv), ...)` |
-| `KubernetesClusterNodePoolUpgradeSettings(maxSurge: .literal('10%'))` | `KubernetesClusterNodePoolUpgradeSettings(upgradeCapacity: .maxSurge(.literal('10%')))` |
-| `KubernetesClusterNodePoolUpgradeSettings(maxUnavailable: .literal('1'))` | `KubernetesClusterNodePoolUpgradeSettings(upgradeCapacity: .maxUnavailable(.literal('1')))` |
-| `AzurermPaloAltoNextGenerationFirewallVirtualNetworkPanorama('fw', dnsSettings: .new(useAzureDns: .literal(true)), ...)`, and the same on the other Palo Alto firewalls | `AzurermPaloAltoNextGenerationFirewallVirtualNetworkPanorama('fw', dnsSettings: .useAzureDns(.literal(true)), ...)` |
-
-The Facebook `appSecret`, the GitHub, Google and Microsoft `clientSecret`,
-the Twitter `consumerSecret` and the function app `runtime` are required,
-because the provider takes exactly one member. The others stay optional.
-The Windows function app `runtime` is required too. The provider checks
-the `application_stack` group against the configuration, so the
-`dotnet_version` default of `v4.0` does not satisfy it, and an empty
-`application_stack` fails `validate`.
-The `os_disk` rows hold for the Windows VM and both scale sets too, and the
-extension row for `azurerm_virtual_machine_scale_set_extension` and the
-Windows and orchestrated scale sets. The six Palo Alto firewall resources
-take `dnsSettings` the same way.
-
-The three `admin_notifications` blocks of `azurerm_role_management_policy`
-now share `RoleManagementPolicyAdminNotifications`, because their
-`notificationLevel` takes one enum.
-`RoleManagementPolicyActiveAssignmentsAdminNotifications` and
-`RoleManagementPolicyEligibleActivationsAdminNotifications` are gone.
-
-**Additive (`terradart_google`).** The rate-limit helpers of
-`google_compute_security_policy_rule` and
-`google_compute_region_security_policy_rule` take `exceedAction`
-(`ComputeSecurityPolicyRuleExceedAction`,
-`ComputeRegionSecurityPolicyRuleExceedAction`).
 
 ### EMR instance fleets can set configuration blocks
 
