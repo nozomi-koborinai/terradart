@@ -1,7 +1,7 @@
 {
   "name": "accesscontextmanager",
   "version": "v1",
-  "revision": "20261011",
+  "revision": "20261027",
   "sourceUrl": "https://accesscontextmanager.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessLevel": {
@@ -23,13 +23,6 @@
     },
     "AuthorizedOrgsDesc": {
       "properties": {
-        "authorizationDirection": {
-          "enum": [
-            "AUTHORIZATION_DIRECTION_UNSPECIFIED",
-            "AUTHORIZATION_DIRECTION_TO",
-            "AUTHORIZATION_DIRECTION_FROM"
-          ]
-        },
         "authorizationType": {
           "enum": [
             "AUTHORIZATION_TYPE_UNSPECIFIED",
@@ -41,6 +34,13 @@
             "ASSET_TYPE_UNSPECIFIED",
             "ASSET_TYPE_DEVICE",
             "ASSET_TYPE_CREDENTIAL_STRENGTH"
+          ]
+        },
+        "authorizationDirection": {
+          "enum": [
+            "AUTHORIZATION_DIRECTION_UNSPECIFIED",
+            "AUTHORIZATION_DIRECTION_TO",
+            "AUTHORIZATION_DIRECTION_FROM"
           ]
         }
       }
@@ -79,6 +79,11 @@
             ]
           }
         },
+        "osConstraints": {
+          "items": {
+            "$ref": "OsConstraint"
+          }
+        },
         "allowedEncryptionStatuses": {
           "items": {
             "enum": [
@@ -88,29 +93,24 @@
               "ENCRYPTED"
             ]
           }
-        },
-        "osConstraints": {
-          "items": {
-            "$ref": "OsConstraint"
-          }
         }
       }
     },
     "EgressFrom": {
       "properties": {
+        "sourceRestriction": {
+          "enum": [
+            "SOURCE_RESTRICTION_UNSPECIFIED",
+            "SOURCE_RESTRICTION_ENABLED",
+            "SOURCE_RESTRICTION_DISABLED"
+          ]
+        },
         "identityType": {
           "enum": [
             "IDENTITY_TYPE_UNSPECIFIED",
             "ANY_IDENTITY",
             "ANY_USER_ACCOUNT",
             "ANY_SERVICE_ACCOUNT"
-          ]
-        },
-        "sourceRestriction": {
-          "enum": [
-            "SOURCE_RESTRICTION_UNSPECIFIED",
-            "SOURCE_RESTRICTION_ENABLED",
-            "SOURCE_RESTRICTION_DISABLED"
           ]
         }
       }
@@ -124,13 +124,13 @@
     },
     "GcpUserAccessBinding": {
       "properties": {
+        "sessionSettings": {
+          "$ref": "SessionSettings"
+        },
         "scopedAccessSettings": {
           "items": {
             "$ref": "ScopedAccessSettings"
           }
-        },
-        "sessionSettings": {
-          "$ref": "SessionSettings"
         }
       }
     },
@@ -197,6 +197,11 @@
     },
     "ServicePerimeterConfig": {
       "properties": {
+        "ingressPolicies": {
+          "items": {
+            "$ref": "IngressPolicy"
+          }
+        },
         "egressPolicies": {
           "items": {
             "$ref": "EgressPolicy"
@@ -204,11 +209,6 @@
         },
         "vpcAccessibleServices": {
           "$ref": "VpcAccessibleServices"
-        },
-        "ingressPolicies": {
-          "items": {
-            "$ref": "IngressPolicy"
-          }
         }
       }
     },

@@ -32,36 +32,17 @@
     },
     "Instance": {
       "properties": {
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "customDomain": {
+          "$ref": "CustomDomain"
+        },
         "pscConfig": {
           "$ref": "PscConfig"
         },
-        "classType": {
-          "enum": [
-            "CLASS_TYPE_UNSPECIFIED",
-            "R1",
-            "P1"
-          ]
-        },
-        "softDeleteReason": {
-          "enum": [
-            "SOFT_DELETE_REASON_UNSPECIFIED",
-            "BILLING_ACCOUNT_ISSUE",
-            "TRIAL_EXPIRED",
-            "CUSTOMER_REQUEST"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "FAILED",
-            "SUSPENDED",
-            "UPDATING",
-            "DELETING",
-            "EXPORTING",
-            "IMPORTING"
-          ]
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
         },
         "platformEdition": {
           "enum": [
@@ -79,21 +60,40 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
-        "customDomain": {
-          "$ref": "CustomDomain"
-        },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
-        },
         "releaseChannel": {
           "enum": [
             "RELEASE_CHANNEL_UNSPECIFIED",
             "RAPID",
             "REGULAR",
             "STABLE"
+          ]
+        },
+        "softDeleteReason": {
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ]
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "EXPORTING",
+            "IMPORTING"
           ]
         }
       }

@@ -30,13 +30,13 @@
         "modelSettings": {
           "$ref": "ModelSettings"
         },
+        "remoteA2aAgent": {
+          "$ref": "AgentRemoteA2aAgent"
+        },
         "transferRules": {
           "items": {
             "$ref": "TransferRule"
           }
-        },
-        "remoteA2aAgent": {
-          "$ref": "AgentRemoteA2aAgent"
         }
       }
     },
@@ -61,11 +61,11 @@
     },
     "ApiAuthentication": {
       "properties": {
-        "apiKeyConfig": {
-          "$ref": "ApiKeyConfig"
-        },
         "oauthConfig": {
           "$ref": "OAuthConfig"
+        },
+        "apiKeyConfig": {
+          "$ref": "ApiKeyConfig"
         }
       }
     },
@@ -82,16 +82,30 @@
     },
     "App": {
       "properties": {
-        "errorHandlingSettings": {
-          "$ref": "ErrorHandlingSettings"
+        "dataStoreSettings": {
+          "$ref": "DataStoreSettings"
         },
-        "audioProcessingConfig": {
-          "$ref": "AudioProcessingConfig"
+        "defaultChannelProfile": {
+          "$ref": "ChannelProfile"
+        },
+        "variableDeclarations": {
+          "items": {
+            "$ref": "AppVariableDeclaration"
+          }
         },
         "predefinedVariableDeclarations": {
           "items": {
             "$ref": "AppVariableDeclaration"
           }
+        },
+        "evaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholds"
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "audioProcessingConfig": {
+          "$ref": "AudioProcessingConfig"
         },
         "toolExecutionMode": {
           "enum": [
@@ -100,22 +114,8 @@
             "SEQUENTIAL"
           ]
         },
-        "modelSettings": {
-          "$ref": "ModelSettings"
-        },
-        "variableDeclarations": {
-          "items": {
-            "$ref": "AppVariableDeclaration"
-          }
-        },
-        "evaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholds"
-        },
-        "dataStoreSettings": {
-          "$ref": "DataStoreSettings"
-        },
-        "defaultChannelProfile": {
-          "$ref": "ChannelProfile"
+        "errorHandlingSettings": {
+          "$ref": "ErrorHandlingSettings"
         }
       }
     },
@@ -126,11 +126,6 @@
             "$ref": "Toolset"
           }
         },
-        "guardrails": {
-          "items": {
-            "$ref": "Guardrail"
-          }
-        },
         "tools": {
           "items": {
             "$ref": "Tool"
@@ -138,6 +133,11 @@
         },
         "app": {
           "$ref": "App"
+        },
+        "guardrails": {
+          "items": {
+            "$ref": "Guardrail"
+          }
         },
         "agents": {
           "items": {
@@ -174,6 +174,9 @@
     },
     "ChannelProfile": {
       "properties": {
+        "personaProperty": {
+          "$ref": "ChannelProfilePersonaProperty"
+        },
         "channelType": {
           "enum": [
             "UNKNOWN",
@@ -188,9 +191,6 @@
             "WHATSAPP",
             "INSTAGRAM"
           ]
-        },
-        "personaProperty": {
-          "$ref": "ChannelProfilePersonaProperty"
         },
         "webWidgetConfig": {
           "$ref": "ChannelProfileWebWidgetConfig"
@@ -230,10 +230,10 @@
     },
     "ClientFunction": {
       "properties": {
-        "parameters": {
+        "response": {
           "$ref": "Schema"
         },
-        "response": {
+        "parameters": {
           "$ref": "Schema"
         }
       }
@@ -256,11 +256,6 @@
     },
     "CustomVoiceSample": {
       "properties": {
-        "warnings": {
-          "items": {
-            "$ref": "CustomVoiceSampleWarning"
-          }
-        },
         "voiceInstructionMode": {
           "enum": [
             "VOICE_INSTRUCTION_MODE_UNSPECIFIED",
@@ -268,6 +263,11 @@
             "GENERATE_INSTRUCTION",
             "CUSTOM_INSTRUCTION"
           ]
+        },
+        "warnings": {
+          "items": {
+            "$ref": "CustomVoiceSampleWarning"
+          }
         }
       }
     },
@@ -323,11 +323,10 @@
     },
     "DataStoreTool": {
       "properties": {
-        "dataStoreSource": {
-          "$ref": "DataStoreToolDataStoreSource"
-        },
-        "engineSource": {
-          "$ref": "DataStoreToolEngineSource"
+        "boostSpecs": {
+          "items": {
+            "$ref": "DataStoreToolBoostSpecs"
+          }
         },
         "filterParameterBehavior": {
           "enum": [
@@ -341,10 +340,11 @@
             "$ref": "DataStoreToolModalityConfig"
           }
         },
-        "boostSpecs": {
-          "items": {
-            "$ref": "DataStoreToolBoostSpecs"
-          }
+        "engineSource": {
+          "$ref": "DataStoreToolEngineSource"
+        },
+        "dataStoreSource": {
+          "$ref": "DataStoreToolDataStoreSource"
         }
       }
     },
@@ -366,17 +366,17 @@
     },
     "DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec": {
       "properties": {
+        "interpolationType": {
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ]
+        },
         "attributeType": {
           "enum": [
             "ATTRIBUTE_TYPE_UNSPECIFIED",
             "NUMERICAL",
             "FRESHNESS"
-          ]
-        },
-        "interpolationType": {
-          "enum": [
-            "INTERPOLATION_TYPE_UNSPECIFIED",
-            "LINEAR"
           ]
         }
       }
@@ -408,18 +408,18 @@
     },
     "DataStoreToolModalityConfig": {
       "properties": {
+        "summarizationConfig": {
+          "$ref": "DataStoreToolSummarizationConfig"
+        },
+        "rewriterConfig": {
+          "$ref": "DataStoreToolRewriterConfig"
+        },
         "modalityType": {
           "enum": [
             "MODALITY_TYPE_UNSPECIFIED",
             "TEXT",
             "AUDIO"
           ]
-        },
-        "rewriterConfig": {
-          "$ref": "DataStoreToolRewriterConfig"
-        },
-        "summarizationConfig": {
-          "$ref": "DataStoreToolSummarizationConfig"
         }
       }
     },
@@ -442,12 +442,6 @@
         "channelProfile": {
           "$ref": "ChannelProfile"
         },
-        "modelSettings": {
-          "$ref": "ModelSettings"
-        },
-        "experimentConfig": {
-          "$ref": "ExperimentConfig"
-        },
         "modality": {
           "enum": [
             "MODALITY_UNSPECIFIED",
@@ -455,6 +449,12 @@
             "MODALITY_VOICE",
             "MODALITY_VIDEO"
           ]
+        },
+        "experimentConfig": {
+          "$ref": "ExperimentConfig"
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
         }
       }
     },
@@ -479,17 +479,17 @@
             "ENABLED"
           ]
         },
-        "goldenEvaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
-        },
-        "goldenHallucinationMetricBehavior": {
+        "hallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
             "ENABLED"
           ]
         },
-        "hallucinationMetricBehavior": {
+        "goldenEvaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
+        },
+        "goldenHallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
@@ -572,14 +572,14 @@
         "contentFilter": {
           "$ref": "GuardrailContentFilter"
         },
-        "llmPolicy": {
-          "$ref": "GuardrailLlmPolicy"
-        },
         "supervisor": {
           "$ref": "GuardrailSupervisor"
         },
         "modelSafety": {
           "$ref": "GuardrailModelSafety"
+        },
+        "llmPolicy": {
+          "$ref": "GuardrailLlmPolicy"
         }
       }
     },
@@ -629,6 +629,16 @@
     },
     "GuardrailModelSafetySafetySetting": {
       "properties": {
+        "threshold": {
+          "enum": [
+            "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+            "BLOCK_LOW_AND_ABOVE",
+            "BLOCK_MEDIUM_AND_ABOVE",
+            "BLOCK_ONLY_HIGH",
+            "BLOCK_NONE",
+            "OFF"
+          ]
+        },
         "category": {
           "enum": [
             "HARM_CATEGORY_UNSPECIFIED",
@@ -639,21 +649,18 @@
             "HARM_CATEGORY_PROFANITY",
             "HARM_CATEGORY_TOXIC"
           ]
-        },
-        "threshold": {
-          "enum": [
-            "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
-            "BLOCK_LOW_AND_ABOVE",
-            "BLOCK_MEDIUM_AND_ABOVE",
-            "BLOCK_ONLY_HIGH",
-            "BLOCK_NONE",
-            "OFF"
-          ]
         }
       }
     },
     "GuardrailSupervisor": {
       "properties": {
+        "detectionMode": {
+          "enum": [
+            "DETECTION_MODE_UNSPECIFIED",
+            "NON_BLOCKING",
+            "BLOCKING"
+          ]
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -666,19 +673,18 @@
             "CHOPPY_AUDIO",
             "PROFANITY"
           ]
-        },
-        "detectionMode": {
-          "enum": [
-            "DETECTION_MODE_UNSPECIFIED",
-            "NON_BLOCKING",
-            "BLOCKING"
-          ]
         }
       }
     },
     "McpTool": {
       "properties": {
         "outputSchema": {
+          "$ref": "Schema"
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        },
+        "inputSchema": {
           "$ref": "Schema"
         },
         "state": {
@@ -688,21 +694,15 @@
             "INACTIVE",
             "STALE"
           ]
-        },
-        "apiAuthentication": {
-          "$ref": "ApiAuthentication"
-        },
-        "inputSchema": {
-          "$ref": "Schema"
         }
       }
     },
     "McpToolDefinition": {
       "properties": {
-        "inputSchema": {
+        "outputSchema": {
           "$ref": "Schema"
         },
-        "outputSchema": {
+        "inputSchema": {
           "$ref": "Schema"
         }
       }
@@ -716,13 +716,13 @@
     },
     "McpToolset": {
       "properties": {
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
+        },
         "toolOverrides": {
           "items": {
             "$ref": "McpToolOverride"
           }
-        },
-        "apiAuthentication": {
-          "$ref": "ApiAuthentication"
         }
       }
     },
@@ -779,19 +779,6 @@
     },
     "Schema": {
       "properties": {
-        "defs": {
-          "additionalProperties": {
-            "$ref": "Schema"
-          }
-        },
-        "additionalProperties": {
-          "$ref": "Schema"
-        },
-        "properties": {
-          "additionalProperties": {
-            "$ref": "Schema"
-          }
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -803,16 +790,29 @@
             "ARRAY"
           ]
         },
-        "items": {
+        "prefixItems": {
+          "items": {
+            "$ref": "Schema"
+          }
+        },
+        "additionalProperties": {
           "$ref": "Schema"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "Schema"
+          }
         },
         "anyOf": {
           "items": {
             "$ref": "Schema"
           }
         },
-        "prefixItems": {
-          "items": {
+        "items": {
+          "$ref": "Schema"
+        },
+        "defs": {
+          "additionalProperties": {
             "$ref": "Schema"
           }
         }
@@ -823,8 +823,21 @@
         "remoteAgentTool": {
           "$ref": "RemoteAgentTool"
         },
+        "executionType": {
+          "enum": [
+            "EXECUTION_TYPE_UNSPECIFIED",
+            "SYNCHRONOUS",
+            "ASYNCHRONOUS"
+          ]
+        },
+        "connectorTool": {
+          "$ref": "ConnectorTool"
+        },
         "fileSearchTool": {
           "$ref": "FileSearchTool"
+        },
+        "widgetTool": {
+          "$ref": "WidgetTool"
         },
         "dataStoreTool": {
           "$ref": "DataStoreTool"
@@ -832,35 +845,16 @@
         "mcpTool": {
           "$ref": "McpTool"
         },
-        "openApiTool": {
-          "$ref": "OpenApiTool"
-        },
-        "connectorTool": {
-          "$ref": "ConnectorTool"
-        },
-        "widgetTool": {
-          "$ref": "WidgetTool"
-        },
         "clientFunction": {
           "$ref": "ClientFunction"
         },
-        "executionType": {
-          "enum": [
-            "EXECUTION_TYPE_UNSPECIFIED",
-            "SYNCHRONOUS",
-            "ASYNCHRONOUS"
-          ]
+        "openApiTool": {
+          "$ref": "OpenApiTool"
         }
       }
     },
     "Toolset": {
       "properties": {
-        "connectorToolset": {
-          "$ref": "ConnectorToolset"
-        },
-        "openApiToolset": {
-          "$ref": "OpenApiToolset"
-        },
         "executionType": {
           "enum": [
             "EXECUTION_TYPE_UNSPECIFIED",
@@ -870,6 +864,12 @@
         },
         "mcpToolset": {
           "$ref": "McpToolset"
+        },
+        "connectorToolset": {
+          "$ref": "ConnectorToolset"
+        },
+        "openApiToolset": {
+          "$ref": "OpenApiToolset"
         }
       }
     },
@@ -886,12 +886,6 @@
     },
     "WidgetTool": {
       "properties": {
-        "textResponseConfig": {
-          "$ref": "WidgetToolTextResponseConfig"
-        },
-        "dataMapping": {
-          "$ref": "WidgetToolDataMapping"
-        },
         "parameters": {
           "$ref": "Schema"
         },
@@ -911,6 +905,12 @@
             "APPOINTMENT_SCHEDULER",
             "CONTACT_FORM"
           ]
+        },
+        "textResponseConfig": {
+          "$ref": "WidgetToolTextResponseConfig"
+        },
+        "dataMapping": {
+          "$ref": "WidgetToolDataMapping"
         }
       }
     },

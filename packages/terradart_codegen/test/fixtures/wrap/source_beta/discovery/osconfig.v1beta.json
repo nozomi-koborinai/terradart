@@ -36,14 +36,6 @@
     },
     "Package": {
       "properties": {
-        "desiredState": {
-          "enum": [
-            "DESIRED_STATE_UNSPECIFIED",
-            "INSTALLED",
-            "UPDATED",
-            "REMOVED"
-          ]
-        },
         "manager": {
           "enum": [
             "MANAGER_UNSPECIFIED",
@@ -52,6 +44,14 @@
             "YUM",
             "ZYPPER",
             "GOO"
+          ]
+        },
+        "desiredState": {
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "UPDATED",
+            "REMOVED"
           ]
         }
       }
@@ -73,12 +73,12 @@
             "REMOVED"
           ]
         },
-        "updateSteps": {
+        "installSteps": {
           "items": {
             "$ref": "SoftwareRecipeStep"
           }
         },
-        "installSteps": {
+        "updateSteps": {
           "items": {
             "$ref": "SoftwareRecipeStep"
           }
@@ -87,11 +87,11 @@
     },
     "SoftwareRecipeStep": {
       "properties": {
-        "archiveExtraction": {
-          "$ref": "SoftwareRecipeStepExtractArchive"
-        },
         "scriptRun": {
           "$ref": "SoftwareRecipeStepRunScript"
+        },
+        "archiveExtraction": {
+          "$ref": "SoftwareRecipeStepExtractArchive"
         }
       }
     },

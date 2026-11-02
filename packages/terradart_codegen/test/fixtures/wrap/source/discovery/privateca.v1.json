@@ -30,15 +30,15 @@
     },
     "CaPool": {
       "properties": {
+        "issuancePolicy": {
+          "$ref": "IssuancePolicy"
+        },
         "tier": {
           "enum": [
             "TIER_UNSPECIFIED",
             "ENTERPRISE",
             "DEVOPS"
           ]
-        },
-        "issuancePolicy": {
-          "$ref": "IssuancePolicy"
         },
         "publishingOptions": {
           "$ref": "PublishingOptions"
@@ -47,8 +47,8 @@
     },
     "Certificate": {
       "properties": {
-        "revocationDetails": {
-          "$ref": "RevocationDetails"
+        "certificateDescription": {
+          "$ref": "CertificateDescription"
         },
         "config": {
           "$ref": "CertificateConfig"
@@ -61,15 +61,17 @@
             "REFLECTED_SPIFFE"
           ]
         },
-        "certificateDescription": {
-          "$ref": "CertificateDescription"
+        "revocationDetails": {
+          "$ref": "RevocationDetails"
         }
       }
     },
     "CertificateAuthority": {
       "properties": {
-        "config": {
-          "$ref": "CertificateConfig"
+        "caCertificateDescriptions": {
+          "items": {
+            "$ref": "CertificateDescription"
+          }
         },
         "state": {
           "enum": [
@@ -81,12 +83,8 @@
             "DELETED"
           ]
         },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "ENTERPRISE",
-            "DEVOPS"
-          ]
+        "config": {
+          "$ref": "CertificateConfig"
         },
         "type": {
           "enum": [
@@ -95,13 +93,15 @@
             "SUBORDINATE"
           ]
         },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ENTERPRISE",
+            "DEVOPS"
+          ]
+        },
         "keySpec": {
           "$ref": "KeyVersionSpec"
-        },
-        "caCertificateDescriptions": {
-          "items": {
-            "$ref": "CertificateDescription"
-          }
         }
       }
     },

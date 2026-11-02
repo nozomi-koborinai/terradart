@@ -28,11 +28,11 @@
     },
     "PersistentDirectory": {
       "properties": {
-        "gcePd": {
-          "$ref": "GceRegionalPersistentDisk"
-        },
         "gceHd": {
           "$ref": "GceHyperdiskBalancedHighAvailability"
+        },
+        "gcePd": {
+          "$ref": "GceRegionalPersistentDisk"
         }
       }
     },
@@ -56,17 +56,17 @@
     },
     "WorkstationConfig": {
       "properties": {
+        "persistentDirectories": {
+          "items": {
+            "$ref": "PersistentDirectory"
+          }
+        },
         "idleAction": {
           "enum": [
             "IDLE_ACTION_UNSPECIFIED",
             "STOP",
             "SUSPEND"
           ]
-        },
-        "persistentDirectories": {
-          "items": {
-            "$ref": "PersistentDirectory"
-          }
         }
       }
     }

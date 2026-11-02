@@ -2879,6 +2879,28 @@ files:
     upstream: mmv1/products/dns/OutboundEndpoint.yaml
   google_document_ai_schema_version:
     upstream: mmv1/products/documentai/SchemaVersion.yaml
+  google_agent_identity_auth_provider_iam_binding:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_agent_identity_auth_provider_iam_member:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_agent_identity_auth_provider_iam_policy:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_bigtable_memory_layer:
+    upstream: mmv1/products/bigtable/MemoryLayer.yaml
+  google_dataflow_flex_template_job:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_network_services_service_lb_policies:
+    upstream: mmv1/products/networkservices/ServiceLbPolicies.yaml
+  google_resource_manager_boundary:
+    upstream: mmv1/products/resourcemanagerv3/Boundary.yaml
+  google_resource_manager_boundary_config:
+    upstream: mmv1/products/resourcemanagerv3/BoundaryConfig.yaml
+  google_vertex_ai_custom_job:
+    upstream: mmv1/products/vertexai/CustomJob.yaml
+  google_vertex_ai_pipeline_job:
+    upstream: mmv1/products/vertexai/PipelineJob.yaml
+  google_vertex_ai_rag_file:
+    upstream: mmv1/products/vertexai/RagFile.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -2895,6 +2917,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_active_folder:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_agent_identity_auth_provider_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_agent_registry_agent:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_agent_registry_endpoint:

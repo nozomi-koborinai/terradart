@@ -21,15 +21,15 @@
             "DISABLED"
           ]
         },
-        "latestRun": {
-          "$ref": "ScanRun"
-        },
         "riskLevel": {
           "enum": [
             "RISK_LEVEL_UNSPECIFIED",
             "NORMAL",
             "LOW"
           ]
+        },
+        "latestRun": {
+          "$ref": "ScanRun"
         },
         "targetPlatforms": {
           "items": {
@@ -97,6 +97,17 @@
     },
     "ScanRun": {
       "properties": {
+        "executionState": {
+          "enum": [
+            "EXECUTION_STATE_UNSPECIFIED",
+            "QUEUED",
+            "SCANNING",
+            "FINISHED"
+          ]
+        },
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
+        },
         "resultState": {
           "enum": [
             "RESULT_STATE_UNSPECIFIED",
@@ -109,17 +120,6 @@
           "items": {
             "$ref": "ScanRunWarningTrace"
           }
-        },
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
-        },
-        "executionState": {
-          "enum": [
-            "EXECUTION_STATE_UNSPECIFIED",
-            "QUEUED",
-            "SCANNING",
-            "FINISHED"
-          ]
         }
       }
     },

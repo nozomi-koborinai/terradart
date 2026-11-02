@@ -17,17 +17,17 @@
     },
     "AccessRulesOptions": {
       "properties": {
-        "accessRules": {
-          "items": {
-            "$ref": "AccessRule"
-          }
-        },
         "defaultSquashMode": {
           "enum": [
             "SQUASH_MODE_UNSPECIFIED",
             "NO_SQUASH",
             "ROOT_SQUASH"
           ]
+        },
+        "accessRules": {
+          "items": {
+            "$ref": "AccessRule"
+          }
         }
       }
     },
@@ -44,6 +44,12 @@
     },
     "Instance": {
       "properties": {
+        "dynamicTierOptions": {
+          "$ref": "DynamicTierOptions"
+        },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -56,12 +62,6 @@
             "UPDATING",
             "SUSPENDED"
           ]
-        },
-        "maintenancePolicy": {
-          "$ref": "MaintenancePolicy"
-        },
-        "dynamicTierOptions": {
-          "$ref": "DynamicTierOptions"
         },
         "accessRulesOptions": {
           "$ref": "AccessRulesOptions"

@@ -6,6 +6,14 @@
   "schemas": {
     "AutokeyConfig": {
       "properties": {
+        "keyProjectResolutionMode": {
+          "enum": [
+            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+            "DEDICATED_KEY_PROJECT",
+            "RESOURCE_PROJECT",
+            "DISABLED"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -14,25 +22,11 @@
             "UNINITIALIZED",
             "KEY_PROJECT_PERMISSION_DENIED"
           ]
-        },
-        "keyProjectResolutionMode": {
-          "enum": [
-            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
-            "DEDICATED_KEY_PROJECT",
-            "RESOURCE_PROJECT",
-            "DISABLED"
-          ]
         }
       }
     },
     "CryptoKey": {
       "properties": {
-        "primary": {
-          "$ref": "CryptoKeyVersion"
-        },
-        "versionTemplate": {
-          "$ref": "CryptoKeyVersionTemplate"
-        },
         "purpose": {
           "enum": [
             "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
@@ -45,25 +39,75 @@
             "AES_WRAPPING"
           ]
         },
+        "versionTemplate": {
+          "$ref": "CryptoKeyVersionTemplate"
+        },
         "keyAccessJustificationsPolicy": {
           "$ref": "KeyAccessJustificationsPolicy"
+        },
+        "primary": {
+          "$ref": "CryptoKeyVersion"
         }
       }
     },
     "CryptoKeyVersion": {
       "properties": {
-        "protectionLevel": {
-          "enum": [
-            "PROTECTION_LEVEL_UNSPECIFIED",
-            "SOFTWARE",
-            "HSM",
-            "EXTERNAL",
-            "EXTERNAL_VPC",
-            "HSM_SINGLE_TENANT"
-          ]
-        },
         "attestation": {
           "$ref": "KeyOperationAttestation"
+        },
+        "algorithm": {
+          "enum": [
+            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+            "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
+            "RSA_SIGN_PSS_2048_SHA256",
+            "RSA_SIGN_PSS_3072_SHA256",
+            "RSA_SIGN_PSS_4096_SHA256",
+            "RSA_SIGN_PSS_4096_SHA512",
+            "RSA_SIGN_PKCS1_2048_SHA256",
+            "RSA_SIGN_PKCS1_3072_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA512",
+            "RSA_SIGN_RAW_PKCS1_2048",
+            "RSA_SIGN_RAW_PKCS1_3072",
+            "RSA_SIGN_RAW_PKCS1_4096",
+            "RSA_DECRYPT_OAEP_2048_SHA256",
+            "RSA_DECRYPT_OAEP_3072_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA512",
+            "RSA_DECRYPT_OAEP_2048_SHA1",
+            "RSA_DECRYPT_OAEP_3072_SHA1",
+            "RSA_DECRYPT_OAEP_4096_SHA1",
+            "EC_SIGN_P256_SHA256",
+            "EC_SIGN_P384_SHA384",
+            "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
+            "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "KEM_ECDH_P256",
+            "KEM_ECDH_P384",
+            "AES_256_KWP"
+          ]
         },
         "state": {
           "enum": [
@@ -80,118 +124,6 @@
             "EXTERNAL_DESTRUCTION_FAILED"
           ]
         },
-        "algorithm": {
-          "enum": [
-            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
-            "GOOGLE_SYMMETRIC_ENCRYPTION",
-            "AES_128_GCM",
-            "AES_256_GCM",
-            "AES_128_CBC",
-            "AES_256_CBC",
-            "AES_128_CTR",
-            "AES_256_CTR",
-            "RSA_SIGN_PSS_2048_SHA256",
-            "RSA_SIGN_PSS_3072_SHA256",
-            "RSA_SIGN_PSS_4096_SHA256",
-            "RSA_SIGN_PSS_4096_SHA512",
-            "RSA_SIGN_PKCS1_2048_SHA256",
-            "RSA_SIGN_PKCS1_3072_SHA256",
-            "RSA_SIGN_PKCS1_4096_SHA256",
-            "RSA_SIGN_PKCS1_4096_SHA512",
-            "RSA_SIGN_RAW_PKCS1_2048",
-            "RSA_SIGN_RAW_PKCS1_3072",
-            "RSA_SIGN_RAW_PKCS1_4096",
-            "RSA_DECRYPT_OAEP_2048_SHA256",
-            "RSA_DECRYPT_OAEP_3072_SHA256",
-            "RSA_DECRYPT_OAEP_4096_SHA256",
-            "RSA_DECRYPT_OAEP_4096_SHA512",
-            "RSA_DECRYPT_OAEP_2048_SHA1",
-            "RSA_DECRYPT_OAEP_3072_SHA1",
-            "RSA_DECRYPT_OAEP_4096_SHA1",
-            "EC_SIGN_P256_SHA256",
-            "EC_SIGN_P384_SHA384",
-            "EC_SIGN_SECP256K1_SHA256",
-            "EC_SIGN_ED25519",
-            "HMAC_SHA256",
-            "HMAC_SHA1",
-            "HMAC_SHA384",
-            "HMAC_SHA512",
-            "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION",
-            "ML_KEM_768",
-            "ML_KEM_1024",
-            "KEM_XWING",
-            "PQ_SIGN_ML_DSA_44",
-            "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_ML_DSA_87",
-            "PQ_SIGN_SLH_DSA_SHA2_128S",
-            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
-            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
-            "KEM_ECDH_P256",
-            "KEM_ECDH_P384",
-            "AES_256_KWP"
-          ]
-        }
-      }
-    },
-    "CryptoKeyVersionTemplate": {
-      "properties": {
-        "algorithm": {
-          "enum": [
-            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
-            "GOOGLE_SYMMETRIC_ENCRYPTION",
-            "AES_128_GCM",
-            "AES_256_GCM",
-            "AES_128_CBC",
-            "AES_256_CBC",
-            "AES_128_CTR",
-            "AES_256_CTR",
-            "RSA_SIGN_PSS_2048_SHA256",
-            "RSA_SIGN_PSS_3072_SHA256",
-            "RSA_SIGN_PSS_4096_SHA256",
-            "RSA_SIGN_PSS_4096_SHA512",
-            "RSA_SIGN_PKCS1_2048_SHA256",
-            "RSA_SIGN_PKCS1_3072_SHA256",
-            "RSA_SIGN_PKCS1_4096_SHA256",
-            "RSA_SIGN_PKCS1_4096_SHA512",
-            "RSA_SIGN_RAW_PKCS1_2048",
-            "RSA_SIGN_RAW_PKCS1_3072",
-            "RSA_SIGN_RAW_PKCS1_4096",
-            "RSA_DECRYPT_OAEP_2048_SHA256",
-            "RSA_DECRYPT_OAEP_3072_SHA256",
-            "RSA_DECRYPT_OAEP_4096_SHA256",
-            "RSA_DECRYPT_OAEP_4096_SHA512",
-            "RSA_DECRYPT_OAEP_2048_SHA1",
-            "RSA_DECRYPT_OAEP_3072_SHA1",
-            "RSA_DECRYPT_OAEP_4096_SHA1",
-            "EC_SIGN_P256_SHA256",
-            "EC_SIGN_P384_SHA384",
-            "EC_SIGN_SECP256K1_SHA256",
-            "EC_SIGN_ED25519",
-            "HMAC_SHA256",
-            "HMAC_SHA1",
-            "HMAC_SHA384",
-            "HMAC_SHA512",
-            "HMAC_SHA224",
-            "EXTERNAL_SYMMETRIC_ENCRYPTION",
-            "ML_KEM_768",
-            "ML_KEM_1024",
-            "KEM_XWING",
-            "PQ_SIGN_ML_DSA_44",
-            "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_ML_DSA_87",
-            "PQ_SIGN_SLH_DSA_SHA2_128S",
-            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
-            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
-            "KEM_ECDH_P256",
-            "KEM_ECDH_P384",
-            "AES_256_KWP"
-          ]
-        },
         "protectionLevel": {
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
@@ -200,6 +132,74 @@
             "EXTERNAL",
             "EXTERNAL_VPC",
             "HSM_SINGLE_TENANT"
+          ]
+        }
+      }
+    },
+    "CryptoKeyVersionTemplate": {
+      "properties": {
+        "protectionLevel": {
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
+          ]
+        },
+        "algorithm": {
+          "enum": [
+            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+            "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
+            "RSA_SIGN_PSS_2048_SHA256",
+            "RSA_SIGN_PSS_3072_SHA256",
+            "RSA_SIGN_PSS_4096_SHA256",
+            "RSA_SIGN_PSS_4096_SHA512",
+            "RSA_SIGN_PKCS1_2048_SHA256",
+            "RSA_SIGN_PKCS1_3072_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA512",
+            "RSA_SIGN_RAW_PKCS1_2048",
+            "RSA_SIGN_RAW_PKCS1_3072",
+            "RSA_SIGN_RAW_PKCS1_4096",
+            "RSA_DECRYPT_OAEP_2048_SHA256",
+            "RSA_DECRYPT_OAEP_3072_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA512",
+            "RSA_DECRYPT_OAEP_2048_SHA1",
+            "RSA_DECRYPT_OAEP_3072_SHA1",
+            "RSA_DECRYPT_OAEP_4096_SHA1",
+            "EC_SIGN_P256_SHA256",
+            "EC_SIGN_P384_SHA384",
+            "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
+            "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "KEM_ECDH_P256",
+            "KEM_ECDH_P384",
+            "AES_256_KWP"
           ]
         }
       }
@@ -217,6 +217,18 @@
     },
     "ImportJob": {
       "properties": {
+        "publicKeyFormat": {
+          "enum": [
+            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+            "PEM",
+            "DER",
+            "NIST_PQC",
+            "XWING_RAW_BYTES"
+          ]
+        },
+        "attestation": {
+          "$ref": "KeyOperationAttestation"
+        },
         "protectionLevel": {
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
@@ -241,24 +253,12 @@
             "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM"
           ]
         },
-        "attestation": {
-          "$ref": "KeyOperationAttestation"
-        },
         "state": {
           "enum": [
             "IMPORT_JOB_STATE_UNSPECIFIED",
             "PENDING_GENERATION",
             "ACTIVE",
             "EXPIRED"
-          ]
-        },
-        "publicKeyFormat": {
-          "enum": [
-            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
-            "PEM",
-            "DER",
-            "NIST_PQC",
-            "XWING_RAW_BYTES"
           ]
         }
       }

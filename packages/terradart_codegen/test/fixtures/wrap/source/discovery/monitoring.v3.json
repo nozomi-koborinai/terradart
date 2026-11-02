@@ -51,17 +51,6 @@
     },
     "AlertPolicy": {
       "properties": {
-        "alertStrategy": {
-          "$ref": "AlertStrategy"
-        },
-        "severity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "CRITICAL",
-            "ERROR",
-            "WARNING"
-          ]
-        },
         "conditions": {
           "items": {
             "$ref": "Condition"
@@ -74,6 +63,17 @@
             "OR",
             "AND_WITH_MATCHING_RESOURCE"
           ]
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "ERROR",
+            "WARNING"
+          ]
+        },
+        "alertStrategy": {
+          "$ref": "AlertStrategy"
         }
       }
     },
@@ -98,19 +98,16 @@
         "conditionMonitoringQueryLanguage": {
           "$ref": "MonitoringQueryLanguageCondition"
         },
-        "conditionAbsent": {
-          "$ref": "MetricAbsence"
-        },
         "conditionSql": {
           "$ref": "SqlCondition"
+        },
+        "conditionAbsent": {
+          "$ref": "MetricAbsence"
         }
       }
     },
     "ContentMatcher": {
       "properties": {
-        "jsonPathMatcher": {
-          "$ref": "JsonPathMatcher"
-        },
         "matcher": {
           "enum": [
             "CONTENT_MATCHER_OPTION_UNSPECIFIED",
@@ -121,6 +118,9 @@
             "MATCHES_JSON_PATH",
             "NOT_MATCHES_JSON_PATH"
           ]
+        },
+        "jsonPathMatcher": {
+          "$ref": "JsonPathMatcher"
         }
       }
     },
@@ -129,6 +129,11 @@
     },
     "HttpCheck": {
       "properties": {
+        "acceptedResponseStatusCodes": {
+          "items": {
+            "$ref": "ResponseStatusCode"
+          }
+        },
         "requestMethod": {
           "enum": [
             "METHOD_UNSPECIFIED",
@@ -136,20 +141,15 @@
             "POST"
           ]
         },
+        "serviceAgentAuthentication": {
+          "$ref": "ServiceAgentAuthentication"
+        },
         "contentType": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "URL_ENCODED",
             "USER_PROVIDED"
           ]
-        },
-        "acceptedResponseStatusCodes": {
-          "items": {
-            "$ref": "ResponseStatusCode"
-          }
-        },
-        "serviceAgentAuthentication": {
-          "$ref": "ServiceAgentAuthentication"
         }
       }
     },
@@ -197,13 +197,17 @@
     },
     "MetricDescriptor": {
       "properties": {
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
         },
         "valueType": {
           "enum": [
@@ -216,24 +220,20 @@
             "MONEY"
           ]
         },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
         "metricKind": {
           "enum": [
             "METRIC_KIND_UNSPECIFIED",
             "GAUGE",
             "DELTA",
             "CUMULATIVE"
-          ]
-        },
-        "launchStage": {
-          "enum": [
-            "LAUNCH_STAGE_UNSPECIFIED",
-            "UNIMPLEMENTED",
-            "PRELAUNCH",
-            "EARLY_ACCESS",
-            "ALPHA",
-            "BETA",
-            "GA",
-            "DEPRECATED"
           ]
         }
       }
@@ -266,7 +266,18 @@
     },
     "MetricThreshold": {
       "properties": {
-        "aggregations": {
+        "comparison": {
+          "enum": [
+            "COMPARISON_UNSPECIFIED",
+            "COMPARISON_GT",
+            "COMPARISON_GE",
+            "COMPARISON_LT",
+            "COMPARISON_LE",
+            "COMPARISON_EQ",
+            "COMPARISON_NE"
+          ]
+        },
+        "denominatorAggregations": {
           "items": {
             "$ref": "Aggregation"
           }
@@ -279,21 +290,10 @@
             "EVALUATION_MISSING_DATA_NO_OP"
           ]
         },
-        "denominatorAggregations": {
+        "aggregations": {
           "items": {
             "$ref": "Aggregation"
           }
-        },
-        "comparison": {
-          "enum": [
-            "COMPARISON_UNSPECIFIED",
-            "COMPARISON_GT",
-            "COMPARISON_GE",
-            "COMPARISON_LT",
-            "COMPARISON_LE",
-            "COMPARISON_EQ",
-            "COMPARISON_NE"
-          ]
         }
       }
     },
@@ -402,8 +402,12 @@
     },
     "UptimeCheckConfig": {
       "properties": {
-        "resourceGroup": {
-          "$ref": "ResourceGroup"
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
         },
         "contentMatchers": {
           "items": {
@@ -412,18 +416,6 @@
         },
         "httpCheck": {
           "$ref": "HttpCheck"
-        },
-        "internalCheckers": {
-          "items": {
-            "$ref": "InternalChecker"
-          }
-        },
-        "checkerType": {
-          "enum": [
-            "CHECKER_TYPE_UNSPECIFIED",
-            "STATIC_IP_CHECKERS",
-            "VPC_CHECKERS"
-          ]
         },
         "selectedRegions": {
           "items": {
@@ -437,6 +429,14 @@
               "USA_IOWA",
               "USA_VIRGINIA"
             ]
+          }
+        },
+        "resourceGroup": {
+          "$ref": "ResourceGroup"
+        },
+        "internalCheckers": {
+          "items": {
+            "$ref": "InternalChecker"
           }
         }
       }

@@ -114,17 +114,17 @@
     },
     "Compression": {
       "properties": {
+        "compressionAlgorithm": {
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB"
+          ]
+        },
         "compressionMode": {
           "enum": [
             "COMPRESSION_MODE_UNSPECIFIED",
             "COMPRESS",
             "DECOMPRESS"
-          ]
-        },
-        "compressionAlgorithm": {
-          "enum": [
-            "COMPRESSION_ALGORITHM_UNSPECIFIED",
-            "ZLIB"
           ]
         }
       }
@@ -147,23 +147,23 @@
     },
     "IngestionDataSourceSettings": {
       "properties": {
-        "awsMsk": {
-          "$ref": "AwsMsk"
-        },
         "cloudStorage": {
           "$ref": "CloudStorage"
         },
-        "confluentCloud": {
-          "$ref": "ConfluentCloud"
-        },
         "awsKinesis": {
           "$ref": "AwsKinesis"
+        },
+        "confluentCloud": {
+          "$ref": "ConfluentCloud"
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings"
         },
         "azureEventHubs": {
           "$ref": "AzureEventHubs"
+        },
+        "awsMsk": {
+          "$ref": "AwsMsk"
         }
       }
     },
@@ -212,9 +212,6 @@
     },
     "Subscription": {
       "properties": {
-        "bigqueryConfig": {
-          "$ref": "BigQueryConfig"
-        },
         "cloudStorageConfig": {
           "$ref": "CloudStorageConfig"
         },
@@ -232,28 +229,31 @@
           "items": {
             "$ref": "MessageTransform"
           }
+        },
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig"
         }
       }
     },
     "Topic": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "INGESTION_RESOURCE_ERROR"
-          ]
+        "ingestionDataSourceSettings": {
+          "$ref": "IngestionDataSourceSettings"
+        },
+        "schemaSettings": {
+          "$ref": "SchemaSettings"
         },
         "messageTransforms": {
           "items": {
             "$ref": "MessageTransform"
           }
         },
-        "schemaSettings": {
-          "$ref": "SchemaSettings"
-        },
-        "ingestionDataSourceSettings": {
-          "$ref": "IngestionDataSourceSettings"
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INGESTION_RESOURCE_ERROR"
+          ]
         }
       }
     }

@@ -1,7 +1,7 @@
 {
   "name": "spanner",
   "version": "v1",
-  "revision": "20261006",
+  "revision": "20261029",
   "sourceUrl": "https://spanner.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackupSchedule": {
@@ -25,13 +25,13 @@
     },
     "Database": {
       "properties": {
+        "restoreInfo": {
+          "$ref": "RestoreInfo"
+        },
         "encryptionInfo": {
           "items": {
             "$ref": "EncryptionInfo"
           }
-        },
-        "quorumInfo": {
-          "$ref": "QuorumInfo"
         },
         "databaseDialect": {
           "enum": [
@@ -40,8 +40,8 @@
             "POSTGRESQL"
           ]
         },
-        "restoreInfo": {
-          "$ref": "RestoreInfo"
+        "quorumInfo": {
+          "$ref": "QuorumInfo"
         },
         "state": {
           "enum": [
@@ -77,22 +77,22 @@
     },
     "Instance": {
       "properties": {
-        "instanceType": {
-          "enum": [
-            "INSTANCE_TYPE_UNSPECIFIED",
-            "PROVISIONED",
-            "FREE_INSTANCE"
-          ]
-        },
-        "freeInstanceMetadata": {
-          "$ref": "FreeInstanceMetadata"
-        },
         "edition": {
           "enum": [
             "EDITION_UNSPECIFIED",
             "STANDARD",
             "ENTERPRISE",
             "ENTERPRISE_PLUS"
+          ]
+        },
+        "freeInstanceMetadata": {
+          "$ref": "FreeInstanceMetadata"
+        },
+        "instanceType": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PROVISIONED",
+            "FREE_INSTANCE"
           ]
         },
         "state": {
@@ -113,16 +113,28 @@
     },
     "InstanceConfig": {
       "properties": {
-        "replicas": {
-          "items": {
-            "$ref": "ReplicaInfo"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "READY"
+          ]
+        },
+        "replicas": {
+          "items": {
+            "$ref": "ReplicaInfo"
+          }
+        },
+        "optionalReplicas": {
+          "items": {
+            "$ref": "ReplicaInfo"
+          }
+        },
+        "configType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "USER_MANAGED"
           ]
         },
         "freeInstanceAvailability": {
@@ -140,18 +152,6 @@
             "REGION",
             "DUAL_REGION",
             "MULTI_REGION"
-          ]
-        },
-        "optionalReplicas": {
-          "items": {
-            "$ref": "ReplicaInfo"
-          }
-        },
-        "configType": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "GOOGLE_MANAGED",
-            "USER_MANAGED"
           ]
         }
       }

@@ -76,17 +76,17 @@
     },
     "GoogleDevtoolsArtifactregistryV1Rule": {
       "properties": {
-        "operation": {
-          "enum": [
-            "OPERATION_UNSPECIFIED",
-            "DOWNLOAD"
-          ]
-        },
         "action": {
           "enum": [
             "ACTION_UNSPECIFIED",
             "ALLOW",
             "DENY"
+          ]
+        },
+        "operation": {
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "DOWNLOAD"
           ]
         }
       }
@@ -124,6 +124,13 @@
     },
     "PlatformLogsConfig": {
       "properties": {
+        "loggingState": {
+          "enum": [
+            "LOGGING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "severityLevel": {
           "enum": [
             "SEVERITY_LEVEL_UNSPECIFIED",
@@ -135,13 +142,6 @@
             "CRITICAL",
             "ALERT",
             "EMERGENCY"
-          ]
-        },
-        "loggingState": {
-          "enum": [
-            "LOGGING_STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
           ]
         }
       }
@@ -165,15 +165,6 @@
     },
     "RemoteRepositoryConfig": {
       "properties": {
-        "dockerRepository": {
-          "$ref": "DockerRepository"
-        },
-        "aptRepository": {
-          "$ref": "AptRepository"
-        },
-        "yumRepository": {
-          "$ref": "YumRepository"
-        },
         "mavenRepository": {
           "$ref": "MavenRepository"
         },
@@ -182,11 +173,37 @@
         },
         "npmRepository": {
           "$ref": "NpmRepository"
+        },
+        "aptRepository": {
+          "$ref": "AptRepository"
+        },
+        "dockerRepository": {
+          "$ref": "DockerRepository"
+        },
+        "yumRepository": {
+          "$ref": "YumRepository"
         }
       }
     },
     "Repository": {
       "properties": {
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
+        },
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig"
+        },
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
+        },
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
@@ -196,9 +213,6 @@
             "AOSS_REPOSITORY",
             "ASSURED_OSS_REPOSITORY"
           ]
-        },
-        "platformLogsConfig": {
-          "$ref": "PlatformLogsConfig"
         },
         "format": {
           "enum": [
@@ -216,38 +230,24 @@
             "RUBY",
             "CONDA"
           ]
-        },
-        "remoteRepositoryConfig": {
-          "$ref": "RemoteRepositoryConfig"
-        },
-        "mavenConfig": {
-          "$ref": "MavenRepositoryConfig"
-        },
-        "cleanupPolicies": {
-          "additionalProperties": {
-            "$ref": "CleanupPolicy"
-          }
-        },
-        "vulnerabilityScanningConfig": {
-          "$ref": "VulnerabilityScanningConfig"
         }
       }
     },
     "VulnerabilityScanningConfig": {
       "properties": {
+        "enablementConfig": {
+          "enum": [
+            "ENABLEMENT_CONFIG_UNSPECIFIED",
+            "INHERITED",
+            "DISABLED"
+          ]
+        },
         "enablementState": {
           "enum": [
             "ENABLEMENT_STATE_UNSPECIFIED",
             "SCANNING_UNSUPPORTED",
             "SCANNING_DISABLED",
             "SCANNING_ACTIVE"
-          ]
-        },
-        "enablementConfig": {
-          "enum": [
-            "ENABLEMENT_CONFIG_UNSPECIFIED",
-            "INHERITED",
-            "DISABLED"
           ]
         }
       }

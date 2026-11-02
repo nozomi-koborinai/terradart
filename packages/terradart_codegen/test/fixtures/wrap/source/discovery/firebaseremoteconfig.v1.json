@@ -6,23 +6,23 @@
   "schemas": {
     "RemoteConfig": {
       "properties": {
-        "parameters": {
-          "additionalProperties": {
-            "$ref": "RemoteConfigParameter"
-          }
-        },
         "parameterGroups": {
           "additionalProperties": {
             "$ref": "RemoteConfigParameterGroup"
           }
         },
-        "version": {
-          "$ref": "Version"
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "RemoteConfigParameter"
+          }
         },
         "conditions": {
           "items": {
             "$ref": "RemoteConfigCondition"
           }
+        },
+        "version": {
+          "$ref": "Version"
         }
       }
     },

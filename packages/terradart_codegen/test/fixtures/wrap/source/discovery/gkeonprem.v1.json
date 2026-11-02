@@ -13,6 +13,12 @@
     },
     "BareMetalAdminCluster": {
       "properties": {
+        "loadBalancer": {
+          "$ref": "BareMetalAdminLoadBalancerConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -24,20 +30,14 @@
             "DEGRADED"
           ]
         },
-        "status": {
-          "$ref": "ResourceStatus"
-        },
-        "controlPlane": {
-          "$ref": "BareMetalAdminControlPlaneConfig"
-        },
-        "loadBalancer": {
-          "$ref": "BareMetalAdminLoadBalancerConfig"
-        },
         "validationCheck": {
           "$ref": "ValidationCheck"
         },
         "binaryAuthorization": {
           "$ref": "BinaryAuthorization"
+        },
+        "controlPlane": {
+          "$ref": "BareMetalAdminControlPlaneConfig"
         }
       }
     },
@@ -78,17 +78,11 @@
     },
     "BareMetalCluster": {
       "properties": {
-        "status": {
-          "$ref": "ResourceStatus"
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
         },
-        "upgradePolicy": {
-          "$ref": "BareMetalClusterUpgradePolicy"
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
-        "nodeConfig": {
-          "$ref": "BareMetalWorkloadNodeConfig"
+        "controlPlane": {
+          "$ref": "BareMetalControlPlaneConfig"
         },
         "state": {
           "enum": [
@@ -101,14 +95,20 @@
             "DEGRADED"
           ]
         },
-        "controlPlane": {
-          "$ref": "BareMetalControlPlaneConfig"
-        },
-        "binaryAuthorization": {
-          "$ref": "BinaryAuthorization"
+        "upgradePolicy": {
+          "$ref": "BareMetalClusterUpgradePolicy"
         },
         "loadBalancer": {
           "$ref": "BareMetalLoadBalancerConfig"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "nodeConfig": {
+          "$ref": "BareMetalWorkloadNodeConfig"
         }
       }
     },
@@ -139,11 +139,11 @@
     },
     "BareMetalLoadBalancerConfig": {
       "properties": {
-        "bgpLbConfig": {
-          "$ref": "BareMetalBgpLbConfig"
-        },
         "metalLbConfig": {
           "$ref": "BareMetalMetalLbConfig"
+        },
+        "bgpLbConfig": {
+          "$ref": "BareMetalBgpLbConfig"
         }
       }
     },
@@ -166,9 +166,6 @@
         "status": {
           "$ref": "ResourceStatus"
         },
-        "nodePoolConfig": {
-          "$ref": "BareMetalNodePoolConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -179,21 +176,24 @@
             "ERROR",
             "DEGRADED"
           ]
+        },
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
         }
       }
     },
     "BareMetalNodePoolConfig": {
       "properties": {
-        "taints": {
-          "items": {
-            "$ref": "NodeTaint"
-          }
-        },
         "operatingSystem": {
           "enum": [
             "OPERATING_SYSTEM_UNSPECIFIED",
             "LINUX"
           ]
+        },
+        "taints": {
+          "items": {
+            "$ref": "NodeTaint"
+          }
         }
       }
     },
@@ -253,21 +253,21 @@
     },
     "ValidationCheck": {
       "properties": {
-        "scenario": {
-          "enum": [
-            "SCENARIO_UNSPECIFIED",
-            "CREATE",
-            "UPDATE"
-          ]
-        },
-        "status": {
-          "$ref": "ValidationCheckStatus"
-        },
         "option": {
           "enum": [
             "OPTIONS_UNSPECIFIED",
             "SKIP_VALIDATION_CHECK_BLOCKING",
             "SKIP_VALIDATION_ALL"
+          ]
+        },
+        "status": {
+          "$ref": "ValidationCheckStatus"
+        },
+        "scenario": {
+          "enum": [
+            "SCENARIO_UNSPECIFIED",
+            "CREATE",
+            "UPDATE"
           ]
         }
       }
@@ -327,8 +327,11 @@
     },
     "VmwareCluster": {
       "properties": {
-        "status": {
-          "$ref": "ResourceStatus"
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
         },
         "state": {
           "enum": [
@@ -341,11 +344,8 @@
             "DEGRADED"
           ]
         },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
-        "binaryAuthorization": {
-          "$ref": "BinaryAuthorization"
+        "status": {
+          "$ref": "ResourceStatus"
         }
       }
     },
@@ -360,9 +360,6 @@
     },
     "VmwareNodePool": {
       "properties": {
-        "config": {
-          "$ref": "VmwareNodeConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -373,6 +370,9 @@
             "ERROR",
             "DEGRADED"
           ]
+        },
+        "config": {
+          "$ref": "VmwareNodeConfig"
         },
         "status": {
           "$ref": "ResourceStatus"

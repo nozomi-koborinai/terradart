@@ -6,6 +6,14 @@
   "schemas": {
     "AuthorizationAttemptInfo": {
       "properties": {
+        "failureReason": {
+          "enum": [
+            "FAILURE_REASON_UNSPECIFIED",
+            "CONFIG",
+            "CAA",
+            "RATE_LIMITED"
+          ]
+        },
         "troubleshooting": {
           "$ref": "Troubleshooting"
         },
@@ -16,19 +24,14 @@
             "AUTHORIZED",
             "FAILED"
           ]
-        },
-        "failureReason": {
-          "enum": [
-            "FAILURE_REASON_UNSPECIFIED",
-            "CONFIG",
-            "CAA",
-            "RATE_LIMITED"
-          ]
         }
       }
     },
     "Certificate": {
       "properties": {
+        "managedIdentity": {
+          "$ref": "ManagedIdentityCertificate"
+        },
         "scope": {
           "enum": [
             "DEFAULT",
@@ -36,9 +39,6 @@
             "ALL_REGIONS",
             "CLIENT_AUTH"
           ]
-        },
-        "managedIdentity": {
-          "$ref": "ManagedIdentityCertificate"
         },
         "managed": {
           "$ref": "ManagedCertificate"
@@ -61,17 +61,17 @@
     },
     "CertificateMapEntry": {
       "properties": {
-        "matcher": {
-          "enum": [
-            "MATCHER_UNSPECIFIED",
-            "PRIMARY"
-          ]
-        },
         "state": {
           "enum": [
             "SERVING_STATE_UNSPECIFIED",
             "ACTIVE",
             "PENDING"
+          ]
+        },
+        "matcher": {
+          "enum": [
+            "MATCHER_UNSPECIFIED",
+            "PRIMARY"
           ]
         }
       }

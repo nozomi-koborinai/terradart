@@ -6,6 +6,15 @@
   "schemas": {
     "Endpoint": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ]
+        },
         "severity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
@@ -14,15 +23,6 @@
             "MEDIUM",
             "HIGH",
             "CRITICAL"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY",
-            "DELETING",
-            "UPDATING"
           ]
         }
       }

@@ -6,19 +6,19 @@
   "schemas": {
     "DatabaseInstance": {
       "properties": {
-        "type": {
-          "enum": [
-            "DATABASE_INSTANCE_TYPE_UNSPECIFIED",
-            "DEFAULT_DATABASE",
-            "USER_DATABASE"
-          ]
-        },
         "state": {
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
             "ACTIVE",
             "DISABLED",
             "DELETED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "DATABASE_INSTANCE_TYPE_UNSPECIFIED",
+            "DEFAULT_DATABASE",
+            "USER_DATABASE"
           ]
         }
       }

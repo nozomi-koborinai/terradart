@@ -37,32 +37,11 @@
     },
     "MetadataOptions": {
       "properties": {
-        "gid": {
-          "enum": [
-            "GID_UNSPECIFIED",
-            "GID_SKIP",
-            "GID_NUMBER"
-          ]
-        },
         "uid": {
           "enum": [
             "UID_UNSPECIFIED",
             "UID_SKIP",
             "UID_NUMBER"
-          ]
-        },
-        "timeCreated": {
-          "enum": [
-            "TIME_CREATED_UNSPECIFIED",
-            "TIME_CREATED_SKIP",
-            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
-          ]
-        },
-        "kmsKey": {
-          "enum": [
-            "KMS_KEY_UNSPECIFIED",
-            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
-            "KMS_KEY_PRESERVE"
           ]
         },
         "symlink": {
@@ -72,11 +51,39 @@
             "SYMLINK_PRESERVE"
           ]
         },
+        "gid": {
+          "enum": [
+            "GID_UNSPECIFIED",
+            "GID_SKIP",
+            "GID_NUMBER"
+          ]
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "MODE_SKIP",
             "MODE_PRESERVE"
+          ]
+        },
+        "kmsKey": {
+          "enum": [
+            "KMS_KEY_UNSPECIFIED",
+            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+            "KMS_KEY_PRESERVE"
+          ]
+        },
+        "temporaryHold": {
+          "enum": [
+            "TEMPORARY_HOLD_UNSPECIFIED",
+            "TEMPORARY_HOLD_SKIP",
+            "TEMPORARY_HOLD_PRESERVE"
+          ]
+        },
+        "timeCreated": {
+          "enum": [
+            "TIME_CREATED_UNSPECIFIED",
+            "TIME_CREATED_SKIP",
+            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
           ]
         },
         "storageClass": {
@@ -90,13 +97,6 @@
             "STORAGE_CLASS_ARCHIVE"
           ]
         },
-        "temporaryHold": {
-          "enum": [
-            "TEMPORARY_HOLD_UNSPECIFIED",
-            "TEMPORARY_HOLD_SKIP",
-            "TEMPORARY_HOLD_PRESERVE"
-          ]
-        },
         "acl": {
           "enum": [
             "ACL_UNSPECIFIED",
@@ -108,13 +108,6 @@
     },
     "NotificationConfig": {
       "properties": {
-        "payloadFormat": {
-          "enum": [
-            "PAYLOAD_FORMAT_UNSPECIFIED",
-            "NONE",
-            "JSON"
-          ]
-        },
         "eventTypes": {
           "items": {
             "enum": [
@@ -124,6 +117,13 @@
               "TRANSFER_OPERATION_ABORTED"
             ]
           }
+        },
+        "payloadFormat": {
+          "enum": [
+            "PAYLOAD_FORMAT_UNSPECIFIED",
+            "NONE",
+            "JSON"
+          ]
         }
       }
     },
@@ -171,6 +171,12 @@
         "notificationConfig": {
           "$ref": "NotificationConfig"
         },
+        "replicationSpec": {
+          "$ref": "ReplicationSpec"
+        },
+        "transferSpec": {
+          "$ref": "TransferSpec"
+        },
         "loggingConfig": {
           "$ref": "LoggingConfig"
         },
@@ -181,17 +187,14 @@
             "DISABLED",
             "DELETED"
           ]
-        },
-        "transferSpec": {
-          "$ref": "TransferSpec"
-        },
-        "replicationSpec": {
-          "$ref": "ReplicationSpec"
         }
       }
     },
     "TransferOptions": {
       "properties": {
+        "metadataOptions": {
+          "$ref": "MetadataOptions"
+        },
         "overwriteWhen": {
           "enum": [
             "OVERWRITE_WHEN_UNSPECIFIED",
@@ -199,9 +202,6 @@
             "NEVER",
             "ALWAYS"
           ]
-        },
-        "metadataOptions": {
-          "$ref": "MetadataOptions"
         }
       }
     },

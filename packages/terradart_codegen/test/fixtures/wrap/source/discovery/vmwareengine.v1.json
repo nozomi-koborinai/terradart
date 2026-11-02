@@ -67,13 +67,6 @@
     },
     "ExternalAccessRule": {
       "properties": {
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -81,6 +74,13 @@
             "CREATING",
             "UPDATING",
             "DELETING"
+          ]
+        },
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
           ]
         }
       }
@@ -171,13 +171,6 @@
     },
     "PrivateCloud": {
       "properties": {
-        "type": {
-          "enum": [
-            "STANDARD",
-            "TIME_LIMITED",
-            "STRETCHED"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -189,17 +182,24 @@
             "PURGING"
           ]
         },
-        "vcenter": {
-          "$ref": "Vcenter"
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
         },
         "nsx": {
           "$ref": "Nsx"
         },
+        "vcenter": {
+          "$ref": "Vcenter"
+        },
         "hcx": {
           "$ref": "Hcx"
         },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
+        "type": {
+          "enum": [
+            "STANDARD",
+            "TIME_LIMITED",
+            "STRETCHED"
+          ]
         }
       }
     },
@@ -231,6 +231,11 @@
     },
     "VmwareEngineNetwork": {
       "properties": {
+        "vpcNetworks": {
+          "items": {
+            "$ref": "VpcNetwork"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -246,11 +251,6 @@
             "LEGACY",
             "STANDARD"
           ]
-        },
-        "vpcNetworks": {
-          "items": {
-            "$ref": "VpcNetwork"
-          }
         }
       }
     },

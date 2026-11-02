@@ -49,11 +49,11 @@
     },
     "DestinationConfig": {
       "properties": {
-        "bigqueryDestinationConfig": {
-          "$ref": "BigQueryDestinationConfig"
-        },
         "gcsDestinationConfig": {
           "$ref": "GcsDestinationConfig"
+        },
+        "bigqueryDestinationConfig": {
+          "$ref": "BigQueryDestinationConfig"
         }
       }
     },
@@ -131,11 +131,11 @@
     },
     "SourceConfig": {
       "properties": {
-        "spannerSourceConfig": {
-          "$ref": "SpannerSourceConfig"
-        },
         "mongodbSourceConfig": {
           "$ref": "MongodbSourceConfig"
+        },
+        "spannerSourceConfig": {
+          "$ref": "SpannerSourceConfig"
         }
       }
     },
@@ -153,6 +153,17 @@
     },
     "Stream": {
       "properties": {
+        "destinationConfig": {
+          "$ref": "DestinationConfig"
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig"
+        },
+        "ruleSets": {
+          "items": {
+            "$ref": "RuleSet"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -165,17 +176,6 @@
             "STARTING",
             "DRAINING"
           ]
-        },
-        "destinationConfig": {
-          "$ref": "DestinationConfig"
-        },
-        "sourceConfig": {
-          "$ref": "SourceConfig"
-        },
-        "ruleSets": {
-          "items": {
-            "$ref": "RuleSet"
-          }
         }
       }
     },

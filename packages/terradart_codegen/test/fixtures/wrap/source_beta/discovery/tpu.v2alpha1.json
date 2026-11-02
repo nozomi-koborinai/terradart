@@ -43,6 +43,34 @@
     },
     "Node": {
       "properties": {
+        "health": {
+          "enum": [
+            "HEALTH_UNSPECIFIED",
+            "HEALTHY",
+            "TIMEOUT",
+            "UNHEALTHY_TENSORFLOW",
+            "UNHEALTHY_MAINTENANCE"
+          ]
+        },
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        },
+        "apiVersion": {
+          "enum": [
+            "API_VERSION_UNSPECIFIED",
+            "V1_ALPHA1",
+            "V1",
+            "V2_ALPHA1"
+          ]
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -63,41 +91,13 @@
             "UNKNOWN"
           ]
         },
-        "apiVersion": {
-          "enum": [
-            "API_VERSION_UNSPECIFIED",
-            "V1_ALPHA1",
-            "V1",
-            "V2_ALPHA1"
-          ]
-        },
-        "upcomingMaintenance": {
-          "$ref": "UpcomingMaintenance"
-        },
-        "health": {
-          "enum": [
-            "HEALTH_UNSPECIFIED",
-            "HEALTHY",
-            "TIMEOUT",
-            "UNHEALTHY_TENSORFLOW",
-            "UNHEALTHY_MAINTENANCE"
-          ]
-        },
-        "schedulingConfig": {
-          "$ref": "SchedulingConfig"
-        },
-        "symptoms": {
-          "items": {
-            "$ref": "Symptom"
-          }
-        },
-        "acceleratorConfig": {
-          "$ref": "AcceleratorConfig"
-        },
         "dataDisks": {
           "items": {
             "$ref": "AttachedDisk"
           }
+        },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig"
         }
       }
     },
@@ -113,6 +113,9 @@
     },
     "QueuedResource": {
       "properties": {
+        "state": {
+          "$ref": "QueuedResourceState"
+        },
         "provisioningModel": {
           "enum": [
             "PROVISIONING_MODEL_UNSPECIFIED",
@@ -124,14 +127,18 @@
         },
         "tpu": {
           "$ref": "Tpu"
-        },
-        "state": {
-          "$ref": "QueuedResourceState"
         }
       }
     },
     "QueuedResourceState": {
       "properties": {
+        "stateInitiator": {
+          "enum": [
+            "STATE_INITIATOR_UNSPECIFIED",
+            "USER",
+            "SERVICE"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -144,13 +151,6 @@
             "SUSPENDING",
             "SUSPENDED",
             "WAITING_FOR_RESOURCES"
-          ]
-        },
-        "stateInitiator": {
-          "enum": [
-            "STATE_INITIATOR_UNSPECIFIED",
-            "USER",
-            "SERVICE"
           ]
         }
       }
@@ -193,18 +193,18 @@
     },
     "UpcomingMaintenance": {
       "properties": {
-        "maintenanceStatus": {
-          "enum": [
-            "UNKNOWN",
-            "PENDING",
-            "ONGOING"
-          ]
-        },
         "type": {
           "enum": [
             "UNKNOWN_TYPE",
             "SCHEDULED",
             "UNSCHEDULED"
+          ]
+        },
+        "maintenanceStatus": {
+          "enum": [
+            "UNKNOWN",
+            "PENDING",
+            "ONGOING"
           ]
         }
       }

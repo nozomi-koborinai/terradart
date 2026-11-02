@@ -17,16 +17,25 @@
     },
     "DataRetentionConfig": {
       "properties": {
-        "taskLogsRetentionConfig": {
-          "$ref": "TaskLogsRetentionConfig"
-        },
         "airflowMetadataRetentionConfig": {
           "$ref": "AirflowMetadataRetentionPolicyConfig"
+        },
+        "taskLogsRetentionConfig": {
+          "$ref": "TaskLogsRetentionConfig"
         }
       }
     },
     "Environment": {
       "properties": {
+        "config": {
+          "$ref": "EnvironmentConfig"
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DEVELOPMENT"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -37,34 +46,13 @@
             "DELETING",
             "ERROR"
           ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEVELOPMENT"
-          ]
-        },
-        "config": {
-          "$ref": "EnvironmentConfig"
         }
       }
     },
     "EnvironmentConfig": {
       "properties": {
-        "softwareConfig": {
-          "$ref": "SoftwareConfig"
-        },
-        "resilienceMode": {
-          "enum": [
-            "RESILIENCE_MODE_UNSPECIFIED",
-            "HIGH_RESILIENCE"
-          ]
-        },
         "privateEnvironmentConfig": {
           "$ref": "PrivateEnvironmentConfig"
-        },
-        "dataRetentionConfig": {
-          "$ref": "DataRetentionConfig"
         },
         "environmentSize": {
           "enum": [
@@ -74,6 +62,18 @@
             "ENVIRONMENT_SIZE_LARGE",
             "ENVIRONMENT_SIZE_EXTRA_LARGE"
           ]
+        },
+        "softwareConfig": {
+          "$ref": "SoftwareConfig"
+        },
+        "resilienceMode": {
+          "enum": [
+            "RESILIENCE_MODE_UNSPECIFIED",
+            "HIGH_RESILIENCE"
+          ]
+        },
+        "dataRetentionConfig": {
+          "$ref": "DataRetentionConfig"
         }
       }
     },
@@ -90,15 +90,15 @@
     },
     "PrivateEnvironmentConfig": {
       "properties": {
-        "networkingConfig": {
-          "$ref": "NetworkingConfig"
-        },
         "networkingType": {
           "enum": [
             "NETWORKING_TYPE_UNSPECIFIED",
             "PRIVATE",
             "PUBLIC"
           ]
+        },
+        "networkingConfig": {
+          "$ref": "NetworkingConfig"
         }
       }
     },

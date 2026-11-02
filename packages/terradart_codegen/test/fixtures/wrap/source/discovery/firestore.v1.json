@@ -4,9 +4,32 @@
   "revision": "20261021",
   "sourceUrl": "https://firestore.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
+    "ArrayValue": {
+      "properties": {
+        "values": {
+          "items": {
+            "$ref": "Value"
+          }
+        }
+      }
+    },
     "Document": {
       "properties": {
         "fields": {
+          "additionalProperties": {
+            "$ref": "Value"
+          }
+        }
+      }
+    },
+    "Function": {
+      "properties": {
+        "args": {
+          "items": {
+            "$ref": "Value"
+          }
+        },
+        "options": {
           "additionalProperties": {
             "$ref": "Value"
           }
@@ -25,11 +48,11 @@
     },
     "GoogleFirestoreAdminV1Database": {
       "properties": {
-        "type": {
+        "mongodbCompatibleDataAccessMode": {
           "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "FIRESTORE_NATIVE",
-            "DATASTORE_MODE"
+            "DATA_ACCESS_MODE_UNSPECIFIED",
+            "DATA_ACCESS_MODE_ENABLED",
+            "DATA_ACCESS_MODE_DISABLED"
           ]
         },
         "deleteProtectionState": {
@@ -39,11 +62,11 @@
             "DELETE_PROTECTION_ENABLED"
           ]
         },
-        "appEngineIntegrationMode": {
+        "type": {
           "enum": [
-            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
+            "DATABASE_TYPE_UNSPECIFIED",
+            "FIRESTORE_NATIVE",
+            "DATASTORE_MODE"
           ]
         },
         "concurrencyMode": {
@@ -54,13 +77,6 @@
             "OPTIMISTIC_WITH_ENTITY_GROUPS"
           ]
         },
-        "firestoreDataAccessMode": {
-          "enum": [
-            "DATA_ACCESS_MODE_UNSPECIFIED",
-            "DATA_ACCESS_MODE_ENABLED",
-            "DATA_ACCESS_MODE_DISABLED"
-          ]
-        },
         "pointInTimeRecoveryEnablement": {
           "enum": [
             "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
@@ -68,7 +84,21 @@
             "POINT_IN_TIME_RECOVERY_DISABLED"
           ]
         },
-        "mongodbCompatibleDataAccessMode": {
+        "appEngineIntegrationMode": {
+          "enum": [
+            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "databaseEdition": {
+          "enum": [
+            "DATABASE_EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ]
+        },
+        "firestoreDataAccessMode": {
           "enum": [
             "DATA_ACCESS_MODE_UNSPECIFIED",
             "DATA_ACCESS_MODE_ENABLED",
@@ -80,13 +110,6 @@
             "REALTIME_UPDATES_MODE_UNSPECIFIED",
             "REALTIME_UPDATES_MODE_ENABLED",
             "REALTIME_UPDATES_MODE_DISABLED"
-          ]
-        },
-        "databaseEdition": {
-          "enum": [
-            "DATABASE_EDITION_UNSPECIFIED",
-            "STANDARD",
-            "ENTERPRISE"
           ]
         }
       }
@@ -108,14 +131,6 @@
             "$ref": "GoogleFirestoreAdminV1IndexField"
           }
         },
-        "queryScope": {
-          "enum": [
-            "QUERY_SCOPE_UNSPECIFIED",
-            "COLLECTION",
-            "COLLECTION_GROUP",
-            "COLLECTION_RECURSIVE"
-          ]
-        },
         "density": {
           "enum": [
             "DENSITY_UNSPECIFIED",
@@ -124,12 +139,12 @@
             "DENSE"
           ]
         },
-        "state": {
+        "queryScope": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY",
-            "NEEDS_REPAIR"
+            "QUERY_SCOPE_UNSPECIFIED",
+            "COLLECTION",
+            "COLLECTION_GROUP",
+            "COLLECTION_RECURSIVE"
           ]
         },
         "apiScope": {
@@ -137,6 +152,14 @@
             "ANY_API",
             "DATASTORE_MODE_API",
             "MONGODB_COMPATIBLE_API"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "NEEDS_REPAIR"
           ]
         }
       }
@@ -152,6 +175,13 @@
     },
     "GoogleFirestoreAdminV1IndexField": {
       "properties": {
+        "order": {
+          "enum": [
+            "ORDER_UNSPECIFIED",
+            "ASCENDING",
+            "DESCENDING"
+          ]
+        },
         "arrayConfig": {
           "enum": [
             "ARRAY_CONFIG_UNSPECIFIED",
@@ -160,13 +190,6 @@
         },
         "searchConfig": {
           "$ref": "GoogleFirestoreAdminV1SearchConfig"
-        },
-        "order": {
-          "enum": [
-            "ORDER_UNSPECIFIED",
-            "ASCENDING",
-            "DESCENDING"
-          ]
         }
       }
     },
@@ -179,16 +202,16 @@
     },
     "GoogleFirestoreAdminV1SearchTextIndexSpec": {
       "properties": {
-        "matchType": {
-          "enum": [
-            "TEXT_MATCH_TYPE_UNSPECIFIED",
-            "MATCH_GLOBALLY"
-          ]
-        },
         "indexType": {
           "enum": [
             "TEXT_INDEX_TYPE_UNSPECIFIED",
             "TOKENIZED"
+          ]
+        },
+        "matchType": {
+          "enum": [
+            "TEXT_MATCH_TYPE_UNSPECIFIED",
+            "MATCH_GLOBALLY"
           ]
         }
       }
@@ -241,12 +264,44 @@
         }
       }
     },
+    "Pipeline": {
+      "properties": {
+        "stages": {
+          "items": {
+            "$ref": "Stage"
+          }
+        }
+      }
+    },
+    "Stage": {
+      "properties": {
+        "args": {
+          "items": {
+            "$ref": "Value"
+          }
+        },
+        "options": {
+          "additionalProperties": {
+            "$ref": "Value"
+          }
+        }
+      }
+    },
     "Value": {
       "properties": {
         "nullValue": {
           "enum": [
             "NULL_VALUE"
           ]
+        },
+        "functionValue": {
+          "$ref": "Function"
+        },
+        "pipelineValue": {
+          "$ref": "Pipeline"
+        },
+        "arrayValue": {
+          "$ref": "ArrayValue"
         }
       }
     }

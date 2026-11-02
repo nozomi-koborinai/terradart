@@ -6,13 +6,8 @@
   "schemas": {
     "BackupConfiguration": {
       "properties": {
-        "backupTier": {
-          "enum": [
-            "BACKUP_TIER_UNSPECIFIED",
-            "STANDARD",
-            "ADVANCED",
-            "ENHANCED"
-          ]
+        "backupRetentionSettings": {
+          "$ref": "BackupRetentionSettings"
         },
         "transactionalLogStorageState": {
           "enum": [
@@ -23,8 +18,13 @@
             "CLOUD_STORAGE"
           ]
         },
-        "backupRetentionSettings": {
-          "$ref": "BackupRetentionSettings"
+        "backupTier": {
+          "enum": [
+            "BACKUP_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ADVANCED",
+            "ENHANCED"
+          ]
         }
       }
     },
@@ -51,18 +51,6 @@
     },
     "DatabaseInstance": {
       "properties": {
-        "suspensionReason": {
-          "items": {
-            "enum": [
-              "SQL_SUSPENSION_REASON_UNSPECIFIED",
-              "BILLING_ISSUE",
-              "LEGAL_ISSUE",
-              "OPERATIONAL_ISSUE",
-              "KMS_KEY_ISSUE",
-              "PROJECT_ABUSE"
-            ]
-          }
-        },
         "backendType": {
           "enum": [
             "SQL_BACKEND_TYPE_UNSPECIFIED",
@@ -71,18 +59,18 @@
             "EXTERNAL"
           ]
         },
-        "state": {
+        "onPremisesConfiguration": {
+          "$ref": "OnPremisesConfiguration"
+        },
+        "databaseCenterIntegration": {
           "enum": [
-            "SQL_INSTANCE_STATE_UNSPECIFIED",
-            "RUNNABLE",
-            "SUSPENDED",
-            "PENDING_DELETE",
-            "PENDING_CREATE",
-            "MAINTENANCE",
-            "FAILED",
-            "ONLINE_MAINTENANCE",
-            "REPAIRING"
+            "DATABASE_CENTER_INTEGRATION_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
           ]
+        },
+        "deploymentInfo": {
+          "$ref": "BlueGreenDeploymentInfo"
         },
         "databaseVersion": {
           "enum": [
@@ -144,14 +132,39 @@
             "SQLSERVER_2025_EXPRESS"
           ]
         },
-        "outOfDiskReport": {
-          "$ref": "SqlOutOfDiskReport"
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
+          }
         },
-        "sqlNetworkArchitecture": {
+        "suspensionReason": {
+          "items": {
+            "enum": [
+              "SQL_SUSPENSION_REASON_UNSPECIFIED",
+              "BILLING_ISSUE",
+              "LEGAL_ISSUE",
+              "OPERATIONAL_ISSUE",
+              "KMS_KEY_ISSUE",
+              "PROJECT_ABUSE"
+            ]
+          }
+        },
+        "nodes": {
+          "items": {
+            "$ref": "PoolNodeConfig"
+          }
+        },
+        "state": {
           "enum": [
-            "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
-            "NEW_NETWORK_ARCHITECTURE",
-            "OLD_NETWORK_ARCHITECTURE"
+            "SQL_INSTANCE_STATE_UNSPECIFIED",
+            "RUNNABLE",
+            "SUSPENDED",
+            "PENDING_DELETE",
+            "PENDING_CREATE",
+            "MAINTENANCE",
+            "FAILED",
+            "ONLINE_MAINTENANCE",
+            "REPAIRING"
           ]
         },
         "instanceType": {
@@ -164,19 +177,11 @@
             "GREEN_INSTANCE"
           ]
         },
-        "deploymentInfo": {
-          "$ref": "BlueGreenDeploymentInfo"
-        },
-        "nodes": {
-          "items": {
-            "$ref": "PoolNodeConfig"
-          }
-        },
-        "databaseCenterIntegration": {
+        "sqlNetworkArchitecture": {
           "enum": [
-            "DATABASE_CENTER_INTEGRATION_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
+            "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
+            "NEW_NETWORK_ARCHITECTURE",
+            "OLD_NETWORK_ARCHITECTURE"
           ]
         },
         "dnsNames": {
@@ -184,29 +189,16 @@
             "$ref": "DnsNameMapping"
           }
         },
-        "ipAddresses": {
-          "items": {
-            "$ref": "IpMapping"
-          }
+        "outOfDiskReport": {
+          "$ref": "SqlOutOfDiskReport"
         },
         "settings": {
           "$ref": "Settings"
-        },
-        "onPremisesConfiguration": {
-          "$ref": "OnPremisesConfiguration"
         }
       }
     },
     "DnsNameMapping": {
       "properties": {
-        "connectionType": {
-          "enum": [
-            "CONNECTION_TYPE_UNSPECIFIED",
-            "PUBLIC",
-            "PRIVATE_SERVICES_ACCESS",
-            "PRIVATE_SERVICE_CONNECT"
-          ]
-        },
         "dnsScope": {
           "enum": [
             "DNS_SCOPE_UNSPECIFIED",
@@ -219,6 +211,14 @@
             "RECORD_MANAGER_UNSPECIFIED",
             "CUSTOMER",
             "CLOUD_SQL_AUTOMATION"
+          ]
+        },
+        "connectionType": {
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "PUBLIC",
+            "PRIVATE_SERVICES_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
           ]
         }
       }
@@ -313,16 +313,6 @@
     },
     "PoolNodeConfig": {
       "properties": {
-        "ipAddresses": {
-          "items": {
-            "$ref": "IpMapping"
-          }
-        },
-        "pscAutoConnections": {
-          "items": {
-            "$ref": "PscAutoConnectionConfig"
-          }
-        },
         "state": {
           "enum": [
             "SQL_INSTANCE_STATE_UNSPECIFIED",
@@ -336,16 +326,26 @@
             "REPAIRING"
           ]
         },
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
+          }
+        },
         "dnsNames": {
           "items": {
             "$ref": "DnsNameMapping"
+          }
+        },
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
           }
         }
       }
     },
     "PscAutoConnectionConfig": {
       "properties": {
-        "writeEndpointAutoDnsStatus": {
+        "instanceAutoDnsStatus": {
           "enum": [
             "AUTO_DNS_STATUS_UNSPECIFIED",
             "AUTO_DNS_OK",
@@ -353,7 +353,7 @@
             "AUTO_DNS_UNKNOWN"
           ]
         },
-        "instanceAutoDnsStatus": {
+        "writeEndpointAutoDnsStatus": {
           "enum": [
             "AUTO_DNS_STATUS_UNSPECIFIED",
             "AUTO_DNS_OK",
@@ -374,19 +374,35 @@
     },
     "Settings": {
       "properties": {
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS",
+            "DEVELOPER"
+          ]
+        },
         "activeDirectoryConfig": {
           "$ref": "SqlActiveDirectoryConfig"
         },
-        "ipConfiguration": {
-          "$ref": "IpConfiguration"
-        },
-        "activationPolicy": {
+        "dataDiskType": {
           "enum": [
-            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
-            "ALWAYS",
-            "NEVER",
-            "ON_DEMAND"
+            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+            "PD_SSD",
+            "PD_HDD",
+            "OBSOLETE_LOCAL_SSD",
+            "HYPERDISK_BALANCED"
           ]
+        },
+        "availabilityType": {
+          "enum": [
+            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
         },
         "pricingPlan": {
           "enum": [
@@ -398,8 +414,12 @@
         "performanceCaptureConfig": {
           "$ref": "PerformanceCaptureConfig"
         },
-        "passwordValidationPolicy": {
-          "$ref": "PasswordValidationPolicy"
+        "dataApiAccess": {
+          "enum": [
+            "DATA_API_ACCESS_UNSPECIFIED",
+            "DISALLOW_DATA_API",
+            "ALLOW_DATA_API"
+          ]
         },
         "replicationType": {
           "enum": [
@@ -408,22 +428,11 @@
             "ASYNCHRONOUS"
           ]
         },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
+        "ipConfiguration": {
+          "$ref": "IpConfiguration"
         },
-        "availabilityType": {
-          "enum": [
-            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
-            "ZONAL",
-            "REGIONAL"
-          ]
-        },
-        "dataApiAccess": {
-          "enum": [
-            "DATA_API_ACCESS_UNSPECIFIED",
-            "DISALLOW_DATA_API",
-            "ALLOW_DATA_API"
-          ]
+        "passwordValidationPolicy": {
+          "$ref": "PasswordValidationPolicy"
         },
         "connectorEnforcement": {
           "enum": [
@@ -432,25 +441,16 @@
             "REQUIRED"
           ]
         },
-        "dataDiskType": {
+        "activationPolicy": {
           "enum": [
-            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
-            "PD_SSD",
-            "PD_HDD",
-            "OBSOLETE_LOCAL_SSD",
-            "HYPERDISK_BALANCED"
+            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER",
+            "ON_DEMAND"
           ]
         },
         "backupConfiguration": {
           "$ref": "BackupConfiguration"
-        },
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS",
-            "DEVELOPER"
-          ]
         }
       }
     },
@@ -479,6 +479,14 @@
     },
     "User": {
       "properties": {
+        "dualPasswordType": {
+          "enum": [
+            "DUAL_PASSWORD_TYPE_UNSPECIFIED",
+            "NO_MODIFY_DUAL_PASSWORD",
+            "NO_DUAL_PASSWORD",
+            "DUAL_PASSWORD"
+          ]
+        },
         "iamStatus": {
           "enum": [
             "IAM_STATUS_UNSPECIFIED",
@@ -496,14 +504,6 @@
             "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
             "CLOUD_IAM_WORKFORCE_IDENTITY",
             "ENTRAID_USER"
-          ]
-        },
-        "dualPasswordType": {
-          "enum": [
-            "DUAL_PASSWORD_TYPE_UNSPECIFIED",
-            "NO_MODIFY_DUAL_PASSWORD",
-            "NO_DUAL_PASSWORD",
-            "DUAL_PASSWORD"
           ]
         }
       }

@@ -19,13 +19,13 @@
     },
     "Destination": {
       "properties": {
-        "stateTimeline": {
-          "$ref": "StateTimeline"
-        },
         "endpoints": {
           "items": {
             "$ref": "DestinationEndpoint"
           }
+        },
+        "stateTimeline": {
+          "$ref": "StateTimeline"
         }
       }
     },
@@ -114,6 +114,9 @@
             "HYBRID_INSPECTION"
           ]
         },
+        "spokeSummary": {
+          "$ref": "SpokeSummary"
+        },
         "policyMode": {
           "enum": [
             "POLICY_MODE_UNSPECIFIED",
@@ -133,14 +136,31 @@
             "OBSOLETE",
             "FAILED"
           ]
-        },
-        "spokeSummary": {
-          "$ref": "SpokeSummary"
         }
       }
     },
     "InternalRange": {
       "properties": {
+        "peering": {
+          "enum": [
+            "PEERING_UNSPECIFIED",
+            "FOR_SELF",
+            "FOR_PEER",
+            "NOT_SHARED"
+          ]
+        },
+        "rangeStatus": {
+          "enum": [
+            "RANGE_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE",
+            "CREATING",
+            "DELETING"
+          ]
+        },
+        "allocationOptions": {
+          "$ref": "AllocationOptions"
+        },
         "purpose": {
           "enum": [
             "PURPOSE_UNSPECIFIED",
@@ -156,14 +176,6 @@
             "FOR_MIGRATION"
           ]
         },
-        "peering": {
-          "enum": [
-            "PEERING_UNSPECIFIED",
-            "FOR_SELF",
-            "FOR_PEER",
-            "NOT_SHARED"
-          ]
-        },
         "overlaps": {
           "items": {
             "enum": [
@@ -172,18 +184,6 @@
               "OVERLAP_EXISTING_SUBNET_RANGE"
             ]
           }
-        },
-        "rangeStatus": {
-          "enum": [
-            "RANGE_STATUS_UNSPECIFIED",
-            "ACTIVE",
-            "OBSOLETE",
-            "CREATING",
-            "DELETING"
-          ]
-        },
-        "allocationOptions": {
-          "$ref": "AllocationOptions"
         }
       }
     },
@@ -226,14 +226,6 @@
     },
     "PscConnection": {
       "properties": {
-        "errorType": {
-          "enum": [
-            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
-            "ERROR_INTERNAL",
-            "ERROR_CONSUMER_SIDE",
-            "ERROR_PRODUCER_SIDE"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -251,6 +243,14 @@
             "IPV4",
             "IPV6"
           ]
+        },
+        "errorType": {
+          "enum": [
+            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
+            "ERROR_INTERNAL",
+            "ERROR_CONSUMER_SIDE",
+            "ERROR_PRODUCER_SIDE"
+          ]
         }
       }
     },
@@ -267,14 +267,14 @@
     },
     "ServiceConnectionPolicy": {
       "properties": {
-        "pscConfig": {
-          "$ref": "PscConfig"
-        },
         "infrastructure": {
           "enum": [
             "INFRASTRUCTURE_UNSPECIFIED",
             "PSC"
           ]
+        },
+        "pscConfig": {
+          "$ref": "PscConfig"
         },
         "pscConnections": {
           "items": {
@@ -285,24 +285,13 @@
     },
     "Spoke": {
       "properties": {
-        "spokeType": {
-          "enum": [
-            "SPOKE_TYPE_UNSPECIFIED",
-            "VPN_TUNNEL",
-            "INTERCONNECT_ATTACHMENT",
-            "ROUTER_APPLIANCE",
-            "VPC_NETWORK",
-            "GATEWAY",
-            "PRODUCER_VPC_NETWORK"
-          ]
+        "gateway": {
+          "$ref": "Gateway"
         },
         "reasons": {
           "items": {
             "$ref": "StateReason"
           }
-        },
-        "gateway": {
-          "$ref": "Gateway"
         },
         "state": {
           "enum": [
@@ -316,6 +305,17 @@
             "INACTIVE",
             "OBSOLETE",
             "FAILED"
+          ]
+        },
+        "spokeType": {
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK",
+            "GATEWAY",
+            "PRODUCER_VPC_NETWORK"
           ]
         }
       }
@@ -361,14 +361,14 @@
             "$ref": "SpokeStateCount"
           }
         },
-        "spokeTypeCounts": {
-          "items": {
-            "$ref": "SpokeTypeCount"
-          }
-        },
         "spokeStateReasonCounts": {
           "items": {
             "$ref": "SpokeStateReasonCount"
+          }
+        },
+        "spokeTypeCounts": {
+          "items": {
+            "$ref": "SpokeTypeCount"
           }
         }
       }
@@ -429,6 +429,13 @@
     },
     "Transport": {
       "properties": {
+        "stackType": {
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4_ONLY",
+            "IPV4_IPV6"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -439,13 +446,6 @@
             "DELETING",
             "DEPROVISIONED",
             "SUSPENDED"
-          ]
-        },
-        "stackType": {
-          "enum": [
-            "STACK_TYPE_UNSPECIFIED",
-            "IPV4_ONLY",
-            "IPV4_IPV6"
           ]
         },
         "bandwidth": {

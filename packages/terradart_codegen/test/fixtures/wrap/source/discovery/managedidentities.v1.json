@@ -27,11 +27,14 @@
     },
     "Trust": {
       "properties": {
-        "trustType": {
+        "state": {
           "enum": [
-            "TRUST_TYPE_UNSPECIFIED",
-            "FOREST",
-            "EXTERNAL"
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "DELETING",
+            "CONNECTED",
+            "DISCONNECTED"
           ]
         },
         "trustDirection": {
@@ -42,14 +45,11 @@
             "BIDIRECTIONAL"
           ]
         },
-        "state": {
+        "trustType": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "UPDATING",
-            "DELETING",
-            "CONNECTED",
-            "DISCONNECTED"
+            "TRUST_TYPE_UNSPECIFIED",
+            "FOREST",
+            "EXTERNAL"
           ]
         }
       }

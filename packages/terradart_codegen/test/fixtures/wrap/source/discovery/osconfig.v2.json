@@ -20,10 +20,10 @@
     },
     "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
       "properties": {
-        "currentIterationState": {
+        "previousIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         },
-        "previousIterationState": {
+        "currentIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         }
       }
@@ -37,32 +37,37 @@
     },
     "GoogleCloudOsconfigV2__PolicyOrchestrator": {
       "properties": {
-        "orchestratedResource": {
-          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource"
-        },
         "orchestrationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState"
+        },
+        "orchestratedResource": {
+          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource"
         }
       }
     },
     "OSPolicy": {
       "properties": {
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
+        },
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
         }
       }
     },
     "OSPolicyAssignment": {
       "properties": {
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
+        },
         "rolloutState": {
           "enum": [
             "ROLLOUT_STATE_UNSPECIFIED",
@@ -71,27 +76,22 @@
             "CANCELLED",
             "SUCCEEDED"
           ]
-        },
-        "osPolicies": {
-          "items": {
-            "$ref": "OSPolicy"
-          }
         }
       }
     },
     "OSPolicyResource": {
       "properties": {
-        "pkg": {
-          "$ref": "OSPolicyResourcePackageResource"
-        },
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
         },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
         },
-        "exec": {
-          "$ref": "OSPolicyResourceExecResource"
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
+        },
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
         }
       }
     },

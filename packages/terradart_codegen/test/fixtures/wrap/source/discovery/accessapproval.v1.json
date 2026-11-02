@@ -6,11 +6,6 @@
   "schemas": {
     "AccessApprovalSettings": {
       "properties": {
-        "enrolledServices": {
-          "items": {
-            "$ref": "EnrolledService"
-          }
-        },
         "effectiveApprovalPolicy": {
           "$ref": "CustomerApprovalApprovalPolicy"
         },
@@ -22,13 +17,18 @@
             "PROJECT"
           ]
         },
-        "approvalPolicy": {
-          "$ref": "CustomerApprovalApprovalPolicy"
-        },
         "ancestorsEnrolledServices": {
           "items": {
             "$ref": "EnrolledService"
           }
+        },
+        "enrolledServices": {
+          "items": {
+            "$ref": "EnrolledService"
+          }
+        },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
         }
       }
     },

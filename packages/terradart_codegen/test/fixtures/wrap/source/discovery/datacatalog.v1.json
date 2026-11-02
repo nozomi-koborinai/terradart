@@ -42,11 +42,6 @@
     },
     "GoogleCloudDatacatalogV1ColumnSchema": {
       "properties": {
-        "subcolumns": {
-          "items": {
-            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
-          }
-        },
         "highestIndexingType": {
           "enum": [
             "INDEXING_TYPE_UNSPECIFIED",
@@ -58,6 +53,11 @@
         },
         "lookerColumnSpec": {
           "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
+        },
+        "subcolumns": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
+          }
         }
       }
     },
@@ -95,15 +95,15 @@
     },
     "GoogleCloudDatacatalogV1DatabaseTableSpec": {
       "properties": {
+        "dataplexTable": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
+        },
         "type": {
           "enum": [
             "TABLE_TYPE_UNSPECIFIED",
             "NATIVE",
             "EXTERNAL"
           ]
-        },
-        "dataplexTable": {
-          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
         },
         "databaseViewSpec": {
           "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
@@ -157,40 +157,8 @@
     },
     "GoogleCloudDatacatalogV1Entry": {
       "properties": {
-        "datasetSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
-        },
-        "featureOnlineStoreSpec": {
-          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
-        },
-        "schema": {
-          "$ref": "GoogleCloudDatacatalogV1Schema"
-        },
-        "dataSource": {
-          "$ref": "GoogleCloudDatacatalogV1DataSource"
-        },
-        "databaseTableSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
-        },
-        "modelSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
-        },
-        "dataSourceConnectionSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
-        },
-        "integratedSystem": {
-          "enum": [
-            "INTEGRATED_SYSTEM_UNSPECIFIED",
-            "BIGQUERY",
-            "CLOUD_PUBSUB",
-            "DATAPROC_METASTORE",
-            "DATAPLEX",
-            "CLOUD_SPANNER",
-            "CLOUD_BIGTABLE",
-            "CLOUD_SQL",
-            "LOOKER",
-            "VERTEX_AI"
-          ]
+        "routineSpec": {
+          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
         },
         "type": {
           "enum": [
@@ -221,11 +189,43 @@
         "bigqueryTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec"
         },
+        "schema": {
+          "$ref": "GoogleCloudDatacatalogV1Schema"
+        },
         "graphSpec": {
           "$ref": "GoogleCloudDatacatalogV1GraphSpec"
         },
-        "routineSpec": {
-          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
+        "dataSource": {
+          "$ref": "GoogleCloudDatacatalogV1DataSource"
+        },
+        "dataSourceConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
+        },
+        "datasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
+        },
+        "integratedSystem": {
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
+            "CLOUD_SQL",
+            "LOOKER",
+            "VERTEX_AI"
+          ]
+        },
+        "databaseTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
+        },
+        "featureOnlineStoreSpec": {
+          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
         }
       }
     },

@@ -33,6 +33,14 @@
     },
     "GetHealthOperationMetadataHealthInfo": {
       "properties": {
+        "unhealthyReason": {
+          "enum": [
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
+          ]
+        },
         "repairCategory": {
           "enum": [
             "REPAIR_CATEGORY_UNSPECIFIED",
@@ -47,14 +55,6 @@
             "HEALTH_STATUS_UNSPECIFIED",
             "HEALTH_STATUS_HEALTHY",
             "HEALTH_STATUS_UNHEALTHY"
-          ]
-        },
-        "unhealthyReason": {
-          "enum": [
-            "UNHEALTHY_REASON_UNSPECIFIED",
-            "UNHEALTHY_REASON_REPAIRING",
-            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
-            "UNHEALTHY_REASON_UNSCHEDULABLE"
           ]
         },
         "availabilitySloStatus": {
@@ -78,21 +78,30 @@
     },
     "Operation": {
       "properties": {
-        "getHealthOperationMetadata": {
-          "$ref": "GetHealthOperationMetadata"
-        },
-        "status": {
-          "enum": [
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ]
-        },
         "setCommonInstanceMetadataOperationMetadata": {
           "$ref": "SetCommonInstanceMetadataOperationMetadata"
         },
-        "instancesBulkInsertOperationMetadata": {
-          "$ref": "InstancesBulkInsertOperationMetadata"
+        "error": {
+          "properties": {
+            "errors": {
+              "items": {
+                "properties": {
+                  "errorDetails": {
+                    "items": {
+                      "properties": {
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "getHealthOperationMetadata": {
+          "$ref": "GetHealthOperationMetadata"
         },
         "warnings": {
           "items": {
@@ -145,24 +154,15 @@
             }
           }
         },
-        "error": {
-          "properties": {
-            "errors": {
-              "items": {
-                "properties": {
-                  "errorDetails": {
-                    "items": {
-                      "properties": {
-                        "quotaInfo": {
-                          "$ref": "QuotaExceededInfo"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+        "status": {
+          "enum": [
+            "PENDING",
+            "RUNNING",
+            "DONE"
+          ]
+        },
+        "instancesBulkInsertOperationMetadata": {
+          "$ref": "InstancesBulkInsertOperationMetadata"
         }
       }
     },

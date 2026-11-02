@@ -13,6 +13,14 @@
             "AUTH_FAIL_ACTION_UNAUTHORIZED"
           ]
         },
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        },
         "securityLevel": {
           "enum": [
             "SECURE_UNSPECIFIED",
@@ -21,19 +29,19 @@
             "SECURE_OPTIONAL",
             "SECURE_ALWAYS"
           ]
-        },
-        "login": {
-          "enum": [
-            "LOGIN_UNSPECIFIED",
-            "LOGIN_OPTIONAL",
-            "LOGIN_ADMIN",
-            "LOGIN_REQUIRED"
-          ]
         }
       }
     },
     "Application": {
       "properties": {
+        "servingStatus": {
+          "enum": [
+            "UNSPECIFIED",
+            "SERVING",
+            "USER_DISABLED",
+            "SYSTEM_DISABLED"
+          ]
+        },
         "databaseType": {
           "enum": [
             "DATABASE_TYPE_UNSPECIFIED",
@@ -47,14 +55,6 @@
             "SSL_POLICY_UNSPECIFIED",
             "DEFAULT",
             "MODERN"
-          ]
-        },
-        "servingStatus": {
-          "enum": [
-            "UNSPECIFIED",
-            "SERVING",
-            "USER_DISABLED",
-            "SYSTEM_DISABLED"
           ]
         }
       }
@@ -143,11 +143,11 @@
     },
     "Service": {
       "properties": {
-        "networkSettings": {
-          "$ref": "NetworkSettings"
-        },
         "split": {
           "$ref": "TrafficSplit"
+        },
+        "networkSettings": {
+          "$ref": "NetworkSettings"
         }
       }
     },
@@ -176,6 +176,14 @@
     },
     "UrlMap": {
       "properties": {
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        },
         "securityLevel": {
           "enum": [
             "SECURE_UNSPECIFIED",
@@ -183,13 +191,6 @@
             "SECURE_NEVER",
             "SECURE_OPTIONAL",
             "SECURE_ALWAYS"
-          ]
-        },
-        "authFailAction": {
-          "enum": [
-            "AUTH_FAIL_ACTION_UNSPECIFIED",
-            "AUTH_FAIL_ACTION_REDIRECT",
-            "AUTH_FAIL_ACTION_UNAUTHORIZED"
           ]
         },
         "redirectHttpResponseCode": {
@@ -201,29 +202,17 @@
             "REDIRECT_HTTP_RESPONSE_CODE_307"
           ]
         },
-        "login": {
+        "authFailAction": {
           "enum": [
-            "LOGIN_UNSPECIFIED",
-            "LOGIN_OPTIONAL",
-            "LOGIN_ADMIN",
-            "LOGIN_REQUIRED"
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
           ]
         }
       }
     },
     "Version": {
       "properties": {
-        "vpcAccess": {
-          "$ref": "VpcAccess"
-        },
-        "handlers": {
-          "items": {
-            "$ref": "UrlMap"
-          }
-        },
-        "apiConfig": {
-          "$ref": "ApiConfigHandler"
-        },
         "servingStatus": {
           "enum": [
             "SERVING_STATUS_UNSPECIFIED",
@@ -231,9 +220,12 @@
             "STOPPED"
           ]
         },
-        "errorHandlers": {
+        "vpcAccessConnector": {
+          "$ref": "VpcAccessConnector"
+        },
+        "handlers": {
           "items": {
-            "$ref": "ErrorHandler"
+            "$ref": "UrlMap"
           }
         },
         "inboundServices": {
@@ -251,8 +243,22 @@
             ]
           }
         },
+        "vpcAccess": {
+          "$ref": "VpcAccess"
+        },
+        "endpointsApiService": {
+          "$ref": "EndpointsApiService"
+        },
         "network": {
           "$ref": "Network"
+        },
+        "apiConfig": {
+          "$ref": "ApiConfigHandler"
+        },
+        "errorHandlers": {
+          "items": {
+            "$ref": "ErrorHandler"
+          }
         },
         "appEngineBundledServices": {
           "items": {
@@ -275,12 +281,6 @@
               "BUNDLED_SERVICE_TYPE_USERS"
             ]
           }
-        },
-        "vpcAccessConnector": {
-          "$ref": "VpcAccessConnector"
-        },
-        "endpointsApiService": {
-          "$ref": "EndpointsApiService"
         }
       }
     },

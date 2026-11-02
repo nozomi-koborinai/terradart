@@ -25,21 +25,21 @@
     },
     "PostgreSql": {
       "properties": {
+        "schemaMigration": {
+          "enum": [
+            "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
+            "MIGRATE_COMPATIBLE"
+          ]
+        },
+        "cloudSql": {
+          "$ref": "CloudSqlInstance"
+        },
         "schemaValidation": {
           "enum": [
             "SQL_SCHEMA_VALIDATION_UNSPECIFIED",
             "NONE",
             "STRICT",
             "COMPATIBLE"
-          ]
-        },
-        "cloudSql": {
-          "$ref": "CloudSqlInstance"
-        },
-        "schemaMigration": {
-          "enum": [
-            "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
-            "MIGRATE_COMPATIBLE"
           ]
         }
       }

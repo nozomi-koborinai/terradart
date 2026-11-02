@@ -1,18 +1,18 @@
 {
   "name": "cloudidentity",
   "version": "v1",
-  "revision": "20261026",
+  "revision": "20261028",
   "sourceUrl": "https://cloudidentity.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DynamicGroupMetadata": {
       "properties": {
-        "status": {
-          "$ref": "DynamicGroupStatus"
-        },
         "queries": {
           "items": {
             "$ref": "DynamicGroupQuery"
           }
+        },
+        "status": {
+          "$ref": "DynamicGroupStatus"
         }
       }
     },
@@ -47,20 +47,6 @@
     },
     "Membership": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "USER",
-            "SERVICE_ACCOUNT",
-            "GROUP",
-            "SHARED_DRIVE",
-            "CBCM_BROWSER",
-            "CHROME_OS_DEVICE",
-            "PERSONAL_AGENT",
-            "COWORKER_AGENT",
-            "OTHER"
-          ]
-        },
         "roles": {
           "items": {
             "$ref": "MembershipRole"
@@ -74,6 +60,20 @@
             "DAILY",
             "NONE",
             "DISABLED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "SERVICE_ACCOUNT",
+            "GROUP",
+            "SHARED_DRIVE",
+            "CBCM_BROWSER",
+            "CHROME_OS_DEVICE",
+            "PERSONAL_AGENT",
+            "COWORKER_AGENT",
+            "OTHER"
           ]
         }
       }

@@ -1,24 +1,24 @@
 {
   "name": "analyticshub",
   "version": "v1",
-  "revision": "20261019",
+  "revision": "20261026",
   "sourceUrl": "https://analyticshub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Subscription": {
       "properties": {
+        "resourceType": {
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "STATE_ACTIVE",
             "STATE_STALE",
             "STATE_INACTIVE"
-          ]
-        },
-        "resourceType": {
-          "enum": [
-            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
-            "BIGQUERY_DATASET",
-            "PUBSUB_TOPIC"
           ]
         }
       }

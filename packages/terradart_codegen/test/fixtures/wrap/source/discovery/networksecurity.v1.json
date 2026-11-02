@@ -6,13 +6,6 @@
   "schemas": {
     "AddressGroup": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "IPV4",
-            "IPV6"
-          ]
-        },
         "purpose": {
           "items": {
             "enum": [
@@ -21,6 +14,13 @@
               "CLOUD_ARMOR"
             ]
           }
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ]
         }
       }
     },
@@ -51,15 +51,14 @@
     },
     "AuthzPolicy": {
       "properties": {
-        "httpRules": {
-          "items": {
-            "$ref": "AuthzPolicyAuthzRule"
-          }
-        },
-        "networkRules": {
-          "items": {
-            "$ref": "AuthzPolicyAuthzRule"
-          }
+        "action": {
+          "enum": [
+            "AUTHZ_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "CUSTOM",
+            "DENY_BY_DEFAULT"
+          ]
         },
         "policyProfile": {
           "enum": [
@@ -71,35 +70,36 @@
         "target": {
           "$ref": "AuthzPolicyTarget"
         },
-        "action": {
-          "enum": [
-            "AUTHZ_ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY",
-            "CUSTOM",
-            "DENY_BY_DEFAULT"
-          ]
+        "httpRules": {
+          "items": {
+            "$ref": "AuthzPolicyAuthzRule"
+          }
+        },
+        "networkRules": {
+          "items": {
+            "$ref": "AuthzPolicyAuthzRule"
+          }
         }
       }
     },
     "AuthzPolicyAuthzRule": {
       "properties": {
-        "from": {
-          "$ref": "AuthzPolicyAuthzRuleFrom"
-        },
         "to": {
           "$ref": "AuthzPolicyAuthzRuleTo"
+        },
+        "from": {
+          "$ref": "AuthzPolicyAuthzRuleFrom"
         }
       }
     },
     "AuthzPolicyAuthzRuleFrom": {
       "properties": {
-        "notSources": {
+        "sources": {
           "items": {
             "$ref": "AuthzPolicyAuthzRuleFromRequestSource"
           }
         },
-        "sources": {
+        "notSources": {
           "items": {
             "$ref": "AuthzPolicyAuthzRuleFromRequestSource"
           }
@@ -129,12 +129,12 @@
     },
     "AuthzPolicyAuthzRuleTo": {
       "properties": {
-        "notOperations": {
+        "operations": {
           "items": {
             "$ref": "AuthzPolicyAuthzRuleToRequestOperation"
           }
         },
-        "operations": {
+        "notOperations": {
           "items": {
             "$ref": "AuthzPolicyAuthzRuleToRequestOperation"
           }
@@ -256,6 +256,16 @@
     },
     "FirewallEndpointWildfireSettings": {
       "properties": {
+        "wildfireRealtimeLookupTimeoutAction": {
+          "enum": [
+            "WILDFIRE_REALTIME_SIGNATURE_LOOKUP_TIMEOUT_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
+        "wildfireInlineCloudAnalysisSettings": {
+          "$ref": "FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings"
+        },
         "wildfireRegion": {
           "enum": [
             "WILDFIRE_REGION_UNSPECIFIED",
@@ -278,16 +288,6 @@
             "SAUDI_ARABIA",
             "SPAIN"
           ]
-        },
-        "wildfireRealtimeLookupTimeoutAction": {
-          "enum": [
-            "WILDFIRE_REALTIME_SIGNATURE_LOOKUP_TIMEOUT_ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
-        "wildfireInlineCloudAnalysisSettings": {
-          "$ref": "FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings"
         }
       }
     },
@@ -332,6 +332,16 @@
     },
     "InterceptDeploymentGroup": {
       "properties": {
+        "locations": {
+          "items": {
+            "$ref": "InterceptLocation"
+          }
+        },
+        "nestedDeployments": {
+          "items": {
+            "$ref": "InterceptDeploymentGroupDeployment"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -339,16 +349,6 @@
             "CREATING",
             "DELETING"
           ]
-        },
-        "nestedDeployments": {
-          "items": {
-            "$ref": "InterceptDeploymentGroupDeployment"
-          }
-        },
-        "locations": {
-          "items": {
-            "$ref": "InterceptLocation"
-          }
         }
       }
     },
@@ -391,14 +391,14 @@
     },
     "InterceptEndpointGroupAssociation": {
       "properties": {
-        "locations": {
-          "items": {
-            "$ref": "InterceptLocation"
-          }
-        },
         "locationsDetails": {
           "items": {
             "$ref": "InterceptEndpointGroupAssociationLocationDetails"
+          }
+        },
+        "locations": {
+          "items": {
+            "$ref": "InterceptLocation"
           }
         },
         "state": {
@@ -535,6 +535,11 @@
     },
     "MirroringEndpointGroup": {
       "properties": {
+        "associations": {
+          "items": {
+            "$ref": "MirroringEndpointGroupAssociationDetails"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -552,11 +557,6 @@
             "DIRECT"
           ]
         },
-        "associations": {
-          "items": {
-            "$ref": "MirroringEndpointGroupAssociationDetails"
-          }
-        },
         "connectedDeploymentGroups": {
           "items": {
             "$ref": "MirroringEndpointGroupConnectedDeploymentGroup"
@@ -571,11 +571,6 @@
             "$ref": "MirroringEndpointGroupAssociationLocationDetails"
           }
         },
-        "locations": {
-          "items": {
-            "$ref": "MirroringLocation"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -586,6 +581,11 @@
             "OUT_OF_SYNC",
             "DELETE_FAILED"
           ]
+        },
+        "locations": {
+          "items": {
+            "$ref": "MirroringLocation"
+          }
         }
       }
     },
@@ -637,11 +637,8 @@
     },
     "SecurityProfile": {
       "properties": {
-        "threatPreventionProfile": {
-          "$ref": "ThreatPreventionProfile"
-        },
-        "wildfireAnalysisProfile": {
-          "$ref": "WildfireAnalysisProfile"
+        "urlFilteringProfile": {
+          "$ref": "UrlFilteringProfile"
         },
         "type": {
           "enum": [
@@ -653,8 +650,11 @@
             "WILDFIRE_ANALYSIS"
           ]
         },
-        "urlFilteringProfile": {
-          "$ref": "UrlFilteringProfile"
+        "wildfireAnalysisProfile": {
+          "$ref": "WildfireAnalysisProfile"
+        },
+        "threatPreventionProfile": {
+          "$ref": "ThreatPreventionProfile"
         }
       }
     },
@@ -721,29 +721,20 @@
             "$ref": "AntivirusOverride"
           }
         },
-        "threatOverrides": {
-          "items": {
-            "$ref": "ThreatOverride"
-          }
-        },
         "severityOverrides": {
           "items": {
             "$ref": "SeverityOverride"
+          }
+        },
+        "threatOverrides": {
+          "items": {
+            "$ref": "ThreatOverride"
           }
         }
       }
     },
     "TlsInspectionPolicy": {
       "properties": {
-        "tlsFeatureProfile": {
-          "enum": [
-            "PROFILE_UNSPECIFIED",
-            "PROFILE_COMPATIBLE",
-            "PROFILE_MODERN",
-            "PROFILE_RESTRICTED",
-            "PROFILE_CUSTOM"
-          ]
-        },
         "certificateIssuanceMode": {
           "enum": [
             "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
@@ -758,6 +749,15 @@
             "TLS_1_1",
             "TLS_1_2",
             "TLS_1_3"
+          ]
+        },
+        "tlsFeatureProfile": {
+          "enum": [
+            "PROFILE_UNSPECIFIED",
+            "PROFILE_COMPATIBLE",
+            "PROFILE_MODERN",
+            "PROFILE_RESTRICTED",
+            "PROFILE_CUSTOM"
           ]
         }
       }
@@ -787,19 +787,14 @@
     },
     "WildfireAnalysisProfile": {
       "properties": {
-        "wildfireInlineMlSettings": {
-          "items": {
-            "$ref": "WildfireInlineMlSettings"
-          }
-        },
         "wildfireOverrides": {
           "items": {
             "$ref": "WildfireOverride"
           }
         },
-        "wildfireThreatOverrides": {
+        "wildfireInlineCloudAnalysisRules": {
           "items": {
-            "$ref": "WildfireThreatOverride"
+            "$ref": "WildfireInlineCloudAnalysisRule"
           }
         },
         "wildfireSubmissionRules": {
@@ -807,36 +802,36 @@
             "$ref": "WildfireSubmissionRule"
           }
         },
+        "wildfireThreatOverrides": {
+          "items": {
+            "$ref": "WildfireThreatOverride"
+          }
+        },
         "wildfireInlineMlSetting": {
           "$ref": "WildfireInlineMlSettings"
+        },
+        "wildfireInlineMlSettings": {
+          "items": {
+            "$ref": "WildfireInlineMlSettings"
+          }
         },
         "wildfireInlineMlOverrides": {
           "items": {
             "$ref": "WildfireInlineMlOverride"
-          }
-        },
-        "wildfireInlineCloudAnalysisRules": {
-          "items": {
-            "$ref": "WildfireInlineCloudAnalysisRule"
           }
         }
       }
     },
     "WildfireInlineCloudAnalysisRule": {
       "properties": {
+        "customFileTypes": {
+          "$ref": "WildfireInlineCloudAnalysisRuleCustomFileTypes"
+        },
         "fileSelectionMode": {
           "enum": [
             "FILE_SELECTION_MODE_UNSPECIFIED",
             "ALL_FILE_TYPES",
             "CUSTOM_FILE_TYPES"
-          ]
-        },
-        "action": {
-          "enum": [
-            "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY",
-            "ALERT"
           ]
         },
         "direction": {
@@ -847,8 +842,13 @@
             "BOTH"
           ]
         },
-        "customFileTypes": {
-          "$ref": "WildfireInlineCloudAnalysisRuleCustomFileTypes"
+        "action": {
+          "enum": [
+            "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "ALERT"
+          ]
         }
       }
     },
@@ -900,6 +900,14 @@
     },
     "WildfireInlineMlSettingsInlineMlConfig": {
       "properties": {
+        "action": {
+          "enum": [
+            "INLINE_ML_ACTION_UNSPECIFIED",
+            "DISABLE",
+            "ALERT",
+            "ENABLE"
+          ]
+        },
         "fileType": {
           "enum": [
             "INLINE_ML_CONFIG_UNSPECIFIED",
@@ -912,19 +920,20 @@
             "OOXML",
             "MACHO"
           ]
-        },
-        "action": {
-          "enum": [
-            "INLINE_ML_ACTION_UNSPECIFIED",
-            "DISABLE",
-            "ALERT",
-            "ENABLE"
-          ]
         }
       }
     },
     "WildfireOverride": {
       "properties": {
+        "action": {
+          "enum": [
+            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+            "WILDFIRE_DEFAULT_ACTION",
+            "WILDFIRE_ALLOW",
+            "WILDFIRE_ALERT",
+            "WILDFIRE_DENY"
+          ]
+        },
         "protocol": {
           "enum": [
             "WILDFIRE_PROTOCOL_UNSPECIFIED",
@@ -936,20 +945,19 @@
             "WILDFIRE_HTTP",
             "WILDFIRE_FTP"
           ]
-        },
-        "action": {
-          "enum": [
-            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
-            "WILDFIRE_DEFAULT_ACTION",
-            "WILDFIRE_ALLOW",
-            "WILDFIRE_ALERT",
-            "WILDFIRE_DENY"
-          ]
         }
       }
     },
     "WildfireSubmissionRule": {
       "properties": {
+        "direction": {
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "UPLOAD",
+            "DOWNLOAD",
+            "BOTH"
+          ]
+        },
         "customFileTypes": {
           "$ref": "WildfireSubmissionRuleCustomFileTypes"
         },
@@ -958,14 +966,6 @@
             "FILE_SELECTION_MODE_UNSPECIFIED",
             "ALL_FILE_TYPES",
             "CUSTOM_FILE_TYPES"
-          ]
-        },
-        "direction": {
-          "enum": [
-            "DIRECTION_UNSPECIFIED",
-            "UPLOAD",
-            "DOWNLOAD",
-            "BOTH"
           ]
         }
       }

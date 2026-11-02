@@ -6,17 +6,8 @@
   "schemas": {
     "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders": {
       "properties": {
-        "userInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
-        },
         "deviceInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
-        },
-        "dispatchInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
-        },
-        "groupInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
         },
         "outputType": {
           "enum": [
@@ -25,6 +16,15 @@
             "JSON",
             "NONE"
           ]
+        },
+        "groupInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
+        },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
         }
       }
     },
@@ -78,14 +78,14 @@
     },
     "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig": {
       "properties": {
+        "contextualHeaders": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders"
+        },
         "gatewayIdentity": {
           "enum": [
             "GATEWAY_IDENTITY_UNSPECIFIED",
             "RESOURCE_NAME"
           ]
-        },
-        "contextualHeaders": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders"
         }
       }
     },

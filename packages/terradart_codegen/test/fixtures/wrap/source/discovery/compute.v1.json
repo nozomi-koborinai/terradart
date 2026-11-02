@@ -1,11 +1,17 @@
 {
   "name": "compute",
   "version": "v1",
-  "revision": "20261016",
+  "revision": "20261026",
   "sourceUrl": "https://compute.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessConfig": {
       "properties": {
+        "type": {
+          "enum": [
+            "DIRECT_IPV6",
+            "ONE_TO_ONE_NAT"
+          ]
+        },
         "networkTier": {
           "enum": [
             "FIXED_STANDARD",
@@ -13,29 +19,11 @@
             "STANDARD",
             "STANDARD_OVERRIDES_FIXED_STANDARD"
           ]
-        },
-        "type": {
-          "enum": [
-            "DIRECT_IPV6",
-            "ONE_TO_ONE_NAT"
-          ]
         }
       }
     },
     "Address": {
       "properties": {
-        "purpose": {
-          "enum": [
-            "DNS_RESOLVER",
-            "GCE_ENDPOINT",
-            "IPSEC_INTERCONNECT",
-            "NAT_AUTO",
-            "PRIVATE_SERVICE_CONNECT",
-            "SERVERLESS",
-            "SHARED_LOADBALANCER_VIP",
-            "VPC_PEERING"
-          ]
-        },
         "networkTier": {
           "enum": [
             "FIXED_STANDARD",
@@ -51,6 +39,25 @@
             "UNSPECIFIED_VERSION"
           ]
         },
+        "addressType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL",
+            "UNSPECIFIED_TYPE"
+          ]
+        },
+        "purpose": {
+          "enum": [
+            "DNS_RESOLVER",
+            "GCE_ENDPOINT",
+            "IPSEC_INTERCONNECT",
+            "NAT_AUTO",
+            "PRIVATE_SERVICE_CONNECT",
+            "SERVERLESS",
+            "SHARED_LOADBALANCER_VIP",
+            "VPC_PEERING"
+          ]
+        },
         "ipv6EndpointType": {
           "enum": [
             "NETLB",
@@ -62,13 +69,6 @@
             "IN_USE",
             "RESERVED",
             "RESERVING"
-          ]
-        },
-        "addressType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL",
-            "UNSPECIFIED_TYPE"
           ]
         }
       }
@@ -87,13 +87,6 @@
     },
     "AllocationAggregateReservation": {
       "properties": {
-        "workloadType": {
-          "enum": [
-            "BATCH",
-            "SERVING",
-            "UNSPECIFIED"
-          ]
-        },
         "vmFamily": {
           "enum": [
             "VM_FAMILY_CLOUD_TPU_DEVICE_CT3",
@@ -104,6 +97,13 @@
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
+          ]
+        },
+        "workloadType": {
+          "enum": [
+            "BATCH",
+            "SERVING",
+            "UNSPECIFIED"
           ]
         }
       }
@@ -121,11 +121,11 @@
     },
     "AllocationResourceStatus": {
       "properties": {
-        "healthInfo": {
-          "$ref": "AllocationResourceStatusHealthInfo"
-        },
         "reservationMaintenance": {
           "$ref": "GroupMaintenanceInfo"
+        },
+        "healthInfo": {
+          "$ref": "AllocationResourceStatusHealthInfo"
         }
       }
     },
@@ -171,11 +171,17 @@
     },
     "AttachedDisk": {
       "properties": {
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
+        },
         "savedState": {
           "enum": [
             "DISK_SAVED_STATE_UNSPECIFIED",
             "PRESERVED"
           ]
+        },
+        "initializeParams": {
+          "$ref": "AttachedDiskInitializeParams"
         },
         "guestOsFeatures": {
           "items": {
@@ -186,6 +192,12 @@
           "enum": [
             "PERSISTENT",
             "SCRATCH"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "READ_ONLY",
+            "READ_WRITE"
           ]
         },
         "interface": {
@@ -200,18 +212,6 @@
             "ARM64",
             "X86_64"
           ]
-        },
-        "mode": {
-          "enum": [
-            "READ_ONLY",
-            "READ_WRITE"
-          ]
-        },
-        "shieldedInstanceInitialState": {
-          "$ref": "InitialStateConfig"
-        },
-        "initializeParams": {
-          "$ref": "AttachedDiskInitializeParams"
         }
       }
     },
@@ -235,6 +235,9 @@
     },
     "Autoscaler": {
       "properties": {
+        "autoscalingPolicy": {
+          "$ref": "AutoscalingPolicy"
+        },
         "status": {
           "enum": [
             "ACTIVE",
@@ -247,9 +250,6 @@
           "additionalProperties": {
             "$ref": "ScalingScheduleStatus"
           }
-        },
-        "autoscalingPolicy": {
-          "$ref": "AutoscalingPolicy"
         },
         "statusDetails": {
           "items": {
@@ -288,14 +288,6 @@
     },
     "AutoscalingPolicy": {
       "properties": {
-        "customMetricUtilizations": {
-          "items": {
-            "$ref": "AutoscalingPolicyCustomMetricUtilization"
-          }
-        },
-        "cpuUtilization": {
-          "$ref": "AutoscalingPolicyCpuUtilization"
-        },
         "mode": {
           "enum": [
             "OFF",
@@ -303,6 +295,14 @@
             "ONLY_SCALE_OUT",
             "ONLY_UP"
           ]
+        },
+        "customMetricUtilizations": {
+          "items": {
+            "$ref": "AutoscalingPolicyCustomMetricUtilization"
+          }
+        },
+        "cpuUtilization": {
+          "$ref": "AutoscalingPolicyCpuUtilization"
         }
       }
     },
@@ -356,11 +356,8 @@
     },
     "BackendBucket": {
       "properties": {
-        "loadBalancingScheme": {
-          "enum": [
-            "EXTERNAL_MANAGED",
-            "INTERNAL_MANAGED"
-          ]
+        "cdnPolicy": {
+          "$ref": "BackendBucketCdnPolicy"
         },
         "compressionMode": {
           "enum": [
@@ -368,8 +365,11 @@
             "DISABLED"
           ]
         },
-        "cdnPolicy": {
-          "$ref": "BackendBucketCdnPolicy"
+        "loadBalancingScheme": {
+          "enum": [
+            "EXTERNAL_MANAGED",
+            "INTERNAL_MANAGED"
+          ]
         }
       }
     },
@@ -387,25 +387,6 @@
     },
     "BackendService": {
       "properties": {
-        "haPolicy": {
-          "$ref": "BackendServiceHAPolicy"
-        },
-        "ipAddressSelectionPolicy": {
-          "enum": [
-            "IPV4_ONLY",
-            "IPV6_ONLY",
-            "IP_ADDRESS_SELECTION_POLICY_UNSPECIFIED",
-            "PREFER_IPV6"
-          ]
-        },
-        "logConfig": {
-          "$ref": "BackendServiceLogConfig"
-        },
-        "localityLbPolicies": {
-          "items": {
-            "$ref": "BackendServiceLocalityLoadBalancingPolicyConfig"
-          }
-        },
         "localityLbPolicy": {
           "enum": [
             "INVALID_LB_POLICY",
@@ -420,9 +401,6 @@
             "WEIGHTED_ROUND_ROBIN"
           ]
         },
-        "networkPassThroughLbTrafficPolicy": {
-          "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy"
-        },
         "sessionAffinity": {
           "enum": [
             "CLIENT_IP",
@@ -435,6 +413,11 @@
             "NONE",
             "STRONG_COOKIE_AFFINITY"
           ]
+        },
+        "backends": {
+          "items": {
+            "$ref": "Backend"
+          }
         },
         "protocol": {
           "enum": [
@@ -455,17 +438,8 @@
             "DISABLED"
           ]
         },
-        "backends": {
-          "items": {
-            "$ref": "Backend"
-          }
-        },
-        "externalManagedMigrationState": {
-          "enum": [
-            "PREPARE",
-            "TEST_ALL_TRAFFIC",
-            "TEST_BY_PERCENTAGE"
-          ]
+        "networkPassThroughLbTrafficPolicy": {
+          "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy"
         },
         "loadBalancingScheme": {
           "enum": [
@@ -477,14 +451,40 @@
             "INVALID_LOAD_BALANCING_SCHEME"
           ]
         },
+        "subsetting": {
+          "$ref": "Subsetting"
+        },
         "cdnPolicy": {
           "$ref": "BackendServiceCdnPolicy"
+        },
+        "externalManagedMigrationState": {
+          "enum": [
+            "PREPARE",
+            "TEST_ALL_TRAFFIC",
+            "TEST_BY_PERCENTAGE"
+          ]
+        },
+        "logConfig": {
+          "$ref": "BackendServiceLogConfig"
         },
         "connectionTrackingPolicy": {
           "$ref": "BackendServiceConnectionTrackingPolicy"
         },
-        "subsetting": {
-          "$ref": "Subsetting"
+        "localityLbPolicies": {
+          "items": {
+            "$ref": "BackendServiceLocalityLoadBalancingPolicyConfig"
+          }
+        },
+        "haPolicy": {
+          "$ref": "BackendServiceHAPolicy"
+        },
+        "ipAddressSelectionPolicy": {
+          "enum": [
+            "IPV4_ONLY",
+            "IPV6_ONLY",
+            "IP_ADDRESS_SELECTION_POLICY_UNSPECIFIED",
+            "PREFER_IPV6"
+          ]
         }
       }
     },
@@ -600,12 +600,26 @@
             "$ref": "ResourceCommitment"
           }
         },
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "CANCELLED",
+            "CREATING",
+            "EXPIRED",
+            "NOT_YET_ACTIVE"
+          ]
+        },
         "plan": {
           "enum": [
             "INVALID",
             "THIRTY_SIX_MONTH",
             "TWELVE_MONTH"
           ]
+        },
+        "reservations": {
+          "items": {
+            "$ref": "Reservation"
+          }
         },
         "type": {
           "enum": [
@@ -658,26 +672,12 @@
             "TYPE_UNSPECIFIED"
           ]
         },
-        "status": {
-          "enum": [
-            "ACTIVE",
-            "CANCELLED",
-            "CREATING",
-            "EXPIRED",
-            "NOT_YET_ACTIVE"
-          ]
-        },
         "category": {
           "enum": [
             "CATEGORY_UNSPECIFIED",
             "LICENSE",
             "MACHINE"
           ]
-        },
-        "reservations": {
-          "items": {
-            "$ref": "Reservation"
-          }
         }
       }
     },
@@ -722,13 +722,20 @@
             "READ_WRITE_SINGLE"
           ]
         },
+        "resourceStatus": {
+          "$ref": "DiskResourceStatus"
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        },
         "guestOsFeatures": {
           "items": {
             "$ref": "GuestOsFeature"
           }
-        },
-        "resourceStatus": {
-          "$ref": "DiskResourceStatus"
         },
         "status": {
           "enum": [
@@ -738,13 +745,6 @@
             "READY",
             "RESTORING",
             "UNAVAILABLE"
-          ]
-        },
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
           ]
         }
       }
@@ -766,13 +766,13 @@
     },
     "DiskResourceStatus": {
       "properties": {
-        "asyncPrimaryDisk": {
-          "$ref": "DiskResourceStatusAsyncReplicationStatus"
-        },
         "asyncSecondaryDisks": {
           "additionalProperties": {
             "$ref": "DiskResourceStatusAsyncReplicationStatus"
           }
+        },
+        "asyncPrimaryDisk": {
+          "$ref": "DiskResourceStatusAsyncReplicationStatus"
         }
       }
     },
@@ -849,6 +849,11 @@
     },
     "FirewallPolicy": {
       "properties": {
+        "rules": {
+          "items": {
+            "$ref": "FirewallPolicyRule"
+          }
+        },
         "policyType": {
           "enum": [
             "RDMA_ROCE_POLICY",
@@ -860,22 +865,11 @@
           "items": {
             "$ref": "FirewallPolicyRule"
           }
-        },
-        "rules": {
-          "items": {
-            "$ref": "FirewallPolicyRule"
-          }
         }
       }
     },
     "FirewallPolicyRule": {
       "properties": {
-        "direction": {
-          "enum": [
-            "EGRESS",
-            "INGRESS"
-          ]
-        },
         "targetSecureTags": {
           "items": {
             "$ref": "FirewallPolicyRuleSecureTag"
@@ -883,6 +877,12 @@
         },
         "match": {
           "$ref": "FirewallPolicyRuleMatcher"
+        },
+        "direction": {
+          "enum": [
+            "EGRESS",
+            "INGRESS"
+          ]
         },
         "targetType": {
           "enum": [
@@ -894,24 +894,6 @@
     },
     "FirewallPolicyRuleMatcher": {
       "properties": {
-        "destNetworkType": {
-          "enum": [
-            "INTERNET",
-            "INTRA_VPC",
-            "NON_INTERNET",
-            "UNSPECIFIED",
-            "VPC_NETWORKS"
-          ]
-        },
-        "destNetworkContext": {
-          "enum": [
-            "INTERNET",
-            "INTRA_VPC",
-            "NON_INTERNET",
-            "UNSPECIFIED",
-            "VPC_NETWORKS"
-          ]
-        },
         "srcNetworkContext": {
           "enum": [
             "INTERNET",
@@ -934,6 +916,24 @@
             "UNSPECIFIED",
             "VPC_NETWORKS"
           ]
+        },
+        "destNetworkContext": {
+          "enum": [
+            "INTERNET",
+            "INTRA_VPC",
+            "NON_INTERNET",
+            "UNSPECIFIED",
+            "VPC_NETWORKS"
+          ]
+        },
+        "destNetworkType": {
+          "enum": [
+            "INTERNET",
+            "INTRA_VPC",
+            "NON_INTERNET",
+            "UNSPECIFIED",
+            "VPC_NETWORKS"
+          ]
         }
       }
     },
@@ -949,12 +949,18 @@
     },
     "ForwardingRule": {
       "properties": {
-        "externalManagedBackendBucketMigrationState": {
+        "networkTier": {
           "enum": [
-            "PREPARE",
-            "TEST_ALL_TRAFFIC",
-            "TEST_BY_PERCENTAGE"
+            "FIXED_STANDARD",
+            "PREMIUM",
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ]
+        },
+        "metadataFilters": {
+          "items": {
+            "$ref": "MetadataFilter"
+          }
         },
         "loadBalancingScheme": {
           "enum": [
@@ -964,6 +970,16 @@
             "INTERNAL_MANAGED",
             "INTERNAL_SELF_MANAGED",
             "INVALID"
+          ]
+        },
+        "pscConnectionStatus": {
+          "enum": [
+            "ACCEPTED",
+            "CLOSED",
+            "NEEDS_ATTENTION",
+            "PENDING",
+            "REJECTED",
+            "STATUS_UNSPECIFIED"
           ]
         },
         "ipVersion": {
@@ -984,28 +1000,12 @@
             "UDP"
           ]
         },
-        "pscConnectionStatus": {
+        "externalManagedBackendBucketMigrationState": {
           "enum": [
-            "ACCEPTED",
-            "CLOSED",
-            "NEEDS_ATTENTION",
-            "PENDING",
-            "REJECTED",
-            "STATUS_UNSPECIFIED"
+            "PREPARE",
+            "TEST_ALL_TRAFFIC",
+            "TEST_BY_PERCENTAGE"
           ]
-        },
-        "networkTier": {
-          "enum": [
-            "FIXED_STANDARD",
-            "PREMIUM",
-            "STANDARD",
-            "STANDARD_OVERRIDES_FIXED_STANDARD"
-          ]
-        },
-        "metadataFilters": {
-          "items": {
-            "$ref": "MetadataFilter"
-          }
         }
       }
     },
@@ -1046,11 +1046,11 @@
     },
     "GlobalVmExtensionPolicyRolloutOperation": {
       "properties": {
-        "rolloutStatus": {
-          "$ref": "GlobalVmExtensionPolicyRolloutOperationRolloutStatus"
-        },
         "rolloutInput": {
           "$ref": "GlobalVmExtensionPolicyRolloutOperationRolloutInput"
+        },
+        "rolloutStatus": {
+          "$ref": "GlobalVmExtensionPolicyRolloutOperationRolloutStatus"
         }
       }
     },
@@ -1079,6 +1079,11 @@
     },
     "GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadata": {
       "properties": {
+        "locationRolloutStatus": {
+          "additionalProperties": {
+            "$ref": "GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus"
+          }
+        },
         "state": {
           "enum": [
             "STATE_CANCELLED",
@@ -1089,11 +1094,6 @@
             "STATE_UNKNOWN",
             "STATE_UNSPECIFIED"
           ]
-        },
-        "locationRolloutStatus": {
-          "additionalProperties": {
-            "$ref": "GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus"
-          }
         }
       }
     },
@@ -1169,34 +1169,34 @@
     },
     "HTTPHealthCheck": {
       "properties": {
+        "proxyHeader": {
+          "enum": [
+            "NONE",
+            "PROXY_V1"
+          ]
+        },
         "portSpecification": {
           "enum": [
             "USE_FIXED_PORT",
             "USE_NAMED_PORT",
             "USE_SERVING_PORT"
-          ]
-        },
-        "proxyHeader": {
-          "enum": [
-            "NONE",
-            "PROXY_V1"
           ]
         }
       }
     },
     "HTTPSHealthCheck": {
       "properties": {
-        "proxyHeader": {
-          "enum": [
-            "NONE",
-            "PROXY_V1"
-          ]
-        },
         "portSpecification": {
           "enum": [
             "USE_FIXED_PORT",
             "USE_NAMED_PORT",
             "USE_SERVING_PORT"
+          ]
+        },
+        "proxyHeader": {
+          "enum": [
+            "NONE",
+            "PROXY_V1"
           ]
         }
       }
@@ -1216,17 +1216,14 @@
         "httpsHealthCheck": {
           "$ref": "HTTPSHealthCheck"
         },
-        "tcpHealthCheck": {
-          "$ref": "TCPHealthCheck"
-        },
-        "grpcTlsHealthCheck": {
-          "$ref": "GRPCTLSHealthCheck"
-        },
-        "grpcHealthCheck": {
-          "$ref": "GRPCHealthCheck"
+        "sslHealthCheck": {
+          "$ref": "SSLHealthCheck"
         },
         "http2HealthCheck": {
           "$ref": "HTTP2HealthCheck"
+        },
+        "grpcHealthCheck": {
+          "$ref": "GRPCHealthCheck"
         },
         "type": {
           "enum": [
@@ -1240,11 +1237,14 @@
             "TCP"
           ]
         },
-        "sslHealthCheck": {
-          "$ref": "SSLHealthCheck"
+        "tcpHealthCheck": {
+          "$ref": "TCPHealthCheck"
         },
         "httpHealthCheck": {
           "$ref": "HTTPHealthCheck"
+        },
+        "grpcTlsHealthCheck": {
+          "$ref": "GRPCTLSHealthCheck"
         }
       }
     },
@@ -1282,13 +1282,13 @@
     },
     "HttpRouteRule": {
       "properties": {
+        "urlRedirect": {
+          "$ref": "HttpRedirectAction"
+        },
         "matchRules": {
           "items": {
             "$ref": "HttpRouteRuleMatch"
           }
-        },
-        "urlRedirect": {
-          "$ref": "HttpRedirectAction"
         },
         "routeAction": {
           "$ref": "HttpRouteAction"
@@ -1309,35 +1309,17 @@
     },
     "Image": {
       "properties": {
-        "sourceType": {
-          "enum": [
-            "RAW"
-          ]
-        },
-        "deprecated": {
-          "$ref": "DeprecationStatus"
-        },
-        "shieldedInstanceInitialState": {
-          "$ref": "InitialStateConfig"
-        },
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
-          ]
-        },
         "guestOsFeatures": {
           "items": {
             "$ref": "GuestOsFeature"
           }
         },
-        "status": {
+        "deprecated": {
+          "$ref": "DeprecationStatus"
+        },
+        "sourceType": {
           "enum": [
-            "DELETING",
-            "FAILED",
-            "PENDING",
-            "READY"
+            "RAW"
           ]
         },
         "rawDisk": {
@@ -1348,41 +1330,51 @@
               ]
             }
           }
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        },
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
+        },
+        "status": {
+          "enum": [
+            "DELETING",
+            "FAILED",
+            "PENDING",
+            "READY"
+          ]
         }
       }
     },
     "InitialStateConfig": {
       "properties": {
+        "keks": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        },
         "dbxs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
         },
-        "keks": {
+        "dbs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
         },
         "pk": {
           "$ref": "FileContentBuffer"
-        },
-        "dbs": {
-          "items": {
-            "$ref": "FileContentBuffer"
-          }
         }
       }
     },
     "Instance": {
       "properties": {
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
-        },
-        "networkInterfaces": {
-          "items": {
-            "$ref": "NetworkInterface"
-          }
-        },
         "privateIpv6GoogleAccess": {
           "enum": [
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
@@ -1390,19 +1382,16 @@
             "INHERIT_FROM_SUBNETWORK"
           ]
         },
-        "networkPerformanceConfig": {
-          "$ref": "NetworkPerformanceConfig"
-        },
         "disks": {
           "items": {
             "$ref": "AttachedDisk"
           }
         },
-        "resourceStatus": {
-          "$ref": "ResourceStatus"
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
         },
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
         },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig"
@@ -1421,8 +1410,19 @@
             "STANDARD_ENCRYPTION"
           ]
         },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
+        },
         "scheduling": {
           "$ref": "Scheduling"
+        },
+        "resourceStatus": {
+          "$ref": "ResourceStatus"
+        },
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
         },
         "status": {
           "enum": [
@@ -1447,14 +1447,20 @@
     },
     "InstanceGroupManager": {
       "properties": {
+        "targetSizePolicy": {
+          "$ref": "InstanceGroupManagerTargetSizePolicy"
+        },
         "instanceLifecyclePolicy": {
           "$ref": "InstanceGroupManagerInstanceLifecyclePolicy"
         },
-        "distributionPolicy": {
-          "$ref": "DistributionPolicy"
+        "standbyPolicy": {
+          "$ref": "InstanceGroupManagerStandbyPolicy"
         },
-        "statefulPolicy": {
-          "$ref": "StatefulPolicy"
+        "instanceFlexibilityPolicy": {
+          "$ref": "InstanceGroupManagerInstanceFlexibilityPolicy"
+        },
+        "updatePolicy": {
+          "$ref": "InstanceGroupManagerUpdatePolicy"
         },
         "listManagedInstancesResults": {
           "enum": [
@@ -1462,20 +1468,14 @@
             "PAGINATED"
           ]
         },
+        "distributionPolicy": {
+          "$ref": "DistributionPolicy"
+        },
         "status": {
           "$ref": "InstanceGroupManagerStatus"
         },
-        "instanceFlexibilityPolicy": {
-          "$ref": "InstanceGroupManagerInstanceFlexibilityPolicy"
-        },
-        "targetSizePolicy": {
-          "$ref": "InstanceGroupManagerTargetSizePolicy"
-        },
-        "standbyPolicy": {
-          "$ref": "InstanceGroupManagerStandbyPolicy"
-        },
-        "updatePolicy": {
-          "$ref": "InstanceGroupManagerUpdatePolicy"
+        "statefulPolicy": {
+          "$ref": "StatefulPolicy"
         }
       }
     },
@@ -1505,18 +1505,18 @@
             "YES"
           ]
         },
-        "defaultActionOnFailure": {
-          "enum": [
-            "DO_NOTHING",
-            "REPAIR"
-          ]
-        },
         "onRepair": {
           "$ref": "InstanceGroupManagerInstanceLifecyclePolicyOnRepair"
         },
         "onFailedHealthCheck": {
           "enum": [
             "DEFAULT_ACTION",
+            "DO_NOTHING",
+            "REPAIR"
+          ]
+        },
+        "defaultActionOnFailure": {
+          "enum": [
             "DO_NOTHING",
             "REPAIR"
           ]
@@ -1535,14 +1535,6 @@
     },
     "InstanceGroupManagerResizeRequest": {
       "properties": {
-        "status": {
-          "$ref": "InstanceGroupManagerResizeRequestStatus"
-        },
-        "instances": {
-          "items": {
-            "$ref": "PerInstanceConfig"
-          }
-        },
         "state": {
           "enum": [
             "ACCEPTED",
@@ -1552,11 +1544,22 @@
             "STATE_UNSPECIFIED",
             "SUCCEEDED"
           ]
+        },
+        "status": {
+          "$ref": "InstanceGroupManagerResizeRequestStatus"
+        },
+        "instances": {
+          "items": {
+            "$ref": "PerInstanceConfig"
+          }
         }
       }
     },
     "InstanceGroupManagerResizeRequestStatus": {
       "properties": {
+        "lastAttempt": {
+          "$ref": "InstanceGroupManagerResizeRequestStatusLastAttempt"
+        },
         "error": {
           "properties": {
             "errors": {
@@ -1575,9 +1578,6 @@
               }
             }
           }
-        },
-        "lastAttempt": {
-          "$ref": "InstanceGroupManagerResizeRequestStatusLastAttempt"
         }
       }
     },
@@ -1709,27 +1709,7 @@
     },
     "InstanceGroupManagerUpdatePolicy": {
       "properties": {
-        "replacementMethod": {
-          "enum": [
-            "RECREATE",
-            "SUBSTITUTE"
-          ]
-        },
-        "type": {
-          "enum": [
-            "OPPORTUNISTIC",
-            "PROACTIVE"
-          ]
-        },
         "mostDisruptiveAllowedAction": {
-          "enum": [
-            "NONE",
-            "REFRESH",
-            "REPLACE",
-            "RESTART"
-          ]
-        },
-        "minimalAction": {
           "enum": [
             "NONE",
             "REFRESH",
@@ -1742,27 +1722,36 @@
             "NONE",
             "PROACTIVE"
           ]
+        },
+        "replacementMethod": {
+          "enum": [
+            "RECREATE",
+            "SUBSTITUTE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "OPPORTUNISTIC",
+            "PROACTIVE"
+          ]
+        },
+        "minimalAction": {
+          "enum": [
+            "NONE",
+            "REFRESH",
+            "REPLACE",
+            "RESTART"
+          ]
         }
       }
     },
     "InstanceProperties": {
       "properties": {
+        "scheduling": {
+          "$ref": "Scheduling"
+        },
         "reservationAffinity": {
           "$ref": "ReservationAffinity"
-        },
-        "networkPerformanceConfig": {
-          "$ref": "NetworkPerformanceConfig"
-        },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
-        },
-        "disks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
-        },
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
         },
         "privateIpv6GoogleAccess": {
           "enum": [
@@ -1771,26 +1760,37 @@
             "INHERIT_FROM_SUBNETWORK"
           ]
         },
-        "scheduling": {
-          "$ref": "Scheduling"
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
         },
         "networkInterfaces": {
           "items": {
             "$ref": "NetworkInterface"
           }
         },
-        "localSsdEncryptionMode": {
-          "enum": [
-            "EPHEMERAL_KEY_ENCRYPTION",
-            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
-            "STANDARD_ENCRYPTION"
-          ]
-        },
         "keyRevocationActionType": {
           "enum": [
             "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
             "NONE",
             "STOP"
+          ]
+        },
+        "disks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
+        },
+        "localSsdEncryptionMode": {
+          "enum": [
+            "EPHEMERAL_KEY_ENCRYPTION",
+            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+            "STANDARD_ENCRYPTION"
           ]
         }
       }
@@ -1800,16 +1800,23 @@
     },
     "InstanceTemplate": {
       "properties": {
-        "sourceInstanceParams": {
-          "$ref": "SourceInstanceParams"
-        },
         "properties": {
           "$ref": "InstanceProperties"
+        },
+        "sourceInstanceParams": {
+          "$ref": "SourceInstanceParams"
         }
       }
     },
     "InstantSnapshot": {
       "properties": {
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        },
         "status": {
           "enum": [
             "CREATING",
@@ -1818,43 +1825,11 @@
             "READY",
             "UNAVAILABLE"
           ]
-        },
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
-          ]
         }
       }
     },
     "Interconnect": {
       "properties": {
-        "operationalStatus": {
-          "enum": [
-            "OS_ACTIVE",
-            "OS_UNPROVISIONED"
-          ]
-        },
-        "linkType": {
-          "enum": [
-            "LINK_TYPE_ETHERNET_100G_LR",
-            "LINK_TYPE_ETHERNET_10G_LR",
-            "LINK_TYPE_ETHERNET_400G_LR4"
-          ]
-        },
-        "state": {
-          "enum": [
-            "ACTIVE",
-            "UNPROVISIONED"
-          ]
-        },
-        "subzone": {
-          "enum": [
-            "SUBZONE_A",
-            "SUBZONE_B"
-          ]
-        },
         "expectedOutages": {
           "items": {
             "$ref": "InterconnectOutageNotification"
@@ -1867,6 +1842,12 @@
             "PARTNER"
           ]
         },
+        "state": {
+          "enum": [
+            "ACTIVE",
+            "UNPROVISIONED"
+          ]
+        },
         "requestedFeatures": {
           "items": {
             "enum": [
@@ -1876,6 +1857,13 @@
             ]
           }
         },
+        "linkType": {
+          "enum": [
+            "LINK_TYPE_ETHERNET_100G_LR",
+            "LINK_TYPE_ETHERNET_10G_LR",
+            "LINK_TYPE_ETHERNET_400G_LR4"
+          ]
+        },
         "availableFeatures": {
           "items": {
             "enum": [
@@ -1884,6 +1872,18 @@
               "IF_MACSEC"
             ]
           }
+        },
+        "operationalStatus": {
+          "enum": [
+            "OS_ACTIVE",
+            "OS_UNPROVISIONED"
+          ]
+        },
+        "subzone": {
+          "enum": [
+            "SUBZONE_A",
+            "SUBZONE_B"
+          ]
         },
         "applicationAwareInterconnect": {
           "$ref": "InterconnectApplicationAwareInterconnect"
@@ -1927,24 +1927,6 @@
     },
     "InterconnectAttachment": {
       "properties": {
-        "state": {
-          "enum": [
-            "ACTIVE",
-            "DEFUNCT",
-            "PARTNER_REQUEST_RECEIVED",
-            "PENDING_CUSTOMER",
-            "PENDING_PARTNER",
-            "STATE_UNSPECIFIED",
-            "UNPROVISIONED"
-          ]
-        },
-        "edgeAvailabilityDomain": {
-          "enum": [
-            "AVAILABILITY_DOMAIN_1",
-            "AVAILABILITY_DOMAIN_2",
-            "AVAILABILITY_DOMAIN_ANY"
-          ]
-        },
         "bandwidth": {
           "enum": [
             "BPS_100G",
@@ -1969,12 +1951,6 @@
             "IPV4_ONLY"
           ]
         },
-        "operationalStatus": {
-          "enum": [
-            "OS_ACTIVE",
-            "OS_UNPROVISIONED"
-          ]
-        },
         "encryption": {
           "enum": [
             "IPSEC",
@@ -1990,6 +1966,30 @@
             "L2_DEDICATED",
             "PARTNER",
             "PARTNER_PROVIDER"
+          ]
+        },
+        "operationalStatus": {
+          "enum": [
+            "OS_ACTIVE",
+            "OS_UNPROVISIONED"
+          ]
+        },
+        "edgeAvailabilityDomain": {
+          "enum": [
+            "AVAILABILITY_DOMAIN_1",
+            "AVAILABILITY_DOMAIN_2",
+            "AVAILABILITY_DOMAIN_ANY"
+          ]
+        },
+        "state": {
+          "enum": [
+            "ACTIVE",
+            "DEFUNCT",
+            "PARTNER_REQUEST_RECEIVED",
+            "PENDING_CUSTOMER",
+            "PENDING_PARTNER",
+            "STATE_UNSPECIFIED",
+            "UNPROVISIONED"
           ]
         }
       }
@@ -2024,6 +2024,11 @@
     },
     "InterconnectAttachmentGroupConfiguredAvailabilitySLA": {
       "properties": {
+        "intendedSlaBlockers": {
+          "items": {
+            "$ref": "InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers"
+          }
+        },
         "effectiveSla": {
           "enum": [
             "EFFECTIVE_SLA_UNSPECIFIED",
@@ -2031,11 +2036,6 @@
             "PRODUCTION_CRITICAL",
             "PRODUCTION_NON_CRITICAL"
           ]
-        },
-        "intendedSlaBlockers": {
-          "items": {
-            "$ref": "InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers"
-          }
         }
       }
     },
@@ -2068,11 +2068,11 @@
     },
     "InterconnectGroup": {
       "properties": {
-        "configured": {
-          "$ref": "InterconnectGroupConfigured"
-        },
         "intent": {
           "$ref": "InterconnectGroupIntent"
+        },
+        "configured": {
+          "$ref": "InterconnectGroupConfigured"
         }
       }
     },
@@ -2217,9 +2217,6 @@
     },
     "NetworkEndpointGroup": {
       "properties": {
-        "pscData": {
-          "$ref": "NetworkEndpointGroupPscData"
-        },
         "networkEndpointType": {
           "enum": [
             "GCE_VM_IP",
@@ -2232,6 +2229,9 @@
             "PRIVATE_SERVICE_CONNECT",
             "SERVERLESS"
           ]
+        },
+        "pscData": {
+          "$ref": "NetworkEndpointGroupPscData"
         }
       }
     },
@@ -2251,28 +2251,12 @@
     },
     "NetworkInterface": {
       "properties": {
-        "igmpQuery": {
-          "enum": [
-            "IGMP_QUERY_DISABLED",
-            "IGMP_QUERY_V2"
-          ]
-        },
         "stackType": {
           "enum": [
             "IPV4_IPV6",
             "IPV4_ONLY",
             "IPV6_ONLY"
           ]
-        },
-        "ipv6AccessConfigs": {
-          "items": {
-            "$ref": "AccessConfig"
-          }
-        },
-        "accessConfigs": {
-          "items": {
-            "$ref": "AccessConfig"
-          }
         },
         "ipv6AccessType": {
           "enum": [
@@ -2289,14 +2273,27 @@
             "UNSPECIFIED_NIC_TYPE",
             "VIRTIO_NET"
           ]
+        },
+        "accessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
+        "ipv6AccessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
+        "igmpQuery": {
+          "enum": [
+            "IGMP_QUERY_DISABLED",
+            "IGMP_QUERY_V2"
+          ]
         }
       }
     },
     "NetworkPeering": {
       "properties": {
-        "connectionStatus": {
-          "$ref": "NetworkPeeringConnectionStatus"
-        },
         "state": {
           "enum": [
             "ACTIVE",
@@ -2315,14 +2312,14 @@
             "IPV4_IPV6",
             "IPV4_ONLY"
           ]
+        },
+        "connectionStatus": {
+          "$ref": "NetworkPeeringConnectionStatus"
         }
       }
     },
     "NetworkPeeringConnectionStatus": {
       "properties": {
-        "consensusState": {
-          "$ref": "NetworkPeeringConnectionStatusConsensusState"
-        },
         "trafficConfiguration": {
           "$ref": "NetworkPeeringConnectionStatusTrafficConfiguration"
         },
@@ -2332,6 +2329,9 @@
             "INDEPENDENT",
             "UNSPECIFIED"
           ]
+        },
+        "consensusState": {
+          "$ref": "NetworkPeeringConnectionStatusConsensusState"
         }
       }
     },
@@ -2391,16 +2391,16 @@
             "DEFAULT"
           ]
         },
-        "routingMode": {
-          "enum": [
-            "GLOBAL",
-            "REGIONAL"
-          ]
-        },
         "bgpBestPathSelectionMode": {
           "enum": [
             "LEGACY",
             "STANDARD"
+          ]
+        },
+        "routingMode": {
+          "enum": [
+            "GLOBAL",
+            "REGIONAL"
           ]
         }
       }
@@ -2415,24 +2415,24 @@
             "RESTART_IN_PLACE"
           ]
         },
+        "shareSettings": {
+          "$ref": "ShareSettings"
+        },
+        "autoscalingPolicy": {
+          "$ref": "NodeGroupAutoscalingPolicy"
+        },
+        "maintenanceInterval": {
+          "enum": [
+            "AS_NEEDED",
+            "RECURRENT"
+          ]
+        },
         "status": {
           "enum": [
             "CREATING",
             "DELETING",
             "INVALID",
             "READY"
-          ]
-        },
-        "autoscalingPolicy": {
-          "$ref": "NodeGroupAutoscalingPolicy"
-        },
-        "shareSettings": {
-          "$ref": "ShareSettings"
-        },
-        "maintenanceInterval": {
-          "enum": [
-            "AS_NEEDED",
-            "RECURRENT"
           ]
         }
       }
@@ -2451,6 +2451,9 @@
     },
     "NodeTemplate": {
       "properties": {
+        "serverBinding": {
+          "$ref": "ServerBinding"
+        },
         "status": {
           "enum": [
             "CREATING",
@@ -2465,22 +2468,19 @@
             "ENABLED",
             "NONE"
           ]
-        },
-        "serverBinding": {
-          "$ref": "ServerBinding"
         }
       }
     },
     "PacketMirroring": {
       "properties": {
+        "filter": {
+          "$ref": "PacketMirroringFilter"
+        },
         "enable": {
           "enum": [
             "FALSE",
             "TRUE"
           ]
-        },
-        "filter": {
-          "$ref": "PacketMirroringFilter"
         }
       }
     },
@@ -2527,9 +2527,6 @@
     },
     "PerInstanceConfig": {
       "properties": {
-        "preservedState": {
-          "$ref": "PreservedState"
-        },
         "status": {
           "enum": [
             "APPLYING",
@@ -2539,19 +2536,22 @@
             "UNAPPLIED",
             "UNAPPLIED_DELETION"
           ]
+        },
+        "preservedState": {
+          "$ref": "PreservedState"
         }
       }
     },
     "PreservedState": {
       "properties": {
-        "internalIPs": {
-          "additionalProperties": {
-            "$ref": "PreservedStatePreservedNetworkIp"
-          }
-        },
         "disks": {
           "additionalProperties": {
             "$ref": "PreservedStatePreservedDisk"
+          }
+        },
+        "internalIPs": {
+          "additionalProperties": {
+            "$ref": "PreservedStatePreservedNetworkIp"
           }
         },
         "externalIPs": {
@@ -2589,9 +2589,6 @@
     },
     "PreviewFeature": {
       "properties": {
-        "status": {
-          "$ref": "PreviewFeatureStatus"
-        },
         "rolloutOperation": {
           "$ref": "PreviewFeatureRolloutOperation"
         },
@@ -2601,6 +2598,9 @@
             "DISABLED",
             "ENABLED"
           ]
+        },
+        "status": {
+          "$ref": "PreviewFeatureStatus"
         }
       }
     },
@@ -2643,23 +2643,24 @@
     },
     "Project": {
       "properties": {
+        "quotas": {
+          "items": {
+            "$ref": "Quota"
+          }
+        },
         "xpnProjectStatus": {
           "enum": [
             "HOST",
             "UNSPECIFIED_XPN_PROJECT_STATUS"
           ]
         },
-        "cloudArmorTier": {
+        "defaultNetworkTier": {
           "enum": [
-            "CA_ENTERPRISE_ANNUAL",
-            "CA_ENTERPRISE_PAYGO",
-            "CA_STANDARD"
+            "FIXED_STANDARD",
+            "PREMIUM",
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ]
-        },
-        "quotas": {
-          "items": {
-            "$ref": "Quota"
-          }
         },
         "vmDnsSetting": {
           "enum": [
@@ -2669,12 +2670,11 @@
             "ZONAL_ONLY"
           ]
         },
-        "defaultNetworkTier": {
+        "cloudArmorTier": {
           "enum": [
-            "FIXED_STANDARD",
-            "PREMIUM",
-            "STANDARD",
-            "STANDARD_OVERRIDES_FIXED_STANDARD"
+            "CA_ENTERPRISE_ANNUAL",
+            "CA_ENTERPRISE_PAYGO",
+            "CA_STANDARD"
           ]
         }
       }
@@ -2685,12 +2685,6 @@
           "enum": [
             "V1",
             "V2"
-          ]
-        },
-        "ipv6AccessType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL"
           ]
         },
         "status": {
@@ -2706,6 +2700,12 @@
             "VALIDATED"
           ]
         },
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
+        },
         "pdpScope": {
           "enum": [
             "GLOBAL",
@@ -2717,10 +2717,17 @@
     },
     "PublicDelegatedPrefix": {
       "properties": {
-        "ipv6AccessType": {
+        "publicDelegatedSubPrefixs": {
+          "items": {
+            "$ref": "PublicDelegatedPrefixPublicDelegatedSubPrefix"
+          }
+        },
+        "mode": {
           "enum": [
-            "EXTERNAL",
-            "INTERNAL"
+            "DELEGATION",
+            "EXTERNAL_IPV6_FORWARDING_RULE_CREATION",
+            "EXTERNAL_IPV6_SUBNETWORK_CREATION",
+            "INTERNAL_IPV6_SUBNETWORK_CREATION"
           ]
         },
         "status": {
@@ -2734,23 +2741,16 @@
             "READY_TO_ANNOUNCE"
           ]
         },
-        "publicDelegatedSubPrefixs": {
-          "items": {
-            "$ref": "PublicDelegatedPrefixPublicDelegatedSubPrefix"
-          }
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
         },
         "byoipApiVersion": {
           "enum": [
             "V1",
             "V2"
-          ]
-        },
-        "mode": {
-          "enum": [
-            "DELEGATION",
-            "EXTERNAL_IPV6_FORWARDING_RULE_CREATION",
-            "EXTERNAL_IPV6_SUBNETWORK_CREATION",
-            "INTERNAL_IPV6_SUBNETWORK_CREATION"
           ]
         }
       }
@@ -2963,26 +2963,6 @@
     },
     "Reservation": {
       "properties": {
-        "protectionTier": {
-          "enum": [
-            "CAPACITY_OPTIMIZED",
-            "PROTECTION_TIER_UNSPECIFIED",
-            "STANDARD"
-          ]
-        },
-        "specificReservation": {
-          "$ref": "AllocationSpecificSKUReservation"
-        },
-        "shareSettings": {
-          "$ref": "ShareSettings"
-        },
-        "confidentialComputeType": {
-          "enum": [
-            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
-            "CONFIDENTIAL_COMPUTE_TYPE_TDX",
-            "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
-          ]
-        },
         "status": {
           "enum": [
             "CREATING",
@@ -2991,15 +2971,6 @@
             "READY",
             "UPDATING"
           ]
-        },
-        "deploymentType": {
-          "enum": [
-            "DENSE",
-            "DEPLOYMENT_TYPE_UNSPECIFIED"
-          ]
-        },
-        "advancedDeploymentControl": {
-          "$ref": "ReservationAdvancedDeploymentControl"
         },
         "aggregateReservation": {
           "$ref": "AllocationAggregateReservation"
@@ -3011,18 +2982,47 @@
             "WAVE2"
           ]
         },
+        "advancedDeploymentControl": {
+          "$ref": "ReservationAdvancedDeploymentControl"
+        },
+        "deploymentType": {
+          "enum": [
+            "DENSE",
+            "DEPLOYMENT_TYPE_UNSPECIFIED"
+          ]
+        },
+        "reservationSharingPolicy": {
+          "$ref": "AllocationReservationSharingPolicy"
+        },
+        "specificReservation": {
+          "$ref": "AllocationSpecificSKUReservation"
+        },
+        "confidentialComputeType": {
+          "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
+            "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+            "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+          ]
+        },
+        "protectionTier": {
+          "enum": [
+            "CAPACITY_OPTIMIZED",
+            "PROTECTION_TIER_UNSPECIFIED",
+            "STANDARD"
+          ]
+        },
+        "shareSettings": {
+          "$ref": "ShareSettings"
+        },
+        "resourceStatus": {
+          "$ref": "AllocationResourceStatus"
+        },
         "schedulingType": {
           "enum": [
             "GROUPED",
             "GROUP_MAINTENANCE_TYPE_UNSPECIFIED",
             "INDEPENDENT"
           ]
-        },
-        "reservationSharingPolicy": {
-          "$ref": "AllocationReservationSharingPolicy"
-        },
-        "resourceStatus": {
-          "$ref": "AllocationResourceStatus"
         }
       }
     },
@@ -3064,14 +3064,11 @@
     },
     "ResourcePolicy": {
       "properties": {
-        "snapshotSchedulePolicy": {
-          "$ref": "ResourcePolicySnapshotSchedulePolicy"
+        "workloadPolicy": {
+          "$ref": "ResourcePolicyWorkloadPolicy"
         },
         "groupPlacementPolicy": {
           "$ref": "ResourcePolicyGroupPlacementPolicy"
-        },
-        "workloadPolicy": {
-          "$ref": "ResourcePolicyWorkloadPolicy"
         },
         "status": {
           "enum": [
@@ -3081,32 +3078,35 @@
             "INVALID",
             "READY"
           ]
+        },
+        "snapshotSchedulePolicy": {
+          "$ref": "ResourcePolicySnapshotSchedulePolicy"
         }
       }
     },
     "ResourcePolicyGroupPlacementPolicy": {
       "properties": {
-        "collocation": {
-          "enum": [
-            "COLLOCATED",
-            "UNSPECIFIED_COLLOCATION"
-          ]
-        },
         "acceleratorTopologyMode": {
           "enum": [
             "AUTO_CONNECT",
             "PROVISION_ONLY"
+          ]
+        },
+        "collocation": {
+          "enum": [
+            "COLLOCATED",
+            "UNSPECIFIED_COLLOCATION"
           ]
         }
       }
     },
     "ResourcePolicySnapshotSchedulePolicy": {
       "properties": {
-        "schedule": {
-          "$ref": "ResourcePolicySnapshotSchedulePolicySchedule"
-        },
         "retentionPolicy": {
           "$ref": "ResourcePolicySnapshotSchedulePolicyRetentionPolicy"
+        },
+        "schedule": {
+          "$ref": "ResourcePolicySnapshotSchedulePolicySchedule"
         }
       }
     },
@@ -3188,33 +3188,33 @@
     },
     "ResourceStatusShutdownDetails": {
       "properties": {
-        "targetState": {
-          "enum": [
-            "DELETED",
-            "STOPPED"
-          ]
-        },
         "stopState": {
           "enum": [
             "PENDING_STOP",
             "STOPPING"
+          ]
+        },
+        "targetState": {
+          "enum": [
+            "DELETED",
+            "STOPPED"
           ]
         }
       }
     },
     "RolloutPlan": {
       "properties": {
+        "waves": {
+          "items": {
+            "$ref": "RolloutPlanWave"
+          }
+        },
         "locationScope": {
           "enum": [
             "LOCATION_SCOPE_UNSPECIFIED",
             "REGIONAL",
             "ZONAL"
           ]
-        },
-        "waves": {
-          "items": {
-            "$ref": "RolloutPlanWave"
-          }
         }
       }
     },
@@ -3293,19 +3293,6 @@
             }
           }
         },
-        "asPaths": {
-          "items": {
-            "$ref": "RouteAsPath"
-          }
-        },
-        "routeType": {
-          "enum": [
-            "BGP",
-            "STATIC",
-            "SUBNET",
-            "TRANSIT"
-          ]
-        },
         "routeStatus": {
           "enum": [
             "ACTIVE",
@@ -3320,6 +3307,19 @@
             "IGP",
             "INCOMPLETE"
           ]
+        },
+        "routeType": {
+          "enum": [
+            "BGP",
+            "STATIC",
+            "SUBNET",
+            "TRANSIT"
+          ]
+        },
+        "asPaths": {
+          "items": {
+            "$ref": "RouteAsPath"
+          }
         }
       }
     },
@@ -3337,11 +3337,6 @@
     },
     "Router": {
       "properties": {
-        "bgpPeers": {
-          "items": {
-            "$ref": "RouterBgpPeer"
-          }
-        },
         "nats": {
           "items": {
             "$ref": "RouterNat"
@@ -3352,6 +3347,11 @@
             "$ref": "RouterInterface"
           }
         },
+        "bgpPeers": {
+          "items": {
+            "$ref": "RouterBgpPeer"
+          }
+        },
         "bgp": {
           "$ref": "RouterBgp"
         }
@@ -3359,23 +3359,29 @@
     },
     "RouterBgp": {
       "properties": {
-        "advertiseMode": {
-          "enum": [
-            "CUSTOM",
-            "DEFAULT"
-          ]
-        },
         "advertisedGroups": {
           "items": {
             "enum": [
               "ALL_SUBNETS"
             ]
           }
+        },
+        "advertiseMode": {
+          "enum": [
+            "CUSTOM",
+            "DEFAULT"
+          ]
         }
       }
     },
     "RouterBgpPeer": {
       "properties": {
+        "enable": {
+          "enum": [
+            "FALSE",
+            "TRUE"
+          ]
+        },
         "bfd": {
           "$ref": "RouterBgpPeerBfd"
         },
@@ -3385,24 +3391,18 @@
             "DEFAULT"
           ]
         },
-        "advertisedGroups": {
-          "items": {
-            "enum": [
-              "ALL_SUBNETS"
-            ]
-          }
-        },
         "managementType": {
           "enum": [
             "MANAGED_BY_ATTACHMENT",
             "MANAGED_BY_USER"
           ]
         },
-        "enable": {
-          "enum": [
-            "FALSE",
-            "TRUE"
-          ]
+        "advertisedGroups": {
+          "items": {
+            "enum": [
+              "ALL_SUBNETS"
+            ]
+          }
         }
       }
     },
@@ -3419,33 +3419,27 @@
     },
     "RouterInterface": {
       "properties": {
-        "managementType": {
-          "enum": [
-            "MANAGED_BY_ATTACHMENT",
-            "MANAGED_BY_USER"
-          ]
-        },
         "ipVersion": {
           "enum": [
             "IPV4",
             "IPV6"
+          ]
+        },
+        "managementType": {
+          "enum": [
+            "MANAGED_BY_ATTACHMENT",
+            "MANAGED_BY_USER"
           ]
         }
       }
     },
     "RouterNat": {
       "properties": {
-        "sourceSubnetworkIpRangesToNat": {
+        "type": {
           "enum": [
-            "ALL_SUBNETWORKS_ALL_IP_RANGES",
-            "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES",
-            "LIST_OF_SUBNETWORKS"
+            "PRIVATE",
+            "PUBLIC"
           ]
-        },
-        "subnetworks": {
-          "items": {
-            "$ref": "RouterNatSubnetworkToNat"
-          }
         },
         "autoNetworkTier": {
           "enum": [
@@ -3454,6 +3448,22 @@
             "STANDARD",
             "STANDARD_OVERRIDES_FIXED_STANDARD"
           ]
+        },
+        "natIpAllocateOption": {
+          "enum": [
+            "AUTO_ONLY",
+            "MANUAL_ONLY"
+          ]
+        },
+        "sourceSubnetworkIpRangesToNat": {
+          "enum": [
+            "ALL_SUBNETWORKS_ALL_IP_RANGES",
+            "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES",
+            "LIST_OF_SUBNETWORKS"
+          ]
+        },
+        "logConfig": {
+          "$ref": "RouterNatLogConfig"
         },
         "endpointTypes": {
           "items": {
@@ -3464,25 +3474,15 @@
             ]
           }
         },
-        "natIpAllocateOption": {
-          "enum": [
-            "AUTO_ONLY",
-            "MANUAL_ONLY"
-          ]
-        },
-        "logConfig": {
-          "$ref": "RouterNatLogConfig"
+        "subnetworks": {
+          "items": {
+            "$ref": "RouterNatSubnetworkToNat"
+          }
         },
         "sourceSubnetworkIpRangesToNat64": {
           "enum": [
             "ALL_IPV6_SUBNETWORKS",
             "LIST_OF_IPV6_SUBNETWORKS"
-          ]
-        },
-        "type": {
-          "enum": [
-            "PRIVATE",
-            "PUBLIC"
           ]
         }
       }
@@ -3513,17 +3513,17 @@
     },
     "SSLHealthCheck": {
       "properties": {
-        "proxyHeader": {
-          "enum": [
-            "NONE",
-            "PROXY_V1"
-          ]
-        },
         "portSpecification": {
           "enum": [
             "USE_FIXED_PORT",
             "USE_NAMED_PORT",
             "USE_SERVING_PORT"
+          ]
+        },
+        "proxyHeader": {
+          "enum": [
+            "NONE",
+            "PROXY_V1"
           ]
         }
       }
@@ -3542,18 +3542,18 @@
     },
     "Scheduling": {
       "properties": {
+        "onHostMaintenance": {
+          "enum": [
+            "MIGRATE",
+            "TERMINATE"
+          ]
+        },
         "provisioningModel": {
           "enum": [
             "FLEX_START",
             "RESERVATION_BOUND",
             "SPOT",
             "STANDARD"
-          ]
-        },
-        "onHostMaintenance": {
-          "enum": [
-            "MIGRATE",
-            "TERMINATE"
           ]
         },
         "instanceTerminationAction": {
@@ -3583,20 +3583,20 @@
     },
     "SecurityPolicy": {
       "properties": {
-        "advancedOptionsConfig": {
-          "$ref": "SecurityPolicyAdvancedOptionsConfig"
-        },
         "adaptiveProtectionConfig": {
           "$ref": "SecurityPolicyAdaptiveProtectionConfig"
         },
-        "rules": {
-          "items": {
-            "$ref": "SecurityPolicyRule"
-          }
+        "advancedOptionsConfig": {
+          "$ref": "SecurityPolicyAdvancedOptionsConfig"
         },
         "userDefinedFields": {
           "items": {
             "$ref": "SecurityPolicyUserDefinedField"
+          }
+        },
+        "rules": {
+          "items": {
+            "$ref": "SecurityPolicyRule"
           }
         },
         "ddosProtectionConfig": {
@@ -3672,6 +3672,13 @@
     },
     "SecurityPolicyDdosProtectionConfig": {
       "properties": {
+        "ddosProtection": {
+          "enum": [
+            "ADVANCED",
+            "ADVANCED_PREVIEW",
+            "STANDARD"
+          ]
+        },
         "ddosAdaptiveProtection": {
           "enum": [
             "DDOS_ADAPTIVE_PROTECTION_UNSPECIFIED",
@@ -3679,13 +3686,6 @@
             "ENABLED",
             "PREVIEW",
             "UNSPECIFIED_ADAPTIVE_PROTECTION"
-          ]
-        },
-        "ddosProtection": {
-          "enum": [
-            "ADVANCED",
-            "ADVANCED_PREVIEW",
-            "STANDARD"
           ]
         }
       }
@@ -3695,14 +3695,14 @@
         "match": {
           "$ref": "SecurityPolicyRuleMatcher"
         },
-        "rateLimitOptions": {
-          "$ref": "SecurityPolicyRuleRateLimitOptions"
-        },
         "preconfiguredWafConfig": {
           "$ref": "SecurityPolicyRulePreconfiguredWafConfig"
         },
         "redirectOptions": {
           "$ref": "SecurityPolicyRuleRedirectOptions"
+        },
+        "rateLimitOptions": {
+          "$ref": "SecurityPolicyRuleRateLimitOptions"
         }
       }
     },
@@ -3726,12 +3726,12 @@
     },
     "SecurityPolicyRulePreconfiguredWafConfigExclusion": {
       "properties": {
-        "requestQueryParamsToExclude": {
+        "requestUrisToExclude": {
           "items": {
             "$ref": "SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams"
           }
         },
-        "requestHeadersToExclude": {
+        "requestQueryParamsToExclude": {
           "items": {
             "$ref": "SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams"
           }
@@ -3741,7 +3741,7 @@
             "$ref": "SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams"
           }
         },
-        "requestUrisToExclude": {
+        "requestHeadersToExclude": {
           "items": {
             "$ref": "SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams"
           }
@@ -3768,13 +3768,13 @@
     },
     "SecurityPolicyRuleRateLimitOptions": {
       "properties": {
+        "exceedRedirectOptions": {
+          "$ref": "SecurityPolicyRuleRedirectOptions"
+        },
         "enforceOnKeyConfigs": {
           "items": {
             "$ref": "SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig"
           }
-        },
-        "exceedRedirectOptions": {
-          "$ref": "SecurityPolicyRuleRedirectOptions"
         },
         "enforceOnKey": {
           "enum": [
@@ -3891,6 +3891,18 @@
     },
     "Snapshot": {
       "properties": {
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
+          ]
+        },
         "storageBytesStatus": {
           "enum": [
             "UPDATING",
@@ -3906,33 +3918,21 @@
             "UPLOADING"
           ]
         },
-        "guestOsFeatures": {
-          "items": {
-            "$ref": "GuestOsFeature"
-          }
-        },
         "snapshotType": {
           "enum": [
             "ARCHIVE",
             "STANDARD"
-          ]
-        },
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
           ]
         }
       }
     },
     "SnapshotSettings": {
       "properties": {
-        "storageLocation": {
-          "$ref": "SnapshotSettingsStorageLocationSettings"
-        },
         "accessLocation": {
           "$ref": "SnapshotSettingsAccessLocation"
+        },
+        "storageLocation": {
+          "$ref": "SnapshotSettingsStorageLocationSettings"
         }
       }
     },
@@ -3970,30 +3970,20 @@
     },
     "SslCertificate": {
       "properties": {
-        "managed": {
-          "$ref": "SslCertificateManagedSslCertificate"
-        },
         "type": {
           "enum": [
             "MANAGED",
             "SELF_MANAGED",
             "TYPE_UNSPECIFIED"
           ]
+        },
+        "managed": {
+          "$ref": "SslCertificateManagedSslCertificate"
         }
       }
     },
     "SslCertificateManagedSslCertificate": {
       "properties": {
-        "status": {
-          "enum": [
-            "ACTIVE",
-            "MANAGED_CERTIFICATE_STATUS_UNSPECIFIED",
-            "PROVISIONING",
-            "PROVISIONING_FAILED",
-            "PROVISIONING_FAILED_PERMANENTLY",
-            "RENEWAL_FAILED"
-          ]
-        },
         "domainStatus": {
           "additionalProperties": {
             "enum": [
@@ -4006,17 +3996,35 @@
               "PROVISIONING"
             ]
           }
+        },
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "MANAGED_CERTIFICATE_STATUS_UNSPECIFIED",
+            "PROVISIONING",
+            "PROVISIONING_FAILED",
+            "PROVISIONING_FAILED_PERMANENTLY",
+            "RENEWAL_FAILED"
+          ]
         }
       }
     },
     "SslPolicy": {
       "properties": {
-        "minTlsVersion": {
+        "profile": {
           "enum": [
-            "TLS_1_0",
-            "TLS_1_1",
-            "TLS_1_2",
-            "TLS_1_3"
+            "COMPATIBLE",
+            "CUSTOM",
+            "FIPS_202205",
+            "MODERN",
+            "RESTRICTED"
+          ]
+        },
+        "postQuantumKeyExchange": {
+          "enum": [
+            "DEFAULT",
+            "DEFERRED",
+            "ENABLED"
           ]
         },
         "warnings": {
@@ -4058,20 +4066,12 @@
             }
           }
         },
-        "postQuantumKeyExchange": {
+        "minTlsVersion": {
           "enum": [
-            "DEFAULT",
-            "DEFERRED",
-            "ENABLED"
-          ]
-        },
-        "profile": {
-          "enum": [
-            "COMPATIBLE",
-            "CUSTOM",
-            "FIPS_202205",
-            "MODERN",
-            "RESTRICTED"
+            "TLS_1_0",
+            "TLS_1_1",
+            "TLS_1_2",
+            "TLS_1_3"
           ]
         }
       }
@@ -4085,17 +4085,17 @@
     },
     "StatefulPolicyPreservedState": {
       "properties": {
-        "externalIPs": {
-          "additionalProperties": {
-            "$ref": "StatefulPolicyPreservedStateNetworkIp"
-          }
-        },
         "disks": {
           "additionalProperties": {
             "$ref": "StatefulPolicyPreservedStateDiskDevice"
           }
         },
         "internalIPs": {
+          "additionalProperties": {
+            "$ref": "StatefulPolicyPreservedStateNetworkIp"
+          }
+        },
+        "externalIPs": {
           "additionalProperties": {
             "$ref": "StatefulPolicyPreservedStateNetworkIp"
           }
@@ -4124,13 +4124,6 @@
     },
     "StoragePool": {
       "properties": {
-        "performanceProvisioningType": {
-          "enum": [
-            "ADVANCED",
-            "STANDARD",
-            "UNSPECIFIED"
-          ]
-        },
         "capacityProvisioningType": {
           "enum": [
             "ADVANCED",
@@ -4145,13 +4138,22 @@
             "FAILED",
             "READY"
           ]
+        },
+        "performanceProvisioningType": {
+          "enum": [
+            "ADVANCED",
+            "STANDARD",
+            "UNSPECIFIED"
+          ]
         }
       }
     },
     "Subnetwork": {
       "properties": {
-        "logConfig": {
-          "$ref": "SubnetworkLogConfig"
+        "secondaryIpRanges": {
+          "items": {
+            "$ref": "SubnetworkSecondaryRange"
+          }
         },
         "privateIpv6GoogleAccess": {
           "enum": [
@@ -4167,21 +4169,33 @@
             "IPV6_ONLY"
           ]
         },
+        "logConfig": {
+          "$ref": "SubnetworkLogConfig"
+        },
         "role": {
           "enum": [
             "ACTIVE",
             "BACKUP"
           ]
         },
-        "secondaryIpRanges": {
-          "items": {
-            "$ref": "SubnetworkSecondaryRange"
-          }
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
         },
         "state": {
           "enum": [
             "DRAINING",
             "READY"
+          ]
+        },
+        "resolveSubnetMask": {
+          "enum": [
+            "ARP_ALL_RANGES",
+            "ARP_BROADCAST_PRIMARY_RANGE",
+            "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING",
+            "ARP_PRIMARY_RANGE"
           ]
         },
         "ipv6GceEndpoint": {
@@ -4201,25 +4215,18 @@
             "PRIVATE_SERVICE_CONNECT",
             "REGIONAL_MANAGED_PROXY"
           ]
-        },
-        "resolveSubnetMask": {
-          "enum": [
-            "ARP_ALL_RANGES",
-            "ARP_BROADCAST_PRIMARY_RANGE",
-            "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING",
-            "ARP_PRIMARY_RANGE"
-          ]
-        },
-        "ipv6AccessType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL"
-          ]
         }
       }
     },
     "SubnetworkLogConfig": {
       "properties": {
+        "metadata": {
+          "enum": [
+            "CUSTOM_METADATA",
+            "EXCLUDE_ALL_METADATA",
+            "INCLUDE_ALL_METADATA"
+          ]
+        },
         "aggregationInterval": {
           "enum": [
             "INTERVAL_10_MIN",
@@ -4228,13 +4235,6 @@
             "INTERVAL_30_SEC",
             "INTERVAL_5_MIN",
             "INTERVAL_5_SEC"
-          ]
-        },
-        "metadata": {
-          "enum": [
-            "CUSTOM_METADATA",
-            "EXCLUDE_ALL_METADATA",
-            "INCLUDE_ALL_METADATA"
           ]
         }
       }
@@ -4262,17 +4262,17 @@
     },
     "TCPHealthCheck": {
       "properties": {
-        "proxyHeader": {
-          "enum": [
-            "NONE",
-            "PROXY_V1"
-          ]
-        },
         "portSpecification": {
           "enum": [
             "USE_FIXED_PORT",
             "USE_NAMED_PORT",
             "USE_SERVING_PORT"
+          ]
+        },
+        "proxyHeader": {
+          "enum": [
+            "NONE",
+            "PROXY_V1"
           ]
         }
       }
@@ -4340,12 +4340,6 @@
     },
     "TargetTcpProxy": {
       "properties": {
-        "proxyHeader": {
-          "enum": [
-            "NONE",
-            "PROXY_V1"
-          ]
-        },
         "loadBalancingScheme": {
           "enum": [
             "EXTERNAL",
@@ -4353,26 +4347,17 @@
             "INTERNAL_MANAGED",
             "LOAD_BALANCING_SCHEME_UNSPECIFIED"
           ]
+        },
+        "proxyHeader": {
+          "enum": [
+            "NONE",
+            "PROXY_V1"
+          ]
         }
       }
     },
     "UpcomingMaintenance": {
       "properties": {
-        "maintenanceStatus": {
-          "enum": [
-            "ONGOING",
-            "PENDING",
-            "UNKNOWN"
-          ]
-        },
-        "type": {
-          "enum": [
-            "MULTIPLE",
-            "SCHEDULED",
-            "UNKNOWN_TYPE",
-            "UNSCHEDULED"
-          ]
-        },
         "maintenanceReasons": {
           "items": {
             "enum": [
@@ -4395,11 +4380,29 @@
               "PLANNED_UPDATE"
             ]
           }
+        },
+        "maintenanceStatus": {
+          "enum": [
+            "ONGOING",
+            "PENDING",
+            "UNKNOWN"
+          ]
+        },
+        "type": {
+          "enum": [
+            "MULTIPLE",
+            "SCHEDULED",
+            "UNKNOWN_TYPE",
+            "UNSCHEDULED"
+          ]
         }
       }
     },
     "UrlMap": {
       "properties": {
+        "defaultUrlRedirect": {
+          "$ref": "HttpRedirectAction"
+        },
         "defaultRouteAction": {
           "$ref": "HttpRouteAction"
         },
@@ -4407,9 +4410,6 @@
           "items": {
             "$ref": "PathMatcher"
           }
-        },
-        "defaultUrlRedirect": {
-          "$ref": "HttpRedirectAction"
         }
       }
     },
@@ -4460,13 +4460,13 @@
     },
     "WireGroup": {
       "properties": {
-        "wireProperties": {
-          "$ref": "WireProperties"
-        },
         "wires": {
           "items": {
             "$ref": "Wire"
           }
+        },
+        "wireProperties": {
+          "$ref": "WireProperties"
         }
       }
     },

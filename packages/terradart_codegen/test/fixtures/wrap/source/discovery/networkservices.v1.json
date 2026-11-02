@@ -1,11 +1,34 @@
 {
   "name": "networkservices",
   "version": "v1",
-  "revision": "20261027",
+  "revision": "20261015",
   "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AgentConnectivityTemplate": {
       "properties": {
+        "accessPath": {
+          "enum": [
+            "ACCESS_PATH_UNSPECIFIED",
+            "CLIENT_TO_AGENT",
+            "AGENT_TO_ANYWHERE"
+          ]
+        },
+        "deploymentModel": {
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "CENTRALIZED",
+            "AMBIENT"
+          ]
+        },
+        "accessTypes": {
+          "items": {
+            "enum": [
+              "ACCESS_TYPE_UNSPECIFIED",
+              "PUBLIC",
+              "PRIVATE"
+            ]
+          }
+        },
         "egressNetworkConfig": {
           "$ref": "EgressNetworkConfig"
         },
@@ -17,29 +40,6 @@
             "BORG",
             "GCE_VM"
           ]
-        },
-        "deploymentModel": {
-          "enum": [
-            "DEPLOYMENT_MODEL_UNSPECIFIED",
-            "CENTRALIZED",
-            "AMBIENT"
-          ]
-        },
-        "accessPath": {
-          "enum": [
-            "ACCESS_PATH_UNSPECIFIED",
-            "CLIENT_TO_AGENT",
-            "AGENT_TO_ANYWHERE"
-          ]
-        },
-        "accessTypes": {
-          "items": {
-            "enum": [
-              "ACCESS_TYPE_UNSPECIFIED",
-              "PUBLIC",
-              "PRIVATE"
-            ]
-          }
         }
       }
     },
@@ -89,15 +89,15 @@
     },
     "EgressNetworkConfig": {
       "properties": {
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig"
+        },
         "vpcEgress": {
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",
             "PRIVATE_RANGES_ONLY"
           ]
-        },
-        "tlsConfig": {
-          "$ref": "EgressNetworkConfigTlsConfig"
         }
       }
     },
@@ -155,6 +155,19 @@
     },
     "ExtensionChainExtension": {
       "properties": {
+        "supportedEvents": {
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "REQUEST_HEADERS",
+              "REQUEST_BODY",
+              "RESPONSE_HEADERS",
+              "RESPONSE_BODY",
+              "REQUEST_TRAILERS",
+              "RESPONSE_TRAILERS"
+            ]
+          }
+        },
         "requestBodySendMode": {
           "enum": [
             "BODY_SEND_MODE_UNSPECIFIED",
@@ -168,19 +181,6 @@
             "BODY_SEND_MODE_STREAMED",
             "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
           ]
-        },
-        "supportedEvents": {
-          "items": {
-            "enum": [
-              "EVENT_TYPE_UNSPECIFIED",
-              "REQUEST_HEADERS",
-              "REQUEST_BODY",
-              "RESPONSE_HEADERS",
-              "RESPONSE_BODY",
-              "REQUEST_TRAILERS",
-              "RESPONSE_TRAILERS"
-            ]
-          }
         }
       }
     },
@@ -248,13 +248,13 @@
     },
     "GrpcRouteRouteMatch": {
       "properties": {
+        "method": {
+          "$ref": "GrpcRouteMethodMatch"
+        },
         "headers": {
           "items": {
             "$ref": "GrpcRouteHeaderMatch"
           }
-        },
-        "method": {
-          "$ref": "GrpcRouteMethodMatch"
         }
       }
     },
@@ -306,33 +306,33 @@
     },
     "LbEdgeExtension": {
       "properties": {
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
         }
       }
     },
     "LbRouteExtension": {
       "properties": {
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
         }
       }
     },
@@ -410,6 +410,39 @@
     },
     "ServiceBinding": {
       "properties": {}
+    },
+    "ServiceLbPolicy": {
+      "properties": {
+        "isolationConfig": {
+          "$ref": "ServiceLbPolicyIsolationConfig"
+        },
+        "loadBalancingAlgorithm": {
+          "enum": [
+            "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
+            "SPRAY_TO_WORLD",
+            "SPRAY_TO_REGION",
+            "WATERFALL_BY_REGION",
+            "WATERFALL_BY_ZONE"
+          ]
+        }
+      }
+    },
+    "ServiceLbPolicyIsolationConfig": {
+      "properties": {
+        "isolationMode": {
+          "enum": [
+            "ISOLATION_MODE_UNSPECIFIED",
+            "NEAREST",
+            "STRICT"
+          ]
+        },
+        "isolationGranularity": {
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ]
+        }
+      }
     },
     "TcpRoute": {
       "properties": {}

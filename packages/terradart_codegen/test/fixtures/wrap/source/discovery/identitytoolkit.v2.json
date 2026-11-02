@@ -50,14 +50,6 @@
             "$ref": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig"
           }
         },
-        "enabledProviders": {
-          "items": {
-            "enum": [
-              "PROVIDER_UNSPECIFIED",
-              "PHONE_SMS"
-            ]
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -65,6 +57,14 @@
             "ENABLED",
             "MANDATORY"
           ]
+        },
+        "enabledProviders": {
+          "items": {
+            "enum": [
+              "PROVIDER_UNSPECIFIED",
+              "PHONE_SMS"
+            ]
+          }
         }
       }
     },
@@ -96,6 +96,19 @@
     },
     "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig": {
       "properties": {
+        "phoneEnforcementState": {
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ]
+        },
+        "tollFraudManagedRules": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
+          }
+        },
         "managedRules": {
           "items": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule"
@@ -112,19 +125,6 @@
         "recaptchaKeys": {
           "items": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey"
-          }
-        },
-        "phoneEnforcementState": {
-          "enum": [
-            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
-            "OFF",
-            "AUDIT",
-            "ENFORCE"
-          ]
-        },
-        "tollFraudManagedRules": {
-          "items": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
           }
         }
       }
@@ -163,20 +163,20 @@
     },
     "GoogleCloudIdentitytoolkitAdminV2Tenant": {
       "properties": {
+        "mfaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig"
+        },
         "hashConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2HashConfig"
+        },
+        "recaptchaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig"
         },
         "passwordPolicyConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig"
         },
-        "mfaConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig"
-        },
         "mobileLinksConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig"
-        },
-        "recaptchaConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig"
         }
       }
     },

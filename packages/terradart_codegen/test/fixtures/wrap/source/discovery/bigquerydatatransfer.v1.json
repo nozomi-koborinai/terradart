@@ -1,7 +1,7 @@
 {
   "name": "bigquerydatatransfer",
   "version": "v1",
-  "revision": "20261024",
+  "revision": "20261027",
   "sourceUrl": "https://bigquerydatatransfer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DataSource": {
@@ -21,22 +21,27 @@
             "FIRST_PARTY_OAUTH"
           ]
         },
+        "parameters": {
+          "items": {
+            "$ref": "DataSourceParameter"
+          }
+        },
         "dataRefreshType": {
           "enum": [
             "DATA_REFRESH_TYPE_UNSPECIFIED",
             "SLIDING_WINDOW",
             "CUSTOM_SLIDING_WINDOW"
           ]
-        },
-        "parameters": {
-          "items": {
-            "$ref": "DataSourceParameter"
-          }
         }
       }
     },
     "DataSourceParameter": {
       "properties": {
+        "fields": {
+          "items": {
+            "$ref": "DataSourceParameter"
+          }
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -48,16 +53,18 @@
             "PLUS_PAGE",
             "LIST"
           ]
-        },
-        "fields": {
-          "items": {
-            "$ref": "DataSourceParameter"
-          }
         }
       }
     },
     "TransferConfig": {
       "properties": {
+        "managedTableType": {
+          "enum": [
+            "MANAGED_TABLE_TYPE_UNSPECIFIED",
+            "NATIVE",
+            "BIGLAKE"
+          ]
+        },
         "state": {
           "enum": [
             "TRANSFER_STATE_UNSPECIFIED",
@@ -66,13 +73,6 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
-          ]
-        },
-        "managedTableType": {
-          "enum": [
-            "MANAGED_TABLE_TYPE_UNSPECIFIED",
-            "NATIVE",
-            "BIGLAKE"
           ]
         }
       }

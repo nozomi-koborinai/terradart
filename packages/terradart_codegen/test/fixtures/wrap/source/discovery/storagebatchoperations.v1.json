@@ -31,13 +31,8 @@
     },
     "Job": {
       "properties": {
-        "errorSummaries": {
-          "items": {
-            "$ref": "ErrorSummary"
-          }
-        },
-        "putObjectHold": {
-          "$ref": "PutObjectHold"
+        "rewriteObject": {
+          "$ref": "RewriteObject"
         },
         "state": {
           "enum": [
@@ -55,8 +50,13 @@
         "loggingConfig": {
           "$ref": "LoggingConfig"
         },
-        "rewriteObject": {
-          "$ref": "RewriteObject"
+        "putObjectHold": {
+          "$ref": "PutObjectHold"
+        },
+        "errorSummaries": {
+          "items": {
+            "$ref": "ErrorSummary"
+          }
         }
       }
     },

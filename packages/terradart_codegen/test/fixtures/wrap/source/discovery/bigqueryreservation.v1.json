@@ -48,14 +48,6 @@
             "NONE"
           ]
         },
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "STANDARD",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
         "plan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
@@ -70,6 +62,14 @@
             "NONE"
           ]
         },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -82,20 +82,20 @@
     },
     "Reservation": {
       "properties": {
-        "scalingMode": {
-          "enum": [
-            "SCALING_MODE_UNSPECIFIED",
-            "AUTOSCALE_ONLY",
-            "IDLE_SLOTS_ONLY",
-            "ALL_SLOTS"
-          ]
-        },
         "edition": {
           "enum": [
             "EDITION_UNSPECIFIED",
             "STANDARD",
             "ENTERPRISE",
             "ENTERPRISE_PLUS"
+          ]
+        },
+        "scalingMode": {
+          "enum": [
+            "SCALING_MODE_UNSPECIFIED",
+            "AUTOSCALE_ONLY",
+            "IDLE_SLOTS_ONLY",
+            "ALL_SLOTS"
           ]
         }
       }

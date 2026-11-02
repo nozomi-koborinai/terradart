@@ -6,12 +6,6 @@
   "schemas": {
     "DnsKeySpec": {
       "properties": {
-        "keyType": {
-          "enum": [
-            "keySigning",
-            "zoneSigning"
-          ]
-        },
         "algorithm": {
           "enum": [
             "rsasha1",
@@ -19,6 +13,12 @@
             "rsasha512",
             "ecdsap256sha256",
             "ecdsap384sha384"
+          ]
+        },
+        "keyType": {
+          "enum": [
+            "keySigning",
+            "zoneSigning"
           ]
         }
       }
@@ -41,11 +41,10 @@
     },
     "ManagedZoneDnsSecConfig": {
       "properties": {
-        "state": {
+        "nonExistence": {
           "enum": [
-            "off",
-            "on",
-            "transfer"
+            "nsec",
+            "nsec3"
           ]
         },
         "defaultKeySpecs": {
@@ -53,10 +52,11 @@
             "$ref": "DnsKeySpec"
           }
         },
-        "nonExistence": {
+        "state": {
           "enum": [
-            "nsec",
-            "nsec3"
+            "off",
+            "on",
+            "transfer"
           ]
         }
       }
@@ -114,11 +114,11 @@
         "primaryBackup": {
           "$ref": "RRSetRoutingPolicyPrimaryBackupPolicy"
         },
-        "geo": {
-          "$ref": "RRSetRoutingPolicyGeoPolicy"
-        },
         "wrr": {
           "$ref": "RRSetRoutingPolicyWrrPolicy"
+        },
+        "geo": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
         }
       }
     },
@@ -149,6 +149,13 @@
     },
     "RRSetRoutingPolicyLoadBalancerTarget": {
       "properties": {
+        "ipProtocol": {
+          "enum": [
+            "undefined",
+            "tcp",
+            "udp"
+          ]
+        },
         "loadBalancerType": {
           "enum": [
             "none",
@@ -156,23 +163,16 @@
             "regionalL4ilb",
             "regionalL7ilb"
           ]
-        },
-        "ipProtocol": {
-          "enum": [
-            "undefined",
-            "tcp",
-            "udp"
-          ]
         }
       }
     },
     "RRSetRoutingPolicyPrimaryBackupPolicy": {
       "properties": {
-        "backupGeoTargets": {
-          "$ref": "RRSetRoutingPolicyGeoPolicy"
-        },
         "primaryTargets": {
           "$ref": "RRSetRoutingPolicyHealthCheckTargets"
+        },
+        "backupGeoTargets": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
         }
       }
     },
@@ -204,14 +204,14 @@
     },
     "ResponsePolicyRule": {
       "properties": {
-        "localData": {
-          "$ref": "ResponsePolicyRuleLocalData"
-        },
         "behavior": {
           "enum": [
             "behaviorUnspecified",
             "bypassResponsePolicy"
           ]
+        },
+        "localData": {
+          "$ref": "ResponsePolicyRuleLocalData"
         }
       }
     },

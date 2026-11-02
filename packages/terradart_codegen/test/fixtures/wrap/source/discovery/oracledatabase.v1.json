@@ -17,11 +17,11 @@
     },
     "AutonomousDatabase": {
       "properties": {
-        "sourceConfig": {
-          "$ref": "SourceConfig"
-        },
         "properties": {
           "$ref": "AutonomousDatabaseProperties"
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig"
         }
       }
     },
@@ -36,64 +36,6 @@
     },
     "AutonomousDatabaseProperties": {
       "properties": {
-        "operationsInsightsState": {
-          "enum": [
-            "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
-            "ENABLING",
-            "ENABLED",
-            "DISABLING",
-            "NOT_ENABLED",
-            "FAILED_ENABLING",
-            "FAILED_DISABLING"
-          ]
-        },
-        "maintenanceScheduleType": {
-          "enum": [
-            "MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED",
-            "EARLY",
-            "REGULAR"
-          ]
-        },
-        "dbEdition": {
-          "enum": [
-            "DATABASE_EDITION_UNSPECIFIED",
-            "STANDARD_EDITION",
-            "ENTERPRISE_EDITION"
-          ]
-        },
-        "licenseType": {
-          "enum": [
-            "LICENSE_TYPE_UNSPECIFIED",
-            "LICENSE_INCLUDED",
-            "BRING_YOUR_OWN_LICENSE"
-          ]
-        },
-        "scheduledOperationDetails": {
-          "items": {
-            "$ref": "ScheduledOperationDetails"
-          }
-        },
-        "localStandbyDb": {
-          "$ref": "AutonomousDatabaseStandbySummary"
-        },
-        "localDisasterRecoveryType": {
-          "enum": [
-            "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED",
-            "ADG",
-            "BACKUP_BASED",
-            "NOT_AVAILABLE"
-          ]
-        },
-        "dbWorkload": {
-          "enum": [
-            "DB_WORKLOAD_UNSPECIFIED",
-            "OLTP",
-            "DW",
-            "AJD",
-            "APEX",
-            "LH"
-          ]
-        },
         "encryptionKey": {
           "$ref": "EncryptionKey"
         },
@@ -101,6 +43,19 @@
           "items": {
             "$ref": "EncryptionKeyHistoryEntry"
           }
+        },
+        "localStandbyDb": {
+          "$ref": "AutonomousDatabaseStandbySummary"
+        },
+        "role": {
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "PRIMARY",
+            "STANDBY",
+            "DISABLED_STANDBY",
+            "BACKUP_COPY",
+            "SNAPSHOT_STANDBY"
+          ]
         },
         "dataSafeState": {
           "enum": [
@@ -111,37 +66,6 @@
             "NOT_REGISTERED",
             "FAILED"
           ]
-        },
-        "openMode": {
-          "enum": [
-            "OPEN_MODE_UNSPECIFIED",
-            "READ_ONLY",
-            "READ_WRITE"
-          ]
-        },
-        "permissionLevel": {
-          "enum": [
-            "PERMISSION_LEVEL_UNSPECIFIED",
-            "RESTRICTED",
-            "UNRESTRICTED"
-          ]
-        },
-        "refreshableState": {
-          "enum": [
-            "REFRESHABLE_STATE_UNSPECIFIED",
-            "REFRESHING",
-            "NOT_REFRESHING"
-          ]
-        },
-        "refreshableMode": {
-          "enum": [
-            "REFRESHABLE_MODE_UNSPECIFIED",
-            "AUTOMATIC",
-            "MANUAL"
-          ]
-        },
-        "connectionStrings": {
-          "$ref": "AutonomousDatabaseConnectionStrings"
         },
         "databaseManagementState": {
           "enum": [
@@ -154,14 +78,90 @@
             "FAILED_DISABLING"
           ]
         },
-        "role": {
+        "refreshableState": {
           "enum": [
-            "ROLE_UNSPECIFIED",
-            "PRIMARY",
-            "STANDBY",
-            "DISABLED_STANDBY",
-            "BACKUP_COPY",
-            "SNAPSHOT_STANDBY"
+            "REFRESHABLE_STATE_UNSPECIFIED",
+            "REFRESHING",
+            "NOT_REFRESHING"
+          ]
+        },
+        "connectionStrings": {
+          "$ref": "AutonomousDatabaseConnectionStrings"
+        },
+        "maintenanceScheduleType": {
+          "enum": [
+            "MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED",
+            "EARLY",
+            "REGULAR"
+          ]
+        },
+        "refreshableMode": {
+          "enum": [
+            "REFRESHABLE_MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ]
+        },
+        "dbEdition": {
+          "enum": [
+            "DATABASE_EDITION_UNSPECIFIED",
+            "STANDARD_EDITION",
+            "ENTERPRISE_EDITION"
+          ]
+        },
+        "operationsInsightsState": {
+          "enum": [
+            "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED",
+            "ENABLING",
+            "ENABLED",
+            "DISABLING",
+            "NOT_ENABLED",
+            "FAILED_ENABLING",
+            "FAILED_DISABLING"
+          ]
+        },
+        "dbWorkload": {
+          "enum": [
+            "DB_WORKLOAD_UNSPECIFIED",
+            "OLTP",
+            "DW",
+            "AJD",
+            "APEX",
+            "LH"
+          ]
+        },
+        "licenseType": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ]
+        },
+        "permissionLevel": {
+          "enum": [
+            "PERMISSION_LEVEL_UNSPECIFIED",
+            "RESTRICTED",
+            "UNRESTRICTED"
+          ]
+        },
+        "localDisasterRecoveryType": {
+          "enum": [
+            "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED",
+            "ADG",
+            "BACKUP_BASED",
+            "NOT_AVAILABLE"
+          ]
+        },
+        "scheduledOperationDetails": {
+          "items": {
+            "$ref": "ScheduledOperationDetails"
+          }
+        },
+        "openMode": {
+          "enum": [
+            "OPEN_MODE_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE"
           ]
         },
         "state": {
@@ -281,6 +281,20 @@
     },
     "CloudVmClusterProperties": {
       "properties": {
+        "licenseType": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ]
+        },
+        "storageManagementType": {
+          "enum": [
+            "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED",
+            "ASM",
+            "EXASCALE"
+          ]
+        },
         "computeModel": {
           "enum": [
             "COMPUTE_MODEL_UNSPECIFIED",
@@ -288,11 +302,18 @@
             "COMPUTE_MODEL_OCPU"
           ]
         },
-        "vmBackupStorageType": {
+        "diskRedundancy": {
           "enum": [
-            "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED",
-            "VM_BACKUP_STORAGE_TYPE_LOCAL",
-            "VM_BACKUP_STORAGE_TYPE_EXASCALE"
+            "DISK_REDUNDANCY_UNSPECIFIED",
+            "HIGH",
+            "NORMAL"
+          ]
+        },
+        "vmFileSystemStorageType": {
+          "enum": [
+            "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED",
+            "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL",
+            "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE"
           ]
         },
         "state": {
@@ -307,32 +328,11 @@
             "MAINTENANCE_IN_PROGRESS"
           ]
         },
-        "diskRedundancy": {
+        "vmBackupStorageType": {
           "enum": [
-            "DISK_REDUNDANCY_UNSPECIFIED",
-            "HIGH",
-            "NORMAL"
-          ]
-        },
-        "storageManagementType": {
-          "enum": [
-            "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED",
-            "ASM",
-            "EXASCALE"
-          ]
-        },
-        "vmFileSystemStorageType": {
-          "enum": [
-            "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED",
-            "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL",
-            "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE"
-          ]
-        },
-        "licenseType": {
-          "enum": [
-            "LICENSE_TYPE_UNSPECIFIED",
-            "LICENSE_INCLUDED",
-            "BRING_YOUR_OWN_LICENSE"
+            "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED",
+            "VM_BACKUP_STORAGE_TYPE_LOCAL",
+            "VM_BACKUP_STORAGE_TYPE_EXASCALE"
           ]
         }
       }
@@ -357,11 +357,25 @@
     },
     "DatabaseConnectionStringProfile": {
       "properties": {
+        "tlsAuthentication": {
+          "enum": [
+            "TLS_AUTHENTICATION_UNSPECIFIED",
+            "SERVER",
+            "MUTUAL"
+          ]
+        },
         "protocol": {
           "enum": [
             "PROTOCOL_UNSPECIFIED",
             "TCP",
             "TCPS"
+          ]
+        },
+        "sessionMode": {
+          "enum": [
+            "SESSION_MODE_UNSPECIFIED",
+            "DIRECT",
+            "INDIRECT"
           ]
         },
         "consumerGroup": {
@@ -374,25 +388,11 @@
             "TPURGENT"
           ]
         },
-        "sessionMode": {
-          "enum": [
-            "SESSION_MODE_UNSPECIFIED",
-            "DIRECT",
-            "INDIRECT"
-          ]
-        },
         "hostFormat": {
           "enum": [
             "HOST_FORMAT_UNSPECIFIED",
             "FQDN",
             "IP"
-          ]
-        },
-        "tlsAuthentication": {
-          "enum": [
-            "TLS_AUTHENTICATION_UNSPECIFIED",
-            "SERVER",
-            "MUTUAL"
           ]
         },
         "syntaxFormat": {
@@ -407,6 +407,13 @@
     },
     "DatabaseManagementConfig": {
       "properties": {
+        "managementType": {
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "BASIC",
+            "ADVANCED"
+          ]
+        },
         "managementState": {
           "enum": [
             "MANAGEMENT_STATE_UNSPECIFIED",
@@ -419,18 +426,14 @@
             "FAILED_DISABLING",
             "FAILED_UPDATING"
           ]
-        },
-        "managementType": {
-          "enum": [
-            "MANAGEMENT_TYPE_UNSPECIFIED",
-            "BASIC",
-            "ADVANCED"
-          ]
         }
       }
     },
     "DatabaseProperties": {
       "properties": {
+        "databaseManagementConfig": {
+          "$ref": "DatabaseManagementConfig"
+        },
         "state": {
           "enum": [
             "DATABASE_LIFECYCLE_STATE_UNSPECIFIED",
@@ -448,19 +451,26 @@
         },
         "dbBackupConfig": {
           "$ref": "DbBackupConfig"
-        },
-        "databaseManagementConfig": {
-          "$ref": "DatabaseManagementConfig"
         }
       }
     },
     "DbBackupConfig": {
       "properties": {
-        "backupDeletionPolicy": {
+        "autoFullBackupWindow": {
           "enum": [
-            "BACKUP_DELETION_POLICY_UNSPECIFIED",
-            "DELETE_IMMEDIATELY",
-            "DELETE_AFTER_RETENTION_PERIOD"
+            "BACKUP_WINDOW_UNSPECIFIED",
+            "SLOT_ONE",
+            "SLOT_TWO",
+            "SLOT_THREE",
+            "SLOT_FOUR",
+            "SLOT_FIVE",
+            "SLOT_SIX",
+            "SLOT_SEVEN",
+            "SLOT_EIGHT",
+            "SLOT_NINE",
+            "SLOT_TEN",
+            "SLOT_ELEVEN",
+            "SLOT_TWELVE"
           ]
         },
         "autoIncrementalBackupWindow": {
@@ -480,26 +490,11 @@
             "SLOT_TWELVE"
           ]
         },
-        "backupDestinationDetails": {
-          "items": {
-            "$ref": "BackupDestinationDetails"
-          }
-        },
-        "autoFullBackupWindow": {
+        "backupDeletionPolicy": {
           "enum": [
-            "BACKUP_WINDOW_UNSPECIFIED",
-            "SLOT_ONE",
-            "SLOT_TWO",
-            "SLOT_THREE",
-            "SLOT_FOUR",
-            "SLOT_FIVE",
-            "SLOT_SIX",
-            "SLOT_SEVEN",
-            "SLOT_EIGHT",
-            "SLOT_NINE",
-            "SLOT_TEN",
-            "SLOT_ELEVEN",
-            "SLOT_TWELVE"
+            "BACKUP_DELETION_POLICY_UNSPECIFIED",
+            "DELETE_IMMEDIATELY",
+            "DELETE_AFTER_RETENTION_PERIOD"
           ]
         },
         "autoFullBackupDay": {
@@ -513,6 +508,11 @@
             "SATURDAY",
             "SUNDAY"
           ]
+        },
+        "backupDestinationDetails": {
+          "items": {
+            "$ref": "BackupDestinationDetails"
+          }
         }
       }
     },
@@ -543,11 +543,22 @@
     },
     "DbSystemProperties": {
       "properties": {
+        "computeModel": {
+          "enum": [
+            "COMPUTE_MODEL_UNSPECIFIED",
+            "ECPU",
+            "OCPU"
+          ]
+        },
+        "licenseModel": {
+          "enum": [
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ]
+        },
         "dbSystemOptions": {
           "$ref": "DbSystemOptions"
-        },
-        "dbHome": {
-          "$ref": "DbHome"
         },
         "lifecycleState": {
           "enum": [
@@ -564,12 +575,8 @@
             "UPGRADING"
           ]
         },
-        "licenseModel": {
-          "enum": [
-            "LICENSE_MODEL_UNSPECIFIED",
-            "LICENSE_INCLUDED",
-            "BRING_YOUR_OWN_LICENSE"
-          ]
+        "dbHome": {
+          "$ref": "DbHome"
         },
         "databaseEdition": {
           "enum": [
@@ -577,13 +584,6 @@
             "STANDARD_EDITION",
             "ENTERPRISE_EDITION",
             "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
-          ]
-        },
-        "computeModel": {
-          "enum": [
-            "COMPUTE_MODEL_UNSPECIFIED",
-            "ECPU",
-            "OCPU"
           ]
         }
       }
@@ -630,11 +630,11 @@
     },
     "ExadbVmClusterProperties": {
       "properties": {
-        "licenseModel": {
+        "shapeAttribute": {
           "enum": [
-            "LICENSE_MODEL_UNSPECIFIED",
-            "LICENSE_INCLUDED",
-            "BRING_YOUR_OWN_LICENSE"
+            "SHAPE_ATTRIBUTE_UNSPECIFIED",
+            "SMART_STORAGE",
+            "BLOCK_STORAGE"
           ]
         },
         "lifecycleState": {
@@ -649,11 +649,11 @@
             "MAINTENANCE_IN_PROGRESS"
           ]
         },
-        "shapeAttribute": {
+        "licenseModel": {
           "enum": [
-            "SHAPE_ATTRIBUTE_UNSPECIFIED",
-            "SMART_STORAGE",
-            "BLOCK_STORAGE"
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
           ]
         }
       }
@@ -667,16 +667,14 @@
     },
     "ExascaleDbStorageVaultProperties": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PROVISIONING",
-            "AVAILABLE",
-            "UPDATING",
-            "TERMINATING",
-            "TERMINATED",
-            "FAILED"
-          ]
+        "attachedShapeAttributes": {
+          "items": {
+            "enum": [
+              "SHAPE_ATTRIBUTE_UNSPECIFIED",
+              "SMART_STORAGE",
+              "BLOCK_STORAGE"
+            ]
+          }
         },
         "availableShapeAttributes": {
           "items": {
@@ -687,14 +685,16 @@
             ]
           }
         },
-        "attachedShapeAttributes": {
-          "items": {
-            "enum": [
-              "SHAPE_ATTRIBUTE_UNSPECIFIED",
-              "SMART_STORAGE",
-              "BLOCK_STORAGE"
-            ]
-          }
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "UPDATING",
+            "TERMINATING",
+            "TERMINATED",
+            "FAILED"
+          ]
         }
       }
     },
@@ -752,38 +752,22 @@
     },
     "GoldengateConnectionProperties": {
       "properties": {
-        "azureDataLakeStorageConnectionProperties": {
-          "$ref": "GoldengateAzureDataLakeStorageConnectionProperties"
-        },
-        "kafkaSchemaRegistryConnectionProperties": {
-          "$ref": "GoldengateKafkaSchemaRegistryConnectionProperties"
-        },
-        "microsoftSqlserverConnectionProperties": {
-          "$ref": "GoldengateMicrosoftSqlserverConnectionProperties"
-        },
-        "mysqlConnectionProperties": {
-          "$ref": "GoldengateMysqlConnectionProperties"
-        },
         "databricksConnectionProperties": {
           "$ref": "GoldengateDatabricksConnectionProperties"
-        },
-        "redisConnectionProperties": {
-          "$ref": "GoldengateRedisConnectionProperties"
-        },
-        "mongodbConnectionProperties": {
-          "$ref": "GoldengateMongodbConnectionProperties"
-        },
-        "snowflakeConnectionProperties": {
-          "$ref": "GoldengateSnowflakeConnectionProperties"
         },
         "elasticsearchConnectionProperties": {
           "$ref": "GoldengateElasticsearchConnectionProperties"
         },
-        "icebergConnectionProperties": {
-          "$ref": "GoldengateIcebergConnectionProperties"
-        },
-        "oracleConnectionProperties": {
-          "$ref": "GoldengateOracleConnectionProperties"
+        "lifecycleState": {
+          "enum": [
+            "GOLDENGATE_CONNECTION_LIFECYCLE_STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "DELETED",
+            "FAILED"
+          ]
         },
         "routingMethod": {
           "enum": [
@@ -792,8 +776,11 @@
             "DEDICATED_ENDPOINT"
           ]
         },
-        "postgresqlConnectionProperties": {
-          "$ref": "GoldengatePostgresqlConnectionProperties"
+        "db2ConnectionProperties": {
+          "$ref": "GoldengateDb2ConnectionProperties"
+        },
+        "kafkaConnectionProperties": {
+          "$ref": "GoldengateKafkaConnectionProperties"
         },
         "connectionType": {
           "enum": [
@@ -829,25 +816,38 @@
             "ICEBERG"
           ]
         },
-        "lifecycleState": {
-          "enum": [
-            "GOLDENGATE_CONNECTION_LIFECYCLE_STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "UPDATING",
-            "DELETING",
-            "DELETED",
-            "FAILED"
-          ]
-        },
-        "db2ConnectionProperties": {
-          "$ref": "GoldengateDb2ConnectionProperties"
-        },
-        "kafkaConnectionProperties": {
-          "$ref": "GoldengateKafkaConnectionProperties"
+        "mongodbConnectionProperties": {
+          "$ref": "GoldengateMongodbConnectionProperties"
         },
         "javaMessageServiceConnectionProperties": {
           "$ref": "GoldengateJavaMessageServiceConnectionProperties"
+        },
+        "postgresqlConnectionProperties": {
+          "$ref": "GoldengatePostgresqlConnectionProperties"
+        },
+        "azureDataLakeStorageConnectionProperties": {
+          "$ref": "GoldengateAzureDataLakeStorageConnectionProperties"
+        },
+        "icebergConnectionProperties": {
+          "$ref": "GoldengateIcebergConnectionProperties"
+        },
+        "mysqlConnectionProperties": {
+          "$ref": "GoldengateMysqlConnectionProperties"
+        },
+        "oracleConnectionProperties": {
+          "$ref": "GoldengateOracleConnectionProperties"
+        },
+        "microsoftSqlserverConnectionProperties": {
+          "$ref": "GoldengateMicrosoftSqlserverConnectionProperties"
+        },
+        "snowflakeConnectionProperties": {
+          "$ref": "GoldengateSnowflakeConnectionProperties"
+        },
+        "kafkaSchemaRegistryConnectionProperties": {
+          "$ref": "GoldengateKafkaSchemaRegistryConnectionProperties"
+        },
+        "redisConnectionProperties": {
+          "$ref": "GoldengateRedisConnectionProperties"
         }
       }
     },
@@ -893,6 +893,14 @@
     },
     "GoldengateDeploymentProperties": {
       "properties": {
+        "locks": {
+          "items": {
+            "$ref": "GoldengateDeploymentLock"
+          }
+        },
+        "oggData": {
+          "$ref": "GoldengateOggDeployment"
+        },
         "lifecycleState": {
           "enum": [
             "GOLDENGATE_DEPLOYMENT_LIFECYCLE_STATE_UNSPECIFIED",
@@ -911,6 +919,29 @@
             "WAITING"
           ]
         },
+        "category": {
+          "enum": [
+            "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED",
+            "DATA_REPLICATION",
+            "DATA_TRANSFORMS"
+          ]
+        },
+        "licenseModel": {
+          "enum": [
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ]
+        },
+        "backupSchedule": {
+          "$ref": "GoldengateBackupSchedule"
+        },
+        "nextMaintenanceActionType": {
+          "enum": [
+            "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED",
+            "UPGRADE"
+          ]
+        },
         "lifecycleSubState": {
           "enum": [
             "GOLDENGATE_DEPLOYMENT_LIFECYCLE_SUB_STATE_UNSPECIFIED",
@@ -924,27 +955,6 @@
             "ROLLING_BACK"
           ]
         },
-        "maintenanceWindow": {
-          "$ref": "GoldengateMaintenanceWindow"
-        },
-        "category": {
-          "enum": [
-            "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED",
-            "DATA_REPLICATION",
-            "DATA_TRANSFORMS"
-          ]
-        },
-        "locks": {
-          "items": {
-            "$ref": "GoldengateDeploymentLock"
-          }
-        },
-        "backupSchedule": {
-          "$ref": "GoldengateBackupSchedule"
-        },
-        "deploymentDiagnosticData": {
-          "$ref": "DeploymentDiagnosticData"
-        },
         "deploymentRole": {
           "enum": [
             "GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED",
@@ -952,21 +962,11 @@
             "STANDBY"
           ]
         },
-        "oggData": {
-          "$ref": "GoldengateOggDeployment"
+        "deploymentDiagnosticData": {
+          "$ref": "DeploymentDiagnosticData"
         },
-        "nextMaintenanceActionType": {
-          "enum": [
-            "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED",
-            "UPGRADE"
-          ]
-        },
-        "licenseModel": {
-          "enum": [
-            "LICENSE_MODEL_UNSPECIFIED",
-            "LICENSE_INCLUDED",
-            "BRING_YOUR_OWN_LICENSE"
-          ]
+        "maintenanceWindow": {
+          "$ref": "GoldengateMaintenanceWindow"
         }
       }
     },
@@ -1116,32 +1116,24 @@
     },
     "GoldengateOracleConnectionProperties": {
       "properties": {
-        "authenticationMode": {
-          "enum": [
-            "ORACLE_AUTHENTICATION_MODE_UNSPECIFIED",
-            "TLS",
-            "MTLS"
-          ]
-        },
         "sessionMode": {
           "enum": [
             "SESSION_MODE_UNSPECIFIED",
             "DIRECT",
             "REDIRECT"
           ]
+        },
+        "authenticationMode": {
+          "enum": [
+            "ORACLE_AUTHENTICATION_MODE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ]
         }
       }
     },
     "GoldengatePostgresqlConnectionProperties": {
       "properties": {
-        "securityProtocol": {
-          "enum": [
-            "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED",
-            "PLAIN",
-            "TLS",
-            "MTLS"
-          ]
-        },
         "sslMode": {
           "enum": [
             "POSTGRESQL_SSL_MODE_UNSPECIFIED",
@@ -1149,6 +1141,14 @@
             "REQUIRE",
             "VERIFY_CA",
             "VERIFY_FULL"
+          ]
+        },
+        "securityProtocol": {
+          "enum": [
+            "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
           ]
         }
       }
@@ -1199,9 +1199,6 @@
     },
     "IcebergStorage": {
       "properties": {
-        "amazonS3IcebergStorage": {
-          "$ref": "AmazonS3IcebergStorage"
-        },
         "storageType": {
           "enum": [
             "STORAGE_TYPE_UNSPECIFIED",
@@ -1209,6 +1206,9 @@
             "GOOGLE_CLOUD_STORAGE",
             "AZURE_DATA_LAKE_STORAGE"
           ]
+        },
+        "amazonS3IcebergStorage": {
+          "$ref": "AmazonS3IcebergStorage"
         }
       }
     },
@@ -1227,6 +1227,13 @@
     },
     "MaintenanceWindow": {
       "properties": {
+        "preference": {
+          "enum": [
+            "MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED",
+            "CUSTOM_PREFERENCE",
+            "NO_PREFERENCE"
+          ]
+        },
         "daysOfWeek": {
           "items": {
             "enum": [
@@ -1266,13 +1273,6 @@
               "DECEMBER"
             ]
           }
-        },
-        "preference": {
-          "enum": [
-            "MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED",
-            "CUSTOM_PREFERENCE",
-            "NO_PREFERENCE"
-          ]
         }
       }
     },
@@ -1291,13 +1291,6 @@
     },
     "OdbSubnet": {
       "properties": {
-        "purpose": {
-          "enum": [
-            "PURPOSE_UNSPECIFIED",
-            "CLIENT_SUBNET",
-            "BACKUP_SUBNET"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -1305,6 +1298,13 @@
             "AVAILABLE",
             "TERMINATING",
             "FAILED"
+          ]
+        },
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "CLIENT_SUBNET",
+            "BACKUP_SUBNET"
           ]
         }
       }
@@ -1327,13 +1327,6 @@
     },
     "SourceConfig": {
       "properties": {
-        "cloneType": {
-          "enum": [
-            "CLONE_TYPE_UNSPECIFIED",
-            "FULL",
-            "METADATA"
-          ]
-        },
         "sourceType": {
           "enum": [
             "SOURCE_TYPE_UNSPECIFIED",
@@ -1349,6 +1342,13 @@
             "REFRESHABLE_MODE_UNSPECIFIED",
             "AUTOMATIC",
             "MANUAL"
+          ]
+        },
+        "cloneType": {
+          "enum": [
+            "CLONE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA"
           ]
         }
       }

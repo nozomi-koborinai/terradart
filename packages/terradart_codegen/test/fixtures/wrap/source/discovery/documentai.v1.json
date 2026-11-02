@@ -24,6 +24,14 @@
     },
     "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty": {
       "properties": {
+        "method": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE",
+            "RELAXED_EXTRACT"
+          ]
+        },
         "occurrenceType": {
           "enum": [
             "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -31,14 +39,6 @@
             "OPTIONAL_MULTIPLE",
             "REQUIRED_ONCE",
             "REQUIRED_MULTIPLE"
-          ]
-        },
-        "method": {
-          "enum": [
-            "METHOD_UNSPECIFIED",
-            "EXTRACT",
-            "DERIVE",
-            "RELAXED_EXTRACT"
           ]
         }
       }

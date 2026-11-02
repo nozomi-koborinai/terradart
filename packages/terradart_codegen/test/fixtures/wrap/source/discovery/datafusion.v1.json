@@ -36,22 +36,6 @@
             ]
           }
         },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "BASIC",
-            "ENTERPRISE",
-            "DEVELOPER"
-          ]
-        },
-        "maintenanceEvents": {
-          "items": {
-            "$ref": "MaintenanceEvent"
-          }
-        },
-        "networkConfig": {
-          "$ref": "NetworkConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -68,15 +52,31 @@
             "ENABLING"
           ]
         },
-        "accelerators": {
-          "items": {
-            "$ref": "Accelerator"
-          }
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BASIC",
+            "ENTERPRISE",
+            "DEVELOPER"
+          ]
         },
         "availableVersion": {
           "items": {
             "$ref": "Version"
           }
+        },
+        "maintenanceEvents": {
+          "items": {
+            "$ref": "MaintenanceEvent"
+          }
+        },
+        "accelerators": {
+          "items": {
+            "$ref": "Accelerator"
+          }
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig"
         }
       }
     },

@@ -27,11 +27,11 @@
     },
     "DnsSettings": {
       "properties": {
-        "customDns": {
-          "$ref": "CustomDns"
-        },
         "googleDomainsDns": {
           "$ref": "GoogleDomainsDns"
+        },
+        "customDns": {
+          "$ref": "CustomDns"
         }
       }
     },
@@ -72,17 +72,17 @@
     },
     "GoogleDomainsDns": {
       "properties": {
+        "dsRecords": {
+          "items": {
+            "$ref": "DsRecord"
+          }
+        },
         "dsState": {
           "enum": [
             "DS_STATE_UNSPECIFIED",
             "DS_RECORDS_UNPUBLISHED",
             "DS_RECORDS_PUBLISHED"
           ]
-        },
-        "dsRecords": {
-          "items": {
-            "$ref": "DsRecord"
-          }
         }
       }
     },
@@ -93,14 +93,6 @@
             "TRANSFER_LOCK_STATE_UNSPECIFIED",
             "UNLOCKED",
             "LOCKED"
-          ]
-        },
-        "preferredRenewalMethod": {
-          "enum": [
-            "RENEWAL_METHOD_UNSPECIFIED",
-            "AUTOMATIC_RENEWAL",
-            "MANUAL_RENEWAL",
-            "RENEWAL_DISABLED"
           ]
         },
         "transferLockState": {
@@ -117,11 +109,52 @@
             "MANUAL_RENEWAL",
             "RENEWAL_DISABLED"
           ]
+        },
+        "preferredRenewalMethod": {
+          "enum": [
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ]
         }
       }
     },
     "Registration": {
       "properties": {
+        "dnsSettings": {
+          "$ref": "DnsSettings"
+        },
+        "transferFailureReason": {
+          "enum": [
+            "TRANSFER_FAILURE_REASON_UNSPECIFIED",
+            "TRANSFER_FAILURE_REASON_UNKNOWN",
+            "EMAIL_CONFIRMATION_FAILURE",
+            "DOMAIN_NOT_REGISTERED",
+            "DOMAIN_HAS_TRANSFER_LOCK",
+            "INVALID_AUTHORIZATION_CODE",
+            "TRANSFER_CANCELLED",
+            "TRANSFER_REJECTED",
+            "INVALID_REGISTRANT_EMAIL_ADDRESS",
+            "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER",
+            "TRANSFER_ALREADY_PENDING"
+          ]
+        },
+        "pendingContactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "domainProperties": {
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ]
+          }
+        },
+        "contactSettings": {
+          "$ref": "ContactSettings"
+        },
         "supportedPrivacy": {
           "items": {
             "enum": [
@@ -129,18 +162,6 @@
               "PUBLIC_CONTACT_DATA",
               "PRIVATE_CONTACT_DATA",
               "REDACTED_CONTACT_DATA"
-            ]
-          }
-        },
-        "issues": {
-          "items": {
-            "enum": [
-              "ISSUE_UNSPECIFIED",
-              "CONTACT_SUPPORT",
-              "UNVERIFIED_EMAIL",
-              "PROBLEM_WITH_BILLING",
-              "DNS_NOT_ACTIVATED",
-              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
             ]
           }
         },
@@ -158,29 +179,8 @@
             "EXPIRED"
           ]
         },
-        "transferFailureReason": {
-          "enum": [
-            "TRANSFER_FAILURE_REASON_UNSPECIFIED",
-            "TRANSFER_FAILURE_REASON_UNKNOWN",
-            "EMAIL_CONFIRMATION_FAILURE",
-            "DOMAIN_NOT_REGISTERED",
-            "DOMAIN_HAS_TRANSFER_LOCK",
-            "INVALID_AUTHORIZATION_CODE",
-            "TRANSFER_CANCELLED",
-            "TRANSFER_REJECTED",
-            "INVALID_REGISTRANT_EMAIL_ADDRESS",
-            "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER",
-            "TRANSFER_ALREADY_PENDING"
-          ]
-        },
-        "dnsSettings": {
-          "$ref": "DnsSettings"
-        },
         "managementSettings": {
           "$ref": "ManagementSettings"
-        },
-        "contactSettings": {
-          "$ref": "ContactSettings"
         },
         "registerFailureReason": {
           "enum": [
@@ -190,15 +190,15 @@
             "INVALID_CONTACTS"
           ]
         },
-        "pendingContactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "domainProperties": {
+        "issues": {
           "items": {
             "enum": [
-              "DOMAIN_PROPERTY_UNSPECIFIED",
-              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
-              "REQUIRE_PUSH_TRANSFER"
+              "ISSUE_UNSPECIFIED",
+              "CONTACT_SUPPORT",
+              "UNVERIFIED_EMAIL",
+              "PROBLEM_WITH_BILLING",
+              "DNS_NOT_ACTIVATED",
+              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
             ]
           }
         }

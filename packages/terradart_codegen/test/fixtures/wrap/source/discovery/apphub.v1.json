@@ -1,14 +1,11 @@
 {
   "name": "apphub",
   "version": "v1",
-  "revision": "20261019",
+  "revision": "20261027",
   "sourceUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Application": {
       "properties": {
-        "applicationType": {
-          "$ref": "ApplicationType"
-        },
         "attributes": {
           "$ref": "Attributes"
         },
@@ -22,6 +19,9 @@
             "ACTIVE",
             "DELETING"
           ]
+        },
+        "applicationType": {
+          "$ref": "ApplicationType"
         }
       }
     },
@@ -37,11 +37,11 @@
     },
     "Attributes": {
       "properties": {
-        "environment": {
-          "$ref": "Environment"
-        },
         "criticality": {
           "$ref": "Criticality"
+        },
+        "environment": {
+          "$ref": "Environment"
         }
       }
     },
@@ -119,9 +119,6 @@
     },
     "Service": {
       "properties": {
-        "attributes": {
-          "$ref": "Attributes"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -133,6 +130,9 @@
         },
         "serviceProperties": {
           "$ref": "ServiceProperties"
+        },
+        "attributes": {
+          "$ref": "Attributes"
         }
       }
     },
@@ -150,11 +150,11 @@
     },
     "ServiceProperties": {
       "properties": {
-        "registrationType": {
-          "$ref": "RegistrationType"
-        },
         "functionalType": {
           "$ref": "FunctionalType"
+        },
+        "registrationType": {
+          "$ref": "RegistrationType"
         }
       }
     },

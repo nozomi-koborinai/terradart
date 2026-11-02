@@ -64,6 +64,16 @@
     },
     "Job": {
       "properties": {
+        "optimization": {
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "AUTODETECT",
+            "DISABLED"
+          ]
+        },
+        "config": {
+          "$ref": "JobConfig"
+        },
         "state": {
           "enum": [
             "PROCESSING_STATE_UNSPECIFIED",
@@ -73,35 +83,25 @@
             "FAILED"
           ]
         },
-        "optimization": {
-          "enum": [
-            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "AUTODETECT",
-            "DISABLED"
-          ]
-        },
         "mode": {
           "enum": [
             "PROCESSING_MODE_UNSPECIFIED",
             "PROCESSING_MODE_INTERACTIVE",
             "PROCESSING_MODE_BATCH"
           ]
-        },
-        "config": {
-          "$ref": "JobConfig"
         }
       }
     },
     "JobConfig": {
       "properties": {
-        "manifests": {
-          "items": {
-            "$ref": "Manifest"
-          }
-        },
         "elementaryStreams": {
           "items": {
             "$ref": "ElementaryStream"
+          }
+        },
+        "manifests": {
+          "items": {
+            "$ref": "Manifest"
           }
         },
         "overlays": {
@@ -120,15 +120,15 @@
     },
     "Manifest": {
       "properties": {
-        "dash": {
-          "$ref": "DashConfig"
-        },
         "type": {
           "enum": [
             "MANIFEST_TYPE_UNSPECIFIED",
             "HLS",
             "DASH"
           ]
+        },
+        "dash": {
+          "$ref": "DashConfig"
         }
       }
     },
@@ -143,11 +143,11 @@
     },
     "VideoStream": {
       "properties": {
-        "vp9": {
-          "$ref": "Vp9CodecSettings"
-        },
         "h265": {
           "$ref": "H265CodecSettings"
+        },
+        "vp9": {
+          "$ref": "Vp9CodecSettings"
         },
         "h264": {
           "$ref": "H264CodecSettings"

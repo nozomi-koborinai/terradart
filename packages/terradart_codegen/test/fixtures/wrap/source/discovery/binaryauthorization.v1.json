@@ -84,12 +84,12 @@
             "$ref": "AdmissionRule"
           }
         },
-        "istioServiceIdentityAdmissionRules": {
+        "clusterAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
         },
-        "clusterAdmissionRules": {
+        "istioServiceIdentityAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }

@@ -9,9 +9,6 @@
     },
     "BackupPlan": {
       "properties": {
-        "backupSchedule": {
-          "$ref": "Schedule"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -22,6 +19,9 @@
             "DEACTIVATED",
             "DELETING"
           ]
+        },
+        "backupSchedule": {
+          "$ref": "Schedule"
         }
       }
     },
@@ -55,10 +55,12 @@
     },
     "RestoreConfig": {
       "properties": {
-        "volumeDataRestorePolicyBindings": {
-          "items": {
-            "$ref": "VolumeDataRestorePolicyBinding"
-          }
+        "clusterResourceConflictPolicy": {
+          "enum": [
+            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
+            "USE_EXISTING_VERSION",
+            "USE_BACKUP_VERSION"
+          ]
         },
         "namespacedResourceRestoreMode": {
           "enum": [
@@ -70,18 +72,6 @@
             "MERGE_REPLACE_ON_CONFLICT"
           ]
         },
-        "clusterResourceConflictPolicy": {
-          "enum": [
-            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
-            "USE_EXISTING_VERSION",
-            "USE_BACKUP_VERSION"
-          ]
-        },
-        "transformationRules": {
-          "items": {
-            "$ref": "TransformationRule"
-          }
-        },
         "volumeDataRestorePolicy": {
           "enum": [
             "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
@@ -89,6 +79,16 @@
             "REUSE_VOLUME_HANDLE_FROM_BACKUP",
             "NO_VOLUME_DATA_RESTORATION"
           ]
+        },
+        "volumeDataRestorePolicyBindings": {
+          "items": {
+            "$ref": "VolumeDataRestorePolicyBinding"
+          }
+        },
+        "transformationRules": {
+          "items": {
+            "$ref": "TransformationRule"
+          }
         }
       }
     },

@@ -22,7 +22,7 @@
     },
     "Release": {
       "properties": {
-        "inputVariables": {
+        "inputVariableDefaults": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -32,7 +32,7 @@
             "$ref": "UnitVariable"
           }
         },
-        "inputVariableDefaults": {
+        "inputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -52,6 +52,11 @@
     },
     "Saas": {
       "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "SaasCondition"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -60,11 +65,6 @@
             "STATE_RUNNING",
             "STATE_FAILED"
           ]
-        },
-        "conditions": {
-          "items": {
-            "$ref": "SaasCondition"
-          }
         }
       }
     },
@@ -103,9 +103,9 @@
     },
     "Unit": {
       "properties": {
-        "outputVariables": {
+        "conditions": {
           "items": {
-            "$ref": "UnitVariable"
+            "$ref": "UnitCondition"
           }
         },
         "state": {
@@ -124,9 +124,9 @@
             "$ref": "UnitVariable"
           }
         },
-        "conditions": {
+        "outputVariables": {
           "items": {
-            "$ref": "UnitCondition"
+            "$ref": "UnitVariable"
           }
         },
         "managementMode": {
@@ -148,14 +148,6 @@
     },
     "UnitCondition": {
       "properties": {
-        "status": {
-          "enum": [
-            "STATUS_UNSPECIFIED",
-            "STATUS_UNKNOWN",
-            "STATUS_TRUE",
-            "STATUS_FALSE"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -167,32 +159,43 @@
             "TYPE_APP_CREATED_OR_ALREADY_EXISTS",
             "TYPE_APP_COMPONENTS_REGISTERED"
           ]
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "STATUS_UNKNOWN",
+            "STATUS_TRUE",
+            "STATUS_FALSE"
+          ]
         }
       }
     },
     "UnitKind": {
       "properties": {
-        "appParams": {
-          "$ref": "AppParams"
-        },
         "boundaryType": {
           "enum": [
             "BOUNDARY_TYPE_UNSPECIFIED",
             "BOUNDARY_TYPE_TENANT_PROJECT",
             "BOUNDARY_TYPE_MANAGED_PROJECT"
           ]
+        },
+        "appParams": {
+          "$ref": "AppParams"
         }
       }
     },
     "UnitOperation": {
       "properties": {
-        "upgrade": {
-          "$ref": "Upgrade"
-        },
-        "conditions": {
-          "items": {
-            "$ref": "UnitOperationCondition"
-          }
+        "state": {
+          "enum": [
+            "UNIT_OPERATION_STATE_UNKNOWN",
+            "UNIT_OPERATION_STATE_PENDING",
+            "UNIT_OPERATION_STATE_SCHEDULED",
+            "UNIT_OPERATION_STATE_RUNNING",
+            "UNIT_OPERATION_STATE_SUCCEEDED",
+            "UNIT_OPERATION_STATE_FAILED",
+            "UNIT_OPERATION_STATE_CANCELLED"
+          ]
         },
         "errorCategory": {
           "enum": [
@@ -204,19 +207,16 @@
             "STANDARD"
           ]
         },
+        "conditions": {
+          "items": {
+            "$ref": "UnitOperationCondition"
+          }
+        },
         "provision": {
           "$ref": "Provision"
         },
-        "state": {
-          "enum": [
-            "UNIT_OPERATION_STATE_UNKNOWN",
-            "UNIT_OPERATION_STATE_PENDING",
-            "UNIT_OPERATION_STATE_SCHEDULED",
-            "UNIT_OPERATION_STATE_RUNNING",
-            "UNIT_OPERATION_STATE_SUCCEEDED",
-            "UNIT_OPERATION_STATE_FAILED",
-            "UNIT_OPERATION_STATE_CANCELLED"
-          ]
+        "upgrade": {
+          "$ref": "Upgrade"
         }
       }
     },

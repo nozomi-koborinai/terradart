@@ -35,6 +35,12 @@
     },
     "ApigatewayGateway": {
       "properties": {
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_ENABLED"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -50,12 +56,6 @@
             "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
             "EFFECTIVE_STREAMING_MODE_DISABLED",
             "EFFECTIVE_STREAMING_MODE_ENABLED"
-          ]
-        },
-        "streamingMode": {
-          "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_ENABLED"
           ]
         }
       }

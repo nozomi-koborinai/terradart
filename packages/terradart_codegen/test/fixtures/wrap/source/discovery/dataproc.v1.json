@@ -64,12 +64,6 @@
     },
     "Batch": {
       "properties": {
-        "environmentConfig": {
-          "$ref": "EnvironmentConfig"
-        },
-        "runtimeConfig": {
-          "$ref": "RuntimeConfig"
-        },
         "stateHistory": {
           "items": {
             "$ref": "StateHistory"
@@ -77,6 +71,12 @@
         },
         "runtimeInfo": {
           "$ref": "RuntimeInfo"
+        },
+        "runtimeConfig": {
+          "$ref": "RuntimeConfig"
+        },
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
         },
         "state": {
           "enum": [
@@ -93,29 +93,26 @@
     },
     "Cluster": {
       "properties": {
-        "virtualClusterConfig": {
-          "$ref": "VirtualClusterConfig"
-        },
-        "status": {
-          "$ref": "ClusterStatus"
-        },
         "statusHistory": {
           "items": {
             "$ref": "ClusterStatus"
           }
         },
+        "status": {
+          "$ref": "ClusterStatus"
+        },
         "config": {
           "$ref": "ClusterConfig"
+        },
+        "virtualClusterConfig": {
+          "$ref": "VirtualClusterConfig"
         }
       }
     },
     "ClusterConfig": {
       "properties": {
-        "masterConfig": {
-          "$ref": "InstanceGroupConfig"
-        },
-        "secondaryWorkerFlexibleConfig": {
-          "$ref": "FlexibleInstanceGroupConfig"
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig"
         },
         "dataprocMetricConfig": {
           "$ref": "DataprocMetricConfig"
@@ -123,8 +120,22 @@
         "secondaryWorkerConfig": {
           "$ref": "InstanceGroupConfig"
         },
+        "workerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        },
         "softwareConfig": {
           "$ref": "SoftwareConfig"
+        },
+        "masterConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "workerConfig": {
+          "$ref": "InstanceGroupConfig"
+        },
+        "auxiliaryNodeGroups": {
+          "items": {
+            "$ref": "AuxiliaryNodeGroup"
+          }
         },
         "clusterTier": {
           "enum": [
@@ -132,25 +143,6 @@
             "CLUSTER_TIER_STANDARD",
             "CLUSTER_TIER_PREMIUM"
           ]
-        },
-        "auxiliaryNodeGroups": {
-          "items": {
-            "$ref": "AuxiliaryNodeGroup"
-          }
-        },
-        "clusterType": {
-          "enum": [
-            "CLUSTER_TYPE_UNSPECIFIED",
-            "STANDARD",
-            "SINGLE_NODE",
-            "ZERO_SCALE"
-          ]
-        },
-        "workerConfig": {
-          "$ref": "InstanceGroupConfig"
-        },
-        "masterFlexibleConfig": {
-          "$ref": "FlexibleInstanceGroupConfig"
         },
         "engine": {
           "enum": [
@@ -162,11 +154,19 @@
         "gceClusterConfig": {
           "$ref": "GceClusterConfig"
         },
-        "gkeClusterConfig": {
-          "$ref": "GkeClusterConfig"
-        },
-        "workerFlexibleConfig": {
+        "secondaryWorkerFlexibleConfig": {
           "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "masterFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "clusterType": {
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "SINGLE_NODE",
+            "ZERO_SCALE"
+          ]
         }
       }
     },
@@ -272,6 +272,9 @@
     },
     "GceClusterConfig": {
       "properties": {
+        "multiZoneConfig": {
+          "$ref": "MultiZoneConfig"
+        },
         "privateIpv6GoogleAccess": {
           "enum": [
             "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -285,9 +288,6 @@
         },
         "reservationAffinity": {
           "$ref": "ReservationAffinity"
-        },
-        "multiZoneConfig": {
-          "$ref": "MultiZoneConfig"
         }
       }
     },
@@ -333,11 +333,11 @@
     },
     "InstanceGroupConfig": {
       "properties": {
-        "diskConfig": {
-          "$ref": "DiskConfig"
-        },
         "instanceFlexibilityPolicy": {
           "$ref": "InstanceFlexibilityPolicy"
+        },
+        "diskConfig": {
+          "$ref": "DiskConfig"
         },
         "preemptibility": {
           "enum": [
@@ -444,32 +444,32 @@
     },
     "OrderedJob": {
       "properties": {
-        "sparkJob": {
-          "$ref": "SparkJob"
-        },
-        "pigJob": {
-          "$ref": "PigJob"
-        },
-        "hadoopJob": {
-          "$ref": "HadoopJob"
-        },
-        "prestoJob": {
-          "$ref": "PrestoJob"
-        },
-        "trinoJob": {
-          "$ref": "TrinoJob"
-        },
-        "pysparkJob": {
-          "$ref": "PySparkJob"
-        },
-        "sparkSqlJob": {
-          "$ref": "SparkSqlJob"
-        },
         "sparkRJob": {
           "$ref": "SparkRJob"
         },
         "flinkJob": {
           "$ref": "FlinkJob"
+        },
+        "hadoopJob": {
+          "$ref": "HadoopJob"
+        },
+        "pigJob": {
+          "$ref": "PigJob"
+        },
+        "prestoJob": {
+          "$ref": "PrestoJob"
+        },
+        "sparkSqlJob": {
+          "$ref": "SparkSqlJob"
+        },
+        "trinoJob": {
+          "$ref": "TrinoJob"
+        },
+        "sparkJob": {
+          "$ref": "SparkJob"
+        },
+        "pysparkJob": {
+          "$ref": "PySparkJob"
         }
       }
     },
@@ -522,11 +522,11 @@
     },
     "SessionTemplate": {
       "properties": {
-        "jupyterSession": {
-          "$ref": "JupyterConfig"
-        },
         "runtimeConfig": {
           "$ref": "RuntimeConfig"
+        },
+        "jupyterSession": {
+          "$ref": "JupyterConfig"
         },
         "environmentConfig": {
           "$ref": "EnvironmentConfig"
@@ -615,13 +615,13 @@
     },
     "WorkflowTemplate": {
       "properties": {
+        "placement": {
+          "$ref": "WorkflowTemplatePlacement"
+        },
         "jobs": {
           "items": {
             "$ref": "OrderedJob"
           }
-        },
-        "placement": {
-          "$ref": "WorkflowTemplatePlacement"
         }
       }
     },

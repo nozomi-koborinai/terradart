@@ -6,20 +6,20 @@
   "schemas": {
     "EventThreatDetectionCustomModule": {
       "properties": {
-        "cloudProvider": {
-          "enum": [
-            "CLOUD_PROVIDER_UNSPECIFIED",
-            "GOOGLE_CLOUD_PLATFORM",
-            "AMAZON_WEB_SERVICES",
-            "MICROSOFT_AZURE"
-          ]
-        },
         "enablementState": {
           "enum": [
             "ENABLEMENT_STATE_UNSPECIFIED",
             "ENABLED",
             "DISABLED",
             "INHERITED"
+          ]
+        },
+        "cloudProvider": {
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
           ]
         }
       }

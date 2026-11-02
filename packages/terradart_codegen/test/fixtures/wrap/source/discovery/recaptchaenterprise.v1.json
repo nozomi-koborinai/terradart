@@ -6,14 +6,14 @@
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "properties": {
-        "wafSettings": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
-        },
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
         },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
+        },
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
         }
       }
     },

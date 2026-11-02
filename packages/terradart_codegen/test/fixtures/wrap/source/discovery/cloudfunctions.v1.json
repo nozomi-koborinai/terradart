@@ -6,9 +6,6 @@
   "schemas": {
     "CloudFunction": {
       "properties": {
-        "httpsTrigger": {
-          "$ref": "HttpsTrigger"
-        },
         "dockerRegistry": {
           "enum": [
             "DOCKER_REGISTRY_UNSPECIFIED",
@@ -24,13 +21,6 @@
             "ALLOW_INTERNAL_AND_GCLB"
           ]
         },
-        "vpcConnectorEgressSettings": {
-          "enum": [
-            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
-            "PRIVATE_RANGES_ONLY",
-            "ALL_TRAFFIC"
-          ]
-        },
         "status": {
           "enum": [
             "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
@@ -40,6 +30,16 @@
             "DELETE_IN_PROGRESS",
             "UNKNOWN"
           ]
+        },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
+          ]
+        },
+        "httpsTrigger": {
+          "$ref": "HttpsTrigger"
         }
       }
     },

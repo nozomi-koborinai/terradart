@@ -13,19 +13,19 @@
     },
     "ComputeEnginePreferences": {
       "properties": {
+        "licenseType": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_TYPE_DEFAULT",
+            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
+          ]
+        },
         "persistentDiskType": {
           "enum": [
             "PERSISTENT_DISK_TYPE_UNSPECIFIED",
             "PERSISTENT_DISK_TYPE_STANDARD",
             "PERSISTENT_DISK_TYPE_BALANCED",
             "PERSISTENT_DISK_TYPE_SSD"
-          ]
-        },
-        "licenseType": {
-          "enum": [
-            "LICENSE_TYPE_UNSPECIFIED",
-            "LICENSE_TYPE_DEFAULT",
-            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
           ]
         }
       }
@@ -103,6 +103,9 @@
     },
     "ImportJob": {
       "properties": {
+        "executionReport": {
+          "$ref": "ExecutionReport"
+        },
         "state": {
           "enum": [
             "IMPORT_JOB_STATE_UNSPECIFIED",
@@ -114,9 +117,6 @@
             "IMPORT_JOB_STATE_FAILED_VALIDATION",
             "IMPORT_JOB_STATE_READY"
           ]
-        },
-        "executionReport": {
-          "$ref": "ExecutionReport"
         },
         "validationReport": {
           "$ref": "ValidationReport"
@@ -141,14 +141,6 @@
     },
     "Report": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "SUCCEEDED",
-            "FAILED"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -157,6 +149,14 @@
         },
         "summary": {
           "$ref": "ReportSummary"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED"
+          ]
         }
       }
     },
@@ -197,11 +197,11 @@
     },
     "ReportSummaryGroupPreferenceSetFinding": {
       "properties": {
-        "computeEngineFinding": {
-          "$ref": "ReportSummaryComputeEngineFinding"
-        },
         "machinePreferences": {
           "$ref": "VirtualMachinePreferences"
+        },
+        "computeEngineFinding": {
+          "$ref": "ReportSummaryComputeEngineFinding"
         }
       }
     },
@@ -241,6 +241,14 @@
     },
     "Source": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETING",
+            "INVALID"
+          ]
+        },
         "type": {
           "enum": [
             "SOURCE_TYPE_UNKNOWN",
@@ -250,27 +258,19 @@
             "SOURCE_TYPE_CUSTOM",
             "SOURCE_TYPE_DISCOVERY_CLIENT"
           ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETING",
-            "INVALID"
-          ]
         }
       }
     },
     "ValidationReport": {
       "properties": {
-        "jobErrors": {
-          "items": {
-            "$ref": "ImportError"
-          }
-        },
         "fileValidations": {
           "items": {
             "$ref": "FileValidationReport"
+          }
+        },
+        "jobErrors": {
+          "items": {
+            "$ref": "ImportError"
           }
         }
       }
@@ -285,19 +285,14 @@
             "COMMITMENT_PLAN_THREE_YEARS"
           ]
         },
-        "targetProduct": {
-          "enum": [
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
-          ]
+        "computeEnginePreferences": {
+          "$ref": "ComputeEnginePreferences"
         },
         "soleTenancyPreferences": {
           "$ref": "SoleTenancyPreferences"
         },
-        "computeEnginePreferences": {
-          "$ref": "ComputeEnginePreferences"
+        "vmwareEnginePreferences": {
+          "$ref": "VmwareEnginePreferences"
         },
         "sizingOptimizationStrategy": {
           "enum": [
@@ -307,8 +302,13 @@
             "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
           ]
         },
-        "vmwareEnginePreferences": {
-          "$ref": "VmwareEnginePreferences"
+        "targetProduct": {
+          "enum": [
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
+          ]
         }
       }
     },

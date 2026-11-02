@@ -32,8 +32,23 @@
     },
     "EthereumDetails": {
       "properties": {
+        "executionClient": {
+          "enum": [
+            "EXECUTION_CLIENT_UNSPECIFIED",
+            "GETH",
+            "ERIGON"
+          ]
+        },
         "gethDetails": {
           "$ref": "GethDetails"
+        },
+        "nodeType": {
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "LIGHT",
+            "FULL",
+            "ARCHIVE"
+          ]
         },
         "consensusClient": {
           "enum": [
@@ -49,21 +64,6 @@
             "TESTNET_GOERLI_PRATER",
             "TESTNET_SEPOLIA",
             "TESTNET_HOLESKY"
-          ]
-        },
-        "nodeType": {
-          "enum": [
-            "NODE_TYPE_UNSPECIFIED",
-            "LIGHT",
-            "FULL",
-            "ARCHIVE"
-          ]
-        },
-        "executionClient": {
-          "enum": [
-            "EXECUTION_CLIENT_UNSPECIFIED",
-            "GETH",
-            "ERIGON"
           ]
         }
       }

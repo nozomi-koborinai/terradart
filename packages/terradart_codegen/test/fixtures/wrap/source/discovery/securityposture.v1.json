@@ -6,14 +6,14 @@
   "schemas": {
     "Constraint": {
       "properties": {
-        "securityHealthAnalyticsModule": {
-          "$ref": "SecurityHealthAnalyticsModule"
-        },
         "securityHealthAnalyticsCustomModule": {
           "$ref": "SecurityHealthAnalyticsCustomModule"
         },
         "orgPolicyConstraintCustom": {
           "$ref": "OrgPolicyConstraintCustom"
+        },
+        "securityHealthAnalyticsModule": {
+          "$ref": "SecurityHealthAnalyticsModule"
         }
       }
     },
@@ -32,6 +32,13 @@
     },
     "GoogleCloudSecuritypostureV1CustomConstraint": {
       "properties": {
+        "actionType": {
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
         "methodTypes": {
           "items": {
             "enum": [
@@ -41,13 +48,6 @@
               "DELETE"
             ]
           }
-        },
-        "actionType": {
-          "enum": [
-            "ACTION_TYPE_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
         }
       }
     },
@@ -84,11 +84,6 @@
             "ACTIVE"
           ]
         },
-        "policySets": {
-          "items": {
-            "$ref": "PolicySet"
-          }
-        },
         "categories": {
           "items": {
             "enum": [
@@ -99,11 +94,27 @@
               "AZURE"
             ]
           }
+        },
+        "policySets": {
+          "items": {
+            "$ref": "PolicySet"
+          }
         }
       }
     },
     "PostureDeployment": {
       "properties": {
+        "categories": {
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI",
+              "AWS",
+              "GCP",
+              "AZURE"
+            ]
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -115,17 +126,6 @@
             "UPDATE_FAILED",
             "DELETE_FAILED"
           ]
-        },
-        "categories": {
-          "items": {
-            "enum": [
-              "CATEGORY_UNSPECIFIED",
-              "AI",
-              "AWS",
-              "GCP",
-              "AZURE"
-            ]
-          }
         }
       }
     },

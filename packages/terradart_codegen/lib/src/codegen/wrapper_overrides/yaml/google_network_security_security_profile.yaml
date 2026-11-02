@@ -39,6 +39,3 @@ paramOrder:
   - custom_mirroring_profile
   - labels
   - deletion_policy
-
-sealedNames:
-  "custom_intercept_profile, custom_mirroring_profile, threat_prevention_profile, url_filtering_profile": settings

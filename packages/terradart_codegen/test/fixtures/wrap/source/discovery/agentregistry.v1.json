@@ -59,13 +59,13 @@
         "agentSpec": {
           "$ref": "AgentSpec"
         },
-        "mcpServerSpec": {
-          "$ref": "McpServerSpec"
-        },
         "interfaces": {
           "items": {
             "$ref": "Interface"
           }
+        },
+        "mcpServerSpec": {
+          "$ref": "McpServerSpec"
         }
       }
     }

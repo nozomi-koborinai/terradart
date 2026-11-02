@@ -6,11 +6,11 @@
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
       "properties": {
-        "budgetFilter": {
-          "$ref": "GoogleCloudBillingBudgetsV1Filter"
-        },
         "spendCap": {
           "$ref": "GoogleCloudBillingBudgetsV1SpendCap"
+        },
+        "budgetFilter": {
+          "$ref": "GoogleCloudBillingBudgetsV1Filter"
         },
         "thresholdRules": {
           "items": {
@@ -48,7 +48,7 @@
     },
     "GoogleCloudBillingBudgetsV1SpendCap": {
       "properties": {
-        "outputState": {
+        "inputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",
@@ -56,7 +56,7 @@
             "AWAITING_NEXT_PERIOD"
           ]
         },
-        "inputState": {
+        "outputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",

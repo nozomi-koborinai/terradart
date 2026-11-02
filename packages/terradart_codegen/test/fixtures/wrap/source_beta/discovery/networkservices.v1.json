@@ -22,17 +22,17 @@
     },
     "ServiceLbPolicyIsolationConfig": {
       "properties": {
+        "isolationGranularity": {
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ]
+        },
         "isolationMode": {
           "enum": [
             "ISOLATION_MODE_UNSPECIFIED",
             "NEAREST",
             "STRICT"
-          ]
-        },
-        "isolationGranularity": {
-          "enum": [
-            "ISOLATION_GRANULARITY_UNSPECIFIED",
-            "REGION"
           ]
         }
       }

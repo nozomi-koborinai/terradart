@@ -4,6 +4,20 @@
   "revision": "20261021",
   "sourceUrl": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v3",
   "schemas": {
+    "Boundary": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE"
+          ]
+        }
+      }
+    },
+    "BoundaryConfig": {
+      "properties": {}
+    },
     "CapabilityConfig": {
       "properties": {
         "types": {

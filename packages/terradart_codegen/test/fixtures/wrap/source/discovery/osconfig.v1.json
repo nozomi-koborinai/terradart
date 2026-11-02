@@ -17,10 +17,10 @@
     },
     "ExecStep": {
       "properties": {
-        "windowsExecStepConfig": {
+        "linuxExecStepConfig": {
           "$ref": "ExecStepConfig"
         },
-        "linuxExecStepConfig": {
+        "windowsExecStepConfig": {
           "$ref": "ExecStepConfig"
         }
       }
@@ -46,22 +46,27 @@
     },
     "OSPolicy": {
       "properties": {
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
+        },
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
         }
       }
     },
     "OSPolicyAssignment": {
       "properties": {
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
+        },
         "rolloutState": {
           "enum": [
             "ROLLOUT_STATE_UNSPECIFIED",
@@ -70,27 +75,22 @@
             "CANCELLED",
             "SUCCEEDED"
           ]
-        },
-        "osPolicies": {
-          "items": {
-            "$ref": "OSPolicy"
-          }
         }
       }
     },
     "OSPolicyResource": {
       "properties": {
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource"
+        },
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
+        },
         "exec": {
           "$ref": "OSPolicyResourceExecResource"
         },
         "file": {
           "$ref": "OSPolicyResourceFileResource"
-        },
-        "pkg": {
-          "$ref": "OSPolicyResourcePackageResource"
-        },
-        "repository": {
-          "$ref": "OSPolicyResourceRepositoryResource"
         }
       }
     },
@@ -168,18 +168,6 @@
     },
     "PatchConfig": {
       "properties": {
-        "apt": {
-          "$ref": "AptSettings"
-        },
-        "preStep": {
-          "$ref": "ExecStep"
-        },
-        "windowsUpdate": {
-          "$ref": "WindowsUpdateSettings"
-        },
-        "postStep": {
-          "$ref": "ExecStep"
-        },
         "rebootConfig": {
           "enum": [
             "REBOOT_CONFIG_UNSPECIFIED",
@@ -187,20 +175,32 @@
             "ALWAYS",
             "NEVER"
           ]
+        },
+        "windowsUpdate": {
+          "$ref": "WindowsUpdateSettings"
+        },
+        "postStep": {
+          "$ref": "ExecStep"
+        },
+        "apt": {
+          "$ref": "AptSettings"
+        },
+        "preStep": {
+          "$ref": "ExecStep"
         }
       }
     },
     "PatchDeployment": {
       "properties": {
-        "recurringSchedule": {
-          "$ref": "RecurringSchedule"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "PAUSED"
           ]
+        },
+        "recurringSchedule": {
+          "$ref": "RecurringSchedule"
         },
         "patchConfig": {
           "$ref": "PatchConfig"

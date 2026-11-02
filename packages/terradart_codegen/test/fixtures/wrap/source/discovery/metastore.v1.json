@@ -75,46 +75,12 @@
     },
     "MetadataExport": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "RUNNING",
-            "SUCCEEDED",
-            "FAILED",
-            "CANCELLED"
-          ]
-        },
         "databaseDumpType": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "MYSQL",
             "AVRO"
           ]
-        }
-      }
-    },
-    "MetadataManagementActivity": {
-      "properties": {
-        "restores": {
-          "items": {
-            "$ref": "Restore"
-          }
-        },
-        "metadataExports": {
-          "items": {
-            "$ref": "MetadataExport"
-          }
-        }
-      }
-    },
-    "Restore": {
-      "properties": {
-        "type": {
-          "enum": [
-            "RESTORE_TYPE_UNSPECIFIED",
-            "FULL",
-            "METADATA_ONLY"
-          ]
         },
         "state": {
           "enum": [
@@ -123,6 +89,40 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
+          ]
+        }
+      }
+    },
+    "MetadataManagementActivity": {
+      "properties": {
+        "metadataExports": {
+          "items": {
+            "$ref": "MetadataExport"
+          }
+        },
+        "restores": {
+          "items": {
+            "$ref": "Restore"
+          }
+        }
+      }
+    },
+    "Restore": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "RESTORE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA_ONLY"
           ]
         }
       }
@@ -153,17 +153,12 @@
         "telemetryConfig": {
           "$ref": "TelemetryConfig"
         },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "metadataManagementActivity": {
-          "$ref": "MetadataManagementActivity"
-        },
-        "hiveMetastoreConfig": {
-          "$ref": "HiveMetastoreConfig"
-        },
-        "scalingConfig": {
-          "$ref": "ScalingConfig"
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "CANARY",
+            "STABLE"
+          ]
         },
         "tier": {
           "enum": [
@@ -179,15 +174,20 @@
             "SPANNER"
           ]
         },
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "CANARY",
-            "STABLE"
-          ]
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig"
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
         },
         "scheduledBackup": {
           "$ref": "ScheduledBackup"
+        },
+        "metadataManagementActivity": {
+          "$ref": "MetadataManagementActivity"
         },
         "state": {
           "enum": [

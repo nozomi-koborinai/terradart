@@ -6,13 +6,6 @@
   "schemas": {
     "GoogleCloudOrgpolicyV2CustomConstraint": {
       "properties": {
-        "actionType": {
-          "enum": [
-            "ACTION_TYPE_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
         "methodTypes": {
           "items": {
             "enum": [
@@ -24,6 +17,13 @@
               "GOVERN_TAGS"
             ]
           }
+        },
+        "actionType": {
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
         }
       }
     },

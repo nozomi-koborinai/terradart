@@ -6,12 +6,6 @@
   "schemas": {
     "AppProfile": {
       "properties": {
-        "dataBoostIsolationReadOnly": {
-          "$ref": "DataBoostIsolationReadOnly"
-        },
-        "standardIsolation": {
-          "$ref": "StandardIsolation"
-        },
         "priority": {
           "enum": [
             "PRIORITY_UNSPECIFIED",
@@ -19,6 +13,12 @@
             "PRIORITY_MEDIUM",
             "PRIORITY_HIGH"
           ]
+        },
+        "dataBoostIsolationReadOnly": {
+          "$ref": "DataBoostIsolationReadOnly"
+        },
+        "standardIsolation": {
+          "$ref": "StandardIsolation"
         }
       }
     },
@@ -45,13 +45,6 @@
     },
     "Instance": {
       "properties": {
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -65,6 +58,13 @@
             "READY",
             "CREATING"
           ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
         }
       }
     },
@@ -77,6 +77,19 @@
           "additionalProperties": {
             "$ref": "GoogleBigtableAdminV2MaterializedViewClusterState"
           }
+        }
+      }
+    },
+    "MemoryLayer": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_NOT_KNOWN",
+            "READY",
+            "ENABLING",
+            "RESIZING",
+            "DISABLED"
+          ]
         }
       }
     },

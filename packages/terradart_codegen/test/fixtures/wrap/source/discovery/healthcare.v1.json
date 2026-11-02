@@ -18,14 +18,14 @@
     },
     "ConsentConfig": {
       "properties": {
-        "accessDeterminationLogConfig": {
-          "$ref": "AccessDeterminationLogConfig"
-        },
         "version": {
           "enum": [
             "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
             "V1"
           ]
+        },
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig"
         },
         "consentHeaderHandling": {
           "$ref": "ConsentHeaderHandling"
@@ -58,14 +58,14 @@
     },
     "DeidentifyConfig": {
       "properties": {
+        "fhir": {
+          "$ref": "FhirConfig"
+        },
         "dicom": {
           "$ref": "DicomConfig"
         },
         "image": {
           "$ref": "ImageConfig"
-        },
-        "fhir": {
-          "$ref": "FhirConfig"
         }
       }
     },
@@ -102,13 +102,6 @@
     },
     "FhirStore": {
       "properties": {
-        "complexDataTypeReferenceParsing": {
-          "enum": [
-            "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED"
-          ]
-        },
         "version": {
           "enum": [
             "VERSION_UNSPECIFIED",
@@ -120,6 +113,13 @@
         },
         "consentConfig": {
           "$ref": "ConsentConfig"
+        },
+        "complexDataTypeReferenceParsing": {
+          "enum": [
+            "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
         },
         "streamConfigs": {
           "items": {
@@ -204,6 +204,9 @@
     },
     "ParserConfig": {
       "properties": {
+        "schema": {
+          "$ref": "SchemaPackage"
+        },
         "version": {
           "enum": [
             "PARSER_VERSION_UNSPECIFIED",
@@ -211,28 +214,33 @@
             "V2",
             "V3"
           ]
-        },
-        "schema": {
-          "$ref": "SchemaPackage"
         }
       }
     },
     "SchemaConfig": {
       "properties": {
+        "lastUpdatedPartitionConfig": {
+          "$ref": "TimePartitioning"
+        },
         "schemaType": {
           "enum": [
             "SCHEMA_TYPE_UNSPECIFIED",
             "ANALYTICS",
             "ANALYTICS_V2"
           ]
-        },
-        "lastUpdatedPartitionConfig": {
-          "$ref": "TimePartitioning"
         }
       }
     },
     "SchemaPackage": {
       "properties": {
+        "unexpectedSegmentHandling": {
+          "enum": [
+            "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
+            "FAIL",
+            "SKIP",
+            "PARSE"
+          ]
+        },
         "schematizedParsingType": {
           "enum": [
             "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
@@ -244,14 +252,6 @@
           "items": {
             "$ref": "Hl7TypesConfig"
           }
-        },
-        "unexpectedSegmentHandling": {
-          "enum": [
-            "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
-            "FAIL",
-            "SKIP",
-            "PARSE"
-          ]
         }
       }
     },

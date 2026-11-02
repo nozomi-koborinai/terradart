@@ -88,8 +88,14 @@
     },
     "RolloutRestriction": {
       "properties": {
-        "timeWindows": {
-          "$ref": "TimeWindows"
+        "invokers": {
+          "items": {
+            "enum": [
+              "INVOKER_UNSPECIFIED",
+              "USER",
+              "DEPLOY_AUTOMATION"
+            ]
+          }
         },
         "actions": {
           "items": {
@@ -106,14 +112,8 @@
             ]
           }
         },
-        "invokers": {
-          "items": {
-            "enum": [
-              "INVOKER_UNSPECIFIED",
-              "USER",
-              "DEPLOY_AUTOMATION"
-            ]
-          }
+        "timeWindows": {
+          "$ref": "TimeWindows"
         }
       }
     },

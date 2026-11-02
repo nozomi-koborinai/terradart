@@ -17,6 +17,14 @@
     },
     "Build": {
       "properties": {
+        "config": {
+          "$ref": "Config"
+        },
+        "errors": {
+          "items": {
+            "$ref": "Error"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -28,14 +36,6 @@
             "SKIPPED",
             "EXPIRED"
           ]
-        },
-        "errors": {
-          "items": {
-            "$ref": "Error"
-          }
-        },
-        "config": {
-          "$ref": "Config"
         }
       }
     },
@@ -55,17 +55,6 @@
     },
     "CustomDomainStatus": {
       "properties": {
-        "hostState": {
-          "enum": [
-            "HOST_STATE_UNSPECIFIED",
-            "HOST_UNHOSTED",
-            "HOST_UNREACHABLE",
-            "HOST_NON_FAH",
-            "HOST_CONFLICT",
-            "HOST_WRONG_SHARD",
-            "HOST_ACTIVE"
-          ]
-        },
         "ownershipState": {
           "enum": [
             "OWNERSHIP_STATE_UNSPECIFIED",
@@ -92,17 +81,31 @@
           "items": {
             "$ref": "DnsUpdates"
           }
+        },
+        "hostState": {
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_NON_FAH",
+            "HOST_CONFLICT",
+            "HOST_WRONG_SHARD",
+            "HOST_ACTIVE"
+          ]
         }
       }
     },
     "DnsRecord": {
       "properties": {
-        "requiredAction": {
-          "enum": [
-            "NONE",
-            "ADD",
-            "REMOVE"
-          ]
+        "relevantState": {
+          "items": {
+            "enum": [
+              "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
+              "HOST_STATE",
+              "OWNERSHIP_STATE",
+              "CERT_STATE"
+            ]
+          }
         },
         "type": {
           "enum": [
@@ -114,15 +117,12 @@
             "CAA"
           ]
         },
-        "relevantState": {
-          "items": {
-            "enum": [
-              "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
-              "HOST_STATE",
-              "OWNERSHIP_STATE",
-              "CERT_STATE"
-            ]
-          }
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
+          ]
         }
       }
     },
@@ -151,15 +151,15 @@
     },
     "Domain": {
       "properties": {
+        "customDomainStatus": {
+          "$ref": "CustomDomainStatus"
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "DEFAULT",
             "CUSTOM"
           ]
-        },
-        "customDomainStatus": {
-          "$ref": "CustomDomainStatus"
         }
       }
     },
@@ -210,12 +210,12 @@
     },
     "RolloutPolicy": {
       "properties": {
-        "requiredPaths": {
+        "ignoredPaths": {
           "items": {
             "$ref": "Path"
           }
         },
-        "ignoredPaths": {
+        "requiredPaths": {
           "items": {
             "$ref": "Path"
           }

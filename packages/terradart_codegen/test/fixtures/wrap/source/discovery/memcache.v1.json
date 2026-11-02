@@ -15,6 +15,19 @@
     },
     "Instance": {
       "properties": {
+        "instanceMessages": {
+          "items": {
+            "$ref": "InstanceMessage"
+          }
+        },
+        "maintenancePolicy": {
+          "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
+        },
+        "memcacheNodes": {
+          "items": {
+            "$ref": "Node"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -25,19 +38,6 @@
             "PERFORMING_MAINTENANCE",
             "MEMCACHE_VERSION_UPGRADING"
           ]
-        },
-        "memcacheNodes": {
-          "items": {
-            "$ref": "Node"
-          }
-        },
-        "instanceMessages": {
-          "items": {
-            "$ref": "InstanceMessage"
-          }
-        },
-        "maintenancePolicy": {
-          "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
         },
         "memcacheVersion": {
           "enum": [

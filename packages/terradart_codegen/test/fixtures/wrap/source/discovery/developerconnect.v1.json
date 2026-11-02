@@ -6,11 +6,11 @@
   "schemas": {
     "AccountConnector": {
       "properties": {
-        "providerOauthConfig": {
-          "$ref": "ProviderOAuthConfig"
-        },
         "customOauthConfig": {
           "$ref": "CustomOAuthConfig"
+        },
+        "providerOauthConfig": {
+          "$ref": "ProviderOAuthConfig"
         }
       }
     },

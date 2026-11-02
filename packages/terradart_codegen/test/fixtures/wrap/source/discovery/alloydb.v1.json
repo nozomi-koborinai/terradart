@@ -13,26 +13,6 @@
     },
     "Backup": {
       "properties": {
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "READY",
-            "CREATING",
-            "FAILED",
-            "DELETING"
-          ]
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "ON_DEMAND",
-            "AUTOMATED",
-            "CONTINUOUS"
-          ]
-        },
         "databaseVersion": {
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
@@ -43,6 +23,26 @@
             "POSTGRES_17",
             "POSTGRES_18"
           ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "AUTOMATED",
+            "CONTINUOUS"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ]
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
         }
       }
     },
@@ -55,22 +55,6 @@
     },
     "Cluster": {
       "properties": {
-        "subscriptionType": {
-          "enum": [
-            "SUBSCRIPTION_TYPE_UNSPECIFIED",
-            "STANDARD",
-            "TRIAL"
-          ]
-        },
-        "continuousBackupInfo": {
-          "$ref": "ContinuousBackupInfo"
-        },
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
-        },
-        "migrationSource": {
-          "$ref": "MigrationSource"
-        },
         "databaseVersion": {
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
@@ -85,22 +69,11 @@
         "sslConfig": {
           "$ref": "SslConfig"
         },
-        "clusterType": {
-          "enum": [
-            "CLUSTER_TYPE_UNSPECIFIED",
-            "PRIMARY",
-            "SECONDARY"
-          ]
+        "migrationSource": {
+          "$ref": "MigrationSource"
         },
-        "maintenanceUpdatePolicy": {
-          "$ref": "MaintenanceUpdatePolicy"
-        },
-        "maintenanceVersionSelectionPolicy": {
-          "enum": [
-            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
-          ]
+        "automatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy"
         },
         "state": {
           "enum": [
@@ -117,8 +90,35 @@
             "SWITCHOVER"
           ]
         },
-        "automatedBackupPolicy": {
-          "$ref": "AutomatedBackupPolicy"
+        "clusterType": {
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY"
+          ]
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
+        "maintenanceVersionSelectionPolicy": {
+          "enum": [
+            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
+          ]
+        },
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "TRIAL"
+          ]
+        },
+        "continuousBackupInfo": {
+          "$ref": "ContinuousBackupInfo"
         }
       }
     },
@@ -190,6 +190,19 @@
     },
     "Instance": {
       "properties": {
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig"
+        },
+        "clientConnectionConfig": {
+          "$ref": "ClientConnectionConfig"
+        },
+        "dataApiAccess": {
+          "enum": [
+            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
         "instanceType": {
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
@@ -198,27 +211,11 @@
             "SECONDARY"
           ]
         },
-        "clientConnectionConfig": {
-          "$ref": "ClientConnectionConfig"
-        },
-        "pscInstanceConfig": {
-          "$ref": "PscInstanceConfig"
-        },
-        "connectionPoolConfig": {
-          "$ref": "ConnectionPoolConfig"
-        },
         "activationPolicy": {
           "enum": [
             "ACTIVATION_POLICY_UNSPECIFIED",
             "ALWAYS",
             "NEVER"
-          ]
-        },
-        "availabilityType": {
-          "enum": [
-            "AVAILABILITY_TYPE_UNSPECIFIED",
-            "ZONAL",
-            "REGIONAL"
           ]
         },
         "state": {
@@ -237,11 +234,14 @@
             "STARTING"
           ]
         },
-        "dataApiAccess": {
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig"
+        },
+        "availabilityType": {
           "enum": [
-            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
-            "DISABLED",
-            "ENABLED"
+            "AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
           ]
         }
       }
@@ -315,12 +315,6 @@
     },
     "SslConfig": {
       "properties": {
-        "caSource": {
-          "enum": [
-            "CA_SOURCE_UNSPECIFIED",
-            "CA_SOURCE_MANAGED"
-          ]
-        },
         "sslMode": {
           "enum": [
             "SSL_MODE_UNSPECIFIED",
@@ -329,6 +323,12 @@
             "SSL_MODE_VERIFY_CA",
             "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
             "ENCRYPTED_ONLY"
+          ]
+        },
+        "caSource": {
+          "enum": [
+            "CA_SOURCE_UNSPECIFIED",
+            "CA_SOURCE_MANAGED"
           ]
         }
       }

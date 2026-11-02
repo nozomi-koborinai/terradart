@@ -6,6 +6,9 @@
   "schemas": {
     "GoogleCloudApihubV1ApiHubInstance": {
       "properties": {
+        "config": {
+          "$ref": "GoogleCloudApihubV1Config"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -16,9 +19,6 @@
             "DELETING",
             "FAILED"
           ]
-        },
-        "config": {
-          "$ref": "GoogleCloudApihubV1Config"
         }
       }
     },
@@ -38,6 +38,9 @@
     },
     "GoogleCloudApihubV1AuthConfig": {
       "properties": {
+        "apiKeyConfig": {
+          "$ref": "GoogleCloudApihubV1ApiKeyConfig"
+        },
         "authType": {
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
@@ -47,9 +50,6 @@
             "API_KEY",
             "OAUTH2_CLIENT_CREDENTIALS"
           ]
-        },
-        "apiKeyConfig": {
-          "$ref": "GoogleCloudApihubV1ApiKeyConfig"
         }
       }
     },
@@ -82,13 +82,13 @@
     },
     "GoogleCloudApihubV1ConfigTemplate": {
       "properties": {
-        "authConfigTemplate": {
-          "$ref": "GoogleCloudApihubV1AuthConfigTemplate"
-        },
         "additionalConfigTemplate": {
           "items": {
             "$ref": "GoogleCloudApihubV1ConfigVariableTemplate"
           }
+        },
+        "authConfigTemplate": {
+          "$ref": "GoogleCloudApihubV1AuthConfigTemplate"
         }
       }
     },
@@ -168,13 +168,6 @@
     },
     "GoogleCloudApihubV1Plugin": {
       "properties": {
-        "pluginCategory": {
-          "enum": [
-            "PLUGIN_CATEGORY_UNSPECIFIED",
-            "API_GATEWAY",
-            "API_PRODUCER"
-          ]
-        },
         "gatewayType": {
           "enum": [
             "GATEWAY_TYPE_UNSPECIFIED",
@@ -189,16 +182,18 @@
             "AZURE_API_MANAGEMENT"
           ]
         },
-        "actionsConfig": {
-          "items": {
-            "$ref": "GoogleCloudApihubV1PluginActionConfig"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ENABLED",
             "DISABLED"
+          ]
+        },
+        "pluginCategory": {
+          "enum": [
+            "PLUGIN_CATEGORY_UNSPECIFIED",
+            "API_GATEWAY",
+            "API_PRODUCER"
           ]
         },
         "ownershipType": {
@@ -207,6 +202,11 @@
             "SYSTEM_OWNED",
             "USER_OWNED"
           ]
+        },
+        "actionsConfig": {
+          "items": {
+            "$ref": "GoogleCloudApihubV1PluginActionConfig"
+          }
         },
         "configTemplate": {
           "$ref": "GoogleCloudApihubV1ConfigTemplate"
@@ -227,13 +227,13 @@
     },
     "GoogleCloudApihubV1PluginInstance": {
       "properties": {
-        "authConfig": {
-          "$ref": "GoogleCloudApihubV1AuthConfig"
-        },
         "actions": {
           "items": {
             "$ref": "GoogleCloudApihubV1PluginInstanceAction"
           }
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudApihubV1AuthConfig"
         },
         "state": {
           "enum": [
@@ -256,6 +256,9 @@
         "resourceConfig": {
           "$ref": "GoogleCloudApihubV1ResourceConfig"
         },
+        "curationConfig": {
+          "$ref": "GoogleCloudApihubV1CurationConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -265,9 +268,6 @@
             "DISABLING",
             "ERROR"
           ]
-        },
-        "curationConfig": {
-          "$ref": "GoogleCloudApihubV1CurationConfig"
         }
       }
     },
