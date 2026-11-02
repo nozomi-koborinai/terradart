@@ -76,6 +76,10 @@ final inFence = `ignored: .literal(1)`;
       );
     });
 
+    test('a tight colon with a bare word or number is none', () {
+      expect(found('`count:2`, `name:orders`\n'), isEmpty);
+    });
+
     test('a span continued on a line starting with #, | or 2.', () {
       for (final text in [
         "Pass `name:\n#.literal('x')` here.\n",

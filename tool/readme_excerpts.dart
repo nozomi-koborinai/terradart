@@ -1,7 +1,8 @@
 // readme_excerpts.dart — the JSON excerpts of an example README must be what
 // the example synthesizes.
 //
-// Every JSON fence of `examples/<slug>/README.md` is an excerpt of that
+// Every fence of `examples/<slug>/README.md` whose info string's first word
+// is `json` (any case; `jsonc` is not one) is an excerpt of that
 // example's `tf-out/main.tf.json`: each object key it shows exists with the
 // value it shows, each list element matches a synthesized element in the same
 // order, and each scalar is equal. An excerpt may leave keys and elements out;

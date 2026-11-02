@@ -13,11 +13,13 @@
 // `max_instances: 2`, `machine_type: e2-micro`) reads the same in YAML,
 // JSON and Terraform, so it is no fragment. A lowerCamel one with the same
 // value (`proxied: true`) is a Dart argument that skips its `.literal`. A
-// span that opens on a colon with no space around it and a plain value
-// (`dart:io`, `user:<email>`, `iam:PassRole`, `localhost:8080`) is a URI,
-// a principal, an action or a port; the same pair inside a call or
-// collection (`Bucket(user:a)`), or with a Dart value (`name:.literal('x')`,
-// `service:api.ref`, `name:make()`, `proxied:true`), is an argument.
+// span that opens on a colon with no space around it (`dart:io`,
+// `user:<email>`, `iam:PassRole`, `localhost:8080`) is taken for a URI, a
+// principal, an action or a port, unless its value is `true`, `false`,
+// `null` or a lowercase dotted chain, contains a parenthesis, or opens like
+// Dart (`name:.literal('x')`, `service:api.ref`, `name:make()`); a bare
+// word or number (`count:2`, `name:orders`) passes. The same pair inside a
+// call or collection (`Bucket(user:a)`) is an argument.
 //
 // Every fragment fails. A span says nothing about the call it belongs to,
 // so no text match can tell `service: apiService.ref` from

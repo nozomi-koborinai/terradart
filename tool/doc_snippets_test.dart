@@ -51,6 +51,11 @@ final kept = 1;
       expect(s.map((x) => x.code), ['final kept = 1;']);
     });
 
+    test('reads no fence inside a block quote', () {
+      const doc = '> ```dart\n> final quoted = 1;\n> ```\n';
+      expect(extractSnippets('d.md', doc), isEmpty);
+    });
+
     test('reads the path comment after the pitch marker', () {
       final s = Snippet(
         doc: 'README.md',
@@ -88,6 +93,22 @@ final class A {}
         (4, "add(GooglePubsubTopic('o', name: .literal('o')));"),
       ]);
       expect(found.unlabeled, [startsWith('a.dart:11: ')]);
+    });
+
+    test('reads no fence indented past the space after ///', () {
+      const source = '''
+///    ```dart
+///    final indented = 1;
+///    ```
+///
+///    ```
+///    a -> b
+///    ```
+final class A {}
+''';
+      final found = extractDocCommentSnippets('a.dart', source);
+      expect(found.snippets, isEmpty);
+      expect(found.unlabeled, isEmpty);
     });
   });
 

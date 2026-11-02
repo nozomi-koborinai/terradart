@@ -1,7 +1,10 @@
-// doc_snippets.dart — compiles every ```dart fence in the README, the
-// website docs, the package, cookbook and example READMEs, and the `///` doc comments
-// of the published packages against the workspace packages, so a guide or a
-// dartdoc page cannot show code the current release rejects.
+// doc_snippets.dart — compiles each ```dart fence outside a block quote in
+// the README, the website docs, the package, cookbook and example READMEs,
+// and each one that opens right after the `///` (and at most one space) of
+// a doc comment in every workspace package but codegen, against the
+// workspace packages, so a guide or a dartdoc page cannot show code the
+// current release rejects. A blockquoted fence, and a doc-comment fence
+// indented further, are not read.
 //
 // Run from repo root: dart tool/doc_snippets.dart
 // tool/doc_snippets_test.dart runs the same check (CI: `dart test tool/`).

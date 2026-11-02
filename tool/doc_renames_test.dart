@@ -336,12 +336,14 @@ final class A {}
       ]);
     });
 
-    test('fails on a doc comment reference no declaration resolves', () async {
+    test('fails on a capitalized doc comment reference no declaration '
+        'resolves, and reads no lowercase one', () async {
       final lib = Directory(p.join(tmp.path, 'lib'))..createSync();
       final file = File(p.join(lib.path, 'a.dart'))
         ..writeAsStringSync('''
 /// Wraps [GooglePubsubTopic] and [GoogleCloudRunV2Service.uri], not
 /// [CloudRunV2ServiceEmptyDirVolume] or [GooglePubsubTopic.nameRef].
+/// See [noSuchFunction].
 final class A {}
 ''');
       final rel = p.relative(file.path, from: root);
