@@ -13,7 +13,7 @@ Lockstep release across the twelve packages, the first with **`terradart_azure`*
 - generated type names are short, and no two packages export the same one;
 - `terradart migrate` writes every input with the typed shape the package exposes.
 
-**Breaking** for the Dart API of `terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare` and `terradart_appwrite`. Read [MIGRATING.md](MIGRATING.md) before bumping. Every change there has Before / After rows. The Terraform JSON for the same value is unchanged, except that `GoogleStorageFtpUser` writes `user_credentials` as a list, a Migration Center CSV export writes `CSV` instead of `FILE_FORMAT_CSV`, and the exact provider pins move. Cloudflare 5.28.0 removed the registrar types, so their factories are gone.
+**Breaking** for the Dart API of `terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare` and `terradart_appwrite`. Read [MIGRATING.md](MIGRATING.md#035x--0360) before bumping. Every change there has Before / After rows. The Terraform JSON for the same value is unchanged, except that `GoogleStorageFtpUser` writes `user_credentials` as a list, a Migration Center CSV export writes `CSV` instead of `FILE_FORMAT_CSV`, and the exact provider pins move. Cloudflare 5.28.0 removed the registrar types, so their factories are gone.
 
 Provider pins move:
 - `hashicorp/google` and `hashicorp/google-beta`: 8.4.0 to 8.8.1;
