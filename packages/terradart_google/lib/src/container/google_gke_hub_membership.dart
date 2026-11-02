@@ -60,9 +60,9 @@ final class GkeHubMembershipGkeCluster {
 ///
 /// Required blocks (schema):
 /// - `endpoint.gkeCluster.resourceLink` — typically
-///   `cluster.id` from [GoogleContainerCluster].
+///   `cluster.ref` from [GoogleContainerCluster].
 /// - `authority.issuer` — issuer URL for the cluster's hub authority;
-///   commonly `https://container.googleapis.com/v1/${cluster.id}`.
+///   commonly `https://container.googleapis.com/v1/${cluster.id.interpolation}`.
 ///
 /// Example:
 /// ```dart

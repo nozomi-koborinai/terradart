@@ -16,8 +16,10 @@
 // span that opens on a colon with no space around it (`dart:io`,
 // `user:<email>`, `iam:PassRole`, `localhost:8080`) is taken for a URI, a
 // principal, an action or a port, unless its value is `true`, `false`,
-// `null` or a lowercase dotted chain, contains a parenthesis, or opens like
-// Dart (`name:.literal('x')`, `service:api.ref`, `name:make()`); a bare
+// `null` or a lowercase dotted chain, contains a parenthesis, or opens with
+// a quote, `r'` (not `r"`), a square bracket, a dot, `const`, or a
+// capitalized name followed by `(`, `.` or `<` (`name:.literal('x')`,
+// `service:api.ref`, `name:make()`); a bare
 // word or number (`count:2`, `name:orders`) passes. The same pair inside a
 // call or collection (`Bucket(user:a)`) is an argument.
 //

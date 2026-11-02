@@ -122,7 +122,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
 ///   [GoogleComputeRegionUrlMap] (the *regional* URL map — not the
-///   global [GoogleComputeUrlMap]). Pass `urlMap.selfLink`
+///   global [GoogleComputeUrlMap]). Pass `urlMap.ref`
 ///   so the value resolves to
 ///   `${google_compute_region_url_map.<localName>.self_link}`.
 /// - `region`: GCP region for the proxy. Although the provider schema
