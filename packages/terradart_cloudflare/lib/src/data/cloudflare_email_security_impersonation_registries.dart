@@ -11,7 +11,8 @@ const Set<String> _cloudflareEmailSecurityImpersonationRegistriesSensitive =
 /// Data Email Security Impersonation Registries enum for `direction`.
 extension type const DataEmailSecurityImpersonationRegistriesDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistriesDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistriesDirection.expression(String template)
@@ -33,7 +34,8 @@ extension type const DataEmailSecurityImpersonationRegistriesDirection._(
 /// Data Email Security Impersonation Registries enum for `order`.
 extension type const DataEmailSecurityImpersonationRegistriesOrder._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistriesOrder.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistriesOrder.expression(String template)
@@ -61,7 +63,8 @@ extension type const DataEmailSecurityImpersonationRegistriesOrder._(
 /// Data Email Security Impersonation Registries enum for `provenance`.
 extension type const DataEmailSecurityImpersonationRegistriesProvenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistriesProvenance.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistriesProvenance.expression(String template)

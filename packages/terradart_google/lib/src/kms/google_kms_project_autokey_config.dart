@@ -9,7 +9,8 @@ const Set<String> _googleKmsProjectAutokeyConfigSensitive = <String>{};
 /// Kms Project Autokey Config Key Project Resolution enum for `key_project_resolution_mode`.
 extension type const KmsProjectAutokeyConfigKeyProjectResolutionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KmsProjectAutokeyConfigKeyProjectResolutionMode.variable(String name)
     : this._(TfArg.variable(name));
   KmsProjectAutokeyConfigKeyProjectResolutionMode.expression(String template)

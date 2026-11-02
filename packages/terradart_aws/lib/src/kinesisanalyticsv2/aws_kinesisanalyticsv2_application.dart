@@ -37,7 +37,8 @@ extension type const Kinesisanalyticsv2ApplicationMode._(TfArg<String> _)
 /// Kinesisanalyticsv2 Application Runtime enum for `runtime_environment`.
 extension type const Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationRuntimeEnvironment.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationRuntimeEnvironment.expression(String template)
@@ -184,7 +185,8 @@ final class Kinesisanalyticsv2ApplicationCodeConfiguration {
 /// `code_content_type` — derived from the provider schema description.
 extension type const Kinesisanalyticsv2ApplicationCodeContentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationCodeContentType.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationCodeContentType.expression(String template)
@@ -444,7 +446,8 @@ final class Kinesisanalyticsv2ApplicationCheckpointConfiguration {
 /// `configuration_type` — derived from the provider schema description.
 extension type const Kinesisanalyticsv2ApplicationConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationConfigurationType.expression(String template)
@@ -523,7 +526,8 @@ extension type const Kinesisanalyticsv2ApplicationLogLevel._(TfArg<String> _)
 /// `metrics_level` — derived from the provider schema description.
 extension type const Kinesisanalyticsv2ApplicationMetricsLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationMetricsLevel.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationMetricsLevel.expression(String template)
@@ -914,7 +918,8 @@ final class Kinesisanalyticsv2ApplicationRecordFormat {
 /// `record_format_type` — derived from the provider schema description.
 extension type const Kinesisanalyticsv2ApplicationRecordFormatType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationRecordFormatType.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationRecordFormatType.expression(String template)
@@ -1059,7 +1064,8 @@ final class Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration {
 /// `input_starting_position` — derived from the provider schema description.
 extension type const Kinesisanalyticsv2ApplicationInputStartingPosition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Kinesisanalyticsv2ApplicationInputStartingPosition.variable(String name)
     : this._(TfArg.variable(name));
   Kinesisanalyticsv2ApplicationInputStartingPosition.expression(String template)

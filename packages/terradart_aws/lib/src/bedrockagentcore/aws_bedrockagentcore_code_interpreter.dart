@@ -78,7 +78,8 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
 /// `network_mode` — derived from the provider schema description.
 extension type const BedrockagentcoreCodeInterpreterNetworkMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreCodeInterpreterNetworkMode.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreCodeInterpreterNetworkMode.expression(String template)

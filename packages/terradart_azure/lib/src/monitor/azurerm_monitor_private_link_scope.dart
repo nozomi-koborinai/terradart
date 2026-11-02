@@ -11,7 +11,8 @@ const Set<String> _azurermMonitorPrivateLinkScopeSensitive = <String>{};
 /// Monitor Private Link Scope Ingestion Access enum for `ingestion_access_mode`.
 extension type const MonitorPrivateLinkScopeIngestionAccessMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorPrivateLinkScopeIngestionAccessMode.variable(String name)
     : this._(TfArg.variable(name));
   MonitorPrivateLinkScopeIngestionAccessMode.expression(String template)

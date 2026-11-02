@@ -72,7 +72,8 @@ extension type const AgentRegistryServiceEndpointSpecType._(TfArg<String> _)
 /// `protocol_binding` under `interfaces`.
 extension type const AgentRegistryServiceInterfacesProtocolBinding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgentRegistryServiceInterfacesProtocolBinding.variable(String name)
     : this._(TfArg.variable(name));
   AgentRegistryServiceInterfacesProtocolBinding.expression(String template)

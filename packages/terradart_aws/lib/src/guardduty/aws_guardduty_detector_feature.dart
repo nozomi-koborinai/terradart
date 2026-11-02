@@ -102,7 +102,8 @@ final class GuarddutyDetectorFeatureAdditionalConfiguration {
 /// `name` — derived from the provider schema description.
 extension type const GuarddutyDetectorFeatureAdditionalConfigurationName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyDetectorFeatureAdditionalConfigurationName.variable(String name)
     : this._(TfArg.variable(name));
   GuarddutyDetectorFeatureAdditionalConfigurationName.expression(
@@ -141,7 +142,8 @@ extension type const GuarddutyDetectorFeatureAdditionalConfigurationName._(
 /// `status` — derived from the provider schema description.
 extension type const GuarddutyDetectorFeatureAdditionalConfigurationStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyDetectorFeatureAdditionalConfigurationStatus.variable(String name)
     : this._(TfArg.variable(name));
   GuarddutyDetectorFeatureAdditionalConfigurationStatus.expression(

@@ -52,7 +52,8 @@ final class DataProtectionBackupPolicyDiskCriteria {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyDiskAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyDiskAbsoluteCriteria.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyDiskAbsoluteCriteria.expression(String template)

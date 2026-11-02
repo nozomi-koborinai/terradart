@@ -551,7 +551,8 @@ final class ManagedDevopsPoolVirtualMachineScaleSetFabric {
 /// `os_disk_storage_account_type` — derived from the provider schema description.
 extension type const ManagedDevopsPoolOsDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ManagedDevopsPoolOsDiskStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   ManagedDevopsPoolOsDiskStorageAccountType.expression(String template)

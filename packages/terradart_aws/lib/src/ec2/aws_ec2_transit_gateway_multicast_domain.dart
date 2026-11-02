@@ -9,7 +9,8 @@ const Set<String> _awsEc2TransitGatewayMulticastDomainSensitive = <String>{};
 /// Ec2 Transit Gateway Multicast Domain Auto Accept Shared enum for `auto_accept_shared_associations`.
 extension type const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -38,7 +39,8 @@ extension type const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociation
 /// Ec2 Transit Gateway Multicast Domain Igmpv2 enum for `igmpv2_support`.
 extension type const Ec2TransitGatewayMulticastDomainIgmpv2Support._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMulticastDomainIgmpv2Support.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayMulticastDomainIgmpv2Support.expression(String template)
@@ -62,7 +64,8 @@ extension type const Ec2TransitGatewayMulticastDomainIgmpv2Support._(
 /// Ec2 Transit Gateway Multicast Domain Static Sources enum for `static_sources_support`.
 extension type const Ec2TransitGatewayMulticastDomainStaticSourcesSupport._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMulticastDomainStaticSourcesSupport.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayMulticastDomainStaticSourcesSupport.expression(

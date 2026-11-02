@@ -306,7 +306,8 @@ final class SagemakerModelInferenceExecutionConfig {
 /// `mode` — derived from the provider schema description.
 extension type const SagemakerModelInferenceExecutionConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerModelInferenceExecutionConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerModelInferenceExecutionConfigMode.expression(String template)

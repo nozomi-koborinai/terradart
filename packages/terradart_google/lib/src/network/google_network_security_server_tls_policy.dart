@@ -37,7 +37,8 @@ final class NetworkSecurityServerTlsPolicyMtlsPolicy {
 /// `client_validation_mode` — derived from the provider schema description.
 extension type const NetworkSecurityServerTlsPolicyClientValidationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityServerTlsPolicyClientValidationMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityServerTlsPolicyClientValidationMode.expression(String template)

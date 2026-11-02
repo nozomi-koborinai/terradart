@@ -15,7 +15,8 @@ const Set<String> _awsSagemakerNotebookInstanceSensitive = <String>{};
 /// Sagemaker Notebook Instance Direct Internet enum for `direct_internet_access`.
 extension type const SagemakerNotebookInstanceDirectInternetAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerNotebookInstanceDirectInternetAccess.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerNotebookInstanceDirectInternetAccess.expression(String template)
@@ -850,7 +851,8 @@ final class SagemakerNotebookInstanceMetadataServiceConfiguration {
 /// `minimum_instance_metadata_service_version` — derived from the provider schema description.
 extension type const SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion.variable(
     String name,
   ) : this._(TfArg.variable(name));

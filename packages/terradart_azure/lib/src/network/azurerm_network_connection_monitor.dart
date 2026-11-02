@@ -93,7 +93,8 @@ extension type const NetworkConnectionMonitorCoverageLevel._(TfArg<String> _)
 /// `target_resource_type` — derived from the provider schema description.
 extension type const NetworkConnectionMonitorTargetResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectionMonitorTargetResourceType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectionMonitorTargetResourceType.expression(String template)
@@ -249,7 +250,8 @@ final class NetworkConnectionMonitorTestConfiguration {
 /// `preferred_ip_version` — derived from the provider schema description.
 extension type const NetworkConnectionMonitorPreferredIpVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectionMonitorPreferredIpVersion.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectionMonitorPreferredIpVersion.expression(String template)
@@ -424,7 +426,8 @@ final class NetworkConnectionMonitorTcpConfiguration {
 /// `destination_port_behavior` — derived from the provider schema description.
 extension type const NetworkConnectionMonitorDestinationPortBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectionMonitorDestinationPortBehavior.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectionMonitorDestinationPortBehavior.expression(String template)

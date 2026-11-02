@@ -65,7 +65,8 @@ extension type const TimestreaminfluxdbDbInstanceType._(TfArg<String> _)
 /// Timestreaminfluxdb Db Instance Db Storage enum for `db_storage_type`.
 extension type const TimestreaminfluxdbDbInstanceDbStorageType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreaminfluxdbDbInstanceDbStorageType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreaminfluxdbDbInstanceDbStorageType.expression(String template)
@@ -93,7 +94,8 @@ extension type const TimestreaminfluxdbDbInstanceDbStorageType._(
 /// Timestreaminfluxdb Db Instance Deployment enum for `deployment_type`.
 extension type const TimestreaminfluxdbDbInstanceDeploymentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreaminfluxdbDbInstanceDeploymentType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreaminfluxdbDbInstanceDeploymentType.expression(String template)

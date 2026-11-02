@@ -15,7 +15,8 @@ const Set<String> _azurermApiManagementAuthorizationServerSensitive = <String>{
 /// Api Management Authorization Server Authorization enum for `authorization_methods`.
 extension type const ApiManagementAuthorizationServerAuthorizationMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementAuthorizationServerAuthorizationMethods.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementAuthorizationServerAuthorizationMethods.expression(
@@ -57,7 +58,8 @@ extension type const ApiManagementAuthorizationServerAuthorizationMethods._(
 /// Api Management Authorization Server Bearer Token Sending enum for `bearer_token_sending_methods`.
 extension type const ApiManagementAuthorizationServerBearerTokenSendingMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementAuthorizationServerBearerTokenSendingMethods.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -84,7 +86,8 @@ extension type const ApiManagementAuthorizationServerBearerTokenSendingMethods._
 /// Api Management Authorization Server Client Authentication enum for `client_authentication_method`.
 extension type const ApiManagementAuthorizationServerClientAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementAuthorizationServerClientAuthenticationMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -111,7 +114,8 @@ extension type const ApiManagementAuthorizationServerClientAuthenticationMethod.
 /// Api Management Authorization Server Grant enum for `grant_types`.
 extension type const ApiManagementAuthorizationServerGrantTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementAuthorizationServerGrantTypes.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementAuthorizationServerGrantTypes.expression(String template)

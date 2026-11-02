@@ -132,7 +132,8 @@ final class WorkspaceswebDataProtectionSettingsRedactionPlaceHolder {
 /// `redaction_place_holder_type` — derived from the provider schema description.
 extension type const WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType.variable(
     String name,
   ) : this._(TfArg.variable(name));

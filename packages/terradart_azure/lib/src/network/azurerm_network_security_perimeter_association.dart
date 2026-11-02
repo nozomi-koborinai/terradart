@@ -10,7 +10,8 @@ const Set<String> _azurermNetworkSecurityPerimeterAssociationSensitive =
 /// Network Security Perimeter Association Access enum for `access_mode`.
 extension type const NetworkSecurityPerimeterAssociationAccessMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityPerimeterAssociationAccessMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityPerimeterAssociationAccessMode.expression(String template)

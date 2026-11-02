@@ -11,7 +11,8 @@ const Set<String> _googleComputeRegionNetworkFirewallPolicyWithRulesSensitive =
 /// Compute Region Network Firewall Policy With Rules Policy enum for `policy_type`.
 extension type const ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyWithRulesPolicyType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyWithRulesPolicyType.expression(
@@ -115,7 +116,8 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 /// `action` — derived from the provider schema description.
 extension type const ComputeRegionNetworkFirewallPolicyWithRulesAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyWithRulesAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyWithRulesAction.expression(String template)
@@ -144,7 +146,8 @@ extension type const ComputeRegionNetworkFirewallPolicyWithRulesAction._(
 /// `direction` — derived from the provider schema description.
 extension type const ComputeRegionNetworkFirewallPolicyWithRulesDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyWithRulesDirection.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyWithRulesDirection.expression(
@@ -168,7 +171,8 @@ extension type const ComputeRegionNetworkFirewallPolicyWithRulesDirection._(
 /// `target_type` — derived from the provider schema description.
 extension type const ComputeRegionNetworkFirewallPolicyWithRulesTargetType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyWithRulesTargetType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyWithRulesTargetType.expression(

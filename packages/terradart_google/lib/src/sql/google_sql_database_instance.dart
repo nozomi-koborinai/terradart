@@ -1105,7 +1105,8 @@ extension type const SqlDatabaseInstanceServerCaMode._(TfArg<String> _)
 /// `server_certificate_rotation_mode` — derived from the provider schema description.
 extension type const SqlDatabaseInstanceServerCertificateRotationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SqlDatabaseInstanceServerCertificateRotationMode.variable(String name)
     : this._(TfArg.variable(name));
   SqlDatabaseInstanceServerCertificateRotationMode.expression(String template)

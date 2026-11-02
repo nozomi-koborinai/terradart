@@ -10,7 +10,8 @@ const Set<String> _awsGlobalacceleratorEndpointGroupSensitive = <String>{};
 /// Globalaccelerator Endpoint Group Health Check enum for `health_check_protocol`.
 extension type const GlobalacceleratorEndpointGroupHealthCheckProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlobalacceleratorEndpointGroupHealthCheckProtocol.variable(String name)
     : this._(TfArg.variable(name));
   GlobalacceleratorEndpointGroupHealthCheckProtocol.expression(String template)

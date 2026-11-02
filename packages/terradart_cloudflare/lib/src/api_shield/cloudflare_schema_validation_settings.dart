@@ -11,7 +11,8 @@ const Set<String> _cloudflareSchemaValidationSettingsSensitive = <String>{};
 /// Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
 extension type const SchemaValidationSettingsValidationDefaultMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SchemaValidationSettingsValidationDefaultMitigationAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -42,7 +43,8 @@ extension type const SchemaValidationSettingsValidationDefaultMitigationAction._
 /// Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
 extension type const SchemaValidationSettingsValidationOverrideMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SchemaValidationSettingsValidationOverrideMitigationAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

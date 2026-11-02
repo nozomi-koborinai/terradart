@@ -33,7 +33,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
 /// `enforcement_mode` — derived from the provider schema description.
 extension type const CloudSecurityComplianceFrameworkDeploymentEnforcementMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudSecurityComplianceFrameworkDeploymentEnforcementMode.variable(
     String name,
   ) : this._(TfArg.variable(name));

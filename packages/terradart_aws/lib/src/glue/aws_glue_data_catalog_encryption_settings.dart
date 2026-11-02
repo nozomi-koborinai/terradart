@@ -78,7 +78,8 @@ final class GlueDataCatalogEncryptionSettingsEncryptionAtRest {
 /// `catalog_encryption_mode` — derived from the provider schema description.
 extension type const GlueDataCatalogEncryptionSettingsCatalogEncryptionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueDataCatalogEncryptionSettingsCatalogEncryptionMode.variable(String name)
     : this._(TfArg.variable(name));
   GlueDataCatalogEncryptionSettingsCatalogEncryptionMode.expression(

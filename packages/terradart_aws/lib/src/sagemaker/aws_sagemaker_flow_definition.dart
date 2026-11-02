@@ -152,7 +152,8 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
 /// `aws_managed_human_loop_request_source` — derived from the provider schema description.
 extension type const SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource.expression(

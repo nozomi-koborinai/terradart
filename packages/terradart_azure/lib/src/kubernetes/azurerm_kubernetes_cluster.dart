@@ -1316,7 +1316,8 @@ extension type const KubernetesClusterDayOfWeek._(TfArg<String> _)
 /// `frequency` — derived from the provider schema description.
 extension type const KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterMaintenanceWindowAutoUpgradeFrequency.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterMaintenanceWindowAutoUpgradeFrequency.expression(
@@ -1426,7 +1427,8 @@ final class KubernetesClusterMaintenanceWindowNodeOs {
 /// `frequency` — derived from the provider schema description.
 extension type const KubernetesClusterMaintenanceWindowNodeOsFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterMaintenanceWindowNodeOsFrequency.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterMaintenanceWindowNodeOsFrequency.expression(String template)
@@ -1875,7 +1877,8 @@ extension type const KubernetesClusterDefaultNodePools._(TfArg<String> _)
 /// `mode` — derived from the provider schema description.
 extension type const KubernetesClusterNodeProvisioningProfileMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodeProvisioningProfileMode.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodeProvisioningProfileMode.expression(String template)

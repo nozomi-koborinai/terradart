@@ -76,7 +76,8 @@ final class VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis {
 /// `anomaly_detection_baseline` — derived from the provider schema description.
 extension type const VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline.expression(

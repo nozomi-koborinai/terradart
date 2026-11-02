@@ -10,7 +10,8 @@ const Set<String> _googleDiscoveryEngineChatEngineSensitive = <String>{};
 /// Discovery Engine Chat Engine Industry enum for `industry_vertical`.
 extension type const DiscoveryEngineChatEngineIndustryVertical._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineChatEngineIndustryVertical.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineChatEngineIndustryVertical.expression(String template)
@@ -143,7 +144,8 @@ final class DiscoveryEngineChatEngineAgentCreationConfig {
 /// `location` — derived from the provider schema description.
 extension type const DiscoveryEngineChatEngineAgentCreationConfigLocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineChatEngineAgentCreationConfigLocation.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineChatEngineAgentCreationConfigLocation.expression(

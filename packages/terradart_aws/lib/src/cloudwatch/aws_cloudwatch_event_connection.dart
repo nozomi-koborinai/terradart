@@ -22,7 +22,8 @@ const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{
 /// Cloudwatch Event Connection Authorization enum for `authorization_type`.
 extension type const CloudwatchEventConnectionAuthorizationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchEventConnectionAuthorizationType.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchEventConnectionAuthorizationType.expression(String template)

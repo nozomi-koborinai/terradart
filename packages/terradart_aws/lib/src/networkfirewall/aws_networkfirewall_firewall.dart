@@ -14,7 +14,8 @@ const Set<String> _awsNetworkfirewallFirewallSensitive = <String>{};
 /// Networkfirewall Firewall Enabled Analysis enum for `enabled_analysis_types`.
 extension type const NetworkfirewallFirewallEnabledAnalysisTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallFirewallEnabledAnalysisTypes.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallFirewallEnabledAnalysisTypes.expression(String template)

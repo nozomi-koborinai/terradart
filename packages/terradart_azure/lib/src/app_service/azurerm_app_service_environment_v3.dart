@@ -13,7 +13,8 @@ const Set<String> _azurermAppServiceEnvironmentV3Sensitive = <String>{};
 /// App Service Environment V3 Internal Load Balancing enum for `internal_load_balancing_mode`.
 extension type const AppServiceEnvironmentV3InternalLoadBalancingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppServiceEnvironmentV3InternalLoadBalancingMode.variable(String name)
     : this._(TfArg.variable(name));
   AppServiceEnvironmentV3InternalLoadBalancingMode.expression(String template)

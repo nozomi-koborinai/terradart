@@ -10,7 +10,8 @@ const Set<String> _awsDrsReplicationConfigurationTemplateSensitive = <String>{};
 /// Drs Replication Configuration Template Data Plane enum for `data_plane_routing`.
 extension type const DrsReplicationConfigurationTemplateDataPlaneRouting._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DrsReplicationConfigurationTemplateDataPlaneRouting.variable(String name)
     : this._(TfArg.variable(name));
   DrsReplicationConfigurationTemplateDataPlaneRouting.expression(
@@ -35,7 +36,8 @@ extension type const DrsReplicationConfigurationTemplateDataPlaneRouting._(
 /// Drs Replication Configuration Template Default Large Staging Disk enum for `default_large_staging_disk_type`.
 extension type const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -72,7 +74,8 @@ extension type const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskT
 /// Drs Replication Configuration Template Ebs enum for `ebs_encryption`.
 extension type const DrsReplicationConfigurationTemplateEbsEncryption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DrsReplicationConfigurationTemplateEbsEncryption.variable(String name)
     : this._(TfArg.variable(name));
   DrsReplicationConfigurationTemplateEbsEncryption.expression(String template)

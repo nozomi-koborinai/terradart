@@ -40,7 +40,8 @@ extension type const PaloAltoLocalRulestackRuleAction._(TfArg<String> _)
 /// Palo Alto Local Rulestack Rule Decryption Rule enum for `decryption_rule_type`.
 extension type const PaloAltoLocalRulestackRuleDecryptionRuleType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoLocalRulestackRuleDecryptionRuleType.variable(String name)
     : this._(TfArg.variable(name));
   PaloAltoLocalRulestackRuleDecryptionRuleType.expression(String template)

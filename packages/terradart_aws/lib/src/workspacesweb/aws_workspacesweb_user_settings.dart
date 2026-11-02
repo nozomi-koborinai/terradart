@@ -247,7 +247,8 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
 /// `hidden_toolbar_items` — derived from the provider schema description.
 extension type const WorkspaceswebUserSettingsHiddenToolbarItems._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspaceswebUserSettingsHiddenToolbarItems.variable(String name)
     : this._(TfArg.variable(name));
   WorkspaceswebUserSettingsHiddenToolbarItems.expression(String template)
@@ -283,7 +284,8 @@ extension type const WorkspaceswebUserSettingsHiddenToolbarItems._(
 /// `max_display_resolution` — derived from the provider schema description.
 extension type const WorkspaceswebUserSettingsMaxDisplayResolution._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspaceswebUserSettingsMaxDisplayResolution.variable(String name)
     : this._(TfArg.variable(name));
   WorkspaceswebUserSettingsMaxDisplayResolution.expression(String template)

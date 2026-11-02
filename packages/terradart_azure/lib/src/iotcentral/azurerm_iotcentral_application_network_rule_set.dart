@@ -11,7 +11,8 @@ const Set<String> _azurermIotcentralApplicationNetworkRuleSetSensitive =
 /// Iotcentral Application Network Rule Set Default enum for `default_action`.
 extension type const IotcentralApplicationNetworkRuleSetDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotcentralApplicationNetworkRuleSetDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   IotcentralApplicationNetworkRuleSetDefaultAction.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _googleNetworkServicesMulticastGroupRangeSensitive =
 /// Network Services Multicast Group Range Distribution enum for `distribution_scope`.
 extension type const NetworkServicesMulticastGroupRangeDistributionScope._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesMulticastGroupRangeDistributionScope.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesMulticastGroupRangeDistributionScope.expression(

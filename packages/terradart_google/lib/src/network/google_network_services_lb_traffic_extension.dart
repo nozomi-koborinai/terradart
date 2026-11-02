@@ -11,7 +11,8 @@ const Set<String> _googleNetworkServicesLbTrafficExtensionSensitive =
 /// Network Services Lb Traffic Extension Load Balancing enum for `load_balancing_scheme`.
 extension type const NetworkServicesLbTrafficExtensionLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbTrafficExtensionLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbTrafficExtensionLoadBalancingScheme.expression(
@@ -110,7 +111,8 @@ final class NetworkServicesLbTrafficExtensionExtensions {
 /// `supported_events` — derived from the provider schema description.
 extension type const NetworkServicesLbTrafficExtensionSupportedEvents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbTrafficExtensionSupportedEvents.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbTrafficExtensionSupportedEvents.expression(String template)

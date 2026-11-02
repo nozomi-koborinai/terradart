@@ -33,7 +33,8 @@ extension type const NotificationHubNamespaceType._(TfArg<String> _)
 /// Notification Hub Namespace Replication enum for `replication_region`.
 extension type const NotificationHubNamespaceReplicationRegion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NotificationHubNamespaceReplicationRegion.variable(String name)
     : this._(TfArg.variable(name));
   NotificationHubNamespaceReplicationRegion.expression(String template)

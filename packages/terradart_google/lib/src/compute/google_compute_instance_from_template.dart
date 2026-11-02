@@ -51,7 +51,8 @@ extension type const ComputeInstanceFromTemplateDesiredStatus._(TfArg<String> _)
 /// Compute Instance From Template Key Revocation Action enum for `key_revocation_action_type`.
 extension type const ComputeInstanceFromTemplateKeyRevocationActionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateKeyRevocationActionType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateKeyRevocationActionType.expression(String template)
@@ -111,7 +112,8 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
 /// `performance_monitoring_unit` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplatePerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplatePerformanceMonitoringUnit.expression(
@@ -463,7 +465,8 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
 /// `confidential_instance_type` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateConfidentialInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateConfidentialInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateConfidentialInstanceType.expression(
@@ -828,7 +831,8 @@ final class ComputeInstanceFromTemplateNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateTotalEgressBandwidthTier.expression(
@@ -979,7 +983,8 @@ final class ComputeInstanceFromTemplateScheduling {
 /// `instance_termination_action` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateInstanceTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateInstanceTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateInstanceTerminationAction.expression(
@@ -1003,7 +1008,8 @@ extension type const ComputeInstanceFromTemplateInstanceTerminationAction._(
 /// `on_host_maintenance` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateOnHostMaintenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateOnHostMaintenance.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateOnHostMaintenance.expression(String template)
@@ -1027,7 +1033,8 @@ extension type const ComputeInstanceFromTemplateOnHostMaintenance._(
 /// `provisioning_model` — derived from the provider schema description.
 extension type const ComputeInstanceFromTemplateProvisioningModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromTemplateProvisioningModel.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromTemplateProvisioningModel.expression(String template)

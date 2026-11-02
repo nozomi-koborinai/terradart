@@ -50,7 +50,8 @@ final class ApplicationInsightsStandardWebTestRequest {
 /// `http_verb` — derived from the provider schema description.
 extension type const ApplicationInsightsStandardWebTestHttpVerb._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationInsightsStandardWebTestHttpVerb.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationInsightsStandardWebTestHttpVerb.expression(String template)

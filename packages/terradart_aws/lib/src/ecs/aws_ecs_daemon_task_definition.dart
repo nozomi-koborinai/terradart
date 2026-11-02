@@ -244,7 +244,8 @@ final class EcsDaemonTaskDefinitionEnvironmentFile {
 /// `type` — derived from the provider schema description.
 extension type const EcsDaemonTaskDefinitionEnvironmentFileType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcsDaemonTaskDefinitionEnvironmentFileType.variable(String name)
     : this._(TfArg.variable(name));
   EcsDaemonTaskDefinitionEnvironmentFileType.expression(String template)
@@ -282,7 +283,8 @@ final class EcsDaemonTaskDefinitionFirelensConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const EcsDaemonTaskDefinitionFirelensConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcsDaemonTaskDefinitionFirelensConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   EcsDaemonTaskDefinitionFirelensConfigurationType.expression(String template)

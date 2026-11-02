@@ -10,7 +10,8 @@ const Set<String> _awsApigatewayv2AuthorizerSensitive = <String>{};
 /// Apigatewayv2 Authorizer Payload Format enum for `authorizer_payload_format_version`.
 extension type const Apigatewayv2AuthorizerPayloadFormatVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Apigatewayv2AuthorizerPayloadFormatVersion.variable(String name)
     : this._(TfArg.variable(name));
   Apigatewayv2AuthorizerPayloadFormatVersion.expression(String template)

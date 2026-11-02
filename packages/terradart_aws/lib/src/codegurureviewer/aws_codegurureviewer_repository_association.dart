@@ -34,7 +34,8 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
 /// `encryption_option` — derived from the provider schema description.
 extension type const CodegurureviewerRepositoryAssociationEncryptionOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodegurureviewerRepositoryAssociationEncryptionOption.variable(String name)
     : this._(TfArg.variable(name));
   CodegurureviewerRepositoryAssociationEncryptionOption.expression(

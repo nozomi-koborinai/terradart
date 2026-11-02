@@ -13,7 +13,8 @@ const Set<String> _googleNetworkSecurityGatewaySecurityPolicyRuleSensitive =
 /// Network Security Gateway Security Policy Rule Basic enum for `basic_profile`.
 extension type const NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.expression(

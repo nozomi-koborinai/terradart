@@ -9,7 +9,8 @@ const Set<String> _azurermAdvisorRecommendationsSensitive = <String>{};
 /// Data Advisor Recommendations Filter By enum for `filter_by_category`.
 extension type const DataAdvisorRecommendationsFilterByCategory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataAdvisorRecommendationsFilterByCategory.variable(String name)
     : this._(TfArg.variable(name));
   DataAdvisorRecommendationsFilterByCategory.expression(String template)

@@ -44,7 +44,8 @@ final class S3controlObjectLambdaAccessPointConfiguration {
 /// `allowed_features` — derived from the provider schema description.
 extension type const S3controlObjectLambdaAccessPointAllowedFeatures._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3controlObjectLambdaAccessPointAllowedFeatures.variable(String name)
     : this._(TfArg.variable(name));
   S3controlObjectLambdaAccessPointAllowedFeatures.expression(String template)

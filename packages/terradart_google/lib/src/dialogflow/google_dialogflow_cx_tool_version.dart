@@ -119,7 +119,8 @@ extension type const DialogflowCxToolVersionDataStoreType._(TfArg<String> _)
 /// `document_processing_mode` — derived from the provider schema description.
 extension type const DialogflowCxToolVersionDocumentProcessingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxToolVersionDocumentProcessingMode.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowCxToolVersionDocumentProcessingMode.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _googleComputeStoragePoolSensitive = <String>{};
 /// Compute Storage Pool Capacity Provisioning enum for `capacity_provisioning_type`.
 extension type const ComputeStoragePoolCapacityProvisioningType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeStoragePoolCapacityProvisioningType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeStoragePoolCapacityProvisioningType.expression(String template)
@@ -34,7 +35,8 @@ extension type const ComputeStoragePoolCapacityProvisioningType._(
 /// Compute Storage Pool Performance Provisioning enum for `performance_provisioning_type`.
 extension type const ComputeStoragePoolPerformanceProvisioningType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeStoragePoolPerformanceProvisioningType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeStoragePoolPerformanceProvisioningType.expression(String template)

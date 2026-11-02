@@ -14,7 +14,8 @@ const Set<String> _awsS3BucketObjectLockConfigurationSensitive = <String>{
 /// S3 Bucket Object Lock Configuration Object Lock enum for `object_lock_enabled`.
 extension type const S3BucketObjectLockConfigurationObjectLockEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketObjectLockConfigurationObjectLockEnabled.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketObjectLockConfigurationObjectLockEnabled.expression(String template)

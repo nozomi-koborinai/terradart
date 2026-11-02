@@ -12,7 +12,8 @@ const Set<String> _azurermKustoEventgridDataConnectionSensitive = <String>{};
 /// Kusto Eventgrid Data Connection Blob Storage Event enum for `blob_storage_event_type`.
 extension type const KustoEventgridDataConnectionBlobStorageEventType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoEventgridDataConnectionBlobStorageEventType.variable(String name)
     : this._(TfArg.variable(name));
   KustoEventgridDataConnectionBlobStorageEventType.expression(String template)
@@ -117,7 +118,8 @@ extension type const KustoEventgridDataConnectionDataFormat._(TfArg<String> _)
 /// Kusto Eventgrid Data Connection Database Routing enum for `database_routing_type`.
 extension type const KustoEventgridDataConnectionDatabaseRoutingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoEventgridDataConnectionDatabaseRoutingType.variable(String name)
     : this._(TfArg.variable(name));
   KustoEventgridDataConnectionDatabaseRoutingType.expression(String template)

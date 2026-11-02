@@ -55,7 +55,8 @@ extension type const AlbTargetGroupLoadBalancingAlgorithmType._(TfArg<String> _)
 /// Alb Target Group Load Balancing Anomaly enum for `load_balancing_anomaly_mitigation`.
 extension type const AlbTargetGroupLoadBalancingAnomalyMitigation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AlbTargetGroupLoadBalancingAnomalyMitigation.variable(String name)
     : this._(TfArg.variable(name));
   AlbTargetGroupLoadBalancingAnomalyMitigation.expression(String template)
@@ -79,7 +80,8 @@ extension type const AlbTargetGroupLoadBalancingAnomalyMitigation._(
 /// Alb Target Group Load Balancing Cross Zone enum for `load_balancing_cross_zone_enabled`.
 extension type const AlbTargetGroupLoadBalancingCrossZoneEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AlbTargetGroupLoadBalancingCrossZoneEnabled.variable(String name)
     : this._(TfArg.variable(name));
   AlbTargetGroupLoadBalancingCrossZoneEnabled.expression(String template)

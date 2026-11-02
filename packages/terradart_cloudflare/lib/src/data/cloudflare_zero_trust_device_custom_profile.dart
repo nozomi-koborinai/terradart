@@ -24,7 +24,8 @@ final class DataZeroTrustDeviceCustomProfileFilter {
 /// `profile_type` — derived from the provider schema description.
 extension type const DataZeroTrustDeviceCustomProfileFilterProfileType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustDeviceCustomProfileFilterProfileType.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustDeviceCustomProfileFilterProfileType.expression(String template)

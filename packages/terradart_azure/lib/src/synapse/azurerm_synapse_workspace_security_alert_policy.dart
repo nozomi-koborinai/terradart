@@ -10,7 +10,8 @@ const Set<String> _azurermSynapseWorkspaceSecurityAlertPolicySensitive =
 /// Synapse Workspace Security Alert Policy Disabled enum for `disabled_alerts`.
 extension type const SynapseWorkspaceSecurityAlertPolicyDisabledAlerts._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SynapseWorkspaceSecurityAlertPolicyDisabledAlerts.variable(String name)
     : this._(TfArg.variable(name));
   SynapseWorkspaceSecurityAlertPolicyDisabledAlerts.expression(String template)

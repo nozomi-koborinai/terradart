@@ -66,7 +66,8 @@ extension type const EcsCapacityProviderManagedDraining._(TfArg<String> _)
 /// `managed_termination_protection` — derived from the provider schema description.
 extension type const EcsCapacityProviderManagedTerminationProtection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcsCapacityProviderManagedTerminationProtection.variable(String name)
     : this._(TfArg.variable(name));
   EcsCapacityProviderManagedTerminationProtection.expression(String template)
@@ -488,7 +489,8 @@ final class EcsCapacityProviderInstanceRequirements {
 /// `accelerator_manufacturers` — derived from the provider schema description.
 extension type const EcsCapacityProviderAcceleratorManufacturers._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcsCapacityProviderAcceleratorManufacturers.variable(String name)
     : this._(TfArg.variable(name));
   EcsCapacityProviderAcceleratorManufacturers.expression(String template)

@@ -31,7 +31,8 @@ extension type const BigqueryDatapolicyDataPolicyType._(TfArg<String> _)
 
 extension type const BigqueryDatapolicyDataPolicyPredefinedExpression._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BigqueryDatapolicyDataPolicyPredefinedExpression.variable(String name)
     : this._(TfArg.variable(name));
   BigqueryDatapolicyDataPolicyPredefinedExpression.expression(String template)

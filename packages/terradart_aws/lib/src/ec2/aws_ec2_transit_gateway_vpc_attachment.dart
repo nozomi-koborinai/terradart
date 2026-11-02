@@ -12,7 +12,8 @@ const Set<String> _awsEc2TransitGatewayVpcAttachmentSensitive = <String>{};
 /// Ec2 Transit Gateway Vpc Attachment Appliance Mode enum for `appliance_mode_support`.
 extension type const Ec2TransitGatewayVpcAttachmentApplianceModeSupport._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayVpcAttachmentApplianceModeSupport.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayVpcAttachmentApplianceModeSupport.expression(String template)
@@ -58,7 +59,8 @@ extension type const Ec2TransitGatewayVpcAttachmentDnsSupport._(TfArg<String> _)
 /// Ec2 Transit Gateway Vpc Attachment Ipv6 enum for `ipv6_support`.
 extension type const Ec2TransitGatewayVpcAttachmentIpv6Support._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayVpcAttachmentIpv6Support.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayVpcAttachmentIpv6Support.expression(String template)
@@ -82,7 +84,8 @@ extension type const Ec2TransitGatewayVpcAttachmentIpv6Support._(
 /// Ec2 Transit Gateway Vpc Attachment Security Group Referencing enum for `security_group_referencing_support`.
 extension type const Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -427,7 +427,8 @@ extension type const ElastictranscoderPresetPaddingPolicy._(TfArg<String> _)
 /// `sizing_policy` — derived from the provider schema description.
 extension type const ElastictranscoderPresetThumbnailsSizingPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElastictranscoderPresetThumbnailsSizingPolicy.variable(String name)
     : this._(TfArg.variable(name));
   ElastictranscoderPresetThumbnailsSizingPolicy.expression(String template)
@@ -559,7 +560,8 @@ extension type const ElastictranscoderPresetVideoCodec._(TfArg<String> _)
 /// `display_aspect_ratio` — derived from the provider schema description.
 extension type const ElastictranscoderPresetDisplayAspectRatio._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElastictranscoderPresetDisplayAspectRatio.variable(String name)
     : this._(TfArg.variable(name));
   ElastictranscoderPresetDisplayAspectRatio.expression(String template)
@@ -771,7 +773,8 @@ extension type const ElastictranscoderPresetHorizontalAlign._(TfArg<String> _)
 /// `sizing_policy` — derived from the provider schema description.
 extension type const ElastictranscoderPresetVideoWatermarksSizingPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElastictranscoderPresetVideoWatermarksSizingPolicy.variable(String name)
     : this._(TfArg.variable(name));
   ElastictranscoderPresetVideoWatermarksSizingPolicy.expression(String template)

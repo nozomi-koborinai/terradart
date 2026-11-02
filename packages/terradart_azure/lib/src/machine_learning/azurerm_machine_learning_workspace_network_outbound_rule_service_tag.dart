@@ -11,7 +11,8 @@ _azurermMachineLearningWorkspaceNetworkOutboundRuleServiceTagSensitive =
 /// Machine Learning Workspace Network Outbound Rule Service Tag enum for `protocol`.
 extension type const MachineLearningWorkspaceNetworkOutboundRuleServiceTagProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningWorkspaceNetworkOutboundRuleServiceTagProtocol.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -48,7 +49,8 @@ extension type const MachineLearningWorkspaceNetworkOutboundRuleServiceTagProtoc
 /// Machine Learning Workspace Network Outbound Rule Service enum for `service_tag`.
 extension type const MachineLearningWorkspaceNetworkOutboundRuleServiceTag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningWorkspaceNetworkOutboundRuleServiceTag.variable(String name)
     : this._(TfArg.variable(name));
   MachineLearningWorkspaceNetworkOutboundRuleServiceTag.expression(

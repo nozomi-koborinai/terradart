@@ -687,7 +687,8 @@ extension type const WindowsVirtualMachineCaching._(TfArg<String> _)
 /// `security_encryption_type` — derived from the provider schema description.
 extension type const WindowsVirtualMachineSecurityEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineSecurityEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineSecurityEncryptionType.expression(String template)

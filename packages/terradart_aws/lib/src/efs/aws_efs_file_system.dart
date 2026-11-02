@@ -182,7 +182,8 @@ extension type const EfsFileSystemTransitionToIa._(TfArg<String> _)
 /// `transition_to_primary_storage_class` — derived from the provider schema description.
 extension type const EfsFileSystemTransitionToPrimaryStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EfsFileSystemTransitionToPrimaryStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   EfsFileSystemTransitionToPrimaryStorageClass.expression(String template)

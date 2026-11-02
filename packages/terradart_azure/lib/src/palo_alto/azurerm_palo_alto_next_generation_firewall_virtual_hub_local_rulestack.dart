@@ -44,7 +44,8 @@ final class PaloAltoNextGenerationFirewallVirtualHubLocalRulestackDestinationNat
 /// `protocol` — derived from the provider schema description.
 extension type const PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoNextGenerationFirewallVirtualHubLocalRulestackProtocol.variable(
     String name,
   ) : this._(TfArg.variable(name));

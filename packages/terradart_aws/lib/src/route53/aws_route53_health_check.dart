@@ -208,7 +208,8 @@ extension type const Route53HealthCheckCloudwatchAlarmRegion._(TfArg<String> _)
 /// Route53 Health Check Insufficient Data Health enum for `insufficient_data_health_status`.
 extension type const Route53HealthCheckInsufficientDataHealthStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53HealthCheckInsufficientDataHealthStatus.variable(String name)
     : this._(TfArg.variable(name));
   Route53HealthCheckInsufficientDataHealthStatus.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _googleVmwareengineNetworkPeeringSensitive = <String>{};
 /// Vmwareengine Network Peering Peer Network enum for `peer_network_type`.
 extension type const VmwareengineNetworkPeeringPeerNetworkType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VmwareengineNetworkPeeringPeerNetworkType.variable(String name)
     : this._(TfArg.variable(name));
   VmwareengineNetworkPeeringPeerNetworkType.expression(String template)

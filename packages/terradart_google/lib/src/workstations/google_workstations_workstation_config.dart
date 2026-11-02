@@ -372,7 +372,8 @@ final class WorkstationsWorkstationConfigGceHd {
 /// `reclaim_policy` — derived from the provider schema description.
 extension type const WorkstationsWorkstationConfigReclaimPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkstationsWorkstationConfigReclaimPolicy.variable(String name)
     : this._(TfArg.variable(name));
   WorkstationsWorkstationConfigReclaimPolicy.expression(String template)

@@ -13,7 +13,8 @@ const Set<String> _cloudflareAccountDnsSettingsInternalViewsSensitive =
 /// Data Account Dns Settings Internal Views enum for `direction`.
 extension type const DataAccountDnsSettingsInternalViewsDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataAccountDnsSettingsInternalViewsDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataAccountDnsSettingsInternalViewsDirection.expression(String template)

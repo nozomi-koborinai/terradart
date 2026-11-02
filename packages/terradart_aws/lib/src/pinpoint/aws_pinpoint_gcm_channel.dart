@@ -13,7 +13,8 @@ const Set<String> _awsPinpointGcmChannelSensitive = <String>{
 /// Pinpoint Gcm Channel Default Authentication enum for `default_authentication_method`.
 extension type const PinpointGcmChannelDefaultAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PinpointGcmChannelDefaultAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   PinpointGcmChannelDefaultAuthenticationMethod.expression(String template)

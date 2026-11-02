@@ -11,7 +11,8 @@ const Set<String> _azurermStreamAnalyticsOutputCosmosdbSensitive = <String>{
 /// Stream Analytics Output Cosmosdb Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputCosmosdbAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputCosmosdbAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputCosmosdbAuthenticationMode.expression(String template)

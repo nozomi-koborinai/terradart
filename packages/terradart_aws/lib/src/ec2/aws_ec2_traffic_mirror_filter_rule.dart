@@ -29,7 +29,8 @@ extension type const Ec2TrafficMirrorFilterRuleAction._(TfArg<String> _)
 /// Ec2 Traffic Mirror Filter Rule Traffic enum for `traffic_direction`.
 extension type const Ec2TrafficMirrorFilterRuleTrafficDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TrafficMirrorFilterRuleTrafficDirection.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TrafficMirrorFilterRuleTrafficDirection.expression(String template)

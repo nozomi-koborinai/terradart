@@ -106,7 +106,8 @@ final class NetappVolumeGroupSapHanaVolume {
 /// `encryption_key_source` — derived from the provider schema description.
 extension type const NetappVolumeGroupSapHanaEncryptionKeySource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeGroupSapHanaEncryptionKeySource.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeGroupSapHanaEncryptionKeySource.expression(String template)
@@ -321,7 +322,8 @@ extension type const NetappVolumeGroupSapHanaEndpointType._(TfArg<String> _)
 /// `replication_frequency` — derived from the provider schema description.
 extension type const NetappVolumeGroupSapHanaReplicationFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeGroupSapHanaReplicationFrequency.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeGroupSapHanaReplicationFrequency.expression(String template)

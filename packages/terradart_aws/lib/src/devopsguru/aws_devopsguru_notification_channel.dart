@@ -32,7 +32,8 @@ final class DevopsguruNotificationChannelFilters {
 /// `message_types` — derived from the provider schema description.
 extension type const DevopsguruNotificationChannelMessageTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DevopsguruNotificationChannelMessageTypes.variable(String name)
     : this._(TfArg.variable(name));
   DevopsguruNotificationChannelMessageTypes.expression(String template)

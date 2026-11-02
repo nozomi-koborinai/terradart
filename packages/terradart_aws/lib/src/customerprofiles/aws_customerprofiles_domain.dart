@@ -90,7 +90,8 @@ final class CustomerprofilesDomainConflictResolution {
 /// `conflict_resolving_model` — derived from the provider schema description.
 extension type const CustomerprofilesDomainConflictResolvingModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CustomerprofilesDomainConflictResolvingModel.variable(String name)
     : this._(TfArg.variable(name));
   CustomerprofilesDomainConflictResolvingModel.expression(String template)
@@ -325,7 +326,8 @@ final class CustomerprofilesDomainAttributeTypesSelector {
 /// `attribute_matching_model` — derived from the provider schema description.
 extension type const CustomerprofilesDomainAttributeMatchingModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CustomerprofilesDomainAttributeMatchingModel.variable(String name)
     : this._(TfArg.variable(name));
   CustomerprofilesDomainAttributeMatchingModel.expression(String template)

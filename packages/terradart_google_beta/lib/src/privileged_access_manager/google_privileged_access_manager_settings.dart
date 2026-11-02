@@ -137,7 +137,8 @@ final class PrivilegedAccessManagerSettingsAdminNotifications {
 /// `grant_activated` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantActivated._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantActivated.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantActivated.expression(String template)
@@ -166,7 +167,8 @@ extension type const PrivilegedAccessManagerSettingsGrantActivated._(
 /// `grant_activation_failed` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantActivationFailed._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantActivationFailed.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantActivationFailed.expression(
@@ -195,7 +197,8 @@ extension type const PrivilegedAccessManagerSettingsGrantActivationFailed._(
 /// `grant_ended` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantEnded._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantEnded.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantEnded.expression(String template)
@@ -224,7 +227,8 @@ extension type const PrivilegedAccessManagerSettingsGrantEnded._(
 /// `grant_externally_modified` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantExternallyModified._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantExternallyModified.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantExternallyModified.expression(
@@ -270,7 +274,8 @@ final class PrivilegedAccessManagerSettingsApproverNotifications {
 /// `pending_approval` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsPendingApproval._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsPendingApproval.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsPendingApproval.expression(String template)
@@ -345,7 +350,8 @@ final class PrivilegedAccessManagerSettingsRequesterNotifications {
 /// `entitlement_assigned` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsEntitlementAssigned._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsEntitlementAssigned.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsEntitlementAssigned.expression(String template)
@@ -372,7 +378,8 @@ extension type const PrivilegedAccessManagerSettingsEntitlementAssigned._(
 /// `grant_denied` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantDenied._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantDenied.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantDenied.expression(String template)
@@ -401,7 +408,8 @@ extension type const PrivilegedAccessManagerSettingsGrantDenied._(
 /// `grant_expired` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantExpired._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantExpired.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantExpired.expression(String template)
@@ -430,7 +438,8 @@ extension type const PrivilegedAccessManagerSettingsGrantExpired._(
 /// `grant_revoked` — derived from the provider schema description.
 extension type const PrivilegedAccessManagerSettingsGrantRevoked._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivilegedAccessManagerSettingsGrantRevoked.variable(String name)
     : this._(TfArg.variable(name));
   PrivilegedAccessManagerSettingsGrantRevoked.expression(String template)

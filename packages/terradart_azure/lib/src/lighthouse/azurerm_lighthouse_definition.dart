@@ -90,7 +90,8 @@ final class LighthouseDefinitionJustInTimeAccessPolicy {
 /// `multi_factor_auth_provider` — derived from the provider schema description.
 extension type const LighthouseDefinitionMultiFactorAuthProvider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LighthouseDefinitionMultiFactorAuthProvider.variable(String name)
     : this._(TfArg.variable(name));
   LighthouseDefinitionMultiFactorAuthProvider.expression(String template)

@@ -35,7 +35,8 @@ extension type const DatasyncLocationAzureBlobAccessTier._(TfArg<String> _)
 /// Datasync Location Azure Blob Authentication enum for `authentication_type`.
 extension type const DatasyncLocationAzureBlobAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationAzureBlobAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationAzureBlobAuthenticationType.expression(String template)

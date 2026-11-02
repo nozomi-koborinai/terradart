@@ -62,7 +62,8 @@ final class CdnFrontdoorSecurityPolicyAssociation {
 /// `patterns_to_match` — derived from the provider schema description.
 extension type const CdnFrontdoorSecurityPolicyPatternsToMatch._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorSecurityPolicyPatternsToMatch.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorSecurityPolicyPatternsToMatch.expression(String template)

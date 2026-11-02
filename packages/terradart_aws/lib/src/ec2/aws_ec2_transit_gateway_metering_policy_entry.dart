@@ -10,7 +10,8 @@ const Set<String> _awsEc2TransitGatewayMeteringPolicyEntrySensitive =
 /// Ec2 Transit Gateway Metering Policy Entry Destination Transit Gateway Attachment enum for `destination_transit_gateway_attachment_type`.
 extension type const Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -77,7 +78,8 @@ extension type const Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatew
 /// Ec2 Transit Gateway Metering Policy Entry Metered enum for `metered_account`.
 extension type const Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMeteringPolicyEntryMeteredAccount.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayMeteringPolicyEntryMeteredAccount.expression(String template)
@@ -106,7 +108,8 @@ extension type const Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
 /// Ec2 Transit Gateway Metering Policy Entry Source Transit Gateway Attachment enum for `source_transit_gateway_attachment_type`.
 extension type const Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType.variable(
     String name,
   ) : this._(TfArg.variable(name));

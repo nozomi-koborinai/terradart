@@ -13,7 +13,8 @@ const Set<String> _azurermKustoAttachedDatabaseConfigurationSensitive =
 /// Kusto Attached Database Configuration Default Principal Modification enum for `default_principal_modification_kind`.
 extension type const KustoAttachedDatabaseConfigurationDefaultPrincipalModificationKind._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoAttachedDatabaseConfigurationDefaultPrincipalModificationKind.variable(
     String name,
   ) : this._(TfArg.variable(name));

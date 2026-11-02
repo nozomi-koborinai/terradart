@@ -88,7 +88,8 @@ extension type const WebApplicationFirewallPolicyAction._(TfArg<String> _)
 /// `group_rate_limit_by` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicyGroupRateLimitBy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicyGroupRateLimitBy.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicyGroupRateLimitBy.expression(String template)
@@ -126,7 +127,8 @@ extension type const WebApplicationFirewallPolicyGroupRateLimitBy._(
 /// `rate_limit_duration` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicyRateLimitDuration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicyRateLimitDuration.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicyRateLimitDuration.expression(String template)
@@ -431,7 +433,8 @@ final class WebApplicationFirewallPolicyExclusion {
 /// `match_variable` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicyMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicyMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicyMatchVariable.expression(String template)
@@ -485,7 +488,8 @@ extension type const WebApplicationFirewallPolicyMatchVariable._(
 /// `selector_match_operator` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicySelectorMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicySelectorMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicySelectorMatchOperator.expression(String template)
@@ -791,7 +795,8 @@ final class WebApplicationFirewallPolicyRule {
 /// `match_variable` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicyRuleMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicyRuleMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicyRuleMatchVariable.expression(String template)
@@ -837,7 +842,8 @@ extension type const WebApplicationFirewallPolicyRuleMatchVariable._(
 /// `selector_match_operator` — derived from the provider schema description.
 extension type const WebApplicationFirewallPolicyRuleSelectorMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WebApplicationFirewallPolicyRuleSelectorMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   WebApplicationFirewallPolicyRuleSelectorMatchOperator.expression(

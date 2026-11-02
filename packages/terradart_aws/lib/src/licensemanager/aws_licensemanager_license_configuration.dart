@@ -9,7 +9,8 @@ const Set<String> _awsLicensemanagerLicenseConfigurationSensitive = <String>{};
 /// Licensemanager License Configuration License Counting enum for `license_counting_type`.
 extension type const LicensemanagerLicenseConfigurationLicenseCountingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LicensemanagerLicenseConfigurationLicenseCountingType.variable(String name)
     : this._(TfArg.variable(name));
   LicensemanagerLicenseConfigurationLicenseCountingType.expression(

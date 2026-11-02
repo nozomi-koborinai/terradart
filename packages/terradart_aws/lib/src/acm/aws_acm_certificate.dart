@@ -171,7 +171,8 @@ final class AcmCertificateOptions {
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
 extension type const AcmCertificateTransparencyLoggingPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AcmCertificateTransparencyLoggingPreference.variable(String name)
     : this._(TfArg.variable(name));
   AcmCertificateTransparencyLoggingPreference.expression(String template)

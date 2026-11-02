@@ -44,7 +44,8 @@ final class StorageAccountTablePropertiesCorsRule {
 /// `allowed_methods` — derived from the provider schema description.
 extension type const StorageAccountTablePropertiesAllowedMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageAccountTablePropertiesAllowedMethods.variable(String name)
     : this._(TfArg.variable(name));
   StorageAccountTablePropertiesAllowedMethods.expression(String template)

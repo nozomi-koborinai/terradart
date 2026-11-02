@@ -519,7 +519,8 @@ final class DmsEndpointMysqlSettings {
 /// `authentication_method` — derived from the provider schema description.
 extension type const DmsEndpointMysqlSettingsAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DmsEndpointMysqlSettingsAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   DmsEndpointMysqlSettingsAuthenticationMethod.expression(String template)
@@ -728,7 +729,8 @@ final class DmsEndpointOracleSettings {
 /// `authentication_method` — derived from the provider schema description.
 extension type const DmsEndpointOracleSettingsAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DmsEndpointOracleSettingsAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   DmsEndpointOracleSettingsAuthenticationMethod.expression(String template)

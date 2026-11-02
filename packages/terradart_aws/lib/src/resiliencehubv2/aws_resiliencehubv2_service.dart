@@ -12,7 +12,8 @@ const Set<String> _awsResiliencehubv2ServiceSensitive = <String>{};
 /// Resiliencehubv2 Service Dependency enum for `dependency_discovery`.
 extension type const Resiliencehubv2ServiceDependencyDiscovery._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Resiliencehubv2ServiceDependencyDiscovery.variable(String name)
     : this._(TfArg.variable(name));
   Resiliencehubv2ServiceDependencyDiscovery.expression(String template)

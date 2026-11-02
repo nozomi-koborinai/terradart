@@ -131,7 +131,8 @@ final class KubernetesAutomaticClusterServiceMesh {
 /// `proxy_redirect_mechanism` — derived from the provider schema description.
 extension type const KubernetesAutomaticClusterProxyRedirectMechanism._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesAutomaticClusterProxyRedirectMechanism.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesAutomaticClusterProxyRedirectMechanism.expression(String template)
@@ -213,7 +214,8 @@ final class KubernetesAutomaticClusterWebAppRoutingIngress {
 /// `default_nginx_controller` — derived from the provider schema description.
 extension type const KubernetesAutomaticClusterDefaultNginxController._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesAutomaticClusterDefaultNginxController.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesAutomaticClusterDefaultNginxController.expression(String template)

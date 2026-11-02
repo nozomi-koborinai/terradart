@@ -9,7 +9,8 @@ const Set<String> _awsEc2TransitGatewaySensitive = <String>{};
 /// Ec2 Transit Gateway Auto Accept Shared enum for `auto_accept_shared_attachments`.
 extension type const Ec2TransitGatewayAutoAcceptSharedAttachments._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayAutoAcceptSharedAttachments.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayAutoAcceptSharedAttachments.expression(String template)
@@ -33,7 +34,8 @@ extension type const Ec2TransitGatewayAutoAcceptSharedAttachments._(
 /// Ec2 Transit Gateway Default Route Table enum for `default_route_table_association`.
 extension type const Ec2TransitGatewayDefaultRouteTableAssociation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayDefaultRouteTableAssociation.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayDefaultRouteTableAssociation.expression(String template)
@@ -57,7 +59,8 @@ extension type const Ec2TransitGatewayDefaultRouteTableAssociation._(
 /// Ec2 Transit Gateway Default Route Table enum for `default_route_table_propagation`.
 extension type const Ec2TransitGatewayDefaultRouteTablePropagation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayDefaultRouteTablePropagation.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayDefaultRouteTablePropagation.expression(String template)
@@ -140,7 +143,8 @@ extension type const Ec2TransitGatewayMulticastSupport._(TfArg<String> _)
 /// Ec2 Transit Gateway Security Group Referencing enum for `security_group_referencing_support`.
 extension type const Ec2TransitGatewaySecurityGroupReferencingSupport._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewaySecurityGroupReferencingSupport.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewaySecurityGroupReferencingSupport.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _awsEc2CapacityBlockReservationSensitive = <String>{};
 /// Ec2 Capacity Block Reservation Instance enum for `instance_platform`.
 extension type const Ec2CapacityBlockReservationInstancePlatform._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2CapacityBlockReservationInstancePlatform.variable(String name)
     : this._(TfArg.variable(name));
   Ec2CapacityBlockReservationInstancePlatform.expression(String template)

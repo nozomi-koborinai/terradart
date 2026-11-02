@@ -11,7 +11,8 @@ _azurermMachineLearningWorkspaceNetworkOutboundRulePrivateEndpointSensitive =
 /// Machine Learning Workspace Network Outbound Rule Private Endpoint Sub Resource enum for `sub_resource_target`.
 extension type const MachineLearningWorkspaceNetworkOutboundRulePrivateEndpointSubResourceTarget._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningWorkspaceNetworkOutboundRulePrivateEndpointSubResourceTarget.variable(
     String name,
   ) : this._(TfArg.variable(name));

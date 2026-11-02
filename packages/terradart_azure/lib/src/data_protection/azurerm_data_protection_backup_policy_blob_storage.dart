@@ -76,7 +76,8 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyBlobStorageAbsoluteCriteria.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyBlobStorageAbsoluteCriteria.expression(
@@ -114,7 +115,8 @@ extension type const DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyBlobStorageWeeksOfMonth.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyBlobStorageWeeksOfMonth.expression(String template)
@@ -165,7 +167,8 @@ final class DataProtectionBackupPolicyBlobStorageLifeCycle {
 /// `data_store_type` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyBlobStorageDataStoreType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyBlobStorageDataStoreType.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyBlobStorageDataStoreType.expression(String template)

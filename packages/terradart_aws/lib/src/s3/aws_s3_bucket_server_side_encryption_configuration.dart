@@ -43,7 +43,8 @@ final class S3BucketServerSideEncryptionConfigurationRule {
 /// `blocked_encryption_types` — derived from the provider schema description.
 extension type const S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -92,7 +93,8 @@ final class S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionBy
 /// `sse_algorithm` — derived from the provider schema description.
 extension type const S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketServerSideEncryptionConfigurationSseAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketServerSideEncryptionConfigurationSseAlgorithm.expression(

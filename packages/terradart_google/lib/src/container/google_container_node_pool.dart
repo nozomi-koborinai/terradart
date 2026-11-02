@@ -251,7 +251,8 @@ final class ContainerNodePoolNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const ContainerNodePoolTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolTotalEgressBandwidthTier.expression(String template)
@@ -568,7 +569,8 @@ final class ContainerNodePoolAdvancedMachineFeatures {
 /// `performance_monitoring_unit` — derived from the provider schema description.
 extension type const ContainerNodePoolPerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolPerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolPerformanceMonitoringUnit.expression(String template)
@@ -644,7 +646,8 @@ final class ContainerNodePoolConfidentialNodes {
 /// `confidential_instance_type` — derived from the provider schema description.
 extension type const ContainerNodePoolConfidentialInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolConfidentialInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolConfidentialInstanceType.expression(String template)
@@ -1213,7 +1216,8 @@ final class ContainerNodePoolKubeletConfig {
 /// `insecure_kubelet_readonly_port_enabled` — derived from the provider schema description.
 extension type const ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolInsecureKubeletReadonlyPortEnabled.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolInsecureKubeletReadonlyPortEnabled.expression(
@@ -1473,7 +1477,8 @@ extension type const ContainerNodePoolCgroupMode._(TfArg<String> _)
 /// `transparent_hugepage_defrag` — derived from the provider schema description.
 extension type const ContainerNodePoolTransparentHugepageDefrag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolTransparentHugepageDefrag.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolTransparentHugepageDefrag.expression(String template)
@@ -1514,7 +1519,8 @@ extension type const ContainerNodePoolTransparentHugepageDefrag._(
 /// `transparent_hugepage_enabled` — derived from the provider schema description.
 extension type const ContainerNodePoolTransparentHugepageEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolTransparentHugepageEnabled.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolTransparentHugepageEnabled.expression(String template)
@@ -2046,7 +2052,8 @@ final class ContainerNodePoolTaintConfig {
 /// `architecture_taint_behavior` — derived from the provider schema description.
 extension type const ContainerNodePoolArchitectureTaintBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolArchitectureTaintBehavior.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolArchitectureTaintBehavior.expression(String template)
@@ -2116,7 +2123,8 @@ final class ContainerNodePoolWorkloadMetadataConfig {
 /// `mode` — derived from the provider schema description.
 extension type const ContainerNodePoolWorkloadMetadataConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerNodePoolWorkloadMetadataConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   ContainerNodePoolWorkloadMetadataConfigMode.expression(String template)

@@ -57,7 +57,8 @@ final class GlueSecurityConfigurationCloudwatchEncryption {
 /// `cloudwatch_encryption_mode` — derived from the provider schema description.
 extension type const GlueSecurityConfigurationCloudwatchEncryptionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueSecurityConfigurationCloudwatchEncryptionMode.variable(String name)
     : this._(TfArg.variable(name));
   GlueSecurityConfigurationCloudwatchEncryptionMode.expression(String template)
@@ -100,7 +101,8 @@ final class GlueSecurityConfigurationJobBookmarksEncryption {
 /// `job_bookmarks_encryption_mode` — derived from the provider schema description.
 extension type const GlueSecurityConfigurationJobBookmarksEncryptionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueSecurityConfigurationJobBookmarksEncryptionMode.variable(String name)
     : this._(TfArg.variable(name));
   GlueSecurityConfigurationJobBookmarksEncryptionMode.expression(
@@ -144,7 +146,8 @@ final class GlueSecurityConfigurationS3Encryption {
 /// `s3_encryption_mode` — derived from the provider schema description.
 extension type const GlueSecurityConfigurationS3EncryptionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueSecurityConfigurationS3EncryptionMode.variable(String name)
     : this._(TfArg.variable(name));
   GlueSecurityConfigurationS3EncryptionMode.expression(String template)

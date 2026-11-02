@@ -9,7 +9,8 @@ const Set<String> _googleNetworkServicesAuthzExtensionSensitive = <String>{};
 /// Network Services Authz Extension Load Balancing enum for `load_balancing_scheme`.
 extension type const NetworkServicesAuthzExtensionLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAuthzExtensionLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAuthzExtensionLoadBalancingScheme.expression(String template)

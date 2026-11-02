@@ -13,7 +13,8 @@ const Set<String> _googleOsConfigV2PolicyOrchestratorForOrganizationSensitive =
 /// Os Config V2 Policy Orchestrator For Organization enum for `action`.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationAction.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationAction.expression(String template)
@@ -208,7 +209,8 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOsPolicies {
 /// `mode` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationMode.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationMode.expression(String template)
@@ -358,7 +360,8 @@ final class OsConfigV2PolicyOrchestratorForOrganizationEnforce {
 /// `interpreter` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationInterpreter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationInterpreter.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationInterpreter.expression(
@@ -525,7 +528,8 @@ final class OsConfigV2PolicyOrchestratorForOrganizationFile {
 /// `state` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationFileState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationFileState.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationFileState.expression(
@@ -597,7 +601,8 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkg {
 /// `desired_state` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationDesiredState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationDesiredState.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationDesiredState.expression(
@@ -822,7 +827,8 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryApt {
 /// `archive_type` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForOrganizationArchiveType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForOrganizationArchiveType.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForOrganizationArchiveType.expression(

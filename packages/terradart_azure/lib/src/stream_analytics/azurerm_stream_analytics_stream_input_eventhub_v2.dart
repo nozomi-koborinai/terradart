@@ -11,7 +11,8 @@ const Set<String> _azurermStreamAnalyticsStreamInputEventhubV2Sensitive =
 /// Stream Analytics Stream Input Eventhub V2 Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsStreamInputEventhubV2AuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputEventhubV2AuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputEventhubV2AuthenticationMode.expression(
@@ -60,7 +61,8 @@ final class StreamAnalyticsStreamInputEventhubV2Serialization {
 /// `encoding` — derived from the provider schema description.
 extension type const StreamAnalyticsStreamInputEventhubV2Encoding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputEventhubV2Encoding.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputEventhubV2Encoding.expression(String template)
@@ -80,7 +82,8 @@ extension type const StreamAnalyticsStreamInputEventhubV2Encoding._(
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsStreamInputEventhubV2FieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputEventhubV2FieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputEventhubV2FieldDelimiter.expression(String template)

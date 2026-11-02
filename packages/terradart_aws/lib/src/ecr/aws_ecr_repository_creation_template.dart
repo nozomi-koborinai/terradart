@@ -39,7 +39,8 @@ extension type const EcrRepositoryCreationTemplateAppliedFor._(TfArg<String> _)
 /// Ecr Repository Creation Template Image Tag enum for `image_tag_mutability`.
 extension type const EcrRepositoryCreationTemplateImageTagMutability._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcrRepositoryCreationTemplateImageTagMutability.variable(String name)
     : this._(TfArg.variable(name));
   EcrRepositoryCreationTemplateImageTagMutability.expression(String template)
@@ -93,7 +94,8 @@ final class EcrRepositoryCreationTemplateEncryptionConfiguration {
 /// `encryption_type` — derived from the provider schema description.
 extension type const EcrRepositoryCreationTemplateEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcrRepositoryCreationTemplateEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   EcrRepositoryCreationTemplateEncryptionType.expression(String template)

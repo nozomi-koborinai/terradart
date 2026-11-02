@@ -11,7 +11,8 @@ const Set<String> _azurermDataProtectionBackupPolicyCosmosdbAccountSensitive =
 /// Data Protection Backup Policy Cosmosdb Account Backup enum for `backup_frequency`.
 extension type const DataProtectionBackupPolicyCosmosdbAccountBackupFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyCosmosdbAccountBackupFrequency.expression(
@@ -63,7 +64,8 @@ final class DataProtectionBackupPolicyCosmosdbAccountMonthlyRetentionRule {
 /// `days_of_week` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek.expression(
@@ -103,7 +105,8 @@ extension type const DataProtectionBackupPolicyCosmosdbAccountDaysOfWeek._(
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyCosmosdbAccountWeeksOfMonth.expression(
@@ -188,7 +191,8 @@ final class DataProtectionBackupPolicyCosmosdbAccountYearlyRetentionRule {
 /// `months_of_year` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyCosmosdbAccountMonthsOfYear.expression(

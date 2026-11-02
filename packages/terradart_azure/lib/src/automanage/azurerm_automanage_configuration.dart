@@ -197,7 +197,8 @@ final class AutomanageConfigurationRetentionPolicy {
 /// `retention_policy_type` — derived from the provider schema description.
 extension type const AutomanageConfigurationRetentionPolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomanageConfigurationRetentionPolicyType.variable(String name)
     : this._(TfArg.variable(name));
   AutomanageConfigurationRetentionPolicyType.expression(String template)
@@ -259,7 +260,8 @@ final class AutomanageConfigurationDailyScheduleRetentionDuration {
 /// `duration_type` — derived from the provider schema description.
 extension type const AutomanageConfigurationDailyScheduleDurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomanageConfigurationDailyScheduleDurationType.variable(String name)
     : this._(TfArg.variable(name));
   AutomanageConfigurationDailyScheduleDurationType.expression(String template)
@@ -320,7 +322,8 @@ final class AutomanageConfigurationWeeklyScheduleRetentionDuration {
 /// `duration_type` — derived from the provider schema description.
 extension type const AutomanageConfigurationWeeklyScheduleDurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomanageConfigurationWeeklyScheduleDurationType.variable(String name)
     : this._(TfArg.variable(name));
   AutomanageConfigurationWeeklyScheduleDurationType.expression(String template)
@@ -367,7 +370,8 @@ final class AutomanageConfigurationSchedulePolicy {
 /// `schedule_policy_type` — derived from the provider schema description.
 extension type const AutomanageConfigurationSchedulePolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomanageConfigurationSchedulePolicyType.variable(String name)
     : this._(TfArg.variable(name));
   AutomanageConfigurationSchedulePolicyType.expression(String template)
@@ -431,7 +435,8 @@ extension type const AutomanageConfigurationScheduleRunDays._(TfArg<String> _)
 /// `schedule_run_frequency` — derived from the provider schema description.
 extension type const AutomanageConfigurationScheduleRunFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomanageConfigurationScheduleRunFrequency.variable(String name)
     : this._(TfArg.variable(name));
   AutomanageConfigurationScheduleRunFrequency.expression(String template)

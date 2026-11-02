@@ -153,7 +153,8 @@ final class AutoscalingPolicyPredictiveScalingConfiguration {
 /// `max_capacity_breach_behavior` — derived from the provider schema description.
 extension type const AutoscalingPolicyMaxCapacityBreachBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingPolicyMaxCapacityBreachBehavior.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingPolicyMaxCapacityBreachBehavior.expression(String template)
@@ -486,7 +487,8 @@ final class AutoscalingPolicyPredefinedLoadMetricSpecification {
 /// `predefined_metric_type` — derived from the provider schema description.
 extension type const AutoscalingPolicyPredefinedLoadMetricSpecificationPredefinedMetricType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingPolicyPredefinedLoadMetricSpecificationPredefinedMetricType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -549,7 +551,8 @@ final class AutoscalingPolicyPredefinedMetricPairSpecification {
 /// `predefined_metric_type` — derived from the provider schema description.
 extension type const AutoscalingPolicyPredefinedMetricPairSpecificationPredefinedMetricType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingPolicyPredefinedMetricPairSpecificationPredefinedMetricType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -607,7 +610,8 @@ final class AutoscalingPolicyPredefinedScalingMetricSpecification {
 /// `predefined_metric_type` — derived from the provider schema description.
 extension type const AutoscalingPolicyPredefinedScalingMetricSpecificationPredefinedMetricType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingPolicyPredefinedScalingMetricSpecificationPredefinedMetricType.variable(
     String name,
   ) : this._(TfArg.variable(name));

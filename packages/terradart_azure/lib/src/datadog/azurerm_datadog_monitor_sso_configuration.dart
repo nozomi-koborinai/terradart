@@ -9,7 +9,8 @@ const Set<String> _azurermDatadogMonitorSsoConfigurationSensitive = <String>{};
 /// Datadog Monitor Sso Configuration Single Sign enum for `single_sign_on`.
 extension type const DatadogMonitorSsoConfigurationSingleSignOn._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatadogMonitorSsoConfigurationSingleSignOn.variable(String name)
     : this._(TfArg.variable(name));
   DatadogMonitorSsoConfigurationSingleSignOn.expression(String template)

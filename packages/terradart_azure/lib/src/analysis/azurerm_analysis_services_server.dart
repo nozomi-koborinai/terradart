@@ -14,7 +14,8 @@ const Set<String> _azurermAnalysisServicesServerSensitive = <String>{
 /// Analysis Services Server Querypool Connection enum for `querypool_connection_mode`.
 extension type const AnalysisServicesServerQuerypoolConnectionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AnalysisServicesServerQuerypoolConnectionMode.variable(String name)
     : this._(TfArg.variable(name));
   AnalysisServicesServerQuerypoolConnectionMode.expression(String template)

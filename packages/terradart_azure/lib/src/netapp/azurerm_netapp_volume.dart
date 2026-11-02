@@ -13,7 +13,8 @@ const Set<String> _azurermNetappVolumeSensitive = <String>{};
 /// Netapp Volume Accept Grow Capacity Pool For Short Term Clone enum for `accept_grow_capacity_pool_for_short_term_clone_split`.
 extension type const NetappVolumeAcceptGrowCapacityPoolForShortTermCloneSplit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeAcceptGrowCapacityPoolForShortTermCloneSplit.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeAcceptGrowCapacityPoolForShortTermCloneSplit.expression(

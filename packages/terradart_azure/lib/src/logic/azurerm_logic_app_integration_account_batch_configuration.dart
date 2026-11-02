@@ -73,7 +73,8 @@ final class LogicAppIntegrationAccountBatchConfigurationRecurrence {
 /// `frequency` — derived from the provider schema description.
 extension type const LogicAppIntegrationAccountBatchConfigurationFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogicAppIntegrationAccountBatchConfigurationFrequency.variable(String name)
     : this._(TfArg.variable(name));
   LogicAppIntegrationAccountBatchConfigurationFrequency.expression(
@@ -149,7 +150,8 @@ final class LogicAppIntegrationAccountBatchConfigurationSchedule {
 /// `week_days` — derived from the provider schema description.
 extension type const LogicAppIntegrationAccountBatchConfigurationWeekDays._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogicAppIntegrationAccountBatchConfigurationWeekDays.variable(String name)
     : this._(TfArg.variable(name));
   LogicAppIntegrationAccountBatchConfigurationWeekDays.expression(
@@ -211,7 +213,8 @@ final class LogicAppIntegrationAccountBatchConfigurationMonthly {
 /// `weekday` — derived from the provider schema description.
 extension type const LogicAppIntegrationAccountBatchConfigurationWeekday._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogicAppIntegrationAccountBatchConfigurationWeekday.variable(String name)
     : this._(TfArg.variable(name));
   LogicAppIntegrationAccountBatchConfigurationWeekday.expression(

@@ -47,7 +47,8 @@ extension type const ServiceFabricClusterReliabilityLevel._(TfArg<String> _)
 /// Service Fabric Cluster Service Fabric Zonal Upgrade enum for `service_fabric_zonal_upgrade_mode`.
 extension type const ServiceFabricClusterServiceFabricZonalUpgradeMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServiceFabricClusterServiceFabricZonalUpgradeMode.variable(String name)
     : this._(TfArg.variable(name));
   ServiceFabricClusterServiceFabricZonalUpgradeMode.expression(String template)

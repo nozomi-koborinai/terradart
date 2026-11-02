@@ -327,7 +327,8 @@ extension type const ChronicleDashboardChartLegendOrient._(TfArg<String> _)
 /// Series stack strategy.
 extension type const ChronicleDashboardChartSeriesStackStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleDashboardChartSeriesStackStrategy.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleDashboardChartSeriesStackStrategy.expression(String template)
@@ -391,7 +392,8 @@ extension type const ChronicleDashboardChartSeriesType._(TfArg<String> _)
 /// Metric display trend mode.
 extension type const ChronicleDashboardChartMetricDisplayTrend._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleDashboardChartMetricDisplayTrend.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleDashboardChartMetricDisplayTrend.expression(String template)

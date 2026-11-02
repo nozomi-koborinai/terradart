@@ -12,7 +12,8 @@ const Set<String> _cloudflareSchemaValidationOperationSettingsSensitive =
 /// Schema Validation Operation Settings Mitigation enum for `mitigation_action`.
 extension type const SchemaValidationOperationSettingsMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SchemaValidationOperationSettingsMitigationAction.variable(String name)
     : this._(TfArg.variable(name));
   SchemaValidationOperationSettingsMitigationAction.expression(String template)

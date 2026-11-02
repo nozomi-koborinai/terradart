@@ -494,7 +494,8 @@ extension type const ZeroTrustAccessApplicationL4Protocol._(TfArg<String> _)
 /// `type` — derived from the provider schema description.
 extension type const ZeroTrustAccessApplicationDestinationsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessApplicationDestinationsType.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessApplicationDestinationsType.expression(String template)
@@ -616,7 +617,8 @@ final class ZeroTrustAccessApplicationMfaConfig {
 /// `allowed_authenticators` — derived from the provider schema description.
 extension type const ZeroTrustAccessApplicationAllowedAuthenticators._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessApplicationAllowedAuthenticators.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessApplicationAllowedAuthenticators.expression(String template)
@@ -894,7 +896,8 @@ final class ZeroTrustAccessApplicationRdp {
 /// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
 extension type const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -923,7 +926,8 @@ extension type const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteForm
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
 extension type const ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1601,7 +1605,8 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
 /// `allowed_authenticators` — derived from the provider schema description.
 extension type const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.expression(

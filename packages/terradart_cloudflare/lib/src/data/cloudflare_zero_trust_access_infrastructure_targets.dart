@@ -11,7 +11,8 @@ const Set<String> _cloudflareZeroTrustAccessInfrastructureTargetsSensitive =
 /// Data Zero Trust Access Infrastructure Targets enum for `direction`.
 extension type const DataZeroTrustAccessInfrastructureTargetsDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustAccessInfrastructureTargetsDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustAccessInfrastructureTargetsDirection.expression(String template)
@@ -33,7 +34,8 @@ extension type const DataZeroTrustAccessInfrastructureTargetsDirection._(
 /// Data Zero Trust Access Infrastructure Targets enum for `order`.
 extension type const DataZeroTrustAccessInfrastructureTargetsOrder._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustAccessInfrastructureTargetsOrder.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustAccessInfrastructureTargetsOrder.expression(String template)

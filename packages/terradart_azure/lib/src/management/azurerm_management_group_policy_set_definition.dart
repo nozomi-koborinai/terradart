@@ -11,7 +11,8 @@ const Set<String> _azurermManagementGroupPolicySetDefinitionSensitive =
 /// Management Group Policy Set Definition Policy enum for `policy_type`.
 extension type const ManagementGroupPolicySetDefinitionPolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ManagementGroupPolicySetDefinitionPolicyType.variable(String name)
     : this._(TfArg.variable(name));
   ManagementGroupPolicySetDefinitionPolicyType.expression(String template)

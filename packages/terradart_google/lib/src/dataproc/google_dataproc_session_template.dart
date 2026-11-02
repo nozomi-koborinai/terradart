@@ -96,7 +96,8 @@ final class DataprocSessionTemplateAuthenticationConfig {
 /// `user_workload_authentication_type` — derived from the provider schema description.
 extension type const DataprocSessionTemplateUserWorkloadAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocSessionTemplateUserWorkloadAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   DataprocSessionTemplateUserWorkloadAuthenticationType.expression(

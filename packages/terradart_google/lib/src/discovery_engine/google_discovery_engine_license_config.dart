@@ -33,7 +33,8 @@ extension type const DiscoveryEngineLicenseConfigLocation._(TfArg<String> _)
 /// Discovery Engine License Config Subscription enum for `subscription_term`.
 extension type const DiscoveryEngineLicenseConfigSubscriptionTerm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineLicenseConfigSubscriptionTerm.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineLicenseConfigSubscriptionTerm.expression(String template)
@@ -84,7 +85,8 @@ extension type const DiscoveryEngineLicenseConfigSubscriptionTerm._(
 /// Discovery Engine License Config Subscription enum for `subscription_tier`.
 extension type const DiscoveryEngineLicenseConfigSubscriptionTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineLicenseConfigSubscriptionTier.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineLicenseConfigSubscriptionTier.expression(String template)

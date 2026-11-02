@@ -113,7 +113,8 @@ extension type const KustoEventhubDataConnectionDataFormat._(TfArg<String> _)
 /// Kusto Eventhub Data Connection Database Routing enum for `database_routing_type`.
 extension type const KustoEventhubDataConnectionDatabaseRoutingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoEventhubDataConnectionDatabaseRoutingType.variable(String name)
     : this._(TfArg.variable(name));
   KustoEventhubDataConnectionDatabaseRoutingType.expression(String template)

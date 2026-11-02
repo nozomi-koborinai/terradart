@@ -26,7 +26,8 @@ final class DataLossPreventionContentPolicyDefaultAction {
 /// `return_verdict` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyReturnVerdict._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyReturnVerdict.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyReturnVerdict.expression(String template)
@@ -134,7 +135,8 @@ final class DataLossPreventionContentPolicyInspectConfig {
 /// `content_options` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyContentOptions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyContentOptions.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyContentOptions.expression(String template)
@@ -158,7 +160,8 @@ extension type const DataLossPreventionContentPolicyContentOptions._(
 /// `min_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyMinLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyMinLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyMinLikelihood.expression(String template)
@@ -252,7 +255,8 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
 /// `exclusion_type` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyExclusionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyExclusionType.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyExclusionType.expression(String template)
@@ -273,7 +277,8 @@ extension type const DataLossPreventionContentPolicyExclusionType._(
 /// `likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyLikelihood.expression(String template)
@@ -389,7 +394,8 @@ final class DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment {
 /// `fixed_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyFixedLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyFixedLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyFixedLikelihood.expression(String template)
@@ -969,7 +975,8 @@ final class DataLossPreventionContentPolicyAdjustByMatchingInfoTypes {
 /// `matching_type` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1059,7 +1066,8 @@ final class DataLossPreventionContentPolicyExclusionRule {
 /// `matching_type` — derived from the provider schema description.
 extension type const DataLossPreventionContentPolicyMatchingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionContentPolicyMatchingType.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionContentPolicyMatchingType.expression(String template)

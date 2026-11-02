@@ -10,7 +10,8 @@ const Set<String> _azurermVirtualMachineImplicitDataDiskFromSourceSensitive =
 /// Virtual Machine Implicit Data Disk From Source enum for `caching`.
 extension type const VirtualMachineImplicitDataDiskFromSourceCaching._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineImplicitDataDiskFromSourceCaching.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineImplicitDataDiskFromSourceCaching.expression(String template)
@@ -34,7 +35,8 @@ extension type const VirtualMachineImplicitDataDiskFromSourceCaching._(
 /// Virtual Machine Implicit Data Disk From Source Create enum for `create_option`.
 extension type const VirtualMachineImplicitDataDiskFromSourceCreateOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineImplicitDataDiskFromSourceCreateOption.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineImplicitDataDiskFromSourceCreateOption.expression(

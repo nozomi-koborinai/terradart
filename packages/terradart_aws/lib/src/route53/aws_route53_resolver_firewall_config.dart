@@ -9,7 +9,8 @@ const Set<String> _awsRoute53ResolverFirewallConfigSensitive = <String>{};
 /// Route53 Resolver Firewall Config Firewall Fail enum for `firewall_fail_open`.
 extension type const Route53ResolverFirewallConfigFirewallFailOpen._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallConfigFirewallFailOpen.variable(String name)
     : this._(TfArg.variable(name));
   Route53ResolverFirewallConfigFirewallFailOpen.expression(String template)

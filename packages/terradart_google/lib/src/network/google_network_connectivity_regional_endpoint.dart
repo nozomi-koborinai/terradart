@@ -13,7 +13,8 @@ const Set<String> _googleNetworkConnectivityRegionalEndpointSensitive =
 /// Network Connectivity Regional Endpoint Access enum for `access_type`.
 extension type const NetworkConnectivityRegionalEndpointAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityRegionalEndpointAccessType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityRegionalEndpointAccessType.expression(String template)

@@ -80,7 +80,8 @@ final class BedrockagentcoreGatewayTargetApiKey {
 /// `credential_location` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayTargetCredentialLocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayTargetCredentialLocation.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayTargetCredentialLocation.expression(String template)
@@ -301,7 +302,8 @@ final class BedrockagentcoreGatewayTargetManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayTargetEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayTargetEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayTargetEndpointIpAddressType.expression(String template)
@@ -522,7 +524,8 @@ final class BedrockagentcoreGatewayTargetPassthrough {
 /// `protocol_type` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayTargetProtocolType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayTargetProtocolType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayTargetProtocolType.expression(String template)
@@ -554,7 +557,8 @@ extension type const BedrockagentcoreGatewayTargetProtocolType._(
 /// `static_query_parameter_conflict_resolution` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution.variable(
     String name,
   ) : this._(TfArg.variable(name));

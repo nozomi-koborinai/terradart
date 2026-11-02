@@ -190,7 +190,8 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
 /// `file_access_audit_log_level` — derived from the provider schema description.
 extension type const FsxWindowsFileSystemFileAccessAuditLogLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FsxWindowsFileSystemFileAccessAuditLogLevel.variable(String name)
     : this._(TfArg.variable(name));
   FsxWindowsFileSystemFileAccessAuditLogLevel.expression(String template)
@@ -223,7 +224,8 @@ extension type const FsxWindowsFileSystemFileAccessAuditLogLevel._(
 /// `file_share_access_audit_log_level` — derived from the provider schema description.
 extension type const FsxWindowsFileSystemFileShareAccessAuditLogLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FsxWindowsFileSystemFileShareAccessAuditLogLevel.variable(String name)
     : this._(TfArg.variable(name));
   FsxWindowsFileSystemFileShareAccessAuditLogLevel.expression(String template)

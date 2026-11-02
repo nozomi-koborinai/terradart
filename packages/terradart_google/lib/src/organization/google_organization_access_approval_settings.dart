@@ -31,7 +31,8 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
 /// `cloud_product` — derived from the provider schema description.
 extension type const OrganizationAccessApprovalSettingsCloudProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrganizationAccessApprovalSettingsCloudProduct.variable(String name)
     : this._(TfArg.variable(name));
   OrganizationAccessApprovalSettingsCloudProduct.expression(String template)
@@ -654,7 +655,8 @@ extension type const OrganizationAccessApprovalSettingsCloudProduct._(
 /// `enrollment_level` — derived from the provider schema description.
 extension type const OrganizationAccessApprovalSettingsEnrollmentLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrganizationAccessApprovalSettingsEnrollmentLevel.variable(String name)
     : this._(TfArg.variable(name));
   OrganizationAccessApprovalSettingsEnrollmentLevel.expression(String template)

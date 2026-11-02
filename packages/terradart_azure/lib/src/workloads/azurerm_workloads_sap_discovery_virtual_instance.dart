@@ -13,7 +13,8 @@ const Set<String> _azurermWorkloadsSapDiscoveryVirtualInstanceSensitive =
 /// Workloads Sap Discovery Virtual Instance enum for `environment`.
 extension type const WorkloadsSapDiscoveryVirtualInstanceEnvironment._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapDiscoveryVirtualInstanceEnvironment.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapDiscoveryVirtualInstanceEnvironment.expression(String template)
@@ -37,7 +38,8 @@ extension type const WorkloadsSapDiscoveryVirtualInstanceEnvironment._(
 /// Workloads Sap Discovery Virtual Instance Managed Resources Network Access enum for `managed_resources_network_access_type`.
 extension type const WorkloadsSapDiscoveryVirtualInstanceManagedResourcesNetworkAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapDiscoveryVirtualInstanceManagedResourcesNetworkAccessType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -66,7 +68,8 @@ extension type const WorkloadsSapDiscoveryVirtualInstanceManagedResourcesNetwork
 /// Workloads Sap Discovery Virtual Instance Sap enum for `sap_product`.
 extension type const WorkloadsSapDiscoveryVirtualInstanceSapProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapDiscoveryVirtualInstanceSapProduct.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapDiscoveryVirtualInstanceSapProduct.expression(String template)

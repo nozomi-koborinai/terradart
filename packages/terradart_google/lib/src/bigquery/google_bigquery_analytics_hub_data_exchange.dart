@@ -9,7 +9,8 @@ const Set<String> _googleBigqueryAnalyticsHubDataExchangeSensitive = <String>{};
 
 extension type const BigqueryAnalyticsHubDataExchangeDiscoveryType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BigqueryAnalyticsHubDataExchangeDiscoveryType.variable(String name)
     : this._(TfArg.variable(name));
   BigqueryAnalyticsHubDataExchangeDiscoveryType.expression(String template)

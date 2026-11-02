@@ -9,7 +9,8 @@ const Set<String> _awsCloudwatchLogStorageTierPolicySensitive = <String>{};
 /// Cloudwatch Log Storage Tier Policy Storage enum for `storage_tier`.
 extension type const CloudwatchLogStorageTierPolicyStorageTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchLogStorageTierPolicyStorageTier.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchLogStorageTierPolicyStorageTier.expression(String template)

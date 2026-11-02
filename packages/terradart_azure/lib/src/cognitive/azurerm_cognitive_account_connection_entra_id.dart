@@ -10,7 +10,8 @@ const Set<String> _azurermCognitiveAccountConnectionEntraIdSensitive =
 /// Cognitive Account Connection Entra Id enum for `category`.
 extension type const CognitiveAccountConnectionEntraIdCategory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitiveAccountConnectionEntraIdCategory.variable(String name)
     : this._(TfArg.variable(name));
   CognitiveAccountConnectionEntraIdCategory.expression(String template)

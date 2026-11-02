@@ -10,7 +10,8 @@ const Set<String> _azurermKeyVaultManagedHardwareSecurityModuleKeySensitive =
 /// Key Vault Managed Hardware Security Module Key enum for `curve`.
 extension type const KeyVaultManagedHardwareSecurityModuleKeyCurve._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleKeyCurve.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleKeyCurve.expression(String template)
@@ -42,7 +43,8 @@ extension type const KeyVaultManagedHardwareSecurityModuleKeyCurve._(
 /// Key Vault Managed Hardware Security Module Key enum for `key_opts`.
 extension type const KeyVaultManagedHardwareSecurityModuleKeyOpts._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleKeyOpts.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleKeyOpts.expression(String template)
@@ -86,7 +88,8 @@ extension type const KeyVaultManagedHardwareSecurityModuleKeyOpts._(
 /// Key Vault Managed Hardware Security Module Key enum for `key_type`.
 extension type const KeyVaultManagedHardwareSecurityModuleKeyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleKeyType.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleKeyType.expression(String template)

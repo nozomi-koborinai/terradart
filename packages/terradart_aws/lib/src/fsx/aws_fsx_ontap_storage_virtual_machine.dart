@@ -13,7 +13,8 @@ const Set<String> _awsFsxOntapStorageVirtualMachineSensitive = <String>{
 /// Fsx Ontap Storage Virtual Machine Root Volume Security enum for `root_volume_security_style`.
 extension type const FsxOntapStorageVirtualMachineRootVolumeSecurityStyle._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FsxOntapStorageVirtualMachineRootVolumeSecurityStyle.variable(String name)
     : this._(TfArg.variable(name));
   FsxOntapStorageVirtualMachineRootVolumeSecurityStyle.expression(

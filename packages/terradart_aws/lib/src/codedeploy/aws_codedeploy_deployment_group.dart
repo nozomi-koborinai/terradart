@@ -12,7 +12,8 @@ const Set<String> _awsCodedeployDeploymentGroupSensitive = <String>{};
 /// Codedeploy Deployment Group Outdated Instances enum for `outdated_instances_strategy`.
 extension type const CodedeployDeploymentGroupOutdatedInstancesStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentGroupOutdatedInstancesStrategy.variable(String name)
     : this._(TfArg.variable(name));
   CodedeployDeploymentGroupOutdatedInstancesStrategy.expression(String template)
@@ -161,7 +162,8 @@ final class CodedeployDeploymentGroupGreenFleetProvisioningOption {
 /// `action` — derived from the provider schema description.
 extension type const CodedeployDeploymentGroupGreenFleetProvisioningOptionAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentGroupGreenFleetProvisioningOptionAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -210,7 +212,8 @@ final class CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess {
 /// `action` — derived from the provider schema description.
 extension type const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -259,7 +262,8 @@ final class CodedeployDeploymentGroupDeploymentStyle {
 /// `deployment_option` — derived from the provider schema description.
 extension type const CodedeployDeploymentGroupDeploymentOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentGroupDeploymentOption.variable(String name)
     : this._(TfArg.variable(name));
   CodedeployDeploymentGroupDeploymentOption.expression(String template)

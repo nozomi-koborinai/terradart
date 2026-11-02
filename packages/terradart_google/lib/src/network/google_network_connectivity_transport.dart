@@ -116,7 +116,8 @@ extension type const NetworkConnectivityTransportState._(TfArg<String> _)
 /// Terraform `deletion_policy` for Network Connectivity transports.
 extension type const NetworkConnectivityTransportDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityTransportDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityTransportDeletionPolicy.expression(String template)

@@ -41,7 +41,8 @@ final class DataEmailSecurityImpersonationRegistryFilter {
 /// `direction` — derived from the provider schema description.
 extension type const DataEmailSecurityImpersonationRegistryDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistryDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistryDirection.expression(String template)
@@ -65,7 +66,8 @@ extension type const DataEmailSecurityImpersonationRegistryDirection._(
 /// `order` — derived from the provider schema description.
 extension type const DataEmailSecurityImpersonationRegistryOrder._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistryOrder.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistryOrder.expression(String template)
@@ -93,7 +95,8 @@ extension type const DataEmailSecurityImpersonationRegistryOrder._(
 /// `provenance` — derived from the provider schema description.
 extension type const DataEmailSecurityImpersonationRegistryFilterProvenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityImpersonationRegistryFilterProvenance.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityImpersonationRegistryFilterProvenance.expression(

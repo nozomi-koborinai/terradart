@@ -20,7 +20,8 @@ const Set<String> _googleOracleDatabaseCloudVmClusterSensitive = <String>{};
 /// Terraform `deletion_policy` for Cloud VM clusters.
 extension type const OracleDatabaseCloudVmClusterDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudVmClusterDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudVmClusterDeletionPolicy.expression(String template)
@@ -139,7 +140,8 @@ final class OracleDatabaseCloudVmClusterProperties {
 /// `disk_redundancy` — derived from the provider schema description.
 extension type const OracleDatabaseCloudVmClusterDiskRedundancy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudVmClusterDiskRedundancy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudVmClusterDiskRedundancy.expression(String template)
@@ -186,7 +188,8 @@ extension type const OracleDatabaseCloudVmClusterLicenseType._(TfArg<String> _)
 /// `vm_backup_storage_type` — derived from the provider schema description.
 extension type const OracleDatabaseCloudVmClusterVmBackupStorageType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudVmClusterVmBackupStorageType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudVmClusterVmBackupStorageType.expression(String template)
@@ -212,7 +215,8 @@ extension type const OracleDatabaseCloudVmClusterVmBackupStorageType._(
 /// `vm_file_system_storage_type` — derived from the provider schema description.
 extension type const OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudVmClusterVmFileSystemStorageType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudVmClusterVmFileSystemStorageType.expression(

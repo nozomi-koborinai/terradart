@@ -77,7 +77,8 @@ final class NetworkManagementConnectivityTestDestination {
 /// `network_type` — derived from the provider schema description.
 extension type const NetworkManagementConnectivityTestDestinationNetworkType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementConnectivityTestDestinationNetworkType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementConnectivityTestDestinationNetworkType.expression(
@@ -163,7 +164,8 @@ final class NetworkManagementConnectivityTestSource {
 /// `network_type` — derived from the provider schema description.
 extension type const NetworkManagementConnectivityTestSourceNetworkType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementConnectivityTestSourceNetworkType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementConnectivityTestSourceNetworkType.expression(String template)

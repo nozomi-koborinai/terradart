@@ -33,7 +33,8 @@ extension type const ArtifactRegistryPlatformLogsLoggingState._(TfArg<String> _)
 /// `platform_logs_config.severity_level` — minimum log severity to record.
 extension type const ArtifactRegistryPlatformLogsSeverityLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArtifactRegistryPlatformLogsSeverityLevel.variable(String name)
     : this._(TfArg.variable(name));
   ArtifactRegistryPlatformLogsSeverityLevel.expression(String template)

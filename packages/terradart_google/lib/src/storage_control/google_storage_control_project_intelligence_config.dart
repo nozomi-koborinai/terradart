@@ -11,7 +11,8 @@ const Set<String> _googleStorageControlProjectIntelligenceConfigSensitive =
 /// Storage Control Project Intelligence Config Edition enum for `edition_config`.
 extension type const StorageControlProjectIntelligenceConfigEditionConfig._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageControlProjectIntelligenceConfigEditionConfig.variable(String name)
     : this._(TfArg.variable(name));
   StorageControlProjectIntelligenceConfigEditionConfig.expression(

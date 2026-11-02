@@ -40,7 +40,8 @@ extension type const VpclatticeResourceGatewayIpAddressType._(TfArg<String> _)
 /// Vpclattice Resource Gateway Resource Config Dns enum for `resource_config_dns_resolution`.
 extension type const VpclatticeResourceGatewayResourceConfigDnsResolution._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeResourceGatewayResourceConfigDnsResolution.variable(String name)
     : this._(TfArg.variable(name));
   VpclatticeResourceGatewayResourceConfigDnsResolution.expression(

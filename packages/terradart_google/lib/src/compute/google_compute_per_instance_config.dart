@@ -44,7 +44,8 @@ extension type const ComputePerInstanceConfigMinimalAction._(TfArg<String> _)
 /// Compute Per Instance Config Most Disruptive Allowed enum for `most_disruptive_allowed_action`.
 extension type const ComputePerInstanceConfigMostDisruptiveAllowedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputePerInstanceConfigMostDisruptiveAllowedAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputePerInstanceConfigMostDisruptiveAllowedAction.expression(

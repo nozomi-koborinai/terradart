@@ -51,7 +51,8 @@ extension type const MssqlElasticpoolLicenseType._(TfArg<String> _)
 /// Mssql Elasticpool Maintenance Configuration enum for `maintenance_configuration_name`.
 extension type const MssqlElasticpoolMaintenanceConfigurationName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlElasticpoolMaintenanceConfigurationName.variable(String name)
     : this._(TfArg.variable(name));
   MssqlElasticpoolMaintenanceConfigurationName.expression(String template)

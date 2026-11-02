@@ -51,7 +51,8 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerLifeCycle {
 /// `data_store_type` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyPostgresqlFlexibleServerDataStoreType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -145,7 +146,8 @@ final class DataProtectionBackupPolicyPostgresqlFlexibleServerCriteria {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteCriteria.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -186,7 +188,8 @@ extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerAbsoluteC
 /// `days_of_week` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWeek.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -235,7 +238,8 @@ extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerDaysOfWee
 /// `months_of_year` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfYear.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -317,7 +321,8 @@ extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerMonthsOfY
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth.variable(
     String name,
   ) : this._(TfArg.variable(name));

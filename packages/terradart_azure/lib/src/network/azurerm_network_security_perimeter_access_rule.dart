@@ -11,7 +11,8 @@ const Set<String> _azurermNetworkSecurityPerimeterAccessRuleSensitive =
 /// Network Security Perimeter Access Rule enum for `direction`.
 extension type const NetworkSecurityPerimeterAccessRuleDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityPerimeterAccessRuleDirection.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityPerimeterAccessRuleDirection.expression(String template)

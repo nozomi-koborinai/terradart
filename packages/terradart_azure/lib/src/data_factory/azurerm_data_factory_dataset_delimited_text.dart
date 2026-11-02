@@ -10,7 +10,8 @@ const Set<String> _azurermDataFactoryDatasetDelimitedTextSensitive = <String>{};
 /// Data Factory Dataset Delimited Text Compression enum for `compression_codec`.
 extension type const DataFactoryDatasetDelimitedTextCompressionCodec._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryDatasetDelimitedTextCompressionCodec.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryDatasetDelimitedTextCompressionCodec.expression(String template)
@@ -62,7 +63,8 @@ extension type const DataFactoryDatasetDelimitedTextCompressionCodec._(
 /// Data Factory Dataset Delimited Text Compression enum for `compression_level`.
 extension type const DataFactoryDatasetDelimitedTextCompressionLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryDatasetDelimitedTextCompressionLevel.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryDatasetDelimitedTextCompressionLevel.expression(String template)

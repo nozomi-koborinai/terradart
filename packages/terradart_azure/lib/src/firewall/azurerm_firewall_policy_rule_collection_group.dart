@@ -40,7 +40,8 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollection {
 /// `action` — derived from the provider schema description.
 extension type const FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirewallPolicyRuleCollectionGroupApplicationRuleCollectionAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -229,7 +230,8 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollection {
 /// `action` — derived from the provider schema description.
 extension type const FirewallPolicyRuleCollectionGroupNatRuleCollectionAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirewallPolicyRuleCollectionGroupNatRuleCollectionAction.variable(String name)
     : this._(TfArg.variable(name));
   FirewallPolicyRuleCollectionGroupNatRuleCollectionAction.expression(
@@ -304,7 +306,8 @@ final class FirewallPolicyRuleCollectionGroupNatRuleCollectionRule {
 /// `protocols` — derived from the provider schema description.
 extension type const FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -410,7 +413,8 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
 /// `protocols` — derived from the provider schema description.
 extension type const FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols.variable(
     String name,
   ) : this._(TfArg.variable(name));

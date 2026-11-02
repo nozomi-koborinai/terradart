@@ -11,7 +11,8 @@ const Set<String> _azurermMssqlManagedInstanceFailoverGroupSensitive =
 /// Mssql Managed Instance Failover Group Secondary enum for `secondary_type`.
 extension type const MssqlManagedInstanceFailoverGroupSecondaryType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlManagedInstanceFailoverGroupSecondaryType.variable(String name)
     : this._(TfArg.variable(name));
   MssqlManagedInstanceFailoverGroupSecondaryType.expression(String template)

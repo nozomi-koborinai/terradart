@@ -10,7 +10,8 @@ const Set<String> _awsGuarddutyOrganizationConfigurationSensitive = <String>{};
 /// Guardduty Organization Configuration Auto Enable Organization enum for `auto_enable_organization_members`.
 extension type const GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -468,7 +468,8 @@ final class NetworkSecuritySecurityProfileUrlFilters {
 /// `filtering_action` — derived from the provider schema description.
 extension type const NetworkSecuritySecurityProfileFilteringAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecuritySecurityProfileFilteringAction.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecuritySecurityProfileFilteringAction.expression(String template)

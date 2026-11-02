@@ -72,7 +72,8 @@ final class SsoadminTrustedTokenIssuerOidcJwtConfiguration {
 /// `jwks_retrieval_option` — derived from the provider schema description.
 extension type const SsoadminTrustedTokenIssuerJwksRetrievalOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsoadminTrustedTokenIssuerJwksRetrievalOption.variable(String name)
     : this._(TfArg.variable(name));
   SsoadminTrustedTokenIssuerJwksRetrievalOption.expression(String template)

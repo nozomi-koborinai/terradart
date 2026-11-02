@@ -459,7 +459,8 @@ final class Macie2ClassificationJobExcludesSimpleScopeTerm {
 /// `key` — derived from the provider schema description.
 extension type const Macie2ClassificationJobSimpleScopeTermKey._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Macie2ClassificationJobSimpleScopeTermKey.variable(String name)
     : this._(TfArg.variable(name));
   Macie2ClassificationJobSimpleScopeTermKey.expression(String template)

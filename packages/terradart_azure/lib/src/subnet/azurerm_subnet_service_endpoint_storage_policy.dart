@@ -41,7 +41,8 @@ final class SubnetServiceEndpointStoragePolicyDefinition {
 /// `service` — derived from the provider schema description.
 extension type const SubnetServiceEndpointStoragePolicyService._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SubnetServiceEndpointStoragePolicyService.variable(String name)
     : this._(TfArg.variable(name));
   SubnetServiceEndpointStoragePolicyService.expression(String template)

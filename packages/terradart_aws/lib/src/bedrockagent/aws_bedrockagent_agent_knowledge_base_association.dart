@@ -10,7 +10,8 @@ const Set<String> _awsBedrockagentAgentKnowledgeBaseAssociationSensitive =
 /// Bedrockagent Agent Knowledge Base Association Agent enum for `agent_version`.
 extension type const BedrockagentAgentKnowledgeBaseAssociationAgentVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentAgentKnowledgeBaseAssociationAgentVersion.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentAgentKnowledgeBaseAssociationAgentVersion.expression(
@@ -31,7 +32,8 @@ extension type const BedrockagentAgentKnowledgeBaseAssociationAgentVersion._(
 /// Bedrockagent Agent Knowledge Base Association Knowledge Base enum for `knowledge_base_state`.
 extension type const BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState.variable(
     String name,
   ) : this._(TfArg.variable(name));

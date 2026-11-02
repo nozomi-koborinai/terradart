@@ -9,7 +9,8 @@ const Set<String> _awsIamSecurityTokenServicePreferencesSensitive = <String>{};
 /// Iam Security Token Service Preferences Global Endpoint Token enum for `global_endpoint_token_version`.
 extension type const IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion.variable(
     String name,
   ) : this._(TfArg.variable(name));

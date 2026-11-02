@@ -94,7 +94,8 @@ extension type const MssqlDatabaseLicenseType._(TfArg<String> _)
 /// Mssql Database Maintenance Configuration enum for `maintenance_configuration_name`.
 extension type const MssqlDatabaseMaintenanceConfigurationName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlDatabaseMaintenanceConfigurationName.variable(String name)
     : this._(TfArg.variable(name));
   MssqlDatabaseMaintenanceConfigurationName.expression(String template)

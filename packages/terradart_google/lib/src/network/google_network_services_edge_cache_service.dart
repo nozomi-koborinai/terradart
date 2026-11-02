@@ -391,7 +391,8 @@ final class NetworkServicesEdgeCacheServiceRouteAction {
 /// `compression_mode` — derived from the provider schema description.
 extension type const NetworkServicesEdgeCacheServiceCompressionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheServiceCompressionMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEdgeCacheServiceCompressionMode.expression(String template)
@@ -507,7 +508,8 @@ extension type const NetworkServicesEdgeCacheServiceCacheMode._(TfArg<String> _)
 /// `signed_request_mode` — derived from the provider schema description.
 extension type const NetworkServicesEdgeCacheServiceSignedRequestMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheServiceSignedRequestMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEdgeCacheServiceSignedRequestMode.expression(String template)
@@ -659,7 +661,8 @@ final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
 /// `allowed_signature_algorithms` — derived from the provider schema description.
 extension type const NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -805,7 +808,8 @@ final class NetworkServicesEdgeCacheServiceUrlRedirect {
 /// `redirect_response_code` — derived from the provider schema description.
 extension type const NetworkServicesEdgeCacheServiceRedirectResponseCode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheServiceRedirectResponseCode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEdgeCacheServiceRedirectResponseCode.expression(

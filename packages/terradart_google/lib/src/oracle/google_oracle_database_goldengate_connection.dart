@@ -17,7 +17,8 @@ const Set<String> _googleOracleDatabaseGoldengateConnectionSensitive =
 /// Terraform `deletion_policy` for GoldenGate connections.
 extension type const OracleDatabaseGoldengateConnectionDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionDeletionPolicy.expression(String template)
@@ -367,7 +368,8 @@ extension type const OracleDatabaseGoldengateConnectionType._(TfArg<String> _)
 /// `routing_method` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionRoutingMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionRoutingMethod.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionRoutingMethod.expression(String template)
@@ -542,7 +544,8 @@ final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProp
 /// `authentication_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionAzureDataLakeStorageAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -652,7 +655,8 @@ final class OracleDatabaseGoldengateConnectionDatabricksConnectionProperties {
 /// `authentication_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionDatabricksAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionDatabricksAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -745,7 +749,8 @@ final class OracleDatabaseGoldengateConnectionDb2ConnectionProperties {
 /// `security_protocol` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionDb2SecurityProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionDb2SecurityProtocol.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionDb2SecurityProtocol.expression(
@@ -835,7 +840,8 @@ final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties 
 /// `authentication_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionElasticsearchAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1064,7 +1070,8 @@ final class OracleDatabaseGoldengateConnectionCatalog {
 /// `catalog_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionCatalogType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionCatalogType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionCatalogType.expression(String template)
@@ -1219,7 +1226,8 @@ final class OracleDatabaseGoldengateConnectionStorage {
 /// `storage_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionStorageType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionStorageType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionStorageType.expression(String template)
@@ -1285,7 +1293,8 @@ final class OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage {
 /// `scheme_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionSchemeType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionSchemeType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionSchemeType.expression(String template)
@@ -1466,7 +1475,8 @@ final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProper
 /// `security_protocol` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionJavaMessageServiceSecurityProtocol.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1592,7 +1602,8 @@ final class OracleDatabaseGoldengateConnectionKafkaConnectionProperties {
 /// `security_protocol` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionKafkaSecurityProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionKafkaSecurityProtocol.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionKafkaSecurityProtocol.expression(
@@ -1720,7 +1731,8 @@ final class OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionPrope
 /// `authentication_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionKafkaSchemaRegistryAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1983,7 +1995,8 @@ final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
 /// `ssl_mode` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionMysqlConnectionPropertiesSslMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -2165,7 +2178,8 @@ final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
 /// `authentication_mode` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionAuthenticationMode.expression(
@@ -2189,7 +2203,8 @@ extension type const OracleDatabaseGoldengateConnectionAuthenticationMode._(
 /// `session_mode` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionSessionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionSessionMode.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateConnectionSessionMode.expression(String template)
@@ -2335,7 +2350,8 @@ final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
 /// `ssl_mode` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionPostgresqlConnectionPropertiesSslMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -2489,7 +2505,8 @@ final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
 /// `authentication_type` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));

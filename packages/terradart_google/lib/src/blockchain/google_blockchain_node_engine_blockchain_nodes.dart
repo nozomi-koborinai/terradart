@@ -11,7 +11,8 @@ const Set<String> _googleBlockchainNodeEngineBlockchainNodesSensitive =
 /// Blockchain Node Engine Blockchain Nodes Blockchain enum for `blockchain_type`.
 extension type const BlockchainNodeEngineBlockchainNodesBlockchainType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesBlockchainType.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesBlockchainType.expression(String template)
@@ -74,7 +75,8 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 /// `consensus_client` — derived from the provider schema description.
 extension type const BlockchainNodeEngineBlockchainNodesConsensusClient._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesConsensusClient.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesConsensusClient.expression(String template)
@@ -99,7 +101,8 @@ extension type const BlockchainNodeEngineBlockchainNodesConsensusClient._(
 /// `execution_client` — derived from the provider schema description.
 extension type const BlockchainNodeEngineBlockchainNodesExecutionClient._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesExecutionClient.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesExecutionClient.expression(String template)
@@ -126,7 +129,8 @@ extension type const BlockchainNodeEngineBlockchainNodesExecutionClient._(
 /// `network` — derived from the provider schema description.
 extension type const BlockchainNodeEngineBlockchainNodesNetwork._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesNetwork.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesNetwork.expression(String template)
@@ -155,7 +159,8 @@ extension type const BlockchainNodeEngineBlockchainNodesNetwork._(
 /// `node_type` — derived from the provider schema description.
 extension type const BlockchainNodeEngineBlockchainNodesNodeType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesNodeType.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesNodeType.expression(String template)
@@ -200,7 +205,8 @@ final class BlockchainNodeEngineBlockchainNodesGethDetails {
 /// `garbage_collection_mode` — derived from the provider schema description.
 extension type const BlockchainNodeEngineBlockchainNodesGarbageCollectionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BlockchainNodeEngineBlockchainNodesGarbageCollectionMode.variable(String name)
     : this._(TfArg.variable(name));
   BlockchainNodeEngineBlockchainNodesGarbageCollectionMode.expression(

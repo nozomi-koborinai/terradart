@@ -30,7 +30,8 @@ final class NetworkflowmonitorMonitorLocalResource {
 /// `type` — derived from the provider schema description.
 extension type const NetworkflowmonitorMonitorLocalResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkflowmonitorMonitorLocalResourceType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkflowmonitorMonitorLocalResourceType.expression(String template)
@@ -87,7 +88,8 @@ final class NetworkflowmonitorMonitorRemoteResource {
 /// `type` — derived from the provider schema description.
 extension type const NetworkflowmonitorMonitorRemoteResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkflowmonitorMonitorRemoteResourceType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkflowmonitorMonitorRemoteResourceType.expression(String template)

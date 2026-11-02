@@ -64,7 +64,8 @@ extension type const BackupRestoreTestingPlanAlgorithm._(TfArg<String> _)
 /// `recovery_point_types` — derived from the provider schema description.
 extension type const BackupRestoreTestingPlanRecoveryPointTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupRestoreTestingPlanRecoveryPointTypes.variable(String name)
     : this._(TfArg.variable(name));
   BackupRestoreTestingPlanRecoveryPointTypes.expression(String template)

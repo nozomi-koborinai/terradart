@@ -12,7 +12,8 @@ const Set<String> _awsRoute53VpcAssociationAuthorizationSensitive = <String>{};
 /// Route53 Vpc Association Authorization Vpc enum for `vpc_region`.
 extension type const Route53VpcAssociationAuthorizationVpcRegion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53VpcAssociationAuthorizationVpcRegion.variable(String name)
     : this._(TfArg.variable(name));
   Route53VpcAssociationAuthorizationVpcRegion.expression(String template)

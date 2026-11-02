@@ -12,7 +12,8 @@ const Set<String> _googleAppEngineStandardAppVersionSensitive = <String>{};
 /// App Engine Standard App Version App Engine Bundled enum for `app_engine_bundled_services`.
 extension type const AppEngineStandardAppVersionAppEngineBundledServices._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineStandardAppVersionAppEngineBundledServices.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineStandardAppVersionAppEngineBundledServices.expression(
@@ -91,7 +92,8 @@ extension type const AppEngineStandardAppVersionAppEngineBundledServices._(
 /// App Engine Standard App Version Inbound enum for `inbound_services`.
 extension type const AppEngineStandardAppVersionInboundServices._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineStandardAppVersionInboundServices.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineStandardAppVersionInboundServices.expression(String template)
@@ -586,7 +588,8 @@ final class AppEngineStandardAppVersionHandlers {
 /// `auth_fail_action` — derived from the provider schema description.
 extension type const AppEngineStandardAppVersionAuthFailAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineStandardAppVersionAuthFailAction.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineStandardAppVersionAuthFailAction.expression(String template)
@@ -638,7 +641,8 @@ extension type const AppEngineStandardAppVersionLogin._(TfArg<String> _)
 /// `redirect_http_response_code` — derived from the provider schema description.
 extension type const AppEngineStandardAppVersionRedirectHttpResponseCode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineStandardAppVersionRedirectHttpResponseCode.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineStandardAppVersionRedirectHttpResponseCode.expression(

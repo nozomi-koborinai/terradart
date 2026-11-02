@@ -13,7 +13,8 @@ const Set<String> _googleNetworkManagementVpcFlowLogsConfigSensitive =
 /// `aggregation_interval` for `google_network_management_vpc_flow_logs_config`.
 extension type const NetworkManagementVpcFlowLogsConfigAggregationInterval._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementVpcFlowLogsConfigAggregationInterval.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementVpcFlowLogsConfigAggregationInterval.expression(
@@ -62,7 +63,8 @@ extension type const NetworkManagementVpcFlowLogsConfigAggregationInterval._(
 /// `metadata` for `google_network_management_vpc_flow_logs_config`.
 extension type const NetworkManagementVpcFlowLogsConfigMetadata._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementVpcFlowLogsConfigMetadata.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementVpcFlowLogsConfigMetadata.expression(String template)

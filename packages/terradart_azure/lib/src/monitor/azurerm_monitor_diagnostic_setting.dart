@@ -12,7 +12,8 @@ const Set<String> _azurermMonitorDiagnosticSettingSensitive = <String>{};
 /// Monitor Diagnostic Setting Log Analytics Destination enum for `log_analytics_destination_type`.
 extension type const MonitorDiagnosticSettingLogAnalyticsDestinationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorDiagnosticSettingLogAnalyticsDestinationType.variable(String name)
     : this._(TfArg.variable(name));
   MonitorDiagnosticSettingLogAnalyticsDestinationType.expression(

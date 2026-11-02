@@ -12,7 +12,8 @@ const Set<String> _azurermApiManagementStandaloneGatewaySensitive = <String>{};
 /// Api Management Standalone Gateway Virtual Network enum for `virtual_network_type`.
 extension type const ApiManagementStandaloneGatewayVirtualNetworkType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementStandaloneGatewayVirtualNetworkType.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementStandaloneGatewayVirtualNetworkType.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _googleComputeNetworkAttachmentSensitive = <String>{};
 /// Compute Network Attachment Connection enum for `connection_preference`.
 extension type const ComputeNetworkAttachmentConnectionPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkAttachmentConnectionPreference.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkAttachmentConnectionPreference.expression(String template)

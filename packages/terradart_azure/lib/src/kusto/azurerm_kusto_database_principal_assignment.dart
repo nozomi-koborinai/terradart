@@ -12,7 +12,8 @@ const Set<String> _azurermKustoDatabasePrincipalAssignmentSensitive =
 /// Kusto Database Principal Assignment Principal enum for `principal_type`.
 extension type const KustoDatabasePrincipalAssignmentPrincipalType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoDatabasePrincipalAssignmentPrincipalType.variable(String name)
     : this._(TfArg.variable(name));
   KustoDatabasePrincipalAssignmentPrincipalType.expression(String template)

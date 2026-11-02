@@ -10,7 +10,8 @@ const Set<String> _googleBinaryAuthorizationPolicySensitive = <String>{};
 /// Binary Authorization Policy Global Policy Evaluation enum for `global_policy_evaluation_mode`.
 extension type const BinaryAuthorizationPolicyGlobalPolicyEvaluationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BinaryAuthorizationPolicyGlobalPolicyEvaluationMode.variable(String name)
     : this._(TfArg.variable(name));
   BinaryAuthorizationPolicyGlobalPolicyEvaluationMode.expression(

@@ -13,7 +13,8 @@ const Set<String> _azurermMonitorScheduledQueryRulesAlertV2Sensitive =
 /// Monitor Scheduled Query Rules Alert V2 Evaluation enum for `evaluation_frequency`.
 extension type const MonitorScheduledQueryRulesAlertV2EvaluationFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2EvaluationFrequency.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2EvaluationFrequency.expression(
@@ -84,7 +85,8 @@ extension type const MonitorScheduledQueryRulesAlertV2EvaluationFrequency._(
 /// Monitor Scheduled Query Rules Alert V2 Mute Actions After Alert enum for `mute_actions_after_alert_duration`.
 extension type const MonitorScheduledQueryRulesAlertV2MuteActionsAfterAlertDuration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2MuteActionsAfterAlertDuration.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -171,7 +173,8 @@ extension type const MonitorScheduledQueryRulesAlertV2MuteActionsAfterAlertDurat
 /// Monitor Scheduled Query Rules Alert V2 Query Time Range enum for `query_time_range_override`.
 extension type const MonitorScheduledQueryRulesAlertV2QueryTimeRangeOverride._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2QueryTimeRangeOverride.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2QueryTimeRangeOverride.expression(
@@ -251,7 +254,8 @@ extension type const MonitorScheduledQueryRulesAlertV2QueryTimeRangeOverride._(
 /// Monitor Scheduled Query Rules Alert V2 Window enum for `window_duration`.
 extension type const MonitorScheduledQueryRulesAlertV2WindowDuration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2WindowDuration.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2WindowDuration.expression(String template)
@@ -393,7 +397,8 @@ final class MonitorScheduledQueryRulesAlertV2Criteria {
 /// `operator` — derived from the provider schema description.
 extension type const MonitorScheduledQueryRulesAlertV2Operator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2Operator.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2Operator.expression(String template)
@@ -429,7 +434,8 @@ extension type const MonitorScheduledQueryRulesAlertV2Operator._(
 /// `time_aggregation_method` — derived from the provider schema description.
 extension type const MonitorScheduledQueryRulesAlertV2TimeAggregationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2TimeAggregationMethod.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2TimeAggregationMethod.expression(
@@ -489,7 +495,8 @@ final class MonitorScheduledQueryRulesAlertV2Dimension {
 /// `operator` — derived from the provider schema description.
 extension type const MonitorScheduledQueryRulesAlertV2DimensionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorScheduledQueryRulesAlertV2DimensionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MonitorScheduledQueryRulesAlertV2DimensionOperator.expression(String template)

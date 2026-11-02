@@ -10,7 +10,8 @@ const Set<String> _awsServicecatalogProvisioningArtifactSensitive = <String>{};
 /// Servicecatalog Provisioning Artifact Accept enum for `accept_language`.
 extension type const ServicecatalogProvisioningArtifactAcceptLanguage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogProvisioningArtifactAcceptLanguage.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogProvisioningArtifactAcceptLanguage.expression(String template)
@@ -38,7 +39,8 @@ extension type const ServicecatalogProvisioningArtifactAcceptLanguage._(
 /// Servicecatalog Provisioning Artifact enum for `guidance`.
 extension type const ServicecatalogProvisioningArtifactGuidance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogProvisioningArtifactGuidance.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogProvisioningArtifactGuidance.expression(String template)

@@ -173,7 +173,8 @@ final class SagemakerEndpointTrafficRoutingConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const SagemakerEndpointTrafficRoutingConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointTrafficRoutingConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointTrafficRoutingConfigurationType.expression(String template)

@@ -149,7 +149,8 @@ final class EdgecontainerClusterLocal {
 /// `shared_deployment_policy` — derived from the provider schema description.
 extension type const EdgecontainerClusterSharedDeploymentPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EdgecontainerClusterSharedDeploymentPolicy.variable(String name)
     : this._(TfArg.variable(name));
   EdgecontainerClusterSharedDeploymentPolicy.expression(String template)

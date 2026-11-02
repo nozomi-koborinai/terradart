@@ -9,7 +9,8 @@ const Set<String> _googleLicenseManagerConfigurationSensitive = <String>{};
 /// Terraform `deletion_policy` for License Manager configurations.
 extension type const LicenseManagerConfigurationDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LicenseManagerConfigurationDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   LicenseManagerConfigurationDeletionPolicy.expression(String template)

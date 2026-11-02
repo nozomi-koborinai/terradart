@@ -9,7 +9,8 @@ const Set<String> _azurermAutomationRuntimeEnvironmentSensitive = <String>{};
 /// Automation Runtime Environment Runtime enum for `runtime_language`.
 extension type const AutomationRuntimeEnvironmentRuntimeLanguage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutomationRuntimeEnvironmentRuntimeLanguage.variable(String name)
     : this._(TfArg.variable(name));
   AutomationRuntimeEnvironmentRuntimeLanguage.expression(String template)

@@ -265,7 +265,8 @@ extension type const ReservationAffinityType._(TfArg<String> _)
 /// bandwidth profile.
 extension type const ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -10,7 +10,8 @@ const Set<String> _awsServicecatalogProvisionedProductSensitive = <String>{};
 /// Servicecatalog Provisioned Product Accept enum for `accept_language`.
 extension type const ServicecatalogProvisionedProductAcceptLanguage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogProvisionedProductAcceptLanguage.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogProvisionedProductAcceptLanguage.expression(String template)

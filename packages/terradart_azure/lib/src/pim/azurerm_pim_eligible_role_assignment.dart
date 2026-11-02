@@ -10,7 +10,8 @@ const Set<String> _azurermPimEligibleRoleAssignmentSensitive = <String>{};
 /// Pim Eligible Role Assignment Condition enum for `condition_version`.
 extension type const PimEligibleRoleAssignmentConditionVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PimEligibleRoleAssignmentConditionVersion.variable(String name)
     : this._(TfArg.variable(name));
   PimEligibleRoleAssignmentConditionVersion.expression(String template)

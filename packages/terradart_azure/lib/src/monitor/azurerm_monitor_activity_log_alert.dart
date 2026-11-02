@@ -692,7 +692,8 @@ extension type const MonitorActivityLogAlertLevels._(TfArg<String> _)
 /// `recommendation_category` — derived from the provider schema description.
 extension type const MonitorActivityLogAlertRecommendationCategory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorActivityLogAlertRecommendationCategory.variable(String name)
     : this._(TfArg.variable(name));
   MonitorActivityLogAlertRecommendationCategory.expression(String template)
@@ -734,7 +735,8 @@ extension type const MonitorActivityLogAlertRecommendationCategory._(
 /// `recommendation_impact` — derived from the provider schema description.
 extension type const MonitorActivityLogAlertRecommendationImpact._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorActivityLogAlertRecommendationImpact.variable(String name)
     : this._(TfArg.variable(name));
   MonitorActivityLogAlertRecommendationImpact.expression(String template)

@@ -78,7 +78,8 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
 /// `default_banned_phrase_match_strategy` — derived from the provider schema description.
 extension type const DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));

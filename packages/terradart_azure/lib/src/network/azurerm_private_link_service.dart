@@ -126,7 +126,8 @@ final class PrivateLinkServiceNatIpConfiguration {
 /// `private_ip_address_version` — derived from the provider schema description.
 extension type const PrivateLinkServicePrivateIpAddressVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivateLinkServicePrivateIpAddressVersion.variable(String name)
     : this._(TfArg.variable(name));
   PrivateLinkServicePrivateIpAddressVersion.expression(String template)

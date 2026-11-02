@@ -10,7 +10,8 @@ const Set<String> _awsGuarddutyDetectorSensitive = <String>{};
 /// Guardduty Detector Finding Publishing enum for `finding_publishing_frequency`.
 extension type const GuarddutyDetectorFindingPublishingFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyDetectorFindingPublishingFrequency.variable(String name)
     : this._(TfArg.variable(name));
   GuarddutyDetectorFindingPublishingFrequency.expression(String template)

@@ -53,7 +53,8 @@ final class EcrRegistryScanningConfigurationRule {
 /// `scan_frequency` — derived from the provider schema description.
 extension type const EcrRegistryScanningConfigurationScanFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcrRegistryScanningConfigurationScanFrequency.variable(String name)
     : this._(TfArg.variable(name));
   EcrRegistryScanningConfigurationScanFrequency.expression(String template)
@@ -101,7 +102,8 @@ final class EcrRegistryScanningConfigurationRepositoryFilter {
 /// `filter_type` — derived from the provider schema description.
 extension type const EcrRegistryScanningConfigurationFilterType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcrRegistryScanningConfigurationFilterType.variable(String name)
     : this._(TfArg.variable(name));
   EcrRegistryScanningConfigurationFilterType.expression(String template)

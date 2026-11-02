@@ -47,7 +47,8 @@ final class DatasyncLocationFsxOpenzfsFileSystemMountOptions {
 /// `version` — derived from the provider schema description.
 extension type const DatasyncLocationFsxOpenzfsFileSystemVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationFsxOpenzfsFileSystemVersion.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationFsxOpenzfsFileSystemVersion.expression(String template)

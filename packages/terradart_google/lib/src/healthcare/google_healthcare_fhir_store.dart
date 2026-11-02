@@ -14,7 +14,8 @@ const Set<String> _googleHealthcareFhirStoreSensitive = <String>{};
 /// Healthcare Fhir Store Complex Data Type Reference enum for `complex_data_type_reference_parsing`.
 extension type const HealthcareFhirStoreComplexDataTypeReferenceParsing._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HealthcareFhirStoreComplexDataTypeReferenceParsing.variable(String name)
     : this._(TfArg.variable(name));
   HealthcareFhirStoreComplexDataTypeReferenceParsing.expression(String template)

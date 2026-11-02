@@ -13,7 +13,8 @@ const Set<String> _azurermSpringCloudConfigurationServiceSensitive = <String>{
 /// Spring Cloud Configuration Service enum for `generation`.
 extension type const SpringCloudConfigurationServiceGeneration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpringCloudConfigurationServiceGeneration.variable(String name)
     : this._(TfArg.variable(name));
   SpringCloudConfigurationServiceGeneration.expression(String template)

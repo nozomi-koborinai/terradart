@@ -135,7 +135,8 @@ final class EmrInstanceFleetOnDemandSpecification {
 /// `allocation_strategy` — derived from the provider schema description.
 extension type const EmrInstanceFleetOnDemandSpecificationAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EmrInstanceFleetOnDemandSpecificationAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   EmrInstanceFleetOnDemandSpecificationAllocationStrategy.expression(
@@ -189,7 +190,8 @@ final class EmrInstanceFleetSpotSpecification {
 /// `allocation_strategy` — derived from the provider schema description.
 extension type const EmrInstanceFleetSpotSpecificationAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EmrInstanceFleetSpotSpecificationAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   EmrInstanceFleetSpotSpecificationAllocationStrategy.expression(

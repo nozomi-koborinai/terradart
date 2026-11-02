@@ -47,7 +47,8 @@ final class Sesv2AccountVdmAttributesDashboardAttributes {
 /// `engagement_metrics` — derived from the provider schema description.
 extension type const Sesv2AccountVdmAttributesEngagementMetrics._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2AccountVdmAttributesEngagementMetrics.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2AccountVdmAttributesEngagementMetrics.expression(String template)
@@ -88,7 +89,8 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
 /// `optimized_shared_delivery` — derived from the provider schema description.
 extension type const Sesv2AccountVdmAttributesOptimizedSharedDelivery._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2AccountVdmAttributesOptimizedSharedDelivery.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2AccountVdmAttributesOptimizedSharedDelivery.expression(String template)

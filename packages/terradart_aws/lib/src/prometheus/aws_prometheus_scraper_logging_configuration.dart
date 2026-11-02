@@ -13,7 +13,8 @@ const Set<String> _awsPrometheusScraperLoggingConfigurationSensitive =
 /// Prometheus Scraper Logging Configuration Scraper enum for `scraper_components`.
 extension type const PrometheusScraperLoggingConfigurationScraperComponents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrometheusScraperLoggingConfigurationScraperComponents.variable(String name)
     : this._(TfArg.variable(name));
   PrometheusScraperLoggingConfigurationScraperComponents.expression(

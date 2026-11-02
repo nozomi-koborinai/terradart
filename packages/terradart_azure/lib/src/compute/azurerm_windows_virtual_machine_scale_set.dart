@@ -17,7 +17,8 @@ const Set<String> _azurermWindowsVirtualMachineScaleSetSensitive = <String>{
 /// Windows Virtual Machine Scale Set Eviction enum for `eviction_policy`.
 extension type const WindowsVirtualMachineScaleSetEvictionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetEvictionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetEvictionPolicy.expression(String template)
@@ -503,7 +504,8 @@ extension type const WindowsVirtualMachineScaleSetCaching._(TfArg<String> _)
 /// `create_option` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetCreateOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetCreateOption.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetCreateOption.expression(String template)
@@ -527,7 +529,8 @@ extension type const WindowsVirtualMachineScaleSetCreateOption._(
 /// `storage_account_type` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetDataDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetDataDiskStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetDataDiskStorageAccountType.expression(
@@ -817,7 +820,8 @@ final class WindowsVirtualMachineScaleSetNetworkInterface {
 /// `auxiliary_mode` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetAuxiliaryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetAuxiliaryMode.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetAuxiliaryMode.expression(String template)
@@ -842,7 +846,8 @@ extension type const WindowsVirtualMachineScaleSetAuxiliaryMode._(
 /// `auxiliary_sku` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetAuxiliarySku._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetAuxiliarySku.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetAuxiliarySku.expression(String template)
@@ -1110,7 +1115,8 @@ final class WindowsVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetI
 /// `security_encryption_type` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetSecurityEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetSecurityEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetSecurityEncryptionType.expression(
@@ -1136,7 +1142,8 @@ extension type const WindowsVirtualMachineScaleSetSecurityEncryptionType._(
 /// `storage_account_type` — derived from the provider schema description.
 extension type const WindowsVirtualMachineScaleSetOsDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsVirtualMachineScaleSetOsDiskStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   WindowsVirtualMachineScaleSetOsDiskStorageAccountType.expression(

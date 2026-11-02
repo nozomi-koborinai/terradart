@@ -12,7 +12,8 @@ const Set<String> _awsCloudwatchLogSubscriptionFilterSensitive = <String>{};
 /// Cloudwatch Log Subscription Filter enum for `distribution`.
 extension type const CloudwatchLogSubscriptionFilterDistribution._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchLogSubscriptionFilterDistribution.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchLogSubscriptionFilterDistribution.expression(String template)
@@ -36,7 +37,8 @@ extension type const CloudwatchLogSubscriptionFilterDistribution._(
 /// Cloudwatch Log Subscription Filter Emit System enum for `emit_system_fields`.
 extension type const CloudwatchLogSubscriptionFilterEmitSystemFields._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchLogSubscriptionFilterEmitSystemFields.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchLogSubscriptionFilterEmitSystemFields.expression(String template)

@@ -691,7 +691,8 @@ extension type const LinuxVirtualMachineCaching._(TfArg<String> _)
 /// `security_encryption_type` — derived from the provider schema description.
 extension type const LinuxVirtualMachineSecurityEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxVirtualMachineSecurityEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   LinuxVirtualMachineSecurityEncryptionType.expression(String template)

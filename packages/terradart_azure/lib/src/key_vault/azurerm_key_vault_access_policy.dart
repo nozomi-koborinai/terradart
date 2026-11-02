@@ -11,7 +11,8 @@ const Set<String> _azurermKeyVaultAccessPolicySensitive = <String>{};
 /// Key Vault Access Policy Certificate enum for `certificate_permissions`.
 extension type const KeyVaultAccessPolicyCertificatePermissions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultAccessPolicyCertificatePermissions.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultAccessPolicyCertificatePermissions.expression(String template)

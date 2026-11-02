@@ -12,7 +12,8 @@ const Set<String> _azurermLogAnalyticsLinkedStorageAccountSensitive =
 /// Log Analytics Linked Storage Account Data Source enum for `data_source_type`.
 extension type const LogAnalyticsLinkedStorageAccountDataSourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogAnalyticsLinkedStorageAccountDataSourceType.variable(String name)
     : this._(TfArg.variable(name));
   LogAnalyticsLinkedStorageAccountDataSourceType.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _awsWafv2WebAclRuleGroupAssociationSensitive = <String>{};
 /// Wafv2 Web Acl Rule Group Association Override enum for `override_action`.
 extension type const Wafv2WebAclRuleGroupAssociationOverrideAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Wafv2WebAclRuleGroupAssociationOverrideAction.variable(String name)
     : this._(TfArg.variable(name));
   Wafv2WebAclRuleGroupAssociationOverrideAction.expression(String template)
@@ -283,7 +284,8 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAcfpRuleSetRequestInsp
 /// `payload_type` — derived from the provider schema description.
 extension type const Wafv2WebAclRuleGroupAssociationPayloadType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Wafv2WebAclRuleGroupAssociationPayloadType.variable(String name)
     : this._(TfArg.variable(name));
   Wafv2WebAclRuleGroupAssociationPayloadType.expression(String template)

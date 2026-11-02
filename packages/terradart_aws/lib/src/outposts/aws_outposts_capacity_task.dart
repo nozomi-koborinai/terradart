@@ -10,7 +10,8 @@ const Set<String> _awsOutpostsCapacityTaskSensitive = <String>{};
 /// Outposts Capacity Task Action On Blocking enum for `task_action_on_blocking_instances`.
 extension type const OutpostsCapacityTaskActionOnBlockingInstances._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OutpostsCapacityTaskActionOnBlockingInstances.variable(String name)
     : this._(TfArg.variable(name));
   OutpostsCapacityTaskActionOnBlockingInstances.expression(String template)

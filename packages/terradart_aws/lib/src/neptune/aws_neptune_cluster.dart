@@ -13,7 +13,8 @@ const Set<String> _awsNeptuneClusterSensitive = <String>{};
 /// Neptune Cluster Enable Cloudwatch Logs enum for `enable_cloudwatch_logs_exports`.
 extension type const NeptuneClusterEnableCloudwatchLogsExports._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NeptuneClusterEnableCloudwatchLogsExports.variable(String name)
     : this._(TfArg.variable(name));
   NeptuneClusterEnableCloudwatchLogsExports.expression(String template)

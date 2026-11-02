@@ -82,7 +82,8 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 /// `versioned_expr` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyRuleVersionedExpr._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyRuleVersionedExpr.variable(String name)
     : this._(TfArg.variable(name));
   ComputeOrganizationSecurityPolicyRuleVersionedExpr.expression(String template)
@@ -204,7 +205,8 @@ final class ComputeOrganizationSecurityPolicyRuleRequestCookie {
 /// `operator` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyRuleOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyRuleOperator.variable(String name)
     : this._(TfArg.variable(name));
   ComputeOrganizationSecurityPolicyRuleOperator.expression(String template)
@@ -320,7 +322,8 @@ final class ComputeOrganizationSecurityPolicyRuleRedirectOptions {
 /// `type` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyRuleType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyRuleType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeOrganizationSecurityPolicyRuleType.expression(String template)

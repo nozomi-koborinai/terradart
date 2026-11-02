@@ -1469,7 +1469,8 @@ extension type const AppflowFlowConnectorOperatorAmplitude._(TfArg<String> _)
 /// `custom_connector` — derived from the provider schema description.
 extension type const AppflowFlowConnectorOperatorCustomConnector._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppflowFlowConnectorOperatorCustomConnector.variable(String name)
     : this._(TfArg.variable(name));
   AppflowFlowConnectorOperatorCustomConnector.expression(String template)
@@ -1722,7 +1723,8 @@ extension type const AppflowFlowConnectorOperatorDynatrace._(TfArg<String> _)
 /// `google_analytics` — derived from the provider schema description.
 extension type const AppflowFlowConnectorOperatorGoogleAnalytics._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppflowFlowConnectorOperatorGoogleAnalytics.variable(String name)
     : this._(TfArg.variable(name));
   AppflowFlowConnectorOperatorGoogleAnalytics.expression(String template)

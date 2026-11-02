@@ -16,7 +16,8 @@ const Set<String> _awsElasticacheReplicationGroupSensitive = <String>{
 /// Elasticache Replication Group Auth Token Update enum for `auth_token_update_strategy`.
 extension type const ElasticacheReplicationGroupAuthTokenUpdateStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElasticacheReplicationGroupAuthTokenUpdateStrategy.variable(String name)
     : this._(TfArg.variable(name));
   ElasticacheReplicationGroupAuthTokenUpdateStrategy.expression(String template)
@@ -169,7 +170,8 @@ extension type const ElasticacheReplicationGroupNetworkType._(TfArg<String> _)
 /// Elasticache Replication Group Transit Encryption enum for `transit_encryption_mode`.
 extension type const ElasticacheReplicationGroupTransitEncryptionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElasticacheReplicationGroupTransitEncryptionMode.variable(String name)
     : this._(TfArg.variable(name));
   ElasticacheReplicationGroupTransitEncryptionMode.expression(String template)
@@ -406,7 +408,8 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 /// `destination_type` — derived from the provider schema description.
 extension type const ElasticacheReplicationGroupDestinationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ElasticacheReplicationGroupDestinationType.variable(String name)
     : this._(TfArg.variable(name));
   ElasticacheReplicationGroupDestinationType.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _azurermKubernetesClusterDeploymentSafeguardSensitive =
 /// Kubernetes Cluster Deployment Safeguard enum for `level`.
 extension type const KubernetesClusterDeploymentSafeguardLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterDeploymentSafeguardLevel.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterDeploymentSafeguardLevel.expression(String template)
@@ -34,7 +35,8 @@ extension type const KubernetesClusterDeploymentSafeguardLevel._(
 /// Kubernetes Cluster Deployment Safeguard Pod Security Standards enum for `pod_security_standards_level`.
 extension type const KubernetesClusterDeploymentSafeguardPodSecurityStandardsLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterDeploymentSafeguardPodSecurityStandardsLevel.variable(
     String name,
   ) : this._(TfArg.variable(name));

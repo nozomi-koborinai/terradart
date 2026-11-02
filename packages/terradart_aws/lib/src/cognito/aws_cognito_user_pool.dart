@@ -509,7 +509,8 @@ final class CognitoUserPoolCustomEmailSender {
 /// `lambda_version` — derived from the provider schema description.
 extension type const CognitoUserPoolCustomEmailSenderLambdaVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoUserPoolCustomEmailSenderLambdaVersion.variable(String name)
     : this._(TfArg.variable(name));
   CognitoUserPoolCustomEmailSenderLambdaVersion.expression(String template)
@@ -569,7 +570,8 @@ final class CognitoUserPoolPreTokenGenerationConfig {
 /// `lambda_version` — derived from the provider schema description.
 extension type const CognitoUserPoolPreTokenGenerationConfigLambdaVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoUserPoolPreTokenGenerationConfigLambdaVersion.variable(String name)
     : this._(TfArg.variable(name));
   CognitoUserPoolPreTokenGenerationConfigLambdaVersion.expression(
@@ -851,7 +853,8 @@ final class CognitoUserPoolUserAttributeUpdateSettings {
 /// `attributes_require_verification_before_update` — derived from the provider schema description.
 extension type const CognitoUserPoolAttributesRequireVerificationBeforeUpdate._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoUserPoolAttributesRequireVerificationBeforeUpdate.variable(String name)
     : this._(TfArg.variable(name));
   CognitoUserPoolAttributesRequireVerificationBeforeUpdate.expression(

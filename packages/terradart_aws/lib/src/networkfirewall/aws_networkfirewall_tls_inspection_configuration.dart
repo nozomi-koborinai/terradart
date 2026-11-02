@@ -91,7 +91,8 @@ final class NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationS
 /// `revoked_status_action` — derived from the provider schema description.
 extension type const NetworkfirewallTlsInspectionConfigurationRevokedStatusAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallTlsInspectionConfigurationRevokedStatusAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -124,7 +125,8 @@ extension type const NetworkfirewallTlsInspectionConfigurationRevokedStatusActio
 /// `unknown_status_action` — derived from the provider schema description.
 extension type const NetworkfirewallTlsInspectionConfigurationUnknownStatusAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallTlsInspectionConfigurationUnknownStatusAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

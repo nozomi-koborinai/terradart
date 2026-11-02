@@ -9,7 +9,8 @@ const Set<String> _googleMigrationCenterImportDataFileSensitive = <String>{};
 /// Terraform `deletion_policy` for Migration Center import data files.
 extension type const MigrationCenterImportDataFileDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterImportDataFileDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterImportDataFileDeletionPolicy.expression(String template)

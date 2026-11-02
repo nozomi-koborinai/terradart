@@ -11,7 +11,8 @@ const Set<String> _azurermNetworkManagerConnectivityConfigurationSensitive =
 /// Network Manager Connectivity Configuration Connected Group Private Endpoints enum for `connected_group_private_endpoints_scale`.
 extension type const NetworkManagerConnectivityConfigurationConnectedGroupPrivateEndpointsScale._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagerConnectivityConfigurationConnectedGroupPrivateEndpointsScale.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -40,7 +41,8 @@ extension type const NetworkManagerConnectivityConfigurationConnectedGroupPrivat
 /// Network Manager Connectivity Configuration Connectivity enum for `connectivity_topology`.
 extension type const NetworkManagerConnectivityConfigurationConnectivityTopology._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagerConnectivityConfigurationConnectivityTopology.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -96,7 +98,8 @@ final class NetworkManagerConnectivityConfigurationAppliesToGroup {
 /// `group_connectivity` — derived from the provider schema description.
 extension type const NetworkManagerConnectivityConfigurationGroupConnectivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagerConnectivityConfigurationGroupConnectivity.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagerConnectivityConfigurationGroupConnectivity.expression(

@@ -32,7 +32,8 @@ extension type const Pinpointsmsvoicev2PhoneNumberMessageType._(TfArg<String> _)
 /// Pinpointsmsvoicev2 Phone Number enum for `number_capabilities`.
 extension type const Pinpointsmsvoicev2PhoneNumberCapabilities._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Pinpointsmsvoicev2PhoneNumberCapabilities.variable(String name)
     : this._(TfArg.variable(name));
   Pinpointsmsvoicev2PhoneNumberCapabilities.expression(String template)

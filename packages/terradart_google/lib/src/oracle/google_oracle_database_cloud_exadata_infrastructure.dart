@@ -11,7 +11,8 @@ const Set<String> _googleOracleDatabaseCloudExadataInfrastructureSensitive =
 /// Terraform `deletion_policy` for Cloud Exadata Infrastructure.
 extension type const OracleDatabaseCloudExadataInfrastructureDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudExadataInfrastructureDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudExadataInfrastructureDeletionPolicy.expression(
@@ -144,7 +145,8 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 /// `days_of_week` — derived from the provider schema description.
 extension type const OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudExadataInfrastructureDaysOfWeek.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudExadataInfrastructureDaysOfWeek.expression(String template)
@@ -182,7 +184,8 @@ extension type const OracleDatabaseCloudExadataInfrastructureDaysOfWeek._(
 /// `months` — derived from the provider schema description.
 extension type const OracleDatabaseCloudExadataInfrastructureMonths._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudExadataInfrastructureMonths.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudExadataInfrastructureMonths.expression(String template)
@@ -246,7 +249,8 @@ extension type const OracleDatabaseCloudExadataInfrastructureMonths._(
 /// `patching_mode` — derived from the provider schema description.
 extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudExadataInfrastructurePatchingMode.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudExadataInfrastructurePatchingMode.expression(
@@ -271,7 +275,8 @@ extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
 /// `preference` — derived from the provider schema description.
 extension type const OracleDatabaseCloudExadataInfrastructurePreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseCloudExadataInfrastructurePreference.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseCloudExadataInfrastructurePreference.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _googleSccOrganizationCustomModuleSensitive = <String>{};
 /// Scc Organization Custom Module Enablement enum for `enablement_state`.
 extension type const SccOrganizationCustomModuleEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SccOrganizationCustomModuleEnablementState.variable(String name)
     : this._(TfArg.variable(name));
   SccOrganizationCustomModuleEnablementState.expression(String template)

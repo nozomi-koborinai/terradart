@@ -317,7 +317,8 @@ final class DlmLifecyclePolicyCrossRegionCopyRetainRule {
 /// `interval_unit` — derived from the provider schema description.
 extension type const DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DlmLifecyclePolicyDeprecateRuleIntervalUnit.variable(String name)
     : this._(TfArg.variable(name));
   DlmLifecyclePolicyDeprecateRuleIntervalUnit.expression(String template)
@@ -700,7 +701,8 @@ final class DlmLifecyclePolicyScripts {
 /// `execution_handler_service` — derived from the provider schema description.
 extension type const DlmLifecyclePolicyExecutionHandlerService._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DlmLifecyclePolicyExecutionHandlerService.variable(String name)
     : this._(TfArg.variable(name));
   DlmLifecyclePolicyExecutionHandlerService.expression(String template)

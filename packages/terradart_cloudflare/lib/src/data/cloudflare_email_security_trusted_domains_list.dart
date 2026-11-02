@@ -11,7 +11,8 @@ const Set<String> _cloudflareEmailSecurityTrustedDomainsListSensitive =
 /// Data Email Security Trusted Domains List enum for `direction`.
 extension type const DataEmailSecurityTrustedDomainsListDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityTrustedDomainsListDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityTrustedDomainsListDirection.expression(String template)

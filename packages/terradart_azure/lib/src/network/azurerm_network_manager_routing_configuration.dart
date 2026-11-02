@@ -10,7 +10,8 @@ const Set<String> _azurermNetworkManagerRoutingConfigurationSensitive =
 /// Network Manager Routing Configuration Route Table Usage enum for `route_table_usage_mode`.
 extension type const NetworkManagerRoutingConfigurationRouteTableUsageMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagerRoutingConfigurationRouteTableUsageMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagerRoutingConfigurationRouteTableUsageMode.expression(

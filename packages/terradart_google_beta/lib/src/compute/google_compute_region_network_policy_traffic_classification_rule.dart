@@ -133,7 +133,8 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
 /// `dscp_mode` — derived from the provider schema description.
 extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -160,7 +161,8 @@ extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode
 /// `traffic_class` — derived from the provider schema description.
 extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -205,7 +207,8 @@ extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficC
 /// `type` — derived from the provider schema description.
 extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkPolicyTrafficClassificationRuleType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkPolicyTrafficClassificationRuleType.expression(

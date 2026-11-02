@@ -10,7 +10,8 @@ const Set<String> _azurermMachineLearningDatastoreBlobstorageSensitive =
 /// Machine Learning Datastore Blobstorage Service Data Auth enum for `service_data_auth_identity`.
 extension type const MachineLearningDatastoreBlobstorageServiceDataAuthIdentity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningDatastoreBlobstorageServiceDataAuthIdentity.variable(
     String name,
   ) : this._(TfArg.variable(name));

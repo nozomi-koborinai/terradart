@@ -126,7 +126,8 @@ final class MailmanagerTrafficPolicyBooleanExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyBooleanExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyBooleanExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyBooleanExpressionOperator.expression(String template)
@@ -210,7 +211,8 @@ final class MailmanagerTrafficPolicyIsInAddressList {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyStringExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyStringExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyStringExpressionAttribute.expression(String template)
@@ -253,7 +255,8 @@ final class MailmanagerTrafficPolicyIpExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyIpExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyIpExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyIpExpressionOperator.expression(String template)
@@ -289,7 +292,8 @@ final class MailmanagerTrafficPolicyIpExpressionEvaluate {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyIpExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyIpExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyIpExpressionAttribute.expression(String template)
@@ -347,7 +351,8 @@ final class MailmanagerTrafficPolicyIpv6ExpressionEvaluate {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyIpv6ExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyIpv6ExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyIpv6ExpressionAttribute.expression(String template)
@@ -391,7 +396,8 @@ final class MailmanagerTrafficPolicyStringExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyStringExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyStringExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyStringExpressionOperator.expression(String template)
@@ -512,7 +518,8 @@ final class MailmanagerTrafficPolicyTlsExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyTlsExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyTlsExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyTlsExpressionOperator.expression(String template)
@@ -566,7 +573,8 @@ final class MailmanagerTrafficPolicyTlsExpressionEvaluate {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerTrafficPolicyTlsExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerTrafficPolicyTlsExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerTrafficPolicyTlsExpressionAttribute.expression(String template)

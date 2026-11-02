@@ -34,7 +34,8 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 /// `sse_algorithm` — derived from the provider schema description.
 extension type const ObservabilityadminS3TableIntegrationSseAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminS3TableIntegrationSseAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   ObservabilityadminS3TableIntegrationSseAlgorithm.expression(String template)

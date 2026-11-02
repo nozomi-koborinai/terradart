@@ -44,7 +44,8 @@ final class StorageAccountQueuePropertiesCorsRule {
 /// `allowed_methods` — derived from the provider schema description.
 extension type const StorageAccountQueuePropertiesAllowedMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageAccountQueuePropertiesAllowedMethods.variable(String name)
     : this._(TfArg.variable(name));
   StorageAccountQueuePropertiesAllowedMethods.expression(String template)

@@ -15,7 +15,8 @@ const Set<String> _azurermStreamAnalyticsStreamInputBlobSensitive = <String>{
 /// Stream Analytics Stream Input Blob Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsStreamInputBlobAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputBlobAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputBlobAuthenticationMode.expression(String template)
@@ -81,7 +82,8 @@ extension type const StreamAnalyticsStreamInputBlobEncoding._(TfArg<String> _)
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsStreamInputBlobFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputBlobFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputBlobFieldDelimiter.expression(String template)

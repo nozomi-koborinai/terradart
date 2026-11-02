@@ -10,7 +10,8 @@ const Set<String> _awsBedrockagentAgentCollaboratorSensitive = <String>{};
 /// Bedrockagent Agent Collaborator Relay Conversation enum for `relay_conversation_history`.
 extension type const BedrockagentAgentCollaboratorRelayConversationHistory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentAgentCollaboratorRelayConversationHistory.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentAgentCollaboratorRelayConversationHistory.expression(

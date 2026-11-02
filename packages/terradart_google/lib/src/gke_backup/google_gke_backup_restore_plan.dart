@@ -198,7 +198,8 @@ final class GkeBackupRestorePlanNoNamespaces
 /// `cluster_resource_conflict_policy` — derived from the provider schema description.
 extension type const GkeBackupRestorePlanClusterResourceConflictPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeBackupRestorePlanClusterResourceConflictPolicy.variable(String name)
     : this._(TfArg.variable(name));
   GkeBackupRestorePlanClusterResourceConflictPolicy.expression(String template)
@@ -222,7 +223,8 @@ extension type const GkeBackupRestorePlanClusterResourceConflictPolicy._(
 /// `namespaced_resource_restore_mode` — derived from the provider schema description.
 extension type const GkeBackupRestorePlanNamespacedResourceRestoreMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeBackupRestorePlanNamespacedResourceRestoreMode.variable(String name)
     : this._(TfArg.variable(name));
   GkeBackupRestorePlanNamespacedResourceRestoreMode.expression(String template)
@@ -264,7 +266,8 @@ extension type const GkeBackupRestorePlanNamespacedResourceRestoreMode._(
 /// `volume_data_restore_policy` — derived from the provider schema description.
 extension type const GkeBackupRestorePlanVolumeDataRestorePolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeBackupRestorePlanVolumeDataRestorePolicy.variable(String name)
     : this._(TfArg.variable(name));
   GkeBackupRestorePlanVolumeDataRestorePolicy.expression(String template)

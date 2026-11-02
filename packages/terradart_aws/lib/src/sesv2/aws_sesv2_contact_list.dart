@@ -38,7 +38,8 @@ final class Sesv2ContactListTopic {
 /// `default_subscription_status` — derived from the provider schema description.
 extension type const Sesv2ContactListDefaultSubscriptionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2ContactListDefaultSubscriptionStatus.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2ContactListDefaultSubscriptionStatus.expression(String template)

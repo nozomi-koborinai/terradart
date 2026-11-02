@@ -275,7 +275,8 @@ final class BedrockagentDataSourceConfluenceConfigurationSourceConfiguration {
 /// `auth_type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceConfluenceConfigurationAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceConfluenceConfigurationAuthType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceConfluenceConfigurationAuthType.expression(
@@ -300,7 +301,8 @@ extension type const BedrockagentDataSourceConfluenceConfigurationAuthType._(
 /// `host_type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceConfluenceConfigurationHostType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceConfluenceConfigurationHostType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceConfluenceConfigurationHostType.expression(
@@ -378,7 +380,8 @@ final class BedrockagentDataSourceDeletionProtectionConfiguration {
 /// `deletion_protection_status` — derived from the provider schema description.
 extension type const BedrockagentDataSourceDeletionProtectionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceDeletionProtectionStatus.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceDeletionProtectionStatus.expression(String template)
@@ -454,7 +457,8 @@ final class BedrockagentDataSourceAudioExtractionConfiguration {
 /// `audio_extraction_status` — derived from the provider schema description.
 extension type const BedrockagentDataSourceAudioExtractionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceAudioExtractionStatus.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceAudioExtractionStatus.expression(String template)
@@ -494,7 +498,8 @@ final class BedrockagentDataSourceImageExtractionConfiguration {
 /// `image_extraction_status` — derived from the provider schema description.
 extension type const BedrockagentDataSourceImageExtractionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceImageExtractionStatus.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceImageExtractionStatus.expression(String template)
@@ -534,7 +539,8 @@ final class BedrockagentDataSourceVideoExtractionConfiguration {
 /// `video_extraction_status` — derived from the provider schema description.
 extension type const BedrockagentDataSourceVideoExtractionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceVideoExtractionStatus.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceVideoExtractionStatus.expression(String template)
@@ -765,7 +771,8 @@ final class BedrockagentDataSourceSalesforceConfigurationSourceConfiguration {
 /// `auth_type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceSalesforceConfigurationAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceSalesforceConfigurationAuthType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceSalesforceConfigurationAuthType.expression(
@@ -851,7 +858,8 @@ final class BedrockagentDataSourceSharePointConfigurationSourceConfiguration {
 /// `auth_type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceSharePointConfigurationAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceSharePointConfigurationAuthType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceSharePointConfigurationAuthType.expression(
@@ -877,7 +885,8 @@ extension type const BedrockagentDataSourceSharePointConfigurationAuthType._(
 /// `host_type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceSharePointConfigurationHostType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceSharePointConfigurationHostType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceSharePointConfigurationHostType.expression(
@@ -1355,7 +1364,8 @@ final class BedrockagentDataSourceContextEnrichmentConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentDataSourceContextEnrichmentConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentDataSourceContextEnrichmentConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentDataSourceContextEnrichmentConfigurationType.expression(

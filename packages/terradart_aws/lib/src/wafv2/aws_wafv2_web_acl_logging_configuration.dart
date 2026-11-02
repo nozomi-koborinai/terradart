@@ -30,7 +30,8 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
 /// `default_behavior` — derived from the provider schema description.
 extension type const Wafv2WebAclLoggingConfigurationDefaultBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Wafv2WebAclLoggingConfigurationDefaultBehavior.variable(String name)
     : this._(TfArg.variable(name));
   Wafv2WebAclLoggingConfigurationDefaultBehavior.expression(String template)
@@ -101,7 +102,8 @@ extension type const Wafv2WebAclLoggingConfigurationBehavior._(TfArg<String> _)
 /// `requirement` — derived from the provider schema description.
 extension type const Wafv2WebAclLoggingConfigurationRequirement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Wafv2WebAclLoggingConfigurationRequirement.variable(String name)
     : this._(TfArg.variable(name));
   Wafv2WebAclLoggingConfigurationRequirement.expression(String template)

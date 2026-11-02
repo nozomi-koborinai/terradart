@@ -16,7 +16,8 @@ const Set<String> _awsOdbAutonomousDatabaseSensitive = <String>{
 /// Odb Autonomous Database Encryption Key enum for `encryption_key_provider`.
 extension type const OdbAutonomousDatabaseEncryptionKeyProvider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OdbAutonomousDatabaseEncryptionKeyProvider.variable(String name)
     : this._(TfArg.variable(name));
   OdbAutonomousDatabaseEncryptionKeyProvider.expression(String template)
@@ -522,7 +523,8 @@ extension type const OdbAutonomousDatabaseCloneType._(TfArg<String> _)
 /// `open_mode` — derived from the provider schema description.
 extension type const OdbAutonomousDatabaseCloneToRefreshableOpenMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OdbAutonomousDatabaseCloneToRefreshableOpenMode.variable(String name)
     : this._(TfArg.variable(name));
   OdbAutonomousDatabaseCloneToRefreshableOpenMode.expression(String template)
@@ -546,7 +548,8 @@ extension type const OdbAutonomousDatabaseCloneToRefreshableOpenMode._(
 /// `refreshable_mode` — derived from the provider schema description.
 extension type const OdbAutonomousDatabaseCloneToRefreshableMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OdbAutonomousDatabaseCloneToRefreshableMode.variable(String name)
     : this._(TfArg.variable(name));
   OdbAutonomousDatabaseCloneToRefreshableMode.expression(String template)
@@ -611,7 +614,8 @@ final class OdbAutonomousDatabaseCrossRegionDisasterRecovery {
 /// `remote_disaster_recovery_type` — derived from the provider schema description.
 extension type const OdbAutonomousDatabaseRemoteDisasterRecoveryType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OdbAutonomousDatabaseRemoteDisasterRecoveryType.variable(String name)
     : this._(TfArg.variable(name));
   OdbAutonomousDatabaseRemoteDisasterRecoveryType.expression(String template)

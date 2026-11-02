@@ -10,7 +10,8 @@ const Set<String> _awsVpcNetworkPerformanceMetricSubscriptionSensitive =
 /// Vpc Network Performance Metric Subscription enum for `metric`.
 extension type const VpcNetworkPerformanceMetricSubscriptionMetric._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpcNetworkPerformanceMetricSubscriptionMetric.variable(String name)
     : this._(TfArg.variable(name));
   VpcNetworkPerformanceMetricSubscriptionMetric.expression(String template)
@@ -31,7 +32,8 @@ extension type const VpcNetworkPerformanceMetricSubscriptionMetric._(
 /// Vpc Network Performance Metric Subscription enum for `statistic`.
 extension type const VpcNetworkPerformanceMetricSubscriptionStatistic._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpcNetworkPerformanceMetricSubscriptionStatistic.variable(String name)
     : this._(TfArg.variable(name));
   VpcNetworkPerformanceMetricSubscriptionStatistic.expression(String template)

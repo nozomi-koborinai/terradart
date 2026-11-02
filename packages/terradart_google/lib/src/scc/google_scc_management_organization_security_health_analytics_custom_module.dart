@@ -12,7 +12,8 @@ _googleSccManagementOrganizationSecurityHealthAnalyticsCustomModuleSensitive =
 /// Scc Management Organization Security Health Analytics Custom Module Enablement enum for `enablement_state`.
 extension type const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -81,7 +82,8 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 /// `severity` — derived from the provider schema description.
 extension type const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity.variable(
     String name,
   ) : this._(TfArg.variable(name));

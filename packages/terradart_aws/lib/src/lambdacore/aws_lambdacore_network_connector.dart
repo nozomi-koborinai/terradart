@@ -61,7 +61,8 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
 /// `associated_compute_resource_types` — derived from the provider schema description.
 extension type const LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdacoreNetworkConnectorAssociatedComputeResourceTypes.variable(String name)
     : this._(TfArg.variable(name));
   LambdacoreNetworkConnectorAssociatedComputeResourceTypes.expression(
@@ -87,7 +88,8 @@ extension type const LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
 /// `network_protocol` — derived from the provider schema description.
 extension type const LambdacoreNetworkConnectorNetworkProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdacoreNetworkConnectorNetworkProtocol.variable(String name)
     : this._(TfArg.variable(name));
   LambdacoreNetworkConnectorNetworkProtocol.expression(String template)

@@ -15,7 +15,8 @@ const Set<String> _azurermStreamAnalyticsReferenceInputBlobSensitive = <String>{
 /// Stream Analytics Reference Input Blob Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsReferenceInputBlobAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsReferenceInputBlobAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsReferenceInputBlobAuthenticationMode.expression(
@@ -64,7 +65,8 @@ final class StreamAnalyticsReferenceInputBlobSerialization {
 /// `encoding` — derived from the provider schema description.
 extension type const StreamAnalyticsReferenceInputBlobEncoding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsReferenceInputBlobEncoding.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsReferenceInputBlobEncoding.expression(String template)
@@ -82,7 +84,8 @@ extension type const StreamAnalyticsReferenceInputBlobEncoding._(
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsReferenceInputBlobFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsReferenceInputBlobFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsReferenceInputBlobFieldDelimiter.expression(String template)

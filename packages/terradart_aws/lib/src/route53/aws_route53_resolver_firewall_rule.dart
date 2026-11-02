@@ -35,7 +35,8 @@ extension type const Route53ResolverFirewallRuleAction._(TfArg<String> _)
 /// Route53 Resolver Firewall Rule Block Override Dns enum for `block_override_dns_type`.
 extension type const Route53ResolverFirewallRuleBlockOverrideDnsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallRuleBlockOverrideDnsType.variable(String name)
     : this._(TfArg.variable(name));
   Route53ResolverFirewallRuleBlockOverrideDnsType.expression(String template)
@@ -82,7 +83,8 @@ extension type const Route53ResolverFirewallRuleBlockResponse._(TfArg<String> _)
 /// Route53 Resolver Firewall Rule Confidence enum for `confidence_threshold`.
 extension type const Route53ResolverFirewallRuleConfidenceThreshold._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallRuleConfidenceThreshold.variable(String name)
     : this._(TfArg.variable(name));
   Route53ResolverFirewallRuleConfidenceThreshold.expression(String template)
@@ -110,7 +112,8 @@ extension type const Route53ResolverFirewallRuleConfidenceThreshold._(
 /// Route53 Resolver Firewall Rule Dns Threat enum for `dns_threat_protection`.
 extension type const Route53ResolverFirewallRuleDnsThreatProtection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallRuleDnsThreatProtection.variable(String name)
     : this._(TfArg.variable(name));
   Route53ResolverFirewallRuleDnsThreatProtection.expression(String template)
@@ -138,7 +141,8 @@ extension type const Route53ResolverFirewallRuleDnsThreatProtection._(
 /// Route53 Resolver Firewall Rule Firewall Domain Redirection enum for `firewall_domain_redirection_action`.
 extension type const Route53ResolverFirewallRuleFirewallDomainRedirectionAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallRuleFirewallDomainRedirectionAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

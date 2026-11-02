@@ -311,7 +311,8 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
 /// `capacity_distribution_strategy` — derived from the provider schema description.
 extension type const AutoscalingGroupCapacityDistributionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingGroupCapacityDistributionStrategy.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingGroupCapacityDistributionStrategy.expression(String template)
@@ -363,7 +364,8 @@ final class AutoscalingGroupCapacityReservationSpecification {
 /// `capacity_reservation_preference` — derived from the provider schema description.
 extension type const AutoscalingGroupCapacityReservationPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingGroupCapacityReservationPreference.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingGroupCapacityReservationPreference.expression(String template)
@@ -717,7 +719,8 @@ final class AutoscalingGroupPreferences {
 /// `scale_in_protected_instances` — derived from the provider schema description.
 extension type const AutoscalingGroupScaleInProtectedInstances._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingGroupScaleInProtectedInstances.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingGroupScaleInProtectedInstances.expression(String template)

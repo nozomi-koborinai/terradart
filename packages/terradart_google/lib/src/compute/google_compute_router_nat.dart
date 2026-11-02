@@ -84,7 +84,8 @@ extension type const ComputeRouterNatIpAllocateOption._(TfArg<String> _)
 /// Compute Router Nat Source Subnetwork Ip Ranges To enum for `source_subnetwork_ip_ranges_to_nat`.
 extension type const ComputeRouterNatSourceSubnetworkIpRangesToNat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRouterNatSourceSubnetworkIpRangesToNat.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRouterNatSourceSubnetworkIpRangesToNat.expression(String template)
@@ -115,7 +116,8 @@ extension type const ComputeRouterNatSourceSubnetworkIpRangesToNat._(
 /// Compute Router Nat Source Subnetwork Ip Ranges To enum for `source_subnetwork_ip_ranges_to_nat64`.
 extension type const ComputeRouterNatSourceSubnetworkIpRangesToNat64._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRouterNatSourceSubnetworkIpRangesToNat64.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRouterNatSourceSubnetworkIpRangesToNat64.expression(String template)

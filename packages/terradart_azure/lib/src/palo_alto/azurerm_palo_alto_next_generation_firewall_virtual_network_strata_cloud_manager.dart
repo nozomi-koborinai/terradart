@@ -45,7 +45,8 @@ final class PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerDestin
 /// `protocol` — derived from the provider schema description.
 extension type const PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerProtocol.variable(
     String name,
   ) : this._(TfArg.variable(name));

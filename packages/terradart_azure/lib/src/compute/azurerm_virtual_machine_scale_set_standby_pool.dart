@@ -13,7 +13,8 @@ const Set<String> _azurermVirtualMachineScaleSetStandbyPoolSensitive =
 /// Virtual Machine Scale Set Standby Pool Virtual Machine enum for `virtual_machine_state`.
 extension type const VirtualMachineScaleSetStandbyPoolVirtualMachineState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineScaleSetStandbyPoolVirtualMachineState.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineScaleSetStandbyPoolVirtualMachineState.expression(

@@ -568,7 +568,8 @@ final class VirtualMachineStorageDataDisk {
 /// `managed_disk_type` — derived from the provider schema description.
 extension type const VirtualMachineStorageDataDiskManagedDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineStorageDataDiskManagedDiskType.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineStorageDataDiskManagedDiskType.expression(String template)
@@ -684,7 +685,8 @@ final class VirtualMachineStorageOsDisk {
 /// `managed_disk_type` — derived from the provider schema description.
 extension type const VirtualMachineStorageOsDiskManagedDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineStorageOsDiskManagedDiskType.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineStorageOsDiskManagedDiskType.expression(String template)

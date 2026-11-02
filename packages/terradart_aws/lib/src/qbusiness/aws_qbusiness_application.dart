@@ -29,7 +29,8 @@ final class QbusinessApplicationAttachmentsConfiguration {
 /// `attachments_control_mode` — derived from the provider schema description.
 extension type const QbusinessApplicationAttachmentsControlMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   QbusinessApplicationAttachmentsControlMode.variable(String name)
     : this._(TfArg.variable(name));
   QbusinessApplicationAttachmentsControlMode.expression(String template)

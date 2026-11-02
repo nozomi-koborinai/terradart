@@ -10,7 +10,8 @@ const Set<String> _azurermPostgresqlFlexibleServerVirtualEndpointSensitive =
 /// Postgresql Flexible Server Virtual Endpoint enum for `type`.
 extension type const PostgresqlFlexibleServerVirtualEndpointType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PostgresqlFlexibleServerVirtualEndpointType.variable(String name)
     : this._(TfArg.variable(name));
   PostgresqlFlexibleServerVirtualEndpointType.expression(String template)

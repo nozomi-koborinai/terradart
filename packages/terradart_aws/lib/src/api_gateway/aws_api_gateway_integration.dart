@@ -60,7 +60,8 @@ extension type const ApiGatewayIntegrationPassthroughBehavior._(TfArg<String> _)
 /// Api Gateway Integration Response Transfer enum for `response_transfer_mode`.
 extension type const ApiGatewayIntegrationResponseTransferMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiGatewayIntegrationResponseTransferMode.variable(String name)
     : this._(TfArg.variable(name));
   ApiGatewayIntegrationResponseTransferMode.expression(String template)

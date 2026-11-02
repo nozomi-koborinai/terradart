@@ -10,7 +10,8 @@ const Set<String> _awsSsmPatchBaselineSensitive = <String>{};
 /// Ssm Patch Baseline Approved Patches Compliance enum for `approved_patches_compliance_level`.
 extension type const SsmPatchBaselineApprovedPatchesComplianceLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsmPatchBaselineApprovedPatchesComplianceLevel.variable(String name)
     : this._(TfArg.variable(name));
   SsmPatchBaselineApprovedPatchesComplianceLevel.expression(String template)
@@ -50,7 +51,8 @@ extension type const SsmPatchBaselineApprovedPatchesComplianceLevel._(
 /// Ssm Patch Baseline Available Security Updates Compliance enum for `available_security_updates_compliance_status`.
 extension type const SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus.variable(String name)
     : this._(TfArg.variable(name));
   SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus.expression(

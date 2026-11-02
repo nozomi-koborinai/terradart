@@ -11,7 +11,8 @@ const Set<String> _awsBedrockagentcoreOnlineEvaluationConfigSensitive =
 /// Bedrockagentcore Online Evaluation Config Execution enum for `execution_status`.
 extension type const BedrockagentcoreOnlineEvaluationConfigExecutionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOnlineEvaluationConfigExecutionStatus.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreOnlineEvaluationConfigExecutionStatus.expression(
@@ -141,7 +142,8 @@ final class BedrockagentcoreOnlineEvaluationConfigFilter {
 /// `operator` — derived from the provider schema description.
 extension type const BedrockagentcoreOnlineEvaluationConfigOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOnlineEvaluationConfigOperator.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreOnlineEvaluationConfigOperator.expression(String template)

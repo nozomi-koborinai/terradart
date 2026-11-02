@@ -60,7 +60,8 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
 /// `status` — derived from the provider schema description.
 extension type const DataZeroTrustTunnelWarpConnectorFilterStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustTunnelWarpConnectorFilterStatus.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustTunnelWarpConnectorFilterStatus.expression(String template)

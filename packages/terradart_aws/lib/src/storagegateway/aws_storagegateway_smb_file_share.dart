@@ -36,7 +36,8 @@ extension type const StoragegatewaySmbFileShareAuthentication._(TfArg<String> _)
 /// Storagegateway Smb File Share Case enum for `case_sensitivity`.
 extension type const StoragegatewaySmbFileShareCaseSensitivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StoragegatewaySmbFileShareCaseSensitivity.variable(String name)
     : this._(TfArg.variable(name));
   StoragegatewaySmbFileShareCaseSensitivity.expression(String template)
@@ -60,7 +61,8 @@ extension type const StoragegatewaySmbFileShareCaseSensitivity._(
 /// Storagegateway Smb File Share Default Storage enum for `default_storage_class`.
 extension type const StoragegatewaySmbFileShareDefaultStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StoragegatewaySmbFileShareDefaultStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   StoragegatewaySmbFileShareDefaultStorageClass.expression(String template)

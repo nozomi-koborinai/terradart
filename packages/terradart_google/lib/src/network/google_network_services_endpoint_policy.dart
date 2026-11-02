@@ -70,7 +70,8 @@ final class NetworkServicesEndpointPolicyMetadataLabelMatcher {
 /// `metadata_label_match_criteria` — derived from the provider schema description.
 extension type const NetworkServicesEndpointPolicyMetadataLabelMatchCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.expression(

@@ -558,7 +558,8 @@ extension type const CesAppGoldenHallucinationMetricBehavior._(TfArg<String> _)
 /// `scenario_hallucination_metric_behavior` — derived from the provider schema description.
 extension type const CesAppScenarioHallucinationMetricBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CesAppScenarioHallucinationMetricBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CesAppScenarioHallucinationMetricBehavior.expression(String template)

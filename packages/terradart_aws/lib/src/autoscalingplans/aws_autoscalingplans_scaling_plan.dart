@@ -184,7 +184,8 @@ final class AutoscalingplansScalingPlanScalingInstruction {
 /// `predictive_scaling_max_capacity_behavior` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -221,7 +222,8 @@ extension type const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBeha
 /// `predictive_scaling_mode` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanPredictiveScalingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanPredictiveScalingMode.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanPredictiveScalingMode.expression(String template)
@@ -247,7 +249,8 @@ extension type const AutoscalingplansScalingPlanPredictiveScalingMode._(
 /// `scalable_dimension` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanScalableDimension._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanScalableDimension.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanScalableDimension.expression(String template)
@@ -303,7 +306,8 @@ extension type const AutoscalingplansScalingPlanScalableDimension._(
 /// `scaling_policy_update_behavior` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanScalingPolicyUpdateBehavior.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanScalingPolicyUpdateBehavior.expression(
@@ -329,7 +333,8 @@ extension type const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior._(
 /// `service_namespace` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanServiceNamespace._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanServiceNamespace.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanServiceNamespace.expression(String template)
@@ -435,7 +440,8 @@ final class AutoscalingplansScalingPlanPredefinedLoadMetricSpecification {
 /// `predefined_load_metric_type` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanPredefinedLoadMetricType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanPredefinedLoadMetricType.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanPredefinedLoadMetricType.expression(
@@ -551,7 +557,8 @@ final class AutoscalingplansScalingPlanCustomizedScalingMetricSpecification {
 /// `statistic` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -613,7 +620,8 @@ final class AutoscalingplansScalingPlanPredefinedScalingMetricSpecification {
 /// `predefined_scaling_metric_type` — derived from the provider schema description.
 extension type const AutoscalingplansScalingPlanPredefinedScalingMetricType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingplansScalingPlanPredefinedScalingMetricType.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingplansScalingPlanPredefinedScalingMetricType.expression(

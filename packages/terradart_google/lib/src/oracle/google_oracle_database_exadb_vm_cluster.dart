@@ -17,7 +17,8 @@ const Set<String> _googleOracleDatabaseExadbVmClusterSensitive = <String>{};
 /// Terraform `deletion_policy` for ExaDB VM clusters.
 extension type const OracleDatabaseExadbVmClusterDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseExadbVmClusterDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseExadbVmClusterDeletionPolicy.expression(String template)
@@ -140,7 +141,8 @@ extension type const OracleDatabaseExadbVmClusterLicenseModel._(TfArg<String> _)
 /// `shape_attribute` — derived from the provider schema description.
 extension type const OracleDatabaseExadbVmClusterShapeAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseExadbVmClusterShapeAttribute.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseExadbVmClusterShapeAttribute.expression(String template)

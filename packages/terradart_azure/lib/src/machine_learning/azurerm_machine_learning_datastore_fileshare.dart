@@ -13,7 +13,8 @@ const Set<String> _azurermMachineLearningDatastoreFileshareSensitive = <String>{
 /// Machine Learning Datastore Fileshare Service Data enum for `service_data_identity`.
 extension type const MachineLearningDatastoreFileshareServiceDataIdentity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningDatastoreFileshareServiceDataIdentity.variable(String name)
     : this._(TfArg.variable(name));
   MachineLearningDatastoreFileshareServiceDataIdentity.expression(

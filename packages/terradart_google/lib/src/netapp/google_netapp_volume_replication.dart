@@ -10,7 +10,8 @@ const Set<String> _googleNetappVolumeReplicationSensitive = <String>{};
 /// Netapp Volume Replication Replication enum for `replication_schedule`.
 extension type const NetappVolumeReplicationReplicationSchedule._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeReplicationReplicationSchedule.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeReplicationReplicationSchedule.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _azurermSecurityCenterSubscriptionPricingSensitive =
 /// Security Center Subscription Pricing Resource enum for `resource_type`.
 extension type const SecurityCenterSubscriptionPricingResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityCenterSubscriptionPricingResourceType.variable(String name)
     : this._(TfArg.variable(name));
   SecurityCenterSubscriptionPricingResourceType.expression(String template)

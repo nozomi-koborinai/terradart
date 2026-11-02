@@ -74,7 +74,8 @@ final class CognitoRiskConfigurationHighAction {
 /// `event_action` — derived from the provider schema description.
 extension type const CognitoRiskConfigurationHighActionEventAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoRiskConfigurationHighActionEventAction.variable(String name)
     : this._(TfArg.variable(name));
   CognitoRiskConfigurationHighActionEventAction.expression(String template)

@@ -15,7 +15,8 @@ _azurermWorkloadsSapSingleNodeVirtualInstanceSensitive = <String>{
 /// Workloads Sap Single Node Virtual Instance enum for `environment`.
 extension type const WorkloadsSapSingleNodeVirtualInstanceEnvironment._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceEnvironment.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceEnvironment.expression(String template)
@@ -39,7 +40,8 @@ extension type const WorkloadsSapSingleNodeVirtualInstanceEnvironment._(
 /// Workloads Sap Single Node Virtual Instance Managed Resources Network Access enum for `managed_resources_network_access_type`.
 extension type const WorkloadsSapSingleNodeVirtualInstanceManagedResourcesNetworkAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceManagedResourcesNetworkAccessType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -68,7 +70,8 @@ extension type const WorkloadsSapSingleNodeVirtualInstanceManagedResourcesNetwor
 /// Workloads Sap Single Node Virtual Instance Sap enum for `sap_product`.
 extension type const WorkloadsSapSingleNodeVirtualInstanceSapProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceSapProduct.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceSapProduct.expression(String template)
@@ -162,7 +165,8 @@ final class WorkloadsSapSingleNodeVirtualInstanceSingleServerConfiguration {
 /// `database_type` — derived from the provider schema description.
 extension type const WorkloadsSapSingleNodeVirtualInstanceDatabaseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceDatabaseType.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceDatabaseType.expression(String template)
@@ -212,7 +216,8 @@ final class WorkloadsSapSingleNodeVirtualInstanceDiskVolumeConfiguration {
 /// `sku_name` — derived from the provider schema description.
 extension type const WorkloadsSapSingleNodeVirtualInstanceSkuName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceSkuName.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceSkuName.expression(String template)
@@ -256,7 +261,8 @@ extension type const WorkloadsSapSingleNodeVirtualInstanceSkuName._(
 /// `volume_name` — derived from the provider schema description.
 extension type const WorkloadsSapSingleNodeVirtualInstanceVolumeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceVolumeName.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceVolumeName.expression(String template)
@@ -348,7 +354,8 @@ final class WorkloadsSapSingleNodeVirtualInstanceImage {
 /// `publisher` — derived from the provider schema description.
 extension type const WorkloadsSapSingleNodeVirtualInstancePublisher._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstancePublisher.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstancePublisher.expression(String template)
@@ -448,7 +455,8 @@ final class WorkloadsSapSingleNodeVirtualInstanceDataDisk {
 /// `volume_name` — derived from the provider schema description.
 extension type const WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapSingleNodeVirtualInstanceDataDiskVolumeName.expression(

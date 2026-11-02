@@ -34,7 +34,8 @@ extension type const BedrockagentAgentActionGroupState._(TfArg<String> _)
 /// Bedrockagent Agent Action Group Parent Action Group enum for `parent_action_group_signature`.
 extension type const BedrockagentAgentActionGroupParentActionGroupSignature._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentAgentActionGroupParentActionGroupSignature.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentAgentActionGroupParentActionGroupSignature.expression(
@@ -174,7 +175,8 @@ final class BedrockagentAgentActionGroupExecutor {
 /// `custom_control` — derived from the provider schema description.
 extension type const BedrockagentAgentActionGroupCustomControl._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentAgentActionGroupCustomControl.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentAgentActionGroupCustomControl.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _awsOpensearchserverlessCollectionSensitive = <String>{};
 /// Opensearchserverless Collection Standby enum for `standby_replicas`.
 extension type const OpensearchserverlessCollectionStandbyReplicas._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OpensearchserverlessCollectionStandbyReplicas.variable(String name)
     : this._(TfArg.variable(name));
   OpensearchserverlessCollectionStandbyReplicas.expression(String template)

@@ -109,7 +109,8 @@ final class R2BucketLifecycleAbortMultipartUploadsTransitionCondition {
 /// `type` — derived from the provider schema description.
 extension type const R2BucketLifecycleAbortMultipartUploadsTransitionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   R2BucketLifecycleAbortMultipartUploadsTransitionType.variable(String name)
     : this._(TfArg.variable(name));
   R2BucketLifecycleAbortMultipartUploadsTransitionType.expression(
@@ -179,7 +180,8 @@ final class R2BucketLifecycleDeleteObjectsTransitionCondition {
 /// `type` — derived from the provider schema description.
 extension type const R2BucketLifecycleDeleteObjectsTransitionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   R2BucketLifecycleDeleteObjectsTransitionType.variable(String name)
     : this._(TfArg.variable(name));
   R2BucketLifecycleDeleteObjectsTransitionType.expression(String template)

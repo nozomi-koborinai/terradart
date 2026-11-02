@@ -106,7 +106,8 @@ final class NetappVolumeGroupOracleVolume {
 /// `encryption_key_source` — derived from the provider schema description.
 extension type const NetappVolumeGroupOracleEncryptionKeySource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeGroupOracleEncryptionKeySource.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeGroupOracleEncryptionKeySource.expression(String template)
@@ -338,7 +339,8 @@ extension type const NetappVolumeGroupOracleEndpointType._(TfArg<String> _)
 /// `replication_frequency` — derived from the provider schema description.
 extension type const NetappVolumeGroupOracleReplicationFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetappVolumeGroupOracleReplicationFrequency.variable(String name)
     : this._(TfArg.variable(name));
   NetappVolumeGroupOracleReplicationFrequency.expression(String template)

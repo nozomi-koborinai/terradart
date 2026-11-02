@@ -24,7 +24,8 @@ final class Ec2TransitGatewayPeeringAttachmentOptions {
 /// `dynamic_routing` — derived from the provider schema description.
 extension type const Ec2TransitGatewayPeeringAttachmentDynamicRouting._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2TransitGatewayPeeringAttachmentDynamicRouting.variable(String name)
     : this._(TfArg.variable(name));
   Ec2TransitGatewayPeeringAttachmentDynamicRouting.expression(String template)

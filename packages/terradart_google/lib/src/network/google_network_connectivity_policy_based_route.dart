@@ -13,7 +13,8 @@ const Set<String> _googleNetworkConnectivityPolicyBasedRouteSensitive =
 /// Network Connectivity Policy Based Route Next Hop Other enum for `next_hop_other_routes`.
 extension type const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.expression(
@@ -206,7 +207,8 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 /// `ip_protocol` — derived from the provider schema description.
 extension type const NetworkConnectivityPolicyBasedRouteIpProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityPolicyBasedRouteIpProtocol.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityPolicyBasedRouteIpProtocol.expression(String template)
@@ -234,7 +236,8 @@ extension type const NetworkConnectivityPolicyBasedRouteIpProtocol._(
 /// `protocol_version` — derived from the provider schema description.
 extension type const NetworkConnectivityPolicyBasedRouteProtocolVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityPolicyBasedRouteProtocolVersion.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityPolicyBasedRouteProtocolVersion.expression(String template)

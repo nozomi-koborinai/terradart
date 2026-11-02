@@ -9,7 +9,8 @@ const Set<String> _awsCostoptimizationhubPreferencesSensitive = <String>{};
 /// Costoptimizationhub Preferences Member Account Discount enum for `member_account_discount_visibility`.
 extension type const CostoptimizationhubPreferencesMemberAccountDiscountVisibility._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CostoptimizationhubPreferencesMemberAccountDiscountVisibility.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -38,7 +39,8 @@ extension type const CostoptimizationhubPreferencesMemberAccountDiscountVisibili
 /// Costoptimizationhub Preferences Savings Estimation enum for `savings_estimation_mode`.
 extension type const CostoptimizationhubPreferencesSavingsEstimationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CostoptimizationhubPreferencesSavingsEstimationMode.variable(String name)
     : this._(TfArg.variable(name));
   CostoptimizationhubPreferencesSavingsEstimationMode.expression(

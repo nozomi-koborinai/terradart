@@ -27,7 +27,8 @@ final class NetworkFunctionCollectorPolicyIpfxEmission {
 /// `destination_types` — derived from the provider schema description.
 extension type const NetworkFunctionCollectorPolicyDestinationTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkFunctionCollectorPolicyDestinationTypes.variable(String name)
     : this._(TfArg.variable(name));
   NetworkFunctionCollectorPolicyDestinationTypes.expression(String template)

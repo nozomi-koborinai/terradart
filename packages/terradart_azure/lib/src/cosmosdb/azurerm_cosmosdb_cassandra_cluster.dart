@@ -14,7 +14,8 @@ const Set<String> _azurermCosmosdbCassandraClusterSensitive = <String>{
 /// Cosmosdb Cassandra Cluster Authentication enum for `authentication_method`.
 extension type const CosmosdbCassandraClusterAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CosmosdbCassandraClusterAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   CosmosdbCassandraClusterAuthenticationMethod.expression(String template)

@@ -12,7 +12,8 @@ const Set<String> _cloudflareApiShieldSchemaValidationSettingsSensitive =
 /// Api Shield Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
 extension type const ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -45,7 +46,8 @@ extension type const ApiShieldSchemaValidationSettingsValidationDefaultMitigatio
 /// Api Shield Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
 extension type const ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

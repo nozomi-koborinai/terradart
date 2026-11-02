@@ -9,7 +9,8 @@ const Set<String> _awsResiliencehubv2ServiceFunctionSensitive = <String>{};
 /// Resiliencehubv2 Service Function enum for `criticality`.
 extension type const Resiliencehubv2ServiceFunctionCriticality._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Resiliencehubv2ServiceFunctionCriticality.variable(String name)
     : this._(TfArg.variable(name));
   Resiliencehubv2ServiceFunctionCriticality.expression(String template)

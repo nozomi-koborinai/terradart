@@ -10,7 +10,8 @@ const Set<String> _azurermSynapseSqlPoolWorkloadClassifierSensitive =
 /// Synapse Sql Pool Workload Classifier enum for `importance`.
 extension type const SynapseSqlPoolWorkloadClassifierImportance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SynapseSqlPoolWorkloadClassifierImportance.variable(String name)
     : this._(TfArg.variable(name));
   SynapseSqlPoolWorkloadClassifierImportance.expression(String template)

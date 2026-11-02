@@ -37,7 +37,8 @@ extension type const CloudwatchLogDeliveryDestinationType._(TfArg<String> _)
 /// Cloudwatch Log Delivery Destination Output enum for `output_format`.
 extension type const CloudwatchLogDeliveryDestinationOutputFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchLogDeliveryDestinationOutputFormat.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchLogDeliveryDestinationOutputFormat.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _googleGkeHubFleetSensitive = <String>{};
 
 extension type const GkeHubFleetBinaryAuthorizationEvaluationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeHubFleetBinaryAuthorizationEvaluationMode.variable(String name)
     : this._(TfArg.variable(name));
   GkeHubFleetBinaryAuthorizationEvaluationMode.expression(String template)
@@ -55,7 +56,8 @@ extension type const GkeHubFleetSecurityPostureMode._(TfArg<String> _)
 
 extension type const GkeHubFleetSecurityPostureVulnerabilityMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeHubFleetSecurityPostureVulnerabilityMode.variable(String name)
     : this._(TfArg.variable(name));
   GkeHubFleetSecurityPostureVulnerabilityMode.expression(String template)

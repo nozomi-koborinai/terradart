@@ -37,7 +37,8 @@ extension type const ContainerAppEnvironmentLogsDestination._(TfArg<String> _)
 /// Container App Environment Public Network enum for `public_network_access`.
 extension type const ContainerAppEnvironmentPublicNetworkAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerAppEnvironmentPublicNetworkAccess.variable(String name)
     : this._(TfArg.variable(name));
   ContainerAppEnvironmentPublicNetworkAccess.expression(String template)
@@ -106,7 +107,8 @@ final class ContainerAppEnvironmentWorkloadProfile {
 /// `workload_profile_type` — derived from the provider schema description.
 extension type const ContainerAppEnvironmentWorkloadProfileType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerAppEnvironmentWorkloadProfileType.variable(String name)
     : this._(TfArg.variable(name));
   ContainerAppEnvironmentWorkloadProfileType.expression(String template)

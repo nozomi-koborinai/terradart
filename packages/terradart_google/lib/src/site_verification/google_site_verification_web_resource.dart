@@ -10,7 +10,8 @@ const Set<String> _googleSiteVerificationWebResourceSensitive = <String>{};
 /// Site Verification Web Resource Verification enum for `verification_method`.
 extension type const SiteVerificationWebResourceVerificationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SiteVerificationWebResourceVerificationMethod.variable(String name)
     : this._(TfArg.variable(name));
   SiteVerificationWebResourceVerificationMethod.expression(String template)

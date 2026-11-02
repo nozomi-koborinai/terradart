@@ -11,7 +11,8 @@ const Set<String> _googleNetworkSecurityMirroringEndpointGroupSensitive =
 /// Network Security Mirroring Endpoint Group enum for `type`.
 extension type const NetworkSecurityMirroringEndpointGroupType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityMirroringEndpointGroupType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityMirroringEndpointGroupType.expression(String template)

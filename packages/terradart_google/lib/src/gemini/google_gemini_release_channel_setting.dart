@@ -9,7 +9,8 @@ const Set<String> _googleGeminiReleaseChannelSettingSensitive = <String>{};
 /// Gemini Release Channel Setting Release enum for `release_channel`.
 extension type const GeminiReleaseChannelSettingReleaseChannel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GeminiReleaseChannelSettingReleaseChannel.variable(String name)
     : this._(TfArg.variable(name));
   GeminiReleaseChannelSettingReleaseChannel.expression(String template)

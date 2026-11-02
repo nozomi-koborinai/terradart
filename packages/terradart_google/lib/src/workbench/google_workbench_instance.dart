@@ -335,7 +335,8 @@ final class WorkbenchInstanceConfidentialInstanceConfig {
 /// `confidential_instance_type` — derived from the provider schema description.
 extension type const WorkbenchInstanceConfidentialInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkbenchInstanceConfidentialInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   WorkbenchInstanceConfidentialInstanceType.expression(String template)

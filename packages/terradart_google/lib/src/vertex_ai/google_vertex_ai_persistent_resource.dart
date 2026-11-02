@@ -195,7 +195,8 @@ final class VertexAiPersistentResourceMachineSpec {
 /// `accelerator_type` — derived from the provider schema description.
 extension type const VertexAiPersistentResourceAcceleratorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiPersistentResourceAcceleratorType.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiPersistentResourceAcceleratorType.expression(String template)

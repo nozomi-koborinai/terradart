@@ -12,7 +12,8 @@ const Set<String> _azurermVirtualHubSecurityPartnerProviderSensitive =
 /// Virtual Hub Security Partner Provider Security Provider enum for `security_provider_name`.
 extension type const VirtualHubSecurityPartnerProviderSecurityProviderName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualHubSecurityPartnerProviderSecurityProviderName.variable(String name)
     : this._(TfArg.variable(name));
   VirtualHubSecurityPartnerProviderSecurityProviderName.expression(

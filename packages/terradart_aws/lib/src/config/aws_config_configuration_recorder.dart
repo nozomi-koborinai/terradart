@@ -123,7 +123,8 @@ final class ConfigConfigurationRecorderRecordingMode {
 /// `recording_frequency` — derived from the provider schema description.
 extension type const ConfigConfigurationRecorderRecordingFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigConfigurationRecorderRecordingFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ConfigConfigurationRecorderRecordingFrequency.expression(String template)

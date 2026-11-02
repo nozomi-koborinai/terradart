@@ -59,7 +59,8 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
 /// `allowed_device_management_levels` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelConditionAllowedDeviceManagementLevels._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelConditionAllowedDeviceManagementLevels.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -96,7 +97,8 @@ extension type const AccessContextManagerAccessLevelConditionAllowedDeviceManage
 /// `allowed_encryption_statuses` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelConditionAllowedEncryptionStatuses._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelConditionAllowedEncryptionStatuses.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -158,7 +160,8 @@ final class AccessContextManagerAccessLevelConditionOsConstraints {
 /// `os_type` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelConditionOsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelConditionOsType.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerAccessLevelConditionOsType.expression(String template)

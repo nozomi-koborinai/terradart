@@ -462,7 +462,8 @@ extension type const ZeroTrustGatewayPolicyUpload._(TfArg<String> _)
 /// `version` — derived from the provider schema description.
 extension type const ZeroTrustGatewayPolicyBisoAdminControlsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustGatewayPolicyBisoAdminControlsVersion.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustGatewayPolicyBisoAdminControlsVersion.expression(String template)
@@ -810,7 +811,8 @@ final class ZeroTrustGatewayPolicyUntrustedCert {
 /// `action` — derived from the provider schema description.
 extension type const ZeroTrustGatewayPolicyUntrustedCertAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustGatewayPolicyUntrustedCertAction.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustGatewayPolicyUntrustedCertAction.expression(String template)

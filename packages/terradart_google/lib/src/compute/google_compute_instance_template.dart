@@ -21,7 +21,8 @@ const Set<String> _googleComputeInstanceTemplateSensitive = <String>{
 /// Compute Instance Template Key Revocation Action enum for `key_revocation_action_type`.
 extension type const ComputeInstanceTemplateKeyRevocationActionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceTemplateKeyRevocationActionType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceTemplateKeyRevocationActionType.expression(String template)
@@ -175,7 +176,8 @@ extension type const InstanceTemplateProvisioningModel._(TfArg<String> _)
 /// preempted or `max_run_duration` elapses.
 extension type const InstanceTemplateInstanceTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   InstanceTemplateInstanceTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   InstanceTemplateInstanceTerminationAction.expression(String template)
@@ -238,7 +240,8 @@ extension type const InstanceTemplateConfidentialInstanceType._(TfArg<String> _)
 /// `ENHANCED` exposes the broadest set of counters.
 extension type const InstanceTemplatePerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   InstanceTemplatePerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   InstanceTemplatePerformanceMonitoringUnit.expression(String template)
@@ -815,7 +818,8 @@ final class ComputeInstanceTemplateNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const ComputeInstanceTemplateTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceTemplateTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceTemplateTotalEgressBandwidthTier.expression(String template)

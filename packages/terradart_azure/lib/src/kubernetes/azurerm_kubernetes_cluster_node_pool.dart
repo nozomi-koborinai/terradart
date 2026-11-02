@@ -333,7 +333,8 @@ final class KubernetesClusterNodePoolKubeletConfig {
 /// `cpu_manager_policy` — derived from the provider schema description.
 extension type const KubernetesClusterNodePoolCpuManagerPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodePoolCpuManagerPolicy.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodePoolCpuManagerPolicy.expression(String template)
@@ -357,7 +358,8 @@ extension type const KubernetesClusterNodePoolCpuManagerPolicy._(
 /// `topology_manager_policy` — derived from the provider schema description.
 extension type const KubernetesClusterNodePoolTopologyManagerPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodePoolTopologyManagerPolicy.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodePoolTopologyManagerPolicy.expression(String template)
@@ -419,7 +421,8 @@ final class KubernetesClusterNodePoolLinuxOsConfig {
 /// `transparent_huge_page` — derived from the provider schema description.
 extension type const KubernetesClusterNodePoolTransparentHugePage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodePoolTransparentHugePage.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodePoolTransparentHugePage.expression(String template)
@@ -447,7 +450,8 @@ extension type const KubernetesClusterNodePoolTransparentHugePage._(
 /// `transparent_huge_page_defrag` — derived from the provider schema description.
 extension type const KubernetesClusterNodePoolTransparentHugePageDefrag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodePoolTransparentHugePageDefrag.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodePoolTransparentHugePageDefrag.expression(String template)
@@ -767,7 +771,8 @@ final class KubernetesClusterNodePoolUpgradeCapacityMaxUnavailable
 /// `undrainable_node_behavior` — derived from the provider schema description.
 extension type const KubernetesClusterNodePoolUndrainableNodeBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesClusterNodePoolUndrainableNodeBehavior.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesClusterNodePoolUndrainableNodeBehavior.expression(String template)

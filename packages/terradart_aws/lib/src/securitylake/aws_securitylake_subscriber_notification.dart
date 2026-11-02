@@ -72,7 +72,8 @@ final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
 /// `http_method` — derived from the provider schema description.
 extension type const SecuritylakeSubscriberNotificationHttpMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecuritylakeSubscriberNotificationHttpMethod.variable(String name)
     : this._(TfArg.variable(name));
   SecuritylakeSubscriberNotificationHttpMethod.expression(String template)

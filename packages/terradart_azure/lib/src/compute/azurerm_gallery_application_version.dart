@@ -82,7 +82,8 @@ final class GalleryApplicationVersionTargetRegion {
 /// `storage_account_type` — derived from the provider schema description.
 extension type const GalleryApplicationVersionStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GalleryApplicationVersionStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   GalleryApplicationVersionStorageAccountType.expression(String template)

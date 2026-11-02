@@ -127,7 +127,8 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProvider {
 /// `authentication_type` — derived from the provider schema description.
 extension type const AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -275,7 +276,8 @@ final class AppsyncGraphqlApiEnhancedMetricsConfig {
 /// `data_source_level_metrics_behavior` — derived from the provider schema description.
 extension type const AppsyncGraphqlApiDataSourceLevelMetricsBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppsyncGraphqlApiDataSourceLevelMetricsBehavior.variable(String name)
     : this._(TfArg.variable(name));
   AppsyncGraphqlApiDataSourceLevelMetricsBehavior.expression(String template)
@@ -301,7 +303,8 @@ extension type const AppsyncGraphqlApiDataSourceLevelMetricsBehavior._(
 /// `operation_level_metrics_config` — derived from the provider schema description.
 extension type const AppsyncGraphqlApiOperationLevelMetricsConfig._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppsyncGraphqlApiOperationLevelMetricsConfig.variable(String name)
     : this._(TfArg.variable(name));
   AppsyncGraphqlApiOperationLevelMetricsConfig.expression(String template)
@@ -325,7 +328,8 @@ extension type const AppsyncGraphqlApiOperationLevelMetricsConfig._(
 /// `resolver_level_metrics_behavior` — derived from the provider schema description.
 extension type const AppsyncGraphqlApiResolverLevelMetricsBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppsyncGraphqlApiResolverLevelMetricsBehavior.variable(String name)
     : this._(TfArg.variable(name));
   AppsyncGraphqlApiResolverLevelMetricsBehavior.expression(String template)

@@ -12,7 +12,8 @@ const Set<String> _googleComputeRegionBackendBucketSensitive = <String>{};
 /// Compute Region Backend Bucket Load Balancing enum for `load_balancing_scheme`.
 extension type const ComputeRegionBackendBucketLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionBackendBucketLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionBackendBucketLoadBalancingScheme.expression(String template)

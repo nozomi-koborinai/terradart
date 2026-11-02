@@ -31,7 +31,8 @@ extension type const Ec2CapacityReservationEndDateType._(TfArg<String> _)
 /// Ec2 Capacity Reservation Instance Match enum for `instance_match_criteria`.
 extension type const Ec2CapacityReservationInstanceMatchCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2CapacityReservationInstanceMatchCriteria.variable(String name)
     : this._(TfArg.variable(name));
   Ec2CapacityReservationInstanceMatchCriteria.expression(String template)

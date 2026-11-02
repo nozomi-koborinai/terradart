@@ -9,7 +9,8 @@ const Set<String> _awsAppstreamUserStackAssociationSensitive = <String>{};
 /// Appstream User Stack Association Authentication enum for `authentication_type`.
 extension type const AppstreamUserStackAssociationAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppstreamUserStackAssociationAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   AppstreamUserStackAssociationAuthenticationType.expression(String template)

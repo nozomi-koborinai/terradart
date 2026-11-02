@@ -15,7 +15,8 @@ const Set<String> _azurermOracleAutonomousDatabaseCloneFromBackupSensitive =
 /// Oracle Autonomous Database Clone From Backup Clone enum for `clone_type`.
 extension type const OracleAutonomousDatabaseCloneFromBackupCloneType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromBackupCloneType.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromBackupCloneType.expression(String template)
@@ -39,7 +40,8 @@ extension type const OracleAutonomousDatabaseCloneFromBackupCloneType._(
 /// Oracle Autonomous Database Clone From Backup Database enum for `database_workload`.
 extension type const OracleAutonomousDatabaseCloneFromBackupDatabaseWorkload._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromBackupDatabaseWorkload.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromBackupDatabaseWorkload.expression(
@@ -69,7 +71,8 @@ extension type const OracleAutonomousDatabaseCloneFromBackupDatabaseWorkload._(
 /// Oracle Autonomous Database Clone From Backup License enum for `license_model`.
 extension type const OracleAutonomousDatabaseCloneFromBackupLicenseModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromBackupLicenseModel.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromBackupLicenseModel.expression(

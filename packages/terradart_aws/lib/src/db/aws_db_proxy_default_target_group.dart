@@ -43,7 +43,8 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 /// `session_pinning_filters` — derived from the provider schema description.
 extension type const DbProxyDefaultTargetGroupSessionPinningFilters._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DbProxyDefaultTargetGroupSessionPinningFilters.variable(String name)
     : this._(TfArg.variable(name));
   DbProxyDefaultTargetGroupSessionPinningFilters.expression(String template)

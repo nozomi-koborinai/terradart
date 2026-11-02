@@ -22,7 +22,8 @@ final class ApprunnerObservabilityConfigurationTraceConfiguration {
 /// `vendor` — derived from the provider schema description.
 extension type const ApprunnerObservabilityConfigurationVendor._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApprunnerObservabilityConfigurationVendor.variable(String name)
     : this._(TfArg.variable(name));
   ApprunnerObservabilityConfigurationVendor.expression(String template)

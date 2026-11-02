@@ -12,7 +12,8 @@ const Set<String> _azurermAppConfigurationSensitive = <String>{};
 /// App Configuration Data Plane Proxy Authentication enum for `data_plane_proxy_authentication_mode`.
 extension type const AppConfigurationDataPlaneProxyAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppConfigurationDataPlaneProxyAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   AppConfigurationDataPlaneProxyAuthenticationMode.expression(String template)

@@ -13,7 +13,8 @@ const Set<String> _googleMigrationCenterDiscoveryClientSensitive = <String>{};
 /// Terraform `deletion_policy` for Migration Center discovery clients.
 extension type const MigrationCenterDiscoveryClientDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterDiscoveryClientDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterDiscoveryClientDeletionPolicy.expression(String template)

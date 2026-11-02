@@ -238,7 +238,8 @@ final class Sesv2ConfigurationSetGuardianOptions {
 /// `optimized_shared_delivery` — derived from the provider schema description.
 extension type const Sesv2ConfigurationSetOptimizedSharedDelivery._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2ConfigurationSetOptimizedSharedDelivery.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2ConfigurationSetOptimizedSharedDelivery.expression(String template)

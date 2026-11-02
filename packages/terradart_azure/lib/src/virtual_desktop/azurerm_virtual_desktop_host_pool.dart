@@ -43,7 +43,8 @@ extension type const VirtualDesktopHostPoolLoadBalancerType._(TfArg<String> _)
 /// Virtual Desktop Host Pool Personal Desktop Assignment enum for `personal_desktop_assignment_type`.
 extension type const VirtualDesktopHostPoolPersonalDesktopAssignmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopHostPoolPersonalDesktopAssignmentType.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopHostPoolPersonalDesktopAssignmentType.expression(
@@ -68,7 +69,8 @@ extension type const VirtualDesktopHostPoolPersonalDesktopAssignmentType._(
 /// Virtual Desktop Host Pool Preferred App Group enum for `preferred_app_group_type`.
 extension type const VirtualDesktopHostPoolPreferredAppGroupType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopHostPoolPreferredAppGroupType.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopHostPoolPreferredAppGroupType.expression(String template)
@@ -96,7 +98,8 @@ extension type const VirtualDesktopHostPoolPreferredAppGroupType._(
 /// Virtual Desktop Host Pool Public Network enum for `public_network_access`.
 extension type const VirtualDesktopHostPoolPublicNetworkAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopHostPoolPublicNetworkAccess.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopHostPoolPublicNetworkAccess.expression(String template)

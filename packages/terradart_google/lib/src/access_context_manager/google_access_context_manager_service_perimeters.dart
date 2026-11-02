@@ -51,7 +51,8 @@ final class AccessContextManagerServicePerimeters {
 /// `perimeter_type` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimetersPerimeterType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimetersPerimeterType.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerServicePerimetersPerimeterType.expression(String template)
@@ -172,7 +173,8 @@ final class AccessContextManagerServicePerimetersEgressFrom {
 /// `identity_type` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimetersIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimetersIdentityType.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerServicePerimetersIdentityType.expression(String template)
@@ -204,7 +206,8 @@ extension type const AccessContextManagerServicePerimetersIdentityType._(
 /// `source_restriction` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimetersSourceRestriction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimetersSourceRestriction.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerServicePerimetersSourceRestriction.expression(
@@ -465,7 +468,8 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
 /// `service_patterns_enforcement_scopes` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimetersServicePatternsEnforcementScopes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimetersServicePatternsEnforcementScopes.variable(
     String name,
   ) : this._(TfArg.variable(name));

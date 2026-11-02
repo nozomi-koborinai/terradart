@@ -257,7 +257,8 @@ extension type const ContainerRegistryTaskType._(TfArg<String> _)
 /// `update_trigger_payload_type` — derived from the provider schema description.
 extension type const ContainerRegistryTaskUpdateTriggerPayloadType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerRegistryTaskUpdateTriggerPayloadType.variable(String name)
     : this._(TfArg.variable(name));
   ContainerRegistryTaskUpdateTriggerPayloadType.expression(String template)

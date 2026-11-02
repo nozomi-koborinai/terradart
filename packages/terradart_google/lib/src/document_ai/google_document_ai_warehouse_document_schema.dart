@@ -96,7 +96,8 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitions {
 /// `retrieval_importance` — derived from the provider schema description.
 extension type const DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DocumentAiWarehouseDocumentSchemaRetrievalImportance.variable(String name)
     : this._(TfArg.variable(name));
   DocumentAiWarehouseDocumentSchemaRetrievalImportance.expression(

@@ -16,7 +16,8 @@ const Set<String> _googleOracleDatabaseGoldengateDeploymentSensitive =
 /// Terraform `deletion_policy` for GoldenGate deployments (defaults to PREVENT).
 extension type const OracleDatabaseGoldengateDeploymentDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateDeploymentDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateDeploymentDeletionPolicy.expression(String template)
@@ -92,7 +93,8 @@ final class OracleDatabaseGoldengateDeploymentProperties {
 /// `license_model` — derived from the provider schema description.
 extension type const OracleDatabaseGoldengateDeploymentLicenseModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateDeploymentLicenseModel.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseGoldengateDeploymentLicenseModel.expression(String template)

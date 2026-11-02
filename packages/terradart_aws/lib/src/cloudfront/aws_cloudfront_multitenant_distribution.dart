@@ -17,7 +17,8 @@ const Set<String> _awsCloudfrontMultitenantDistributionSensitive = <String>{};
 /// Cloudfront Multitenant Distribution Http enum for `http_version`.
 extension type const CloudfrontMultitenantDistributionHttpVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionHttpVersion.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionHttpVersion.expression(String template)
@@ -149,7 +150,8 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 /// `viewer_protocol_policy` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionViewerProtocolPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionViewerProtocolPolicy.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionViewerProtocolPolicy.expression(
@@ -200,7 +202,8 @@ final class CloudfrontMultitenantDistributionAllowedMethods {
 /// `cached_methods` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionCachedMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionCachedMethods.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionCachedMethods.expression(String template)
@@ -265,7 +268,8 @@ final class CloudfrontMultitenantDistributionFunctionAssociation {
 /// `event_type` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionEventType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionEventType.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionEventType.expression(String template)
@@ -574,7 +578,8 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
 /// `ip_address_type` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionIpAddressType.expression(String template)
@@ -602,7 +607,8 @@ extension type const CloudfrontMultitenantDistributionIpAddressType._(
 /// `origin_protocol_policy` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionOriginProtocolPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionOriginProtocolPolicy.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionOriginProtocolPolicy.expression(
@@ -632,7 +638,8 @@ extension type const CloudfrontMultitenantDistributionOriginProtocolPolicy._(
 /// `origin_ssl_protocols` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionOriginSslProtocols._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionOriginSslProtocols.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionOriginSslProtocols.expression(
@@ -809,7 +816,8 @@ final class CloudfrontMultitenantDistributionGeoRestriction {
 /// `restriction_type` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionRestrictionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionRestrictionType.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionRestrictionType.expression(String template)
@@ -946,7 +954,8 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 /// `minimum_protocol_version` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionMinimumProtocolVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionMinimumProtocolVersion.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionMinimumProtocolVersion.expression(
@@ -1010,7 +1019,8 @@ extension type const CloudfrontMultitenantDistributionMinimumProtocolVersion._(
 /// `ssl_support_method` — derived from the provider schema description.
 extension type const CloudfrontMultitenantDistributionSslSupportMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMultitenantDistributionSslSupportMethod.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontMultitenantDistributionSslSupportMethod.expression(String template)

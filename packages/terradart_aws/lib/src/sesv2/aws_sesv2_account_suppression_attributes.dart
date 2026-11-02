@@ -9,7 +9,8 @@ const Set<String> _awsSesv2AccountSuppressionAttributesSensitive = <String>{};
 /// Sesv2 Account Suppression Attributes Suppressed enum for `suppressed_reasons`.
 extension type const Sesv2AccountSuppressionAttributesSuppressedReasons._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2AccountSuppressionAttributesSuppressedReasons.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2AccountSuppressionAttributesSuppressedReasons.expression(String template)

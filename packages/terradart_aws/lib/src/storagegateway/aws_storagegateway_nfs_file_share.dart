@@ -13,7 +13,8 @@ const Set<String> _awsStoragegatewayNfsFileShareSensitive = <String>{};
 /// Storagegateway Nfs File Share Default Storage enum for `default_storage_class`.
 extension type const StoragegatewayNfsFileShareDefaultStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StoragegatewayNfsFileShareDefaultStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   StoragegatewayNfsFileShareDefaultStorageClass.expression(String template)

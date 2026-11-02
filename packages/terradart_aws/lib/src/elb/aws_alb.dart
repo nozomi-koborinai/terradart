@@ -75,7 +75,8 @@ extension type const AlbEnablePrefixForIpv6SourceNat._(TfArg<String> _)
 /// Alb Enforce Security Group Inbound Rules On Private Link enum for `enforce_security_group_inbound_rules_on_private_link_traffic`.
 extension type const AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic.variable(String name)
     : this._(TfArg.variable(name));
   AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic.expression(

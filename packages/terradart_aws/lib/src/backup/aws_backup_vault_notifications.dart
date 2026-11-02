@@ -11,7 +11,8 @@ const Set<String> _awsBackupVaultNotificationsSensitive = <String>{};
 /// Backup Vault Notifications Backup Vault enum for `backup_vault_events`.
 extension type const BackupVaultNotificationsBackupVaultEvents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupVaultNotificationsBackupVaultEvents.variable(String name)
     : this._(TfArg.variable(name));
   BackupVaultNotificationsBackupVaultEvents.expression(String template)

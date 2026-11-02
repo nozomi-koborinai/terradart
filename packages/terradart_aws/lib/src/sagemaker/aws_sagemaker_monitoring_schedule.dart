@@ -44,7 +44,8 @@ final class SagemakerMonitoringScheduleConfig {
 /// `monitoring_type` — derived from the provider schema description.
 extension type const SagemakerMonitoringScheduleMonitoringType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerMonitoringScheduleMonitoringType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerMonitoringScheduleMonitoringType.expression(String template)
@@ -291,7 +292,8 @@ final class SagemakerMonitoringScheduleBatchTransformInput {
 /// `s3_data_distribution_type` — derived from the provider schema description.
 extension type const SagemakerMonitoringScheduleS3DataDistributionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerMonitoringScheduleS3DataDistributionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerMonitoringScheduleS3DataDistributionType.expression(String template)

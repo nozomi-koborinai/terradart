@@ -28,7 +28,8 @@ extension type const ArcResourceBridgeApplianceDistro._(TfArg<String> _)
 /// Arc Resource Bridge Appliance Infrastructure enum for `infrastructure_provider`.
 extension type const ArcResourceBridgeApplianceInfrastructureProvider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcResourceBridgeApplianceInfrastructureProvider.variable(String name)
     : this._(TfArg.variable(name));
   ArcResourceBridgeApplianceInfrastructureProvider.expression(String template)

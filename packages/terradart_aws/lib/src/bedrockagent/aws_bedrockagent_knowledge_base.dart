@@ -61,7 +61,8 @@ final class BedrockagentKnowledgeBaseConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseConfigurationType.expression(String template)
@@ -145,7 +146,8 @@ final class BedrockagentKnowledgeBaseManagedKnowledgeBaseConfiguration {
 /// `embedding_model_type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseEmbeddingModelType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseEmbeddingModelType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseEmbeddingModelType.expression(String template)
@@ -219,7 +221,8 @@ final class BedrockagentKnowledgeBaseBedrockEmbeddingModelConfiguration {
 /// `embedding_data_type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseEmbeddingDataType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseEmbeddingDataType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseEmbeddingDataType.expression(String template)
@@ -338,7 +341,8 @@ final class BedrockagentKnowledgeBaseSqlKnowledgeBaseConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -431,7 +435,8 @@ final class BedrockagentKnowledgeBaseQueryEngineConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseQueryEngineConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseQueryEngineConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseQueryEngineConfigurationType.expression(
@@ -505,7 +510,8 @@ final class BedrockagentKnowledgeBaseProvisionedConfigurationAuthConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseProvisionedConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseProvisionedConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseProvisionedConfigurationType.expression(
@@ -576,7 +582,8 @@ final class BedrockagentKnowledgeBaseServerlessConfigurationAuthConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseServerlessConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseServerlessConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseServerlessConfigurationType.expression(
@@ -771,7 +778,8 @@ final class BedrockagentKnowledgeBaseRedshiftConfigurationStorageConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseRedshiftConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseRedshiftConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseRedshiftConfigurationType.expression(String template)
@@ -893,7 +901,8 @@ final class BedrockagentKnowledgeBaseStorageLocation {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseStorageLocationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseStorageLocationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseStorageLocationType.expression(String template)
@@ -1000,7 +1009,8 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentKnowledgeBaseStorageConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentKnowledgeBaseStorageConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentKnowledgeBaseStorageConfigurationType.expression(String template)

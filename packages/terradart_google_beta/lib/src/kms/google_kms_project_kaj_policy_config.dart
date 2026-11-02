@@ -27,7 +27,8 @@ final class KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy {
 /// `allowed_access_reasons` — derived from the provider schema description.
 extension type const KmsProjectKajPolicyConfigAllowedAccessReasons._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KmsProjectKajPolicyConfigAllowedAccessReasons.variable(String name)
     : this._(TfArg.variable(name));
   KmsProjectKajPolicyConfigAllowedAccessReasons.expression(String template)

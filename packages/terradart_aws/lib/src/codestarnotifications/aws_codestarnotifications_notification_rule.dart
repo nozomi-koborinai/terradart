@@ -11,7 +11,8 @@ const Set<String> _awsCodestarnotificationsNotificationRuleSensitive =
 /// Codestarnotifications Notification Rule Detail enum for `detail_type`.
 extension type const CodestarnotificationsNotificationRuleDetailType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodestarnotificationsNotificationRuleDetailType.variable(String name)
     : this._(TfArg.variable(name));
   CodestarnotificationsNotificationRuleDetailType.expression(String template)
@@ -35,7 +36,8 @@ extension type const CodestarnotificationsNotificationRuleDetailType._(
 /// Codestarnotifications Notification Rule enum for `status`.
 extension type const CodestarnotificationsNotificationRuleStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodestarnotificationsNotificationRuleStatus.variable(String name)
     : this._(TfArg.variable(name));
   CodestarnotificationsNotificationRuleStatus.expression(String template)

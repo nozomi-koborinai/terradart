@@ -9,7 +9,8 @@ const Set<String> _awsDynamodbKinesisStreamingDestinationSensitive = <String>{};
 /// Dynamodb Kinesis Streaming Destination Approximate Creation Date Time enum for `approximate_creation_date_time_precision`.
 extension type const DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision.variable(
     String name,
   ) : this._(TfArg.variable(name));

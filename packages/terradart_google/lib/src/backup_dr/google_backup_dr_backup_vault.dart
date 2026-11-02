@@ -49,7 +49,8 @@ extension type const BackupDrBackupVaultAccessRestriction._(TfArg<String> _)
 /// Backup Dr Backup Vault Backup Retention enum for `backup_retention_inheritance`.
 extension type const BackupDrBackupVaultBackupRetentionInheritance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrBackupVaultBackupRetentionInheritance.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrBackupVaultBackupRetentionInheritance.expression(String template)

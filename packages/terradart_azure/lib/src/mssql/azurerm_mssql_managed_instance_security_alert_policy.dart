@@ -12,7 +12,8 @@ const Set<String> _azurermMssqlManagedInstanceSecurityAlertPolicySensitive =
 /// Mssql Managed Instance Security Alert Policy Disabled enum for `disabled_alerts`.
 extension type const MssqlManagedInstanceSecurityAlertPolicyDisabledAlerts._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlManagedInstanceSecurityAlertPolicyDisabledAlerts.variable(String name)
     : this._(TfArg.variable(name));
   MssqlManagedInstanceSecurityAlertPolicyDisabledAlerts.expression(

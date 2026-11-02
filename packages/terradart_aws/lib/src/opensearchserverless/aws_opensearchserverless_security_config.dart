@@ -204,7 +204,8 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
 /// `group_attribute` — derived from the provider schema description.
 extension type const OpensearchserverlessSecurityConfigGroupAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OpensearchserverlessSecurityConfigGroupAttribute.variable(String name)
     : this._(TfArg.variable(name));
   OpensearchserverlessSecurityConfigGroupAttribute.expression(String template)
@@ -228,7 +229,8 @@ extension type const OpensearchserverlessSecurityConfigGroupAttribute._(
 /// `user_attribute` — derived from the provider schema description.
 extension type const OpensearchserverlessSecurityConfigUserAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OpensearchserverlessSecurityConfigUserAttribute.variable(String name)
     : this._(TfArg.variable(name));
   OpensearchserverlessSecurityConfigUserAttribute.expression(String template)

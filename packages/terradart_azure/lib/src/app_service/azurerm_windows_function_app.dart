@@ -328,7 +328,8 @@ extension type const WindowsFunctionAppDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppUnauthenticatedClientAction.expression(String template)
@@ -1406,7 +1407,8 @@ final class WindowsFunctionAppTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const WindowsFunctionAppCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppCookieExpirationConvention.expression(String template)
@@ -1836,7 +1838,8 @@ extension type const WindowsFunctionAppFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppIpRestrictionDefaultAction.expression(String template)
@@ -2068,7 +2071,8 @@ extension type const WindowsFunctionAppRemoteDebuggingVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppScmIpRestrictionDefaultAction.expression(String template)

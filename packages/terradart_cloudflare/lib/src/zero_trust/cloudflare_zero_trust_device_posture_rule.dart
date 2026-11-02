@@ -329,7 +329,8 @@ extension type const ZeroTrustDevicePostureRuleAuthState._(TfArg<String> _)
 /// `compliance_status` — derived from the provider schema description.
 extension type const ZeroTrustDevicePostureRuleComplianceStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustDevicePostureRuleComplianceStatus.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustDevicePostureRuleComplianceStatus.expression(String template)
@@ -404,7 +405,8 @@ extension type const ZeroTrustDevicePostureRuleCountOperator._(TfArg<String> _)
 /// `extended_key_usage` — derived from the provider schema description.
 extension type const ZeroTrustDevicePostureRuleExtendedKeyUsage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustDevicePostureRuleExtendedKeyUsage.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustDevicePostureRuleExtendedKeyUsage.expression(String template)
@@ -459,7 +461,8 @@ extension type const ZeroTrustDevicePostureRuleNetworkStatus._(TfArg<String> _)
 /// `operating_system` — derived from the provider schema description.
 extension type const ZeroTrustDevicePostureRuleOperatingSystem._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustDevicePostureRuleOperatingSystem.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustDevicePostureRuleOperatingSystem.expression(String template)
@@ -499,7 +502,8 @@ extension type const ZeroTrustDevicePostureRuleOperatingSystem._(
 /// `operational_state` — derived from the provider schema description.
 extension type const ZeroTrustDevicePostureRuleOperationalState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustDevicePostureRuleOperationalState.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustDevicePostureRuleOperationalState.expression(String template)
@@ -658,7 +662,8 @@ extension type const ZeroTrustDevicePostureRuleState._(TfArg<String> _)
 /// `version_operator` — derived from the provider schema description.
 extension type const ZeroTrustDevicePostureRuleVersionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustDevicePostureRuleVersionOperator.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustDevicePostureRuleVersionOperator.expression(String template)

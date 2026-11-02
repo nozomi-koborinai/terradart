@@ -42,7 +42,8 @@ final class GkeHubFeatureMembershipConfigmanagement {
 /// `management` — derived from the provider schema description.
 extension type const GkeHubFeatureMembershipConfigmanagementManagement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeHubFeatureMembershipConfigmanagementManagement.variable(String name)
     : this._(TfArg.variable(name));
   GkeHubFeatureMembershipConfigmanagementManagement.expression(String template)

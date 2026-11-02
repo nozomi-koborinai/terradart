@@ -121,7 +121,8 @@ final class SecurityhubAutomationRuleFindingFieldsUpdate {
 /// `verification_state` — derived from the provider schema description.
 extension type const SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubAutomationRuleFindingFieldsUpdateVerificationState.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -257,7 +258,8 @@ final class SecurityhubAutomationRuleWorkflow {
 /// `status` — derived from the provider schema description.
 extension type const SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubAutomationRuleFindingFieldsUpdateStatus.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubAutomationRuleFindingFieldsUpdateStatus.expression(String template)
@@ -523,7 +525,8 @@ final class SecurityhubAutomationRuleAwsAccountId {
 /// `comparison` — derived from the provider schema description.
 extension type const SecurityhubAutomationRuleAwsAccountIdComparison._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubAutomationRuleAwsAccountIdComparison.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubAutomationRuleAwsAccountIdComparison.expression(String template)
@@ -1131,7 +1134,8 @@ final class SecurityhubAutomationRuleResourceDetailsOther {
 /// `comparison` — derived from the provider schema description.
 extension type const SecurityhubAutomationRuleResourceDetailsOtherComparison._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubAutomationRuleResourceDetailsOtherComparison.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubAutomationRuleResourceDetailsOtherComparison.expression(

@@ -11,7 +11,8 @@ const Set<String> _awsCloudwatchLogAnomalyDetectorSensitive = <String>{};
 /// Cloudwatch Log Anomaly Detector Evaluation enum for `evaluation_frequency`.
 extension type const CloudwatchLogAnomalyDetectorEvaluationFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchLogAnomalyDetectorEvaluationFrequency.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchLogAnomalyDetectorEvaluationFrequency.expression(String template)

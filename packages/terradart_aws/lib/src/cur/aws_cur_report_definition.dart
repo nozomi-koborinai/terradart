@@ -38,7 +38,8 @@ extension type const CurReportDefinitionAdditionalArtifacts._(TfArg<String> _)
 /// Cur Report Definition Additional Schema enum for `additional_schema_elements`.
 extension type const CurReportDefinitionAdditionalSchemaElements._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CurReportDefinitionAdditionalSchemaElements.variable(String name)
     : this._(TfArg.variable(name));
   CurReportDefinitionAdditionalSchemaElements.expression(String template)

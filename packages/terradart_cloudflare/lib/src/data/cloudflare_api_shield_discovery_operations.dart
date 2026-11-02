@@ -10,7 +10,8 @@ const Set<String> _cloudflareApiShieldDiscoveryOperationsSensitive = <String>{};
 /// Data Api Shield Discovery Operations enum for `direction`.
 extension type const DataApiShieldDiscoveryOperationsDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataApiShieldDiscoveryOperationsDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataApiShieldDiscoveryOperationsDirection.expression(String template)

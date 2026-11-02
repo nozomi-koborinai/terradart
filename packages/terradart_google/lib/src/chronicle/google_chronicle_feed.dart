@@ -2014,7 +2014,8 @@ final class ChronicleFeedAmazonS3Settings {
 /// `source_deletion_option` — derived from the provider schema description.
 extension type const ChronicleFeedAmazonS3SettingsSourceDeletionOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleFeedAmazonS3SettingsSourceDeletionOption.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleFeedAmazonS3SettingsSourceDeletionOption.expression(String template)
@@ -2235,7 +2236,8 @@ final class ChronicleFeedAmazonS3V2Settings {
 /// `source_deletion_option` — derived from the provider schema description.
 extension type const ChronicleFeedAmazonS3V2SettingsSourceDeletionOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleFeedAmazonS3V2SettingsSourceDeletionOption.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleFeedAmazonS3V2SettingsSourceDeletionOption.expression(
@@ -3009,7 +3011,8 @@ final class ChronicleFeedCrowdstrikeAlertsSettings {
 /// `ingestion_type` — derived from the provider schema description.
 extension type const ChronicleFeedCrowdstrikeAlertsSettingsIngestionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleFeedCrowdstrikeAlertsSettingsIngestionType.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleFeedCrowdstrikeAlertsSettingsIngestionType.expression(
@@ -3084,7 +3087,8 @@ final class ChronicleFeedCrowdstrikeDetectsSettings {
 /// `ingestion_type` — derived from the provider schema description.
 extension type const ChronicleFeedCrowdstrikeDetectsSettingsIngestionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleFeedCrowdstrikeDetectsSettingsIngestionType.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleFeedCrowdstrikeDetectsSettingsIngestionType.expression(

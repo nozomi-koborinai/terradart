@@ -13,7 +13,8 @@ const Set<String> _googleComputeRegionInstantSnapshotSensitive = <String>{};
 /// Terraform `deletion_policy` for regional instant snapshots.
 extension type const ComputeRegionInstantSnapshotDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstantSnapshotDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstantSnapshotDeletionPolicy.expression(String template)

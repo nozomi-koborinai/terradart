@@ -167,7 +167,8 @@ extension type const VirtualDesktopScalingPlanDaysOfWeek._(TfArg<String> _)
 /// `off_peak_load_balancing_algorithm` — derived from the provider schema description.
 extension type const VirtualDesktopScalingPlanOffPeakLoadBalancingAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopScalingPlanOffPeakLoadBalancingAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopScalingPlanOffPeakLoadBalancingAlgorithm.expression(
@@ -193,7 +194,8 @@ extension type const VirtualDesktopScalingPlanOffPeakLoadBalancingAlgorithm._(
 /// `peak_load_balancing_algorithm` — derived from the provider schema description.
 extension type const VirtualDesktopScalingPlanPeakLoadBalancingAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopScalingPlanPeakLoadBalancingAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopScalingPlanPeakLoadBalancingAlgorithm.expression(
@@ -219,7 +221,8 @@ extension type const VirtualDesktopScalingPlanPeakLoadBalancingAlgorithm._(
 /// `ramp_down_load_balancing_algorithm` — derived from the provider schema description.
 extension type const VirtualDesktopScalingPlanRampDownLoadBalancingAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopScalingPlanRampDownLoadBalancingAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopScalingPlanRampDownLoadBalancingAlgorithm.expression(
@@ -245,7 +248,8 @@ extension type const VirtualDesktopScalingPlanRampDownLoadBalancingAlgorithm._(
 /// `ramp_down_stop_hosts_when` — derived from the provider schema description.
 extension type const VirtualDesktopScalingPlanRampDownStopHostsWhen._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopScalingPlanRampDownStopHostsWhen.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopScalingPlanRampDownStopHostsWhen.expression(String template)
@@ -270,7 +274,8 @@ extension type const VirtualDesktopScalingPlanRampDownStopHostsWhen._(
 /// `ramp_up_load_balancing_algorithm` — derived from the provider schema description.
 extension type const VirtualDesktopScalingPlanRampUpLoadBalancingAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopScalingPlanRampUpLoadBalancingAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopScalingPlanRampUpLoadBalancingAlgorithm.expression(

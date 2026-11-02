@@ -71,7 +71,8 @@ final class FsxS3AccessPointAttachmentFileSystemIdentity {
 /// `type` — derived from the provider schema description.
 extension type const FsxS3AccessPointAttachmentFileSystemIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FsxS3AccessPointAttachmentFileSystemIdentityType.variable(String name)
     : this._(TfArg.variable(name));
   FsxS3AccessPointAttachmentFileSystemIdentityType.expression(String template)

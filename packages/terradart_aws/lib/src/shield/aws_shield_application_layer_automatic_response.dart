@@ -10,7 +10,8 @@ const Set<String> _awsShieldApplicationLayerAutomaticResponseSensitive =
 /// Shield Application Layer Automatic Response enum for `action`.
 extension type const ShieldApplicationLayerAutomaticResponseAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ShieldApplicationLayerAutomaticResponseAction.variable(String name)
     : this._(TfArg.variable(name));
   ShieldApplicationLayerAutomaticResponseAction.expression(String template)

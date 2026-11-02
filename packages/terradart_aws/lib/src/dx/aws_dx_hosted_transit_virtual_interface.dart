@@ -9,7 +9,8 @@ const Set<String> _awsDxHostedTransitVirtualInterfaceSensitive = <String>{};
 /// Dx Hosted Transit Virtual Interface Address enum for `address_family`.
 extension type const DxHostedTransitVirtualInterfaceAddressFamily._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DxHostedTransitVirtualInterfaceAddressFamily.variable(String name)
     : this._(TfArg.variable(name));
   DxHostedTransitVirtualInterfaceAddressFamily.expression(String template)

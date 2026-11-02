@@ -15,7 +15,8 @@ const Set<String> _azurermStreamAnalyticsOutputBlobSensitive = <String>{
 /// Stream Analytics Output Blob Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputBlobAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputBlobAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputBlobAuthenticationMode.expression(String template)

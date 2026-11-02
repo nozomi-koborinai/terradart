@@ -56,7 +56,8 @@ final class AppconfigConfigurationProfileValidator {
 /// `type` — derived from the provider schema description.
 extension type const AppconfigConfigurationProfileValidatorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppconfigConfigurationProfileValidatorType.variable(String name)
     : this._(TfArg.variable(name));
   AppconfigConfigurationProfileValidatorType.expression(String template)

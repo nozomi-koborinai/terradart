@@ -15,7 +15,8 @@ const Set<String> _awsTimestreaminfluxdbDbClusterSensitive = <String>{
 /// Timestreaminfluxdb Db Cluster Db Instance enum for `db_instance_type`.
 extension type const TimestreaminfluxdbDbClusterDbInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreaminfluxdbDbClusterDbInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreaminfluxdbDbClusterDbInstanceType.expression(String template)
@@ -94,7 +95,8 @@ extension type const TimestreaminfluxdbDbClusterDbStorageType._(TfArg<String> _)
 /// Timestreaminfluxdb Db Cluster Deployment enum for `deployment_type`.
 extension type const TimestreaminfluxdbDbClusterDeploymentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreaminfluxdbDbClusterDeploymentType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreaminfluxdbDbClusterDeploymentType.expression(String template)

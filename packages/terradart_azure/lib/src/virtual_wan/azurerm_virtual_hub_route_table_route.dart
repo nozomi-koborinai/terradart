@@ -9,7 +9,8 @@ const Set<String> _azurermVirtualHubRouteTableRouteSensitive = <String>{};
 /// Virtual Hub Route Table Route Destinations enum for `destinations_type`.
 extension type const VirtualHubRouteTableRouteDestinationsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualHubRouteTableRouteDestinationsType.variable(String name)
     : this._(TfArg.variable(name));
   VirtualHubRouteTableRouteDestinationsType.expression(String template)

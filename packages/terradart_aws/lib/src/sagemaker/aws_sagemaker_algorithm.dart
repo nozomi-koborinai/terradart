@@ -49,7 +49,8 @@ final class SagemakerAlgorithmInferenceSpecification {
 /// `supported_realtime_inference_instance_types` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1454,7 +1455,8 @@ extension type const SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes._
 /// `supported_transform_instance_types` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedTransformInstanceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedTransformInstanceTypes.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmSupportedTransformInstanceTypes.expression(String template)
@@ -2391,7 +2393,8 @@ final class SagemakerAlgorithmTrainingSpecification {
 /// `supported_training_instance_types` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedTrainingInstanceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedTrainingInstanceTypes.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmSupportedTrainingInstanceTypes.expression(String template)
@@ -3559,7 +3562,8 @@ final class SagemakerAlgorithmSupportedHyperParameters {
 /// `type` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedHyperParametersType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedHyperParametersType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmSupportedHyperParametersType.expression(String template)
@@ -3701,7 +3705,8 @@ final class SagemakerAlgorithmSupportedTuningJobObjectiveMetrics {
 /// `type` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType.expression(
@@ -3764,7 +3769,8 @@ final class SagemakerAlgorithmTrainingChannels {
 /// `supported_compression_types` — derived from the provider schema description.
 extension type const SagemakerAlgorithmSupportedCompressionTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmSupportedCompressionTypes.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmSupportedCompressionTypes.expression(String template)
@@ -4241,7 +4247,8 @@ final class SagemakerAlgorithmOutputDataConfig {
 /// `compression_type` — derived from the provider schema description.
 extension type const SagemakerAlgorithmOutputDataConfigCompressionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmOutputDataConfigCompressionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmOutputDataConfigCompressionType.expression(String template)
@@ -4312,7 +4319,8 @@ final class SagemakerAlgorithmResourceConfig {
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerAlgorithmResourceConfigInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmResourceConfigInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmResourceConfigInstanceType.expression(String template)
@@ -5574,7 +5582,8 @@ final class SagemakerAlgorithmTransformResources {
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerAlgorithmTransformResourcesInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerAlgorithmTransformResourcesInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerAlgorithmTransformResourcesInstanceType.expression(String template)

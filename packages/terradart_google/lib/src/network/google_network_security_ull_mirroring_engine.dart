@@ -10,7 +10,8 @@ const Set<String> _googleNetworkSecurityUllMirroringEngineSensitive =
 /// Terraform `deletion_policy` for ULL mirroring engines.
 extension type const NetworkSecurityUllMirroringEngineDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityUllMirroringEngineDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityUllMirroringEngineDeletionPolicy.expression(String template)

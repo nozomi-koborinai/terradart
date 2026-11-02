@@ -13,7 +13,8 @@ const Set<String> _azurermStreamAnalyticsOutputServicebusTopicSensitive =
 /// Stream Analytics Output Servicebus Topic Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputServicebusTopicAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusTopicAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusTopicAuthenticationMode.expression(
@@ -66,7 +67,8 @@ final class StreamAnalyticsOutputServicebusTopicSerialization {
 /// `encoding` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusTopicEncoding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusTopicEncoding.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusTopicEncoding.expression(String template)
@@ -86,7 +88,8 @@ extension type const StreamAnalyticsOutputServicebusTopicEncoding._(
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusTopicFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusTopicFieldDelimiter.expression(String template)
@@ -118,7 +121,8 @@ extension type const StreamAnalyticsOutputServicebusTopicFieldDelimiter._(
 /// `format` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusTopicFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusTopicFormat.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusTopicFormat.expression(String template)

@@ -20,7 +20,8 @@ const Set<String> _azurermOrchestratedVirtualMachineScaleSetSensitive =
 /// Orchestrated Virtual Machine Scale Set Eviction enum for `eviction_policy`.
 extension type const OrchestratedVirtualMachineScaleSetEvictionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetEvictionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetEvictionPolicy.expression(String template)
@@ -44,7 +45,8 @@ extension type const OrchestratedVirtualMachineScaleSetEvictionPolicy._(
 /// Orchestrated Virtual Machine Scale Set License enum for `license_type`.
 extension type const OrchestratedVirtualMachineScaleSetLicenseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetLicenseType.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetLicenseType.expression(String template)
@@ -72,7 +74,8 @@ extension type const OrchestratedVirtualMachineScaleSetLicenseType._(
 /// Orchestrated Virtual Machine Scale Set Network Api enum for `network_api_version`.
 extension type const OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetNetworkApiVersion.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetNetworkApiVersion.expression(
@@ -98,7 +101,8 @@ extension type const OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
 /// Orchestrated Virtual Machine Scale Set enum for `priority`.
 extension type const OrchestratedVirtualMachineScaleSetPriority._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetPriority.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetPriority.expression(String template)
@@ -122,7 +126,8 @@ extension type const OrchestratedVirtualMachineScaleSetPriority._(
 /// Orchestrated Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
 extension type const OrchestratedVirtualMachineScaleSetUpgradeMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetUpgradeMode.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetUpgradeMode.expression(String template)
@@ -445,7 +450,8 @@ final class OrchestratedVirtualMachineScaleSetDataDisk {
 /// `caching` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetCaching._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetCaching.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetCaching.expression(String template)
@@ -473,7 +479,8 @@ extension type const OrchestratedVirtualMachineScaleSetCaching._(
 /// `create_option` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetCreateOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetCreateOption.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetCreateOption.expression(String template)
@@ -497,7 +504,8 @@ extension type const OrchestratedVirtualMachineScaleSetCreateOption._(
 /// `storage_account_type` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetDataDiskStorageAccountType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -769,7 +777,8 @@ final class OrchestratedVirtualMachineScaleSetNetworkInterface {
 /// `auxiliary_mode` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetAuxiliaryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetAuxiliaryMode.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetAuxiliaryMode.expression(String template)
@@ -794,7 +803,8 @@ extension type const OrchestratedVirtualMachineScaleSetAuxiliaryMode._(
 /// `auxiliary_sku` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetAuxiliarySku._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetAuxiliarySku.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetAuxiliarySku.expression(String template)
@@ -874,7 +884,8 @@ final class OrchestratedVirtualMachineScaleSetIpConfiguration {
 /// `version` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetVersion.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetVersion.expression(String template)
@@ -995,7 +1006,8 @@ final class OrchestratedVirtualMachineScaleSetOsDisk {
 /// `storage_account_type` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetOsDiskStorageAccountType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1077,7 +1089,8 @@ extension type const OrchestratedVirtualMachineScaleSetOption._(TfArg<String> _)
 /// `placement` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetPlacement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetPlacement.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetPlacement.expression(String template)
@@ -1184,7 +1197,8 @@ final class OrchestratedVirtualMachineScaleSetLinuxConfiguration {
 /// `patch_assessment_mode` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetPatchAssessmentMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetPatchAssessmentMode.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetPatchAssessmentMode.expression(
@@ -1210,7 +1224,8 @@ extension type const OrchestratedVirtualMachineScaleSetPatchAssessmentMode._(
 /// `patch_mode` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetLinuxConfigurationPatchMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1362,7 +1377,8 @@ final class OrchestratedVirtualMachineScaleSetWindowsConfiguration {
 /// `patch_mode` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetWindowsConfigurationPatchMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1415,7 +1431,8 @@ final class OrchestratedVirtualMachineScaleSetAdditionalUnattendContent {
 /// `setting` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetSetting._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetSetting.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetSetting.expression(String template)
@@ -1500,7 +1517,8 @@ final class OrchestratedVirtualMachineScaleSetWinrmListener {
 /// `protocol` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetProtocol.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetProtocol.expression(String template)
@@ -1632,7 +1650,8 @@ final class OrchestratedVirtualMachineScaleSetSkuProfile {
 /// `allocation_strategy` — derived from the provider schema description.
 extension type const OrchestratedVirtualMachineScaleSetAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrchestratedVirtualMachineScaleSetAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   OrchestratedVirtualMachineScaleSetAllocationStrategy.expression(

@@ -144,7 +144,8 @@ final class DataLossPreventionJobTriggerDeidentify {
 /// `file_types_to_transform` — derived from the provider schema description.
 extension type const DataLossPreventionJobTriggerFileTypesToTransform._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionJobTriggerFileTypesToTransform.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionJobTriggerFileTypesToTransform.expression(String template)
@@ -416,7 +417,8 @@ final class DataLossPreventionJobTriggerInspectConfig {
 /// `min_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionJobTriggerMinLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionJobTriggerMinLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionJobTriggerMinLikelihood.expression(String template)
@@ -496,7 +498,8 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
 /// `exclusion_type` — derived from the provider schema description.
 extension type const DataLossPreventionJobTriggerExclusionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionJobTriggerExclusionType.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionJobTriggerExclusionType.expression(String template)
@@ -1002,7 +1005,8 @@ final class DataLossPreventionJobTriggerLikelihoodAdjustment {
 /// `fixed_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionJobTriggerFixedLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionJobTriggerFixedLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionJobTriggerFixedLikelihood.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _googleNetworkManagementNetworkMonitoringProviderSensitive =
 /// Network Management Network Monitoring Provider enum for `provider_type`.
 extension type const NetworkManagementNetworkMonitoringProviderType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementNetworkMonitoringProviderType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementNetworkMonitoringProviderType.expression(String template)

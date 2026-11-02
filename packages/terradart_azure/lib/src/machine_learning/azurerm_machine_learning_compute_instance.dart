@@ -10,7 +10,8 @@ const Set<String> _azurermMachineLearningComputeInstanceSensitive = <String>{};
 /// Machine Learning Compute Instance Authorization enum for `authorization_type`.
 extension type const MachineLearningComputeInstanceAuthorizationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningComputeInstanceAuthorizationType.variable(String name)
     : this._(TfArg.variable(name));
   MachineLearningComputeInstanceAuthorizationType.expression(String template)

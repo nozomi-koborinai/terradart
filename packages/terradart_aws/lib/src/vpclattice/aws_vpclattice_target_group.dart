@@ -92,7 +92,8 @@ extension type const VpclatticeTargetGroupIpAddressType._(TfArg<String> _)
 /// `lambda_event_structure_version` — derived from the provider schema description.
 extension type const VpclatticeTargetGroupLambdaEventStructureVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeTargetGroupLambdaEventStructureVersion.variable(String name)
     : this._(TfArg.variable(name));
   VpclatticeTargetGroupLambdaEventStructureVersion.expression(String template)
@@ -211,7 +212,8 @@ final class VpclatticeTargetGroupHealthCheck {
 /// `protocol_version` — derived from the provider schema description.
 extension type const VpclatticeTargetGroupHealthCheckProtocolVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeTargetGroupHealthCheckProtocolVersion.variable(String name)
     : this._(TfArg.variable(name));
   VpclatticeTargetGroupHealthCheckProtocolVersion.expression(String template)

@@ -70,7 +70,8 @@ extension type const MaintenanceAssignmentDynamicScopeOsTypes._(TfArg<String> _)
 /// `resource_types` — derived from the provider schema description.
 extension type const MaintenanceAssignmentDynamicScopeResourceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MaintenanceAssignmentDynamicScopeResourceTypes.variable(String name)
     : this._(TfArg.variable(name));
   MaintenanceAssignmentDynamicScopeResourceTypes.expression(String template)
@@ -96,7 +97,8 @@ extension type const MaintenanceAssignmentDynamicScopeResourceTypes._(
 /// `tag_filter` — derived from the provider schema description.
 extension type const MaintenanceAssignmentDynamicScopeTagFilter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MaintenanceAssignmentDynamicScopeTagFilter.variable(String name)
     : this._(TfArg.variable(name));
   MaintenanceAssignmentDynamicScopeTagFilter.expression(String template)

@@ -52,7 +52,8 @@ final class ChronicleFindingsRefinementOutcomeFilters {
 /// `outcome_filter_operator` — derived from the provider schema description.
 extension type const ChronicleFindingsRefinementOutcomeFilterOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChronicleFindingsRefinementOutcomeFilterOperator.variable(String name)
     : this._(TfArg.variable(name));
   ChronicleFindingsRefinementOutcomeFilterOperator.expression(String template)

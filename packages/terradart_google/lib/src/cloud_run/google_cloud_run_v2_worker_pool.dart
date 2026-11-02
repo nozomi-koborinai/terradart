@@ -78,7 +78,8 @@ extension type const CloudRunV2WorkerPoolInstanceSplitType._(TfArg<String> _)
 
 extension type const CloudRunV2WorkerPoolEncryptionKeyRevocationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudRunV2WorkerPoolEncryptionKeyRevocationAction.variable(String name)
     : this._(TfArg.variable(name));
   CloudRunV2WorkerPoolEncryptionKeyRevocationAction.expression(String template)

@@ -384,7 +384,8 @@ extension type const LogicAppStandardFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const LogicAppStandardIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogicAppStandardIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LogicAppStandardIpRestrictionDefaultAction.expression(String template)
@@ -423,7 +424,8 @@ extension type const LogicAppStandardMinTlsVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const LogicAppStandardScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogicAppStandardScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LogicAppStandardScmIpRestrictionDefaultAction.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _googleCloudQuotasQuotaAdjusterSettingsSensitive = <String>{};
 /// Cloud Quotas Quota Adjuster Settings Effective enum for `effective_enablement`.
 extension type const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.variable(String name)
     : this._(TfArg.variable(name));
   CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.expression(
@@ -37,7 +38,8 @@ extension type const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
 /// Cloud Quotas Quota Adjuster Settings enum for `enablement`.
 extension type const CloudQuotasQuotaAdjusterSettingsEnablement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudQuotasQuotaAdjusterSettingsEnablement.variable(String name)
     : this._(TfArg.variable(name));
   CloudQuotasQuotaAdjusterSettingsEnablement.expression(String template)

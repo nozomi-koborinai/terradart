@@ -13,7 +13,8 @@ const Set<String> _azurermStreamAnalyticsOutputMssqlSensitive = <String>{
 /// Stream Analytics Output Mssql Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputMssqlAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputMssqlAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputMssqlAuthenticationMode.expression(String template)

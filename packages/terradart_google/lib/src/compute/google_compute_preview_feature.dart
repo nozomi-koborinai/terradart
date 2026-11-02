@@ -62,7 +62,8 @@ final class ComputePreviewFeatureRolloutInput {
 /// `predefined_rollout_plan` — derived from the provider schema description.
 extension type const ComputePreviewFeaturePredefinedRolloutPlan._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputePreviewFeaturePredefinedRolloutPlan.variable(String name)
     : this._(TfArg.variable(name));
   ComputePreviewFeaturePredefinedRolloutPlan.expression(String template)

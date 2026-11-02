@@ -10,7 +10,8 @@ const Set<String> _googleNetworkConnectivityGatewayAdvertisedRouteSensitive =
 /// Network Connectivity Gateway Advertised Route enum for `recipient`.
 extension type const NetworkConnectivityGatewayAdvertisedRouteRecipient._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityGatewayAdvertisedRouteRecipient.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityGatewayAdvertisedRouteRecipient.expression(String template)
@@ -35,7 +36,8 @@ extension type const NetworkConnectivityGatewayAdvertisedRouteRecipient._(
 /// Network Connectivity Gateway Advertised Route enum for `state`.
 extension type const NetworkConnectivityGatewayAdvertisedRouteState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityGatewayAdvertisedRouteState.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityGatewayAdvertisedRouteState.expression(String template)

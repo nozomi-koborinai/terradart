@@ -208,7 +208,8 @@ final class RecaptchaEnterpriseKeyWebSettings {
 /// `challenge_security_preference` — derived from the provider schema description.
 extension type const RecaptchaEnterpriseKeyChallengeSecurityPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RecaptchaEnterpriseKeyChallengeSecurityPreference.variable(String name)
     : this._(TfArg.variable(name));
   RecaptchaEnterpriseKeyChallengeSecurityPreference.expression(String template)

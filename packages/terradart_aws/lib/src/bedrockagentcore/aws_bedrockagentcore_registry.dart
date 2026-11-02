@@ -171,7 +171,8 @@ final class BedrockagentcoreRegistryCustomClaim {
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
 extension type const BedrockagentcoreRegistryInboundTokenClaimValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreRegistryInboundTokenClaimValueType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreRegistryInboundTokenClaimValueType.expression(String template)
@@ -216,7 +217,8 @@ final class BedrockagentcoreRegistryAuthorizingClaimMatchValue {
 /// `claim_match_operator` — derived from the provider schema description.
 extension type const BedrockagentcoreRegistryClaimMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreRegistryClaimMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreRegistryClaimMatchOperator.expression(String template)
@@ -327,7 +329,8 @@ final class BedrockagentcoreRegistryManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreRegistryEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreRegistryEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreRegistryEndpointIpAddressType.expression(String template)

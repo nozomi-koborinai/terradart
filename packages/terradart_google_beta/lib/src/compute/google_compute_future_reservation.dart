@@ -304,7 +304,8 @@ extension type const ComputeFutureReservationCommitmentPlan._(TfArg<String> _)
 /// `previous_commitment_terms` — derived from the provider schema description.
 extension type const ComputeFutureReservationPreviousCommitmentTerms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeFutureReservationPreviousCommitmentTerms.variable(String name)
     : this._(TfArg.variable(name));
   ComputeFutureReservationPreviousCommitmentTerms.expression(String template)
@@ -469,7 +470,8 @@ final class ComputeFutureReservationInstanceProperties {
 /// `maintenance_interval` — derived from the provider schema description.
 extension type const ComputeFutureReservationMaintenanceInterval._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeFutureReservationMaintenanceInterval.variable(String name)
     : this._(TfArg.variable(name));
   ComputeFutureReservationMaintenanceInterval.expression(String template)

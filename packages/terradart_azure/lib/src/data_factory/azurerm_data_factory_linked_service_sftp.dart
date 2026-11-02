@@ -14,7 +14,8 @@ const Set<String> _azurermDataFactoryLinkedServiceSftpSensitive = <String>{
 /// Data Factory Linked Service Sftp Authentication enum for `authentication_type`.
 extension type const DataFactoryLinkedServiceSftpAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryLinkedServiceSftpAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryLinkedServiceSftpAuthenticationType.expression(String template)

@@ -161,7 +161,8 @@ extension type const LinuxWebAppSlotDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const LinuxWebAppSlotUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxWebAppSlotUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxWebAppSlotUnauthenticatedClientAction.expression(String template)
@@ -1235,7 +1236,8 @@ final class LinuxWebAppSlotTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const LinuxWebAppSlotCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxWebAppSlotCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   LinuxWebAppSlotCookieExpirationConvention.expression(String template)
@@ -1875,7 +1877,8 @@ extension type const LinuxWebAppSlotFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxWebAppSlotIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxWebAppSlotIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxWebAppSlotIpRestrictionDefaultAction.expression(String template)
@@ -2094,7 +2097,8 @@ extension type const LinuxWebAppSlotRemoteDebuggingVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxWebAppSlotScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxWebAppSlotScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxWebAppSlotScmIpRestrictionDefaultAction.expression(String template)

@@ -17,7 +17,8 @@ _azurermWorkloadsSapThreeTierVirtualInstanceSensitive = <String>{
 /// Workloads Sap Three Tier Virtual Instance enum for `environment`.
 extension type const WorkloadsSapThreeTierVirtualInstanceEnvironment._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceEnvironment.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceEnvironment.expression(String template)
@@ -41,7 +42,8 @@ extension type const WorkloadsSapThreeTierVirtualInstanceEnvironment._(
 /// Workloads Sap Three Tier Virtual Instance Managed Resources Network Access enum for `managed_resources_network_access_type`.
 extension type const WorkloadsSapThreeTierVirtualInstanceManagedResourcesNetworkAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceManagedResourcesNetworkAccessType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -70,7 +72,8 @@ extension type const WorkloadsSapThreeTierVirtualInstanceManagedResourcesNetwork
 /// Workloads Sap Three Tier Virtual Instance Sap enum for `sap_product`.
 extension type const WorkloadsSapThreeTierVirtualInstanceSapProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceSapProduct.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceSapProduct.expression(String template)
@@ -167,7 +170,8 @@ final class WorkloadsSapThreeTierVirtualInstanceThreeTierConfiguration {
 /// `high_availability_type` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceHighAvailabilityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceHighAvailabilityType.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceHighAvailabilityType.expression(
@@ -272,7 +276,8 @@ final class WorkloadsSapThreeTierVirtualInstanceImage {
 /// `publisher` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstancePublisher._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstancePublisher.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstancePublisher.expression(String template)
@@ -383,7 +388,8 @@ final class WorkloadsSapThreeTierVirtualInstanceDatabaseServerConfiguration {
 /// `database_type` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceDatabaseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceDatabaseType.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceDatabaseType.expression(String template)
@@ -435,7 +441,8 @@ final class WorkloadsSapThreeTierVirtualInstanceDiskVolumeConfiguration {
 /// `sku_name` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceSkuName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceSkuName.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceSkuName.expression(String template)
@@ -479,7 +486,8 @@ extension type const WorkloadsSapThreeTierVirtualInstanceSkuName._(
 /// `volume_name` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceVolumeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceVolumeName.variable(String name)
     : this._(TfArg.variable(name));
   WorkloadsSapThreeTierVirtualInstanceVolumeName.expression(String template)
@@ -628,7 +636,8 @@ final class WorkloadsSapThreeTierVirtualInstanceApplicationServerDataDisk {
 /// `volume_name` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceApplicationServerVolumeName.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -790,7 +799,8 @@ final class WorkloadsSapThreeTierVirtualInstanceDatabaseServerDataDisk {
 /// `volume_name` — derived from the provider schema description.
 extension type const WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkloadsSapThreeTierVirtualInstanceDatabaseServerVolumeName.variable(
     String name,
   ) : this._(TfArg.variable(name));

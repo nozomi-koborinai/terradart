@@ -9,7 +9,8 @@ const Set<String> _awsOrganizationsAccountSensitive = <String>{};
 /// Organizations Account Iam User Access To enum for `iam_user_access_to_billing`.
 extension type const OrganizationsAccountIamUserAccessToBilling._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrganizationsAccountIamUserAccessToBilling.variable(String name)
     : this._(TfArg.variable(name));
   OrganizationsAccountIamUserAccessToBilling.expression(String template)

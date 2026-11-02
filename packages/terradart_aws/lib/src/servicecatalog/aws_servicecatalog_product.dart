@@ -150,7 +150,8 @@ final class ServicecatalogProductTemplateUrl
 /// `type` — derived from the provider schema description.
 extension type const ServicecatalogProductProvisioningArtifactParametersType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogProductProvisioningArtifactParametersType.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogProductProvisioningArtifactParametersType.expression(

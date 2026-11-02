@@ -63,7 +63,8 @@ final class S3BucketAnalyticsConfigurationDataExport {
 /// `output_schema_version` — derived from the provider schema description.
 extension type const S3BucketAnalyticsConfigurationOutputSchemaVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketAnalyticsConfigurationOutputSchemaVersion.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketAnalyticsConfigurationOutputSchemaVersion.expression(String template)

@@ -24,7 +24,8 @@ final class GkeHubMembershipRbacRoleBindingRole {
 /// `predefined_role` — derived from the provider schema description.
 extension type const GkeHubMembershipRbacRoleBindingPredefinedRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeHubMembershipRbacRoleBindingPredefinedRole.variable(String name)
     : this._(TfArg.variable(name));
   GkeHubMembershipRbacRoleBindingPredefinedRole.expression(String template)

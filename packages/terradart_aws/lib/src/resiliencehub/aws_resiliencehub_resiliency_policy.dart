@@ -10,7 +10,8 @@ const Set<String> _awsResiliencehubResiliencyPolicySensitive = <String>{};
 /// Resiliencehub Resiliency Policy Data Location enum for `data_location_constraint`.
 extension type const ResiliencehubResiliencyPolicyDataLocationConstraint._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ResiliencehubResiliencyPolicyDataLocationConstraint.variable(String name)
     : this._(TfArg.variable(name));
   ResiliencehubResiliencyPolicyDataLocationConstraint.expression(

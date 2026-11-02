@@ -44,7 +44,8 @@ final class PolicyVirtualMachineConfigurationAssignmentConfiguration {
 /// `assignment_type` — derived from the provider schema description.
 extension type const PolicyVirtualMachineConfigurationAssignmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PolicyVirtualMachineConfigurationAssignmentType.variable(String name)
     : this._(TfArg.variable(name));
   PolicyVirtualMachineConfigurationAssignmentType.expression(String template)

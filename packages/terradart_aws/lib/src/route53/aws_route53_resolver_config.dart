@@ -9,7 +9,8 @@ const Set<String> _awsRoute53ResolverConfigSensitive = <String>{};
 /// Route53 Resolver Config Autodefined Reverse enum for `autodefined_reverse_flag`.
 extension type const Route53ResolverConfigAutodefinedReverseFlag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverConfigAutodefinedReverseFlag.variable(String name)
     : this._(TfArg.variable(name));
   Route53ResolverConfigAutodefinedReverseFlag.expression(String template)

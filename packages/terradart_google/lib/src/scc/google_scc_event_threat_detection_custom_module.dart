@@ -10,7 +10,8 @@ const Set<String> _googleSccEventThreatDetectionCustomModuleSensitive =
 /// Scc Event Threat Detection Custom Module Enablement enum for `enablement_state`.
 extension type const SccEventThreatDetectionCustomModuleEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SccEventThreatDetectionCustomModuleEnablementState.variable(String name)
     : this._(TfArg.variable(name));
   SccEventThreatDetectionCustomModuleEnablementState.expression(String template)

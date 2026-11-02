@@ -10,7 +10,8 @@ const Set<String> _azurermAppServiceSlotCustomHostnameBindingSensitive =
 /// App Service Slot Custom Hostname Binding Ssl enum for `ssl_state`.
 extension type const AppServiceSlotCustomHostnameBindingSslState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppServiceSlotCustomHostnameBindingSslState.variable(String name)
     : this._(TfArg.variable(name));
   AppServiceSlotCustomHostnameBindingSslState.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _azurermApiManagementWorkspaceApiVersionSetSensitive =
 /// Api Management Workspace Api Version Set Versioning enum for `versioning_scheme`.
 extension type const ApiManagementWorkspaceApiVersionSetVersioningScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementWorkspaceApiVersionSetVersioningScheme.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementWorkspaceApiVersionSetVersioningScheme.expression(

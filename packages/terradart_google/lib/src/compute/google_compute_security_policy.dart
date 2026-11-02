@@ -688,7 +688,8 @@ class ComputeSecurityPolicyRulesHeaderAdd {
 /// compares it case-insensitively; these are the canonical spellings.
 extension type const ComputeSecurityPolicyRequestBodyInspectionSize._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeSecurityPolicyRequestBodyInspectionSize.variable(String name)
     : this._(TfArg.variable(name));
   ComputeSecurityPolicyRequestBodyInspectionSize.expression(String template)

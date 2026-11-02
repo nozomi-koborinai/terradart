@@ -14,7 +14,8 @@ const Set<String> _azurermVpnServerConfigurationSensitive = <String>{
 /// Vpn Server Configuration Vpn Authentication enum for `vpn_authentication_types`.
 extension type const VpnServerConfigurationVpnAuthenticationTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnServerConfigurationVpnAuthenticationTypes.variable(String name)
     : this._(TfArg.variable(name));
   VpnServerConfigurationVpnAuthenticationTypes.expression(String template)

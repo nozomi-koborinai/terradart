@@ -84,7 +84,8 @@ extension type const ComputeInterconnectAttachmentBandwidth._(TfArg<String> _)
 /// Compute Interconnect Attachment Edge Availability enum for `edge_availability_domain`.
 extension type const ComputeInterconnectAttachmentEdgeAvailabilityDomain._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInterconnectAttachmentEdgeAvailabilityDomain.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInterconnectAttachmentEdgeAvailabilityDomain.expression(

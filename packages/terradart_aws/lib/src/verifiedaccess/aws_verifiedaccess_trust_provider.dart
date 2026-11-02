@@ -15,7 +15,8 @@ const Set<String> _awsVerifiedaccessTrustProviderSensitive = <String>{
 /// Verifiedaccess Trust Provider Device Trust Provider enum for `device_trust_provider_type`.
 extension type const VerifiedaccessTrustProviderDeviceTrustProviderType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VerifiedaccessTrustProviderDeviceTrustProviderType.variable(String name)
     : this._(TfArg.variable(name));
   VerifiedaccessTrustProviderDeviceTrustProviderType.expression(String template)
@@ -59,7 +60,8 @@ extension type const VerifiedaccessTrustProviderType._(TfArg<String> _)
 /// Verifiedaccess Trust Provider User Trust Provider enum for `user_trust_provider_type`.
 extension type const VerifiedaccessTrustProviderUserTrustProviderType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VerifiedaccessTrustProviderUserTrustProviderType.variable(String name)
     : this._(TfArg.variable(name));
   VerifiedaccessTrustProviderUserTrustProviderType.expression(String template)

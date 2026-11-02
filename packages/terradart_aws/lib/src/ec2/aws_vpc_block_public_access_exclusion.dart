@@ -13,7 +13,8 @@ const Set<String> _awsVpcBlockPublicAccessExclusionSensitive = <String>{};
 /// Vpc Block Public Access Exclusion Internet Gateway Exclusion enum for `internet_gateway_exclusion_mode`.
 extension type const VpcBlockPublicAccessExclusionInternetGatewayExclusionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpcBlockPublicAccessExclusionInternetGatewayExclusionMode.variable(
     String name,
   ) : this._(TfArg.variable(name));

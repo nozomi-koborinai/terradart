@@ -367,7 +367,8 @@ final class SecurityposturePostureSecurityHealthAnalyticsCustomModule {
 /// `module_enablement_state` — derived from the provider schema description.
 extension type const SecurityposturePostureModuleEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityposturePostureModuleEnablementState.variable(String name)
     : this._(TfArg.variable(name));
   SecurityposturePostureModuleEnablementState.expression(String template)

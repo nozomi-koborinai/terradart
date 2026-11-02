@@ -43,7 +43,8 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
 /// `producer_instance_location` — derived from the provider schema description.
 extension type const NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation.variable(
     String name,
   ) : this._(TfArg.variable(name));

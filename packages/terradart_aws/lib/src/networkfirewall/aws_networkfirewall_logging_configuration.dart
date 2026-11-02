@@ -54,7 +54,8 @@ final class NetworkfirewallLoggingConfigurationLogDestinationConfig {
 /// `log_destination_type` — derived from the provider schema description.
 extension type const NetworkfirewallLoggingConfigurationLogDestinationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallLoggingConfigurationLogDestinationType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallLoggingConfigurationLogDestinationType.expression(
@@ -83,7 +84,8 @@ extension type const NetworkfirewallLoggingConfigurationLogDestinationType._(
 /// `log_type` — derived from the provider schema description.
 extension type const NetworkfirewallLoggingConfigurationLogType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallLoggingConfigurationLogType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallLoggingConfigurationLogType.expression(String template)

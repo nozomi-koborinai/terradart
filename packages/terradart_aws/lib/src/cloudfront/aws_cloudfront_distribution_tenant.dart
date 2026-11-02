@@ -68,7 +68,8 @@ final class CloudfrontDistributionTenantGeoRestriction {
 /// `restriction_type` — derived from the provider schema description.
 extension type const CloudfrontDistributionTenantRestrictionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionTenantRestrictionType.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontDistributionTenantRestrictionType.expression(String template)
@@ -173,7 +174,8 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
 extension type const CloudfrontDistributionTenantCertificateTransparencyLoggingPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionTenantCertificateTransparencyLoggingPreference.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -202,7 +204,8 @@ extension type const CloudfrontDistributionTenantCertificateTransparencyLoggingP
 /// `validation_token_host` — derived from the provider schema description.
 extension type const CloudfrontDistributionTenantValidationTokenHost._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionTenantValidationTokenHost.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontDistributionTenantValidationTokenHost.expression(String template)

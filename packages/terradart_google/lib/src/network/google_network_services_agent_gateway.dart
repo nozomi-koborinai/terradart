@@ -27,7 +27,8 @@ extension type const NetworkServicesAgentGatewayProtocols._(TfArg<String> _)
 /// `governed_access_path` under `google_managed`.
 extension type const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath.variable(
     String name,
   ) : this._(TfArg.variable(name));

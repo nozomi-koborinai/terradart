@@ -9,7 +9,8 @@ const Set<String> _awsNetworkmanagerAttachmentAccepterSensitive = <String>{};
 /// Networkmanager Attachment Accepter Attachment enum for `attachment_type`.
 extension type const NetworkmanagerAttachmentAccepterAttachmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkmanagerAttachmentAccepterAttachmentType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkmanagerAttachmentAccepterAttachmentType.expression(String template)

@@ -154,7 +154,8 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfig {
 /// `operating_system` — derived from the provider schema description.
 extension type const GkeonpremBareMetalAdminClusterOperatingSystem._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeonpremBareMetalAdminClusterOperatingSystem.variable(String name)
     : this._(TfArg.variable(name));
   GkeonpremBareMetalAdminClusterOperatingSystem.expression(String template)
@@ -452,7 +453,8 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfigTaints {
 /// `effect` — derived from the provider schema description.
 extension type const GkeonpremBareMetalAdminClusterTaintsEffect._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeonpremBareMetalAdminClusterTaintsEffect.variable(String name)
     : this._(TfArg.variable(name));
   GkeonpremBareMetalAdminClusterTaintsEffect.expression(String template)

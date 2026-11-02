@@ -34,7 +34,8 @@ final class SiteRecoveryProtectionContainerMappingAutomaticUpdate {
 /// `authentication_type` — derived from the provider schema description.
 extension type const SiteRecoveryProtectionContainerMappingAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SiteRecoveryProtectionContainerMappingAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   SiteRecoveryProtectionContainerMappingAuthenticationType.expression(

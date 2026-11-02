@@ -43,7 +43,8 @@ final class PaloAltoNextGenerationFirewallVirtualHubPanoramaDestinationNat {
 /// `protocol` — derived from the provider schema description.
 extension type const PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol.variable(String name)
     : this._(TfArg.variable(name));
   PaloAltoNextGenerationFirewallVirtualHubPanoramaProtocol.expression(

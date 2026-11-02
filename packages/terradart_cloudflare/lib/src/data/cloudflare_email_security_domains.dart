@@ -10,7 +10,8 @@ const Set<String> _cloudflareEmailSecurityDomainsSensitive = <String>{};
 /// Data Email Security Domains Active Delivery enum for `active_delivery_mode`.
 extension type const DataEmailSecurityDomainsActiveDeliveryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityDomainsActiveDeliveryMode.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityDomainsActiveDeliveryMode.expression(String template)
@@ -46,7 +47,8 @@ extension type const DataEmailSecurityDomainsActiveDeliveryMode._(
 /// Data Email Security Domains Allowed Delivery enum for `allowed_delivery_mode`.
 extension type const DataEmailSecurityDomainsAllowedDeliveryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityDomainsAllowedDeliveryMode.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityDomainsAllowedDeliveryMode.expression(String template)

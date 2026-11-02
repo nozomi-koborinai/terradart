@@ -11,7 +11,8 @@ const Set<String> _googleParallelstoreInstanceSensitive = <String>{};
 /// Parallelstore Instance Directory Stripe enum for `directory_stripe_level`.
 extension type const ParallelstoreInstanceDirectoryStripeLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ParallelstoreInstanceDirectoryStripeLevel.variable(String name)
     : this._(TfArg.variable(name));
   ParallelstoreInstanceDirectoryStripeLevel.expression(String template)

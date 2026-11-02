@@ -94,7 +94,8 @@ extension type const MagicNetworkMonitoringRuleType._(TfArg<String> _)
 /// Magic Network Monitoring Rule Zscore enum for `zscore_sensitivity`.
 extension type const MagicNetworkMonitoringRuleZscoreSensitivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MagicNetworkMonitoringRuleZscoreSensitivity.variable(String name)
     : this._(TfArg.variable(name));
   MagicNetworkMonitoringRuleZscoreSensitivity.expression(String template)

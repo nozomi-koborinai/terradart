@@ -29,7 +29,8 @@ extension type const ImagebuilderContainerRecipeContainerType._(TfArg<String> _)
 /// Imagebuilder Container Recipe Platform enum for `platform_override`.
 extension type const ImagebuilderContainerRecipePlatformOverride._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderContainerRecipePlatformOverride.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderContainerRecipePlatformOverride.expression(String template)

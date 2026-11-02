@@ -12,7 +12,8 @@ const Set<String> _azurermStackHciMarketplaceGalleryImageSensitive = <String>{};
 /// Stack Hci Marketplace Gallery Image Hyperv enum for `hyperv_generation`.
 extension type const StackHciMarketplaceGalleryImageHypervGeneration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StackHciMarketplaceGalleryImageHypervGeneration.variable(String name)
     : this._(TfArg.variable(name));
   StackHciMarketplaceGalleryImageHypervGeneration.expression(String template)

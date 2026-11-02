@@ -105,7 +105,8 @@ final class AccessContextManagerAccessLevelBasic {
 /// `combining_function` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelCombiningFunction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelCombiningFunction.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerAccessLevelCombiningFunction.expression(String template)
@@ -211,7 +212,8 @@ final class AccessContextManagerAccessLevelDevicePolicy {
 /// `allowed_device_management_levels` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelAllowedDeviceManagementLevels._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelAllowedDeviceManagementLevels.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -248,7 +250,8 @@ extension type const AccessContextManagerAccessLevelAllowedDeviceManagementLevel
 /// `allowed_encryption_statuses` — derived from the provider schema description.
 extension type const AccessContextManagerAccessLevelAllowedEncryptionStatuses._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAccessLevelAllowedEncryptionStatuses.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerAccessLevelAllowedEncryptionStatuses.expression(

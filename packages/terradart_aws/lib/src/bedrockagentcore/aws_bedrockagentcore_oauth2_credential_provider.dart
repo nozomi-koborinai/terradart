@@ -54,7 +54,8 @@ _awsBedrockagentcoreOauth2CredentialProviderSensitive = <String>{
 /// Bedrockagentcore Oauth2 Credential Provider enum for `credential_provider_vendor`.
 extension type const BedrockagentcoreOauth2CredentialProviderVendor._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderVendor.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreOauth2CredentialProviderVendor.expression(String template)
@@ -426,7 +427,8 @@ final class BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig {
 /// `client_authentication_method` — derived from the provider schema description.
 extension type const BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -552,7 +554,8 @@ final class BedrockagentcoreOauth2CredentialProviderOnBehalfOfTokenExchangeConfi
 /// `grant_type` — derived from the provider schema description.
 extension type const BedrockagentcoreOauth2CredentialProviderGrantType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderGrantType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreOauth2CredentialProviderGrantType.expression(String template)
@@ -597,7 +600,8 @@ final class BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig
 /// `actor_token_content` — derived from the provider schema description.
 extension type const BedrockagentcoreOauth2CredentialProviderActorTokenContent._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderActorTokenContent.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -695,7 +699,8 @@ final class BedrockagentcoreOauth2CredentialProviderManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -795,7 +800,8 @@ final class BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig {
 /// `signing_algorithm` — derived from the provider schema description.
 extension type const BedrockagentcoreOauth2CredentialProviderSigningAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreOauth2CredentialProviderSigningAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreOauth2CredentialProviderSigningAlgorithm.expression(

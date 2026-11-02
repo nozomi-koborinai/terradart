@@ -10,7 +10,8 @@ const Set<String> _azurermApiManagementWorkspacePolicyFragmentSensitive =
 /// Api Management Workspace Policy Fragment Xml enum for `xml_format`.
 extension type const ApiManagementWorkspacePolicyFragmentXmlFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementWorkspacePolicyFragmentXmlFormat.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementWorkspacePolicyFragmentXmlFormat.expression(String template)

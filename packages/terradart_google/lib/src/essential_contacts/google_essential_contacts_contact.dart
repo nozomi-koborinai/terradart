@@ -9,7 +9,8 @@ const Set<String> _googleEssentialContactsContactSensitive = <String>{};
 /// Essential Contacts Contact Notification Category enum for `notification_category_subscriptions`.
 extension type const EssentialContactsContactNotificationCategorySubscriptions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EssentialContactsContactNotificationCategorySubscriptions.variable(
     String name,
   ) : this._(TfArg.variable(name));

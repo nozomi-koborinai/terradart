@@ -10,7 +10,8 @@ const Set<String> _azurermDataFactoryDatasetParquetSensitive = <String>{};
 /// Data Factory Dataset Parquet Compression enum for `compression_codec`.
 extension type const DataFactoryDatasetParquetCompressionCodec._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryDatasetParquetCompressionCodec.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryDatasetParquetCompressionCodec.expression(String template)
@@ -58,7 +59,8 @@ extension type const DataFactoryDatasetParquetCompressionCodec._(
 /// Data Factory Dataset Parquet Compression enum for `compression_level`.
 extension type const DataFactoryDatasetParquetCompressionLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryDatasetParquetCompressionLevel.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryDatasetParquetCompressionLevel.expression(String template)
