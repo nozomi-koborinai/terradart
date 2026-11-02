@@ -16,8 +16,8 @@ The catalog at the current provider pin (`kAppwriteProviderVersionConstraint`) i
 
 ```yaml
 dependencies:
-  terradart_core: ^0.35.0
-  terradart_appwrite: ^0.35.0
+  terradart_core: ^0.36.0
+  terradart_appwrite: ^0.36.0
 ```
 
 ## Usage example

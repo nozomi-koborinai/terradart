@@ -18,8 +18,8 @@ The catalog at the current provider pin is filled (every `cloudflare_*` resource
 
 ```yaml
 dependencies:
-  terradart_core: ^0.35.0
-  terradart_cloudflare: ^0.35.0
+  terradart_core: ^0.36.0
+  terradart_cloudflare: ^0.36.0
 ```
 
 ## Usage example

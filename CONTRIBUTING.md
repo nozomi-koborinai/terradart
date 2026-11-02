@@ -1,15 +1,15 @@
 # Contributing to terradart
 
-Thanks for taking time to look at this. terradart is an **alpha** single-maintainer project (0.35.x today). Alpha is where TerraDart gets into people's hands and their feedback shapes the API. Breaking changes land only on minor bumps. Beta starts when the API shape is settled. See the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Contributions are welcome on a best-effort basis.
+Thanks for taking time to look at this. terradart is an **alpha** single-maintainer project (0.36.x today). Alpha is where TerraDart gets into people's hands and their feedback shapes the API. Breaking changes land only on minor bumps. Beta starts when the API shape is settled. See the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Contributions are welcome on a best-effort basis.
 
 ## What kind of contribution?
 
 terradart ships two consumer surfaces:
 
-- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**1380 curated resource factories + 472 data sources** as of 0.35.x) and the beta-only catalog in [`terradart_google_beta`](packages/terradart_google_beta/README.md) (**112 resource factories**), plus the filled catalogs of [`terradart_appwrite`](packages/terradart_appwrite/README.md), [`terradart_cloudflare`](packages/terradart_cloudflare/README.md), [`terradart_aws`](packages/terradart_aws/README.md), and [`terradart_azure`](packages/terradart_azure/README.md). Bug fixes, tests, and doc improvements welcome. The GA catalog is filled; new beta-only types that appear after the current provider pin still land via `terradart-codegen wrap` overrides — open an issue first to discuss scope.
+- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**1380 curated resource factories + 472 data sources** as of 0.36.x) and the beta-only catalog in [`terradart_google_beta`](packages/terradart_google_beta/README.md) (**112 resource factories**), plus the filled catalogs of [`terradart_appwrite`](packages/terradart_appwrite/README.md), [`terradart_cloudflare`](packages/terradart_cloudflare/README.md), [`terradart_aws`](packages/terradart_aws/README.md), and [`terradart_azure`](packages/terradart_azure/README.md). Bug fixes, tests, and doc improvements welcome. The GA catalog is filled; new beta-only types that appear after the current provider pin still land via `terradart-codegen wrap` overrides — open an issue first to discuss scope.
 - **The `terradart` command and the migrator** — [`terradart_cli`](packages/terradart_cli/README.md) (`terradart synth`, `validate`, `plan`, `apply`, `destroy`, `outputs`, `migrate`), [`terradart_migrate`](packages/terradart_migrate/README.md) and [`terradart_hcl`](packages/terradart_hcl/README.md). Bug fixes, tests, and migration fixtures from real Terraform trees welcome.
 
-Within a **minor** line (`^0.35.0`), no breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (the alpha change policy — see [status](https://terradart.dev/docs/status/)).
+Within a **minor** line (`^0.36.0`), no breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (the alpha change policy — see [status](https://terradart.dev/docs/status/)).
 
 Bug reports / questions / feature requests: pick a template when [opening an issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
