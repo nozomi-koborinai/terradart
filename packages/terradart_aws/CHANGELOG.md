@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- **Breaking:** 9 inputs that took a string take an enum of the set the provider's validators accept. See [MIGRATING.md](../../MIGRATING.md#fixed-value-sets-are-enums).
+- **Breaking:** derived type names over 80 characters, or that repeated words of their resource name, are shorter (`Wafv2WebAclRuleRuleLabel` is `Wafv2WebAclRuleNamed`). Only the type name moves. See [MIGRATING.md](../../MIGRATING.md#long-and-repeated-type-names-are-shorter).
+- **Breaking:** `AwsS3Bucket` takes `objectLock: .objectLockEnabled(...)` or `.objectLockConfiguration(...)`, and `AwsWafv2WebAcl` takes `rules: .rule(...)` or `.ruleJson(...)`. See [MIGRATING.md](../../MIGRATING.md#exclusive-groups-are-one-sealed-argument).
+- **Breaking:** `AwsObservabilityadminTelemetryEvaluationForOrganization` takes `multiRegion: .allRegions(...)` or `.regions(...)` in place of two arguments. See [MIGRATING.md](../../MIGRATING.md#organization-telemetry-evaluation-takes-one-region-choice).
+- **Breaking:** `ArcregionswitchPlanUngracefulUngraceful` is removed, and the DocumentDB `ungraceful` input takes `ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful`. See [MIGRATING.md](../../MIGRATING.md#documentdb-ungraceful-enum-takes-its-block-name).
+- **Breaking:** the parsing foundation-model helper of `aws_bedrockagent_data_source` is `BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration`. See [MIGRATING.md](../../MIGRATING.md#bedrock-parsing-foundation-model-helper-takes-its-parent-name).
+- **Breaking:** `OpensearchDomainClusterConfig.warmType` is a string, and `OpensearchDomainWarmType` is removed. See [MIGRATING.md](../../MIGRATING.md#opensearch-warm_type-is-a-string).
+- `EmrClusterInstanceTypeConfigs` takes `configurations`, the nested blocks of an instance fleet, which the generator used to drop. See [MIGRATING.md](../../MIGRATING.md#emr-instance-fleets-can-set-configuration-blocks).
+- Follows `hashicorp/aws` 6.70.0 (was 6.66.0), and synth output pins that version. New factories include Directory Service IP routes, ODB autonomous databases, CloudWatch Omni, DevOps Agent spaces, Pricing Plan Manager subscriptions, and `AwsSagemakerInferenceComponent`, which takes `spec: .specification([...])` or `.specifications([...])`.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill; no provider pin moves.

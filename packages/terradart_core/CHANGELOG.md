@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- `EnumList<E>` is the type of a list-valued enum input, a `TfArg<List<E>>`. Pass the members with `.literal([...])`, or the whole list with `.variable(...)` or `.expression(...)`. A member of a literal list takes its enum's own `.variable(...)`, `.expression(...)` or `.arg(...)`. The provider packages type every enum list with it.
+- `AzurermBackend` keeps state in an Azure storage container. It takes optional `resourceGroupName`, `storageAccountName`, `containerName` and `key`, and writes no credentials. An unset field is omitted, so `const AzurermBackend()` writes `{"azurerm": {}}`.
+- `TfArgLiteral.toTfJson()` replaces each `TfArg` inside a list or map with its own value, so a helper's `encode()` holds plain strings for an `EnumList` or a list of `RefTo`. Synth output is unchanged.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.

@@ -4,6 +4,58 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [0.36.0] - 2026-11-01
+
+Lockstep release across the twelve packages, the first with **`terradart_azure`**, the factories for `hashicorp/azurerm`. TerraDart stays in alpha, so feedback on this release shapes the API ([status](https://terradart.dev/docs/status/)). On every provider package:
+- every exclusive group is one sealed argument named for its concept (`capacity: .numNodes(...)`);
+- an input with a fixed set of values takes an enum, and a list of them takes `EnumList<E>`;
+- a string input that names another resource is a `RefTo`, and every resource has its output getters;
+- generated type names are short, and no two packages export the same one;
+- `terradart migrate` writes every input with the typed shape the package exposes.
+
+**Breaking** for the Dart API of `terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare` and `terradart_appwrite`. Read [MIGRATING.md](MIGRATING.md#035x--0360) before bumping. Every change there has Before / After rows. The Terraform JSON for the same value is unchanged, except that `GoogleStorageFtpUser` writes `user_credentials` as a list, a Migration Center CSV export writes `CSV` instead of `FILE_FORMAT_CSV`, and the exact provider pins move. Cloudflare 5.28.0 removed the registrar types, so their factories are gone.
+
+Provider pins move:
+- `hashicorp/google` and `hashicorp/google-beta`: 8.4.0 to 8.8.1;
+- `hashicorp/aws`: 6.66.0 to 6.70.0;
+- `cloudflare/cloudflare`: 5.26.0 to 5.28.1;
+- `appwrite/appwrite`: 2.0.0-beta.1 to 2.3.0;
+- `hashicorp/azurerm`: 5.12.0, new with `terradart_azure`.
+
+The `terradart_google` catalog grows to **1380 curated resource factories + 472 data sources** (1852 entries), and `terradart_azure` starts at **1107 resource factories + 398 data sources** (1505 entries).
+
+### Added
+
+- **`terradart_azure`** (new). A factory for every `hashicorp/azurerm` resource and data source at the pinned release. Inputs with a fixed value set are enums, exclusive groups are sealed arguments (`osSource: .image(...)` or `.osManagedDiskId(...)` on a virtual machine), and inputs that name another resource take a `RefTo` (`resourceGroupName: group.ref`). `AzureProvider` takes no credential parameters, and apply authenticates through the `ARM_*` environment variables. A weekly schema bump moves the pin on Thursdays. The [Azure](https://terradart.dev/docs/providers/azure/) guide covers install, credentials and a first stack.
+- **`AzurermBackend`** (`terradart_core`). Keeps state in an Azure storage container. It takes optional `resourceGroupName`, `storageAccountName`, `containerName` and `key`, and writes no credentials.
+- **`terradart init --provider azure`** (`terradart_cli`). Writes a Stack with `AzureProvider` and one resource group that runs on OpenTofu. `--backend azurerm` writes an `AzurermBackend` with one storage account name per environment.
+- **`EnumList<E>`** (`terradart_core`). The type of a list-valued enum input, a `TfArg<List<E>>`. Pass the members with `.literal([...])`, or the whole list with `.variable(...)` or `.expression(...)`.
+- **New factories from the provider bumps.** Google adds `GoogleCloudRunV2Instance` and its IAM adjuncts, `GoogleGeminiDataAnalyticsDataAgent` and its IAM adjuncts, `GoogleDialogflowTool`, `GoogleDnsOutboundEndpoint`, `GoogleDocumentAiSchemaVersion`, `GoogleResourceManagerCapabilityConfig`, `GoogleVertexAiOnlineEvaluator` and `GoogleVertexAiSemanticGovernancePolicy`, and four data sources. AWS adds Directory Service, ODB autonomous database, CloudWatch Omni, DevOps Agent, Pricing Plan Manager and SageMaker inference component factories, among others. Appwrite adds the DocumentsDB and VectorsDB databases, collections, documents and indexes. Cloudflare adds monetization rules and the Zero Trust CASB integration.
+- **Output getters on every resource.** The last 41 `terradart_google` resources gain theirs, 312 getters in all. `AppwriteStorageBucket` takes `projectId` as a `RefTo<AppwriteProject>`, like the other Appwrite resources.
+- **Arguments that had no constructor slot** (`terradart_google`, `terradart_aws`). Five Google factories take a block that had no constructor argument (`GoogleContainerCluster` takes `managedOpentelemetryConfig`), the security policy rate-limit helpers take `exceedAction`, and Pub/Sub subscription `delivery` gains `.bigtableConfig`. `EmrClusterInstanceTypeConfigs` takes its nested `configurations` blocks.
+- **Azure and Cloudflare DNS example.** [`examples/azure_dns_quickstart`](examples/azure_dns_quickstart/) points a Cloudflare A record at an Azure public IP. It is synth and `terraform validate` only.
+
+### Changed
+
+- **Breaking: exclusive groups are one sealed argument** (`terradart_google`, `terradart_aws`, `terradart_appwrite`). Inputs the provider accepts only one of are one argument named for the concept, with one variant per member. Examples are `connectivity`, `payload`, `capacity`, `scope` and `objectLock`. Provider bumps added more: `notBefore` on a CA pool issuance policy, `multiRegion` on an organization telemetry evaluation, the disk encryption keys, and `value`, `password` and `schedule` on Appwrite. The IAM policy binding `target` is sealed. Provider 8.7.0 dropped the conflict on thirteen Google groups, which are plain fields again. See [MIGRATING.md](MIGRATING.md#exclusive-groups-are-one-sealed-argument).
+- **Breaking: fixed value sets are enums** (`terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`). 737 Google inputs, 20 beta inputs, 9 AWS inputs and 127 Cloudflare inputs took a string. Each now takes an enum of its provider's set. On Google the set comes from Magic Modules, else from a checked-in copy of the API's Discovery document. Some Google enums lose members their API does not list, including 29 `*_UNSPECIFIED` sentinels. See [MIGRATING.md](MIGRATING.md#fixed-value-sets-are-enums).
+- **Breaking: long and repeated type names are shorter** (`terradart_google`, `terradart_aws`, `terradart_cloudflare`). Only the type name moves, so a dot shorthand needs no change. See [MIGRATING.md](MIGRATING.md#long-and-repeated-type-names-are-shorter).
+- **Breaking: ten Google inputs take the shape the migrator writes.** Four enum lists take `EnumList`, firewall `rulePolicy` takes lists of `ComputeFirewallAllow` or `ComputeFirewallDeny`, autoscaler `scalingSchedules` is a list, Chronicle `axisType` becomes `xAxes` / `yAxes`, and the security policy `match` is sealed. See [MIGRATING.md](MIGRATING.md#google-inputs-the-migrator-could-not-build-are-typed).
+- **Breaking: provider bumps** (`terradart_google`, `terradart_aws`, `terradart_cloudflare`). Some helpers take new names, `OpensearchDomainClusterConfig.warmType` is a string, and Cloudflare 5.28.0 removes the registrar factories and makes some arguments required. Each change has its own section in [MIGRATING.md](MIGRATING.md), the largest being [Cloudflare 5.28.0](MIGRATING.md#terradart_cloudflare-follows-cloudflarecloudflare-5280).
+- **`terradart migrate` writes the whole public API** (`terradart_migrate`). Every Google input is written with its typed shape, so no quickstart resource stays in Terraform. An enum value outside the set is written as `.arg(.literal(...))` with a warning. An `azurerm` provider becomes `AzureProvider` without its credentials, and an `azurerm` backend that sets only the four `AzurermBackend` fields becomes one.
+
+### Fixed
+
+- **`terradart state migrate` hides backend credentials** (`terradart_cli`). The question reads `.tf` files too, so it names the real backend, and it hides any argument whose name has a `key`, `token`, `secret`, `password`, `pem` or certificate segment, plus `conn_str` and the migrator's credential list.
+- **`terradart migrate` drops `azurerm` credentials** (`terradart_migrate`). A kept `azurerm` backend loses `client_secret`, `access_key`, `sas_token` and the other credential arguments, in `backend.tf` and in the `Env` enum `--merge-envs` writes. A kept `azuread` provider drops the same ARM client credentials.
+
+### Docs
+
+- The [status page](https://terradart.dev/docs/status/) defines alpha, beta and 1.0. Alpha is where TerraDart reaches people and their feedback shapes the API. Beta waits on six checks the maintainer can run. 1.0 follows two minor releases in a row with no breaking change.
+- An [Azure](https://terradart.dev/docs/providers/azure/) provider guide and coverage page, and Azure in every provider list.
+- The weekly bump schedule on *How it's built* is rendered from `tool/providers.yaml`.
+- A Sponsor section in the README and a sponsor link in the site footer.
+
 ## [0.35.0] - 2026-10-03
 
 Lockstep release across the eleven packages. The `terradart` command is now safe to run where nobody can answer it — CI, scripts and AI agents:

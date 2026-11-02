@@ -91,9 +91,9 @@ export 'src/mssql/azurerm_mssql_managed_database.dart'
         AzurermMssqlManagedDatabase,
         MssqlManagedDatabaseLongTermRetentionPolicy,
         MssqlManagedDatabasePointInTimeRestore,
-        MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId,
-        MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice,
-        MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore;
+        MssqlManagedDatabaseRecovery,
+        MssqlManagedDatabaseRecoveryPointInTimeRestore,
+        MssqlManagedDatabaseRecoveryRecoverDatabaseId;
 export 'src/mssql/azurerm_mssql_managed_instance.dart'
     show
         AzurermMssqlManagedInstance,

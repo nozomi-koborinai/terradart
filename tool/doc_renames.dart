@@ -68,6 +68,7 @@ import 'package:yaml/yaml.dart';
 
 import 'code_spans.dart';
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
+import 'migrating_cells.dart' show beforeRelease, publishedVersions;
 
 const migratingPath = 'MIGRATING.md';
 const allowPath = 'tool/doc_renames_allow.yaml';
@@ -300,16 +301,26 @@ final class PublicApi {
 
   /// What the entrypoints of the last release's packages on pub.dev export,
   /// fetched into a scratch package.
-  static Future<({String version, PublicApi api})> released(String root) =>
-      _released[root] ??= _readReleased(root);
+  static Future<({String version, PublicApi api})> released() =>
+      _released ??= readReleased();
 
-  static final _released =
-      <String, Future<({String version, PublicApi api})>>{};
+  static Future<({String version, PublicApi api})>? _released;
 
-  static Future<({String version, PublicApi api})> _readReleased(
-    String root,
-  ) async {
-    final release = lastRelease(root, docCommentPackages);
+  /// What the entrypoints of [docCommentPackages] export at each one's newest
+  /// stable release in [published] (package → its versions; pub.dev by
+  /// default). A release PR's CHANGELOGs already top the version it is about
+  /// to publish, so they cannot name the last release.
+  static Future<({String version, PublicApi api})> readReleased({
+    Map<String, List<String>>? published,
+  }) async {
+    final pins = beforeRelease(
+      'x',
+      published ?? await publishedVersions(docCommentPackages),
+    );
+    final release = (
+      version: (pins.values.toSet().toList()..sort()).join(' / '),
+      packages: pins.keys.toSet(),
+    );
     final dir = Directory.systemTemp.createTempSync('doc_renames_release_');
     try {
       File(p.join(dir.path, 'pubspec.yaml')).writeAsStringSync(
@@ -319,7 +330,8 @@ final class PublicApi {
           'environment:',
           '  sdk: ^3.10.0',
           'dependencies:',
-          for (final pkg in release.packages) '  $pkg: ${release.version}',
+          for (final MapEntry(key: pkg, value: version) in pins.entries)
+            '  $pkg: $version',
         ].join('\n'),
       );
       var get = Process.runSync('dart', [
@@ -1055,7 +1067,7 @@ Future<List<String>> checkDocRenames(
   final removed = removedSymbols(
     migrating: symbols,
     current: current,
-    released: released ? await PublicApi.released(root) : null,
+    released: released ? await PublicApi.released() : null,
   );
   final internal = current.internalSymbols;
   final out = <String>[];
@@ -1158,33 +1170,4 @@ Future<void> main() async {
     stderr.writeln('  - $f');
   }
   exit(1);
-}
-
-/// The released version: the `## <version> - <date>` heading every package
-/// of [packages] with a dated top heading agrees on, and those packages.
-({String version, Set<String> packages}) lastRelease(
-  String root,
-  List<String> packages,
-) {
-  final released = <String, String>{};
-  for (final pkg in packages) {
-    final changelog = File(p.join(root, 'packages', pkg, 'CHANGELOG.md'));
-    if (!changelog.existsSync()) continue;
-    final top = RegExp(
-      r'^## (\S+) - \d{4}-\d{2}-\d{2}',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    final heading = RegExp(
-      r'^## ',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    if (top != null && heading != null && top.start == heading.start) {
-      released[pkg] = top.group(1)!;
-    }
-  }
-  final versions = released.values.toSet();
-  if (versions.length != 1) {
-    throw StateError('released packages disagree on a version: $released');
-  }
-  return (version: versions.single, packages: released.keys.toSet());
 }

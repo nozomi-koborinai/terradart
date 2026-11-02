@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- **Breaking:** follows `cloudflare/cloudflare` 5.28.1 (was 5.26.0), and synth output pins that version. 5.28.0 removes `CloudflareRegistrarDomain`, `DataCloudflareRegistrarDomain`, `DataCloudflareRegistrarDomains` and `registrar.dart`. Access application policy helpers take the `Policies` name, some arguments are required, and some members are gone or retyped. See [MIGRATING.md](../../MIGRATING.md#terradart_cloudflare-follows-cloudflarecloudflare-5280).
+- **Breaking:** 127 inputs that took a string take an enum of the set the provider's validators or its `Available values:` descriptions give. See [MIGRATING.md](../../MIGRATING.md#fixed-value-sets-are-enums).
+- **Breaking:** `HostnameTlsSettingSettingId` is `HostnameTlsSettingName`, and `ZeroTrustGatewaySettingsSettingsMode` is `ZeroTrustGatewaySettingsProxyInspectionMode`. Only the type name moves. See [MIGRATING.md](../../MIGRATING.md#long-and-repeated-type-names-are-shorter).
+- `CloudflareMonetizationRules` and its data source, in `monetization.dart`, and `CloudflareZeroTrustCasbIntegration` with its data sources, in `zero_trust.dart`.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill; no provider pin moves.

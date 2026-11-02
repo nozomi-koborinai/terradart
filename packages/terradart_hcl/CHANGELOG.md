@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- No API changes. Lockstep release with the first `terradart_azure` and the typed enums and sealed arguments of the provider packages.
+
 ## 0.35.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.

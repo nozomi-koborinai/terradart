@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.36.0 - 2026-11-01
+
+- `terradart init --provider azure` writes a Stack with `AzureProvider` and one `azurerm_resource_group` (location `eastus` by default) that depends on `terradart_azure` and runs on OpenTofu. `AzureProvider()` leaves subscription and tenant to `ARM_SUBSCRIPTION_ID` and `ARM_TENANT_ID`.
+- `terradart init --backend azurerm` writes an `AzurermBackend`. Every environment shares one resource group placeholder and gets its own storage account name, at most 24 lowercase letters and digits. `--provider azure --state-bucket` selects it, and the bucket question offers `azurerm` beside `gcs` and `s3`.
+- `terradart help backends` and the bundled agent skill name `AzurermBackend`.
+- `terradart state migrate` no longer prints backend credentials. The question reads `.tf` files as well as `*.tf.json`, so it names the real backend. It hides an argument whose name has a `key`, `token`, `secret`, `password`, `pem`, `cert`, `certificate`, `credential` or `credentials` segment, plus `conn_str`, `http_auth`, `ca_file`, `config_path`, `config_paths` and the migrator's credential list. `bucket`, `prefix`, `key`, `container_name` and `storage_account_name` stay visible.
+
 ## 0.35.0 - 2026-10-03
 
 - Every command's `--help` ends with `Examples:` (the simplest use first, the `--no-input --json` form an agent runs last) and `See also:` topics. `terradart help <topic>` prints a terminal-sized guide — `environments`, `outputs`, `backends`, `engines`, `migrate`, `exit-codes`, `json`, `agents` — and `terradart help --list` lists them; `terradart help migrate` is the command's usage followed by the guide.

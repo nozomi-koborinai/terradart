@@ -12,18 +12,18 @@ const Set<String> _azurermMssqlManagedDatabaseSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.pointInTimeRestore(...)`.
-sealed class MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId {
-  const MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId();
+sealed class MssqlManagedDatabaseRecovery {
+  const MssqlManagedDatabaseRecovery();
 
   /// Sets `point_in_time_restore`.
-  const factory MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId.pointInTimeRestore(
+  const factory MssqlManagedDatabaseRecovery.pointInTimeRestore(
     MssqlManagedDatabasePointInTimeRestore pointInTimeRestore,
-  ) = MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore;
+  ) = MssqlManagedDatabaseRecoveryPointInTimeRestore;
 
   /// Sets `recover_database_id`.
-  const factory MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId.recoverDatabaseId(
+  const factory MssqlManagedDatabaseRecovery.recoverDatabaseId(
     TfArg<String> recoverDatabaseId,
-  ) = MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice;
+  ) = MssqlManagedDatabaseRecoveryRecoverDatabaseId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,12 +38,10 @@ sealed class MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId.pointInTimeRestore] choice: sets `point_in_time_restore`.
-final class MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore
-    extends MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId {
-  const MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore(
-    this.pointInTimeRestore,
-  );
+/// The [MssqlManagedDatabaseRecovery.pointInTimeRestore] choice: sets `point_in_time_restore`.
+final class MssqlManagedDatabaseRecoveryPointInTimeRestore
+    extends MssqlManagedDatabaseRecovery {
+  const MssqlManagedDatabaseRecoveryPointInTimeRestore(this.pointInTimeRestore);
 
   final MssqlManagedDatabasePointInTimeRestore pointInTimeRestore;
 
@@ -64,12 +62,10 @@ final class MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTime
   };
 }
 
-/// The [MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId.recoverDatabaseId] choice: sets `recover_database_id`.
-final class MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice
-    extends MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId {
-  const MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice(
-    this.recoverDatabaseId,
-  );
+/// The [MssqlManagedDatabaseRecovery.recoverDatabaseId] choice: sets `recover_database_id`.
+final class MssqlManagedDatabaseRecoveryRecoverDatabaseId
+    extends MssqlManagedDatabaseRecovery {
+  const MssqlManagedDatabaseRecoveryRecoverDatabaseId(this.recoverDatabaseId);
 
   final TfArg<String> recoverDatabaseId;
 
@@ -146,8 +142,7 @@ final class AzurermMssqlManagedDatabase extends Resource {
     super.localName, {
     required TfArg<String> managedInstanceId,
     required TfArg<String> name,
-    MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseId?
-    pointInTimeRestoreOrRecoverDatabaseId,
+    MssqlManagedDatabaseRecovery? recovery,
     TfArg<num>? shortTermRetentionDays,
     TfArg<Map<String, String>>? tags,
     MssqlManagedDatabaseLongTermRetentionPolicy? longTermRetentionPolicy,
@@ -160,7 +155,7 @@ final class AzurermMssqlManagedDatabase extends Resource {
          argMap: {
            'managed_instance_id': managedInstanceId,
            'name': name,
-           ...?pointInTimeRestoreOrRecoverDatabaseId?.argMap,
+           ...?recovery?.argMap,
            'short_term_retention_days': ?shortTermRetentionDays,
            'tags': ?tags,
            if (longTermRetentionPolicy != null)

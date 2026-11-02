@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased
+## 0.35.x → 0.36.0
 
 ### Google inputs the migrator could not build are typed
 
@@ -1517,8 +1517,8 @@ is `IamProjectsPolicyBindingTargetPrincipalSet`. `.resource` is
 
 **Breaking (`terradart_cloudflare`)** — the provider pin moves from `5.26.0`
 to `5.28.0`, and the factories follow the provider schema. Synth output now
-pins `version = "5.28.0"`. Run `terraform init -upgrade`. Upstream breaking
-notes are in the provider
+pins `version = "5.28.1"`, the patch release a later weekly bump took.
+Run `terraform init -upgrade`. Upstream breaking notes are in the provider
 [CHANGELOG](https://github.com/cloudflare/terraform-provider-cloudflare/blob/v5.28.0/CHANGELOG.md).
 
 `cloudflare/cloudflare` 5.28.0 removes `cloudflare_registrar_domain`, the
