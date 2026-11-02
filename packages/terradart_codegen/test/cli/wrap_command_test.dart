@@ -998,7 +998,7 @@ paramOrder:
           },
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final formatted = formatter.format(raw);
 
         // The derived helper class + its attribute enum are emitted as

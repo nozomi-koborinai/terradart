@@ -13,7 +13,7 @@ import 'package:test/test.dart';
 /// emitter's raw output and the hand-written expected source through this
 /// same formatter, so the test pins the format-stable *contract* rather
 /// than the emitter's own (irrelevant) internal whitespace choices.
-final _formatter = packageFormatter('.');
+final _formatter = packageFormatter('../terradart_google');
 
 String _fmt(String source) => _formatter.format(source);
 

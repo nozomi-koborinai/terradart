@@ -546,7 +546,7 @@ void main() {
       );
       final raw = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      final formatter = packageFormatter('.');
+      final formatter = packageFormatter('../terradart_google');
       final String formatted;
       try {
         formatted = formatter.format(raw);
@@ -573,7 +573,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -596,7 +596,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -619,7 +619,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -642,7 +642,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -665,7 +665,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -688,7 +688,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -711,7 +711,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -734,7 +734,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -757,7 +757,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -780,7 +780,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -803,7 +803,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);

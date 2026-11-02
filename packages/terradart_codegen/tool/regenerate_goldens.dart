@@ -64,7 +64,7 @@ void _emitResource(
     rawResourceSchemas: _rawResourceBlocks(schemaFile),
   );
   final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-  final formatter = packageFormatter('.');
+  final formatter = packageFormatter('../terradart_google');
   final formatted = formatter.format(raw);
   File(goldenPath).writeAsStringSync(formatted);
   print('Written: $goldenPath');
@@ -77,7 +77,7 @@ void _emitDataSource(
 ) {
   final emitter = DataSourceWrapperEmitter(overrides: overrides);
   final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-  final formatter = packageFormatter('.');
+  final formatter = packageFormatter('../terradart_google');
   final formatted = formatter.format(raw);
   // Data source goldens carry the wrap-pipeline file header (the
   // emitter doesn't add it; the wrap pipeline does). Match the test's

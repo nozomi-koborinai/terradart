@@ -34,7 +34,7 @@ final class _Fixture {
   final String schemaSrc;
   late final Map<String, dynamic> _root =
       jsonDecode(schemaSrc) as Map<String, dynamic>;
-  final _formatter = packageFormatter('.');
+  final _formatter = packageFormatter('../terradart_migrate');
 
   Map<String, dynamic> rawBlock(String tfType, {required String schemasKey}) {
     final schemas = (_root['provider_schemas'] as Map).cast<String, dynamic>();

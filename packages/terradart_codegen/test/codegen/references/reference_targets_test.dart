@@ -612,7 +612,7 @@ hashicorp/google:
       },
       references: references,
     );
-    final src = packageFormatter('.').format(
+    final src = packageFormatter('../terradart_google').format(
       emitter.emit(
         ir.resources['google_x_vm']!,
         providerSource: 'hashicorp/google',
@@ -800,7 +800,7 @@ class XVmNic {
       resourceDirs: const {'google_x_vm': 'compute', 'google_x_network': 'x'},
       references: references,
     );
-    final src = packageFormatter('.').format(
+    final src = packageFormatter('../terradart_google').format(
       emitter.emit(
         ir.dataSources['google_x_vm']!,
         providerSource: 'hashicorp/google',
@@ -986,7 +986,7 @@ class XVmNic {
       providerEnums: groups,
       references: references,
     );
-    final src = packageFormatter('.').format(
+    final src = packageFormatter('../terradart_google').format(
       emitter.emit(
         ir.resources['google_x_nic']!,
         providerSource: 'hashicorp/google',
@@ -1137,7 +1137,7 @@ class XVmNic {
       const override = WrapperOverride(outputDir: 'y');
       final references = resolve().byResource;
       final def = ir.resources['google_y_service_iam_member']!;
-      final src = packageFormatter('.').format(
+      final src = packageFormatter('../terradart_google').format(
         WrapperEmitter(
           overrides: const {'google_y_service_iam_member': override},
           references: references,
@@ -1385,14 +1385,15 @@ hashicorp/google:
       );
       final r = resolve();
       const override = WrapperOverride(outputDir: 'y');
-      String emit(String type) => packageFormatter('.').format(
-        WrapperEmitter(
-          overrides: {type: override},
-          references: r.byResource,
-          principals: r.principalResources,
-          principal: r.principal,
-        ).emit(ir.resources[type]!, providerSource: 'hashicorp/google'),
-      );
+      String emit(String type) =>
+          packageFormatter('../terradart_google').format(
+            WrapperEmitter(
+              overrides: {type: override},
+              references: r.byResource,
+              principals: r.principalResources,
+              principal: r.principal,
+            ).emit(ir.resources[type]!, providerSource: 'hashicorp/google'),
+          );
       final account = emit('google_y_account');
       expect(
         account,

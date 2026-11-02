@@ -65,7 +65,7 @@ void main() {
           ],
         ),
       ], package: 'terradart_google_beta');
-      final formatted = packageFormatter('.').format(src);
+      final formatted = packageFormatter('../terradart_migrate').format(src);
       expect(formatted, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
       expect(formatted, contains("import '../migrate_manifest.dart';"));
       expect(

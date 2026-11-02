@@ -82,7 +82,7 @@ void main() {
           _googleProject,
           providerSource: 'hashicorp/google',
         );
-        final formatter = packageFormatter('.');
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
