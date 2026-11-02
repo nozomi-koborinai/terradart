@@ -10,6 +10,9 @@ import 'google_iam_workload_identity_pool.dart';
 /// service account, a service agent, a default service account data source):
 ///
 /// ```dart
+/// final runtime = add(
+///   GoogleServiceAccount('runtime', accountId: .literal('runtime')),
+/// );
 /// add(GoogleProjectIamMember(
 ///   'runtime_logs',
 ///   project: .literal('my-project'),
