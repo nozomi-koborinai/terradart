@@ -346,8 +346,8 @@ final class DnsRecordSettings {
 /// backend (e.g. a `CNAME` for `api.example.com` toward Cloud Run's
 /// `ghs.googlehosted.com`).
 ///
-/// Reference the parent zone with `zoneId: zone.ref`.
-/// `ttl: 1` means
+/// Reference the parent zone by passing its `ref` as [zoneId].
+/// A [ttl] of `1` means
 /// "automatic" in Cloudflare's API; proxied records always use it.
 /// Structured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]
 /// helper; flattening / IPv4-only / IPv6-only flags live on

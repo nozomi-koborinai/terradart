@@ -2313,6 +2313,10 @@ final class ContainerNodePoolStandardRolloutPolicy {
 ///
 /// Example (node pool on an existing cluster):
 /// ```dart
+/// final cluster = add(GoogleContainerCluster(
+///   'cluster',
+///   name: .literal('cluster'),
+/// ));
 /// final pool = GoogleContainerNodePool(
 ///   'primary',
 ///   name: TfArg.literal('primary-pool'),

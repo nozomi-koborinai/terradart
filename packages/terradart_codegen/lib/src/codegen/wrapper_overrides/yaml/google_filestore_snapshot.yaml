@@ -23,6 +23,22 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+  /// final nfs = add(GoogleFilestoreInstance(
+  ///   'nfs',
+  ///   name: .literal('nfs'),
+  ///   tier: FilestoreInstanceTier.basicHdd,
+  ///   fileShares: FilestoreInstanceFileShares(
+  ///     capacityGb: .literal(1024),
+  ///     name: .literal('share'),
+  ///   ),
+  ///   networks: [
+  ///     FilestoreInstanceNetworks(
+  ///       modes: .literal([.modeIpv4]),
+  ///       network: vpc.ref,
+  ///     ),
+  ///   ],
+  /// ));
   /// GoogleFilestoreSnapshot(
   ///   'share_snap',
   ///   name: TfArg.literal('share-snap-1'),

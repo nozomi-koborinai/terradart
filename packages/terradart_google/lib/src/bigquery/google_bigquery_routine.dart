@@ -328,6 +328,7 @@ class BigqueryRoutineSparkOptions {
 ///
 /// Example:
 /// ```dart
+/// final dataset = add(GoogleBigqueryDataset('dataset', datasetId: .literal('dataset')));
 /// final addOne = GoogleBigqueryRoutine(
 ///   'add_one',
 ///   datasetId: dataset.ref,

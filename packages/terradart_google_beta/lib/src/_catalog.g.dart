@@ -1459,7 +1459,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_folder_service_identity`.\n\nFolder **service identity** (beta-only) — provisions the per-service\nservice agent ahead of first use, so IAM grants on that agent never\nrace its lazy creation.\n\nThe [member] / [email] outputs feed IAM grants directly:\n`GoogleFolderIamMember(member: identity.member, ...)`.',
+        'Factory wrapper for `google_folder_service_identity`.\n\nFolder **service identity** (beta-only) — provisions the per-service\nservice agent ahead of first use, so IAM grants on that agent never\nrace its lazy creation.\n\nPass [principal] as the `member` of an IAM grant such as\n[GoogleFolderIamMember]; [email] is the agent\'s bare address.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_membership_rbac_role_binding',
@@ -1665,7 +1665,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_organization_service_identity`.\n\nOrganization **service identity** (beta-only) — provisions the\nper-service service agent ahead of first use, so IAM grants on that\nagent never race its lazy creation.\n\nThe [member] / [email] outputs feed IAM grants directly:\n`GoogleOrganizationIamMember(member: identity.member, ...)`.',
+        'Factory wrapper for `google_organization_service_identity`.\n\nOrganization **service identity** (beta-only) — provisions the\nper-service service agent ahead of first use, so IAM grants on that\nagent never race its lazy creation.\n\nPass [principal] as the `member` of an IAM grant such as\n[GoogleOrganizationIamMember]; [email] is the agent\'s bare address.',
   ),
   CatalogEntry(
     tfType: 'google_os_config_guest_policies',
@@ -1766,7 +1766,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_project_service_identity`.\n\nProject **service identity** (beta-only) — provisions the per-service\nservice agent (e.g. the Pub/Sub or Cloud Build agent) ahead of first\nuse, so IAM grants on that agent never race its lazy creation.\n\nFree: the identity is account metadata with no billed resource behind\nit. Terraform destroy removes only the Terraform record — the service\nagent itself persists (upstream behavior).\n\nThe [member] / [email] outputs feed IAM grants directly:\n`GoogleProjectIamMember(member: identity.member, ...)`.',
+        'Factory wrapper for `google_project_service_identity`.\n\nProject **service identity** (beta-only) — provisions the per-service\nservice agent (e.g. the Pub/Sub or Cloud Build agent) ahead of first\nuse, so IAM grants on that agent never race its lazy creation.\n\nFree: the identity is account metadata with no billed resource behind\nit. Terraform destroy removes only the Terraform record — the service\nagent itself persists (upstream behavior).\n\nPass [principal] as the `member` of an IAM grant such as\n[GoogleProjectIamMember]; [email] is the agent\'s bare address.',
   ),
   CatalogEntry(
     tfType: 'google_runtimeconfig_config',

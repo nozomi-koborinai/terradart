@@ -8,8 +8,8 @@ deriveExactlyOne: true
 curatedDoc: |-
   /// AWS **Lambda function**. A Dart backend runs on the `provided.al2023`
   /// custom runtime: compile it with `dart compile exe` to a binary named
-  /// `bootstrap`, zip it, and pass the zip as `code: .filename(...)` with
-  /// `handler: TfArg.literal('bootstrap')`.
+  /// `bootstrap`, zip it, and pass the zip as the `.filename` variant of [code],
+  /// with [handler] `bootstrap`.
   ///
   /// `role` takes the execution role (`role.ref`) and emits its ARN.
   /// `code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with

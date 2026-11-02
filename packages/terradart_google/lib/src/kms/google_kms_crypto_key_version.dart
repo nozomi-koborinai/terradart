@@ -79,6 +79,16 @@ final class KmsCryptoKeyVersionExternalProtectionLevelOptions {
 ///
 /// Example:
 /// ```dart
+/// final keyRing = add(GoogleKmsKeyRing(
+///   'ring',
+///   name: .literal('ring'),
+///   location: .literal('us-central1'),
+/// ));
+/// final ringKey = add(GoogleKmsCryptoKey(
+///   'ring_key',
+///   name: .literal('ring-key'),
+///   keyRing: keyRing.ref,
+/// ));
 /// GoogleKmsCryptoKeyVersion(
 ///   'v1',
 ///   cryptoKey: ringKey.ref,

@@ -19,7 +19,7 @@ const Set<String> _googleProjectUsageExportBucketSensitive = <String>{};
 ///
 /// Enable `compute.googleapis.com` and `storage.googleapis.com` via
 /// [GoogleProjectService] before apply. Prefer a dedicated bucket with
-/// `forceDestroy: true` in smoke stacks so teardown can empty it.
+/// `forceDestroy` set to true in smoke stacks so teardown can empty it.
 ///
 /// Example:
 /// ```dart

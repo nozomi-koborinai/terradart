@@ -1,7 +1,7 @@
 # GKE Hub Multi-Cluster Service Discovery feature quickstart
 
 End-to-end terradart example for `google_gke_hub_feature` with
-`name: multiclusterservicediscovery` at `location: global`. No cluster
+`multiclusterservicediscovery` in the `global` location. No cluster
 membership is required.
 
 ## Prerequisites

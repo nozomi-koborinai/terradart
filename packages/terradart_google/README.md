@@ -56,9 +56,14 @@ dart pub global activate terradart_cli
 terradart apply
 ```
 
-Register a second configuration with `final eu = addProvider(GoogleProvider(alias: 'eu', ...))` and select it on a resource with `provider: eu` — every factory and data source takes `provider:` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.
+Register a second configuration, a `GoogleProvider` with an `alias`, through `addProvider`, and select it on a resource with its `provider` argument — every factory and data source takes a `provider` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.
 
-Per-service imports (`cloud_run.dart`, `storage.dart`, …) keep IDE completion scoped. See [examples/](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) for AppExport / boundary patterns.
+```dart
+final eu = addProvider(GoogleProvider(alias: 'eu', region: 'europe-west1'));
+add(GooglePubsubTopic('eu-orders', name: .literal('eu-orders'), provider: eu));
+```
+
+Per-service imports (`cloud_run.dart`, `storage.dart`, …) keep IDE completion scoped. See [examples/](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) for the app boundary (`addConstant`, `addOutput`).
 
 ## How resources are built
 

@@ -88,8 +88,8 @@ extension type const ComputePreviewFeaturePredefinedRolloutPlan._(
 /// Compute Engine **preview feature** — enables or leaves unspecified a
 /// project-level preview such as Alpha API access.
 ///
-/// Prefer `name: alpha-api-access` with
-/// `activationStatus: ACTIVATION_STATE_UNSPECIFIED` and
+/// Prefer the feature `alpha-api-access` with the activation status
+/// `ACTIVATION_STATE_UNSPECIFIED` and
 /// [rolloutOperation] `ROLLOUT_PLAN_FAST_ROLLOUT` for smoke stacks (matches
 /// the provider basic example; the API currently rejects other rollout
 /// plans). Enabling Alpha APIs does not provision VMs.

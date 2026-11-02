@@ -30,6 +30,7 @@ const Set<String> _googleGeminiDataSharingWithGoogleSettingBindingSensitive =
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleGeminiDataSharingWithGoogleSettingBinding(
 ///   'sharing_bind',
 ///   dataSharingWithGoogleSettingId: .literal('terradart-sharing'),

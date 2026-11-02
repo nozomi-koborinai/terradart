@@ -21,6 +21,27 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final subnet = add(GoogleComputeSubnetwork(
+  ///   'subnet',
+  ///   name: .literal('subnet'),
+  ///   network: add(GoogleComputeNetwork('vpc', name: .literal('vpc'))).ref,
+  /// ));
+  /// final cluster = add(GoogleManagedKafkaCluster(
+  ///   'cluster',
+  ///   clusterId: .literal('cluster'),
+  ///   location: .literal('us-central1'),
+  ///   capacityConfig: ManagedKafkaClusterCapacityConfig(
+  ///     vcpuCount: .literal('3'),
+  ///     memoryBytes: .literal('3221225472'),
+  ///   ),
+  ///   gcpConfig: ManagedKafkaClusterGcpConfig(
+  ///     accessConfig: ManagedKafkaClusterAccessConfig(
+  ///       networkConfigs: [
+  ///         ManagedKafkaClusterNetworkConfigs(subnet: subnet.ref),
+  ///       ],
+  ///     ),
+  ///   ),
+  /// ));
   /// GoogleManagedKafkaConnectCluster(
   ///   'connect',
   ///   connectClusterId: TfArg.literal('terradart-connect'),

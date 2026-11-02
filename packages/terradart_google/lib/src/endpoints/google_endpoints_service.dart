@@ -24,6 +24,8 @@ const Set<String> _googleEndpointsServiceSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// const openapiYaml = 'openapi: 3.0.0';
 /// GoogleEndpointsService(
 ///   'echo',
 ///   serviceName: TfArg.literal('terradart.endpoints.$projectId.cloud.goog'),

@@ -85,6 +85,10 @@ final class ApigeeInstanceAccessLoggingConfig {
 ///
 /// Example:
 /// ```dart
+/// final org = add(GoogleApigeeOrganization(
+///   'org',
+///   projectId: .literal('my-project'),
+/// ));
 /// GoogleApigeeInstance(
 ///   'runtime',
 ///   name: TfArg.literal('terradart-apigee'),

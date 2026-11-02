@@ -199,6 +199,7 @@ extension type const BinaryAuthorizationAttestorSignatureAlgorithm._(
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
 /// GoogleBinaryAuthorizationAttestor(
 ///   'ci_attestor',
 ///   name: TfArg.literal('ci-attestor'),

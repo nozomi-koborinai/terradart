@@ -14,7 +14,7 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // Enums (sourced from schema "Possible values" prose)
 // ===========================================================================
 
-/// One [FirestoreFieldIndexes.order] direction. `ASCENDING` / `DESCENDING`.
+/// One [FirestoreFieldMode.order] direction. `ASCENDING` / `DESCENDING`.
 extension type const FirestoreFieldOrder._(TfArg<String> _)
     implements TfArg<String> {
   FirestoreFieldOrder.variable(String name) : this._(TfArg.variable(name));
@@ -190,8 +190,8 @@ final class FirestoreFieldTtlConfig {
 /// - [field]: dot-separated path inside the document (e.g. `'user_id'`,
 ///   `'metadata.tags'`).
 ///
-/// Use [indexConfig] to override single-field indexing. An empty
-/// `FirestoreFieldIndexConfig(indexes: [])` **disables** all single-field indexes on
+/// Use [indexConfig] to override single-field indexing. A
+/// [FirestoreFieldIndexConfig] with empty `indexes` **disables** all single-field indexes on
 /// the field (overriding the database's automatic indexing); a non-empty
 /// list adds explicit per-field indexes.
 ///

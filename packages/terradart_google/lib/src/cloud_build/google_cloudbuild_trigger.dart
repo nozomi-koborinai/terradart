@@ -1649,6 +1649,20 @@ final class CloudbuildTriggerWebhookConfig {
 /// ### Example 2 — v2 form (pull-request gate against a
 /// `cloudbuildv2_repository`):
 /// ```dart
+/// final runner = add(GoogleServiceAccount(
+///   'runner',
+///   accountId: .literal('runner'),
+/// ));
+/// final repository = add(GoogleCloudbuildv2Repository(
+///   'repository',
+///   name: .literal('repository'),
+///   parentConnection: add(GoogleCloudbuildv2Connection(
+///     'connection',
+///     name: .literal('connection'),
+///     location: .literal('asia-northeast1'),
+///   )).ref,
+///   remoteUri: .literal('https://github.com/myorg/my-repo.git'),
+/// ));
 /// final prTrigger = GoogleCloudbuildTrigger(
 ///   'pr_gate',
 ///   name: .literal('pr-gate'),

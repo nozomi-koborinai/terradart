@@ -409,6 +409,10 @@ final class BigqueryDatasetAccessGranteeRoutine
 ///
 /// Example (grant a group READER):
 /// ```dart
+/// final dataset = add(GoogleBigqueryDataset(
+///   'dataset',
+///   datasetId: .literal('analytics'),
+/// ));
 /// GoogleBigqueryDatasetAccess(
 ///   'analysts_reader',
 ///   datasetId: dataset.ref,

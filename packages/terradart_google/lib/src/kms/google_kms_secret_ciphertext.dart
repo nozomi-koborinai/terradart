@@ -34,6 +34,16 @@ const Set<String> _googleKmsSecretCiphertextSensitive = <String>{
 ///
 /// Example:
 /// ```dart
+/// final keyRing = add(GoogleKmsKeyRing(
+///   'ring',
+///   name: .literal('ring'),
+///   location: .literal('us-central1'),
+/// ));
+/// final paymentsKey = add(GoogleKmsCryptoKey(
+///   'payments',
+///   name: .literal('payments'),
+///   keyRing: keyRing.ref,
+/// ));
 /// GoogleKmsSecretCiphertext(
 ///   'db_password',
 ///   cryptoKey: paymentsKey.ref,

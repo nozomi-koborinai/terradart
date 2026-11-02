@@ -8,8 +8,8 @@ curatedDoc: |-
   /// GKE Hub **feature** — enables a fleet-level Feature such as
   /// Multi-Cluster Service Discovery, Service Mesh, or Config Management.
   ///
-  /// For smoke stacks prefer `name: multiclusterservicediscovery` at
-  /// `location: global` — no cluster membership is required (see provider
+  /// For smoke stacks prefer the feature `multiclusterservicediscovery` at
+  /// the `global` location — no cluster membership is required (see provider
   /// `gkehub_feature_multi_cluster_service_discovery`). Also enable
   /// `multiclusterservicediscovery.googleapis.com` before apply. Features
   /// that need a membership (`multiclusteringress`) or paid Anthos add-ons

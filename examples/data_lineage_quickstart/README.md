@@ -2,7 +2,7 @@
 
 End-to-end terradart example for project-level **Data Lineage config**
 (`google_data_lineage_config`). Enables Dataproc lineage ingestion under
-`projects/<id>` at `location: global`.
+`projects/<id>` in the `global` location.
 
 This is control-plane config only — it does not provision Dataproc clusters
 or Dataplex Metadata Storage.

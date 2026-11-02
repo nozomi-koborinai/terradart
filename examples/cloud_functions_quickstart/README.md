@@ -35,11 +35,11 @@ terradart apply
 ## What gets created
 
 - `google_storage_bucket.fn_source` -- a regional bucket (`<project>-fn-source`) in `asia-northeast1` with `force_destroy = true` for clean teardown and `uniform_bucket_level_access = true`.
-- `google_storage_bucket_object.fn_source_zip` -- the source archive (`hello-http.zip`) uploaded into the bucket via the sealed `BucketObjectFromSource` variant.
+- `google_storage_bucket_object.fn_source_zip` -- the source archive (`hello-http.zip`) uploaded into the bucket through the `.source(...)` variant of its body, a variant of the sealed `StorageBucketObjectBody`.
 - `google_service_account.fn_runtime` -- a dedicated runtime SA (`hello-http-runtime@<project>.iam.gserviceaccount.com`).
 - `google_cloudfunctions2_function.hello_http` -- a Python 3.11 HTTP-triggered function with:
-  - `Cloudfunctions2FunctionBuildConfig(runtime: .literal('python311'), entryPoint: .literal('hello'), source: .storageSource(...), updatePolicy: .automaticUpdatePolicy(...))`.
-  - `ServiceConfig(availableMemory: '256M', timeoutSeconds: 60, ingressSettings: IngressSettings.allowInternalAndGclb, ...)`.
-  - The runtime SA's email wired via `serviceAccountEmail: .of(runtimeSa)`.
+  - A `Cloudfunctions2FunctionBuildConfig`: runtime `python311`, entry point `hello`, the `.storageSource(...)` variant for the source and the `.automaticUpdatePolicy(...)` variant for updates.
+  - A `Cloudfunctions2FunctionServiceConfig`: `256M` of memory, a 60-second timeout and `.allowInternalAndGclb` ingress.
+  - The runtime SA's email wired with `.of(runtimeSa)` as the function's service account.
 
 The sealed build `source` keeps the `storage_source` / `repo_source` mutual exclusion honest at the type level: each `Cloudfunctions2FunctionBuildConfig.source` is exactly one of `.storageSource(...)` or `.repoSource(...)`.

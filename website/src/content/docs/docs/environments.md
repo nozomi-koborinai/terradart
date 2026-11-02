@@ -66,7 +66,7 @@ Future<void> main(List<String> args) =>
 3. the `defaultEnv` the entry point gives `runEnvironments`;
 4. the only environment, when the enum has one member.
 
-With none of these, the command stops and lists the names. It prints which one it chose and why — `env: dev (--env)`, `env: dev (TERRADART_ENV)`, `env: dev (default)`, `env: dev (only environment)`:
+With none of these, the command stops and lists the names. It prints which one it chose and why on its `env` line: `dev (--env)`, `dev (TERRADART_ENV)`, `dev (default)` or `dev (only environment)`:
 
 ```dart
 // bin/infra_default_env.dart
@@ -178,4 +178,4 @@ It synthesizes `stg`, names the full source and target configuration (the bucket
 
 ## Migrated environments
 
-`terradart migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`), and a `bin/infra.dart` that calls `runEnvironments` with `dir: (env) => 'tf-out/${env.path}'`. `terradart plan --env prodEu` plans the matching environment. A single-module migration calls `runStack` instead, so `terradart plan` with no `--env` is enough. See [Migrating from HCL](/docs/migrate-from-hcl/).
+`terradart migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`), and a `bin/infra.dart` that calls `runEnvironments` with a `dir` that puts each environment in `tf-out/<path>`. `terradart plan --env prodEu` plans the matching environment. A single-module migration calls `runStack` instead, so `terradart plan` with no `--env` is enough. See [Migrating from HCL](/docs/migrate-from-hcl/).

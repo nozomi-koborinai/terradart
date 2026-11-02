@@ -28362,7 +28362,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `aws_lambda_function`.\n\nAWS **Lambda function**. A Dart backend runs on the `provided.al2023`\ncustom runtime: compile it with `dart compile exe` to a binary named\n`bootstrap`, zip it, and pass the zip as `code: .filename(...)` with\n`handler: TfArg.literal(\'bootstrap\')`.\n\n`role` takes the execution role (`role.ref`) and emits its ARN.\n`code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with\n`s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`\nzip so a rebuilt zip redeploys.',
+        'Factory wrapper for `aws_lambda_function`.\n\nAWS **Lambda function**. A Dart backend runs on the `provided.al2023`\ncustom runtime: compile it with `dart compile exe` to a binary named\n`bootstrap`, zip it, and pass the zip as the `.filename` variant of [code],\nwith [handler] `bootstrap`.\n\n`role` takes the execution role (`role.ref`) and emits its ARN.\n`code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with\n`s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`\nzip so a rebuilt zip redeploys.',
   ),
   CatalogEntry(
     tfType: 'aws_lambda_function',
@@ -28460,7 +28460,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `aws_lambda_function_url`.\n\nA dedicated HTTPS endpoint for an [AwsLambdaFunction], without API\nGateway in front.\n\n`authorizationType: TfArg.literal(\'NONE\')` makes the URL public;\n`AWS_IAM` requires SigV4-signed callers. Read the endpoint through\n[functionUrl].',
+        'Factory wrapper for `aws_lambda_function_url`.\n\nA dedicated HTTPS endpoint for an [AwsLambdaFunction], without API\nGateway in front.\n\n[LambdaFunctionUrlAuthorizationType.none] makes the URL public;\n[LambdaFunctionUrlAuthorizationType.awsIam] requires SigV4-signed\ncallers. Read the endpoint through\n[functionUrl].',
   ),
   CatalogEntry(
     tfType: 'aws_lambda_function_url',

@@ -1143,7 +1143,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 ///   20 GB of RAM).
 /// - `disk`: at least one [ComputeInstanceTemplateDisk]; GCP enforces `min_items=1`
 ///   on the underlying `disk` block. The first entry should usually be the
-///   boot disk (`boot: true`).
+///   boot disk (`boot` set to true).
 /// - `networkInterface`: at least one [ComputeInstanceTemplateNetworkInterface]
 ///   entry. GCP requires every template to attach to a VPC.
 ///
@@ -1155,6 +1155,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 ///
 /// Example (minimal):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final tmpl = GoogleComputeInstanceTemplate(
 ///   'web',
 ///   namePrefix: .literal('web-'),

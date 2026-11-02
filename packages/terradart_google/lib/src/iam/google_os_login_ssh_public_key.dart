@@ -25,6 +25,10 @@ const Set<String> _googleOsLoginSshPublicKeySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final sa = add(GoogleServiceAccount(
+///   'sa',
+///   accountId: .literal('oslogin'),
+/// ));
 /// GoogleOsLoginSshPublicKey(
 ///   'dummy',
 ///   user: sa.email,

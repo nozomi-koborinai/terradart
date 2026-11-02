@@ -221,7 +221,6 @@ final class EventarcTriggerPubsub {
 ///   `'google.cloud.storage.object.v1.finalized'`).
 /// - `destination`: the [EventarcTriggerDestination] block. Exactly ONE
 ///   of [EventarcTriggerDestination.cloudRunService] /
-///   [EventarcTriggerDestination.cloudFunction] /
 ///   [EventarcTriggerDestination.workflow] /
 ///   [EventarcTriggerDestination.httpEndpoint] /
 ///   [EventarcTriggerDestination.gke] may be set per trigger -- they are
@@ -241,6 +240,10 @@ final class EventarcTriggerPubsub {
 ///
 /// Example (Cloud Storage object finalized -> Cloud Run service):
 /// ```dart
+/// final runner = add(GoogleServiceAccount(
+///   'runner',
+///   accountId: .literal('runner'),
+/// ));
 /// final onUpload = GoogleEventarcTrigger(
 ///   'on_upload',
 ///   name: .literal('on-upload'),

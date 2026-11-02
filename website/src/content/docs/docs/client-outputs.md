@@ -185,7 +185,7 @@ Build a client from the define file only: it is the one view of the outputs that
 
 The rule is wider than Terraform: a dart-define is compiled into the app binary or its JavaScript, where anyone can extract it, so never pass a secret to a client that way, wherever it comes from — Secret Manager, a GitHub Actions secret, a sensitive output. A client gets only public values, such as an API URL or a Firebase web config, and work that needs a secret runs on a server:
 
-- **A server reads secrets at runtime** from its secret store: a Cloud Run service through a secret environment reference (`source: .valueSource(.new(secretKeyRef: ...))` on `CloudRunV2ServiceEnv`), a Lambda function from AWS Secrets Manager with the SDK, under its execution role.
+- **A server reads secrets at runtime** from its secret store: a Cloud Run service through a secret environment reference (the `.valueSource(...)` variant of a `CloudRunV2ServiceEnv` source), a Lambda function from AWS Secrets Manager with the SDK, under its execution role.
 - **CI secrets are credentials for the pipeline** — reading the state, deploying — not values for the app.
 
 ## Servers and scripts

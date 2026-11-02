@@ -28,6 +28,7 @@ const Set<String> _googleVertexAiFeatureGroupFeatureSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final group = add(GoogleVertexAiFeatureGroup('group'));
 /// GoogleVertexAiFeatureGroupFeature(
 ///   'score',
 ///   featureGroup: group.ref,

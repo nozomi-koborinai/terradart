@@ -32,4 +32,4 @@ terradart plan
 
 Analysis rules / views / scorecards are configuration metadata. Conversation
 analysis is billed only when conversations are processed; this stack keeps the
-analysis rule inactive (`active: false`, `analysisPercentage: 0`).
+analysis rule inactive (`active` false, `analysisPercentage` 0).

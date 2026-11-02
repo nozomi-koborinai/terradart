@@ -30,12 +30,21 @@ class BigtableSchemaBundleProtoSchema {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [schemaBundleId]: bundle ID within the instance.
-/// - [instance]: parent instance — pass `instance.name`.
-/// - [table]: parent table — pass `table.name`.
+/// - [instance]: parent instance — pass `instance.ref`.
+/// - [table]: parent table — pass `table.ref`.
 /// - [protoSchema]: [BigtableSchemaBundleProtoSchema] with base64 descriptors.
 ///
 /// Example:
 /// ```dart
+/// final instance = add(GoogleBigtableInstance(
+///   'instance',
+///   name: .literal('instance'),
+/// ));
+/// final table = add(GoogleBigtableTable(
+///   'table',
+///   instanceName: instance.ref,
+///   name: .literal('events'),
+/// ));
 /// GoogleBigtableSchemaBundle(
 ///   'events_proto',
 ///   schemaBundleId: TfArg.literal('events-proto'),

@@ -119,7 +119,7 @@ final class ValueEmitter {
 
   /// Top-level argument → the Dart expression to emit in place of its
   /// literal (`env.assetsName`), for an argument `--merge-envs` lifted into
-  /// an [Env] constant because it differs between the merged environments.
+  /// a constant of the generated `Env` enum because it differs between the merged environments.
   final Map<String, String> envValues;
 
   /// Environment expression → the Dart type the slot it filled expects, so
@@ -204,7 +204,7 @@ final class ValueEmitter {
   // ---------------------------------------------------------------------
 
   /// Constructor arguments for [slots] read from [level]: positional
-  /// arguments first, then `name: value`. Claims what it consumes.
+  /// arguments first, then the named ones. Claims what it consumes.
   List<String> emitArgs(List<MigrateSlot> slots, BodyLevel level) =>
       _inPosition(true, () => _emitArgs(slots, level));
 
@@ -934,7 +934,7 @@ final class ValueEmitter {
   // ---------------------------------------------------------------------
 
   /// One `AppwritePermission`: a named constructor of its action and role
-  /// (`.read(.any)`, `.write(.team(.literal('t'), role: 'owner'))`) for a
+  /// (`.read(.any)`, or `.write` of a team and a role) for a
   /// literal, else the value wrapped as it is.
   String _permissionValue(Expr value, {required String path}) {
     final text = constantText(value);

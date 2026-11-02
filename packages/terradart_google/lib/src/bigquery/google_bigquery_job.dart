@@ -32,7 +32,7 @@ extension type const BigqueryJobParameterMode._(TfArg<String> _)
 /// `load.source_format`. From the schema description: for CSV
 /// specify `CSV`; for datastore backups `DATASTORE_BACKUP`; for
 /// newline-delimited JSON `NEWLINE_DELIMITED_JSON`; for Avro `AVRO`;
-/// for Parquet `PARQUET`; for ORC `ORC`; [Beta] for Bigtable
+/// for Parquet `PARQUET`; for ORC `ORC`; in beta, for Bigtable
 /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
 /// formal `enum_values` array, so this list is sourced from the
 /// attribute's `description` prose.
@@ -978,6 +978,10 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///
 /// Example (query — SQL SELECT into a destination table):
 /// ```dart
+/// final analyticsProd = add(GoogleBigqueryDataset(
+///   'analytics_prod',
+///   datasetId: .literal('analytics_prod'),
+/// ));
 /// final dailyRollup = GoogleBigqueryJob(
 ///   'daily_rollup',
 ///   // Rotate the job ID to force re-execution on the next apply.
@@ -1007,6 +1011,10 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///
 /// Example (load — GCS file -> table):
 /// ```dart
+/// final staging = add(GoogleBigqueryDataset(
+///   'staging',
+///   datasetId: .literal('staging'),
+/// ));
 /// final ingest = GoogleBigqueryJob(
 ///   'ingest_csv',
 ///   jobId: .literal('ingest_csv_2026_05_19'),

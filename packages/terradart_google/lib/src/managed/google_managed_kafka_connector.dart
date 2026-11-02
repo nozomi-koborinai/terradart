@@ -39,6 +39,23 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 ///
 /// Example:
 /// ```dart
+/// final connect = add(GoogleManagedKafkaConnectCluster(
+///   'connect',
+///   connectClusterId: .literal('connect'),
+///   kafkaCluster: .literal('kafka'),
+///   location: .literal('us-central1'),
+///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
+///     memoryBytes: .literal('3221225472'),
+///     vcpuCount: .literal('3'),
+///   ),
+///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
+///     accessConfig: .new(
+///       networkConfigs: [
+///         .new(primarySubnet: .literal('subnet')),
+///       ],
+///     ),
+///   ),
+/// ));
 /// GoogleManagedKafkaConnector(
 ///   'sink',
 ///   connectorId: TfArg.literal('gcs-sink'),

@@ -18,6 +18,10 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{
 ///
 /// Example:
 /// ```dart
+/// final env = add(GoogleComposerEnvironment(
+///   'env',
+///   name: .literal('env'),
+/// ));
 /// GoogleComposerUserWorkloadsSecret(
 ///   'sec',
 ///   name: TfArg.literal('app-secret'),

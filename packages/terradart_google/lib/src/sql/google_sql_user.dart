@@ -121,7 +121,7 @@ final class SqlUserPasswordPolicy {
 ///   users authenticate via IAM tokens — leave both `null`.
 ///   * `password` is sensitive in the schema and round-trips through
 ///     state. Synth rejects a literal value: pass a sensitive
-///     variable (`variable<String>('db_password', sensitive: true)`),
+///     variable (a `variable<String>` declared sensitive),
 ///     so the secret arrives at apply time and never enters
 ///     `main.tf.json`.
 ///   * `password_wo` is the write-only variant (TF 1.11+). Write-only
@@ -135,6 +135,10 @@ final class SqlUserPasswordPolicy {
 /// Example (built-in PostgreSQL user):
 /// ```dart
 /// final dbPassword = variable<String>('db_password', sensitive: true);
+/// final primary = add(GoogleSqlDatabaseInstance(
+///   'primary',
+///   databaseVersion: DatabaseVersion.postgres15,
+/// ));
 /// final appUser = GoogleSqlUser(
 ///   'app',
 ///   instance: primary.ref,
@@ -146,6 +150,10 @@ final class SqlUserPasswordPolicy {
 ///
 /// Example (Cloud IAM service-account user, no password):
 /// ```dart
+/// final primary = add(GoogleSqlDatabaseInstance(
+///   'primary',
+///   databaseVersion: DatabaseVersion.postgres15,
+/// ));
 /// final ciUser = GoogleSqlUser(
 ///   'ci',
 ///   instance: primary.ref,

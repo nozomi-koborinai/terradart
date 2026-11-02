@@ -45,6 +45,6 @@ exercises this synth + validate flow on every PR.
 - `google_firestore_database.default` -- the project's `(default)` Native-mode
   database in `asia-northeast1`, with delete protection disabled.
 - `google_firestore_document.flag_dark_mode` -- `feature_flags/dark_mode`
-  document with `enabled: true` and `rollout_pct: 100`.
+  document with `enabled` true and `rollout_pct` 100.
 - `google_firestore_document.tier_pro` -- `pricing_tiers/pro` document with
   label, monthly price, and a string array of features.

@@ -3,9 +3,9 @@
 /// Artifact Registry: container / package repository, per-repository IAM,
 /// and repository download rules.
 ///
-/// Format is set at creation time and immutable. Pair `format: DOCKER`
-/// with [ArtifactRegistryRepositoryArtifactRegistryDockerConfig], `format: MAVEN` with
-/// [ArtifactRegistryRepositoryArtifactRegistryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
+/// Format is set at creation time and immutable. Pair the `DOCKER` format
+/// with [ArtifactRegistryRepositoryDockerConfig], the `MAVEN` format with
+/// [ArtifactRegistryRepositoryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
 /// `VIRTUAL_REPOSITORY` (aggregating proxy), or `REMOTE_REPOSITORY`
 /// (caching proxy).
 ///

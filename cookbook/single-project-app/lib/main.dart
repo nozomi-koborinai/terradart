@@ -64,7 +64,7 @@ final class SingleProjectAppStack extends Stack {
     // ===== Tier 5 — Cloud Run v2 service ==================================
     // The service gets the outputs registered so far as environment
     // variables (`DB_INSTANCE`, `DB_NAME`), which the app reads with the
-    // generated `SingleProjectAppOutputs.fromEnvironment(Platform.environment)`.
+    // generated `SingleProjectAppStackOutputs.fromEnvironment(Platform.environment)`.
     // Outputs that read the service itself come after it: its environment
     // cannot reference its own attributes.
     addOutput(

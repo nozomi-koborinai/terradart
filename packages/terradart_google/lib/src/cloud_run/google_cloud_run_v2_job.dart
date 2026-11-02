@@ -102,7 +102,7 @@ extension type const CloudRunV2JobVpcAccessEgress._(TfArg<String> _)
   ];
 }
 
-/// Storage medium for [CloudRunV2JobEmptyDirVolume.medium]. The Cloud Run v2 Job
+/// Storage medium for [CloudRunV2JobEmptyDir.medium]. The Cloud Run v2 Job
 /// schema documents `MEMORY`; `DISK` is reserved per the Magic-Modules
 /// mirror but rejected by the provider today.
 extension type const CloudRunV2JobEmptyDirMedium._(TfArg<String> _)

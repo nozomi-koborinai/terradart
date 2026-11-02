@@ -419,6 +419,7 @@ final class PubsubSubscriptionRetryPolicy {
 ///
 /// Example (push subscription):
 /// ```dart
+/// final orders = add(GooglePubsubTopic('orders', name: .literal('orders')));
 /// final push = GooglePubsubSubscription(
 ///   'orders_push',
 ///   name: .literal('orders-push'),

@@ -177,6 +177,7 @@ extension type const NetworkConnectivityTransportStackType._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleNetworkConnectivityTransport(
 ///   'aws_cci',
 ///   name: TfArg.literal('my-transport'),

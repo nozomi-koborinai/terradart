@@ -56,6 +56,10 @@ extension type const NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
 ///
 /// Example:
 /// ```dart
+/// final policy = add(GoogleNetworkSecurityGatewaySecurityPolicy(
+///   'policy',
+///   name: .literal('policy'),
+/// ));
 /// GoogleNetworkSecurityGatewaySecurityPolicyRule(
 ///   'allow_example',
 ///   name: TfArg.literal('terradart-allow-example'),

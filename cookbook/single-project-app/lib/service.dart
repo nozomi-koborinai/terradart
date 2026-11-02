@@ -6,8 +6,8 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/secret_manager.dart';
 
 /// [outputEnvironment] is `Stack.outputEnvironment()`: the Stack's outputs
-/// as the variables the app's generated `SingleProjectAppOutputs.fromEnvironment`
-/// reads.
+/// as the variables the app's generated
+/// `SingleProjectAppStackOutputs.fromEnvironment` reads.
 GoogleCloudRunV2Service buildCloudRunService({
   required GoogleServiceAccount runSa,
   required OutputEnvironment outputEnvironment,

@@ -34,36 +34,49 @@ terradart apply
 ## What gets created
 
 - A BigQuery dataset `audit_logs` in `asia-northeast1` as the sink destination.
-- A logging project sink `audit-to-bq` routing entries matching `logName:"cloudaudit.googleapis.com"`:
-  - `BigqueryOptions(usePartitionedTables: true)` so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
-  - One `LogSinkExclusion` dropping `resource.type="dns_query"` entries before they hit BigQuery.
-  - `uniqueWriterIdentity: .literal(true)` — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
+- A logging project sink `audit-to-bq` routing the entries whose `logName` contains `cloudaudit.googleapis.com`:
+  - `LoggingProjectSinkBigqueryOptions` with partitioned tables, so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
+  - A unique writer identity — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
+- A project-level `GoogleLoggingProjectExclusion` `drop-dns-noise` dropping `resource.type="dns_query"` entries before any sink sees them.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
+
+Synthesized with the CI placeholder `GCP_PROJECT_ID=ci-test-project-id` (`tool/example_synth_env.dart`); your run carries your own value.
 
 ```json
 {
   "resource": {
     "google_bigquery_dataset": {
-      "audit_logs": { "dataset_id": "audit_logs", "location": "asia-northeast1" }
+      "audit_logs": {
+        "dataset_id": "audit_logs",
+        "location": "asia-northeast1"
+      }
     },
     "google_logging_project_sink": {
       "audit_to_bq": {
         "name": "audit-to-bq",
-        "destination": "bigquery.googleapis.com/projects/your-project-id/datasets/audit_logs",
+        "destination": "bigquery.googleapis.com/projects/ci-test-project-id/datasets/audit_logs",
         "filter": "logName:\"cloudaudit.googleapis.com\"",
         "unique_writer_identity": true,
-        "bigquery_options": [{ "use_partitioned_tables": true }],
-        "exclusions": [
-          { "name": "drop-noisy-dns", "filter": "resource.type=\"dns_query\"", "description": "Skip high-volume DNS query logs." }
+        "bigquery_options": [
+          {
+            "use_partitioned_tables": true
+          }
         ]
+      }
+    },
+    "google_logging_project_exclusion": {
+      "drop_dns_noise": {
+        "name": "drop-dns-noise",
+        "filter": "resource.type=\"dns_query\"",
+        "description": "Skip high-volume DNS query logs."
       }
     }
   }
 }
 ```
 
-To wire the sink's writer identity to the destination's IAM, add a separate `GoogleBigqueryDatasetIamMember` granting `roles/bigquery.dataEditor` to `sink.writerIdentity` once it is added to the curated surface (open an issue to request curation).
+To wire the sink's writer identity to the destination's IAM, add a `GoogleBigqueryDatasetIamMember` that grants `roles/bigquery.dataEditor` to the sink's `writerIdentity`.
 
 ## Next steps
 

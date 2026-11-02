@@ -44,7 +44,7 @@ extension type const AppHostingServingLocality._(TfArg<String> _)
 
 /// `codebase` block. Links the backend to a Developer Connect-managed git
 /// repository, so commits flowing into the configured branch trigger
-/// builds (see [GoogleFirebaseAppHostingTraffic.rolloutPolicy]).
+/// builds (see [FirebaseAppHostingTrafficRouting.rolloutPolicy]).
 @immutable
 class FirebaseAppHostingBackendCodebase {
   const FirebaseAppHostingBackendCodebase({
@@ -91,6 +91,7 @@ class FirebaseAppHostingBackendCodebase {
 ///
 /// Example (regional backend bound to a Developer Connect repo):
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
 /// final backend = GoogleFirebaseAppHostingBackend(
 ///   'web',
 ///   backendId: TfArg.literal('web-backend'),

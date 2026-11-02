@@ -69,6 +69,7 @@ extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
 /// GoogleProjectIamAuditConfig(
 ///   'storage_admin_read',
 ///   project: TfArg.literal(projectId),

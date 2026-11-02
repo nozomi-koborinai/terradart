@@ -122,7 +122,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
 ///   [GoogleComputeRegionUrlMap] (the *regional* URL map — not the
-///   global [GoogleComputeUrlMap]). Pass `urlMap.selfLink`
+///   global [GoogleComputeUrlMap]). Pass `urlMap.ref`
 ///   so the value resolves to
 ///   `${google_compute_region_url_map.<localName>.self_link}`.
 /// - `region`: GCP region for the proxy. Although the provider schema
@@ -146,6 +146,19 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///
 /// Example (classic regional SSL certificate, regional HTTPS LB):
 /// ```dart
+/// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+///   'region_url_map',
+///   name: .literal('region-url-map'),
+/// ));
+/// final cert = add(GoogleComputeRegionSslCertificate(
+///   'cert',
+///   certificate: .variable('cert_pem'),
+///   privateKey: .privateKeyWo(.literal('key')),
+/// ));
+/// final regionSslPolicy = add(GoogleComputeRegionSslPolicy(
+///   'region_ssl_policy',
+///   name: .literal('region-ssl-policy'),
+/// ));
 /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
 ///   'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),

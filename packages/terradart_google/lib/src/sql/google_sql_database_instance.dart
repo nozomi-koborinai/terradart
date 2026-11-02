@@ -1449,14 +1449,13 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 /// Factory wrapper for `google_sql_database_instance`.
 ///
 /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
-/// Server engine. The schema is large; this wrapper exposes the
-/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
+/// Server engine. Every block of the schema is a typed helper
+/// ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
 /// [SqlDatabaseInstanceBackupConfiguration], [SqlDatabaseInstanceDatabaseFlags], [SqlDatabaseInstanceLocationPreference],
-/// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
-/// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
-/// `password_validation_policy`) on the
-/// [SqlDatabaseInstanceSettings.extra] / [SqlDatabaseInstanceSettings.advancedExtra] escape hatches so the
-/// curation surface stays manageable.
+/// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]), the rarely-set
+/// ones included ([SqlDatabaseInstanceSettings.activeDirectoryConfig],
+/// [SqlDatabaseInstanceSettings.sqlServerAuditConfig],
+/// [SqlDatabaseInstanceSettings.passwordValidationPolicy]).
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -1490,6 +1489,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 /// Example (private-IP PostgreSQL primary — see the
 /// `cloud_sql_quickstart` example for the full chain):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final primary = GoogleSqlDatabaseInstance(
 ///   'primary',
 ///   name: TfArg.literal('orders-primary'),

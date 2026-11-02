@@ -174,9 +174,9 @@ final class StorageFtpServerConsumerRejectList {
 /// configurations.
 ///
 /// `config` carries the access mode: `.internalConfig(...)` for Private
-/// Service Connect consumers (with `accessType: .internal`) or
+/// Service Connect consumers (with the `.internal` `accessType`) or
 /// `.externalConfig(...)` for allowed CIDR ranges (with
-/// `accessType: .external`).
+/// the `.external` `accessType`).
 final class GoogleStorageFtpServer extends Resource {
   static const String tfType = 'google_storage_ftp_server';
 

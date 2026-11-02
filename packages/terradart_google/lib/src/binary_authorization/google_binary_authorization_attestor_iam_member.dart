@@ -43,6 +43,14 @@ final class BinaryAuthorizationAttestorIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// final attestor = add(GoogleBinaryAuthorizationAttestor(
+///   'attestor',
+///   name: .literal('attestor'),
+///   attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(
+///     noteReference: .literal('projects/my-project/notes/note'),
+///   ),
+/// ));
 /// GoogleBinaryAuthorizationAttestorIamMember(
 ///   'attestor_viewer',
 ///   attestor: attestor.ref,

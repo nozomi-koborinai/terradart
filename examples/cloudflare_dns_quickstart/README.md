@@ -3,7 +3,7 @@
 The smallest `terradart_cloudflare` example: a Cloudflare zone and a proxied CNAME record that points `api.<your domain>` at a backend running elsewhere (Cloud Run, Firebase Hosting, ...).
 
 - `CloudflareZone` holds the domain in a Cloudflare account.
-- `CloudflareDnsRecord` adds the `api` CNAME to `ghs.googlehosted.com` with `proxied: true`, so traffic goes through Cloudflare.
+- `CloudflareDnsRecord` adds the `api` CNAME to `ghs.googlehosted.com` with `proxied` set to true, so traffic goes through Cloudflare.
 
 ## Before you apply
 

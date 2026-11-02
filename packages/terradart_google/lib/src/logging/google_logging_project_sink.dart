@@ -40,7 +40,7 @@ class LoggingProjectSinkLogSinkExclusion {
 
 /// Factory wrapper for `google_logging_project_sink`.
 ///
-/// Set `uniqueWriterIdentity: TfArg.literal(true)` to make GCP mint a
+/// Set `uniqueWriterIdentity` to true to make GCP mint a
 /// dedicated writer service account; grant it the destination-side IAM
 /// role (e.g. `roles/bigquery.dataEditor`) by passing
 /// `sink.writerIdentity` to the IAM member resource.

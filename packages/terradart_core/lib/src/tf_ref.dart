@@ -20,8 +20,8 @@ abstract interface class ReplaceTrigger {}
 /// or a data source ([DataRef]), or a whole resource ([ResourceRef]).
 ///
 /// `T` is the Dart type of the referenced value. A reference is a
-/// [TfArg], so an attribute getter fills an argument of that type directly:
-/// `pushEndpoint: api.uri`. Synth writes it as its [interpolation].
+/// [TfArg], so an attribute getter such as `api.uri` fills an argument of
+/// that type directly. Synth writes it as its [interpolation].
 sealed class TfRef<T> extends TfArg<T> implements Sensitive<T>, ReplaceTrigger {
   const TfRef();
 

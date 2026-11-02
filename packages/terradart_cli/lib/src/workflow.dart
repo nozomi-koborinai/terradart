@@ -63,7 +63,7 @@ final class Console {
   /// commands use their defaults or stop with the flag that decides.
   String? Function(String question)? get ask => noInput == null ? _ask : null;
 
-  /// A value the command picked by itself (`env: dev (default)`), which
+  /// A value the command picked by itself (a default environment), which
   /// `--quiet` leaves out.
   void info(String message) {
     if (!quiet) out(message);

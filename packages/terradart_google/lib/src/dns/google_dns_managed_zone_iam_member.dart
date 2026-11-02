@@ -73,6 +73,11 @@ final class DnsManagedZoneIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// final zone = add(GoogleDnsManagedZone(
+///   'zone',
+///   name: .literal('internal-corp'),
+///   dnsName: .literal('internal.corp.'),
+/// ));
 /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
 ///   'zone_admin',
 ///   managedZone: zone.ref,

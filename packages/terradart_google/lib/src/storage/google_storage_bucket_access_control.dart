@@ -60,6 +60,11 @@ extension type const StorageBucketAccessControlRole._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final legacy = add(GoogleStorageBucket(
+///   'legacy',
+///   name: .literal('legacy-bucket'),
+///   location: .literal('US'),
+/// ));
 /// GoogleStorageBucketAccessControl(
 ///   'legacy_reader',
 ///   bucket: legacy.ref,

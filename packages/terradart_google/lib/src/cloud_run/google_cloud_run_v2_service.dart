@@ -166,7 +166,7 @@ extension type const TrafficTargetAllocationType._(TfArg<String> _)
   static const List<TrafficTargetAllocationType> values = [latest, revision];
 }
 
-/// Storage medium for [CloudRunV2ServiceEmptyDirVolume.medium]. The schema only documents
+/// Storage medium for [CloudRunV2ServiceEmptyDir.medium]. The schema only documents
 /// `MEMORY` for v2 services; encoded as an enum for type-safety and to
 /// keep the door open for `DISK` (MM lists it but the provider rejects
 /// it today).
@@ -1420,6 +1420,11 @@ final class CloudRunV2ServiceTraffic {
 ///
 /// Example (with secret-backed env var + GCS volume):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('cache-bucket'),
+///   location: .literal('US'),
+/// ));
 /// final api = GoogleCloudRunV2Service(
 ///   'api',
 ///   name: .literal('api'),

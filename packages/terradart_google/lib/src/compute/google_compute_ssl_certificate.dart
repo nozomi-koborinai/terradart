@@ -128,6 +128,20 @@ final class ComputeSslCertificatePrivateKeyWo
 ///
 /// Example (write-only key from Secret Manager):
 /// ```dart
+/// final certVar = Sensitive<String>.variable('lb_cert_pem');
+/// final secret = add(GoogleSecretManagerSecret(
+///   'secret',
+///   secretId: .literal('lb-key'),
+///   replication: .auto(.new()),
+/// ));
+/// final secretVersion = add(GoogleSecretManagerSecretVersion(
+///   'secret_version',
+///   secret: secret.ref,
+///   payload: .writeOnly(
+///     secretDataWo: .literal('pem'),
+///     secretDataWoVersion: .literal('1'),
+///   ),
+/// ));
 /// final cert = GoogleComputeSslCertificate(
 ///   'lb_cert',
 ///   name: TfArg.literal('lb-cert'),

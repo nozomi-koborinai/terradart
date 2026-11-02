@@ -70,6 +70,8 @@ flutter run --dart-define-from-file=../.terradart/dart_defines.dev.json
 | `uploads_bucket` | `String get uploadsBucket` | `UPLOADS_BUCKET` |
 
 ```dart
+import 'generated/flutter_client_stack.app.dart';
+
 const outputs = FlutterClientStackOutputs.fromDartDefine();
 
 Uri endpoint(String path) => Uri.parse(outputs.apiUrl).resolve(path);

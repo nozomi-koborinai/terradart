@@ -538,6 +538,12 @@ final class CesToolsetCodeBlock {
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
 /// GoogleCesToolset(
 ///   'openapi',
 ///   app: app.ref,

@@ -33,7 +33,7 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 ///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
 ///   [GoogleComputeRegionUrlMap] (the *regional* URL map — not the
-///   global [GoogleComputeUrlMap]). Pass `urlMap.selfLink`
+///   global [GoogleComputeUrlMap]). Pass `urlMap.ref`
 ///   so the value resolves to
 ///   `${google_compute_region_url_map.<localName>.self_link}`.
 /// - `region`: GCP region for the proxy. Although the provider schema
@@ -44,6 +44,10 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+///   'region_url_map',
+///   name: .literal('region-url-map'),
+/// ));
 /// final httpProxy = GoogleComputeRegionTargetHttpProxy(
 ///   'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),

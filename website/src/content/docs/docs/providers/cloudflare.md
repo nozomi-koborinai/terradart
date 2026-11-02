@@ -46,6 +46,19 @@ final class EdgeStack extends Stack {
       content: .content(.literal('ghs.googlehosted.com')),
       proxied: .literal(true),
     ));
+    add(CloudflareDnsRecord(
+      'sip',
+      zoneId: zone.ref,
+      name: .literal('_sip._tcp.example.com'),
+      type: .srv,
+      ttl: .literal(1),
+      content: .data(.new(
+        priority: .literal(10),
+        weight: .literal(5),
+        port: .literal(5060),
+        target: .literal('sip.example.com'),
+      )),
+    ));
     addConstant('apiHost', .ref(api.name));
   }
 }
@@ -56,9 +69,9 @@ The app reads the host it is served from as `EdgeStackConstants.apiHost` instead
 ## What the types carry
 
 - **Enums.** Inputs with a fixed value set, such as a DNS record's `type`, are Dart enums (`.cname`). The sets come from the provider's documentation and its Go validators, re-extracted on every schema bump.
-- **Sealed choices.** Arguments the provider declares mutually exclusive are one sealed argument: a DNS record has `content` *or* structured `data`, written `content: .content(...)` or `content: .data(...)`.
+- **Sealed choices.** Arguments the provider declares mutually exclusive are one sealed argument: a DNS record has `content` *or* structured `data`, written with the `.content(...)` or the `.data(...)` variant, as the two records above show.
 - **Typed nested objects.** The plugin-framework provider describes objects as nested attributes; each becomes a helper class (`ZoneAccount`) rather than a `Map`.
-- **References.** `zoneId: zone.ref`, `accountId: account.ref`: an argument that names another resource takes that resource. A user group's members take the account member (`CloudflareUserGroupMembers(userGroupId: group.ref, members: [.new(id: member.ref)])`).
+- **References.** An argument that names another resource takes that resource's `ref`, as the records' `zoneId` above does, and only that type fits. A `CloudflareUserGroupMembers` takes the group's `ref` and, for each member, a `UserGroupMembers` with the account member's `ref`.
 
 ## Examples
 

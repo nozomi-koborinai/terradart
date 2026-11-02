@@ -16,8 +16,8 @@
 // A member named through its class (`DataFoo.limit`) may be an instance
 // getter.
 // A snake_case span is a Terraform name and is not
-// Dart. As in tool/doc_snippets.dart, a lowerCamel name a cell leaves
-// undefined (`topic`, `push`) is a `dynamic` stand-in.
+// Dart. A lowerCamel name a cell leaves undefined (`topic`, `push`) is a
+// `dynamic` stand-in; an undefined capitalized name (`NoSuchType`) fails.
 //
 // After cells compile against the workspace packages. Before cells compile
 // against the published packages of the last release (the version whose

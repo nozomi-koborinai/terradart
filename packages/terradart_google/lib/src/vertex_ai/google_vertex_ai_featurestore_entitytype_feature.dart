@@ -84,6 +84,10 @@ extension type const VertexAiFeaturestoreEntitytypeFeatureValueType._(
 ///
 /// Example:
 /// ```dart
+/// final entity = add(GoogleVertexAiFeaturestoreEntitytype(
+///   'entity',
+///   featurestore: .literal('projects/p/locations/us-central1/featurestores/fs'),
+/// ));
 /// GoogleVertexAiFeaturestoreEntitytypeFeature(
 ///   'age',
 ///   entitytype: entity.name,

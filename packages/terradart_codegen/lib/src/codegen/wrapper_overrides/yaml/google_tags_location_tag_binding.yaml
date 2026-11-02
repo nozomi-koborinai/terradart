@@ -16,6 +16,22 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final project = add(DataGoogleProject('project'));
+  /// final repo = add(GoogleArtifactRegistryRepository(
+  ///   'repo',
+  ///   repositoryId: .literal('repo'),
+  ///   format: ArtifactRegistryRepositoryFormat.docker,
+  /// ));
+  /// final key = add(GoogleTagsTagKey(
+  ///   'key',
+  ///   shortName: .literal('env'),
+  ///   parent: .literal('organizations/12345'),
+  /// ));
+  /// final value = add(GoogleTagsTagValue(
+  ///   'value',
+  ///   shortName: .literal('prod'),
+  ///   parent: key.ref,
+  /// ));
   /// GoogleTagsLocationTagBinding(
   ///   'repo_env',
   ///   parent: TfArg.literal(

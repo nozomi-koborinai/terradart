@@ -17,7 +17,7 @@ A deleted Cloud Tasks queue name stays reserved for about seven days, so destroy
 ```bash
 dart pub get
 
-# Edit lib/main.dart -- replace YOUR-PROJECT-ID with your real project.
+export GCP_PROJECT_ID=your-project-id
 
 terradart apply
 ```
@@ -55,7 +55,7 @@ terradart apply
         "name": "${google_cloud_tasks_queue.email_jobs.name}",
         "location": "${google_cloud_tasks_queue.email_jobs.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "serviceAccount:enqueuer@YOUR-PROJECT-ID.iam.gserviceaccount.com",
+        "member": "${google_service_account.enqueuer.member}",
         "project": "${google_cloud_tasks_queue.email_jobs.project}"
       }
     }
@@ -69,4 +69,4 @@ terradart's curated factories use **additive** `_iam_member` resources only -- t
 
 ## Note on Cloud Tasks IAM identity
 
-`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory takes the queue itself (`queue: queue.ref`) and emits all three keys from it — `name`, `location` and `project` — so the grant cannot drift from the queue it names.
+`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory takes the queue itself, through its `ref`, and emits all three keys from it — `name`, `location` and `project` — so the grant cannot drift from the queue it names.

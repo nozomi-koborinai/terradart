@@ -96,7 +96,7 @@ extension type const DirectVpcEgress._(TfArg<String> _)
 
 /// `service_config.vpc_connector_egress_settings` -- egress policy when
 /// the function attaches via a Serverless VPC Access connector
-/// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
+/// ([Cloudfunctions2FunctionConnection.vpcConnector]). Mutually exclusive in spirit with
 /// [DirectVpcEgress] (which applies when using direct VPC egress).
 extension type const VpcConnectorEgressSettings._(TfArg<String> _)
     implements TfArg<String> {
@@ -765,6 +765,11 @@ final class Cloudfunctions2FunctionVersions {
 ///
 /// Example (HTTP-triggered Python function backed by a GCS source archive):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('bucket'),
+///   location: .literal('US'),
+/// ));
 /// final fn = GoogleCloudfunctions2Function(
 ///   'http_fn',
 ///   name: .literal('hello-http'),
@@ -792,6 +797,12 @@ final class Cloudfunctions2FunctionVersions {
 ///
 /// Example (Pub/Sub event-triggered function):
 /// ```dart
+/// final bucket = add(GoogleStorageBucket(
+///   'bucket',
+///   name: .literal('bucket'),
+///   location: .literal('US'),
+/// ));
+/// final orders = add(GooglePubsubTopic('orders', name: .literal('orders')));
 /// final fn = GoogleCloudfunctions2Function(
 ///   'sub_fn',
 ///   name: .literal('order-handler'),

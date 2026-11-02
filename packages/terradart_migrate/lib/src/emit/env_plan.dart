@@ -103,7 +103,8 @@ final class EnvPlan {
   /// that has to refuse. Empty when everything about the address lifted.
   final Map<String, List<String>> notes;
 
-  /// Names taken on the enum: [envMemberNames] and every field.
+  /// Names taken on the enum: what `enum` declares, the fields the merged
+  /// emitter always writes (`values`, `name`, `path`, ...), and every field.
   Set<String> get takenNames => {
     ...envMemberNames,
     for (final f in fields) f.dartName,

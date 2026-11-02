@@ -89,6 +89,7 @@ final class RedisClusterUserCreatedConnectionsPscConnection {
 ///
 /// Example (attach after [GoogleRedisCluster] is up):
 /// ```dart
+/// final cluster = add(GoogleRedisCluster('cluster', shardCount: .literal(1)));
 /// GoogleRedisClusterUserCreatedConnections(
 ///   'rc_conn',
 ///   name: cluster.name,

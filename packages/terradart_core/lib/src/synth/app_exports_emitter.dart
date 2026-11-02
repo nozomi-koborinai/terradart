@@ -138,9 +138,12 @@ abstract final class AppExportsEmitter {
       ..writeln('// terradart synth output for stack: ${stack.runtimeType}')
       ..writeln('// dart format off')
       ..writeln('// ignore_for_file: type=lint')
-      ..writeln()
-      ..writeln("import 'dart:convert';")
       ..writeln();
+    if (stack.outputs.values.any((o) => !o.sensitive)) {
+      buf
+        ..writeln("import 'dart:convert';")
+        ..writeln();
+    }
     _constantsClass(buf, stack, '${prefix}Constants');
     buf.writeln();
     _outputsClass(buf, stack, '${prefix}Outputs');
@@ -168,6 +171,23 @@ abstract final class AppExportsEmitter {
       for (final MapEntry(key: output, value: o) in stack.outputs.entries)
         if (!o.sensitive) (output: output, o: o),
     ];
+    if (readable.isEmpty) {
+      buf.write("""
+/// The Terraform outputs of the stack, read when the app runs. The stack
+/// has no output a client may read: a sensitive output has no getter.
+final class $name {
+  /// Reads the outputs of `terraform output -json`.
+  const $name.fromTerraformJson(Map<String, Object?> outputs);
+
+  /// Reads environment variables named after the outputs.
+  const $name.fromEnvironment(Map<String, String> environment);
+
+  /// Reads the values compiled into the app with `--dart-define`.
+  const $name.fromDartDefine();
+}
+""");
+      return;
+    }
     buf.write("""
 /// The Terraform outputs of the stack, read when the app runs.
 ///

@@ -10,6 +10,7 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final reader = add(GoogleServiceAccount('reader', accountId: .literal('reader')));
   /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
   ///   'raw_reader',
   ///   dataPolicy: .literal('raw-access'),

@@ -337,6 +337,11 @@ final class CertificateManagerCertificatePrivateKeyPemPrivateKeyWo
 ///
 /// Example (managed + DNS authorization):
 /// ```dart
+/// final dnsAuth = add(GoogleCertificateManagerDnsAuthorization(
+///   'dns_auth',
+///   name: .literal('dns-auth'),
+///   domain: .literal('app.example.com'),
+/// ));
 /// GoogleCertificateManagerCertificate(
 ///   'app_cert',
 ///   name: .literal('app-cert'),

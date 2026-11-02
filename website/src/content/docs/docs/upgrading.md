@@ -3,7 +3,7 @@ title: Upgrading
 description: Upgrade notes for every TerraDart package — the 0.34.x → 0.35.0, 0.33.x → 0.34.0, 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
 ---
 
-Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest two.
+Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the recent ones.
 
 ## 0.34.x → 0.35.0
 
@@ -19,9 +19,9 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 0.34.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were.
 
 1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart pub global activate terradart_cli` for the new command.
-2. **Optional: name a default environment.** `runEnvironments(args, Env.values, build, defaultEnv: Env.dev)` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
+2. **Optional: name a default environment.** Passing a `defaultEnv` member to `runEnvironments` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
 3. **Appwrite Stacks run on Terraform.** The `terradart` command now picks the `terraform` on `PATH` for a Stack that uses `terradart_appwrite`, and stops before `init` when there is none or OpenTofu is asked for.
-4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set `terradart: engine:` in `pubspec.yaml`, in CI.
+4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set the `engine` of the `terradart` section in `pubspec.yaml`, in CI.
 
 ## 0.32.x → 0.33.0
 
@@ -67,31 +67,58 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 | Before (0.31) | After (0.32) |
 | --- | --- |
 | `GooglePubsubTopic(localName: 'orders', ...)` | `GooglePubsubTopic('orders', ...)` |
-| `topic.nameRef`, `labels: .ref(other.labels)` | `topic.name`, `labels: other.labels` |
-| `routingMode: .literal(.regional)` | `routingMode: .regional` |
-| `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then `location: region` |
-| `dependsOn: [ResourceDependency(api)]`, `addData(...)` | `dependsOn: [api]`, `add(...)` |
-| `provider: 'google.eu'` | `provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'));` |
-| `setBackend(...)`, `TfTimeouts(create: '30m')` | `super(backend: ...)`, `TfTimeouts(create: Duration(minutes: 30))` |
+| `topic.nameRef`, `labels: .ref(topic.labels)` | `topic.name`, and the getter itself (the `orders-dlq` labels below) |
+| `routingMode: .literal(.regional)` | the member itself (the network's routing mode below) |
+| `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then the handle itself (the service's location below) |
+| `dependsOn: [ResourceDependency(api)]`, `addData(...)` | the resource itself (the service's `dependsOn` below), `add(...)` |
+| `provider: 'google.eu'` | the handle `addProvider` returns for a `GoogleProvider` with the `eu` alias (the EU topic's provider below) |
+| `setBackend(...)`, `TfTimeouts(create: '30m')` | the `backend` of the `super(...)` call, and a `Duration` per `TfTimeouts` operation (the service's timeouts below) |
 | `Apis.enable(this, barrels: [Barrels.cloudRun])` | `enableApis([.cloudRun])` |
-| `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | `member: sa.principal`, `member: .user('a@example.com')` |
-| `name: .ref(api.nameRef), location: ...` on an IAM member | `service: api.ref` |
+| `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | the account's `principal`, or `.user('a@example.com')` (the two topic IAM members below) |
+| `name: .ref(api.nameRef), location: ...` on an IAM member | the parent's `ref` (the service IAM member below) |
 | `password: .literal('...')` on a sensitive argument | a variable or an expression; `Sensitive<T>` has no `.literal` |
-| `ignoreChanges: ['target_size']` | `ignoreChanges: .of(['target_size'])` |
+| `ignoreChanges: ['client']` | `.of([...])` (the service's lifecycle below) |
 | `on StateError` / `on SensitiveLiteralError` around `synth()` | `on SynthException`, or `stack.validate()` |
 
 Together:
 
 ```dart
 // lib/publisher_stack.dart
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
 final class PublisherStack extends Stack {
   PublisherStack({required String projectId})
-    : super(providers: [GoogleProvider(project: projectId)]) {
-    final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        backend: const GcsBackend(bucket: 'my-tf-state', prefix: 'publisher'),
+      ) {
+    final region = variable<String>('region');
+    final eu = addProvider(GoogleProvider(alias: 'eu', region: 'europe-west1'));
+    final topic = add(
+      GooglePubsubTopic(
+        'orders',
+        name: .literal('orders'),
+        labels: .literal({'team': 'orders'}),
+      ),
+    );
+    add(
+      GooglePubsubTopic(
+        'orders-dlq',
+        name: .literal('orders-dlq'),
+        labels: topic.labels, // was .ref(topic.labels)
+      ),
+    );
+    add(
+      GooglePubsubTopic(
+        'orders-eu',
+        name: .literal('orders-eu'),
+        provider: eu, // was 'google.eu'
+      ),
+    );
     final publisher = add(
       GoogleServiceAccount('publisher', accountId: .literal('orders-publisher')),
     );
@@ -103,6 +130,44 @@ final class PublisherStack extends Stack {
         member: publisher.principal, // was .ref(publisher.iamMember)
       ),
     );
+    add(
+      GooglePubsubTopicIamMember(
+        'view',
+        topic: topic.ref,
+        role: .literal('roles/pubsub.viewer'),
+        member: .user('a@example.com'), // was .literal('user:a@example.com')
+      ),
+    );
+    final vpc = add(
+      GoogleComputeNetwork(
+        'vpc',
+        name: .literal('orders-vpc'),
+        routingMode: .regional, // was .literal(.regional)
+      ),
+    );
+    final api = add(
+      GoogleCloudRunV2Service(
+        'api',
+        name: .literal('orders-api'),
+        location: region, // was TfArg.variable('region')
+        template: CloudRunV2ServiceTemplate(
+          containers: [
+            .new(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
+          ],
+        ),
+        dependsOn: [vpc],
+        timeouts: const TfTimeouts(create: Duration(minutes: 30)),
+        lifecycle: .new(ignoreChanges: .of(['client'])), // was ['client']
+      ),
+    );
+    add(
+      GoogleCloudRunV2ServiceIamMember(
+        'invoke',
+        service: api.ref, // was name: .ref(api.nameRef), location: ...
+        role: .literal('roles/run.invoker'),
+        member: publisher.principal,
+      ),
+    );
     addOutput('orders_topic_id', topic.id);
   }
 }
@@ -110,109 +175,9 @@ final class PublisherStack extends Stack {
 
 New in 0.32.0 and not breaking: [typed outputs in Flutter and web clients](/docs/client-outputs/) (`addDartDefineOutput`), and provider aliases in migrated child modules.
 
-## 0.30.x → 0.31.0
-
-0.31.0 reshapes the Dart API of every package for type safety, but not your Terraform: no provider pin moves, and synthesized JSON changes only where a typed reference now emits a different attribute. `dart analyze` lists every break, and code completion on the argument offers the replacement.
-
-### Upgrade steps
-
-1. **Install Dart 3.10 or later** and set `sdk: ^3.10.0` in your stack's `pubspec.yaml`. Dot shorthands need it.
-2. **Raise every TerraDart constraint to `^0.31.0` by hand** — below 1.0 a caret never crosses a minor — then run `dart pub upgrade`. The packages release in lockstep:
-
-   ```yaml
-   environment:
-     sdk: ^3.10.0
-
-   dependencies:
-     terradart_core: ^0.31.0
-     terradart_google: ^0.31.0
-     # and ^0.31.0 for terradart_google_beta, terradart_aws,
-     # terradart_cloudflare, terradart_appwrite or terradart_time
-   ```
-
-3. **Fix the compile errors**, group by group (each section of MIGRATING.md has a before / after table):
-   [sealed arguments](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#sealed-arguments-and-dot-shorthands),
-   [typed references](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#typed-references),
-   [outputs and constants](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#outputs-and-constants),
-   [typed nested helpers](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#typed-nested-helpers),
-   [type names](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#type-names).
-4. **Read `terradart plan` before you apply.** Typed references emit the attribute the argument expects — Google `network` / `subnetwork` emit `id` where many stacks passed `self_link`. Pin the old one with `.ref.pinned('self_link')` to keep the old value exactly.
-5. **`terradart-migrate` users:** `dart pub global activate terradart_migrate` installs 0.31.0, which writes the new API.
-
-### Sealed arguments and dot shorthands
-
-An argument that takes exactly one (or at most one) of several inputs is one sealed argument, named by concept like a protobuf `oneof`. Each member is a factory constructor, picked with a Dart 3.10 dot shorthand. Leaving it out, or setting two, no longer compiles:
-
-```dart
-final role = add(AwsIamRole(
-  'fn',
-  name: .namePrefix(.literal('app-')), // was name / namePrefix
-  assumeRolePolicy: .literal('{}'),
-));
-add(AwsLambdaFunction(
-  'fn',
-  functionName: .literal('hello'),
-  role: role.ref,
-  code: .filename(.literal('bootstrap.zip')), // was filenameOrImageUriOrS3Bucket
-));
-```
-
-The same shorthand works for every `TfArg` and enum: `.literal('orders')`, `sa.principal`, `.postgres15`.
-
-### Typed references
-
-An argument that names another resource takes `RefTo<R>`, so passing the wrong kind of resource does not compile. Take it from the target's `ref` getter; the argument picks the attribute it emits:
-
-| Before (0.30) | After |
-| --- | --- |
-| `network: TfArg.ref(vpc.selfLink)` | `network: vpc.ref` |
-| `role: TfArg.ref(role.arn)` | `role: role.ref` |
-| `zoneId: TfArg.ref(zone.id)` | `zoneId: zone.ref` |
-| `network: TfArg.literal('default')` | `network: .literal('default')` |
-
-```dart
-final vpc = add(GoogleComputeNetwork('vpc', name: .literal('app')));
-add(GoogleComputeSubnetwork(
-  'app',
-  name: .literal('app'),
-  ipCidrRange: .literal('10.0.0.0/24'),
-  network: vpc.ref, // emits id; vpc.ref.pinned('self_link') keeps the 0.30 value
-));
-```
-
-Every input also has a `<name>Ref` getter (`topic.nameRef`) for wiring one resource's argument into another, or into a constant.
-
-### Outputs and constants
-
-`addExport` is gone. `addOutput` declares a Terraform output, `addConstant` a Dart constant, and the generated file is configured once with `appExports:`:
-
-```dart
-// lib/orders_stack.dart
-import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/pubsub.dart';
-
-final class OrdersStack extends Stack {
-  OrdersStack({required String projectId})
-    : super(
-        providers: [GoogleProvider(project: projectId)],
-        appExports: AppExports('lib/generated/orders_stack.app.dart'),
-      ) {
-    final topic = add(GooglePubsubTopic('orders', name: .literal('orders-prod')));
-    addConstant('ordersTopicName', .ref(topic.name));
-    addOutput('orders_topic_id', topic.id);
-  }
-}
-```
-
-The same file now also holds `OrdersStackOutputs`, a typed reader of the outputs, and `outputEnvironment()` hands them to a service as its environment. See [How TerraDart works — the app boundary](/docs/how-it-works/#the-app-boundary-constants-and-outputs).
-
-### Typed nested helpers and type names
-
-Google blocks take helper classes derived from the provider schema (no Google `TfArg<Map>` block is left), and derived types are named `<ResourceStem><Block>` without repeated words — `CloudRunV2ServiceContainers`, not `CloudRunV2ServiceServiceContainer`. Arguments and synth output do not change; `dart analyze` lists the old names, and completion offers the new ones.
-
 ## Older releases
 
-Every earlier breaking change — `TfArg.expression` and provider aliases in 0.28.0, sealed exactly-one slots in 0.12.12, typed enums in 0.12.10, and more — is documented in [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
+Every earlier breaking change — sealed arguments, typed references, typed nested helpers and short type names in 0.31.0, `TfArg.expression` and provider aliases in 0.28.0, sealed exactly-one slots in 0.12.12, typed enums in 0.12.10, and more — is documented in [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
 
 ## Next steps
 

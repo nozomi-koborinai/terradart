@@ -47,12 +47,12 @@ abstract base class Resource implements TfAddressed, ReplaceTrigger {
   final TfTimeouts? timeouts;
 
   /// Optional `depends_on = [...]`: the resources, data sources and module
-  /// calls this block waits for, e.g. `dependsOn: [api, ...apiDeps]`.
+  /// calls this block waits for, e.g. `[api, ...apiDeps]`.
   /// Terraform takes whole blocks only, so an entry is never an attribute.
   final List<TfAddressed>? dependsOn;
 
   /// Optional Terraform `provider` meta-argument: the provider configuration
-  /// this block uses, e.g. the aliased `GoogleProvider(alias: 'eu')` the
+  /// this block uses, e.g. a `GoogleProvider` with an `alias` the
   /// Stack registered with `addProvider`.
   ///
   /// When set, synth emits `"provider": "<name>[.<alias>]"` on the block and

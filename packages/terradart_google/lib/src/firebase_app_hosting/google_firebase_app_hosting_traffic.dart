@@ -187,6 +187,22 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///
 /// Example (manual pin: 100% to one build):
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'web',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   serviceAccount: sa.ref,
+///   servingLocality: AppHostingServingLocality.regionalStrict,
+/// ));
+/// final build = add(GoogleFirebaseAppHostingBuild(
+///   'build',
+///   backend: backend.ref,
+///   location: .literal('us-central1'),
+///   buildId: .literal('build'),
+///   source: .codebase(const FirebaseAppHostingBuildCodebase()),
+/// ));
 /// final traffic = GoogleFirebaseAppHostingTraffic(
 ///   'main',
 ///   backend: backend.ref,
@@ -206,6 +222,15 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///
 /// Example (automatic rollouts off the `main` branch):
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'web',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   serviceAccount: sa.ref,
+///   servingLocality: AppHostingServingLocality.regionalStrict,
+/// ));
 /// final traffic = GoogleFirebaseAppHostingTraffic(
 ///   'main',
 ///   backend: backend.ref,

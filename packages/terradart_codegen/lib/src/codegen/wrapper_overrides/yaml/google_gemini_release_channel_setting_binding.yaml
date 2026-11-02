@@ -22,6 +22,7 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final current = add(DataGoogleProject('current'));
   /// GoogleGeminiReleaseChannelSettingBinding(
   ///   'channel_bind',
   ///   releaseChannelSettingId: .literal('terradart-channel'),

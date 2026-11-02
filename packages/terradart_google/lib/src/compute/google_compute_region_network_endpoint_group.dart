@@ -21,7 +21,7 @@ const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
 ///
 /// - [serverless]: the primary Wave 6 hookup — fronts a Cloud Run service,
 ///   Cloud Functions Gen 2 function, or App Engine flex service. Pair
-///   with [GoogleComputeRegionNetworkEndpointGroup.serverless].
+///   with [ComputeRegionNetworkEndpointGroupServerless].
 /// - [privateServiceConnect]: PSC consumer NEG fronting a Google API
 ///   bundle or a producer-published Service Attachment. Pair with
 ///   [GoogleComputeRegionNetworkEndpointGroup.pscTargetService] and (for
@@ -347,7 +347,8 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 /// `.cloudFunction(...)` / `.appEngine(...)`.
 ///
 /// PSC consumer NEG: set
-/// `networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,
+/// `networkEndpointType` to
+/// [RegionNetworkEndpointGroupType.privateServiceConnect],
 /// `pscTargetService` (Google API bundle name or producer Service Attachment
 /// self-link), and typically also `network` (optionally `subnetwork`).
 ///
@@ -359,6 +360,11 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 ///
 /// Example (serverless NEG fronting a Cloud Run service):
 /// ```dart
+/// final cloudRunService = add(GoogleCloudRunService(
+///   'run',
+///   name: .literal('run'),
+///   location: .literal('asia-northeast1'),
+/// ));
 /// final crNeg = GoogleComputeRegionNetworkEndpointGroup(
 ///   'cr_neg',
 ///   name: TfArg.literal('cloudrun-neg'),

@@ -51,6 +51,11 @@ final kept = 1;
       expect(s.map((x) => x.code), ['final kept = 1;']);
     });
 
+    test('reads no fence inside a block quote', () {
+      const doc = '> ```dart\n> final quoted = 1;\n> ```\n';
+      expect(extractSnippets('d.md', doc), isEmpty);
+    });
+
     test('reads the path comment after the pitch marker', () {
       final s = Snippet(
         doc: 'README.md',
@@ -88,6 +93,22 @@ final class A {}
         (4, "add(GooglePubsubTopic('o', name: .literal('o')));"),
       ]);
       expect(found.unlabeled, [startsWith('a.dart:11: ')]);
+    });
+
+    test('reads no fence indented past the space after ///', () {
+      const source = '''
+///    ```dart
+///    final indented = 1;
+///    ```
+///
+///    ```
+///    a -> b
+///    ```
+final class A {}
+''';
+      final found = extractDocCommentSnippets('a.dart', source);
+      expect(found.snippets, isEmpty);
+      expect(found.unlabeled, isEmpty);
     });
   });
 
@@ -145,36 +166,276 @@ final topic = add(GooglePubsubTopic(
     },
   );
 
-  test('a doc-comment fence may read values it does not build', () async {
-    final root = Directory.current.path;
-    final tmp = await Directory.systemTemp.createTemp('doc_snippets_lib_');
-    addTearDown(() => tmp.deleteSync(recursive: true));
-    final file = p.join(tmp.path, 'a.dart');
-    File(file).writeAsStringSync('''
+  group('a doc-comment fence declares every value it reads', () {
+    Future<List<String>> check(String body) async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_lib_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'a.dart')).writeAsStringSync('''
 /// ```dart
-/// final build = GoogleFirebaseAppHostingBuild(
-///   'v1',
-///   backend: backend.ref,
-///   location: .literal(region),
-///   buildId: .literal('v1'),
-///   source: .container(
-///     FirebaseAppHostingBuildContainer(image: .literal('img')),
-///   ),
-/// );
-/// ```
-///
-/// ```dart
-/// add(GooglePubsubTopic('o', nmae: .literal(topicName)));
+$body
 /// ```
 final class A {}
 ''');
-    final failures = await checkDocSnippets(root, docs: [], libs: [tmp.path]);
-    final rel = p.relative(file, from: root);
-    expect(failures, everyElement(startsWith('$rel:14: ')));
+      return checkDocSnippets(root, docs: [], libs: [tmp.path]);
+    }
+
+    test('a fence that builds what it reads compiles', () async {
+      expect(
+        await check('''
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// add(GoogleComputeGlobalAddress(
+///   'psa',
+///   name: .literal('psa'),
+///   network: vpc.ref,
+/// ));'''),
+        isEmpty,
+      );
+    });
+
+    for (final (name, body) in [
+      (
+        'an undeclared value',
+        "/// add(GooglePubsubTopic('o', name: .literal(topicName)));",
+      ),
+      (
+        'another resource\'s ref',
+        '''
+/// add(GoogleBigtableAppProfile(
+///   'p',
+///   appProfileId: .literal('p'),
+///   instance: bucket.ref,
+///   routing: .multiClusterRoutingUseAny(.literal(true)),
+/// ));''',
+      ),
+      (
+        'a string getter in a number slot',
+        '''
+/// add(GoogleComputeGlobalAddress(
+///   'psa',
+///   name: .literal('psa'),
+///   prefixLength: vpc.name,
+/// ));''',
+      ),
+      (
+        'a getter no type declares',
+        "/// add(GooglePubsubTopic('o', name: primary.notARealGetter));",
+      ),
+    ]) {
+      test('$name fails', () async {
+        expect(await check(body), contains(contains("Undefined name '")));
+      });
+    }
+  });
+
+  test(
+    'a doc-comment fence may not call a function nothing declares',
+    () async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_fn_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final file = p.join(tmp.path, 'a.dart');
+      File(file).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_core/terradart_core.dart';
+///
+/// final removed = removedTopLevelHelper(projectId: 'p');
+/// ```
+final class A {}
+''');
+      final failures = await checkDocSnippets(root, docs: [], libs: [tmp.path]);
+      final rel = p.relative(file, from: root);
+      expect(failures, [
+        startsWith(
+          "$rel:4: The function 'removedTopLevelHelper' isn't defined",
+        ),
+      ]);
+    },
+  );
+
+  group('a doc-comment fence may not call through an undeclared name', () {
+    Future<List<String>> check(String body) async {
+      final root = Directory.current.path;
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_dyn_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'a.dart')).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_google/iam.dart';
+///
+$body
+/// ```
+final class A {}
+''');
+      return checkDocSnippets(root, docs: [], libs: [tmp.path]);
+    }
+
+    test('a method call through it fails', () async {
+      expect(
+        await check(
+          "/// final removed = service.removedTopLevelHelper(projectId: 'p');",
+        ),
+        isNotEmpty,
+      );
+    });
+
+    test('a typed argument read through it fails', () async {
+      expect(
+        await check('''
+/// final grant = GoogleProjectIamMember(
+///   'grant',
+///   project: .literal('p'),
+///   role: .literal('roles/viewer'),
+///   member: identity.member,
+/// );'''),
+        isNotEmpty,
+      );
+    });
+  });
+
+  test('a doc-comment fence compiles against its own package', () async {
+    final root = Directory.current.path;
+    final tmp = await Directory.systemTemp.createTemp('doc_snippets_cli_');
+    addTearDown(() => tmp.deleteSync(recursive: true));
+    final lib = Directory(p.join(tmp.path, 'terradart_cli', 'lib'))
+      ..createSync(recursive: true);
+    File(p.join(lib.path, 'a.dart')).writeAsStringSync('''
+/// ```dart
+/// import 'package:terradart_cli/terradart_cli.dart';
+///
+/// final pinned = kOpenTofuVersion;
+/// ```
+library;
+''');
+    final failures = await checkDocSnippets(root, docs: [], libs: [lib.path]);
+    expect(failures, isEmpty, reason: failures.join('\n'));
+  });
+
+  group('skip markers', () {
+    Future<List<String>> check(String fence) async {
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_skip_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final doc = p.join(tmp.path, 'README.md');
+      File(doc).writeAsStringSync(
+        '<!-- doc-snippets: skip: needs a package -->\n'
+        '```dart\n$fence\n```\n',
+      );
+      return checkDocSnippets(Directory.current.path, docs: [doc], libs: []);
+    }
+
+    test('a skipped fence that needs only the workspace fails', () async {
+      final failures = await check(
+        "import 'dart:io';\n\nfinal home = Platform.environment['HOME'];",
+      );
+      expect(failures, [contains('outside the workspace')]);
+      expect(
+        await check(
+          "import 'package:terradart_core/terradart_core.dart';\n\n"
+          'final s = Stack;',
+        ),
+        [contains('outside the workspace')],
+      );
+    });
+
+    test('a skipped fence that imports a package outside the workspace '
+        'passes', () async {
+      expect(
+        await check("import 'package:flutter/material.dart';\n\nvoid f() {}"),
+        isEmpty,
+      );
+    });
+  });
+
+  test(
+    'a fence reads the generated reader checked in beside its document',
+    () async {
+      final tmp = await Directory.systemTemp.createTemp('doc_snippets_reader_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      File(p.join(tmp.path, 'pubspec.yaml')).writeAsStringSync('name: demo\n');
+      File(p.join(tmp.path, 'app', 'lib', 'generated', 'demo_stack.app.dart'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('''
+final class DemoStackOutputs {
+  const DemoStackOutputs.fromDartDefine();
+  String get apiUrl => 'https://example.com';
+}
+''');
+      final doc = p.join(tmp.path, 'README.md');
+      File(doc).writeAsStringSync('''
+```dart
+import 'generated/demo_stack.app.dart';
+
+const outputs = DemoStackOutputs.fromDartDefine();
+final url = outputs.apiUrl;
+```
+''');
+      final failures = await checkDocSnippets(
+        Directory.current.path,
+        docs: [doc],
+        libs: [],
+      );
+      expect(failures, isEmpty, reason: failures.join('\n'));
+    },
+  );
+
+  test('doc comments of every workspace package but codegen compile', () {
+    final workspace = File('pubspec.yaml').readAsStringSync();
     expect(
-      failures,
-      contains(startsWith("$rel:14: The named parameter 'nmae' isn't defined")),
+      docCommentPackages.toSet(),
+      {
+        for (final m in RegExp(
+          r'^\s+-\s+packages/(terradart_\w+)\s*$',
+          multiLine: true,
+        ).allMatches(workspace))
+          m.group(1)!,
+      }..remove('terradart_codegen'),
     );
+  });
+
+  group('stablePackages', () {
+    test('reads the whole promise, abbreviations included', () {
+      expect(
+        stablePackages(
+          '| **1.0.0** | TBD | Two minors. Stable SemVer for `terradart_core`, '
+          'every provider package (e.g. `terradart_aws`), and `terradart_cli`. '
+          '`terradart_codegen` and `terradart_hcl` stay outside the promise. |',
+        ),
+        {'terradart_core', 'terradart_aws', 'terradart_cli'},
+      );
+    });
+
+    test('names only workspace packages', () {
+      final workspace = File('pubspec.yaml').readAsStringSync();
+      for (final pkg in stablePackages(File(statusPath).readAsStringSync())) {
+        expect(workspace, contains('packages/$pkg'), reason: pkg);
+      }
+    });
+
+    test('reads the packages of the 1.0.0 row', () {
+      expect(
+        stablePackages(
+          '| **1.0.0** | TBD | Two minors. Stable SemVer for `terradart_core`, '
+          'every provider package (`terradart_aws`), and `terradart_cli`. '
+          '`terradart_codegen` stays outside the promise. |',
+        ),
+        {'terradart_core', 'terradart_aws', 'terradart_cli'},
+      );
+    });
+
+    test('fails loudly without a 1.0.0 row', () {
+      expect(() => stablePackages('| **Beta** | TBD |'), throwsStateError);
+    });
+
+    test('every stable package has its doc comments compiled', () {
+      final stable = stablePackages(File(statusPath).readAsStringSync());
+      expect(stable, containsAll(['terradart_azure', 'terradart_cli']));
+      expect(docCommentPackages, containsAll(stable));
+    });
+  });
+
+  test('the documents include the example and cookbook READMEs', () {
+    final docs = snippetDocuments(Directory.current.path);
+    expect(docs, contains('examples/aws_lambda_quickstart/README.md'));
+    expect(docs, contains('cookbook/single-project-app/README.md'));
   });
 
   test('every Dart snippet in the READMEs, the website docs and the doc '

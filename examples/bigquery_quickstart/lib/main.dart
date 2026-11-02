@@ -2,14 +2,15 @@
 ///
 /// Defines an `AnalyticsStack` that provisions a BigQuery dataset
 /// (`analytics_prod`) with:
-/// - 2 access entries via the sealed `Access` type — one user-by-email
-///   (OWNER) and one special-group (allAuthenticatedUsers, READER),
+/// - 2 access entries of the sealed [BigqueryDatasetAccess] type: one
+///   user-by-email (OWNER) and one special-group (allAuthenticatedUsers,
+///   READER),
 /// - default_table_expiration_ms set to 30 days (in milliseconds),
-/// - typed `storageBillingModel: DatasetStorageBillingModel.logical`,
+/// - typed `storageBillingModel: .logical`,
 ///
-/// demonstrating the sealed `Access` hierarchy (8 variants total — schema-
-/// faithful UserByEmail / GroupByEmail / SpecialGroup / Domain / IamMember /
-/// View / Dataset / Routine).
+/// demonstrating the sealed [BigqueryDatasetAccess] hierarchy (8 variants
+/// total, schema-faithful UserByEmail / GroupByEmail / SpecialGroup / Domain /
+/// IamMember / View / Dataset / Routine).
 ///
 /// Wave 5 Batch 3 adds a child `events` table plus two dataset/table-scoped
 /// IAM bindings: a reader SA on the dataset and a separate writer SA on

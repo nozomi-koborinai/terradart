@@ -174,7 +174,7 @@ final class InitPlan {
         envs.any((env) => f.id == null || ids[f.id]?[env] == null),
   );
 
-  /// The [Env] fields, in declaration order.
+  /// The fields of the generated `Env` enum, in declaration order.
   List<EnvField> get fields {
     final aws = has(InitProvider.aws);
     return [

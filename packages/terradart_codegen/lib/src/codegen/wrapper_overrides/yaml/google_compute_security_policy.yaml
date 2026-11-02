@@ -301,7 +301,7 @@ prelude: |
     final TfArg<String>? description;
 
     /// Staging flag. When `true`, the rule's [action] is NOT enforced
-    /// but matches are logged with a `preview: true` annotation -- use
+    /// but matches are logged with a `preview` annotation -- use
     /// to validate a new rule against production traffic before flipping
     /// it live.
     final TfArg<bool>? preview;

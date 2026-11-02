@@ -145,6 +145,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///
 /// Example (pool peered into an existing VPC):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// final pool = GoogleCloudbuildWorkerPool(
 ///   'vpc_pool',
 ///   name: TfArg.literal('vpc-pool'),

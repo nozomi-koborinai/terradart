@@ -30,6 +30,7 @@ const Set<String> _googleWorkloadIdentityServiceAgentSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleWorkloadIdentityServiceAgent(
 ///   'pubsub_agents',
 ///   parent: TfArg.literal(

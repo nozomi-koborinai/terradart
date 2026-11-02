@@ -122,6 +122,8 @@ final class ApigeeOrganizationProperty {
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// final network = add(GoogleComputeNetwork('network', name: .literal('network')));
 /// GoogleApigeeOrganization(
 ///   'org',
 ///   projectId: TfArg.literal(projectId),

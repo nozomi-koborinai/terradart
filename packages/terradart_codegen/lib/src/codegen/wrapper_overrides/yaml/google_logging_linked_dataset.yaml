@@ -29,6 +29,16 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final auditBucket = add(GoogleLoggingProjectBucketConfig(
+  ///   'audit',
+  ///   bucketId: .literal('audit-logs'),
+  ///   location: .literal('global'),
+  ///   project: .literal('my-project'),
+  /// ));
+  /// final dataset = add(GoogleBigqueryDataset(
+  ///   'dataset',
+  ///   datasetId: .literal('audit_logs'),
+  /// ));
   /// GoogleLoggingLinkedDataset(
   ///   'audit_analytics',
   ///   bucket: auditBucket.ref,

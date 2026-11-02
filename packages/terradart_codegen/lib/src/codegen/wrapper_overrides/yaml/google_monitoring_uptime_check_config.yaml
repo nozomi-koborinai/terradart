@@ -24,7 +24,7 @@ curatedDoc: |-
   ///
   /// The Terraform provider enforces an `exactly_one_of` contract across
   /// the probe-type blocks. Set **exactly one** of:
-  /// - [httpCheck] — HTTP or HTTPS probe (toggle [HttpCheckConfig.useSsl]
+  /// - [httpCheck] — HTTP or HTTPS probe (toggle [MonitoringUptimeCheckConfigHttpCheck.useSsl]
   ///   for HTTPS).
   /// - [tcpCheck] — raw TCP connect probe.
   /// - [syntheticMonitor] — invoke a Cloud Functions V2 instance that runs

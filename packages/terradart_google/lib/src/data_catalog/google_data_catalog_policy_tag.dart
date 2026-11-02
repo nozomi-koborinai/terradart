@@ -19,6 +19,10 @@ const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final taxonomy = add(GoogleDataCatalogTaxonomy(
+///   'taxonomy',
+///   displayName: .literal('taxonomy'),
+/// ));
 /// GoogleDataCatalogPolicyTag(
 ///   'email',
 ///   displayName: TfArg.literal('email'),

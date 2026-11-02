@@ -117,6 +117,17 @@ final class FirebaseAppHostingBuildContainer {
 ///
 /// Example (build from a git branch HEAD):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:123:web:abc'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'hosting',
+///     accountId: .literal('hosting'),
+///   )).ref,
+///   servingLocality: .regionalStrict,
+/// ));
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   'v1',
 ///   backend: backend.ref,
@@ -131,6 +142,17 @@ final class FirebaseAppHostingBuildContainer {
 ///
 /// Example (build from a prebuilt image):
 /// ```dart
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('web'),
+///   location: .literal('us-central1'),
+///   appId: .literal('1:123:web:abc'),
+///   serviceAccount: add(GoogleServiceAccount(
+///     'hosting',
+///     accountId: .literal('hosting'),
+///   )).ref,
+///   servingLocality: .regionalStrict,
+/// ));
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   'v1',
 ///   backend: backend.ref,
@@ -145,7 +167,7 @@ final class FirebaseAppHostingBuildContainer {
 /// ```
 ///
 /// Manages a single immutable App Hosting build. Builds are the artifact
-/// referenced by [GoogleFirebaseAppHostingTraffic.target] when shaping
+/// referenced by [FirebaseAppHostingTrafficRouting.target] when shaping
 /// traffic across revisions. Schema-side `state` and `error_source`
 /// (computed) carry enum-like wire values; they are exposed as raw
 /// `TfRef<String>` getters rather than typed enums because they are read-
@@ -242,7 +264,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `build_id` -- the segment downstream Traffic resources
-  /// pass to [AppHostingTrafficSplit.build].
+  /// pass to [FirebaseAppHostingTrafficSplit.build].
   TfRef<String> get buildId => TfRef.attribute<String>(this, 'build_id');
 
   /// Reference to `state` -- one of `BUILDING`, `BUILT`, `DEPLOYING`,

@@ -10,12 +10,14 @@ import '../lifecycle.dart';
 /// can match on:
 ///
 /// ```dart
-/// for (final issue in stack.validate()) {
-///   switch (issue) {
-///     case UnregisteredReference(:final address, :final target):
-///       print('$address reads $target, which was never added');
-///     default:
-///       print(issue);
+/// void report(Stack stack) {
+///   for (final issue in stack.validate()) {
+///     switch (issue) {
+///       case UnregisteredReference(:final address, :final target):
+///         print('$address reads $target, which was never added');
+///       default:
+///         print(issue);
+///     }
 ///   }
 /// }
 /// ```

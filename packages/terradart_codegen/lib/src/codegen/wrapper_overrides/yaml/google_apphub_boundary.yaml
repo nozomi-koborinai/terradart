@@ -11,6 +11,7 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final current = add(DataGoogleProject('current'));
   /// GoogleApphubBoundary(
   ///   'host',
   ///   location: TfArg.literal('global'),

@@ -385,6 +385,7 @@ final class EdgecontainerClusterIngress {
 ///
 /// Example (remote control plane):
 /// ```dart
+/// const projectNumber = '123456789012';
 /// GoogleEdgecontainerCluster(
 ///   'edge',
 ///   name: TfArg.literal('terradart-edge'),

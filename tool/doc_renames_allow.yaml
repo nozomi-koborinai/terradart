@@ -1,0 +1,29 @@
+# Reviewed exceptions of tool/doc_renames.dart. An entry the check no longer
+# needs fails it, so delete one once its reason is gone.
+
+# Names MIGRATING.md spells in code that were never the public API: what
+# synth or the migrator writes for a user's own Stack, and name patterns.
+notApi:
+  ordersTopicId: the getter synth writes into the reader of the guides' own OrdersStack
+  ordersTopicName: the constant synth writes into the reader of the guides' own OrdersStack
+  OrdersStackConstants.ordersTopicName: the constants class synth writes for the guides' own OrdersStack
+  googleEuProvider: the variable the migrator writes for an aliased `google` provider
+  googleBetaProvider: the variable the migrator writes for a `google-beta` provider
+  ServiceAccountModule: the module class the migrator writes for a user's `service_account` module
+  Helper: a placeholder for any helper class (`Map<String, Helper>`)
+  Target: a placeholder for the referenced resource type (`RefTo<Target>`)
+  Or: the suffix a placeholder sealed name ends with, not a type
+  Ref: the suffix of the removed `<input>Ref` getters, not a type
+  ExactlyOneOf: the provider schema rule, not a Dart symbol
+
+# Mentions that are not the Dart symbol: path (or directory ending in /) to
+# symbol to reason.
+mentions:
+  packages/terradart_google/lib/src/clouddeploy/google_clouddeploy_custom_target_type.dart:
+    Target: the upstream description names the Cloud Deploy API resource
+  packages/terradart_google/lib/src/clouddeploy/google_clouddeploy_target.dart:
+    Target: the upstream description names the Cloud Deploy API resource
+  packages/terradart_google/lib/src/model_armor/google_model_armor_template.dart:
+    Template: the upstream description names the Model Armor API resource
+  packages/terradart_google/lib/src/monitoring/google_monitoring_dashboard.dart:
+    Settings: the Cloud Console menu path `Settings -> JSON`

@@ -2,13 +2,14 @@
 ///
 /// Defines an `AssetsStack` that provisions:
 /// - a GCS bucket (`my-app-assets-prod`),
-/// - a versioning policy (typed `Versioning(enabled: true)`),
-/// - 1 lifecycle rule (typed `LifecycleRule` + `LifecycleAction.setStorageClass`
-///   to ARCHIVE after 365 days),
-/// - 1 object uploaded inline (`config/app.json` via `BucketObjectFromContent`),
+/// - a versioning policy ([StorageBucketVersioning]),
+/// - 1 lifecycle rule ([StorageBucketLifecycleRule] with a `setStorageClass`
+///   action to ARCHIVE after 365 days),
+/// - 1 object uploaded from a local file (`config/app.json` via
+///   `body: .source(...)`),
 ///
-/// demonstrating the 13-helper-class prelude from `google_storage_bucket` and
-/// the sealed `BucketObjectContent` pattern from `google_storage_bucket_object`.
+/// demonstrating the derived helper classes of `google_storage_bucket` and
+/// the sealed [StorageBucketObjectBody] of `google_storage_bucket_object`.
 ///
 /// Wave 5 Batch 3 adds a `roles/storage.objectViewer` binding on the
 /// bucket for a dedicated reader SA -- the typical "read-only consumer"

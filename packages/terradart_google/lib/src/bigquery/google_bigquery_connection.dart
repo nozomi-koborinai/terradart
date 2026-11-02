@@ -115,7 +115,7 @@ sealed class BigqueryConnectionBackend {
 
 /// `cloud_sql.credential` block — username / password the BigQuery
 /// federation layer presents to the Cloud SQL instance. The password is
-/// schema-flagged `sensitive: true` and is masked on synth.
+/// flagged sensitive by the schema and is masked on synth.
 @immutable
 class BigqueryConnectionCloudSqlCredential {
   const BigqueryConnectionCloudSqlCredential({
@@ -736,6 +736,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///
 /// Example (Cloud SQL — federated queries against a Postgres replica):
 /// ```dart
+/// final pgPasswordVar = variable<String>('pg_password');
 /// final pg = GoogleBigqueryConnection(
 ///   'analytics_pg',
 ///   connectionId: TfArg.literal('analytics-pg'),

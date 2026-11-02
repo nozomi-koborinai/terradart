@@ -1,7 +1,7 @@
 /// Public provider-meta constants for `hashicorp/google`.
 ///
-/// `terradart`'s `StackSynth.synth(...)` reads these to emit
-/// `terraform.required_providers.google = { source: ..., version: ... }`.
+/// `Stack.synth()` reads these to emit
+/// the `source` and `version` of `terraform.required_providers.google`.
 ///
 /// Pinned to provider major v7; bump `~> 8.0` only after a curated-surface
 /// regression sweep. The exact release the wrappers were generated against

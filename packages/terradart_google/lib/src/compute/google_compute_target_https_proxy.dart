@@ -163,7 +163,7 @@ final class ComputeTargetHttpsProxySslCertificates
 ///   `TfArg.literal('lb-https-proxy')` or
 ///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
-///   [GoogleComputeUrlMap]. Pass `urlMap.selfLink` so the
+///   [GoogleComputeUrlMap]. Pass `urlMap.ref` so the
 ///   value resolves to
 ///   `${google_compute_url_map.<localName>.self_link}`.
 ///
@@ -182,6 +182,14 @@ final class ComputeTargetHttpsProxySslCertificates
 ///
 /// Example (classic SSL certificate, external HTTPS LB):
 /// ```dart
+/// final urlMap = add(GoogleComputeUrlMap(
+///   'url_map',
+///   name: .literal('url-map'),
+/// ));
+/// final sslPolicy = add(GoogleComputeSslPolicy(
+///   'ssl',
+///   name: .literal('ssl'),
+/// ));
 /// final httpsProxy = GoogleComputeTargetHttpsProxy(
 ///   'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),

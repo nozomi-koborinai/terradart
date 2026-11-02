@@ -22,6 +22,7 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final group = add(GoogleVertexAiFeatureGroup('group'));
   /// GoogleVertexAiFeatureGroupFeature(
   ///   'score',
   ///   featureGroup: group.ref,

@@ -10,12 +10,18 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [instanceName]: parent instance ID.
-  /// - [table]: table ID — pass `table.name`.
+  /// - [table]: table ID — pass `table.ref`.
   /// - [columnFamily]: column family name.
   /// - [policy]: [BigtableGcPolicyMaxAge] or [BigtableGcPolicyMaxVersion].
   ///
   /// Example (expire cells after 7 days):
   /// ```dart
+  /// final instance = add(GoogleBigtableInstance('instance', name: .literal('instance')));
+  /// final table = add(GoogleBigtableTable(
+  ///   'table',
+  ///   instanceName: instance.ref,
+  ///   name: .literal('table'),
+  /// ));
   /// GoogleBigtableGcPolicy(
   ///   'cf1_max_age',
   ///   instanceName: instance.ref,

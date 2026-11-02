@@ -46,7 +46,7 @@ The plan adds one resource, `google_storage_bucket.tfstate`, named `<GCP_PROJECT
 
 ## Move the Stack's own state into the bucket
 
-Setting `STATE_BUCKET` makes the Stack synthesize `GcsBackend(bucket: ..., prefix: 'remote-backend')` instead of `LocalBackend()`. The state then has to move once, with `terradart state migrate`: it synthesizes, then runs the engine's `init -migrate-state` in `tf-out/`:
+Setting `STATE_BUCKET` makes the Stack synthesize a `GcsBackend` on that bucket, with the `remote-backend` prefix, instead of `LocalBackend()`. The state then has to move once, with `terradart state migrate`: it synthesizes, then runs the engine's `init -migrate-state` in `tf-out/`:
 
 1. **(One-time setup)** Ensure your ADC quota project matches the bucket's GCP project, otherwise the GCS backend lookup hits a confusing 404:
 
@@ -69,11 +69,23 @@ Keep `STATE_BUCKET` set from now on: without it the Stack synthesizes the local 
 
 ## Move `single-project-app` state into the bucket
 
-In `cookbook/single-project-app/lib/main.dart`, replace the Stack's backend:
+In `cookbook/single-project-app/lib/main.dart`, replace the Stack's `LocalBackend` with a `GcsBackend`, and leave its other `super(...)` arguments as they are:
 
-| Before | After |
-| --- | --- |
-| `backend: const LocalBackend(),` | `backend: const GcsBackend(bucket: 'terradart-validate-tfstate', prefix: 'single-project-app'),` |
+```dart
+// lib/main.dart
+final class SingleProjectAppStack extends Stack {
+  SingleProjectAppStack({required String projectId})
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+        backend: const GcsBackend(
+          bucket: 'terradart-validate-tfstate',
+          prefix: 'single-project-app',
+        ),
+      );
+}
+```
 
 Then, in `cookbook/single-project-app/`:
 

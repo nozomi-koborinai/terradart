@@ -685,6 +685,10 @@ extension type const RedisClusterZoneDistributionConfigMode._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final network = add(GoogleComputeNetwork(
+///   'network',
+///   name: .literal('network'),
+/// ));
 /// GoogleRedisCluster(
 ///   'rc',
 ///   name: TfArg.literal('terradart-rc'),

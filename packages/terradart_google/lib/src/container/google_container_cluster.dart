@@ -5099,6 +5099,8 @@ final class ContainerClusterWorkloadIdentityConfig {
 ///
 /// Example (GKE Standard on an existing VPC / subnetwork):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork('subnet', name: .literal('subnet'), network: vpc.ref));
 /// final cluster = GoogleContainerCluster(
 ///   'main',
 ///   name: TfArg.literal('main-gke'),

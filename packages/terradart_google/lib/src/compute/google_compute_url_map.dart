@@ -2144,7 +2144,7 @@ final class ComputeUrlMapHeaders {
 ///   [GoogleComputeBackendService] (`.../backendServices/<name>`) **or** a
 ///   [GoogleComputeBackendBucket] (`.../backendBuckets/<name>`). The GCP
 ///   API distinguishes by URL segment, not by a separate field. Mutually
-///   exclusive with `defaultAction: .defaultUrlRedirect(...)` -- exactly one of the two must be
+///   exclusive with the `.defaultUrlRedirect` variant of `defaultAction` -- exactly one of the two must be
 ///   set when no [pathMatcher] entries are present.
 ///
 /// Matching pipeline (request flow):
@@ -2170,6 +2170,8 @@ final class ComputeUrlMapHeaders {
 ///
 /// Example (login backend + static bucket, both routed via host/path):
 /// ```dart
+/// final login = add(GoogleComputeBackendService('login', name: .literal('login')));
+/// final staticBucket = add(GoogleComputeBackendService('static', name: .literal('static')));
 /// final urlMap = GoogleComputeUrlMap(
 ///   'urlmap',
 ///   name: TfArg.literal('urlmap-prod'),

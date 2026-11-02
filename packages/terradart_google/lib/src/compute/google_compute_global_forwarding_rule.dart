@@ -217,7 +217,7 @@ extension type const GlobalForwardingRuleMetadataFilterMatchCriteria._(
 // ===========================================================================
 
 /// One entry in `metadata_filters`. Only consulted by Traffic Director
-/// (`loadBalancingScheme: INTERNAL_SELF_MANAGED`) forwarding rules —
+/// (a `loadBalancingScheme` of `INTERNAL_SELF_MANAGED`) forwarding rules —
 /// silently ignored for every other scheme. xDS clients present node
 /// metadata in their config request; this filter gates which routing
 /// config gets returned to which client.
@@ -362,6 +362,13 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 ///
 /// Example (external HTTPS L7 Application LB frontend):
 /// ```dart
+/// final urlMap = add(GoogleComputeUrlMap('url_map', name: .literal('url-map')));
+/// final httpsProxy = add(GoogleComputeTargetHttpsProxy(
+///   'https_proxy',
+///   name: .literal('https-proxy'),
+///   urlMap: urlMap.ref,
+/// ));
+/// final lbVip = add(GoogleComputeGlobalAddress('lb_vip', name: .literal('lb-vip')));
 /// final feFwd = GoogleComputeGlobalForwardingRule(
 ///   'fe',
 ///   name: TfArg.literal('lb-https-frontend'),

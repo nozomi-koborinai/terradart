@@ -265,6 +265,12 @@ final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
 ///
 /// Example:
 /// ```dart
+/// final chromeos = add(GoogleAccessContextManagerAccessLevel(
+///   'chromeos',
+///   name: .literal('chromeos'),
+///   parent: .literal('accessPolicies/0'),
+///   title: .literal('chromeos'),
+/// ));
 /// GoogleAccessContextManagerAccessLevelCondition(
 ///   'chromeos_condition',
 ///   accessLevel: chromeos.ref,

@@ -579,6 +579,12 @@ extension type const CesGuardrailThreshold._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us'),
+///   appId: .literal('app'),
+///   displayName: .literal('App'),
+/// ));
 /// GoogleCesGuardrail(
 ///   'safety',
 ///   app: app.ref,

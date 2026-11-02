@@ -1,6 +1,6 @@
 # BigQuery quickstart
 
-End-to-end terradart example for BigQuery. Provisions a dataset (`analytics_prod`) with a typed sealed `Access` list (8 variants — this example uses `AccessUserByEmail` for an OWNER role and `AccessSpecialGroup` for a READER role over `allAuthenticatedUsers`).
+End-to-end terradart example for BigQuery. Provisions a dataset (`analytics_prod`) with a list of the sealed `BigqueryDatasetAccess` type (8 variants; this example uses `.userByEmail` for an OWNER role and `.specialGroup` for a READER role over `allAuthenticatedUsers`).
 
 ## Before you apply
 
@@ -16,7 +16,7 @@ The data policy and Analytics Hub resources need a project that belongs to an or
 
 ```
 examples/bigquery_quickstart/
-├── lib/main.dart        # AnalyticsStack: dataset + sealed Access list
+├── lib/main.dart        # AnalyticsStack: dataset + BigqueryDatasetAccess list
 ├── bin/infra.dart       # Synth entry
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml
@@ -35,10 +35,10 @@ terradart apply
 
 - A BigQuery dataset `analytics_prod` in `asia-northeast1`, friendly name `Production analytics`.
 - Default table expiration: 30 days (`30 * 24 * 60 * 60 * 1000` ms).
-- Storage billing model: `DatasetStorageBillingModel.logical` → `LOGICAL`.
-- Two `Access` entries:
-  - `AccessUserByEmail(userByEmail: 'data-eng@example.com', role: 'OWNER')`.
-  - `AccessSpecialGroup(specialGroup: 'allAuthenticatedUsers', role: 'READER')`.
+- Storage billing model: the `.logical` member → `LOGICAL`.
+- Two `BigqueryDatasetAccess` entries:
+  - `.userByEmail(...)` with role `OWNER`, for the in-stack reader service account's email.
+  - `.specialGroup(...)` with role `READER`, for all authenticated users.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
@@ -53,8 +53,14 @@ terradart apply
         "default_table_expiration_ms": 2592000000,
         "storage_billing_model": "LOGICAL",
         "access": [
-          { "user_by_email": "data-eng@example.com", "role": "OWNER" },
-          { "special_group": "allAuthenticatedUsers", "role": "READER" }
+          {
+            "user_by_email": "${google_service_account.analytics_reader.email}",
+            "role": "OWNER"
+          },
+          {
+            "special_group": "allAuthenticatedUsers",
+            "role": "READER"
+          }
         ]
       }
     }
@@ -62,7 +68,7 @@ terradart apply
 }
 ```
 
-The `Access` sealed type has 8 schema-faithful variants — `AccessUserByEmail`, `AccessGroupByEmail`, `AccessSpecialGroup`, `AccessDomain`, `AccessIamMember`, `AccessView`, `AccessDataset`, `AccessRoutine` — each carrying the fields BigQuery's API requires for that variant. The compiler keeps mutually-exclusive identity fields honest.
+The sealed `BigqueryDatasetAccess` type has 8 schema-faithful variants (`BigqueryDatasetAccessUserByEmail`, `BigqueryDatasetAccessGroupByEmail`, `BigqueryDatasetAccessSpecialGroup`, `BigqueryDatasetAccessDomain`, `BigqueryDatasetAccessIamMember`, `BigqueryDatasetAccessView`, `BigqueryDatasetAccessDataset`, `BigqueryDatasetAccessRoutine`), each carrying the fields BigQuery's API requires for that variant. The compiler keeps mutually-exclusive identity fields honest.
 
 `GoogleBigqueryReservationGroup` is curated but not exercised here: create
 requires Reservation Based Fairness (`ALTER PROJECT SET OPTIONS`), which is

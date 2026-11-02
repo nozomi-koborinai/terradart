@@ -474,6 +474,8 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 ///
 /// Example (VPC spoke):
 /// ```dart
+/// final hub = add(GoogleNetworkConnectivityHub('hub'));
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
 /// GoogleNetworkConnectivitySpoke(
 ///   'vpc_spoke',
 ///   name: .literal('vpc-spoke'),

@@ -25,6 +25,15 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final sa = add(GoogleServiceAccount('sa', accountId: .literal('sa')));
+/// final backend = add(GoogleFirebaseAppHostingBackend(
+///   'backend',
+///   backendId: .literal('backend'),
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   serviceAccount: sa.ref,
+///   servingLocality: AppHostingServingLocality.regionalStrict,
+/// ));
 /// final defaultDomain = GoogleFirebaseAppHostingDefaultDomain(
 ///   'default',
 ///   backend: backend.ref,

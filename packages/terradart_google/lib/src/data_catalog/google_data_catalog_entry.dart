@@ -34,7 +34,7 @@ sealed class DataCatalogEntryKind {
   /// Scalar value for that key.
   TfArg<String> get value;
 
-  /// Flat `{blockKey: value}` payload (Gate 6 / callers that need a map).
+  /// Flat one-entry `blockKey` map payload (Gate 6 / callers that need a map).
   @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
@@ -100,6 +100,10 @@ final class DataCatalogEntryGcsFilesetSpec {
 ///
 /// Example (custom entry):
 /// ```dart
+/// final group = add(GoogleDataCatalogEntryGroup(
+///   'group',
+///   entryGroupId: .literal('group'),
+/// ));
 /// GoogleDataCatalogEntry(
 ///   'custom',
 ///   entryGroup: group.ref,

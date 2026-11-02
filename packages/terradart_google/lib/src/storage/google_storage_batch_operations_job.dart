@@ -408,6 +408,11 @@ final class StorageBatchOperationsJobRewriteObject {
 ///
 /// Example (stamp custom metadata on a prefix):
 /// ```dart
+/// final assets = add(GoogleStorageBucket(
+///   'assets',
+///   name: .literal('assets'),
+///   location: .literal('US'),
+/// ));
 /// GoogleStorageBatchOperationsJob(
 ///   'stamp_meta',
 ///   jobId: .literal('stamp-meta'),

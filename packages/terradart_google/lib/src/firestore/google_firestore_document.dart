@@ -31,6 +31,12 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 /// build it from a Dart map:
 ///
 /// ```dart
+/// final db = add(GoogleFirestoreDatabase(
+///   'db',
+///   name: .literal('(default)'),
+///   locationId: .literal('us-central1'),
+///   type: FirestoreDatabaseType.firestoreNative,
+/// ));
 /// final flag = GoogleFirestoreDocument(
 ///   'dark_mode',
 ///   collection: TfArg.literal('feature_flags'),

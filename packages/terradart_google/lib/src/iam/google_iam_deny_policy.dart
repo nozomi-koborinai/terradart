@@ -104,6 +104,11 @@ final class IamDenyPolicyDenialCondition {
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
+/// final denied = add(GoogleServiceAccount(
+///   'denied',
+///   accountId: .literal('denied'),
+/// ));
 /// GoogleIamDenyPolicy(
 ///   'storage_get_deny',
 ///   parent: TfArg.literal(

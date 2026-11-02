@@ -15,6 +15,7 @@ const Set<String> _googleApphubBoundarySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final current = add(DataGoogleProject('current'));
 /// GoogleApphubBoundary(
 ///   'host',
 ///   location: TfArg.literal('global'),

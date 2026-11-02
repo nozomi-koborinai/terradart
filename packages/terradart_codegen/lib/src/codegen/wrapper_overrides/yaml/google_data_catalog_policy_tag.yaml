@@ -11,6 +11,10 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final taxonomy = add(GoogleDataCatalogTaxonomy(
+  ///   'taxonomy',
+  ///   displayName: .literal('taxonomy'),
+  /// ));
   /// GoogleDataCatalogPolicyTag(
   ///   'email',
   ///   displayName: TfArg.literal('email'),

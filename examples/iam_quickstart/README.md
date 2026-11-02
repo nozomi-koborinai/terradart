@@ -15,10 +15,10 @@ Each IAM resource has a slightly different identity surface; the factory takes t
 
 | Resource | Identity attribute(s) | terradart argument |
 |---|---|---|
-| `google_pubsub_topic_iam_member` | `topic` (name) | `topic: topic.ref` |
-| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription: subscription.ref` |
-| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue: queue.ref` |
-| `google_secret_manager_secret_iam_member` | `secret_id` | `secret: secret.ref` |
+| `google_pubsub_topic_iam_member` | `topic` (name) | `topic`, given the topic's `ref` |
+| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription`, given the subscription's `ref` |
+| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue`, given the queue's `ref` |
+| `google_secret_manager_secret_iam_member` | `secret_id` | `secret`, given the secret's `ref` |
 
 Each grant also carries the parent's `project`, read off the parent, so it cannot drift from the resource it names.
 
@@ -39,7 +39,7 @@ Workload identity pools and providers are soft-deleted for 30 days, so applying 
 ```bash
 dart pub get
 
-# Edit bin/infra.dart -- replace YOUR-PROJECT-ID with your project ID.
+export GCP_PROJECT_ID=your-project-id
 
 terradart apply
 ```
@@ -57,16 +57,15 @@ terradart apply
   "resource": {
     "google_service_account": {
       "demo": {
-        "account_id": "demo",
+        "account_id": "demo-sa",
         "display_name": "IAM quickstart demo SA"
       }
     },
     "google_pubsub_topic_iam_member": {
       "topic_publisher": {
-        "topic": "${google_pubsub_topic.demo.name}",
+        "topic": "${google_pubsub_topic.demo.id}",
         "role": "roles/pubsub.publisher",
-        "member": "${google_service_account.demo.member}",
-        "project": "${google_pubsub_topic.demo.project}"
+        "member": "${google_service_account.demo.member}"
       }
     },
     "google_pubsub_subscription_iam_member": {

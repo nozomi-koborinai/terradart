@@ -442,6 +442,11 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///
 /// Example (CPU + scheduled-scaling override):
 /// ```dart
+/// final template = add(GoogleComputeInstanceTemplate(
+///   'template',
+///   machineType: .literal('e2-medium'),
+///   disk: const [ComputeInstanceTemplateDisk()],
+/// ));
 /// final rigm = GoogleComputeRegionInstanceGroupManager(
 ///   'web_rigm',
 ///   name: TfArg.literal('web-rigm'),

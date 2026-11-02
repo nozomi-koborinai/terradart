@@ -71,6 +71,33 @@ void main() {
       expect(source, contains("static const Map<String, int> m = {r'a': 1};"));
     });
 
+    test('a reader with no readable output emits no unused helper', () {
+      final constantsOnly = _source(
+        _stack()..addConstant('s', const .value('v1')),
+      );
+      final allSensitive = _source(
+        _stack()
+          ..addOutput('pw', .literal('secret'), sensitive: true)
+          ..addOutput('token', .literal('t'), sensitive: true),
+      );
+      for (final source in [constantsOnly, allSensitive]) {
+        for (final unused in [
+          "import 'dart:convert'",
+          '_read(',
+          '_as<',
+          '_Source',
+        ]) {
+          expect(source, isNot(contains(unused)));
+        }
+        expect(source, contains('const TestStackOutputs.fromDartDefine();'));
+      }
+      expect(allSensitive, isNot(contains(' get pw')));
+      final stringOnly = _source(_stack()..addOutput('x', .literal('v')));
+      expect(stringOnly, contains("import 'dart:convert'"));
+      expect(stringOnly, contains('Object? _read('));
+      expect(stringOnly, contains('_as<String>('));
+    });
+
     test('resolves a .ref to the literal the attribute is set to', () {
       final stack = _stack();
       final topic = _topic(stack, {

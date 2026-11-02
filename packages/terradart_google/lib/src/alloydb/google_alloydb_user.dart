@@ -108,6 +108,12 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 ///
 /// Example:
 /// ```dart
+/// final cluster = add(GoogleAlloydbCluster(
+///   'cluster',
+///   clusterId: .literal('cluster'),
+///   location: .literal('us-central1'),
+/// ));
+/// const dbPassword = 'secret';
 /// GoogleAlloydbUser(
 ///   'app',
 ///   cluster: cluster.ref,

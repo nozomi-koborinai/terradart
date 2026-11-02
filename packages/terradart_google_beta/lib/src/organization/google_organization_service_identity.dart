@@ -14,8 +14,8 @@ const Set<String> _googleOrganizationServiceIdentitySensitive = <String>{};
 /// per-service service agent ahead of first use, so IAM grants on that
 /// agent never race its lazy creation.
 ///
-/// The [member] / [email] outputs feed IAM grants directly:
-/// `GoogleOrganizationIamMember(member: identity.member, ...)`.
+/// Pass [principal] as the `member` of an IAM grant such as
+/// [GoogleOrganizationIamMember]; [email] is the agent's bare address.
 final class GoogleOrganizationServiceIdentity extends Resource {
   static const String tfType = 'google_organization_service_identity';
 

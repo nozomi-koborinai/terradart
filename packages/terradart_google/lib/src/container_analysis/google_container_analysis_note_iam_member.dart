@@ -42,6 +42,14 @@ final class ContainerAnalysisNoteIamMemberCondition {
 ///
 /// Example:
 /// ```dart
+/// final note = add(GoogleContainerAnalysisNote(
+///   'note',
+///   name: .literal('note'),
+///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
+///     hint: ContainerAnalysisNoteHint(humanReadableName: .literal('note')),
+///   ),
+/// ));
+/// const projectId = 'my-project';
 /// GoogleContainerAnalysisNoteIamMember(
 ///   'note_viewer',
 ///   note: note.ref,

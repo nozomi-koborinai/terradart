@@ -14,8 +14,8 @@ const Set<String> _googleFolderServiceIdentitySensitive = <String>{};
 /// service agent ahead of first use, so IAM grants on that agent never
 /// race its lazy creation.
 ///
-/// The [member] / [email] outputs feed IAM grants directly:
-/// `GoogleFolderIamMember(member: identity.member, ...)`.
+/// Pass [principal] as the `member` of an IAM grant such as
+/// [GoogleFolderIamMember]; [email] is the agent's bare address.
 final class GoogleFolderServiceIdentity extends Resource {
   static const String tfType = 'google_folder_service_identity';
 

@@ -137,7 +137,7 @@ Future<void> main(List<String> args) => runEnvironments(
 );
 ```
 
-A command now runs against the first of: `--env <name>`, the `TERRADART_ENV` environment variable, `defaultEnv`, or the only environment when there is one. It prints which one and why, `env: dev (default)`. Delete the `defaultEnv` line to make every command name its environment. More in [Environments](/docs/environments/#run-one-environment).
+A command now runs against the first of: `--env <name>`, the `TERRADART_ENV` environment variable, `defaultEnv`, or the only environment when there is one. It prints which one and why: `dev`, the default. Delete the `defaultEnv` line to make every command name its environment. More in [Environments](/docs/environments/#run-one-environment).
 
 ## 5. Synth
 
@@ -206,7 +206,7 @@ terradart apply --env prd
 
 ## 9. Move the state to a bucket
 
-The state is a local file, `tf-out/<env>/terraform.tfstate`, kept out of git. Before anyone else applies, keep it in a bucket: create one, set the Stack's `backend:` to `GcsBackend(bucket: 'my-app-tfstate', prefix: 'my_app/${env.name}')`, and move each environment's state once:
+The state is a local file, `tf-out/<env>/terraform.tfstate`, kept out of git. Before anyone else applies, keep it in a bucket: create one, set the Stack's `backend` to a `GcsBackend` on that bucket with the prefix `my_app/<env>`, and move each environment's state once:
 
 ```bash
 terradart state migrate --env dev

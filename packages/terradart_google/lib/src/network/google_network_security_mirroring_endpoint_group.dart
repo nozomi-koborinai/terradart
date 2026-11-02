@@ -52,7 +52,7 @@ sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
   @internal
   String get blockKey;
 
-  /// Flat `{blockKey: value}` payload (Gate 6 encode round-trip shape).
+  /// Flat one-entry `blockKey` map payload (Gate 6 encode round-trip shape).
   @internal
   Map<String, Object?> encode();
 }

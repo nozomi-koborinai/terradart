@@ -43,12 +43,12 @@ terradart apply
 
 1. `cloudsql-vpc` -- a custom-mode VPC dedicated to Cloud SQL.
 2. `cloudsql-psa-range` -- a `/16` `INTERNAL` global address with
-   `purpose: VPC_PEERING` reserved on that VPC.
+   the `vpcPeering` purpose, reserved on that VPC.
 3. A peering connection between the VPC and
    `servicenetworking.googleapis.com` over the reserved range.
 4. `orders-primary` -- a `POSTGRES_15` instance, `db-custom-2-7680` tier,
    zonal (single-zone) availability, 20 GB SSD, **private IP only**
-   (`ipv4_enabled: false`).
+   (`ipv4Enabled` false).
 5. `orders` -- one logical database inside the instance.
 6. `app` -- one `BUILT_IN` user whose password is sourced from
    `DB_PASSWORD` and masked at synth time.

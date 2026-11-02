@@ -97,7 +97,7 @@ extension type const PublicKeyType._(TfArg<String> _) implements TfArg<String> {
 ///   (base64-encoded X509 PEM) instead of having GCP generate the keypair.
 ///   In that mode the `private_key` output is empty.
 /// - `keepers`: arbitrary map whose value changes trigger key rotation.
-///   Typical pattern: `keepers: TfArg.literal({'rotation': timestamp})`
+///   Typical pattern: a literal `{'rotation': timestamp}` map
 ///   refreshed by an external scheduler.
 final class GoogleServiceAccountKey extends Resource {
   static const String tfType = 'google_service_account_key';

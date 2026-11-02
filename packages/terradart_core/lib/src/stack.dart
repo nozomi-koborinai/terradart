@@ -48,7 +48,7 @@ abstract interface class StackProvider {
   /// number of aliases per name. Synth then emits every configuration of the
   /// name as a list under `provider.<providerName>`, the aliased ones
   /// carrying their `alias`, and a resource selects one with the `provider`
-  /// meta-argument (`provider: eu`, the instance). Aliases share the name's
+  /// meta-argument, which takes the instance. Aliases share the name's
   /// `required_providers` entry, so [source] and [versionConstraint] must
   /// agree across them.
   String? get alias;
@@ -233,7 +233,7 @@ abstract base class Stack {
 
   // ---- Coordination mutators ---------------------------------------------
 
-  /// Registers [provider] like an entry of `Stack(providers: [...])` and
+  /// Registers [provider] like an entry of the Stack's `providers` and
   /// returns it, so the constructor body holds the instance a resource
   /// selects with `provider:`.
   ///
@@ -317,9 +317,11 @@ abstract base class Stack {
   /// Declare `output "<name>" { value = <value> }`.
   ///
   /// ```dart
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+  /// final dbPassword = variable<String>('db_password', sensitive: true);
   /// addOutput('orders_topic_id', topic.id);
-  /// addOutput('service_url', service.uri, description: 'Cloud Run URL');
-  /// addOutput('db_password', secret.secretData, sensitive: true);
+  /// addOutput('orders_topic_name', topic.name, description: 'Orders topic');
+  /// addOutput('db_password', dbPassword, sensitive: true);
   /// ```
   ///
   /// With [appExports] set, a non-sensitive output is also a getter of the
@@ -374,6 +376,8 @@ abstract base class Stack {
   /// `String` output, its JSON for any other.
   ///
   /// ```dart
+  /// const image = 'us-docker.pkg.dev/cloudrun/container/hello';
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
   /// addOutput('orders_topic_id', topic.id);
   /// final service = add(GoogleCloudRunV2Service(
   ///   'orders',
@@ -393,8 +397,8 @@ abstract base class Stack {
   /// ```
   ///
   /// Where the environment is one map argument, pass
-  /// [OutputEnvironment.variables]: `environment: .new(variables:
-  /// outputEnvironment().variables)` on an `AwsLambdaFunction`.
+  /// [OutputEnvironment.variables] as the `variables` of the `environment`
+  /// of an `AwsLambdaFunction`.
   ///
   /// Register the outputs that read the service itself after the call: a
   /// resource whose environment references its own attributes is a
@@ -452,7 +456,8 @@ abstract base class Stack {
   /// app is built with.
   ///
   /// ```dart
-  /// addOutput('api_url', service.uri);
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+  /// addOutput('orders_topic_id', topic.id);
   /// addDartDefineOutput();
   /// ```
   ///
@@ -564,6 +569,7 @@ abstract base class Stack {
   /// class of the [appExports] file.
   ///
   /// ```dart
+  /// final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
   /// addConstant('ordersTopicName', .ref(topic.name));
   /// addConstant('maxRetries', .value(5));
   /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));
@@ -628,7 +634,7 @@ abstract base class Stack {
   }
 
   /// Declare a `variable "<name>" { ... }` block and return the handle an
-  /// argument takes: `name: region` reads `var.region`.
+  /// argument takes: passing the handle `region` emits `var.region`.
   ///
   /// ```dart
   /// final region = variable<String>('region', defaultValue: 'us-east1');

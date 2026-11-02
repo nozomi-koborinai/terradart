@@ -133,6 +133,12 @@ extension type const BackupDayOfWeek._(TfArg<String> _)
 ///
 /// Example (keep daily backups for 7 days):
 /// ```dart
+/// final db = add(GoogleFirestoreDatabase(
+///   'db',
+///   name: .literal('(default)'),
+///   locationId: .literal('us-central1'),
+///   type: .firestoreNative,
+/// ));
 /// final daily = GoogleFirestoreBackupSchedule(
 ///   'daily',
 ///   database: db.ref,
@@ -143,6 +149,12 @@ extension type const BackupDayOfWeek._(TfArg<String> _)
 ///
 /// Example (weekly backup every Monday, retained 4 weeks):
 /// ```dart
+/// final db = add(GoogleFirestoreDatabase(
+///   'db',
+///   name: .literal('(default)'),
+///   locationId: .literal('us-central1'),
+///   type: .firestoreNative,
+/// ));
 /// final weekly = GoogleFirestoreBackupSchedule(
 ///   'weekly',
 ///   database: db.ref,

@@ -60,7 +60,7 @@ curatedDoc: |-
   /// - `portRange`: a single port (e.g. `'443'`) or a range (e.g.
   ///   `'80-443'`). Required for proxy / Application LBs.
   ///
-  /// For Internal forwarding rules (`loadBalancingScheme: INTERNAL` or
+  /// For Internal forwarding rules (a `loadBalancingScheme` of `INTERNAL` or
   /// `INTERNAL_MANAGED`):
   /// - `network`: self-link of the VPC the rule's VIP belongs to.
   /// - `subnetwork`: self-link of the subnet the VIP is allocated from.
@@ -95,6 +95,23 @@ curatedDoc: |-
   ///
   /// Example (Regional Internal Application LB frontend):
   /// ```dart
+  /// final regionUrlMap = add(GoogleComputeRegionUrlMap(
+  ///   'region_url_map',
+  ///   name: .literal('region-url-map'),
+  /// ));
+  /// final regionTargetHttpsProxy = add(GoogleComputeRegionTargetHttpsProxy(
+  ///   'proxy',
+  ///   name: .literal('proxy'),
+  ///   urlMap: regionUrlMap.ref,
+  ///   region: .literal('us-central1'),
+  /// ));
+  /// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+  /// final ilbSubnet = add(GoogleComputeSubnetwork(
+  ///   'ilb_subnet',
+  ///   name: .literal('ilb-subnet'),
+  ///   network: vpc.ref,
+  /// ));
+  /// final ilbVip = add(GoogleComputeAddress('ilb_vip', name: .literal('ilb-vip')));
   /// final ilbFwd = GoogleComputeForwardingRule(
   ///   'ilb',
   ///   name: TfArg.literal('ilb-https-frontend'),
@@ -165,7 +182,7 @@ prelude: |
   /// [sctp] / [icmp].
   ///
   /// [l3Default] is regional-only: it attaches the rule to a backend
-  /// service with `UNSPECIFIED` protocol, and pairs with `allPorts: true`
+  /// service with `UNSPECIFIED` protocol, and pairs with `allPorts` set to true
   /// for internal protocol forwarding. It is rejected when the backend
   /// service explicitly declares `TCP` or `UDP`.
   extension type const ForwardingRuleIpProtocol._(TfArg<String> _) implements TfArg<String> {

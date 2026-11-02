@@ -82,8 +82,8 @@ extension type const ChronicleCaseTagDefinitionMatchCriteria._(TfArg<String> _)
 ///
 /// A Chronicle (Google SecOps) case tag rule: cases matching `value`
 /// by `matchCriteria` / `comparisonType` get the `displayName` tag.
-/// `propertyName` applies only with `matchCriteria:
-/// .byEntityPropertyName`.
+/// `propertyName` applies only when `matchCriteria` is
+/// `.byEntityPropertyName`.
 final class GoogleChronicleCaseTagDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_tag_definition';
 

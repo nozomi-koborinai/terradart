@@ -10,11 +10,44 @@ This package ships the small set of primitives every TerraDart Stack uses:
 
 - `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
 - `Resource` / `Data` — typed nodes supplied by provider factory packages.
-- `TfArg.literal(...)`, an attribute getter (`topic.name`), a variable handle and `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable (`final region = variable<String>('region')`, then `location: region`; `TfArg.variable('region')` names one where the handle's type does not fit), or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). A Terraform enum is a `TfArg<String>` itself, so its members pass directly (see below).
-- `RefTo<R>` — what an argument that names another resource takes: the target's generated `ref` getter (`network: vpc.ref`), `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a value outside the Stack, and `.pinned('self_link')` to emit an attribute other than the argument's own.
+- `TfArg.literal(...)`, an attribute getter (`topic.name`), a variable handle and `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable (the handle `variable<String>('region')` returns, passed as the subnetwork's `region` below; `TfArg.variable('region')` names one where the handle's type does not fit), or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). A Terraform enum is a `TfArg<String>` itself, so its members pass directly (see below).
+- `RefTo<R>` — what an argument that names another resource takes: the target's generated `ref` getter (the subnetwork's `network` below), `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a value outside the Stack, and `.pinned('self_link')` to emit an attribute other than the argument's own.
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes` (`.all` / `.of([...])`), `replace_triggered_by` (resources and attribute getters), `precondition` / `postcondition`.
-- `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and, when the Stack was constructed with `appExports: AppExports(path)`, `dartSource` (the generated Dart file for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` under `outDir`, plus the Dart file at its path.
+- `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and, when the Stack was constructed with an `appExports` file (any path, as below), `dartSource` (the generated Dart file for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` under `outDir`, plus the Dart file at its path.
 - `addOutput('service_url', service.uri)` declares a Terraform `output`; `addConstant('ordersTopicName', .ref(topic.name))` declares a `static const` of the generated `<Stack>Constants` class — `.ref` reads the literal the attribute is set to at synth, `.value(...)` takes any JSON value, `.fromEnvironment('NAME')` a `String.fromEnvironment`. The same file holds a typed `<Stack>Outputs` reader with a getter per non-sensitive output, built with `fromTerraformJson(terraformOutputJson)` or `fromEnvironment(Platform.environment)` (`ORDERS_TOPIC_ID` for `orders_topic_id`); `outputEnvironment()` returns those variables as `TfArg<String>`s to pass as a Cloud Run service's `env`.
+
+```dart
+// lib/network_stack.dart
+import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/provider.dart';
+
+final class NetworkStack extends Stack {
+  NetworkStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/network_stack.app.dart'),
+      ) {
+    final region = variable<String>('region');
+    final vpc = add(
+      GoogleComputeNetwork(
+        'vpc',
+        name: .literal('app-vpc'),
+        autoCreateSubnetworks: .literal(false),
+      ),
+    );
+    add(
+      GoogleComputeSubnetwork(
+        'app',
+        name: .literal('app'),
+        network: vpc.ref,
+        region: region,
+        ipCidrRange: .literal('10.0.0.0/24'),
+      ),
+    );
+    addConstant('vpcName', .ref(vpc.name));
+  }
+}
+```
 
 This package is the **runtime layer only**. It is intentionally small and dependency-free.
 
@@ -46,7 +79,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. R
 
 ## Typed enum serialization
 
-Wrap-emitted enums are extension types that implement `TfArg<String>`: each member is a `static const` literal, so `type: .standard` passes one directly, and `.variable(...)` / `.expression(...)` / `.arg(...)` cover values that are not known at synth time. A plain Dart `enum` has no Terraform value, so `TfArgLiteral.toTfJson()` throws `ArgumentError` on one at synth time.
+Wrap-emitted enums are extension types that implement `TfArg<String>`: each member is a `static const` literal, so a member such as `.regional` passes directly where its enum goes, and `.variable(...)` / `.expression(...)` / `.arg(...)` cover values that are not known at synth time. A plain Dart `enum` has no Terraform value, so `TfArgLiteral.toTfJson()` throws `ArgumentError` on one at synth time.
 
 ```dart
 extension type const RoutingMode._(TfArg<String> _) implements TfArg<String> {

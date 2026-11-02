@@ -42,23 +42,31 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [name]: entry ID unique within the parent map.
-  /// - [map]: full resource name of the parent map — pass
-  ///   `certMap.id`.
+  /// - [map]: the parent map — pass the map's `ref`.
   /// - [match]: the SNI hostname or predefined matcher this entry selects.
-  /// - [certificates]: one or more certificate resource names — pass
-  ///   `TfArg.literal([cert.id.interpolation])` or `cert.id`.
+  /// - [certificates]: one or more certificate resource names — pass a
+  ///   literal list of each certificate's `id.interpolation`.
   ///
   /// Example:
   /// ```dart
+  /// final cmCert = add(GoogleCertificateManagerCertificate(
+  ///   'app_cert',
+  ///   name: .literal('app-cert'),
+  ///   provisioning: .managed(
+  ///     .new(domains: .literal(['app.example.com'])),
+  ///   ),
+  /// ));
+  /// final cmMap = add(GoogleCertificateManagerCertificateMap(
+  ///   'cert_map',
+  ///   name: .literal('cert-map'),
+  /// ));
   /// GoogleCertificateManagerCertificateMapEntry(
   ///   'app_entry',
-  ///   name: TfArg.literal('app-entry'),
-  ///   map: certMap.ref,
+  ///   name: .literal('app-entry'),
+  ///   map: cmMap.ref,
   ///   match: CertificateManagerCertificateMapEntryMatch.hostname(
-  ///     TfArg.literal('app.example.com'),
+  ///     .literal('app.example.com'),
   ///   ),
-  ///   certificates: TfArg.literal([
-  ///     '\${google_certificate_manager_certificate.app_cert.id}',
-  ///   ]),
+  ///   certificates: .literal([cmCert.id.interpolation]),
   /// );
   /// ```

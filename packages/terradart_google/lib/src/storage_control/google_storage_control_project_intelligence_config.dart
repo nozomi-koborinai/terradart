@@ -288,6 +288,7 @@ final class StorageControlProjectIntelligenceConfigIncludedCloudStorageLocations
 ///
 /// Example:
 /// ```dart
+/// const projectId = 'my-project';
 /// GoogleStorageControlProjectIntelligenceConfig(
 ///   'intelligence',
 ///   name: TfArg.literal(projectId),

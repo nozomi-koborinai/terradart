@@ -254,6 +254,10 @@ final class ComputeNetworkFirewallPolicyRuleTargetSecureTags {
 ///
 /// Minimal ingress allow example (any source, TCP 443):
 /// ```dart
+/// final policy = add(GoogleComputeNetworkFirewallPolicy(
+///   'policy',
+///   name: .literal('policy'),
+/// ));
 /// GoogleComputeNetworkFirewallPolicyRule(
 ///   'allow_https',
 ///   firewallPolicy: policy.ref,

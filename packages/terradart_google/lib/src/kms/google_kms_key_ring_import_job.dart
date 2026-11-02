@@ -90,6 +90,11 @@ extension type const KmsKeyRingImportJobProtectionLevel._(TfArg<String> _)
 ///
 /// Example:
 /// ```dart
+/// final ring = add(GoogleKmsKeyRing(
+///   'ring',
+///   name: .literal('ring'),
+///   location: .literal('us-central1'),
+/// ));
 /// GoogleKmsKeyRingImportJob(
 ///   'import',
 ///   keyRing: ring.ref,

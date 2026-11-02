@@ -26,6 +26,11 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final githubConn = add(GoogleCloudbuildv2Connection(
+///   'github_conn',
+///   name: .literal('github-conn'),
+///   location: .literal('us-central1'),
+/// ));
 /// final repo = GoogleCloudbuildv2Repository(
 ///   'repo',
 ///   name: TfArg.literal('my-repo'),

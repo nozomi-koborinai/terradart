@@ -20,6 +20,7 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final current = add(DataGoogleProject('current'));
   /// GoogleGeminiLoggingSettingBinding(
   ///   'logging_bind',
   ///   loggingSettingId: .literal('terradart-logging'),

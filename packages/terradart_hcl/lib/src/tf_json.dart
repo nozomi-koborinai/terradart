@@ -9,11 +9,10 @@ import 'source.dart';
 /// [HclFile] shape [parseHcl] produces.
 ///
 /// The Terraform-level structure is fixed, so it maps to blocks without a
-/// schema: `resource` / `data` values are `{type: {name: body}}`,
-/// `variable` / `output` / `module` / `provider` / `check` values are
-/// `{name: body}`, `terraform` / `moved` / `import` / `removed` values are a
-/// body,
-/// and `locals` is a body of attributes. Wherever Terraform allows a list
+/// schema: `resource` / `data` values map a type to names and each name to
+/// a body, `variable` / `output` / `module` / `provider` / `check` values
+/// map a name to a body, `terraform` / `moved` / `import` / `removed`
+/// values are a body, and `locals` is a body of attributes. Wherever Terraform allows a list
 /// of bodies (repeated `provider` configurations, several `resource` entries
 /// of the same address) each element becomes its own block.
 ///

@@ -22,7 +22,8 @@ import 'workflow.dart';
 /// Runs the `terradart` command with [arguments] and returns its exit code.
 ///
 /// [runner], [console], [workingDirectory], [environment] (read for `PATH`,
-/// `TERRADART_ENV`, `TERRADART_NO_INPUT`, `CI`, the [agentVariables],
+/// `TERRADART_ENV`, `TERRADART_NO_INPUT`, `CI`, the variables AI coding
+/// agents set (`CLAUDECODE`, `CURSOR_AGENT`, ...),
 /// `TERRADART_CACHE_DIR`, `TERRADART_OPENTOFU_MIRROR` and
 /// `TERRADART_NO_SKILL_NOTICE`) and
 /// [dartExecutable] replace the process, terminal and host in tests.

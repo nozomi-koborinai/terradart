@@ -785,6 +785,15 @@ final class AlloydbClusterSecondaryConfig {
 ///
 /// Example:
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final psaRange = add(GoogleComputeGlobalAddress('psa_range', name: .literal('psa-range')));
+/// const dbPassword = 'db-password';
+/// final psaConnection = add(GoogleServiceNetworkingConnection(
+///   'psa',
+///   network: vpc.ref,
+///   service: .literal('servicenetworking.googleapis.com'),
+///   reservedPeeringRanges: .literal(['psa-range']),
+/// ));
 /// GoogleAlloydbCluster(
 ///   'app',
 ///   clusterId: .literal('app-cluster'),

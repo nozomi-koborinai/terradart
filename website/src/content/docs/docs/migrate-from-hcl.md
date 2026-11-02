@@ -32,9 +32,9 @@ terradart:
   engine: terraform
 ```
 
-Without it, `terradart` would run the `tofu` on your `PATH`, or download OpenTofu — and OpenTofu rewrites the state for itself at its first apply, after which Terraform may not read it back. When the tree was run with OpenTofu (a `.tofu` file, or a `.terraform.lock.hcl` naming `registry.opentofu.org`), the section says `engine: tofu` instead.
+Without it, `terradart` would run the `tofu` on your `PATH`, or download OpenTofu — and OpenTofu rewrites the state for itself at its first apply, after which Terraform may not read it back. When the tree was run with OpenTofu (a `.tofu` file, or a `.terraform.lock.hcl` naming `registry.opentofu.org`), the section sets the `engine` to `tofu` instead.
 
-To move the state to OpenTofu, change it to `engine: tofu` (or delete the section): the next `apply` rewrites the state for OpenTofu. Either way, `terradart plan`, `apply` and `destroy` look at the state before they run, and warn when the other engine wrote it. Without the section, where `terradart` picks the engine by itself, they also ask first on a terminal, and without one stop with the `--engine` flag that decides ([The terradart command](/docs/cli/#the-engine)).
+To move the state to OpenTofu, change the `engine` to `tofu` (or delete the section): the next `apply` rewrites the state for OpenTofu. Either way, `terradart plan`, `apply` and `destroy` look at the state before they run, and warn when the other engine wrote it. Without the section, where `terradart` picks the engine by itself, they also ask first on a terminal, and without one stop with the `--engine` flag that decides ([The terradart command](/docs/cli/#the-engine)).
 
 ## Size it first
 
@@ -136,7 +136,7 @@ The sidecar is split the way Terraform code usually is:
 - `backend.tf` — `terraform { }` settings the Stack does not own: a backend without a TerraDart type, `cloud`, and the `required_providers` entries of providers that have no factory;
 - `variables.tf`, `locals.tf`, `outputs.tf` — the variables that did not become `variable<T>(...)`, the `locals` entries that stay in Terraform, and the outputs that did not become `addOutput`.
 
-Nothing the Stack owns is repeated (its `required_providers`, its provider configurations — aliased ones included — its backend, the variables it declares), because Terraform rejects those twice. A `provider "google" { alias = "eu" }` block becomes a second `GoogleProvider(alias: 'eu', ...)` on the Stack, and a resource's `provider = google.eu` becomes `provider: googleEuProvider` on its factory, where `final googleEuProvider = addProvider(GoogleProvider(alias: 'eu', ...))` registers that configuration (`provider = google-beta` on a GA type is translated the same way, as `googleBetaProvider`). Expressions the migrator cannot type — templates, function calls, conditionals, `local.x` — become `TfArg.expression(...)`, verbatim, on any argument. A `timeouts { ... }` block becomes `const TfTimeouts(create: Duration(minutes: 30), ...)` on the factory, a bare `terraform.workspace` becomes `TfArg.workspace<T>()`, and a partial backend (`backend "gcs" {}`, whose values come from `terraform init -backend-config`) becomes the typed backend with those parameters left out. A `module` block becomes `addModule(...)`: a call whose `source` points at a directory in the scanned tree gets a typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule('cloud_run_bff', source: '../modules/cloud_run', name: TfArg.literal('app-bff'))`, and `bff.serviceName` wherever a resource attribute goes), while registry, git and out-of-tree sources become a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map — either way the address keeps its `module.<name>.` prefix. A literal `count` or `for_each` is unrolled into one resource per instance — `google_pubsub_topic.t[0]` becomes `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` becomes `google_pubsub_topic.t_eu` — with `count.index` / `each.key` / `each.value` substituted, every reference in the module (indexed, splat or bare) pointed at the new addresses, and a `moved` entry per instance (`Stack.addMoved`) so the plan shows moves, never a destroy and create; the module's own `moved` blocks follow their targets into the Stack. What keeps a block in Terraform today: a type outside the four curated catalogs, a `count` / `for_each` that is not a literal (its instance set cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), a `module` call with a computed `source` or an input the called module does not declare, `dynamic` / `provisioner`, a `timeouts` key that is not a Terraform operation or whose value is not a duration string (or is finer than a microsecond), a `provider = x.alias` the module does not configure (a child module that does not configure it declares `configuration_aliases` instead; a provider block inside the child stays in Terraform, with the resource that selects it), an argument with no Dart parameter, an expression inside a typed list, a sensitive literal (never copied into Dart), and `depends_on` on a resource that stays in Terraform. `MIGRATION.md` lists every kept block with its reason and file, and every unrolled one with its new addresses.
+Nothing the Stack owns is repeated (its `required_providers`, its provider configurations — aliased ones included — its backend, the variables it declares), because Terraform rejects those twice. A `provider "google" { alias = "eu" }` block becomes a second `GoogleProvider`, with the `eu` alias, on the Stack, and a resource's `provider = google.eu` sets its factory's `provider` argument to `googleEuProvider`, the handle `addProvider` returns when it registers that configuration (`provider = google-beta` on a GA type is translated the same way, as `googleBetaProvider`). Expressions the migrator cannot type — templates, function calls, conditionals, `local.x` — become `.expression(...)`, verbatim, on any argument (`TfArg.expression(...)` where the argument has no static type, as in a `ModuleCall` `inputs` map). A `timeouts { ... }` block becomes a `TfTimeouts` of Dart `Duration`s on the factory, a bare `terraform.workspace` becomes `.workspace()`, and a partial backend (`backend "gcs" {}`, whose values come from `terraform init -backend-config`) becomes the typed backend with those parameters left out. A `module` block becomes `addModule(...)`: a call whose `source` points at a directory in the scanned tree gets a typed wrapper generated from that module's `variable` and `output` blocks (`modules/cloud_run` becomes a `CloudRunModule`, each input a typed argument, and `bff.serviceName` goes wherever a resource attribute goes), while registry, git and out-of-tree sources become a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map — either way the address keeps its `module.<name>.` prefix. A literal `count` or `for_each` is unrolled into one resource per instance — `google_pubsub_topic.t[0]` becomes `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` becomes `google_pubsub_topic.t_eu` — with `count.index` / `each.key` / `each.value` substituted, every reference in the module (indexed, splat or bare) pointed at the new addresses, and a `moved` entry per instance (`Stack.addMoved`) so the plan shows moves, never a destroy and create; the module's own `moved` blocks follow their targets into the Stack. What keeps a block in Terraform today: a type no provider package wraps, a `count` / `for_each` that is not a literal (its instance set cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), a `module` call with a computed `source` or an input the called module does not declare, `dynamic` / `provisioner`, a `timeouts` key that is not a Terraform operation or whose value is not a duration string (or is finer than a microsecond), a `provider = x.alias` the module does not configure (a child module that does not configure it declares `configuration_aliases` instead; a provider block inside the child stays in Terraform, with the resource that selects it), an argument with no Dart parameter, an expression inside a typed list, a sensitive literal (never copied into Dart), and `depends_on` on a resource that stays in Terraform. `MIGRATION.md` lists every kept block with its reason and file, and every unrolled one with its new addresses.
 
 A block's own leading comments come across with it: the `#`, `//` or `/* */` lines above a `resource`, `data` or `module` block are written as `//` lines above the `add(...)` it became, so the documentation lives where the code now does. A `count` / `for_each` block documents its unrolled instances once, above the first. The migrator's own `# terradart-migrate:` reasons are not carried — they are annotations, not prose, and a sidecar migrated again is full of them. A merged Stack (`--merge-envs`) carries none: its bodies are lined up statement by statement across environments that may document the same block differently.
 
@@ -181,6 +181,7 @@ final class AppStack extends Stack {
       'assets',
       name: .literal(env.assetsName), // "app-dev-assets" / "app-prod-assets"
       location: .literal('ASIA-NORTHEAST1'),
+      storageClass: env.assetsStorageClass,
     ));
     if (env.isProd) {
       add(GoogleStorageBucket(
@@ -199,16 +200,20 @@ final class AppStack extends Stack {
 
 ```dart
 // lib/env.dart
+import 'package:terradart_google/storage.dart';
+
 enum Env {
   dev(
     path: 'dev',
     assetsName: 'app-dev-assets',
+    assetsStorageClass: BucketStorageClass.standard,
     backendBucket: 'app-dev-tfstate',
     backendPrefix: 'infra/dev',
   ),
   prod(
     path: 'prod',
     assetsName: 'app-prod-assets',
+    assetsStorageClass: BucketStorageClass.nearline,
     backendBucket: 'app-prod-tfstate',
     backendPrefix: 'infra/prod',
     isProd: true,
@@ -217,6 +222,7 @@ enum Env {
   const Env({
     required this.path,
     required this.assetsName,
+    required this.assetsStorageClass,
     required this.backendBucket,
     required this.backendPrefix,
     this.isProd = false,
@@ -224,6 +230,7 @@ enum Env {
 
   final String path;
   final String assetsName;
+  final BucketStorageClass assetsStorageClass;
   final String backendBucket;
   final String backendPrefix;
 
@@ -232,7 +239,7 @@ enum Env {
 }
 ```
 
-`dart run bin/infra.dart` and `terradart synth` write every environment into its own `tf-out/` directory. The generated `bin/infra.dart` calls `runEnvironments` over the `Env` enum, with `dir` set to `tf-out/<path>`, so `terradart plan --env dev` plans that environment and `dart run bin/infra.dart --env dev` writes only it. Omitting `--env` writes every environment, and `terradart plan` then asks which one to run. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member (`storageClass: env.assetsStorageClass`, with `BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
+`dart run bin/infra.dart` and `terradart synth` write every environment into its own `tf-out/` directory. The generated `bin/infra.dart` calls `runEnvironments` over the `Env` enum, with `dir` set to `tf-out/<path>`, so `terradart plan --env dev` plans that environment and `dart run bin/infra.dart --env dev` writes only it. Omitting `--env` writes every environment, and `terradart plan` then asks which one to run. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member, as the assets bucket's storage class above shows (`BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
 
 ### The workspace as a parameter
 

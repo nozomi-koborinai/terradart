@@ -98,7 +98,7 @@ final class DataLineageConfigLineageEnablement {
 /// enablement for integrations such as Dataproc.
 ///
 /// This is a singleton `PATCH` resource per parent + location. Prefer a
-/// project parent (`projects/<id>`) and `location: global` for smoke stacks.
+/// project parent (`projects/<id>`) and the `global` location for smoke stacks.
 /// Enabling ingestion does not itself provision Dataproc or bill Dataplex
 /// Metadata Storage; those SKUs apply when lineage data is produced/stored.
 ///

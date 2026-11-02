@@ -82,7 +82,7 @@ final class TfTimeouts {
 
 /// [d] as the Go duration string Terraform reads: hours, minutes, seconds,
 /// milliseconds and microseconds, each unit only when it is not zero
-/// (`Duration(minutes: 90)` is `1h30m`, zero is `0s`).
+/// (90 minutes is `1h30m`, zero is `0s`).
 String goDurationString(Duration d) {
   if (d.isNegative) return '-${goDurationString(-d)}';
   final parts = [

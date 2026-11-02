@@ -47,7 +47,7 @@ sealed class StorageBucketObjectBody {
   /// content is the inline string).
   TfArg<String> get value;
 
-  /// Wire-format encoding (`{blockKey: value.toTfJson()}`). The parent
+  /// Wire-format encoding (the one-entry `blockKey` map). The parent
   /// factory uses the `blockKey` + `value` pair directly in its argMap
   /// (relying on the synth layer to unwrap the [TfArg]); this method
   /// exists for parity with other sealed-class encoders (e.g.
@@ -273,6 +273,11 @@ final class StorageBucketObjectCustom {
 ///
 /// Example (file upload):
 /// ```dart
+/// final assets = add(GoogleStorageBucket(
+///   'assets',
+///   name: .literal('my-app-assets-prod'),
+///   location: .literal('ASIA-NORTHEAST1'),
+/// ));
 /// final logo = GoogleStorageBucketObject(
 ///   'logo',
 ///   bucket: assets.ref,

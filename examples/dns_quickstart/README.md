@@ -1,6 +1,6 @@
 # Cloud DNS quickstart
 
-End-to-end terradart example for a private Cloud DNS managed zone with DNSSEC. Provisions a VPC network, then a private DNS zone (`internal.corp.`) scoped to that VPC via `PrivateVisibilityConfig`. DNSSEC is enabled with two `DnssecKeySpec` entries (KSK + ZSK) using typed `DnssecKeyAlgorithm` and `DnssecKeyType` enums.
+End-to-end terradart example for a private Cloud DNS managed zone. Provisions a VPC network, then a private DNS zone (`internal.corp.`) scoped to that VPC via `DnsManagedZonePrivateVisibilityConfig`. DNSSEC is not configured: it is a public-zone feature, and a private zone rejects `dnssec_config`.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ End-to-end terradart example for a private Cloud DNS managed zone with DNSSEC. P
 
 ```
 examples/dns_quickstart/
-├── lib/main.dart        # InternalDnsStack: VPC + private zone + DNSSEC
+├── lib/main.dart        # InternalDnsStack: VPC + private zone
 ├── bin/infra.dart       # Synth entry
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml
@@ -31,10 +31,7 @@ terradart apply
 
 - A custom-mode VPC network `gnd-vpc` (`auto_create_subnetworks = false`).
 - A private Cloud DNS managed zone `internal-corp` for `internal.corp.`, scoped to the VPC.
-- DNSSEC enabled with `DnssecState.on` + `DnssecNonExistence.nsec3`.
-- Two `DnssecKeySpec`:
-  - KSK: `DnssecKeyAlgorithm.rsasha256` + `DnssecKeyType.keySigning` + 2048-bit.
-  - ZSK: `DnssecKeyAlgorithm.rsasha256` + `DnssecKeyType.zoneSigning` + 1024-bit.
+- No `dnssecConfig`: a private zone rejects DNSSEC at apply time ("Private zones do not support DNSSEC").
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
@@ -48,19 +45,10 @@ terradart apply
       "internal": {
         "name": "internal-corp",
         "dns_name": "internal.corp.",
+        "description": "Private DNS for internal services in gnd-vpc.",
         "visibility": "private",
         "private_visibility_config": [
           { "networks": [{ "network_url": "${google_compute_network.gnd_vpc.id}" }] }
-        ],
-        "dnssec_config": [
-          {
-            "state": "on",
-            "non_existence": "nsec3",
-            "default_key_specs": [
-              { "algorithm": "rsasha256", "key_length": 2048, "key_type": "keySigning" },
-              { "algorithm": "rsasha256", "key_length": 1024, "key_type": "zoneSigning" }
-            ]
-          }
         ]
       }
     }
@@ -68,8 +56,8 @@ terradart apply
 }
 ```
 
-Every `state` / `algorithm` / `key_type` / `visibility` / `non_existence` string is encoded via the typed `.toTfJson()` convention — the Dart side stays in enum-land all the way to JSON emission.
+The zone's `.private` visibility is a typed enum member, so the Dart side stays in enum-land all the way to JSON emission.
 
 ## Next steps
 
-- [cloud_run_quickstart](../cloud_run_quickstart/) — Cloud Run v2 Service with the sealed `EnvVarSource` env var dispatch.
+- [cloud_run_quickstart](../cloud_run_quickstart/) — Cloud Run v2 Service with the sealed `CloudRunV2ServiceEnvSource` env var source.

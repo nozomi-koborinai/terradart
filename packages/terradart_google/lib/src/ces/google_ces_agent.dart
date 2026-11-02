@@ -714,6 +714,12 @@ final class CesAgentDisablePlannerTransfer {
 ///
 /// Example:
 /// ```dart
+/// final app = add(GoogleCesApp(
+///   'app',
+///   location: .literal('us-central1'),
+///   appId: .literal('app'),
+///   displayName: .literal('app'),
+/// ));
 /// GoogleCesAgent(
 ///   'agent',
 ///   app: app.ref,

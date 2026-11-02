@@ -2,16 +2,19 @@
 ///
 /// Defines a [RemoteConfigStack] that provisions:
 /// - a `GoogleFirebaseRemoteConfigRemoteConfig` with:
-///   - one [RemoteConfigCondition] keyed on a country audience,
-///   - two top-level [RemoteConfigParameter]s (one boolean flag, one string),
-///   - one [RemoteConfigParameterGroup] grouping feature-flag parameters.
+///   - one condition keyed on a country audience,
+///   - two top-level parameters (one boolean flag, one string),
+///   - one parameter group holding feature-flag parameters.
 ///
 /// Demonstrates the helper-class API:
-/// - [RemoteConfigCondition] to declare named condition expressions,
-/// - [RemoteConfigParameter] with a [RemoteConfigDefaultValue] and a
-///   [RemoteConfigConditionalValue] that references the condition by name,
-/// - [RemoteConfigParameterGroup] to bucket related parameters together
-///   in the Firebase Console.
+/// - [FirebaseRemoteConfigRemoteConfigCondition] to declare named condition
+///   expressions,
+/// - [FirebaseRemoteConfigRemoteConfigParameter] with a
+///   [FirebaseRemoteConfigRemoteConfigDefaultValue] and a
+///   [FirebaseRemoteConfigRemoteConfigConditionalValue] that references the
+///   condition by name,
+/// - [FirebaseRemoteConfigRemoteConfigParameterGroup] to bucket related
+///   parameters together in the Firebase Console.
 /// - [RemoteConfigTagColor] and [RemoteConfigValueType] enum usage.
 library;
 

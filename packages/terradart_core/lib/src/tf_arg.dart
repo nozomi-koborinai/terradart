@@ -10,27 +10,29 @@ part 'tf_ref.dart';
 ///
 /// `T` is the Dart type the factory parameter accepts. Resource factories
 /// accept `TfArg<T>` (or `TfArg<T>?`) for every settable field, so an
-/// attribute getter fills one as is: `pushEndpoint: api.uri`.
+/// attribute getter such as `api.uri` fills one as is.
 ///
 /// ## Writing arguments
 ///
 /// <!-- argument-rules:start -->
 /// Pick the form by where the value comes from. The argument's type tells you which forms it takes, and a dot shorthand (`.literal`, `.new`, `.providedAl2023`) names the constructor of that type.
 ///
-/// | The value is | Write | Example |
-/// |---|---|---|
-/// | known when you synth | `.literal(...)` | `functionName: .literal('hello')` |
-/// | another resource of this Stack (a `RefTo<R>` input) | its `ref` | `role: role.ref` |
-/// | one attribute of another block | its getter | `assumeRolePolicy: trust.json` |
-/// | a resource outside this Stack (a `RefTo<R>` input) | `.literal(id)` | `zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353')` |
-/// | one of a fixed set (an enum) | the member | `runtime: .providedAl2023` |
-/// | one of several exclusive arguments (a sealed type) | the variant | `code: .filename(.literal('build/fn.zip'))` |
-/// | a nested block | its helper class; `.new(...)` inside another block or a variant | `environment: LambdaFunctionEnvironment(...)` |
-/// | a Terraform variable | the handle `variable<T>()` returns | `memorySize: memory` |
-/// | a variable in an enum or `RefTo<R>` input | `.arg(handle)` | `runtime: .arg(runtimeName)` |
-/// | a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal | `value: .value(dbPassword)` |
-/// | a reference inside a literal list or map | the getter's `.interpolation` | `{'ROLE_ARN': role.arn.interpolation}` |
-/// | anything else Terraform evaluates | `.expression(...)` | `.expression(r'${file("trust.json")}')` |
+/// | The value is | Write |
+/// |---|---|
+/// | known when you synth | `.literal(...)` |
+/// | another resource of this Stack (a `RefTo<R>` input) | its `ref` |
+/// | one attribute of another block | its getter |
+/// | a resource outside this Stack (a `RefTo<R>` input) | `.literal(...)` with its name, ID or ARN |
+/// | one of a fixed set (an enum) | the member |
+/// | one of several exclusive arguments (a sealed type) | the variant |
+/// | a nested block | its helper class; `.new(...)` inside another block or a variant |
+/// | a Terraform variable | the handle `variable<T>()` returns |
+/// | a variable in an enum or `RefTo<R>` input | `.arg(handle)` |
+/// | a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal |
+/// | a reference inside a literal list or map | the getter's `.interpolation` |
+/// | anything else Terraform evaluates | `.expression(...)` |
+///
+/// Each row is an argument of this Stack body, marked with its row:
 ///
 /// ```dart
 /// final memory = variable<num>('memory_mb');
@@ -42,8 +44,9 @@ part 'tf_ref.dart';
 ///     'trust',
 ///     statement: [
 ///       DataIamPolicyDocumentStatement(
-///         actions: .literal(['sts:AssumeRole']),
+///         actions: .literal(['sts:AssumeRole']), // known when you synth
 ///         principals: [
+///           // a nested block inside another block
 ///           .new(
 ///             type: .literal('Service'),
 ///             identifiers: .literal(['lambda.amazonaws.com']),
@@ -53,16 +56,19 @@ part 'tf_ref.dart';
 ///     ],
 ///   ),
 /// );
+/// // one attribute of another block
 /// final role = add(AwsIamRole('hello', assumeRolePolicy: trust.json));
 /// add(
 ///   AwsLambdaFunction(
 ///     'hello',
 ///     functionName: .literal('hello'),
-///     role: role.ref,
-///     runtime: .arg(runtimeName),
-///     code: .filename(.literal('build/fn.zip')),
-///     memorySize: memory,
+///     role: role.ref, // another resource of this Stack
+///     runtime: .arg(runtimeName), // a variable in an enum input
+///     code: .filename(.literal('build/fn.zip')), // a variant
+///     memorySize: memory, // a Terraform variable
+///     // a nested block
 ///     environment: LambdaFunctionEnvironment(
+///       // a reference inside a literal map
 ///       variables: .literal({'ROLE_ARN': role.arn.interpolation}),
 ///     ),
 ///   ),
@@ -71,8 +77,16 @@ part 'tf_ref.dart';
 ///   AwsSsmParameter(
 ///     'db_password',
 ///     name: .literal('/hello/db_password'),
-///     type: .securestring,
-///     value: .value(dbPassword),
+///     type: .securestring, // one of a fixed set
+///     keyId: .literal('alias/aws/ssm'), // a resource outside this Stack
+///     value: .value(dbPassword), // a secret
+///   ),
+/// );
+/// add(
+///   AwsIamRole(
+///     'deploy',
+///     // anything else Terraform evaluates
+///     assumeRolePolicy: .expression(r'${file("trust.json")}'),
 ///   ),
 /// );
 /// ```
@@ -211,6 +225,9 @@ final class TfArgLiteral<T> extends TfArg<T> {
 /// Dart literal that would be written into `main.tf.json`.
 ///
 /// ```dart
+/// final primary = add(
+///   GoogleSqlDatabaseInstance('primary', databaseVersion: .postgres16),
+/// );
 /// final dbPassword = variable<String>('db_password', sensitive: true);
 /// add(
 ///   GoogleSqlUser(
@@ -222,7 +239,8 @@ final class TfArgLiteral<T> extends TfArg<T> {
 /// );
 /// ```
 ///
-/// There is no `.literal`: `password: .literal('pw')` does not compile.
+/// There is no `.literal`, so a secret written as a literal does not
+/// compile.
 sealed class Sensitive<T> implements TfArg<T> {
   /// `var.<name>`, as [TfArg.variable].
   factory Sensitive.variable(String name) = TfArgVariable<T>;

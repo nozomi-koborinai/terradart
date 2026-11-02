@@ -43,6 +43,12 @@ _googleAccessContextManagerServicePerimeterDryRunResourceSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
+/// final dryRun = add(GoogleAccessContextManagerServicePerimeter(
+///   'dry_run',
+///   name: .literal('dry-run'),
+///   parent: .literal('accessPolicies/123'),
+///   title: .literal('dry-run'),
+/// ));
 /// GoogleAccessContextManagerServicePerimeterDryRunResource(
 ///   'dry_run_project',
 ///   perimeterName: dryRun.ref,

@@ -10,20 +10,22 @@ Every factory argument has one shape per kind of value, and the analyzer tells y
 <!-- argument-rules:start -->
 Pick the form by where the value comes from. The argument's type tells you which forms it takes, and a dot shorthand (`.literal`, `.new`, `.providedAl2023`) names the constructor of that type.
 
-| The value is | Write | Example |
-|---|---|---|
-| known when you synth | `.literal(...)` | `functionName: .literal('hello')` |
-| another resource of this Stack (a `RefTo<R>` input) | its `ref` | `role: role.ref` |
-| one attribute of another block | its getter | `assumeRolePolicy: trust.json` |
-| a resource outside this Stack (a `RefTo<R>` input) | `.literal(id)` | `zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353')` |
-| one of a fixed set (an enum) | the member | `runtime: .providedAl2023` |
-| one of several exclusive arguments (a sealed type) | the variant | `code: .filename(.literal('build/fn.zip'))` |
-| a nested block | its helper class; `.new(...)` inside another block or a variant | `environment: LambdaFunctionEnvironment(...)` |
-| a Terraform variable | the handle `variable<T>()` returns | `memorySize: memory` |
-| a variable in an enum or `RefTo<R>` input | `.arg(handle)` | `runtime: .arg(runtimeName)` |
-| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal | `value: .value(dbPassword)` |
-| a reference inside a literal list or map | the getter's `.interpolation` | `{'ROLE_ARN': role.arn.interpolation}` |
-| anything else Terraform evaluates | `.expression(...)` | `.expression(r'${file("trust.json")}')` |
+| The value is | Write |
+|---|---|
+| known when you synth | `.literal(...)` |
+| another resource of this Stack (a `RefTo<R>` input) | its `ref` |
+| one attribute of another block | its getter |
+| a resource outside this Stack (a `RefTo<R>` input) | `.literal(...)` with its name, ID or ARN |
+| one of a fixed set (an enum) | the member |
+| one of several exclusive arguments (a sealed type) | the variant |
+| a nested block | its helper class; `.new(...)` inside another block or a variant |
+| a Terraform variable | the handle `variable<T>()` returns |
+| a variable in an enum or `RefTo<R>` input | `.arg(handle)` |
+| a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal |
+| a reference inside a literal list or map | the getter's `.interpolation` |
+| anything else Terraform evaluates | `.expression(...)` |
+
+Each row is an argument of this Stack body, marked with its row:
 
 ```dart
 final memory = variable<num>('memory_mb');
@@ -35,8 +37,9 @@ final trust = add(
     'trust',
     statement: [
       DataIamPolicyDocumentStatement(
-        actions: .literal(['sts:AssumeRole']),
+        actions: .literal(['sts:AssumeRole']), // known when you synth
         principals: [
+          // a nested block inside another block
           .new(
             type: .literal('Service'),
             identifiers: .literal(['lambda.amazonaws.com']),
@@ -46,16 +49,19 @@ final trust = add(
     ],
   ),
 );
+// one attribute of another block
 final role = add(AwsIamRole('hello', assumeRolePolicy: trust.json));
 add(
   AwsLambdaFunction(
     'hello',
     functionName: .literal('hello'),
-    role: role.ref,
-    runtime: .arg(runtimeName),
-    code: .filename(.literal('build/fn.zip')),
-    memorySize: memory,
+    role: role.ref, // another resource of this Stack
+    runtime: .arg(runtimeName), // a variable in an enum input
+    code: .filename(.literal('build/fn.zip')), // a variant
+    memorySize: memory, // a Terraform variable
+    // a nested block
     environment: LambdaFunctionEnvironment(
+      // a reference inside a literal map
       variables: .literal({'ROLE_ARN': role.arn.interpolation}),
     ),
   ),
@@ -64,8 +70,16 @@ add(
   AwsSsmParameter(
     'db_password',
     name: .literal('/hello/db_password'),
-    type: .securestring,
-    value: .value(dbPassword),
+    type: .securestring, // one of a fixed set
+    keyId: .literal('alias/aws/ssm'), // a resource outside this Stack
+    value: .value(dbPassword), // a secret
+  ),
+);
+add(
+  AwsIamRole(
+    'deploy',
+    // anything else Terraform evaluates
+    assumeRolePolicy: .expression(r'${file("trust.json")}'),
   ),
 );
 ```
@@ -114,9 +128,41 @@ add(
 
 Every attribute also has a getter (`zone.id`, `role.arn`, `topic.name`) that is a `TfArg` of its type, so it goes into any argument that takes one. A resource outside the Stack goes into a `RefTo<R>` input as `.literal(...)`, its name, ID or ARN. A module output or another string you cannot type goes in as `.arg(...)`, unchecked.
 
+```dart
+add(
+  CloudflareDnsRecord(
+    'apex',
+    zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353'),
+    name: .literal('@'),
+    type: .a,
+    ttl: .literal(1),
+    content: .content(.literal('192.0.2.1')),
+  ),
+);
+```
+
 ## Enums and exclusive arguments
 
-An input with a fixed set of values takes the member, bare: `type: .cname`, `runtime: .providedAl2023`, `ingress: .all`. A list of them is a Dart list: `architectures: [.x8664]`.
+An input with a fixed set of values takes the member, bare, as the DNS record's `type` above and the function's `runtime` below do. A list of them is a literal Dart list of members, as the function's `architectures` shows:
+
+```dart
+final role = AwsIamRole(
+  'fn',
+  assumeRolePolicy: .expression(r'${file("trust.json")}'),
+);
+add(role);
+add(
+  AwsLambdaFunction(
+    'hello',
+    functionName: .literal('hello'),
+    role: role.ref,
+    runtime: .providedAl2023,
+    handler: .literal('bootstrap'),
+    architectures: .literal([.x8664]),
+    code: .filename(.literal('build/bootstrap.zip')),
+  ),
+);
+```
 
 When the provider accepts exactly one (or at most one) of several arguments, they are one sealed argument, and each variant sets one of them. Its name is the concept (`code`, `content`, `name`, `delivery`), and its variants are named after the Terraform arguments:
 
@@ -130,11 +176,26 @@ add(
 );
 ```
 
-A variant whose block has no fields takes no argument (`format: .avroFormat()`).
+A variant whose block has no fields takes no argument, as the Avro `format` of this import does:
+
+```dart
+final bucket = add(
+  GoogleStorageBucket('drop', name: .literal('my-project-drop'), location: .literal('EU')),
+);
+add(
+  GooglePubsubTopic(
+    'imports',
+    name: .literal('imports'),
+    ingestionDataSourceSettings: .new(
+      cloudStorage: .new(bucket: bucket.ref, format: .avroFormat()),
+    ),
+  ),
+);
+```
 
 ## Nested blocks
 
-A nested block is a helper class. Name the class on the resource's own arguments, where it tells a reader which block starts, and write `.new(...)` for a block inside another block or inside a variant (`delivery: .pushConfig(.new(...))`). A block that repeats is a Dart `List` of helpers:
+A nested block is a helper class. Name the class on the resource's own arguments, where it tells a reader which block starts, and write `.new(...)` for a block inside another block or inside a variant, such as the push configuration a subscription's `delivery` variant takes. A block that repeats is a Dart `List` of helpers:
 
 ```dart
 add(
@@ -173,6 +234,6 @@ add(
 
 Anything Terraform has to evaluate — a function call, a conditional, `terraform.workspace` — is `.expression(...)`, written as a Terraform template. Use a raw string (`r'...'`) so Dart leaves `${` alone.
 
-A literal list or map holds plain values, so a reference inside one goes in as the getter's `.interpolation` (`${aws_iam_role.hello.arn}`): `variables: .literal({'ROLE_ARN': role.arn.interpolation})`.
+A literal list or map holds plain values, so a reference inside one goes in as the getter's `.interpolation` (`${aws_iam_role.hello.arn}`), as the function's `environment` variables do in the fence under [the rules](#the-rules).
 
 Synth checks what the analyzer cannot: a variable you never declared, a reference to a block you never added, a negative timeout. `stack.validate()` lists every issue at once.

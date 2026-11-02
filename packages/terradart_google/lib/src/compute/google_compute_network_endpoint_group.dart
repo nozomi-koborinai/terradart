@@ -103,6 +103,12 @@ extension type const NetworkEndpointGroupType._(TfArg<String> _)
 ///
 /// Example (zonal VM-IP+port NEG fronting a regional internal L7 LB):
 /// ```dart
+/// final vpc = add(GoogleComputeNetwork('vpc', name: .literal('vpc')));
+/// final subnet = add(GoogleComputeSubnetwork(
+///   'subnet',
+///   name: .literal('subnet'),
+///   network: vpc.ref,
+/// ));
 /// final neg = GoogleComputeNetworkEndpointGroup(
 ///   'app_neg',
 ///   name: TfArg.literal('app-neg-usc1a'),

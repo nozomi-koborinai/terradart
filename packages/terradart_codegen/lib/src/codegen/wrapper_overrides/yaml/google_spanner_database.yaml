@@ -30,6 +30,16 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
+  /// final spannerConfig = add(GoogleSpannerInstanceConfig(
+  ///   'cfg',
+  ///   displayName: .literal('cfg'),
+  ///   replicas: const [SpannerInstanceConfigReplicas()],
+  /// ));
+  /// final spanner = add(GoogleSpannerInstance(
+  ///   'spanner',
+  ///   config: spannerConfig.ref,
+  ///   displayName: .literal('spanner'),
+  /// ));
   /// GoogleSpannerDatabase(
   ///   'main',
   ///   instance: spanner.ref,

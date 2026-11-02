@@ -268,6 +268,10 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 ///
 /// Example (GitHub Actions OIDC):
 /// ```dart
+/// final pool = add(GoogleIamWorkloadIdentityPool(
+///   'pool',
+///   workloadIdentityPoolId: .literal('pool'),
+/// ));
 /// final githubProvider = GoogleIamWorkloadIdentityPoolProvider(
 ///   'github_provider',
 ///   workloadIdentityPoolId: pool.ref,

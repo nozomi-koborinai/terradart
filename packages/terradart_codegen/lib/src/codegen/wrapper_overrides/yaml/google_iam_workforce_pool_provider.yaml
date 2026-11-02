@@ -13,6 +13,12 @@ curatedDoc: |-
   ///
   /// Example (OIDC):
   /// ```dart
+  /// final pool = add(GoogleIamWorkforcePool(
+  ///   'pool',
+  ///   location: .literal('global'),
+  ///   parent: .literal('organizations/0'),
+  ///   workforcePoolId: .literal('pool'),
+  /// ));
   /// GoogleIamWorkforcePoolProvider(
   ///   'oidc',
   ///   location: .literal('global'),
