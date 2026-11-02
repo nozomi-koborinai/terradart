@@ -1187,6 +1187,16 @@ argument. `GoogleAgenticApplicationsAnalystAgentPersona` takes
 `GoogleContainerCluster` takes `managedOpentelemetryConfig`, and
 `GoogleContainerNodePool` takes `bestEffortProvisioning`.
 
+### Security policy rule rate limits take an exceed action
+
+**Additive (`terradart_google`).** The rate-limit helpers of
+`google_compute_security_policy_rule` and
+`google_compute_region_security_policy_rule`
+(`ComputeSecurityPolicyRuleRateLimitOptions`,
+`ComputeRegionSecurityPolicyRuleRateLimitOptions`) take `exceedAction`
+(`ComputeSecurityPolicyRuleExceedAction`,
+`ComputeRegionSecurityPolicyRuleExceedAction`).
+
 ### EMR instance fleets can set configuration blocks
 
 **Additive (`terradart_aws`).** `EmrClusterInstanceTypeConfigs` takes
