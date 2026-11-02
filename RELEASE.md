@@ -75,7 +75,7 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 12 packages in 10 
 
 pub.dev's OIDC trusted publisher only works for **previously published** packages. The first publish of a new package must be done manually with `dart pub publish` (interactive auth via `dart pub token add`); `skip_if_published.sh` then turns that package's `publish.yml` job into a no-op for the version already on pub.dev.
 
-`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after `publish-aws` is green. `terradart_azure` depends only on `terradart_core`. The job waits for `publish-aws` because that phase runs first. The other 11 packages already have automated publishing. For that first publish:
+`terradart_azure` is on pub.dev as of 0.36.0. It was the last package to take the manual step below, so all 12 packages now have automated publishing. A package added later takes the same steps for its first publish:
 
 ```bash
 # 1. Push the tag. publish.yml ships the packages that do not wait on
@@ -119,3 +119,4 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
 - [ ] Verified publisher badge appears on all 12 pub.dev pages
 - [ ] `terradart` install verified on a clean machine: `dart pub global activate terradart_cli && terradart migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
+- [ ] No doc still calls a package this release first published unpublished. Search with `rg -n -i 'not on pub\.dev|unpublished|not in the published|arrives in the next release|until its first publish' website/src/content/docs/docs README.md packages/*/README.md skills/` and fix every hit about that package in a docs PR. Leave historical upgrade sections as written.

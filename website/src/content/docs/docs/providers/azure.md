@@ -7,7 +7,7 @@ description: terradart_azure wraps every hashicorp/azurerm resource and data sou
 
 ## Install
 
-`terradart_azure` is not on pub.dev until its first publish, so `dart pub get` on the dependency below fails today.
+`terradart_azure` is on pub.dev as of 0.36.0, its first release.
 
 ```yaml
 # pubspec.yaml

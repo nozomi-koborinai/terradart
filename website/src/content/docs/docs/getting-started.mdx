@@ -61,9 +61,9 @@ In a terminal, `terradart init` asks for what the flags leave out — the provid
 | `--defaults` | `--env dev,prd --backend local` |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory |
 
-`--provider azure` is not in the published 0.35.0 CLI and arrives in the next release, after `terradart_azure` is published.
+`--provider azure` needs the 0.36.0 CLI or later, the release that first published `terradart_azure`.
 
-`--backend azurerm` and `AzurermBackend` are not in the published 0.35.0 packages and arrive in the next release, after the packages publish.
+`--backend azurerm` and `AzurermBackend` need 0.36.0 or later, the release that first published `terradart_azure`.
 
 Run inside a Flutter app, it also generates the reader the app imports into the app's `lib/generated/`, and declares the [define file](/docs/client-outputs/) the app builds with:
 

@@ -55,7 +55,7 @@ terradart init --dry-run --provider appwrite --defaults # lists the files, write
 terradart init --provider azure --env dev,prd --backend local
 ```
 
-`--provider azure` is not in the published 0.35.0 CLI and arrives in the next release, after `terradart_azure` is published.
+`--provider azure` needs the 0.36.0 CLI or later, the release that first published `terradart_azure`.
 
 | Flag | Takes | Default |
 |---|---|---|
@@ -72,7 +72,7 @@ terradart init --provider azure --env dev,prd --backend local
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
 
-`--backend azurerm` and `AzurermBackend` are not in the published 0.35.0 packages and arrive in the next release, after the packages publish.
+`--backend azurerm` and `AzurermBackend` need 0.36.0 or later, the release that first published `terradart_azure`.
 
 In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local — and last whether to install the agent skill. Without the skill, `AGENTS.md` says how to add it: `terradart skill install`, or the pinned `npx skills add` line. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
 
