@@ -53,17 +53,30 @@ void main() {
       );
     });
 
-    test('takes the packages of a lead that spans lines', () {
-      final cells = extractMigratingCells(doc);
-      expect(cells.first.packages, {'terradart_google', 'terradart_azure'});
-      expect(cells.last.packages, {'terradart_aws'});
-      expect(cells.first.section, 'A change');
+    List<String> spans(String text) => [
+      for (final c in extractMigratingCells(text))
+        '${c.line} ${c.section} ${c.before} ${c.code}',
+    ];
+
+    test('reads the top section once a release names it', () {
+      final released = doc.replaceFirst('## Unreleased', '## 0.35.x → 0.36.0');
+      expect(spans(released), spans(doc));
+    });
+
+    test('reads the same cells of MIGRATING.md after the release rename', () {
+      final text = File(migratingPath).readAsStringSync();
+      final released = text.replaceFirst(
+        RegExp(r'^## Unreleased$', multiLine: true),
+        '## 0.35.x → 0.36.0',
+      );
+      expect(spans(text), isNotEmpty);
+      expect(spans(released), spans(text));
     });
   });
 
   group('cellShapeError', () {
     MigratingCell cell(String code) =>
-        (line: 1, section: 's', before: false, code: code, packages: const {});
+        (line: 1, section: 's', before: false, code: code);
 
     test('fails a named-argument fragment', () {
       expect(cellShapeError(cell('warmType: .literal(x)')), isNotNull);
@@ -87,23 +100,196 @@ void main() {
     });
   });
 
-  test('lastRelease reads the version every released CHANGELOG tops', () {
-    final release = lastRelease(Directory.current.path, [
-      'terradart_core',
-      'terradart_google',
+  test('beforeSeries reads the release a top heading upgrades from', () {
+    expect(beforeSeries('## Unreleased'), 'x');
+    expect(beforeSeries('## 0.35.x → 0.36.0'), '0.35.x');
+    expect(beforeSeries('## 0.27.0 → 0.28.0'), '0.27.0');
+    expect(beforeSeries('## 0.36.0'), isNull);
+    expect(beforeSeries('## Unreleased changes'), isNull);
+  });
+
+  test(
+    'beforeRelease takes each package at its newest release in the series',
+    () {
+      const published = {
+        'terradart_core': ['0.9.0', '0.34.0', '0.35.0', '0.35.1', '0.36.0-dev'],
+        'terradart_google': ['0.9.0', '0.34.0', '0.35.0'],
+        'terradart_azure': <String>[],
+      };
+      const newest = {'terradart_core': '0.35.1', 'terradart_google': '0.35.0'};
+      expect(beforeRelease('x', published), newest);
+      expect(beforeRelease('0.35.x', published), newest);
+      expect(beforeRelease('0.34.x', published), {
+        'terradart_core': '0.34.0',
+        'terradart_google': '0.34.0',
+      });
+      expect(beforeRelease('0.35.0', published), {
+        'terradart_core': '0.35.0',
+        'terradart_google': '0.35.0',
+      });
+      expect(beforeRelease('0.36.x', published), isEmpty);
+    },
+  );
+
+  test('a section that names an unpublished package still compiles the '
+      'Before cells of published packages', () async {
+    const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+### Mixed
+
+**Breaking (`terradart_google`, `terradart_azure`).** Text.
+
+| Input | Before | After |
+|---|---|---|
+| `GooglePubsubTopic.name` | `DefinitelyNoSuchType()` | `GooglePubsubTopic.name` |
+| `AzurermResourceGroup.name` | `TfArg<String>` | `AzurermResourceGroup.name` |
+| `AzurermResourceGroup.location` | `AzurermResourceGroup('rg')` | `AzurermResourceGroup.location` |
+| `AzurermMssqlVirtualMachine.dayOfWeek` | `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
+''';
+    final report = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(report.failures, [
+      allOf(
+        contains('MIGRATING.md:11: Before'),
+        contains('DefinitelyNoSuchType'),
+      ),
+      for (final line in [13, 14])
+        allOf(
+          contains('MIGRATING.md:$line: Before'),
+          contains('does not belong in MIGRATING.md'),
+        ),
     ]);
-    expect(release.packages, {'terradart_core', 'terradart_google'});
-    expect(release.version, matches(RegExp(r'^\d+\.\d+\.\d+$')));
+    expect(report.beforeCompiled, 1);
+    expect(report.beforeFailed, 3);
+  });
+
+  test(
+    'an unpublished type elsewhere in the row does not hide a typo',
+    () async {
+      const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+### Mixed
+
+**Breaking (`terradart_google`, `terradart_azure`).** Text.
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopik('t')` | `ApplicationGatewayProbeProtocol` |
+''';
+      final failures = (await checkMigratingCells(
+        Directory.current.path,
+        migrating: seeded,
+      )).failures;
+      expect(failures, [
+        allOf(
+          contains('MIGRATING.md:11: Before'),
+          contains('GooglePubsubTopik'),
+        ),
+      ]);
+    },
+  );
+
+  test('a Before cell of a package the previous release lacks does not '
+      'belong in MIGRATING.md', () async {
+    const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+| Before | After |
+|---|---|
+| `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |
+''';
+    final report = await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    );
+    expect(report.failures, [
+      allOf(
+        contains('MIGRATING.md:7: Before'),
+        contains('terradart_azure has no 0.35.x release'),
+        contains('does not belong in MIGRATING.md'),
+      ),
+    ]);
+    expect(report.beforeFailed, 1);
+  });
+
+  test('a document without the `# Migrating terradart` title fails', () async {
+    const seeded = '''
+# Migrating
+
+## Unreleased
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = (await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    )).failures;
+    expect(failures, [contains('MIGRATING.md:1:')]);
   });
 
   test('every Before and After cell of MIGRATING.md compiles', () async {
-    final failures = await checkMigratingCells(Directory.current.path);
-    expect(failures, isEmpty, reason: failures.join('\n'));
+    final report = await checkMigratingCells(Directory.current.path);
+    expect(report.failures, isEmpty, reason: report.failures.join('\n'));
+    final before = extractMigratingCells(
+      File(migratingPath).readAsStringSync(),
+    ).where((c) => c.before);
+    expect(report.beforeFailed, 0);
+    expect(report.beforeCompiled, before.length);
+  });
+
+  test('an empty top section fails', () async {
+    const seeded = '''
+# Migrating terradart
+
+## Unreleased
+
+## 0.34.x → 0.35.0
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = (await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    )).failures;
+    expect(failures, [contains('MIGRATING.md:3:')]);
+  });
+
+  test('a top section with an unknown heading fails', () async {
+    const seeded = '''
+# Migrating terradart
+
+## Next release
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `GooglePubsubTopic.name` |
+''';
+    final failures = (await checkMigratingCells(
+      Directory.current.path,
+      migrating: seeded,
+    )).failures;
+    expect(failures, [contains('MIGRATING.md:3:')]);
   });
 
   test('a cell that does not compile fails', () async {
     const seeded = '''
-## Unreleased
+# Migrating terradart
+
+## 0.35.x → 0.36.0
 
 ### Seeded
 
@@ -116,31 +302,23 @@ void main() {
 | `GooglePubsubTopic('t', name: name)` | `PubsubSubscriptionBigqueryConfig(useTopicSchema: .literal(true))` |
 | `GooglePubsubTopic('t', name: name, ...)` | `warmType: .literal('ultrawarm1.medium.search')` |
 | `GooglePubsubTopic.name` | `NoSuchType` |
-
-### Azure only
-
-**Breaking (`terradart_azure`).** Text.
-
-| Before | After |
-|---|---|
-| `AzurermNotReleased('x')` | `GooglePubsubTopic('t', name: name)` |
 ''';
-    final failures = await checkMigratingCells(
+    final failures = (await checkMigratingCells(
       Directory.current.path,
       migrating: seeded,
-    );
+    )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
-    expect(at(9), contains('UNDEFINED_NAMED_PARAMETER'));
-    expect(at(10), contains("'literal'"));
-    expect(at(11), contains('MISSING_REQUIRED_ARGUMENT'));
-    expect(at(12), contains('named-argument fragment'));
-    expect(at(13), contains("Undefined class 'NoSuchType'"));
+    expect(at(11), contains('UNDEFINED_NAMED_PARAMETER'));
+    expect(at(12), contains("'literal'"));
+    expect(at(13), contains('MISSING_REQUIRED_ARGUMENT'));
+    expect(at(14), contains('named-argument fragment'));
+    expect(at(15), contains("Undefined class 'NoSuchType'"));
     expect(
       {
         for (final f in failures)
           int.parse(RegExp(r'^MIGRATING\.md:(\d+):').firstMatch(f)![1]!),
       },
-      {9, 10, 11, 12, 13},
+      {11, 12, 13, 14, 15},
       reason: failures.join('\n'),
     );
     expect(failures.where((f) => f.contains(' Before ')), isEmpty);

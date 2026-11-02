@@ -68,7 +68,6 @@ import 'package:yaml/yaml.dart';
 
 import 'code_spans.dart';
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
-import 'migrating_cells.dart' show lastRelease;
 
 const migratingPath = 'MIGRATING.md';
 const allowPath = 'tool/doc_renames_allow.yaml';
@@ -1159,4 +1158,33 @@ Future<void> main() async {
     stderr.writeln('  - $f');
   }
   exit(1);
+}
+
+/// The released version: the `## <version> - <date>` heading every package
+/// of [packages] with a dated top heading agrees on, and those packages.
+({String version, Set<String> packages}) lastRelease(
+  String root,
+  List<String> packages,
+) {
+  final released = <String, String>{};
+  for (final pkg in packages) {
+    final changelog = File(p.join(root, 'packages', pkg, 'CHANGELOG.md'));
+    if (!changelog.existsSync()) continue;
+    final top = RegExp(
+      r'^## (\S+) - \d{4}-\d{2}-\d{2}',
+      multiLine: true,
+    ).firstMatch(changelog.readAsStringSync());
+    final heading = RegExp(
+      r'^## ',
+      multiLine: true,
+    ).firstMatch(changelog.readAsStringSync());
+    if (top != null && heading != null && top.start == heading.start) {
+      released[pkg] = top.group(1)!;
+    }
+  }
+  final versions = released.values.toSet();
+  if (versions.length != 1) {
+    throw StateError('released packages disagree on a version: $released');
+  }
+  return (version: versions.single, packages: released.keys.toSet());
 }

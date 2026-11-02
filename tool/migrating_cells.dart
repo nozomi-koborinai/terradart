@@ -1,6 +1,9 @@
 // migrating_cells.dart — compiles the Dart code of every Before / After cell
-// of the Unreleased section of MIGRATING.md, so an upgrade table cannot show
-// a call or a type its release does not have.
+// of the top section of MIGRATING.md, so an upgrade table cannot show a call
+// or a type its release does not have. The top section is `## Unreleased`,
+// or `## <from> → <to>` (`## 0.35.x → 0.36.0`) once a release PR names it; any
+// other heading, a top section without a cell, or a first line other than
+// `# Migrating terradart`, fails.
 //
 // Run from repo root: dart tool/migrating_cells.dart
 // tool/migrating_cells_test.dart runs the same check (CI: `dart test tool/`).
@@ -20,76 +23,63 @@
 // `dynamic` stand-in; an undefined capitalized name (`NoSuchType`) fails.
 //
 // After cells compile against the workspace packages. Before cells compile
-// against the published packages of the last release (the version whose
-// `## <version> - <date>` heading tops every released package's
-// CHANGELOG.md); a section whose packages were not released then has no
-// Before API and its Before cells are not compiled.
+// against each package pub.dev has in the series the heading allows (any
+// version under `## Unreleased`, `<from>` under `## <from> → <to>`), at its
+// newest release there. A release PR moves the CHANGELOGs to a version
+// pub.dev does not have yet, and the CI checkout has no tags, so pub.dev,
+// which the Before compile resolves against anyway, is the source.
+//
+// Every Before cell compiles against that release. A package with no release
+// in the series has no upgrading user, so a row about it does not belong in
+// MIGRATING.md: a Before cell that names its code fails, and an undefined
+// name says which packages that release lacks.
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
 import 'doc_snippets.dart' show AnalyzerDiagnostic, analyzeDiagnostics;
+import 'http_retry.dart';
 import 'lane_surface.dart';
 import 'wrap_lanes.dart';
 
 const migratingPath = 'MIGRATING.md';
 
 /// One code span of a Before or After cell.
-typedef MigratingCell = ({
-  int line,
-  String section,
-  bool before,
-  String code,
-  Set<String> packages,
-});
+typedef MigratingCell = ({int line, String section, bool before, String code});
 
 final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
 final _namedArgument = RegExp(r'^[a-z]\w*:\s');
 
-/// The Before / After code spans of the `## Unreleased` section of [text].
+/// The first `##` heading of [text] and its line.
+({int line, String heading})? topMigratingHeading(String text) {
+  for (final (i, line) in text.split('\n').indexed) {
+    if (line.startsWith('## ')) return (line: i + 1, heading: line.trim());
+  }
+  return null;
+}
+
+/// The Before / After code spans of the top `##` section of [text].
 List<MigratingCell> extractMigratingCells(String text) {
   final lines = text.split('\n');
   final out = <MigratingCell>[];
-  var inUnreleased = false;
+  var inTop = false;
   var section = '';
-  var packages = <String>{};
-  var readPackages = false;
-  StringBuffer? lead;
   List<String>? header;
   for (final (i, line) in lines.indexed) {
     if (line.startsWith('## ')) {
-      inUnreleased = line.trim() == '## Unreleased';
+      if (inTop) break;
+      inTop = true;
       continue;
     }
-    if (!inUnreleased) continue;
+    if (!inTop) continue;
     if (line.startsWith('### ')) {
       section = line.substring(4).trim();
-      packages = {};
-      readPackages = true;
-      lead = null;
       header = null;
       continue;
-    }
-    if (readPackages && lead == null && line.startsWith('**')) {
-      lead = StringBuffer();
-    }
-    if (lead != null) {
-      lead.writeln(line);
-      final bold = RegExp(
-        r'^\*\*(.*?)\*\*',
-        dotAll: true,
-      ).firstMatch(lead.toString())?.group(1);
-      if (bold != null || line.trim().isEmpty) {
-        packages = {
-          for (final m in RegExp(r'terradart_\w+').allMatches(bold ?? ''))
-            m.group(0)!,
-        };
-        readPackages = false;
-        lead = null;
-      }
     }
     if (!line.startsWith('|')) {
       if (line.trim().isEmpty) header = null;
@@ -112,7 +102,6 @@ List<MigratingCell> extractMigratingCells(String text) {
           section: section,
           before: column == 'Before',
           code: code,
-          packages: packages,
         ));
       }
     }
@@ -145,33 +134,76 @@ String? cellShapeError(MigratingCell cell) {
   return null;
 }
 
-/// The released version: the `## <version> - <date>` heading every package
-/// of [packages] with a dated top heading agrees on, and those packages.
-({String version, Set<String> packages}) lastRelease(
-  String root,
-  List<String> packages,
+final _releaseHeading = RegExp(r'^## (\d+\.\d+\.(?:\d+|x)) → \d+\.\d+\.\d+$');
+final _stableVersion = RegExp(r'^\d+\.\d+\.\d+$');
+
+/// The versions the Before cells under [heading] describe, as dotted parts
+/// where `x` matches any: `x` under `## Unreleased`, `<from>` under
+/// `## <from> → <to>` (`0.35.x`, `0.27.0`); null under any other heading.
+String? beforeSeries(String heading) => heading == '## Unreleased'
+    ? 'x'
+    : _releaseHeading.firstMatch(heading)?.group(1);
+
+/// Each package of [published] (package → its pub.dev versions) with a
+/// stable release in [series], at its newest one: the version a `^` pin of
+/// that series installs, even when a partial publish left the lockstep
+/// packages on different patches.
+Map<String, String> beforeRelease(
+  String series,
+  Map<String, List<String>> published,
 ) {
-  final released = <String, String>{};
-  for (final pkg in packages) {
-    final changelog = File(p.join(root, 'packages', pkg, 'CHANGELOG.md'));
-    if (!changelog.existsSync()) continue;
-    final top = RegExp(
-      r'^## (\S+) - \d{4}-\d{2}-\d{2}',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    final heading = RegExp(
-      r'^## ',
-      multiLine: true,
-    ).firstMatch(changelog.readAsStringSync());
-    if (top != null && heading != null && top.start == heading.start) {
-      released[pkg] = top.group(1)!;
+  final want = series.split('.');
+  List<int>? parts(String version) {
+    if (!_stableVersion.hasMatch(version)) return null;
+    final have = version.split('.');
+    for (final (i, w) in want.indexed) {
+      if (w != 'x' && w != have[i]) return null;
     }
+    return [for (final n in have) int.parse(n)];
   }
-  final versions = released.values.toSet();
-  if (versions.length != 1) {
-    throw StateError('released packages disagree on a version: $released');
+
+  int byParts(List<int> a, List<int> b) => [
+    for (final (i, n) in a.indexed) n.compareTo(b[i]),
+  ].firstWhere((c) => c != 0, orElse: () => 0);
+  return {
+    for (final MapEntry(key: pkg, value: versions) in published.entries)
+      if (([
+            for (final version in versions)
+              if (parts(version) case final v?) (version: version, parts: v),
+          ]..sort((a, b) => byParts(a.parts, b.parts))).lastOrNull
+          case final newest?)
+        pkg: newest.version,
+  };
+}
+
+/// Every version pub.dev lists for each of [packages]; none for a package
+/// pub.dev does not have.
+Future<Map<String, List<String>>> publishedVersions(
+  List<String> packages,
+) async {
+  final client = HttpClient();
+  final versions = <String, List<String>>{};
+  try {
+    for (final pkg in packages) {
+      final url = Uri.https('pub.dev', '/api/packages/$pkg');
+      final response = await getRetryingTransient(client, url);
+      final body = await response.transform(utf8.decoder).join();
+      if (response.statusCode == HttpStatus.notFound) {
+        versions[pkg] = [];
+        continue;
+      }
+      if (response.statusCode != HttpStatus.ok) {
+        throw HttpException('${response.statusCode} $body', uri: url);
+      }
+      versions[pkg] = [
+        for (final v in (jsonDecode(body) as Map)['versions'] as List)
+          (v as Map)['version'] as String,
+      ];
+    }
+  } finally {
+    client.close();
   }
-  return (version: versions.single, packages: released.keys.toSet());
+  return versions;
 }
 
 final _elidedArgument = RegExp(r'(,\s*)?\.\.\.(?=\s*[)\]])');
@@ -222,62 +254,113 @@ renderCells(List<MigratingCell> cells, List<String> imports) {
   return (contents: '${lines.join('\n')}\n', docLines: docLines, cells: owners);
 }
 
-String _pubspec(String root, List<String> packages, {String? hostedVersion}) {
-  final b = StringBuffer()
-    ..writeln('name: migrating_cells')
-    ..writeln('publish_to: none')
-    ..writeln('environment:')
-    ..writeln('  sdk: ^3.10.0')
-    ..writeln('dependencies:');
+String _workspacePubspec(String root, List<String> packages) {
+  final b = StringBuffer(_pubspecHead)..writeln('dependencies:');
   for (final pkg in packages) {
-    b.writeln('  $pkg: ${hostedVersion ?? 'any'}');
+    b.writeln('  $pkg: any');
   }
-  if (hostedVersion == null) {
-    b.writeln('dependency_overrides:');
-    for (final pkg in packages) {
-      b
-        ..writeln('  $pkg:')
-        ..writeln('    path: ${p.join(root, 'packages', pkg)}');
-    }
+  b.writeln('dependency_overrides:');
+  for (final pkg in packages) {
+    b
+      ..writeln('  $pkg:')
+      ..writeln('    path: ${p.join(root, 'packages', pkg)}');
   }
   return b.toString();
 }
 
-/// Compiles the cells of [migrating] (default: the repo's MIGRATING.md);
-/// returns one message per failure.
-Future<List<String>> checkMigratingCells(
+String _hostedPubspec(Map<String, String> versions) {
+  final b = StringBuffer(_pubspecHead)..writeln('dependencies:');
+  for (final MapEntry(key: pkg, value: version) in versions.entries) {
+    b.writeln('  $pkg: $version');
+  }
+  return b.toString();
+}
+
+const _pubspecHead = '''
+name: migrating_cells
+publish_to: none
+environment:
+  sdk: ^3.10.0
+''';
+
+/// The outcome of [checkMigratingCells]: its failures, the version each
+/// Before package compiled at, and how many Before cells compiled and failed.
+typedef MigratingReport = ({
+  List<String> failures,
+  Map<String, String> before,
+  int beforeCompiled,
+  int beforeFailed,
+});
+
+const migratingTitle = '# Migrating terradart';
+
+/// Analyzer codes for a name no import declares.
+const _undefinedNameCodes = {
+  'UNDEFINED_CLASS',
+  'UNDEFINED_FUNCTION',
+  'UNDEFINED_IDENTIFIER',
+};
+
+/// Compiles the cells of [migrating] (default: the repo's MIGRATING.md):
+/// After cells against the workspace, Before cells against the previous
+/// release on pub.dev.
+Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
 }) async {
-  final cells = extractMigratingCells(
-    migrating ?? File(p.join(root, migratingPath)).readAsStringSync(),
-  );
-  final failures = <String>[];
+  MigratingReport failed(List<String> failures) =>
+      (failures: failures, before: {}, beforeCompiled: 0, beforeFailed: 0);
+  final text =
+      migrating ?? File(p.join(root, migratingPath)).readAsStringSync();
+  if (text.split('\n').first.trim() != migratingTitle) {
+    return failed(['$migratingPath:1: the title is not `$migratingTitle`']);
+  }
+  final top = topMigratingHeading(text);
+  if (top == null) return failed(['$migratingPath: has no `##` section']);
+  final at = '$migratingPath:${top.line}: `${top.heading}`';
+  final cells = extractMigratingCells(text);
+  if (cells.isEmpty) return failed(['$at has no Before or After cell']);
+  final series = beforeSeries(top.heading);
+  if (series == null) {
+    return failed(['$at is neither `## Unreleased` nor `## <from> → <to>`']);
+  }
   final packages = docSnippetPackages(
     File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
   );
-  final release = lastRelease(root, packages);
+  final release = beforeRelease(series, await publishedVersions(packages));
+  if (release.isEmpty) return failed(['$at: pub.dev has no $series release']);
+
+  final failures = <String>[];
+  final unreleased = [
+    for (final pkg in packages)
+      if (!release.containsKey(pkg)) pkg,
+  ];
+  final notBelonging = unreleased.isEmpty
+      ? ''
+      : '; ${unreleased.join(', ')} ${unreleased.length == 1 ? 'has' : 'have'} '
+            'no ${series == 'x' ? '' : '$series '}release on pub.dev, so no '
+            'upgrading user has its code, and a row about it does not belong '
+            'in $migratingPath';
+
   final barrels = docSnippetBarrels(
     parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
   );
   bool releasedImport(String line) {
     final m = RegExp(r"package:(\w+)/").firstMatch(line);
-    return m == null || release.packages.contains(m.group(1));
+    return m == null || release.containsKey(m.group(1));
   }
 
   final after = <MigratingCell>[];
   final before = <MigratingCell>[];
+  final failedBefore = <MigratingCell>{};
   for (final cell in cells) {
     if (cellShapeError(cell) case final error?) {
+      if (cell.before) failedBefore.add(cell);
       failures.add(
         '$migratingPath:${cell.line}: `${cell.code}` $error (${cell.section})',
       );
-      continue;
-    }
-    if (!cell.before) {
-      after.add(cell);
-    } else if (cell.packages.every(release.packages.contains)) {
-      before.add(cell);
+    } else {
+      (cell.before ? before : after).add(cell);
     }
   }
 
@@ -287,15 +370,12 @@ Future<List<String>> checkMigratingCells(
         <String, ({List<int?> docLines, List<MigratingCell?> cells})>{};
     final dirs = <String>[];
     for (final (name, group, imports, pubspec) in [
-      ('after', after, barrels, _pubspec(root, packages)),
+      ('after', after, barrels, _workspacePubspec(root, packages)),
       (
         'before',
         before,
         barrels.where(releasedImport).toList(),
-        _pubspec(root, [
-          for (final pkg in packages)
-            if (release.packages.contains(pkg)) pkg,
-        ], hostedVersion: release.version),
+        _hostedPubspec(release),
       ),
     ]) {
       if (group.isEmpty) continue;
@@ -318,8 +398,10 @@ Future<List<String>> checkMigratingCells(
         get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
       }
       if (get.exitCode != 0) {
-        failures.add('dart pub get failed in $dir:\n${get.stderr}');
-        return failures;
+        return failed([
+          ...failures,
+          'dart pub get failed in $dir:\n${get.stderr}',
+        ]);
       }
     }
 
@@ -344,15 +426,12 @@ Future<List<String>> checkMigratingCells(
       }
       diagnostics = await analyze();
     }
+
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
       final r = rendered[d.file];
-      final at = r == null || d.line > r.docLines.length
-          ? null
-          : r.docLines[d.line - 1];
-      final cell = r == null || d.line > r.cells.length
-          ? null
-          : r.cells[d.line - 1];
+      final inCell = r != null && d.line <= r.cells.length;
+      final cell = inCell ? r.cells[d.line - 1] : null;
       if (cell != null &&
           elisionCodes.contains(d.code) &&
           resolveElisions(cell.code).elided) {
@@ -363,27 +442,40 @@ Future<List<String>> checkMigratingCells(
           _memberSpan.hasMatch(cell.code)) {
         continue;
       }
+      if (cell != null && cell.before) failedBefore.add(cell);
+      final docLine = inCell ? r.docLines[d.line - 1] : null;
       failures.add(
-        at == null
+        docLine == null || cell == null
             ? '${d.file}:${d.line}: ${d.message} (${d.code})'
-            : '$migratingPath:$at: ${cell!.before ? 'Before' : 'After'} '
-                  '`${cell.code}`: ${d.message} (${d.code})',
+            : '$migratingPath:$docLine: ${cell.before ? 'Before' : 'After'} '
+                  '`${cell.code}`: ${d.message} (${d.code})'
+                  '${cell.before && _undefinedNameCodes.contains(d.code) ? notBelonging : ''}',
       );
     }
   } finally {
     sandbox.deleteSync(recursive: true);
   }
-  return failures;
+  return (
+    failures: failures,
+    before: release,
+    beforeCompiled: before.where((c) => !failedBefore.contains(c)).length,
+    beforeFailed: failedBefore.length,
+  );
 }
 
 Future<void> main() async {
-  final failures = await checkMigratingCells(Directory.current.path);
-  if (failures.isEmpty) {
+  final report = await checkMigratingCells(Directory.current.path);
+  print(
+    'migrating_cells: Before cells: ${report.beforeCompiled} compiled against '
+    '${report.before.values.toSet().join(', ')}, ${report.beforeFailed} '
+    'failed',
+  );
+  if (report.failures.isEmpty) {
     print('migrating_cells: OK');
     return;
   }
   stderr.writeln('migrating_cells: FAILED');
-  for (final f in failures) {
+  for (final f in report.failures) {
     stderr.writeln('  - $f');
   }
   exit(1);

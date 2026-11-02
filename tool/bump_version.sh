@@ -365,7 +365,7 @@ echo "==> Lockstep bump complete: $OLD -> $NEW"
 echo
 echo "Next:"
 echo "  1. Update CHANGELOG.md (root + package changelogs) by hand — release notes are prose."
-echo "  2. If breaking, add a MIGRATING.md section."
+echo "  2. If breaking, rename the MIGRATING.md '## Unreleased' section to '## ${OLD%.*}.x → $NEW' (RELEASE.md)."
 echo "  3. dart pub get && dart analyze packages/terradart_core packages/terradart_codegen packages/terradart_google"
 echo "  4. git diff --stat   # review the bump"
 echo "  5. Commit + push, open release PR with the release ledger report (printed above) in its body."
