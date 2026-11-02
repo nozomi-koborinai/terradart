@@ -83420,16 +83420,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'pointInTimeRestoreOrRecoverDatabaseId',
+          dartName: 'recovery',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'point_in_time_restore':
-                'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore',
+                'MssqlManagedDatabaseRecoveryPointInTimeRestore',
             'recover_database_id':
-                'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice',
+                'MssqlManagedDatabaseRecoveryRecoverDatabaseId',
           },
         ),
         MigrateSlot(
@@ -202489,39 +202489,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice':
-        MigrateHelper(
-          className:
-              'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'recover_database_id',
-              dartName: 'recoverDatabaseId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'recoverDatabaseId',
+    'MssqlManagedDatabaseRecoveryPointInTimeRestore': MigrateHelper(
+      className: 'MssqlManagedDatabaseRecoveryPointInTimeRestore',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'point_in_time_restore',
+          dartName: 'pointInTimeRestore',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'MssqlManagedDatabasePointInTimeRestore',
         ),
-    'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore':
-        MigrateHelper(
-          className:
-              'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'point_in_time_restore',
-              dartName: 'pointInTimeRestore',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'MssqlManagedDatabasePointInTimeRestore',
-            ),
-          ],
-          shorthand: 'pointInTimeRestore',
+      ],
+      shorthand: 'pointInTimeRestore',
+    ),
+    'MssqlManagedDatabaseRecoveryRecoverDatabaseId': MigrateHelper(
+      className: 'MssqlManagedDatabaseRecoveryRecoverDatabaseId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'recover_database_id',
+          dartName: 'recoverDatabaseId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'recoverDatabaseId',
+    ),
     'MssqlManagedInstanceAzureActiveDirectoryAdministrator': MigrateHelper(
       className: 'MssqlManagedInstanceAzureActiveDirectoryAdministrator',
       slots: <MigrateSlot>[

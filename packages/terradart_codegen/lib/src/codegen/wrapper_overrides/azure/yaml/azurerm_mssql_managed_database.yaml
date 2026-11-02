@@ -4,3 +4,5 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+sealedNames:
+  "point_in_time_restore, recover_database_id": recovery
