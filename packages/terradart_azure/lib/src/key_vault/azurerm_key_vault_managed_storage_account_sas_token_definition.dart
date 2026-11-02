@@ -10,7 +10,8 @@ _azurermKeyVaultManagedStorageAccountSasTokenDefinitionSensitive = <String>{};
 /// Key Vault Managed Storage Account Sas Token Definition Sas enum for `sas_type`.
 extension type const KeyVaultManagedStorageAccountSasTokenDefinitionSasType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedStorageAccountSasTokenDefinitionSasType.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedStorageAccountSasTokenDefinitionSasType.expression(

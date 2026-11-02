@@ -10,7 +10,8 @@ _azurermSystemCenterVirtualMachineManagerInventoryItemsSensitive = <String>{};
 /// Data System Center Virtual Machine Manager Inventory Items Inventory enum for `inventory_type`.
 extension type const DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType.variable(
     String name,
   ) : this._(TfArg.variable(name));

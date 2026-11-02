@@ -56,7 +56,8 @@ final class DataEmailSecurityDomainFilter {
 /// `active_delivery_mode` — derived from the provider schema description.
 extension type const DataEmailSecurityDomainActiveDeliveryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityDomainActiveDeliveryMode.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityDomainActiveDeliveryMode.expression(String template)
@@ -92,7 +93,8 @@ extension type const DataEmailSecurityDomainActiveDeliveryMode._(
 /// `allowed_delivery_mode` — derived from the provider schema description.
 extension type const DataEmailSecurityDomainAllowedDeliveryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityDomainAllowedDeliveryMode.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityDomainAllowedDeliveryMode.expression(String template)

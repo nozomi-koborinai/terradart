@@ -129,7 +129,8 @@ extension type const SagemakerHyperParameterTuningJobStrategy._(TfArg<String> _)
 /// `training_job_early_stopping_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -313,7 +314,8 @@ final class SagemakerHyperParameterTuningJobContinuousParameterRanges {
 /// `scaling_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobScalingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobScalingType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobScalingType.expression(String template)
@@ -505,7 +507,8 @@ final class SagemakerHyperParameterTuningJobConvergenceDetected {
 /// `complete_on_convergence` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobCompleteOnConvergence._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobCompleteOnConvergence.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobCompleteOnConvergence.expression(
@@ -787,7 +790,8 @@ final class SagemakerHyperParameterTuningJobAlgorithmTrainingImage
 /// `training_input_mode` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobTrainingInputMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobTrainingInputMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobTrainingInputMode.expression(String template)
@@ -934,7 +938,8 @@ final class SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig {
 /// `allocation_strategy` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobAllocationStrategy.expression(String template)
@@ -955,7 +960,8 @@ extension type const SagemakerHyperParameterTuningJobAllocationStrategy._(
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobInstanceType.expression(String template)
@@ -1968,7 +1974,8 @@ final class SagemakerHyperParameterTuningJobInputDataConfig {
 /// `compression_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobInputDataConfigCompressionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobInputDataConfigCompressionType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1997,7 +2004,8 @@ extension type const SagemakerHyperParameterTuningJobInputDataConfigCompressionT
 /// `input_mode` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobInputMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobInputMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobInputMode.expression(String template)
@@ -2025,7 +2033,8 @@ extension type const SagemakerHyperParameterTuningJobInputMode._(
 /// `record_wrapper_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobRecordWrapperType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobRecordWrapperType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobRecordWrapperType.expression(String template)
@@ -2103,7 +2112,8 @@ final class SagemakerHyperParameterTuningJobFileSystemDataSource {
 /// `file_system_access_mode` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobFileSystemAccessMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobFileSystemAccessMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobFileSystemAccessMode.expression(
@@ -2127,7 +2137,8 @@ extension type const SagemakerHyperParameterTuningJobFileSystemAccessMode._(
 /// `file_system_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobFileSystemType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobFileSystemType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobFileSystemType.expression(String template)
@@ -2196,7 +2207,8 @@ final class SagemakerHyperParameterTuningJobS3DataSource {
 /// `s3_data_distribution_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobS3DataDistributionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobS3DataDistributionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobS3DataDistributionType.expression(
@@ -2222,7 +2234,8 @@ extension type const SagemakerHyperParameterTuningJobS3DataDistributionType._(
 /// `s3_data_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobS3DataType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobS3DataType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobS3DataType.expression(String template)
@@ -2326,7 +2339,8 @@ final class SagemakerHyperParameterTuningJobOutputDataConfig {
 /// `compression_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobOutputDataConfigCompressionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobOutputDataConfigCompressionType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -2736,7 +2750,8 @@ final class SagemakerHyperParameterTuningJobWarmStartConfig {
 /// `warm_start_type` — derived from the provider schema description.
 extension type const SagemakerHyperParameterTuningJobWarmStartType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerHyperParameterTuningJobWarmStartType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerHyperParameterTuningJobWarmStartType.expression(String template)

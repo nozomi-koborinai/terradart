@@ -15,7 +15,8 @@ const Set<String> _azurermOracleAutonomousDatabaseCloneFromDatabaseSensitive =
 /// Oracle Autonomous Database Clone From Database Clone enum for `clone_type`.
 extension type const OracleAutonomousDatabaseCloneFromDatabaseCloneType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromDatabaseCloneType.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromDatabaseCloneType.expression(String template)
@@ -38,7 +39,8 @@ extension type const OracleAutonomousDatabaseCloneFromDatabaseCloneType._(
 /// Oracle Autonomous Database Clone From Database enum for `database_workload`.
 extension type const OracleAutonomousDatabaseCloneFromDatabaseWorkload._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromDatabaseWorkload.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromDatabaseWorkload.expression(String template)
@@ -66,7 +68,8 @@ extension type const OracleAutonomousDatabaseCloneFromDatabaseWorkload._(
 /// Oracle Autonomous Database Clone From Database License enum for `license_model`.
 extension type const OracleAutonomousDatabaseCloneFromDatabaseLicenseModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromDatabaseLicenseModel.variable(String name)
     : this._(TfArg.variable(name));
   OracleAutonomousDatabaseCloneFromDatabaseLicenseModel.expression(
@@ -92,7 +95,8 @@ extension type const OracleAutonomousDatabaseCloneFromDatabaseLicenseModel._(
 /// Oracle Autonomous Database Clone From Database Refreshable enum for `refreshable_model`.
 extension type const OracleAutonomousDatabaseCloneFromDatabaseRefreshableModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleAutonomousDatabaseCloneFromDatabaseRefreshableModel.variable(
     String name,
   ) : this._(TfArg.variable(name));

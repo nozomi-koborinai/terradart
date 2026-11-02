@@ -172,7 +172,8 @@ final class DataLossPreventionDiscoveryConfigPubSubNotification {
 /// `detail_of_message` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigDetailOfMessage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigDetailOfMessage.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigDetailOfMessage.expression(String template)
@@ -263,7 +264,8 @@ final class DataLossPreventionDiscoveryConfigExpressions {
 /// `logical_operator` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigLogicalOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigLogicalOperator.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigLogicalOperator.expression(String template)
@@ -308,7 +310,8 @@ final class DataLossPreventionDiscoveryConfigExpressionsConditions {
 /// `minimum_risk_score` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigMinimumRiskScore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigMinimumRiskScore.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigMinimumRiskScore.expression(String template)
@@ -331,7 +334,8 @@ extension type const DataLossPreventionDiscoveryConfigMinimumRiskScore._(
 /// `minimum_sensitivity_score` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigMinimumSensitivityScore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigMinimumSensitivityScore.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigMinimumSensitivityScore.expression(
@@ -413,7 +417,8 @@ final class DataLossPreventionDiscoveryConfigTagResources {
 /// `profile_generations_to_tag` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigProfileGenerationsToTag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigProfileGenerationsToTag.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigProfileGenerationsToTag.expression(
@@ -684,7 +689,8 @@ final class DataLossPreventionDiscoveryConfigCadence {
 /// `refresh_frequency` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigRefreshFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigRefreshFrequency.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigRefreshFrequency.expression(String template)
@@ -727,7 +733,8 @@ final class DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCaden
 /// `frequency` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigFrequency.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigFrequency.expression(String template)
@@ -778,7 +785,8 @@ final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
 /// `types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigCadenceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigCadenceTypes.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigCadenceTypes.expression(String template)
@@ -825,7 +833,8 @@ final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
 /// `types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -876,7 +885,8 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetConditions {
 /// `type_collection` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigTypeCollection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigTypeCollection.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigTypeCollection.expression(String template)
@@ -934,7 +944,8 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
 /// `types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigTypesTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigTypesTypes.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigTypesTypes.expression(String template)
@@ -1131,7 +1142,8 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
 /// `database_engines` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigDatabaseEngines._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigDatabaseEngines.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigDatabaseEngines.expression(String template)
@@ -1160,7 +1172,8 @@ extension type const DataLossPreventionDiscoveryConfigDatabaseEngines._(
 /// `types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigCloudSqlTargetTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigCloudSqlTargetTypes.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigCloudSqlTargetTypes.expression(
@@ -1373,7 +1386,8 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCade
 /// `types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigGenerationCadenceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigGenerationCadenceTypes.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigGenerationCadenceTypes.expression(
@@ -1476,7 +1490,8 @@ final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
 /// `included_bucket_attributes` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigIncludedBucketAttributes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigIncludedBucketAttributes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1507,7 +1522,8 @@ extension type const DataLossPreventionDiscoveryConfigIncludedBucketAttributes._
 /// `included_object_attributes` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigIncludedObjectAttributes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1821,7 +1837,8 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
 /// `bucket_types` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigBucketTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigBucketTypes.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigBucketTypes.expression(String template)
@@ -1847,7 +1864,8 @@ extension type const DataLossPreventionDiscoveryConfigBucketTypes._(
 /// `object_storage_classes` — derived from the provider schema description.
 extension type const DataLossPreventionDiscoveryConfigObjectStorageClasses._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDiscoveryConfigObjectStorageClasses.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDiscoveryConfigObjectStorageClasses.expression(

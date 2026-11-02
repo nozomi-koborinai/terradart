@@ -11,7 +11,8 @@ const Set<String> _googleDatabaseMigrationServiceMigrationJobSensitive =
 /// Database Migration Service Migration Job Desired enum for `desired_state`.
 extension type const DatabaseMigrationServiceMigrationJobDesiredState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobDesiredState.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobDesiredState.expression(String template)
@@ -35,7 +36,8 @@ extension type const DatabaseMigrationServiceMigrationJobDesiredState._(
 /// Database Migration Service Migration Job Dump enum for `dump_type`.
 extension type const DatabaseMigrationServiceMigrationJobDumpType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobDumpType.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobDumpType.expression(String template)
@@ -59,7 +61,8 @@ extension type const DatabaseMigrationServiceMigrationJobDumpType._(
 /// Database Migration Service Migration Job enum for `phase`.
 extension type const DatabaseMigrationServiceMigrationJobPhase._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobPhase.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobPhase.expression(String template)
@@ -100,7 +103,8 @@ extension type const DatabaseMigrationServiceMigrationJobPhase._(
 /// Database Migration Service Migration Job enum for `state`.
 extension type const DatabaseMigrationServiceMigrationJobState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobState.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobState.expression(String template)
@@ -358,7 +362,8 @@ final class DatabaseMigrationServiceMigrationJobSourceObjectsConfig {
 /// `objects_selection_type` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceMigrationJobObjectsSelectionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobObjectsSelectionType.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobObjectsSelectionType.expression(
@@ -428,7 +433,8 @@ final class DatabaseMigrationServiceMigrationJobObjectIdentifier {
 /// `type` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceMigrationJobObjectIdentifierType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobObjectIdentifierType.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobObjectIdentifierType.expression(
@@ -475,7 +481,8 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
 /// `dump_parallel_level` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceMigrationJobDumpParallelLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceMigrationJobDumpParallelLevel.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceMigrationJobDumpParallelLevel.expression(

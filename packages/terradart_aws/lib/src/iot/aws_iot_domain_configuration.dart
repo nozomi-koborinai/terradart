@@ -10,7 +10,8 @@ const Set<String> _awsIotDomainConfigurationSensitive = <String>{};
 /// Iot Domain Configuration Application enum for `application_protocol`.
 extension type const IotDomainConfigurationApplicationProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotDomainConfigurationApplicationProtocol.variable(String name)
     : this._(TfArg.variable(name));
   IotDomainConfigurationApplicationProtocol.expression(String template)

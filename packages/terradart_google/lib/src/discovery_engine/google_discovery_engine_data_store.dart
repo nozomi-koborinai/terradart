@@ -350,7 +350,8 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
 /// `structured_content_types` — derived from the provider schema description.
 extension type const DiscoveryEngineDataStoreStructuredContentTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineDataStoreStructuredContentTypes.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineDataStoreStructuredContentTypes.expression(String template)

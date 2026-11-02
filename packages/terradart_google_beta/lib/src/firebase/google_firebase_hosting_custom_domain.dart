@@ -9,7 +9,8 @@ const Set<String> _googleFirebaseHostingCustomDomainSensitive = <String>{};
 /// Firebase Hosting Custom Domain Cert enum for `cert_preference`.
 extension type const FirebaseHostingCustomDomainCertPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirebaseHostingCustomDomainCertPreference.variable(String name)
     : this._(TfArg.variable(name));
   FirebaseHostingCustomDomainCertPreference.expression(String template)
@@ -37,7 +38,8 @@ extension type const FirebaseHostingCustomDomainCertPreference._(
 /// Firebase Hosting Custom Domain Ownership enum for `ownership_state`.
 extension type const FirebaseHostingCustomDomainOwnershipState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FirebaseHostingCustomDomainOwnershipState.variable(String name)
     : this._(TfArg.variable(name));
   FirebaseHostingCustomDomainOwnershipState.expression(String template)

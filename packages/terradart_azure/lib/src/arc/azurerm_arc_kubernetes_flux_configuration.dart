@@ -535,7 +535,8 @@ final class ArcKubernetesFluxConfigurationGitRepository {
 /// `reference_type` — derived from the provider schema description.
 extension type const ArcKubernetesFluxConfigurationReferenceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcKubernetesFluxConfigurationReferenceType.variable(String name)
     : this._(TfArg.variable(name));
   ArcKubernetesFluxConfigurationReferenceType.expression(String template)

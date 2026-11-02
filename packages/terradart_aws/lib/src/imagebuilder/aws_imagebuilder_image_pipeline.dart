@@ -216,7 +216,8 @@ final class ImagebuilderImagePipelineSchedule {
 /// `pipeline_execution_start_condition` — derived from the provider schema description.
 extension type const ImagebuilderImagePipelineExecutionStartCondition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderImagePipelineExecutionStartCondition.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderImagePipelineExecutionStartCondition.expression(String template)

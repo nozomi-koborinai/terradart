@@ -13,7 +13,8 @@ const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
 /// Zero Trust Access Ai Controls Mcp Server Auth enum for `auth_type`.
 extension type const ZeroTrustAccessAiControlsMcpServerAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessAiControlsMcpServerAuthType.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessAiControlsMcpServerAuthType.expression(String template)

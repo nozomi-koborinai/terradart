@@ -42,7 +42,8 @@ final class CognitoIdentityPoolRolesAttachmentRoleMapping {
 /// `ambiguous_role_resolution` — derived from the provider schema description.
 extension type const CognitoIdentityPoolRolesAttachmentAmbiguousRoleResolution._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoIdentityPoolRolesAttachmentAmbiguousRoleResolution.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -120,7 +121,8 @@ final class CognitoIdentityPoolRolesAttachmentMappingRule {
 /// `match_type` — derived from the provider schema description.
 extension type const CognitoIdentityPoolRolesAttachmentMatchType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoIdentityPoolRolesAttachmentMatchType.variable(String name)
     : this._(TfArg.variable(name));
   CognitoIdentityPoolRolesAttachmentMatchType.expression(String template)

@@ -137,7 +137,8 @@ final class VertexAiOnlineEvaluatorDuration {
 /// `comparison_operator` — derived from the provider schema description.
 extension type const VertexAiOnlineEvaluatorComparisonOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiOnlineEvaluatorComparisonOperator.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiOnlineEvaluatorComparisonOperator.expression(String template)

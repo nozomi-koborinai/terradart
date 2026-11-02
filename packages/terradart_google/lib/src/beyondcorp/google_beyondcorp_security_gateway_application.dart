@@ -11,7 +11,8 @@ const Set<String> _googleBeyondcorpSecurityGatewayApplicationSensitive =
 /// Beyondcorp Security Gateway Application enum for `schema`.
 extension type const BeyondcorpSecurityGatewayApplicationSchema._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BeyondcorpSecurityGatewayApplicationSchema.variable(String name)
     : this._(TfArg.variable(name));
   BeyondcorpSecurityGatewayApplicationSchema.expression(String template)
@@ -176,7 +177,8 @@ final class BeyondcorpSecurityGatewayApplicationProxyProtocol {
 /// `gateway_identity` — derived from the provider schema description.
 extension type const BeyondcorpSecurityGatewayApplicationGatewayIdentity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BeyondcorpSecurityGatewayApplicationGatewayIdentity.variable(String name)
     : this._(TfArg.variable(name));
   BeyondcorpSecurityGatewayApplicationGatewayIdentity.expression(
@@ -226,7 +228,8 @@ final class BeyondcorpSecurityGatewayApplicationContextualHeaders {
 /// `output_type` — derived from the provider schema description.
 extension type const BeyondcorpSecurityGatewayApplicationOutputType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BeyondcorpSecurityGatewayApplicationOutputType.variable(String name)
     : this._(TfArg.variable(name));
   BeyondcorpSecurityGatewayApplicationOutputType.expression(String template)

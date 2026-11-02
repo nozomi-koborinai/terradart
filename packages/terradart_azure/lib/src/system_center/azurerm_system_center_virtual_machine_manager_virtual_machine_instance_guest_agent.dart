@@ -11,7 +11,8 @@ _azurermSystemCenterVirtualMachineManagerVirtualMachineInstanceGuestAgentSensiti
 /// System Center Virtual Machine Manager Virtual Machine Instance Guest Agent Provisioning enum for `provisioning_action`.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceGuestAgentProvisioningAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceGuestAgentProvisioningAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

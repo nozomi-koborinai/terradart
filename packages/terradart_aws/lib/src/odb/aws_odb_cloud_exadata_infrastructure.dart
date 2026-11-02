@@ -58,7 +58,8 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 /// `patching_mode` — derived from the provider schema description.
 extension type const OdbCloudExadataInfrastructurePatchingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OdbCloudExadataInfrastructurePatchingMode.variable(String name)
     : this._(TfArg.variable(name));
   OdbCloudExadataInfrastructurePatchingMode.expression(String template)

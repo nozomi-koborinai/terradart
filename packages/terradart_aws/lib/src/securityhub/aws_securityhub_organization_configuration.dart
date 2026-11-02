@@ -11,7 +11,8 @@ const Set<String> _awsSecurityhubOrganizationConfigurationSensitive =
 /// Securityhub Organization Configuration Auto Enable enum for `auto_enable_standards`.
 extension type const SecurityhubOrganizationConfigurationAutoEnableStandards._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubOrganizationConfigurationAutoEnableStandards.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubOrganizationConfigurationAutoEnableStandards.expression(

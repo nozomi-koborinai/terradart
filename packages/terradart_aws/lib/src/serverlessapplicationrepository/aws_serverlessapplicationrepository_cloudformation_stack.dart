@@ -10,7 +10,8 @@ _awsServerlessapplicationrepositoryCloudformationStackSensitive = <String>{};
 /// Serverlessapplicationrepository Cloudformation Stack enum for `capabilities`.
 extension type const ServerlessapplicationrepositoryCloudformationStackCapabilities._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServerlessapplicationrepositoryCloudformationStackCapabilities.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -12,7 +12,8 @@ const Set<String> _azurermEventgridPartnerNamespaceSensitive = <String>{};
 /// Eventgrid Partner Namespace Partner Topic Routing enum for `partner_topic_routing_mode`.
 extension type const EventgridPartnerNamespacePartnerTopicRoutingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventgridPartnerNamespacePartnerTopicRoutingMode.variable(String name)
     : this._(TfArg.variable(name));
   EventgridPartnerNamespacePartnerTopicRoutingMode.expression(String template)
@@ -38,7 +39,8 @@ extension type const EventgridPartnerNamespacePartnerTopicRoutingMode._(
 /// Eventgrid Partner Namespace Public Network enum for `public_network_access`.
 extension type const EventgridPartnerNamespacePublicNetworkAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventgridPartnerNamespacePublicNetworkAccess.variable(String name)
     : this._(TfArg.variable(name));
   EventgridPartnerNamespacePublicNetworkAccess.expression(String template)

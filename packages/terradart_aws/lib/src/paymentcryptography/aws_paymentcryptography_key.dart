@@ -10,7 +10,8 @@ const Set<String> _awsPaymentcryptographyKeySensitive = <String>{};
 /// Paymentcryptography Key Check Value enum for `key_check_value_algorithm`.
 extension type const PaymentcryptographyKeyCheckValueAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaymentcryptographyKeyCheckValueAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   PaymentcryptographyKeyCheckValueAlgorithm.expression(String template)

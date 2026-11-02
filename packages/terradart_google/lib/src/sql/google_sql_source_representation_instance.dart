@@ -11,7 +11,8 @@ const Set<String> _googleSqlSourceRepresentationInstanceSensitive = <String>{
 /// Sql Source Representation Instance Database enum for `database_version`.
 extension type const SqlSourceRepresentationInstanceDatabaseVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SqlSourceRepresentationInstanceDatabaseVersion.variable(String name)
     : this._(TfArg.variable(name));
   SqlSourceRepresentationInstanceDatabaseVersion.expression(String template)

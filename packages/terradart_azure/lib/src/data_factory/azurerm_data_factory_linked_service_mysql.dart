@@ -9,7 +9,8 @@ const Set<String> _azurermDataFactoryLinkedServiceMysqlSensitive = <String>{};
 /// Data Factory Linked Service Mysql Driver enum for `driver_version`.
 extension type const DataFactoryLinkedServiceMysqlDriverVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryLinkedServiceMysqlDriverVersion.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryLinkedServiceMysqlDriverVersion.expression(String template)

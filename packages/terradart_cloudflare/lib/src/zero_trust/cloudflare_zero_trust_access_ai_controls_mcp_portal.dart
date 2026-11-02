@@ -13,7 +13,8 @@ const Set<String> _cloudflareZeroTrustAccessAiControlsMcpPortalSensitive =
 /// Zero Trust Access Ai Controls Mcp Portal Code enum for `code_mode`.
 extension type const ZeroTrustAccessAiControlsMcpPortalCodeMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessAiControlsMcpPortalCodeMode.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessAiControlsMcpPortalCodeMode.expression(String template)

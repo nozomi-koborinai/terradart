@@ -10,7 +10,8 @@ const Set<String> _awsCodedeployDeploymentConfigSensitive = <String>{};
 /// Codedeploy Deployment Config Compute enum for `compute_platform`.
 extension type const CodedeployDeploymentConfigComputePlatform._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentConfigComputePlatform.variable(String name)
     : this._(TfArg.variable(name));
   CodedeployDeploymentConfigComputePlatform.expression(String template)
@@ -55,7 +56,8 @@ final class CodedeployDeploymentConfigMinimumHealthyHosts {
 /// `type` — derived from the provider schema description.
 extension type const CodedeployDeploymentConfigMinimumHealthyHostsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentConfigMinimumHealthyHostsType.variable(String name)
     : this._(TfArg.variable(name));
   CodedeployDeploymentConfigMinimumHealthyHostsType.expression(String template)
@@ -160,7 +162,8 @@ final class CodedeployDeploymentConfigTimeBasedLinearChoice
 /// `type` — derived from the provider schema description.
 extension type const CodedeployDeploymentConfigTrafficRoutingConfigType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodedeployDeploymentConfigTrafficRoutingConfigType.variable(String name)
     : this._(TfArg.variable(name));
   CodedeployDeploymentConfigTrafficRoutingConfigType.expression(String template)

@@ -36,7 +36,8 @@ extension type const BigqueryDatapolicyv2DataPolicyType._(TfArg<String> _)
 /// Predefined masking expression for V2 [BigqueryDatapolicyv2DataPolicyDataMaskingPolicy].
 extension type const BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BigqueryDatapolicyv2DataPolicyPredefinedExpression.variable(String name)
     : this._(TfArg.variable(name));
   BigqueryDatapolicyv2DataPolicyPredefinedExpression.expression(String template)

@@ -1570,7 +1570,8 @@ final class SagemakerInferenceComponentSchedulingConfig {
 /// `placement_strategy` — derived from the provider schema description.
 extension type const SagemakerInferenceComponentPlacementStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerInferenceComponentPlacementStrategy.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerInferenceComponentPlacementStrategy.expression(String template)
@@ -1615,7 +1616,8 @@ final class SagemakerInferenceComponentAvailabilityZoneBalance {
 /// `enforcement_mode` — derived from the provider schema description.
 extension type const SagemakerInferenceComponentEnforcementMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerInferenceComponentEnforcementMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerInferenceComponentEnforcementMode.expression(String template)

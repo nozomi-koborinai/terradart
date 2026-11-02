@@ -81,7 +81,8 @@ final class MssqlVirtualMachineGroupWsfcDomainProfile {
 /// `cluster_subnet_type` — derived from the provider schema description.
 extension type const MssqlVirtualMachineGroupClusterSubnetType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlVirtualMachineGroupClusterSubnetType.variable(String name)
     : this._(TfArg.variable(name));
   MssqlVirtualMachineGroupClusterSubnetType.expression(String template)

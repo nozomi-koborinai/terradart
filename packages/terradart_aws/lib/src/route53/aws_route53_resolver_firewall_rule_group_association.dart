@@ -12,7 +12,8 @@ const Set<String> _awsRoute53ResolverFirewallRuleGroupAssociationSensitive =
 /// Route53 Resolver Firewall Rule Group Association Mutation enum for `mutation_protection`.
 extension type const Route53ResolverFirewallRuleGroupAssociationMutationProtection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53ResolverFirewallRuleGroupAssociationMutationProtection.variable(
     String name,
   ) : this._(TfArg.variable(name));

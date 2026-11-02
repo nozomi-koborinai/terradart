@@ -10,7 +10,8 @@ const Set<String> _azurermApplicationInsightsSmartDetectionRuleSensitive =
 /// Application Insights Smart Detection Rule enum for `name`.
 extension type const ApplicationInsightsSmartDetectionRuleName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationInsightsSmartDetectionRuleName.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationInsightsSmartDetectionRuleName.expression(String template)

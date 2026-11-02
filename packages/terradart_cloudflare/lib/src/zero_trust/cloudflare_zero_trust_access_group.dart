@@ -553,7 +553,8 @@ final class ZeroTrustAccessGroupUserRiskScore {
 /// `user_risk_score` — derived from the provider schema description.
 extension type const ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessGroupUserRiskScoreUserRiskScore.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessGroupUserRiskScoreUserRiskScore.expression(String template)

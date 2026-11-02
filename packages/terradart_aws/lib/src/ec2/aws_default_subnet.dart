@@ -9,7 +9,8 @@ const Set<String> _awsDefaultSubnetSensitive = <String>{};
 /// Default Subnet Private Dns Hostname Type On enum for `private_dns_hostname_type_on_launch`.
 extension type const DefaultSubnetPrivateDnsHostnameTypeOnLaunch._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DefaultSubnetPrivateDnsHostnameTypeOnLaunch.variable(String name)
     : this._(TfArg.variable(name));
   DefaultSubnetPrivateDnsHostnameTypeOnLaunch.expression(String template)

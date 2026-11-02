@@ -759,7 +759,8 @@ final class DataprocWorkflowTemplateGceClusterConfig {
 /// `private_ipv6_google_access` — derived from the provider schema description.
 extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocWorkflowTemplatePrivateIpv6GoogleAccess.variable(String name)
     : this._(TfArg.variable(name));
   DataprocWorkflowTemplatePrivateIpv6GoogleAccess.expression(String template)
@@ -825,7 +826,8 @@ final class DataprocWorkflowTemplateReservationAffinity {
 /// `consume_reservation_type` — derived from the provider schema description.
 extension type const DataprocWorkflowTemplateConsumeReservationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocWorkflowTemplateConsumeReservationType.variable(String name)
     : this._(TfArg.variable(name));
   DataprocWorkflowTemplateConsumeReservationType.expression(String template)
@@ -1087,7 +1089,8 @@ extension type const DataprocWorkflowTemplateBootDiskType._(TfArg<String> _)
 /// `local_ssd_interface` — derived from the provider schema description.
 extension type const DataprocWorkflowTemplateLocalSsdInterface._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocWorkflowTemplateLocalSsdInterface.variable(String name)
     : this._(TfArg.variable(name));
   DataprocWorkflowTemplateLocalSsdInterface.expression(String template)
@@ -1423,7 +1426,8 @@ final class DataprocWorkflowTemplateSoftwareConfig {
 /// `optional_components` — derived from the provider schema description.
 extension type const DataprocWorkflowTemplateOptionalComponents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocWorkflowTemplateOptionalComponents.variable(String name)
     : this._(TfArg.variable(name));
   DataprocWorkflowTemplateOptionalComponents.expression(String template)

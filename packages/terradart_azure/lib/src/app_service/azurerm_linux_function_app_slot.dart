@@ -29,7 +29,8 @@ const Set<String> _azurermLinuxFunctionAppSlotSensitive = <String>{
 /// Linux Function App Slot Client Certificate enum for `client_certificate_mode`.
 extension type const LinuxFunctionAppSlotClientCertificateMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotClientCertificateMode.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotClientCertificateMode.expression(String template)
@@ -333,7 +334,8 @@ extension type const LinuxFunctionAppSlotDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotUnauthenticatedClientAction.expression(String template)
@@ -971,7 +973,8 @@ final class LinuxFunctionAppSlotAuthSettingsV2 {
 /// `forward_proxy_convention` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotForwardProxyConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotForwardProxyConvention.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotForwardProxyConvention.expression(String template)
@@ -999,7 +1002,8 @@ extension type const LinuxFunctionAppSlotForwardProxyConvention._(
 /// `unauthenticated_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotUnauthenticatedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotUnauthenticatedAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotUnauthenticatedAction.expression(String template)
@@ -1418,7 +1422,8 @@ final class LinuxFunctionAppSlotTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotCookieExpirationConvention.expression(String template)
@@ -1862,7 +1867,8 @@ extension type const LinuxFunctionAppSlotFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotIpRestrictionDefaultAction.expression(String template)
@@ -1948,7 +1954,8 @@ extension type const LinuxFunctionAppSlotManagedPipelineMode._(TfArg<String> _)
 /// `minimum_tls_cipher_suite` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotMinimumTlsCipherSuite._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotMinimumTlsCipherSuite.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotMinimumTlsCipherSuite.expression(String template)
@@ -2078,7 +2085,8 @@ extension type const LinuxFunctionAppSlotMinimumTlsVersion._(TfArg<String> _)
 /// `remote_debugging_version` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotRemoteDebuggingVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotRemoteDebuggingVersion.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotRemoteDebuggingVersion.expression(String template)
@@ -2098,7 +2106,8 @@ extension type const LinuxFunctionAppSlotRemoteDebuggingVersion._(
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotScmIpRestrictionDefaultAction.expression(String template)
@@ -2441,7 +2450,8 @@ extension type const LinuxFunctionAppSlotNodeVersion._(TfArg<String> _)
 /// `powershell_core_version` — derived from the provider schema description.
 extension type const LinuxFunctionAppSlotPowershellCoreVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppSlotPowershellCoreVersion.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppSlotPowershellCoreVersion.expression(String template)

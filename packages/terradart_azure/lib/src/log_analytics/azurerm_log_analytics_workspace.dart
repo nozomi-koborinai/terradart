@@ -15,7 +15,8 @@ const Set<String> _azurermLogAnalyticsWorkspaceSensitive = <String>{
 /// Log Analytics Workspace Internet Ingestion Access enum for `internet_ingestion_access_type`.
 extension type const LogAnalyticsWorkspaceInternetIngestionAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogAnalyticsWorkspaceInternetIngestionAccessType.variable(String name)
     : this._(TfArg.variable(name));
   LogAnalyticsWorkspaceInternetIngestionAccessType.expression(String template)
@@ -44,7 +45,8 @@ extension type const LogAnalyticsWorkspaceInternetIngestionAccessType._(
 /// Log Analytics Workspace Internet Query Access enum for `internet_query_access_type`.
 extension type const LogAnalyticsWorkspaceInternetQueryAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LogAnalyticsWorkspaceInternetQueryAccessType.variable(String name)
     : this._(TfArg.variable(name));
   LogAnalyticsWorkspaceInternetQueryAccessType.expression(String template)

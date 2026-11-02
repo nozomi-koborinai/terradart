@@ -79,7 +79,8 @@ final class PrivatecaCertificateTemplatePassthroughExtensions {
 /// `known_extensions` — derived from the provider schema description.
 extension type const PrivatecaCertificateTemplateKnownExtensions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivatecaCertificateTemplateKnownExtensions.variable(String name)
     : this._(TfArg.variable(name));
   PrivatecaCertificateTemplateKnownExtensions.expression(String template)

@@ -37,7 +37,8 @@ extension type const VirtualMachineDataDiskAttachmentCaching._(TfArg<String> _)
 /// Virtual Machine Data Disk Attachment Create enum for `create_option`.
 extension type const VirtualMachineDataDiskAttachmentCreateOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualMachineDataDiskAttachmentCreateOption.variable(String name)
     : this._(TfArg.variable(name));
   VirtualMachineDataDiskAttachmentCreateOption.expression(String template)

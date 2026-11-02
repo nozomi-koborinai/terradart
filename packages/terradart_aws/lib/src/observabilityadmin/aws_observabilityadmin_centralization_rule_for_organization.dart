@@ -195,7 +195,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionCon
 /// `encryption_conflict_resolution_strategy` — derived from the provider schema description.
 extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -224,7 +225,8 @@ extension type const ObservabilityadminCentralizationRuleForOrganizationEncrypti
 /// `encryption_scope` — derived from the provider schema description.
 extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionScope._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminCentralizationRuleForOrganizationEncryptionScope.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -253,7 +255,8 @@ extension type const ObservabilityadminCentralizationRuleForOrganizationEncrypti
 /// `encryption_strategy` — derived from the provider schema description.
 extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -304,7 +307,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationTagPropagationCon
 /// `tag_conflict_resolution_strategy` — derived from the provider schema description.
 extension type const ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -438,7 +442,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfigu
 /// `encrypted_log_group_strategy` — derived from the provider schema description.
 extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));

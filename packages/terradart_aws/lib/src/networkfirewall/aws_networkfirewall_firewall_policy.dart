@@ -216,7 +216,8 @@ extension type const NetworkfirewallFirewallPolicyRuleOrder._(TfArg<String> _)
 /// `stream_exception_policy` — derived from the provider schema description.
 extension type const NetworkfirewallFirewallPolicyStreamExceptionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallFirewallPolicyStreamExceptionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallFirewallPolicyStreamExceptionPolicy.expression(String template)

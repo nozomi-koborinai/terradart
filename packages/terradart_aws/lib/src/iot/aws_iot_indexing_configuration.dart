@@ -36,7 +36,8 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
 /// `thing_group_indexing_mode` — derived from the provider schema description.
 extension type const IotIndexingConfigurationThingGroupIndexingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotIndexingConfigurationThingGroupIndexingMode.variable(String name)
     : this._(TfArg.variable(name));
   IotIndexingConfigurationThingGroupIndexingMode.expression(String template)
@@ -164,7 +165,8 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
 /// `device_defender_indexing_mode` — derived from the provider schema description.
 extension type const IotIndexingConfigurationDeviceDefenderIndexingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotIndexingConfigurationDeviceDefenderIndexingMode.variable(String name)
     : this._(TfArg.variable(name));
   IotIndexingConfigurationDeviceDefenderIndexingMode.expression(String template)
@@ -188,7 +190,8 @@ extension type const IotIndexingConfigurationDeviceDefenderIndexingMode._(
 /// `named_shadow_indexing_mode` — derived from the provider schema description.
 extension type const IotIndexingConfigurationNamedShadowIndexingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotIndexingConfigurationNamedShadowIndexingMode.variable(String name)
     : this._(TfArg.variable(name));
   IotIndexingConfigurationNamedShadowIndexingMode.expression(String template)
@@ -212,7 +215,8 @@ extension type const IotIndexingConfigurationNamedShadowIndexingMode._(
 /// `thing_connectivity_indexing_mode` — derived from the provider schema description.
 extension type const IotIndexingConfigurationThingConnectivityIndexingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotIndexingConfigurationThingConnectivityIndexingMode.variable(String name)
     : this._(TfArg.variable(name));
   IotIndexingConfigurationThingConnectivityIndexingMode.expression(
@@ -236,7 +240,8 @@ extension type const IotIndexingConfigurationThingConnectivityIndexingMode._(
 /// `thing_indexing_mode` — derived from the provider schema description.
 extension type const IotIndexingConfigurationThingIndexingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotIndexingConfigurationThingIndexingMode.variable(String name)
     : this._(TfArg.variable(name));
   IotIndexingConfigurationThingIndexingMode.expression(String template)

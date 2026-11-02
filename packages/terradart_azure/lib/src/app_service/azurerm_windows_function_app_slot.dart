@@ -27,7 +27,8 @@ const Set<String> _azurermWindowsFunctionAppSlotSensitive = <String>{
 /// Windows Function App Slot Client Certificate enum for `client_certificate_mode`.
 extension type const WindowsFunctionAppSlotClientCertificateMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotClientCertificateMode.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotClientCertificateMode.expression(String template)
@@ -331,7 +332,8 @@ extension type const WindowsFunctionAppSlotDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotUnauthenticatedClientAction.expression(String template)
@@ -967,7 +969,8 @@ final class WindowsFunctionAppSlotAuthSettingsV2 {
 /// `forward_proxy_convention` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotForwardProxyConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotForwardProxyConvention.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotForwardProxyConvention.expression(String template)
@@ -995,7 +998,8 @@ extension type const WindowsFunctionAppSlotForwardProxyConvention._(
 /// `unauthenticated_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotUnauthenticatedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotUnauthenticatedAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotUnauthenticatedAction.expression(String template)
@@ -1414,7 +1418,8 @@ final class WindowsFunctionAppSlotTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotCookieExpirationConvention.expression(String template)
@@ -1589,7 +1594,8 @@ final class WindowsFunctionAppSlotConnectionString {
 /// `type` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotConnectionStringType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotConnectionStringType.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotConnectionStringType.expression(String template)
@@ -1852,7 +1858,8 @@ extension type const WindowsFunctionAppSlotFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotIpRestrictionDefaultAction.expression(String template)
@@ -1915,7 +1922,8 @@ extension type const WindowsFunctionAppSlotLoadBalancingMode._(TfArg<String> _)
 /// `managed_pipeline_mode` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotManagedPipelineMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotManagedPipelineMode.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotManagedPipelineMode.expression(String template)
@@ -1939,7 +1947,8 @@ extension type const WindowsFunctionAppSlotManagedPipelineMode._(
 /// `minimum_tls_cipher_suite` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotMinimumTlsCipherSuite._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotMinimumTlsCipherSuite.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotMinimumTlsCipherSuite.expression(String template)
@@ -2071,7 +2080,8 @@ extension type const WindowsFunctionAppSlotMinimumTlsVersion._(TfArg<String> _)
 /// `remote_debugging_version` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotRemoteDebuggingVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotRemoteDebuggingVersion.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotRemoteDebuggingVersion.expression(String template)
@@ -2091,7 +2101,8 @@ extension type const WindowsFunctionAppSlotRemoteDebuggingVersion._(
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotScmIpRestrictionDefaultAction.expression(
@@ -2115,7 +2126,8 @@ extension type const WindowsFunctionAppSlotScmIpRestrictionDefaultAction._(
 /// `scm_minimum_tls_version` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotScmMinimumTlsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotScmMinimumTlsVersion.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotScmMinimumTlsVersion.expression(String template)
@@ -2408,7 +2420,8 @@ extension type const WindowsFunctionAppSlotNodeVersion._(TfArg<String> _)
 /// `powershell_core_version` — derived from the provider schema description.
 extension type const WindowsFunctionAppSlotPowershellCoreVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsFunctionAppSlotPowershellCoreVersion.variable(String name)
     : this._(TfArg.variable(name));
   WindowsFunctionAppSlotPowershellCoreVersion.expression(String template)

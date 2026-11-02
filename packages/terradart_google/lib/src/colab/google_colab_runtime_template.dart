@@ -299,7 +299,8 @@ final class ColabRuntimeTemplatePostStartupScriptConfig {
 /// `post_startup_script_behavior` — derived from the provider schema description.
 extension type const ColabRuntimeTemplatePostStartupScriptBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ColabRuntimeTemplatePostStartupScriptBehavior.variable(String name)
     : this._(TfArg.variable(name));
   ColabRuntimeTemplatePostStartupScriptBehavior.expression(String template)

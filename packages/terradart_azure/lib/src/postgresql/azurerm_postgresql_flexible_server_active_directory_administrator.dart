@@ -13,7 +13,8 @@ _azurermPostgresqlFlexibleServerActiveDirectoryAdministratorSensitive =
 /// Postgresql Flexible Server Active Directory Administrator Principal enum for `principal_type`.
 extension type const PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PostgresqlFlexibleServerActiveDirectoryAdministratorPrincipalType.variable(
     String name,
   ) : this._(TfArg.variable(name));

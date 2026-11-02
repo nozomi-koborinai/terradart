@@ -30,7 +30,8 @@ final class NetworkServicesMulticastDomainConnectionConfig {
 /// `connection_type` — derived from the provider schema description.
 extension type const NetworkServicesMulticastDomainConnectionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesMulticastDomainConnectionType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesMulticastDomainConnectionType.expression(String template)

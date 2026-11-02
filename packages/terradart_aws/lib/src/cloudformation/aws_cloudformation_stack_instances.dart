@@ -300,7 +300,8 @@ final class CloudformationStackInstancesMaxConcurrentPercentage
 /// `concurrency_mode` — derived from the provider schema description.
 extension type const CloudformationStackInstancesConcurrencyMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudformationStackInstancesConcurrencyMode.variable(String name)
     : this._(TfArg.variable(name));
   CloudformationStackInstancesConcurrencyMode.expression(String template)
@@ -326,7 +327,8 @@ extension type const CloudformationStackInstancesConcurrencyMode._(
 /// `region_concurrency_type` — derived from the provider schema description.
 extension type const CloudformationStackInstancesRegionConcurrencyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudformationStackInstancesRegionConcurrencyType.variable(String name)
     : this._(TfArg.variable(name));
   CloudformationStackInstancesRegionConcurrencyType.expression(String template)

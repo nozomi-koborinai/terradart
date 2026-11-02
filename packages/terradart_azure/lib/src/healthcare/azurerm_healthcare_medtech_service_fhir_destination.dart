@@ -10,7 +10,8 @@ const Set<String> _azurermHealthcareMedtechServiceFhirDestinationSensitive =
 /// Healthcare Medtech Service Fhir Destination Identity Resolution enum for `destination_identity_resolution_type`.
 extension type const HealthcareMedtechServiceFhirDestinationIdentityResolutionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HealthcareMedtechServiceFhirDestinationIdentityResolutionType.variable(
     String name,
   ) : this._(TfArg.variable(name));

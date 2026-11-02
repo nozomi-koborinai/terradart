@@ -10,7 +10,8 @@ const Set<String> _azurermContainerAppEnvironmentManagedCertificateSensitive =
 /// Container App Environment Managed Certificate Domain Control enum for `domain_control_validation`.
 extension type const ContainerAppEnvironmentManagedCertificateDomainControlValidation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerAppEnvironmentManagedCertificateDomainControlValidation.variable(
     String name,
   ) : this._(TfArg.variable(name));

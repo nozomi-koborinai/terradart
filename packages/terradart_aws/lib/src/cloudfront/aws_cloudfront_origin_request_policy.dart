@@ -30,7 +30,8 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
 /// `cookie_behavior` — derived from the provider schema description.
 extension type const CloudfrontOriginRequestPolicyCookieBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontOriginRequestPolicyCookieBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontOriginRequestPolicyCookieBehavior.expression(String template)
@@ -94,7 +95,8 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
 /// `header_behavior` — derived from the provider schema description.
 extension type const CloudfrontOriginRequestPolicyHeaderBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontOriginRequestPolicyHeaderBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontOriginRequestPolicyHeaderBehavior.expression(String template)
@@ -163,7 +165,8 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
 /// `query_string_behavior` — derived from the provider schema description.
 extension type const CloudfrontOriginRequestPolicyQueryStringBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontOriginRequestPolicyQueryStringBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontOriginRequestPolicyQueryStringBehavior.expression(String template)

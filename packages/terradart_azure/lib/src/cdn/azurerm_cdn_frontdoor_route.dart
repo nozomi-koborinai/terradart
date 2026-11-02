@@ -271,7 +271,8 @@ extension type const CdnFrontdoorRouteContentTypesToCompress._(TfArg<String> _)
 /// `query_string_caching_behavior` — derived from the provider schema description.
 extension type const CdnFrontdoorRouteQueryStringCachingBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorRouteQueryStringCachingBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorRouteQueryStringCachingBehavior.expression(String template)

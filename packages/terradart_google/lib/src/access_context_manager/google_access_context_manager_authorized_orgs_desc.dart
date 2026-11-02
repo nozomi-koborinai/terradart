@@ -10,7 +10,8 @@ const Set<String> _googleAccessContextManagerAuthorizedOrgsDescSensitive =
 /// `authorization_type` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
 extension type const AccessContextManagerAuthorizedOrgsDescAuthorizationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAuthorizedOrgsDescAuthorizationType.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerAuthorizedOrgsDescAuthorizationType.expression(
@@ -32,7 +33,8 @@ extension type const AccessContextManagerAuthorizedOrgsDescAuthorizationType._(
 /// `asset_type` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
 extension type const AccessContextManagerAuthorizedOrgsDescAssetType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAuthorizedOrgsDescAssetType.variable(String name)
     : this._(TfArg.variable(name));
   AccessContextManagerAuthorizedOrgsDescAssetType.expression(String template)
@@ -57,7 +59,8 @@ extension type const AccessContextManagerAuthorizedOrgsDescAssetType._(
 /// `authorization_direction` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
 extension type const AccessContextManagerAuthorizedOrgsDescAuthorizationDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerAuthorizedOrgsDescAuthorizationDirection.variable(
     String name,
   ) : this._(TfArg.variable(name));

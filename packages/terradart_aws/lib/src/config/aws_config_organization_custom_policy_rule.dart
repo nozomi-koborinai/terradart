@@ -9,7 +9,8 @@ const Set<String> _awsConfigOrganizationCustomPolicyRuleSensitive = <String>{};
 /// Config Organization Custom Policy Rule Maximum Execution enum for `maximum_execution_frequency`.
 extension type const ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -48,7 +49,8 @@ extension type const ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency
 /// Config Organization Custom Policy Rule Trigger enum for `trigger_types`.
 extension type const ConfigOrganizationCustomPolicyRuleTriggerTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigOrganizationCustomPolicyRuleTriggerTypes.variable(String name)
     : this._(TfArg.variable(name));
   ConfigOrganizationCustomPolicyRuleTriggerTypes.expression(String template)

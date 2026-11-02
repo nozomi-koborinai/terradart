@@ -10,7 +10,8 @@ const Set<String> _azurermSpringCloudContainerDeploymentSensitive = <String>{};
 /// Spring Cloud Container Deployment Language enum for `language_framework`.
 extension type const SpringCloudContainerDeploymentLanguageFramework._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpringCloudContainerDeploymentLanguageFramework.variable(String name)
     : this._(TfArg.variable(name));
   SpringCloudContainerDeploymentLanguageFramework.expression(String template)

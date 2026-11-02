@@ -70,7 +70,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
 /// `resource_type` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationResourceType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -205,7 +206,8 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType.
 /// `telemetry_source_types` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -262,7 +264,8 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationTelemetrySour
 /// `telemetry_type` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationTelemetryType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationTelemetryType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -382,7 +385,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationDestinationConfigurati
 /// `destination_type` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationDestinationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationDestinationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -512,7 +516,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationElbLoadBalancerLogging
 /// `output_format` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationOutputFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationOutputFormat.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -554,7 +559,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationLogDeliveryParameters 
 /// `log_types` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationLogTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationLogTypes.variable(String name)
     : this._(TfArg.variable(name));
   ObservabilityadminTelemetryRuleForOrganizationLogTypes.expression(
@@ -635,7 +641,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationMskMonitoringParameter
 /// `enhanced_monitoring` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -724,7 +731,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationWafLoggingParameters {
 /// `log_type` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationLogType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationLogType.variable(String name)
     : this._(TfArg.variable(name));
   ObservabilityadminTelemetryRuleForOrganizationLogType.expression(
@@ -767,7 +775,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationLoggingFilter {
 /// `default_behavior` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationDefaultBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationDefaultBehavior.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -822,7 +831,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationFilters {
 /// `behavior` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationBehavior.variable(String name)
     : this._(TfArg.variable(name));
   ObservabilityadminTelemetryRuleForOrganizationBehavior.expression(
@@ -846,7 +856,8 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationBehavior._(
 /// `requirement` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationRequirement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationRequirement.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -911,7 +922,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationActionCondition {
 /// `action` — derived from the provider schema description.
 extension type const ObservabilityadminTelemetryRuleForOrganizationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ObservabilityadminTelemetryRuleForOrganizationAction.variable(String name)
     : this._(TfArg.variable(name));
   ObservabilityadminTelemetryRuleForOrganizationAction.expression(

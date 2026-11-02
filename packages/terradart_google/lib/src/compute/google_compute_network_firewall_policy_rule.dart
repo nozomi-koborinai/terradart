@@ -13,7 +13,8 @@ const Set<String> _googleComputeNetworkFirewallPolicyRuleSensitive = <String>{};
 /// Compute Network Firewall Policy Rule enum for `direction`.
 extension type const ComputeNetworkFirewallPolicyRuleDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkFirewallPolicyRuleDirection.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkFirewallPolicyRuleDirection.expression(String template)
@@ -37,7 +38,8 @@ extension type const ComputeNetworkFirewallPolicyRuleDirection._(
 /// Compute Network Firewall Policy Rule Target enum for `target_type`.
 extension type const ComputeNetworkFirewallPolicyRuleTargetType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkFirewallPolicyRuleTargetType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkFirewallPolicyRuleTargetType.expression(String template)
@@ -134,7 +136,8 @@ final class ComputeNetworkFirewallPolicyRuleMatch {
 /// `dest_network_context` — derived from the provider schema description.
 extension type const ComputeNetworkFirewallPolicyRuleDestNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkFirewallPolicyRuleDestNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkFirewallPolicyRuleDestNetworkContext.expression(String template)
@@ -169,7 +172,8 @@ extension type const ComputeNetworkFirewallPolicyRuleDestNetworkContext._(
 /// `src_network_context` — derived from the provider schema description.
 extension type const ComputeNetworkFirewallPolicyRuleSrcNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkFirewallPolicyRuleSrcNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkFirewallPolicyRuleSrcNetworkContext.expression(String template)

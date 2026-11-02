@@ -13,7 +13,8 @@ const Set<String> _azurermMssqlServerSecurityAlertPolicySensitive = <String>{
 /// Mssql Server Security Alert Policy Disabled enum for `disabled_alerts`.
 extension type const MssqlServerSecurityAlertPolicyDisabledAlerts._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlServerSecurityAlertPolicyDisabledAlerts.variable(String name)
     : this._(TfArg.variable(name));
   MssqlServerSecurityAlertPolicyDisabledAlerts.expression(String template)

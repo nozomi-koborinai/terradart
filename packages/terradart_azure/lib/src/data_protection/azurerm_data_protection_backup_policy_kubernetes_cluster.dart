@@ -50,7 +50,8 @@ final class DataProtectionBackupPolicyKubernetesClusterLifeCycle {
 /// `data_store_type` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyKubernetesClusterDataStoreType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyKubernetesClusterDataStoreType.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyKubernetesClusterDataStoreType.expression(
@@ -138,7 +139,8 @@ final class DataProtectionBackupPolicyKubernetesClusterCriteria {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyKubernetesClusterAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyKubernetesClusterAbsoluteCriteria.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -177,7 +179,8 @@ extension type const DataProtectionBackupPolicyKubernetesClusterAbsoluteCriteria
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyKubernetesClusterWeeksOfMonth.expression(

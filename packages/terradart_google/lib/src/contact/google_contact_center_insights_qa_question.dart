@@ -81,7 +81,8 @@ final class ContactCenterInsightsQaQuestionPredefinedQuestionConfig {
 /// `type` — derived from the provider schema description.
 extension type const ContactCenterInsightsQaQuestionPredefinedQuestionConfigType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContactCenterInsightsQaQuestionPredefinedQuestionConfigType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -180,7 +181,8 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
 /// `dataset_validation_warnings` — derived from the provider schema description.
 extension type const ContactCenterInsightsQaQuestionDatasetValidationWarnings._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContactCenterInsightsQaQuestionDatasetValidationWarnings.variable(String name)
     : this._(TfArg.variable(name));
   ContactCenterInsightsQaQuestionDatasetValidationWarnings.expression(

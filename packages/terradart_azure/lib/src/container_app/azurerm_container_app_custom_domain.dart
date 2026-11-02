@@ -9,7 +9,8 @@ const Set<String> _azurermContainerAppCustomDomainSensitive = <String>{};
 /// Container App Custom Domain Certificate Binding enum for `certificate_binding_type`.
 extension type const ContainerAppCustomDomainCertificateBindingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerAppCustomDomainCertificateBindingType.variable(String name)
     : this._(TfArg.variable(name));
   ContainerAppCustomDomainCertificateBindingType.expression(String template)

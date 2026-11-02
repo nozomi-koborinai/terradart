@@ -32,7 +32,8 @@ final class ProjectIamAuditConfigAuditLogConfig {
 /// `log_type` — derived from the provider schema description.
 extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ProjectIamAuditConfigAuditLogConfigLogType.variable(String name)
     : this._(TfArg.variable(name));
   ProjectIamAuditConfigAuditLogConfigLogType.expression(String template)

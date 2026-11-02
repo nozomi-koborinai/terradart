@@ -11,7 +11,8 @@ const Set<String> _googleCloudSecurityComplianceCloudControlSensitive =
 /// Cloud Security Compliance Cloud Control enum for `severity`.
 extension type const CloudSecurityComplianceCloudControlSeverity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudSecurityComplianceCloudControlSeverity.variable(String name)
     : this._(TfArg.variable(name));
   CloudSecurityComplianceCloudControlSeverity.expression(String template)
@@ -94,7 +95,8 @@ final class CloudSecurityComplianceCloudControlParameterSpec {
 /// `value_type` — derived from the provider schema description.
 extension type const CloudSecurityComplianceCloudControlValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudSecurityComplianceCloudControlValueType.variable(String name)
     : this._(TfArg.variable(name));
   CloudSecurityComplianceCloudControlValueType.expression(String template)

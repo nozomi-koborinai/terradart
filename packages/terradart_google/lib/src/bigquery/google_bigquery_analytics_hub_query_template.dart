@@ -49,7 +49,8 @@ final class BigqueryAnalyticsHubQueryTemplateRoutine {
 /// `routine_type` — derived from the provider schema description.
 extension type const BigqueryAnalyticsHubQueryTemplateRoutineType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BigqueryAnalyticsHubQueryTemplateRoutineType.variable(String name)
     : this._(TfArg.variable(name));
   BigqueryAnalyticsHubQueryTemplateRoutineType.expression(String template)

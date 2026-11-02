@@ -10,7 +10,8 @@ const Set<String> _azurermSiteRecoveryVmwareReplicatedVmSensitive = <String>{};
 /// Site Recovery Vmware Replicated Vm Default Recovery Disk enum for `default_recovery_disk_type`.
 extension type const SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType.variable(String name)
     : this._(TfArg.variable(name));
   SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType.expression(
@@ -64,7 +65,8 @@ extension type const SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType._(
 /// Site Recovery Vmware Replicated Vm License enum for `license_type`.
 extension type const SiteRecoveryVmwareReplicatedVmLicenseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SiteRecoveryVmwareReplicatedVmLicenseType.variable(String name)
     : this._(TfArg.variable(name));
   SiteRecoveryVmwareReplicatedVmLicenseType.expression(String template)

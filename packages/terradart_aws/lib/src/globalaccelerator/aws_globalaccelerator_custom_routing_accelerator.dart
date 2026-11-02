@@ -11,7 +11,8 @@ const Set<String> _awsGlobalacceleratorCustomRoutingAcceleratorSensitive =
 /// Globalaccelerator Custom Routing Accelerator Ip Address enum for `ip_address_type`.
 extension type const GlobalacceleratorCustomRoutingAcceleratorIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlobalacceleratorCustomRoutingAcceleratorIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   GlobalacceleratorCustomRoutingAcceleratorIpAddressType.expression(

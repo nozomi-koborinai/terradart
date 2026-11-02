@@ -9,7 +9,8 @@ const Set<String> _awsServicecatalogPortfolioShareSensitive = <String>{};
 /// Servicecatalog Portfolio Share Accept enum for `accept_language`.
 extension type const ServicecatalogPortfolioShareAcceptLanguage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogPortfolioShareAcceptLanguage.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogPortfolioShareAcceptLanguage.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _azurermStorageSyncServerEndpointSensitive = <String>{};
 /// Storage Sync Server Endpoint Initial Download enum for `initial_download_policy`.
 extension type const StorageSyncServerEndpointInitialDownloadPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageSyncServerEndpointInitialDownloadPolicy.variable(String name)
     : this._(TfArg.variable(name));
   StorageSyncServerEndpointInitialDownloadPolicy.expression(String template)

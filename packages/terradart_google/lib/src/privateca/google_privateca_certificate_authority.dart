@@ -35,7 +35,8 @@ extension type const PrivatecaCertificateAuthorityType._(TfArg<String> _)
 /// `desired_state` — operational state target for the CA.
 extension type const PrivatecaCertificateAuthorityDesiredState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivatecaCertificateAuthorityDesiredState.variable(String name)
     : this._(TfArg.variable(name));
   PrivatecaCertificateAuthorityDesiredState.expression(String template)
@@ -63,7 +64,8 @@ extension type const PrivatecaCertificateAuthorityDesiredState._(
 /// `key_spec.algorithm` — managed Cloud KMS key algorithm.
 extension type const PrivatecaCertificateAuthorityKeyAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivatecaCertificateAuthorityKeyAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   PrivatecaCertificateAuthorityKeyAlgorithm.expression(String template)

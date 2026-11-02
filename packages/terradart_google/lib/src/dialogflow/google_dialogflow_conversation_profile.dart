@@ -337,7 +337,8 @@ final class DialogflowConversationProfileSections {
 /// `section_types` — derived from the provider schema description.
 extension type const DialogflowConversationProfileSectionTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileSectionTypes.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileSectionTypes.expression(String template)
@@ -620,7 +621,8 @@ final class DialogflowConversationProfileNotificationConfig {
 /// `message_format` — derived from the provider schema description.
 extension type const DialogflowConversationProfileMessageFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileMessageFormat.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileMessageFormat.expression(String template)
@@ -783,7 +785,8 @@ final class DialogflowConversationProfileSttConfig {
 /// `audio_encoding` — derived from the provider schema description.
 extension type const DialogflowConversationProfileAudioEncoding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileAudioEncoding.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileAudioEncoding.expression(String template)
@@ -837,7 +840,8 @@ extension type const DialogflowConversationProfileAudioEncoding._(
 /// `speech_model_variant` — derived from the provider schema description.
 extension type const DialogflowConversationProfileSpeechModelVariant._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileSpeechModelVariant.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileSpeechModelVariant.expression(String template)
@@ -905,7 +909,8 @@ final class DialogflowConversationProfileGeminiAsrConfig {
 /// `end_of_speech_sensitivity` — derived from the provider schema description.
 extension type const DialogflowConversationProfileEndOfSpeechSensitivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileEndOfSpeechSensitivity.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileEndOfSpeechSensitivity.expression(
@@ -931,7 +936,8 @@ extension type const DialogflowConversationProfileEndOfSpeechSensitivity._(
 /// `start_of_speech_sensitivity` — derived from the provider schema description.
 extension type const DialogflowConversationProfileStartOfSpeechSensitivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowConversationProfileStartOfSpeechSensitivity.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowConversationProfileStartOfSpeechSensitivity.expression(

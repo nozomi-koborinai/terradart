@@ -309,7 +309,8 @@ final class SsmMaintenanceWindowTaskNotificationConfig {
 /// `notification_events` — derived from the provider schema description.
 extension type const SsmMaintenanceWindowTaskNotificationEvents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsmMaintenanceWindowTaskNotificationEvents.variable(String name)
     : this._(TfArg.variable(name));
   SsmMaintenanceWindowTaskNotificationEvents.expression(String template)

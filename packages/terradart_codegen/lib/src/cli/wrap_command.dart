@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:args/command_runner.dart';
-import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
 import '../codegen/barrels/barrel_emitter.dart';
@@ -17,6 +16,7 @@ import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
 import '../codegen/naming.dart' show WrapperOverrideKindNames, snakeToPascal;
+import '../codegen/package_formatter.dart';
 import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
 import '../codegen/references/reference_targets.dart';
@@ -692,13 +692,8 @@ class WrapCommand extends Command<int> {
       principals: principalDataSources,
       principal: principal,
     );
-    // Layer 2 emit output is unformatted; match the WrapperEmitter /
-    // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
-    // `latestLanguageVersion`) so wrap output is byte-identical with the
-    // handwritten_baseline goldens.
-    final formatter = DartFormatter(
-      languageVersion: DartFormatter.latestLanguageVersion,
-    );
+    // Layer 2 emit output is unformatted.
+    final formatter = packageFormatter(output);
 
     for (final entry in resourceOverrides.entries) {
       final def = ir.resources[entry.key];
@@ -928,8 +923,8 @@ class WrapCommand extends Command<int> {
           caseInsensitiveEnums:
               providerEnums.enabled && providerEnums.caseInsensitive,
         );
-        buffer[p.relative(migrateManifestPath, from: output)] = formatter
-            .format(manifestRaw);
+        buffer[p.relative(migrateManifestPath, from: output)] =
+            packageFormatter(migrateManifestPath).format(manifestRaw);
       }
       for (final entry in barrelFiles.entries) {
         // `--output` is `.../lib/src`; barrels live one level up in `lib/`.

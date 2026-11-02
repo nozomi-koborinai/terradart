@@ -36,7 +36,8 @@ extension type const ProjectDefaultServiceAccountsAction._(TfArg<String> _)
 /// Project Default Service Accounts Restore enum for `restore_policy`.
 extension type const ProjectDefaultServiceAccountsRestorePolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ProjectDefaultServiceAccountsRestorePolicy.variable(String name)
     : this._(TfArg.variable(name));
   ProjectDefaultServiceAccountsRestorePolicy.expression(String template)

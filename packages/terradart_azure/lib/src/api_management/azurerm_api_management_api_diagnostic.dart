@@ -12,7 +12,8 @@ const Set<String> _azurermApiManagementApiDiagnosticSensitive = <String>{};
 /// Api Management Api Diagnostic Http Correlation enum for `http_correlation_protocol`.
 extension type const ApiManagementApiDiagnosticHttpCorrelationProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementApiDiagnosticHttpCorrelationProtocol.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementApiDiagnosticHttpCorrelationProtocol.expression(String template)
@@ -60,7 +61,8 @@ extension type const ApiManagementApiDiagnosticIdentifier._(TfArg<String> _)
 /// Api Management Api Diagnostic Operation Name enum for `operation_name_format`.
 extension type const ApiManagementApiDiagnosticOperationNameFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementApiDiagnosticOperationNameFormat.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementApiDiagnosticOperationNameFormat.expression(String template)

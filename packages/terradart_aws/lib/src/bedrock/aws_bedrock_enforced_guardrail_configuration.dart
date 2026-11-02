@@ -51,7 +51,8 @@ final class BedrockEnforcedGuardrailConfigurationSelectiveContentGuarding {
 /// `messages` — derived from the provider schema description.
 extension type const BedrockEnforcedGuardrailConfigurationMessages._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockEnforcedGuardrailConfigurationMessages.variable(String name)
     : this._(TfArg.variable(name));
   BedrockEnforcedGuardrailConfigurationMessages.expression(String template)
@@ -75,7 +76,8 @@ extension type const BedrockEnforcedGuardrailConfigurationMessages._(
 /// `system` — derived from the provider schema description.
 extension type const BedrockEnforcedGuardrailConfigurationSystem._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockEnforcedGuardrailConfigurationSystem.variable(String name)
     : this._(TfArg.variable(name));
   BedrockEnforcedGuardrailConfigurationSystem.expression(String template)

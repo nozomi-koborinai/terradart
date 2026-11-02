@@ -194,7 +194,8 @@ final class MssqlVirtualMachineAvailabilityGroupListenerReplica {
 /// `commit` — derived from the provider schema description.
 extension type const MssqlVirtualMachineAvailabilityGroupListenerCommit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlVirtualMachineAvailabilityGroupListenerCommit.variable(String name)
     : this._(TfArg.variable(name));
   MssqlVirtualMachineAvailabilityGroupListenerCommit.expression(String template)
@@ -219,7 +220,8 @@ extension type const MssqlVirtualMachineAvailabilityGroupListenerCommit._(
 /// `failover_mode` — derived from the provider schema description.
 extension type const MssqlVirtualMachineAvailabilityGroupListenerFailoverMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlVirtualMachineAvailabilityGroupListenerFailoverMode.variable(String name)
     : this._(TfArg.variable(name));
   MssqlVirtualMachineAvailabilityGroupListenerFailoverMode.expression(
@@ -245,7 +247,8 @@ extension type const MssqlVirtualMachineAvailabilityGroupListenerFailoverMode._(
 /// `readable_secondary` — derived from the provider schema description.
 extension type const MssqlVirtualMachineAvailabilityGroupListenerReadableSecondary._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlVirtualMachineAvailabilityGroupListenerReadableSecondary.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -278,7 +281,8 @@ extension type const MssqlVirtualMachineAvailabilityGroupListenerReadableSeconda
 /// `role` — derived from the provider schema description.
 extension type const MssqlVirtualMachineAvailabilityGroupListenerRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlVirtualMachineAvailabilityGroupListenerRole.variable(String name)
     : this._(TfArg.variable(name));
   MssqlVirtualMachineAvailabilityGroupListenerRole.expression(String template)

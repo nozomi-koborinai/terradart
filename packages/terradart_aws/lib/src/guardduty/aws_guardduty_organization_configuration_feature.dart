@@ -11,7 +11,8 @@ const Set<String> _awsGuarddutyOrganizationConfigurationFeatureSensitive =
 /// Guardduty Organization Configuration Feature Auto enum for `auto_enable`.
 extension type const GuarddutyOrganizationConfigurationFeatureAutoEnable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyOrganizationConfigurationFeatureAutoEnable.variable(String name)
     : this._(TfArg.variable(name));
   GuarddutyOrganizationConfigurationFeatureAutoEnable.expression(
@@ -38,7 +39,8 @@ extension type const GuarddutyOrganizationConfigurationFeatureAutoEnable._(
 /// Guardduty Organization Configuration Feature enum for `name`.
 extension type const GuarddutyOrganizationConfigurationFeatureName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyOrganizationConfigurationFeatureName.variable(String name)
     : this._(TfArg.variable(name));
   GuarddutyOrganizationConfigurationFeatureName.expression(String template)
@@ -112,7 +114,8 @@ final class GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration {
 /// `auto_enable` — derived from the provider schema description.
 extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -145,7 +148,8 @@ extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigur
 /// `name` — derived from the provider schema description.
 extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName.variable(
     String name,
   ) : this._(TfArg.variable(name));

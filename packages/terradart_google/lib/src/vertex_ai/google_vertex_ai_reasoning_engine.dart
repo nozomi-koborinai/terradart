@@ -541,7 +541,8 @@ final class VertexAiReasoningEngineTopics {
 /// `managed_memory_topic` — derived from the provider schema description.
 extension type const VertexAiReasoningEngineTopicsManagedMemoryTopic._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiReasoningEngineTopicsManagedMemoryTopic.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiReasoningEngineTopicsManagedMemoryTopic.expression(String template)

@@ -13,7 +13,8 @@ const Set<String> _googleGeminiReleaseChannelSettingBindingSensitive =
 /// Gemini Release Channel Setting Binding enum for `product`.
 extension type const GeminiReleaseChannelSettingBindingProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GeminiReleaseChannelSettingBindingProduct.variable(String name)
     : this._(TfArg.variable(name));
   GeminiReleaseChannelSettingBindingProduct.expression(String template)

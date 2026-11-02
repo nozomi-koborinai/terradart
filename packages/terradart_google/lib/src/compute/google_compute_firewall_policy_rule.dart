@@ -108,7 +108,8 @@ final class ComputeFirewallPolicyRuleMatch {
 /// `dest_network_context` — derived from the provider schema description.
 extension type const ComputeFirewallPolicyRuleDestNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeFirewallPolicyRuleDestNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeFirewallPolicyRuleDestNetworkContext.expression(String template)
@@ -144,7 +145,8 @@ extension type const ComputeFirewallPolicyRuleDestNetworkContext._(
 /// `src_network_context` — derived from the provider schema description.
 extension type const ComputeFirewallPolicyRuleSrcNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeFirewallPolicyRuleSrcNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeFirewallPolicyRuleSrcNetworkContext.expression(String template)

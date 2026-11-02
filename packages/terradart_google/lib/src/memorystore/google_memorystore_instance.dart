@@ -679,7 +679,8 @@ final class MemorystoreInstanceZoneDistributionConfig {
 /// `mode` — derived from the provider schema description.
 extension type const MemorystoreInstanceZoneDistributionConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MemorystoreInstanceZoneDistributionConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   MemorystoreInstanceZoneDistributionConfigMode.expression(String template)

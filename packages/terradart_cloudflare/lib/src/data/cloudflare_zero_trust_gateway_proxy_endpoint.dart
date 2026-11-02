@@ -41,7 +41,8 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
 /// `direction` — derived from the provider schema description.
 extension type const DataZeroTrustGatewayProxyEndpointDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustGatewayProxyEndpointDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustGatewayProxyEndpointDirection.expression(String template)

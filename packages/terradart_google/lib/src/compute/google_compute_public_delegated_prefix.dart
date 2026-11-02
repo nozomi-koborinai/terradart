@@ -12,7 +12,8 @@ const Set<String> _googleComputePublicDelegatedPrefixSensitive = <String>{};
 /// Compute Public Delegated Prefix Ipv6 Access enum for `ipv6_access_type`.
 extension type const ComputePublicDelegatedPrefixIpv6AccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputePublicDelegatedPrefixIpv6AccessType.variable(String name)
     : this._(TfArg.variable(name));
   ComputePublicDelegatedPrefixIpv6AccessType.expression(String template)

@@ -13,7 +13,8 @@ const Set<String> _googleSecurityScannerScanConfigSensitive = <String>{
 /// Security Scanner Scan Config Export To Security Command enum for `export_to_security_command_center`.
 extension type const SecurityScannerScanConfigExportToSecurityCommandCenter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityScannerScanConfigExportToSecurityCommandCenter.variable(String name)
     : this._(TfArg.variable(name));
   SecurityScannerScanConfigExportToSecurityCommandCenter.expression(

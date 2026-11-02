@@ -12,7 +12,8 @@ const Set<String> _awsAcmpcaCertificateAuthoritySensitive = <String>{};
 /// Acmpca Certificate Authority Key Storage Security enum for `key_storage_security_standard`.
 extension type const AcmpcaCertificateAuthorityKeyStorageSecurityStandard._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AcmpcaCertificateAuthorityKeyStorageSecurityStandard.variable(String name)
     : this._(TfArg.variable(name));
   AcmpcaCertificateAuthorityKeyStorageSecurityStandard.expression(
@@ -164,7 +165,8 @@ extension type const AcmpcaCertificateAuthorityKeyAlgorithm._(TfArg<String> _)
 /// `signing_algorithm` — derived from the provider schema description.
 extension type const AcmpcaCertificateAuthoritySigningAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AcmpcaCertificateAuthoritySigningAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   AcmpcaCertificateAuthoritySigningAlgorithm.expression(String template)

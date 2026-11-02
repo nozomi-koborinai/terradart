@@ -78,7 +78,8 @@ extension type const KustoIothubDataConnectionDataFormat._(TfArg<String> _)
 /// Kusto Iothub Data Connection Database Routing enum for `database_routing_type`.
 extension type const KustoIothubDataConnectionDatabaseRoutingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KustoIothubDataConnectionDatabaseRoutingType.variable(String name)
     : this._(TfArg.variable(name));
   KustoIothubDataConnectionDatabaseRoutingType.expression(String template)

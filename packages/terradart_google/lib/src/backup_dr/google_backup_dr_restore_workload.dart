@@ -143,7 +143,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 /// `key_revocation_action_type` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadKeyRevocationActionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadKeyRevocationActionType.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadKeyRevocationActionType.expression(String template)
@@ -172,7 +173,8 @@ extension type const BackupDrRestoreWorkloadKeyRevocationActionType._(
 /// `private_ipv6_google_access` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadPrivateIpv6GoogleAccess.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadPrivateIpv6GoogleAccess.expression(String template)
@@ -260,7 +262,8 @@ final class BackupDrRestoreWorkloadAllocationAffinity {
 /// `consume_allocation_type` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadConsumeAllocationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadConsumeAllocationType.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadConsumeAllocationType.expression(String template)
@@ -540,7 +543,8 @@ final class BackupDrRestoreWorkloadGuestOsFeature {
 /// `type` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadGuestOsFeatureType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadGuestOsFeatureType.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadGuestOsFeatureType.expression(String template)
@@ -1076,7 +1080,8 @@ final class BackupDrRestoreWorkloadNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadTotalEgressBandwidthTier.expression(String template)
@@ -1197,7 +1202,8 @@ final class BackupDrRestoreWorkloadScheduling {
 /// `instance_termination_action` — derived from the provider schema description.
 extension type const BackupDrRestoreWorkloadInstanceTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BackupDrRestoreWorkloadInstanceTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   BackupDrRestoreWorkloadInstanceTerminationAction.expression(String template)

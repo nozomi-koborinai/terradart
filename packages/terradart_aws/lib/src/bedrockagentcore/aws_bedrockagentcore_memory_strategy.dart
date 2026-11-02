@@ -85,7 +85,8 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentcoreMemoryStrategyConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreMemoryStrategyConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreMemoryStrategyConfigurationType.expression(String template)
@@ -358,7 +359,8 @@ final class BedrockagentcoreMemoryStrategyMetadataSchema {
 /// `extraction_type` — derived from the provider schema description.
 extension type const BedrockagentcoreMemoryStrategyExtractionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreMemoryStrategyExtractionType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreMemoryStrategyExtractionType.expression(String template)
@@ -383,7 +385,8 @@ extension type const BedrockagentcoreMemoryStrategyExtractionType._(
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentcoreMemoryStrategyMetadataSchemaType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreMemoryStrategyMetadataSchemaType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreMemoryStrategyMetadataSchemaType.expression(String template)

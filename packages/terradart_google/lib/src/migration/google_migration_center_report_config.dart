@@ -15,7 +15,8 @@ const Set<String> _googleMigrationCenterReportConfigSensitive = <String>{};
 /// Terraform `deletion_policy` for Migration Center report configs.
 extension type const MigrationCenterReportConfigDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterReportConfigDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterReportConfigDeletionPolicy.expression(String template)

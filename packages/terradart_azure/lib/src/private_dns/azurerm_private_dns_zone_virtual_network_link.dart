@@ -12,7 +12,8 @@ const Set<String> _azurermPrivateDnsZoneVirtualNetworkLinkSensitive =
 /// Private Dns Zone Virtual Network Link Resolution enum for `resolution_policy`.
 extension type const PrivateDnsZoneVirtualNetworkLinkResolutionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivateDnsZoneVirtualNetworkLinkResolutionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   PrivateDnsZoneVirtualNetworkLinkResolutionPolicy.expression(String template)

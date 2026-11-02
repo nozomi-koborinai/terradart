@@ -64,7 +64,8 @@ final class Resiliencehubv2PolicyMultiAz {
 /// `disaster_recovery_approach` — derived from the provider schema description.
 extension type const Resiliencehubv2PolicyDisasterRecoveryApproach._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Resiliencehubv2PolicyDisasterRecoveryApproach.variable(String name)
     : this._(TfArg.variable(name));
   Resiliencehubv2PolicyDisasterRecoveryApproach.expression(String template)

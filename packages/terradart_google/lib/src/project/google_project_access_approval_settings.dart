@@ -30,7 +30,8 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
 /// `cloud_product` — derived from the provider schema description.
 extension type const ProjectAccessApprovalSettingsCloudProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ProjectAccessApprovalSettingsCloudProduct.variable(String name)
     : this._(TfArg.variable(name));
   ProjectAccessApprovalSettingsCloudProduct.expression(String template)
@@ -626,7 +627,8 @@ extension type const ProjectAccessApprovalSettingsCloudProduct._(
 /// `enrollment_level` — derived from the provider schema description.
 extension type const ProjectAccessApprovalSettingsEnrollmentLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ProjectAccessApprovalSettingsEnrollmentLevel.variable(String name)
     : this._(TfArg.variable(name));
   ProjectAccessApprovalSettingsEnrollmentLevel.expression(String template)

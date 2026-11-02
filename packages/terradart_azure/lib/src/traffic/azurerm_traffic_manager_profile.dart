@@ -29,7 +29,8 @@ extension type const TrafficManagerProfileStatus._(TfArg<String> _)
 /// Traffic Manager Profile Traffic Routing enum for `traffic_routing_method`.
 extension type const TrafficManagerProfileTrafficRoutingMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TrafficManagerProfileTrafficRoutingMethod.variable(String name)
     : this._(TfArg.variable(name));
   TrafficManagerProfileTrafficRoutingMethod.expression(String template)

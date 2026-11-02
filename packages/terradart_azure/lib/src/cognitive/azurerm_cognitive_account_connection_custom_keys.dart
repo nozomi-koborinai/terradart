@@ -10,7 +10,8 @@ const Set<String> _azurermCognitiveAccountConnectionCustomKeysSensitive =
 /// Cognitive Account Connection Custom Keys enum for `category`.
 extension type const CognitiveAccountConnectionCustomKeysCategory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitiveAccountConnectionCustomKeysCategory.variable(String name)
     : this._(TfArg.variable(name));
   CognitiveAccountConnectionCustomKeysCategory.expression(String template)

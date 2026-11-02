@@ -42,7 +42,8 @@ final class FrontdoorCustomHttpsConfiguration {
 /// `certificate_source` — derived from the provider schema description.
 extension type const FrontdoorCustomHttpsConfigurationCertificateSource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FrontdoorCustomHttpsConfigurationCertificateSource.variable(String name)
     : this._(TfArg.variable(name));
   FrontdoorCustomHttpsConfigurationCertificateSource.expression(String template)

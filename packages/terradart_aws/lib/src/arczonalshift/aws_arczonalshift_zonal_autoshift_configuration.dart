@@ -11,7 +11,8 @@ const Set<String> _awsArczonalshiftZonalAutoshiftConfigurationSensitive =
 /// Arczonalshift Zonal Autoshift Configuration Zonal Autoshift enum for `zonal_autoshift_status`.
 extension type const ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -139,7 +140,8 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 /// `type` — derived from the provider schema description.
 extension type const ArczonalshiftZonalAutoshiftConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArczonalshiftZonalAutoshiftConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   ArczonalshiftZonalAutoshiftConfigurationType.expression(String template)

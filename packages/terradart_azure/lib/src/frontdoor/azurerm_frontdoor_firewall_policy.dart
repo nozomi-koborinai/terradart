@@ -161,7 +161,8 @@ final class FrontdoorFirewallPolicyMatchCondition {
 /// `match_variable` — derived from the provider schema description.
 extension type const FrontdoorFirewallPolicyMatchConditionMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FrontdoorFirewallPolicyMatchConditionMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   FrontdoorFirewallPolicyMatchConditionMatchVariable.expression(String template)
@@ -222,7 +223,8 @@ extension type const FrontdoorFirewallPolicyMatchConditionMatchVariable._(
 /// `operator` — derived from the provider schema description.
 extension type const FrontdoorFirewallPolicyMatchConditionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FrontdoorFirewallPolicyMatchConditionOperator.variable(String name)
     : this._(TfArg.variable(name));
   FrontdoorFirewallPolicyMatchConditionOperator.expression(String template)
@@ -378,7 +380,8 @@ final class FrontdoorFirewallPolicyExclusion {
 /// `match_variable` — derived from the provider schema description.
 extension type const FrontdoorFirewallPolicyExclusionMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FrontdoorFirewallPolicyExclusionMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   FrontdoorFirewallPolicyExclusionMatchVariable.expression(String template)

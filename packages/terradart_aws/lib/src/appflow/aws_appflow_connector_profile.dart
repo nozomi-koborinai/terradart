@@ -326,7 +326,8 @@ final class AppflowConnectorProfileCredentialsCustomConnector {
 /// `authentication_type` — derived from the provider schema description.
 extension type const AppflowConnectorProfileAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppflowConnectorProfileAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   AppflowConnectorProfileAuthenticationType.expression(String template)

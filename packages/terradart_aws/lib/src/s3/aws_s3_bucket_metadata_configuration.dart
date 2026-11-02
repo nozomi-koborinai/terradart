@@ -108,7 +108,8 @@ final class S3BucketMetadataConfigurationEncryptionConfiguration {
 /// `sse_algorithm` — derived from the provider schema description.
 extension type const S3BucketMetadataConfigurationSseAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketMetadataConfigurationSseAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketMetadataConfigurationSseAlgorithm.expression(String template)

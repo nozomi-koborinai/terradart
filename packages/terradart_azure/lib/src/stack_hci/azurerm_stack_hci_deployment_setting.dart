@@ -478,7 +478,8 @@ final class StackHciDeploymentSettingStorage {
 /// `configuration_mode` — derived from the provider schema description.
 extension type const StackHciDeploymentSettingConfigurationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StackHciDeploymentSettingConfigurationMode.variable(String name)
     : this._(TfArg.variable(name));
   StackHciDeploymentSettingConfigurationMode.expression(String template)

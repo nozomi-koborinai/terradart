@@ -10,7 +10,8 @@ const Set<String> _awsSecurityhubStandardsControlAssociationSensitive =
 /// Securityhub Standards Control Association enum for `association_status`.
 extension type const SecurityhubStandardsControlAssociationStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubStandardsControlAssociationStatus.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubStandardsControlAssociationStatus.expression(String template)

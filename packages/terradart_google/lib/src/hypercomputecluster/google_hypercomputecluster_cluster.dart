@@ -142,7 +142,8 @@ final class HypercomputeclusterClusterNewSpotInstances {
 /// `termination_action` — derived from the provider schema description.
 extension type const HypercomputeclusterClusterTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HypercomputeclusterClusterTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   HypercomputeclusterClusterTerminationAction.expression(String template)
@@ -644,7 +645,8 @@ final class HypercomputeclusterClusterAutoclass {
 /// `terminal_storage_class` — derived from the provider schema description.
 extension type const HypercomputeclusterClusterTerminalStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HypercomputeclusterClusterTerminalStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   HypercomputeclusterClusterTerminalStorageClass.expression(String template)
@@ -815,7 +817,8 @@ final class HypercomputeclusterClusterNewLustre {
 /// `per_unit_storage_throughput` — derived from the provider schema description.
 extension type const HypercomputeclusterClusterPerUnitStorageThroughput._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HypercomputeclusterClusterPerUnitStorageThroughput.variable(String name)
     : this._(TfArg.variable(name));
   HypercomputeclusterClusterPerUnitStorageThroughput.expression(String template)

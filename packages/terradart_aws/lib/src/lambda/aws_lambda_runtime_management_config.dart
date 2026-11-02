@@ -11,7 +11,8 @@ const Set<String> _awsLambdaRuntimeManagementConfigSensitive = <String>{};
 /// Lambda Runtime Management Config Update Runtime enum for `update_runtime_on`.
 extension type const LambdaRuntimeManagementConfigUpdateRuntimeOn._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaRuntimeManagementConfigUpdateRuntimeOn.variable(String name)
     : this._(TfArg.variable(name));
   LambdaRuntimeManagementConfigUpdateRuntimeOn.expression(String template)

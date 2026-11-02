@@ -11,7 +11,8 @@ const Set<String> _googleNetworkServicesAgentConnectivityTemplateSensitive =
 /// Network Services Agent Connectivity Template Access enum for `access_path`.
 extension type const NetworkServicesAgentConnectivityTemplateAccessPath._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateAccessPath.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateAccessPath.expression(String template)
@@ -36,7 +37,8 @@ extension type const NetworkServicesAgentConnectivityTemplateAccessPath._(
 /// Network Services Agent Connectivity Template Access enum for `access_types`.
 extension type const NetworkServicesAgentConnectivityTemplateAccessTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateAccessTypes.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateAccessTypes.expression(
@@ -60,7 +62,8 @@ extension type const NetworkServicesAgentConnectivityTemplateAccessTypes._(
 /// Network Services Agent Connectivity Template Agent enum for `agent_compute`.
 extension type const NetworkServicesAgentConnectivityTemplateAgentCompute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateAgentCompute.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateAgentCompute.expression(
@@ -91,7 +94,8 @@ extension type const NetworkServicesAgentConnectivityTemplateAgentCompute._(
 /// Network Services Agent Connectivity Template Deployment enum for `deployment_model`.
 extension type const NetworkServicesAgentConnectivityTemplateDeploymentModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateDeploymentModel.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateDeploymentModel.expression(
@@ -146,7 +150,8 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
 /// `vpc_egress` — derived from the provider schema description.
 extension type const NetworkServicesAgentConnectivityTemplateVpcEgress._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateVpcEgress.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateVpcEgress.expression(String template)
@@ -213,7 +218,8 @@ final class NetworkServicesAgentConnectivityTemplateTlsConfig {
 /// `additional_roots` — derived from the provider schema description.
 extension type const NetworkServicesAgentConnectivityTemplateAdditionalRoots._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesAgentConnectivityTemplateAdditionalRoots.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesAgentConnectivityTemplateAdditionalRoots.expression(

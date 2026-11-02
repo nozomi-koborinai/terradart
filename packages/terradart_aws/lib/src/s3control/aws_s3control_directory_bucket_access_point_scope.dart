@@ -32,7 +32,8 @@ final class S3controlDirectoryBucketAccessPointScope {
 /// `permissions` — derived from the provider schema description.
 extension type const S3controlDirectoryBucketAccessPointScopePermissions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3controlDirectoryBucketAccessPointScopePermissions.variable(String name)
     : this._(TfArg.variable(name));
   S3controlDirectoryBucketAccessPointScopePermissions.expression(

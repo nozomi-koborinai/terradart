@@ -2194,7 +2194,8 @@ extension type const GameliftFleetType._(TfArg<String> _)
 /// Gamelift Fleet New Game Session Protection enum for `new_game_session_protection_policy`.
 extension type const GameliftFleetNewGameSessionProtectionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GameliftFleetNewGameSessionProtectionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   GameliftFleetNewGameSessionProtectionPolicy.expression(String template)

@@ -13,7 +13,8 @@ const Set<String> _googleIntegrationConnectorsConnectionSensitive = <String>{};
 /// Integration Connectors Connection Eventing Enablement enum for `eventing_enablement_type`.
 extension type const IntegrationConnectorsConnectionEventingEnablementType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionEventingEnablementType.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionEventingEnablementType.expression(
@@ -183,7 +184,8 @@ final class IntegrationConnectorsConnectionEncryptionKeyValue {
 /// `type` — derived from the provider schema description.
 extension type const IntegrationConnectorsConnectionEncryptionKeyValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionEncryptionKeyValueType.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionEncryptionKeyValueType.expression(
@@ -638,7 +640,8 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
 /// `auth_type` — derived from the provider schema description.
 extension type const IntegrationConnectorsConnectionAuthConfigAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionAuthConfigAuthType.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionAuthConfigAuthType.expression(String template)
@@ -846,7 +849,8 @@ final class IntegrationConnectorsConnectionSslConfig {
 /// `client_cert_type` — derived from the provider schema description.
 extension type const IntegrationConnectorsConnectionClientCertType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionClientCertType.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionClientCertType.expression(String template)
@@ -866,7 +870,8 @@ extension type const IntegrationConnectorsConnectionClientCertType._(
 /// `server_cert_type` — derived from the provider schema description.
 extension type const IntegrationConnectorsConnectionServerCertType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionServerCertType.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionServerCertType.expression(String template)
@@ -886,7 +891,8 @@ extension type const IntegrationConnectorsConnectionServerCertType._(
 /// `trust_model` — derived from the provider schema description.
 extension type const IntegrationConnectorsConnectionTrustModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IntegrationConnectorsConnectionTrustModel.variable(String name)
     : this._(TfArg.variable(name));
   IntegrationConnectorsConnectionTrustModel.expression(String template)

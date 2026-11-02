@@ -24,7 +24,8 @@ const Set<String> _azurermFunctionAppFlexConsumptionSensitive = <String>{
 /// Function App Flex Consumption Client Certificate enum for `client_certificate_mode`.
 extension type const FunctionAppFlexConsumptionClientCertificateMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionClientCertificateMode.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionClientCertificateMode.expression(String template)
@@ -92,7 +93,8 @@ extension type const FunctionAppFlexConsumptionRuntimeName._(TfArg<String> _)
 /// Function App Flex Consumption Storage Authentication enum for `storage_authentication_type`.
 extension type const FunctionAppFlexConsumptionStorageAuthenticationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionStorageAuthenticationType.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionStorageAuthenticationType.expression(
@@ -126,7 +128,8 @@ extension type const FunctionAppFlexConsumptionStorageAuthenticationType._(
 /// Function App Flex Consumption Storage Container enum for `storage_container_type`.
 extension type const FunctionAppFlexConsumptionStorageContainerType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionStorageContainerType.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionStorageContainerType.expression(String template)
@@ -239,7 +242,8 @@ final class FunctionAppFlexConsumptionAuthSettings {
 /// `default_provider` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionDefaultProvider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionDefaultProvider.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionDefaultProvider.expression(String template)
@@ -280,7 +284,8 @@ extension type const FunctionAppFlexConsumptionDefaultProvider._(
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionUnauthenticatedClientAction.expression(
@@ -923,7 +928,8 @@ final class FunctionAppFlexConsumptionAuthSettingsV2 {
 /// `forward_proxy_convention` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionForwardProxyConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionForwardProxyConvention.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionForwardProxyConvention.expression(String template)
@@ -951,7 +957,8 @@ extension type const FunctionAppFlexConsumptionForwardProxyConvention._(
 /// `unauthenticated_action` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionUnauthenticatedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionUnauthenticatedAction.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionUnauthenticatedAction.expression(String template)
@@ -1371,7 +1378,8 @@ final class FunctionAppFlexConsumptionTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionCookieExpirationConvention.expression(
@@ -1686,7 +1694,8 @@ final class FunctionAppFlexConsumptionSiteConfig {
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionIpRestrictionDefaultAction.expression(
@@ -1710,7 +1719,8 @@ extension type const FunctionAppFlexConsumptionIpRestrictionDefaultAction._(
 /// `load_balancing_mode` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionLoadBalancingMode.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionLoadBalancingMode.expression(String template)
@@ -1754,7 +1764,8 @@ extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
 /// `managed_pipeline_mode` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionManagedPipelineMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionManagedPipelineMode.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionManagedPipelineMode.expression(String template)
@@ -1778,7 +1789,8 @@ extension type const FunctionAppFlexConsumptionManagedPipelineMode._(
 /// `minimum_tls_version` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionMinimumTlsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionMinimumTlsVersion.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionMinimumTlsVersion.expression(String template)
@@ -1810,7 +1822,8 @@ extension type const FunctionAppFlexConsumptionMinimumTlsVersion._(
 /// `remote_debugging_version` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionRemoteDebuggingVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionRemoteDebuggingVersion.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionRemoteDebuggingVersion.expression(String template)
@@ -1838,7 +1851,8 @@ extension type const FunctionAppFlexConsumptionRemoteDebuggingVersion._(
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionScmIpRestrictionDefaultAction.expression(
@@ -1863,7 +1877,8 @@ extension type const FunctionAppFlexConsumptionScmIpRestrictionDefaultAction._(
 /// `scm_minimum_tls_version` — derived from the provider schema description.
 extension type const FunctionAppFlexConsumptionScmMinimumTlsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FunctionAppFlexConsumptionScmMinimumTlsVersion.variable(String name)
     : this._(TfArg.variable(name));
   FunctionAppFlexConsumptionScmMinimumTlsVersion.expression(String template)

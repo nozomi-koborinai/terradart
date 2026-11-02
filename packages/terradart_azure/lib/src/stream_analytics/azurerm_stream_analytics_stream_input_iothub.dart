@@ -55,7 +55,8 @@ extension type const StreamAnalyticsStreamInputIothubEncoding._(TfArg<String> _)
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsStreamInputIothubFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsStreamInputIothubFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsStreamInputIothubFieldDelimiter.expression(String template)

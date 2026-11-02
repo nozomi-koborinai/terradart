@@ -10,7 +10,8 @@ const Set<String> _azurermApiManagementNotificationRecipientUserSensitive =
 /// Api Management Notification Recipient User Notification enum for `notification_type`.
 extension type const ApiManagementNotificationRecipientUserNotificationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementNotificationRecipientUserNotificationType.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementNotificationRecipientUserNotificationType.expression(

@@ -265,7 +265,8 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobDebugRuleConfigurationsInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobDebugRuleConfigurationsInstanceType.expression(
@@ -1403,7 +1404,8 @@ final class SagemakerTrainingJobInputDataConfig {
 /// `compression_type` — derived from the provider schema description.
 extension type const SagemakerTrainingJobInputDataConfigCompressionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobInputDataConfigCompressionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobInputDataConfigCompressionType.expression(String template)
@@ -1605,7 +1607,8 @@ final class SagemakerTrainingJobS3DataSource {
 /// `s3_data_distribution_type` — derived from the provider schema description.
 extension type const SagemakerTrainingJobS3DataDistributionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobS3DataDistributionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobS3DataDistributionType.expression(String template)
@@ -1765,7 +1768,8 @@ final class SagemakerTrainingJobOutputDataConfig {
 /// `compression_type` — derived from the provider schema description.
 extension type const SagemakerTrainingJobOutputDataConfigCompressionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobOutputDataConfigCompressionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobOutputDataConfigCompressionType.expression(
@@ -1921,7 +1925,8 @@ final class SagemakerTrainingJobResourceConfig {
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerTrainingJobResourceConfigInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobResourceConfigInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobResourceConfigInstanceType.expression(String template)
@@ -3004,7 +3009,8 @@ final class SagemakerTrainingJobServerlessJobConfig {
 /// `customization_technique` — derived from the provider schema description.
 extension type const SagemakerTrainingJobCustomizationTechnique._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerTrainingJobCustomizationTechnique.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerTrainingJobCustomizationTechnique.expression(String template)

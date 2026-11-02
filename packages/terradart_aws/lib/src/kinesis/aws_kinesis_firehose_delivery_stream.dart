@@ -324,7 +324,8 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn
 /// `index_rotation_period` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamIndexRotationPeriod.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamIndexRotationPeriod.expression(String template)
@@ -360,7 +361,8 @@ extension type const KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
 /// `s3_backup_mode` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -638,7 +640,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 /// `compression_format` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamCompressionFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamCompressionFormat.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamCompressionFormat.expression(String template)
@@ -674,7 +677,8 @@ extension type const KinesisFirehoseDeliveryStreamCompressionFormat._(
 /// `s3_backup_mode` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -999,7 +1003,8 @@ final class KinesisFirehoseDeliveryStreamOrcSerDe {
 /// `compression` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamOrcSerDeCompression.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamOrcSerDeCompression.expression(String template)
@@ -1027,7 +1032,8 @@ extension type const KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
 /// `format_version` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamFormatVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamFormatVersion.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamFormatVersion.expression(String template)
@@ -1087,7 +1093,8 @@ final class KinesisFirehoseDeliveryStreamParquetSerDe {
 /// `compression` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamParquetSerDeCompression.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamParquetSerDeCompression.expression(
@@ -1115,7 +1122,8 @@ extension type const KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
 /// `writer_version` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamWriterVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamWriterVersion.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamWriterVersion.expression(String template)
@@ -1313,7 +1321,8 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 /// `s3_backup_mode` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1568,7 +1577,8 @@ final class KinesisFirehoseDeliveryStreamAuthenticationConfiguration {
 /// `connectivity` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamConnectivity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamConnectivity.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamConnectivity.expression(String template)
@@ -1744,7 +1754,8 @@ final class KinesisFirehoseDeliveryStreamDocumentIdOptions {
 /// `default_document_id_format` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat.expression(
@@ -2051,7 +2062,8 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 /// `data_loading_option` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamDataLoadingOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamDataLoadingOption.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamDataLoadingOption.expression(String template)
@@ -2181,7 +2193,8 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 /// `hec_endpoint_type` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamHecEndpointType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamHecEndpointType.variable(String name)
     : this._(TfArg.variable(name));
   KinesisFirehoseDeliveryStreamHecEndpointType.expression(String template)
@@ -2205,7 +2218,8 @@ extension type const KinesisFirehoseDeliveryStreamHecEndpointType._(
 /// `s3_backup_mode` — derived from the provider schema description.
 extension type const KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode.variable(
     String name,
   ) : this._(TfArg.variable(name));

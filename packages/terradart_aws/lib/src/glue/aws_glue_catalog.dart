@@ -13,7 +13,8 @@ const Set<String> _awsGlueCatalogSensitive = <String>{};
 /// Glue Catalog Allow Full Table External Data enum for `allow_full_table_external_data_access`.
 extension type const GlueCatalogAllowFullTableExternalDataAccess._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueCatalogAllowFullTableExternalDataAccess.variable(String name)
     : this._(TfArg.variable(name));
   GlueCatalogAllowFullTableExternalDataAccess.expression(String template)
@@ -37,7 +38,8 @@ extension type const GlueCatalogAllowFullTableExternalDataAccess._(
 /// Glue Catalog Overwrite Child Resource Permissions With enum for `overwrite_child_resource_permissions_with_default`.
 extension type const GlueCatalogOverwriteChildResourcePermissionsWithDefault._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlueCatalogOverwriteChildResourcePermissionsWithDefault.variable(String name)
     : this._(TfArg.variable(name));
   GlueCatalogOverwriteChildResourcePermissionsWithDefault.expression(

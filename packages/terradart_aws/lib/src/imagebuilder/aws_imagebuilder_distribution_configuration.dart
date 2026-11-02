@@ -183,7 +183,8 @@ final class ImagebuilderDistributionConfigurationTargetRepository {
 /// `service` — derived from the provider schema description.
 extension type const ImagebuilderDistributionConfigurationService._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderDistributionConfigurationService.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderDistributionConfigurationService.expression(String template)
@@ -328,7 +329,8 @@ final class ImagebuilderDistributionConfigurationS3ExportConfiguration {
 /// `disk_image_format` — derived from the provider schema description.
 extension type const ImagebuilderDistributionConfigurationDiskImageFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderDistributionConfigurationDiskImageFormat.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderDistributionConfigurationDiskImageFormat.expression(
@@ -379,7 +381,8 @@ final class ImagebuilderDistributionConfigurationSsmParameterConfiguration {
 /// `data_type` — derived from the provider schema description.
 extension type const ImagebuilderDistributionConfigurationDataType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderDistributionConfigurationDataType.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderDistributionConfigurationDataType.expression(String template)

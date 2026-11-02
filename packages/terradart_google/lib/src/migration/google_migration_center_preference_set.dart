@@ -10,7 +10,8 @@ const Set<String> _googleMigrationCenterPreferenceSetSensitive = <String>{};
 /// Terraform `deletion_policy` for Migration Center preference sets.
 extension type const MigrationCenterPreferenceSetDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetDeletionPolicy.expression(String template)
@@ -82,7 +83,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
 /// `commitment_plan` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetCommitmentPlan._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetCommitmentPlan.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetCommitmentPlan.expression(String template)
@@ -113,7 +115,8 @@ extension type const MigrationCenterPreferenceSetCommitmentPlan._(
 /// `sizing_optimization_strategy` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetSizingOptimizationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetSizingOptimizationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetSizingOptimizationStrategy.expression(
@@ -147,7 +150,8 @@ extension type const MigrationCenterPreferenceSetSizingOptimizationStrategy._(
 /// `target_product` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetTargetProduct._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetTargetProduct.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetTargetProduct.expression(String template)
@@ -226,7 +230,8 @@ extension type const MigrationCenterPreferenceSetLicenseType._(TfArg<String> _)
 /// `persistent_disk_type` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetPersistentDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetPersistentDiskType.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetPersistentDiskType.expression(String template)
@@ -334,7 +339,8 @@ final class MigrationCenterPreferenceSetSoleTenancyPreferences {
 /// `commitment_plan` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmentPlan.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -367,7 +373,8 @@ extension type const MigrationCenterPreferenceSetSoleTenancyPreferencesCommitmen
 /// `host_maintenance_policy` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetHostMaintenancePolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetHostMaintenancePolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterPreferenceSetHostMaintenancePolicy.expression(String template)
@@ -441,7 +448,8 @@ final class MigrationCenterPreferenceSetVmwareEnginePreferences {
 /// `commitment_plan` — derived from the provider schema description.
 extension type const MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterPreferenceSetVmwareEnginePreferencesCommitmentPlan.variable(
     String name,
   ) : this._(TfArg.variable(name));

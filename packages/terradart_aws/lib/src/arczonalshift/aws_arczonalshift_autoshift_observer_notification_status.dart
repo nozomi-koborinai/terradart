@@ -10,7 +10,8 @@ _awsArczonalshiftAutoshiftObserverNotificationStatusSensitive = <String>{};
 /// Arczonalshift Autoshift Observer Notification enum for `status`.
 extension type const ArczonalshiftAutoshiftObserverNotificationStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArczonalshiftAutoshiftObserverNotificationStatus.variable(String name)
     : this._(TfArg.variable(name));
   ArczonalshiftAutoshiftObserverNotificationStatus.expression(String template)

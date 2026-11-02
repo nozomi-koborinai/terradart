@@ -30,7 +30,8 @@ const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
 /// Database Migration Service Connection Profile enum for `dbprovider`.
 extension type const DatabaseMigrationServiceConnectionProfileDbprovider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileDbprovider.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileDbprovider.expression(
@@ -60,7 +61,8 @@ extension type const DatabaseMigrationServiceConnectionProfileDbprovider._(
 /// Database Migration Service Connection Profile enum for `role`.
 extension type const DatabaseMigrationServiceConnectionProfileRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileRole.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileRole.expression(String template)
@@ -84,7 +86,8 @@ extension type const DatabaseMigrationServiceConnectionProfileRole._(
 /// Database Migration Service Connection Profile enum for `state`.
 extension type const DatabaseMigrationServiceConnectionProfileState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileState.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileState.expression(String template)
@@ -470,7 +473,8 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 /// `activation_policy` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceConnectionProfileActivationPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileActivationPolicy.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -497,7 +501,8 @@ extension type const DatabaseMigrationServiceConnectionProfileActivationPolicy._
 /// `data_disk_type` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceConnectionProfileDataDiskType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileDataDiskType.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileDataDiskType.expression(
@@ -521,7 +526,8 @@ extension type const DatabaseMigrationServiceConnectionProfileDataDiskType._(
 /// `database_version` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileDatabaseVersion.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileDatabaseVersion.expression(
@@ -660,7 +666,8 @@ extension type const DatabaseMigrationServiceConnectionProfileDatabaseVersion._(
 /// `edition` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceConnectionProfileEdition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileEdition.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileEdition.expression(String template)
@@ -863,7 +870,8 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 /// `type` — derived from the provider schema description.
 extension type const DatabaseMigrationServiceConnectionProfileType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabaseMigrationServiceConnectionProfileType.variable(String name)
     : this._(TfArg.variable(name));
   DatabaseMigrationServiceConnectionProfileType.expression(String template)

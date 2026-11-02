@@ -10,7 +10,8 @@ const Set<String> _awsChimeVoiceConnectorStreamingSensitive = <String>{};
 /// Chime Voice Connector Streaming Notification enum for `streaming_notification_targets`.
 extension type const ChimeVoiceConnectorStreamingNotificationTargets._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimeVoiceConnectorStreamingNotificationTargets.variable(String name)
     : this._(TfArg.variable(name));
   ChimeVoiceConnectorStreamingNotificationTargets.expression(String template)

@@ -640,7 +640,8 @@ final class _Declarations extends RecursiveAstVisitor<void> {
 
   @override
   void visitExtensionTypeDeclaration(ExtensionTypeDeclaration node) {
-    final ctor = node.primaryConstructor;
+    final ctor = node.namePart;
+    if (ctor is! PrimaryConstructorDeclaration) return;
     _topLevel(_exports(ctor.typeName.lexeme), () {
       _type(
         ctor.typeName.lexeme,
@@ -927,8 +928,7 @@ Set<int> publicDocLines(
     final name = switch (d) {
       ClassDeclaration(:final namePart) => namePart.typeName.lexeme,
       EnumDeclaration(:final namePart) => namePart.typeName.lexeme,
-      ExtensionTypeDeclaration(:final primaryConstructor) =>
-        primaryConstructor.typeName.lexeme,
+      ExtensionTypeDeclaration(:final namePart) => namePart.typeName.lexeme,
       MixinDeclaration(:final name) => name.lexeme,
       FunctionDeclaration(:final name) => name.lexeme,
       TypeAlias(:final name) => name.lexeme,

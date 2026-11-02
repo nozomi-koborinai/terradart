@@ -9,7 +9,8 @@ const Set<String> _awsOrganizationsOrganizationSensitive = <String>{};
 /// Organizations Organization Enabled Policy enum for `enabled_policy_types`.
 extension type const OrganizationsOrganizationEnabledPolicyTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OrganizationsOrganizationEnabledPolicyTypes.variable(String name)
     : this._(TfArg.variable(name));
   OrganizationsOrganizationEnabledPolicyTypes.expression(String template)

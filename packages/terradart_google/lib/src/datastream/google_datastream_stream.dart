@@ -1317,7 +1317,8 @@ final class DatastreamStreamIngestionTimePartition {
 /// `partitioning_time_granularity` — derived from the provider schema description.
 extension type const DatastreamStreamPartitioningTimeGranularity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatastreamStreamPartitioningTimeGranularity.variable(String name)
     : this._(TfArg.variable(name));
   DatastreamStreamPartitioningTimeGranularity.expression(String template)

@@ -14,7 +14,8 @@ const Set<String> _googleCertificateManagerCertificateMapEntrySensitive =
 /// Certificate Manager Certificate Map Entry enum for `matcher`.
 extension type const CertificateManagerCertificateMapEntryMatcher._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CertificateManagerCertificateMapEntryMatcher.variable(String name)
     : this._(TfArg.variable(name));
   CertificateManagerCertificateMapEntryMatcher.expression(String template)

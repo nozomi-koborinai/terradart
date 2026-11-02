@@ -26,7 +26,8 @@ extension type const DataSiteVerificationTokenType._(TfArg<String> _)
 /// Data Site Verification Token Verification enum for `verification_method`.
 extension type const DataSiteVerificationTokenVerificationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataSiteVerificationTokenVerificationMethod.variable(String name)
     : this._(TfArg.variable(name));
   DataSiteVerificationTokenVerificationMethod.expression(String template)

@@ -20,7 +20,8 @@ const Set<String> _googleComputeInstanceFromMachineImageSensitive = <String>{
 /// Compute Instance From Machine Image Desired enum for `desired_status`.
 extension type const ComputeInstanceFromMachineImageDesiredStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageDesiredStatus.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageDesiredStatus.expression(String template)
@@ -48,7 +49,8 @@ extension type const ComputeInstanceFromMachineImageDesiredStatus._(
 /// Compute Instance From Machine Image Key Revocation Action enum for `key_revocation_action_type`.
 extension type const ComputeInstanceFromMachineImageKeyRevocationActionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageKeyRevocationActionType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageKeyRevocationActionType.expression(
@@ -109,7 +111,8 @@ final class ComputeInstanceFromMachineImageAdvancedMachineFeatures {
 /// `performance_monitoring_unit` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImagePerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImagePerformanceMonitoringUnit.expression(
@@ -160,7 +163,8 @@ final class ComputeInstanceFromMachineImageConfidentialInstanceConfig {
 /// `confidential_instance_type` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageConfidentialInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageConfidentialInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageConfidentialInstanceType.expression(
@@ -436,7 +440,8 @@ final class ComputeInstanceFromMachineImageAccessConfig {
 /// `network_tier` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageNetworkTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageNetworkTier.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageNetworkTier.expression(String template)
@@ -558,7 +563,8 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageTotalEgressBandwidthTier.expression(
@@ -723,7 +729,8 @@ final class ComputeInstanceFromMachineImageScheduling {
 /// `instance_termination_action` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageInstanceTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageInstanceTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageInstanceTerminationAction.expression(
@@ -749,7 +756,8 @@ extension type const ComputeInstanceFromMachineImageInstanceTerminationAction._(
 /// `maintenance_interval` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageMaintenanceInterval._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageMaintenanceInterval.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageMaintenanceInterval.expression(String template)
@@ -775,7 +783,8 @@ extension type const ComputeInstanceFromMachineImageMaintenanceInterval._(
 /// `on_host_maintenance` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageOnHostMaintenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageOnHostMaintenance.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageOnHostMaintenance.expression(String template)
@@ -799,7 +808,8 @@ extension type const ComputeInstanceFromMachineImageOnHostMaintenance._(
 /// `provisioning_model` — derived from the provider schema description.
 extension type const ComputeInstanceFromMachineImageProvisioningModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceFromMachineImageProvisioningModel.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceFromMachineImageProvisioningModel.expression(String template)

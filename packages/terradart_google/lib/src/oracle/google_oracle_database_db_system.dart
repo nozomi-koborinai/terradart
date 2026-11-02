@@ -411,7 +411,8 @@ extension type const OracleDatabaseDbSystemAutoFullBackupDay._(TfArg<String> _)
 /// `auto_full_backup_window` — derived from the provider schema description.
 extension type const OracleDatabaseDbSystemAutoFullBackupWindow._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseDbSystemAutoFullBackupWindow.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseDbSystemAutoFullBackupWindow.expression(String template)
@@ -475,7 +476,8 @@ extension type const OracleDatabaseDbSystemAutoFullBackupWindow._(
 /// `auto_incremental_backup_window` — derived from the provider schema description.
 extension type const OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseDbSystemAutoIncrementalBackupWindow.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseDbSystemAutoIncrementalBackupWindow.expression(String template)
@@ -540,7 +542,8 @@ extension type const OracleDatabaseDbSystemAutoIncrementalBackupWindow._(
 /// `backup_deletion_policy` — derived from the provider schema description.
 extension type const OracleDatabaseDbSystemBackupDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseDbSystemBackupDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseDbSystemBackupDeletionPolicy.expression(String template)

@@ -14,7 +14,8 @@ _googleComputeNetworkFirewallPolicyPacketMirroringRuleSensitive = <String>{};
 /// Compute Network Firewall Policy Packet Mirroring Rule enum for `direction`.
 extension type const ComputeNetworkFirewallPolicyPacketMirroringRuleDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.variable(String name)
     : this._(TfArg.variable(name));
   ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.expression(

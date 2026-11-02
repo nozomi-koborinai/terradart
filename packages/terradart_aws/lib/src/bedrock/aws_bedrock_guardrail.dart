@@ -141,7 +141,8 @@ extension type const BedrockGuardrailInputStrength._(TfArg<String> _)
 /// `output_action` — derived from the provider schema description.
 extension type const BedrockGuardrailFiltersConfigOutputAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockGuardrailFiltersConfigOutputAction.variable(String name)
     : this._(TfArg.variable(name));
   BedrockGuardrailFiltersConfigOutputAction.expression(String template)
@@ -281,7 +282,8 @@ final class BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig {
 /// `type` — derived from the provider schema description.
 extension type const BedrockGuardrailContextualGroundingPolicyConfigType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockGuardrailContextualGroundingPolicyConfigType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockGuardrailContextualGroundingPolicyConfigType.expression(
@@ -396,7 +398,8 @@ extension type const BedrockGuardrailAction._(TfArg<String> _)
 /// `input_action` — derived from the provider schema description.
 extension type const BedrockGuardrailPiiEntitiesConfigInputAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockGuardrailPiiEntitiesConfigInputAction.variable(String name)
     : this._(TfArg.variable(name));
   BedrockGuardrailPiiEntitiesConfigInputAction.expression(String template)
@@ -424,7 +427,8 @@ extension type const BedrockGuardrailPiiEntitiesConfigInputAction._(
 /// `output_action` — derived from the provider schema description.
 extension type const BedrockGuardrailPiiEntitiesConfigOutputAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockGuardrailPiiEntitiesConfigOutputAction.variable(String name)
     : this._(TfArg.variable(name));
   BedrockGuardrailPiiEntitiesConfigOutputAction.expression(String template)
@@ -758,7 +762,8 @@ final class BedrockGuardrailManagedWordListsConfig {
 /// `type` — derived from the provider schema description.
 extension type const BedrockGuardrailManagedWordListsConfigType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockGuardrailManagedWordListsConfigType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockGuardrailManagedWordListsConfigType.expression(String template)

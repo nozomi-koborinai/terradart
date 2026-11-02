@@ -229,7 +229,8 @@ final class DatasyncLocationHdfsQopConfiguration {
 /// `data_transfer_protection` — derived from the provider schema description.
 extension type const DatasyncLocationHdfsDataTransferProtection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationHdfsDataTransferProtection.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationHdfsDataTransferProtection.expression(String template)

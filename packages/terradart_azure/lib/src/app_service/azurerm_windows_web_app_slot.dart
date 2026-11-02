@@ -163,7 +163,8 @@ extension type const WindowsWebAppSlotDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const WindowsWebAppSlotUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsWebAppSlotUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsWebAppSlotUnauthenticatedClientAction.expression(String template)
@@ -1241,7 +1242,8 @@ final class WindowsWebAppSlotTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const WindowsWebAppSlotCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsWebAppSlotCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   WindowsWebAppSlotCookieExpirationConvention.expression(String template)
@@ -1899,7 +1901,8 @@ extension type const WindowsWebAppSlotFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsWebAppSlotIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsWebAppSlotIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsWebAppSlotIpRestrictionDefaultAction.expression(String template)
@@ -2121,7 +2124,8 @@ extension type const WindowsWebAppSlotRemoteDebuggingVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsWebAppSlotScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsWebAppSlotScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsWebAppSlotScmIpRestrictionDefaultAction.expression(String template)

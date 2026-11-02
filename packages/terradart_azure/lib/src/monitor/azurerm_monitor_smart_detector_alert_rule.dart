@@ -12,7 +12,8 @@ const Set<String> _azurermMonitorSmartDetectorAlertRuleSensitive = <String>{};
 /// Monitor Smart Detector Alert Rule Detector enum for `detector_type`.
 extension type const MonitorSmartDetectorAlertRuleDetectorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorSmartDetectorAlertRuleDetectorType.variable(String name)
     : this._(TfArg.variable(name));
   MonitorSmartDetectorAlertRuleDetectorType.expression(String template)

@@ -221,7 +221,8 @@ final class ConnectInstanceStorageConfigEncryptionConfig {
 /// `encryption_type` — derived from the provider schema description.
 extension type const ConnectInstanceStorageConfigEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConnectInstanceStorageConfigEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   ConnectInstanceStorageConfigEncryptionType.expression(String template)

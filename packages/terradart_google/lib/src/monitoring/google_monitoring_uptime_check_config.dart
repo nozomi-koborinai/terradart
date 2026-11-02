@@ -181,7 +181,8 @@ extension type const MonitoringUptimeCheckContentType._(TfArg<String> _)
 /// `["SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"]`.
 extension type const MonitoringUptimeCheckServiceAgentAuthType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitoringUptimeCheckServiceAgentAuthType.variable(String name)
     : this._(TfArg.variable(name));
   MonitoringUptimeCheckServiceAgentAuthType.expression(String template)

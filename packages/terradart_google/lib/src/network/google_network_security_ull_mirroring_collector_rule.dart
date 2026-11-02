@@ -14,7 +14,8 @@ const Set<String> _googleNetworkSecurityUllMirroringCollectorRuleSensitive =
 /// Terraform `deletion_policy` for ULL mirroring collector rules.
 extension type const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityUllMirroringCollectorRuleDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityUllMirroringCollectorRuleDeletionPolicy.expression(
@@ -44,7 +45,8 @@ extension type const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
 /// Traffic direction for `match.direction`.
 extension type const NetworkSecurityUllMirroringCollectorRuleDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityUllMirroringCollectorRuleDirection.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityUllMirroringCollectorRuleDirection.expression(String template)

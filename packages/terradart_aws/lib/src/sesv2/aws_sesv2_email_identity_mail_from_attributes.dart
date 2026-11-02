@@ -10,7 +10,8 @@ const Set<String> _awsSesv2EmailIdentityMailFromAttributesSensitive =
 /// Sesv2 Email Identity Mail From Attributes Behavior On Mx enum for `behavior_on_mx_failure`.
 extension type const Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure.expression(

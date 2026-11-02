@@ -9,7 +9,8 @@ const Set<String> _awsVpclatticeAccessLogSubscriptionSensitive = <String>{};
 /// Vpclattice Access Log Subscription Service Network Log enum for `service_network_log_type`.
 extension type const VpclatticeAccessLogSubscriptionServiceNetworkLogType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeAccessLogSubscriptionServiceNetworkLogType.variable(String name)
     : this._(TfArg.variable(name));
   VpclatticeAccessLogSubscriptionServiceNetworkLogType.expression(

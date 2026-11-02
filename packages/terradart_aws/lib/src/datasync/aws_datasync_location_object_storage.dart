@@ -11,7 +11,8 @@ const Set<String> _awsDatasyncLocationObjectStorageSensitive = <String>{
 /// Datasync Location Object Storage Server enum for `server_protocol`.
 extension type const DatasyncLocationObjectStorageServerProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationObjectStorageServerProtocol.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationObjectStorageServerProtocol.expression(String template)

@@ -161,7 +161,8 @@ extension type const StorageAccountMinTlsVersion._(TfArg<String> _)
 /// Storage Account Provisioned Billing Model enum for `provisioned_billing_model_version`.
 extension type const StorageAccountProvisionedBillingModelVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageAccountProvisionedBillingModelVersion.variable(String name)
     : this._(TfArg.variable(name));
   StorageAccountProvisionedBillingModelVersion.expression(String template)
@@ -275,7 +276,8 @@ final class StorageAccountAzureFilesAuthentication {
 /// `default_share_level_permission` — derived from the provider schema description.
 extension type const StorageAccountDefaultShareLevelPermission._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageAccountDefaultShareLevelPermission.variable(String name)
     : this._(TfArg.variable(name));
   StorageAccountDefaultShareLevelPermission.expression(String template)
@@ -902,7 +904,8 @@ extension type const StorageAccountChannelEncryptionType._(TfArg<String> _)
 /// `kerberos_ticket_encryption_type` — derived from the provider schema description.
 extension type const StorageAccountKerberosTicketEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StorageAccountKerberosTicketEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   StorageAccountKerberosTicketEncryptionType.expression(String template)

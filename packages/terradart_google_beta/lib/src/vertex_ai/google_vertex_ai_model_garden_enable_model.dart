@@ -9,7 +9,8 @@ const Set<String> _googleVertexAiModelGardenEnableModelSensitive = <String>{};
 /// Vertex Ai Model Garden Enable Model Enablement enum for `enablement_state`.
 extension type const VertexAiModelGardenEnableModelEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiModelGardenEnableModelEnablementState.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiModelGardenEnableModelEnablementState.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _googleContactCenterInsightsAutoLabelingRuleSensitive =
 /// Contact Center Insights Auto Labeling Rule Label Key enum for `label_key_type`.
 extension type const ContactCenterInsightsAutoLabelingRuleLabelKeyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContactCenterInsightsAutoLabelingRuleLabelKeyType.variable(String name)
     : this._(TfArg.variable(name));
   ContactCenterInsightsAutoLabelingRuleLabelKeyType.expression(String template)

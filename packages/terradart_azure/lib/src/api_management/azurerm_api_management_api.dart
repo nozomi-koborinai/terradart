@@ -303,7 +303,8 @@ final class ApiManagementApiOpenidAuthentication {
 /// `bearer_token_sending_methods` — derived from the provider schema description.
 extension type const ApiManagementApiBearerTokenSendingMethods._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiManagementApiBearerTokenSendingMethods.variable(String name)
     : this._(TfArg.variable(name));
   ApiManagementApiBearerTokenSendingMethods.expression(String template)

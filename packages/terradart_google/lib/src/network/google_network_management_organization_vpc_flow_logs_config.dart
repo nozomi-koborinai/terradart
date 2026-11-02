@@ -10,7 +10,8 @@ _googleNetworkManagementOrganizationVpcFlowLogsConfigSensitive = <String>{};
 /// Network Management Organization Vpc Flow Logs Config Aggregation enum for `aggregation_interval`.
 extension type const NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -62,7 +63,8 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigAggregationIn
 /// Network Management Organization Vpc Flow Logs Config Cross Project enum for `cross_project_metadata`.
 extension type const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -91,7 +93,8 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectM
 /// Network Management Organization Vpc Flow Logs Config enum for `metadata`.
 extension type const NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementOrganizationVpcFlowLogsConfigMetadata.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementOrganizationVpcFlowLogsConfigMetadata.expression(
@@ -121,7 +124,8 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
 /// Network Management Organization Vpc Flow Logs Config enum for `state`.
 extension type const NetworkManagementOrganizationVpcFlowLogsConfigState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagementOrganizationVpcFlowLogsConfigState.variable(String name)
     : this._(TfArg.variable(name));
   NetworkManagementOrganizationVpcFlowLogsConfigState.expression(

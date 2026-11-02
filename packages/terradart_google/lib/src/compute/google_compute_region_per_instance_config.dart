@@ -13,7 +13,8 @@ const Set<String> _googleComputeRegionPerInstanceConfigSensitive = <String>{};
 /// Compute Region Per Instance Config Minimal enum for `minimal_action`.
 extension type const ComputeRegionPerInstanceConfigMinimalAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionPerInstanceConfigMinimalAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionPerInstanceConfigMinimalAction.expression(String template)
@@ -45,7 +46,8 @@ extension type const ComputeRegionPerInstanceConfigMinimalAction._(
 /// Compute Region Per Instance Config Most Disruptive Allowed enum for `most_disruptive_allowed_action`.
 extension type const ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

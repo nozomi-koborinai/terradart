@@ -41,7 +41,8 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom {
 /// `identity_type` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType.variable(
     String name,
   ) : this._(TfArg.variable(name));

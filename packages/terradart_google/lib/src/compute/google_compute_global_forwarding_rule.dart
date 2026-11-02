@@ -191,7 +191,8 @@ extension type const GlobalForwardingRuleMigrationState._(TfArg<String> _)
 /// - [matchAll]: every filter label must match.
 extension type const GlobalForwardingRuleMetadataFilterMatchCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlobalForwardingRuleMetadataFilterMatchCriteria.variable(String name)
     : this._(TfArg.variable(name));
   GlobalForwardingRuleMetadataFilterMatchCriteria.expression(String template)

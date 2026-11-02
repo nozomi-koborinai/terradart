@@ -13,7 +13,8 @@ const Set<String> _azurermKeyVaultManagedHardwareSecurityModuleSensitive =
 /// Key Vault Managed Hardware Security Module Sku enum for `sku_name`.
 extension type const KeyVaultManagedHardwareSecurityModuleSkuName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleSkuName.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleSkuName.expression(String template)
@@ -53,7 +54,8 @@ final class KeyVaultManagedHardwareSecurityModuleNetworkAcls {
 /// `bypass` — derived from the provider schema description.
 extension type const KeyVaultManagedHardwareSecurityModuleBypass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleBypass.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleBypass.expression(String template)
@@ -77,7 +79,8 @@ extension type const KeyVaultManagedHardwareSecurityModuleBypass._(
 /// `default_action` — derived from the provider schema description.
 extension type const KeyVaultManagedHardwareSecurityModuleDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   KeyVaultManagedHardwareSecurityModuleDefaultAction.expression(String template)

@@ -14,7 +14,8 @@ const Set<String> _googleComputeRegionNetworkFirewallPolicyRuleSensitive =
 /// Compute Region Network Firewall Policy Rule enum for `direction`.
 extension type const ComputeRegionNetworkFirewallPolicyRuleDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyRuleDirection.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyRuleDirection.expression(String template)
@@ -38,7 +39,8 @@ extension type const ComputeRegionNetworkFirewallPolicyRuleDirection._(
 /// Compute Region Network Firewall Policy Rule Target enum for `target_type`.
 extension type const ComputeRegionNetworkFirewallPolicyRuleTargetType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyRuleTargetType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyRuleTargetType.expression(String template)
@@ -139,7 +141,8 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
 /// `dest_network_context` — derived from the provider schema description.
 extension type const ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext.expression(
@@ -177,7 +180,8 @@ extension type const ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext._(
 /// `src_network_context` — derived from the provider schema description.
 extension type const ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext.expression(

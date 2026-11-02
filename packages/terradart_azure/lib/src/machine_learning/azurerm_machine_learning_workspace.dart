@@ -50,7 +50,8 @@ extension type const MachineLearningWorkspaceSkuName._(TfArg<String> _)
 /// Machine Learning Workspace Storage Account Access enum for `storage_account_access_type`.
 extension type const MachineLearningWorkspaceStorageAccountAccessType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningWorkspaceStorageAccountAccessType.variable(String name)
     : this._(TfArg.variable(name));
   MachineLearningWorkspaceStorageAccountAccessType.expression(String template)

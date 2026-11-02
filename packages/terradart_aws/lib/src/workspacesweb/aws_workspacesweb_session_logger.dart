@@ -214,7 +214,8 @@ final class WorkspaceswebSessionLoggerS3 {
 /// `folder_structure` — derived from the provider schema description.
 extension type const WorkspaceswebSessionLoggerFolderStructure._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspaceswebSessionLoggerFolderStructure.variable(String name)
     : this._(TfArg.variable(name));
   WorkspaceswebSessionLoggerFolderStructure.expression(String template)

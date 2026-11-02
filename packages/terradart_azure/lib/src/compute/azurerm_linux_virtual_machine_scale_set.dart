@@ -16,7 +16,8 @@ const Set<String> _azurermLinuxVirtualMachineScaleSetSensitive = <String>{
 /// Linux Virtual Machine Scale Set Eviction enum for `eviction_policy`.
 extension type const LinuxVirtualMachineScaleSetEvictionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxVirtualMachineScaleSetEvictionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   LinuxVirtualMachineScaleSetEvictionPolicy.expression(String template)
@@ -473,7 +474,8 @@ extension type const LinuxVirtualMachineScaleSetCreateOption._(TfArg<String> _)
 /// `storage_account_type` — derived from the provider schema description.
 extension type const LinuxVirtualMachineScaleSetDataDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxVirtualMachineScaleSetDataDiskStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   LinuxVirtualMachineScaleSetDataDiskStorageAccountType.expression(
@@ -1052,7 +1054,8 @@ final class LinuxVirtualMachineScaleSetEncryptionSetSecureVmDiskEncryptionSetId
 /// `security_encryption_type` — derived from the provider schema description.
 extension type const LinuxVirtualMachineScaleSetSecurityEncryptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxVirtualMachineScaleSetSecurityEncryptionType.variable(String name)
     : this._(TfArg.variable(name));
   LinuxVirtualMachineScaleSetSecurityEncryptionType.expression(String template)
@@ -1076,7 +1079,8 @@ extension type const LinuxVirtualMachineScaleSetSecurityEncryptionType._(
 /// `storage_account_type` — derived from the provider schema description.
 extension type const LinuxVirtualMachineScaleSetOsDiskStorageAccountType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxVirtualMachineScaleSetOsDiskStorageAccountType.variable(String name)
     : this._(TfArg.variable(name));
   LinuxVirtualMachineScaleSetOsDiskStorageAccountType.expression(

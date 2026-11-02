@@ -451,7 +451,8 @@ extension type const MonitorMetricAlertSensitivity._(TfArg<String> _)
 /// `operator` — derived from the provider schema description.
 extension type const MonitorMetricAlertDynamicCriteriaOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorMetricAlertDynamicCriteriaOperator.variable(String name)
     : this._(TfArg.variable(name));
   MonitorMetricAlertDynamicCriteriaOperator.expression(String template)

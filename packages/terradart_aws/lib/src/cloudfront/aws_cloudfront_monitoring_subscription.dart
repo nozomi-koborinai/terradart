@@ -46,7 +46,8 @@ final class CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
 /// `realtime_metrics_subscription_status` — derived from the provider schema description.
 extension type const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus.variable(
     String name,
   ) : this._(TfArg.variable(name));

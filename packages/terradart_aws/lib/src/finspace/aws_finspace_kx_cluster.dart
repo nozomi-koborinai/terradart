@@ -247,7 +247,8 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const FinspaceKxClusterSavedownStorageConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FinspaceKxClusterSavedownStorageConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   FinspaceKxClusterSavedownStorageConfigurationType.expression(String template)

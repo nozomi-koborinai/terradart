@@ -58,7 +58,8 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const NetworkfirewallRuleGroupEncryptionConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallRuleGroupEncryptionConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallRuleGroupEncryptionConfigurationType.expression(
@@ -295,7 +296,8 @@ final class NetworkfirewallRuleGroupRulesSourceList {
 /// `generated_rules_type` — derived from the provider schema description.
 extension type const NetworkfirewallRuleGroupGeneratedRulesType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkfirewallRuleGroupGeneratedRulesType.variable(String name)
     : this._(TfArg.variable(name));
   NetworkfirewallRuleGroupGeneratedRulesType.expression(String template)

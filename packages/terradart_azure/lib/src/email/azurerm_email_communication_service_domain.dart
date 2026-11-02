@@ -9,7 +9,8 @@ const Set<String> _azurermEmailCommunicationServiceDomainSensitive = <String>{};
 /// Email Communication Service Domain enum for `domain_management`.
 extension type const EmailCommunicationServiceDomainManagement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EmailCommunicationServiceDomainManagement.variable(String name)
     : this._(TfArg.variable(name));
   EmailCommunicationServiceDomainManagement.expression(String template)

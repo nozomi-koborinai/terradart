@@ -10,7 +10,8 @@ const Set<String> _googleNetworkServicesServiceLbPoliciesSensitive = <String>{};
 /// Network Services Service Lb Policies Load Balancing enum for `load_balancing_algorithm`.
 extension type const NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm.expression(
@@ -93,7 +94,8 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
 /// `isolation_granularity` — derived from the provider schema description.
 extension type const NetworkServicesServiceLbPoliciesIsolationGranularity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesServiceLbPoliciesIsolationGranularity.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesServiceLbPoliciesIsolationGranularity.expression(
@@ -118,7 +120,8 @@ extension type const NetworkServicesServiceLbPoliciesIsolationGranularity._(
 /// `isolation_mode` — derived from the provider schema description.
 extension type const NetworkServicesServiceLbPoliciesIsolationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesServiceLbPoliciesIsolationMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesServiceLbPoliciesIsolationMode.expression(String template)

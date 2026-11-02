@@ -352,7 +352,8 @@ extension type const VpnGatewayConnectionEncryptionAlgorithm._(TfArg<String> _)
 /// `ike_encryption_algorithm` — derived from the provider schema description.
 extension type const VpnGatewayConnectionIkeEncryptionAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnGatewayConnectionIkeEncryptionAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VpnGatewayConnectionIkeEncryptionAlgorithm.expression(String template)
@@ -396,7 +397,8 @@ extension type const VpnGatewayConnectionIkeEncryptionAlgorithm._(
 /// `ike_integrity_algorithm` — derived from the provider schema description.
 extension type const VpnGatewayConnectionIkeIntegrityAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnGatewayConnectionIkeIntegrityAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   VpnGatewayConnectionIkeIntegrityAlgorithm.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _awsVpcEndpointServiceSensitive = <String>{};
 /// Vpc Endpoint Service Supported Ip Address enum for `supported_ip_address_types`.
 extension type const VpcEndpointServiceSupportedIpAddressTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpcEndpointServiceSupportedIpAddressTypes.variable(String name)
     : this._(TfArg.variable(name));
   VpcEndpointServiceSupportedIpAddressTypes.expression(String template)

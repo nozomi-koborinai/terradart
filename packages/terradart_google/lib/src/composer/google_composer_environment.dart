@@ -268,7 +268,8 @@ final class ComposerEnvironmentDatabaseConfig {
 /// `machine_type` — derived from the provider schema description.
 extension type const ComposerEnvironmentDatabaseConfigMachineType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComposerEnvironmentDatabaseConfigMachineType.variable(String name)
     : this._(TfArg.variable(name));
   ComposerEnvironmentDatabaseConfigMachineType.expression(String template)
@@ -675,7 +676,8 @@ final class ComposerEnvironmentWebServerConfig {
 /// `machine_type` — derived from the provider schema description.
 extension type const ComposerEnvironmentWebServerConfigMachineType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComposerEnvironmentWebServerConfigMachineType.variable(String name)
     : this._(TfArg.variable(name));
   ComposerEnvironmentWebServerConfigMachineType.expression(String template)

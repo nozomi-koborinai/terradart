@@ -9,7 +9,8 @@ const Set<String> _awsQuicksightAccountSubscriptionSensitive = <String>{};
 /// Quicksight Account Subscription Authentication enum for `authentication_method`.
 extension type const QuicksightAccountSubscriptionAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   QuicksightAccountSubscriptionAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   QuicksightAccountSubscriptionAuthenticationMethod.expression(String template)

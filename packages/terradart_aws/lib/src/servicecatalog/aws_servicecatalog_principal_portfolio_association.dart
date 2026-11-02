@@ -10,7 +10,8 @@ const Set<String> _awsServicecatalogPrincipalPortfolioAssociationSensitive =
 /// Servicecatalog Principal Portfolio Association Accept enum for `accept_language`.
 extension type const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogPrincipalPortfolioAssociationAcceptLanguage.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -38,7 +39,8 @@ extension type const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._
 /// Servicecatalog Principal Portfolio Association Principal enum for `principal_type`.
 extension type const ServicecatalogPrincipalPortfolioAssociationPrincipalType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServicecatalogPrincipalPortfolioAssociationPrincipalType.variable(String name)
     : this._(TfArg.variable(name));
   ServicecatalogPrincipalPortfolioAssociationPrincipalType.expression(

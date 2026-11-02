@@ -9,7 +9,8 @@ const Set<String> _azurermPublicMaintenanceConfigurationsSensitive = <String>{};
 /// Data Public Maintenance Configurations Recur enum for `recur_every`.
 extension type const DataPublicMaintenanceConfigurationsRecurEvery._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataPublicMaintenanceConfigurationsRecurEvery.variable(String name)
     : this._(TfArg.variable(name));
   DataPublicMaintenanceConfigurationsRecurEvery.expression(String template)

@@ -100,7 +100,8 @@ final class NetworkInterfaceIpConfiguration {
 /// `private_ip_address_allocation` — derived from the provider schema description.
 extension type const NetworkInterfacePrivateIpAddressAllocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkInterfacePrivateIpAddressAllocation.variable(String name)
     : this._(TfArg.variable(name));
   NetworkInterfacePrivateIpAddressAllocation.expression(String template)

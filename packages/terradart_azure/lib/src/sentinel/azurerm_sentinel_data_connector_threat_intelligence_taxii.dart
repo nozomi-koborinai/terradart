@@ -13,7 +13,8 @@ _azurermSentinelDataConnectorThreatIntelligenceTaxiiSensitive = <String>{
 /// Sentinel Data Connector Threat Intelligence Taxii Polling enum for `polling_frequency`.
 extension type const SentinelDataConnectorThreatIntelligenceTaxiiPollingFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelDataConnectorThreatIntelligenceTaxiiPollingFrequency.variable(
     String name,
   ) : this._(TfArg.variable(name));

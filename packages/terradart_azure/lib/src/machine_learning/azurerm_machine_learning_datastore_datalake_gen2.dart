@@ -10,7 +10,8 @@ const Set<String> _azurermMachineLearningDatastoreDatalakeGen2Sensitive =
 /// Machine Learning Datastore Datalake Gen2 Service Data enum for `service_data_identity`.
 extension type const MachineLearningDatastoreDatalakeGen2ServiceDataIdentity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MachineLearningDatastoreDatalakeGen2ServiceDataIdentity.variable(String name)
     : this._(TfArg.variable(name));
   MachineLearningDatastoreDatalakeGen2ServiceDataIdentity.expression(

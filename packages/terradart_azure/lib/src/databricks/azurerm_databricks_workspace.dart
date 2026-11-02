@@ -12,7 +12,8 @@ const Set<String> _azurermDatabricksWorkspaceSensitive = <String>{};
 /// Databricks Workspace Network Security Group Rules enum for `network_security_group_rules_required`.
 extension type const DatabricksWorkspaceNetworkSecurityGroupRulesRequired._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabricksWorkspaceNetworkSecurityGroupRulesRequired.variable(String name)
     : this._(TfArg.variable(name));
   DatabricksWorkspaceNetworkSecurityGroupRulesRequired.expression(
@@ -152,7 +153,8 @@ final class DatabricksWorkspaceEnhancedSecurityCompliance {
 /// `compliance_security_profile_standards` — derived from the provider schema description.
 extension type const DatabricksWorkspaceComplianceSecurityProfileStandards._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatabricksWorkspaceComplianceSecurityProfileStandards.variable(String name)
     : this._(TfArg.variable(name));
   DatabricksWorkspaceComplianceSecurityProfileStandards.expression(

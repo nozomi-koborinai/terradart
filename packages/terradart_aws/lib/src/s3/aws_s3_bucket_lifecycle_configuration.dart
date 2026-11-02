@@ -12,7 +12,8 @@ const Set<String> _awsS3BucketLifecycleConfigurationSensitive = <String>{};
 /// S3 Bucket Lifecycle Configuration Transition Default Minimum Object enum for `transition_default_minimum_object_size`.
 extension type const S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -290,7 +291,8 @@ final class S3BucketLifecycleConfigurationNoncurrentVersionTransition {
 /// `storage_class` — derived from the provider schema description.
 extension type const S3BucketLifecycleConfigurationStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketLifecycleConfigurationStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketLifecycleConfigurationStorageClass.expression(String template)

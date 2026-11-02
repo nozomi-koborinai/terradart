@@ -16,7 +16,8 @@ const Set<String> _azurermDataFactoryIntegrationRuntimeAzureSsisSensitive =
 /// Data Factory Integration Runtime Azure Ssis enum for `edition`.
 extension type const DataFactoryIntegrationRuntimeAzureSsisEdition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryIntegrationRuntimeAzureSsisEdition.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryIntegrationRuntimeAzureSsisEdition.expression(String template)
@@ -40,7 +41,8 @@ extension type const DataFactoryIntegrationRuntimeAzureSsisEdition._(
 /// Data Factory Integration Runtime Azure Ssis License enum for `license_type`.
 extension type const DataFactoryIntegrationRuntimeAzureSsisLicenseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryIntegrationRuntimeAzureSsisLicenseType.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryIntegrationRuntimeAzureSsisLicenseType.expression(String template)
@@ -63,7 +65,8 @@ extension type const DataFactoryIntegrationRuntimeAzureSsisLicenseType._(
 /// Data Factory Integration Runtime Azure Ssis Node enum for `node_size`.
 extension type const DataFactoryIntegrationRuntimeAzureSsisNodeSize._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryIntegrationRuntimeAzureSsisNodeSize.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryIntegrationRuntimeAzureSsisNodeSize.expression(String template)
@@ -247,7 +250,8 @@ final class DataFactoryIntegrationRuntimeAzureSsisCapacityPricingTier
 /// `pricing_tier` — derived from the provider schema description.
 extension type const DataFactoryIntegrationRuntimeAzureSsisPricingTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryIntegrationRuntimeAzureSsisPricingTier.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryIntegrationRuntimeAzureSsisPricingTier.expression(String template)

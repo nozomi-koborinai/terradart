@@ -13,7 +13,8 @@ const Set<String> _googleOsConfigV2PolicyOrchestratorForFolderSensitive =
 /// Os Config V2 Policy Orchestrator For Folder enum for `action`.
 extension type const OsConfigV2PolicyOrchestratorForFolderAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderAction.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderAction.expression(String template)
@@ -200,7 +201,8 @@ final class OsConfigV2PolicyOrchestratorForFolderOsPolicies {
 /// `mode` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForFolderMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderMode.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderMode.expression(String template)
@@ -350,7 +352,8 @@ final class OsConfigV2PolicyOrchestratorForFolderEnforce {
 /// `interpreter` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForFolderInterpreter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderInterpreter.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderInterpreter.expression(String template)
@@ -517,7 +520,8 @@ final class OsConfigV2PolicyOrchestratorForFolderFile {
 /// `state` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForFolderFileState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderFileState.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderFileState.expression(String template)
@@ -589,7 +593,8 @@ final class OsConfigV2PolicyOrchestratorForFolderPkg {
 /// `desired_state` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForFolderDesiredState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderDesiredState.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderDesiredState.expression(String template)
@@ -808,7 +813,8 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryApt {
 /// `archive_type` — derived from the provider schema description.
 extension type const OsConfigV2PolicyOrchestratorForFolderArchiveType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OsConfigV2PolicyOrchestratorForFolderArchiveType.variable(String name)
     : this._(TfArg.variable(name));
   OsConfigV2PolicyOrchestratorForFolderArchiveType.expression(String template)

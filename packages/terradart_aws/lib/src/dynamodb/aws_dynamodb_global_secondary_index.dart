@@ -34,7 +34,8 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 /// `attribute_type` — derived from the provider schema description.
 extension type const DynamodbGlobalSecondaryIndexAttributeType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DynamodbGlobalSecondaryIndexAttributeType.variable(String name)
     : this._(TfArg.variable(name));
   DynamodbGlobalSecondaryIndexAttributeType.expression(String template)
@@ -122,7 +123,8 @@ final class DynamodbGlobalSecondaryIndexProjection {
 /// `projection_type` — derived from the provider schema description.
 extension type const DynamodbGlobalSecondaryIndexProjectionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DynamodbGlobalSecondaryIndexProjectionType.variable(String name)
     : this._(TfArg.variable(name));
   DynamodbGlobalSecondaryIndexProjectionType.expression(String template)

@@ -50,7 +50,8 @@ extension type const ApplicationInsightsApiKeyReadPermissions._(TfArg<String> _)
 /// Application Insights Api Key Write enum for `write_permissions`.
 extension type const ApplicationInsightsApiKeyWritePermissions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationInsightsApiKeyWritePermissions.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationInsightsApiKeyWritePermissions.expression(String template)

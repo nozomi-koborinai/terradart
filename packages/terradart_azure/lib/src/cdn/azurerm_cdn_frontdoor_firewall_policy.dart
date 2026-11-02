@@ -101,7 +101,8 @@ final class CdnFrontdoorFirewallPolicyCustomRule {
 /// `action` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyCustomRuleAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyCustomRuleAction.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyCustomRuleAction.expression(String template)
@@ -199,7 +200,8 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
 /// `match_variable` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyMatchConditionMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyMatchConditionMatchVariable.expression(
@@ -263,7 +265,8 @@ extension type const CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyMatchConditionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyMatchConditionOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyMatchConditionOperator.expression(String template)
@@ -416,7 +419,8 @@ final class CdnFrontdoorFirewallPolicyScrubbingRule {
 /// `match_variable` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable.expression(
@@ -470,7 +474,8 @@ extension type const CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyScrubbingRuleOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyScrubbingRuleOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyScrubbingRuleOperator.expression(String template)
@@ -527,7 +532,8 @@ final class CdnFrontdoorFirewallPolicyManagedRule {
 /// `action` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyManagedRuleAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyManagedRuleAction.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyManagedRuleAction.expression(String template)
@@ -584,7 +590,8 @@ final class CdnFrontdoorFirewallPolicyExclusion {
 /// `match_variable` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyExclusionMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyExclusionMatchVariable.expression(String template)
@@ -625,7 +632,8 @@ extension type const CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorFirewallPolicyExclusionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorFirewallPolicyExclusionOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorFirewallPolicyExclusionOperator.expression(String template)

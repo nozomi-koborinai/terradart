@@ -2080,7 +2080,8 @@ extension type const WindowsWebAppRemoteDebuggingVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const WindowsWebAppScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WindowsWebAppScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   WindowsWebAppScmIpRestrictionDefaultAction.expression(String template)

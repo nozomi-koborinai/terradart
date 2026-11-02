@@ -304,7 +304,8 @@ final class MonitorDataCollectionRuleText {
 /// `record_start_timestamp_format` — derived from the provider schema description.
 extension type const MonitorDataCollectionRuleRecordStartTimestampFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorDataCollectionRuleRecordStartTimestampFormat.variable(String name)
     : this._(TfArg.variable(name));
   MonitorDataCollectionRuleRecordStartTimestampFormat.expression(

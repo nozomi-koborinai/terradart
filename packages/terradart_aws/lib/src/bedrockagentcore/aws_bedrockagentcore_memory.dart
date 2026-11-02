@@ -147,7 +147,8 @@ extension type const BedrockagentcoreMemoryLevel._(TfArg<String> _)
 /// `type` — derived from the provider schema description.
 extension type const BedrockagentcoreMemoryContentConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreMemoryContentConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreMemoryContentConfigurationType.expression(String template)

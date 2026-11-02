@@ -620,7 +620,8 @@ extension type const FolderAccessApprovalSettingsCloudProduct._(TfArg<String> _)
 /// `enrollment_level` — derived from the provider schema description.
 extension type const FolderAccessApprovalSettingsEnrollmentLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FolderAccessApprovalSettingsEnrollmentLevel.variable(String name)
     : this._(TfArg.variable(name));
   FolderAccessApprovalSettingsEnrollmentLevel.expression(String template)

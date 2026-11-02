@@ -257,7 +257,8 @@ final class ContainerAttachedClusterSecurityPostureConfig {
 /// `vulnerability_mode` — derived from the provider schema description.
 extension type const ContainerAttachedClusterVulnerabilityMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerAttachedClusterVulnerabilityMode.variable(String name)
     : this._(TfArg.variable(name));
   ContainerAttachedClusterVulnerabilityMode.expression(String template)

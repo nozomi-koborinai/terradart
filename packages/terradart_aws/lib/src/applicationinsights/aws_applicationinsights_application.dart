@@ -9,7 +9,8 @@ const Set<String> _awsApplicationinsightsApplicationSensitive = <String>{};
 /// Applicationinsights Application Grouping enum for `grouping_type`.
 extension type const ApplicationinsightsApplicationGroupingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationinsightsApplicationGroupingType.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationinsightsApplicationGroupingType.expression(String template)

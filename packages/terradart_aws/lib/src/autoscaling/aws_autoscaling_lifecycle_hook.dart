@@ -34,7 +34,8 @@ extension type const AutoscalingLifecycleHookDefaultResult._(TfArg<String> _)
 /// Autoscaling Lifecycle Hook Lifecycle enum for `lifecycle_transition`.
 extension type const AutoscalingLifecycleHookLifecycleTransition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AutoscalingLifecycleHookLifecycleTransition.variable(String name)
     : this._(TfArg.variable(name));
   AutoscalingLifecycleHookLifecycleTransition.expression(String template)

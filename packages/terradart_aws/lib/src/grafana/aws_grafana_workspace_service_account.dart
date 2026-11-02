@@ -9,7 +9,8 @@ const Set<String> _awsGrafanaWorkspaceServiceAccountSensitive = <String>{};
 /// Grafana Workspace Service Account Grafana enum for `grafana_role`.
 extension type const GrafanaWorkspaceServiceAccountGrafanaRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GrafanaWorkspaceServiceAccountGrafanaRole.variable(String name)
     : this._(TfArg.variable(name));
   GrafanaWorkspaceServiceAccountGrafanaRole.expression(String template)

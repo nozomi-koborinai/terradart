@@ -318,7 +318,8 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 /// `identity_update_behavior` — derived from the provider schema description.
 extension type const ZeroTrustAccessIdentityProviderIdentityUpdateBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessIdentityProviderIdentityUpdateBehavior.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessIdentityProviderIdentityUpdateBehavior.expression(

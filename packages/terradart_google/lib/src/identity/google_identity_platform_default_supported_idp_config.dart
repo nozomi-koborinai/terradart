@@ -10,7 +10,8 @@ const Set<String> _googleIdentityPlatformDefaultSupportedIdpConfigSensitive =
 /// Identity Platform Default Supported Idp Config Idp enum for `idp_id`.
 extension type const IdentityPlatformDefaultSupportedIdpConfigIdpId._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IdentityPlatformDefaultSupportedIdpConfigIdpId.variable(String name)
     : this._(TfArg.variable(name));
   IdentityPlatformDefaultSupportedIdpConfigIdpId.expression(String template)

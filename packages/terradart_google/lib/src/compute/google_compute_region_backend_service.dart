@@ -212,7 +212,8 @@ extension type const RegionBackendServiceSessionAffinity._(TfArg<String> _)
 /// dials directly).
 extension type const RegionBackendServiceIpAddressSelectionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionBackendServiceIpAddressSelectionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   RegionBackendServiceIpAddressSelectionPolicy.expression(String template)
@@ -356,7 +357,8 @@ extension type const RegionBackendServiceFastIpMove._(TfArg<String> _)
 /// Zonal-affinity selector for Internal Passthrough NLBs.
 extension type const RegionBackendServiceZonalAffinitySpillover._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionBackendServiceZonalAffinitySpillover.variable(String name)
     : this._(TfArg.variable(name));
   RegionBackendServiceZonalAffinitySpillover.expression(String template)
@@ -389,7 +391,8 @@ extension type const RegionBackendServiceZonalAffinitySpillover._(
 /// unhealthy. Default `DEFAULT_FOR_PROTOCOL`.
 extension type const RegionBackendServiceConnectionPersistence._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionBackendServiceConnectionPersistence.variable(String name)
     : this._(TfArg.variable(name));
   RegionBackendServiceConnectionPersistence.expression(String template)

@@ -11,7 +11,8 @@ const Set<String> _awsComputeoptimizerRecommendationPreferencesSensitive =
 /// Computeoptimizer Recommendation Preferences Enhanced Infrastructure enum for `enhanced_infrastructure_metrics`.
 extension type const ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -40,7 +41,8 @@ extension type const ComputeoptimizerRecommendationPreferencesEnhancedInfrastruc
 /// Computeoptimizer Recommendation Preferences Inferred Workload enum for `inferred_workload_types`.
 extension type const ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -69,7 +71,8 @@ extension type const ComputeoptimizerRecommendationPreferencesInferredWorkloadTy
 /// Computeoptimizer Recommendation Preferences Look Back enum for `look_back_period`.
 extension type const ComputeoptimizerRecommendationPreferencesLookBackPeriod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesLookBackPeriod.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesLookBackPeriod.expression(
@@ -99,7 +102,8 @@ extension type const ComputeoptimizerRecommendationPreferencesLookBackPeriod._(
 /// Computeoptimizer Recommendation Preferences Resource enum for `resource_type`.
 extension type const ComputeoptimizerRecommendationPreferencesResourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesResourceType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesResourceType.expression(
@@ -138,7 +142,8 @@ extension type const ComputeoptimizerRecommendationPreferencesResourceType._(
 /// Computeoptimizer Recommendation Preferences Savings Estimation enum for `savings_estimation_mode`.
 extension type const ComputeoptimizerRecommendationPreferencesSavingsEstimationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesSavingsEstimationMode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -181,7 +186,8 @@ final class ComputeoptimizerRecommendationPreferencesExternalMetricsPreference {
 /// `source` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesSource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesSource.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesSource.expression(String template)
@@ -295,7 +301,8 @@ final class ComputeoptimizerRecommendationPreferencesFilterIncludeList
 /// `name` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesPreferredResourceName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesPreferredResourceName.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -340,7 +347,8 @@ final class ComputeoptimizerRecommendationPreferencesScope {
 /// `name` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesScopeName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesScopeName.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesScopeName.expression(String template)
@@ -390,7 +398,8 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
 /// `metric_name` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesMetricName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesMetricName.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesMetricName.expression(
@@ -436,7 +445,8 @@ final class ComputeoptimizerRecommendationPreferencesMetricParameters {
 /// `headroom` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesHeadroom._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesHeadroom.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesHeadroom.expression(String template)
@@ -464,7 +474,8 @@ extension type const ComputeoptimizerRecommendationPreferencesHeadroom._(
 /// `threshold` — derived from the provider schema description.
 extension type const ComputeoptimizerRecommendationPreferencesThreshold._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeoptimizerRecommendationPreferencesThreshold.variable(String name)
     : this._(TfArg.variable(name));
   ComputeoptimizerRecommendationPreferencesThreshold.expression(String template)

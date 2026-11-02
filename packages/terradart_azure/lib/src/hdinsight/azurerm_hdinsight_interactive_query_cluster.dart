@@ -47,7 +47,8 @@ extension type const HdinsightInteractiveQueryClusterTier._(TfArg<String> _)
 /// Hdinsight Interactive Query Cluster Tls Min enum for `tls_min_version`.
 extension type const HdinsightInteractiveQueryClusterTlsMinVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightInteractiveQueryClusterTlsMinVersion.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightInteractiveQueryClusterTlsMinVersion.expression(String template)
@@ -144,7 +145,8 @@ final class HdinsightInteractiveQueryClusterDiskEncryption {
 /// `encryption_algorithm` — derived from the provider schema description.
 extension type const HdinsightInteractiveQueryClusterEncryptionAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightInteractiveQueryClusterEncryptionAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightInteractiveQueryClusterEncryptionAlgorithm.expression(
@@ -361,7 +363,8 @@ final class HdinsightInteractiveQueryClusterNetwork {
 /// `connection_direction` — derived from the provider schema description.
 extension type const HdinsightInteractiveQueryClusterConnectionDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightInteractiveQueryClusterConnectionDirection.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightInteractiveQueryClusterConnectionDirection.expression(
@@ -442,7 +445,8 @@ final class HdinsightInteractiveQueryClusterIpConfiguration {
 /// `private_ip_allocation_method` — derived from the provider schema description.
 extension type const HdinsightInteractiveQueryClusterPrivateIpAllocationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightInteractiveQueryClusterPrivateIpAllocationMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));

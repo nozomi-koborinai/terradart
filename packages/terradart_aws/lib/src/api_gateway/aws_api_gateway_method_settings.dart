@@ -92,7 +92,8 @@ extension type const ApiGatewayMethodSettingsLoggingLevel._(TfArg<String> _)
 /// `unauthorized_cache_control_header_strategy` — derived from the provider schema description.
 extension type const ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy.variable(
     String name,
   ) : this._(TfArg.variable(name));

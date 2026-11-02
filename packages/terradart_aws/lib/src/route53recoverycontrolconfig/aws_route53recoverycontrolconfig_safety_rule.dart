@@ -115,7 +115,8 @@ final class Route53recoverycontrolconfigSafetyRuleConfig {
 /// `type` — derived from the provider schema description.
 extension type const Route53recoverycontrolconfigSafetyRuleType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53recoverycontrolconfigSafetyRuleType.variable(String name)
     : this._(TfArg.variable(name));
   Route53recoverycontrolconfigSafetyRuleType.expression(String template)

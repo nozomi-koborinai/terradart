@@ -10,7 +10,8 @@ const Set<String> _awsNotificationsNotificationConfigurationSensitive =
 /// Notifications Notification Configuration Aggregation enum for `aggregation_duration`.
 extension type const NotificationsNotificationConfigurationAggregationDuration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NotificationsNotificationConfigurationAggregationDuration.variable(
     String name,
   ) : this._(TfArg.variable(name));

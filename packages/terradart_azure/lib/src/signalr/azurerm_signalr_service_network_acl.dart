@@ -59,7 +59,8 @@ final class SignalrServiceNetworkAclPrivateEndpoint {
 /// `allowed_request_types` — derived from the provider schema description.
 extension type const SignalrServiceNetworkAclAllowedRequestTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SignalrServiceNetworkAclAllowedRequestTypes.variable(String name)
     : this._(TfArg.variable(name));
   SignalrServiceNetworkAclAllowedRequestTypes.expression(String template)
@@ -91,7 +92,8 @@ extension type const SignalrServiceNetworkAclAllowedRequestTypes._(
 /// `denied_request_types` — derived from the provider schema description.
 extension type const SignalrServiceNetworkAclDeniedRequestTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SignalrServiceNetworkAclDeniedRequestTypes.variable(String name)
     : this._(TfArg.variable(name));
   SignalrServiceNetworkAclDeniedRequestTypes.expression(String template)

@@ -90,7 +90,8 @@ extension type const NetworkConnectivityInternalRangePeering._(TfArg<String> _)
 /// `allocation_strategy` on [NetworkConnectivityInternalRangeAllocationOptions].
 extension type const NetworkConnectivityInternalRangeAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkConnectivityInternalRangeAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   NetworkConnectivityInternalRangeAllocationStrategy.expression(String template)

@@ -10,7 +10,8 @@ const Set<String> _azurermSentinelAlertRuleMsSecurityIncidentSensitive =
 /// Sentinel Alert Rule Ms Security Incident Product enum for `product_filter`.
 extension type const SentinelAlertRuleMsSecurityIncidentProductFilter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleMsSecurityIncidentProductFilter.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleMsSecurityIncidentProductFilter.expression(String template)
@@ -61,7 +62,8 @@ extension type const SentinelAlertRuleMsSecurityIncidentProductFilter._(
 /// Sentinel Alert Rule Ms Security Incident Severity enum for `severity_filter`.
 extension type const SentinelAlertRuleMsSecurityIncidentSeverityFilter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleMsSecurityIncidentSeverityFilter.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleMsSecurityIncidentSeverityFilter.expression(String template)

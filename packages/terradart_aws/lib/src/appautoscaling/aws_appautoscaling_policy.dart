@@ -71,7 +71,8 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
 /// `max_capacity_breach_behavior` — derived from the provider schema description.
 extension type const AppautoscalingPolicyMaxCapacityBreachBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppautoscalingPolicyMaxCapacityBreachBehavior.variable(String name)
     : this._(TfArg.variable(name));
   AppautoscalingPolicyMaxCapacityBreachBehavior.expression(String template)
@@ -442,7 +443,8 @@ extension type const AppautoscalingPolicyAdjustmentType._(TfArg<String> _)
 /// `metric_aggregation_type` — derived from the provider schema description.
 extension type const AppautoscalingPolicyMetricAggregationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppautoscalingPolicyMetricAggregationType.variable(String name)
     : this._(TfArg.variable(name));
   AppautoscalingPolicyMetricAggregationType.expression(String template)

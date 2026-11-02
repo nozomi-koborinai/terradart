@@ -13,7 +13,8 @@ const Set<String> _googleAppEngineFlexibleAppVersionSensitive = <String>{};
 /// App Engine Flexible App Version Inbound enum for `inbound_services`.
 extension type const AppEngineFlexibleAppVersionInboundServices._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineFlexibleAppVersionInboundServices.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineFlexibleAppVersionInboundServices.expression(String template)
@@ -232,7 +233,8 @@ final class AppEngineFlexibleAppVersionApiConfig {
 /// `auth_fail_action` — derived from the provider schema description.
 extension type const AppEngineFlexibleAppVersionAuthFailAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineFlexibleAppVersionAuthFailAction.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineFlexibleAppVersionAuthFailAction.expression(String template)
@@ -447,7 +449,8 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 /// `rollout_strategy` — derived from the provider schema description.
 extension type const AppEngineFlexibleAppVersionRolloutStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineFlexibleAppVersionRolloutStrategy.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineFlexibleAppVersionRolloutStrategy.expression(String template)
@@ -544,7 +547,8 @@ final class AppEngineFlexibleAppVersionHandlers {
 /// `redirect_http_response_code` — derived from the provider schema description.
 extension type const AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineFlexibleAppVersionRedirectHttpResponseCode.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineFlexibleAppVersionRedirectHttpResponseCode.expression(

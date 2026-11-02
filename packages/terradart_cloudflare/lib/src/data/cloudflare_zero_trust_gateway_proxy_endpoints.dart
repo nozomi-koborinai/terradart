@@ -11,7 +11,8 @@ const Set<String> _cloudflareZeroTrustGatewayProxyEndpointsSensitive =
 /// Data Zero Trust Gateway Proxy Endpoints enum for `direction`.
 extension type const DataZeroTrustGatewayProxyEndpointsDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustGatewayProxyEndpointsDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustGatewayProxyEndpointsDirection.expression(String template)
@@ -35,7 +36,8 @@ extension type const DataZeroTrustGatewayProxyEndpointsDirection._(
 /// Data Zero Trust Gateway Proxy Endpoints Order enum for `order_by`.
 extension type const DataZeroTrustGatewayProxyEndpointsOrderBy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustGatewayProxyEndpointsOrderBy.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustGatewayProxyEndpointsOrderBy.expression(String template)

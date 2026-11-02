@@ -15,7 +15,8 @@ const Set<String> _googleCloudRunV2InstanceSensitive = <String>{};
 /// Cloud Run V2 Instance Encryption Key Revocation enum for `encryption_key_revocation_action`.
 extension type const CloudRunV2InstanceEncryptionKeyRevocationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudRunV2InstanceEncryptionKeyRevocationAction.variable(String name)
     : this._(TfArg.variable(name));
   CloudRunV2InstanceEncryptionKeyRevocationAction.expression(String template)

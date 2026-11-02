@@ -24,7 +24,8 @@ final class DataConnectivityDirectoryServiceFilter {
 /// `type` — derived from the provider schema description.
 extension type const DataConnectivityDirectoryServiceFilterType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataConnectivityDirectoryServiceFilterType.variable(String name)
     : this._(TfArg.variable(name));
   DataConnectivityDirectoryServiceFilterType.expression(String template)

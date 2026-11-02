@@ -9,7 +9,8 @@ const Set<String> _awsRoute53recoverycontrolconfigClusterSensitive = <String>{};
 /// Route53recoverycontrolconfig Cluster Network enum for `network_type`.
 extension type const Route53recoverycontrolconfigClusterNetworkType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Route53recoverycontrolconfigClusterNetworkType.variable(String name)
     : this._(TfArg.variable(name));
   Route53recoverycontrolconfigClusterNetworkType.expression(String template)

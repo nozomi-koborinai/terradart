@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
+import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -545,9 +546,7 @@ void main() {
       );
       final raw = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
+      final formatter = packageFormatter('../terradart_google');
       final String formatted;
       try {
         formatted = formatter.format(raw);
@@ -574,9 +573,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -599,9 +596,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -624,9 +619,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -649,9 +642,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -674,9 +665,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -699,9 +688,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -724,9 +711,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -749,9 +734,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -774,9 +757,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -799,9 +780,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);
@@ -824,9 +803,7 @@ void main() {
           rawResourceSchemas: _perResourceRawBlocks,
         );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
-        final formatter = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        );
+        final formatter = packageFormatter('../terradart_google');
         final String formatted;
         try {
           formatted = formatter.format(raw);

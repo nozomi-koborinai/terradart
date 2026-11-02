@@ -261,7 +261,8 @@ final class CloudfrontResponseHeadersPolicyFrameOptions {
 /// `frame_option` — derived from the provider schema description.
 extension type const CloudfrontResponseHeadersPolicyFrameOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontResponseHeadersPolicyFrameOption.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontResponseHeadersPolicyFrameOption.expression(String template)
@@ -306,7 +307,8 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
 /// `referrer_policy` — derived from the provider schema description.
 extension type const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy.variable(
     String name,
   ) : this._(TfArg.variable(name));

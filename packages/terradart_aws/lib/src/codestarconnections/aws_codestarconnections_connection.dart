@@ -10,7 +10,8 @@ const Set<String> _awsCodestarconnectionsConnectionSensitive = <String>{};
 /// Codestarconnections Connection Provider enum for `provider_type`.
 extension type const CodestarconnectionsConnectionProviderType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CodestarconnectionsConnectionProviderType.variable(String name)
     : this._(TfArg.variable(name));
   CodestarconnectionsConnectionProviderType.expression(String template)

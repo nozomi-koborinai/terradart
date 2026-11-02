@@ -10,7 +10,8 @@ const Set<String> _azurermNetworkManagerSecurityAdminConfigurationSensitive =
 /// Network Manager Security Admin Configuration Apply On Network Intent Policy Based enum for `apply_on_network_intent_policy_based_services`.
 extension type const NetworkManagerSecurityAdminConfigurationApplyOnNetworkIntentPolicyBasedServices._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkManagerSecurityAdminConfigurationApplyOnNetworkIntentPolicyBasedServices.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -33,7 +33,8 @@ extension type const Apigatewayv2IntegrationConnectionType._(TfArg<String> _)
 /// Apigatewayv2 Integration Content Handling enum for `content_handling_strategy`.
 extension type const Apigatewayv2IntegrationContentHandlingStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Apigatewayv2IntegrationContentHandlingStrategy.variable(String name)
     : this._(TfArg.variable(name));
   Apigatewayv2IntegrationContentHandlingStrategy.expression(String template)
@@ -86,7 +87,8 @@ extension type const Apigatewayv2IntegrationType._(TfArg<String> _)
 /// Apigatewayv2 Integration Passthrough enum for `passthrough_behavior`.
 extension type const Apigatewayv2IntegrationPassthroughBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Apigatewayv2IntegrationPassthroughBehavior.variable(String name)
     : this._(TfArg.variable(name));
   Apigatewayv2IntegrationPassthroughBehavior.expression(String template)
@@ -114,7 +116,8 @@ extension type const Apigatewayv2IntegrationPassthroughBehavior._(
 /// Apigatewayv2 Integration Payload Format enum for `payload_format_version`.
 extension type const Apigatewayv2IntegrationPayloadFormatVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Apigatewayv2IntegrationPayloadFormatVersion.variable(String name)
     : this._(TfArg.variable(name));
   Apigatewayv2IntegrationPayloadFormatVersion.expression(String template)

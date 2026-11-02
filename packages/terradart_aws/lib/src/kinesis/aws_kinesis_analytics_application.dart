@@ -341,7 +341,8 @@ final class KinesisAnalyticsApplicationStartingPositionConfiguration {
 /// `starting_position` — derived from the provider schema description.
 extension type const KinesisAnalyticsApplicationStartingPosition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisAnalyticsApplicationStartingPosition.variable(String name)
     : this._(TfArg.variable(name));
   KinesisAnalyticsApplicationStartingPosition.expression(String template)
@@ -417,7 +418,8 @@ final class KinesisAnalyticsApplicationOutputsSchema {
 /// `record_format_type` — derived from the provider schema description.
 extension type const KinesisAnalyticsApplicationRecordFormatType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KinesisAnalyticsApplicationRecordFormatType.variable(String name)
     : this._(TfArg.variable(name));
   KinesisAnalyticsApplicationRecordFormatType.expression(String template)

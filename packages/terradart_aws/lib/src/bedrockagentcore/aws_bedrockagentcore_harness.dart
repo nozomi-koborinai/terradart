@@ -156,7 +156,8 @@ final class BedrockagentcoreHarnessCustomClaim {
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
 extension type const BedrockagentcoreHarnessInboundTokenClaimValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreHarnessInboundTokenClaimValueType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreHarnessInboundTokenClaimValueType.expression(String template)
@@ -200,7 +201,8 @@ final class BedrockagentcoreHarnessAuthorizingClaimMatchValue {
 /// `claim_match_operator` — derived from the provider schema description.
 extension type const BedrockagentcoreHarnessClaimMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreHarnessClaimMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreHarnessClaimMatchOperator.expression(String template)
@@ -311,7 +313,8 @@ final class BedrockagentcoreHarnessManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreHarnessEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreHarnessEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreHarnessEndpointIpAddressType.expression(String template)
@@ -817,7 +820,8 @@ final class BedrockagentcoreHarnessBedrockModelConfig {
 /// `api_format` — derived from the provider schema description.
 extension type const BedrockagentcoreHarnessBedrockModelConfigApiFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreHarnessBedrockModelConfigApiFormat.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreHarnessBedrockModelConfigApiFormat.expression(String template)
@@ -965,7 +969,8 @@ final class BedrockagentcoreHarnessOpenaiModelConfig {
 /// `api_format` — derived from the provider schema description.
 extension type const BedrockagentcoreHarnessOpenaiModelConfigApiFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreHarnessOpenaiModelConfigApiFormat.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreHarnessOpenaiModelConfigApiFormat.expression(String template)

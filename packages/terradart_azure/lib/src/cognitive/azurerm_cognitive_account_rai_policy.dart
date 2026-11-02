@@ -72,7 +72,8 @@ final class CognitiveAccountRaiPolicyContentFilter {
 /// `severity_threshold` — derived from the provider schema description.
 extension type const CognitiveAccountRaiPolicySeverityThreshold._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitiveAccountRaiPolicySeverityThreshold.variable(String name)
     : this._(TfArg.variable(name));
   CognitiveAccountRaiPolicySeverityThreshold.expression(String template)

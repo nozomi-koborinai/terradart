@@ -400,7 +400,8 @@ final class SchedulerSchedulePlacementConstraints {
 /// `type` — derived from the provider schema description.
 extension type const SchedulerSchedulePlacementConstraintsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SchedulerSchedulePlacementConstraintsType.variable(String name)
     : this._(TfArg.variable(name));
   SchedulerSchedulePlacementConstraintsType.expression(String template)

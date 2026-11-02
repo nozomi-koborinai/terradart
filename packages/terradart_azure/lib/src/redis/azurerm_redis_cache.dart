@@ -200,7 +200,8 @@ final class RedisCacheRedisConfiguration {
 /// `data_persistence_authentication_method` — derived from the provider schema description.
 extension type const RedisCacheDataPersistenceAuthenticationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RedisCacheDataPersistenceAuthenticationMethod.variable(String name)
     : this._(TfArg.variable(name));
   RedisCacheDataPersistenceAuthenticationMethod.expression(String template)

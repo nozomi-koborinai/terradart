@@ -24,7 +24,8 @@ final class ComputeInterconnectGroupIntent {
 /// `topology_capability` — derived from the provider schema description.
 extension type const ComputeInterconnectGroupTopologyCapability._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInterconnectGroupTopologyCapability.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInterconnectGroupTopologyCapability.expression(String template)

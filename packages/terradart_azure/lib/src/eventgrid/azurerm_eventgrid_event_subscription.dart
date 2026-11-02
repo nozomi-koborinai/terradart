@@ -12,7 +12,8 @@ const Set<String> _azurermEventgridEventSubscriptionSensitive = <String>{
 /// Eventgrid Event Subscription Event Delivery enum for `event_delivery_schema`.
 extension type const EventgridEventSubscriptionEventDeliverySchema._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventgridEventSubscriptionEventDeliverySchema.variable(String name)
     : this._(TfArg.variable(name));
   EventgridEventSubscriptionEventDeliverySchema.expression(String template)
@@ -566,7 +567,8 @@ final class EventgridEventSubscriptionDeadLetterIdentity {
 /// `type` — derived from the provider schema description.
 extension type const EventgridEventSubscriptionDeadLetterIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventgridEventSubscriptionDeadLetterIdentityType.variable(String name)
     : this._(TfArg.variable(name));
   EventgridEventSubscriptionDeadLetterIdentityType.expression(String template)
@@ -644,7 +646,8 @@ final class EventgridEventSubscriptionDeliveryProperty {
 /// `type` — derived from the provider schema description.
 extension type const EventgridEventSubscriptionDeliveryPropertyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventgridEventSubscriptionDeliveryPropertyType.variable(String name)
     : this._(TfArg.variable(name));
   EventgridEventSubscriptionDeliveryPropertyType.expression(String template)

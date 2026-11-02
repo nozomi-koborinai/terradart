@@ -85,7 +85,8 @@ final class VerifiedaccessEndpointCidrOptions {
 /// `protocol` — derived from the provider schema description.
 extension type const VerifiedaccessEndpointCidrOptionsProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VerifiedaccessEndpointCidrOptionsProtocol.variable(String name)
     : this._(TfArg.variable(name));
   VerifiedaccessEndpointCidrOptionsProtocol.expression(String template)
@@ -157,7 +158,8 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 /// `protocol` — derived from the provider schema description.
 extension type const VerifiedaccessEndpointLoadBalancerOptionsProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VerifiedaccessEndpointLoadBalancerOptionsProtocol.variable(String name)
     : this._(TfArg.variable(name));
   VerifiedaccessEndpointLoadBalancerOptionsProtocol.expression(String template)

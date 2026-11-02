@@ -11,7 +11,8 @@ const Set<String> _googleAgenticApplicationsAnalystAgentPersonaSensitive =
 /// Agentic Applications Analyst Agent Persona Math Rendering enum for `math_rendering_mode`.
 extension type const AgenticApplicationsAnalystAgentPersonaMathRenderingMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaMathRenderingMode.variable(String name)
     : this._(TfArg.variable(name));
   AgenticApplicationsAnalystAgentPersonaMathRenderingMode.expression(
@@ -37,7 +38,8 @@ extension type const AgenticApplicationsAnalystAgentPersonaMathRenderingMode._(
 /// `role` for [GoogleAgenticApplicationsAnalystAgentPersona].
 extension type const AgenticApplicationsAnalystAgentPersonaRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaRole.variable(String name)
     : this._(TfArg.variable(name));
   AgenticApplicationsAnalystAgentPersonaRole.expression(String template)
@@ -401,7 +403,8 @@ final class AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions {
 /// `export_format` — derived from the provider schema description.
 extension type const AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -473,7 +476,8 @@ final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
 /// `export_format` — derived from the provider schema description.
 extension type const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -529,7 +533,8 @@ final class AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions {
 /// `export_format` — derived from the provider schema description.
 extension type const AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -605,7 +610,8 @@ final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
 /// `visualization_mode` — derived from the provider schema description.
 extension type const AgenticApplicationsAnalystAgentPersonaVisualizationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgenticApplicationsAnalystAgentPersonaVisualizationMode.variable(String name)
     : this._(TfArg.variable(name));
   AgenticApplicationsAnalystAgentPersonaVisualizationMode.expression(

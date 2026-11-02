@@ -49,7 +49,8 @@ extension type const SpotFleetRequestAllocationStrategy._(TfArg<String> _)
 /// Spot Fleet Request Excess Capacity Termination enum for `excess_capacity_termination_policy`.
 extension type const SpotFleetRequestExcessCapacityTerminationPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpotFleetRequestExcessCapacityTerminationPolicy.variable(String name)
     : this._(TfArg.variable(name));
   SpotFleetRequestExcessCapacityTerminationPolicy.expression(String template)
@@ -94,7 +95,8 @@ extension type const SpotFleetRequestFleetType._(TfArg<String> _)
 /// Spot Fleet Request Instance Interruption enum for `instance_interruption_behaviour`.
 extension type const SpotFleetRequestInstanceInterruptionBehaviour._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpotFleetRequestInstanceInterruptionBehaviour.variable(String name)
     : this._(TfArg.variable(name));
   SpotFleetRequestInstanceInterruptionBehaviour.expression(String template)
@@ -122,7 +124,8 @@ extension type const SpotFleetRequestInstanceInterruptionBehaviour._(
 /// Spot Fleet Request On Demand Allocation enum for `on_demand_allocation_strategy`.
 extension type const SpotFleetRequestOnDemandAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpotFleetRequestOnDemandAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   SpotFleetRequestOnDemandAllocationStrategy.expression(String template)

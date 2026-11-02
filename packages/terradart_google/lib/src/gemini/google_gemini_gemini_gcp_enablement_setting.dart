@@ -9,7 +9,8 @@ const Set<String> _googleGeminiGeminiGcpEnablementSettingSensitive = <String>{};
 /// Gemini Gemini Gcp Enablement Setting Release enum for `release_channel`.
 extension type const GeminiGeminiGcpEnablementSettingReleaseChannel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GeminiGeminiGcpEnablementSettingReleaseChannel.variable(String name)
     : this._(TfArg.variable(name));
   GeminiGeminiGcpEnablementSettingReleaseChannel.expression(String template)
@@ -33,7 +34,8 @@ extension type const GeminiGeminiGcpEnablementSettingReleaseChannel._(
 /// Gemini Gemini Gcp Enablement Setting Web Grounding enum for `web_grounding_type`.
 extension type const GeminiGeminiGcpEnablementSettingWebGroundingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GeminiGeminiGcpEnablementSettingWebGroundingType.variable(String name)
     : this._(TfArg.variable(name));
   GeminiGeminiGcpEnablementSettingWebGroundingType.expression(String template)

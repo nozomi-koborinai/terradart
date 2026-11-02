@@ -329,7 +329,8 @@ final class FrontdoorForwardingConfiguration {
 /// `cache_query_parameter_strip_directive` — derived from the provider schema description.
 extension type const FrontdoorCacheQueryParameterStripDirective._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FrontdoorCacheQueryParameterStripDirective.variable(String name)
     : this._(TfArg.variable(name));
   FrontdoorCacheQueryParameterStripDirective.expression(String template)

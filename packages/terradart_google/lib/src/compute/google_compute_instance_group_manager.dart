@@ -14,7 +14,8 @@ const Set<String> _googleComputeInstanceGroupManagerSensitive = <String>{};
 /// `listManagedInstances` API on this MIG.
 extension type const InstanceGroupManagerListManagedInstancesResults._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   InstanceGroupManagerListManagedInstancesResults.variable(String name)
     : this._(TfArg.variable(name));
   InstanceGroupManagerListManagedInstancesResults.expression(String template)
@@ -101,7 +102,8 @@ extension type const InstanceGroupManagerUpdatePolicyAction._(TfArg<String> _)
 /// requires `max_unavailable_*` > 0.
 extension type const InstanceGroupManagerUpdatePolicyReplacementMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   InstanceGroupManagerUpdatePolicyReplacementMethod.variable(String name)
     : this._(TfArg.variable(name));
   InstanceGroupManagerUpdatePolicyReplacementMethod.expression(String template)
@@ -306,7 +308,8 @@ class ComputeInstanceGroupManagerNamedPort {
 /// `stateful_external_ip` blocks.
 extension type const ComputeInstanceGroupManagerStatefulDeleteRule._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInstanceGroupManagerStatefulDeleteRule.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInstanceGroupManagerStatefulDeleteRule.expression(String template)
@@ -405,7 +408,8 @@ class ComputeInstanceGroupManagerAllInstancesConfig {
 /// does with a failed VM.
 extension type const InstanceGroupManagerDefaultActionOnFailure._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   InstanceGroupManagerDefaultActionOnFailure.variable(String name)
     : this._(TfArg.variable(name));
   InstanceGroupManagerDefaultActionOnFailure.expression(String template)

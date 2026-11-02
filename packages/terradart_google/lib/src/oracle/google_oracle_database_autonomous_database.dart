@@ -16,7 +16,8 @@ const Set<String> _googleOracleDatabaseAutonomousDatabaseSensitive = <String>{};
 /// Terraform `deletion_policy` for Autonomous Databases.
 extension type const OracleDatabaseAutonomousDatabaseDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseDeletionPolicy.expression(String template)
@@ -44,7 +45,8 @@ extension type const OracleDatabaseAutonomousDatabaseDeletionPolicy._(
 /// Autonomous Database workload type.
 extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseDbWorkload.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseDbWorkload.expression(String template)
@@ -80,7 +82,8 @@ extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(
 /// Autonomous Database license type.
 extension type const OracleDatabaseAutonomousDatabaseLicenseType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseLicenseType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseLicenseType.expression(String template)
@@ -205,7 +208,8 @@ final class OracleDatabaseAutonomousDatabaseProperties {
 /// `db_edition` — derived from the provider schema description.
 extension type const OracleDatabaseAutonomousDatabaseDbEdition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseDbEdition.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseDbEdition.expression(String template)
@@ -229,7 +233,8 @@ extension type const OracleDatabaseAutonomousDatabaseDbEdition._(
 /// `maintenance_schedule_type` — derived from the provider schema description.
 extension type const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseMaintenanceScheduleType.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseMaintenanceScheduleType.expression(
@@ -255,7 +260,8 @@ extension type const OracleDatabaseAutonomousDatabaseMaintenanceScheduleType._(
 /// `operations_insights_state` — derived from the provider schema description.
 extension type const OracleDatabaseAutonomousDatabaseOperationsInsightsState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseAutonomousDatabaseOperationsInsightsState.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseAutonomousDatabaseOperationsInsightsState.expression(

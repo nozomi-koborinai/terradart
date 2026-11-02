@@ -13,7 +13,8 @@ const Set<String> _googleCertificateManagerCertificateIssuanceConfigSensitive =
 /// `key_algorithm` — private key algorithm for issued certificates.
 extension type const CertificateManagerCertificateIssuanceConfigKeyAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CertificateManagerCertificateIssuanceConfigKeyAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   CertificateManagerCertificateIssuanceConfigKeyAlgorithm.expression(

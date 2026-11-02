@@ -463,7 +463,8 @@ extension type const ManagedRedisEvictionPolicy._(TfArg<String> _)
 /// `persistence_append_only_file_backup_frequency` — derived from the provider schema description.
 extension type const ManagedRedisPersistenceAppendOnlyFileBackupFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ManagedRedisPersistenceAppendOnlyFileBackupFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ManagedRedisPersistenceAppendOnlyFileBackupFrequency.expression(
@@ -484,7 +485,8 @@ extension type const ManagedRedisPersistenceAppendOnlyFileBackupFrequency._(
 /// `persistence_redis_database_backup_frequency` — derived from the provider schema description.
 extension type const ManagedRedisPersistenceRedisDatabaseBackupFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ManagedRedisPersistenceRedisDatabaseBackupFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ManagedRedisPersistenceRedisDatabaseBackupFrequency.expression(

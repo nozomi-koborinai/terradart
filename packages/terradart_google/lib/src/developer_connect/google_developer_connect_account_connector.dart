@@ -63,7 +63,8 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
 /// `scm_provider` — derived from the provider schema description.
 extension type const DeveloperConnectAccountConnectorScmProvider._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DeveloperConnectAccountConnectorScmProvider.variable(String name)
     : this._(TfArg.variable(name));
   DeveloperConnectAccountConnectorScmProvider.expression(String template)
@@ -131,7 +132,8 @@ final class DeveloperConnectAccountConnectorProviderOauthConfig {
 /// `system_provider_id` — derived from the provider schema description.
 extension type const DeveloperConnectAccountConnectorSystemProviderId._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DeveloperConnectAccountConnectorSystemProviderId.variable(String name)
     : this._(TfArg.variable(name));
   DeveloperConnectAccountConnectorSystemProviderId.expression(String template)

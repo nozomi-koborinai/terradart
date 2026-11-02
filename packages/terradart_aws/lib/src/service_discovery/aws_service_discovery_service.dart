@@ -144,7 +144,8 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
 /// `type` — derived from the provider schema description.
 extension type const ServiceDiscoveryServiceHealthCheckConfigType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ServiceDiscoveryServiceHealthCheckConfigType.variable(String name)
     : this._(TfArg.variable(name));
   ServiceDiscoveryServiceHealthCheckConfigType.expression(String template)

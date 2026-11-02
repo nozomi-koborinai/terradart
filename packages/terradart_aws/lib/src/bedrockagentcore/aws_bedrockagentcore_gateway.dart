@@ -213,7 +213,8 @@ final class BedrockagentcoreGatewayCustomClaim {
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayInboundTokenClaimValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayInboundTokenClaimValueType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayInboundTokenClaimValueType.expression(String template)
@@ -257,7 +258,8 @@ final class BedrockagentcoreGatewayAuthorizingClaimMatchValue {
 /// `claim_match_operator` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayClaimMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayClaimMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayClaimMatchOperator.expression(String template)
@@ -368,7 +370,8 @@ final class BedrockagentcoreGatewayManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayEndpointIpAddressType.expression(String template)
@@ -457,7 +460,8 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
 /// `interception_points` — derived from the provider schema description.
 extension type const BedrockagentcoreGatewayInterceptionPoints._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreGatewayInterceptionPoints.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreGatewayInterceptionPoints.expression(String template)

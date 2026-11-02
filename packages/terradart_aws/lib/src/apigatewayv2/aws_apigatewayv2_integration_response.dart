@@ -9,7 +9,8 @@ const Set<String> _awsApigatewayv2IntegrationResponseSensitive = <String>{};
 /// Apigatewayv2 Integration Response Content Handling enum for `content_handling_strategy`.
 extension type const Apigatewayv2IntegrationResponseContentHandlingStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Apigatewayv2IntegrationResponseContentHandlingStrategy.variable(String name)
     : this._(TfArg.variable(name));
   Apigatewayv2IntegrationResponseContentHandlingStrategy.expression(

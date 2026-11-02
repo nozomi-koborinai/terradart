@@ -11,7 +11,8 @@ const Set<String> _googleOracleDatabaseExascaleDbStorageVaultSensitive =
 /// Terraform `deletion_policy` for Exascale DB storage vaults.
 extension type const OracleDatabaseExascaleDbStorageVaultDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseExascaleDbStorageVaultDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   OracleDatabaseExascaleDbStorageVaultDeletionPolicy.expression(String template)

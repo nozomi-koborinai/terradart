@@ -10,7 +10,8 @@ const Set<String> _googleMigrationCenterAssetsExportJobSensitive = <String>{};
 /// Terraform `deletion_policy` for Migration Center assets export jobs.
 extension type const MigrationCenterAssetsExportJobDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MigrationCenterAssetsExportJobDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   MigrationCenterAssetsExportJobDeletionPolicy.expression(String template)

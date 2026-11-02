@@ -387,7 +387,8 @@ final class AssuredWorkloadsWorkloadOptions {
 /// `kaj_enrollment_type` — derived from the provider schema description.
 extension type const AssuredWorkloadsWorkloadKajEnrollmentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AssuredWorkloadsWorkloadKajEnrollmentType.variable(String name)
     : this._(TfArg.variable(name));
   AssuredWorkloadsWorkloadKajEnrollmentType.expression(String template)

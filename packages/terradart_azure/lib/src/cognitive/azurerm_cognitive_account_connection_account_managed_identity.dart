@@ -10,7 +10,8 @@ _azurermCognitiveAccountConnectionAccountManagedIdentitySensitive = <String>{};
 /// Cognitive Account Connection Account Managed Identity enum for `category`.
 extension type const CognitiveAccountConnectionAccountManagedIdentityCategory._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitiveAccountConnectionAccountManagedIdentityCategory.variable(String name)
     : this._(TfArg.variable(name));
   CognitiveAccountConnectionAccountManagedIdentityCategory.expression(

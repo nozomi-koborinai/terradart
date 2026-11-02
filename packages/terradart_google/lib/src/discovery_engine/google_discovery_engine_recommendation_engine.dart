@@ -11,7 +11,8 @@ const Set<String> _googleDiscoveryEngineRecommendationEngineSensitive =
 /// Discovery Engine Recommendation Engine Industry enum for `industry_vertical`.
 extension type const DiscoveryEngineRecommendationEngineIndustryVertical._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineIndustryVertical.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineIndustryVertical.expression(
@@ -35,7 +36,8 @@ extension type const DiscoveryEngineRecommendationEngineIndustryVertical._(
 /// Discovery Engine Recommendation Engine enum for `location`.
 extension type const DiscoveryEngineRecommendationEngineLocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineLocation.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineLocation.expression(String template)
@@ -109,7 +111,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
 /// `optimization_objective` — derived from the provider schema description.
 extension type const DiscoveryEngineRecommendationEngineOptimizationObjective._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineOptimizationObjective.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineOptimizationObjective.expression(
@@ -133,7 +136,8 @@ extension type const DiscoveryEngineRecommendationEngineOptimizationObjective._(
 /// `training_state` — derived from the provider schema description.
 extension type const DiscoveryEngineRecommendationEngineTrainingState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineTrainingState.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineTrainingState.expression(String template)
@@ -287,7 +291,8 @@ final class DiscoveryEngineRecommendationEngineRecommendedForYouConfig {
 /// `context_event_type` — derived from the provider schema description.
 extension type const DiscoveryEngineRecommendationEngineContextEventType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineContextEventType.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineContextEventType.expression(
@@ -332,7 +337,8 @@ final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
 /// `target_field` — derived from the provider schema description.
 extension type const DiscoveryEngineRecommendationEngineTargetField._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineRecommendationEngineTargetField.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineRecommendationEngineTargetField.expression(String template)

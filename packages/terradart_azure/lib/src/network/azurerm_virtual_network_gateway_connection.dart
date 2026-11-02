@@ -203,7 +203,8 @@ extension type const VirtualNetworkGatewayConnectionDhGroup._(TfArg<String> _)
 /// `ike_encryption` — derived from the provider schema description.
 extension type const VirtualNetworkGatewayConnectionIkeEncryption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkGatewayConnectionIkeEncryption.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkGatewayConnectionIkeEncryption.expression(String template)
@@ -247,7 +248,8 @@ extension type const VirtualNetworkGatewayConnectionIkeEncryption._(
 /// `ike_integrity` — derived from the provider schema description.
 extension type const VirtualNetworkGatewayConnectionIkeIntegrity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkGatewayConnectionIkeIntegrity.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkGatewayConnectionIkeIntegrity.expression(String template)
@@ -287,7 +289,8 @@ extension type const VirtualNetworkGatewayConnectionIkeIntegrity._(
 /// `ipsec_encryption` — derived from the provider schema description.
 extension type const VirtualNetworkGatewayConnectionIpsecEncryption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkGatewayConnectionIpsecEncryption.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkGatewayConnectionIpsecEncryption.expression(String template)
@@ -339,7 +342,8 @@ extension type const VirtualNetworkGatewayConnectionIpsecEncryption._(
 /// `ipsec_integrity` — derived from the provider schema description.
 extension type const VirtualNetworkGatewayConnectionIpsecIntegrity._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkGatewayConnectionIpsecIntegrity.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkGatewayConnectionIpsecIntegrity.expression(String template)

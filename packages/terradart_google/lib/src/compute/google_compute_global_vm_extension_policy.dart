@@ -159,7 +159,8 @@ final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice
 /// `predefined_rollout_plan` — derived from the provider schema description.
 extension type const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.variable(String name)
     : this._(TfArg.variable(name));
   ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.expression(

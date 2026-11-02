@@ -164,7 +164,8 @@ extension type const ArtifactRegistryMavenVersionPolicy._(TfArg<String> _)
 /// `INHERITED` defers to the project-level Artifact Analysis API state.
 extension type const ArtifactRegistryVulnerabilityEnablementConfig._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArtifactRegistryVulnerabilityEnablementConfig.variable(String name)
     : this._(TfArg.variable(name));
   ArtifactRegistryVulnerabilityEnablementConfig.expression(String template)

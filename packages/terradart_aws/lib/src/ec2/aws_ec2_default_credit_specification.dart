@@ -32,7 +32,8 @@ extension type const Ec2DefaultCreditSpecificationCpuCredits._(TfArg<String> _)
 /// Ec2 Default Credit Specification Instance enum for `instance_family`.
 extension type const Ec2DefaultCreditSpecificationInstanceFamily._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Ec2DefaultCreditSpecificationInstanceFamily.variable(String name)
     : this._(TfArg.variable(name));
   Ec2DefaultCreditSpecificationInstanceFamily.expression(String template)

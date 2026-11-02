@@ -15,7 +15,8 @@ const Set<String> _azurermActiveDirectoryDomainServiceSensitive = <String>{
 /// Active Directory Domain Service Domain Configuration enum for `domain_configuration_type`.
 extension type const ActiveDirectoryDomainServiceDomainConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ActiveDirectoryDomainServiceDomainConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   ActiveDirectoryDomainServiceDomainConfigurationType.expression(

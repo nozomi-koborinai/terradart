@@ -58,7 +58,8 @@ extension type const CloudwatchMetricAlarmComparisonOperator._(TfArg<String> _)
 /// Cloudwatch Metric Alarm Evaluate Low Sample Count enum for `evaluate_low_sample_count_percentiles`.
 extension type const CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles.expression(

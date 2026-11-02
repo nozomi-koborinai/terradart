@@ -50,7 +50,8 @@ final class DataAccountDnsSettingsInternalViewFilter {
 /// `direction` — derived from the provider schema description.
 extension type const DataAccountDnsSettingsInternalViewDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataAccountDnsSettingsInternalViewDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataAccountDnsSettingsInternalViewDirection.expression(String template)

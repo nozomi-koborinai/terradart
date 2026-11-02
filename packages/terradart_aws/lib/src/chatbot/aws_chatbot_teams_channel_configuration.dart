@@ -12,7 +12,8 @@ const Set<String> _awsChatbotTeamsChannelConfigurationSensitive = <String>{};
 /// Chatbot Teams Channel Configuration Logging enum for `logging_level`.
 extension type const ChatbotTeamsChannelConfigurationLoggingLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChatbotTeamsChannelConfigurationLoggingLevel.variable(String name)
     : this._(TfArg.variable(name));
   ChatbotTeamsChannelConfigurationLoggingLevel.expression(String template)

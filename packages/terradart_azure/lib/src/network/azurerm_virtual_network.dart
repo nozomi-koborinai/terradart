@@ -12,7 +12,8 @@ const Set<String> _azurermVirtualNetworkSensitive = <String>{};
 /// Virtual Network Private Endpoint Vnet enum for `private_endpoint_vnet_policies`.
 extension type const VirtualNetworkPrivateEndpointVnetPolicies._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkPrivateEndpointVnetPolicies.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkPrivateEndpointVnetPolicies.expression(String template)

@@ -12,7 +12,8 @@ const Set<String> _googleDialogflowCxSecuritySettingsSensitive = <String>{};
 /// Dialogflow Cx Security Settings Purge Data enum for `purge_data_types`.
 extension type const DialogflowCxSecuritySettingsPurgeDataTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxSecuritySettingsPurgeDataTypes.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowCxSecuritySettingsPurgeDataTypes.expression(String template)
@@ -32,7 +33,8 @@ extension type const DialogflowCxSecuritySettingsPurgeDataTypes._(
 /// Dialogflow Cx Security Settings Redaction enum for `redaction_scope`.
 extension type const DialogflowCxSecuritySettingsRedactionScope._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxSecuritySettingsRedactionScope.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowCxSecuritySettingsRedactionScope.expression(String template)
@@ -52,7 +54,8 @@ extension type const DialogflowCxSecuritySettingsRedactionScope._(
 /// Dialogflow Cx Security Settings Redaction enum for `redaction_strategy`.
 extension type const DialogflowCxSecuritySettingsRedactionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxSecuritySettingsRedactionStrategy.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowCxSecuritySettingsRedactionStrategy.expression(String template)
@@ -73,7 +76,8 @@ extension type const DialogflowCxSecuritySettingsRedactionStrategy._(
 /// Dialogflow Cx Security Settings Retention enum for `retention_strategy`.
 extension type const DialogflowCxSecuritySettingsRetentionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DialogflowCxSecuritySettingsRetentionStrategy.variable(String name)
     : this._(TfArg.variable(name));
   DialogflowCxSecuritySettingsRetentionStrategy.expression(String template)

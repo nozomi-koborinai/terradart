@@ -11,7 +11,8 @@ const Set<String> _azurermManagementGroupTemplateDeploymentSensitive =
 /// Management Group Template Deployment Debug enum for `debug_level`.
 extension type const ManagementGroupTemplateDeploymentDebugLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ManagementGroupTemplateDeploymentDebugLevel.variable(String name)
     : this._(TfArg.variable(name));
   ManagementGroupTemplateDeploymentDebugLevel.expression(String template)

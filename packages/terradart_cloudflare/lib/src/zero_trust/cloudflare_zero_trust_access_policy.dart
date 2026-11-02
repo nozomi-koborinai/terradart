@@ -96,7 +96,8 @@ final class ZeroTrustAccessPolicyRdp {
 /// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
 extension type const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -119,7 +120,8 @@ extension type const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
 extension type const ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -682,7 +684,8 @@ final class ZeroTrustAccessPolicyUserRiskScore {
 /// `user_risk_score` — derived from the provider schema description.
 extension type const ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessPolicyUserRiskScoreUserRiskScore.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessPolicyUserRiskScoreUserRiskScore.expression(String template)
@@ -855,7 +858,8 @@ final class ZeroTrustAccessPolicyMfaConfig {
 /// `allowed_authenticators` — derived from the provider schema description.
 extension type const ZeroTrustAccessPolicyAllowedAuthenticators._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustAccessPolicyAllowedAuthenticators.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustAccessPolicyAllowedAuthenticators.expression(String template)

@@ -12,7 +12,8 @@ const Set<String> _googleNetworkSecurityFirewallEndpointAssociationSensitive =
 /// Network Security Firewall Endpoint Association enum for `state`.
 extension type const NetworkSecurityFirewallEndpointAssociationState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityFirewallEndpointAssociationState.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityFirewallEndpointAssociationState.expression(String template)

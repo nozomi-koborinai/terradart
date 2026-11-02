@@ -55,7 +55,8 @@ final class DataProtectionBackupPolicyDataLakeStorageRetentionRule {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyDataLakeStorageAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyDataLakeStorageAbsoluteCriteria.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -94,7 +95,8 @@ extension type const DataProtectionBackupPolicyDataLakeStorageAbsoluteCriteria._
 /// `days_of_week` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyDataLakeStorageDaysOfWeek._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyDataLakeStorageDaysOfWeek.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyDataLakeStorageDaysOfWeek.expression(
@@ -134,7 +136,8 @@ extension type const DataProtectionBackupPolicyDataLakeStorageDaysOfWeek._(
 /// `months_of_year` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyDataLakeStorageMonthsOfYear._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyDataLakeStorageMonthsOfYear.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyDataLakeStorageMonthsOfYear.expression(
@@ -207,7 +210,8 @@ extension type const DataProtectionBackupPolicyDataLakeStorageMonthsOfYear._(
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyDataLakeStorageWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyDataLakeStorageWeeksOfMonth.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyDataLakeStorageWeeksOfMonth.expression(

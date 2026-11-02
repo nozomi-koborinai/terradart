@@ -11,7 +11,8 @@ _googleSccManagementOrganizationEventThreatDetectionCustomModuleSensitive =
 /// Scc Management Organization Event Threat Detection Custom Module Enablement enum for `enablement_state`.
 extension type const SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState.variable(
     String name,
   ) : this._(TfArg.variable(name));

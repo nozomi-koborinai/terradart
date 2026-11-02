@@ -40,7 +40,8 @@ extension type const CloudfrontOriginAccessControlOriginType._(TfArg<String> _)
 /// Cloudfront Origin Access Control Signing enum for `signing_behavior`.
 extension type const CloudfrontOriginAccessControlSigningBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontOriginAccessControlSigningBehavior.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontOriginAccessControlSigningBehavior.expression(String template)
@@ -72,7 +73,8 @@ extension type const CloudfrontOriginAccessControlSigningBehavior._(
 /// Cloudfront Origin Access Control Signing enum for `signing_protocol`.
 extension type const CloudfrontOriginAccessControlSigningProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontOriginAccessControlSigningProtocol.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontOriginAccessControlSigningProtocol.expression(String template)

@@ -350,7 +350,8 @@ final class CloudwatchEventTargetOrderedPlacementStrategy {
 /// `type` — derived from the provider schema description.
 extension type const CloudwatchEventTargetOrderedPlacementStrategyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchEventTargetOrderedPlacementStrategyType.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchEventTargetOrderedPlacementStrategyType.expression(String template)
@@ -395,7 +396,8 @@ final class CloudwatchEventTargetPlacementConstraint {
 /// `type` — derived from the provider schema description.
 extension type const CloudwatchEventTargetPlacementConstraintType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudwatchEventTargetPlacementConstraintType.variable(String name)
     : this._(TfArg.variable(name));
   CloudwatchEventTargetPlacementConstraintType.expression(String template)

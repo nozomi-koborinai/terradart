@@ -118,7 +118,8 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
 /// `status` — derived from the provider schema description.
 extension type const WorkspacesDirectoryCertificateBasedAuthPropertiesStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspacesDirectoryCertificateBasedAuthPropertiesStatus.variable(String name)
     : this._(TfArg.variable(name));
   WorkspacesDirectoryCertificateBasedAuthPropertiesStatus.expression(
@@ -459,7 +460,8 @@ final class WorkspacesDirectoryAccessEndpointConfig {
 /// `internet_fallback_protocols` — derived from the provider schema description.
 extension type const WorkspacesDirectoryInternetFallbackProtocols._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   WorkspacesDirectoryInternetFallbackProtocols.variable(String name)
     : this._(TfArg.variable(name));
   WorkspacesDirectoryInternetFallbackProtocols.expression(String template)

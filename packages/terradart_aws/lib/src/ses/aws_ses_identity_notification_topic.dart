@@ -11,7 +11,8 @@ const Set<String> _awsSesIdentityNotificationTopicSensitive = <String>{};
 /// Ses Identity Notification Topic Notification enum for `notification_type`.
 extension type const SesIdentityNotificationTopicNotificationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SesIdentityNotificationTopicNotificationType.variable(String name)
     : this._(TfArg.variable(name));
   SesIdentityNotificationTopicNotificationType.expression(String template)

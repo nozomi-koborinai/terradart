@@ -56,7 +56,8 @@ extension type const DataEmailSecurityAllowPoliciesOrder._(TfArg<String> _)
 /// Data Email Security Allow Policies Pattern enum for `pattern_type`.
 extension type const DataEmailSecurityAllowPoliciesPatternType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityAllowPoliciesPatternType.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityAllowPoliciesPatternType.expression(String template)

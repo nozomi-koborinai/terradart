@@ -16,7 +16,8 @@ const Set<String> _googleOracleDatabaseGoldengateConnectionAssignmentSensitive =
 /// Terraform `deletion_policy` for GoldenGate connection assignments.
 extension type const OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy.variable(
     String name,
   ) : this._(TfArg.variable(name));

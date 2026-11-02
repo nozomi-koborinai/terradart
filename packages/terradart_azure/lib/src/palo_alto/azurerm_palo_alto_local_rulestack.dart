@@ -80,7 +80,8 @@ extension type const PaloAltoLocalRulestackDnsSubscription._(TfArg<String> _)
 /// Palo Alto Local Rulestack File Blocking enum for `file_blocking_profile`.
 extension type const PaloAltoLocalRulestackFileBlockingProfile._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoLocalRulestackFileBlockingProfile.variable(String name)
     : this._(TfArg.variable(name));
   PaloAltoLocalRulestackFileBlockingProfile.expression(String template)
@@ -104,7 +105,8 @@ extension type const PaloAltoLocalRulestackFileBlockingProfile._(
 /// Palo Alto Local Rulestack Url Filtering enum for `url_filtering_profile`.
 extension type const PaloAltoLocalRulestackUrlFilteringProfile._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoLocalRulestackUrlFilteringProfile.variable(String name)
     : this._(TfArg.variable(name));
   PaloAltoLocalRulestackUrlFilteringProfile.expression(String template)
@@ -128,7 +130,8 @@ extension type const PaloAltoLocalRulestackUrlFilteringProfile._(
 /// Palo Alto Local Rulestack Vulnerability enum for `vulnerability_profile`.
 extension type const PaloAltoLocalRulestackVulnerabilityProfile._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PaloAltoLocalRulestackVulnerabilityProfile.variable(String name)
     : this._(TfArg.variable(name));
   PaloAltoLocalRulestackVulnerabilityProfile.expression(String template)

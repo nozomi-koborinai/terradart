@@ -13,7 +13,8 @@ _googleIdentityPlatformTenantDefaultSupportedIdpConfigSensitive = <String>{};
 /// Identity Platform Tenant Default Supported Idp Config Idp enum for `idp_id`.
 extension type const IdentityPlatformTenantDefaultSupportedIdpConfigIdpId._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IdentityPlatformTenantDefaultSupportedIdpConfigIdpId.variable(String name)
     : this._(TfArg.variable(name));
   IdentityPlatformTenantDefaultSupportedIdpConfigIdpId.expression(

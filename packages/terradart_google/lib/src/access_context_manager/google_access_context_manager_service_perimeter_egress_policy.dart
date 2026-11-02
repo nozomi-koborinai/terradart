@@ -44,7 +44,8 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 /// `identity_type` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimeterEgressPolicyIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimeterEgressPolicyIdentityType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -77,7 +78,8 @@ extension type const AccessContextManagerServicePerimeterEgressPolicyIdentityTyp
 /// `source_restriction` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimeterEgressPolicySourceRestriction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimeterEgressPolicySourceRestriction.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -229,7 +229,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesPrincipals {
 /// `principal_selector` — derived from the provider schema description.
 extension type const NetworkSecurityAuthzPolicyPrincipalSelector._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityAuthzPolicyPrincipalSelector.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityAuthzPolicyPrincipalSelector.expression(String template)
@@ -625,7 +626,8 @@ final class NetworkSecurityAuthzPolicyMcp {
 /// `base_protocol_methods_option` — derived from the provider schema description.
 extension type const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityAuthzPolicyBaseProtocolMethodsOption.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityAuthzPolicyBaseProtocolMethodsOption.expression(
@@ -1002,7 +1004,8 @@ final class NetworkSecurityAuthzPolicyTarget {
 /// `load_balancing_scheme` — derived from the provider schema description.
 extension type const NetworkSecurityAuthzPolicyLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityAuthzPolicyLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityAuthzPolicyLoadBalancingScheme.expression(String template)

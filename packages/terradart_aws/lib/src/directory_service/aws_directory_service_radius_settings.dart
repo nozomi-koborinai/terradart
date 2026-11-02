@@ -11,7 +11,8 @@ const Set<String> _awsDirectoryServiceRadiusSettingsSensitive = <String>{
 /// Directory Service Radius Settings Authentication enum for `authentication_protocol`.
 extension type const DirectoryServiceRadiusSettingsAuthenticationProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DirectoryServiceRadiusSettingsAuthenticationProtocol.variable(String name)
     : this._(TfArg.variable(name));
   DirectoryServiceRadiusSettingsAuthenticationProtocol.expression(

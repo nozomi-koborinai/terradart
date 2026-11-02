@@ -265,7 +265,8 @@ final class ZeroTrustGatewaySettingsBodyScanning {
 /// `inspection_mode` — derived from the provider schema description.
 extension type const ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustGatewaySettingsBodyScanningInspectionMode.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustGatewaySettingsBodyScanningInspectionMode.expression(String template)
@@ -396,7 +397,8 @@ final class ZeroTrustGatewaySettingsInspection {
 /// `mode` — derived from the provider schema description.
 extension type const ZeroTrustGatewaySettingsProxyInspectionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustGatewaySettingsProxyInspectionMode.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustGatewaySettingsProxyInspectionMode.expression(String template)

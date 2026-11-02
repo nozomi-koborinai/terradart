@@ -10,7 +10,8 @@ const Set<String> _awsConfigConfigRuleSensitive = <String>{};
 /// Config Config Rule Maximum Execution enum for `maximum_execution_frequency`.
 extension type const ConfigConfigRuleMaximumExecutionFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigConfigRuleMaximumExecutionFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ConfigConfigRuleMaximumExecutionFrequency.expression(String template)
@@ -217,7 +218,8 @@ extension type const ConfigConfigRuleEventSource._(TfArg<String> _)
 /// `maximum_execution_frequency` — derived from the provider schema description.
 extension type const ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigConfigRuleSourceDetailMaximumExecutionFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ConfigConfigRuleSourceDetailMaximumExecutionFrequency.expression(

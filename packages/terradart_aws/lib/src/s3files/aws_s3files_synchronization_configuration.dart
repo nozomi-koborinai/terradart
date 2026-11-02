@@ -50,7 +50,8 @@ final class S3filesSynchronizationConfigurationImportDataRule {
 /// `trigger` — derived from the provider schema description.
 extension type const S3filesSynchronizationConfigurationTrigger._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3filesSynchronizationConfigurationTrigger.variable(String name)
     : this._(TfArg.variable(name));
   S3filesSynchronizationConfigurationTrigger.expression(String template)

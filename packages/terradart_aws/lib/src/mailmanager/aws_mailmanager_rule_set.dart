@@ -566,7 +566,8 @@ final class MailmanagerRuleSetBooleanExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerRuleSetBooleanExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetBooleanExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetBooleanExpressionOperator.expression(String template)
@@ -674,7 +675,8 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateIsInAddressList
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetBooleanExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetBooleanExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetBooleanExpressionAttribute.expression(String template)
@@ -745,7 +747,8 @@ final class MailmanagerRuleSetIsInAddressList {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetIsInAddressListAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetIsInAddressListAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetIsInAddressListAttribute.expression(String template)
@@ -806,7 +809,8 @@ final class MailmanagerRuleSetDmarcExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerRuleSetDmarcExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetDmarcExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetDmarcExpressionOperator.expression(String template)
@@ -962,7 +966,8 @@ final class MailmanagerRuleSetNumberExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerRuleSetNumberExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetNumberExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetNumberExpressionOperator.expression(String template)
@@ -1016,7 +1021,8 @@ final class MailmanagerRuleSetNumberExpressionEvaluate {
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetNumberExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetNumberExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetNumberExpressionAttribute.expression(String template)
@@ -1061,7 +1067,8 @@ final class MailmanagerRuleSetStringExpression {
 /// `operator` — derived from the provider schema description.
 extension type const MailmanagerRuleSetStringExpressionOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetStringExpressionOperator.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetStringExpressionOperator.expression(String template)
@@ -1206,7 +1213,8 @@ final class MailmanagerRuleSetStringExpressionEvaluateMimeHeaderAttribute
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetStringExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetStringExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetStringExpressionAttribute.expression(String template)
@@ -1254,7 +1262,8 @@ extension type const MailmanagerRuleSetStringExpressionAttribute._(
 /// `client_certificate_attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetClientCertificateAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetClientCertificateAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetClientCertificateAttribute.expression(String template)
@@ -1329,7 +1338,8 @@ final class MailmanagerRuleSetVerdictExpression {
 /// `values` — derived from the provider schema description.
 extension type const MailmanagerRuleSetVerdictExpressionValues._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetVerdictExpressionValues.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetVerdictExpressionValues.expression(String template)
@@ -1420,7 +1430,8 @@ final class MailmanagerRuleSetVerdictExpressionEvaluateAttribute
 /// `attribute` — derived from the provider schema description.
 extension type const MailmanagerRuleSetVerdictExpressionAttribute._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MailmanagerRuleSetVerdictExpressionAttribute.variable(String name)
     : this._(TfArg.variable(name));
   MailmanagerRuleSetVerdictExpressionAttribute.expression(String template)

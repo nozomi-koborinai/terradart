@@ -205,7 +205,8 @@ final class VertexAiEndpointWithModelGardenDeploymentMachineSpec {
 /// `accelerator_type` — derived from the provider schema description.
 extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiEndpointWithModelGardenDeploymentAcceleratorType.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiEndpointWithModelGardenDeploymentAcceleratorType.expression(
@@ -339,7 +340,8 @@ final class VertexAiEndpointWithModelGardenDeploymentReservationAffinity {
 /// `reservation_affinity_type` — derived from the provider schema description.
 extension type const VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiEndpointWithModelGardenDeploymentReservationAffinityType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -691,7 +693,8 @@ final class VertexAiEndpointWithModelGardenDeploymentHttpGet {
 /// `scheme` — derived from the provider schema description.
 extension type const VertexAiEndpointWithModelGardenDeploymentScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiEndpointWithModelGardenDeploymentScheme.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiEndpointWithModelGardenDeploymentScheme.expression(String template)

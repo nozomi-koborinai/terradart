@@ -10,7 +10,8 @@ const Set<String> _googleNetworkServicesLbEdgeExtensionSensitive = <String>{};
 /// Network Services Lb Edge Extension Load Balancing enum for `load_balancing_scheme`.
 extension type const NetworkServicesLbEdgeExtensionLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbEdgeExtensionLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbEdgeExtensionLoadBalancingScheme.expression(String template)
@@ -91,7 +92,8 @@ final class NetworkServicesLbEdgeExtensionExtensions {
 /// `supported_events` — derived from the provider schema description.
 extension type const NetworkServicesLbEdgeExtensionSupportedEvents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbEdgeExtensionSupportedEvents.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbEdgeExtensionSupportedEvents.expression(String template)

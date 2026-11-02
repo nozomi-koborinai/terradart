@@ -14,7 +14,8 @@ const Set<String> _awsLaunchTemplateSensitive = <String>{};
 /// Launch Template Instance Initiated Shutdown enum for `instance_initiated_shutdown_behavior`.
 extension type const LaunchTemplateInstanceInitiatedShutdownBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LaunchTemplateInstanceInitiatedShutdownBehavior.variable(String name)
     : this._(TfArg.variable(name));
   LaunchTemplateInstanceInitiatedShutdownBehavior.expression(String template)
@@ -462,7 +463,8 @@ final class LaunchTemplateCapacityReservationSpecification {
 /// `capacity_reservation_preference` — derived from the provider schema description.
 extension type const LaunchTemplateCapacityReservationPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LaunchTemplateCapacityReservationPreference.variable(String name)
     : this._(TfArg.variable(name));
   LaunchTemplateCapacityReservationPreference.expression(String template)
@@ -808,7 +810,8 @@ final class LaunchTemplateSpotOptions {
 /// `instance_interruption_behavior` — derived from the provider schema description.
 extension type const LaunchTemplateInstanceInterruptionBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LaunchTemplateInstanceInterruptionBehavior.variable(String name)
     : this._(TfArg.variable(name));
   LaunchTemplateInstanceInterruptionBehavior.expression(String template)
@@ -1774,7 +1777,8 @@ final class LaunchTemplateNetworkInterfaces {
 /// `interface_type` — derived from the provider schema description.
 extension type const LaunchTemplateNetworkInterfacesInterfaceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LaunchTemplateNetworkInterfacesInterfaceType.variable(String name)
     : this._(TfArg.variable(name));
   LaunchTemplateNetworkInterfacesInterfaceType.expression(String template)
@@ -2149,7 +2153,8 @@ final class LaunchTemplateSecondaryInterfaces {
 /// `interface_type` — derived from the provider schema description.
 extension type const LaunchTemplateSecondaryInterfacesInterfaceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LaunchTemplateSecondaryInterfacesInterfaceType.variable(String name)
     : this._(TfArg.variable(name));
   LaunchTemplateSecondaryInterfacesInterfaceType.expression(String template)

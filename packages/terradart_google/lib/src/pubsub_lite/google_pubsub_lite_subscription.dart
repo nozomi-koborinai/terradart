@@ -29,7 +29,8 @@ final class PubsubLiteSubscriptionDeliveryConfig {
 /// `delivery_requirement` — derived from the provider schema description.
 extension type const PubsubLiteSubscriptionDeliveryRequirement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PubsubLiteSubscriptionDeliveryRequirement.variable(String name)
     : this._(TfArg.variable(name));
   PubsubLiteSubscriptionDeliveryRequirement.expression(String template)

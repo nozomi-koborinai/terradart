@@ -261,7 +261,8 @@ extension type const ComprehendDocumentClassifierDataFormat._(TfArg<String> _)
 /// `label_delimiter` — derived from the provider schema description.
 extension type const ComprehendDocumentClassifierLabelDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComprehendDocumentClassifierLabelDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   ComprehendDocumentClassifierLabelDelimiter.expression(String template)

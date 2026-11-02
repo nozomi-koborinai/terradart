@@ -10,7 +10,8 @@ const Set<String> _awsGlobalacceleratorAcceleratorSensitive = <String>{};
 /// Globalaccelerator Accelerator Ip Address enum for `ip_address_type`.
 extension type const GlobalacceleratorAcceleratorIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlobalacceleratorAcceleratorIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   GlobalacceleratorAcceleratorIpAddressType.expression(String template)

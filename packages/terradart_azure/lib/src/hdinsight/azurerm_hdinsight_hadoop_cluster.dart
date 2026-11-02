@@ -132,7 +132,8 @@ final class HdinsightHadoopClusterDiskEncryption {
 /// `encryption_algorithm` — derived from the provider schema description.
 extension type const HdinsightHadoopClusterEncryptionAlgorithm._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightHadoopClusterEncryptionAlgorithm.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightHadoopClusterEncryptionAlgorithm.expression(String template)
@@ -344,7 +345,8 @@ final class HdinsightHadoopClusterNetwork {
 /// `connection_direction` — derived from the provider schema description.
 extension type const HdinsightHadoopClusterConnectionDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightHadoopClusterConnectionDirection.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightHadoopClusterConnectionDirection.expression(String template)
@@ -425,7 +427,8 @@ final class HdinsightHadoopClusterIpConfiguration {
 /// `private_ip_allocation_method` — derived from the provider schema description.
 extension type const HdinsightHadoopClusterPrivateIpAllocationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightHadoopClusterPrivateIpAllocationMethod.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightHadoopClusterPrivateIpAllocationMethod.expression(String template)

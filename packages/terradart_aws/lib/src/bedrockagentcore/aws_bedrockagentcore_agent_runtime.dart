@@ -15,7 +15,8 @@ const Set<String> _awsBedrockagentcoreAgentRuntimeSensitive = <String>{};
 /// Bedrockagentcore Agent Runtime Platform enum for `platform_version`.
 extension type const BedrockagentcoreAgentRuntimePlatformVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreAgentRuntimePlatformVersion.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreAgentRuntimePlatformVersion.expression(String template)
@@ -313,7 +314,8 @@ final class BedrockagentcoreAgentRuntimeCustomClaim {
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
 extension type const BedrockagentcoreAgentRuntimeInboundTokenClaimValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreAgentRuntimeInboundTokenClaimValueType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreAgentRuntimeInboundTokenClaimValueType.expression(
@@ -360,7 +362,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue {
 /// `claim_match_operator` — derived from the provider schema description.
 extension type const BedrockagentcoreAgentRuntimeClaimMatchOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreAgentRuntimeClaimMatchOperator.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreAgentRuntimeClaimMatchOperator.expression(String template)
@@ -472,7 +475,8 @@ final class BedrockagentcoreAgentRuntimeManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const BedrockagentcoreAgentRuntimeEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreAgentRuntimeEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreAgentRuntimeEndpointIpAddressType.expression(String template)
@@ -695,7 +699,8 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
 /// `server_protocol` — derived from the provider schema description.
 extension type const BedrockagentcoreAgentRuntimeServerProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreAgentRuntimeServerProtocol.variable(String name)
     : this._(TfArg.variable(name));
   BedrockagentcoreAgentRuntimeServerProtocol.expression(String template)

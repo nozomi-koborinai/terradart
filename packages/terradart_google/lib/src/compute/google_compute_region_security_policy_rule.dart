@@ -79,7 +79,8 @@ class ComputeRegionSecurityPolicyRuleMatchConfig {
 /// Action for requests over a `rate_limit_options` threshold.
 extension type const ComputeRegionSecurityPolicyRuleExceedAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionSecurityPolicyRuleExceedAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionSecurityPolicyRuleExceedAction.expression(String template)

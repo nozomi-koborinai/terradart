@@ -11,7 +11,8 @@ const Set<String> _azurermSynapseSqlPoolSecurityAlertPolicySensitive = <String>{
 /// Synapse Sql Pool Security Alert Policy Disabled enum for `disabled_alerts`.
 extension type const SynapseSqlPoolSecurityAlertPolicyDisabledAlerts._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SynapseSqlPoolSecurityAlertPolicyDisabledAlerts.variable(String name)
     : this._(TfArg.variable(name));
   SynapseSqlPoolSecurityAlertPolicyDisabledAlerts.expression(String template)

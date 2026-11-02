@@ -9,7 +9,8 @@ const Set<String> _azurermVirtualDesktopApplicationSensitive = <String>{};
 /// Virtual Desktop Application Command Line Argument enum for `command_line_argument_policy`.
 extension type const VirtualDesktopApplicationCommandLineArgumentPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualDesktopApplicationCommandLineArgumentPolicy.variable(String name)
     : this._(TfArg.variable(name));
   VirtualDesktopApplicationCommandLineArgumentPolicy.expression(String template)

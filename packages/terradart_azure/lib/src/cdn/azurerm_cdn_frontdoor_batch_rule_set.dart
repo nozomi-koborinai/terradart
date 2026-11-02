@@ -129,7 +129,8 @@ final class CdnFrontdoorBatchRuleSetModifyRequestHeader {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator.expression(
@@ -263,7 +264,8 @@ extension type const CdnFrontdoorBatchRuleSetBehaviour._(TfArg<String> _)
 /// `query_string_behaviour` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetQueryStringBehaviour._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetQueryStringBehaviour.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetQueryStringBehaviour.expression(String template)
@@ -318,7 +320,8 @@ final class CdnFrontdoorBatchRuleSetOriginGroup {
 /// `forwarding_protocol` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetForwardingProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetForwardingProtocol.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetForwardingProtocol.expression(String template)
@@ -594,7 +597,8 @@ final class CdnFrontdoorBatchRuleSetClientPort {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetClientPortOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetClientPortOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetClientPortOperator.expression(String template)
@@ -713,7 +717,8 @@ final class CdnFrontdoorBatchRuleSetDeviceType {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetDeviceTypeOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetDeviceTypeOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetDeviceTypeOperator.expression(String template)
@@ -842,7 +847,8 @@ final class CdnFrontdoorBatchRuleSetHttpVersion {
 /// `values` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetHttpVersionValues._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetHttpVersionValues.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetHttpVersionValues.expression(String template)
@@ -946,7 +952,8 @@ final class CdnFrontdoorBatchRuleSetRemoteAddress {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetRemoteAddressOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetRemoteAddressOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetRemoteAddressOperator.expression(String template)
@@ -1126,7 +1133,8 @@ final class CdnFrontdoorBatchRuleSetRequestMethod {
 /// `values` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetRequestMethodValues._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetRequestMethodValues.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetRequestMethodValues.expression(String template)
@@ -1194,7 +1202,8 @@ final class CdnFrontdoorBatchRuleSetRequestPath {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetRequestPathOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetRequestPathOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetRequestPathOperator.expression(String template)
@@ -1321,7 +1330,8 @@ final class CdnFrontdoorBatchRuleSetRequestScheme {
 /// `values` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetRequestSchemeValues._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetRequestSchemeValues.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetRequestSchemeValues.expression(String template)
@@ -1432,7 +1442,8 @@ final class CdnFrontdoorBatchRuleSetSocketAddress {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetSocketAddressOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetSocketAddressOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetSocketAddressOperator.expression(String template)
@@ -1476,7 +1487,8 @@ final class CdnFrontdoorBatchRuleSetSslProtocol {
 /// `values` — derived from the provider schema description.
 extension type const CdnFrontdoorBatchRuleSetSslProtocolValues._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorBatchRuleSetSslProtocolValues.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorBatchRuleSetSslProtocolValues.expression(String template)

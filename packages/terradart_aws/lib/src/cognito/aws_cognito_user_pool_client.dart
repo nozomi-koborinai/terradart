@@ -93,7 +93,8 @@ extension type const CognitoUserPoolClientExplicitAuthFlows._(TfArg<String> _)
 /// Cognito User Pool Client Prevent User Existence enum for `prevent_user_existence_errors`.
 extension type const CognitoUserPoolClientPreventUserExistenceErrors._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoUserPoolClientPreventUserExistenceErrors.variable(String name)
     : this._(TfArg.variable(name));
   CognitoUserPoolClientPreventUserExistenceErrors.expression(String template)

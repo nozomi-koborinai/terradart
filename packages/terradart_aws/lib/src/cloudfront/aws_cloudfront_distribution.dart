@@ -227,7 +227,8 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 /// `viewer_protocol_policy` — derived from the provider schema description.
 extension type const CloudfrontDistributionViewerProtocolPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionViewerProtocolPolicy.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontDistributionViewerProtocolPolicy.expression(String template)
@@ -697,7 +698,8 @@ extension type const CloudfrontDistributionIpAddressType._(TfArg<String> _)
 /// `origin_protocol_policy` — derived from the provider schema description.
 extension type const CloudfrontDistributionOriginProtocolPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionOriginProtocolPolicy.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontDistributionOriginProtocolPolicy.expression(String template)
@@ -975,7 +977,8 @@ final class CloudfrontDistributionViewerCertificate {
 /// `minimum_protocol_version` — derived from the provider schema description.
 extension type const CloudfrontDistributionMinimumProtocolVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfrontDistributionMinimumProtocolVersion.variable(String name)
     : this._(TfArg.variable(name));
   CloudfrontDistributionMinimumProtocolVersion.expression(String template)

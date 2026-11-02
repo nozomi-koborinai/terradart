@@ -10,7 +10,8 @@ const Set<String> _awsOpensearchserverlessSecurityPolicySensitive = <String>{};
 /// Data Opensearchserverless Security Policy enum for `type`.
 extension type const DataOpensearchserverlessSecurityPolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataOpensearchserverlessSecurityPolicyType.variable(String name)
     : this._(TfArg.variable(name));
   DataOpensearchserverlessSecurityPolicyType.expression(String template)

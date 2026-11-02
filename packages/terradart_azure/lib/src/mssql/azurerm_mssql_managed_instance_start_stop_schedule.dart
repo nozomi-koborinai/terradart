@@ -39,7 +39,8 @@ final class MssqlManagedInstanceStartStopSchedule {
 /// `start_day` — derived from the provider schema description.
 extension type const MssqlManagedInstanceStartStopScheduleStartDay._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlManagedInstanceStartStopScheduleStartDay.variable(String name)
     : this._(TfArg.variable(name));
   MssqlManagedInstanceStartStopScheduleStartDay.expression(String template)
@@ -83,7 +84,8 @@ extension type const MssqlManagedInstanceStartStopScheduleStartDay._(
 /// `stop_day` — derived from the provider schema description.
 extension type const MssqlManagedInstanceStartStopScheduleStopDay._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MssqlManagedInstanceStartStopScheduleStopDay.variable(String name)
     : this._(TfArg.variable(name));
   MssqlManagedInstanceStartStopScheduleStopDay.expression(String template)

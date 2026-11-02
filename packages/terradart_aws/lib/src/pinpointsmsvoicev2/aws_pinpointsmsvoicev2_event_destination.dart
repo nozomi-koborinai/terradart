@@ -14,7 +14,8 @@ const Set<String> _awsPinpointsmsvoicev2EventDestinationSensitive = <String>{};
 /// Pinpointsmsvoicev2 Event Destination Matching Event enum for `matching_event_types`.
 extension type const Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Pinpointsmsvoicev2EventDestinationMatchingEventTypes.variable(String name)
     : this._(TfArg.variable(name));
   Pinpointsmsvoicev2EventDestinationMatchingEventTypes.expression(

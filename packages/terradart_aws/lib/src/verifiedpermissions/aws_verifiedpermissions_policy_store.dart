@@ -10,7 +10,8 @@ const Set<String> _awsVerifiedpermissionsPolicyStoreSensitive = <String>{};
 /// Verifiedpermissions Policy Store Deletion enum for `deletion_protection`.
 extension type const VerifiedpermissionsPolicyStoreDeletionProtection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VerifiedpermissionsPolicyStoreDeletionProtection.variable(String name)
     : this._(TfArg.variable(name));
   VerifiedpermissionsPolicyStoreDeletionProtection.expression(String template)

@@ -173,7 +173,8 @@ final class SagemakerEndpointConfigurationNotificationConfig {
 /// `include_inference_response_in` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationIncludeInferenceResponseIn._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationIncludeInferenceResponseIn.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationIncludeInferenceResponseIn.expression(
@@ -270,7 +271,8 @@ final class SagemakerEndpointConfigurationCaptureOptions {
 /// `capture_mode` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationCaptureMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationCaptureMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationCaptureMode.expression(String template)
@@ -380,7 +382,8 @@ final class SagemakerEndpointConfigurationProductionVariants {
 /// `accelerator_type` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationAcceleratorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationAcceleratorType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationAcceleratorType.expression(String template)
@@ -420,7 +423,8 @@ extension type const SagemakerEndpointConfigurationAcceleratorType._(
 /// `inference_ami_version` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationInferenceAmiVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationInferenceAmiVersion.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationInferenceAmiVersion.expression(String template)
@@ -462,7 +466,8 @@ extension type const SagemakerEndpointConfigurationInferenceAmiVersion._(
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationInstanceType.expression(String template)
@@ -1610,7 +1615,8 @@ final class SagemakerEndpointConfigurationCapacityReservationConfig {
 /// `capacity_reservation_preference` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationCapacityReservationPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationCapacityReservationPreference.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1718,7 +1724,8 @@ final class SagemakerEndpointConfigurationRoutingConfig {
 /// `routing_strategy` — derived from the provider schema description.
 extension type const SagemakerEndpointConfigurationRoutingStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerEndpointConfigurationRoutingStrategy.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerEndpointConfigurationRoutingStrategy.expression(String template)

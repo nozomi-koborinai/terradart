@@ -10,7 +10,8 @@ const Set<String> _azurermDataFactoryIntegrationRuntimeAzureSensitive =
 /// Data Factory Integration Runtime Azure Compute enum for `compute_type`.
 extension type const DataFactoryIntegrationRuntimeAzureComputeType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryIntegrationRuntimeAzureComputeType.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryIntegrationRuntimeAzureComputeType.expression(String template)

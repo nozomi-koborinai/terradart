@@ -12,7 +12,8 @@ const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
 /// Email Security Impersonation Registry enum for `provenance`.
 extension type const EmailSecurityImpersonationRegistryProvenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EmailSecurityImpersonationRegistryProvenance.variable(String name)
     : this._(TfArg.variable(name));
   EmailSecurityImpersonationRegistryProvenance.expression(String template)

@@ -9,7 +9,8 @@ const Set<String> _awsSsoadminApplicationAssignmentSensitive = <String>{};
 /// Ssoadmin Application Assignment Principal enum for `principal_type`.
 extension type const SsoadminApplicationAssignmentPrincipalType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsoadminApplicationAssignmentPrincipalType.variable(String name)
     : this._(TfArg.variable(name));
   SsoadminApplicationAssignmentPrincipalType.expression(String template)

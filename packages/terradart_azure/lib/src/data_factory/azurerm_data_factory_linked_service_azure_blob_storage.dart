@@ -11,7 +11,8 @@ const Set<String> _azurermDataFactoryLinkedServiceAzureBlobStorageSensitive =
 /// Data Factory Linked Service Azure Blob Storage enum for `storage_kind`.
 extension type const DataFactoryLinkedServiceAzureBlobStorageKind._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataFactoryLinkedServiceAzureBlobStorageKind.variable(String name)
     : this._(TfArg.variable(name));
   DataFactoryLinkedServiceAzureBlobStorageKind.expression(String template)

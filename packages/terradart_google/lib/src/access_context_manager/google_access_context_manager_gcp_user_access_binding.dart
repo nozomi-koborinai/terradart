@@ -191,7 +191,8 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 /// `session_reauth_method` — derived from the provider schema description.
 extension type const AccessContextManagerGcpUserAccessBindingSessionReauthMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerGcpUserAccessBindingSessionReauthMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));

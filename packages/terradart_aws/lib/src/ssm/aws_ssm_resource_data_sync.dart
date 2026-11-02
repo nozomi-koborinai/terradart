@@ -82,7 +82,8 @@ final class SsmResourceDataSyncDestinationDataSharing {
 /// `destination_data_sharing_type` — derived from the provider schema description.
 extension type const SsmResourceDataSyncDestinationDataSharingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SsmResourceDataSyncDestinationDataSharingType.variable(String name)
     : this._(TfArg.variable(name));
   SsmResourceDataSyncDestinationDataSharingType.expression(String template)

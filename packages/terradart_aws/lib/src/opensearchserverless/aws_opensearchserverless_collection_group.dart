@@ -9,7 +9,8 @@ const Set<String> _awsOpensearchserverlessCollectionGroupSensitive = <String>{};
 /// Opensearchserverless Collection Group enum for `generation`.
 extension type const OpensearchserverlessCollectionGroupGeneration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OpensearchserverlessCollectionGroupGeneration.variable(String name)
     : this._(TfArg.variable(name));
   OpensearchserverlessCollectionGroupGeneration.expression(String template)
@@ -33,7 +34,8 @@ extension type const OpensearchserverlessCollectionGroupGeneration._(
 /// Opensearchserverless Collection Group Standby enum for `standby_replicas`.
 extension type const OpensearchserverlessCollectionGroupStandbyReplicas._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   OpensearchserverlessCollectionGroupStandbyReplicas.variable(String name)
     : this._(TfArg.variable(name));
   OpensearchserverlessCollectionGroupStandbyReplicas.expression(String template)

@@ -46,7 +46,8 @@ final class AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom {
 /// `identity_type` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -79,7 +80,8 @@ extension type const AccessContextManagerServicePerimeterDryRunEgressPolicyIdent
 /// `source_restriction` — derived from the provider schema description.
 extension type const AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -9,7 +9,8 @@ const Set<String> _awsBedrockProvisionedModelThroughputSensitive = <String>{};
 /// Bedrock Provisioned Model Throughput Commitment enum for `commitment_duration`.
 extension type const BedrockProvisionedModelThroughputCommitmentDuration._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockProvisionedModelThroughputCommitmentDuration.variable(String name)
     : this._(TfArg.variable(name));
   BedrockProvisionedModelThroughputCommitmentDuration.expression(

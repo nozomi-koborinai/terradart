@@ -102,7 +102,8 @@ extension type const DataEmailSecurityAllowPolicyOrder._(TfArg<String> _)
 /// `pattern_type` — derived from the provider schema description.
 extension type const DataEmailSecurityAllowPolicyFilterPatternType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityAllowPolicyFilterPatternType.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityAllowPolicyFilterPatternType.expression(String template)

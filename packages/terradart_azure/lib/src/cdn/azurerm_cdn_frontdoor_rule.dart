@@ -92,7 +92,8 @@ final class CdnFrontdoorRuleModifyRequestHeader {
 /// `operator` — derived from the provider schema description.
 extension type const CdnFrontdoorRuleModifyRequestHeaderOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CdnFrontdoorRuleModifyRequestHeaderOperator.variable(String name)
     : this._(TfArg.variable(name));
   CdnFrontdoorRuleModifyRequestHeaderOperator.expression(String template)

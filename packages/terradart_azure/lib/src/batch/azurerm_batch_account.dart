@@ -66,7 +66,8 @@ extension type const BatchAccountPoolAllocationMode._(TfArg<String> _)
 /// Batch Account Storage Account Authentication enum for `storage_account_authentication_mode`.
 extension type const BatchAccountStorageAccountAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BatchAccountStorageAccountAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   BatchAccountStorageAccountAuthenticationMode.expression(String template)

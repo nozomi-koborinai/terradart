@@ -30,7 +30,8 @@ extension type const DiscoveryEngineSearchEngineAppType._(TfArg<String> _)
 /// Discovery Engine Search Engine Industry enum for `industry_vertical`.
 extension type const DiscoveryEngineSearchEngineIndustryVertical._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineSearchEngineIndustryVertical.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineSearchEngineIndustryVertical.expression(String template)
@@ -176,7 +177,8 @@ final class DiscoveryEngineSearchEngineConfig {
 /// `required_subscription_tier` — derived from the provider schema description.
 extension type const DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineSearchEngineRequiredSubscriptionTier.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineSearchEngineRequiredSubscriptionTier.expression(
@@ -260,7 +262,8 @@ extension type const DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
 /// `search_add_ons` — derived from the provider schema description.
 extension type const DiscoveryEngineSearchEngineConfigSearchAddOns._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineSearchEngineConfigSearchAddOns.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineSearchEngineConfigSearchAddOns.expression(String template)

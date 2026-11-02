@@ -86,7 +86,8 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 /// `accelerator_type` — derived from the provider schema description.
 extension type const VertexAiDeploymentResourcePoolAcceleratorType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiDeploymentResourcePoolAcceleratorType.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiDeploymentResourcePoolAcceleratorType.expression(String template)

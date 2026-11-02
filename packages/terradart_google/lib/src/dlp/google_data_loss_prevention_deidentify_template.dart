@@ -259,7 +259,8 @@ final class DataLossPreventionDeidentifyTemplateSensitivityScore {
 /// `score` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateScore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateScore.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplateScore.expression(String template)
@@ -479,7 +480,8 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMax {
 /// `day_of_week_value` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateDayOfWeekValue.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplateDayOfWeekValue.expression(String template)
@@ -706,7 +708,8 @@ final class DataLossPreventionDeidentifyTemplateCharactersToIgnore {
 /// `common_characters_to_ignore` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -938,7 +941,8 @@ final class DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig {
 /// `common_alphabet` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateCommonAlphabet._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateCommonAlphabet.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplateCommonAlphabet.expression(String template)
@@ -1207,7 +1211,8 @@ final class DataLossPreventionDeidentifyTemplateTimePartConfig {
 /// `part_to_extract` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplatePartToExtract._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplatePartToExtract.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplatePartToExtract.expression(String template)
@@ -1331,7 +1336,8 @@ final class DataLossPreventionDeidentifyTemplateExpressions {
 /// `logical_operator` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateLogicalOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateLogicalOperator.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplateLogicalOperator.expression(
@@ -1394,7 +1400,8 @@ final class DataLossPreventionDeidentifyTemplateConditionsConditions {
 /// `operator` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateOperator.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionDeidentifyTemplateOperator.expression(String template)
@@ -1741,7 +1748,8 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfi
 /// `common_alphabet` — derived from the provider schema description.
 extension type const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet.variable(
     String name,
   ) : this._(TfArg.variable(name));

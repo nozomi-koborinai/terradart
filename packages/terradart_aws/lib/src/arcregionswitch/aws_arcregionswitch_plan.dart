@@ -903,7 +903,8 @@ final class ArcregionswitchPlanDocumentDbConfigUngraceful {
 /// `ungraceful` — derived from the provider schema description.
 extension type const ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.variable(String name)
     : this._(TfArg.variable(name));
   ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.expression(
@@ -961,7 +962,8 @@ final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfig {
 /// `capacity_monitoring_approach` — derived from the provider schema description.
 extension type const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1068,7 +1070,8 @@ final class ArcregionswitchPlanEcsCapacityIncreaseConfig {
 /// `capacity_monitoring_approach` — derived from the provider schema description.
 extension type const ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1175,7 +1178,8 @@ final class ArcregionswitchPlanEksResourceScalingConfig {
 /// `capacity_monitoring_approach` — derived from the provider schema description.
 extension type const ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -1394,7 +1398,8 @@ final class ArcregionswitchPlanLambdaEventSourceMappingConfig {
 /// `action` — derived from the provider schema description.
 extension type const ArcregionswitchPlanLambdaEventSourceMappingConfigAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanLambdaEventSourceMappingConfigAction.variable(String name)
     : this._(TfArg.variable(name));
   ArcregionswitchPlanLambdaEventSourceMappingConfigAction.expression(
@@ -1767,7 +1772,8 @@ final class ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngraceful {
 /// `ungraceful` — derived from the provider schema description.
 extension type const ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful.variable(
     String name,
   ) : this._(TfArg.variable(name));

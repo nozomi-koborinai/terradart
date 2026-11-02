@@ -461,7 +461,8 @@ final class MonitorAutoscaleSettingDimensions {
 /// `operator` — derived from the provider schema description.
 extension type const MonitorAutoscaleSettingDimensionsOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MonitorAutoscaleSettingDimensionsOperator.variable(String name)
     : this._(TfArg.variable(name));
   MonitorAutoscaleSettingDimensionsOperator.expression(String template)

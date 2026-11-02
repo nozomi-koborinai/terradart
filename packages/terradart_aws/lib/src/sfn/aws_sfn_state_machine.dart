@@ -119,7 +119,8 @@ final class SfnStateMachineEncryptionConfiguration {
 /// `type` — derived from the provider schema description.
 extension type const SfnStateMachineEncryptionConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SfnStateMachineEncryptionConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
   SfnStateMachineEncryptionConfigurationType.expression(String template)

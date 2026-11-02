@@ -13,7 +13,8 @@ const Set<String> _awsS3BucketIntelligentTieringConfigurationSensitive =
 /// S3 Bucket Intelligent Tiering Configuration enum for `status`.
 extension type const S3BucketIntelligentTieringConfigurationStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketIntelligentTieringConfigurationStatus.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketIntelligentTieringConfigurationStatus.expression(String template)
@@ -74,7 +75,8 @@ final class S3BucketIntelligentTieringConfigurationTiering {
 /// `access_tier` — derived from the provider schema description.
 extension type const S3BucketIntelligentTieringConfigurationAccessTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketIntelligentTieringConfigurationAccessTier.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketIntelligentTieringConfigurationAccessTier.expression(String template)

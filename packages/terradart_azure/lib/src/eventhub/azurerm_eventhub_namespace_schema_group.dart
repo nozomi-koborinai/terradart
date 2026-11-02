@@ -9,7 +9,8 @@ const Set<String> _azurermEventhubNamespaceSchemaGroupSensitive = <String>{};
 /// Eventhub Namespace Schema Group Schema enum for `schema_compatibility`.
 extension type const EventhubNamespaceSchemaGroupSchemaCompatibility._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EventhubNamespaceSchemaGroupSchemaCompatibility.variable(String name)
     : this._(TfArg.variable(name));
   EventhubNamespaceSchemaGroupSchemaCompatibility.expression(String template)

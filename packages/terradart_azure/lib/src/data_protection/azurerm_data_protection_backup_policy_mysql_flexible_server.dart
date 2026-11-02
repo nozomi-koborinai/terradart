@@ -49,7 +49,8 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle {
 /// `data_store_type` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -136,7 +137,8 @@ final class DataProtectionBackupPolicyMysqlFlexibleServerCriteria {
 /// `absolute_criteria` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriteria.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -177,7 +179,8 @@ extension type const DataProtectionBackupPolicyMysqlFlexibleServerAbsoluteCriter
 /// `days_of_week` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek.variable(String name)
     : this._(TfArg.variable(name));
   DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek.expression(
@@ -223,7 +226,8 @@ extension type const DataProtectionBackupPolicyMysqlFlexibleServerDaysOfWeek._(
 /// `months_of_year` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -303,7 +307,8 @@ extension type const DataProtectionBackupPolicyMysqlFlexibleServerMonthsOfYear._
 /// `weeks_of_month` — derived from the provider schema description.
 extension type const DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataProtectionBackupPolicyMysqlFlexibleServerWeeksOfMonth.variable(
     String name,
   ) : this._(TfArg.variable(name));

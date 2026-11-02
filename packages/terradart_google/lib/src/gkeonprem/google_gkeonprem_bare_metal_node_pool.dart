@@ -81,7 +81,8 @@ final class GkeonpremBareMetalNodePoolConfig {
 /// `operating_system` — derived from the provider schema description.
 extension type const GkeonpremBareMetalNodePoolOperatingSystem._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeonpremBareMetalNodePoolOperatingSystem.variable(String name)
     : this._(TfArg.variable(name));
   GkeonpremBareMetalNodePoolOperatingSystem.expression(String template)

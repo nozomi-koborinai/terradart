@@ -99,7 +99,8 @@ extension type const CloudfunctionsFunctionStatus._(TfArg<String> _)
 /// Cloudfunctions Function Vpc Connector Egress enum for `vpc_connector_egress_settings`.
 extension type const CloudfunctionsFunctionVpcConnectorEgressSettings._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudfunctionsFunctionVpcConnectorEgressSettings.variable(String name)
     : this._(TfArg.variable(name));
   CloudfunctionsFunctionVpcConnectorEgressSettings.expression(String template)

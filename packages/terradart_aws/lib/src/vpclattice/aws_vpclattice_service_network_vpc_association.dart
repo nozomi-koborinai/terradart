@@ -34,7 +34,8 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
 /// `private_dns_preference` — derived from the provider schema description.
 extension type const VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference.variable(
     String name,
   ) : this._(TfArg.variable(name));

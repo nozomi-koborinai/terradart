@@ -10,7 +10,8 @@ const Set<String> _googleNetworkServicesLbRouteExtensionSensitive = <String>{};
 /// Network Services Lb Route Extension Load Balancing enum for `load_balancing_scheme`.
 extension type const NetworkServicesLbRouteExtensionLoadBalancingScheme._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbRouteExtensionLoadBalancingScheme.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbRouteExtensionLoadBalancingScheme.expression(String template)
@@ -116,7 +117,8 @@ final class NetworkServicesLbRouteExtensionExtensions {
 /// `request_body_send_mode` — derived from the provider schema description.
 extension type const NetworkServicesLbRouteExtensionRequestBodySendMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbRouteExtensionRequestBodySendMode.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbRouteExtensionRequestBodySendMode.expression(String template)
@@ -149,7 +151,8 @@ extension type const NetworkServicesLbRouteExtensionRequestBodySendMode._(
 /// `supported_events` — derived from the provider schema description.
 extension type const NetworkServicesLbRouteExtensionSupportedEvents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesLbRouteExtensionSupportedEvents.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesLbRouteExtensionSupportedEvents.expression(String template)

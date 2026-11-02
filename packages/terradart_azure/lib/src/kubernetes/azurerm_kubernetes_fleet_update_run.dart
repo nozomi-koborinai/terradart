@@ -123,7 +123,8 @@ final class KubernetesFleetUpdateRunNodeImageSelection {
 /// `type` — derived from the provider schema description.
 extension type const KubernetesFleetUpdateRunNodeImageSelectionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KubernetesFleetUpdateRunNodeImageSelectionType.variable(String name)
     : this._(TfArg.variable(name));
   KubernetesFleetUpdateRunNodeImageSelectionType.expression(String template)

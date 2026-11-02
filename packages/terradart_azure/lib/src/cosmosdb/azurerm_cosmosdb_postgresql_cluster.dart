@@ -89,7 +89,8 @@ extension type const CosmosdbPostgresqlClusterCitusVersion._(TfArg<String> _)
 /// Cosmosdb Postgresql Cluster Coordinator Server enum for `coordinator_server_edition`.
 extension type const CosmosdbPostgresqlClusterCoordinatorServerEdition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CosmosdbPostgresqlClusterCoordinatorServerEdition.variable(String name)
     : this._(TfArg.variable(name));
   CosmosdbPostgresqlClusterCoordinatorServerEdition.expression(String template)
@@ -126,7 +127,8 @@ extension type const CosmosdbPostgresqlClusterCoordinatorServerEdition._(
 /// Cosmosdb Postgresql Cluster Node Server enum for `node_server_edition`.
 extension type const CosmosdbPostgresqlClusterNodeServerEdition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CosmosdbPostgresqlClusterNodeServerEdition.variable(String name)
     : this._(TfArg.variable(name));
   CosmosdbPostgresqlClusterNodeServerEdition.expression(String template)

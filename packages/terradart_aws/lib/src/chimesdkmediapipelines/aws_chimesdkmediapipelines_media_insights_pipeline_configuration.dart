@@ -73,7 +73,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
 /// `type` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -212,7 +213,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTransc
 /// `content_identification_type` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentIdentificationType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -237,7 +239,8 @@ extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationCon
 /// `content_redaction_type` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -262,7 +265,8 @@ extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationCon
 /// `language_code` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLanguageCode.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -319,7 +323,8 @@ extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLan
 /// `partial_results_stability` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPartialResultsStability.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -352,7 +357,8 @@ extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPar
 /// `vocabulary_filter_method` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVocabularyFilterMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -414,7 +420,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnal
 /// `content_redaction_output` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionOutput._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationContentRedactionOutput.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -609,7 +616,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyti
 /// `speaker_search_status` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpeakerSearchStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpeakerSearchStatus.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -638,7 +646,8 @@ extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSpe
 /// `voice_tone_analysis_status` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -719,7 +728,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules {
 /// `type` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRulesType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRulesType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -815,7 +825,8 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentCon
 /// `sentiment_type` — derived from the provider schema description.
 extension type const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentType.variable(
     String name,
   ) : this._(TfArg.variable(name));

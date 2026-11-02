@@ -101,7 +101,8 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 /// `direction` — derived from the provider schema description.
 extension type const DataZeroTrustAccessInfrastructureTargetDirection._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustAccessInfrastructureTargetDirection.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustAccessInfrastructureTargetDirection.expression(String template)
@@ -125,7 +126,8 @@ extension type const DataZeroTrustAccessInfrastructureTargetDirection._(
 /// `order` — derived from the provider schema description.
 extension type const DataZeroTrustAccessInfrastructureTargetOrder._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustAccessInfrastructureTargetOrder.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustAccessInfrastructureTargetOrder.expression(String template)

@@ -80,7 +80,8 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
 /// `json_parsing` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyJsonParsing._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyJsonParsing.variable(String name)
     : this._(TfArg.variable(name));
   ComputeOrganizationSecurityPolicyJsonParsing.expression(String template)
@@ -109,7 +110,8 @@ extension type const ComputeOrganizationSecurityPolicyJsonParsing._(
 /// `log_level` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyLogLevel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyLogLevel.variable(String name)
     : this._(TfArg.variable(name));
   ComputeOrganizationSecurityPolicyLogLevel.expression(String template)
@@ -133,7 +135,8 @@ extension type const ComputeOrganizationSecurityPolicyLogLevel._(
 /// `request_body_inspection_size` — derived from the provider schema description.
 extension type const ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeOrganizationSecurityPolicyRequestBodyInspectionSize.variable(
     String name,
   ) : this._(TfArg.variable(name));

@@ -10,7 +10,8 @@ const Set<String> _googleNetworkSecurityTlsInspectionPolicySensitive =
 /// Network Security Tls Inspection Policy Min Tls enum for `min_tls_version`.
 extension type const NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityTlsInspectionPolicyMinTlsVersion.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityTlsInspectionPolicyMinTlsVersion.expression(String template)
@@ -47,7 +48,8 @@ extension type const NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
 /// Network Security Tls Inspection Policy Tls Feature enum for `tls_feature_profile`.
 extension type const NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityTlsInspectionPolicyTlsFeatureProfile.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityTlsInspectionPolicyTlsFeatureProfile.expression(

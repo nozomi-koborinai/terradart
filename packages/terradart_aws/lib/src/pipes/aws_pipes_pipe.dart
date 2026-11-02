@@ -591,7 +591,8 @@ extension type const PipesPipeOnPartialBatchItemFailure._(TfArg<String> _)
 /// `starting_position` — derived from the provider schema description.
 extension type const PipesPipeDynamodbStreamParametersStartingPosition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PipesPipeDynamodbStreamParametersStartingPosition.variable(String name)
     : this._(TfArg.variable(name));
   PipesPipeDynamodbStreamParametersStartingPosition.expression(String template)
@@ -702,7 +703,8 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
 /// `starting_position` — derived from the provider schema description.
 extension type const PipesPipeKinesisStreamParametersStartingPosition._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PipesPipeKinesisStreamParametersStartingPosition.variable(String name)
     : this._(TfArg.variable(name));
   PipesPipeKinesisStreamParametersStartingPosition.expression(String template)

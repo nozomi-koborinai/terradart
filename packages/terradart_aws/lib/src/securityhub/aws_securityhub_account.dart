@@ -9,7 +9,8 @@ const Set<String> _awsSecurityhubAccountSensitive = <String>{};
 /// Securityhub Account Control Finding enum for `control_finding_generator`.
 extension type const SecurityhubAccountControlFindingGenerator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SecurityhubAccountControlFindingGenerator.variable(String name)
     : this._(TfArg.variable(name));
   SecurityhubAccountControlFindingGenerator.expression(String template)

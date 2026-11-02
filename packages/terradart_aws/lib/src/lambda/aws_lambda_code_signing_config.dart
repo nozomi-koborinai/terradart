@@ -44,7 +44,8 @@ final class LambdaCodeSigningConfigPolicies {
 /// `untrusted_artifact_on_deployment` — derived from the provider schema description.
 extension type const LambdaCodeSigningConfigUntrustedArtifactOnDeployment._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaCodeSigningConfigUntrustedArtifactOnDeployment.variable(String name)
     : this._(TfArg.variable(name));
   LambdaCodeSigningConfigUntrustedArtifactOnDeployment.expression(

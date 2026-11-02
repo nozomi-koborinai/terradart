@@ -412,7 +412,8 @@ final class HdinsightHbaseClusterIpConfiguration {
 /// `private_ip_allocation_method` — derived from the provider schema description.
 extension type const HdinsightHbaseClusterPrivateIpAllocationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   HdinsightHbaseClusterPrivateIpAllocationMethod.variable(String name)
     : this._(TfArg.variable(name));
   HdinsightHbaseClusterPrivateIpAllocationMethod.expression(String template)

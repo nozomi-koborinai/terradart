@@ -17,7 +17,7 @@ Bug reports / questions / feature requests: pick a template when [opening an iss
 
 Requirements:
 
-- Dart SDK ≥ 3.10 (every package declares `sdk: ^3.10.0`).
+- Dart SDK ≥ 3.11 (`terradart_codegen` declares `sdk: ^3.11.0`, because dart_style 3.1.14 needs it; every other package declares `sdk: ^3.10.0`).
 - `terraform` CLI ≥ 1.11.0 (for end-to-end tests; write-only args require 1.11+).
 - `git` ≥ 2.30.
 

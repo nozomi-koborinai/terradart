@@ -9,7 +9,8 @@ const Set<String> _awsPinpointsmsvoicev2ConfigurationSetSensitive = <String>{};
 /// Pinpointsmsvoicev2 Configuration Set Default Message enum for `default_message_type`.
 extension type const Pinpointsmsvoicev2ConfigurationSetDefaultMessageType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Pinpointsmsvoicev2ConfigurationSetDefaultMessageType.variable(String name)
     : this._(TfArg.variable(name));
   Pinpointsmsvoicev2ConfigurationSetDefaultMessageType.expression(

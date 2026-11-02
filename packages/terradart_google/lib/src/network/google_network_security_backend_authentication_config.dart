@@ -10,7 +10,8 @@ const Set<String> _googleNetworkSecurityBackendAuthenticationConfigSensitive =
 /// Network Security Backend Authentication Config Well Known enum for `well_known_roots`.
 extension type const NetworkSecurityBackendAuthenticationConfigWellKnownRoots._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkSecurityBackendAuthenticationConfigWellKnownRoots.variable(String name)
     : this._(TfArg.variable(name));
   NetworkSecurityBackendAuthenticationConfigWellKnownRoots.expression(

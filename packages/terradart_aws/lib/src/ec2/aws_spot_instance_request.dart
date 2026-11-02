@@ -287,7 +287,8 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 /// `capacity_reservation_preference` — derived from the provider schema description.
 extension type const SpotInstanceRequestCapacityReservationPreference._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpotInstanceRequestCapacityReservationPreference.variable(String name)
     : this._(TfArg.variable(name));
   SpotInstanceRequestCapacityReservationPreference.expression(String template)

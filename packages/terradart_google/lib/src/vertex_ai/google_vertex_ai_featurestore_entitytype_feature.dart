@@ -10,7 +10,8 @@ const Set<String> _googleVertexAiFeaturestoreEntitytypeFeatureSensitive =
 /// Vertex Ai Featurestore Entitytype Feature Value enum for `value_type`.
 extension type const VertexAiFeaturestoreEntitytypeFeatureValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VertexAiFeaturestoreEntitytypeFeatureValueType.variable(String name)
     : this._(TfArg.variable(name));
   VertexAiFeaturestoreEntitytypeFeatureValueType.expression(String template)

@@ -135,7 +135,8 @@ extension type const FisExperimentTemplateAccountTargeting._(TfArg<String> _)
 /// `empty_target_resolution_mode` — derived from the provider schema description.
 extension type const FisExperimentTemplateEmptyTargetResolutionMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   FisExperimentTemplateEmptyTargetResolutionMode.variable(String name)
     : this._(TfArg.variable(name));
   FisExperimentTemplateEmptyTargetResolutionMode.expression(String template)

@@ -36,7 +36,8 @@ final class GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration 
 /// `protocols` — derived from the provider schema description.
 extension type const GlobalacceleratorCustomRoutingEndpointGroupProtocols._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GlobalacceleratorCustomRoutingEndpointGroupProtocols.variable(String name)
     : this._(TfArg.variable(name));
   GlobalacceleratorCustomRoutingEndpointGroupProtocols.expression(

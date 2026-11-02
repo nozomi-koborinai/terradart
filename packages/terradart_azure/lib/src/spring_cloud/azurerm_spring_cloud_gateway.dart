@@ -12,7 +12,8 @@ const Set<String> _azurermSpringCloudGatewaySensitive = <String>{
 /// Spring Cloud Gateway Application Performance Monitoring enum for `application_performance_monitoring_types`.
 extension type const SpringCloudGatewayApplicationPerformanceMonitoringTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SpringCloudGatewayApplicationPerformanceMonitoringTypes.variable(String name)
     : this._(TfArg.variable(name));
   SpringCloudGatewayApplicationPerformanceMonitoringTypes.expression(

@@ -11,7 +11,8 @@ const Set<String> _googleDocumentAiWarehouseLocationSensitive = <String>{};
 /// Document Ai Warehouse Location Access Control enum for `access_control_mode`.
 extension type const DocumentAiWarehouseLocationAccessControlMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DocumentAiWarehouseLocationAccessControlMode.variable(String name)
     : this._(TfArg.variable(name));
   DocumentAiWarehouseLocationAccessControlMode.expression(String template)
@@ -65,7 +66,8 @@ extension type const DocumentAiWarehouseLocationDatabaseType._(TfArg<String> _)
 /// Document Ai Warehouse Location Document Creator Default enum for `document_creator_default_role`.
 extension type const DocumentAiWarehouseLocationDocumentCreatorDefaultRole._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DocumentAiWarehouseLocationDocumentCreatorDefaultRole.variable(String name)
     : this._(TfArg.variable(name));
   DocumentAiWarehouseLocationDocumentCreatorDefaultRole.expression(

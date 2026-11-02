@@ -12,7 +12,8 @@ _cloudflareApiShieldOperationSchemaValidationSettingsSensitive = <String>{};
 /// Api Shield Operation Schema Validation Settings Mitigation enum for `mitigation_action`.
 extension type const ApiShieldOperationSchemaValidationSettingsMitigationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiShieldOperationSchemaValidationSettingsMitigationAction.variable(
     String name,
   ) : this._(TfArg.variable(name));

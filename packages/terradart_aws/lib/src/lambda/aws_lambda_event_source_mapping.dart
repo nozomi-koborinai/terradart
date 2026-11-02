@@ -13,7 +13,8 @@ const Set<String> _awsLambdaEventSourceMappingSensitive = <String>{};
 /// Lambda Event Source Mapping Function Response enum for `function_response_types`.
 extension type const LambdaEventSourceMappingFunctionResponseTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaEventSourceMappingFunctionResponseTypes.variable(String name)
     : this._(TfArg.variable(name));
   LambdaEventSourceMappingFunctionResponseTypes.expression(String template)
@@ -288,7 +289,8 @@ final class LambdaEventSourceMappingSchemaRegistryConfig {
 /// `event_record_format` — derived from the provider schema description.
 extension type const LambdaEventSourceMappingEventRecordFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaEventSourceMappingEventRecordFormat.variable(String name)
     : this._(TfArg.variable(name));
   LambdaEventSourceMappingEventRecordFormat.expression(String template)

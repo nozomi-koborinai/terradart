@@ -11,7 +11,8 @@ const Set<String> _awsLambdaFunctionRecursionConfigSensitive = <String>{};
 /// Lambda Function Recursion Config Recursive enum for `recursive_loop`.
 extension type const LambdaFunctionRecursionConfigRecursiveLoop._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaFunctionRecursionConfigRecursiveLoop.variable(String name)
     : this._(TfArg.variable(name));
   LambdaFunctionRecursionConfigRecursiveLoop.expression(String template)

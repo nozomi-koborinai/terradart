@@ -9,7 +9,8 @@ const Set<String> _awsPricingplanmanagerSubscriptionSensitive = <String>{};
 /// Pricingplanmanager Subscription Approval enum for `approval_mode`.
 extension type const PricingplanmanagerSubscriptionApprovalMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PricingplanmanagerSubscriptionApprovalMode.variable(String name)
     : this._(TfArg.variable(name));
   PricingplanmanagerSubscriptionApprovalMode.expression(String template)

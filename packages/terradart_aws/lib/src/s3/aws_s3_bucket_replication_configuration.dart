@@ -145,7 +145,8 @@ final class S3BucketReplicationConfigurationDestination {
 /// `storage_class` — derived from the provider schema description.
 extension type const S3BucketReplicationConfigurationStorageClass._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   S3BucketReplicationConfigurationStorageClass.variable(String name)
     : this._(TfArg.variable(name));
   S3BucketReplicationConfigurationStorageClass.expression(String template)

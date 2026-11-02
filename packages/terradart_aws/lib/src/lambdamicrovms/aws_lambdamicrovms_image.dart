@@ -10,7 +10,8 @@ const Set<String> _awsLambdamicrovmsImageSensitive = <String>{};
 /// Lambdamicrovms Image Additional Os enum for `additional_os_capabilities`.
 extension type const LambdamicrovmsImageAdditionalOsCapabilities._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdamicrovmsImageAdditionalOsCapabilities.variable(String name)
     : this._(TfArg.variable(name));
   LambdamicrovmsImageAdditionalOsCapabilities.expression(String template)

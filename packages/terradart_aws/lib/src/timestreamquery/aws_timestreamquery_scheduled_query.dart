@@ -56,7 +56,8 @@ final class TimestreamqueryScheduledQueryS3Configuration {
 /// `encryption_option` — derived from the provider schema description.
 extension type const TimestreamqueryScheduledQueryEncryptionOption._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreamqueryScheduledQueryEncryptionOption.variable(String name)
     : this._(TfArg.variable(name));
   TimestreamqueryScheduledQueryEncryptionOption.expression(String template)
@@ -389,7 +390,8 @@ final class TimestreamqueryScheduledQueryDimensionMapping {
 /// `dimension_value_type` — derived from the provider schema description.
 extension type const TimestreamqueryScheduledQueryDimensionValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreamqueryScheduledQueryDimensionValueType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreamqueryScheduledQueryDimensionValueType.expression(String template)
@@ -445,7 +447,8 @@ final class TimestreamqueryScheduledQueryMixedMeasureMapping {
 /// `measure_value_type` — derived from the provider schema description.
 extension type const TimestreamqueryScheduledQueryMeasureValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreamqueryScheduledQueryMeasureValueType.variable(String name)
     : this._(TfArg.variable(name));
   TimestreamqueryScheduledQueryMeasureValueType.expression(String template)
@@ -508,7 +511,8 @@ final class TimestreamqueryScheduledQueryMultiMeasureAttributeMapping {
 /// `measure_value_type` — derived from the provider schema description.
 extension type const TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType.variable(
     String name,
   ) : this._(TfArg.variable(name));

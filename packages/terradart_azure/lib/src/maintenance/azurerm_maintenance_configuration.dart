@@ -12,7 +12,8 @@ const Set<String> _azurermMaintenanceConfigurationSensitive = <String>{};
 /// Maintenance Configuration In Guest User Patch enum for `in_guest_user_patch_mode`.
 extension type const MaintenanceConfigurationInGuestUserPatchMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MaintenanceConfigurationInGuestUserPatchMode.variable(String name)
     : this._(TfArg.variable(name));
   MaintenanceConfigurationInGuestUserPatchMode.expression(String template)
@@ -159,7 +160,8 @@ final class MaintenanceConfigurationLinux {
 /// `classifications_to_include` — derived from the provider schema description.
 extension type const MaintenanceConfigurationLinuxClassificationsToInclude._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MaintenanceConfigurationLinuxClassificationsToInclude.variable(String name)
     : this._(TfArg.variable(name));
   MaintenanceConfigurationLinuxClassificationsToInclude.expression(
@@ -213,7 +215,8 @@ final class MaintenanceConfigurationWindows {
 /// `classifications_to_include` — derived from the provider schema description.
 extension type const MaintenanceConfigurationWindowsClassificationsToInclude._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MaintenanceConfigurationWindowsClassificationsToInclude.variable(String name)
     : this._(TfArg.variable(name));
   MaintenanceConfigurationWindowsClassificationsToInclude.expression(

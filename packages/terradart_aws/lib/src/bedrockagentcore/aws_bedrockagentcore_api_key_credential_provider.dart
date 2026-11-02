@@ -11,7 +11,8 @@ const Set<String> _awsBedrockagentcoreApiKeyCredentialProviderSensitive =
 /// Bedrockagentcore Api Key Credential Provider Api Key Secret enum for `api_key_secret_source`.
 extension type const BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource.variable(
     String name,
   ) : this._(TfArg.variable(name));

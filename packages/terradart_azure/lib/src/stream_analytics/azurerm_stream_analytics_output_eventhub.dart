@@ -14,7 +14,8 @@ const Set<String> _azurermStreamAnalyticsOutputEventhubSensitive = <String>{
 /// Stream Analytics Output Eventhub Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputEventhubAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputEventhubAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputEventhubAuthenticationMode.expression(String template)
@@ -84,7 +85,8 @@ extension type const StreamAnalyticsOutputEventhubEncoding._(TfArg<String> _)
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputEventhubFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputEventhubFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputEventhubFieldDelimiter.expression(String template)

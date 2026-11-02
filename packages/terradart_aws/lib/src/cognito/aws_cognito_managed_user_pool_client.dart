@@ -14,7 +14,8 @@ const Set<String> _awsCognitoManagedUserPoolClientSensitive = <String>{
 /// Cognito Managed User Pool Client Allowed Oauth enum for `allowed_oauth_flows`.
 extension type const CognitoManagedUserPoolClientAllowedOauthFlows._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoManagedUserPoolClientAllowedOauthFlows.variable(String name)
     : this._(TfArg.variable(name));
   CognitoManagedUserPoolClientAllowedOauthFlows.expression(String template)
@@ -43,7 +44,8 @@ extension type const CognitoManagedUserPoolClientAllowedOauthFlows._(
 /// Cognito Managed User Pool Client Explicit Auth enum for `explicit_auth_flows`.
 extension type const CognitoManagedUserPoolClientExplicitAuthFlows._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoManagedUserPoolClientExplicitAuthFlows.variable(String name)
     : this._(TfArg.variable(name));
   CognitoManagedUserPoolClientExplicitAuthFlows.expression(String template)
@@ -102,7 +104,8 @@ extension type const CognitoManagedUserPoolClientExplicitAuthFlows._(
 /// Cognito Managed User Pool Client Prevent User Existence enum for `prevent_user_existence_errors`.
 extension type const CognitoManagedUserPoolClientPreventUserExistenceErrors._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CognitoManagedUserPoolClientPreventUserExistenceErrors.variable(String name)
     : this._(TfArg.variable(name));
   CognitoManagedUserPoolClientPreventUserExistenceErrors.expression(

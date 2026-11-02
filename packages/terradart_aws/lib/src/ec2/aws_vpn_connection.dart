@@ -102,7 +102,8 @@ extension type const VpnConnectionTunnel1IkeVersions._(TfArg<String> _)
 /// Vpn Connection Tunnel1 Phase1 Encryption enum for `tunnel1_phase1_encryption_algorithms`.
 extension type const VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel1Phase1EncryptionAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel1Phase1EncryptionAlgorithms.expression(String template)
@@ -134,7 +135,8 @@ extension type const VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
 /// Vpn Connection Tunnel1 Phase1 Integrity enum for `tunnel1_phase1_integrity_algorithms`.
 extension type const VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel1Phase1IntegrityAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel1Phase1IntegrityAlgorithms.expression(String template)
@@ -166,7 +168,8 @@ extension type const VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
 /// Vpn Connection Tunnel1 Phase2 Encryption enum for `tunnel1_phase2_encryption_algorithms`.
 extension type const VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel1Phase2EncryptionAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel1Phase2EncryptionAlgorithms.expression(String template)
@@ -198,7 +201,8 @@ extension type const VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
 /// Vpn Connection Tunnel1 Phase2 Integrity enum for `tunnel1_phase2_integrity_algorithms`.
 extension type const VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel1Phase2IntegrityAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel1Phase2IntegrityAlgorithms.expression(String template)
@@ -289,7 +293,8 @@ extension type const VpnConnectionTunnel2IkeVersions._(TfArg<String> _)
 /// Vpn Connection Tunnel2 Phase1 Encryption enum for `tunnel2_phase1_encryption_algorithms`.
 extension type const VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel2Phase1EncryptionAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel2Phase1EncryptionAlgorithms.expression(String template)
@@ -321,7 +326,8 @@ extension type const VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
 /// Vpn Connection Tunnel2 Phase1 Integrity enum for `tunnel2_phase1_integrity_algorithms`.
 extension type const VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel2Phase1IntegrityAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel2Phase1IntegrityAlgorithms.expression(String template)
@@ -353,7 +359,8 @@ extension type const VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
 /// Vpn Connection Tunnel2 Phase2 Encryption enum for `tunnel2_phase2_encryption_algorithms`.
 extension type const VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel2Phase2EncryptionAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel2Phase2EncryptionAlgorithms.expression(String template)
@@ -385,7 +392,8 @@ extension type const VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
 /// Vpn Connection Tunnel2 Phase2 Integrity enum for `tunnel2_phase2_integrity_algorithms`.
 extension type const VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpnConnectionTunnel2Phase2IntegrityAlgorithms.variable(String name)
     : this._(TfArg.variable(name));
   VpnConnectionTunnel2Phase2IntegrityAlgorithms.expression(String template)

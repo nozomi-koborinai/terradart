@@ -231,7 +231,8 @@ final class VpclatticeResourceConfigurationDnsResource {
 /// `ip_address_type` — derived from the provider schema description.
 extension type const VpclatticeResourceConfigurationIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpclatticeResourceConfigurationIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   VpclatticeResourceConfigurationIpAddressType.expression(String template)

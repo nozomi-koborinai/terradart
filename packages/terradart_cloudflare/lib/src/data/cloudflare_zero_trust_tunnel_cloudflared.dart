@@ -60,7 +60,8 @@ final class DataZeroTrustTunnelCloudflaredFilter {
 /// `status` — derived from the provider schema description.
 extension type const DataZeroTrustTunnelCloudflaredFilterStatus._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustTunnelCloudflaredFilterStatus.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustTunnelCloudflaredFilterStatus.expression(String template)

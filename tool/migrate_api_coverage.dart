@@ -249,9 +249,11 @@ final class WrapperApi {
   }
 
   void _enum(ExtensionTypeDeclaration d) {
-    final rep = d.primaryConstructor.formalParameters.parameters.firstOrNull;
+    final ctor = d.namePart;
+    if (ctor is! PrimaryConstructorDeclaration) return;
+    final rep = ctor.formalParameters.parameters.firstOrNull;
     if (rep?.type?.toSource() != 'TfArg<String>') return;
-    final name = d.primaryConstructor.typeName.lexeme;
+    final name = ctor.typeName.lexeme;
     final members = <String, String>{};
     for (final m in d.body.members.whereType<FieldDeclaration>()) {
       if (!m.isStatic) continue;

@@ -13,7 +13,8 @@ const Set<String> _azurermStreamAnalyticsJobStorageAccountSensitive = <String>{
 /// Stream Analytics Job Storage Account Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsJobStorageAccountAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsJobStorageAccountAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsJobStorageAccountAuthenticationMode.expression(String template)

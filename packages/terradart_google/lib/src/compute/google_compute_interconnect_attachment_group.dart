@@ -45,7 +45,8 @@ final class ComputeInterconnectAttachmentGroupIntent {
 /// `availability_sla` — derived from the provider schema description.
 extension type const ComputeInterconnectAttachmentGroupAvailabilitySla._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeInterconnectAttachmentGroupAvailabilitySla.variable(String name)
     : this._(TfArg.variable(name));
   ComputeInterconnectAttachmentGroupAvailabilitySla.expression(String template)

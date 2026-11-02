@@ -15,7 +15,8 @@ const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
 /// `listManagedInstances` API on this regional MIG.
 extension type const RegionInstanceGroupManagerListManagedInstancesResults._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerListManagedInstancesResults.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerListManagedInstancesResults.expression(
@@ -57,7 +58,8 @@ extension type const RegionInstanceGroupManagerListManagedInstancesResults._(
 /// value of an enum, not a method.
 extension type const RegionInstanceGroupManagerDistributionPolicyTargetShape._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerDistributionPolicyTargetShape.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerDistributionPolicyTargetShape.expression(
@@ -95,7 +97,8 @@ extension type const RegionInstanceGroupManagerDistributionPolicyTargetShape._(
 /// recreate-instances) to apply it.
 extension type const RegionInstanceGroupManagerUpdatePolicyType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerUpdatePolicyType.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerUpdatePolicyType.expression(String template)
@@ -121,7 +124,8 @@ extension type const RegionInstanceGroupManagerUpdatePolicyType._(
 /// `NONE` disables proactive rebalancing.
 extension type const RegionInstanceGroupManagerInstanceRedistributionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerInstanceRedistributionType.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerInstanceRedistributionType.expression(
@@ -147,7 +151,8 @@ extension type const RegionInstanceGroupManagerInstanceRedistributionType._(
 /// Shared enum — both fields accept the same value set.
 extension type const RegionInstanceGroupManagerUpdatePolicyAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerUpdatePolicyAction.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerUpdatePolicyAction.expression(String template)
@@ -181,7 +186,8 @@ extension type const RegionInstanceGroupManagerUpdatePolicyAction._(
 /// requires `max_unavailable_*` > 0.
 extension type const RegionInstanceGroupManagerUpdatePolicyReplacementMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerUpdatePolicyReplacementMethod.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerUpdatePolicyReplacementMethod.expression(
@@ -403,7 +409,8 @@ class ComputeRegionInstanceGroupManagerNamedPort {
 /// `stateful_external_ip` blocks.
 extension type const ComputeRegionInstanceGroupManagerStatefulDeleteRule._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceGroupManagerStatefulDeleteRule.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceGroupManagerStatefulDeleteRule.expression(
@@ -506,7 +513,8 @@ class ComputeRegionInstanceGroupManagerAllInstancesConfig {
 /// does with a failed VM.
 extension type const RegionInstanceGroupManagerDefaultActionOnFailure._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerDefaultActionOnFailure.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerDefaultActionOnFailure.expression(String template)
@@ -532,7 +540,8 @@ extension type const RegionInstanceGroupManagerDefaultActionOnFailure._(
 /// `default_action_on_failure`.
 extension type const RegionInstanceGroupManagerOnFailedHealthCheck._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerOnFailedHealthCheck.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerOnFailedHealthCheck.expression(String template)
@@ -561,7 +570,8 @@ extension type const RegionInstanceGroupManagerOnFailedHealthCheck._(
 /// applies the latest template and per-instance configuration.
 extension type const RegionInstanceGroupManagerForceUpdateOnRepair._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerForceUpdateOnRepair.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerForceUpdateOnRepair.expression(String template)
@@ -674,7 +684,8 @@ class ComputeRegionInstanceGroupManagerInstanceSelection {
 /// `standby_policy.mode`. How the MIG resumes standby VMs.
 extension type const RegionInstanceGroupManagerStandbyPolicyMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerStandbyPolicyMode.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerStandbyPolicyMode.expression(String template)
@@ -728,7 +739,8 @@ class ComputeRegionInstanceGroupManagerStandbyPolicy {
 /// `target_size_policy.mode`. How the MIG creates VMs to reach its target size.
 extension type const RegionInstanceGroupManagerTargetSizePolicyMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   RegionInstanceGroupManagerTargetSizePolicyMode.variable(String name)
     : this._(TfArg.variable(name));
   RegionInstanceGroupManagerTargetSizePolicyMode.expression(String template)

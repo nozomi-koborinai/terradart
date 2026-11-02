@@ -215,7 +215,8 @@ final class AiSearchInstanceCreatedFromEmdashPlugin {
 /// `type` — derived from the provider schema description.
 extension type const AiSearchInstanceCreatedFromEmdashPluginType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AiSearchInstanceCreatedFromEmdashPluginType.variable(String name)
     : this._(TfArg.variable(name));
   AiSearchInstanceCreatedFromEmdashPluginType.expression(String template)

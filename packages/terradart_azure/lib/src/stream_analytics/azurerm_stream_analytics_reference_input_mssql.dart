@@ -12,7 +12,8 @@ const Set<String> _azurermStreamAnalyticsReferenceInputMssqlSensitive =
 /// Stream Analytics Reference Input Mssql Refresh enum for `refresh_type`.
 extension type const StreamAnalyticsReferenceInputMssqlRefreshType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsReferenceInputMssqlRefreshType.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsReferenceInputMssqlRefreshType.expression(String template)

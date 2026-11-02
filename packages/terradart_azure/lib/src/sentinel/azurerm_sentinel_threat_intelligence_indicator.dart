@@ -11,7 +11,8 @@ const Set<String> _azurermSentinelThreatIntelligenceIndicatorSensitive =
 /// Sentinel Threat Intelligence Indicator Pattern enum for `pattern_type`.
 extension type const SentinelThreatIntelligenceIndicatorPatternType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelThreatIntelligenceIndicatorPatternType.variable(String name)
     : this._(TfArg.variable(name));
   SentinelThreatIntelligenceIndicatorPatternType.expression(String template)

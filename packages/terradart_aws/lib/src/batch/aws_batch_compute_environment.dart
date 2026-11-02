@@ -201,7 +201,8 @@ final class BatchComputeEnvironmentComputeResources {
 /// `allocation_strategy` — derived from the provider schema description.
 extension type const BatchComputeEnvironmentAllocationStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BatchComputeEnvironmentAllocationStrategy.variable(String name)
     : this._(TfArg.variable(name));
   BatchComputeEnvironmentAllocationStrategy.expression(String template)
@@ -245,7 +246,8 @@ extension type const BatchComputeEnvironmentAllocationStrategy._(
 /// `type` — derived from the provider schema description.
 extension type const BatchComputeEnvironmentComputeResourcesType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BatchComputeEnvironmentComputeResourcesType.variable(String name)
     : this._(TfArg.variable(name));
   BatchComputeEnvironmentComputeResourcesType.expression(String template)

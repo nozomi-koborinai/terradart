@@ -11,7 +11,8 @@ _awsNotificationsManagedNotificationAccountContactAssociationSensitive =
 /// Notifications Managed Notification Account Contact Association Contact enum for `contact_identifier`.
 extension type const NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NotificationsManagedNotificationAccountContactAssociationContactIdentifier.variable(
     String name,
   ) : this._(TfArg.variable(name));

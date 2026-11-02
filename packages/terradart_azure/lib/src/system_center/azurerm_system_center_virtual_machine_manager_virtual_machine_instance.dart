@@ -81,7 +81,8 @@ final class SystemCenterVirtualMachineManagerVirtualMachineInstanceInfrastructur
 /// `checkpoint_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceCheckpointType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceCheckpointType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -153,7 +154,8 @@ final class SystemCenterVirtualMachineManagerVirtualMachineInstanceNetworkInterf
 /// `ipv4_address_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv4AddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv4AddressType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -182,7 +184,8 @@ extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv4
 /// `ipv6_address_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv6AddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv6AddressType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -211,7 +214,8 @@ extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceIpv6
 /// `mac_address_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceMacAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceMacAddressType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -304,7 +308,8 @@ final class SystemCenterVirtualMachineManagerVirtualMachineInstanceStorageDisk {
 /// `bus_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceBusType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceBusType.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -333,7 +338,8 @@ extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceBusT
 /// `vhd_type` — derived from the provider schema description.
 extension type const SystemCenterVirtualMachineManagerVirtualMachineInstanceVhdType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SystemCenterVirtualMachineManagerVirtualMachineInstanceVhdType.variable(
     String name,
   ) : this._(TfArg.variable(name));

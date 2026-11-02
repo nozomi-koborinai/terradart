@@ -91,7 +91,8 @@ final class ZeroTrustOrganizationMfaConfig {
 /// `allowed_authenticators` — derived from the provider schema description.
 extension type const ZeroTrustOrganizationAllowedAuthenticators._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ZeroTrustOrganizationAllowedAuthenticators.variable(String name)
     : this._(TfArg.variable(name));
   ZeroTrustOrganizationAllowedAuthenticators.expression(String template)

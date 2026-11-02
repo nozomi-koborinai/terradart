@@ -741,7 +741,8 @@ final class GkeonpremBareMetalClusterNodeConfig {
 /// `container_runtime` — derived from the provider schema description.
 extension type const GkeonpremBareMetalClusterContainerRuntime._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GkeonpremBareMetalClusterContainerRuntime.variable(String name)
     : this._(TfArg.variable(name));
   GkeonpremBareMetalClusterContainerRuntime.expression(String template)

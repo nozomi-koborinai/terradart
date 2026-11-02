@@ -20,7 +20,8 @@ const Set<String> _googleComputeRegionInstanceTemplateSensitive = <String>{
 /// Compute Region Instance Template Key Revocation Action enum for `key_revocation_action_type`.
 extension type const ComputeRegionInstanceTemplateKeyRevocationActionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateKeyRevocationActionType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateKeyRevocationActionType.expression(
@@ -81,7 +82,8 @@ final class ComputeRegionInstanceTemplateAdvancedMachineFeatures {
 /// `performance_monitoring_unit` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplatePerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplatePerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplatePerformanceMonitoringUnit.expression(
@@ -132,7 +134,8 @@ final class ComputeRegionInstanceTemplateConfidentialInstanceConfig {
 /// `confidential_instance_type` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateConfidentialInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateConfidentialInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateConfidentialInstanceType.expression(
@@ -271,7 +274,8 @@ final class ComputeRegionInstanceTemplateDisk {
 /// `architecture` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateArchitecture._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateArchitecture.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateArchitecture.expression(String template)
@@ -729,7 +733,8 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateTotalEgressBandwidthTier.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateTotalEgressBandwidthTier.expression(
@@ -869,7 +874,8 @@ final class ComputeRegionInstanceTemplateScheduling {
 /// `instance_termination_action` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateInstanceTerminationAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateInstanceTerminationAction.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateInstanceTerminationAction.expression(
@@ -894,7 +900,8 @@ extension type const ComputeRegionInstanceTemplateInstanceTerminationAction._(
 /// `on_host_maintenance` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateOnHostMaintenance._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateOnHostMaintenance.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateOnHostMaintenance.expression(String template)
@@ -918,7 +925,8 @@ extension type const ComputeRegionInstanceTemplateOnHostMaintenance._(
 /// `provisioning_model` — derived from the provider schema description.
 extension type const ComputeRegionInstanceTemplateProvisioningModel._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ComputeRegionInstanceTemplateProvisioningModel.variable(String name)
     : this._(TfArg.variable(name));
   ComputeRegionInstanceTemplateProvisioningModel.expression(String template)

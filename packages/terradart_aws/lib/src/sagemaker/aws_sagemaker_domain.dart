@@ -39,7 +39,8 @@ extension type const SagemakerDomainAppNetworkAccessType._(TfArg<String> _)
 /// Sagemaker Domain App Security Group enum for `app_security_group_management`.
 extension type const SagemakerDomainAppSecurityGroupManagement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDomainAppSecurityGroupManagement.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDomainAppSecurityGroupManagement.expression(String template)
@@ -2666,7 +2667,8 @@ final class SagemakerDomainSettings {
 /// `execution_role_identity_config` — derived from the provider schema description.
 extension type const SagemakerDomainExecutionRoleIdentityConfig._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDomainExecutionRoleIdentityConfig.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDomainExecutionRoleIdentityConfig.expression(String template)

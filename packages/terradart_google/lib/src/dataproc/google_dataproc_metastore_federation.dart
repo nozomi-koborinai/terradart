@@ -10,7 +10,8 @@ const Set<String> _googleDataprocMetastoreFederationSensitive = <String>{};
 /// Terraform `deletion_policy` for Dataproc Metastore federations.
 extension type const DataprocMetastoreFederationDeletionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataprocMetastoreFederationDeletionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   DataprocMetastoreFederationDeletionPolicy.expression(String template)

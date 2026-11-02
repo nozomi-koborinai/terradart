@@ -120,7 +120,8 @@ extension type const SentinelAlertRuleScheduledTactics._(TfArg<String> _)
 /// Sentinel Alert Rule Scheduled Trigger enum for `trigger_operator`.
 extension type const SentinelAlertRuleScheduledTriggerOperator._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleScheduledTriggerOperator.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleScheduledTriggerOperator.expression(String template)
@@ -205,7 +206,8 @@ final class SentinelAlertRuleScheduledDynamicProperty {
 /// `name` — derived from the provider schema description.
 extension type const SentinelAlertRuleScheduledDynamicPropertyName._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleScheduledDynamicPropertyName.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleScheduledDynamicPropertyName.expression(String template)
@@ -406,7 +408,8 @@ final class SentinelAlertRuleScheduledEventGrouping {
 /// `aggregation_method` — derived from the provider schema description.
 extension type const SentinelAlertRuleScheduledAggregationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleScheduledAggregationMethod.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleScheduledAggregationMethod.expression(String template)
@@ -598,7 +601,8 @@ extension type const SentinelAlertRuleScheduledByEntities._(TfArg<String> _)
 /// `entity_matching_method` — derived from the provider schema description.
 extension type const SentinelAlertRuleScheduledEntityMatchingMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SentinelAlertRuleScheduledEntityMatchingMethod.variable(String name)
     : this._(TfArg.variable(name));
   SentinelAlertRuleScheduledEntityMatchingMethod.expression(String template)

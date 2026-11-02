@@ -10,7 +10,8 @@ const Set<String> _awsApiGatewayDomainNameAccessAssociationSensitive =
 /// Api Gateway Domain Name Access Association Source enum for `access_association_source_type`.
 extension type const ApiGatewayDomainNameAccessAssociationSourceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApiGatewayDomainNameAccessAssociationSourceType.variable(String name)
     : this._(TfArg.variable(name));
   ApiGatewayDomainNameAccessAssociationSourceType.expression(String template)

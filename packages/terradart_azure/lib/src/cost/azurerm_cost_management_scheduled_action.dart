@@ -79,7 +79,8 @@ extension type const CostManagementScheduledActionFrequency._(TfArg<String> _)
 /// Cost Management Scheduled Action Weeks Of enum for `weeks_of_month`.
 extension type const CostManagementScheduledActionWeeksOfMonth._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CostManagementScheduledActionWeeksOfMonth.variable(String name)
     : this._(TfArg.variable(name));
   CostManagementScheduledActionWeeksOfMonth.expression(String template)

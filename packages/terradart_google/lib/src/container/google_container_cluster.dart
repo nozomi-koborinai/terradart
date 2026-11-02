@@ -49,7 +49,8 @@ extension type const ContainerClusterDatapathProvider._(TfArg<String> _)
 /// Container Cluster In Transit Encryption enum for `in_transit_encryption_config`.
 extension type const ContainerClusterInTransitEncryptionConfig._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterInTransitEncryptionConfig.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterInTransitEncryptionConfig.expression(String template)
@@ -535,7 +536,8 @@ final class ContainerClusterAnonymousAuthenticationConfig {
 /// `mode` — derived from the provider schema description.
 extension type const ContainerClusterAnonymousAuthenticationConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterAnonymousAuthenticationConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterAnonymousAuthenticationConfigMode.expression(String template)
@@ -1512,7 +1514,8 @@ final class ContainerClusterLoggingConfig {
 /// `enable_components` — derived from the provider schema description.
 extension type const ContainerClusterLoggingConfigEnableComponents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterLoggingConfigEnableComponents.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterLoggingConfigEnableComponents.expression(String template)
@@ -1973,7 +1976,8 @@ final class ContainerClusterMonitoringConfig {
 /// `enable_components` — derived from the provider schema description.
 extension type const ContainerClusterMonitoringConfigEnableComponents._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterMonitoringConfigEnableComponents.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterMonitoringConfigEnableComponents.expression(String template)
@@ -2099,7 +2103,8 @@ final class ContainerClusterAutoMonitoringConfig {
 /// `scope` — derived from the provider schema description.
 extension type const ContainerClusterAutoMonitoringConfigScope._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterAutoMonitoringConfigScope.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterAutoMonitoringConfigScope.expression(String template)
@@ -2474,7 +2479,8 @@ final class ContainerClusterAdvancedMachineFeatures {
 /// `performance_monitoring_unit` — derived from the provider schema description.
 extension type const ContainerClusterPerformanceMonitoringUnit._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterPerformanceMonitoringUnit.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterPerformanceMonitoringUnit.expression(String template)
@@ -3091,7 +3097,8 @@ final class ContainerClusterKubeletConfig {
 /// `insecure_kubelet_readonly_port_enabled` — derived from the provider schema description.
 extension type const ContainerClusterInsecureKubeletReadonlyPortEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterInsecureKubeletReadonlyPortEnabled.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterInsecureKubeletReadonlyPortEnabled.expression(String template)
@@ -3365,7 +3372,8 @@ extension type const ContainerClusterCgroupMode._(TfArg<String> _)
 /// `transparent_hugepage_defrag` — derived from the provider schema description.
 extension type const ContainerClusterTransparentHugepageDefrag._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterTransparentHugepageDefrag.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterTransparentHugepageDefrag.expression(String template)
@@ -3406,7 +3414,8 @@ extension type const ContainerClusterTransparentHugepageDefrag._(
 /// `transparent_hugepage_enabled` — derived from the provider schema description.
 extension type const ContainerClusterTransparentHugepageEnabled._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterTransparentHugepageEnabled.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterTransparentHugepageEnabled.expression(String template)
@@ -3934,7 +3943,8 @@ final class ContainerClusterTaintConfig {
 /// `architecture_taint_behavior` — derived from the provider schema description.
 extension type const ContainerClusterArchitectureTaintBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterArchitectureTaintBehavior.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterArchitectureTaintBehavior.expression(String template)
@@ -4006,7 +4016,8 @@ final class ContainerClusterWorkloadMetadataConfig {
 /// `mode` — derived from the provider schema description.
 extension type const ContainerClusterWorkloadMetadataConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterWorkloadMetadataConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterWorkloadMetadataConfigMode.expression(String template)
@@ -4959,7 +4970,8 @@ final class ContainerClusterSecurityPostureConfig {
 /// `mode` — derived from the provider schema description.
 extension type const ContainerClusterSecurityPostureConfigMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ContainerClusterSecurityPostureConfigMode.variable(String name)
     : this._(TfArg.variable(name));
   ContainerClusterSecurityPostureConfigMode.expression(String template)

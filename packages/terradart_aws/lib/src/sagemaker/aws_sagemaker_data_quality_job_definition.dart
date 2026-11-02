@@ -143,7 +143,8 @@ final class SagemakerDataQualityJobDefinitionBatchTransformInput {
 /// `s3_data_distribution_type` — derived from the provider schema description.
 extension type const SagemakerDataQualityJobDefinitionS3DataDistributionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDataQualityJobDefinitionS3DataDistributionType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDataQualityJobDefinitionS3DataDistributionType.expression(
@@ -169,7 +170,8 @@ extension type const SagemakerDataQualityJobDefinitionS3DataDistributionType._(
 /// `s3_input_mode` — derived from the provider schema description.
 extension type const SagemakerDataQualityJobDefinitionS3InputMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDataQualityJobDefinitionS3InputMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDataQualityJobDefinitionS3InputMode.expression(String template)
@@ -321,7 +323,8 @@ final class SagemakerDataQualityJobDefinitionS3Output {
 /// `s3_upload_mode` — derived from the provider schema description.
 extension type const SagemakerDataQualityJobDefinitionS3UploadMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDataQualityJobDefinitionS3UploadMode.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDataQualityJobDefinitionS3UploadMode.expression(String template)
@@ -387,7 +390,8 @@ final class SagemakerDataQualityJobDefinitionClusterConfig {
 /// `instance_type` — derived from the provider schema description.
 extension type const SagemakerDataQualityJobDefinitionInstanceType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SagemakerDataQualityJobDefinitionInstanceType.variable(String name)
     : this._(TfArg.variable(name));
   SagemakerDataQualityJobDefinitionInstanceType.expression(String template)

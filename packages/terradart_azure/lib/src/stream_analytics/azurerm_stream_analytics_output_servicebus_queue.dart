@@ -13,7 +13,8 @@ const Set<String> _azurermStreamAnalyticsOutputServicebusQueueSensitive =
 /// Stream Analytics Output Servicebus Queue Authentication enum for `authentication_mode`.
 extension type const StreamAnalyticsOutputServicebusQueueAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusQueueAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusQueueAuthenticationMode.expression(
@@ -66,7 +67,8 @@ final class StreamAnalyticsOutputServicebusQueueSerialization {
 /// `encoding` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusQueueEncoding._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusQueueEncoding.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusQueueEncoding.expression(String template)
@@ -86,7 +88,8 @@ extension type const StreamAnalyticsOutputServicebusQueueEncoding._(
 /// `field_delimiter` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusQueueFieldDelimiter._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusQueueFieldDelimiter.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusQueueFieldDelimiter.expression(String template)
@@ -118,7 +121,8 @@ extension type const StreamAnalyticsOutputServicebusQueueFieldDelimiter._(
 /// `format` — derived from the provider schema description.
 extension type const StreamAnalyticsOutputServicebusQueueFormat._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   StreamAnalyticsOutputServicebusQueueFormat.variable(String name)
     : this._(TfArg.variable(name));
   StreamAnalyticsOutputServicebusQueueFormat.expression(String template)

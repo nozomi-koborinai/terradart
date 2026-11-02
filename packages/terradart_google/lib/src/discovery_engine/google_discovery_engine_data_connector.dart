@@ -201,7 +201,8 @@ final class DiscoveryEngineDataConnectorBapConfig {
 /// `enabled_actions` — derived from the provider schema description.
 extension type const DiscoveryEngineDataConnectorEnabledActions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineDataConnectorEnabledActions.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineDataConnectorEnabledActions.expression(String template)
@@ -241,7 +242,8 @@ extension type const DiscoveryEngineDataConnectorEnabledActions._(
 /// `supported_connector_modes` — derived from the provider schema description.
 extension type const DiscoveryEngineDataConnectorSupportedConnectorModes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineDataConnectorSupportedConnectorModes.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineDataConnectorSupportedConnectorModes.expression(

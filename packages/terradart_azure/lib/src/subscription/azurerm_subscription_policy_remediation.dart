@@ -9,7 +9,8 @@ const Set<String> _azurermSubscriptionPolicyRemediationSensitive = <String>{};
 /// Subscription Policy Remediation Resource Discovery enum for `resource_discovery_mode`.
 extension type const SubscriptionPolicyRemediationResourceDiscoveryMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SubscriptionPolicyRemediationResourceDiscoveryMode.variable(String name)
     : this._(TfArg.variable(name));
   SubscriptionPolicyRemediationResourceDiscoveryMode.expression(String template)

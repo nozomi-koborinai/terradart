@@ -166,7 +166,8 @@ final class VirtualNetworkGatewayIpConfiguration {
 /// `private_ip_address_allocation` — derived from the provider schema description.
 extension type const VirtualNetworkGatewayPrivateIpAddressAllocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualNetworkGatewayPrivateIpAddressAllocation.variable(String name)
     : this._(TfArg.variable(name));
   VirtualNetworkGatewayPrivateIpAddressAllocation.expression(String template)

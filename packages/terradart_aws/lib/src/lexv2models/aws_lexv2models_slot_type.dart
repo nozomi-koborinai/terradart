@@ -216,7 +216,8 @@ final class Lexv2modelsSlotTypeAdvancedRecognitionSetting {
 /// `audio_recognition_strategy` — derived from the provider schema description.
 extension type const Lexv2modelsSlotTypeAudioRecognitionStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Lexv2modelsSlotTypeAudioRecognitionStrategy.variable(String name)
     : this._(TfArg.variable(name));
   Lexv2modelsSlotTypeAudioRecognitionStrategy.expression(String template)

@@ -36,7 +36,8 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 /// `http_tokens` — derived from the provider schema description.
 extension type const ImagebuilderInfrastructureConfigurationHttpTokens._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderInfrastructureConfigurationHttpTokens.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderInfrastructureConfigurationHttpTokens.expression(String template)
@@ -176,7 +177,8 @@ final class ImagebuilderInfrastructureConfigurationHostResourceGroupArn
 /// `tenancy` — derived from the provider schema description.
 extension type const ImagebuilderInfrastructureConfigurationTenancy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ImagebuilderInfrastructureConfigurationTenancy.variable(String name)
     : this._(TfArg.variable(name));
   ImagebuilderInfrastructureConfigurationTenancy.expression(String template)

@@ -185,7 +185,8 @@ final class Sesv2ConfigurationSetEventDestinationTargetSnsDestination
 /// `matching_event_types` — derived from the provider schema description.
 extension type const Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2ConfigurationSetEventDestinationMatchingEventTypes.variable(String name)
     : this._(TfArg.variable(name));
   Sesv2ConfigurationSetEventDestinationMatchingEventTypes.expression(
@@ -296,7 +297,8 @@ final class Sesv2ConfigurationSetEventDestinationDimensionConfiguration {
 /// `dimension_value_source` — derived from the provider schema description.
 extension type const Sesv2ConfigurationSetEventDestinationDimensionValueSource._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   Sesv2ConfigurationSetEventDestinationDimensionValueSource.variable(
     String name,
   ) : this._(TfArg.variable(name));

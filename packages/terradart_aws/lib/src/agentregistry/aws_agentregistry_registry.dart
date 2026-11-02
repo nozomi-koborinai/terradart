@@ -224,7 +224,8 @@ final class AgentregistryRegistryCustomClaim {
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
 extension type const AgentregistryRegistryInboundTokenClaimValueType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgentregistryRegistryInboundTokenClaimValueType.variable(String name)
     : this._(TfArg.variable(name));
   AgentregistryRegistryInboundTokenClaimValueType.expression(String template)
@@ -379,7 +380,8 @@ final class AgentregistryRegistryManagedVpcResource {
 /// `endpoint_ip_address_type` — derived from the provider schema description.
 extension type const AgentregistryRegistryEndpointIpAddressType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AgentregistryRegistryEndpointIpAddressType.variable(String name)
     : this._(TfArg.variable(name));
   AgentregistryRegistryEndpointIpAddressType.expression(String template)

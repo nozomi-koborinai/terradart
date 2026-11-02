@@ -126,7 +126,8 @@ final class EcsTaskDefinitionPlacementConstraints {
 /// `type` — derived from the provider schema description.
 extension type const EcsTaskDefinitionPlacementConstraintsType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   EcsTaskDefinitionPlacementConstraintsType.variable(String name)
     : this._(TfArg.variable(name));
   EcsTaskDefinitionPlacementConstraintsType.expression(String template)

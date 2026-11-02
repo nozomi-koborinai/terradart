@@ -9,7 +9,8 @@ const Set<String> _awsVpcBlockPublicAccessOptionsSensitive = <String>{};
 /// Vpc Block Public Access Options Internet Gateway Block enum for `internet_gateway_block_mode`.
 extension type const VpcBlockPublicAccessOptionsInternetGatewayBlockMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VpcBlockPublicAccessOptionsInternetGatewayBlockMode.variable(String name)
     : this._(TfArg.variable(name));
   VpcBlockPublicAccessOptionsInternetGatewayBlockMode.expression(

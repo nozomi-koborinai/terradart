@@ -11,7 +11,8 @@ _googleStorageControlOrganizationIntelligenceFindingsSummarySensitive =
 /// Data Storage Control Organization Intelligence Findings Summary Resource enum for `resource_scope`.
 extension type const DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope.variable(
     String name,
   ) : this._(TfArg.variable(name));

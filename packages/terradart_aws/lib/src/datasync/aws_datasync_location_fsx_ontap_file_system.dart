@@ -93,7 +93,8 @@ final class DatasyncLocationFsxOntapFileSystemNfsMountOptions {
 /// `version` — derived from the provider schema description.
 extension type const DatasyncLocationFsxOntapFileSystemNfsVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationFsxOntapFileSystemNfsVersion.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationFsxOntapFileSystemNfsVersion.expression(String template)
@@ -153,7 +154,8 @@ final class DatasyncLocationFsxOntapFileSystemSmbMountOptions {
 /// `version` — derived from the provider schema description.
 extension type const DatasyncLocationFsxOntapFileSystemSmbVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DatasyncLocationFsxOntapFileSystemSmbVersion.variable(String name)
     : this._(TfArg.variable(name));
   DatasyncLocationFsxOntapFileSystemSmbVersion.expression(String template)

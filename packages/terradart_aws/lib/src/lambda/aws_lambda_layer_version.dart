@@ -11,7 +11,8 @@ const Set<String> _awsLambdaLayerVersionSensitive = <String>{};
 /// Lambda Layer Version Compatible enum for `compatible_architectures`.
 extension type const LambdaLayerVersionCompatibleArchitectures._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LambdaLayerVersionCompatibleArchitectures.variable(String name)
     : this._(TfArg.variable(name));
   LambdaLayerVersionCompatibleArchitectures.expression(String template)

@@ -329,7 +329,8 @@ extension type const LinuxFunctionAppDefaultProvider._(TfArg<String> _)
 /// `unauthenticated_client_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppUnauthenticatedClientAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppUnauthenticatedClientAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppUnauthenticatedClientAction.expression(String template)
@@ -1401,7 +1402,8 @@ final class LinuxFunctionAppTokenStoreSasSettingName
 /// `cookie_expiration_convention` — derived from the provider schema description.
 extension type const LinuxFunctionAppCookieExpirationConvention._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppCookieExpirationConvention.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppCookieExpirationConvention.expression(String template)
@@ -1836,7 +1838,8 @@ extension type const LinuxFunctionAppFtpsState._(TfArg<String> _)
 /// `ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppIpRestrictionDefaultAction.expression(String template)
@@ -2056,7 +2059,8 @@ extension type const LinuxFunctionAppRemoteDebuggingVersion._(TfArg<String> _)
 /// `scm_ip_restriction_default_action` — derived from the provider schema description.
 extension type const LinuxFunctionAppScmIpRestrictionDefaultAction._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   LinuxFunctionAppScmIpRestrictionDefaultAction.variable(String name)
     : this._(TfArg.variable(name));
   LinuxFunctionAppScmIpRestrictionDefaultAction.expression(String template)

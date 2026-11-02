@@ -11,7 +11,8 @@ const Set<String> _awsConfigOrganizationCustomRuleSensitive = <String>{};
 /// Config Organization Custom Rule Maximum Execution enum for `maximum_execution_frequency`.
 extension type const ConfigOrganizationCustomRuleMaximumExecutionFrequency._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ConfigOrganizationCustomRuleMaximumExecutionFrequency.variable(String name)
     : this._(TfArg.variable(name));
   ConfigOrganizationCustomRuleMaximumExecutionFrequency.expression(

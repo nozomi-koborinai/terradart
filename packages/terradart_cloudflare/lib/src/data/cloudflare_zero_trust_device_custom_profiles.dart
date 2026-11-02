@@ -11,7 +11,8 @@ const Set<String> _cloudflareZeroTrustDeviceCustomProfilesSensitive =
 /// Data Zero Trust Device Custom Profiles Profile enum for `profile_type`.
 extension type const DataZeroTrustDeviceCustomProfilesProfileType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataZeroTrustDeviceCustomProfilesProfileType.variable(String name)
     : this._(TfArg.variable(name));
   DataZeroTrustDeviceCustomProfilesProfileType.expression(String template)

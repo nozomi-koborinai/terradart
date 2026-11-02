@@ -66,7 +66,8 @@ final class DataLossPreventionInspectTemplateInspectConfig {
 /// `content_options` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateContentOptions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateContentOptions.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateContentOptions.expression(String template)
@@ -90,7 +91,8 @@ extension type const DataLossPreventionInspectTemplateContentOptions._(
 /// `min_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateMinLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateMinLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateMinLikelihood.expression(String template)
@@ -170,7 +172,8 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
 /// `exclusion_type` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateExclusionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateExclusionType.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateExclusionType.expression(String template)
@@ -191,7 +194,8 @@ extension type const DataLossPreventionInspectTemplateExclusionType._(
 /// `likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateLikelihood.expression(String template)
@@ -570,7 +574,8 @@ final class DataLossPreventionInspectTemplateExclusionRule {
 /// `matching_type` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateMatchingType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateMatchingType.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateMatchingType.expression(String template)
@@ -724,7 +729,8 @@ final class DataLossPreventionInspectTemplateLikelihoodAdjustment {
 /// `fixed_likelihood` — derived from the provider schema description.
 extension type const DataLossPreventionInspectTemplateFixedLikelihood._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataLossPreventionInspectTemplateFixedLikelihood.variable(String name)
     : this._(TfArg.variable(name));
   DataLossPreventionInspectTemplateFixedLikelihood.expression(String template)

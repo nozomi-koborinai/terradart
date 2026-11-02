@@ -86,7 +86,8 @@ extension type const DataEmailSecurityBlockSenderOrder._(TfArg<String> _)
 /// `pattern_type` — derived from the provider schema description.
 extension type const DataEmailSecurityBlockSenderFilterPatternType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataEmailSecurityBlockSenderFilterPatternType.variable(String name)
     : this._(TfArg.variable(name));
   DataEmailSecurityBlockSenderFilterPatternType.expression(String template)

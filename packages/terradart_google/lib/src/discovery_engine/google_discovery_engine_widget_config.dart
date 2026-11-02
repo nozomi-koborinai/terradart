@@ -218,7 +218,8 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 /// `interaction_type` — derived from the provider schema description.
 extension type const DiscoveryEngineWidgetConfigInteractionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineWidgetConfigInteractionType.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineWidgetConfigInteractionType.expression(String template)
@@ -247,7 +248,8 @@ extension type const DiscoveryEngineWidgetConfigInteractionType._(
 /// `result_description_type` — derived from the provider schema description.
 extension type const DiscoveryEngineWidgetConfigResultDescriptionType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineWidgetConfigResultDescriptionType.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineWidgetConfigResultDescriptionType.expression(String template)
@@ -349,7 +351,8 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
 /// `device_visibility` — derived from the provider schema description.
 extension type const DiscoveryEngineWidgetConfigDeviceVisibility._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DiscoveryEngineWidgetConfigDeviceVisibility.variable(String name)
     : this._(TfArg.variable(name));
   DiscoveryEngineWidgetConfigDeviceVisibility.expression(String template)

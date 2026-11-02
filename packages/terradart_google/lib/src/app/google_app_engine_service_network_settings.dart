@@ -25,7 +25,8 @@ final class AppEngineServiceNetworkSettings {
 /// `ingress_traffic_allowed` — derived from the provider schema description.
 extension type const AppEngineServiceNetworkSettingsIngressTrafficAllowed._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   AppEngineServiceNetworkSettingsIngressTrafficAllowed.variable(String name)
     : this._(TfArg.variable(name));
   AppEngineServiceNetworkSettingsIngressTrafficAllowed.expression(

@@ -46,7 +46,8 @@ final class KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission {
 /// `data_actions` — derived from the provider schema description.
 extension type const KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions.variable(
     String name,
   ) : this._(TfArg.variable(name));
@@ -264,7 +265,8 @@ extension type const KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActi
 /// `not_data_actions` — derived from the provider schema description.
 extension type const KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions.variable(
     String name,
   ) : this._(TfArg.variable(name));

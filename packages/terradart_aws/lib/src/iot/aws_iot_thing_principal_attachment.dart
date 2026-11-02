@@ -9,7 +9,8 @@ const Set<String> _awsIotThingPrincipalAttachmentSensitive = <String>{};
 /// Iot Thing Principal Attachment Thing Principal enum for `thing_principal_type`.
 extension type const IotThingPrincipalAttachmentThingPrincipalType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IotThingPrincipalAttachmentThingPrincipalType.variable(String name)
     : this._(TfArg.variable(name));
   IotThingPrincipalAttachmentThingPrincipalType.expression(String template)

@@ -225,7 +225,8 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
 /// `attributes_type` — derived from the provider schema description.
 extension type const IamWorkforcePoolProviderExtendedAttributesType._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IamWorkforcePoolProviderExtendedAttributesType.variable(String name)
     : this._(TfArg.variable(name));
   IamWorkforcePoolProviderExtendedAttributesType.expression(String template)
@@ -466,7 +467,8 @@ final class IamWorkforcePoolProviderWebSsoConfig {
 /// `assertion_claims_behavior` — derived from the provider schema description.
 extension type const IamWorkforcePoolProviderAssertionClaimsBehavior._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   IamWorkforcePoolProviderAssertionClaimsBehavior.variable(String name)
     : this._(TfArg.variable(name));
   IamWorkforcePoolProviderAssertionClaimsBehavior.expression(String template)

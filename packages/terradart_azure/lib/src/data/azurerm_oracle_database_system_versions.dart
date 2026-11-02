@@ -10,7 +10,8 @@ const Set<String> _azurermOracleDatabaseSystemVersionsSensitive = <String>{};
 /// Data Oracle Database System Versions Database System enum for `database_system_shape`.
 extension type const DataOracleDatabaseSystemVersionsDatabaseSystemShape._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataOracleDatabaseSystemVersionsDatabaseSystemShape.variable(String name)
     : this._(TfArg.variable(name));
   DataOracleDatabaseSystemVersionsDatabaseSystemShape.expression(
@@ -32,7 +33,8 @@ extension type const DataOracleDatabaseSystemVersionsDatabaseSystemShape._(
 /// Data Oracle Database System Versions Shape enum for `shape_family`.
 extension type const DataOracleDatabaseSystemVersionsShapeFamily._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataOracleDatabaseSystemVersionsShapeFamily.variable(String name)
     : this._(TfArg.variable(name));
   DataOracleDatabaseSystemVersionsShapeFamily.expression(String template)
@@ -64,7 +66,8 @@ extension type const DataOracleDatabaseSystemVersionsShapeFamily._(
 /// Data Oracle Database System Versions Storage enum for `storage_management`.
 extension type const DataOracleDatabaseSystemVersionsStorageManagement._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   DataOracleDatabaseSystemVersionsStorageManagement.variable(String name)
     : this._(TfArg.variable(name));
   DataOracleDatabaseSystemVersionsStorageManagement.expression(String template)

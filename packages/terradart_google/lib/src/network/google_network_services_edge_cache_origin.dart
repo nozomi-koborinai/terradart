@@ -37,7 +37,8 @@ extension type const NetworkServicesEdgeCacheOriginProtocol._(TfArg<String> _)
 /// Network Services Edge Cache Origin Retry enum for `retry_conditions`.
 extension type const NetworkServicesEdgeCacheOriginRetryConditions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheOriginRetryConditions.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEdgeCacheOriginRetryConditions.expression(String template)
@@ -206,7 +207,8 @@ final class NetworkServicesEdgeCacheOriginRedirect {
 /// `redirect_conditions` — derived from the provider schema description.
 extension type const NetworkServicesEdgeCacheOriginRedirectConditions._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   NetworkServicesEdgeCacheOriginRedirectConditions.variable(String name)
     : this._(TfArg.variable(name));
   NetworkServicesEdgeCacheOriginRedirectConditions.expression(String template)

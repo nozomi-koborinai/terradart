@@ -11,7 +11,8 @@ const Set<String> _googleBigqueryAnalyticsHubDataExchangeSubscriptionSensitive =
 /// Bigquery Analytics Hub Data Exchange Subscription Refresh enum for `refresh_policy`.
 extension type const BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy.variable(
     String name,
   ) : this._(TfArg.variable(name));

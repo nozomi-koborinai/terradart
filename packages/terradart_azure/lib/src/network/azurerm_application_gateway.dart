@@ -222,7 +222,8 @@ extension type const ApplicationGatewayCookieBasedAffinity._(TfArg<String> _)
 /// `protocol` — derived from the provider schema description.
 extension type const ApplicationGatewayBackendHttpSettingsProtocol._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationGatewayBackendHttpSettingsProtocol.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationGatewayBackendHttpSettingsProtocol.expression(String template)
@@ -375,7 +376,8 @@ final class ApplicationGatewayFrontendIpConfiguration {
 /// `private_ip_address_allocation` — derived from the provider schema description.
 extension type const ApplicationGatewayPrivateIpAddressAllocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationGatewayPrivateIpAddressAllocation.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationGatewayPrivateIpAddressAllocation.expression(String template)
@@ -1489,7 +1491,8 @@ final class ApplicationGatewaySslProfile {
 /// `client_authentication_mode` — derived from the provider schema description.
 extension type const ApplicationGatewayClientAuthenticationMode._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationGatewayClientAuthenticationMode.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationGatewayClientAuthenticationMode.expression(String template)
@@ -1513,7 +1516,8 @@ extension type const ApplicationGatewayClientAuthenticationMode._(
 /// `verify_client_certificate_revocation` — derived from the provider schema description.
 extension type const ApplicationGatewayVerifyClientCertificateRevocation._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApplicationGatewayVerifyClientCertificateRevocation.variable(String name)
     : this._(TfArg.variable(name));
   ApplicationGatewayVerifyClientCertificateRevocation.expression(

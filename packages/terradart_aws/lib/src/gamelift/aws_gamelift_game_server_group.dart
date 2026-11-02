@@ -39,7 +39,8 @@ extension type const GameliftGameServerGroupBalancingStrategy._(TfArg<String> _)
 /// Gamelift Game Server Group Game Server Protection enum for `game_server_protection_policy`.
 extension type const GameliftGameServerGroupGameServerProtectionPolicy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   GameliftGameServerGroupGameServerProtectionPolicy.variable(String name)
     : this._(TfArg.variable(name));
   GameliftGameServerGroupGameServerProtectionPolicy.expression(String template)

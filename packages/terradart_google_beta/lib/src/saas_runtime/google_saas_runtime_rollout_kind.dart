@@ -10,7 +10,8 @@ const Set<String> _googleSaasRuntimeRolloutKindSensitive = <String>{};
 /// Saas Runtime Rollout Kind Update Unit Kind enum for `update_unit_kind_strategy`.
 extension type const SaasRuntimeRolloutKindUpdateUnitKindStrategy._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   SaasRuntimeRolloutKindUpdateUnitKindStrategy.variable(String name)
     : this._(TfArg.variable(name));
   SaasRuntimeRolloutKindUpdateUnitKindStrategy.expression(String template)

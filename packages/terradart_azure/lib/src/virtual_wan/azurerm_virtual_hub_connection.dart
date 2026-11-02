@@ -54,7 +54,8 @@ final class VirtualHubConnectionRouting {
 /// `static_vnet_local_route_override_criteria` — derived from the provider schema description.
 extension type const VirtualHubConnectionStaticVnetLocalRouteOverrideCriteria._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   VirtualHubConnectionStaticVnetLocalRouteOverrideCriteria.variable(String name)
     : this._(TfArg.variable(name));
   VirtualHubConnectionStaticVnetLocalRouteOverrideCriteria.expression(

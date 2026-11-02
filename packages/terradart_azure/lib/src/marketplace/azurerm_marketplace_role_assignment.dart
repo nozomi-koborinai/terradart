@@ -10,7 +10,8 @@ const Set<String> _azurermMarketplaceRoleAssignmentSensitive = <String>{};
 /// Marketplace Role Assignment Condition enum for `condition_version`.
 extension type const MarketplaceRoleAssignmentConditionVersion._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   MarketplaceRoleAssignmentConditionVersion.variable(String name)
     : this._(TfArg.variable(name));
   MarketplaceRoleAssignmentConditionVersion.expression(String template)

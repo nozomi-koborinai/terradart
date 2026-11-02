@@ -11,7 +11,8 @@ const Set<String> _googleApigeeKeystoresAliasesSelfSignedCertSensitive =
 /// Apigee Keystores Aliases Self Signed Cert Sig enum for `sig_alg`.
 extension type const ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ApigeeKeystoresAliasesSelfSignedCertSigAlg.variable(String name)
     : this._(TfArg.variable(name));
   ApigeeKeystoresAliasesSelfSignedCertSigAlg.expression(String template)

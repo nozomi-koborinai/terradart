@@ -36,7 +36,8 @@ final class PrivateDnsResolverInboundEndpointIpConfigurations {
 /// `private_ip_allocation_method` — derived from the provider schema description.
 extension type const PrivateDnsResolverInboundEndpointPrivateIpAllocationMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   PrivateDnsResolverInboundEndpointPrivateIpAllocationMethod.variable(
     String name,
   ) : this._(TfArg.variable(name));

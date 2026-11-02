@@ -406,7 +406,8 @@ final class ClouddomainsRegistrationManagementSettings {
 /// `preferred_renewal_method` — derived from the provider schema description.
 extension type const ClouddomainsRegistrationPreferredRenewalMethod._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ClouddomainsRegistrationPreferredRenewalMethod.variable(String name)
     : this._(TfArg.variable(name));
   ClouddomainsRegistrationPreferredRenewalMethod.expression(String template)
@@ -436,7 +437,8 @@ extension type const ClouddomainsRegistrationPreferredRenewalMethod._(
 /// `transfer_lock_state` — derived from the provider schema description.
 extension type const ClouddomainsRegistrationTransferLockState._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   ClouddomainsRegistrationTransferLockState.variable(String name)
     : this._(TfArg.variable(name));
   ClouddomainsRegistrationTransferLockState.expression(String template)

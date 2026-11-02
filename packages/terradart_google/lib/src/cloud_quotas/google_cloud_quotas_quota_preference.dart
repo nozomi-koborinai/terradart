@@ -10,7 +10,8 @@ const Set<String> _googleCloudQuotasQuotaPreferenceSensitive = <String>{};
 /// Quota safety checks that may be skipped on create/update.
 extension type const CloudQuotasQuotaPreferenceIgnoreSafetyChecks._(
   TfArg<String> _
-) implements TfArg<String> {
+)
+    implements TfArg<String> {
   CloudQuotasQuotaPreferenceIgnoreSafetyChecks.variable(String name)
     : this._(TfArg.variable(name));
   CloudQuotasQuotaPreferenceIgnoreSafetyChecks.expression(String template)
