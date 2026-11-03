@@ -34,34 +34,68 @@ function wrap(s, size, maxLines) {
   return lines.length <= maxLines && lines.every((l) => inter.getAdvanceWidth(l, size) <= MAX_WIDTH) ? lines : null;
 }
 
+// Largest size first; short titles stay on one line at a display size.
+const TITLE_SIZES = [
+  { size: 128, maxLines: 1 },
+  { size: 104, maxLines: 1 },
+  { size: 88, maxLines: 2 },
+  { size: 76, maxLines: 3 },
+  { size: 64, maxLines: 3 },
+  { size: 56, maxLines: 3 },
+];
+
 function titleLines(title) {
-  for (const size of [88, 76, 64, 56]) {
-    const lines = wrap(title, size, 3);
+  for (const { size, maxLines } of TITLE_SIZES) {
+    const lines = wrap(title, size, maxLines);
     if (lines) return { size, lines };
   }
   throw new Error(`og-card: title does not fit on the card: ${title}`);
 }
 
-/** @param {{ title: string, kicker?: string, path: string }} page */
-export function ogCardSvg({ title, kicker, path }) {
+const MARGIN = 64;
+const MARK_HEIGHT = 46;
+const CAP = 0.727;
+const KICKER_SIZE = 26;
+const KICKER_GAP = 32;
+const URL_BASELINE = H - MARGIN;
+const STRIPE_Y = URL_BASELINE - Math.round(CAP * KICKER_SIZE) - 36 - 14;
+const CONTENT_TOP = MARGIN + MARK_HEIGHT;
+
+// Each layout places the label+title block (its cap top) given its height.
+const LAYOUTS = {
+  A: (height) => (CONTENT_TOP + STRIPE_Y - height) / 2,
+  B: (height) => STRIPE_Y - MARGIN - height,
+};
+
+/**
+ * @param {{ title: string, kicker?: string, path: string }} page
+ * @param {keyof typeof LAYOUTS} layout
+ */
+export function ogCardSvg({ title, kicker, path }, layout = "A") {
   const { size, lines } = titleLines(title);
   const lineHeight = size * 1.12;
-  const titleBottom = 470;
-  const firstBaseline = titleBottom - lineHeight * (lines.length - 1);
+  const kickerHeight = kicker ? CAP * KICKER_SIZE + KICKER_GAP : 0;
+  const height = kickerHeight + CAP * size + lineHeight * (lines.length - 1);
+  const top = LAYOUTS[layout](height);
+  const firstBaseline = top + kickerHeight + CAP * size;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
 <rect width="${W}" height="${H}" fill="${ink.ground}"/>
-<g transform="translate(${X} 64) scale(0.25) translate(-32 -48)">
+<g transform="translate(${X} ${MARGIN}) scale(0.25) translate(-32 -48)">
 <polygon points="32,48 224,48 180,152 76,152" fill="${ink.cyan}"/>
 <polygon points="76,152 180,152 128,232" fill="${ink.blue}"/>
 <rect x="60" y="92" width="136" height="14" fill="${ink.indigo}"/>
 </g>
-${text(inter, "TerraDart", X + 64, 108, 40, ink.paper)}
-${kicker ? text(mono, kicker.toUpperCase(), X, firstBaseline - size - 28, 26, ink.cyan) : ""}
+${text(inter, "TerraDart", X + 64, MARGIN + 44, 40, ink.paper)}
+${kicker ? text(mono, kicker.toUpperCase(), X, top + CAP * KICKER_SIZE, KICKER_SIZE, ink.cyan) : ""}
 ${lines.map((line, i) => text(inter, line, X - size * 0.04, firstBaseline + i * lineHeight, size, ink.paper)).join("\n")}
-<rect x="0" y="520" width="${W}" height="14" fill="${ink.indigo}"/>
-${text(mono, `terradart.dev${path}`, X, 588, 26, ink.muted)}
+<rect x="0" y="${STRIPE_Y}" width="${W}" height="14" fill="${ink.indigo}"/>
+${text(mono, `terradart.dev${path}`, X, URL_BASELINE, KICKER_SIZE, ink.muted)}
 </svg>`;
 }
 
-/** @param {{ title: string, kicker?: string, path: string }} page */
-export const ogCardPng = (page) => sharp(Buffer.from(ogCardSvg(page))).png({ compressionLevel: 9 }).toBuffer();
+/**
+ * @param {{ title: string, kicker?: string, path: string }} page
+ * @param {keyof typeof LAYOUTS} [layout]
+ */
+export const ogCardPng = (page, layout) =>
+  sharp(Buffer.from(ogCardSvg(page, layout))).png({ compressionLevel: 9 }).toBuffer();
