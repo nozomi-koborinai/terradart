@@ -21,19 +21,31 @@ extension type const GlueMlTransformWorkerType._(TfArg<String> _)
   static const standard = GlueMlTransformWorkerType._(TfArgLiteral('Standard'));
   static const g1x = GlueMlTransformWorkerType._(TfArgLiteral('G.1X'));
   static const g2x = GlueMlTransformWorkerType._(TfArgLiteral('G.2X'));
-  static const g025x = GlueMlTransformWorkerType._(TfArgLiteral('G.025X'));
   static const g4x = GlueMlTransformWorkerType._(TfArgLiteral('G.4X'));
   static const g8x = GlueMlTransformWorkerType._(TfArgLiteral('G.8X'));
+  static const g025x = GlueMlTransformWorkerType._(TfArgLiteral('G.025X'));
   static const z2x = GlueMlTransformWorkerType._(TfArgLiteral('Z.2X'));
+  static const g12x = GlueMlTransformWorkerType._(TfArgLiteral('G.12X'));
+  static const g16x = GlueMlTransformWorkerType._(TfArgLiteral('G.16X'));
+  static const r1x = GlueMlTransformWorkerType._(TfArgLiteral('R.1X'));
+  static const r2x = GlueMlTransformWorkerType._(TfArgLiteral('R.2X'));
+  static const r4x = GlueMlTransformWorkerType._(TfArgLiteral('R.4X'));
+  static const r8x = GlueMlTransformWorkerType._(TfArgLiteral('R.8X'));
 
   static const List<GlueMlTransformWorkerType> values = [
     standard,
     g1x,
     g2x,
-    g025x,
     g4x,
     g8x,
+    g025x,
     z2x,
+    g12x,
+    g16x,
+    r1x,
+    r2x,
+    r4x,
+    r8x,
   ];
 }
 

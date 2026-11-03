@@ -112,7 +112,7 @@ final class VpclatticeResourceConfigurationParentResourceGatewayIdentifier
   };
 }
 
-/// Exactly one of `arn_resource`, `dns_resource`, `ip_resource` on the `resource_configuration_definition` block of `aws_vpclattice_resource_configuration`: the provider rejects
+/// Exactly one of `arn_resource`, `cidr_resource`, `dns_resource`, `ip_resource` on the `resource_configuration_definition` block of `aws_vpclattice_resource_configuration`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.arnResource(...)`.
@@ -123,6 +123,11 @@ sealed class VpclatticeResourceConfigurationDefinition {
   const factory VpclatticeResourceConfigurationDefinition.arnResource(
     List<VpclatticeResourceConfigurationArnResource> arnResource,
   ) = VpclatticeResourceConfigurationDefinitionArnResource;
+
+  /// Sets `cidr_resource`.
+  const factory VpclatticeResourceConfigurationDefinition.cidrResource(
+    List<VpclatticeResourceConfigurationCidrResource> cidrResource,
+  ) = VpclatticeResourceConfigurationDefinitionCidrResource;
 
   /// Sets `dns_resource`.
   const factory VpclatticeResourceConfigurationDefinition.dnsResource(
@@ -157,6 +162,26 @@ final class VpclatticeResourceConfigurationDefinitionArnResource
   @override
   Map<String, Object?> encode() => {
     'arn_resource': [for (final e in arnResource) e.encode()],
+  };
+}
+
+/// The [VpclatticeResourceConfigurationDefinition.cidrResource] choice: sets `cidr_resource`.
+final class VpclatticeResourceConfigurationDefinitionCidrResource
+    extends VpclatticeResourceConfigurationDefinition {
+  const VpclatticeResourceConfigurationDefinitionCidrResource(
+    this.cidrResource,
+  );
+
+  final List<VpclatticeResourceConfigurationCidrResource> cidrResource;
+
+  @internal
+  @override
+  String get blockKey => 'cidr_resource';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'cidr_resource': [for (final e in cidrResource) e.encode()],
   };
 }
 
@@ -206,6 +231,18 @@ final class VpclatticeResourceConfigurationArnResource {
 
   @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
+}
+
+/// Typed helper for the `resource_configuration_definition.cidr_resource` block of
+/// `aws_vpclattice_resource_configuration` (derived from provider schema).
+@immutable
+final class VpclatticeResourceConfigurationCidrResource {
+  const VpclatticeResourceConfigurationCidrResource({required this.cidrRanges});
+
+  final TfArg<List<String>> cidrRanges;
+
+  @internal
+  Map<String, Object?> encode() => {'cidr_ranges': cidrRanges.toTfJson()};
 }
 
 /// Typed helper for the `resource_configuration_definition.dns_resource` block of

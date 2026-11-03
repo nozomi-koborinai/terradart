@@ -519,6 +519,7 @@ final class AwsDbInstance extends Resource {
     TfArg<num>? monitoringInterval,
     TfArg<String>? monitoringRoleArn,
     TfArg<bool>? multiAz,
+    TfArg<bool>? multiTenant,
     TfArg<String>? ncharCharacterSetName,
     DbInstanceNetworkType? networkType,
     TfArg<String>? optionGroupName,
@@ -597,6 +598,7 @@ final class AwsDbInstance extends Resource {
            'monitoring_interval': ?monitoringInterval,
            'monitoring_role_arn': ?monitoringRoleArn,
            'multi_az': ?multiAz,
+           'multi_tenant': ?multiTenant,
            'nchar_character_set_name': ?ncharCharacterSetName,
            'network_type': ?networkType,
            'option_group_name': ?optionGroupName,
@@ -855,6 +857,9 @@ final class AwsDbInstance extends Resource {
 
   /// Reference to `multi_az` attribute.
   TfRef<bool> get multiAz => TfRef.attribute<bool>(this, 'multi_az');
+
+  /// Reference to `multi_tenant` attribute.
+  TfRef<bool> get multiTenant => TfRef.attribute<bool>(this, 'multi_tenant');
 
   /// Reference to `nchar_character_set_name` attribute.
   TfRef<String> get ncharCharacterSetName =>

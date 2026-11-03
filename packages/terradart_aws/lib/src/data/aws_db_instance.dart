@@ -143,6 +143,9 @@ final class DataAwsDbInstance extends Data {
   /// Reference to `multi_az` attribute.
   TfRef<bool> get multiAz => TfRef.attribute<bool>(this, 'multi_az');
 
+  /// Reference to `multi_tenant` attribute.
+  TfRef<bool> get multiTenant => TfRef.attribute<bool>(this, 'multi_tenant');
+
   /// Reference to `network_type` attribute.
   TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');

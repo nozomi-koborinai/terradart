@@ -62,6 +62,7 @@ final class NetworkfirewallFirewallPolicy {
     required this.statelessFragmentDefaultActions,
     this.tlsInspectionConfigurationArn,
     this.policyVariables,
+    this.route53ResolvedIpValidation,
     this.statefulEngineOptions,
     this.statefulRuleGroupReference,
     this.statelessCustomAction,
@@ -79,6 +80,9 @@ final class NetworkfirewallFirewallPolicy {
   final TfArg<String>? tlsInspectionConfigurationArn;
 
   final NetworkfirewallFirewallPolicyVariables? policyVariables;
+
+  final NetworkfirewallFirewallPolicyRoute53ResolvedIpValidation?
+  route53ResolvedIpValidation;
 
   final NetworkfirewallFirewallPolicyStatefulEngineOptions?
   statefulEngineOptions;
@@ -102,6 +106,7 @@ final class NetworkfirewallFirewallPolicy {
     'tls_inspection_configuration_arn': ?tlsInspectionConfigurationArn
         ?.toTfJson(),
     'policy_variables': ?policyVariables?.encode(),
+    'route53_resolved_ip_validation': ?route53ResolvedIpValidation?.encode(),
     'stateful_engine_options': ?statefulEngineOptions?.encode(),
     if (statefulRuleGroupReference != null)
       'stateful_rule_group_reference': [
@@ -163,6 +168,96 @@ final class NetworkfirewallFirewallPolicyIpSet {
 
   @internal
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
+}
+
+/// Typed helper for the `firewall_policy.route53_resolved_ip_validation` block of
+/// `aws_networkfirewall_firewall_policy` (derived from provider schema).
+@immutable
+final class NetworkfirewallFirewallPolicyRoute53ResolvedIpValidation {
+  const NetworkfirewallFirewallPolicyRoute53ResolvedIpValidation({
+    required this.action,
+    this.bypassDestinationValidationIpRanges,
+    required this.dnsExpiryExceptionPolicy,
+    required this.dnsFirewallRuleGroupId,
+    this.sourceIpRanges,
+  });
+
+  final NetworkfirewallFirewallPolicyAction action;
+
+  final TfArg<List<String>>? bypassDestinationValidationIpRanges;
+
+  final NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy
+  dnsExpiryExceptionPolicy;
+
+  final TfArg<String> dnsFirewallRuleGroupId;
+
+  final TfArg<List<String>>? sourceIpRanges;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'bypass_destination_validation_ip_ranges':
+        ?bypassDestinationValidationIpRanges?.toTfJson(),
+    'dns_expiry_exception_policy': dnsExpiryExceptionPolicy.toTfJson(),
+    'dns_firewall_rule_group_id': dnsFirewallRuleGroupId.toTfJson(),
+    'source_ip_ranges': ?sourceIpRanges?.toTfJson(),
+  };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const NetworkfirewallFirewallPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const reject = NetworkfirewallFirewallPolicyAction._(
+    TfArgLiteral('REJECT'),
+  );
+  static const drop = NetworkfirewallFirewallPolicyAction._(
+    TfArgLiteral('DROP'),
+  );
+  static const alert = NetworkfirewallFirewallPolicyAction._(
+    TfArgLiteral('ALERT'),
+  );
+
+  static const List<NetworkfirewallFirewallPolicyAction> values = [
+    reject,
+    drop,
+    alert,
+  ];
+}
+
+/// `dns_expiry_exception_policy` — derived from the provider schema description.
+extension type const NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const reject = NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy._(
+    TfArgLiteral('REJECT'),
+  );
+  static const drop = NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy._(
+    TfArgLiteral('DROP'),
+  );
+  static const continueCase =
+      NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy._(
+        TfArgLiteral('CONTINUE'),
+      );
+
+  static const List<NetworkfirewallFirewallPolicyDnsExpiryExceptionPolicy>
+  values = [reject, drop, continueCase];
 }
 
 /// Typed helper for the `firewall_policy.stateful_engine_options` block of
@@ -289,27 +384,31 @@ final class NetworkfirewallFirewallPolicyStatefulRuleGroupReference {
 final class NetworkfirewallFirewallPolicyOverride {
   const NetworkfirewallFirewallPolicyOverride({this.action});
 
-  final NetworkfirewallFirewallPolicyAction? action;
+  final NetworkfirewallFirewallPolicyOverrideAction? action;
 
   @internal
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-extension type const NetworkfirewallFirewallPolicyAction._(TfArg<String> _)
+extension type const NetworkfirewallFirewallPolicyOverrideAction._(
+  TfArg<String> _
+)
     implements TfArg<String> {
-  NetworkfirewallFirewallPolicyAction.variable(String name)
+  NetworkfirewallFirewallPolicyOverrideAction.variable(String name)
     : this._(TfArg.variable(name));
-  NetworkfirewallFirewallPolicyAction.expression(String template)
+  NetworkfirewallFirewallPolicyOverrideAction.expression(String template)
     : this._(TfArg.expression(template));
-  const NetworkfirewallFirewallPolicyAction.arg(TfArg<String> arg)
+  const NetworkfirewallFirewallPolicyOverrideAction.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const dropToAlert = NetworkfirewallFirewallPolicyAction._(
+  static const dropToAlert = NetworkfirewallFirewallPolicyOverrideAction._(
     TfArgLiteral('DROP_TO_ALERT'),
   );
 
-  static const List<NetworkfirewallFirewallPolicyAction> values = [dropToAlert];
+  static const List<NetworkfirewallFirewallPolicyOverrideAction> values = [
+    dropToAlert,
+  ];
 }
 
 /// Typed helper for the `firewall_policy.stateless_custom_action` block of

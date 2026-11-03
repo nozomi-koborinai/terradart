@@ -549,11 +549,15 @@ extension type const DatazonePolicyGrantProjectDesignation._(TfArg<String> _)
   static const projectCatalogSteward = DatazonePolicyGrantProjectDesignation._(
     TfArgLiteral('PROJECT_CATALOG_STEWARD'),
   );
+  static const userCreatedDesignation = DatazonePolicyGrantProjectDesignation._(
+    TfArgLiteral('USER_CREATED_DESIGNATION'),
+  );
 
   static const List<DatazonePolicyGrantProjectDesignation> values = [
     owner,
     contributor,
     projectCatalogSteward,
+    userCreatedDesignation,
   ];
 }
 

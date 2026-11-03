@@ -19,12 +19,20 @@ export 'src/cloudwatchomni/aws_cloudwatchomni_access_grant.dart'
         CloudwatchomniAccessGrantSignalTypes;
 export 'src/cloudwatchomni/aws_cloudwatchomni_access_profile.dart'
     show AwsCloudwatchomniAccessProfile;
+export 'src/cloudwatchomni/aws_cloudwatchomni_dashboard.dart'
+    show AwsCloudwatchomniDashboard;
 export 'src/cloudwatchomni/aws_cloudwatchomni_domain.dart'
     show
         AwsCloudwatchomniDomain,
         CloudwatchomniDomainIdentityCenterConfiguration,
         CloudwatchomniDomainIdentityProviderConfiguration,
         CloudwatchomniDomainIdentityProviders;
+export 'src/cloudwatchomni/aws_cloudwatchomni_organization_domain.dart'
+    show
+        AwsCloudwatchomniOrganizationDomain,
+        CloudwatchomniOrganizationDomainIdentityCenterConfiguration,
+        CloudwatchomniOrganizationDomainIdentityProviderConfiguration,
+        CloudwatchomniOrganizationDomainIdentityProviders;
 export 'src/cloudwatchomni/aws_cloudwatchomni_space.dart'
     show
         AwsCloudwatchomniSpace,

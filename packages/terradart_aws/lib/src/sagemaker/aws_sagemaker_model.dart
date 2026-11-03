@@ -123,6 +123,7 @@ final class SagemakerModelS3DataSource {
     required this.compressionType,
     required this.s3DataType,
     required this.s3Uri,
+    this.hubAccessConfig,
     this.modelAccessConfig,
   });
 
@@ -132,6 +133,8 @@ final class SagemakerModelS3DataSource {
 
   final TfArg<String> s3Uri;
 
+  final SagemakerModelHubAccessConfig? hubAccessConfig;
+
   final SagemakerModelAccessConfig? modelAccessConfig;
 
   @internal
@@ -139,6 +142,7 @@ final class SagemakerModelS3DataSource {
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
+    'hub_access_config': ?hubAccessConfig?.encode(),
     'model_access_config': ?modelAccessConfig?.encode(),
   };
 }
@@ -170,6 +174,21 @@ extension type const SagemakerModelS3DataType._(TfArg<String> _)
   static const s3object = SagemakerModelS3DataType._(TfArgLiteral('S3Object'));
 
   static const List<SagemakerModelS3DataType> values = [s3prefix, s3object];
+}
+
+/// Typed helper for the `container.additional_model_data_source.s3_data_source.hub_access_config` block of
+/// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class SagemakerModelHubAccessConfig {
+  const SagemakerModelHubAccessConfig({required this.hubContentArn});
+
+  final TfArg<String> hubContentArn;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'hub_content_arn': hubContentArn.toTfJson(),
+  };
 }
 
 /// Typed helper for the `container.additional_model_data_source.s3_data_source.model_access_config` block of

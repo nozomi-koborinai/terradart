@@ -49,8 +49,10 @@ export 'src/vpclattice/aws_vpclattice_resource_configuration.dart'
     show
         AwsVpclatticeResourceConfiguration,
         VpclatticeResourceConfigurationArnResource,
+        VpclatticeResourceConfigurationCidrResource,
         VpclatticeResourceConfigurationDefinition,
         VpclatticeResourceConfigurationDefinitionArnResource,
+        VpclatticeResourceConfigurationDefinitionCidrResource,
         VpclatticeResourceConfigurationDefinitionDnsResource,
         VpclatticeResourceConfigurationDefinitionIpResource,
         VpclatticeResourceConfigurationDnsResource,

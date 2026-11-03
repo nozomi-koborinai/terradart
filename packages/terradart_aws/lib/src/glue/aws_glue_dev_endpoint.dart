@@ -23,19 +23,31 @@ extension type const GlueDevEndpointWorkerType._(TfArg<String> _)
   static const standard = GlueDevEndpointWorkerType._(TfArgLiteral('Standard'));
   static const g1x = GlueDevEndpointWorkerType._(TfArgLiteral('G.1X'));
   static const g2x = GlueDevEndpointWorkerType._(TfArgLiteral('G.2X'));
-  static const g025x = GlueDevEndpointWorkerType._(TfArgLiteral('G.025X'));
   static const g4x = GlueDevEndpointWorkerType._(TfArgLiteral('G.4X'));
   static const g8x = GlueDevEndpointWorkerType._(TfArgLiteral('G.8X'));
+  static const g025x = GlueDevEndpointWorkerType._(TfArgLiteral('G.025X'));
   static const z2x = GlueDevEndpointWorkerType._(TfArgLiteral('Z.2X'));
+  static const g12x = GlueDevEndpointWorkerType._(TfArgLiteral('G.12X'));
+  static const g16x = GlueDevEndpointWorkerType._(TfArgLiteral('G.16X'));
+  static const r1x = GlueDevEndpointWorkerType._(TfArgLiteral('R.1X'));
+  static const r2x = GlueDevEndpointWorkerType._(TfArgLiteral('R.2X'));
+  static const r4x = GlueDevEndpointWorkerType._(TfArgLiteral('R.4X'));
+  static const r8x = GlueDevEndpointWorkerType._(TfArgLiteral('R.8X'));
 
   static const List<GlueDevEndpointWorkerType> values = [
     standard,
     g1x,
     g2x,
-    g025x,
     g4x,
     g8x,
+    g025x,
     z2x,
+    g12x,
+    g16x,
+    r1x,
+    r2x,
+    r4x,
+    r8x,
   ];
 }
 

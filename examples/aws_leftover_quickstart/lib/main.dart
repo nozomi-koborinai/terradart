@@ -2997,8 +2997,26 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniDashboard(
+        'cloudwatchomni_dashboard',
+        body: .literal('{"widgets":[]}'),
+        name: .literal(leftover),
+        spaceId: .literal('12345678-1234-1234-1234-123456789012'),
+      ),
+    );
+
+    add(
       AwsCloudwatchomniDomain(
         'cloudwatchomni_domain',
+        identityProviders: .literal([.iam]),
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniOrganizationDomain(
+        'cloudwatchomni_organization_domain',
+        domainAccessRoleArn: .literal(arn),
         identityProviders: .literal([.iam]),
         name: .literal(leftover),
       ),
@@ -4382,6 +4400,22 @@ final class AwsLeftoverStack extends Stack {
       AwsDevopsagentAgentSpace(
         'devopsagent_agent_space',
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsDevopsagentAsset(
+        'devopsagent_asset',
+        agentSpaceId: .literal(leftover),
+        assetType: .literal(leftover),
+        content: [
+          .file([
+            DevopsagentAssetFile(
+              path: .literal('leftover.md'),
+              body: [.text(.literal(leftover))],
+            ),
+          ]),
+        ],
       ),
     );
 
@@ -9567,6 +9601,13 @@ final class AwsLeftoverStack extends Stack {
             ],
           ),
         ],
+      ),
+    );
+
+    add(
+      AwsObservabilityadminDatasetIntegration(
+        'observabilityadmin_dataset_integration',
+        roleArn: .literal(arn),
       ),
     );
 
@@ -14908,32 +14949,8 @@ final class AwsLeftoverStack extends Stack {
         ]),
         statement: [
           Wafv2WebAclRuleStatement(
-            andStatement: [
-              .new(
-                statement: [
-                  .new(
-                    andStatement: [
-                      .new(
-                        statement: [
-                          .new(
-                            andStatement: [
-                              .new(
-                                statement: [
-                                  .new(
-                                    asnMatchStatement: [
-                                      .new(asnList: .literal([64512])),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            asnMatchStatement: [
+              Wafv2WebAclRuleAsnMatchStatement(asnList: .literal([64512])),
             ],
           ),
         ],
@@ -17465,6 +17482,12 @@ final class AwsLeftoverStack extends Stack {
     add(DataAwsOamSinks('d_oam_sinks'));
 
     add(
+      DataAwsObservabilityadminDatasetIntegration(
+        'd_observabilityadmin_dataset_integration',
+      ),
+    );
+
+    add(
       DataAwsOdbAutonomousDatabase(
         'd_odb_autonomous_database',
         id: .literal(leftover),
@@ -18135,6 +18158,15 @@ final class AwsLeftoverStack extends Stack {
       DataAwsS3filesMountTarget(
         'd_s3files_mount_target',
         id: .literal(leftover),
+      ),
+    );
+
+    add(
+      DataAwsSagemakerHubContent(
+        'd_sagemaker_hub_content',
+        hubContentName: .literal(leftover),
+        hubContentType: .literal('Model'),
+        hubName: .literal(leftover),
       ),
     );
 

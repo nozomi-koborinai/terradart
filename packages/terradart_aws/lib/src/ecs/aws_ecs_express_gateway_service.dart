@@ -10,6 +10,29 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_ecs_express_gateway_service`.
 const Set<String> _awsEcsExpressGatewayServiceSensitive = <String>{};
 
+/// Ecs Express Gateway Service Cpu enum for `cpu_architecture`.
+extension type const EcsExpressGatewayServiceCpuArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsExpressGatewayServiceCpuArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsExpressGatewayServiceCpuArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsExpressGatewayServiceCpuArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const x8664 = EcsExpressGatewayServiceCpuArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+  static const arm64 = EcsExpressGatewayServiceCpuArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+
+  static const List<EcsExpressGatewayServiceCpuArchitecture> values = [
+    x8664,
+    arm64,
+  ];
+}
+
 /// Typed helper for the `primary_container` block of
 /// `aws_ecs_express_gateway_service` (derived from provider schema).
 @immutable
@@ -119,6 +142,7 @@ final class AwsEcsExpressGatewayService extends Resource {
     super.localName, {
     RefTo<AwsEcsCluster>? cluster,
     TfArg<String>? cpu,
+    EcsExpressGatewayServiceCpuArchitecture? cpuArchitecture,
     required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? healthCheckPath,
     required RefTo<AwsIamRole> infrastructureRoleArn,
@@ -140,6 +164,7 @@ final class AwsEcsExpressGatewayService extends Resource {
          argMap: {
            'cluster': ?cluster?.encodeAs('arn'),
            'cpu': ?cpu,
+           'cpu_architecture': ?cpuArchitecture,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'health_check_path': ?healthCheckPath,
            'infrastructure_role_arn': infrastructureRoleArn.encodeAs('arn'),
@@ -189,6 +214,10 @@ final class AwsEcsExpressGatewayService extends Resource {
 
   /// Reference to `cpu` attribute.
   TfRef<String> get cpu => TfRef.attribute<String>(this, 'cpu');
+
+  /// Reference to `cpu_architecture` attribute.
+  TfRef<String> get cpuArchitecture =>
+      TfRef.attribute<String>(this, 'cpu_architecture');
 
   /// Reference to `execution_role_arn` attribute.
   TfRef<String> get executionRoleArn =>

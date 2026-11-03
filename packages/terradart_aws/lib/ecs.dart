@@ -116,6 +116,7 @@ export 'src/ecs/aws_ecs_daemon_task_definition.dart'
 export 'src/ecs/aws_ecs_express_gateway_service.dart'
     show
         AwsEcsExpressGatewayService,
+        EcsExpressGatewayServiceCpuArchitecture,
         EcsExpressGatewayServiceEnvironment,
         EcsExpressGatewayServicePrimaryContainer,
         EcsExpressGatewayServiceRepositoryCredentials,
