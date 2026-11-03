@@ -230,5 +230,5 @@ Only public values belong in a client: anything compiled into an app can be read
 
 - [Outputs in client apps](/docs/client-outputs/) — one define file per client, the `dart` command, servers and scripts
 - [Environments](/docs/environments/) — each environment's own project, state and define file
-- [Appwrite](/docs/providers/appwrite/) and [Google Cloud with Firebase](/docs/providers/google/) — backends for a Flutter app
+- [Google Cloud with Firebase](/docs/providers/google/) and [Appwrite](/docs/providers/appwrite/) — backends for a Flutter app
 - [Let an AI agent do it](/docs/start/ai-agent/) — the `AGENTS.md` `infra/` came with, and the Agent Skill

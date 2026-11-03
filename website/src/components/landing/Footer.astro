@@ -1,5 +1,6 @@
 ---
 import Logo from "../Logo.astro";
+import { providers } from "../../lib/providers";
 
 const year = new Date().getFullYear();
 const columns = [
@@ -18,11 +19,7 @@ const columns = [
   {
     title: "Providers",
     links: [
-      ["Google Cloud", "/docs/providers/google/"],
-      ["AWS", "/docs/providers/aws/"],
-      ["Cloudflare", "/docs/providers/cloudflare/"],
-      ["Appwrite", "/docs/providers/appwrite/"],
-      ["Azure", "/docs/providers/azure/"],
+      ...providers.map((p) => [p.name, `/docs/providers/${p.id}/`]),
       ["Coverage", "/docs/coverage/"],
     ],
   },
@@ -64,11 +61,10 @@ const columns = [
       }
     </div>
     <p class="footer-legal">
-      Dart, Flutter and Google Cloud are trademarks of Google LLC. Terraform is a registered trademark of HashiCorp,
-      Inc. AWS is a trademark of Amazon.com, Inc. or its affiliates. Cloudflare® is a registered trademark of
-      Cloudflare, Inc. in the United States and other jurisdictions. Appwrite is a trademark of Appwrite.
-      Azure is a trademark of the Microsoft group of companies.
-      These names identify the services TerraDart works with. TerraDart is an
+      Dart, Flutter and Google Cloud are trademarks of Google LLC. AWS is a trademark of Amazon.com, Inc. or its
+      affiliates. Azure is a trademark of the Microsoft group of companies. Cloudflare® is a registered trademark of
+      Cloudflare, Inc. in the United States and other jurisdictions. Appwrite is a trademark of Appwrite. Terraform is
+      a registered trademark of HashiCorp, Inc. These names identify the services TerraDart works with. TerraDart is an
       independent open-source project, not affiliated with, endorsed by or sponsored by any of them.
     </p>
     <div class="footer-bottom">

@@ -1,29 +1,25 @@
 ---
 import CodeWindow from "./CodeWindow.astro";
 import { excerpt, type ExcerptSpec } from "../../lib/excerpt";
+import { providers, type ProviderId } from "../../lib/providers";
 import pubsub from "../../../../examples/pubsub_quickstart/lib/main.dart?raw";
 import lambda from "../../../../examples/aws_lambda_quickstart/lib/main.dart?raw";
+import azure from "../../../../examples/azure_dns_quickstart/lib/main.dart?raw";
 import dns from "../../../../examples/cloudflare_dns_quickstart/lib/main.dart?raw";
 import appwrite from "../../../../examples/appwrite_quickstart/lib/main.dart?raw";
 
 const repo = "https://github.com/nozomi-koborinai/terradart/tree/main/examples";
 
-interface Tab {
-  id: string;
-  name: string;
+interface TabContent {
   example: string;
   source: string;
   spec: ExcerptSpec;
-  package: string;
   summary: string;
   points: string[];
-  guide: string;
 }
 
-const tabs: Tab[] = [
-  {
-    id: "google",
-    name: "Google Cloud",
+const tabs = {
+  google: {
     example: "pubsub_quickstart",
     source: pubsub,
     spec: {
@@ -31,18 +27,14 @@ const tabs: Tab[] = [
       stackClass: "final class OrdersStack",
       statements: ["GooglePubsubTopic(", "GooglePubsubSubscription(", "addConstant(", "addOutput("],
     },
-    package: "terradart_google",
     summary: "The full Google Cloud catalog, plus the beta-only types in terradart_google_beta.",
     points: [
       "<code>topic: topic.ref</code> takes a topic, and only a topic",
       "<code>delivery: .pushConfig(...)</code> — push, BigQuery or Cloud Storage, exactly one",
       "<code>addConstant</code> hands the topic name to subscribers as Dart",
     ],
-    guide: "/docs/providers/google/",
   },
-  {
-    id: "aws",
-    name: "AWS",
+  aws: {
     example: "aws_lambda_quickstart",
     source: lambda,
     spec: {
@@ -50,18 +42,36 @@ const tabs: Tab[] = [
       stackClass: "final class AwsLambdaStack",
       statements: ["AwsLambdaFunction(", "AwsLambdaFunctionUrl(", "addOutput(", "addDartDefineOutput"],
     },
-    package: "terradart_aws",
     summary: "Every AWS resource and data source, from Lambda and ECS to S3 and CloudFront.",
     points: [
       "<code>runtime: .providedAl2023</code> — runtimes and architectures are enums",
       "<code>code: .filename(...)</code> — a zip, an image or an S3 object, sealed",
       "The function URL reaches the client through <code>addDartDefineOutput()</code>",
     ],
-    guide: "/docs/providers/aws/",
   },
-  {
-    id: "cloudflare",
-    name: "Cloudflare",
+  azure: {
+    example: "azure_dns_quickstart",
+    source: azure,
+    spec: {
+      imports: [
+        "terradart_azure/network.dart",
+        "terradart_azure/provider.dart",
+        "terradart_azure/resource.dart",
+        "terradart_cloudflare/dns.dart",
+        "terradart_cloudflare/provider.dart",
+      ],
+      stackClass: "final class AzureDnsStack",
+      statements: ["AzurermResourceGroup(", "add(group)", "AzurermPublicIp(", "add(ip)", "CloudflareDnsRecord("],
+    },
+    summary:
+      "Every Azure Resource Manager resource and data source, from resource groups and networks to AKS and Cosmos DB.",
+    points: [
+      "<code>resourceGroupName: group.ref</code> puts the IP in its resource group",
+      "<code>sku: .standard</code> — SKUs and allocation methods are enums",
+      "<code>content: .content(ip.ipAddress)</code> points a Cloudflare record at the Azure IP, in one Stack",
+    ],
+  },
+  cloudflare: {
     example: "cloudflare_dns_quickstart",
     source: dns,
     spec: {
@@ -69,18 +79,14 @@ const tabs: Tab[] = [
       stackClass: "final class CloudflareDnsStack",
       statements: ["CloudflareZone(", "add(zone)", "CloudflareDnsRecord("],
     },
-    package: "terradart_cloudflare",
     summary: "DNS and the edge in front of your app — every Cloudflare resource and data source.",
     points: [
       "<code>zoneId: zone.ref</code> wires the record to the zone it lives in",
       "<code>type: .cname</code> — record types are an enum",
       "No token in the Stack: apply reads <code>CLOUDFLARE_API_TOKEN</code>",
     ],
-    guide: "/docs/providers/cloudflare/",
   },
-  {
-    id: "appwrite",
-    name: "Appwrite",
+  appwrite: {
     example: "appwrite_quickstart",
     source: appwrite,
     spec: {
@@ -88,20 +94,20 @@ const tabs: Tab[] = [
       stackClass: "final class AppwriteDemoStack",
       statements: ["AppwriteAuthTeam(", "AppwriteStorageBucket(", "AppwriteTablesdb(", "AppwriteTablesdbTable("],
     },
-    package: "terradart_appwrite",
     summary: "An Appwrite backend — auth, databases, storage, functions, messaging — as a Stack.",
     points: [
       "<code>.write(.team(team.ref, role: 'owner'))</code> — permissions are typed, not strings",
       "<code>databaseId: db.ref</code> keeps tables attached to their database",
       "No API key in the Stack: apply reads <code>APPWRITE_API_KEY</code>",
     ],
-    guide: "/docs/providers/appwrite/",
   },
-];
+} satisfies Record<ProviderId, TabContent>;
 
-const panels = tabs.map((tab) => ({
-  ...tab,
-  code: excerpt(tab.source, tab.spec, `${tab.example}/lib/main.dart`),
+const panels = providers.map((p) => ({
+  ...p,
+  ...tabs[p.id],
+  guide: `/docs/providers/${p.id}/`,
+  code: excerpt(tabs[p.id].source, tabs[p.id].spec, `${tabs[p.id].example}/lib/main.dart`),
 }));
 ---
 

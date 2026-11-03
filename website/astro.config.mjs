@@ -9,6 +9,7 @@ import rehypeMermaid from "rehype-mermaid";
 import starlightLlmsTxt from "starlight-llms-txt";
 import { SITE, ogImageUrl } from "./src/lib/og-image.mjs";
 import ogCards from "./src/lib/og-cards-plugin.mjs";
+import { providers } from "./src/lib/providers.ts";
 
 const websiteDir = dirname(fileURLToPath(import.meta.url));
 const mermaidInit = readFileSync(
@@ -63,13 +64,10 @@ export default defineConfig({
         },
         {
           label: "Providers",
-          items: [
-            { label: "Google Cloud", slug: "docs/providers/google" },
-            { label: "AWS", slug: "docs/providers/aws" },
-            { label: "Cloudflare", slug: "docs/providers/cloudflare" },
-            { label: "Appwrite", slug: "docs/providers/appwrite" },
-            { label: "Azure", slug: "docs/providers/azure" },
-          ],
+          items: providers.map((p) => ({
+            label: p.name,
+            slug: `docs/providers/${p.id}`,
+          })),
         },
         {
           label: "Reference",
