@@ -11,8 +11,9 @@
     "predev": "bun run sync-branding",
     "dev": "astro dev",
     "prebuild": "bun run sync-branding",
-    "build": "astro build && bun run check-og",
+    "build": "astro build && bun run check-og && bun run check-og-cards",
     "check-og": "node scripts/check-og.mjs",
+    "check-og-cards": "node scripts/check-og-cards.mjs",
     "preview": "astro preview",
     "typecheck": "astro check",
     "astro": "astro"
@@ -32,9 +33,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@fontsource/inter": "^5.3.0",
-    "@fontsource/jetbrains-mono": "^5.3.0",
-    "opentype.js": "1.3.4",
+    "fontkit": "2.0.4",
     "sharp": "^0.35.5"
   }
 }
