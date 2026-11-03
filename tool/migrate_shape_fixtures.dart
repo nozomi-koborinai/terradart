@@ -101,9 +101,9 @@ Set<String> renamedTypes(String migratingMd) {
 /// Why [report], the migration of [manifest]'s shape fixture, does not cover
 /// the lane: a kept block, a required shape it did not use, or no use of a
 /// renamed type the manifest declares. The renamed-type checks apply only
-/// when the lane is [published] in the release MIGRATING.md upgrades from: a
-/// package with no such release has no upgrading user, so MIGRATING.md has no
-/// row about it.
+/// when the lane is [published] before the release MIGRATING.md upgrades
+/// from: a package with no such release has had no upgrade, so MIGRATING.md
+/// has no rename row about it.
 List<String> shapeFixtureFindings(
   MigrateManifest manifest,
   MigrationReport report, {
