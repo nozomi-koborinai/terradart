@@ -171,10 +171,6 @@ entries:
   - resource: aws_sagemaker_inference_component
     detected_at: 2026-10-27
     provider_version: 6.70.0
-  - resource: aws_wafv2_web_acl_rule
-    detected_at: 2026-11-03
-    provider_version: 6.71.0
-    note: the coverage stack left this factory out (its awaiting-example line in tool/example_debt.yaml says why); give its dummy value in tool/coverage_dummies/aws.yaml, delete that line, and run dart tool/coverage_stack.dart --lane aws
   - data_source: azurerm_relay_namespace
     detected_at: 2026-10-30
     provider_version: 5.12.0

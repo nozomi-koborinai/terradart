@@ -40,6 +40,36 @@ provider (`GoogleProvider` must be in the Stack). Confirm that
 `terraform plan` shows no replacement before you apply. Pass
 `provider: 'google-beta'` to keep a resource on the beta provider.
 
+### AWS provider 6.71.0
+
+**Breaking (`terradart_aws`).** Provider 6.71.0 lets the top-level
+`scope_down_statement` of `aws_wafv2_web_acl_rule` nest `and_statement`,
+`or_statement` and `not_statement`. The managed rule group and rate-based
+statements inside a nested `statement` keep the shallower shape, so they
+take their own types. `Wafv2WebAclRuleManagedRuleGroupStatement` and
+`Wafv2WebAclRuleRateBasedStatement` stay the types of the top-level
+`Wafv2WebAclRuleStatement`. Inside `Wafv2WebAclRuleAndStatementStatement`,
+`Wafv2WebAclRuleStatementStatement` and
+`Wafv2WebAclRuleStatementAndStatementStatement`, the
+`managedRuleGroupStatement` and `rateBasedStatement` fields take
+`Wafv2WebAclRuleStatementManagedRuleGroupStatement` and
+`Wafv2WebAclRuleStatementRateBasedStatement`. The fields are the same. A
+`.new(...)` shorthand compiles unchanged.
+
+The same release adds `route53_resolved_ip_validation` to
+`aws_networkfirewall_firewall_policy`, whose `action` takes
+`NetworkfirewallFirewallPolicyAction` (`reject`, `drop`, `alert`). The
+`action` of a stateful rule group `override` block takes
+`NetworkfirewallFirewallPolicyOverrideAction`, which has `dropToAlert`. A
+dot shorthand such as `.dropToAlert` compiles unchanged. The Terraform JSON
+for the same value is unchanged.
+
+| Before | After |
+|---|---|
+| `Wafv2WebAclRuleAndStatementStatement(managedRuleGroupStatement: [Wafv2WebAclRuleManagedRuleGroupStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(managedRuleGroupStatement: [Wafv2WebAclRuleStatementManagedRuleGroupStatement(...)])` |
+| `Wafv2WebAclRuleAndStatementStatement(rateBasedStatement: [Wafv2WebAclRuleRateBasedStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(rateBasedStatement: [Wafv2WebAclRuleStatementRateBasedStatement(...)])` |
+| `NetworkfirewallFirewallPolicyOverride(action: NetworkfirewallFirewallPolicyAction.dropToAlert)` | `NetworkfirewallFirewallPolicyOverride(action: NetworkfirewallFirewallPolicyOverrideAction.dropToAlert)` |
+
 ## 0.35.x → 0.36.0
 
 ### Google inputs the migrator could not build are typed

@@ -536,6 +536,7 @@ const _requiredAtValidate = <String, List<String>>{
   'AwsDatazoneFormType': ['model'],
   'AwsDatazonePolicyGrant': ['detail', 'principal'],
   'AwsDbProxyTarget': ['dbClusterIdentifier'],
+  'AwsDevopsagentAsset': ['content'],
   'AwsDevopsguruEventSourcesConfig': ['eventSources'],
   'AwsDevopsguruNotificationChannel': ['sns'],
   'AwsDevopsguruServiceIntegration': [

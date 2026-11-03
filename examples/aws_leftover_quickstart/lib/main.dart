@@ -2997,6 +2997,15 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniDashboard(
+        'cloudwatchomni_dashboard',
+        body: .literal('{"widgets":[]}'),
+        name: .literal(leftover),
+        spaceId: .literal('12345678-1234-1234-1234-123456789012'),
+      ),
+    );
+
+    add(
       AwsCloudwatchomniDomain(
         'cloudwatchomni_domain',
         identityProviders: .literal([.iam]),
@@ -4391,6 +4400,22 @@ final class AwsLeftoverStack extends Stack {
       AwsDevopsagentAgentSpace(
         'devopsagent_agent_space',
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsDevopsagentAsset(
+        'devopsagent_asset',
+        agentSpaceId: .literal(leftover),
+        assetType: .literal(leftover),
+        content: [
+          .file([
+            DevopsagentAssetFile(
+              path: .literal('leftover.md'),
+              body: [.text(.literal(leftover))],
+            ),
+          ]),
+        ],
       ),
     );
 
@@ -14902,6 +14927,44 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsWafv2WebAclRule(
+        'wafv2_web_acl_rule',
+        name: .literal(leftover),
+        priority: .literal(200),
+        webAclArn: .literal(arn),
+        behavior: .action([
+          .new(
+            allow: [
+              .new(
+                customRequestHandling: [
+                  .new(
+                    insertHeader: [
+                      .new(name: .literal(leftover), value: .literal(leftover)),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ]),
+        statement: [
+          Wafv2WebAclRuleStatement(
+            asnMatchStatement: [
+              Wafv2WebAclRuleAsnMatchStatement(asnList: .literal([64512])),
+            ],
+          ),
+        ],
+        visibilityConfig: [
+          Wafv2WebAclRuleVisibilityConfig(
+            cloudwatchMetricsEnabled: .literal(true),
+            metricName: .literal(leftover),
+            sampledRequestsEnabled: .literal(true),
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsWafv2WebAclRuleGroupAssociation(
         'wafv2_web_acl_rule_group_association',
         priority: .literal(200),
@@ -18095,6 +18158,15 @@ final class AwsLeftoverStack extends Stack {
       DataAwsS3filesMountTarget(
         'd_s3files_mount_target',
         id: .literal(leftover),
+      ),
+    );
+
+    add(
+      DataAwsSagemakerHubContent(
+        'd_sagemaker_hub_content',
+        hubContentName: .literal(leftover),
+        hubContentType: .literal('Model'),
+        hubName: .literal(leftover),
       ),
     );
 
