@@ -8,8 +8,6 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import 'doc_renames.dart';
-import 'doc_snippets.dart' show docCommentPackages;
-import 'migrating_cells.dart' show beforeRelease, publishedVersions;
 
 void main() {
   group('migratingSymbols', () {
@@ -119,44 +117,27 @@ final kind = FencedKind();
       expect(api.declares('GoogleCloudRunV2Service.nameRef'), isFalse);
     });
 
+    const release035 = {
+      'terradart_cli': '0.35.0',
+      'terradart_core': '0.35.0',
+      'terradart_google': '0.35.0',
+    };
+
     test('a type of the last release the workspace lacks is removed', () async {
-      final released = await PublicApi.released();
+      final released = await PublicApi.readReleased(release035);
       final removed = removedSymbols(
         migrating: const {},
         current: api,
         released: released,
       );
+      expect(released.version, '0.35.0');
       expect(released.api.declares('GoogleCloudRunV2Service'), isTrue);
       expect(removed.keys, contains('ComputeFirewallAllowPolicy'));
       expect(removed.keys, isNot(contains('GoogleCloudRunV2Service')));
     });
 
-    test('a dated CHANGELOG heading pub.dev lacks is no release', () async {
-      final heading = File(
-        p.join('packages', 'terradart_cli', 'CHANGELOG.md'),
-      ).readAsLinesSync().firstWhere((l) => l.startsWith('## '));
-      final top = RegExp(
-        r'^## (\d+\.\d+\.\d+) - \d{4}-\d{2}-\d{2}$',
-      ).firstMatch(heading)![1]!;
-      final unpublished = {
-        for (final MapEntry(key: pkg, value: versions)
-            in (await publishedVersions(docCommentPackages)).entries)
-          pkg: [
-            for (final v in versions)
-              if (v != top) v,
-          ],
-      };
-      final released = await PublicApi.readReleased(published: unpublished);
-      expect(released.version, isNot(contains(top)));
-      expect(
-        released.version,
-        beforeRelease('x', unpublished)['terradart_cli'],
-      );
-      expect(released.api.symbols, containsAll(['runStack', 'runTerradart']));
-    });
-
     test('the last release includes the CLI and top-level names', () async {
-      final released = (await PublicApi.released()).api;
+      final released = (await PublicApi.readReleased(release035)).api;
       expect(released.symbols, containsAll(['runStack', 'runTerradart']));
     });
 

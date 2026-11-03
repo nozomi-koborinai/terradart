@@ -5,15 +5,17 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
 import 'migrate_shape_fixtures.dart';
-import 'migrating_cells.dart' show publishedVersions;
+import 'migrating_cells.dart' show previousRelease, publishedVersions;
 
 void main() {
-  final renamed = renamedTypes(File('MIGRATING.md').readAsStringSync());
-  late final Map<String, List<String>> releases;
+  final migrating = File('MIGRATING.md').readAsStringSync();
+  final renamed = renamedTypes(migrating);
+  late final Map<String, String> previous;
   setUpAll(() async {
-    releases = await publishedVersions([
-      for (final m in allMigrateManifests) m.package,
-    ]);
+    previous = previousRelease(
+      migrating,
+      await publishedVersions([for (final m in allMigrateManifests) m.package]),
+    );
   });
 
   test('the rename tables are found', () {
@@ -91,7 +93,7 @@ void main() {
           manifest,
           result.report,
           renamed: renamed,
-          published: releases[manifest.package]!.isNotEmpty,
+          published: previous.containsKey(manifest.package),
         ),
         isEmpty,
       );

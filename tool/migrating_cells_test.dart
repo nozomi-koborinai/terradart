@@ -131,6 +131,29 @@ void main() {
     },
   );
 
+  test('previousRelease does not move when the next release publishes', () {
+    const migrating = '# Migrating terradart\n\n## 0.35.x → 0.36.0\n';
+    const before = {
+      'terradart_google': ['0.34.0', '0.35.0'],
+      'terradart_azure': <String>[],
+    };
+    const after = {
+      'terradart_google': ['0.34.0', '0.35.0', '0.36.0'],
+      'terradart_azure': ['0.36.0'],
+    };
+    const pins = {'terradart_google': '0.35.0'};
+    expect(previousRelease(migrating, before), pins);
+    expect(previousRelease(migrating, after), pins);
+    expect(previousRelease('# Migrating terradart\n\n## Unreleased\n', after), {
+      'terradart_google': '0.36.0',
+      'terradart_azure': '0.36.0',
+    });
+    expect(
+      () => previousRelease('# Migrating terradart\n\n## 0.36.0\n', after),
+      throwsStateError,
+    );
+  });
+
   test('a section that names an unpublished package still compiles the '
       'Before cells of published packages', () async {
     const seeded = '''

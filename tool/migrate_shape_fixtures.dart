@@ -4,8 +4,8 @@
 // The round-trip gate migrates each fixture strictly (no ledger), and
 // tool/migrate_shape_fixtures_test.dart checks that the migration used every
 // shape [requiredShapes] derives from the manifest and, for a lane whose
-// package has a release on pub.dev, at least one type a MIGRATING.md rename
-// row names.
+// package is in the release the top MIGRATING.md section upgrades from, at
+// least one type a MIGRATING.md rename row names.
 
 import 'package:terradart_migrate/terradart_migrate.dart';
 
@@ -101,8 +101,9 @@ Set<String> renamedTypes(String migratingMd) {
 /// Why [report], the migration of [manifest]'s shape fixture, does not cover
 /// the lane: a kept block, a required shape it did not use, or no use of a
 /// renamed type the manifest declares. The renamed-type checks apply only
-/// when the lane is [published]: a package with no release on pub.dev has no
-/// upgrading user, so MIGRATING.md has no row about it.
+/// when the lane is [published] in the release MIGRATING.md upgrades from: a
+/// package with no such release has no upgrading user, so MIGRATING.md has no
+/// row about it.
 List<String> shapeFixtureFindings(
   MigrateManifest manifest,
   MigrationReport report, {
