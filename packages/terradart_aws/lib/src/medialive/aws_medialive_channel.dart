@@ -182,6 +182,7 @@ final class MedialiveChannelEncoderSettings {
     this.motionGraphicsConfiguration,
     this.nielsenConfiguration,
     required this.outputGroups,
+    this.thumbnailConfiguration,
     required this.timecodeConfig,
     this.videoDescriptions,
   });
@@ -201,6 +202,8 @@ final class MedialiveChannelEncoderSettings {
 
   final List<MedialiveChannelOutputGroups> outputGroups;
 
+  final MedialiveChannelThumbnailConfiguration? thumbnailConfiguration;
+
   final MedialiveChannelTimecodeConfig timecodeConfig;
 
   final List<MedialiveChannelVideoDescriptions>? videoDescriptions;
@@ -218,6 +221,7 @@ final class MedialiveChannelEncoderSettings {
     'motion_graphics_configuration': ?motionGraphicsConfiguration?.encode(),
     'nielsen_configuration': ?nielsenConfiguration?.encode(),
     'output_groups': [for (final e in outputGroups) e.encode()],
+    'thumbnail_configuration': ?thumbnailConfiguration?.encode(),
     'timecode_config': timecodeConfig.encode(),
     if (videoDescriptions != null)
       'video_descriptions': [for (final e in videoDescriptions!) e.encode()],
@@ -2981,6 +2985,18 @@ final class MedialiveChannelFecOutputSettings {
     'include_fec': ?includeFec?.toTfJson(),
     'row_length': ?rowLength?.toTfJson(),
   };
+}
+
+/// Typed helper for the `encoder_settings.thumbnail_configuration` block of
+/// `aws_medialive_channel` (derived from provider schema).
+@immutable
+final class MedialiveChannelThumbnailConfiguration {
+  const MedialiveChannelThumbnailConfiguration({required this.state});
+
+  final TfArg<String> state;
+
+  @internal
+  Map<String, Object?> encode() => {'state': state.toTfJson()};
 }
 
 /// Typed helper for the `encoder_settings.timecode_config` block of

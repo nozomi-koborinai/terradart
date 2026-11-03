@@ -4,6 +4,8 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_observabilityadmin_dataset_integration.dart'
+    show DataAwsObservabilityadminDatasetIntegration;
 export 'src/observabilityadmin/aws_observabilityadmin_centralization_rule_for_organization.dart'
     show
         AwsObservabilityadminCentralizationRuleForOrganization,
@@ -24,6 +26,8 @@ export 'src/observabilityadmin/aws_observabilityadmin_centralization_rule_for_or
         ObservabilityadminCentralizationRuleForOrganizationSourceMetricsConfiguration,
         ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy,
         ObservabilityadminCentralizationRuleForOrganizationTagPropagationConfiguration;
+export 'src/observabilityadmin/aws_observabilityadmin_dataset_integration.dart'
+    show AwsObservabilityadminDatasetIntegration;
 export 'src/observabilityadmin/aws_observabilityadmin_s3_table_integration.dart'
     show
         AwsObservabilityadminS3TableIntegration,

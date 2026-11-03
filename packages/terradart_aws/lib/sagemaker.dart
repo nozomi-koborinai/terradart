@@ -4,6 +4,8 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_sagemaker_hub_content.dart'
+    show DataAwsSagemakerHubContent;
 export 'src/data/aws_sagemaker_prebuilt_ecr_image.dart'
     show DataAwsSagemakerPrebuiltEcrImage;
 export 'src/sagemaker/aws_sagemaker_algorithm.dart'
@@ -398,6 +400,7 @@ export 'src/sagemaker/aws_sagemaker_model.dart'
         SagemakerModelContainer,
         SagemakerModelContainerMode,
         SagemakerModelDataSource,
+        SagemakerModelHubAccessConfig,
         SagemakerModelImageConfig,
         SagemakerModelInferenceExecutionConfig,
         SagemakerModelInferenceExecutionConfigMode,

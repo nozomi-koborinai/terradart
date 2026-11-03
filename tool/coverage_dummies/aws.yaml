@@ -164,6 +164,9 @@ AwsCloudwatchLogStorageTierPolicy.storageTier: 'STANDARD'
 AwsCloudwatchMetricStream.outputFormat: 'json'
 AwsCloudwatchomniAccessGrant.domainId: 'd-leftover'
 AwsCloudwatchomniAccessGrant.spaceId: '12345678-1234-1234-1234-123456789012'
+AwsCloudwatchomniDashboard.spaceId:
+  value: '12345678-1234-1234-1234-123456789012'
+  why: 'aws_cloudwatchomni_dashboard.cloudwatchomni_dashboard.space_id rejected leftover: Attribute space_id must be a space ID, got: leftover (sibling AwsCloudwatchomniAccessGrant.spaceId)'
 AwsCloudwatchomniView.name:
   value: 'view.leftover'
   why: 'A view name starts with `view.` and then a lowercase letter or digit.'

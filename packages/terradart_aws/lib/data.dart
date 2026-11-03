@@ -861,6 +861,8 @@ export 'src/data/aws_oam_link.dart' show DataAwsOamLink;
 export 'src/data/aws_oam_links.dart' show DataAwsOamLinks;
 export 'src/data/aws_oam_sink.dart' show DataAwsOamSink;
 export 'src/data/aws_oam_sinks.dart' show DataAwsOamSinks;
+export 'src/data/aws_observabilityadmin_dataset_integration.dart'
+    show DataAwsObservabilityadminDatasetIntegration;
 export 'src/data/aws_odb_autonomous_database.dart'
     show DataAwsOdbAutonomousDatabase;
 export 'src/data/aws_odb_cloud_autonomous_vm_cluster.dart'
@@ -1093,6 +1095,8 @@ export 'src/data/aws_s3files_file_system.dart' show DataAwsS3filesFileSystem;
 export 'src/data/aws_s3files_file_systems.dart'
     show DataAwsS3filesFileSystems, DataS3filesFileSystems;
 export 'src/data/aws_s3files_mount_target.dart' show DataAwsS3filesMountTarget;
+export 'src/data/aws_sagemaker_hub_content.dart'
+    show DataAwsSagemakerHubContent;
 export 'src/data/aws_sagemaker_prebuilt_ecr_image.dart'
     show DataAwsSagemakerPrebuiltEcrImage;
 export 'src/data/aws_savingsplans_offerings.dart'

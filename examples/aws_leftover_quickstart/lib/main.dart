@@ -3005,6 +3005,15 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniOrganizationDomain(
+        'cloudwatchomni_organization_domain',
+        domainAccessRoleArn: .literal(arn),
+        identityProviders: .literal([.iam]),
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsCloudwatchomniSpace(
         'cloudwatchomni_space',
         dataAccessRoleArn: .literal(arn),
@@ -9571,6 +9580,13 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsObservabilityadminDatasetIntegration(
+        'observabilityadmin_dataset_integration',
+        roleArn: .literal(arn),
+      ),
+    );
+
+    add(
       AwsObservabilityadminS3TableIntegration(
         'observabilityadmin_s3_table_integration',
         roleArn: .literal(arn),
@@ -14886,68 +14902,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsWafv2WebAclRule(
-        'wafv2_web_acl_rule',
-        name: .literal(leftover),
-        priority: .literal(200),
-        webAclArn: .literal(arn),
-        behavior: .action([
-          .new(
-            allow: [
-              .new(
-                customRequestHandling: [
-                  .new(
-                    insertHeader: [
-                      .new(name: .literal(leftover), value: .literal(leftover)),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ]),
-        statement: [
-          Wafv2WebAclRuleStatement(
-            andStatement: [
-              .new(
-                statement: [
-                  .new(
-                    andStatement: [
-                      .new(
-                        statement: [
-                          .new(
-                            andStatement: [
-                              .new(
-                                statement: [
-                                  .new(
-                                    asnMatchStatement: [
-                                      .new(asnList: .literal([64512])),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-        visibilityConfig: [
-          Wafv2WebAclRuleVisibilityConfig(
-            cloudwatchMetricsEnabled: .literal(true),
-            metricName: .literal(leftover),
-            sampledRequestsEnabled: .literal(true),
-          ),
-        ],
-      ),
-    );
-
-    add(
       AwsWafv2WebAclRuleGroupAssociation(
         'wafv2_web_acl_rule_group_association',
         priority: .literal(200),
@@ -17463,6 +17417,12 @@ final class AwsLeftoverStack extends Stack {
     add(DataAwsOamSink('d_oam_sink', sinkIdentifier: .literal(leftover)));
 
     add(DataAwsOamSinks('d_oam_sinks'));
+
+    add(
+      DataAwsObservabilityadminDatasetIntegration(
+        'd_observabilityadmin_dataset_integration',
+      ),
+    );
 
     add(
       DataAwsOdbAutonomousDatabase(

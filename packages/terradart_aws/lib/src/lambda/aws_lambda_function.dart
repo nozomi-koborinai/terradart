@@ -349,16 +349,20 @@ final class LambdaFunctionDeadLetterConfig {
 final class LambdaFunctionDurableConfig {
   const LambdaFunctionDurableConfig({
     required this.executionTimeout,
+    this.kmsKeyArn,
     this.retentionPeriod,
   });
 
   final TfArg<num> executionTimeout;
+
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<num>? retentionPeriod;
 
   @internal
   Map<String, Object?> encode() => {
     'execution_timeout': executionTimeout.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'retention_period': ?retentionPeriod?.toTfJson(),
   };
 }

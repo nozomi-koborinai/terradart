@@ -448,14 +448,14 @@ final class Wafv2WebAclRuleAndStatementStatement {
 
   final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
   final List<Wafv2WebAclRuleStatementAndStatement>? notStatement;
 
   final List<Wafv2WebAclRuleStatementAndStatement>? orStatement;
 
-  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
 
   final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
@@ -574,14 +574,14 @@ final class Wafv2WebAclRuleStatementStatement {
 
   final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
   final List<Wafv2WebAclRuleAndStatementAndStatement>? notStatement;
 
   final List<Wafv2WebAclRuleAndStatementAndStatement>? orStatement;
 
-  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
 
   final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
@@ -695,10 +695,10 @@ final class Wafv2WebAclRuleStatementAndStatementStatement {
 
   final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
 
-  final List<Wafv2WebAclRuleManagedRuleGroupStatement>?
+  final List<Wafv2WebAclRuleStatementManagedRuleGroupStatement>?
   managedRuleGroupStatement;
 
-  final List<Wafv2WebAclRuleRateBasedStatement>? rateBasedStatement;
+  final List<Wafv2WebAclRuleStatementRateBasedStatement>? rateBasedStatement;
 
   final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
 
@@ -1249,12 +1249,12 @@ extension type const Wafv2WebAclRuleScope._(TfArg<String> _)
   static const List<Wafv2WebAclRuleScope> values = [label, namespace];
 }
 
-/// Typed helper for the `statement.managed_rule_group_statement` block of
+/// Typed helper for the `statement.and_statement.statement.managed_rule_group_statement` block of
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleManagedRuleGroupStatement {
-  const Wafv2WebAclRuleManagedRuleGroupStatement({
+final class Wafv2WebAclRuleStatementManagedRuleGroupStatement {
+  const Wafv2WebAclRuleStatementManagedRuleGroupStatement({
     required this.name,
     required this.vendorName,
     this.version,
@@ -1274,7 +1274,8 @@ final class Wafv2WebAclRuleManagedRuleGroupStatement {
   final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
   ruleActionOverride;
 
-  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementScopeDownStatement>?
+  scopeDownStatement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1766,12 +1767,12 @@ final class Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride {
   };
 }
 
-/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement` block of
+/// Typed helper for the `statement.and_statement.statement.managed_rule_group_statement.scope_down_statement` block of
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleScopeDownStatement {
-  const Wafv2WebAclRuleScopeDownStatement({
+final class Wafv2WebAclRuleManagedRuleGroupStatementScopeDownStatement {
+  const Wafv2WebAclRuleManagedRuleGroupStatementScopeDownStatement({
     this.asnMatchStatement,
     this.byteMatchStatement,
     this.geoMatchStatement,
@@ -1990,12 +1991,12 @@ final class Wafv2WebAclRuleXssMatchStatement {
   };
 }
 
-/// Typed helper for the `statement.rate_based_statement` block of
+/// Typed helper for the `statement.and_statement.statement.rate_based_statement` block of
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleRateBasedStatement {
-  const Wafv2WebAclRuleRateBasedStatement({
+final class Wafv2WebAclRuleStatementRateBasedStatement {
+  const Wafv2WebAclRuleStatementRateBasedStatement({
     required this.aggregateKeyType,
     this.evaluationWindowSec,
     required this.limit,
@@ -2014,7 +2015,8 @@ final class Wafv2WebAclRuleRateBasedStatement {
 
   final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
-  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementScopeDownStatement>?
+  scopeDownStatement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -2199,6 +2201,498 @@ final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
       'excluded_rule': [for (final e in excludedRule!) e.encode()],
     if (ruleActionOverride != null)
       'rule_action_override': [for (final e in ruleActionOverride!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+@immutable
+final class Wafv2WebAclRuleManagedRuleGroupStatement {
+  const Wafv2WebAclRuleManagedRuleGroupStatement({
+    required this.name,
+    required this.vendorName,
+    this.version,
+    this.managedRuleGroupConfigs,
+    this.ruleActionOverride,
+    this.scopeDownStatement,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String> vendorName;
+
+  final TfArg<String>? version;
+
+  final List<Wafv2WebAclRuleManagedRuleGroupConfigs>? managedRuleGroupConfigs;
+
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
+  ruleActionOverride;
+
+  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'vendor_name': vendorName.toTfJson(),
+    'version': ?version?.toTfJson(),
+    if (managedRuleGroupConfigs != null)
+      'managed_rule_group_configs': [
+        for (final e in managedRuleGroupConfigs!) e.encode(),
+      ],
+    if (ruleActionOverride != null)
+      'rule_action_override': [for (final e in ruleActionOverride!) e.encode()],
+    if (scopeDownStatement != null)
+      'scope_down_statement': [for (final e in scopeDownStatement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleScopeDownStatement {
+  const Wafv2WebAclRuleScopeDownStatement({
+    this.andStatement,
+    this.asnMatchStatement,
+    this.byteMatchStatement,
+    this.geoMatchStatement,
+    this.ipSetReferenceStatement,
+    this.labelMatchStatement,
+    this.notStatement,
+    this.orStatement,
+    this.regexMatchStatement,
+    this.regexPatternSetReferenceStatement,
+    this.sizeConstraintStatement,
+    this.sqliMatchStatement,
+    this.xssMatchStatement,
+  });
+
+  final List<Wafv2WebAclRuleScopeDownStatementAndStatement>? andStatement;
+
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
+
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
+
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
+
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
+
+  final List<Wafv2WebAclRuleNotStatement>? notStatement;
+
+  final List<Wafv2WebAclRuleOrStatement>? orStatement;
+
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
+
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
+  regexPatternSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
+
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
+
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (andStatement != null)
+      'and_statement': [for (final e in andStatement!) e.encode()],
+    if (asnMatchStatement != null)
+      'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
+    if (byteMatchStatement != null)
+      'byte_match_statement': [for (final e in byteMatchStatement!) e.encode()],
+    if (geoMatchStatement != null)
+      'geo_match_statement': [for (final e in geoMatchStatement!) e.encode()],
+    if (ipSetReferenceStatement != null)
+      'ip_set_reference_statement': [
+        for (final e in ipSetReferenceStatement!) e.encode(),
+      ],
+    if (labelMatchStatement != null)
+      'label_match_statement': [
+        for (final e in labelMatchStatement!) e.encode(),
+      ],
+    if (notStatement != null)
+      'not_statement': [for (final e in notStatement!) e.encode()],
+    if (orStatement != null)
+      'or_statement': [for (final e in orStatement!) e.encode()],
+    if (regexMatchStatement != null)
+      'regex_match_statement': [
+        for (final e in regexMatchStatement!) e.encode(),
+      ],
+    if (regexPatternSetReferenceStatement != null)
+      'regex_pattern_set_reference_statement': [
+        for (final e in regexPatternSetReferenceStatement!) e.encode(),
+      ],
+    if (sizeConstraintStatement != null)
+      'size_constraint_statement': [
+        for (final e in sizeConstraintStatement!) e.encode(),
+      ],
+    if (sqliMatchStatement != null)
+      'sqli_match_statement': [for (final e in sqliMatchStatement!) e.encode()],
+    if (xssMatchStatement != null)
+      'xss_match_statement': [for (final e in xssMatchStatement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.and_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleScopeDownStatementAndStatement {
+  const Wafv2WebAclRuleScopeDownStatementAndStatement({this.statement});
+
+  final List<Wafv2WebAclRuleScopeDownStatementStatement>? statement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (statement != null)
+      'statement': [for (final e in statement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.and_statement.statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleScopeDownStatementStatement {
+  const Wafv2WebAclRuleScopeDownStatementStatement({
+    this.asnMatchStatement,
+    this.byteMatchStatement,
+    this.geoMatchStatement,
+    this.ipSetReferenceStatement,
+    this.labelMatchStatement,
+    this.notStatement,
+    this.orStatement,
+    this.regexMatchStatement,
+    this.regexPatternSetReferenceStatement,
+    this.sizeConstraintStatement,
+    this.sqliMatchStatement,
+    this.xssMatchStatement,
+  });
+
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
+
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
+
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
+
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? notStatement;
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? orStatement;
+
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
+
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
+  regexPatternSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
+
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
+
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (asnMatchStatement != null)
+      'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
+    if (byteMatchStatement != null)
+      'byte_match_statement': [for (final e in byteMatchStatement!) e.encode()],
+    if (geoMatchStatement != null)
+      'geo_match_statement': [for (final e in geoMatchStatement!) e.encode()],
+    if (ipSetReferenceStatement != null)
+      'ip_set_reference_statement': [
+        for (final e in ipSetReferenceStatement!) e.encode(),
+      ],
+    if (labelMatchStatement != null)
+      'label_match_statement': [
+        for (final e in labelMatchStatement!) e.encode(),
+      ],
+    if (notStatement != null)
+      'not_statement': [for (final e in notStatement!) e.encode()],
+    if (orStatement != null)
+      'or_statement': [for (final e in orStatement!) e.encode()],
+    if (regexMatchStatement != null)
+      'regex_match_statement': [
+        for (final e in regexMatchStatement!) e.encode(),
+      ],
+    if (regexPatternSetReferenceStatement != null)
+      'regex_pattern_set_reference_statement': [
+        for (final e in regexPatternSetReferenceStatement!) e.encode(),
+      ],
+    if (sizeConstraintStatement != null)
+      'size_constraint_statement': [
+        for (final e in sizeConstraintStatement!) e.encode(),
+      ],
+    if (sqliMatchStatement != null)
+      'sqli_match_statement': [for (final e in sqliMatchStatement!) e.encode()],
+    if (xssMatchStatement != null)
+      'xss_match_statement': [for (final e in xssMatchStatement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.and_statement.statement.not_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleStatementNotStatement {
+  const Wafv2WebAclRuleStatementNotStatement({this.statement});
+
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementScopeDownStatement>?
+  statement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (statement != null)
+      'statement': [for (final e in statement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.not_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleNotStatement {
+  const Wafv2WebAclRuleNotStatement({this.statement});
+
+  final List<Wafv2WebAclRuleNotStatementStatement>? statement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (statement != null)
+      'statement': [for (final e in statement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.not_statement.statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleNotStatementStatement {
+  const Wafv2WebAclRuleNotStatementStatement({
+    this.andStatement,
+    this.asnMatchStatement,
+    this.byteMatchStatement,
+    this.geoMatchStatement,
+    this.ipSetReferenceStatement,
+    this.labelMatchStatement,
+    this.notStatement,
+    this.orStatement,
+    this.regexMatchStatement,
+    this.regexPatternSetReferenceStatement,
+    this.sizeConstraintStatement,
+    this.sqliMatchStatement,
+    this.xssMatchStatement,
+  });
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? andStatement;
+
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
+
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
+
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
+
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? notStatement;
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? orStatement;
+
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
+
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
+  regexPatternSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
+
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
+
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (andStatement != null)
+      'and_statement': [for (final e in andStatement!) e.encode()],
+    if (asnMatchStatement != null)
+      'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
+    if (byteMatchStatement != null)
+      'byte_match_statement': [for (final e in byteMatchStatement!) e.encode()],
+    if (geoMatchStatement != null)
+      'geo_match_statement': [for (final e in geoMatchStatement!) e.encode()],
+    if (ipSetReferenceStatement != null)
+      'ip_set_reference_statement': [
+        for (final e in ipSetReferenceStatement!) e.encode(),
+      ],
+    if (labelMatchStatement != null)
+      'label_match_statement': [
+        for (final e in labelMatchStatement!) e.encode(),
+      ],
+    if (notStatement != null)
+      'not_statement': [for (final e in notStatement!) e.encode()],
+    if (orStatement != null)
+      'or_statement': [for (final e in orStatement!) e.encode()],
+    if (regexMatchStatement != null)
+      'regex_match_statement': [
+        for (final e in regexMatchStatement!) e.encode(),
+      ],
+    if (regexPatternSetReferenceStatement != null)
+      'regex_pattern_set_reference_statement': [
+        for (final e in regexPatternSetReferenceStatement!) e.encode(),
+      ],
+    if (sizeConstraintStatement != null)
+      'size_constraint_statement': [
+        for (final e in sizeConstraintStatement!) e.encode(),
+      ],
+    if (sqliMatchStatement != null)
+      'sqli_match_statement': [for (final e in sqliMatchStatement!) e.encode()],
+    if (xssMatchStatement != null)
+      'xss_match_statement': [for (final e in xssMatchStatement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.or_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleOrStatement {
+  const Wafv2WebAclRuleOrStatement({this.statement});
+
+  final List<Wafv2WebAclRuleOrStatementStatement>? statement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (statement != null)
+      'statement': [for (final e in statement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.managed_rule_group_statement.scope_down_statement.or_statement.statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class Wafv2WebAclRuleOrStatementStatement {
+  const Wafv2WebAclRuleOrStatementStatement({
+    this.andStatement,
+    this.asnMatchStatement,
+    this.byteMatchStatement,
+    this.geoMatchStatement,
+    this.ipSetReferenceStatement,
+    this.labelMatchStatement,
+    this.notStatement,
+    this.regexMatchStatement,
+    this.regexPatternSetReferenceStatement,
+    this.sizeConstraintStatement,
+    this.sqliMatchStatement,
+    this.xssMatchStatement,
+  });
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? andStatement;
+
+  final List<Wafv2WebAclRuleAsnMatchStatement>? asnMatchStatement;
+
+  final List<Wafv2WebAclRuleByteMatchStatement>? byteMatchStatement;
+
+  final List<Wafv2WebAclRuleGeoMatchStatement>? geoMatchStatement;
+
+  final List<Wafv2WebAclRuleIpSetReferenceStatement>? ipSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleLabelMatchStatement>? labelMatchStatement;
+
+  final List<Wafv2WebAclRuleStatementNotStatement>? notStatement;
+
+  final List<Wafv2WebAclRuleRegexMatchStatement>? regexMatchStatement;
+
+  final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
+  regexPatternSetReferenceStatement;
+
+  final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
+
+  final List<Wafv2WebAclRuleSqliMatchStatement>? sqliMatchStatement;
+
+  final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (andStatement != null)
+      'and_statement': [for (final e in andStatement!) e.encode()],
+    if (asnMatchStatement != null)
+      'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
+    if (byteMatchStatement != null)
+      'byte_match_statement': [for (final e in byteMatchStatement!) e.encode()],
+    if (geoMatchStatement != null)
+      'geo_match_statement': [for (final e in geoMatchStatement!) e.encode()],
+    if (ipSetReferenceStatement != null)
+      'ip_set_reference_statement': [
+        for (final e in ipSetReferenceStatement!) e.encode(),
+      ],
+    if (labelMatchStatement != null)
+      'label_match_statement': [
+        for (final e in labelMatchStatement!) e.encode(),
+      ],
+    if (notStatement != null)
+      'not_statement': [for (final e in notStatement!) e.encode()],
+    if (regexMatchStatement != null)
+      'regex_match_statement': [
+        for (final e in regexMatchStatement!) e.encode(),
+      ],
+    if (regexPatternSetReferenceStatement != null)
+      'regex_pattern_set_reference_statement': [
+        for (final e in regexPatternSetReferenceStatement!) e.encode(),
+      ],
+    if (sizeConstraintStatement != null)
+      'size_constraint_statement': [
+        for (final e in sizeConstraintStatement!) e.encode(),
+      ],
+    if (sqliMatchStatement != null)
+      'sqli_match_statement': [for (final e in sqliMatchStatement!) e.encode()],
+    if (xssMatchStatement != null)
+      'xss_match_statement': [for (final e in xssMatchStatement!) e.encode()],
+  };
+}
+
+/// Typed helper for the `statement.rate_based_statement` block of
+/// `aws_wafv2_web_acl_rule` (derived from provider schema).
+@immutable
+final class Wafv2WebAclRuleRateBasedStatement {
+  const Wafv2WebAclRuleRateBasedStatement({
+    required this.aggregateKeyType,
+    this.evaluationWindowSec,
+    required this.limit,
+    this.customKeys,
+    this.forwardedIpConfig,
+    this.scopeDownStatement,
+  });
+
+  final Wafv2WebAclRuleAggregateKeyType aggregateKeyType;
+
+  final TfArg<num>? evaluationWindowSec;
+
+  final TfArg<num> limit;
+
+  final List<Wafv2WebAclRuleCustomKeys>? customKeys;
+
+  final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
+
+  final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'aggregate_key_type': aggregateKeyType.toTfJson(),
+    'evaluation_window_sec': ?evaluationWindowSec?.toTfJson(),
+    'limit': limit.toTfJson(),
+    if (customKeys != null)
+      'custom_keys': [for (final e in customKeys!) e.encode()],
+    if (forwardedIpConfig != null)
+      'forwarded_ip_config': [for (final e in forwardedIpConfig!) e.encode()],
+    if (scopeDownStatement != null)
+      'scope_down_statement': [for (final e in scopeDownStatement!) e.encode()],
   };
 }
 

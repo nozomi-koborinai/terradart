@@ -88,12 +88,15 @@ final class BcmdataexportsExportDestinationConfigurations {
 final class BcmdataexportsExportS3Destination {
   const BcmdataexportsExportS3Destination({
     required this.s3Bucket,
+    this.s3BucketOwner,
     required this.s3Prefix,
     required this.s3Region,
     this.s3OutputConfigurations,
   });
 
   final RefTo<AwsS3Bucket> s3Bucket;
+
+  final TfArg<String>? s3BucketOwner;
 
   final TfArg<String> s3Prefix;
 
@@ -105,6 +108,7 @@ final class BcmdataexportsExportS3Destination {
   @internal
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
+    's3_bucket_owner': ?s3BucketOwner?.toTfJson(),
     's3_prefix': s3Prefix.toTfJson(),
     's3_region': s3Region.toTfJson(),
     if (s3OutputConfigurations != null)

@@ -342,10 +342,14 @@ extension type const NetworkfirewallRuleGroupTargetTypes._(TfArg<String> _)
   static const httpHost = NetworkfirewallRuleGroupTargetTypes._(
     TfArgLiteral('HTTP_HOST'),
   );
+  static const awsRoute53ResolvedDomain = NetworkfirewallRuleGroupTargetTypes._(
+    TfArgLiteral('AWS_ROUTE_53_RESOLVED_DOMAIN'),
+  );
 
   static const List<NetworkfirewallRuleGroupTargetTypes> values = [
     tlsSni,
     httpHost,
+    awsRoute53ResolvedDomain,
   ];
 }
 

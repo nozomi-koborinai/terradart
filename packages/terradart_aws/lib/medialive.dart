@@ -161,6 +161,7 @@ export 'src/medialive/aws_medialive_channel.dart'
         MedialiveChannelTeletextDestinationSettings,
         MedialiveChannelTeletextSourceSettings,
         MedialiveChannelTemporalFilterSettings,
+        MedialiveChannelThumbnailConfiguration,
         MedialiveChannelTimecodeBurninSettings,
         MedialiveChannelTimecodeConfig,
         MedialiveChannelTracks,
