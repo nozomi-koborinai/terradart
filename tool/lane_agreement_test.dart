@@ -132,8 +132,8 @@ void main() {
       'skills/terradart/SKILL.md',
     ];
     final astro = File('website/astro.config.mjs').readAsStringSync();
-    final landing = File(
-      'website/src/components/landing/providers.ts',
+    final providers = File(
+      'website/src/lib/providers.ts',
     ).readAsStringSync();
     for (final lane in lanes) {
       final package = packageOf(lane);
@@ -146,9 +146,9 @@ void main() {
         'website/src/content/docs/docs/providers/$guideName.md',
       );
       expect(guide.existsSync(), isTrue, reason: guide.path);
-      expect(astro, contains('docs/providers/$guideName'), reason: lane.name);
+      expect(providers, contains('id: "$guideName"'), reason: lane.name);
       if (lane.providerGuide == null) {
-        expect(landing, contains(package), reason: lane.name);
+        expect(providers, contains(package), reason: lane.name);
       }
     }
   });
