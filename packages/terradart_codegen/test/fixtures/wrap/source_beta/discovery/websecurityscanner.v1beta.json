@@ -6,6 +6,27 @@
   "schemas": {
     "ScanConfig": {
       "properties": {
+        "targetPlatforms": {
+          "items": {
+            "enum": [
+              "TARGET_PLATFORM_UNSPECIFIED",
+              "APP_ENGINE",
+              "COMPUTE",
+              "CLOUD_RUN",
+              "CLOUD_FUNCTIONS"
+            ]
+          }
+        },
+        "riskLevel": {
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "NORMAL",
+            "LOW"
+          ]
+        },
+        "latestRun": {
+          "$ref": "ScanRun"
+        },
         "userAgent": {
           "enum": [
             "USER_AGENT_UNSPECIFIED",
@@ -20,27 +41,6 @@
             "ENABLED",
             "DISABLED"
           ]
-        },
-        "latestRun": {
-          "$ref": "ScanRun"
-        },
-        "riskLevel": {
-          "enum": [
-            "RISK_LEVEL_UNSPECIFIED",
-            "NORMAL",
-            "LOW"
-          ]
-        },
-        "targetPlatforms": {
-          "items": {
-            "enum": [
-              "TARGET_PLATFORM_UNSPECIFIED",
-              "APP_ENGINE",
-              "COMPUTE",
-              "CLOUD_RUN",
-              "CLOUD_FUNCTIONS"
-            ]
-          }
         }
       }
     },
@@ -110,9 +110,6 @@
             "$ref": "ScanRunWarningTrace"
           }
         },
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
-        },
         "executionState": {
           "enum": [
             "EXECUTION_STATE_UNSPECIFIED",
@@ -120,6 +117,9 @@
             "SCANNING",
             "FINISHED"
           ]
+        },
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
         }
       }
     },

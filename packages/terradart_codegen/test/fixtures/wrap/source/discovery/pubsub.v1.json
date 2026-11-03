@@ -114,17 +114,17 @@
     },
     "Compression": {
       "properties": {
+        "compressionAlgorithm": {
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB"
+          ]
+        },
         "compressionMode": {
           "enum": [
             "COMPRESSION_MODE_UNSPECIFIED",
             "COMPRESS",
             "DECOMPRESS"
-          ]
-        },
-        "compressionAlgorithm": {
-          "enum": [
-            "COMPRESSION_ALGORITHM_UNSPECIFIED",
-            "ZLIB"
           ]
         }
       }
@@ -147,23 +147,23 @@
     },
     "IngestionDataSourceSettings": {
       "properties": {
-        "awsMsk": {
-          "$ref": "AwsMsk"
-        },
-        "cloudStorage": {
-          "$ref": "CloudStorage"
-        },
-        "confluentCloud": {
-          "$ref": "ConfluentCloud"
-        },
-        "awsKinesis": {
-          "$ref": "AwsKinesis"
+        "azureEventHubs": {
+          "$ref": "AzureEventHubs"
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings"
         },
-        "azureEventHubs": {
-          "$ref": "AzureEventHubs"
+        "awsKinesis": {
+          "$ref": "AwsKinesis"
+        },
+        "cloudStorage": {
+          "$ref": "CloudStorage"
+        },
+        "awsMsk": {
+          "$ref": "AwsMsk"
+        },
+        "confluentCloud": {
+          "$ref": "ConfluentCloud"
         }
       }
     },
@@ -212,14 +212,14 @@
     },
     "Subscription": {
       "properties": {
-        "bigqueryConfig": {
-          "$ref": "BigQueryConfig"
+        "bigtableConfig": {
+          "$ref": "BigtableConfig"
         },
         "cloudStorageConfig": {
           "$ref": "CloudStorageConfig"
         },
-        "bigtableConfig": {
-          "$ref": "BigtableConfig"
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig"
         },
         "state": {
           "enum": [
@@ -237,6 +237,9 @@
     },
     "Topic": {
       "properties": {
+        "schemaSettings": {
+          "$ref": "SchemaSettings"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -244,16 +247,13 @@
             "INGESTION_RESOURCE_ERROR"
           ]
         },
+        "ingestionDataSourceSettings": {
+          "$ref": "IngestionDataSourceSettings"
+        },
         "messageTransforms": {
           "items": {
             "$ref": "MessageTransform"
           }
-        },
-        "schemaSettings": {
-          "$ref": "SchemaSettings"
-        },
-        "ingestionDataSourceSettings": {
-          "$ref": "IngestionDataSourceSettings"
         }
       }
     }

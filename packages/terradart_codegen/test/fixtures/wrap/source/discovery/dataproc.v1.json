@@ -1,7 +1,7 @@
 {
   "name": "dataproc",
   "version": "v1",
-  "revision": "20261016",
+  "revision": "20261023",
   "sourceUrl": "https://dataproc.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AttachedDiskConfig": {
@@ -64,19 +64,16 @@
     },
     "Batch": {
       "properties": {
-        "environmentConfig": {
-          "$ref": "EnvironmentConfig"
-        },
         "runtimeConfig": {
           "$ref": "RuntimeConfig"
+        },
+        "runtimeInfo": {
+          "$ref": "RuntimeInfo"
         },
         "stateHistory": {
           "items": {
             "$ref": "StateHistory"
           }
-        },
-        "runtimeInfo": {
-          "$ref": "RuntimeInfo"
         },
         "state": {
           "enum": [
@@ -88,6 +85,9 @@
             "SUCCEEDED",
             "FAILED"
           ]
+        },
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
         }
       }
     },
@@ -114,29 +114,17 @@
         "masterConfig": {
           "$ref": "InstanceGroupConfig"
         },
-        "secondaryWorkerFlexibleConfig": {
-          "$ref": "FlexibleInstanceGroupConfig"
-        },
         "dataprocMetricConfig": {
           "$ref": "DataprocMetricConfig"
         },
-        "secondaryWorkerConfig": {
-          "$ref": "InstanceGroupConfig"
+        "workerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
         },
         "softwareConfig": {
           "$ref": "SoftwareConfig"
         },
-        "clusterTier": {
-          "enum": [
-            "CLUSTER_TIER_UNSPECIFIED",
-            "CLUSTER_TIER_STANDARD",
-            "CLUSTER_TIER_PREMIUM"
-          ]
-        },
-        "auxiliaryNodeGroups": {
-          "items": {
-            "$ref": "AuxiliaryNodeGroup"
-          }
+        "secondaryWorkerConfig": {
+          "$ref": "InstanceGroupConfig"
         },
         "clusterType": {
           "enum": [
@@ -146,11 +134,11 @@
             "ZERO_SCALE"
           ]
         },
-        "workerConfig": {
-          "$ref": "InstanceGroupConfig"
-        },
         "masterFlexibleConfig": {
           "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "workerConfig": {
+          "$ref": "InstanceGroupConfig"
         },
         "engine": {
           "enum": [
@@ -159,14 +147,26 @@
             "LIGHTNING"
           ]
         },
-        "gceClusterConfig": {
-          "$ref": "GceClusterConfig"
-        },
         "gkeClusterConfig": {
           "$ref": "GkeClusterConfig"
         },
-        "workerFlexibleConfig": {
+        "secondaryWorkerFlexibleConfig": {
           "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "auxiliaryNodeGroups": {
+          "items": {
+            "$ref": "AuxiliaryNodeGroup"
+          }
+        },
+        "clusterTier": {
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "CLUSTER_TIER_STANDARD",
+            "CLUSTER_TIER_PREMIUM"
+          ]
+        },
+        "gceClusterConfig": {
+          "$ref": "GceClusterConfig"
         }
       }
     },
@@ -272,6 +272,9 @@
     },
     "GceClusterConfig": {
       "properties": {
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
         "privateIpv6GoogleAccess": {
           "enum": [
             "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -280,14 +283,11 @@
             "BIDIRECTIONAL"
           ]
         },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
+        "multiZoneConfig": {
+          "$ref": "MultiZoneConfig"
         },
         "reservationAffinity": {
           "$ref": "ReservationAffinity"
-        },
-        "multiZoneConfig": {
-          "$ref": "MultiZoneConfig"
         }
       }
     },
@@ -336,9 +336,6 @@
         "diskConfig": {
           "$ref": "DiskConfig"
         },
-        "instanceFlexibilityPolicy": {
-          "$ref": "InstanceFlexibilityPolicy"
-        },
         "preemptibility": {
           "enum": [
             "PREEMPTIBILITY_UNSPECIFIED",
@@ -346,6 +343,9 @@
             "PREEMPTIBLE",
             "SPOT"
           ]
+        },
+        "instanceFlexibilityPolicy": {
+          "$ref": "InstanceFlexibilityPolicy"
         }
       }
     },
@@ -429,9 +429,6 @@
     },
     "NodeGroup": {
       "properties": {
-        "nodeGroupConfig": {
-          "$ref": "InstanceGroupConfig"
-        },
         "roles": {
           "items": {
             "enum": [
@@ -439,37 +436,40 @@
               "DRIVER"
             ]
           }
+        },
+        "nodeGroupConfig": {
+          "$ref": "InstanceGroupConfig"
         }
       }
     },
     "OrderedJob": {
       "properties": {
-        "sparkJob": {
-          "$ref": "SparkJob"
-        },
-        "pigJob": {
-          "$ref": "PigJob"
-        },
-        "hadoopJob": {
-          "$ref": "HadoopJob"
-        },
         "prestoJob": {
           "$ref": "PrestoJob"
         },
         "trinoJob": {
           "$ref": "TrinoJob"
         },
+        "flinkJob": {
+          "$ref": "FlinkJob"
+        },
+        "pigJob": {
+          "$ref": "PigJob"
+        },
+        "sparkRJob": {
+          "$ref": "SparkRJob"
+        },
+        "sparkJob": {
+          "$ref": "SparkJob"
+        },
+        "hadoopJob": {
+          "$ref": "HadoopJob"
+        },
         "pysparkJob": {
           "$ref": "PySparkJob"
         },
         "sparkSqlJob": {
           "$ref": "SparkSqlJob"
-        },
-        "sparkRJob": {
-          "$ref": "SparkRJob"
-        },
-        "flinkJob": {
-          "$ref": "FlinkJob"
         }
       }
     },
@@ -522,14 +522,14 @@
     },
     "SessionTemplate": {
       "properties": {
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
+        },
         "jupyterSession": {
           "$ref": "JupyterConfig"
         },
         "runtimeConfig": {
           "$ref": "RuntimeConfig"
-        },
-        "environmentConfig": {
-          "$ref": "EnvironmentConfig"
         }
       }
     },

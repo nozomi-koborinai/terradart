@@ -30,6 +30,9 @@
     },
     "CaPool": {
       "properties": {
+        "publishingOptions": {
+          "$ref": "PublishingOptions"
+        },
         "tier": {
           "enum": [
             "TIER_UNSPECIFIED",
@@ -39,9 +42,6 @@
         },
         "issuancePolicy": {
           "$ref": "IssuancePolicy"
-        },
-        "publishingOptions": {
-          "$ref": "PublishingOptions"
         }
       }
     },
@@ -68,6 +68,21 @@
     },
     "CertificateAuthority": {
       "properties": {
+        "keySpec": {
+          "$ref": "KeyVersionSpec"
+        },
+        "caCertificateDescriptions": {
+          "items": {
+            "$ref": "CertificateDescription"
+          }
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ENTERPRISE",
+            "DEVOPS"
+          ]
+        },
         "config": {
           "$ref": "CertificateConfig"
         },
@@ -81,27 +96,12 @@
             "DELETED"
           ]
         },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "ENTERPRISE",
-            "DEVOPS"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "SELF_SIGNED",
             "SUBORDINATE"
           ]
-        },
-        "keySpec": {
-          "$ref": "KeyVersionSpec"
-        },
-        "caCertificateDescriptions": {
-          "items": {
-            "$ref": "CertificateDescription"
-          }
         }
       }
     },
@@ -117,11 +117,11 @@
     },
     "CertificateDescription": {
       "properties": {
-        "subjectDescription": {
-          "$ref": "SubjectDescription"
-        },
         "publicKey": {
           "$ref": "PublicKey"
+        },
+        "subjectDescription": {
+          "$ref": "SubjectDescription"
         }
       }
     },

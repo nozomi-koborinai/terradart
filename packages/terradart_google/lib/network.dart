@@ -226,7 +226,13 @@ export 'src/network/google_network_security_dns_threat_detector.dart'
 export 'src/network/google_network_security_firewall_endpoint.dart'
     show
         GoogleNetworkSecurityFirewallEndpoint,
-        NetworkSecurityFirewallEndpointSettings;
+        NetworkSecurityFirewallEndpointContentCloudRegion,
+        NetworkSecurityFirewallEndpointSettings,
+        NetworkSecurityFirewallEndpointTimeoutAction,
+        NetworkSecurityFirewallEndpointWildfireInlineCloudAnalysisSettings,
+        NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction,
+        NetworkSecurityFirewallEndpointWildfireRegion,
+        NetworkSecurityFirewallEndpointWildfireSettings;
 export 'src/network/google_network_security_firewall_endpoint_association.dart'
     show
         GoogleNetworkSecurityFirewallEndpointAssociation,
@@ -267,20 +273,42 @@ export 'src/network/google_network_security_security_profile.dart'
         NetworkSecuritySecurityProfileAntivirusOverrides,
         NetworkSecuritySecurityProfileCustomInterceptProfile,
         NetworkSecuritySecurityProfileCustomMirroringProfile,
+        NetworkSecuritySecurityProfileDirection,
+        NetworkSecuritySecurityProfileFileExceptions,
+        NetworkSecuritySecurityProfileFileSelectionMode,
+        NetworkSecuritySecurityProfileFileType,
         NetworkSecuritySecurityProfileFilteringAction,
+        NetworkSecuritySecurityProfileInlineMlConfigs,
+        NetworkSecuritySecurityProfileInlineMlConfigsAction,
         NetworkSecuritySecurityProfileProtocol,
         NetworkSecuritySecurityProfileSettings,
         NetworkSecuritySecurityProfileSettingsCustomInterceptProfile,
         NetworkSecuritySecurityProfileSettingsCustomMirroringProfile,
         NetworkSecuritySecurityProfileSettingsThreatPreventionProfile,
         NetworkSecuritySecurityProfileSettingsUrlFilteringProfile,
+        NetworkSecuritySecurityProfileSettingsWildfireAnalysisProfile,
         NetworkSecuritySecurityProfileSeverity,
         NetworkSecuritySecurityProfileSeverityOverrides,
         NetworkSecuritySecurityProfileThreatOverrides,
         NetworkSecuritySecurityProfileThreatPreventionProfile,
         NetworkSecuritySecurityProfileType,
         NetworkSecuritySecurityProfileUrlFilteringProfile,
-        NetworkSecuritySecurityProfileUrlFilters;
+        NetworkSecuritySecurityProfileUrlFilters,
+        NetworkSecuritySecurityProfileWildfireAnalysisProfile,
+        NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRules,
+        NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction,
+        NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesCustomFileTypes,
+        NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes,
+        NetworkSecuritySecurityProfileWildfireInlineMlOverrides,
+        NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction,
+        NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol,
+        NetworkSecuritySecurityProfileWildfireInlineMlSetting,
+        NetworkSecuritySecurityProfileWildfireOverrides,
+        NetworkSecuritySecurityProfileWildfireSubmissionRules,
+        NetworkSecuritySecurityProfileWildfireSubmissionRulesCustomFileTypes,
+        NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes,
+        NetworkSecuritySecurityProfileWildfireThreatOverrides,
+        NetworkSecuritySecurityProfileWildfireThreatOverridesAction;
 export 'src/network/google_network_security_security_profile_group.dart'
     show GoogleNetworkSecuritySecurityProfileGroup;
 export 'src/network/google_network_security_server_tls_policy.dart'
@@ -526,6 +554,12 @@ export 'src/network/google_network_services_multicast_producer_association.dart'
     show GoogleNetworkServicesMulticastProducerAssociation;
 export 'src/network/google_network_services_service_binding.dart'
     show GoogleNetworkServicesServiceBinding;
+export 'src/network/google_network_services_service_lb_policies.dart'
+    show
+        GoogleNetworkServicesServiceLbPolicies,
+        NetworkServicesServiceLbPoliciesAutoCapacityDrain,
+        NetworkServicesServiceLbPoliciesFailoverConfig,
+        NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm;
 export 'src/network/google_network_services_tcp_route.dart'
     show
         GoogleNetworkServicesTcpRoute,

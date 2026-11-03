@@ -17,6 +17,11 @@
     },
     "Build": {
       "properties": {
+        "errors": {
+          "items": {
+            "$ref": "Error"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -28,11 +33,6 @@
             "SKIPPED",
             "EXPIRED"
           ]
-        },
-        "errors": {
-          "items": {
-            "$ref": "Error"
-          }
         },
         "config": {
           "$ref": "Config"
@@ -55,17 +55,6 @@
     },
     "CustomDomainStatus": {
       "properties": {
-        "hostState": {
-          "enum": [
-            "HOST_STATE_UNSPECIFIED",
-            "HOST_UNHOSTED",
-            "HOST_UNREACHABLE",
-            "HOST_NON_FAH",
-            "HOST_CONFLICT",
-            "HOST_WRONG_SHARD",
-            "HOST_ACTIVE"
-          ]
-        },
         "ownershipState": {
           "enum": [
             "OWNERSHIP_STATE_UNSPECIFIED",
@@ -77,6 +66,22 @@
             "OWNERSHIP_ACTIVE"
           ]
         },
+        "hostState": {
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_NON_FAH",
+            "HOST_CONFLICT",
+            "HOST_WRONG_SHARD",
+            "HOST_ACTIVE"
+          ]
+        },
+        "requiredDnsUpdates": {
+          "items": {
+            "$ref": "DnsUpdates"
+          }
+        },
         "certState": {
           "enum": [
             "CERT_STATE_UNSPECIFIED",
@@ -87,11 +92,6 @@
             "CERT_EXPIRING_SOON",
             "CERT_EXPIRED"
           ]
-        },
-        "requiredDnsUpdates": {
-          "items": {
-            "$ref": "DnsUpdates"
-          }
         }
       }
     },
@@ -104,16 +104,6 @@
             "REMOVE"
           ]
         },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "A",
-            "CNAME",
-            "TXT",
-            "AAAA",
-            "CAA"
-          ]
-        },
         "relevantState": {
           "items": {
             "enum": [
@@ -123,6 +113,16 @@
               "CERT_STATE"
             ]
           }
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A",
+            "CNAME",
+            "TXT",
+            "AAAA",
+            "CAA"
+          ]
         }
       }
     },
@@ -137,12 +137,12 @@
     },
     "DnsUpdates": {
       "properties": {
-        "discovered": {
+        "desired": {
           "items": {
             "$ref": "DnsRecordSet"
           }
         },
-        "desired": {
+        "discovered": {
           "items": {
             "$ref": "DnsRecordSet"
           }
@@ -165,15 +165,6 @@
     },
     "EnvironmentVariable": {
       "properties": {
-        "availability": {
-          "items": {
-            "enum": [
-              "AVAILABILITY_UNSPECIFIED",
-              "BUILD",
-              "RUNTIME"
-            ]
-          }
-        },
         "origin": {
           "enum": [
             "ORIGIN_UNSPECIFIED",
@@ -182,6 +173,15 @@
             "APPHOSTING_YAML",
             "FIREBASE_SYSTEM"
           ]
+        },
+        "availability": {
+          "items": {
+            "enum": [
+              "AVAILABILITY_UNSPECIFIED",
+              "BUILD",
+              "RUNTIME"
+            ]
+          }
         }
       }
     },
@@ -210,12 +210,12 @@
     },
     "RolloutPolicy": {
       "properties": {
-        "requiredPaths": {
+        "ignoredPaths": {
           "items": {
             "$ref": "Path"
           }
         },
-        "ignoredPaths": {
+        "requiredPaths": {
           "items": {
             "$ref": "Path"
           }

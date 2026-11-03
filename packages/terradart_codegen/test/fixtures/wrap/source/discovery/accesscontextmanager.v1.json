@@ -1,7 +1,7 @@
 {
   "name": "accesscontextmanager",
   "version": "v1",
-  "revision": "20261011",
+  "revision": "20261027",
   "sourceUrl": "https://accesscontextmanager.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessLevel": {
@@ -69,6 +69,11 @@
     },
     "DevicePolicy": {
       "properties": {
+        "osConstraints": {
+          "items": {
+            "$ref": "OsConstraint"
+          }
+        },
         "allowedDeviceManagementLevels": {
           "items": {
             "enum": [
@@ -87,11 +92,6 @@
               "UNENCRYPTED",
               "ENCRYPTED"
             ]
-          }
-        },
-        "osConstraints": {
-          "items": {
-            "$ref": "OsConstraint"
           }
         }
       }
@@ -184,26 +184,26 @@
         "status": {
           "$ref": "ServicePerimeterConfig"
         },
+        "spec": {
+          "$ref": "ServicePerimeterConfig"
+        },
         "perimeterType": {
           "enum": [
             "PERIMETER_TYPE_REGULAR",
             "PERIMETER_TYPE_BRIDGE"
           ]
-        },
-        "spec": {
-          "$ref": "ServicePerimeterConfig"
         }
       }
     },
     "ServicePerimeterConfig": {
       "properties": {
+        "vpcAccessibleServices": {
+          "$ref": "VpcAccessibleServices"
+        },
         "egressPolicies": {
           "items": {
             "$ref": "EgressPolicy"
           }
-        },
-        "vpcAccessibleServices": {
-          "$ref": "VpcAccessibleServices"
         },
         "ingressPolicies": {
           "items": {

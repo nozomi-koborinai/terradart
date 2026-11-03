@@ -111,6 +111,7 @@ paramOrder:
   - release_channel
   - resource_usage_export_config
   - rollback_safe_upgrade
+  - schedule_upgrade_config
   - secret_manager_config
   - secret_sync_config
   - security_posture_config

@@ -30,6 +30,13 @@
     },
     "BootDisk": {
       "properties": {
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
+        },
         "diskType": {
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
@@ -42,13 +49,6 @@
             "HYPERDISK_THROUGHPUT",
             "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
             "HYPERDISK_ML"
-          ]
-        },
-        "diskEncryption": {
-          "enum": [
-            "DISK_ENCRYPTION_UNSPECIFIED",
-            "GMEK",
-            "CMEK"
           ]
         }
       }
@@ -90,34 +90,51 @@
     },
     "GceSetup": {
       "properties": {
-        "bootDisk": {
-          "$ref": "BootDisk"
-        },
         "reservationAffinity": {
           "$ref": "ReservationAffinity"
-        },
-        "dataDisks": {
-          "items": {
-            "$ref": "DataDisk"
-          }
         },
         "acceleratorConfigs": {
           "items": {
             "$ref": "AcceleratorConfig"
           }
         },
-        "networkInterfaces": {
+        "dataDisks": {
           "items": {
-            "$ref": "NetworkInterface"
+            "$ref": "DataDisk"
           }
         },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig"
+        },
+        "bootDisk": {
+          "$ref": "BootDisk"
+        },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
         }
       }
     },
     "Instance": {
       "properties": {
+        "healthState": {
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "AGENT_NOT_INSTALLED",
+            "AGENT_NOT_RUNNING"
+          ]
+        },
+        "upgradeHistory": {
+          "items": {
+            "$ref": "UpgradeHistoryEntry"
+          }
+        },
+        "gceSetup": {
+          "$ref": "GceSetup"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -133,23 +150,6 @@
             "SUSPENDED",
             "ORPHANED"
           ]
-        },
-        "gceSetup": {
-          "$ref": "GceSetup"
-        },
-        "healthState": {
-          "enum": [
-            "HEALTH_STATE_UNSPECIFIED",
-            "HEALTHY",
-            "UNHEALTHY",
-            "AGENT_NOT_INSTALLED",
-            "AGENT_NOT_RUNNING"
-          ]
-        },
-        "upgradeHistory": {
-          "items": {
-            "$ref": "UpgradeHistoryEntry"
-          }
         }
       }
     },

@@ -542,16 +542,85 @@ final class ColabNotebookExecutionGcsNotebookSource {
   };
 }
 
-/// Typed helper for the `workbench_runtime` block of
-/// `google_colab_notebook_execution` (derived from provider schema).
-@immutable
-final class ColabNotebookExecutionWorkbenchRuntime {
-  const ColabNotebookExecutionWorkbenchRuntime({required this.vmImage});
+/// Exactly one of `vm_image`, `custom_container_image` on the `workbench_runtime` block of `google_colab_notebook_execution`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.vmImage(...)`.
+sealed class ColabNotebookExecutionWorkbenchRuntime {
+  const ColabNotebookExecutionWorkbenchRuntime();
+
+  /// Sets `vm_image`.
+  const factory ColabNotebookExecutionWorkbenchRuntime.vmImage(
+    ColabNotebookExecutionVmImage vmImage,
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImage;
+
+  /// Sets `custom_container_image`.
+  const factory ColabNotebookExecutionWorkbenchRuntime.customContainerImage(
+    ColabNotebookExecutionCustomContainerImage customContainerImage,
+  ) = ColabNotebookExecutionWorkbenchRuntimeCustomContainerImage;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [ColabNotebookExecutionWorkbenchRuntime.vmImage] choice: sets `vm_image`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImage
+    extends ColabNotebookExecutionWorkbenchRuntime {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImage(this.vmImage);
 
   final ColabNotebookExecutionVmImage vmImage;
 
   @internal
+  @override
+  String get blockKey => 'vm_image';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
+}
+
+/// The [ColabNotebookExecutionWorkbenchRuntime.customContainerImage] choice: sets `custom_container_image`.
+final class ColabNotebookExecutionWorkbenchRuntimeCustomContainerImage
+    extends ColabNotebookExecutionWorkbenchRuntime {
+  const ColabNotebookExecutionWorkbenchRuntimeCustomContainerImage(
+    this.customContainerImage,
+  );
+
+  final ColabNotebookExecutionCustomContainerImage customContainerImage;
+
+  @internal
+  @override
+  String get blockKey => 'custom_container_image';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'custom_container_image': customContainerImage.encode(),
+  };
+}
+
+/// Typed helper for the `workbench_runtime.custom_container_image` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomContainerImage {
+  const ColabNotebookExecutionCustomContainerImage({
+    required this.repository,
+    this.tag,
+  });
+
+  final TfArg<String> repository;
+
+  final TfArg<String>? tag;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'repository': repository.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+  };
 }
 
 /// Typed helper for the `workbench_runtime.vm_image` block of
@@ -714,6 +783,9 @@ final class GoogleColabNotebookExecution extends Resource {
   /// Reference to `gcs_output_uri` attribute.
   TfRef<String> get gcsOutputUri =>
       TfRef.attribute<String>(this, 'gcs_output_uri');
+
+  /// Reference to `kernel_name` attribute.
+  TfRef<String> get kernelName => TfRef.attribute<String>(this, 'kernel_name');
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');

@@ -32,36 +32,8 @@
     },
     "Instance": {
       "properties": {
-        "pscConfig": {
-          "$ref": "PscConfig"
-        },
-        "classType": {
-          "enum": [
-            "CLASS_TYPE_UNSPECIFIED",
-            "R1",
-            "P1"
-          ]
-        },
-        "softDeleteReason": {
-          "enum": [
-            "SOFT_DELETE_REASON_UNSPECIFIED",
-            "BILLING_ACCOUNT_ISSUE",
-            "TRIAL_EXPIRED",
-            "CUSTOMER_REQUEST"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "FAILED",
-            "SUSPENDED",
-            "UPDATING",
-            "DELETING",
-            "EXPORTING",
-            "IMPORTING"
-          ]
+        "customDomain": {
+          "$ref": "CustomDomain"
         },
         "platformEdition": {
           "enum": [
@@ -79,14 +51,13 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
-        "customDomain": {
-          "$ref": "CustomDomain"
-        },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
+        "softDeleteReason": {
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ]
         },
         "releaseChannel": {
           "enum": [
@@ -95,6 +66,35 @@
             "REGULAR",
             "STABLE"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "EXPORTING",
+            "IMPORTING"
+          ]
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig"
         }
       }
     },

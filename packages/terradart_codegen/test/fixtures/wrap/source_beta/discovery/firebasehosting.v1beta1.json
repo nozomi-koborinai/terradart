@@ -13,6 +13,17 @@
     },
     "Certificate": {
       "properties": {
+        "state": {
+          "enum": [
+            "CERT_STATE_UNSPECIFIED",
+            "CERT_PREPARING",
+            "CERT_VALIDATING",
+            "CERT_PROPAGATING",
+            "CERT_ACTIVE",
+            "CERT_EXPIRING_SOON",
+            "CERT_EXPIRED"
+          ]
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -24,17 +35,6 @@
         },
         "verification": {
           "$ref": "CertVerification"
-        },
-        "state": {
-          "enum": [
-            "CERT_STATE_UNSPECIFIED",
-            "CERT_PREPARING",
-            "CERT_VALIDATING",
-            "CERT_PROPAGATING",
-            "CERT_ACTIVE",
-            "CERT_EXPIRING_SOON",
-            "CERT_EXPIRED"
-          ]
         }
       }
     },
@@ -47,23 +47,6 @@
     },
     "CustomDomain": {
       "properties": {
-        "cert": {
-          "$ref": "Certificate"
-        },
-        "ownershipState": {
-          "enum": [
-            "OWNERSHIP_STATE_UNSPECIFIED",
-            "OWNERSHIP_MISSING",
-            "OWNERSHIP_UNREACHABLE",
-            "OWNERSHIP_MISMATCH",
-            "OWNERSHIP_CONFLICT",
-            "OWNERSHIP_PENDING",
-            "OWNERSHIP_ACTIVE"
-          ]
-        },
-        "requiredDnsUpdates": {
-          "$ref": "DnsUpdates"
-        },
         "hostState": {
           "enum": [
             "HOST_STATE_UNSPECIFIED",
@@ -82,18 +65,28 @@
             "PROJECT_GROUPED",
             "DEDICATED"
           ]
+        },
+        "ownershipState": {
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ]
+        },
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates"
+        },
+        "cert": {
+          "$ref": "Certificate"
         }
       }
     },
     "DnsRecord": {
       "properties": {
-        "requiredAction": {
-          "enum": [
-            "NONE",
-            "ADD",
-            "REMOVE"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -102,6 +95,13 @@
             "TXT",
             "AAAA",
             "CAA"
+          ]
+        },
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
           ]
         }
       }
@@ -117,12 +117,12 @@
     },
     "DnsUpdates": {
       "properties": {
-        "desired": {
+        "discovered": {
           "items": {
             "$ref": "DnsRecordSet"
           }
         },
-        "discovered": {
+        "desired": {
           "items": {
             "$ref": "DnsRecordSet"
           }
@@ -131,9 +131,6 @@
     },
     "Release": {
       "properties": {
-        "version": {
-          "$ref": "Version"
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -141,22 +138,25 @@
             "ROLLBACK",
             "SITE_DISABLE"
           ]
+        },
+        "version": {
+          "$ref": "Version"
         }
       }
     },
     "ServingConfig": {
       "properties": {
-        "appAssociation": {
-          "enum": [
-            "AUTO",
-            "NONE"
-          ]
-        },
         "trailingSlashBehavior": {
           "enum": [
             "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED",
             "ADD",
             "REMOVE"
+          ]
+        },
+        "appAssociation": {
+          "enum": [
+            "AUTO",
+            "NONE"
           ]
         }
       }
@@ -174,9 +174,6 @@
     },
     "Version": {
       "properties": {
-        "config": {
-          "$ref": "ServingConfig"
-        },
         "status": {
           "enum": [
             "VERSION_STATUS_UNSPECIFIED",
@@ -187,6 +184,9 @@
             "EXPIRED",
             "CLONING"
           ]
+        },
+        "config": {
+          "$ref": "ServingConfig"
         }
       }
     }

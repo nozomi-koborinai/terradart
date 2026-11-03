@@ -122,4 +122,8 @@ final class GoogleNetworkSecuritySecurityProfileGroup extends Resource {
   /// Reference to `url_filtering_profile` attribute.
   TfRef<String> get urlFilteringProfile =>
       TfRef.attribute<String>(this, 'url_filtering_profile');
+
+  /// Reference to `wildfire_analysis_profile` attribute.
+  TfRef<String> get wildfireAnalysisProfile =>
+      TfRef.attribute<String>(this, 'wildfire_analysis_profile');
 }

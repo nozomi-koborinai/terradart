@@ -64,6 +64,8 @@ final class OracleDatabaseCloudVmClusterProperties {
     this.memorySizeGb,
     this.nodeCount,
     this.ocpuCount,
+    this.scanListenerPortTcp,
+    this.scanListenerPortTcpSsl,
     this.sparseDiskgroupEnabled,
     this.sshPublicKeys,
     this.vmBackupStorageType,
@@ -98,6 +100,10 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<num>? ocpuCount;
 
+  final TfArg<num>? scanListenerPortTcp;
+
+  final TfArg<num>? scanListenerPortTcpSsl;
+
   final TfArg<bool>? sparseDiskgroupEnabled;
 
   final TfArg<List<String>>? sshPublicKeys;
@@ -127,6 +133,8 @@ final class OracleDatabaseCloudVmClusterProperties {
     'memory_size_gb': ?memorySizeGb?.toTfJson(),
     'node_count': ?nodeCount?.toTfJson(),
     'ocpu_count': ?ocpuCount?.toTfJson(),
+    'scan_listener_port_tcp': ?scanListenerPortTcp?.toTfJson(),
+    'scan_listener_port_tcp_ssl': ?scanListenerPortTcpSsl?.toTfJson(),
     'sparse_diskgroup_enabled': ?sparseDiskgroupEnabled?.toTfJson(),
     'ssh_public_keys': ?sshPublicKeys?.toTfJson(),
     'vm_backup_storage_type': ?vmBackupStorageType?.toTfJson(),

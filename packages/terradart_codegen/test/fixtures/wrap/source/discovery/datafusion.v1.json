@@ -6,14 +6,6 @@
   "schemas": {
     "Accelerator": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED",
-            "UNKNOWN"
-          ]
-        },
         "acceleratorType": {
           "enum": [
             "ACCELERATOR_TYPE_UNSPECIFIED",
@@ -22,11 +14,32 @@
             "CCAI_INSIGHTS",
             "CLOUDSEARCH"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "UNKNOWN"
+          ]
         }
       }
     },
     "Instance": {
       "properties": {
+        "networkConfig": {
+          "$ref": "NetworkConfig"
+        },
+        "maintenanceEvents": {
+          "items": {
+            "$ref": "MaintenanceEvent"
+          }
+        },
+        "availableVersion": {
+          "items": {
+            "$ref": "Version"
+          }
+        },
         "disabledReason": {
           "items": {
             "enum": [
@@ -36,6 +49,11 @@
             ]
           }
         },
+        "accelerators": {
+          "items": {
+            "$ref": "Accelerator"
+          }
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -43,14 +61,6 @@
             "ENTERPRISE",
             "DEVELOPER"
           ]
-        },
-        "maintenanceEvents": {
-          "items": {
-            "$ref": "MaintenanceEvent"
-          }
-        },
-        "networkConfig": {
-          "$ref": "NetworkConfig"
         },
         "state": {
           "enum": [
@@ -67,16 +77,6 @@
             "DISABLED",
             "ENABLING"
           ]
-        },
-        "accelerators": {
-          "items": {
-            "$ref": "Accelerator"
-          }
-        },
-        "availableVersion": {
-          "items": {
-            "$ref": "Version"
-          }
         }
       }
     },

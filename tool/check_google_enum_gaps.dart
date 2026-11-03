@@ -731,6 +731,7 @@ void main(List<String> args) {
   final frozenByExcludeGaps = <String>[];
   final cueInputs = <String>{};
   final checkedTypes = <String>{};
+  final overrideTypes = <String>{};
 
   for (final ent in _overrideDir.listSync().whereType<File>()) {
     if (!ent.path.endsWith('.yaml')) continue;
@@ -745,6 +746,7 @@ void main(List<String> args) {
     final schema = target.schema;
     if (schema == null) continue;
     final tfType = target.terraformType;
+    overrideTypes.add(tfType);
 
     final genTextRaw = _generatedSource(tfType, ov);
     final fileText = genTextRaw == null
@@ -881,7 +883,14 @@ void main(List<String> args) {
     ...nestedThinAdvisory.map(keyOf),
     ...frozenByExcludeGaps.map(keyOf),
   };
-  final staleDebt = debt.keys.where((k) => !allGapKeys.contains(k)).toList();
+  // As for the prose ledger, a line can only be judged against a wrapper the
+  // run read (`--generated-root` may hold a subset).
+  final staleDebt = debt.keys.where((k) {
+    final type = k.split('.').first;
+    return checkedTypes.contains(type)
+        ? !allGapKeys.contains(k)
+        : !overrideTypes.contains(type);
+  }).toList();
   if (staleDebt.isNotEmpty) {
     print(
       'check_google_enum_gaps: stale tool/enum_gap_debt.yaml entries '

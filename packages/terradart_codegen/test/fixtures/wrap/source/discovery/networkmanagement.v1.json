@@ -62,20 +62,20 @@
     },
     "ConnectivityTest": {
       "properties": {
-        "source": {
-          "$ref": "Endpoint"
-        },
-        "destination": {
-          "$ref": "Endpoint"
-        },
-        "returnReachabilityDetails": {
-          "$ref": "ReachabilityDetails"
+        "probingDetails": {
+          "$ref": "ProbingDetails"
         },
         "reachabilityDetails": {
           "$ref": "ReachabilityDetails"
         },
-        "probingDetails": {
-          "$ref": "ProbingDetails"
+        "destination": {
+          "$ref": "Endpoint"
+        },
+        "source": {
+          "$ref": "Endpoint"
+        },
+        "returnReachabilityDetails": {
+          "$ref": "ReachabilityDetails"
         }
       }
     },
@@ -277,13 +277,6 @@
     },
     "FirewallInfo": {
       "properties": {
-        "targetType": {
-          "enum": [
-            "TARGET_TYPE_UNSPECIFIED",
-            "INSTANCES",
-            "INTERNAL_MANAGED_LB"
-          ]
-        },
         "firewallRuleType": {
           "enum": [
             "FIREWALL_RULE_TYPE_UNSPECIFIED",
@@ -298,6 +291,13 @@
             "UNSUPPORTED_FIREWALL_POLICY_RULE",
             "TRACKING_STATE",
             "ANALYSIS_SKIPPED"
+          ]
+        },
+        "targetType": {
+          "enum": [
+            "TARGET_TYPE_UNSPECIFIED",
+            "INSTANCES",
+            "INTERNAL_MANAGED_LB"
           ]
         }
       }
@@ -435,6 +435,14 @@
             "$ref": "LoadBalancerBackend"
           }
         },
+        "backendType": {
+          "enum": [
+            "BACKEND_TYPE_UNSPECIFIED",
+            "BACKEND_SERVICE",
+            "TARGET_POOL",
+            "TARGET_INSTANCE"
+          ]
+        },
         "loadBalancerType": {
           "enum": [
             "LOAD_BALANCER_TYPE_UNSPECIFIED",
@@ -444,29 +452,11 @@
             "TCP_PROXY",
             "SSL_PROXY"
           ]
-        },
-        "backendType": {
-          "enum": [
-            "BACKEND_TYPE_UNSPECIFIED",
-            "BACKEND_SERVICE",
-            "TARGET_POOL",
-            "TARGET_INSTANCE"
-          ]
         }
       }
     },
     "NatInfo": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "INTERNAL_TO_EXTERNAL",
-            "EXTERNAL_TO_INTERNAL",
-            "CLOUD_NAT",
-            "PRIVATE_SERVICE_CONNECT",
-            "GKE_POD_IP_MASQUERADING"
-          ]
-        },
         "cloudNatGatewayType": {
           "enum": [
             "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
@@ -475,6 +465,16 @@
             "PRIVATE_NAT_NCC",
             "PRIVATE_NAT_HYBRID",
             "PRIVATE_NAT64"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTERNAL_TO_EXTERNAL",
+            "EXTERNAL_TO_INTERNAL",
+            "CLOUD_NAT",
+            "PRIVATE_SERVICE_CONNECT",
+            "GKE_POD_IP_MASQUERADING"
           ]
         }
       }
@@ -502,13 +502,6 @@
     },
     "ProbingDetails": {
       "properties": {
-        "abortCause": {
-          "enum": [
-            "PROBING_ABORT_CAUSE_UNSPECIFIED",
-            "PERMISSION_DENIED",
-            "NO_SOURCE_LOCATION"
-          ]
-        },
         "edgeResponses": {
           "items": {
             "$ref": "SingleEdgeResponse"
@@ -521,6 +514,13 @@
             "UNREACHABLE",
             "REACHABILITY_INCONSISTENT",
             "UNDETERMINED"
+          ]
+        },
+        "abortCause": {
+          "enum": [
+            "PROBING_ABORT_CAUSE_UNSPECIFIED",
+            "PERMISSION_DENIED",
+            "NO_SOURCE_LOCATION"
           ]
         }
       }
@@ -545,6 +545,19 @@
     },
     "RouteInfo": {
       "properties": {
+        "routeType": {
+          "enum": [
+            "ROUTE_TYPE_UNSPECIFIED",
+            "SUBNET",
+            "STATIC",
+            "DYNAMIC",
+            "PEERING_SUBNET",
+            "PEERING_STATIC",
+            "PEERING_DYNAMIC",
+            "POLICY_BASED",
+            "ADVERTISED"
+          ]
+        },
         "nextHopType": {
           "enum": [
             "NEXT_HOP_TYPE_UNSPECIFIED",
@@ -569,19 +582,6 @@
             "NETWORK",
             "NCC_HUB"
           ]
-        },
-        "routeType": {
-          "enum": [
-            "ROUTE_TYPE_UNSPECIFIED",
-            "SUBNET",
-            "STATIC",
-            "DYNAMIC",
-            "PEERING_SUBNET",
-            "PEERING_STATIC",
-            "PEERING_DYNAMIC",
-            "POLICY_BASED",
-            "ADVERTISED"
-          ]
         }
       }
     },
@@ -600,20 +600,11 @@
     },
     "Step": {
       "properties": {
-        "ipMasqueradingSkipped": {
-          "$ref": "IpMasqueradingSkippedInfo"
-        },
         "vpnTunnel": {
           "$ref": "VpnTunnelInfo"
         },
-        "forward": {
-          "$ref": "ForwardInfo"
-        },
-        "gkeNetworkPolicySkipped": {
-          "$ref": "GkeNetworkPolicySkippedInfo"
-        },
-        "nat": {
-          "$ref": "NatInfo"
+        "googleService": {
+          "$ref": "GoogleServiceInfo"
         },
         "state": {
           "enum": [
@@ -668,41 +659,50 @@
             "VIEWER_PERMISSION_MISSING"
           ]
         },
-        "loadBalancer": {
-          "$ref": "LoadBalancerInfo"
-        },
         "loadBalancerBackendInfo": {
           "$ref": "LoadBalancerBackendInfo"
         },
-        "forwardingRule": {
-          "$ref": "ForwardingRuleInfo"
-        },
-        "viewerPermissionMissingInfo": {
-          "$ref": "ViewerPermissionMissingInfo"
-        },
-        "deliver": {
-          "$ref": "DeliverInfo"
-        },
-        "interconnectAttachment": {
-          "$ref": "InterconnectAttachmentInfo"
-        },
-        "instance": {
-          "$ref": "InstanceInfo"
-        },
-        "abort": {
-          "$ref": "AbortInfo"
-        },
-        "drop": {
-          "$ref": "DropInfo"
-        },
-        "googleService": {
-          "$ref": "GoogleServiceInfo"
+        "loadBalancer": {
+          "$ref": "LoadBalancerInfo"
         },
         "firewall": {
           "$ref": "FirewallInfo"
         },
         "route": {
           "$ref": "RouteInfo"
+        },
+        "deliver": {
+          "$ref": "DeliverInfo"
+        },
+        "abort": {
+          "$ref": "AbortInfo"
+        },
+        "forwardingRule": {
+          "$ref": "ForwardingRuleInfo"
+        },
+        "ipMasqueradingSkipped": {
+          "$ref": "IpMasqueradingSkippedInfo"
+        },
+        "viewerPermissionMissingInfo": {
+          "$ref": "ViewerPermissionMissingInfo"
+        },
+        "nat": {
+          "$ref": "NatInfo"
+        },
+        "instance": {
+          "$ref": "InstanceInfo"
+        },
+        "gkeNetworkPolicySkipped": {
+          "$ref": "GkeNetworkPolicySkippedInfo"
+        },
+        "drop": {
+          "$ref": "DropInfo"
+        },
+        "forward": {
+          "$ref": "ForwardInfo"
+        },
+        "interconnectAttachment": {
+          "$ref": "InterconnectAttachmentInfo"
         }
       }
     },
@@ -739,18 +739,18 @@
             "CUSTOM_METADATA"
           ]
         },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "crossProjectMetadata": {
           "enum": [
             "CROSS_PROJECT_METADATA_UNSPECIFIED",
             "CROSS_PROJECT_METADATA_ENABLED",
             "CROSS_PROJECT_METADATA_DISABLED"
-          ]
-        },
-        "connectionLogging": {
-          "enum": [
-            "CONNECTION_LOGGING_UNSPECIFIED",
-            "CONNECTION_LOGGING_ENABLED",
-            "CONNECTION_LOGGING_DISABLED"
           ]
         },
         "targetResourceState": {
@@ -760,11 +760,11 @@
             "TARGET_RESOURCE_DOES_NOT_EXIST"
           ]
         },
-        "state": {
+        "connectionLogging": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
+            "CONNECTION_LOGGING_UNSPECIFIED",
+            "CONNECTION_LOGGING_ENABLED",
+            "CONNECTION_LOGGING_DISABLED"
           ]
         },
         "aggregationInterval": {

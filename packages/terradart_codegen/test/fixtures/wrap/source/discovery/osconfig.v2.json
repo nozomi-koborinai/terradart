@@ -37,11 +37,11 @@
     },
     "GoogleCloudOsconfigV2__PolicyOrchestrator": {
       "properties": {
-        "orchestratedResource": {
-          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource"
-        },
         "orchestrationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState"
+        },
+        "orchestratedResource": {
+          "$ref": "GoogleCloudOsconfigV2__OrchestratedResource"
         }
       }
     },
@@ -63,6 +63,11 @@
     },
     "OSPolicyAssignment": {
       "properties": {
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
+        },
         "rolloutState": {
           "enum": [
             "ROLLOUT_STATE_UNSPECIFIED",
@@ -71,11 +76,6 @@
             "CANCELLED",
             "SUCCEEDED"
           ]
-        },
-        "osPolicies": {
-          "items": {
-            "$ref": "OSPolicy"
-          }
         }
       }
     },
@@ -84,11 +84,11 @@
         "pkg": {
           "$ref": "OSPolicyResourcePackageResource"
         },
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
-        },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
         },
         "exec": {
           "$ref": "OSPolicyResourceExecResource"

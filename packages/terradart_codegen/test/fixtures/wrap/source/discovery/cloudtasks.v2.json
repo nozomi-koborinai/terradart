@@ -6,9 +6,6 @@
   "schemas": {
     "HttpTarget": {
       "properties": {
-        "uriOverride": {
-          "$ref": "UriOverride"
-        },
         "httpMethod": {
           "enum": [
             "HTTP_METHOD_UNSPECIFIED",
@@ -20,14 +17,14 @@
             "PATCH",
             "OPTIONS"
           ]
+        },
+        "uriOverride": {
+          "$ref": "UriOverride"
         }
       }
     },
     "Queue": {
       "properties": {
-        "httpTarget": {
-          "$ref": "HttpTarget"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -35,23 +32,26 @@
             "PAUSED",
             "DISABLED"
           ]
+        },
+        "httpTarget": {
+          "$ref": "HttpTarget"
         }
       }
     },
     "UriOverride": {
       "properties": {
-        "scheme": {
-          "enum": [
-            "SCHEME_UNSPECIFIED",
-            "HTTP",
-            "HTTPS"
-          ]
-        },
         "uriOverrideEnforceMode": {
           "enum": [
             "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED",
             "IF_NOT_EXISTS",
             "ALWAYS"
+          ]
+        },
+        "scheme": {
+          "enum": [
+            "SCHEME_UNSPECIFIED",
+            "HTTP",
+            "HTTPS"
           ]
         }
       }

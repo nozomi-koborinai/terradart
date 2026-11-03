@@ -6,29 +6,12 @@
   "schemas": {
     "CloudFunction": {
       "properties": {
-        "httpsTrigger": {
-          "$ref": "HttpsTrigger"
-        },
-        "dockerRegistry": {
-          "enum": [
-            "DOCKER_REGISTRY_UNSPECIFIED",
-            "CONTAINER_REGISTRY",
-            "ARTIFACT_REGISTRY"
-          ]
-        },
         "ingressSettings": {
           "enum": [
             "INGRESS_SETTINGS_UNSPECIFIED",
             "ALLOW_ALL",
             "ALLOW_INTERNAL_ONLY",
             "ALLOW_INTERNAL_AND_GCLB"
-          ]
-        },
-        "vpcConnectorEgressSettings": {
-          "enum": [
-            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
-            "PRIVATE_RANGES_ONLY",
-            "ALL_TRAFFIC"
           ]
         },
         "status": {
@@ -39,6 +22,23 @@
             "DEPLOY_IN_PROGRESS",
             "DELETE_IN_PROGRESS",
             "UNKNOWN"
+          ]
+        },
+        "httpsTrigger": {
+          "$ref": "HttpsTrigger"
+        },
+        "dockerRegistry": {
+          "enum": [
+            "DOCKER_REGISTRY_UNSPECIFIED",
+            "CONTAINER_REGISTRY",
+            "ARTIFACT_REGISTRY"
+          ]
+        },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
           ]
         }
       }

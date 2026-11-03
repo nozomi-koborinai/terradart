@@ -44,6 +44,15 @@
     },
     "Instance": {
       "properties": {
+        "dynamicTierOptions": {
+          "$ref": "DynamicTierOptions"
+        },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        },
+        "accessRulesOptions": {
+          "$ref": "AccessRulesOptions"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -56,15 +65,6 @@
             "UPDATING",
             "SUSPENDED"
           ]
-        },
-        "maintenancePolicy": {
-          "$ref": "MaintenancePolicy"
-        },
-        "dynamicTierOptions": {
-          "$ref": "DynamicTierOptions"
-        },
-        "accessRulesOptions": {
-          "$ref": "AccessRulesOptions"
         }
       }
     },

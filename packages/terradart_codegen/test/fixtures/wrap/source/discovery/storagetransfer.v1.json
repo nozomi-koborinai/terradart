@@ -13,16 +13,6 @@
     },
     "LoggingConfig": {
       "properties": {
-        "logActionStates": {
-          "items": {
-            "enum": [
-              "LOGGABLE_ACTION_STATE_UNSPECIFIED",
-              "SUCCEEDED",
-              "FAILED",
-              "SKIPPED"
-            ]
-          }
-        },
         "logActions": {
           "items": {
             "enum": [
@@ -32,11 +22,56 @@
               "COPY"
             ]
           }
+        },
+        "logActionStates": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_STATE_UNSPECIFIED",
+              "SUCCEEDED",
+              "FAILED",
+              "SKIPPED"
+            ]
+          }
         }
       }
     },
     "MetadataOptions": {
       "properties": {
+        "kmsKey": {
+          "enum": [
+            "KMS_KEY_UNSPECIFIED",
+            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+            "KMS_KEY_PRESERVE"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "MODE_SKIP",
+            "MODE_PRESERVE"
+          ]
+        },
+        "acl": {
+          "enum": [
+            "ACL_UNSPECIFIED",
+            "ACL_DESTINATION_BUCKET_DEFAULT",
+            "ACL_PRESERVE"
+          ]
+        },
+        "timeCreated": {
+          "enum": [
+            "TIME_CREATED_UNSPECIFIED",
+            "TIME_CREATED_SKIP",
+            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
+          ]
+        },
+        "symlink": {
+          "enum": [
+            "SYMLINK_UNSPECIFIED",
+            "SYMLINK_SKIP",
+            "SYMLINK_PRESERVE"
+          ]
+        },
         "gid": {
           "enum": [
             "GID_UNSPECIFIED",
@@ -49,34 +84,6 @@
             "UID_UNSPECIFIED",
             "UID_SKIP",
             "UID_NUMBER"
-          ]
-        },
-        "timeCreated": {
-          "enum": [
-            "TIME_CREATED_UNSPECIFIED",
-            "TIME_CREATED_SKIP",
-            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
-          ]
-        },
-        "kmsKey": {
-          "enum": [
-            "KMS_KEY_UNSPECIFIED",
-            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
-            "KMS_KEY_PRESERVE"
-          ]
-        },
-        "symlink": {
-          "enum": [
-            "SYMLINK_UNSPECIFIED",
-            "SYMLINK_SKIP",
-            "SYMLINK_PRESERVE"
-          ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "MODE_SKIP",
-            "MODE_PRESERVE"
           ]
         },
         "storageClass": {
@@ -95,13 +102,6 @@
             "TEMPORARY_HOLD_UNSPECIFIED",
             "TEMPORARY_HOLD_SKIP",
             "TEMPORARY_HOLD_PRESERVE"
-          ]
-        },
-        "acl": {
-          "enum": [
-            "ACL_UNSPECIFIED",
-            "ACL_DESTINATION_BUCKET_DEFAULT",
-            "ACL_PRESERVE"
           ]
         }
       }
@@ -136,18 +136,18 @@
     },
     "S3CompatibleMetadata": {
       "properties": {
-        "requestModel": {
-          "enum": [
-            "REQUEST_MODEL_UNSPECIFIED",
-            "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
-            "REQUEST_MODEL_PATH_STYLE"
-          ]
-        },
         "authMethod": {
           "enum": [
             "AUTH_METHOD_UNSPECIFIED",
             "AUTH_METHOD_AWS_SIGNATURE_V4",
             "AUTH_METHOD_AWS_SIGNATURE_V2"
+          ]
+        },
+        "protocol": {
+          "enum": [
+            "NETWORK_PROTOCOL_UNSPECIFIED",
+            "NETWORK_PROTOCOL_HTTPS",
+            "NETWORK_PROTOCOL_HTTP"
           ]
         },
         "listApi": {
@@ -157,22 +157,19 @@
             "LIST_OBJECTS"
           ]
         },
-        "protocol": {
+        "requestModel": {
           "enum": [
-            "NETWORK_PROTOCOL_UNSPECIFIED",
-            "NETWORK_PROTOCOL_HTTPS",
-            "NETWORK_PROTOCOL_HTTP"
+            "REQUEST_MODEL_UNSPECIFIED",
+            "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
+            "REQUEST_MODEL_PATH_STYLE"
           ]
         }
       }
     },
     "TransferJob": {
       "properties": {
-        "notificationConfig": {
-          "$ref": "NotificationConfig"
-        },
-        "loggingConfig": {
-          "$ref": "LoggingConfig"
+        "replicationSpec": {
+          "$ref": "ReplicationSpec"
         },
         "status": {
           "enum": [
@@ -182,11 +179,14 @@
             "DELETED"
           ]
         },
+        "notificationConfig": {
+          "$ref": "NotificationConfig"
+        },
         "transferSpec": {
           "$ref": "TransferSpec"
         },
-        "replicationSpec": {
-          "$ref": "ReplicationSpec"
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
         }
       }
     },
@@ -207,11 +207,11 @@
     },
     "TransferSpec": {
       "properties": {
-        "transferOptions": {
-          "$ref": "TransferOptions"
-        },
         "awsS3CompatibleDataSource": {
           "$ref": "AwsS3CompatibleData"
+        },
+        "transferOptions": {
+          "$ref": "TransferOptions"
         }
       }
     }

@@ -73,12 +73,8 @@
             "FAILED"
           ]
         },
-        "optimization": {
-          "enum": [
-            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "AUTODETECT",
-            "DISABLED"
-          ]
+        "config": {
+          "$ref": "JobConfig"
         },
         "mode": {
           "enum": [
@@ -87,18 +83,17 @@
             "PROCESSING_MODE_BATCH"
           ]
         },
-        "config": {
-          "$ref": "JobConfig"
+        "optimization": {
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "AUTODETECT",
+            "DISABLED"
+          ]
         }
       }
     },
     "JobConfig": {
       "properties": {
-        "manifests": {
-          "items": {
-            "$ref": "Manifest"
-          }
-        },
         "elementaryStreams": {
           "items": {
             "$ref": "ElementaryStream"
@@ -107,6 +102,11 @@
         "overlays": {
           "items": {
             "$ref": "Overlay"
+          }
+        },
+        "manifests": {
+          "items": {
+            "$ref": "Manifest"
           }
         }
       }

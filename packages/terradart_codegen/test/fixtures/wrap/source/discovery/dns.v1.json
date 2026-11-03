@@ -6,12 +6,6 @@
   "schemas": {
     "DnsKeySpec": {
       "properties": {
-        "keyType": {
-          "enum": [
-            "keySigning",
-            "zoneSigning"
-          ]
-        },
         "algorithm": {
           "enum": [
             "rsasha1",
@@ -20,22 +14,28 @@
             "ecdsap256sha256",
             "ecdsap384sha384"
           ]
+        },
+        "keyType": {
+          "enum": [
+            "keySigning",
+            "zoneSigning"
+          ]
         }
       }
     },
     "ManagedZone": {
       "properties": {
-        "forwardingConfig": {
-          "$ref": "ManagedZoneForwardingConfig"
-        },
-        "dnssecConfig": {
-          "$ref": "ManagedZoneDnsSecConfig"
-        },
         "visibility": {
           "enum": [
             "public",
             "private"
           ]
+        },
+        "dnssecConfig": {
+          "$ref": "ManagedZoneDnsSecConfig"
+        },
+        "forwardingConfig": {
+          "$ref": "ManagedZoneForwardingConfig"
         }
       }
     },
@@ -48,16 +48,16 @@
             "transfer"
           ]
         },
-        "defaultKeySpecs": {
-          "items": {
-            "$ref": "DnsKeySpec"
-          }
-        },
         "nonExistence": {
           "enum": [
             "nsec",
             "nsec3"
           ]
+        },
+        "defaultKeySpecs": {
+          "items": {
+            "$ref": "DnsKeySpec"
+          }
         }
       }
     },
@@ -168,11 +168,11 @@
     },
     "RRSetRoutingPolicyPrimaryBackupPolicy": {
       "properties": {
-        "backupGeoTargets": {
-          "$ref": "RRSetRoutingPolicyGeoPolicy"
-        },
         "primaryTargets": {
           "$ref": "RRSetRoutingPolicyHealthCheckTargets"
+        },
+        "backupGeoTargets": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
         }
       }
     },

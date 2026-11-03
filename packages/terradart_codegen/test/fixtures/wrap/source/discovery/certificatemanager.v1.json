@@ -6,9 +6,6 @@
   "schemas": {
     "AuthorizationAttemptInfo": {
       "properties": {
-        "troubleshooting": {
-          "$ref": "Troubleshooting"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -16,6 +13,9 @@
             "AUTHORIZED",
             "FAILED"
           ]
+        },
+        "troubleshooting": {
+          "$ref": "Troubleshooting"
         },
         "failureReason": {
           "enum": [
@@ -29,6 +29,9 @@
     },
     "Certificate": {
       "properties": {
+        "managed": {
+          "$ref": "ManagedCertificate"
+        },
         "scope": {
           "enum": [
             "DEFAULT",
@@ -39,9 +42,6 @@
         },
         "managedIdentity": {
           "$ref": "ManagedIdentityCertificate"
-        },
-        "managed": {
-          "$ref": "ManagedCertificate"
         }
       }
     },
@@ -109,6 +109,9 @@
     },
     "ManagedIdentityCertificate": {
       "properties": {
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -116,9 +119,6 @@
             "FAILED",
             "ACTIVE"
           ]
-        },
-        "provisioningIssue": {
-          "$ref": "ProvisioningIssue"
         }
       }
     },

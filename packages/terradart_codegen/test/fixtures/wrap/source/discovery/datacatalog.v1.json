@@ -42,10 +42,8 @@
     },
     "GoogleCloudDatacatalogV1ColumnSchema": {
       "properties": {
-        "subcolumns": {
-          "items": {
-            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
-          }
+        "lookerColumnSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
         },
         "highestIndexingType": {
           "enum": [
@@ -56,8 +54,10 @@
             "INDEXING_TYPE_PRIMARY_KEY"
           ]
         },
-        "lookerColumnSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
+        "subcolumns": {
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
+          }
         }
       }
     },
@@ -95,18 +95,18 @@
     },
     "GoogleCloudDatacatalogV1DatabaseTableSpec": {
       "properties": {
+        "dataplexTable": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
+        },
+        "databaseViewSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
+        },
         "type": {
           "enum": [
             "TABLE_TYPE_UNSPECIFIED",
             "NATIVE",
             "EXTERNAL"
           ]
-        },
-        "dataplexTable": {
-          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
-        },
-        "databaseViewSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
         }
       }
     },
@@ -157,40 +157,23 @@
     },
     "GoogleCloudDatacatalogV1Entry": {
       "properties": {
-        "datasetSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
-        },
-        "featureOnlineStoreSpec": {
-          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
-        },
-        "schema": {
-          "$ref": "GoogleCloudDatacatalogV1Schema"
+        "dataSourceConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
         },
         "dataSource": {
           "$ref": "GoogleCloudDatacatalogV1DataSource"
         },
+        "routineSpec": {
+          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
+        },
         "databaseTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
         },
-        "modelSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
+        "datasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
         },
-        "dataSourceConnectionSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
-        },
-        "integratedSystem": {
-          "enum": [
-            "INTEGRATED_SYSTEM_UNSPECIFIED",
-            "BIGQUERY",
-            "CLOUD_PUBSUB",
-            "DATAPROC_METASTORE",
-            "DATAPLEX",
-            "CLOUD_SPANNER",
-            "CLOUD_BIGTABLE",
-            "CLOUD_SQL",
-            "LOOKER",
-            "VERTEX_AI"
-          ]
+        "graphSpec": {
+          "$ref": "GoogleCloudDatacatalogV1GraphSpec"
         },
         "type": {
           "enum": [
@@ -218,14 +201,31 @@
             "EDGE"
           ]
         },
+        "modelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
+        },
         "bigqueryTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec"
         },
-        "graphSpec": {
-          "$ref": "GoogleCloudDatacatalogV1GraphSpec"
+        "schema": {
+          "$ref": "GoogleCloudDatacatalogV1Schema"
         },
-        "routineSpec": {
-          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
+        "featureOnlineStoreSpec": {
+          "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
+        },
+        "integratedSystem": {
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
+            "CLOUD_SQL",
+            "LOOKER",
+            "VERTEX_AI"
+          ]
         }
       }
     },
@@ -349,17 +349,17 @@
     },
     "GoogleCloudDatacatalogV1TagTemplate": {
       "properties": {
-        "fields": {
-          "additionalProperties": {
-            "$ref": "GoogleCloudDatacatalogV1TagTemplateField"
-          }
-        },
         "dataplexTransferStatus": {
           "enum": [
             "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
             "MIGRATED",
             "TRANSFERRED"
           ]
+        },
+        "fields": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDatacatalogV1TagTemplateField"
+          }
         }
       }
     },

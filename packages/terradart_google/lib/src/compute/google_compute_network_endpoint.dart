@@ -47,7 +47,7 @@ final class GoogleComputeNetworkEndpoint extends Resource {
   GoogleComputeNetworkEndpoint(
     super.localName, {
     required RefTo<GoogleComputeNetworkEndpointGroup> networkEndpointGroup,
-    required TfArg<String> ipAddress,
+    TfArg<String>? ipAddress,
     TfArg<num>? port,
     RefTo<GoogleComputeInstance>? instance,
     TfArg<String>? zone,
@@ -60,7 +60,7 @@ final class GoogleComputeNetworkEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'network_endpoint_group': networkEndpointGroup.encodeAs('name'),
-           'ip_address': ipAddress,
+           'ip_address': ?ipAddress,
            'port': ?port,
            'instance': ?instance?.encodeAs('name'),
            'zone': ?zone,
@@ -87,6 +87,10 @@ final class GoogleComputeNetworkEndpoint extends Resource {
 
   /// Reference to `ip_address` attribute.
   TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
+
+  /// Reference to `ipv6_address` attribute.
+  TfRef<String> get ipv6Address =>
+      TfRef.attribute<String>(this, 'ipv6_address');
 
   /// Reference to `network_endpoint_group` attribute.
   TfRef<String> get networkEndpointGroup =>

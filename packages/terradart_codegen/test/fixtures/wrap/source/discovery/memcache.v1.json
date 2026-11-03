@@ -1,7 +1,7 @@
 {
   "name": "memcache",
   "version": "v1",
-  "revision": "20261008",
+  "revision": "20261027",
   "sourceUrl": "https://memcache.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudMemcacheV1MaintenancePolicy": {
@@ -15,6 +15,13 @@
     },
     "Instance": {
       "properties": {
+        "memcacheVersion": {
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -26,11 +33,6 @@
             "MEMCACHE_VERSION_UPGRADING"
           ]
         },
-        "memcacheNodes": {
-          "items": {
-            "$ref": "Node"
-          }
-        },
         "instanceMessages": {
           "items": {
             "$ref": "InstanceMessage"
@@ -39,12 +41,10 @@
         "maintenancePolicy": {
           "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
         },
-        "memcacheVersion": {
-          "enum": [
-            "MEMCACHE_VERSION_UNSPECIFIED",
-            "MEMCACHE_1_5",
-            "MEMCACHE_1_6_15"
-          ]
+        "memcacheNodes": {
+          "items": {
+            "$ref": "Node"
+          }
         }
       }
     },

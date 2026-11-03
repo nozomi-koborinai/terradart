@@ -13,15 +13,15 @@
     },
     "CleanupPolicy": {
       "properties": {
-        "condition": {
-          "$ref": "CleanupPolicyCondition"
-        },
         "action": {
           "enum": [
             "ACTION_UNSPECIFIED",
             "DELETE",
             "KEEP"
           ]
+        },
+        "condition": {
+          "$ref": "CleanupPolicyCondition"
         }
       }
     },
@@ -124,6 +124,13 @@
     },
     "PlatformLogsConfig": {
       "properties": {
+        "loggingState": {
+          "enum": [
+            "LOGGING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "severityLevel": {
           "enum": [
             "SEVERITY_LEVEL_UNSPECIFIED",
@@ -135,13 +142,6 @@
             "CRITICAL",
             "ALERT",
             "EMERGENCY"
-          ]
-        },
-        "loggingState": {
-          "enum": [
-            "LOGGING_STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
           ]
         }
       }
@@ -165,8 +165,8 @@
     },
     "RemoteRepositoryConfig": {
       "properties": {
-        "dockerRepository": {
-          "$ref": "DockerRepository"
+        "pythonRepository": {
+          "$ref": "PythonRepository"
         },
         "aptRepository": {
           "$ref": "AptRepository"
@@ -177,11 +177,11 @@
         "mavenRepository": {
           "$ref": "MavenRepository"
         },
-        "pythonRepository": {
-          "$ref": "PythonRepository"
-        },
         "npmRepository": {
           "$ref": "NpmRepository"
+        },
+        "dockerRepository": {
+          "$ref": "DockerRepository"
         }
       }
     },
@@ -197,8 +197,19 @@
             "ASSURED_OSS_REPOSITORY"
           ]
         },
-        "platformLogsConfig": {
-          "$ref": "PlatformLogsConfig"
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
+        },
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
+        },
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig"
+        },
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
         },
         "format": {
           "enum": [
@@ -217,37 +228,26 @@
             "CONDA"
           ]
         },
-        "remoteRepositoryConfig": {
-          "$ref": "RemoteRepositoryConfig"
-        },
-        "mavenConfig": {
-          "$ref": "MavenRepositoryConfig"
-        },
-        "cleanupPolicies": {
-          "additionalProperties": {
-            "$ref": "CleanupPolicy"
-          }
-        },
-        "vulnerabilityScanningConfig": {
-          "$ref": "VulnerabilityScanningConfig"
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
         }
       }
     },
     "VulnerabilityScanningConfig": {
       "properties": {
+        "enablementConfig": {
+          "enum": [
+            "ENABLEMENT_CONFIG_UNSPECIFIED",
+            "INHERITED",
+            "DISABLED"
+          ]
+        },
         "enablementState": {
           "enum": [
             "ENABLEMENT_STATE_UNSPECIFIED",
             "SCANNING_UNSUPPORTED",
             "SCANNING_DISABLED",
             "SCANNING_ACTIVE"
-          ]
-        },
-        "enablementConfig": {
-          "enum": [
-            "ENABLEMENT_CONFIG_UNSPECIFIED",
-            "INHERITED",
-            "DISABLED"
           ]
         }
       }

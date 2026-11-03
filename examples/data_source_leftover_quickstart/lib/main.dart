@@ -77,6 +77,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleAgentIdentityAuthProviderIamPolicy(
+        'agent_identity_auth_provider_iam_policy',
+        authProviderId: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleAgentRegistryAgent(
         'agent_registry_agent',
         location: TfArg.literal(leftover),

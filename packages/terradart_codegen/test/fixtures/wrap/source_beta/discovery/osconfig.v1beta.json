@@ -17,6 +17,11 @@
     },
     "GuestPolicy": {
       "properties": {
+        "packageRepositories": {
+          "items": {
+            "$ref": "PackageRepository"
+          }
+        },
         "packages": {
           "items": {
             "$ref": "Package"
@@ -25,11 +30,6 @@
         "recipes": {
           "items": {
             "$ref": "SoftwareRecipe"
-          }
-        },
-        "packageRepositories": {
-          "items": {
-            "$ref": "PackageRepository"
           }
         }
       }
@@ -65,6 +65,11 @@
     },
     "SoftwareRecipe": {
       "properties": {
+        "installSteps": {
+          "items": {
+            "$ref": "SoftwareRecipeStep"
+          }
+        },
         "desiredState": {
           "enum": [
             "DESIRED_STATE_UNSPECIFIED",
@@ -77,21 +82,16 @@
           "items": {
             "$ref": "SoftwareRecipeStep"
           }
-        },
-        "installSteps": {
-          "items": {
-            "$ref": "SoftwareRecipeStep"
-          }
         }
       }
     },
     "SoftwareRecipeStep": {
       "properties": {
-        "archiveExtraction": {
-          "$ref": "SoftwareRecipeStepExtractArchive"
-        },
         "scriptRun": {
           "$ref": "SoftwareRecipeStepRunScript"
+        },
+        "archiveExtraction": {
+          "$ref": "SoftwareRecipeStepExtractArchive"
         }
       }
     },

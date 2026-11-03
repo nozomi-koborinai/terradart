@@ -80,6 +80,9 @@ final class DataGoogleComputeRouter extends Data {
   TfRef<List<Map<String, Object?>>> get params =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'params');
 
+  /// Reference to `router_id` attribute.
+  TfRef<num> get routerId => TfRef.attribute<num>(this, 'router_id');
+
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 

@@ -36,18 +36,18 @@
     },
     "GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig": {
       "properties": {
-        "responseType": {
-          "enum": [
-            "RESPONSE_TYPE_UNSPECIFIED",
-            "CODE",
-            "ID_TOKEN"
-          ]
-        },
         "assertionClaimsBehavior": {
           "enum": [
             "ASSERTION_CLAIMS_BEHAVIOR_UNSPECIFIED",
             "MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS",
             "ONLY_ID_TOKEN_CLAIMS"
+          ]
+        },
+        "responseType": {
+          "enum": [
+            "RESPONSE_TYPE_UNSPECIFIED",
+            "CODE",
+            "ID_TOKEN"
           ]
         }
       }
@@ -86,13 +86,6 @@
     },
     "OauthClient": {
       "properties": {
-        "clientType": {
-          "enum": [
-            "CLIENT_TYPE_UNSPECIFIED",
-            "PUBLIC_CLIENT",
-            "CONFIDENTIAL_CLIENT"
-          ]
-        },
         "allowedGrantTypes": {
           "items": {
             "enum": [
@@ -101,6 +94,13 @@
               "REFRESH_TOKEN_GRANT"
             ]
           }
+        },
+        "clientType": {
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "PUBLIC_CLIENT",
+            "CONFIDENTIAL_CLIENT"
+          ]
         },
         "state": {
           "enum": [
@@ -135,26 +135,19 @@
             "$ref": "ExtendedStatus"
           }
         },
-        "keyOrigin": {
-          "enum": [
-            "ORIGIN_UNSPECIFIED",
-            "USER_PROVIDED",
-            "GOOGLE_PROVIDED"
-          ]
-        },
-        "keyType": {
-          "enum": [
-            "KEY_TYPE_UNSPECIFIED",
-            "USER_MANAGED",
-            "SYSTEM_MANAGED"
-          ]
-        },
         "disableReason": {
           "enum": [
             "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
             "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
             "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
             "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
+          ]
+        },
+        "privateKeyType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PKCS12_FILE",
+            "TYPE_GOOGLE_CREDENTIALS_FILE"
           ]
         },
         "keyAlgorithm": {
@@ -164,11 +157,18 @@
             "KEY_ALG_RSA_2048"
           ]
         },
-        "privateKeyType": {
+        "keyType": {
           "enum": [
-            "TYPE_UNSPECIFIED",
-            "TYPE_PKCS12_FILE",
-            "TYPE_GOOGLE_CREDENTIALS_FILE"
+            "KEY_TYPE_UNSPECIFIED",
+            "USER_MANAGED",
+            "SYSTEM_MANAGED"
+          ]
+        },
+        "keyOrigin": {
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "USER_PROVIDED",
+            "GOOGLE_PROVIDED"
           ]
         }
       }
@@ -186,12 +186,11 @@
     },
     "WorkforcePoolProvider": {
       "properties": {
-        "scimUsage": {
-          "enum": [
-            "SCIM_USAGE_UNSPECIFIED",
-            "ENABLED_FOR_GROUPS",
-            "ENABLED_FOR_USERS_GROUPS"
-          ]
+        "extendedAttributesOauth2Client": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
+        },
+        "oidc": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
         },
         "state": {
           "enum": [
@@ -214,19 +213,27 @@
             "GENERIC"
           ]
         },
+        "scimUsage": {
+          "enum": [
+            "SCIM_USAGE_UNSPECIFIED",
+            "ENABLED_FOR_GROUPS",
+            "ENABLED_FOR_USERS_GROUPS"
+          ]
+        },
         "extraAttributesOauth2Client": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
-        },
-        "oidc": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
-        },
-        "extendedAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
         }
       }
     },
     "WorkforcePoolProviderKey": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
         "keyData": {
           "$ref": "KeyData"
         },
@@ -234,13 +241,6 @@
           "enum": [
             "KEY_USE_UNSPECIFIED",
             "ENCRYPTION"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETED"
           ]
         }
       }
@@ -269,22 +269,22 @@
     },
     "WorkloadIdentityPool": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETED"
-          ]
-        },
-        "inlineCertificateIssuanceConfig": {
-          "$ref": "InlineCertificateIssuanceConfig"
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "FEDERATION_ONLY",
             "TRUST_DOMAIN",
             "SYSTEM_TRUST_DOMAIN"
+          ]
+        },
+        "inlineCertificateIssuanceConfig": {
+          "$ref": "InlineCertificateIssuanceConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
           ]
         }
       }

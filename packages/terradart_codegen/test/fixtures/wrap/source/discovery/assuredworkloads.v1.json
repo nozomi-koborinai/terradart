@@ -6,9 +6,9 @@
   "schemas": {
     "GoogleCloudAssuredworkloadsV1Workload": {
       "properties": {
-        "resourceSettings": {
+        "resources": {
           "items": {
-            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
           }
         },
         "kajEnrollmentState": {
@@ -16,6 +16,18 @@
             "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
             "KAJ_ENROLLMENT_STATE_PENDING",
             "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ]
+        },
+        "partner": {
+          "enum": [
+            "PARTNER_UNSPECIFIED",
+            "LOCAL_CONTROLS_BY_S3NS",
+            "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+            "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
+            "SOVEREIGN_CONTROLS_BY_PSN",
+            "SOVEREIGN_CONTROLS_BY_CNTXT",
+            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+            "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
           ]
         },
         "complianceRegime": {
@@ -68,36 +80,32 @@
             "US_REGIONAL_ACCESS"
           ]
         },
-        "saaEnrollmentResponse": {
-          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse"
-        },
-        "partner": {
-          "enum": [
-            "PARTNER_UNSPECIFIED",
-            "LOCAL_CONTROLS_BY_S3NS",
-            "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
-            "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
-            "SOVEREIGN_CONTROLS_BY_PSN",
-            "SOVEREIGN_CONTROLS_BY_CNTXT",
-            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
-            "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
-          ]
-        },
         "workloadOptions": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions"
         },
-        "resources": {
-          "items": {
-            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
-          }
-        },
         "ekmProvisioningResponse": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse"
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse"
+        },
+        "resourceSettings": {
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
+          }
         }
       }
     },
     "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse": {
       "properties": {
+        "ekmProvisioningErrorMapping": {
+          "enum": [
+            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
+            "INVALID_SERVICE_ACCOUNT",
+            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
+            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
+          ]
+        },
         "ekmProvisioningState": {
           "enum": [
             "EKM_PROVISIONING_STATE_UNSPECIFIED",
@@ -114,14 +122,6 @@
             "EXTERNAL_USER_ERROR",
             "EXTERNAL_PARTNER_ERROR",
             "TIMEOUT_ERROR"
-          ]
-        },
-        "ekmProvisioningErrorMapping": {
-          "enum": [
-            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
-            "INVALID_SERVICE_ACCOUNT",
-            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
-            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
           ]
         }
       }
@@ -154,6 +154,13 @@
     },
     "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse": {
       "properties": {
+        "setupStatus": {
+          "enum": [
+            "SETUP_STATE_UNSPECIFIED",
+            "STATUS_PENDING",
+            "STATUS_COMPLETE"
+          ]
+        },
         "setupErrors": {
           "items": {
             "enum": [
@@ -164,13 +171,6 @@
               "ERROR_SETUP_CHECK_FAILED"
             ]
           }
-        },
-        "setupStatus": {
-          "enum": [
-            "SETUP_STATE_UNSPECIFIED",
-            "STATUS_PENDING",
-            "STATUS_COMPLETE"
-          ]
         }
       }
     },

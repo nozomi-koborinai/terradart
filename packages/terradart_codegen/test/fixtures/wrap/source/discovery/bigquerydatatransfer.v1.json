@@ -1,18 +1,11 @@
 {
   "name": "bigquerydatatransfer",
   "version": "v1",
-  "revision": "20261024",
+  "revision": "20261027",
   "sourceUrl": "https://bigquerydatatransfer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DataSource": {
       "properties": {
-        "transferType": {
-          "enum": [
-            "TRANSFER_TYPE_UNSPECIFIED",
-            "BATCH",
-            "STREAMING"
-          ]
-        },
         "authorizationType": {
           "enum": [
             "AUTHORIZATION_TYPE_UNSPECIFIED",
@@ -32,6 +25,13 @@
           "items": {
             "$ref": "DataSourceParameter"
           }
+        },
+        "transferType": {
+          "enum": [
+            "TRANSFER_TYPE_UNSPECIFIED",
+            "BATCH",
+            "STREAMING"
+          ]
         }
       }
     },

@@ -13,11 +13,11 @@
     },
     "BigQueryPartitioning": {
       "properties": {
-        "ingestionTimePartition": {
-          "$ref": "IngestionTimePartition"
-        },
         "timeUnitPartition": {
           "$ref": "TimeUnitPartition"
+        },
+        "ingestionTimePartition": {
+          "$ref": "IngestionTimePartition"
         }
       }
     },
@@ -49,11 +49,11 @@
     },
     "DestinationConfig": {
       "properties": {
-        "bigqueryDestinationConfig": {
-          "$ref": "BigQueryDestinationConfig"
-        },
         "gcsDestinationConfig": {
           "$ref": "GcsDestinationConfig"
+        },
+        "bigqueryDestinationConfig": {
+          "$ref": "BigQueryDestinationConfig"
         }
       }
     },
@@ -79,18 +79,18 @@
     },
     "JsonFileFormat": {
       "properties": {
-        "compression": {
-          "enum": [
-            "JSON_COMPRESSION_UNSPECIFIED",
-            "NO_COMPRESSION",
-            "GZIP"
-          ]
-        },
         "schemaFileFormat": {
           "enum": [
             "SCHEMA_FILE_FORMAT_UNSPECIFIED",
             "NO_SCHEMA_FILE",
             "AVRO_SCHEMA_FILE"
+          ]
+        },
+        "compression": {
+          "enum": [
+            "JSON_COMPRESSION_UNSPECIFIED",
+            "NO_COMPRESSION",
+            "GZIP"
           ]
         }
       }
@@ -153,6 +153,17 @@
     },
     "Stream": {
       "properties": {
+        "sourceConfig": {
+          "$ref": "SourceConfig"
+        },
+        "destinationConfig": {
+          "$ref": "DestinationConfig"
+        },
+        "ruleSets": {
+          "items": {
+            "$ref": "RuleSet"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -165,17 +176,6 @@
             "STARTING",
             "DRAINING"
           ]
-        },
-        "destinationConfig": {
-          "$ref": "DestinationConfig"
-        },
-        "sourceConfig": {
-          "$ref": "SourceConfig"
-        },
-        "ruleSets": {
-          "items": {
-            "$ref": "RuleSet"
-          }
         }
       }
     },

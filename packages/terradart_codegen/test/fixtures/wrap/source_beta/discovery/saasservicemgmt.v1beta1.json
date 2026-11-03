@@ -22,12 +22,12 @@
     },
     "Release": {
       "properties": {
-        "inputVariables": {
+        "outputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
         },
-        "outputVariables": {
+        "inputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -70,19 +70,19 @@
     },
     "SaasCondition": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "TYPE_READY",
-            "TYPE_SYNCHRONIZED"
-          ]
-        },
         "status": {
           "enum": [
             "STATUS_UNSPECIFIED",
             "STATUS_UNKNOWN",
             "STATUS_TRUE",
             "STATUS_FALSE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_READY",
+            "TYPE_SYNCHRONIZED"
           ]
         }
       }
@@ -103,11 +103,6 @@
     },
     "Unit": {
       "properties": {
-        "outputVariables": {
-          "items": {
-            "$ref": "UnitVariable"
-          }
-        },
         "state": {
           "enum": [
             "UNIT_STATE_UNSPECIFIED",
@@ -119,7 +114,7 @@
             "UNIT_STATE_ERROR"
           ]
         },
-        "inputVariables": {
+        "outputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -129,13 +124,6 @@
             "$ref": "UnitCondition"
           }
         },
-        "managementMode": {
-          "enum": [
-            "MANAGEMENT_MODE_UNSPECIFIED",
-            "MANAGEMENT_MODE_USER",
-            "MANAGEMENT_MODE_SYSTEM"
-          ]
-        },
         "systemManagedState": {
           "enum": [
             "SYSTEM_MANAGED_STATE_UNSPECIFIED",
@@ -143,19 +131,23 @@
             "SYSTEM_MANAGED_STATE_INACTIVE",
             "SYSTEM_MANAGED_STATE_DECOMMISSIONED"
           ]
+        },
+        "inputVariables": {
+          "items": {
+            "$ref": "UnitVariable"
+          }
+        },
+        "managementMode": {
+          "enum": [
+            "MANAGEMENT_MODE_UNSPECIFIED",
+            "MANAGEMENT_MODE_USER",
+            "MANAGEMENT_MODE_SYSTEM"
+          ]
         }
       }
     },
     "UnitCondition": {
       "properties": {
-        "status": {
-          "enum": [
-            "STATUS_UNSPECIFIED",
-            "STATUS_UNKNOWN",
-            "STATUS_TRUE",
-            "STATUS_FALSE"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -167,45 +159,38 @@
             "TYPE_APP_CREATED_OR_ALREADY_EXISTS",
             "TYPE_APP_COMPONENTS_REGISTERED"
           ]
+        },
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "STATUS_UNKNOWN",
+            "STATUS_TRUE",
+            "STATUS_FALSE"
+          ]
         }
       }
     },
     "UnitKind": {
       "properties": {
-        "appParams": {
-          "$ref": "AppParams"
-        },
         "boundaryType": {
           "enum": [
             "BOUNDARY_TYPE_UNSPECIFIED",
             "BOUNDARY_TYPE_TENANT_PROJECT",
             "BOUNDARY_TYPE_MANAGED_PROJECT"
           ]
+        },
+        "appParams": {
+          "$ref": "AppParams"
         }
       }
     },
     "UnitOperation": {
       "properties": {
-        "upgrade": {
-          "$ref": "Upgrade"
-        },
-        "conditions": {
-          "items": {
-            "$ref": "UnitOperationCondition"
-          }
-        },
-        "errorCategory": {
-          "enum": [
-            "UNIT_OPERATION_ERROR_CATEGORY_UNSPECIFIED",
-            "NOT_APPLICABLE",
-            "FATAL",
-            "RETRIABLE",
-            "IGNORABLE",
-            "STANDARD"
-          ]
-        },
         "provision": {
           "$ref": "Provision"
+        },
+        "upgrade": {
+          "$ref": "Upgrade"
         },
         "state": {
           "enum": [
@@ -217,6 +202,21 @@
             "UNIT_OPERATION_STATE_FAILED",
             "UNIT_OPERATION_STATE_CANCELLED"
           ]
+        },
+        "errorCategory": {
+          "enum": [
+            "UNIT_OPERATION_ERROR_CATEGORY_UNSPECIFIED",
+            "NOT_APPLICABLE",
+            "FATAL",
+            "RETRIABLE",
+            "IGNORABLE",
+            "STANDARD"
+          ]
+        },
+        "conditions": {
+          "items": {
+            "$ref": "UnitOperationCondition"
+          }
         }
       }
     },

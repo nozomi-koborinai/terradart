@@ -4,13 +4,20 @@
   "revision": "20261022",
   "sourceUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3",
   "schemas": {
-    "RuntimeEnvironment": {
+    "FlexTemplateRuntimeEnvironment": {
       "properties": {
-        "streamingMode": {
+        "autoscalingAlgorithm": {
           "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_EXACTLY_ONCE",
-            "STREAMING_MODE_AT_LEAST_ONCE"
+            "AUTOSCALING_ALGORITHM_UNKNOWN",
+            "AUTOSCALING_ALGORITHM_NONE",
+            "AUTOSCALING_ALGORITHM_BASIC"
+          ]
+        },
+        "flexrsGoal": {
+          "enum": [
+            "FLEXRS_UNSPECIFIED",
+            "FLEXRS_SPEED_OPTIMIZED",
+            "FLEXRS_COST_OPTIMIZED"
           ]
         },
         "ipConfiguration": {
@@ -18,6 +25,31 @@
             "WORKER_IP_UNSPECIFIED",
             "WORKER_IP_PUBLIC",
             "WORKER_IP_PRIVATE"
+          ]
+        },
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
+          ]
+        }
+      }
+    },
+    "RuntimeEnvironment": {
+      "properties": {
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ]
+        },
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
           ]
         }
       }

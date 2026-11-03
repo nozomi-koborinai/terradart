@@ -197,6 +197,7 @@ export 'src/container/google_container_cluster.dart'
         ContainerClusterRotationConfig,
         ContainerClusterSandboxConfig,
         ContainerClusterSandboxConfigType,
+        ContainerClusterScheduleUpgradeConfig,
         ContainerClusterScope,
         ContainerClusterSecondaryBootDisks,
         ContainerClusterSecondaryBootDisksMode,

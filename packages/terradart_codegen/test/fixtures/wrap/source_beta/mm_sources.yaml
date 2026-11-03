@@ -3,8 +3,8 @@
 # through the provider's generated Go source at the release tag; null when the
 # resource has none. tool/wrap_lanes.dart re-syncs when this file no longer
 # matches provider_version.txt or the schema.json resource set.
-provider_version: 8.8.1
-upstream_ref: 62273cb679bf27bd33e40ee33ab7e4dc43e608f8
+provider_version: 8.9.0
+upstream_ref: 4ccc500196908b4a5b4228b1f526476085c78230
 files:
   google_active_directory_peering: mmv1/products/activedirectory/Peering.yaml
   google_api_gateway_api: mmv1/products/apigateway/Api.yaml
@@ -47,7 +47,6 @@ files:
   google_compute_region_backend_service_iam_policy: null  # no resource_compute_region_backend_service_iam_policy.go in google-beta/services
   google_compute_region_network_policy: mmv1/products/compute/RegionNetworkPolicy.yaml
   google_compute_region_network_policy_traffic_classification_rule: mmv1/products/compute/RegionNetworkPolicyTrafficClassificationRule.yaml
-  google_dataflow_flex_template_job: null  # hand-written (google-beta/services/dataflow/resource_dataflow_flex_template_job.go)
   google_dataform_config: mmv1/products/dataform/Config.yaml
   google_dataform_repository_release_config: mmv1/products/dataform/RepositoryReleaseConfig.yaml
   google_dataform_repository_workflow_config: mmv1/products/dataform/RepositoryWorkflowConfig.yaml
@@ -76,7 +75,6 @@ files:
   google_network_security_authorization_policy: mmv1/products/networksecurity/AuthorizationPolicy.yaml
   google_network_security_sac_attachment: mmv1/products/networksecurity/SacAttachment.yaml
   google_network_security_sac_realm: mmv1/products/networksecurity/SacRealm.yaml
-  google_network_services_service_lb_policies: mmv1/products/networkservices/ServiceLbPolicies.yaml
   google_organization_service_identity: null  # hand-written (google-beta/services/resourcemanager/resource_organization_service_identity.go)
   google_os_config_guest_policies: mmv1/products/osconfig/GuestPolicies.yaml
   google_privileged_access_manager_settings: mmv1/products/privilegedaccessmanager/Settings.yaml

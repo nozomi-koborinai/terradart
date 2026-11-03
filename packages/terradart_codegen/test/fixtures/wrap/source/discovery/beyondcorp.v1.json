@@ -12,11 +12,11 @@
         "deviceInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
         },
-        "dispatchInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
-        },
         "groupInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
+        },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
         },
         "outputType": {
           "enum": [
@@ -78,14 +78,14 @@
     },
     "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig": {
       "properties": {
+        "contextualHeaders": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders"
+        },
         "gatewayIdentity": {
           "enum": [
             "GATEWAY_IDENTITY_UNSPECIFIED",
             "RESOURCE_NAME"
           ]
-        },
-        "contextualHeaders": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders"
         }
       }
     },

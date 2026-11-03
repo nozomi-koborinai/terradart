@@ -291,6 +291,9 @@ final class GoogleComputeFirewall extends Resource {
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
 
+  /// Reference to `firewall_id` attribute.
+  TfRef<num> get firewallId => TfRef.attribute<num>(this, 'firewall_id');
+
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 

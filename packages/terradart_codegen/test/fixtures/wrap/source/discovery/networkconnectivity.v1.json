@@ -114,12 +114,6 @@
             "HYBRID_INSPECTION"
           ]
         },
-        "policyMode": {
-          "enum": [
-            "POLICY_MODE_UNSPECIFIED",
-            "PRESET"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -136,6 +130,12 @@
         },
         "spokeSummary": {
           "$ref": "SpokeSummary"
+        },
+        "policyMode": {
+          "enum": [
+            "POLICY_MODE_UNSPECIFIED",
+            "PRESET"
+          ]
         }
       }
     },
@@ -148,20 +148,16 @@
             "INTERNAL_ADDRESS"
           ]
         },
-        "usage": {
-          "enum": [
-            "USAGE_UNSPECIFIED",
-            "FOR_VPC",
-            "EXTERNAL_TO_VPC",
-            "FOR_MIGRATION"
-          ]
+        "allocationOptions": {
+          "$ref": "AllocationOptions"
         },
-        "peering": {
+        "rangeStatus": {
           "enum": [
-            "PEERING_UNSPECIFIED",
-            "FOR_SELF",
-            "FOR_PEER",
-            "NOT_SHARED"
+            "RANGE_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE",
+            "CREATING",
+            "DELETING"
           ]
         },
         "overlaps": {
@@ -173,17 +169,21 @@
             ]
           }
         },
-        "rangeStatus": {
+        "peering": {
           "enum": [
-            "RANGE_STATUS_UNSPECIFIED",
-            "ACTIVE",
-            "OBSOLETE",
-            "CREATING",
-            "DELETING"
+            "PEERING_UNSPECIFIED",
+            "FOR_SELF",
+            "FOR_PEER",
+            "NOT_SHARED"
           ]
         },
-        "allocationOptions": {
-          "$ref": "AllocationOptions"
+        "usage": {
+          "enum": [
+            "USAGE_UNSPECIFIED",
+            "FOR_VPC",
+            "EXTERNAL_TO_VPC",
+            "FOR_MIGRATION"
+          ]
         }
       }
     },
@@ -198,8 +198,10 @@
     },
     "PolicyBasedRoute": {
       "properties": {
-        "filter": {
-          "$ref": "Filter"
+        "warnings": {
+          "items": {
+            "$ref": "Warnings"
+          }
         },
         "nextHopOtherRoutes": {
           "enum": [
@@ -207,10 +209,8 @@
             "DEFAULT_ROUTING"
           ]
         },
-        "warnings": {
-          "items": {
-            "$ref": "Warnings"
-          }
+        "filter": {
+          "$ref": "Filter"
         }
       }
     },
@@ -234,6 +234,13 @@
             "ERROR_PRODUCER_SIDE"
           ]
         },
+        "ipVersion": {
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -243,13 +250,6 @@
             "DELETING",
             "CREATE_REPAIRING",
             "DELETE_REPAIRING"
-          ]
-        },
-        "ipVersion": {
-          "enum": [
-            "IP_VERSION_UNSPECIFIED",
-            "IPV4",
-            "IPV6"
           ]
         }
       }
@@ -285,17 +285,6 @@
     },
     "Spoke": {
       "properties": {
-        "spokeType": {
-          "enum": [
-            "SPOKE_TYPE_UNSPECIFIED",
-            "VPN_TUNNEL",
-            "INTERCONNECT_ATTACHMENT",
-            "ROUTER_APPLIANCE",
-            "VPC_NETWORK",
-            "GATEWAY",
-            "PRODUCER_VPC_NETWORK"
-          ]
-        },
         "reasons": {
           "items": {
             "$ref": "StateReason"
@@ -316,6 +305,17 @@
             "INACTIVE",
             "OBSOLETE",
             "FAILED"
+          ]
+        },
+        "spokeType": {
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK",
+            "GATEWAY",
+            "PRODUCER_VPC_NETWORK"
           ]
         }
       }
@@ -356,14 +356,14 @@
     },
     "SpokeSummary": {
       "properties": {
-        "spokeStateCounts": {
-          "items": {
-            "$ref": "SpokeStateCount"
-          }
-        },
         "spokeTypeCounts": {
           "items": {
             "$ref": "SpokeTypeCount"
+          }
+        },
+        "spokeStateCounts": {
+          "items": {
+            "$ref": "SpokeStateCount"
           }
         },
         "spokeStateReasonCounts": {
@@ -429,6 +429,24 @@
     },
     "Transport": {
       "properties": {
+        "bandwidth": {
+          "enum": [
+            "BANDWIDTH_UNSPECIFIED",
+            "BPS_50M",
+            "BPS_100M",
+            "BPS_200M",
+            "BPS_300M",
+            "BPS_400M",
+            "BPS_500M",
+            "BPS_1G",
+            "BPS_2G",
+            "BPS_5G",
+            "BPS_10G",
+            "BPS_20G",
+            "BPS_50G",
+            "BPS_100G"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -446,24 +464,6 @@
             "STACK_TYPE_UNSPECIFIED",
             "IPV4_ONLY",
             "IPV4_IPV6"
-          ]
-        },
-        "bandwidth": {
-          "enum": [
-            "BANDWIDTH_UNSPECIFIED",
-            "BPS_50M",
-            "BPS_100M",
-            "BPS_200M",
-            "BPS_300M",
-            "BPS_400M",
-            "BPS_500M",
-            "BPS_1G",
-            "BPS_2G",
-            "BPS_5G",
-            "BPS_10G",
-            "BPS_20G",
-            "BPS_50G",
-            "BPS_100G"
           ]
         }
       }

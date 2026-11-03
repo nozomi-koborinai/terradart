@@ -702,13 +702,19 @@ final class ComputeUrlMapMaxStreamDuration {
 /// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeUrlMapRequestMirrorPolicy {
-  const ComputeUrlMapRequestMirrorPolicy({required this.backendService});
+  const ComputeUrlMapRequestMirrorPolicy({
+    required this.backendService,
+    this.mirrorPercent,
+  });
 
   final RefTo<GoogleComputeBackendService> backendService;
+
+  final TfArg<num>? mirrorPercent;
 
   @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
+    'mirror_percent': ?mirrorPercent?.toTfJson(),
   };
 }
 

@@ -1,23 +1,23 @@
 {
   "name": "compute",
   "version": "beta",
-  "revision": "20261016",
+  "revision": "20261026",
   "sourceUrl": "https://compute.googleapis.com/$discovery/rest?version=beta",
   "schemas": {
     "AccessConfig": {
       "properties": {
+        "type": {
+          "enum": [
+            "DIRECT_IPV6",
+            "ONE_TO_ONE_NAT"
+          ]
+        },
         "networkTier": {
           "enum": [
             "FIXED_STANDARD",
             "PREMIUM",
             "STANDARD",
             "STANDARD_OVERRIDES_FIXED_STANDARD"
-          ]
-        },
-        "type": {
-          "enum": [
-            "DIRECT_IPV6",
-            "ONE_TO_ONE_NAT"
           ]
         }
       }
@@ -36,13 +36,11 @@
     },
     "AttachedDisk": {
       "properties": {
-        "guestOsFeatures": {
-          "items": {
-            "$ref": "GuestOsFeature"
-          }
-        },
-        "initializeParams": {
-          "$ref": "AttachedDiskInitializeParams"
+        "interface": {
+          "enum": [
+            "NVME",
+            "SCSI"
+          ]
         },
         "architecture": {
           "enum": [
@@ -51,17 +49,17 @@
             "X86_64"
           ]
         },
+        "initializeParams": {
+          "$ref": "AttachedDiskInitializeParams"
+        },
         "savedState": {
           "enum": [
             "DISK_SAVED_STATE_UNSPECIFIED",
             "PRESERVED"
           ]
         },
-        "interface": {
-          "enum": [
-            "NVME",
-            "SCSI"
-          ]
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
         },
         "mode": {
           "enum": [
@@ -69,14 +67,16 @@
             "READ_WRITE"
           ]
         },
-        "shieldedInstanceInitialState": {
-          "$ref": "InitialStateConfig"
-        },
         "type": {
           "enum": [
             "PERSISTENT",
             "SCRATCH"
           ]
+        },
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
         }
       }
     },
@@ -89,17 +89,17 @@
             "USE_EXISTING_DISK"
           ]
         },
-        "guestOsFeatures": {
-          "items": {
-            "$ref": "GuestOsFeature"
-          }
-        },
         "architecture": {
           "enum": [
             "ARCHITECTURE_UNSPECIFIED",
             "ARM64",
             "X86_64"
           ]
+        },
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
         }
       }
     },
@@ -156,10 +156,12 @@
     },
     "InitialStateConfig": {
       "properties": {
-        "pk": {
-          "$ref": "FileContentBuffer"
-        },
         "keks": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        },
+        "dbxs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
@@ -169,34 +171,25 @@
             "$ref": "FileContentBuffer"
           }
         },
-        "dbxs": {
-          "items": {
-            "$ref": "FileContentBuffer"
-          }
+        "pk": {
+          "$ref": "FileContentBuffer"
         }
       }
     },
     "Instance": {
       "properties": {
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
-        },
-        "networkInterfaces": {
-          "items": {
-            "$ref": "NetworkInterface"
-          }
-        },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
-        },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
-        },
-        "workloadIdentityConfig": {
-          "$ref": "WorkloadIdentityConfig"
-        },
         "scheduling": {
           "$ref": "Scheduling"
+        },
+        "postKeyRevocationActionType": {
+          "enum": [
+            "NOOP",
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
+          ]
+        },
+        "resourceStatus": {
+          "$ref": "ResourceStatus"
         },
         "keyRevocationActionType": {
           "enum": [
@@ -205,13 +198,14 @@
             "STOP"
           ]
         },
-        "disks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
         },
-        "resourceStatus": {
-          "$ref": "ResourceStatus"
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
         },
         "status": {
           "enum": [
@@ -229,6 +223,22 @@
             "TERMINATED"
           ]
         },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "disks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "localSsdEncryptionMode": {
+          "enum": [
+            "CMEK_ENCRYPTION",
+            "EPHEMERAL_KEY_ENCRYPTION",
+            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+            "STANDARD_ENCRYPTION"
+          ]
+        },
         "privateIpv6GoogleAccess": {
           "enum": [
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
@@ -239,20 +249,10 @@
         "networkPerformanceConfig": {
           "$ref": "NetworkPerformanceConfig"
         },
-        "localSsdEncryptionMode": {
-          "enum": [
-            "CMEK_ENCRYPTION",
-            "EPHEMERAL_KEY_ENCRYPTION",
-            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
-            "STANDARD_ENCRYPTION"
-          ]
-        },
-        "postKeyRevocationActionType": {
-          "enum": [
-            "NOOP",
-            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
-            "SHUTDOWN"
-          ]
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
         }
       }
     },
@@ -265,6 +265,11 @@
             "IPV6_ONLY"
           ]
         },
+        "accessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
         "nicType": {
           "enum": [
             "GVNIC",
@@ -275,13 +280,7 @@
             "VIRTIO_NET"
           ]
         },
-        "ipv6AccessType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL"
-          ]
-        },
-        "accessConfigs": {
+        "ipv6AccessConfigs": {
           "items": {
             "$ref": "AccessConfig"
           }
@@ -292,10 +291,11 @@
             "IGMP_QUERY_V2"
           ]
         },
-        "ipv6AccessConfigs": {
-          "items": {
-            "$ref": "AccessConfig"
-          }
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
         }
       }
     },
@@ -352,6 +352,18 @@
     },
     "Scheduling": {
       "properties": {
+        "maintenanceInterval": {
+          "enum": [
+            "AS_NEEDED",
+            "PERIODIC",
+            "RECURRENT"
+          ]
+        },
+        "nodeAffinities": {
+          "items": {
+            "$ref": "SchedulingNodeAffinity"
+          }
+        },
         "instanceTerminationAction": {
           "enum": [
             "DELETE",
@@ -363,18 +375,6 @@
           "enum": [
             "MIGRATE",
             "TERMINATE"
-          ]
-        },
-        "nodeAffinities": {
-          "items": {
-            "$ref": "SchedulingNodeAffinity"
-          }
-        },
-        "maintenanceInterval": {
-          "enum": [
-            "AS_NEEDED",
-            "PERIODIC",
-            "RECURRENT"
           ]
         },
         "provisioningModel": {

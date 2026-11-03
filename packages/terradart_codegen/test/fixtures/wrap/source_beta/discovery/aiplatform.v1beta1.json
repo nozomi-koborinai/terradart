@@ -46,13 +46,11 @@
     },
     "GoogleCloudAiplatformV1beta1PublisherModel": {
       "properties": {
-        "launchStage": {
+        "versionState": {
           "enum": [
-            "LAUNCH_STAGE_UNSPECIFIED",
-            "EXPERIMENTAL",
-            "PRIVATE_PREVIEW",
-            "PUBLIC_PREVIEW",
-            "GA"
+            "VERSION_STATE_UNSPECIFIED",
+            "VERSION_STATE_STABLE",
+            "VERSION_STATE_UNSTABLE"
           ]
         },
         "openSourceCategory": {
@@ -65,11 +63,13 @@
             "THIRD_PARTY_OWNED_OSS"
           ]
         },
-        "versionState": {
+        "launchStage": {
           "enum": [
-            "VERSION_STATE_UNSPECIFIED",
-            "VERSION_STATE_STABLE",
-            "VERSION_STATE_UNSTABLE"
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "EXPERIMENTAL",
+            "PRIVATE_PREVIEW",
+            "PUBLIC_PREVIEW",
+            "GA"
           ]
         },
         "supportedActions": {

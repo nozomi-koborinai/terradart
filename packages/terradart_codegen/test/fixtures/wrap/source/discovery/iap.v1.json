@@ -1,11 +1,74 @@
 {
   "name": "iap",
   "version": "v1",
-  "revision": "20261012",
+  "revision": "20261019",
   "sourceUrl": "https://iap.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
-    "CsmSettings": {
-      "properties": {}
+    "AccessSettings": {
+      "properties": {
+        "identitySources": {
+          "items": {
+            "enum": [
+              "IDENTITY_SOURCE_UNSPECIFIED",
+              "WORKFORCE_IDENTITY_FEDERATION"
+            ]
+          }
+        },
+        "reauthSettings": {
+          "$ref": "ReauthSettings"
+        }
+      }
+    },
+    "ApplicationSettings": {
+      "properties": {
+        "attributePropagationSettings": {
+          "$ref": "AttributePropagationSettings"
+        }
+      }
+    },
+    "AttributePropagationSettings": {
+      "properties": {
+        "outputCredentials": {
+          "items": {
+            "enum": [
+              "OUTPUT_CREDENTIALS_UNSPECIFIED",
+              "HEADER",
+              "JWT",
+              "RCTOKEN"
+            ]
+          }
+        }
+      }
+    },
+    "IapSettings": {
+      "properties": {
+        "applicationSettings": {
+          "$ref": "ApplicationSettings"
+        },
+        "accessSettings": {
+          "$ref": "AccessSettings"
+        }
+      }
+    },
+    "ReauthSettings": {
+      "properties": {
+        "method": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "LOGIN",
+            "PASSWORD",
+            "SECURE_KEY",
+            "ENROLLED_SECOND_FACTORS"
+          ]
+        },
+        "policyType": {
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "MINIMUM",
+            "DEFAULT"
+          ]
+        }
+      }
     },
     "TunnelDestGroup": {
       "properties": {}

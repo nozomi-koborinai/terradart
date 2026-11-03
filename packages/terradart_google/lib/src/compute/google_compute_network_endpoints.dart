@@ -15,11 +15,18 @@ const Set<String> _googleComputeNetworkEndpointsSensitive = <String>{};
 /// `google_compute_network_endpoints` (derived from provider schema).
 @immutable
 final class ComputeNetworkEndpoints {
-  const ComputeNetworkEndpoints({this.instance, this.ipAddress, this.port});
+  const ComputeNetworkEndpoints({
+    this.instance,
+    this.ipAddress,
+    this.ipv6Address,
+    this.port,
+  });
 
   final RefTo<GoogleComputeInstance>? instance;
 
   final TfArg<String>? ipAddress;
+
+  final TfArg<String>? ipv6Address;
 
   final TfArg<num>? port;
 
@@ -27,6 +34,7 @@ final class ComputeNetworkEndpoints {
   Map<String, Object?> encode() => {
     'instance': ?instance?.encodeAs('name').toTfJson(),
     'ip_address': ?ipAddress?.toTfJson(),
+    'ipv6_address': ?ipv6Address?.toTfJson(),
     'port': ?port?.toTfJson(),
   };
 }

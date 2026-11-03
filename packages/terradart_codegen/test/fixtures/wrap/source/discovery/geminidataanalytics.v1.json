@@ -22,16 +22,16 @@
     },
     "GoogleCloudGeminidataanalyticsV1Context": {
       "properties": {
-        "schemaRelationships": {
-          "items": {
-            "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
-          }
-        },
         "options": {
           "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
         },
         "datasourceReferences": {
           "$ref": "GoogleCloudGeminidataanalyticsV1DatasourceReferences"
+        },
+        "schemaRelationships": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
+          }
         }
       }
     },
@@ -61,23 +61,23 @@
     },
     "GoogleCloudGeminidataanalyticsV1DataAgent": {
       "properties": {
-        "dataAnalyticsAgent": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent"
-        },
         "bigqueryAgentAnalyticsTable": {
           "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReference"
+        },
+        "dataAnalyticsAgent": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent"
         }
       }
     },
     "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent": {
       "properties": {
+        "lastPublishedContext": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1Context"
+        },
         "publishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         },
         "stagingContext": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1Context"
-        },
-        "lastPublishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         }
       }
@@ -94,11 +94,11 @@
     },
     "GoogleCloudGeminidataanalyticsV1DatasourceReferences": {
       "properties": {
-        "bq": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReferences"
-        },
         "looker": {
           "$ref": "GoogleCloudGeminidataanalyticsV1LookerExploreReferences"
+        },
+        "bq": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReferences"
         }
       }
     },

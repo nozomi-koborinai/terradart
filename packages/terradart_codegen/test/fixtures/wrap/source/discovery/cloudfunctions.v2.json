@@ -28,19 +28,6 @@
     },
     "Function": {
       "properties": {
-        "buildConfig": {
-          "$ref": "BuildConfig"
-        },
-        "environment": {
-          "enum": [
-            "ENVIRONMENT_UNSPECIFIED",
-            "GEN_1",
-            "GEN_2"
-          ]
-        },
-        "upgradeInfo": {
-          "$ref": "UpgradeInfo"
-        },
         "stateMessages": {
           "items": {
             "$ref": "GoogleCloudFunctionsV2StateMessage"
@@ -58,11 +45,24 @@
             "DETACH_FAILED"
           ]
         },
-        "serviceConfig": {
-          "$ref": "ServiceConfig"
+        "buildConfig": {
+          "$ref": "BuildConfig"
+        },
+        "upgradeInfo": {
+          "$ref": "UpgradeInfo"
         },
         "eventTrigger": {
           "$ref": "EventTrigger"
+        },
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
+        },
+        "environment": {
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "GEN_1",
+            "GEN_2"
+          ]
         }
       }
     },
@@ -87,11 +87,12 @@
             "SECURE_OPTIONAL"
           ]
         },
-        "directVpcEgress": {
+        "ingressSettings": {
           "enum": [
-            "DIRECT_VPC_EGRESS_UNSPECIFIED",
-            "VPC_EGRESS_PRIVATE_RANGES_ONLY",
-            "VPC_EGRESS_ALL_TRAFFIC"
+            "INGRESS_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL",
+            "ALLOW_INTERNAL_ONLY",
+            "ALLOW_INTERNAL_AND_GCLB"
           ]
         },
         "vpcConnectorEgressSettings": {
@@ -101,26 +102,25 @@
             "ALL_TRAFFIC"
           ]
         },
-        "ingressSettings": {
+        "directVpcEgress": {
           "enum": [
-            "INGRESS_SETTINGS_UNSPECIFIED",
-            "ALLOW_ALL",
-            "ALLOW_INTERNAL_ONLY",
-            "ALLOW_INTERNAL_AND_GCLB"
+            "DIRECT_VPC_EGRESS_UNSPECIFIED",
+            "VPC_EGRESS_PRIVATE_RANGES_ONLY",
+            "VPC_EGRESS_ALL_TRAFFIC"
           ]
         }
       }
     },
     "UpgradeInfo": {
       "properties": {
-        "buildConfig": {
-          "$ref": "BuildConfig"
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
         },
         "eventTrigger": {
           "$ref": "EventTrigger"
         },
-        "serviceConfig": {
-          "$ref": "ServiceConfig"
+        "buildConfig": {
+          "$ref": "BuildConfig"
         },
         "upgradeState": {
           "enum": [

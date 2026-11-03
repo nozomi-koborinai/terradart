@@ -36,23 +36,23 @@
     },
     "FilterConfig": {
       "properties": {
-        "piAndJailbreakFilterSettings": {
-          "$ref": "PiAndJailbreakFilterSettings"
-        },
-        "filterRuleSettings": {
-          "$ref": "FilterRuleSettings"
-        },
-        "csamFilterSettings": {
-          "$ref": "CsamFilterSettings"
+        "maliciousUriFilterSettings": {
+          "$ref": "MaliciousUriFilterSettings"
         },
         "raiSettings": {
           "$ref": "RaiFilterSettings"
         },
-        "maliciousUriFilterSettings": {
-          "$ref": "MaliciousUriFilterSettings"
+        "csamFilterSettings": {
+          "$ref": "CsamFilterSettings"
+        },
+        "piAndJailbreakFilterSettings": {
+          "$ref": "PiAndJailbreakFilterSettings"
         },
         "sdpSettings": {
           "$ref": "SdpFilterSettings"
+        },
+        "filterRuleSettings": {
+          "$ref": "FilterRuleSettings"
         }
       }
     },
@@ -65,11 +65,6 @@
     },
     "FilterRuleSet": {
       "properties": {
-        "rules": {
-          "items": {
-            "$ref": "FilterRule"
-          }
-        },
         "filterTypes": {
           "items": {
             "enum": [
@@ -77,6 +72,11 @@
               "PROMPT_INJECTION_AND_JAILBREAK",
               "RESPONSIBLE_AI"
             ]
+          }
+        },
+        "rules": {
+          "items": {
+            "$ref": "FilterRule"
           }
         }
       }
@@ -105,6 +105,9 @@
     },
     "FloorSetting": {
       "properties": {
+        "filterConfig": {
+          "$ref": "FilterConfig"
+        },
         "integratedServices": {
           "items": {
             "enum": [
@@ -113,9 +116,6 @@
               "GOOGLE_MCP_SERVER"
             ]
           }
-        },
-        "filterConfig": {
-          "$ref": "FilterConfig"
         }
       }
     },
@@ -132,19 +132,19 @@
     },
     "PiAndJailbreakFilterSettings": {
       "properties": {
+        "filterEnforcement": {
+          "enum": [
+            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "confidenceLevel": {
           "enum": [
             "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
             "LOW_AND_ABOVE",
             "MEDIUM_AND_ABOVE",
             "HIGH"
-          ]
-        },
-        "filterEnforcement": {
-          "enum": [
-            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
           ]
         }
       }
@@ -209,12 +209,8 @@
     },
     "TemplateMetadata": {
       "properties": {
-        "enforcementType": {
-          "enum": [
-            "ENFORCEMENT_TYPE_UNSPECIFIED",
-            "INSPECT_ONLY",
-            "INSPECT_AND_BLOCK"
-          ]
+        "filterVersionSelector": {
+          "$ref": "FilterVersionSelector"
         },
         "modalities": {
           "items": {
@@ -225,8 +221,12 @@
             ]
           }
         },
-        "filterVersionSelector": {
-          "$ref": "FilterVersionSelector"
+        "enforcementType": {
+          "enum": [
+            "ENFORCEMENT_TYPE_UNSPECIFIED",
+            "INSPECT_ONLY",
+            "INSPECT_AND_BLOCK"
+          ]
         }
       }
     }

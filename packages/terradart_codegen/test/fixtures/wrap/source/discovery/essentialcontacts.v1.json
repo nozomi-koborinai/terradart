@@ -6,13 +6,6 @@
   "schemas": {
     "GoogleCloudEssentialcontactsV1Contact": {
       "properties": {
-        "validationState": {
-          "enum": [
-            "VALIDATION_STATE_UNSPECIFIED",
-            "VALID",
-            "INVALID"
-          ]
-        },
         "notificationCategorySubscriptions": {
           "items": {
             "enum": [
@@ -27,6 +20,13 @@
               "TECHNICAL_INCIDENTS"
             ]
           }
+        },
+        "validationState": {
+          "enum": [
+            "VALIDATION_STATE_UNSPECIFIED",
+            "VALID",
+            "INVALID"
+          ]
         }
       }
     }

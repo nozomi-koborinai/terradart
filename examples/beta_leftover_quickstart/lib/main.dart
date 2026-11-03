@@ -13,7 +13,6 @@ import 'package:terradart_google_beta/ces.dart';
 import 'package:terradart_google_beta/chronicle.dart';
 import 'package:terradart_google_beta/compute.dart';
 import 'package:terradart_google_beta/container.dart';
-import 'package:terradart_google_beta/dataflow.dart';
 import 'package:terradart_google_beta/dataform.dart';
 import 'package:terradart_google_beta/dataplex.dart';
 import 'package:terradart_google_beta/firebase.dart';
@@ -377,13 +376,6 @@ final class BetaLeftoverStack extends Stack {
       ),
     );
     add(
-      GoogleDataflowFlexTemplateJob(
-        'dataflow_flex_template_job',
-        containerSpecGcsPath: .literal('terradart-leftover'),
-        name: .literal('terradart-leftover'),
-      ),
-    );
-    add(
       GoogleDataformConfig(
         'dataform_config',
         region: .literal('terradart-leftover'),
@@ -554,13 +546,6 @@ final class BetaLeftoverStack extends Stack {
         'network_security_sac_realm',
         name: .literal('terradart-leftover'),
         securityService: .securityServiceUnspecified,
-      ),
-    );
-    add(
-      GoogleNetworkServicesServiceLbPolicies(
-        'network_services_service_lb_policies',
-        location: .literal('terradart-leftover'),
-        name: .literal('terradart-leftover'),
       ),
     );
     add(

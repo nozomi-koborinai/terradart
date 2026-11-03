@@ -4,6 +4,9 @@ deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true
 
+sealedNames:
+  "job_type, scheduling_policy": workload
+
 dartTypeOverrides:
   job_type: BigqueryReservationAssignmentJobType
 
@@ -32,3 +35,4 @@ paramOrder:
   - location
   - project
   - reservation
+  - scheduling_policy

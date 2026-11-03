@@ -70,83 +70,6 @@ final class NetworkServicesServiceLbPoliciesFailoverConfig {
   };
 }
 
-/// Typed helper for the `isolation_config` block of
-/// `google_network_services_service_lb_policies` (derived from provider schema).
-@immutable
-final class NetworkServicesServiceLbPoliciesIsolationConfig {
-  const NetworkServicesServiceLbPoliciesIsolationConfig({
-    this.isolationGranularity,
-    this.isolationMode,
-  });
-
-  final NetworkServicesServiceLbPoliciesIsolationGranularity?
-  isolationGranularity;
-
-  final NetworkServicesServiceLbPoliciesIsolationMode? isolationMode;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'isolation_granularity': ?isolationGranularity?.toTfJson(),
-    'isolation_mode': ?isolationMode?.toTfJson(),
-  };
-}
-
-/// `isolation_granularity` — derived from the provider schema description.
-extension type const NetworkServicesServiceLbPoliciesIsolationGranularity._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  NetworkServicesServiceLbPoliciesIsolationGranularity.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkServicesServiceLbPoliciesIsolationGranularity.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const NetworkServicesServiceLbPoliciesIsolationGranularity.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const isolationGranularityUnspecified =
-      NetworkServicesServiceLbPoliciesIsolationGranularity._(
-        TfArgLiteral('ISOLATION_GRANULARITY_UNSPECIFIED'),
-      );
-  static const region = NetworkServicesServiceLbPoliciesIsolationGranularity._(
-    TfArgLiteral('REGION'),
-  );
-
-  static const List<NetworkServicesServiceLbPoliciesIsolationGranularity>
-  values = [isolationGranularityUnspecified, region];
-}
-
-/// `isolation_mode` — derived from the provider schema description.
-extension type const NetworkServicesServiceLbPoliciesIsolationMode._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  NetworkServicesServiceLbPoliciesIsolationMode.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkServicesServiceLbPoliciesIsolationMode.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkServicesServiceLbPoliciesIsolationMode.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const isolationModeUnspecified =
-      NetworkServicesServiceLbPoliciesIsolationMode._(
-        TfArgLiteral('ISOLATION_MODE_UNSPECIFIED'),
-      );
-  static const nearest = NetworkServicesServiceLbPoliciesIsolationMode._(
-    TfArgLiteral('NEAREST'),
-  );
-  static const strict = NetworkServicesServiceLbPoliciesIsolationMode._(
-    TfArgLiteral('STRICT'),
-  );
-
-  static const List<NetworkServicesServiceLbPoliciesIsolationMode> values = [
-    isolationModeUnspecified,
-    nearest,
-    strict,
-  ];
-}
-
 /// Factory wrapper for `google_network_services_service_lb_policies`.
 ///
 /// ServiceLbPolicy holds global load balancing and traffic distribution
@@ -166,7 +89,6 @@ final class GoogleNetworkServicesServiceLbPolicies extends Resource {
     TfArg<String>? project,
     NetworkServicesServiceLbPoliciesAutoCapacityDrain? autoCapacityDrain,
     NetworkServicesServiceLbPoliciesFailoverConfig? failoverConfig,
-    NetworkServicesServiceLbPoliciesIsolationConfig? isolationConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -185,17 +107,12 @@ final class GoogleNetworkServicesServiceLbPolicies extends Resource {
              'auto_capacity_drain': TfArg.literal(autoCapacityDrain.encode()),
            if (failoverConfig != null)
              'failover_config': TfArg.literal(failoverConfig.encode()),
-           if (isolationConfig != null)
-             'isolation_config': TfArg.literal(isolationConfig.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleNetworkServicesServiceLbPoliciesSensitive;
-
-  @override
-  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleNetworkServicesServiceLbPolicies>`.

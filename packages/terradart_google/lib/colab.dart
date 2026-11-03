@@ -13,6 +13,7 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionCompute,
         ColabNotebookExecutionComputeCustomEnvironmentSpec,
         ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName,
+        ColabNotebookExecutionCustomContainerImage,
         ColabNotebookExecutionCustomEnvironmentSpec,
         ColabNotebookExecutionDataformRepositorySource,
         ColabNotebookExecutionDataformRepositorySourceChoice,
@@ -33,6 +34,8 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionSource,
         ColabNotebookExecutionVmImage,
         ColabNotebookExecutionWorkbenchRuntime,
+        ColabNotebookExecutionWorkbenchRuntimeCustomContainerImage,
+        ColabNotebookExecutionWorkbenchRuntimeVmImage,
         GoogleColabNotebookExecution;
 export 'src/colab/google_colab_runtime.dart'
     show

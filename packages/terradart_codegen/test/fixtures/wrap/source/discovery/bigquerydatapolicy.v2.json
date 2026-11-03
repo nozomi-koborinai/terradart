@@ -23,15 +23,15 @@
     },
     "DataPolicy": {
       "properties": {
+        "dataMaskingPolicy": {
+          "$ref": "DataMaskingPolicy"
+        },
         "version": {
           "enum": [
             "VERSION_UNSPECIFIED",
             "V1",
             "V2"
           ]
-        },
-        "dataMaskingPolicy": {
-          "$ref": "DataMaskingPolicy"
         },
         "dataPolicyType": {
           "enum": [

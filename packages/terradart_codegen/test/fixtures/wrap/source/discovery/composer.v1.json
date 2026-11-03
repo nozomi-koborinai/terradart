@@ -54,12 +54,6 @@
         "softwareConfig": {
           "$ref": "SoftwareConfig"
         },
-        "resilienceMode": {
-          "enum": [
-            "RESILIENCE_MODE_UNSPECIFIED",
-            "HIGH_RESILIENCE"
-          ]
-        },
         "privateEnvironmentConfig": {
           "$ref": "PrivateEnvironmentConfig"
         },
@@ -73,6 +67,12 @@
             "ENVIRONMENT_SIZE_MEDIUM",
             "ENVIRONMENT_SIZE_LARGE",
             "ENVIRONMENT_SIZE_EXTRA_LARGE"
+          ]
+        },
+        "resilienceMode": {
+          "enum": [
+            "RESILIENCE_MODE_UNSPECIFIED",
+            "HIGH_RESILIENCE"
           ]
         }
       }
@@ -104,18 +104,18 @@
     },
     "SoftwareConfig": {
       "properties": {
-        "auditLogsReplicationMode": {
-          "enum": [
-            "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
-            "AUDIT_LOGS_REPLICATION_DISABLED",
-            "AUDIT_LOGS_REPLICATION_ENABLED"
-          ]
-        },
         "webServerPluginsMode": {
           "enum": [
             "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
             "PLUGINS_DISABLED",
             "PLUGINS_ENABLED"
+          ]
+        },
+        "auditLogsReplicationMode": {
+          "enum": [
+            "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
+            "AUDIT_LOGS_REPLICATION_DISABLED",
+            "AUDIT_LOGS_REPLICATION_ENABLED"
           ]
         }
       }

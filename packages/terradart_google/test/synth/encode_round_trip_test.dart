@@ -254,7 +254,7 @@ final Map<String, Object Function()> _syntheticInstances = {
     ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),
 
-  // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
+  // --- BigqueryConnectionBackend (8) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => const BigqueryConnectionCloudSql(
     instanceId: TfArg.literal('p:us:inst'),
     database: TfArg.literal('db'),
@@ -286,6 +286,13 @@ final Map<String, Object Function()> _syntheticInstances = {
         asset: BigqueryConnectionConfigurationAsset(
           database: TfArg.literal('db'),
         ),
+      ),
+  'BigqueryConnectionSalesforceDataCloud': () =>
+      const BigqueryConnectionSalesforceDataCloud(
+        instanceUri: TfArg.literal('https://example.my.salesforce.com'),
+        tenantId: TfArg.literal('tenant'),
+        crossCloudCacheOptions:
+            BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions(),
       ),
 
   // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------

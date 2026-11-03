@@ -13,6 +13,7 @@ export 'src/agentic/google_agentic_applications_analyst_agent_persona.dart'
         AgenticApplicationsAnalystAgentPersonaAirQuality,
         AgenticApplicationsAnalystAgentPersonaArtifactExamples,
         AgenticApplicationsAnalystAgentPersonaArtifactsConfig,
+        AgenticApplicationsAnalystAgentPersonaAuditTrailExportOptions,
         AgenticApplicationsAnalystAgentPersonaBigqueryResource,
         AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics,
         AgenticApplicationsAnalystAgentPersonaCoindesk,

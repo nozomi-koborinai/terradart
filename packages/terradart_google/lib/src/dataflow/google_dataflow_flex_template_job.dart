@@ -3,15 +3,68 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/terradart_google.dart'
-    show
-        GoogleComputeNetwork,
-        GoogleComputeSubnetwork,
-        GoogleKmsCryptoKey,
-        GoogleServiceAccount;
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_dataflow_flex_template_job`.
 const Set<String> _googleDataflowFlexTemplateJobSensitive = <String>{};
+
+/// Dataflow Flex Template Job Autoscaling enum for `autoscaling_algorithm`.
+extension type const DataflowFlexTemplateJobAutoscalingAlgorithm._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  DataflowFlexTemplateJobAutoscalingAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  DataflowFlexTemplateJobAutoscalingAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataflowFlexTemplateJobAutoscalingAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const autoscalingAlgorithmUnknown =
+      DataflowFlexTemplateJobAutoscalingAlgorithm._(
+        TfArgLiteral('AUTOSCALING_ALGORITHM_UNKNOWN'),
+      );
+  static const autoscalingAlgorithmNone =
+      DataflowFlexTemplateJobAutoscalingAlgorithm._(
+        TfArgLiteral('AUTOSCALING_ALGORITHM_NONE'),
+      );
+  static const autoscalingAlgorithmBasic =
+      DataflowFlexTemplateJobAutoscalingAlgorithm._(
+        TfArgLiteral('AUTOSCALING_ALGORITHM_BASIC'),
+      );
+
+  static const List<DataflowFlexTemplateJobAutoscalingAlgorithm> values = [
+    autoscalingAlgorithmUnknown,
+    autoscalingAlgorithmNone,
+    autoscalingAlgorithmBasic,
+  ];
+}
+
+/// Dataflow Flex Template Job Ip enum for `ip_configuration`.
+extension type const DataflowFlexTemplateJobIpConfiguration._(TfArg<String> _)
+    implements TfArg<String> {
+  DataflowFlexTemplateJobIpConfiguration.variable(String name)
+    : this._(TfArg.variable(name));
+  DataflowFlexTemplateJobIpConfiguration.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataflowFlexTemplateJobIpConfiguration.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const workerIpPublic = DataflowFlexTemplateJobIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PUBLIC'),
+  );
+  static const workerIpPrivate = DataflowFlexTemplateJobIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PRIVATE'),
+  );
+
+  static const List<DataflowFlexTemplateJobIpConfiguration> values = [
+    workerIpPublic,
+    workerIpPrivate,
+  ];
+}
 
 /// Factory wrapper for `google_dataflow_flex_template_job`.
 final class GoogleDataflowFlexTemplateJob extends Resource {
@@ -21,12 +74,12 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
     super.localName, {
     TfArg<List<String>>? additionalExperiments,
     TfArg<List<String>>? additionalPipelineOptions,
-    TfArg<String>? autoscalingAlgorithm,
+    DataflowFlexTemplateJobAutoscalingAlgorithm? autoscalingAlgorithm,
     required TfArg<String> containerSpecGcsPath,
     TfArg<bool>? createIgnoreAlreadyExists,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? enableStreamingEngine,
-    TfArg<String>? ipConfiguration,
+    DataflowFlexTemplateJobIpConfiguration? ipConfiguration,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? launcherMachineType,
@@ -85,9 +138,6 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataflowFlexTemplateJobSensitive;
-
-  @override
-  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataflowFlexTemplateJob>`.

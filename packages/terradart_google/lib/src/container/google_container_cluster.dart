@@ -4886,6 +4886,18 @@ final class ContainerClusterRollbackSafeUpgrade {
   };
 }
 
+/// Typed helper for the `schedule_upgrade_config` block of
+/// `google_container_cluster` (derived from provider schema).
+@immutable
+final class ContainerClusterScheduleUpgradeConfig {
+  const ContainerClusterScheduleUpgradeConfig({required this.enabled});
+
+  final TfArg<bool> enabled;
+
+  @internal
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
 /// Typed helper for the `secret_manager_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
@@ -5212,6 +5224,7 @@ final class GoogleContainerCluster extends Resource {
     ContainerClusterReleaseChannel? releaseChannel,
     ContainerClusterResourceUsageExportConfig? resourceUsageExportConfig,
     ContainerClusterRollbackSafeUpgrade? rollbackSafeUpgrade,
+    ContainerClusterScheduleUpgradeConfig? scheduleUpgradeConfig,
     ContainerClusterSecretManagerConfig? secretManagerConfig,
     ContainerClusterSecretSyncConfig? secretSyncConfig,
     ContainerClusterSecurityPostureConfig? securityPostureConfig,
@@ -5375,6 +5388,10 @@ final class GoogleContainerCluster extends Resource {
            if (rollbackSafeUpgrade != null)
              'rollback_safe_upgrade': TfArg.literal(
                rollbackSafeUpgrade.encode(),
+             ),
+           if (scheduleUpgradeConfig != null)
+             'schedule_upgrade_config': TfArg.literal(
+               scheduleUpgradeConfig.encode(),
              ),
            if (secretManagerConfig != null)
              'secret_manager_config': TfArg.literal(

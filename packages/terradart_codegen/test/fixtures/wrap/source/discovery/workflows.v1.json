@@ -23,9 +23,6 @@
             "UNAVAILABLE"
           ]
         },
-        "stateError": {
-          "$ref": "StateError"
-        },
         "callLogLevel": {
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
@@ -33,6 +30,9 @@
             "LOG_ERRORS_ONLY",
             "LOG_NONE"
           ]
+        },
+        "stateError": {
+          "$ref": "StateError"
         },
         "executionHistoryLevel": {
           "enum": [

@@ -163,6 +163,7 @@ hashicorp/google:
       google_data_fusion_instance.network_config.network: name
       google_data_pipeline_pipeline.workload.dataflow_flex_template_request.launch_parameter.environment.network: name
       google_data_pipeline_pipeline.workload.dataflow_launch_template_request.launch_parameters.environment.network: name
+      google_dataflow_flex_template_job.network: name
       google_dataflow_job.network: name
       google_filestore_instance.file_shares.nfs_export_options.network: name
       google_filestore_instance.networks.network: name
@@ -200,6 +201,7 @@ hashicorp/google:
       google_container_node_pool.network_config.additional_pod_network_configs.subnetwork: name
       google_data_pipeline_pipeline.workload.dataflow_flex_template_request.launch_parameter.environment.subnetwork: self_link
       google_data_pipeline_pipeline.workload.dataflow_launch_template_request.launch_parameters.environment.subnetwork: self_link
+      google_dataflow_flex_template_job.subnetwork: self_link
       google_dataflow_job.subnetwork: self_link
     exclude:
       # A free CIDR range for peering.
@@ -223,6 +225,11 @@ hashicorp/google:
       # How transferred objects keep their key, not a key.
       - google_storage_transfer_job.replication_spec.transfer_options.metadata_options.kms_key
       - google_storage_transfer_job.transfer_spec.transfer_options.metadata_options.kms_key
+      # The hand-written instance_flexibility_policy helper has no
+      # `instance_selections.disks` field yet (added in provider 8.9.0).
+      - google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.disk_encryption_key.kms_key_self_link
+      - google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.kms_key_self_link
+      - google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.kms_key_self_link
   - target: google_storage_bucket
     attribute: name
     slots: '(^|\.)(bucket|bucket_name|gcs_bucket)$'
@@ -820,10 +827,6 @@ hashicorp/google-beta:
       google_compute_region_backend_service: backendService
   - mm: resource-refs
   - inherit: hashicorp/google
-    attributes:
-      # As on google_dataflow_job.
-      google_dataflow_flex_template_job.network: name
-      google_dataflow_flex_template_job.subnetwork: self_link
     exclude:
       # A dataset the subscription creates.
       - google_bigquery_analytics_hub_data_exchange_subscription.destination_dataset.dataset_reference.dataset_id

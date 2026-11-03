@@ -6,11 +6,6 @@
   "schemas": {
     "BackupPlan": {
       "properties": {
-        "backupRules": {
-          "items": {
-            "$ref": "BackupRule"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -20,6 +15,11 @@
             "INACTIVE",
             "UPDATING"
           ]
+        },
+        "backupRules": {
+          "items": {
+            "$ref": "BackupRule"
+          }
         }
       }
     },
@@ -52,16 +52,6 @@
     },
     "BackupVault": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "DELETING",
-            "ERROR",
-            "UPDATING"
-          ]
-        },
         "accessRestriction": {
           "enum": [
             "ACCESS_RESTRICTION_UNSPECIFIED",
@@ -77,16 +67,21 @@
             "INHERIT_VAULT_RETENTION",
             "MATCH_BACKUP_EXPIRE_TIME"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ERROR",
+            "UPDATING"
+          ]
         }
       }
     },
     "ManagementServer": {
       "properties": {
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
         "state": {
           "enum": [
             "INSTANCE_STATE_UNSPECIFIED",
@@ -104,6 +99,11 @@
             "INSTANCE_TYPE_UNSPECIFIED",
             "BACKUP_RESTORE"
           ]
+        },
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
         }
       }
     },
@@ -132,23 +132,6 @@
     },
     "StandardSchedule": {
       "properties": {
-        "weekDayOfMonth": {
-          "$ref": "WeekDayOfMonth"
-        },
-        "daysOfWeek": {
-          "items": {
-            "enum": [
-              "DAY_OF_WEEK_UNSPECIFIED",
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
-            ]
-          }
-        },
         "months": {
           "items": {
             "enum": [
@@ -168,6 +151,20 @@
             ]
           }
         },
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        },
         "recurrenceType": {
           "enum": [
             "RECURRENCE_TYPE_UNSPECIFIED",
@@ -177,6 +174,9 @@
             "MONTHLY",
             "YEARLY"
           ]
+        },
+        "weekDayOfMonth": {
+          "$ref": "WeekDayOfMonth"
         }
       }
     },

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:pub_semver/pub_semver.dart';
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
@@ -10,12 +11,13 @@ import 'migrating_cells.dart' show previousRelease, publishedVersions;
 void main() {
   final migrating = File('MIGRATING.md').readAsStringSync();
   final renamed = renamedTypes(migrating);
+  late final Map<String, List<String>> versions;
   late final Map<String, String> previous;
   setUpAll(() async {
-    previous = previousRelease(
-      migrating,
-      await publishedVersions([for (final m in allMigrateManifests) m.package]),
-    );
+    versions = await publishedVersions([
+      for (final m in allMigrateManifests) m.package,
+    ]);
+    previous = previousRelease(migrating, versions);
   });
 
   test('the rename tables are found', () {
@@ -93,7 +95,10 @@ void main() {
           manifest,
           result.report,
           renamed: renamed,
-          published: previous.containsKey(manifest.package),
+          published: _releasedBefore(
+            versions[manifest.package] ?? const [],
+            previous[manifest.package],
+          ),
         ),
         isEmpty,
       );
@@ -203,6 +208,15 @@ void main() {
     });
   });
 }
+
+/// Whether [versions] has a stable release before [from], the release
+/// MIGRATING.md upgrades from. A package first released in [from] has had no
+/// upgrade yet, so MIGRATING.md has no rename row about it.
+bool _releasedBefore(List<String> versions, String? from) =>
+    from != null &&
+    versions
+        .map(Version.parse)
+        .any((v) => !v.isPreRelease && v < Version.parse(from));
 
 MigrationResult _migrate(File file) => migrateModule(
   TfModule.fromTfJson(file.readAsStringSync(), fileName: file.path),

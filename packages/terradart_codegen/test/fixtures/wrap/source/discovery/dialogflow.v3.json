@@ -20,11 +20,11 @@
     },
     "GoogleCloudDialogflowCxV3ConversationTurn": {
       "properties": {
-        "userInput": {
-          "$ref": "GoogleCloudDialogflowCxV3ConversationTurnUserInput"
-        },
         "virtualAgentOutput": {
           "$ref": "GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput"
+        },
+        "userInput": {
+          "$ref": "GoogleCloudDialogflowCxV3ConversationTurnUserInput"
         }
       }
     },
@@ -37,31 +37,31 @@
     },
     "GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput": {
       "properties": {
+        "currentPage": {
+          "$ref": "GoogleCloudDialogflowCxV3Page"
+        },
         "differences": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TestRunDifference"
           }
-        },
-        "currentPage": {
-          "$ref": "GoogleCloudDialogflowCxV3Page"
         }
       }
     },
     "GoogleCloudDialogflowCxV3DataStoreConnection": {
       "properties": {
+        "documentProcessingMode": {
+          "enum": [
+            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ]
+        },
         "dataStoreType": {
           "enum": [
             "DATA_STORE_TYPE_UNSPECIFIED",
             "PUBLIC_WEB",
             "UNSTRUCTURED",
             "STRUCTURED"
-          ]
-        },
-        "documentProcessingMode": {
-          "enum": [
-            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
-            "DOCUMENTS",
-            "CHUNKS"
           ]
         }
       }
@@ -91,31 +91,31 @@
     },
     "GoogleCloudDialogflowCxV3Flow": {
       "properties": {
-        "nluSettings": {
-          "$ref": "GoogleCloudDialogflowCxV3NluSettings"
+        "eventHandlers": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3EventHandler"
+          }
         },
         "outputParameterDefinitions": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
           }
         },
-        "eventHandlers": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowCxV3EventHandler"
-          }
+        "nluSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3NluSettings"
         },
-        "knowledgeConnectorSettings": {
-          "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings"
+        "inputParameterDefinitions": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
+          }
         },
         "transitionRoutes": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
           }
         },
-        "inputParameterDefinitions": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
-          }
+        "knowledgeConnectorSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings"
         }
       }
     },
@@ -181,11 +181,11 @@
     },
     "GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent": {
       "properties": {
-        "message": {
-          "$ref": "GoogleCloudDialogflowCxV3ResponseMessage"
-        },
         "additionalCases": {
           "$ref": "GoogleCloudDialogflowCxV3FulfillmentConditionalCases"
+        },
+        "message": {
+          "$ref": "GoogleCloudDialogflowCxV3ResponseMessage"
         }
       }
     },
@@ -225,9 +225,6 @@
     },
     "GoogleCloudDialogflowCxV3InlineSchema": {
       "properties": {
-        "items": {
-          "$ref": "GoogleCloudDialogflowCxV3TypeSchema"
-        },
         "type": {
           "enum": [
             "DATA_TYPE_UNSPECIFIED",
@@ -236,6 +233,9 @@
             "BOOLEAN",
             "ARRAY"
           ]
+        },
+        "items": {
+          "$ref": "GoogleCloudDialogflowCxV3TypeSchema"
         }
       }
     },
@@ -266,44 +266,36 @@
     },
     "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings": {
       "properties": {
-        "triggerFulfillment": {
-          "$ref": "GoogleCloudDialogflowCxV3Fulfillment"
-        },
         "dataStoreConnections": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3DataStoreConnection"
           }
+        },
+        "triggerFulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3Fulfillment"
         }
       }
     },
     "GoogleCloudDialogflowCxV3NluSettings": {
       "properties": {
-        "modelType": {
-          "enum": [
-            "MODEL_TYPE_UNSPECIFIED",
-            "MODEL_TYPE_STANDARD",
-            "MODEL_TYPE_ADVANCED"
-          ]
-        },
         "modelTrainingMode": {
           "enum": [
             "MODEL_TRAINING_MODE_UNSPECIFIED",
             "MODEL_TRAINING_MODE_AUTOMATIC",
             "MODEL_TRAINING_MODE_MANUAL"
           ]
+        },
+        "modelType": {
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "MODEL_TYPE_STANDARD",
+            "MODEL_TYPE_ADVANCED"
+          ]
         }
       }
     },
     "GoogleCloudDialogflowCxV3Page": {
       "properties": {
-        "transitionRoutes": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
-          }
-        },
-        "form": {
-          "$ref": "GoogleCloudDialogflowCxV3Form"
-        },
         "eventHandlers": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3EventHandler"
@@ -312,6 +304,14 @@
         "knowledgeConnectorSettings": {
           "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings"
         },
+        "form": {
+          "$ref": "GoogleCloudDialogflowCxV3Form"
+        },
+        "transitionRoutes": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3TransitionRoute"
+          }
+        },
         "entryFulfillment": {
           "$ref": "GoogleCloudDialogflowCxV3Fulfillment"
         }
@@ -319,6 +319,9 @@
     },
     "GoogleCloudDialogflowCxV3ParameterDefinition": {
       "properties": {
+        "typeSchema": {
+          "$ref": "GoogleCloudDialogflowCxV3TypeSchema"
+        },
         "type": {
           "enum": [
             "PARAMETER_TYPE_UNSPECIFIED",
@@ -329,9 +332,6 @@
             "OBJECT",
             "LIST"
           ]
-        },
-        "typeSchema": {
-          "$ref": "GoogleCloudDialogflowCxV3TypeSchema"
         }
       }
     },
@@ -349,12 +349,12 @@
             "ROUTINE"
           ]
         },
-        "outputParameterDefinitions": {
+        "inputParameterDefinitions": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
           }
         },
-        "inputParameterDefinitions": {
+        "outputParameterDefinitions": {
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
           }
@@ -382,10 +382,10 @@
     },
     "GoogleCloudDialogflowCxV3SafetySettings": {
       "properties": {
-        "raiSettings": {
+        "defaultRaiSettings": {
           "$ref": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings"
         },
-        "defaultRaiSettings": {
+        "raiSettings": {
           "$ref": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings"
         },
         "defaultBannedPhraseMatchStrategy": {
@@ -436,11 +436,8 @@
             "REMOVE_AFTER_CONVERSATION"
           ]
         },
-        "redactionScope": {
-          "enum": [
-            "REDACTION_SCOPE_UNSPECIFIED",
-            "REDACT_DISK_STORAGE"
-          ]
+        "audioExportSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings"
         },
         "purgeDataTypes": {
           "items": {
@@ -450,14 +447,17 @@
             ]
           }
         },
+        "redactionScope": {
+          "enum": [
+            "REDACTION_SCOPE_UNSPECIFIED",
+            "REDACT_DISK_STORAGE"
+          ]
+        },
         "redactionStrategy": {
           "enum": [
             "REDACTION_STRATEGY_UNSPECIFIED",
             "REDACT_WITH_SERVICE"
           ]
-        },
-        "audioExportSettings": {
-          "$ref": "GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings"
         }
       }
     },
@@ -494,17 +494,17 @@
     },
     "GoogleCloudDialogflowCxV3TestCaseResult": {
       "properties": {
+        "conversationTurns": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ConversationTurn"
+          }
+        },
         "testResult": {
           "enum": [
             "TEST_RESULT_UNSPECIFIED",
             "PASSED",
             "FAILED"
           ]
-        },
-        "conversationTurns": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowCxV3ConversationTurn"
-          }
         }
       }
     },
@@ -533,6 +533,9 @@
     },
     "GoogleCloudDialogflowCxV3Tool": {
       "properties": {
+        "openApiSpec": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolOpenApiTool"
+        },
         "dataStoreSpec": {
           "$ref": "GoogleCloudDialogflowCxV3ToolDataStoreTool"
         },
@@ -542,22 +545,19 @@
             "CUSTOMIZED_TOOL",
             "BUILTIN_TOOL"
           ]
-        },
-        "openApiSpec": {
-          "$ref": "GoogleCloudDialogflowCxV3ToolOpenApiTool"
         }
       }
     },
     "GoogleCloudDialogflowCxV3ToolAuthentication": {
       "properties": {
-        "apiKeyConfig": {
-          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig"
+        "oauthConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig"
         },
         "serviceAgentAuthConfig": {
           "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig"
         },
-        "oauthConfig": {
-          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig"
+        "apiKeyConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig"
         }
       }
     },
@@ -632,6 +632,9 @@
     },
     "GoogleCloudDialogflowCxV3Version": {
       "properties": {
+        "nluSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3NluSettings"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -639,9 +642,6 @@
             "SUCCEEDED",
             "FAILED"
           ]
-        },
-        "nluSettings": {
-          "$ref": "GoogleCloudDialogflowCxV3NluSettings"
         }
       }
     },
@@ -669,6 +669,18 @@
     },
     "GoogleCloudDialogflowCxV3WebhookGenericWebService": {
       "properties": {
+        "httpMethod": {
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ]
+        },
         "webhookType": {
           "enum": [
             "WEBHOOK_TYPE_UNSPECIFIED",
@@ -683,18 +695,6 @@
             "ID_TOKEN",
             "ACCESS_TOKEN"
           ]
-        },
-        "httpMethod": {
-          "enum": [
-            "HTTP_METHOD_UNSPECIFIED",
-            "POST",
-            "GET",
-            "HEAD",
-            "PUT",
-            "DELETE",
-            "PATCH",
-            "OPTIONS"
-          ]
         }
       }
     },
@@ -707,12 +707,6 @@
     },
     "GoogleCloudDialogflowV2EntityType": {
       "properties": {
-        "autoExpansionMode": {
-          "enum": [
-            "AUTO_EXPANSION_MODE_UNSPECIFIED",
-            "AUTO_EXPANSION_MODE_DEFAULT"
-          ]
-        },
         "kind": {
           "enum": [
             "KIND_UNSPECIFIED",
@@ -720,28 +714,17 @@
             "KIND_LIST",
             "KIND_REGEXP"
           ]
+        },
+        "autoExpansionMode": {
+          "enum": [
+            "AUTO_EXPANSION_MODE_UNSPECIFIED",
+            "AUTO_EXPANSION_MODE_DEFAULT"
+          ]
         }
       }
     },
     "GoogleCloudDialogflowV2Intent": {
       "properties": {
-        "webhookState": {
-          "enum": [
-            "WEBHOOK_STATE_UNSPECIFIED",
-            "WEBHOOK_STATE_ENABLED",
-            "WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING"
-          ]
-        },
-        "messages": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2IntentMessage"
-          }
-        },
-        "trainingPhrases": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2IntentTrainingPhrase"
-          }
-        },
         "defaultResponsePlatforms": {
           "items": {
             "enum": [
@@ -757,13 +740,36 @@
               "GOOGLE_HANGOUTS"
             ]
           }
+        },
+        "webhookState": {
+          "enum": [
+            "WEBHOOK_STATE_UNSPECIFIED",
+            "WEBHOOK_STATE_ENABLED",
+            "WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING"
+          ]
+        },
+        "trainingPhrases": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2IntentTrainingPhrase"
+          }
+        },
+        "messages": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2IntentMessage"
+          }
         }
       }
     },
     "GoogleCloudDialogflowV2IntentMessage": {
       "properties": {
+        "tableCard": {
+          "$ref": "GoogleCloudDialogflowV2IntentMessageTableCard"
+        },
         "mediaContent": {
           "$ref": "GoogleCloudDialogflowV2IntentMessageMediaContent"
+        },
+        "browseCarouselCard": {
+          "$ref": "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCard"
         },
         "platform": {
           "enum": [
@@ -778,17 +784,16 @@
             "ACTIONS_ON_GOOGLE",
             "GOOGLE_HANGOUTS"
           ]
-        },
-        "browseCarouselCard": {
-          "$ref": "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCard"
-        },
-        "tableCard": {
-          "$ref": "GoogleCloudDialogflowV2IntentMessageTableCard"
         }
       }
     },
     "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCard": {
       "properties": {
+        "items": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardItem"
+          }
+        },
         "imageDisplayOptions": {
           "enum": [
             "IMAGE_DISPLAY_OPTIONS_UNSPECIFIED",
@@ -797,11 +802,6 @@
             "CROPPED",
             "BLURRED_BACKGROUND"
           ]
-        },
-        "items": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardItem"
-          }
         }
       }
     },

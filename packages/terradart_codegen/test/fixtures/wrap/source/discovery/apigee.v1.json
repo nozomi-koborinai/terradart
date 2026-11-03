@@ -111,6 +111,15 @@
     },
     "GoogleCloudApigeeV1EndpointAttachment": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ]
+        },
         "connectionState": {
           "enum": [
             "CONNECTION_STATE_UNSPECIFIED",
@@ -123,20 +132,25 @@
             "NEEDS_ATTENTION",
             "ACCEPTED_LIMITED_CAPACITY"
           ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "DELETING",
-            "UPDATING"
-          ]
         }
       }
     },
     "GoogleCloudApigeeV1Environment": {
       "properties": {
+        "deploymentType": {
+          "enum": [
+            "DEPLOYMENT_TYPE_UNSPECIFIED",
+            "PROXY",
+            "ARCHIVE"
+          ]
+        },
+        "apiProxyType": {
+          "enum": [
+            "API_PROXY_TYPE_UNSPECIFIED",
+            "PROGRAMMABLE",
+            "CONFIGURABLE"
+          ]
+        },
         "type": {
           "enum": [
             "ENVIRONMENT_TYPE_UNSPECIFIED",
@@ -152,20 +166,6 @@
             "ACTIVE",
             "DELETING",
             "UPDATING"
-          ]
-        },
-        "apiProxyType": {
-          "enum": [
-            "API_PROXY_TYPE_UNSPECIFIED",
-            "PROGRAMMABLE",
-            "CONFIGURABLE"
-          ]
-        },
-        "deploymentType": {
-          "enum": [
-            "DEPLOYMENT_TYPE_UNSPECIFIED",
-            "PROXY",
-            "ARCHIVE"
           ]
         }
       }
@@ -188,9 +188,6 @@
     },
     "GoogleCloudApigeeV1Instance": {
       "properties": {
-        "maintenanceUpdatePolicy": {
-          "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicy"
-        },
         "peeringCidrRange": {
           "enum": [
             "CIDR_RANGE_UNSPECIFIED",
@@ -202,6 +199,9 @@
             "SLASH_22",
             "SLASH_23"
           ]
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "GoogleCloudApigeeV1MaintenanceUpdatePolicy"
         },
         "state": {
           "enum": [
@@ -273,38 +273,6 @@
     },
     "GoogleCloudApigeeV1Organization": {
       "properties": {
-        "runtimeType": {
-          "enum": [
-            "RUNTIME_TYPE_UNSPECIFIED",
-            "CLOUD",
-            "HYBRID"
-          ]
-        },
-        "billingType": {
-          "enum": [
-            "BILLING_TYPE_UNSPECIFIED",
-            "SUBSCRIPTION",
-            "EVALUATION",
-            "PAYG"
-          ]
-        },
-        "addonsConfig": {
-          "$ref": "GoogleCloudApigeeV1AddonsConfig"
-        },
-        "subscriptionType": {
-          "enum": [
-            "SUBSCRIPTION_TYPE_UNSPECIFIED",
-            "PAID",
-            "TRIAL"
-          ]
-        },
-        "subscriptionPlan": {
-          "enum": [
-            "SUBSCRIPTION_PLAN_UNSPECIFIED",
-            "SUBSCRIPTION_2021",
-            "SUBSCRIPTION_2024"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -320,6 +288,38 @@
             "TYPE_TRIAL",
             "TYPE_PAID",
             "TYPE_INTERNAL"
+          ]
+        },
+        "billingType": {
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "SUBSCRIPTION",
+            "EVALUATION",
+            "PAYG"
+          ]
+        },
+        "subscriptionPlan": {
+          "enum": [
+            "SUBSCRIPTION_PLAN_UNSPECIFIED",
+            "SUBSCRIPTION_2021",
+            "SUBSCRIPTION_2024"
+          ]
+        },
+        "runtimeType": {
+          "enum": [
+            "RUNTIME_TYPE_UNSPECIFIED",
+            "CLOUD",
+            "HYBRID"
+          ]
+        },
+        "addonsConfig": {
+          "$ref": "GoogleCloudApigeeV1AddonsConfig"
+        },
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAID",
+            "TRIAL"
           ]
         }
       }
@@ -340,6 +340,11 @@
     },
     "GoogleCloudApigeeV1SecurityFeedback": {
       "properties": {
+        "feedbackContexts": {
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext"
+          }
+        },
         "reason": {
           "enum": [
             "REASON_UNSPECIFIED",
@@ -349,11 +354,6 @@
             "PENETRATION_TEST",
             "OTHER"
           ]
-        },
-        "feedbackContexts": {
-          "items": {
-            "$ref": "GoogleCloudApigeeV1SecurityFeedbackFeedbackContext"
-          }
         },
         "feedbackType": {
           "enum": [
@@ -376,15 +376,15 @@
     },
     "GoogleCloudApigeeV1SecurityMonitoringCondition": {
       "properties": {
-        "include": {
-          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray"
-        },
         "riskAssessmentType": {
           "enum": [
             "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
             "APIGEE",
             "API_HUB"
           ]
+        },
+        "include": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray"
         }
       }
     },
@@ -406,9 +406,6 @@
     },
     "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig": {
       "properties": {
-        "include": {
-          "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray"
-        },
         "weight": {
           "enum": [
             "WEIGHT_UNSPECIFIED",
@@ -416,6 +413,9 @@
             "MODERATE",
             "MAJOR"
           ]
+        },
+        "include": {
+          "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfigApiHubGatewayTypeArray"
         }
       }
     },

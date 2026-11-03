@@ -27,6 +27,9 @@ google:
   data.google_storage_control_project_intelligence_findings_summary.resource_scope:
     values: [PARENT, PROJECT]
     source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.audit_trail_export_options.export_format:
+    values: [MARKDOWN, HTML, PDF]
+    source: no-document
   google_agentic_applications_analyst_agent_persona.artifacts_config.document_generation_options.export_format:
     values: [PDF, DOCX, GOOGLE_DOCS]
     source: no-document
@@ -944,6 +947,9 @@ google:
     source: no-enum
   google_storage_notification.payload_format:
     values: [JSON_API_V1, NONE]
+    source: no-enum
+  google_vertex_ai_custom_job.job_spec.worker_pool_specs.disk_spec.boot_disk_type:
+    values: [pd-ssd, pd-standard, pd-balanced, hyperdisk-balanced]
     source: no-enum
   google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.health_probe.http_get.scheme:
     values: [HTTP, HTTPS]

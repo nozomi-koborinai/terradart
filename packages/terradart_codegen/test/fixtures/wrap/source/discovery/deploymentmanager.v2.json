@@ -33,6 +33,14 @@
     },
     "GetHealthOperationMetadataHealthInfo": {
       "properties": {
+        "unhealthyReason": {
+          "enum": [
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
+          ]
+        },
         "repairCategory": {
           "enum": [
             "REPAIR_CATEGORY_UNSPECIFIED",
@@ -47,14 +55,6 @@
             "HEALTH_STATUS_UNSPECIFIED",
             "HEALTH_STATUS_HEALTHY",
             "HEALTH_STATUS_UNHEALTHY"
-          ]
-        },
-        "unhealthyReason": {
-          "enum": [
-            "UNHEALTHY_REASON_UNSPECIFIED",
-            "UNHEALTHY_REASON_REPAIRING",
-            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
-            "UNHEALTHY_REASON_UNSCHEDULABLE"
           ]
         },
         "availabilitySloStatus": {
@@ -80,19 +80,6 @@
       "properties": {
         "getHealthOperationMetadata": {
           "$ref": "GetHealthOperationMetadata"
-        },
-        "status": {
-          "enum": [
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ]
-        },
-        "setCommonInstanceMetadataOperationMetadata": {
-          "$ref": "SetCommonInstanceMetadataOperationMetadata"
-        },
-        "instancesBulkInsertOperationMetadata": {
-          "$ref": "InstancesBulkInsertOperationMetadata"
         },
         "warnings": {
           "items": {
@@ -163,6 +150,19 @@
               }
             }
           }
+        },
+        "setCommonInstanceMetadataOperationMetadata": {
+          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        },
+        "instancesBulkInsertOperationMetadata": {
+          "$ref": "InstancesBulkInsertOperationMetadata"
+        },
+        "status": {
+          "enum": [
+            "PENDING",
+            "RUNNING",
+            "DONE"
+          ]
         }
       }
     },

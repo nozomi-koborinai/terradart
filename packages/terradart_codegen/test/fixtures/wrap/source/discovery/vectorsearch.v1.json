@@ -47,18 +47,18 @@
     },
     "GoogleCloudVectorsearchV1Index": {
       "properties": {
+        "dedicatedInfrastructure": {
+          "$ref": "GoogleCloudVectorsearchV1DedicatedInfrastructure"
+        },
+        "denseScann": {
+          "$ref": "GoogleCloudVectorsearchV1DenseScannIndex"
+        },
         "distanceMetric": {
           "enum": [
             "DISTANCE_METRIC_UNSPECIFIED",
             "DOT_PRODUCT",
             "COSINE_DISTANCE"
           ]
-        },
-        "denseScann": {
-          "$ref": "GoogleCloudVectorsearchV1DenseScannIndex"
-        },
-        "dedicatedInfrastructure": {
-          "$ref": "GoogleCloudVectorsearchV1DedicatedInfrastructure"
         }
       }
     },

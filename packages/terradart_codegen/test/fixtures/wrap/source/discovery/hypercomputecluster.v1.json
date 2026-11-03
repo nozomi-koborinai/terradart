@@ -1,7 +1,7 @@
 {
   "name": "hypercomputecluster",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261028",
   "sourceUrl": "https://hypercomputecluster.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Cluster": {
@@ -45,9 +45,6 @@
     },
     "NewBucketConfig": {
       "properties": {
-        "autoclass": {
-          "$ref": "GcsAutoclassConfig"
-        },
         "storageClass": {
           "enum": [
             "STORAGE_CLASS_UNSPECIFIED",
@@ -57,23 +54,26 @@
             "ARCHIVE",
             "RAPID"
           ]
+        },
+        "autoclass": {
+          "$ref": "GcsAutoclassConfig"
         }
       }
     },
     "NewFilestoreConfig": {
       "properties": {
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "ZONAL",
-            "REGIONAL"
-          ]
-        },
         "protocol": {
           "enum": [
             "PROTOCOL_UNSPECIFIED",
             "NFSV3",
             "NFSV41"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
           ]
         }
       }
@@ -98,11 +98,11 @@
     },
     "StorageResourceConfig": {
       "properties": {
-        "newBucket": {
-          "$ref": "NewBucketConfig"
-        },
         "newFilestore": {
           "$ref": "NewFilestoreConfig"
+        },
+        "newBucket": {
+          "$ref": "NewBucketConfig"
         }
       }
     }

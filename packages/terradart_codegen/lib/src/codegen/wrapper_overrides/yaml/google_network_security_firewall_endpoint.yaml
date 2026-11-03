@@ -31,5 +31,6 @@ paramOrder:
   - parent
   - billing_project_id
   - endpoint_settings
+  - wildfire_settings
   - labels
   - deletion_policy

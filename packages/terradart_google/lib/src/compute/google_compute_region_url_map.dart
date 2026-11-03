@@ -349,13 +349,19 @@ final class ComputeRegionUrlMapFixedDelay {
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
 final class ComputeRegionUrlMapRequestMirrorPolicy {
-  const ComputeRegionUrlMapRequestMirrorPolicy({this.backendService});
+  const ComputeRegionUrlMapRequestMirrorPolicy({
+    this.backendService,
+    this.mirrorPercent,
+  });
 
   final RefTo<GoogleComputeRegionBackendService>? backendService;
+
+  final TfArg<num>? mirrorPercent;
 
   @internal
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
+    'mirror_percent': ?mirrorPercent?.toTfJson(),
   };
 }
 
@@ -783,13 +789,17 @@ final class ComputeRegionUrlMapMaxStreamDuration {
 final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
   const ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy({
     required this.backendService,
+    this.mirrorPercent,
   });
 
   final RefTo<GoogleComputeBackendService> backendService;
 
+  final TfArg<num>? mirrorPercent;
+
   @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
+    'mirror_percent': ?mirrorPercent?.toTfJson(),
   };
 }
 
@@ -1042,13 +1052,17 @@ final class ComputeRegionUrlMapDelayFixedDelay {
 final class ComputeRegionUrlMapRouteActionRequestMirrorPolicy {
   const ComputeRegionUrlMapRouteActionRequestMirrorPolicy({
     required this.backendService,
+    this.mirrorPercent,
   });
 
   final RefTo<GoogleComputeRegionBackendService> backendService;
 
+  final TfArg<num>? mirrorPercent;
+
   @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
+    'mirror_percent': ?mirrorPercent?.toTfJson(),
   };
 }
 

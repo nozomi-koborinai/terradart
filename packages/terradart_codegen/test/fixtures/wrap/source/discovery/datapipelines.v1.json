@@ -52,12 +52,8 @@
     },
     "GoogleCloudDatapipelinesV1Pipeline": {
       "properties": {
-        "type": {
-          "enum": [
-            "PIPELINE_TYPE_UNSPECIFIED",
-            "PIPELINE_TYPE_BATCH",
-            "PIPELINE_TYPE_STREAMING"
-          ]
+        "workload": {
+          "$ref": "GoogleCloudDatapipelinesV1Workload"
         },
         "state": {
           "enum": [
@@ -69,8 +65,12 @@
             "STATE_PAUSED"
           ]
         },
-        "workload": {
-          "$ref": "GoogleCloudDatapipelinesV1Workload"
+        "type": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "PIPELINE_TYPE_BATCH",
+            "PIPELINE_TYPE_STREAMING"
+          ]
         }
       }
     },
@@ -87,11 +87,11 @@
     },
     "GoogleCloudDatapipelinesV1Workload": {
       "properties": {
-        "dataflowFlexTemplateRequest": {
-          "$ref": "GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest"
-        },
         "dataflowLaunchTemplateRequest": {
           "$ref": "GoogleCloudDatapipelinesV1LaunchTemplateRequest"
+        },
+        "dataflowFlexTemplateRequest": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest"
         }
       }
     }

@@ -47,11 +47,11 @@
             "UPDATE_FAILED"
           ]
         },
-        "httpTarget": {
-          "$ref": "HttpTarget"
-        },
         "appEngineHttpTarget": {
           "$ref": "AppEngineHttpTarget"
+        },
+        "httpTarget": {
+          "$ref": "HttpTarget"
         }
       }
     }

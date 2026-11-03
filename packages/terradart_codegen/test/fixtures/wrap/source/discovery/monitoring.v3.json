@@ -6,6 +6,24 @@
   "schemas": {
     "Aggregation": {
       "properties": {
+        "crossSeriesReducer": {
+          "enum": [
+            "REDUCE_NONE",
+            "REDUCE_MEAN",
+            "REDUCE_MIN",
+            "REDUCE_MAX",
+            "REDUCE_SUM",
+            "REDUCE_STDDEV",
+            "REDUCE_COUNT",
+            "REDUCE_COUNT_TRUE",
+            "REDUCE_COUNT_FALSE",
+            "REDUCE_FRACTION_TRUE",
+            "REDUCE_PERCENTILE_99",
+            "REDUCE_PERCENTILE_95",
+            "REDUCE_PERCENTILE_50",
+            "REDUCE_PERCENTILE_05"
+          ]
+        },
         "perSeriesAligner": {
           "enum": [
             "ALIGN_NONE",
@@ -28,40 +46,11 @@
             "ALIGN_PERCENTILE_05",
             "ALIGN_PERCENT_CHANGE"
           ]
-        },
-        "crossSeriesReducer": {
-          "enum": [
-            "REDUCE_NONE",
-            "REDUCE_MEAN",
-            "REDUCE_MIN",
-            "REDUCE_MAX",
-            "REDUCE_SUM",
-            "REDUCE_STDDEV",
-            "REDUCE_COUNT",
-            "REDUCE_COUNT_TRUE",
-            "REDUCE_COUNT_FALSE",
-            "REDUCE_FRACTION_TRUE",
-            "REDUCE_PERCENTILE_99",
-            "REDUCE_PERCENTILE_95",
-            "REDUCE_PERCENTILE_50",
-            "REDUCE_PERCENTILE_05"
-          ]
         }
       }
     },
     "AlertPolicy": {
       "properties": {
-        "alertStrategy": {
-          "$ref": "AlertStrategy"
-        },
-        "severity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "CRITICAL",
-            "ERROR",
-            "WARNING"
-          ]
-        },
         "conditions": {
           "items": {
             "$ref": "Condition"
@@ -73,6 +62,17 @@
             "AND",
             "OR",
             "AND_WITH_MATCHING_RESOURCE"
+          ]
+        },
+        "alertStrategy": {
+          "$ref": "AlertStrategy"
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "ERROR",
+            "WARNING"
           ]
         }
       }
@@ -92,14 +92,14 @@
     },
     "Condition": {
       "properties": {
+        "conditionAbsent": {
+          "$ref": "MetricAbsence"
+        },
         "conditionThreshold": {
           "$ref": "MetricThreshold"
         },
         "conditionMonitoringQueryLanguage": {
           "$ref": "MonitoringQueryLanguageCondition"
-        },
-        "conditionAbsent": {
-          "$ref": "MetricAbsence"
         },
         "conditionSql": {
           "$ref": "SqlCondition"
@@ -129,6 +129,9 @@
     },
     "HttpCheck": {
       "properties": {
+        "serviceAgentAuthentication": {
+          "$ref": "ServiceAgentAuthentication"
+        },
         "requestMethod": {
           "enum": [
             "METHOD_UNSPECIFIED",
@@ -147,9 +150,6 @@
           "items": {
             "$ref": "ResponseStatusCode"
           }
-        },
-        "serviceAgentAuthentication": {
-          "$ref": "ServiceAgentAuthentication"
         }
       }
     },
@@ -197,13 +197,17 @@
     },
     "MetricDescriptor": {
       "properties": {
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
         },
         "valueType": {
           "enum": [
@@ -216,6 +220,11 @@
             "MONEY"
           ]
         },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
         "metricKind": {
           "enum": [
             "METRIC_KIND_UNSPECIFIED",
@@ -224,34 +233,13 @@
             "CUMULATIVE"
           ]
         },
-        "launchStage": {
-          "enum": [
-            "LAUNCH_STAGE_UNSPECIFIED",
-            "UNIMPLEMENTED",
-            "PRELAUNCH",
-            "EARLY_ACCESS",
-            "ALPHA",
-            "BETA",
-            "GA",
-            "DEPRECATED"
-          ]
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
         }
       }
     },
     "MetricDescriptorMetadata": {
       "properties": {
-        "launchStage": {
-          "enum": [
-            "LAUNCH_STAGE_UNSPECIFIED",
-            "UNIMPLEMENTED",
-            "PRELAUNCH",
-            "EARLY_ACCESS",
-            "ALPHA",
-            "BETA",
-            "GA",
-            "DEPRECATED"
-          ]
-        },
         "timeSeriesResourceHierarchyLevel": {
           "items": {
             "enum": [
@@ -261,25 +249,24 @@
               "FOLDER"
             ]
           }
+        },
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ]
         }
       }
     },
     "MetricThreshold": {
       "properties": {
         "aggregations": {
-          "items": {
-            "$ref": "Aggregation"
-          }
-        },
-        "evaluationMissingData": {
-          "enum": [
-            "EVALUATION_MISSING_DATA_UNSPECIFIED",
-            "EVALUATION_MISSING_DATA_INACTIVE",
-            "EVALUATION_MISSING_DATA_ACTIVE",
-            "EVALUATION_MISSING_DATA_NO_OP"
-          ]
-        },
-        "denominatorAggregations": {
           "items": {
             "$ref": "Aggregation"
           }
@@ -294,6 +281,19 @@
             "COMPARISON_EQ",
             "COMPARISON_NE"
           ]
+        },
+        "evaluationMissingData": {
+          "enum": [
+            "EVALUATION_MISSING_DATA_UNSPECIFIED",
+            "EVALUATION_MISSING_DATA_INACTIVE",
+            "EVALUATION_MISSING_DATA_ACTIVE",
+            "EVALUATION_MISSING_DATA_NO_OP"
+          ]
+        },
+        "denominatorAggregations": {
+          "items": {
+            "$ref": "Aggregation"
+          }
         }
       }
     },
@@ -402,28 +402,21 @@
     },
     "UptimeCheckConfig": {
       "properties": {
-        "resourceGroup": {
-          "$ref": "ResourceGroup"
+        "httpCheck": {
+          "$ref": "HttpCheck"
         },
         "contentMatchers": {
           "items": {
             "$ref": "ContentMatcher"
           }
         },
-        "httpCheck": {
-          "$ref": "HttpCheck"
+        "resourceGroup": {
+          "$ref": "ResourceGroup"
         },
         "internalCheckers": {
           "items": {
             "$ref": "InternalChecker"
           }
-        },
-        "checkerType": {
-          "enum": [
-            "CHECKER_TYPE_UNSPECIFIED",
-            "STATIC_IP_CHECKERS",
-            "VPC_CHECKERS"
-          ]
         },
         "selectedRegions": {
           "items": {
@@ -438,6 +431,13 @@
               "USA_VIRGINIA"
             ]
           }
+        },
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
         }
       }
     }

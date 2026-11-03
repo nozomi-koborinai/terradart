@@ -6,6 +6,11 @@
   "schemas": {
     "Cluster": {
       "properties": {
+        "datastoreMountConfig": {
+          "items": {
+            "$ref": "DatastoreMountConfig"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -15,11 +20,6 @@
             "DELETING",
             "REPAIRING"
           ]
-        },
-        "datastoreMountConfig": {
-          "items": {
-            "$ref": "DatastoreMountConfig"
-          }
         }
       }
     },
@@ -67,13 +67,6 @@
     },
     "ExternalAccessRule": {
       "properties": {
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -81,6 +74,13 @@
             "CREATING",
             "UPDATING",
             "DELETING"
+          ]
+        },
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
           ]
         }
       }
@@ -171,12 +171,21 @@
     },
     "PrivateCloud": {
       "properties": {
+        "vcenter": {
+          "$ref": "Vcenter"
+        },
         "type": {
           "enum": [
             "STANDARD",
             "TIME_LIMITED",
             "STRETCHED"
           ]
+        },
+        "hcx": {
+          "$ref": "Hcx"
+        },
+        "nsx": {
+          "$ref": "Nsx"
         },
         "state": {
           "enum": [
@@ -188,15 +197,6 @@
             "DELETED",
             "PURGING"
           ]
-        },
-        "vcenter": {
-          "$ref": "Vcenter"
-        },
-        "nsx": {
-          "$ref": "Nsx"
-        },
-        "hcx": {
-          "$ref": "Hcx"
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig"
@@ -231,14 +231,10 @@
     },
     "VmwareEngineNetwork": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "UPDATING",
-            "DELETING"
-          ]
+        "vpcNetworks": {
+          "items": {
+            "$ref": "VpcNetwork"
+          }
         },
         "type": {
           "enum": [
@@ -247,10 +243,14 @@
             "STANDARD"
           ]
         },
-        "vpcNetworks": {
-          "items": {
-            "$ref": "VpcNetwork"
-          }
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
         }
       }
     },

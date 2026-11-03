@@ -72,22 +72,30 @@
     },
     "GoogleDomainsDns": {
       "properties": {
+        "dsRecords": {
+          "items": {
+            "$ref": "DsRecord"
+          }
+        },
         "dsState": {
           "enum": [
             "DS_STATE_UNSPECIFIED",
             "DS_RECORDS_UNPUBLISHED",
             "DS_RECORDS_PUBLISHED"
           ]
-        },
-        "dsRecords": {
-          "items": {
-            "$ref": "DsRecord"
-          }
         }
       }
     },
     "ManagementSettings": {
       "properties": {
+        "renewalMethod": {
+          "enum": [
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
+          ]
+        },
         "effectiveTransferLockState": {
           "enum": [
             "TRANSFER_LOCK_STATE_UNSPECIFIED",
@@ -109,19 +117,20 @@
             "UNLOCKED",
             "LOCKED"
           ]
-        },
-        "renewalMethod": {
-          "enum": [
-            "RENEWAL_METHOD_UNSPECIFIED",
-            "AUTOMATIC_RENEWAL",
-            "MANUAL_RENEWAL",
-            "RENEWAL_DISABLED"
-          ]
         }
       }
     },
     "Registration": {
       "properties": {
+        "domainProperties": {
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ]
+          }
+        },
         "supportedPrivacy": {
           "items": {
             "enum": [
@@ -131,6 +140,12 @@
               "REDACTED_CONTACT_DATA"
             ]
           }
+        },
+        "pendingContactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "managementSettings": {
+          "$ref": "ManagementSettings"
         },
         "issues": {
           "items": {
@@ -144,19 +159,11 @@
             ]
           }
         },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "REGISTRATION_PENDING",
-            "REGISTRATION_FAILED",
-            "TRANSFER_PENDING",
-            "TRANSFER_FAILED",
-            "IMPORT_PENDING",
-            "ACTIVE",
-            "SUSPENDED",
-            "EXPORTED",
-            "EXPIRED"
-          ]
+        "contactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "dnsSettings": {
+          "$ref": "DnsSettings"
         },
         "transferFailureReason": {
           "enum": [
@@ -173,14 +180,19 @@
             "TRANSFER_ALREADY_PENDING"
           ]
         },
-        "dnsSettings": {
-          "$ref": "DnsSettings"
-        },
-        "managementSettings": {
-          "$ref": "ManagementSettings"
-        },
-        "contactSettings": {
-          "$ref": "ContactSettings"
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REGISTRATION_PENDING",
+            "REGISTRATION_FAILED",
+            "TRANSFER_PENDING",
+            "TRANSFER_FAILED",
+            "IMPORT_PENDING",
+            "ACTIVE",
+            "SUSPENDED",
+            "EXPORTED",
+            "EXPIRED"
+          ]
         },
         "registerFailureReason": {
           "enum": [
@@ -189,18 +201,6 @@
             "DOMAIN_NOT_AVAILABLE",
             "INVALID_CONTACTS"
           ]
-        },
-        "pendingContactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "domainProperties": {
-          "items": {
-            "enum": [
-              "DOMAIN_PROPERTY_UNSPECIFIED",
-              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
-              "REQUIRE_PUSH_TRANSFER"
-            ]
-          }
         }
       }
     }

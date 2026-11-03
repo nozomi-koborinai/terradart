@@ -24,6 +24,9 @@
     },
     "FilterExpression": {
       "properties": {
+        "fieldSourceValue": {
+          "$ref": "FieldSource"
+        },
         "comparator": {
           "enum": [
             "COMPARATOR_UNSPECIFIED",
@@ -38,9 +41,6 @@
             "LIKE"
           ]
         },
-        "fieldSourceValue": {
-          "$ref": "FieldSource"
-        },
         "fieldSource": {
           "$ref": "FieldSource"
         }
@@ -48,13 +48,13 @@
     },
     "FilterPredicate": {
       "properties": {
+        "leafPredicate": {
+          "$ref": "FilterExpression"
+        },
         "childPredicates": {
           "items": {
             "$ref": "FilterPredicate"
           }
-        },
-        "leafPredicate": {
-          "$ref": "FilterExpression"
         },
         "operatorType": {
           "enum": [
@@ -112,28 +112,6 @@
     },
     "MetricDescriptor": {
       "properties": {
-        "valueType": {
-          "enum": [
-            "VALUE_TYPE_UNSPECIFIED",
-            "BOOL",
-            "INT64",
-            "DOUBLE",
-            "STRING",
-            "DISTRIBUTION",
-            "MONEY"
-          ]
-        },
-        "metricKind": {
-          "enum": [
-            "METRIC_KIND_UNSPECIFIED",
-            "GAUGE",
-            "DELTA",
-            "CUMULATIVE"
-          ]
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
-        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -146,10 +124,32 @@
             "DEPRECATED"
           ]
         },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
         "labels": {
           "items": {
             "$ref": "LabelDescriptor"
           }
+        },
+        "valueType": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
+          ]
         }
       }
     },
@@ -203,6 +203,11 @@
     },
     "QueryBuilderConfig": {
       "properties": {
+        "orderBys": {
+          "items": {
+            "$ref": "SortOrderParameter"
+          }
+        },
         "fieldSources": {
           "items": {
             "$ref": "FieldSource"
@@ -210,25 +215,20 @@
         },
         "filter": {
           "$ref": "FilterPredicate"
-        },
-        "orderBys": {
-          "items": {
-            "$ref": "SortOrderParameter"
-          }
         }
       }
     },
     "SavedQuery": {
       "properties": {
-        "opsAnalyticsQuery": {
-          "$ref": "OpsAnalyticsQuery"
-        },
         "visibility": {
           "enum": [
             "VISIBILITY_UNSPECIFIED",
             "PRIVATE",
             "SHARED"
           ]
+        },
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery"
         }
       }
     },
@@ -256,16 +256,16 @@
     },
     "VirtualField": {
       "properties": {
-        "underlyingFieldSources": {
-          "items": {
-            "$ref": "FieldSource"
-          }
-        },
         "virtualFieldType": {
           "enum": [
             "VIRTUAL_FIELD_TYPE_UNSPECIFIED",
             "COALESCE"
           ]
+        },
+        "underlyingFieldSources": {
+          "items": {
+            "$ref": "FieldSource"
+          }
         }
       }
     }

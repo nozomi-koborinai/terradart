@@ -31,11 +31,14 @@ final class DataprocClusterConfig {
     this.initializationAction,
     this.lifecycleConfig,
     this.masterConfig,
+    this.masterFlexibleConfig,
     this.metastoreConfig,
     this.preemptibleWorkerConfig,
+    this.secondaryWorkerFlexibleConfig,
     this.securityConfig,
     this.softwareConfig,
     this.workerConfig,
+    this.workerFlexibleConfig,
   });
 
   final DataprocClusterTier? clusterTier;
@@ -66,15 +69,22 @@ final class DataprocClusterConfig {
 
   final DataprocClusterMasterConfig? masterConfig;
 
+  final DataprocClusterMasterFlexibleConfig? masterFlexibleConfig;
+
   final DataprocClusterMetastoreConfig? metastoreConfig;
 
   final DataprocClusterPreemptibleWorkerConfig? preemptibleWorkerConfig;
+
+  final DataprocClusterSecondaryWorkerFlexibleConfig?
+  secondaryWorkerFlexibleConfig;
 
   final DataprocClusterSecurityConfig? securityConfig;
 
   final DataprocClusterSoftwareConfig? softwareConfig;
 
   final DataprocClusterWorkerConfig? workerConfig;
+
+  final DataprocClusterWorkerFlexibleConfig? workerFlexibleConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -98,11 +108,15 @@ final class DataprocClusterConfig {
       ],
     'lifecycle_config': ?lifecycleConfig?.encode(),
     'master_config': ?masterConfig?.encode(),
+    'master_flexible_config': ?masterFlexibleConfig?.encode(),
     'metastore_config': ?metastoreConfig?.encode(),
     'preemptible_worker_config': ?preemptibleWorkerConfig?.encode(),
+    'secondary_worker_flexible_config': ?secondaryWorkerFlexibleConfig
+        ?.encode(),
     'security_config': ?securityConfig?.encode(),
     'software_config': ?softwareConfig?.encode(),
     'worker_config': ?workerConfig?.encode(),
+    'worker_flexible_config': ?workerFlexibleConfig?.encode(),
   };
 }
 
@@ -866,6 +880,56 @@ final class DataprocClusterInstanceSelectionList {
   };
 }
 
+/// Typed helper for the `cluster_config.master_flexible_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterMasterFlexibleConfig {
+  const DataprocClusterMasterFlexibleConfig({
+    this.bootDiskSizeGb,
+    required this.coreCount,
+    this.hardwareClass,
+    this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num> coreCount;
+
+  final DataprocClusterHardwareClass? hardwareClass;
+
+  final TfArg<num>? numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': coreCount.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
+  };
+}
+
+/// `hardware_class` — derived from the provider schema description.
+extension type const DataprocClusterHardwareClass._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterHardwareClass.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterHardwareClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterHardwareClass.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = DataprocClusterHardwareClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const performance = DataprocClusterHardwareClass._(
+    TfArgLiteral('PERFORMANCE'),
+  );
+
+  static const List<DataprocClusterHardwareClass> values = [
+    standard,
+    performance,
+  ];
+}
+
 /// Typed helper for the `cluster_config.metastore_config` block of
 /// `google_dataproc_cluster` (derived from provider schema).
 @immutable
@@ -976,6 +1040,34 @@ final class DataprocClusterProvisioningModelMix {
     'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
     'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
         ?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `cluster_config.secondary_worker_flexible_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterSecondaryWorkerFlexibleConfig {
+  const DataprocClusterSecondaryWorkerFlexibleConfig({
+    this.bootDiskSizeGb,
+    required this.coreCount,
+    this.hardwareClass,
+    this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num> coreCount;
+
+  final DataprocClusterHardwareClass? hardwareClass;
+
+  final TfArg<num>? numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': coreCount.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
   };
 }
 
@@ -1239,6 +1331,34 @@ final class DataprocClusterWorkerConfig {
       'accelerators': [for (final e in accelerators!) e.encode()],
     'disk_config': ?diskConfig?.encode(),
     'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
+  };
+}
+
+/// Typed helper for the `cluster_config.worker_flexible_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterWorkerFlexibleConfig {
+  const DataprocClusterWorkerFlexibleConfig({
+    this.bootDiskSizeGb,
+    required this.coreCount,
+    this.hardwareClass,
+    required this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num> coreCount;
+
+  final DataprocClusterHardwareClass? hardwareClass;
+
+  final TfArg<num> numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': coreCount.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': numInstances.toTfJson(),
   };
 }
 

@@ -33,14 +33,14 @@
             "COMPATIBLE"
           ]
         },
-        "cloudSql": {
-          "$ref": "CloudSqlInstance"
-        },
         "schemaMigration": {
           "enum": [
             "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
             "MIGRATE_COMPATIBLE"
           ]
+        },
+        "cloudSql": {
+          "$ref": "CloudSqlInstance"
         }
       }
     },

@@ -13,6 +13,15 @@
     },
     "BareMetalAdminCluster": {
       "properties": {
+        "controlPlane": {
+          "$ref": "BareMetalAdminControlPlaneConfig"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "loadBalancer": {
+          "$ref": "BareMetalAdminLoadBalancerConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -26,15 +35,6 @@
         },
         "status": {
           "$ref": "ResourceStatus"
-        },
-        "controlPlane": {
-          "$ref": "BareMetalAdminControlPlaneConfig"
-        },
-        "loadBalancer": {
-          "$ref": "BareMetalAdminLoadBalancerConfig"
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
         },
         "binaryAuthorization": {
           "$ref": "BinaryAuthorization"
@@ -78,17 +78,23 @@
     },
     "BareMetalCluster": {
       "properties": {
-        "status": {
-          "$ref": "ResourceStatus"
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
         },
-        "upgradePolicy": {
-          "$ref": "BareMetalClusterUpgradePolicy"
+        "nodeConfig": {
+          "$ref": "BareMetalWorkloadNodeConfig"
         },
         "validationCheck": {
           "$ref": "ValidationCheck"
         },
-        "nodeConfig": {
-          "$ref": "BareMetalWorkloadNodeConfig"
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "controlPlane": {
+          "$ref": "BareMetalControlPlaneConfig"
+        },
+        "loadBalancer": {
+          "$ref": "BareMetalLoadBalancerConfig"
         },
         "state": {
           "enum": [
@@ -101,14 +107,8 @@
             "DEGRADED"
           ]
         },
-        "controlPlane": {
-          "$ref": "BareMetalControlPlaneConfig"
-        },
-        "binaryAuthorization": {
-          "$ref": "BinaryAuthorization"
-        },
-        "loadBalancer": {
-          "$ref": "BareMetalLoadBalancerConfig"
+        "upgradePolicy": {
+          "$ref": "BareMetalClusterUpgradePolicy"
         }
       }
     },
@@ -139,11 +139,11 @@
     },
     "BareMetalLoadBalancerConfig": {
       "properties": {
-        "bgpLbConfig": {
-          "$ref": "BareMetalBgpLbConfig"
-        },
         "metalLbConfig": {
           "$ref": "BareMetalMetalLbConfig"
+        },
+        "bgpLbConfig": {
+          "$ref": "BareMetalBgpLbConfig"
         }
       }
     },
@@ -163,12 +163,6 @@
     },
     "BareMetalNodePool": {
       "properties": {
-        "status": {
-          "$ref": "ResourceStatus"
-        },
-        "nodePoolConfig": {
-          "$ref": "BareMetalNodePoolConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -179,6 +173,12 @@
             "ERROR",
             "DEGRADED"
           ]
+        },
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
         }
       }
     },
@@ -253,6 +253,13 @@
     },
     "ValidationCheck": {
       "properties": {
+        "option": {
+          "enum": [
+            "OPTIONS_UNSPECIFIED",
+            "SKIP_VALIDATION_CHECK_BLOCKING",
+            "SKIP_VALIDATION_ALL"
+          ]
+        },
         "scenario": {
           "enum": [
             "SCENARIO_UNSPECIFIED",
@@ -262,13 +269,6 @@
         },
         "status": {
           "$ref": "ValidationCheckStatus"
-        },
-        "option": {
-          "enum": [
-            "OPTIONS_UNSPECIFIED",
-            "SKIP_VALIDATION_CHECK_BLOCKING",
-            "SKIP_VALIDATION_ALL"
-          ]
         }
       }
     },
@@ -296,15 +296,6 @@
     },
     "VmwareAdminCluster": {
       "properties": {
-        "platformConfig": {
-          "$ref": "VmwarePlatformConfig"
-        },
-        "status": {
-          "$ref": "ResourceStatus"
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -315,6 +306,15 @@
             "ERROR",
             "DEGRADED"
           ]
+        },
+        "platformConfig": {
+          "$ref": "VmwarePlatformConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
         }
       }
     },
@@ -327,6 +327,12 @@
     },
     "VmwareCluster": {
       "properties": {
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
         "status": {
           "$ref": "ResourceStatus"
         },
@@ -340,12 +346,6 @@
             "ERROR",
             "DEGRADED"
           ]
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
-        "binaryAuthorization": {
-          "$ref": "BinaryAuthorization"
         }
       }
     },

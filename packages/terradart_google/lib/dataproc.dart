@@ -83,6 +83,7 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterEngine,
         DataprocClusterGceClusterConfig,
         DataprocClusterGkeClusterConfig,
+        DataprocClusterHardwareClass,
         DataprocClusterIdentityConfig,
         DataprocClusterInitializationAction,
         DataprocClusterInstanceSelectionList,
@@ -93,6 +94,7 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterLocalSsdInterface,
         DataprocClusterMasterConfig,
         DataprocClusterMasterConfigInstanceFlexibilityPolicy,
+        DataprocClusterMasterFlexibleConfig,
         DataprocClusterMetastoreConfig,
         DataprocClusterMetricSource,
         DataprocClusterMetrics,
@@ -111,6 +113,7 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterProvisioningModelMix,
         DataprocClusterReservationAffinity,
         DataprocClusterRoles,
+        DataprocClusterSecondaryWorkerFlexibleConfig,
         DataprocClusterSecurityConfig,
         DataprocClusterShieldedInstanceConfig,
         DataprocClusterSoftwareConfig,
@@ -119,6 +122,7 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterType,
         DataprocClusterVirtualClusterConfig,
         DataprocClusterWorkerConfig,
+        DataprocClusterWorkerFlexibleConfig,
         GoogleDataprocCluster;
 export 'src/dataproc/google_dataproc_cluster_iam_binding.dart'
     show DataprocClusterIamBindingCondition, GoogleDataprocClusterIamBinding;

@@ -1,7 +1,7 @@
 {
   "name": "vpcaccess",
   "version": "v1",
-  "revision": "20261011",
+  "revision": "20261020",
   "sourceUrl": "https://vpcaccess.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Connector": {

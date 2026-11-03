@@ -23,6 +23,8 @@ export 'src/data/google_access_context_manager_supported_service.dart'
 export 'src/data/google_access_context_manager_supported_services.dart'
     show DataGoogleAccessContextManagerSupportedServices;
 export 'src/data/google_active_folder.dart' show DataGoogleActiveFolder;
+export 'src/data/google_agent_identity_auth_provider_iam_policy.dart'
+    show DataGoogleAgentIdentityAuthProviderIamPolicy;
 export 'src/data/google_agent_registry_agent.dart'
     show DataGoogleAgentRegistryAgent;
 export 'src/data/google_agent_registry_endpoint.dart'

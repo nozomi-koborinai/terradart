@@ -107,6 +107,10 @@ final class DataGoogleComputeServiceAttachment extends Data {
   TfRef<bool> get sendPropagatedConnectionLimitIfZero =>
       TfRef.attribute<bool>(this, 'send_propagated_connection_limit_if_zero');
 
+  /// Reference to `service_attachment_id` attribute.
+  TfRef<num> get serviceAttachmentId =>
+      TfRef.attribute<num>(this, 'service_attachment_id');
+
   /// Reference to `show_nat_ips` attribute.
   TfRef<bool> get showNatIps => TfRef.attribute<bool>(this, 'show_nat_ips');
 

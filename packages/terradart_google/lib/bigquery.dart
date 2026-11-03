@@ -106,6 +106,8 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionConfigurationEndpoint,
         BigqueryConnectionConfigurationNetwork,
         BigqueryConnectionConfigurationNetworkPrivateServiceConnect,
+        BigqueryConnectionSalesforceDataCloud,
+        BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions,
         BigqueryConnectionSpark,
         BigqueryConnectionSparkMetastoreServiceConfig,
         BigqueryConnectionSparkSparkHistoryServerConfig,
@@ -255,10 +257,15 @@ export 'src/bigquery/google_bigquery_reservation.dart'
     show
         BigqueryReservationAutoscale,
         BigqueryReservationEdition,
+        BigqueryReservationSchedulingPolicy,
         GoogleBigqueryReservation;
 export 'src/bigquery/google_bigquery_reservation_assignment.dart'
     show
         BigqueryReservationAssignmentJobType,
+        BigqueryReservationAssignmentSchedulingPolicy,
+        BigqueryReservationAssignmentWorkload,
+        BigqueryReservationAssignmentWorkloadJobType,
+        BigqueryReservationAssignmentWorkloadSchedulingPolicy,
         GoogleBigqueryReservationAssignment;
 export 'src/bigquery/google_bigquery_reservation_group.dart'
     show GoogleBigqueryReservationGroup;

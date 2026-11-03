@@ -11,6 +11,7 @@ const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
   'forward_ssh_connectivity.password',
   'forward_ssh_connectivity.private_key',
   'mongodb_profile.password',
+  'mongodb_profile.secret_manager_stored_password',
   'mongodb_profile.ssl_config.ca_certificate',
   'mongodb_profile.ssl_config.client_certificate',
   'mongodb_profile.ssl_config.client_key',
@@ -471,7 +472,7 @@ final class DatastreamConnectionProfileMongodbProfile {
 
   final TfArg<String>? replicaSet;
 
-  final TfArg<String>? secretManagerStoredPassword;
+  final Sensitive<String>? secretManagerStoredPassword;
 
   final TfArg<String> username;
 

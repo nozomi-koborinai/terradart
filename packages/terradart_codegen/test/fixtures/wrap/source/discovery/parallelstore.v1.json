@@ -6,12 +6,15 @@
   "schemas": {
     "Instance": {
       "properties": {
-        "directoryStripeLevel": {
+        "state": {
           "enum": [
-            "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
-            "DIRECTORY_STRIPE_LEVEL_MIN",
-            "DIRECTORY_STRIPE_LEVEL_BALANCED",
-            "DIRECTORY_STRIPE_LEVEL_MAX"
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "FAILED",
+            "UPGRADING",
+            "REPAIRING"
           ]
         },
         "fileStripeLevel": {
@@ -22,22 +25,19 @@
             "FILE_STRIPE_LEVEL_MAX"
           ]
         },
+        "directoryStripeLevel": {
+          "enum": [
+            "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
+            "DIRECTORY_STRIPE_LEVEL_MIN",
+            "DIRECTORY_STRIPE_LEVEL_BALANCED",
+            "DIRECTORY_STRIPE_LEVEL_MAX"
+          ]
+        },
         "deploymentType": {
           "enum": [
             "DEPLOYMENT_TYPE_UNSPECIFIED",
             "SCRATCH",
             "PERSISTENT"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "DELETING",
-            "FAILED",
-            "UPGRADING",
-            "REPAIRING"
           ]
         }
       }

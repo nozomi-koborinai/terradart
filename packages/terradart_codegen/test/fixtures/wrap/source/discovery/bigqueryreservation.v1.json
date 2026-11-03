@@ -6,13 +6,6 @@
   "schemas": {
     "Assignment": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "ACTIVE"
-          ]
-        },
         "jobType": {
           "enum": [
             "JOB_TYPE_UNSPECIFIED",
@@ -26,6 +19,13 @@
             "BACKGROUND_SEARCH_INDEX_REFRESH",
             "AUTOMATIC_MATERIALIZED_VIEW_REFRESH"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE"
+          ]
         }
       }
     },
@@ -34,7 +34,7 @@
     },
     "CapacityCommitment": {
       "properties": {
-        "renewalPlan": {
+        "plan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
@@ -56,7 +56,15 @@
             "ENTERPRISE_PLUS"
           ]
         },
-        "plan": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE",
+            "FAILED"
+          ]
+        },
+        "renewalPlan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
@@ -68,14 +76,6 @@
             "ANNUAL_FLAT_RATE",
             "THREE_YEAR",
             "NONE"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "ACTIVE",
-            "FAILED"
           ]
         }
       }

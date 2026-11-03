@@ -397,6 +397,13 @@ final class DataGoogleContainerCluster extends Data {
         'rollback_safe_upgrade',
       );
 
+  /// Reference to `schedule_upgrade_config` attribute.
+  TfRef<List<Map<String, Object?>>> get scheduleUpgradeConfig =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'schedule_upgrade_config',
+      );
+
   /// Reference to `secret_manager_config` attribute.
   TfRef<List<Map<String, Object?>>> get secretManagerConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(

@@ -197,7 +197,7 @@ final class AnalyticsStack extends Stack {
       GoogleBigqueryReservationAssignment(
         'project_slots',
         assignee: .literal('projects/$projectId'),
-        jobType: .query,
+        workload: .jobType(.query),
         location: .literal('asia-northeast1'),
         reservation: slotsReservation.ref,
       ),

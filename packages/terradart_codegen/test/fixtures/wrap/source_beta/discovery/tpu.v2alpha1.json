@@ -43,6 +43,17 @@
     },
     "Node": {
       "properties": {
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -63,6 +74,14 @@
             "UNKNOWN"
           ]
         },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
         "apiVersion": {
           "enum": [
             "API_VERSION_UNSPECIFIED",
@@ -70,9 +89,6 @@
             "V1",
             "V2_ALPHA1"
           ]
-        },
-        "upcomingMaintenance": {
-          "$ref": "UpcomingMaintenance"
         },
         "health": {
           "enum": [
@@ -82,32 +98,16 @@
             "UNHEALTHY_TENSORFLOW",
             "UNHEALTHY_MAINTENANCE"
           ]
-        },
-        "schedulingConfig": {
-          "$ref": "SchedulingConfig"
-        },
-        "symptoms": {
-          "items": {
-            "$ref": "Symptom"
-          }
-        },
-        "acceleratorConfig": {
-          "$ref": "AcceleratorConfig"
-        },
-        "dataDisks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
         }
       }
     },
     "NodeSpec": {
       "properties": {
-        "multiNodeParams": {
-          "$ref": "MultiNodeParams"
-        },
         "node": {
           "$ref": "Node"
+        },
+        "multiNodeParams": {
+          "$ref": "MultiNodeParams"
         }
       }
     },
@@ -122,16 +122,23 @@
             "FLEX_START"
           ]
         },
-        "tpu": {
-          "$ref": "Tpu"
-        },
         "state": {
           "$ref": "QueuedResourceState"
+        },
+        "tpu": {
+          "$ref": "Tpu"
         }
       }
     },
     "QueuedResourceState": {
       "properties": {
+        "stateInitiator": {
+          "enum": [
+            "STATE_INITIATOR_UNSPECIFIED",
+            "USER",
+            "SERVICE"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -144,13 +151,6 @@
             "SUSPENDING",
             "SUSPENDED",
             "WAITING_FOR_RESOURCES"
-          ]
-        },
-        "stateInitiator": {
-          "enum": [
-            "STATE_INITIATOR_UNSPECIFIED",
-            "USER",
-            "SERVICE"
           ]
         }
       }

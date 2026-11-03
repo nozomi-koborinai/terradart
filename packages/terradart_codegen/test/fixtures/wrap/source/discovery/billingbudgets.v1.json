@@ -28,14 +28,6 @@
     },
     "GoogleCloudBillingBudgetsV1Filter": {
       "properties": {
-        "calendarPeriod": {
-          "enum": [
-            "CALENDAR_PERIOD_UNSPECIFIED",
-            "MONTH",
-            "QUARTER",
-            "YEAR"
-          ]
-        },
         "creditTypesTreatment": {
           "enum": [
             "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
@@ -43,12 +35,20 @@
             "EXCLUDE_ALL_CREDITS",
             "INCLUDE_SPECIFIED_CREDITS"
           ]
+        },
+        "calendarPeriod": {
+          "enum": [
+            "CALENDAR_PERIOD_UNSPECIFIED",
+            "MONTH",
+            "QUARTER",
+            "YEAR"
+          ]
         }
       }
     },
     "GoogleCloudBillingBudgetsV1SpendCap": {
       "properties": {
-        "outputState": {
+        "inputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",
@@ -56,7 +56,7 @@
             "AWAITING_NEXT_PERIOD"
           ]
         },
-        "inputState": {
+        "outputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",

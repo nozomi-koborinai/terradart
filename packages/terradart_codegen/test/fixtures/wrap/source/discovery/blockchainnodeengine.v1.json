@@ -32,14 +32,19 @@
     },
     "EthereumDetails": {
       "properties": {
-        "gethDetails": {
-          "$ref": "GethDetails"
-        },
         "consensusClient": {
           "enum": [
             "CONSENSUS_CLIENT_UNSPECIFIED",
             "LIGHTHOUSE",
             "ERIGON_EMBEDDED_CONSENSUS_LAYER"
+          ]
+        },
+        "nodeType": {
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "LIGHT",
+            "FULL",
+            "ARCHIVE"
           ]
         },
         "network": {
@@ -51,20 +56,15 @@
             "TESTNET_HOLESKY"
           ]
         },
-        "nodeType": {
-          "enum": [
-            "NODE_TYPE_UNSPECIFIED",
-            "LIGHT",
-            "FULL",
-            "ARCHIVE"
-          ]
-        },
         "executionClient": {
           "enum": [
             "EXECUTION_CLIENT_UNSPECIFIED",
             "GETH",
             "ERIGON"
           ]
+        },
+        "gethDetails": {
+          "$ref": "GethDetails"
         }
       }
     },

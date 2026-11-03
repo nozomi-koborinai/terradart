@@ -229,12 +229,20 @@ final class BigtableAppProfileSingleClusterRouting {
 /// `google_bigtable_app_profile` (derived from provider schema).
 @immutable
 final class BigtableAppProfileStandardIsolation {
-  const BigtableAppProfileStandardIsolation({required this.priority});
+  const BigtableAppProfileStandardIsolation({
+    required this.priority,
+    this.memoryConfig,
+  });
 
   final BigtableAppProfilePriority priority;
 
+  final BigtableAppProfileMemoryConfig? memoryConfig;
+
   @internal
-  Map<String, Object?> encode() => {'priority': priority.toTfJson()};
+  Map<String, Object?> encode() => {
+    'priority': priority.toTfJson(),
+    'memory_config': ?memoryConfig?.encode(),
+  };
 }
 
 /// `priority` — derived from the provider schema description.
@@ -261,6 +269,16 @@ extension type const BigtableAppProfilePriority._(TfArg<String> _)
     priorityMedium,
     priorityHigh,
   ];
+}
+
+/// Typed helper for the `standard_isolation.memory_config` block of
+/// `google_bigtable_app_profile` (derived from provider schema).
+@immutable
+final class BigtableAppProfileMemoryConfig {
+  const BigtableAppProfileMemoryConfig();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Factory wrapper for `google_bigtable_app_profile`.

@@ -189,10 +189,15 @@ extension type const DataLossPreventionDiscoveryConfigDetailOfMessage._(
       DataLossPreventionDiscoveryConfigDetailOfMessage._(
         TfArgLiteral('RESOURCE_NAME'),
       );
+  static const fileStoreProfile =
+      DataLossPreventionDiscoveryConfigDetailOfMessage._(
+        TfArgLiteral('FILE_STORE_PROFILE'),
+      );
 
   static const List<DataLossPreventionDiscoveryConfigDetailOfMessage> values = [
     tableProfile,
     resourceName,
+    fileStoreProfile,
   ];
 }
 

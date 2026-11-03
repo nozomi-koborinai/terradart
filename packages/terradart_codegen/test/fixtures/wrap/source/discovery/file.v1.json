@@ -1,7 +1,7 @@
 {
   "name": "file",
   "version": "v1",
-  "revision": "20261006",
+  "revision": "20261015",
   "sourceUrl": "https://file.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Backup": {
@@ -49,6 +49,14 @@
     },
     "Instance": {
       "properties": {
+        "replication": {
+          "$ref": "Replication"
+        },
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
+        },
         "tier": {
           "enum": [
             "TIER_UNSPECIFIED",
@@ -61,6 +69,11 @@
             "ZONAL",
             "REGIONAL"
           ]
+        },
+        "fileShares": {
+          "items": {
+            "$ref": "FileShareConfig"
+          }
         },
         "state": {
           "enum": [
@@ -78,18 +91,6 @@
             "PROMOTING"
           ]
         },
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
-        "protocol": {
-          "enum": [
-            "FILE_PROTOCOL_UNSPECIFIED",
-            "NFS_V3",
-            "NFS_V4_1"
-          ]
-        },
         "suspensionReasons": {
           "items": {
             "enum": [
@@ -98,13 +99,12 @@
             ]
           }
         },
-        "fileShares": {
-          "items": {
-            "$ref": "FileShareConfig"
-          }
-        },
-        "replication": {
-          "$ref": "Replication"
+        "protocol": {
+          "enum": [
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
+          ]
         }
       }
     },
@@ -149,17 +149,6 @@
     },
     "ReplicaConfig": {
       "properties": {
-        "stateReasons": {
-          "items": {
-            "enum": [
-              "STATE_REASON_UNSPECIFIED",
-              "PEER_INSTANCE_UNREACHABLE",
-              "REMOVE_FAILED",
-              "PAUSE_FAILED",
-              "RESUME_FAILED"
-            ]
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -172,6 +161,17 @@
             "PAUSED",
             "RESUMING"
           ]
+        },
+        "stateReasons": {
+          "items": {
+            "enum": [
+              "STATE_REASON_UNSPECIFIED",
+              "PEER_INSTANCE_UNREACHABLE",
+              "REMOVE_FAILED",
+              "PAUSE_FAILED",
+              "RESUME_FAILED"
+            ]
+          }
         }
       }
     },

@@ -141,13 +141,8 @@
     },
     "Report": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "SUCCEEDED",
-            "FAILED"
-          ]
+        "summary": {
+          "$ref": "ReportSummary"
         },
         "type": {
           "enum": [
@@ -155,8 +150,13 @@
             "TOTAL_COST_OF_OWNERSHIP"
           ]
         },
-        "summary": {
-          "$ref": "ReportSummary"
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED"
+          ]
         }
       }
     },
@@ -285,12 +285,12 @@
             "COMMITMENT_PLAN_THREE_YEARS"
           ]
         },
-        "targetProduct": {
+        "sizingOptimizationStrategy": {
           "enum": [
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
-            "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
+            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
+            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
+            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
           ]
         },
         "soleTenancyPreferences": {
@@ -299,12 +299,12 @@
         "computeEnginePreferences": {
           "$ref": "ComputeEnginePreferences"
         },
-        "sizingOptimizationStrategy": {
+        "targetProduct": {
           "enum": [
-            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
-            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
-            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
+            "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
           ]
         },
         "vmwareEnginePreferences": {

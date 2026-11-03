@@ -17,6 +17,28 @@ export 'src/data/google_vertex_ai_reasoning_engine_query.dart'
     show DataGoogleVertexAiReasoningEngineQuery;
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
+export 'src/vertex_ai/google_vertex_ai_custom_job.dart'
+    show
+        GoogleVertexAiCustomJob,
+        VertexAiCustomJobAcceleratorType,
+        VertexAiCustomJobBaseOutputDirectory,
+        VertexAiCustomJobBootDiskType,
+        VertexAiCustomJobContainerSpec,
+        VertexAiCustomJobDiskSpec,
+        VertexAiCustomJobDnsPeeringConfigs,
+        VertexAiCustomJobEncryptionSpec,
+        VertexAiCustomJobEnv,
+        VertexAiCustomJobLustreMounts,
+        VertexAiCustomJobMachineSpec,
+        VertexAiCustomJobNfsMounts,
+        VertexAiCustomJobPscInterfaceConfig,
+        VertexAiCustomJobPythonPackageSpec,
+        VertexAiCustomJobReservationAffinity,
+        VertexAiCustomJobReservationAffinityType,
+        VertexAiCustomJobScheduling,
+        VertexAiCustomJobSpec,
+        VertexAiCustomJobStrategy,
+        VertexAiCustomJobWorkerPoolSpecs;
 export 'src/vertex_ai/google_vertex_ai_dataset.dart'
     show GoogleVertexAiDataset, VertexAiDatasetEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_deployment_resource_pool.dart'
@@ -185,6 +207,15 @@ export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
         VertexAiPersistentResourceRaySpec,
         VertexAiPersistentResourceRuntimeSpec,
         VertexAiPersistentResourceServiceAccountSpec;
+export 'src/vertex_ai/google_vertex_ai_pipeline_job.dart'
+    show
+        GoogleVertexAiPipelineJob,
+        VertexAiPipelineJobDnsPeeringConfigs,
+        VertexAiPipelineJobEncryptionSpec,
+        VertexAiPipelineJobFailurePolicy,
+        VertexAiPipelineJobInputArtifacts,
+        VertexAiPipelineJobPscInterfaceConfig,
+        VertexAiPipelineJobRuntimeConfig;
 export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
     show
         GoogleVertexAiRagCorpus,
@@ -221,6 +252,24 @@ export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
         VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned,
         VertexAiRagEngineConfigScaled,
         VertexAiRagEngineConfigUnprovisioned;
+export 'src/vertex_ai/google_vertex_ai_rag_file.dart'
+    show
+        GoogleVertexAiRagFile,
+        VertexAiRagFileChunkingConfig,
+        VertexAiRagFileFixedLengthChunking,
+        VertexAiRagFileGcsSource,
+        VertexAiRagFileGcsSourceChoice,
+        VertexAiRagFileGoogleDriveSource,
+        VertexAiRagFileGoogleDriveSourceChoice,
+        VertexAiRagFileLayoutParser,
+        VertexAiRagFileLlmParser,
+        VertexAiRagFileParsingConfig,
+        VertexAiRagFileParsingConfigLayoutParser,
+        VertexAiRagFileParsingConfigLlmParser,
+        VertexAiRagFileResourceIds,
+        VertexAiRagFileResourceType,
+        VertexAiRagFileSource,
+        VertexAiRagFileTransformationConfig;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
     show
         GoogleVertexAiReasoningEngine,

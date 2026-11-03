@@ -39,6 +39,10 @@ final class DataGoogleContainerEngineVersions extends Data {
   TfRef<String> get defaultClusterVersion =>
       TfRef.attribute<String>(this, 'default_cluster_version');
 
+  /// Reference to `default_image_type` attribute.
+  TfRef<String> get defaultImageType =>
+      TfRef.attribute<String>(this, 'default_image_type');
+
   /// Reference to `latest_master_version` attribute.
   TfRef<String> get latestMasterVersion =>
       TfRef.attribute<String>(this, 'latest_master_version');
@@ -67,6 +71,10 @@ final class DataGoogleContainerEngineVersions extends Data {
         this,
         'release_channel_upgrade_target_version',
       );
+
+  /// Reference to `valid_image_types` attribute.
+  TfRef<List<String>> get validImageTypes =>
+      TfRef.attribute<List<String>>(this, 'valid_image_types');
 
   /// Reference to `valid_master_versions` attribute.
   TfRef<List<String>> get validMasterVersions =>

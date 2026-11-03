@@ -41,7 +41,7 @@ extension type const NetworkSecuritySecurityProfileType._(TfArg<String> _)
   ];
 }
 
-/// At most one of `threat_prevention_profile`, `url_filtering_profile`, `custom_mirroring_profile`, `custom_intercept_profile` on `google_network_security_security_profile`: the provider rejects
+/// At most one of `threat_prevention_profile`, `url_filtering_profile`, `custom_mirroring_profile`, `custom_intercept_profile`, `wildfire_analysis_profile` on `google_network_security_security_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
@@ -69,6 +69,12 @@ sealed class NetworkSecuritySecurityProfileSettings {
   const factory NetworkSecuritySecurityProfileSettings.customInterceptProfile(
     NetworkSecuritySecurityProfileCustomInterceptProfile customInterceptProfile,
   ) = NetworkSecuritySecurityProfileSettingsCustomInterceptProfile;
+
+  /// Sets `wildfire_analysis_profile`.
+  const factory NetworkSecuritySecurityProfileSettings.wildfireAnalysisProfile(
+    NetworkSecuritySecurityProfileWildfireAnalysisProfile
+    wildfireAnalysisProfile,
+  ) = NetworkSecuritySecurityProfileSettingsWildfireAnalysisProfile;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -189,6 +195,35 @@ final class NetworkSecuritySecurityProfileSettingsCustomInterceptProfile
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'custom_intercept_profile': TfArg.literal(customInterceptProfile.encode()),
+  };
+}
+
+/// The [NetworkSecuritySecurityProfileSettings.wildfireAnalysisProfile] choice: sets `wildfire_analysis_profile`.
+final class NetworkSecuritySecurityProfileSettingsWildfireAnalysisProfile
+    extends NetworkSecuritySecurityProfileSettings {
+  const NetworkSecuritySecurityProfileSettingsWildfireAnalysisProfile(
+    this.wildfireAnalysisProfile,
+  );
+
+  final NetworkSecuritySecurityProfileWildfireAnalysisProfile
+  wildfireAnalysisProfile;
+
+  @internal
+  @override
+  String get blockKey => 'wildfire_analysis_profile';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'wildfire_analysis_profile': wildfireAnalysisProfile.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'wildfire_analysis_profile': TfArg.literal(
+      wildfireAnalysisProfile.encode(),
+    ),
   };
 }
 
@@ -488,6 +523,661 @@ extension type const NetworkSecuritySecurityProfileFilteringAction._(
     allow,
     deny,
   ];
+}
+
+/// Typed helper for the `wildfire_analysis_profile` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireAnalysisProfile {
+  const NetworkSecuritySecurityProfileWildfireAnalysisProfile({
+    this.wildfireRealtimeLookup,
+    this.wildfireInlineCloudAnalysisRules,
+    this.wildfireInlineMlOverrides,
+    this.wildfireInlineMlSetting,
+    this.wildfireOverrides,
+    this.wildfireSubmissionRules,
+    this.wildfireThreatOverrides,
+  });
+
+  final TfArg<bool>? wildfireRealtimeLookup;
+
+  final List<NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRules>?
+  wildfireInlineCloudAnalysisRules;
+
+  final List<NetworkSecuritySecurityProfileWildfireInlineMlOverrides>?
+  wildfireInlineMlOverrides;
+
+  final NetworkSecuritySecurityProfileWildfireInlineMlSetting?
+  wildfireInlineMlSetting;
+
+  final List<NetworkSecuritySecurityProfileWildfireOverrides>?
+  wildfireOverrides;
+
+  final List<NetworkSecuritySecurityProfileWildfireSubmissionRules>?
+  wildfireSubmissionRules;
+
+  final List<NetworkSecuritySecurityProfileWildfireThreatOverrides>?
+  wildfireThreatOverrides;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'wildfire_realtime_lookup': ?wildfireRealtimeLookup?.toTfJson(),
+    if (wildfireInlineCloudAnalysisRules != null)
+      'wildfire_inline_cloud_analysis_rules': [
+        for (final e in wildfireInlineCloudAnalysisRules!) e.encode(),
+      ],
+    if (wildfireInlineMlOverrides != null)
+      'wildfire_inline_ml_overrides': [
+        for (final e in wildfireInlineMlOverrides!) e.encode(),
+      ],
+    'wildfire_inline_ml_setting': ?wildfireInlineMlSetting?.encode(),
+    if (wildfireOverrides != null)
+      'wildfire_overrides': [for (final e in wildfireOverrides!) e.encode()],
+    if (wildfireSubmissionRules != null)
+      'wildfire_submission_rules': [
+        for (final e in wildfireSubmissionRules!) e.encode(),
+      ],
+    if (wildfireThreatOverrides != null)
+      'wildfire_threat_overrides': [
+        for (final e in wildfireThreatOverrides!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_cloud_analysis_rules` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRules {
+  const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRules({
+    required this.action,
+    required this.direction,
+    required this.fileSelectionMode,
+    this.customFileTypes,
+  });
+
+  final NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction
+  action;
+
+  final NetworkSecuritySecurityProfileDirection direction;
+
+  final NetworkSecuritySecurityProfileFileSelectionMode fileSelectionMode;
+
+  final NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesCustomFileTypes?
+  customFileTypes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'direction': direction.toTfJson(),
+    'file_selection_mode': fileSelectionMode.toTfJson(),
+    'custom_file_types': ?customFileTypes?.encode(),
+  };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allow =
+      NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction._(
+        TfArgLiteral('ALLOW'),
+      );
+  static const deny =
+      NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction._(
+        TfArgLiteral('DENY'),
+      );
+  static const alert =
+      NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction._(
+        TfArgLiteral('ALERT'),
+      );
+
+  static const List<
+    NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesAction
+  >
+  values = [allow, deny, alert];
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const upload = NetworkSecuritySecurityProfileDirection._(
+    TfArgLiteral('UPLOAD'),
+  );
+  static const download = NetworkSecuritySecurityProfileDirection._(
+    TfArgLiteral('DOWNLOAD'),
+  );
+  static const both = NetworkSecuritySecurityProfileDirection._(
+    TfArgLiteral('BOTH'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileDirection> values = [
+    upload,
+    download,
+    both,
+  ];
+}
+
+/// `file_selection_mode` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileFileSelectionMode._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileFileSelectionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileFileSelectionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileFileSelectionMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allFileTypes = NetworkSecuritySecurityProfileFileSelectionMode._(
+    TfArgLiteral('ALL_FILE_TYPES'),
+  );
+  static const customFileTypes =
+      NetworkSecuritySecurityProfileFileSelectionMode._(
+        TfArgLiteral('CUSTOM_FILE_TYPES'),
+      );
+
+  static const List<NetworkSecuritySecurityProfileFileSelectionMode> values = [
+    allFileTypes,
+    customFileTypes,
+  ];
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_cloud_analysis_rules.custom_file_types` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesCustomFileTypes {
+  const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesCustomFileTypes({
+    required this.fileTypes,
+  });
+
+  final EnumList<
+    NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes
+  >
+  fileTypes;
+
+  @internal
+  Map<String, Object?> encode() => {'file_types': fileTypes.toTfJson()};
+}
+
+/// `file_types` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const pe =
+      NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes._(
+        TfArgLiteral('PE'),
+      );
+
+  static const List<
+    NetworkSecuritySecurityProfileWildfireInlineCloudAnalysisRulesFileTypes
+  >
+  values = [pe];
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_ml_overrides` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireInlineMlOverrides {
+  const NetworkSecuritySecurityProfileWildfireInlineMlOverrides({
+    required this.action,
+    required this.protocol,
+  });
+
+  final NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction action;
+
+  final NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol
+  protocol;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'protocol': protocol.toTfJson(),
+  };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const wildfireDefaultAction =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction._(
+        TfArgLiteral('WILDFIRE_DEFAULT_ACTION'),
+      );
+  static const wildfireAllow =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction._(
+        TfArgLiteral('WILDFIRE_ALLOW'),
+      );
+  static const wildfireAlert =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction._(
+        TfArgLiteral('WILDFIRE_ALERT'),
+      );
+  static const wildfireDeny =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction._(
+        TfArgLiteral('WILDFIRE_DENY'),
+      );
+
+  static const List<
+    NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction
+  >
+  values = [wildfireDefaultAction, wildfireAllow, wildfireAlert, wildfireDeny];
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const wildfireSmtp =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_SMTP'),
+      );
+  static const wildfireSmb =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_SMB'),
+      );
+  static const wildfirePop3 =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_POP3'),
+      );
+  static const wildfireImap =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_IMAP'),
+      );
+  static const wildfireHttp2 =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_HTTP2'),
+      );
+  static const wildfireHttp =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_HTTP'),
+      );
+  static const wildfireFtp =
+      NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol._(
+        TfArgLiteral('WILDFIRE_FTP'),
+      );
+
+  static const List<
+    NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol
+  >
+  values = [
+    wildfireSmtp,
+    wildfireSmb,
+    wildfirePop3,
+    wildfireImap,
+    wildfireHttp2,
+    wildfireHttp,
+    wildfireFtp,
+  ];
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_ml_setting` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireInlineMlSetting {
+  const NetworkSecuritySecurityProfileWildfireInlineMlSetting({
+    this.fileExceptions,
+    this.inlineMlConfigs,
+  });
+
+  final List<NetworkSecuritySecurityProfileFileExceptions>? fileExceptions;
+
+  final List<NetworkSecuritySecurityProfileInlineMlConfigs>? inlineMlConfigs;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (fileExceptions != null)
+      'file_exceptions': [for (final e in fileExceptions!) e.encode()],
+    if (inlineMlConfigs != null)
+      'inline_ml_configs': [for (final e in inlineMlConfigs!) e.encode()],
+  };
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_ml_setting.file_exceptions` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileFileExceptions {
+  const NetworkSecuritySecurityProfileFileExceptions({
+    this.filename,
+    required this.partialHash,
+  });
+
+  final TfArg<String>? filename;
+
+  final TfArg<String> partialHash;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'filename': ?filename?.toTfJson(),
+    'partial_hash': partialHash.toTfJson(),
+  };
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_inline_ml_setting.inline_ml_configs` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileInlineMlConfigs {
+  const NetworkSecuritySecurityProfileInlineMlConfigs({
+    required this.action,
+    required this.fileType,
+  });
+
+  final NetworkSecuritySecurityProfileInlineMlConfigsAction action;
+
+  final NetworkSecuritySecurityProfileFileType fileType;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'file_type': fileType.toTfJson(),
+  };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileInlineMlConfigsAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileInlineMlConfigsAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileInlineMlConfigsAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileInlineMlConfigsAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const disable = NetworkSecuritySecurityProfileInlineMlConfigsAction._(
+    TfArgLiteral('DISABLE'),
+  );
+  static const alert = NetworkSecuritySecurityProfileInlineMlConfigsAction._(
+    TfArgLiteral('ALERT'),
+  );
+  static const enable = NetworkSecuritySecurityProfileInlineMlConfigsAction._(
+    TfArgLiteral('ENABLE'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileInlineMlConfigsAction>
+  values = [disable, alert, enable];
+}
+
+/// `file_type` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileFileType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileFileType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileFileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileFileType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const windowsExecutable = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('WINDOWS_EXECUTABLE'),
+  );
+  static const powershellScript1 = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('POWERSHELL_SCRIPT1'),
+  );
+  static const powershellScript2 = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('POWERSHELL_SCRIPT2'),
+  );
+  static const elf = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('ELF'),
+  );
+  static const msOffice = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('MS_OFFICE'),
+  );
+  static const shell = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('SHELL'),
+  );
+  static const ooxml = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('OOXML'),
+  );
+  static const macho = NetworkSecuritySecurityProfileFileType._(
+    TfArgLiteral('MACHO'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileFileType> values = [
+    windowsExecutable,
+    powershellScript1,
+    powershellScript2,
+    elf,
+    msOffice,
+    shell,
+    ooxml,
+    macho,
+  ];
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_overrides` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireOverrides {
+  const NetworkSecuritySecurityProfileWildfireOverrides({
+    required this.action,
+    required this.protocol,
+  });
+
+  final NetworkSecuritySecurityProfileWildfireInlineMlOverridesAction action;
+
+  final NetworkSecuritySecurityProfileWildfireInlineMlOverridesProtocol
+  protocol;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'protocol': protocol.toTfJson(),
+  };
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_submission_rules` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireSubmissionRules {
+  const NetworkSecuritySecurityProfileWildfireSubmissionRules({
+    required this.direction,
+    required this.fileSelectionMode,
+    this.customFileTypes,
+  });
+
+  final NetworkSecuritySecurityProfileDirection direction;
+
+  final NetworkSecuritySecurityProfileFileSelectionMode fileSelectionMode;
+
+  final NetworkSecuritySecurityProfileWildfireSubmissionRulesCustomFileTypes?
+  customFileTypes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'direction': direction.toTfJson(),
+    'file_selection_mode': fileSelectionMode.toTfJson(),
+    'custom_file_types': ?customFileTypes?.encode(),
+  };
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_submission_rules.custom_file_types` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireSubmissionRulesCustomFileTypes {
+  const NetworkSecuritySecurityProfileWildfireSubmissionRulesCustomFileTypes({
+    required this.fileTypes,
+  });
+
+  final EnumList<NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes>
+  fileTypes;
+
+  @internal
+  Map<String, Object?> encode() => {'file_types': fileTypes.toTfJson()};
+}
+
+/// `file_types` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const apk =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('APK'),
+      );
+  static const archive =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('ARCHIVE'),
+      );
+  static const emailLink =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('EMAIL_LINK'),
+      );
+  static const flash =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('FLASH'),
+      );
+  static const jar =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('JAR'),
+      );
+  static const linux =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('LINUX'),
+      );
+  static const msOffice =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('MS_OFFICE'),
+      );
+  static const pdf =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('PDF'),
+      );
+  static const pe =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('PE'),
+      );
+  static const script =
+      NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes._(
+        TfArgLiteral('SCRIPT'),
+      );
+
+  static const List<
+    NetworkSecuritySecurityProfileWildfireSubmissionRulesFileTypes
+  >
+  values = [
+    apk,
+    archive,
+    emailLink,
+    flash,
+    jar,
+    linux,
+    msOffice,
+    pdf,
+    pe,
+    script,
+  ];
+}
+
+/// Typed helper for the `wildfire_analysis_profile.wildfire_threat_overrides` block of
+/// `google_network_security_security_profile` (derived from provider schema).
+@immutable
+final class NetworkSecuritySecurityProfileWildfireThreatOverrides {
+  const NetworkSecuritySecurityProfileWildfireThreatOverrides({
+    required this.action,
+    required this.threatId,
+  });
+
+  final NetworkSecuritySecurityProfileWildfireThreatOverridesAction action;
+
+  final TfArg<String> threatId;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'threat_id': threatId.toTfJson(),
+  };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const NetworkSecuritySecurityProfileWildfireThreatOverridesAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileWildfireThreatOverridesAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileWildfireThreatOverridesAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileWildfireThreatOverridesAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const wildfireDefaultAction =
+      NetworkSecuritySecurityProfileWildfireThreatOverridesAction._(
+        TfArgLiteral('WILDFIRE_DEFAULT_ACTION'),
+      );
+  static const wildfireAllow =
+      NetworkSecuritySecurityProfileWildfireThreatOverridesAction._(
+        TfArgLiteral('WILDFIRE_ALLOW'),
+      );
+
+  static const List<NetworkSecuritySecurityProfileWildfireThreatOverridesAction>
+  values = [wildfireDefaultAction, wildfireAllow];
 }
 
 /// Factory wrapper for `google_network_security_security_profile`.

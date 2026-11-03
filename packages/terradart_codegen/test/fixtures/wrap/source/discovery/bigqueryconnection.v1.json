@@ -17,11 +17,11 @@
     },
     "Connection": {
       "properties": {
-        "configuration": {
-          "$ref": "ConnectorConfiguration"
-        },
         "cloudSql": {
           "$ref": "CloudSqlProperties"
+        },
+        "configuration": {
+          "$ref": "ConnectorConfiguration"
         }
       }
     },
@@ -42,13 +42,13 @@
     },
     "ConnectorConfigurationAuthentication": {
       "properties": {
+        "usernamePassword": {
+          "$ref": "ConnectorConfigurationUsernamePassword"
+        },
         "parameters": {
           "additionalProperties": {
             "$ref": "ConnectorConfigurationParameterValue"
           }
-        },
-        "usernamePassword": {
-          "$ref": "ConnectorConfigurationUsernamePassword"
         }
       }
     },

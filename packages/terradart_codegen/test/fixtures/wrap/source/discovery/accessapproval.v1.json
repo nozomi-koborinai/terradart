@@ -6,13 +6,13 @@
   "schemas": {
     "AccessApprovalSettings": {
       "properties": {
-        "enrolledServices": {
+        "effectiveApprovalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
+        },
+        "ancestorsEnrolledServices": {
           "items": {
             "$ref": "EnrolledService"
           }
-        },
-        "effectiveApprovalPolicy": {
-          "$ref": "CustomerApprovalApprovalPolicy"
         },
         "requestScopeMaxWidthPreference": {
           "enum": [
@@ -22,13 +22,13 @@
             "PROJECT"
           ]
         },
-        "approvalPolicy": {
-          "$ref": "CustomerApprovalApprovalPolicy"
-        },
-        "ancestorsEnrolledServices": {
+        "enrolledServices": {
           "items": {
             "$ref": "EnrolledService"
           }
+        },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
         }
       }
     },
