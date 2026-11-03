@@ -17,6 +17,11 @@
     },
     "AuthConfig": {
       "properties": {
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
         "authType": {
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
@@ -28,11 +33,6 @@
             "GOOGLE_AUTHENTICATION",
             "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED"
           ]
-        },
-        "additionalVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
         }
       }
     },
@@ -56,31 +56,35 @@
     },
     "Connection": {
       "properties": {
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAY_G",
+            "PAID"
+          ]
+        },
+        "authConfig": {
+          "$ref": "AuthConfig"
+        },
         "status": {
           "$ref": "ConnectionStatus"
-        },
-        "eventingEnablementType": {
-          "enum": [
-            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
-            "EVENTING_AND_CONNECTION",
-            "ONLY_EVENTING"
-          ]
         },
         "sslConfig": {
           "$ref": "SslConfig"
         },
-        "adminFilters": {
-          "items": {
-            "$ref": "AdminFilters"
-          }
+        "billingConfig": {
+          "$ref": "BillingConfig"
+        },
+        "eventingConfig": {
+          "$ref": "EventingConfig"
+        },
+        "eventingRuntimeData": {
+          "$ref": "EventingRuntimeData"
         },
         "configVariables": {
           "items": {
             "$ref": "ConfigVariable"
           }
-        },
-        "authConfig": {
-          "$ref": "AuthConfig"
         },
         "connectorVersionLaunchStage": {
           "enum": [
@@ -92,18 +96,12 @@
             "PRIVATE_PREVIEW"
           ]
         },
-        "subscriptionType": {
+        "eventingEnablementType": {
           "enum": [
-            "SUBSCRIPTION_TYPE_UNSPECIFIED",
-            "PAY_G",
-            "PAID"
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
           ]
-        },
-        "eventingRuntimeData": {
-          "$ref": "EventingRuntimeData"
-        },
-        "billingConfig": {
-          "$ref": "BillingConfig"
         },
         "logConfig": {
           "$ref": "ConnectorsLogConfig"
@@ -111,11 +109,13 @@
         "connectorVersionInfraConfig": {
           "$ref": "ConnectorVersionInfraConfig"
         },
-        "eventingConfig": {
-          "$ref": "EventingConfig"
-        },
         "euaOauthAuthConfig": {
           "$ref": "AuthConfig"
+        },
+        "adminFilters": {
+          "items": {
+            "$ref": "AdminFilters"
+          }
         }
       }
     },
@@ -137,15 +137,6 @@
     },
     "ConnectorVersionInfraConfig": {
       "properties": {
-        "deploymentModelMigrationState": {
-          "enum": [
-            "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
-            "IN_PROGRESS",
-            "COMPLETED",
-            "ROLLEDBACK",
-            "ROLLBACK_IN_PROGRESS"
-          ]
-        },
         "tlsMigrationState": {
           "enum": [
             "TLS_MIGRATION_STATE_UNSPECIFIED",
@@ -158,6 +149,15 @@
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "GKE_MST",
             "CLOUD_RUN_MST"
+          ]
+        },
+        "deploymentModelMigrationState": {
+          "enum": [
+            "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "ROLLEDBACK",
+            "ROLLBACK_IN_PROGRESS"
           ]
         }
       }
@@ -203,32 +203,32 @@
     },
     "EventingConfig": {
       "properties": {
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
         "listenerAuthConfig": {
           "$ref": "AuthConfig"
         },
         "authConfig": {
           "$ref": "AuthConfig"
-        },
-        "sslConfig": {
-          "$ref": "SslConfig"
-        },
-        "additionalVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
         }
       }
     },
     "EventingRuntimeData": {
       "properties": {
-        "webhookSubscriptions": {
-          "$ref": "WebhookSubscriptions"
-        },
         "webhookData": {
           "$ref": "WebhookData"
         },
         "status": {
           "$ref": "EventingStatus"
+        },
+        "webhookSubscriptions": {
+          "$ref": "WebhookSubscriptions"
         }
       }
     },
@@ -256,6 +256,12 @@
             "INSECURE"
           ]
         },
+        "serverCertType": {
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ]
+        },
         "clientCertType": {
           "enum": [
             "CERT_TYPE_UNSPECIFIED",
@@ -272,12 +278,6 @@
             "SSL_TYPE_UNSPECIFIED",
             "TLS",
             "MTLS"
-          ]
-        },
-        "serverCertType": {
-          "enum": [
-            "CERT_TYPE_UNSPECIFIED",
-            "PEM"
           ]
         }
       }

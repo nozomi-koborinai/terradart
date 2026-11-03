@@ -78,28 +78,6 @@
     },
     "Operation": {
       "properties": {
-        "setCommonInstanceMetadataOperationMetadata": {
-          "$ref": "SetCommonInstanceMetadataOperationMetadata"
-        },
-        "error": {
-          "properties": {
-            "errors": {
-              "items": {
-                "properties": {
-                  "errorDetails": {
-                    "items": {
-                      "properties": {
-                        "quotaInfo": {
-                          "$ref": "QuotaExceededInfo"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "getHealthOperationMetadata": {
           "$ref": "GetHealthOperationMetadata"
         },
@@ -154,15 +132,37 @@
             }
           }
         },
+        "error": {
+          "properties": {
+            "errors": {
+              "items": {
+                "properties": {
+                  "errorDetails": {
+                    "items": {
+                      "properties": {
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "setCommonInstanceMetadataOperationMetadata": {
+          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        },
+        "instancesBulkInsertOperationMetadata": {
+          "$ref": "InstancesBulkInsertOperationMetadata"
+        },
         "status": {
           "enum": [
             "PENDING",
             "RUNNING",
             "DONE"
           ]
-        },
-        "instancesBulkInsertOperationMetadata": {
-          "$ref": "InstancesBulkInsertOperationMetadata"
         }
       }
     },

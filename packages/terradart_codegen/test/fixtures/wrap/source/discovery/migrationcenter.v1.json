@@ -13,19 +13,19 @@
     },
     "ComputeEnginePreferences": {
       "properties": {
-        "licenseType": {
-          "enum": [
-            "LICENSE_TYPE_UNSPECIFIED",
-            "LICENSE_TYPE_DEFAULT",
-            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
-          ]
-        },
         "persistentDiskType": {
           "enum": [
             "PERSISTENT_DISK_TYPE_UNSPECIFIED",
             "PERSISTENT_DISK_TYPE_STANDARD",
             "PERSISTENT_DISK_TYPE_BALANCED",
             "PERSISTENT_DISK_TYPE_SSD"
+          ]
+        },
+        "licenseType": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_TYPE_DEFAULT",
+            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
           ]
         }
       }
@@ -103,9 +103,6 @@
     },
     "ImportJob": {
       "properties": {
-        "executionReport": {
-          "$ref": "ExecutionReport"
-        },
         "state": {
           "enum": [
             "IMPORT_JOB_STATE_UNSPECIFIED",
@@ -117,6 +114,9 @@
             "IMPORT_JOB_STATE_FAILED_VALIDATION",
             "IMPORT_JOB_STATE_READY"
           ]
+        },
+        "executionReport": {
+          "$ref": "ExecutionReport"
         },
         "validationReport": {
           "$ref": "ValidationReport"
@@ -141,14 +141,14 @@
     },
     "Report": {
       "properties": {
+        "summary": {
+          "$ref": "ReportSummary"
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "TOTAL_COST_OF_OWNERSHIP"
           ]
-        },
-        "summary": {
-          "$ref": "ReportSummary"
         },
         "state": {
           "enum": [
@@ -197,11 +197,11 @@
     },
     "ReportSummaryGroupPreferenceSetFinding": {
       "properties": {
-        "machinePreferences": {
-          "$ref": "VirtualMachinePreferences"
-        },
         "computeEngineFinding": {
           "$ref": "ReportSummaryComputeEngineFinding"
+        },
+        "machinePreferences": {
+          "$ref": "VirtualMachinePreferences"
         }
       }
     },
@@ -241,14 +241,6 @@
     },
     "Source": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETING",
-            "INVALID"
-          ]
-        },
         "type": {
           "enum": [
             "SOURCE_TYPE_UNKNOWN",
@@ -258,19 +250,27 @@
             "SOURCE_TYPE_CUSTOM",
             "SOURCE_TYPE_DISCOVERY_CLIENT"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETING",
+            "INVALID"
+          ]
         }
       }
     },
     "ValidationReport": {
       "properties": {
-        "fileValidations": {
-          "items": {
-            "$ref": "FileValidationReport"
-          }
-        },
         "jobErrors": {
           "items": {
             "$ref": "ImportError"
+          }
+        },
+        "fileValidations": {
+          "items": {
+            "$ref": "FileValidationReport"
           }
         }
       }
@@ -285,15 +285,6 @@
             "COMMITMENT_PLAN_THREE_YEARS"
           ]
         },
-        "computeEnginePreferences": {
-          "$ref": "ComputeEnginePreferences"
-        },
-        "soleTenancyPreferences": {
-          "$ref": "SoleTenancyPreferences"
-        },
-        "vmwareEnginePreferences": {
-          "$ref": "VmwareEnginePreferences"
-        },
         "sizingOptimizationStrategy": {
           "enum": [
             "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
@@ -302,6 +293,12 @@
             "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
           ]
         },
+        "soleTenancyPreferences": {
+          "$ref": "SoleTenancyPreferences"
+        },
+        "computeEnginePreferences": {
+          "$ref": "ComputeEnginePreferences"
+        },
         "targetProduct": {
           "enum": [
             "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
@@ -309,6 +306,9 @@
             "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
             "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
           ]
+        },
+        "vmwareEnginePreferences": {
+          "$ref": "VmwareEnginePreferences"
         }
       }
     },

@@ -40,6 +40,17 @@
         }
       }
     },
+    "GoogleCloudSecuritycenterV1MuteConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "MUTE_CONFIG_TYPE_UNSPECIFIED",
+            "STATIC",
+            "DYNAMIC"
+          ]
+        }
+      }
+    },
     "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule": {
       "properties": {
         "enablementState": {
@@ -50,26 +61,15 @@
             "INHERITED"
           ]
         },
+        "customConfig": {
+          "$ref": "GoogleCloudSecuritycenterV1CustomConfig"
+        },
         "cloudProvider": {
           "enum": [
             "CLOUD_PROVIDER_UNSPECIFIED",
             "GOOGLE_CLOUD_PLATFORM",
             "AMAZON_WEB_SERVICES",
             "MICROSOFT_AZURE"
-          ]
-        },
-        "customConfig": {
-          "$ref": "GoogleCloudSecuritycenterV1CustomConfig"
-        }
-      }
-    },
-    "GoogleCloudSecuritycenterV2MuteConfig": {
-      "properties": {
-        "type": {
-          "enum": [
-            "MUTE_CONFIG_TYPE_UNSPECIFIED",
-            "STATIC",
-            "DYNAMIC"
           ]
         }
       }

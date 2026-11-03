@@ -17,15 +17,6 @@
     },
     "GoogleCloudRunV2Condition": {
       "properties": {
-        "instanceReason": {
-          "enum": [
-            "INSTANCE_REASON_UNSPECIFIED",
-            "INSTANCE_DELETED",
-            "INSTANCE_STOPPED",
-            "INSTANCE_STOPPING",
-            "INSTANCE_NON_ZERO_EXIT_CODE"
-          ]
-        },
         "reason": {
           "enum": [
             "COMMON_REASON_UNDEFINED",
@@ -44,6 +35,26 @@
             "POSTPONED_RETRY",
             "INTERNAL",
             "VPC_NETWORK_NOT_FOUND"
+          ]
+        },
+        "executionReason": {
+          "enum": [
+            "EXECUTION_REASON_UNDEFINED",
+            "JOB_STATUS_SERVICE_POLLING_ERROR",
+            "NON_ZERO_EXIT_CODE",
+            "CANCELLED",
+            "CANCELLING",
+            "DELETED",
+            "DELAYED_START_PENDING",
+            "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
           ]
         },
         "revisionReason": {
@@ -72,24 +83,13 @@
             "CONDITION_SUCCEEDED"
           ]
         },
-        "executionReason": {
+        "instanceReason": {
           "enum": [
-            "EXECUTION_REASON_UNDEFINED",
-            "JOB_STATUS_SERVICE_POLLING_ERROR",
-            "NON_ZERO_EXIT_CODE",
-            "CANCELLED",
-            "CANCELLING",
-            "DELETED",
-            "DELAYED_START_PENDING",
-            "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT"
-          ]
-        },
-        "severity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "ERROR",
-            "WARNING",
-            "INFO"
+            "INSTANCE_REASON_UNSPECIFIED",
+            "INSTANCE_DELETED",
+            "INSTANCE_STOPPED",
+            "INSTANCE_STOPPING",
+            "INSTANCE_NON_ZERO_EXIT_CODE"
           ]
         }
       }
@@ -128,6 +128,14 @@
     },
     "GoogleCloudRunV2Instance": {
       "properties": {
+        "volumes": {
+          "items": {
+            "$ref": "GoogleCloudRunV2Volume"
+          }
+        },
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition"
+        },
         "encryptionKeyRevocationAction": {
           "enum": [
             "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
@@ -135,14 +143,13 @@
             "SHUTDOWN"
           ]
         },
-        "ingress": {
-          "enum": [
-            "INGRESS_TRAFFIC_UNSPECIFIED",
-            "INGRESS_TRAFFIC_ALL",
-            "INGRESS_TRAFFIC_INTERNAL_ONLY",
-            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
-            "INGRESS_TRAFFIC_NONE"
-          ]
+        "vpcAccess": {
+          "$ref": "GoogleCloudRunV2VpcAccess"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "GoogleCloudRunV2Condition"
+          }
         },
         "launchStage": {
           "enum": [
@@ -156,12 +163,6 @@
             "DEPRECATED"
           ]
         },
-        "vpcAccess": {
-          "$ref": "GoogleCloudRunV2VpcAccess"
-        },
-        "terminalCondition": {
-          "$ref": "GoogleCloudRunV2Condition"
-        },
         "restartPolicy": {
           "enum": [
             "RESTART_POLICY_UNSPECIFIED",
@@ -170,15 +171,14 @@
             "NEVER"
           ]
         },
-        "conditions": {
-          "items": {
-            "$ref": "GoogleCloudRunV2Condition"
-          }
-        },
-        "volumes": {
-          "items": {
-            "$ref": "GoogleCloudRunV2Volume"
-          }
+        "ingress": {
+          "enum": [
+            "INGRESS_TRAFFIC_UNSPECIFIED",
+            "INGRESS_TRAFFIC_ALL",
+            "INGRESS_TRAFFIC_INTERNAL_ONLY",
+            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+            "INGRESS_TRAFFIC_NONE"
+          ]
         }
       }
     },
@@ -206,13 +206,17 @@
     },
     "GoogleCloudRunV2Job": {
       "properties": {
-        "latestCreatedExecution": {
-          "$ref": "GoogleCloudRunV2ExecutionReference"
-        },
         "conditions": {
           "items": {
             "$ref": "GoogleCloudRunV2Condition"
           }
+        },
+        "functionalType": {
+          "enum": [
+            "FUNCTIONAL_TYPE_UNSPECIFIED",
+            "FUNCTIONAL_TYPE_AGENT",
+            "FUNCTIONAL_TYPE_MCP_SERVER"
+          ]
         },
         "launchStage": {
           "enum": [
@@ -226,25 +230,26 @@
             "DEPRECATED"
           ]
         },
-        "functionalType": {
-          "enum": [
-            "FUNCTIONAL_TYPE_UNSPECIFIED",
-            "FUNCTIONAL_TYPE_AGENT",
-            "FUNCTIONAL_TYPE_MCP_SERVER"
-          ]
-        },
-        "terminalCondition": {
-          "$ref": "GoogleCloudRunV2Condition"
+        "latestCreatedExecution": {
+          "$ref": "GoogleCloudRunV2ExecutionReference"
         },
         "template": {
           "$ref": "GoogleCloudRunV2ExecutionTemplate"
+        },
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition"
         }
       }
     },
     "GoogleCloudRunV2RevisionTemplate": {
       "properties": {
-        "workloadIdentityConfig": {
-          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig"
+        "vpcAccess": {
+          "$ref": "GoogleCloudRunV2VpcAccess"
+        },
+        "volumes": {
+          "items": {
+            "$ref": "GoogleCloudRunV2Volume"
+          }
         },
         "executionEnvironment": {
           "enum": [
@@ -252,11 +257,6 @@
             "EXECUTION_ENVIRONMENT_GEN1",
             "EXECUTION_ENVIRONMENT_GEN2"
           ]
-        },
-        "volumes": {
-          "items": {
-            "$ref": "GoogleCloudRunV2Volume"
-          }
         },
         "ambientNetworking": {
           "$ref": "GoogleCloudRunV2AmbientNetworking"
@@ -268,39 +268,17 @@
             "SHUTDOWN"
           ]
         },
-        "vpcAccess": {
-          "$ref": "GoogleCloudRunV2VpcAccess"
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig"
         }
       }
     },
     "GoogleCloudRunV2Service": {
       "properties": {
-        "ingress": {
-          "enum": [
-            "INGRESS_TRAFFIC_UNSPECIFIED",
-            "INGRESS_TRAFFIC_ALL",
-            "INGRESS_TRAFFIC_INTERNAL_ONLY",
-            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
-            "INGRESS_TRAFFIC_NONE"
-          ]
-        },
-        "template": {
-          "$ref": "GoogleCloudRunV2RevisionTemplate"
-        },
-        "conditions": {
+        "trafficStatuses": {
           "items": {
-            "$ref": "GoogleCloudRunV2Condition"
+            "$ref": "GoogleCloudRunV2TrafficTargetStatus"
           }
-        },
-        "functionalType": {
-          "enum": [
-            "FUNCTIONAL_TYPE_UNSPECIFIED",
-            "FUNCTIONAL_TYPE_AGENT",
-            "FUNCTIONAL_TYPE_MCP_SERVER"
-          ]
-        },
-        "terminalCondition": {
-          "$ref": "GoogleCloudRunV2Condition"
         },
         "launchStage": {
           "enum": [
@@ -314,6 +292,30 @@
             "DEPRECATED"
           ]
         },
+        "conditions": {
+          "items": {
+            "$ref": "GoogleCloudRunV2Condition"
+          }
+        },
+        "ingress": {
+          "enum": [
+            "INGRESS_TRAFFIC_UNSPECIFIED",
+            "INGRESS_TRAFFIC_ALL",
+            "INGRESS_TRAFFIC_INTERNAL_ONLY",
+            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+            "INGRESS_TRAFFIC_NONE"
+          ]
+        },
+        "functionalType": {
+          "enum": [
+            "FUNCTIONAL_TYPE_UNSPECIFIED",
+            "FUNCTIONAL_TYPE_AGENT",
+            "FUNCTIONAL_TYPE_MCP_SERVER"
+          ]
+        },
+        "template": {
+          "$ref": "GoogleCloudRunV2RevisionTemplate"
+        },
         "scaling": {
           "$ref": "GoogleCloudRunV2ServiceScaling"
         },
@@ -322,10 +324,8 @@
             "$ref": "GoogleCloudRunV2TrafficTarget"
           }
         },
-        "trafficStatuses": {
-          "items": {
-            "$ref": "GoogleCloudRunV2TrafficTargetStatus"
-          }
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition"
         }
       }
     },
@@ -342,6 +342,12 @@
     },
     "GoogleCloudRunV2TaskTemplate": {
       "properties": {
+        "workloadIdentityConfig": {
+          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig"
+        },
+        "vpcAccess": {
+          "$ref": "GoogleCloudRunV2VpcAccess"
+        },
         "volumes": {
           "items": {
             "$ref": "GoogleCloudRunV2Volume"
@@ -353,12 +359,6 @@
             "EXECUTION_ENVIRONMENT_GEN1",
             "EXECUTION_ENVIRONMENT_GEN2"
           ]
-        },
-        "workloadIdentityConfig": {
-          "$ref": "GoogleCloudRunV2WorkloadIdentityConfig"
-        },
-        "vpcAccess": {
-          "$ref": "GoogleCloudRunV2VpcAccess"
         }
       }
     },
@@ -404,6 +404,27 @@
     },
     "GoogleCloudRunV2WorkerPool": {
       "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "GoogleCloudRunV2Condition"
+          }
+        },
+        "instanceSplitStatuses": {
+          "items": {
+            "$ref": "GoogleCloudRunV2InstanceSplitStatus"
+          }
+        },
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition"
+        },
+        "template": {
+          "$ref": "GoogleCloudRunV2WorkerPoolRevisionTemplate"
+        },
+        "instanceSplits": {
+          "items": {
+            "$ref": "GoogleCloudRunV2InstanceSplit"
+          }
+        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -415,27 +436,6 @@
             "GA",
             "DEPRECATED"
           ]
-        },
-        "instanceSplitStatuses": {
-          "items": {
-            "$ref": "GoogleCloudRunV2InstanceSplitStatus"
-          }
-        },
-        "template": {
-          "$ref": "GoogleCloudRunV2WorkerPoolRevisionTemplate"
-        },
-        "terminalCondition": {
-          "$ref": "GoogleCloudRunV2Condition"
-        },
-        "instanceSplits": {
-          "items": {
-            "$ref": "GoogleCloudRunV2InstanceSplit"
-          }
-        },
-        "conditions": {
-          "items": {
-            "$ref": "GoogleCloudRunV2Condition"
-          }
         }
       }
     },

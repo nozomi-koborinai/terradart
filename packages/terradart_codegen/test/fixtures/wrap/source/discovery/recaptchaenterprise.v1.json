@@ -6,14 +6,14 @@
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "properties": {
-        "testingOptions": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
         },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
         },
-        "wafSettings": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
+        "testingOptions": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
         }
       }
     },
@@ -30,15 +30,6 @@
     },
     "GoogleCloudRecaptchaenterpriseV1WafSettings": {
       "properties": {
-        "wafFeature": {
-          "enum": [
-            "WAF_FEATURE_UNSPECIFIED",
-            "CHALLENGE_PAGE",
-            "SESSION_TOKEN",
-            "ACTION_TOKEN",
-            "EXPRESS"
-          ]
-        },
         "wafService": {
           "enum": [
             "WAF_SERVICE_UNSPECIFIED",
@@ -46,6 +37,15 @@
             "FASTLY",
             "CLOUDFLARE",
             "AKAMAI"
+          ]
+        },
+        "wafFeature": {
+          "enum": [
+            "WAF_FEATURE_UNSPECIFIED",
+            "CHALLENGE_PAGE",
+            "SESSION_TOKEN",
+            "ACTION_TOKEN",
+            "EXPRESS"
           ]
         }
       }

@@ -27,6 +27,16 @@ final class RecaptchaEnterpriseKeyAndroidSettings {
   };
 }
 
+/// Typed helper for the `express_settings` block of
+/// `google_recaptcha_enterprise_key` (derived from provider schema).
+@immutable
+final class RecaptchaEnterpriseKeyExpressSettings {
+  const RecaptchaEnterpriseKeyExpressSettings();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
 /// Typed helper for the `ios_settings` block of
 /// `google_recaptcha_enterprise_key` (derived from provider schema).
 @immutable
@@ -88,6 +98,16 @@ extension type const RecaptchaEnterpriseKeyTestingChallenge._(TfArg<String> _)
     nocaptcha,
     unsolvableChallenge,
   ];
+}
+
+/// Typed helper for the `universal_settings` block of
+/// `google_recaptcha_enterprise_key` (derived from provider schema).
+@immutable
+final class RecaptchaEnterpriseKeyUniversalSettings {
+  const RecaptchaEnterpriseKeyUniversalSettings();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `waf_settings` block of
@@ -346,6 +366,8 @@ final class GoogleRecaptchaEnterpriseKey extends Resource {
     RecaptchaEnterpriseKeyAndroidSettings? androidSettings,
     RecaptchaEnterpriseKeyIosSettings? iosSettings,
     RecaptchaEnterpriseKeyWafSettings? wafSettings,
+    RecaptchaEnterpriseKeyExpressSettings? expressSettings,
+    RecaptchaEnterpriseKeyUniversalSettings? universalSettings,
     RecaptchaEnterpriseKeyTestingOptions? testingOptions,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
@@ -366,6 +388,10 @@ final class GoogleRecaptchaEnterpriseKey extends Resource {
              'ios_settings': TfArg.literal(iosSettings.encode()),
            if (wafSettings != null)
              'waf_settings': TfArg.literal(wafSettings.encode()),
+           if (expressSettings != null)
+             'express_settings': TfArg.literal(expressSettings.encode()),
+           if (universalSettings != null)
+             'universal_settings': TfArg.literal(universalSettings.encode()),
            if (testingOptions != null)
              'testing_options': TfArg.literal(testingOptions.encode()),
            'labels': ?labels,

@@ -9,6 +9,17 @@
         "providerConfig": {
           "$ref": "ProviderConfig"
         },
+        "lockState": {
+          "enum": [
+            "LOCK_STATE_UNSPECIFIED",
+            "LOCKED",
+            "UNLOCKED",
+            "LOCKING",
+            "UNLOCKING",
+            "LOCK_FAILED",
+            "UNLOCK_FAILED"
+          ]
+        },
         "quotaValidation": {
           "enum": [
             "QUOTA_VALIDATION_UNSPECIFIED",
@@ -26,17 +37,6 @@
             "BUCKET_CREATION_PERMISSION_DENIED",
             "BUCKET_CREATION_FAILED",
             "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
-          ]
-        },
-        "lockState": {
-          "enum": [
-            "LOCK_STATE_UNSPECIFIED",
-            "LOCKED",
-            "UNLOCKED",
-            "LOCKING",
-            "UNLOCKING",
-            "LOCK_FAILED",
-            "UNLOCK_FAILED"
           ]
         },
         "state": {

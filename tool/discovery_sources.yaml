@@ -141,6 +141,7 @@ google:
         node_config.gpudirect_strategy: config.gpuDirectConfig.gpuDirectStrategy
         node_config.guest_accelerator: config.accelerators
         node_config.logging_variant: config.loggingConfig.variantConfig.variant
+    google_dataflow_flex_template_job: {api: dataflow, version: v1b3, schema: FlexTemplateRuntimeEnvironment}
     google_dataflow_job: {api: dataflow, version: v1b3, schema: RuntimeEnvironment}
     google_dataplex_asset: {api: dataplex, version: v1, schema: GoogleCloudDataplexV1Asset}
     google_dataplex_zone: {api: dataplex, version: v1, schema: GoogleCloudDataplexV1Zone}

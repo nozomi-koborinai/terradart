@@ -6,6 +6,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+typeNames:
+  artifacts_config.audit_trail_export_options.export_format: AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

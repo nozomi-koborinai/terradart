@@ -62,17 +62,17 @@
     },
     "ConnectivityTest": {
       "properties": {
-        "destination": {
-          "$ref": "Endpoint"
-        },
         "probingDetails": {
           "$ref": "ProbingDetails"
         },
-        "source": {
-          "$ref": "Endpoint"
-        },
         "reachabilityDetails": {
           "$ref": "ReachabilityDetails"
+        },
+        "destination": {
+          "$ref": "Endpoint"
+        },
+        "source": {
+          "$ref": "Endpoint"
         },
         "returnReachabilityDetails": {
           "$ref": "ReachabilityDetails"
@@ -81,6 +81,16 @@
     },
     "DeliverInfo": {
       "properties": {
+        "googleServiceType": {
+          "enum": [
+            "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+            "IAP",
+            "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+            "CLOUD_DNS",
+            "PRIVATE_GOOGLE_ACCESS",
+            "SERVERLESS_VPC_ACCESS"
+          ]
+        },
         "target": {
           "enum": [
             "TARGET_UNSPECIFIED",
@@ -105,16 +115,6 @@
             "CLOUD_RUN_JOB",
             "DMS_PRIVATE_CONNECTION",
             "DATASTREAM_PRIVATE_CONNECTION"
-          ]
-        },
-        "googleServiceType": {
-          "enum": [
-            "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
-            "IAP",
-            "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
-            "CLOUD_DNS",
-            "PRIVATE_GOOGLE_ACCESS",
-            "SERVERLESS_VPC_ACCESS"
           ]
         }
       }
@@ -241,21 +241,6 @@
     },
     "Endpoint": {
       "properties": {
-        "loadBalancerType": {
-          "enum": [
-            "LOAD_BALANCER_TYPE_UNSPECIFIED",
-            "HTTPS_ADVANCED_LOAD_BALANCER",
-            "HTTPS_LOAD_BALANCER",
-            "REGIONAL_HTTPS_LOAD_BALANCER",
-            "INTERNAL_HTTPS_LOAD_BALANCER",
-            "SSL_PROXY_LOAD_BALANCER",
-            "TCP_PROXY_LOAD_BALANCER",
-            "INTERNAL_TCP_PROXY_LOAD_BALANCER",
-            "NETWORK_LOAD_BALANCER",
-            "LEGACY_NETWORK_LOAD_BALANCER",
-            "TCP_UDP_INTERNAL_LOAD_BALANCER"
-          ]
-        },
         "networkType": {
           "enum": [
             "NETWORK_TYPE_UNSPECIFIED",
@@ -272,18 +257,26 @@
             "VPN_GATEWAY",
             "PSC"
           ]
+        },
+        "loadBalancerType": {
+          "enum": [
+            "LOAD_BALANCER_TYPE_UNSPECIFIED",
+            "HTTPS_ADVANCED_LOAD_BALANCER",
+            "HTTPS_LOAD_BALANCER",
+            "REGIONAL_HTTPS_LOAD_BALANCER",
+            "INTERNAL_HTTPS_LOAD_BALANCER",
+            "SSL_PROXY_LOAD_BALANCER",
+            "TCP_PROXY_LOAD_BALANCER",
+            "INTERNAL_TCP_PROXY_LOAD_BALANCER",
+            "NETWORK_LOAD_BALANCER",
+            "LEGACY_NETWORK_LOAD_BALANCER",
+            "TCP_UDP_INTERNAL_LOAD_BALANCER"
+          ]
         }
       }
     },
     "FirewallInfo": {
       "properties": {
-        "targetType": {
-          "enum": [
-            "TARGET_TYPE_UNSPECIFIED",
-            "INSTANCES",
-            "INTERNAL_MANAGED_LB"
-          ]
-        },
         "firewallRuleType": {
           "enum": [
             "FIREWALL_RULE_TYPE_UNSPECIFIED",
@@ -298,6 +291,13 @@
             "UNSUPPORTED_FIREWALL_POLICY_RULE",
             "TRACKING_STATE",
             "ANALYSIS_SKIPPED"
+          ]
+        },
+        "targetType": {
+          "enum": [
+            "TARGET_TYPE_UNSPECIFIED",
+            "INSTANCES",
+            "INTERNAL_MANAGED_LB"
           ]
         }
       }
@@ -430,16 +430,6 @@
     },
     "LoadBalancerInfo": {
       "properties": {
-        "loadBalancerType": {
-          "enum": [
-            "LOAD_BALANCER_TYPE_UNSPECIFIED",
-            "INTERNAL_TCP_UDP",
-            "NETWORK_TCP_UDP",
-            "HTTP_PROXY",
-            "TCP_PROXY",
-            "SSL_PROXY"
-          ]
-        },
         "backends": {
           "items": {
             "$ref": "LoadBalancerBackend"
@@ -451,6 +441,16 @@
             "BACKEND_SERVICE",
             "TARGET_POOL",
             "TARGET_INSTANCE"
+          ]
+        },
+        "loadBalancerType": {
+          "enum": [
+            "LOAD_BALANCER_TYPE_UNSPECIFIED",
+            "INTERNAL_TCP_UDP",
+            "NETWORK_TCP_UDP",
+            "HTTP_PROXY",
+            "TCP_PROXY",
+            "SSL_PROXY"
           ]
         }
       }
@@ -481,12 +481,6 @@
     },
     "NetworkMonitoringProvider": {
       "properties": {
-        "providerType": {
-          "enum": [
-            "PROVIDER_TYPE_UNSPECIFIED",
-            "EXTERNAL"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -497,11 +491,22 @@
             "DELETING",
             "DELETED"
           ]
+        },
+        "providerType": {
+          "enum": [
+            "PROVIDER_TYPE_UNSPECIFIED",
+            "EXTERNAL"
+          ]
         }
       }
     },
     "ProbingDetails": {
       "properties": {
+        "edgeResponses": {
+          "items": {
+            "$ref": "SingleEdgeResponse"
+          }
+        },
         "result": {
           "enum": [
             "PROBING_RESULT_UNSPECIFIED",
@@ -510,11 +515,6 @@
             "REACHABILITY_INCONSISTENT",
             "UNDETERMINED"
           ]
-        },
-        "edgeResponses": {
-          "items": {
-            "$ref": "SingleEdgeResponse"
-          }
         },
         "abortCause": {
           "enum": [
@@ -527,6 +527,11 @@
     },
     "ReachabilityDetails": {
       "properties": {
+        "traces": {
+          "items": {
+            "$ref": "Trace"
+          }
+        },
         "result": {
           "enum": [
             "RESULT_UNSPECIFIED",
@@ -535,16 +540,24 @@
             "AMBIGUOUS",
             "UNDETERMINED"
           ]
-        },
-        "traces": {
-          "items": {
-            "$ref": "Trace"
-          }
         }
       }
     },
     "RouteInfo": {
       "properties": {
+        "routeType": {
+          "enum": [
+            "ROUTE_TYPE_UNSPECIFIED",
+            "SUBNET",
+            "STATIC",
+            "DYNAMIC",
+            "PEERING_SUBNET",
+            "PEERING_STATIC",
+            "PEERING_DYNAMIC",
+            "POLICY_BASED",
+            "ADVERTISED"
+          ]
+        },
         "nextHopType": {
           "enum": [
             "NEXT_HOP_TYPE_UNSPECIFIED",
@@ -569,19 +582,6 @@
             "NETWORK",
             "NCC_HUB"
           ]
-        },
-        "routeType": {
-          "enum": [
-            "ROUTE_TYPE_UNSPECIFIED",
-            "SUBNET",
-            "STATIC",
-            "DYNAMIC",
-            "PEERING_SUBNET",
-            "PEERING_STATIC",
-            "PEERING_DYNAMIC",
-            "POLICY_BASED",
-            "ADVERTISED"
-          ]
         }
       }
     },
@@ -600,17 +600,11 @@
     },
     "Step": {
       "properties": {
-        "loadBalancer": {
-          "$ref": "LoadBalancerInfo"
-        },
-        "instance": {
-          "$ref": "InstanceInfo"
-        },
-        "firewall": {
-          "$ref": "FirewallInfo"
-        },
         "vpnTunnel": {
           "$ref": "VpnTunnelInfo"
+        },
+        "googleService": {
+          "$ref": "GoogleServiceInfo"
         },
         "state": {
           "enum": [
@@ -665,6 +659,39 @@
             "VIEWER_PERMISSION_MISSING"
           ]
         },
+        "loadBalancerBackendInfo": {
+          "$ref": "LoadBalancerBackendInfo"
+        },
+        "loadBalancer": {
+          "$ref": "LoadBalancerInfo"
+        },
+        "firewall": {
+          "$ref": "FirewallInfo"
+        },
+        "route": {
+          "$ref": "RouteInfo"
+        },
+        "deliver": {
+          "$ref": "DeliverInfo"
+        },
+        "abort": {
+          "$ref": "AbortInfo"
+        },
+        "forwardingRule": {
+          "$ref": "ForwardingRuleInfo"
+        },
+        "ipMasqueradingSkipped": {
+          "$ref": "IpMasqueradingSkippedInfo"
+        },
+        "viewerPermissionMissingInfo": {
+          "$ref": "ViewerPermissionMissingInfo"
+        },
+        "nat": {
+          "$ref": "NatInfo"
+        },
+        "instance": {
+          "$ref": "InstanceInfo"
+        },
         "gkeNetworkPolicySkipped": {
           "$ref": "GkeNetworkPolicySkippedInfo"
         },
@@ -676,33 +703,6 @@
         },
         "interconnectAttachment": {
           "$ref": "InterconnectAttachmentInfo"
-        },
-        "loadBalancerBackendInfo": {
-          "$ref": "LoadBalancerBackendInfo"
-        },
-        "ipMasqueradingSkipped": {
-          "$ref": "IpMasqueradingSkippedInfo"
-        },
-        "googleService": {
-          "$ref": "GoogleServiceInfo"
-        },
-        "forwardingRule": {
-          "$ref": "ForwardingRuleInfo"
-        },
-        "viewerPermissionMissingInfo": {
-          "$ref": "ViewerPermissionMissingInfo"
-        },
-        "abort": {
-          "$ref": "AbortInfo"
-        },
-        "route": {
-          "$ref": "RouteInfo"
-        },
-        "nat": {
-          "$ref": "NatInfo"
-        },
-        "deliver": {
-          "$ref": "DeliverInfo"
         }
       }
     },
@@ -731,13 +731,6 @@
     },
     "VpcFlowLogsConfig": {
       "properties": {
-        "targetResourceState": {
-          "enum": [
-            "TARGET_RESOURCE_STATE_UNSPECIFIED",
-            "TARGET_RESOURCE_EXISTS",
-            "TARGET_RESOURCE_DOES_NOT_EXIST"
-          ]
-        },
         "metadata": {
           "enum": [
             "METADATA_UNSPECIFIED",
@@ -746,11 +739,32 @@
             "CUSTOM_METADATA"
           ]
         },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "crossProjectMetadata": {
           "enum": [
             "CROSS_PROJECT_METADATA_UNSPECIFIED",
             "CROSS_PROJECT_METADATA_ENABLED",
             "CROSS_PROJECT_METADATA_DISABLED"
+          ]
+        },
+        "targetResourceState": {
+          "enum": [
+            "TARGET_RESOURCE_STATE_UNSPECIFIED",
+            "TARGET_RESOURCE_EXISTS",
+            "TARGET_RESOURCE_DOES_NOT_EXIST"
+          ]
+        },
+        "connectionLogging": {
+          "enum": [
+            "CONNECTION_LOGGING_UNSPECIFIED",
+            "CONNECTION_LOGGING_ENABLED",
+            "CONNECTION_LOGGING_DISABLED"
           ]
         },
         "aggregationInterval": {
@@ -762,20 +776,6 @@
             "INTERVAL_5_MIN",
             "INTERVAL_10_MIN",
             "INTERVAL_15_MIN"
-          ]
-        },
-        "connectionLogging": {
-          "enum": [
-            "CONNECTION_LOGGING_UNSPECIFIED",
-            "CONNECTION_LOGGING_ENABLED",
-            "CONNECTION_LOGGING_DISABLED"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
           ]
         }
       }

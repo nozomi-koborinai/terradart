@@ -6,13 +6,6 @@
   "schemas": {
     "Assignment": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "ACTIVE"
-          ]
-        },
         "jobType": {
           "enum": [
             "JOB_TYPE_UNSPECIFIED",
@@ -26,6 +19,13 @@
             "BACKGROUND_SEARCH_INDEX_REFRESH",
             "AUTOMATIC_MATERIALIZED_VIEW_REFRESH"
           ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE"
+          ]
         }
       }
     },
@@ -34,20 +34,6 @@
     },
     "CapacityCommitment": {
       "properties": {
-        "renewalPlan": {
-          "enum": [
-            "COMMITMENT_PLAN_UNSPECIFIED",
-            "FLEX",
-            "FLEX_FLAT_RATE",
-            "TRIAL",
-            "MONTHLY",
-            "MONTHLY_FLAT_RATE",
-            "ANNUAL",
-            "ANNUAL_FLAT_RATE",
-            "THREE_YEAR",
-            "NONE"
-          ]
-        },
         "plan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
@@ -77,25 +63,39 @@
             "ACTIVE",
             "FAILED"
           ]
+        },
+        "renewalPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "FLEX",
+            "FLEX_FLAT_RATE",
+            "TRIAL",
+            "MONTHLY",
+            "MONTHLY_FLAT_RATE",
+            "ANNUAL",
+            "ANNUAL_FLAT_RATE",
+            "THREE_YEAR",
+            "NONE"
+          ]
         }
       }
     },
     "Reservation": {
       "properties": {
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "STANDARD",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
         "scalingMode": {
           "enum": [
             "SCALING_MODE_UNSPECIFIED",
             "AUTOSCALE_ONLY",
             "IDLE_SLOTS_ONLY",
             "ALL_SLOTS"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
           ]
         }
       }

@@ -7,3 +7,20 @@
 # a schema or Magic Modules value set takes an enum (`deriveEnums: true`).
 # Retyping an input is a breaking constructor change, so a line here waits for
 # the next breaking minor.
+
+# The hand-written instance_flexibility_policy helper has no
+# `instance_selections.disks` field yet (added in provider 8.9.0), so these
+# inputs are not in the API at all.
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.architecture: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.disk_size_gb: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_image: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_snapshot: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.disk_encryption_key.raw_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.disk_encryption_key.rsa_encrypted_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.kms_key_self_link: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.raw_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.rsa_encrypted_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.kms_key_self_link: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.raw_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)
+google_compute_region_instance_group_manager.instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.rsa_encrypted_key: not exposed by the hand-written instance_flexibility_policy helper (provider 8.9.0 disks block)

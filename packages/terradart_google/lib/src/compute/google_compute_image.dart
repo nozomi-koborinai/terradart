@@ -163,6 +163,9 @@ extension type const ComputeImageType._(TfArg<String> _)
   static const snpSvsmCapable = ComputeImageType._(
     TfArgLiteral('SNP_SVSM_CAPABLE'),
   );
+  static const suspendSafeFpr = ComputeImageType._(
+    TfArgLiteral('SUSPEND_SAFE_FPR'),
+  );
 
   static const List<ComputeImageType> values = [
     multiIpSubnet,
@@ -179,6 +182,7 @@ extension type const ComputeImageType._(TfArg<String> _)
     tdxCapable,
     sevLiveMigratableV2,
     snpSvsmCapable,
+    suspendSafeFpr,
   ];
 }
 

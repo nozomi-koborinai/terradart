@@ -24,9 +24,6 @@
             "CERT_EXPIRED"
           ]
         },
-        "verification": {
-          "$ref": "CertVerification"
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -35,6 +32,9 @@
             "PROJECT_GROUPED",
             "DEDICATED"
           ]
+        },
+        "verification": {
+          "$ref": "CertVerification"
         }
       }
     },
@@ -47,9 +47,6 @@
     },
     "CustomDomain": {
       "properties": {
-        "requiredDnsUpdates": {
-          "$ref": "DnsUpdates"
-        },
         "hostState": {
           "enum": [
             "HOST_STATE_UNSPECIFIED",
@@ -59,9 +56,6 @@
             "HOST_CONFLICT",
             "HOST_ACTIVE"
           ]
-        },
-        "cert": {
-          "$ref": "Certificate"
         },
         "certPreference": {
           "enum": [
@@ -82,6 +76,12 @@
             "OWNERSHIP_PENDING",
             "OWNERSHIP_ACTIVE"
           ]
+        },
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates"
+        },
+        "cert": {
+          "$ref": "Certificate"
         }
       }
     },
@@ -174,9 +174,6 @@
     },
     "Version": {
       "properties": {
-        "config": {
-          "$ref": "ServingConfig"
-        },
         "status": {
           "enum": [
             "VERSION_STATUS_UNSPECIFIED",
@@ -187,6 +184,9 @@
             "EXPIRED",
             "CLONING"
           ]
+        },
+        "config": {
+          "$ref": "ServingConfig"
         }
       }
     }

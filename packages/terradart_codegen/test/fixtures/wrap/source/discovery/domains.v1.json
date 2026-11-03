@@ -27,11 +27,11 @@
     },
     "DnsSettings": {
       "properties": {
-        "googleDomainsDns": {
-          "$ref": "GoogleDomainsDns"
-        },
         "customDns": {
           "$ref": "CustomDns"
+        },
+        "googleDomainsDns": {
+          "$ref": "GoogleDomainsDns"
         }
       }
     },
@@ -88,26 +88,19 @@
     },
     "ManagementSettings": {
       "properties": {
-        "effectiveTransferLockState": {
-          "enum": [
-            "TRANSFER_LOCK_STATE_UNSPECIFIED",
-            "UNLOCKED",
-            "LOCKED"
-          ]
-        },
-        "transferLockState": {
-          "enum": [
-            "TRANSFER_LOCK_STATE_UNSPECIFIED",
-            "UNLOCKED",
-            "LOCKED"
-          ]
-        },
         "renewalMethod": {
           "enum": [
             "RENEWAL_METHOD_UNSPECIFIED",
             "AUTOMATIC_RENEWAL",
             "MANUAL_RENEWAL",
             "RENEWAL_DISABLED"
+          ]
+        },
+        "effectiveTransferLockState": {
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
           ]
         },
         "preferredRenewalMethod": {
@@ -117,11 +110,58 @@
             "MANUAL_RENEWAL",
             "RENEWAL_DISABLED"
           ]
+        },
+        "transferLockState": {
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
+          ]
         }
       }
     },
     "Registration": {
       "properties": {
+        "domainProperties": {
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ]
+          }
+        },
+        "supportedPrivacy": {
+          "items": {
+            "enum": [
+              "CONTACT_PRIVACY_UNSPECIFIED",
+              "PUBLIC_CONTACT_DATA",
+              "PRIVATE_CONTACT_DATA",
+              "REDACTED_CONTACT_DATA"
+            ]
+          }
+        },
+        "pendingContactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "managementSettings": {
+          "$ref": "ManagementSettings"
+        },
+        "issues": {
+          "items": {
+            "enum": [
+              "ISSUE_UNSPECIFIED",
+              "CONTACT_SUPPORT",
+              "UNVERIFIED_EMAIL",
+              "PROBLEM_WITH_BILLING",
+              "DNS_NOT_ACTIVATED",
+              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
+            ]
+          }
+        },
+        "contactSettings": {
+          "$ref": "ContactSettings"
+        },
         "dnsSettings": {
           "$ref": "DnsSettings"
         },
@@ -140,31 +180,6 @@
             "TRANSFER_ALREADY_PENDING"
           ]
         },
-        "pendingContactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "domainProperties": {
-          "items": {
-            "enum": [
-              "DOMAIN_PROPERTY_UNSPECIFIED",
-              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
-              "REQUIRE_PUSH_TRANSFER"
-            ]
-          }
-        },
-        "contactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "supportedPrivacy": {
-          "items": {
-            "enum": [
-              "CONTACT_PRIVACY_UNSPECIFIED",
-              "PUBLIC_CONTACT_DATA",
-              "PRIVATE_CONTACT_DATA",
-              "REDACTED_CONTACT_DATA"
-            ]
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -179,9 +194,6 @@
             "EXPIRED"
           ]
         },
-        "managementSettings": {
-          "$ref": "ManagementSettings"
-        },
         "registerFailureReason": {
           "enum": [
             "REGISTER_FAILURE_REASON_UNSPECIFIED",
@@ -189,18 +201,6 @@
             "DOMAIN_NOT_AVAILABLE",
             "INVALID_CONTACTS"
           ]
-        },
-        "issues": {
-          "items": {
-            "enum": [
-              "ISSUE_UNSPECIFIED",
-              "CONTACT_SUPPORT",
-              "UNVERIFIED_EMAIL",
-              "PROBLEM_WITH_BILLING",
-              "DNS_NOT_ACTIVATED",
-              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
-            ]
-          }
         }
       }
     }

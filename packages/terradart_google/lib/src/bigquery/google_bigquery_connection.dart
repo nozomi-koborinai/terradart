@@ -102,6 +102,14 @@ sealed class BigqueryConnectionBackend {
     BigqueryConnectionConfigurationNetwork? network,
   }) = BigqueryConnectionConfiguration;
 
+  /// `salesforce_data_cloud` block — federated queries against a Salesforce Data Cloud instance (Salesforce partner projects only).
+  const factory BigqueryConnectionBackend.salesforceDataCloud({
+    required TfArg<String> instanceUri,
+    required TfArg<String> tenantId,
+    required BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions
+    crossCloudCacheOptions,
+  }) = BigqueryConnectionSalesforceDataCloud;
+
   @internal
   String get blockKey;
 
@@ -670,6 +678,65 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
   @override
   @internal
   String get blockKey => 'configuration';
+
+  @override
+  @internal
+  List<Map<String, Object?>> encode() => [toArgMap()];
+}
+
+// ===========================================================================
+// salesforce_data_cloud variant
+// ===========================================================================
+
+/// `salesforce_data_cloud.cross_cloud_cache_options` block — caching of
+/// data and metadata files for cross-cloud queries.
+@immutable
+class BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions {
+  const BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions({
+    this.enabled,
+  });
+
+  /// Whether BigQuery caches read data and metadata, which can improve
+  /// performance and reduce network egress for cross-cloud queries.
+  final TfArg<bool>? enabled;
+
+  Map<String, Object?> toArgMap() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+  };
+}
+
+/// `salesforce_data_cloud` block — federated queries against a
+/// Salesforce Data Cloud instance. Intended for Salesforce partner
+/// projects only. After apply, `salesforce_data_cloud.identity` surfaces
+/// the connection's Google-managed service account.
+@immutable
+final class BigqueryConnectionSalesforceDataCloud
+    extends BigqueryConnectionBackend {
+  const BigqueryConnectionSalesforceDataCloud({
+    required this.instanceUri,
+    required this.tenantId,
+    required this.crossCloudCacheOptions,
+  });
+
+  /// Required. URL of the Salesforce Data Cloud instance.
+  final TfArg<String> instanceUri;
+
+  /// Required. ID of the Salesforce tenant.
+  final TfArg<String> tenantId;
+
+  /// Required. Cross-cloud cache options.
+  final BigqueryConnectionSalesforceDataCloudCrossCloudCacheOptions
+  crossCloudCacheOptions;
+
+  Map<String, Object?> toArgMap() => {
+    'instance_uri': instanceUri.toTfJson(),
+    'tenant_id': tenantId.toTfJson(),
+    'cross_cloud_cache_options': [crossCloudCacheOptions.toArgMap()],
+  };
+
+  @override
+  @internal
+  String get blockKey => 'salesforce_data_cloud';
 
   @override
   @internal

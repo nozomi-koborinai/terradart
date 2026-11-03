@@ -6,13 +6,6 @@
   "schemas": {
     "Server": {
       "properties": {
-        "accessType": {
-          "enum": [
-            "ACCESS_TYPE_UNSPECIFIED",
-            "EXTERNAL",
-            "INTERNAL"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -24,6 +17,13 @@
             "DELETING",
             "ERROR",
             "UPDATING"
+          ]
+        },
+        "accessType": {
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "EXTERNAL",
+            "INTERNAL"
           ]
         }
       }
@@ -41,16 +41,6 @@
     },
     "User": {
       "properties": {
-        "userCredentials": {
-          "items": {
-            "$ref": "UserCredential"
-          }
-        },
-        "storageDirectoryMappings": {
-          "items": {
-            "$ref": "StorageDirectoryMapping"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -60,6 +50,16 @@
             "UPDATING",
             "DELETING"
           ]
+        },
+        "storageDirectoryMappings": {
+          "items": {
+            "$ref": "StorageDirectoryMapping"
+          }
+        },
+        "userCredentials": {
+          "items": {
+            "$ref": "UserCredential"
+          }
         }
       }
     },

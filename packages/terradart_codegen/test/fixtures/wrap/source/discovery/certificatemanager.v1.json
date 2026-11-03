@@ -6,17 +6,6 @@
   "schemas": {
     "AuthorizationAttemptInfo": {
       "properties": {
-        "failureReason": {
-          "enum": [
-            "FAILURE_REASON_UNSPECIFIED",
-            "CONFIG",
-            "CAA",
-            "RATE_LIMITED"
-          ]
-        },
-        "troubleshooting": {
-          "$ref": "Troubleshooting"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -24,13 +13,24 @@
             "AUTHORIZED",
             "FAILED"
           ]
+        },
+        "troubleshooting": {
+          "$ref": "Troubleshooting"
+        },
+        "failureReason": {
+          "enum": [
+            "FAILURE_REASON_UNSPECIFIED",
+            "CONFIG",
+            "CAA",
+            "RATE_LIMITED"
+          ]
         }
       }
     },
     "Certificate": {
       "properties": {
-        "managedIdentity": {
-          "$ref": "ManagedIdentityCertificate"
+        "managed": {
+          "$ref": "ManagedCertificate"
         },
         "scope": {
           "enum": [
@@ -40,8 +40,8 @@
             "CLIENT_AUTH"
           ]
         },
-        "managed": {
-          "$ref": "ManagedCertificate"
+        "managedIdentity": {
+          "$ref": "ManagedIdentityCertificate"
         }
       }
     },
@@ -61,17 +61,17 @@
     },
     "CertificateMapEntry": {
       "properties": {
+        "matcher": {
+          "enum": [
+            "MATCHER_UNSPECIFIED",
+            "PRIMARY"
+          ]
+        },
         "state": {
           "enum": [
             "SERVING_STATE_UNSPECIFIED",
             "ACTIVE",
             "PENDING"
-          ]
-        },
-        "matcher": {
-          "enum": [
-            "MATCHER_UNSPECIFIED",
-            "PRIMARY"
           ]
         }
       }
@@ -109,6 +109,9 @@
     },
     "ManagedIdentityCertificate": {
       "properties": {
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -116,9 +119,6 @@
             "FAILED",
             "ACTIVE"
           ]
-        },
-        "provisioningIssue": {
-          "$ref": "ProvisioningIssue"
         }
       }
     },

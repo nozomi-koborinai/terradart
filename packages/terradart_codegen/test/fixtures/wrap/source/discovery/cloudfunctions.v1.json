@@ -6,13 +6,6 @@
   "schemas": {
     "CloudFunction": {
       "properties": {
-        "dockerRegistry": {
-          "enum": [
-            "DOCKER_REGISTRY_UNSPECIFIED",
-            "CONTAINER_REGISTRY",
-            "ARTIFACT_REGISTRY"
-          ]
-        },
         "ingressSettings": {
           "enum": [
             "INGRESS_SETTINGS_UNSPECIFIED",
@@ -31,15 +24,22 @@
             "UNKNOWN"
           ]
         },
+        "httpsTrigger": {
+          "$ref": "HttpsTrigger"
+        },
+        "dockerRegistry": {
+          "enum": [
+            "DOCKER_REGISTRY_UNSPECIFIED",
+            "CONTAINER_REGISTRY",
+            "ARTIFACT_REGISTRY"
+          ]
+        },
         "vpcConnectorEgressSettings": {
           "enum": [
             "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
             "PRIVATE_RANGES_ONLY",
             "ALL_TRAFFIC"
           ]
-        },
-        "httpsTrigger": {
-          "$ref": "HttpsTrigger"
         }
       }
     },

@@ -5,6 +5,13 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+sealedNames:
+  "custom_intercept_profile, custom_mirroring_profile, threat_prevention_profile, url_filtering_profile, wildfire_analysis_profile": settings
+
+typeNames:
+  threat_prevention_profile.antivirus_overrides.action: NetworkSecuritySecurityProfileAction
+  threat_prevention_profile.antivirus_overrides.protocol: NetworkSecuritySecurityProfileProtocol
+
 dartTypeOverrides:
   type: NetworkSecuritySecurityProfileType
 
@@ -37,5 +44,6 @@ paramOrder:
   - url_filtering_profile
   - custom_intercept_profile
   - custom_mirroring_profile
+  - wildfire_analysis_profile
   - labels
   - deletion_policy

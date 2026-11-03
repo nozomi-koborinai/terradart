@@ -18,17 +18,17 @@
     },
     "ConsentConfig": {
       "properties": {
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling"
+        },
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig"
+        },
         "version": {
           "enum": [
             "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
             "V1"
           ]
-        },
-        "accessDeterminationLogConfig": {
-          "$ref": "AccessDeterminationLogConfig"
-        },
-        "consentHeaderHandling": {
-          "$ref": "ConsentHeaderHandling"
         }
       }
     },
@@ -58,14 +58,14 @@
     },
     "DeidentifyConfig": {
       "properties": {
-        "fhir": {
-          "$ref": "FhirConfig"
-        },
         "dicom": {
           "$ref": "DicomConfig"
         },
         "image": {
           "$ref": "ImageConfig"
+        },
+        "fhir": {
+          "$ref": "FhirConfig"
         }
       }
     },
@@ -102,6 +102,14 @@
     },
     "FhirStore": {
       "properties": {
+        "consentConfig": {
+          "$ref": "ConsentConfig"
+        },
+        "streamConfigs": {
+          "items": {
+            "$ref": "StreamConfig"
+          }
+        },
         "version": {
           "enum": [
             "VERSION_UNSPECIFIED",
@@ -111,20 +119,12 @@
             "R5"
           ]
         },
-        "consentConfig": {
-          "$ref": "ConsentConfig"
-        },
         "complexDataTypeReferenceParsing": {
           "enum": [
             "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
             "DISABLED",
             "ENABLED"
           ]
-        },
-        "streamConfigs": {
-          "items": {
-            "$ref": "StreamConfig"
-          }
         }
       }
     },
@@ -219,15 +219,15 @@
     },
     "SchemaConfig": {
       "properties": {
-        "lastUpdatedPartitionConfig": {
-          "$ref": "TimePartitioning"
-        },
         "schemaType": {
           "enum": [
             "SCHEMA_TYPE_UNSPECIFIED",
             "ANALYTICS",
             "ANALYTICS_V2"
           ]
+        },
+        "lastUpdatedPartitionConfig": {
+          "$ref": "TimePartitioning"
         }
       }
     },
@@ -241,27 +241,27 @@
             "PARSE"
           ]
         },
+        "types": {
+          "items": {
+            "$ref": "Hl7TypesConfig"
+          }
+        },
         "schematizedParsingType": {
           "enum": [
             "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
             "SOFT_FAIL",
             "HARD_FAIL"
           ]
-        },
-        "types": {
-          "items": {
-            "$ref": "Hl7TypesConfig"
-          }
         }
       }
     },
     "StreamConfig": {
       "properties": {
-        "deidentifiedStoreDestination": {
-          "$ref": "DeidentifiedStoreDestination"
-        },
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirBigQueryDestination"
+        },
+        "deidentifiedStoreDestination": {
+          "$ref": "DeidentifiedStoreDestination"
         }
       }
     },

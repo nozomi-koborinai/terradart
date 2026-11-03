@@ -253,9 +253,12 @@ final class VertexAiIndexBruteForceConfig {
 @immutable
 final class VertexAiIndexTreeAhConfig {
   const VertexAiIndexTreeAhConfig({
+    this.fractionLeafNodesToSearch,
     this.leafNodeEmbeddingCount,
     this.leafNodesToSearchPercent,
   });
+
+  final TfArg<num>? fractionLeafNodesToSearch;
 
   final TfArg<num>? leafNodeEmbeddingCount;
 
@@ -263,6 +266,7 @@ final class VertexAiIndexTreeAhConfig {
 
   @internal
   Map<String, Object?> encode() => {
+    'fraction_leaf_nodes_to_search': ?fractionLeafNodesToSearch?.toTfJson(),
     'leaf_node_embedding_count': ?leafNodeEmbeddingCount?.toTfJson(),
     'leaf_nodes_to_search_percent': ?leafNodesToSearchPercent?.toTfJson(),
   };

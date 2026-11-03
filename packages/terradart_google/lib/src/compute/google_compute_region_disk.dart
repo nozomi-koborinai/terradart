@@ -46,6 +46,9 @@ extension type const ComputeRegionDiskGuestOsFeatureType._(TfArg<String> _)
   static const gVnic = ComputeRegionDiskGuestOsFeatureType._(
     TfArgLiteral('GVNIC'),
   );
+  static const idpf = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('IDPF'),
+  );
   static const sevLiveMigratable = ComputeRegionDiskGuestOsFeatureType._(
     TfArgLiteral('SEV_LIVE_MIGRATABLE'),
   );
@@ -64,6 +67,9 @@ extension type const ComputeRegionDiskGuestOsFeatureType._(TfArg<String> _)
   static const snpSvsmCapable = ComputeRegionDiskGuestOsFeatureType._(
     TfArgLiteral('SNP_SVSM_CAPABLE'),
   );
+  static const suspendSafeFpr = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SUSPEND_SAFE_FPR'),
+  );
 
   static const List<ComputeRegionDiskGuestOsFeatureType> values = [
     multiIpSubnet,
@@ -73,12 +79,14 @@ extension type const ComputeRegionDiskGuestOsFeatureType._(TfArg<String> _)
     virtioScsiMultiqueue,
     windows,
     gVnic,
+    idpf,
     sevLiveMigratable,
     sevSnpCapable,
     suspendResumeCompatible,
     tdxCapable,
     sevLiveMigratableV2,
     snpSvsmCapable,
+    suspendSafeFpr,
   ];
 }
 

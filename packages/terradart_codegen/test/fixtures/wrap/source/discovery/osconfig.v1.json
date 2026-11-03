@@ -46,27 +46,22 @@
     },
     "OSPolicy": {
       "properties": {
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
-        },
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
         }
       }
     },
     "OSPolicyAssignment": {
       "properties": {
-        "osPolicies": {
-          "items": {
-            "$ref": "OSPolicy"
-          }
-        },
         "rolloutState": {
           "enum": [
             "ROLLOUT_STATE_UNSPECIFIED",
@@ -75,31 +70,36 @@
             "CANCELLED",
             "SUCCEEDED"
           ]
+        },
+        "osPolicies": {
+          "items": {
+            "$ref": "OSPolicy"
+          }
         }
       }
     },
     "OSPolicyResource": {
       "properties": {
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
+        },
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
+        },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
         },
         "pkg": {
           "$ref": "OSPolicyResourcePackageResource"
-        },
-        "exec": {
-          "$ref": "OSPolicyResourceExecResource"
-        },
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
         }
       }
     },
     "OSPolicyResourceExecResource": {
       "properties": {
-        "validate": {
+        "enforce": {
           "$ref": "OSPolicyResourceExecResourceExec"
         },
-        "enforce": {
+        "validate": {
           "$ref": "OSPolicyResourceExecResourceExec"
         }
       }
@@ -168,6 +168,12 @@
     },
     "PatchConfig": {
       "properties": {
+        "preStep": {
+          "$ref": "ExecStep"
+        },
+        "postStep": {
+          "$ref": "ExecStep"
+        },
         "rebootConfig": {
           "enum": [
             "REBOOT_CONFIG_UNSPECIFIED",
@@ -179,31 +185,25 @@
         "windowsUpdate": {
           "$ref": "WindowsUpdateSettings"
         },
-        "postStep": {
-          "$ref": "ExecStep"
-        },
         "apt": {
           "$ref": "AptSettings"
-        },
-        "preStep": {
-          "$ref": "ExecStep"
         }
       }
     },
     "PatchDeployment": {
       "properties": {
+        "recurringSchedule": {
+          "$ref": "RecurringSchedule"
+        },
+        "patchConfig": {
+          "$ref": "PatchConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "PAUSED"
           ]
-        },
-        "recurringSchedule": {
-          "$ref": "RecurringSchedule"
-        },
-        "patchConfig": {
-          "$ref": "PatchConfig"
         },
         "rollout": {
           "$ref": "PatchRollout"

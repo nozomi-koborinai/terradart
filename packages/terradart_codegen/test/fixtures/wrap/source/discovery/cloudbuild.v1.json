@@ -27,29 +27,6 @@
     },
     "Build": {
       "properties": {
-        "results": {
-          "$ref": "Results"
-        },
-        "options": {
-          "$ref": "BuildOptions"
-        },
-        "failureInfo": {
-          "$ref": "FailureInfo"
-        },
-        "warnings": {
-          "items": {
-            "$ref": "Warning"
-          }
-        },
-        "sourceProvenance": {
-          "$ref": "SourceProvenance"
-        },
-        "source": {
-          "$ref": "Source"
-        },
-        "approval": {
-          "$ref": "BuildApproval"
-        },
         "status": {
           "enum": [
             "STATUS_UNKNOWN",
@@ -64,6 +41,29 @@
             "EXPIRED"
           ]
         },
+        "sourceProvenance": {
+          "$ref": "SourceProvenance"
+        },
+        "failureInfo": {
+          "$ref": "FailureInfo"
+        },
+        "options": {
+          "$ref": "BuildOptions"
+        },
+        "results": {
+          "$ref": "Results"
+        },
+        "source": {
+          "$ref": "Source"
+        },
+        "approval": {
+          "$ref": "BuildApproval"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warning"
+          }
+        },
         "steps": {
           "items": {
             "$ref": "BuildStep"
@@ -73,9 +73,6 @@
     },
     "BuildApproval": {
       "properties": {
-        "result": {
-          "$ref": "ApprovalResult"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -84,16 +81,23 @@
             "REJECTED",
             "CANCELLED"
           ]
+        },
+        "result": {
+          "$ref": "ApprovalResult"
         }
       }
     },
     "BuildOptions": {
       "properties": {
-        "substitutionOption": {
-          "enum": [
-            "MUST_MATCH",
-            "ALLOW_LOOSE"
-          ]
+        "rankedMachineSeries": {
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ]
+          }
         },
         "sourceProvenanceHash": {
           "items": {
@@ -107,36 +111,12 @@
             ]
           }
         },
-        "logStreamingOption": {
-          "enum": [
-            "STREAM_DEFAULT",
-            "STREAM_ON",
-            "STREAM_OFF"
-          ]
-        },
-        "requestedVerifyOption": {
-          "enum": [
-            "NOT_VERIFIED",
-            "VERIFIED",
-            "BEST_EFFORT"
-          ]
-        },
         "defaultLogsBucketBehavior": {
           "enum": [
             "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
             "REGIONAL_USER_OWNED_BUCKET",
             "LEGACY_BUCKET"
           ]
-        },
-        "rankedMachineSeries": {
-          "items": {
-            "enum": [
-              "MACHINE_SERIES_UNSPECIFIED",
-              "MACHINE_SERIES_E",
-              "MACHINE_SERIES_N",
-              "MACHINE_SERIES_C"
-            ]
-          }
         },
         "logging": {
           "enum": [
@@ -148,6 +128,13 @@
             "NONE"
           ]
         },
+        "requestedVerifyOption": {
+          "enum": [
+            "NOT_VERIFIED",
+            "VERIFIED",
+            "BEST_EFFORT"
+          ]
+        },
         "machineType": {
           "enum": [
             "UNSPECIFIED",
@@ -157,6 +144,19 @@
             "E2_HIGHCPU_32",
             "E2_MEDIUM",
             "E2_STANDARD_2"
+          ]
+        },
+        "logStreamingOption": {
+          "enum": [
+            "STREAM_DEFAULT",
+            "STREAM_ON",
+            "STREAM_OFF"
+          ]
+        },
+        "substitutionOption": {
+          "enum": [
+            "MUST_MATCH",
+            "ALLOW_LOOSE"
           ]
         }
       }
@@ -181,11 +181,26 @@
     },
     "BuildTrigger": {
       "properties": {
-        "github": {
-          "$ref": "GitHubEventsConfig"
-        },
         "webhookConfig": {
           "$ref": "WebhookConfig"
+        },
+        "build": {
+          "$ref": "Build"
+        },
+        "bitbucketServerTriggerConfig": {
+          "$ref": "BitbucketServerTriggerConfig"
+        },
+        "repositoryEventConfig": {
+          "$ref": "RepositoryEventConfig"
+        },
+        "developerConnectEventConfig": {
+          "$ref": "DeveloperConnectEventConfig"
+        },
+        "includeBuildLogs": {
+          "enum": [
+            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
+            "INCLUDE_BUILD_LOGS_WITH_STATUS"
+          ]
         },
         "eventType": {
           "enum": [
@@ -196,32 +211,17 @@
             "MANUAL"
           ]
         },
-        "repositoryEventConfig": {
-          "$ref": "RepositoryEventConfig"
-        },
-        "includeBuildLogs": {
-          "enum": [
-            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
-            "INCLUDE_BUILD_LOGS_WITH_STATUS"
-          ]
-        },
-        "bitbucketServerTriggerConfig": {
-          "$ref": "BitbucketServerTriggerConfig"
-        },
-        "pubsubConfig": {
-          "$ref": "PubsubConfig"
-        },
         "gitFileSource": {
           "$ref": "GitFileSource"
         },
         "sourceToBuild": {
           "$ref": "GitRepoSource"
         },
-        "build": {
-          "$ref": "Build"
+        "github": {
+          "$ref": "GitHubEventsConfig"
         },
-        "developerConnectEventConfig": {
-          "$ref": "DeveloperConnectEventConfig"
+        "pubsubConfig": {
+          "$ref": "PubsubConfig"
         }
       }
     },
@@ -238,9 +238,6 @@
     },
     "DeveloperConnectEventConfig": {
       "properties": {
-        "pullRequest": {
-          "$ref": "PullRequestFilter"
-        },
         "gitRepositoryLinkType": {
           "enum": [
             "GIT_REPOSITORY_LINK_TYPE_UNSPECIFIED",
@@ -251,6 +248,9 @@
             "BITBUCKET_DATA_CENTER",
             "BITBUCKET_CLOUD"
           ]
+        },
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
         }
       }
     },
@@ -353,9 +353,6 @@
     },
     "RepositoryEventConfig": {
       "properties": {
-        "pullRequest": {
-          "$ref": "PullRequestFilter"
-        },
         "repositoryType": {
           "enum": [
             "REPOSITORY_TYPE_UNSPECIFIED",
@@ -365,6 +362,9 @@
             "BITBUCKET_DATA_CENTER",
             "BITBUCKET_CLOUD"
           ]
+        },
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
         }
       }
     },
@@ -375,9 +375,9 @@
             "$ref": "UploadedGoModule"
           }
         },
-        "pythonPackages": {
+        "images": {
           "items": {
-            "$ref": "UploadedPythonPackage"
+            "$ref": "BuiltImage"
           }
         },
         "npmPackages": {
@@ -390,9 +390,9 @@
             "$ref": "UploadedMavenArtifact"
           }
         },
-        "images": {
+        "pythonPackages": {
           "items": {
-            "$ref": "BuiltImage"
+            "$ref": "UploadedPythonPackage"
           }
         },
         "genericArtifacts": {
@@ -434,13 +434,13 @@
     },
     "UploadedGenericArtifact": {
       "properties": {
+        "artifactFingerprint": {
+          "$ref": "FileHashes"
+        },
         "fileHashes": {
           "additionalProperties": {
             "$ref": "FileHashes"
           }
-        },
-        "artifactFingerprint": {
-          "$ref": "FileHashes"
         }
       }
     },

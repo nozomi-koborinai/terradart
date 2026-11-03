@@ -35,10 +35,11 @@
     },
     "ApigatewayGateway": {
       "properties": {
-        "streamingMode": {
+        "effectiveStreamingMode": {
           "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_ENABLED"
+            "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
+            "EFFECTIVE_STREAMING_MODE_DISABLED",
+            "EFFECTIVE_STREAMING_MODE_ENABLED"
           ]
         },
         "state": {
@@ -51,11 +52,10 @@
             "UPDATING"
           ]
         },
-        "effectiveStreamingMode": {
+        "streamingMode": {
           "enum": [
-            "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
-            "EFFECTIVE_STREAMING_MODE_DISABLED",
-            "EFFECTIVE_STREAMING_MODE_ENABLED"
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_ENABLED"
           ]
         }
       }

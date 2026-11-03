@@ -44,18 +44,6 @@
     },
     "Listing": {
       "properties": {
-        "storedProcedureConfig": {
-          "$ref": "StoredProcedureConfig"
-        },
-        "bigqueryDataset": {
-          "$ref": "BigQueryDatasetSource"
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE"
-          ]
-        },
         "commercialInfo": {
           "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
         },
@@ -86,12 +74,8 @@
             ]
           }
         },
-        "resourceType": {
-          "enum": [
-            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
-            "BIGQUERY_DATASET",
-            "PUBSUB_TOPIC"
-          ]
+        "bigqueryDataset": {
+          "$ref": "BigQueryDatasetSource"
         },
         "discoveryType": {
           "enum": [
@@ -99,11 +83,30 @@
             "DISCOVERY_TYPE_PRIVATE",
             "DISCOVERY_TYPE_PUBLIC"
           ]
+        },
+        "storedProcedureConfig": {
+          "$ref": "StoredProcedureConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ]
+        },
+        "resourceType": {
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
+          ]
         }
       }
     },
     "QueryTemplate": {
       "properties": {
+        "routine": {
+          "$ref": "Routine"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -112,25 +115,22 @@
             "DELETED",
             "APPROVED"
           ]
-        },
-        "routine": {
-          "$ref": "Routine"
         }
       }
     },
     "Replica": {
       "properties": {
+        "primaryState": {
+          "enum": [
+            "PRIMARY_STATE_UNSPECIFIED",
+            "PRIMARY_REPLICA"
+          ]
+        },
         "replicaState": {
           "enum": [
             "REPLICA_STATE_UNSPECIFIED",
             "READY_TO_USE",
             "UNAVAILABLE"
-          ]
-        },
-        "primaryState": {
-          "enum": [
-            "PRIMARY_STATE_UNSPECIFIED",
-            "PRIMARY_REPLICA"
           ]
         }
       }

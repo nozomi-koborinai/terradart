@@ -21,5 +21,10 @@ export 'src/dataflow/google_data_pipeline_pipeline.dart'
         DataPipelinePipelineType,
         DataPipelinePipelineWorkload,
         GoogleDataPipelinePipeline;
+export 'src/dataflow/google_dataflow_flex_template_job.dart'
+    show
+        DataflowFlexTemplateJobAutoscalingAlgorithm,
+        DataflowFlexTemplateJobIpConfiguration,
+        GoogleDataflowFlexTemplateJob;
 export 'src/dataflow/google_dataflow_job.dart'
     show DataflowJobIpConfiguration, DataflowJobOnDelete, GoogleDataflowJob;

@@ -150,41 +150,12 @@
     },
     "Service": {
       "properties": {
-        "telemetryConfig": {
-          "$ref": "TelemetryConfig"
-        },
         "releaseChannel": {
           "enum": [
             "RELEASE_CHANNEL_UNSPECIFIED",
             "CANARY",
             "STABLE"
           ]
-        },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "DEVELOPER",
-            "ENTERPRISE"
-          ]
-        },
-        "databaseType": {
-          "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "MYSQL",
-            "SPANNER"
-          ]
-        },
-        "hiveMetastoreConfig": {
-          "$ref": "HiveMetastoreConfig"
-        },
-        "scalingConfig": {
-          "$ref": "ScalingConfig"
-        },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "scheduledBackup": {
-          "$ref": "ScheduledBackup"
         },
         "metadataManagementActivity": {
           "$ref": "MetadataManagementActivity"
@@ -203,6 +174,35 @@
             "MIGRATING",
             "PROXY"
           ]
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup"
+        },
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "MYSQL",
+            "SPANNER"
+          ]
+        },
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig"
+        },
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig"
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "DEVELOPER",
+            "ENTERPRISE"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
         }
       }
     },

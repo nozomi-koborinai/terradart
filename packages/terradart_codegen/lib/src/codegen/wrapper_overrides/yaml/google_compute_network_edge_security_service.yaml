@@ -18,6 +18,7 @@ paramOrder:
   - project
   - region
   - security_policy
+  - params
 
 # TODO(wrap-init): verify the `id` / `name` attrs exist on this resource; uncomment the block below and add cross-resource hint getters (e.g. `topic.id` for downstream resources).
 # extraGetters: |2

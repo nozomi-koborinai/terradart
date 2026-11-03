@@ -10,6 +10,7 @@ export 'src/bigtable/google_bigtable_app_profile.dart'
         BigtableAppProfileDataBoostIsolationReadOnly,
         BigtableAppProfileIsolation,
         BigtableAppProfileIsolationDataBoostIsolationReadOnly,
+        BigtableAppProfileMemoryConfig,
         BigtableAppProfilePriority,
         BigtableAppProfileRouting,
         BigtableAppProfileRoutingMultiClusterRoutingUseAny,
@@ -45,6 +46,8 @@ export 'src/bigtable/google_bigtable_logical_view.dart'
     show GoogleBigtableLogicalView;
 export 'src/bigtable/google_bigtable_materialized_view.dart'
     show GoogleBigtableMaterializedView;
+export 'src/bigtable/google_bigtable_memory_layer.dart'
+    show GoogleBigtableMemoryLayer;
 export 'src/bigtable/google_bigtable_schema_bundle.dart'
     show BigtableSchemaBundleProtoSchema, GoogleBigtableSchemaBundle;
 export 'src/bigtable/google_bigtable_table.dart'

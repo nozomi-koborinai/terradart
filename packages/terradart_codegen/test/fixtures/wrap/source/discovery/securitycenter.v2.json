@@ -7,7 +7,7 @@
     "GoogleCloudSecuritycenterV1BigQueryExport": {
       "properties": {}
     },
-    "GoogleCloudSecuritycenterV2MuteConfig": {
+    "GoogleCloudSecuritycenterV1MuteConfig": {
       "properties": {
         "type": {
           "enum": [

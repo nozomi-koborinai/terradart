@@ -33,6 +33,8 @@ paramOrder:
   - android_settings
   - ios_settings
   - waf_settings
+  - express_settings
+  - universal_settings
   - testing_options
   - labels
   - project

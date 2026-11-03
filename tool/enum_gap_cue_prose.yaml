@@ -85,6 +85,7 @@ google_container_analysis_occurrence.attestation.signatures.public_key_id: examp
 google_binary_authorization_attestor.attestation_authority_note.public_keys.ascii_armored_pgp_public_key: a PGP key with either LF or CRLF line endings
 google_compute_addresses.filter: the filter expression may use either of the listed operators
 google_lustre_instance.capacity_gib: allowed values are a numeric range
+google_cloudbuild_worker_pool.worker_config.worker_release: a release channel (rapid, regular, stable) or any specific release version
 google_compute_region_security_policy.rules.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
 google_compute_region_security_policy_rule.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
 

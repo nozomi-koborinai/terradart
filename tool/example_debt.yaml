@@ -1165,3 +1165,14 @@ DataAzurermSentinelAlertRuleAnomaly: provider rejected the coverage stack: "disp
 DataAzurermSentinelAlertRuleTemplate: provider rejected the coverage stack: "display_name": one of `display_name,name` must be specified
 DataAzurermServicebusQueueAuthorizationRule: provider rejected the coverage stack: "namespace_name": one of `namespace_name,queue_id,queue_name,resource_group_name` must be specified
 DataAzurermServicebusTopicAuthorizationRule: provider rejected the coverage stack: "namespace_name": one of `namespace_name,queue_name,resource_group_name,topic_id` must be specified
+GoogleAgentIdentityAuthProviderIamBinding: awaiting-example: google_agent_identity_auth_provider_iam_binding added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleAgentIdentityAuthProviderIamMember: awaiting-example: google_agent_identity_auth_provider_iam_member added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleAgentIdentityAuthProviderIamPolicy: awaiting-example: google_agent_identity_auth_provider_iam_policy added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleBigtableMemoryLayer: awaiting-example: google_bigtable_memory_layer added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleDataflowFlexTemplateJob: awaiting-example: google_dataflow_flex_template_job added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleNetworkServicesServiceLbPolicies: awaiting-example: google_network_services_service_lb_policies added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleResourceManagerBoundary: awaiting-example: google_resource_manager_boundary added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleResourceManagerBoundaryConfig: awaiting-example: google_resource_manager_boundary_config added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleVertexAiCustomJob: awaiting-example: google_vertex_ai_custom_job added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleVertexAiPipelineJob: awaiting-example: google_vertex_ai_pipeline_job added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
+GoogleVertexAiRagFile: awaiting-example: google_vertex_ai_rag_file added in hashicorp/google 8.9.0 (schema bump 2026-11-02)

@@ -9,11 +9,11 @@
         "securityHealthAnalyticsCustomModule": {
           "$ref": "SecurityHealthAnalyticsCustomModule"
         },
-        "orgPolicyConstraintCustom": {
-          "$ref": "OrgPolicyConstraintCustom"
-        },
         "securityHealthAnalyticsModule": {
           "$ref": "SecurityHealthAnalyticsModule"
+        },
+        "orgPolicyConstraintCustom": {
+          "$ref": "OrgPolicyConstraintCustom"
         }
       }
     },
@@ -76,6 +76,11 @@
     },
     "Posture": {
       "properties": {
+        "policySets": {
+          "items": {
+            "$ref": "PolicySet"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -93,11 +98,6 @@
               "GCP",
               "AZURE"
             ]
-          }
-        },
-        "policySets": {
-          "items": {
-            "$ref": "PolicySet"
           }
         }
       }

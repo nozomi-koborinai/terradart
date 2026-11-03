@@ -6,14 +6,6 @@
   "schemas": {
     "Instance": {
       "properties": {
-        "fileStripeLevel": {
-          "enum": [
-            "FILE_STRIPE_LEVEL_UNSPECIFIED",
-            "FILE_STRIPE_LEVEL_MIN",
-            "FILE_STRIPE_LEVEL_BALANCED",
-            "FILE_STRIPE_LEVEL_MAX"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -23,6 +15,14 @@
             "FAILED",
             "UPGRADING",
             "REPAIRING"
+          ]
+        },
+        "fileStripeLevel": {
+          "enum": [
+            "FILE_STRIPE_LEVEL_UNSPECIFIED",
+            "FILE_STRIPE_LEVEL_MIN",
+            "FILE_STRIPE_LEVEL_BALANCED",
+            "FILE_STRIPE_LEVEL_MAX"
           ]
         },
         "directoryStripeLevel": {

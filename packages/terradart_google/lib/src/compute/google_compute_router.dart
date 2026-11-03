@@ -244,6 +244,9 @@ final class GoogleComputeRouter extends Resource {
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
 
+  /// Reference to `router_id` attribute.
+  TfRef<num> get routerId => TfRef.attribute<num>(this, 'router_id');
+
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 

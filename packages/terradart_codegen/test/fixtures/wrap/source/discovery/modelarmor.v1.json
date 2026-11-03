@@ -6,19 +6,19 @@
   "schemas": {
     "CsamFilterSettings": {
       "properties": {
-        "filterEnforcement": {
-          "enum": [
-            "CSAM_FILTER_ENFORCEMENT_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
         "confidenceLevel": {
           "enum": [
             "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
             "LOW_AND_ABOVE",
             "MEDIUM_AND_ABOVE",
             "HIGH"
+          ]
+        },
+        "filterEnforcement": {
+          "enum": [
+            "CSAM_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
           ]
         }
       }
@@ -36,8 +36,8 @@
     },
     "FilterConfig": {
       "properties": {
-        "sdpSettings": {
-          "$ref": "SdpFilterSettings"
+        "maliciousUriFilterSettings": {
+          "$ref": "MaliciousUriFilterSettings"
         },
         "raiSettings": {
           "$ref": "RaiFilterSettings"
@@ -45,11 +45,11 @@
         "csamFilterSettings": {
           "$ref": "CsamFilterSettings"
         },
-        "maliciousUriFilterSettings": {
-          "$ref": "MaliciousUriFilterSettings"
-        },
         "piAndJailbreakFilterSettings": {
           "$ref": "PiAndJailbreakFilterSettings"
+        },
+        "sdpSettings": {
+          "$ref": "SdpFilterSettings"
         },
         "filterRuleSettings": {
           "$ref": "FilterRuleSettings"
@@ -132,6 +132,25 @@
     },
     "PiAndJailbreakFilterSettings": {
       "properties": {
+        "filterEnforcement": {
+          "enum": [
+            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
+          ]
+        }
+      }
+    },
+    "RaiFilter": {
+      "properties": {
         "confidenceLevel": {
           "enum": [
             "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
@@ -140,17 +159,6 @@
             "HIGH"
           ]
         },
-        "filterEnforcement": {
-          "enum": [
-            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        }
-      }
-    },
-    "RaiFilter": {
-      "properties": {
         "filterType": {
           "enum": [
             "RAI_FILTER_TYPE_UNSPECIFIED",
@@ -158,14 +166,6 @@
             "HATE_SPEECH",
             "HARASSMENT",
             "DANGEROUS"
-          ]
-        },
-        "confidenceLevel": {
-          "enum": [
-            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
-            "LOW_AND_ABOVE",
-            "MEDIUM_AND_ABOVE",
-            "HIGH"
           ]
         }
       }
@@ -209,13 +209,6 @@
     },
     "TemplateMetadata": {
       "properties": {
-        "enforcementType": {
-          "enum": [
-            "ENFORCEMENT_TYPE_UNSPECIFIED",
-            "INSPECT_ONLY",
-            "INSPECT_AND_BLOCK"
-          ]
-        },
         "filterVersionSelector": {
           "$ref": "FilterVersionSelector"
         },
@@ -227,6 +220,13 @@
               "MODALITY_IMAGE"
             ]
           }
+        },
+        "enforcementType": {
+          "enum": [
+            "ENFORCEMENT_TYPE_UNSPECIFIED",
+            "INSPECT_ONLY",
+            "INSPECT_AND_BLOCK"
+          ]
         }
       }
     }

@@ -53,6 +53,7 @@ paramOrder:
   - secondary_location
   - reservation_group
   - autoscale
+  - scheduling_policy
   - project
 
 dartTypeOverrides:

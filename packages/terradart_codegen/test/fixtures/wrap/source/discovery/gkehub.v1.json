@@ -95,36 +95,36 @@
     },
     "CommonFeatureState": {
       "properties": {
-        "workloadidentity": {
-          "$ref": "WorkloadIdentityFeatureState"
-        },
         "fleetobservability": {
           "$ref": "FleetObservabilityFeatureState"
         },
         "state": {
           "$ref": "FeatureState"
         },
-        "appdevexperience": {
-          "$ref": "AppDevExperienceFeatureState"
-        },
         "clusterupgrade": {
           "$ref": "ClusterUpgradeFleetState"
         },
         "servicemesh": {
           "$ref": "ServiceMeshFeatureState"
+        },
+        "appdevexperience": {
+          "$ref": "AppDevExperienceFeatureState"
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityFeatureState"
         }
       }
     },
     "CommonFleetDefaultMemberConfigSpec": {
       "properties": {
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec"
+        },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec"
         },
         "policycontroller": {
           "$ref": "PolicyControllerMembershipSpec"
-        },
-        "mesh": {
-          "$ref": "ServiceMeshMembershipSpec"
         }
       }
     },
@@ -141,15 +141,6 @@
     },
     "ConfigManagementConfigSyncDeploymentState": {
       "properties": {
-        "otelCollector": {
-          "enum": [
-            "DEPLOYMENT_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLED",
-            "ERROR",
-            "PENDING"
-          ]
-        },
         "reconcilerManager": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
@@ -168,25 +159,16 @@
             "PENDING"
           ]
         },
-        "resourceGroupControllerManager": {
-          "enum": [
-            "DEPLOYMENT_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLED",
-            "ERROR",
-            "PENDING"
-          ]
-        },
-        "monitor": {
-          "enum": [
-            "DEPLOYMENT_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLED",
-            "ERROR",
-            "PENDING"
-          ]
-        },
         "rootReconciler": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "otelCollector": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -204,7 +186,7 @@
             "PENDING"
           ]
         },
-        "gitSync": {
+        "resourceGroupControllerManager": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -221,23 +203,29 @@
             "ERROR",
             "PENDING"
           ]
+        },
+        "gitSync": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
+        "monitor": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
         }
       }
     },
     "ConfigManagementConfigSyncState": {
       "properties": {
-        "syncState": {
-          "$ref": "ConfigManagementSyncState"
-        },
-        "reposyncCrd": {
-          "enum": [
-            "CRD_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLED",
-            "TERMINATING",
-            "INSTALLING"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -245,14 +233,6 @@
             "CONFIG_SYNC_INSTALLED",
             "CONFIG_SYNC_ERROR",
             "CONFIG_SYNC_PENDING"
-          ]
-        },
-        "clusterLevelStopSyncingState": {
-          "enum": [
-            "STOP_SYNCING_STATE_UNSPECIFIED",
-            "NOT_STOPPED",
-            "PENDING",
-            "STOPPED"
           ]
         },
         "rootsyncCrd": {
@@ -266,11 +246,40 @@
         },
         "deploymentState": {
           "$ref": "ConfigManagementConfigSyncDeploymentState"
+        },
+        "reposyncCrd": {
+          "enum": [
+            "CRD_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "TERMINATING",
+            "INSTALLING"
+          ]
+        },
+        "clusterLevelStopSyncingState": {
+          "enum": [
+            "STOP_SYNCING_STATE_UNSPECIFIED",
+            "NOT_STOPPED",
+            "PENDING",
+            "STOPPED"
+          ]
+        },
+        "syncState": {
+          "$ref": "ConfigManagementSyncState"
         }
       }
     },
     "ConfigManagementGatekeeperDeploymentState": {
       "properties": {
+        "gatekeeperAudit": {
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ]
+        },
         "gatekeeperControllerManagerState": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
@@ -288,21 +297,12 @@
             "ERROR",
             "PENDING"
           ]
-        },
-        "gatekeeperAudit": {
-          "enum": [
-            "DEPLOYMENT_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLED",
-            "ERROR",
-            "PENDING"
-          ]
         }
       }
     },
     "ConfigManagementHierarchyControllerDeploymentState": {
       "properties": {
-        "extension": {
+        "hnc": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -311,7 +311,7 @@
             "PENDING"
           ]
         },
-        "hnc": {
+        "extension": {
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -345,20 +345,20 @@
     },
     "ConfigManagementMembershipState": {
       "properties": {
+        "policyControllerState": {
+          "$ref": "ConfigManagementPolicyControllerState"
+        },
         "membershipSpec": {
           "$ref": "ConfigManagementMembershipSpec"
+        },
+        "configSyncState": {
+          "$ref": "ConfigManagementConfigSyncState"
         },
         "operatorState": {
           "$ref": "ConfigManagementOperatorState"
         },
-        "policyControllerState": {
-          "$ref": "ConfigManagementPolicyControllerState"
-        },
         "hierarchyControllerState": {
           "$ref": "ConfigManagementHierarchyControllerState"
-        },
-        "configSyncState": {
-          "$ref": "ConfigManagementConfigSyncState"
         }
       }
     },
@@ -408,11 +408,11 @@
     },
     "ConfigManagementPolicyControllerState": {
       "properties": {
-        "migration": {
-          "$ref": "ConfigManagementPolicyControllerMigration"
-        },
         "deploymentState": {
           "$ref": "ConfigManagementGatekeeperDeploymentState"
+        },
+        "migration": {
+          "$ref": "ConfigManagementPolicyControllerMigration"
         }
       }
     },
@@ -434,30 +434,19 @@
     },
     "DefaultClusterConfig": {
       "properties": {
-        "binaryAuthorizationConfig": {
-          "$ref": "BinaryAuthorizationConfig"
-        },
         "compliancePostureConfig": {
           "$ref": "CompliancePostureConfig"
         },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig"
+        },
+        "binaryAuthorizationConfig": {
+          "$ref": "BinaryAuthorizationConfig"
         }
       }
     },
     "Feature": {
       "properties": {
-        "state": {
-          "$ref": "CommonFeatureState"
-        },
-        "membershipStates": {
-          "additionalProperties": {
-            "$ref": "MembershipFeatureState"
-          }
-        },
-        "resourceState": {
-          "$ref": "FeatureResourceState"
-        },
         "scopeStates": {
           "additionalProperties": {
             "$ref": "ScopeFeatureState"
@@ -466,13 +455,24 @@
         "fleetDefaultMemberConfig": {
           "$ref": "CommonFleetDefaultMemberConfigSpec"
         },
-        "spec": {
-          "$ref": "CommonFeatureSpec"
+        "state": {
+          "$ref": "CommonFeatureState"
+        },
+        "membershipStates": {
+          "additionalProperties": {
+            "$ref": "MembershipFeatureState"
+          }
         },
         "membershipSpecs": {
           "additionalProperties": {
             "$ref": "MembershipFeatureSpec"
           }
+        },
+        "spec": {
+          "$ref": "CommonFeatureSpec"
+        },
+        "resourceState": {
+          "$ref": "FeatureResourceState"
         }
       }
     },
@@ -504,11 +504,11 @@
     },
     "Fleet": {
       "properties": {
-        "defaultClusterConfig": {
-          "$ref": "DefaultClusterConfig"
-        },
         "state": {
           "$ref": "FleetLifecycleState"
+        },
+        "defaultClusterConfig": {
+          "$ref": "DefaultClusterConfig"
         }
       }
     },
@@ -572,10 +572,10 @@
     },
     "FleetObservabilityLoggingConfig": {
       "properties": {
-        "fleetScopeLogsConfig": {
+        "defaultConfig": {
           "$ref": "FleetObservabilityRoutingConfig"
         },
-        "defaultConfig": {
+        "fleetScopeLogsConfig": {
           "$ref": "FleetObservabilityRoutingConfig"
         }
       }
@@ -604,23 +604,23 @@
     },
     "Membership": {
       "properties": {
+        "state": {
+          "$ref": "MembershipState"
+        },
         "endpoint": {
           "$ref": "MembershipEndpoint"
+        },
+        "membershipType": {
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ]
         },
         "clusterTier": {
           "enum": [
             "CLUSTER_TIER_UNSPECIFIED",
             "STANDARD",
             "ENTERPRISE"
-          ]
-        },
-        "state": {
-          "$ref": "MembershipState"
-        },
-        "membershipType": {
-          "enum": [
-            "MEMBERSHIP_TYPE_UNSPECIFIED",
-            "LIGHTWEIGHT"
           ]
         }
       }
@@ -657,30 +657,33 @@
         "origin": {
           "$ref": "Origin"
         },
+        "policycontroller": {
+          "$ref": "PolicyControllerMembershipSpec"
+        },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec"
         },
         "mesh": {
           "$ref": "ServiceMeshMembershipSpec"
-        },
-        "policycontroller": {
-          "$ref": "PolicyControllerMembershipSpec"
         }
       }
     },
     "MembershipFeatureState": {
       "properties": {
-        "state": {
-          "$ref": "FeatureState"
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipState"
         },
         "identityservice": {
           "$ref": "IdentityServiceMembershipState"
         },
+        "state": {
+          "$ref": "FeatureState"
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeMembershipState"
+        },
         "servicemesh": {
           "$ref": "ServiceMeshMembershipState"
-        },
-        "workloadidentity": {
-          "$ref": "WorkloadIdentityMembershipState"
         },
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState"
@@ -688,11 +691,8 @@
         "policycontroller": {
           "$ref": "PolicyControllerMembershipState"
         },
-        "clusterupgrade": {
-          "$ref": "ClusterUpgradeMembershipState"
-        },
-        "configmanagement": {
-          "$ref": "ConfigManagementMembershipState"
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityMembershipState"
         }
       }
     },
@@ -745,15 +745,6 @@
     },
     "OperationalState": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_CODE_UNSPECIFIED",
-            "ACTIVE",
-            "WARNING",
-            "ERROR",
-            "INITIALIZING"
-          ]
-        },
         "reasons": {
           "items": {
             "enum": [
@@ -766,6 +757,15 @@
               "NO_CLUSTERS_IN_SEQUENCE"
             ]
           }
+        },
+        "state": {
+          "enum": [
+            "STATE_CODE_UNSPECIFIED",
+            "ACTIVE",
+            "WARNING",
+            "ERROR",
+            "INITIALIZING"
+          ]
         }
       }
     },
@@ -783,6 +783,12 @@
     },
     "PolicyControllerHubConfig": {
       "properties": {
+        "policyContent": {
+          "$ref": "PolicyControllerPolicyContentSpec"
+        },
+        "monitoring": {
+          "$ref": "PolicyControllerMonitoringConfig"
+        },
         "installSpec": {
           "enum": [
             "INSTALL_SPEC_UNSPECIFIED",
@@ -796,12 +802,6 @@
           "additionalProperties": {
             "$ref": "PolicyControllerPolicyControllerDeploymentConfig"
           }
-        },
-        "policyContent": {
-          "$ref": "PolicyControllerPolicyContentSpec"
-        },
-        "monitoring": {
-          "$ref": "PolicyControllerMonitoringConfig"
         }
       }
     },
@@ -814,13 +814,13 @@
     },
     "PolicyControllerMembershipState": {
       "properties": {
-        "policyContentState": {
-          "$ref": "PolicyControllerPolicyContentState"
-        },
         "componentStates": {
           "additionalProperties": {
             "$ref": "PolicyControllerOnClusterState"
           }
+        },
+        "policyContentState": {
+          "$ref": "PolicyControllerPolicyContentState"
         },
         "state": {
           "enum": [
@@ -878,16 +878,16 @@
     },
     "PolicyControllerPolicyContentState": {
       "properties": {
-        "bundleStates": {
-          "additionalProperties": {
-            "$ref": "PolicyControllerOnClusterState"
-          }
+        "templateLibraryState": {
+          "$ref": "PolicyControllerOnClusterState"
         },
         "referentialSyncConfigState": {
           "$ref": "PolicyControllerOnClusterState"
         },
-        "templateLibraryState": {
-          "$ref": "PolicyControllerOnClusterState"
+        "bundleStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          }
         }
       }
     },
@@ -976,10 +976,10 @@
             "NO_CHANNEL"
           ]
         },
-        "autoUpgradeConfig": {
+        "effectiveAutoUpgradeConfig": {
           "$ref": "AutoUpgradeConfig"
         },
-        "effectiveAutoUpgradeConfig": {
+        "autoUpgradeConfig": {
           "$ref": "AutoUpgradeConfig"
         },
         "operationalState": {
@@ -1016,14 +1016,6 @@
     },
     "SecurityPostureConfig": {
       "properties": {
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DISABLED",
-            "BASIC",
-            "ENTERPRISE"
-          ]
-        },
         "vulnerabilityMode": {
           "enum": [
             "VULNERABILITY_MODE_UNSPECIFIED",
@@ -1031,19 +1023,19 @@
             "VULNERABILITY_BASIC",
             "VULNERABILITY_ENTERPRISE"
           ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC",
+            "ENTERPRISE"
+          ]
         }
       }
     },
     "ServiceMeshCondition": {
       "properties": {
-        "severity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "ERROR",
-            "WARNING",
-            "INFO"
-          ]
-        },
         "code": {
           "enum": [
             "CODE_UNSPECIFIED",
@@ -1114,6 +1106,14 @@
             "MODERNIZATION_INCOMPATIBLE",
             "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
             "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
           ]
         }
       }
@@ -1162,6 +1162,14 @@
     },
     "ServiceMeshFeatureCondition": {
       "properties": {
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        },
         "code": {
           "enum": [
             "CODE_UNSPECIFIED",
@@ -1233,14 +1241,6 @@
             "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
             "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA"
           ]
-        },
-        "severity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "ERROR",
-            "WARNING",
-            "INFO"
-          ]
         }
       }
     },
@@ -1273,11 +1273,11 @@
     },
     "ServiceMeshMembershipSpec": {
       "properties": {
-        "configApi": {
+        "controlPlane": {
           "enum": [
-            "CONFIG_API_UNSPECIFIED",
-            "CONFIG_API_ISTIO",
-            "CONFIG_API_GATEWAY"
+            "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
           ]
         },
         "management": {
@@ -1288,11 +1288,11 @@
             "MANAGEMENT_NOT_INSTALLED"
           ]
         },
-        "controlPlane": {
+        "configApi": {
           "enum": [
-            "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
-            "AUTOMATIC",
-            "MANUAL"
+            "CONFIG_API_UNSPECIFIED",
+            "CONFIG_API_ISTIO",
+            "CONFIG_API_GATEWAY"
           ]
         }
       }

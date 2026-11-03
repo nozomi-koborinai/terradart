@@ -27,6 +27,9 @@ google:
   data.google_storage_control_project_intelligence_findings_summary.resource_scope:
     values: [PARENT, PROJECT]
     source: no-document
+  google_agentic_applications_analyst_agent_persona.artifacts_config.audit_trail_export_options.export_format:
+    values: [MARKDOWN, HTML, PDF]
+    source: no-document
   google_agentic_applications_analyst_agent_persona.artifacts_config.document_generation_options.export_format:
     values: [PDF, DOCX, GOOGLE_DOCS]
     source: no-document
@@ -342,10 +345,6 @@ google:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
     upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
     disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
-  google_compute_image.guest_os_features.type:
-    values: [MULTI_IP_SUBNET, SECURE_BOOT, SEV_CAPABLE, UEFI_COMPATIBLE, VIRTIO_SCSI_MULTIQUEUE, WINDOWS, GVNIC, IDPF, SEV_LIVE_MIGRATABLE, SEV_SNP_CAPABLE, SUSPEND_RESUME_COMPATIBLE, TDX_CAPABLE, SEV_LIVE_MIGRATABLE_V2, SNP_SVSM_CAPABLE]
-    upstream: [MULTI_IP_SUBNET, SECURE_BOOT, SEV_CAPABLE, UEFI_COMPATIBLE, VIRTIO_SCSI_MULTIQUEUE, WINDOWS, GVNIC, IDPF, SEV_LIVE_MIGRATABLE, SEV_SNP_CAPABLE, SUSPEND_RESUME_COMPATIBLE, TDX_CAPABLE, SEV_LIVE_MIGRATABLE_V2, SNP_SVSM_CAPABLE, SUSPEND_SAFE_FPR]
-    disagrees: awaiting-review
   google_compute_instance.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
@@ -387,10 +386,6 @@ google:
     values: [PREMIUM, STANDARD]
     upstream: [FIXED_STANDARD, PREMIUM, STANDARD, STANDARD_OVERRIDES_FIXED_STANDARD]
     disagrees: 'the hand-written provider resource validates PREMIUM and STANDARD only (resource_compute_project_default_network_tier.go StringInSlice), as the API description says; STANDARD_OVERRIDES_FIXED_STANDARD is output only'
-  google_compute_region_disk.guest_os_features.type:
-    values: [MULTI_IP_SUBNET, SECURE_BOOT, SEV_CAPABLE, UEFI_COMPATIBLE, VIRTIO_SCSI_MULTIQUEUE, WINDOWS, GVNIC, SEV_LIVE_MIGRATABLE, SEV_SNP_CAPABLE, SUSPEND_RESUME_COMPATIBLE, TDX_CAPABLE, SEV_LIVE_MIGRATABLE_V2, SNP_SVSM_CAPABLE]
-    upstream: [MULTI_IP_SUBNET, SECURE_BOOT, SEV_CAPABLE, UEFI_COMPATIBLE, VIRTIO_SCSI_MULTIQUEUE, WINDOWS, GVNIC, IDPF, SEV_LIVE_MIGRATABLE, SEV_SNP_CAPABLE, SUSPEND_RESUME_COMPATIBLE, TDX_CAPABLE, SEV_LIVE_MIGRATABLE_V2, SNP_SVSM_CAPABLE, SUSPEND_SAFE_FPR]
-    disagrees: awaiting-review
   google_compute_region_health_check.type:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
     upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
@@ -521,10 +516,6 @@ google:
   google_container_registry.location:
     values: [ASIA, EU, US]
     source: no-document
-  google_data_loss_prevention_discovery_config.actions.pub_sub_notification.detail_of_message:
-    values: [TABLE_PROFILE, RESOURCE_NAME]
-    upstream: [TABLE_PROFILE, RESOURCE_NAME, FILE_STORE_PROFILE]
-    disagrees: awaiting-review
   google_dataflow_job.on_delete:
     values: [drain, cancel]
     source: no-enum
@@ -956,6 +947,9 @@ google:
     source: no-enum
   google_storage_notification.payload_format:
     values: [JSON_API_V1, NONE]
+    source: no-enum
+  google_vertex_ai_custom_job.job_spec.worker_pool_specs.disk_spec.boot_disk_type:
+    values: [pd-ssd, pd-standard, pd-balanced, hyperdisk-balanced]
     source: no-enum
   google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.health_probe.http_get.scheme:
     values: [HTTP, HTTPS]

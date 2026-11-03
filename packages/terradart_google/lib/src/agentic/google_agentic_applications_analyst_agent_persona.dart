@@ -350,11 +350,15 @@ final class AgenticApplicationsAnalystAgentPersonaRawFileResource {
 @immutable
 final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
   const AgenticApplicationsAnalystAgentPersonaArtifactsConfig({
+    this.auditTrailExportOptions,
     this.documentGenerationOptions,
     this.methodologyExportOptions,
     this.slideGenerationOptions,
     this.visualizationOptions,
   });
+
+  final AgenticApplicationsAnalystAgentPersonaAuditTrailExportOptions?
+  auditTrailExportOptions;
 
   final AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions?
   documentGenerationOptions;
@@ -370,11 +374,71 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
 
   @internal
   Map<String, Object?> encode() => {
+    'audit_trail_export_options': ?auditTrailExportOptions?.encode(),
     'document_generation_options': ?documentGenerationOptions?.encode(),
     'methodology_export_options': ?methodologyExportOptions?.encode(),
     'slide_generation_options': ?slideGenerationOptions?.encode(),
     'visualization_options': ?visualizationOptions?.encode(),
   };
+}
+
+/// Typed helper for the `artifacts_config.audit_trail_export_options` block of
+/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+@immutable
+final class AgenticApplicationsAnalystAgentPersonaAuditTrailExportOptions {
+  const AgenticApplicationsAnalystAgentPersonaAuditTrailExportOptions({
+    this.appendAuditTrail,
+    this.exportAuditTrailArtifact,
+    this.exportFormat,
+  });
+
+  final TfArg<bool>? appendAuditTrail;
+
+  final TfArg<bool>? exportAuditTrailArtifact;
+
+  final AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat?
+  exportFormat;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'append_audit_trail': ?appendAuditTrail?.toTfJson(),
+    'export_audit_trail_artifact': ?exportAuditTrailArtifact?.toTfJson(),
+    'export_format': ?exportFormat?.toTfJson(),
+  };
+}
+
+/// `export_format` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const markdown =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('MARKDOWN'),
+      );
+  static const html =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('HTML'),
+      );
+  static const pdf =
+      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
+        TfArgLiteral('PDF'),
+      );
+
+  static const List<
+    AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat
+  >
+  values = [markdown, html, pdf];
 }
 
 /// Typed helper for the `artifacts_config.document_generation_options` block of
@@ -471,40 +535,6 @@ final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
     'export_format': ?exportFormat?.toTfJson(),
     'export_methodology_artifact': ?exportMethodologyArtifact?.toTfJson(),
   };
-}
-
-/// `export_format` — derived from the provider schema description.
-extension type const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.variable(
-    String name,
-  ) : this._(TfArg.variable(name));
-  AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const markdown =
-      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
-        TfArgLiteral('MARKDOWN'),
-      );
-  static const html =
-      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
-        TfArgLiteral('HTML'),
-      );
-  static const pdf =
-      AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat._(
-        TfArgLiteral('PDF'),
-      );
-
-  static const List<
-    AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat
-  >
-  values = [markdown, html, pdf];
 }
 
 /// Typed helper for the `artifacts_config.slide_generation_options` block of
@@ -1021,6 +1051,9 @@ final class AgenticApplicationsAnalystAgentPersonaWebSearchConfig {
 ///
 /// Represents a persona configuration for an analyst agent in Agentic
 /// Applications.
+///
+/// ~> **Note:** The `project` field must be set to the numeric project number
+/// (not the project ID).
 ///
 /// Agentic Applications **analyst agent persona** — the design-time
 /// configuration a Gemini Enterprise analyst agent answers with: its

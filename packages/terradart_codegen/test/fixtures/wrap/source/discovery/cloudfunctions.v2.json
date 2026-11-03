@@ -33,19 +33,6 @@
             "$ref": "GoogleCloudFunctionsV2StateMessage"
           }
         },
-        "buildConfig": {
-          "$ref": "BuildConfig"
-        },
-        "environment": {
-          "enum": [
-            "ENVIRONMENT_UNSPECIFIED",
-            "GEN_1",
-            "GEN_2"
-          ]
-        },
-        "eventTrigger": {
-          "$ref": "EventTrigger"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -58,11 +45,24 @@
             "DETACH_FAILED"
           ]
         },
+        "buildConfig": {
+          "$ref": "BuildConfig"
+        },
         "upgradeInfo": {
           "$ref": "UpgradeInfo"
         },
+        "eventTrigger": {
+          "$ref": "EventTrigger"
+        },
         "serviceConfig": {
           "$ref": "ServiceConfig"
+        },
+        "environment": {
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "GEN_1",
+            "GEN_2"
+          ]
         }
       }
     },
@@ -80,13 +80,6 @@
     },
     "ServiceConfig": {
       "properties": {
-        "vpcConnectorEgressSettings": {
-          "enum": [
-            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
-            "PRIVATE_RANGES_ONLY",
-            "ALL_TRAFFIC"
-          ]
-        },
         "securityLevel": {
           "enum": [
             "SECURITY_LEVEL_UNSPECIFIED",
@@ -102,6 +95,13 @@
             "ALLOW_INTERNAL_AND_GCLB"
           ]
         },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
+          ]
+        },
         "directVpcEgress": {
           "enum": [
             "DIRECT_VPC_EGRESS_UNSPECIFIED",
@@ -115,6 +115,12 @@
       "properties": {
         "serviceConfig": {
           "$ref": "ServiceConfig"
+        },
+        "eventTrigger": {
+          "$ref": "EventTrigger"
+        },
+        "buildConfig": {
+          "$ref": "BuildConfig"
         },
         "upgradeState": {
           "enum": [
@@ -133,12 +139,6 @@
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR"
           ]
-        },
-        "eventTrigger": {
-          "$ref": "EventTrigger"
-        },
-        "buildConfig": {
-          "$ref": "BuildConfig"
         }
       }
     }

@@ -25,22 +25,29 @@
     },
     "ManagedZone": {
       "properties": {
-        "forwardingConfig": {
-          "$ref": "ManagedZoneForwardingConfig"
-        },
-        "dnssecConfig": {
-          "$ref": "ManagedZoneDnsSecConfig"
-        },
         "visibility": {
           "enum": [
             "public",
             "private"
           ]
+        },
+        "dnssecConfig": {
+          "$ref": "ManagedZoneDnsSecConfig"
+        },
+        "forwardingConfig": {
+          "$ref": "ManagedZoneForwardingConfig"
         }
       }
     },
     "ManagedZoneDnsSecConfig": {
       "properties": {
+        "state": {
+          "enum": [
+            "off",
+            "on",
+            "transfer"
+          ]
+        },
         "nonExistence": {
           "enum": [
             "nsec",
@@ -51,13 +58,6 @@
           "items": {
             "$ref": "DnsKeySpec"
           }
-        },
-        "state": {
-          "enum": [
-            "off",
-            "on",
-            "transfer"
-          ]
         }
       }
     },
@@ -114,11 +114,11 @@
         "primaryBackup": {
           "$ref": "RRSetRoutingPolicyPrimaryBackupPolicy"
         },
-        "wrr": {
-          "$ref": "RRSetRoutingPolicyWrrPolicy"
-        },
         "geo": {
           "$ref": "RRSetRoutingPolicyGeoPolicy"
+        },
+        "wrr": {
+          "$ref": "RRSetRoutingPolicyWrrPolicy"
         }
       }
     },
@@ -149,19 +149,19 @@
     },
     "RRSetRoutingPolicyLoadBalancerTarget": {
       "properties": {
-        "ipProtocol": {
-          "enum": [
-            "undefined",
-            "tcp",
-            "udp"
-          ]
-        },
         "loadBalancerType": {
           "enum": [
             "none",
             "globalL7ilb",
             "regionalL4ilb",
             "regionalL7ilb"
+          ]
+        },
+        "ipProtocol": {
+          "enum": [
+            "undefined",
+            "tcp",
+            "udp"
           ]
         }
       }
@@ -204,14 +204,14 @@
     },
     "ResponsePolicyRule": {
       "properties": {
+        "localData": {
+          "$ref": "ResponsePolicyRuleLocalData"
+        },
         "behavior": {
           "enum": [
             "behaviorUnspecified",
             "bypassResponsePolicy"
           ]
-        },
-        "localData": {
-          "$ref": "ResponsePolicyRuleLocalData"
         }
       }
     },

@@ -25,6 +25,11 @@
     },
     "BackupPlanAssociation": {
       "properties": {
+        "rulesConfigInfo": {
+          "items": {
+            "$ref": "RuleConfigInfo"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -35,11 +40,6 @@
             "UPDATING",
             "PAUSED"
           ]
-        },
-        "rulesConfigInfo": {
-          "items": {
-            "$ref": "RuleConfigInfo"
-          }
         }
       }
     },
@@ -61,6 +61,13 @@
             "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
           ]
         },
+        "backupRetentionInheritance": {
+          "enum": [
+            "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
+            "INHERIT_VAULT_RETENTION",
+            "MATCH_BACKUP_EXPIRE_TIME"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -69,13 +76,6 @@
             "DELETING",
             "ERROR",
             "UPDATING"
-          ]
-        },
-        "backupRetentionInheritance": {
-          "enum": [
-            "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
-            "INHERIT_VAULT_RETENTION",
-            "MATCH_BACKUP_EXPIRE_TIME"
           ]
         }
       }
@@ -94,16 +94,16 @@
             "ERROR"
           ]
         },
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
         "type": {
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "BACKUP_RESTORE"
           ]
+        },
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
         }
       }
     },
@@ -132,20 +132,6 @@
     },
     "StandardSchedule": {
       "properties": {
-        "daysOfWeek": {
-          "items": {
-            "enum": [
-              "DAY_OF_WEEK_UNSPECIFIED",
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
-            ]
-          }
-        },
         "months": {
           "items": {
             "enum": [
@@ -162,6 +148,20 @@
               "OCTOBER",
               "NOVEMBER",
               "DECEMBER"
+            ]
+          }
+        },
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
             ]
           }
         },
@@ -182,6 +182,16 @@
     },
     "WeekDayOfMonth": {
       "properties": {
+        "weekOfMonth": {
+          "enum": [
+            "WEEK_OF_MONTH_UNSPECIFIED",
+            "FIRST",
+            "SECOND",
+            "THIRD",
+            "FOURTH",
+            "LAST"
+          ]
+        },
         "dayOfWeek": {
           "enum": [
             "DAY_OF_WEEK_UNSPECIFIED",
@@ -192,16 +202,6 @@
             "FRIDAY",
             "SATURDAY",
             "SUNDAY"
-          ]
-        },
-        "weekOfMonth": {
-          "enum": [
-            "WEEK_OF_MONTH_UNSPECIFIED",
-            "FIRST",
-            "SECOND",
-            "THIRD",
-            "FOURTH",
-            "LAST"
           ]
         }
       }

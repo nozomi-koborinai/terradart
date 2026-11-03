@@ -34,6 +34,13 @@ export 'src/project/google_project_organization_policy.dart'
 export 'src/project/google_project_service.dart' show GoogleProjectService;
 export 'src/project/google_project_usage_export_bucket.dart'
     show GoogleProjectUsageExportBucket;
+export 'src/project/google_resource_manager_boundary.dart'
+    show
+        GoogleResourceManagerBoundary,
+        ResourceManagerBoundaryResourceFilter,
+        ResourceManagerBoundaryTagFilter;
+export 'src/project/google_resource_manager_boundary_config.dart'
+    show GoogleResourceManagerBoundaryConfig;
 export 'src/project/google_resource_manager_capability.dart'
     show GoogleResourceManagerCapability;
 export 'src/project/google_resource_manager_capability_config.dart'

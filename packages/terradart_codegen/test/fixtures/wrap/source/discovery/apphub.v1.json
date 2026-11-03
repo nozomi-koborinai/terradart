@@ -9,6 +9,9 @@
         "attributes": {
           "$ref": "Attributes"
         },
+        "applicationType": {
+          "$ref": "ApplicationType"
+        },
         "scope": {
           "$ref": "Scope"
         },
@@ -19,9 +22,6 @@
             "ACTIVE",
             "DELETING"
           ]
-        },
-        "applicationType": {
-          "$ref": "ApplicationType"
         }
       }
     },
@@ -37,11 +37,11 @@
     },
     "Attributes": {
       "properties": {
-        "criticality": {
-          "$ref": "Criticality"
-        },
         "environment": {
           "$ref": "Environment"
+        },
+        "criticality": {
+          "$ref": "Criticality"
         }
       }
     },
@@ -160,6 +160,9 @@
     },
     "Workload": {
       "properties": {
+        "attributes": {
+          "$ref": "Attributes"
+        },
         "workloadProperties": {
           "$ref": "WorkloadProperties"
         },
@@ -171,9 +174,6 @@
             "DELETING",
             "DETACHED"
           ]
-        },
-        "attributes": {
-          "$ref": "Attributes"
         }
       }
     },

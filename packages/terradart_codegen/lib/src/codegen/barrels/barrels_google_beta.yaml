@@ -127,9 +127,6 @@ barrels:
   container:
     doc: |-
       /// GKE Hub membership RBAC role binding (beta-only).
-  dataflow:
-    doc: |-
-      /// Dataflow Flex Template job (beta-only).
   dataform:
     doc: |-
       /// Dataform config, release config, and workflow config (beta-only).

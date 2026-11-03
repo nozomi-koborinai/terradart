@@ -6,8 +6,17 @@
   "schemas": {
     "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders": {
       "properties": {
+        "userInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
+        },
         "deviceInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
+        },
+        "groupInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
+        },
+        "dispatchInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
         },
         "outputType": {
           "enum": [
@@ -16,15 +25,6 @@
             "JSON",
             "NONE"
           ]
-        },
-        "groupInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
-        },
-        "userInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
-        },
-        "dispatchInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
         }
       }
     },

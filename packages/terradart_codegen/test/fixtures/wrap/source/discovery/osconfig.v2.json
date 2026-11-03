@@ -20,10 +20,10 @@
     },
     "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
       "properties": {
-        "previousIterationState": {
+        "currentIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         },
-        "currentIterationState": {
+        "previousIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         }
       }
@@ -47,17 +47,17 @@
     },
     "OSPolicy": {
       "properties": {
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
-        },
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
         }
       }
     },
@@ -81,8 +81,8 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "exec": {
-          "$ref": "OSPolicyResourceExecResource"
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
         },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
@@ -90,8 +90,8 @@
         "file": {
           "$ref": "OSPolicyResourceFileResource"
         },
-        "pkg": {
-          "$ref": "OSPolicyResourcePackageResource"
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
         }
       }
     },

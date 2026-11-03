@@ -58,14 +58,13 @@
     },
     "BackupVault": {
       "properties": {
-        "state": {
+        "encryptionState": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY",
-            "DELETING",
-            "ERROR",
-            "UPDATING"
+            "ENCRYPTION_STATE_UNSPECIFIED",
+            "ENCRYPTION_STATE_PENDING",
+            "ENCRYPTION_STATE_COMPLETED",
+            "ENCRYPTION_STATE_IN_PROGRESS",
+            "ENCRYPTION_STATE_FAILED"
           ]
         },
         "backupVaultType": {
@@ -75,13 +74,14 @@
             "CROSS_REGION"
           ]
         },
-        "encryptionState": {
+        "state": {
           "enum": [
-            "ENCRYPTION_STATE_UNSPECIFIED",
-            "ENCRYPTION_STATE_PENDING",
-            "ENCRYPTION_STATE_COMPLETED",
-            "ENCRYPTION_STATE_IN_PROGRESS",
-            "ENCRYPTION_STATE_FAILED"
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "ERROR",
+            "UPDATING"
           ]
         }
       }
@@ -113,6 +113,9 @@
     },
     "CacheParameters": {
       "properties": {
+        "cacheConfig": {
+          "$ref": "CacheConfig"
+        },
         "cacheState": {
           "enum": [
             "CACHE_STATE_UNSPECIFIED",
@@ -121,9 +124,6 @@
             "PEERED",
             "ERROR"
           ]
-        },
-        "cacheConfig": {
-          "$ref": "CacheConfig"
         }
       }
     },
@@ -167,12 +167,6 @@
             "DISABLED"
           ]
         },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "ISCSI_INITIATOR"
-          ]
-        },
         "osType": {
           "enum": [
             "OS_TYPE_UNSPECIFIED",
@@ -180,11 +174,25 @@
             "WINDOWS",
             "ESXI"
           ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ISCSI_INITIATOR"
+          ]
         }
       }
     },
     "HybridReplicationParameters": {
       "properties": {
+        "replicationSchedule": {
+          "enum": [
+            "HYBRID_REPLICATION_SCHEDULE_UNSPECIFIED",
+            "EVERY_10_MINUTES",
+            "HOURLY",
+            "DAILY"
+          ]
+        },
         "hybridReplicationType": {
           "enum": [
             "VOLUME_HYBRID_REPLICATION_TYPE_UNSPECIFIED",
@@ -192,14 +200,6 @@
             "CONTINUOUS_REPLICATION",
             "ONPREM_REPLICATION",
             "REVERSE_ONPREM_REPLICATION"
-          ]
-        },
-        "replicationSchedule": {
-          "enum": [
-            "HYBRID_REPLICATION_SCHEDULE_UNSPECIFIED",
-            "EVERY_10_MINUTES",
-            "HOURLY",
-            "DAILY"
           ]
         }
       }
@@ -240,15 +240,6 @@
     },
     "QuotaRule": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "INDIVIDUAL_USER_QUOTA",
-            "INDIVIDUAL_GROUP_QUOTA",
-            "DEFAULT_USER_QUOTA",
-            "DEFAULT_GROUP_QUOTA"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -258,35 +249,26 @@
             "READY",
             "ERROR"
           ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INDIVIDUAL_USER_QUOTA",
+            "INDIVIDUAL_GROUP_QUOTA",
+            "DEFAULT_USER_QUOTA",
+            "DEFAULT_GROUP_QUOTA"
+          ]
         }
       }
     },
     "Replication": {
       "properties": {
-        "mirrorState": {
+        "role": {
           "enum": [
-            "MIRROR_STATE_UNSPECIFIED",
-            "PREPARING",
-            "MIRRORED",
-            "STOPPED",
-            "TRANSFERRING",
-            "BASELINE_TRANSFERRING",
-            "ABORTED",
-            "EXTERNALLY_MANAGED",
-            "PENDING_PEERING"
+            "REPLICATION_ROLE_UNSPECIFIED",
+            "SOURCE",
+            "DESTINATION"
           ]
-        },
-        "hybridReplicationType": {
-          "enum": [
-            "HYBRID_REPLICATION_TYPE_UNSPECIFIED",
-            "MIGRATION",
-            "CONTINUOUS_REPLICATION",
-            "ONPREM_REPLICATION",
-            "REVERSE_ONPREM_REPLICATION"
-          ]
-        },
-        "destinationVolumeParameters": {
-          "$ref": "DestinationVolumeParameters"
         },
         "state": {
           "enum": [
@@ -302,6 +284,18 @@
             "EXTERNALLY_MANAGED_REPLICATION"
           ]
         },
+        "destinationVolumeParameters": {
+          "$ref": "DestinationVolumeParameters"
+        },
+        "hybridReplicationType": {
+          "enum": [
+            "HYBRID_REPLICATION_TYPE_UNSPECIFIED",
+            "MIGRATION",
+            "CONTINUOUS_REPLICATION",
+            "ONPREM_REPLICATION",
+            "REVERSE_ONPREM_REPLICATION"
+          ]
+        },
         "replicationSchedule": {
           "enum": [
             "REPLICATION_SCHEDULE_UNSPECIFIED",
@@ -310,11 +304,17 @@
             "DAILY"
           ]
         },
-        "role": {
+        "mirrorState": {
           "enum": [
-            "REPLICATION_ROLE_UNSPECIFIED",
-            "SOURCE",
-            "DESTINATION"
+            "MIRROR_STATE_UNSPECIFIED",
+            "PREPARING",
+            "MIRRORED",
+            "STOPPED",
+            "TRANSFERRING",
+            "BASELINE_TRANSFERRING",
+            "ABORTED",
+            "EXTERNALLY_MANAGED",
+            "PENDING_PEERING"
           ]
         }
       }
@@ -356,16 +356,11 @@
     },
     "StoragePool": {
       "properties": {
-        "state": {
+        "mode": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "READY",
-            "CREATING",
-            "DELETING",
-            "UPDATING",
-            "RESTORING",
-            "DISABLED",
-            "ERROR"
+            "MODE_UNSPECIFIED",
+            "DEFAULT",
+            "ONTAP"
           ]
         },
         "serviceLevel": {
@@ -384,25 +379,30 @@
             "SCALE_TYPE_SCALEOUT"
           ]
         },
-        "encryptionType": {
-          "enum": [
-            "ENCRYPTION_TYPE_UNSPECIFIED",
-            "SERVICE_MANAGED",
-            "CLOUD_KMS"
-          ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEFAULT",
-            "ONTAP"
-          ]
-        },
         "type": {
           "enum": [
             "STORAGE_POOL_TYPE_UNSPECIFIED",
             "FILE",
             "UNIFIED"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "CREATING",
+            "DELETING",
+            "UPDATING",
+            "RESTORING",
+            "DISABLED",
+            "ERROR"
+          ]
+        },
+        "encryptionType": {
+          "enum": [
+            "ENCRYPTION_TYPE_UNSPECIFIED",
+            "SERVICE_MANAGED",
+            "CLOUD_KMS"
           ]
         },
         "qosType": {
@@ -427,16 +427,6 @@
     },
     "Volume": {
       "properties": {
-        "encryptionType": {
-          "enum": [
-            "ENCRYPTION_TYPE_UNSPECIFIED",
-            "SERVICE_MANAGED",
-            "CLOUD_KMS"
-          ]
-        },
-        "hybridReplicationParameters": {
-          "$ref": "HybridReplicationParameters"
-        },
         "restrictedActions": {
           "items": {
             "enum": [
@@ -444,6 +434,20 @@
               "DELETE"
             ]
           }
+        },
+        "cloneDetails": {
+          "$ref": "CloneDetails"
+        },
+        "mountOptions": {
+          "items": {
+            "$ref": "MountOption"
+          }
+        },
+        "hybridReplicationParameters": {
+          "$ref": "HybridReplicationParameters"
+        },
+        "tieringPolicy": {
+          "$ref": "TieringPolicy"
         },
         "state": {
           "enum": [
@@ -466,23 +470,6 @@
             "UNIX"
           ]
         },
-        "serviceLevel": {
-          "enum": [
-            "SERVICE_LEVEL_UNSPECIFIED",
-            "PREMIUM",
-            "EXTREME",
-            "STANDARD",
-            "FLEX"
-          ]
-        },
-        "cacheParameters": {
-          "$ref": "CacheParameters"
-        },
-        "mountOptions": {
-          "items": {
-            "$ref": "MountOption"
-          }
-        },
         "smbSettings": {
           "items": {
             "enum": [
@@ -499,6 +486,26 @@
             ]
           }
         },
+        "cacheParameters": {
+          "$ref": "CacheParameters"
+        },
+        "serviceLevel": {
+          "enum": [
+            "SERVICE_LEVEL_UNSPECIFIED",
+            "PREMIUM",
+            "EXTREME",
+            "STANDARD",
+            "FLEX"
+          ]
+        },
+        "blockDevices": {
+          "items": {
+            "$ref": "BlockDevice"
+          }
+        },
+        "exportPolicy": {
+          "$ref": "ExportPolicy"
+        },
         "protocols": {
           "items": {
             "enum": [
@@ -511,19 +518,12 @@
             ]
           }
         },
-        "blockDevices": {
-          "items": {
-            "$ref": "BlockDevice"
-          }
-        },
-        "tieringPolicy": {
-          "$ref": "TieringPolicy"
-        },
-        "cloneDetails": {
-          "$ref": "CloneDetails"
-        },
-        "exportPolicy": {
-          "$ref": "ExportPolicy"
+        "encryptionType": {
+          "enum": [
+            "ENCRYPTION_TYPE_UNSPECIFIED",
+            "SERVICE_MANAGED",
+            "CLOUD_KMS"
+          ]
         }
       }
     }

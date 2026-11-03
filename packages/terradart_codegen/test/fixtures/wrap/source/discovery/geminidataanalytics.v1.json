@@ -22,16 +22,16 @@
     },
     "GoogleCloudGeminidataanalyticsV1Context": {
       "properties": {
-        "schemaRelationships": {
-          "items": {
-            "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
-          }
+        "options": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
         },
         "datasourceReferences": {
           "$ref": "GoogleCloudGeminidataanalyticsV1DatasourceReferences"
         },
-        "options": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
+        "schemaRelationships": {
+          "items": {
+            "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
+          }
         }
       }
     },
@@ -61,20 +61,20 @@
     },
     "GoogleCloudGeminidataanalyticsV1DataAgent": {
       "properties": {
-        "dataAnalyticsAgent": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent"
-        },
         "bigqueryAgentAnalyticsTable": {
           "$ref": "GoogleCloudGeminidataanalyticsV1BigQueryTableReference"
+        },
+        "dataAnalyticsAgent": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent"
         }
       }
     },
     "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent": {
       "properties": {
-        "publishedContext": {
+        "lastPublishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         },
-        "lastPublishedContext": {
+        "publishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         },
         "stagingContext": {

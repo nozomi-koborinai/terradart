@@ -11,14 +11,319 @@ const Set<String> _googleNetworkSecurityFirewallEndpointSensitive = <String>{};
 /// `google_network_security_firewall_endpoint` (derived from provider schema).
 @immutable
 final class NetworkSecurityFirewallEndpointSettings {
-  const NetworkSecurityFirewallEndpointSettings({this.jumboFramesEnabled});
+  const NetworkSecurityFirewallEndpointSettings({
+    this.contentCloudRegion,
+    this.httpPartialResponseBlocked,
+    this.jumboFramesEnabled,
+  });
+
+  final NetworkSecurityFirewallEndpointContentCloudRegion? contentCloudRegion;
+
+  final TfArg<bool>? httpPartialResponseBlocked;
 
   final TfArg<bool>? jumboFramesEnabled;
 
   @internal
   Map<String, Object?> encode() => {
+    'content_cloud_region': ?contentCloudRegion?.toTfJson(),
+    'http_partial_response_blocked': ?httpPartialResponseBlocked?.toTfJson(),
     'jumbo_frames_enabled': ?jumboFramesEnabled?.toTfJson(),
   };
+}
+
+/// `content_cloud_region` — derived from the provider schema description.
+extension type const NetworkSecurityFirewallEndpointContentCloudRegion._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecurityFirewallEndpointContentCloudRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityFirewallEndpointContentCloudRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityFirewallEndpointContentCloudRegion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const usCentral = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('US_CENTRAL'),
+  );
+  static const apac = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('APAC'),
+  );
+  static const india = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('INDIA'),
+  );
+  static const uk = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('UK'),
+  );
+  static const france = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('FRANCE'),
+  );
+  static const japan = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('JAPAN'),
+  );
+  static const australia = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('AUSTRALIA'),
+  );
+  static const canada = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('CANADA'),
+  );
+  static const switzerland =
+      NetworkSecurityFirewallEndpointContentCloudRegion._(
+        TfArgLiteral('SWITZERLAND'),
+      );
+  static const netherlands =
+      NetworkSecurityFirewallEndpointContentCloudRegion._(
+        TfArgLiteral('NETHERLANDS'),
+      );
+  static const indonesia = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('INDONESIA'),
+  );
+  static const qatar = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('QATAR'),
+  );
+  static const taiwan = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('TAIWAN'),
+  );
+  static const poland = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('POLAND'),
+  );
+  static const southKorea = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('SOUTH_KOREA'),
+  );
+  static const saudiArabia =
+      NetworkSecurityFirewallEndpointContentCloudRegion._(
+        TfArgLiteral('SAUDI_ARABIA'),
+      );
+  static const italy = NetworkSecurityFirewallEndpointContentCloudRegion._(
+    TfArgLiteral('ITALY'),
+  );
+
+  static const List<NetworkSecurityFirewallEndpointContentCloudRegion> values =
+      [
+        usCentral,
+        apac,
+        india,
+        uk,
+        france,
+        japan,
+        australia,
+        canada,
+        switzerland,
+        netherlands,
+        indonesia,
+        qatar,
+        taiwan,
+        poland,
+        southKorea,
+        saudiArabia,
+        italy,
+      ];
+}
+
+/// Typed helper for the `wildfire_settings` block of
+/// `google_network_security_firewall_endpoint` (derived from provider schema).
+@immutable
+final class NetworkSecurityFirewallEndpointWildfireSettings {
+  const NetworkSecurityFirewallEndpointWildfireSettings({
+    this.enabled,
+    this.wildfireRealtimeLookupDuration,
+    this.wildfireRealtimeLookupTimeoutAction,
+    this.wildfireRegion,
+    this.wildfireInlineCloudAnalysisSettings,
+  });
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<String>? wildfireRealtimeLookupDuration;
+
+  final NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction?
+  wildfireRealtimeLookupTimeoutAction;
+
+  final NetworkSecurityFirewallEndpointWildfireRegion? wildfireRegion;
+
+  final NetworkSecurityFirewallEndpointWildfireInlineCloudAnalysisSettings?
+  wildfireInlineCloudAnalysisSettings;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'enabled': ?enabled?.toTfJson(),
+    'wildfire_realtime_lookup_duration': ?wildfireRealtimeLookupDuration
+        ?.toTfJson(),
+    'wildfire_realtime_lookup_timeout_action':
+        ?wildfireRealtimeLookupTimeoutAction?.toTfJson(),
+    'wildfire_region': ?wildfireRegion?.toTfJson(),
+    'wildfire_inline_cloud_analysis_settings':
+        ?wildfireInlineCloudAnalysisSettings?.encode(),
+  };
+}
+
+/// `wildfire_realtime_lookup_timeout_action` — derived from the provider schema description.
+extension type const NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allow =
+      NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction._(
+        TfArgLiteral('ALLOW'),
+      );
+  static const deny =
+      NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction._(
+        TfArgLiteral('DENY'),
+      );
+
+  static const List<
+    NetworkSecurityFirewallEndpointWildfireRealtimeLookupTimeoutAction
+  >
+  values = [allow, deny];
+}
+
+/// `wildfire_region` — derived from the provider schema description.
+extension type const NetworkSecurityFirewallEndpointWildfireRegion._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecurityFirewallEndpointWildfireRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityFirewallEndpointWildfireRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityFirewallEndpointWildfireRegion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const canada = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('CANADA'),
+  );
+  static const unitedStates = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('UNITED_STATES'),
+  );
+  static const japan = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('JAPAN'),
+  );
+  static const singapore = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('SINGAPORE'),
+  );
+  static const unitedKingdom = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('UNITED_KINGDOM'),
+  );
+  static const australia = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('AUSTRALIA'),
+  );
+  static const germany = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('GERMANY'),
+  );
+  static const india = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('INDIA'),
+  );
+  static const switzerland = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('SWITZERLAND'),
+  );
+  static const poland = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('POLAND'),
+  );
+  static const indonesia = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('INDONESIA'),
+  );
+  static const taiwan = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('TAIWAN'),
+  );
+  static const france = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('FRANCE'),
+  );
+  static const qatar = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('QATAR'),
+  );
+  static const southKorea = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('SOUTH_KOREA'),
+  );
+  static const israel = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('ISRAEL'),
+  );
+  static const saudiArabia = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('SAUDI_ARABIA'),
+  );
+  static const spain = NetworkSecurityFirewallEndpointWildfireRegion._(
+    TfArgLiteral('SPAIN'),
+  );
+
+  static const List<NetworkSecurityFirewallEndpointWildfireRegion> values = [
+    canada,
+    unitedStates,
+    japan,
+    singapore,
+    unitedKingdom,
+    australia,
+    germany,
+    india,
+    switzerland,
+    poland,
+    indonesia,
+    taiwan,
+    france,
+    qatar,
+    southKorea,
+    israel,
+    saudiArabia,
+    spain,
+  ];
+}
+
+/// Typed helper for the `wildfire_settings.wildfire_inline_cloud_analysis_settings` block of
+/// `google_network_security_firewall_endpoint` (derived from provider schema).
+@immutable
+final class NetworkSecurityFirewallEndpointWildfireInlineCloudAnalysisSettings {
+  const NetworkSecurityFirewallEndpointWildfireInlineCloudAnalysisSettings({
+    this.maxAnalysisDuration,
+    this.submissionTimeoutLoggingDisabled,
+    this.timeoutAction,
+  });
+
+  final TfArg<String>? maxAnalysisDuration;
+
+  final TfArg<bool>? submissionTimeoutLoggingDisabled;
+
+  final NetworkSecurityFirewallEndpointTimeoutAction? timeoutAction;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'max_analysis_duration': ?maxAnalysisDuration?.toTfJson(),
+    'submission_timeout_logging_disabled': ?submissionTimeoutLoggingDisabled
+        ?.toTfJson(),
+    'timeout_action': ?timeoutAction?.toTfJson(),
+  };
+}
+
+/// `timeout_action` — derived from the provider schema description.
+extension type const NetworkSecurityFirewallEndpointTimeoutAction._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecurityFirewallEndpointTimeoutAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityFirewallEndpointTimeoutAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityFirewallEndpointTimeoutAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = NetworkSecurityFirewallEndpointTimeoutAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = NetworkSecurityFirewallEndpointTimeoutAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<NetworkSecurityFirewallEndpointTimeoutAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_firewall_endpoint`.
@@ -52,6 +357,7 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
     required TfArg<String> parent,
     TfArg<String>? billingProjectId,
     NetworkSecurityFirewallEndpointSettings? endpointSettings,
+    NetworkSecurityFirewallEndpointWildfireSettings? wildfireSettings,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -67,6 +373,8 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
            'billing_project_id': ?billingProjectId,
            if (endpointSettings != null)
              'endpoint_settings': TfArg.literal(endpointSettings.encode()),
+           if (wildfireSettings != null)
+             'wildfire_settings': TfArg.literal(wildfireSettings.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
          },

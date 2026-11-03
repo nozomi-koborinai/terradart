@@ -35,25 +35,18 @@
     },
     "CloudSqlSettings": {
       "properties": {
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
-        "activationPolicy": {
-          "enum": [
-            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
-            "ALWAYS",
-            "NEVER"
-          ]
-        },
         "availabilityType": {
           "enum": [
             "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
             "ZONAL",
             "REGIONAL"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
           ]
         },
         "dataDiskType": {
@@ -62,6 +55,13 @@
             "PD_SSD",
             "PD_HDD",
             "HYPERDISK_BALANCED"
+          ]
+        },
+        "activationPolicy": {
+          "enum": [
+            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
           ]
         },
         "databaseVersion": {
@@ -97,20 +97,24 @@
     },
     "ConnectionProfile": {
       "properties": {
-        "postgresql": {
-          "$ref": "PostgreSqlConnectionProfile"
+        "provider": {
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ]
+        },
+        "cloudsql": {
+          "$ref": "CloudSqlConnectionProfile"
         },
         "alloydb": {
           "$ref": "AlloyDbConnectionProfile"
         },
-        "sqlserver": {
-          "$ref": "SqlServerConnectionProfile"
-        },
         "oracle": {
           "$ref": "OracleConnectionProfile"
-        },
-        "cloudsql": {
-          "$ref": "CloudSqlConnectionProfile"
         },
         "state": {
           "enum": [
@@ -131,18 +135,14 @@
             "DESTINATION"
           ]
         },
-        "provider": {
-          "enum": [
-            "DATABASE_PROVIDER_UNSPECIFIED",
-            "CLOUDSQL",
-            "RDS",
-            "AURORA",
-            "ALLOYDB",
-            "AZURE_DATABASE"
-          ]
+        "postgresql": {
+          "$ref": "PostgreSqlConnectionProfile"
         },
         "mysql": {
           "$ref": "MySqlConnectionProfile"
+        },
+        "sqlserver": {
+          "$ref": "SqlServerConnectionProfile"
         }
       }
     },
@@ -171,6 +171,51 @@
     },
     "MigrationJob": {
       "properties": {
+        "objectsConfig": {
+          "$ref": "MigrationJobObjectsConfig"
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ONE_TIME",
+            "CONTINUOUS"
+          ]
+        },
+        "dumpType": {
+          "enum": [
+            "DUMP_TYPE_UNSPECIFIED",
+            "LOGICAL",
+            "PHYSICAL"
+          ]
+        },
+        "destinationDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "sourceDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "performanceConfig": {
+          "$ref": "PerformanceConfig"
+        },
+        "phase": {
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "FULL_DUMP",
+            "CDC",
+            "PROMOTE_IN_PROGRESS",
+            "WAITING_FOR_SOURCE_WRITES_TO_STOP",
+            "PREPARING_THE_DUMP",
+            "READY_FOR_PROMOTE",
+            "PHASE_FAILBACK"
+          ]
+        },
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "MIGRATE",
+            "FAILBACK"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -190,51 +235,6 @@
             "RESTARTING",
             "RESUMING"
           ]
-        },
-        "phase": {
-          "enum": [
-            "PHASE_UNSPECIFIED",
-            "FULL_DUMP",
-            "CDC",
-            "PROMOTE_IN_PROGRESS",
-            "WAITING_FOR_SOURCE_WRITES_TO_STOP",
-            "PREPARING_THE_DUMP",
-            "READY_FOR_PROMOTE",
-            "PHASE_FAILBACK"
-          ]
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "ONE_TIME",
-            "CONTINUOUS"
-          ]
-        },
-        "purpose": {
-          "enum": [
-            "PURPOSE_UNSPECIFIED",
-            "MIGRATE",
-            "FAILBACK"
-          ]
-        },
-        "dumpType": {
-          "enum": [
-            "DUMP_TYPE_UNSPECIFIED",
-            "LOGICAL",
-            "PHYSICAL"
-          ]
-        },
-        "destinationDatabase": {
-          "$ref": "DatabaseType"
-        },
-        "sourceDatabase": {
-          "$ref": "DatabaseType"
-        },
-        "performanceConfig": {
-          "$ref": "PerformanceConfig"
-        },
-        "objectsConfig": {
-          "$ref": "MigrationJobObjectsConfig"
         }
       }
     },
@@ -261,11 +261,11 @@
     },
     "OracleConnectionProfile": {
       "properties": {
-        "oracleAsmConfig": {
-          "$ref": "OracleAsmConfig"
-        },
         "ssl": {
           "$ref": "SslConfig"
+        },
+        "oracleAsmConfig": {
+          "$ref": "OracleAsmConfig"
         }
       }
     },

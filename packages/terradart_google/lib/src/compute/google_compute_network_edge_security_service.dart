@@ -1,11 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_network_edge_security_service`.
 const Set<String> _googleComputeNetworkEdgeSecurityServiceSensitive =
     <String>{};
+
+/// Typed helper for the `params` block of
+/// `google_compute_network_edge_security_service` (derived from provider schema).
+@immutable
+final class ComputeNetworkEdgeSecurityServiceParams {
+  const ComputeNetworkEdgeSecurityServiceParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_network_edge_security_service`.
 ///
@@ -21,6 +36,7 @@ final class GoogleComputeNetworkEdgeSecurityService extends Resource {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? securityPolicy,
+    ComputeNetworkEdgeSecurityServiceParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,6 +50,7 @@ final class GoogleComputeNetworkEdgeSecurityService extends Resource {
            'project': ?project,
            'region': ?region,
            'security_policy': ?securityPolicy,
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 

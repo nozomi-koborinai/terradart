@@ -32,11 +32,11 @@
             "$ref": "ConnectorConfigurationParameterValue"
           }
         },
-        "tls": {
-          "$ref": "ConnectorConfigurationTls"
-        },
         "authentication": {
           "$ref": "ConnectorConfigurationAuthentication"
+        },
+        "tls": {
+          "$ref": "ConnectorConfigurationTls"
         }
       }
     },

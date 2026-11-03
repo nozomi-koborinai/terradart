@@ -6,6 +6,11 @@
   "schemas": {
     "GoogleCloudConnectorsV1AuthConfig": {
       "properties": {
+        "additionalVariables": {
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          }
+        },
         "authType": {
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
@@ -17,11 +22,6 @@
             "GOOGLE_AUTHENTICATION",
             "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED"
           ]
-        },
-        "additionalVariables": {
-          "items": {
-            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
-          }
         }
       }
     },

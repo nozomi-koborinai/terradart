@@ -1,7 +1,7 @@
 {
   "name": "sqladmin",
   "version": "v1beta4",
-  "revision": "20261006",
+  "revision": "20261018",
   "sourceUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
   "schemas": {
     "BackupConfiguration": {
@@ -15,6 +15,9 @@
             "CLOUD_STORAGE"
           ]
         },
+        "backupRetentionSettings": {
+          "$ref": "BackupRetentionSettings"
+        },
         "backupTier": {
           "enum": [
             "BACKUP_TIER_UNSPECIFIED",
@@ -22,9 +25,6 @@
             "ADVANCED",
             "ENHANCED"
           ]
-        },
-        "backupRetentionSettings": {
-          "$ref": "BackupRetentionSettings"
         }
       }
     },
@@ -54,15 +54,33 @@
     },
     "DatabaseInstance": {
       "properties": {
-        "dnsNames": {
-          "items": {
-            "$ref": "DnsNameMapping"
-          }
+        "backendType": {
+          "enum": [
+            "SQL_BACKEND_TYPE_UNSPECIFIED",
+            "FIRST_GEN",
+            "SECOND_GEN",
+            "EXTERNAL"
+          ]
         },
-        "nodes": {
-          "items": {
-            "$ref": "PoolNodeConfig"
-          }
+        "instanceType": {
+          "enum": [
+            "SQL_INSTANCE_TYPE_UNSPECIFIED",
+            "CLOUD_SQL_INSTANCE",
+            "ON_PREMISES_INSTANCE",
+            "READ_REPLICA_INSTANCE",
+            "READ_POOL_INSTANCE",
+            "GREEN_INSTANCE"
+          ]
+        },
+        "outOfDiskReport": {
+          "$ref": "SqlOutOfDiskReport"
+        },
+        "sqlNetworkArchitecture": {
+          "enum": [
+            "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
+            "NEW_NETWORK_ARCHITECTURE",
+            "OLD_NETWORK_ARCHITECTURE"
+          ]
         },
         "databaseVersion": {
           "enum": [
@@ -124,17 +142,6 @@
             "SQLSERVER_2025_EXPRESS"
           ]
         },
-        "backendType": {
-          "enum": [
-            "SQL_BACKEND_TYPE_UNSPECIFIED",
-            "FIRST_GEN",
-            "SECOND_GEN",
-            "EXTERNAL"
-          ]
-        },
-        "settings": {
-          "$ref": "Settings"
-        },
         "databaseCenterIntegration": {
           "enum": [
             "DATABASE_CENTER_INTEGRATION_UNSPECIFIED",
@@ -142,8 +149,8 @@
             "DISABLED"
           ]
         },
-        "outOfDiskReport": {
-          "$ref": "SqlOutOfDiskReport"
+        "deploymentInfo": {
+          "$ref": "BlueGreenDeploymentInfo"
         },
         "state": {
           "enum": [
@@ -158,33 +165,16 @@
             "REPAIRING"
           ]
         },
-        "deploymentInfo": {
-          "$ref": "BlueGreenDeploymentInfo"
+        "settings": {
+          "$ref": "Settings"
         },
-        "sqlNetworkArchitecture": {
-          "enum": [
-            "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
-            "NEW_NETWORK_ARCHITECTURE",
-            "OLD_NETWORK_ARCHITECTURE"
-          ]
-        },
-        "instanceType": {
-          "enum": [
-            "SQL_INSTANCE_TYPE_UNSPECIFIED",
-            "CLOUD_SQL_INSTANCE",
-            "ON_PREMISES_INSTANCE",
-            "READ_REPLICA_INSTANCE",
-            "READ_POOL_INSTANCE",
-            "GREEN_INSTANCE"
-          ]
+        "dnsNames": {
+          "items": {
+            "$ref": "DnsNameMapping"
+          }
         },
         "onPremisesConfiguration": {
           "$ref": "OnPremisesConfiguration"
-        },
-        "ipAddresses": {
-          "items": {
-            "$ref": "IpMapping"
-          }
         },
         "suspensionReason": {
           "items": {
@@ -196,6 +186,16 @@
               "KMS_KEY_ISSUE",
               "PROJECT_ABUSE"
             ]
+          }
+        },
+        "nodes": {
+          "items": {
+            "$ref": "PoolNodeConfig"
+          }
+        },
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
           }
         }
       }
@@ -243,9 +243,6 @@
             "AUTOMATIC_ROTATION_DURING_MAINTENANCE"
           ]
         },
-        "pscConfig": {
-          "$ref": "PscConfig"
-        },
         "sslMode": {
           "enum": [
             "SSL_MODE_UNSPECIFIED",
@@ -253,6 +250,9 @@
             "ENCRYPTED_ONLY",
             "TRUSTED_CLIENT_CERTIFICATE_REQUIRED"
           ]
+        },
+        "pscConfig": {
+          "$ref": "PscConfig"
         }
       }
     },
@@ -316,14 +316,14 @@
     },
     "PoolNodeConfig": {
       "properties": {
-        "ipAddresses": {
-          "items": {
-            "$ref": "IpMapping"
-          }
-        },
         "pscAutoConnections": {
           "items": {
             "$ref": "PscAutoConnectionConfig"
+          }
+        },
+        "ipAddresses": {
+          "items": {
+            "$ref": "IpMapping"
           }
         },
         "state": {
@@ -377,19 +377,6 @@
     },
     "Settings": {
       "properties": {
-        "backupConfiguration": {
-          "$ref": "BackupConfiguration"
-        },
-        "performanceCaptureConfig": {
-          "$ref": "PerformanceCaptureConfig"
-        },
-        "pricingPlan": {
-          "enum": [
-            "SQL_PRICING_PLAN_UNSPECIFIED",
-            "PACKAGE",
-            "PER_USE"
-          ]
-        },
         "replicationType": {
           "enum": [
             "SQL_REPLICATION_TYPE_UNSPECIFIED",
@@ -407,6 +394,36 @@
             "REGIONAL"
           ]
         },
+        "pricingPlan": {
+          "enum": [
+            "SQL_PRICING_PLAN_UNSPECIFIED",
+            "PACKAGE",
+            "PER_USE"
+          ]
+        },
+        "performanceCaptureConfig": {
+          "$ref": "PerformanceCaptureConfig"
+        },
+        "activeDirectoryConfig": {
+          "$ref": "SqlActiveDirectoryConfig"
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS",
+            "DEVELOPER"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "ipConfiguration": {
+          "$ref": "IpConfiguration"
+        },
+        "backupConfiguration": {
+          "$ref": "BackupConfiguration"
+        },
         "dataApiAccess": {
           "enum": [
             "DATA_API_ACCESS_UNSPECIFIED",
@@ -421,12 +438,6 @@
             "REQUIRED"
           ]
         },
-        "ipConfiguration": {
-          "$ref": "IpConfiguration"
-        },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
         "dataDiskType": {
           "enum": [
             "SQL_DATA_DISK_TYPE_UNSPECIFIED",
@@ -435,17 +446,6 @@
             "OBSOLETE_LOCAL_SSD",
             "HYPERDISK_BALANCED"
           ]
-        },
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS",
-            "DEVELOPER"
-          ]
-        },
-        "activeDirectoryConfig": {
-          "$ref": "SqlActiveDirectoryConfig"
         },
         "activationPolicy": {
           "enum": [

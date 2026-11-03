@@ -9,6 +9,11 @@
         "effectiveApprovalPolicy": {
           "$ref": "CustomerApprovalApprovalPolicy"
         },
+        "ancestorsEnrolledServices": {
+          "items": {
+            "$ref": "EnrolledService"
+          }
+        },
         "requestScopeMaxWidthPreference": {
           "enum": [
             "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
@@ -16,11 +21,6 @@
             "FOLDER",
             "PROJECT"
           ]
-        },
-        "ancestorsEnrolledServices": {
-          "items": {
-            "$ref": "EnrolledService"
-          }
         },
         "enrolledServices": {
           "items": {

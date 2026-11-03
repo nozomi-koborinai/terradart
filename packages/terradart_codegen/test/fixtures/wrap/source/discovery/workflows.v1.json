@@ -16,19 +16,19 @@
     },
     "Workflow": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UNAVAILABLE"
+          ]
+        },
         "callLogLevel": {
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
             "LOG_ALL_CALLS",
             "LOG_ERRORS_ONLY",
             "LOG_NONE"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "UNAVAILABLE"
           ]
         },
         "stateError": {

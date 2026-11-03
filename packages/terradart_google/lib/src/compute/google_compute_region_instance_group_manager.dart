@@ -8,8 +8,14 @@ import '../compute/google_compute_target_pool.dart'
     show GoogleComputeTargetPool;
 
 /// Sensitive field paths for `google_compute_region_instance_group_manager`.
-const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
-    <String>{};
+const Set<String> _googleComputeRegionInstanceGroupManagerSensitive = <String>{
+  'instance_flexibility_policy.instance_selections.disks.disk_encryption_key.raw_key',
+  'instance_flexibility_policy.instance_selections.disks.disk_encryption_key.rsa_encrypted_key',
+  'instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.raw_key',
+  'instance_flexibility_policy.instance_selections.disks.source_image_encryption_key.rsa_encrypted_key',
+  'instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.raw_key',
+  'instance_flexibility_policy.instance_selections.disks.source_snapshot_encryption_key.rsa_encrypted_key',
+};
 
 /// `list_managed_instances_results` — pagination for the
 /// `listManagedInstances` API on this regional MIG.

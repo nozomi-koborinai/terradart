@@ -6,6 +6,11 @@
   "schemas": {
     "Cluster": {
       "properties": {
+        "datastoreMountConfig": {
+          "items": {
+            "$ref": "DatastoreMountConfig"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -15,11 +20,6 @@
             "DELETING",
             "REPAIRING"
           ]
-        },
-        "datastoreMountConfig": {
-          "items": {
-            "$ref": "DatastoreMountConfig"
-          }
         }
       }
     },
@@ -171,6 +171,22 @@
     },
     "PrivateCloud": {
       "properties": {
+        "vcenter": {
+          "$ref": "Vcenter"
+        },
+        "type": {
+          "enum": [
+            "STANDARD",
+            "TIME_LIMITED",
+            "STRETCHED"
+          ]
+        },
+        "hcx": {
+          "$ref": "Hcx"
+        },
+        "nsx": {
+          "$ref": "Nsx"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -184,22 +200,6 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig"
-        },
-        "nsx": {
-          "$ref": "Nsx"
-        },
-        "vcenter": {
-          "$ref": "Vcenter"
-        },
-        "hcx": {
-          "$ref": "Hcx"
-        },
-        "type": {
-          "enum": [
-            "STANDARD",
-            "TIME_LIMITED",
-            "STRETCHED"
-          ]
         }
       }
     },
@@ -236,6 +236,13 @@
             "$ref": "VpcNetwork"
           }
         },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LEGACY",
+            "STANDARD"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -243,13 +250,6 @@
             "ACTIVE",
             "UPDATING",
             "DELETING"
-          ]
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "LEGACY",
-            "STANDARD"
           ]
         }
       }

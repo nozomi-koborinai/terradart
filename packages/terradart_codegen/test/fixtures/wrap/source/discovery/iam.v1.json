@@ -68,12 +68,6 @@
     },
     "KeyData": {
       "properties": {
-        "format": {
-          "enum": [
-            "KEY_FORMAT_UNSPECIFIED",
-            "RSA_X509_PEM"
-          ]
-        },
         "keySpec": {
           "enum": [
             "KEY_SPEC_UNSPECIFIED",
@@ -81,18 +75,17 @@
             "RSA_3072",
             "RSA_4096"
           ]
+        },
+        "format": {
+          "enum": [
+            "KEY_FORMAT_UNSPECIFIED",
+            "RSA_X509_PEM"
+          ]
         }
       }
     },
     "OauthClient": {
       "properties": {
-        "clientType": {
-          "enum": [
-            "CLIENT_TYPE_UNSPECIFIED",
-            "PUBLIC_CLIENT",
-            "CONFIDENTIAL_CLIENT"
-          ]
-        },
         "allowedGrantTypes": {
           "items": {
             "enum": [
@@ -101,6 +94,13 @@
               "REFRESH_TOKEN_GRANT"
             ]
           }
+        },
+        "clientType": {
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "PUBLIC_CLIENT",
+            "CONFIDENTIAL_CLIENT"
+          ]
         },
         "state": {
           "enum": [
@@ -130,11 +130,17 @@
     },
     "ServiceAccountKey": {
       "properties": {
-        "keyType": {
+        "extendedStatus": {
+          "items": {
+            "$ref": "ExtendedStatus"
+          }
+        },
+        "disableReason": {
           "enum": [
-            "KEY_TYPE_UNSPECIFIED",
-            "USER_MANAGED",
-            "SYSTEM_MANAGED"
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
           ]
         },
         "privateKeyType": {
@@ -151,24 +157,18 @@
             "KEY_ALG_RSA_2048"
           ]
         },
-        "extendedStatus": {
-          "items": {
-            "$ref": "ExtendedStatus"
-          }
+        "keyType": {
+          "enum": [
+            "KEY_TYPE_UNSPECIFIED",
+            "USER_MANAGED",
+            "SYSTEM_MANAGED"
+          ]
         },
         "keyOrigin": {
           "enum": [
             "ORIGIN_UNSPECIFIED",
             "USER_PROVIDED",
             "GOOGLE_PROVIDED"
-          ]
-        },
-        "disableReason": {
-          "enum": [
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
           ]
         }
       }
@@ -186,15 +186,18 @@
     },
     "WorkforcePoolProvider": {
       "properties": {
+        "extendedAttributesOauth2Client": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
+        },
+        "oidc": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "DELETED"
           ]
-        },
-        "extraAttributesOauth2Client": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
         },
         "vendorType": {
           "enum": [
@@ -210,9 +213,6 @@
             "GENERIC"
           ]
         },
-        "extendedAttributesOauth2Client": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
-        },
         "scimUsage": {
           "enum": [
             "SCIM_USAGE_UNSPECIFIED",
@@ -220,8 +220,8 @@
             "ENABLED_FOR_USERS_GROUPS"
           ]
         },
-        "oidc": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
+        "extraAttributesOauth2Client": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
         }
       }
     },
@@ -269,9 +269,6 @@
     },
     "WorkloadIdentityPool": {
       "properties": {
-        "inlineCertificateIssuanceConfig": {
-          "$ref": "InlineCertificateIssuanceConfig"
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
@@ -279,6 +276,9 @@
             "TRUST_DOMAIN",
             "SYSTEM_TRUST_DOMAIN"
           ]
+        },
+        "inlineCertificateIssuanceConfig": {
+          "$ref": "InlineCertificateIssuanceConfig"
         },
         "state": {
           "enum": [

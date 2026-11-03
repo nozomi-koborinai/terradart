@@ -17,17 +17,17 @@
     },
     "AccessRulesOptions": {
       "properties": {
+        "accessRules": {
+          "items": {
+            "$ref": "AccessRule"
+          }
+        },
         "defaultSquashMode": {
           "enum": [
             "SQUASH_MODE_UNSPECIFIED",
             "NO_SQUASH",
             "ROOT_SQUASH"
           ]
-        },
-        "accessRules": {
-          "items": {
-            "$ref": "AccessRule"
-          }
         }
       }
     },
@@ -50,6 +50,9 @@
         "maintenancePolicy": {
           "$ref": "MaintenancePolicy"
         },
+        "accessRulesOptions": {
+          "$ref": "AccessRulesOptions"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -62,9 +65,6 @@
             "UPDATING",
             "SUSPENDED"
           ]
-        },
-        "accessRulesOptions": {
-          "$ref": "AccessRulesOptions"
         }
       }
     },

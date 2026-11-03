@@ -73,6 +73,23 @@ class BigqueryReservationAutoscale {
 // Factory
 // ===========================================================================
 
+/// Typed helper for the `scheduling_policy` block of
+/// `google_bigquery_reservation` (derived from provider schema).
+@immutable
+final class BigqueryReservationSchedulingPolicy {
+  const BigqueryReservationSchedulingPolicy({this.concurrency, this.maxSlots});
+
+  final TfArg<num>? concurrency;
+
+  final TfArg<num>? maxSlots;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'concurrency': ?concurrency?.toTfJson(),
+    'max_slots': ?maxSlots?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_bigquery_reservation`.
 ///
 /// A reservation is a mechanism used to guarantee BigQuery slots to users.
@@ -123,6 +140,7 @@ final class GoogleBigqueryReservation extends Resource {
     TfArg<String>? secondaryLocation,
     RefTo<GoogleBigqueryReservationGroup>? reservationGroup,
     BigqueryReservationAutoscale? autoscale,
+    BigqueryReservationSchedulingPolicy? schedulingPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -141,6 +159,8 @@ final class GoogleBigqueryReservation extends Resource {
            'reservation_group': ?reservationGroup?.encodeAs('name'),
            if (autoscale != null)
              'autoscale': TfArg.literal([autoscale.encode()]),
+           if (schedulingPolicy != null)
+             'scheduling_policy': TfArg.literal(schedulingPolicy.encode()),
            'project': ?project,
          },
        );

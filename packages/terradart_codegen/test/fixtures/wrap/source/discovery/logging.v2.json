@@ -24,6 +24,9 @@
     },
     "FilterExpression": {
       "properties": {
+        "fieldSourceValue": {
+          "$ref": "FieldSource"
+        },
         "comparator": {
           "enum": [
             "COMPARATOR_UNSPECIFIED",
@@ -38,9 +41,6 @@
             "LIKE"
           ]
         },
-        "fieldSourceValue": {
-          "$ref": "FieldSource"
-        },
         "fieldSource": {
           "$ref": "FieldSource"
         }
@@ -48,14 +48,6 @@
     },
     "FilterPredicate": {
       "properties": {
-        "operatorType": {
-          "enum": [
-            "OPERATOR_TYPE_UNSPECIFIED",
-            "AND",
-            "OR",
-            "LEAF"
-          ]
-        },
         "leafPredicate": {
           "$ref": "FilterExpression"
         },
@@ -63,6 +55,14 @@
           "items": {
             "$ref": "FilterPredicate"
           }
+        },
+        "operatorType": {
+          "enum": [
+            "OPERATOR_TYPE_UNSPECIFIED",
+            "AND",
+            "OR",
+            "LEAF"
+          ]
         }
       }
     },
@@ -93,14 +93,14 @@
     },
     "LogMetric": {
       "properties": {
-        "metricDescriptor": {
-          "$ref": "MetricDescriptor"
-        },
         "version": {
           "enum": [
             "V2",
             "V1"
           ]
+        },
+        "metricDescriptor": {
+          "$ref": "MetricDescriptor"
         }
       }
     },
@@ -124,6 +124,22 @@
             "DEPRECATED"
           ]
         },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
         "valueType": {
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
@@ -134,37 +150,11 @@
             "DISTRIBUTION",
             "MONEY"
           ]
-        },
-        "metricKind": {
-          "enum": [
-            "METRIC_KIND_UNSPECIFIED",
-            "GAUGE",
-            "DELTA",
-            "CUMULATIVE"
-          ]
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
-        },
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
         }
       }
     },
     "MetricDescriptorMetadata": {
       "properties": {
-        "timeSeriesResourceHierarchyLevel": {
-          "items": {
-            "enum": [
-              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
-              "PROJECT",
-              "ORGANIZATION",
-              "FOLDER"
-            ]
-          }
-        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -176,6 +166,16 @@
             "GA",
             "DEPRECATED"
           ]
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
         }
       }
     },
@@ -188,6 +188,9 @@
     },
     "ProjectedField": {
       "properties": {
+        "virtualField": {
+          "$ref": "VirtualField"
+        },
         "operation": {
           "enum": [
             "FIELD_OPERATION_UNSPECIFIED",
@@ -195,14 +198,16 @@
             "GROUP_BY",
             "AGGREGATE"
           ]
-        },
-        "virtualField": {
-          "$ref": "VirtualField"
         }
       }
     },
     "QueryBuilderConfig": {
       "properties": {
+        "orderBys": {
+          "items": {
+            "$ref": "SortOrderParameter"
+          }
+        },
         "fieldSources": {
           "items": {
             "$ref": "FieldSource"
@@ -210,11 +215,6 @@
         },
         "filter": {
           "$ref": "FilterPredicate"
-        },
-        "orderBys": {
-          "items": {
-            "$ref": "SortOrderParameter"
-          }
         }
       }
     },
@@ -241,6 +241,9 @@
     },
     "SortOrderParameter": {
       "properties": {
+        "fieldSource": {
+          "$ref": "FieldSource"
+        },
         "sortOrderDirection": {
           "enum": [
             "SORT_ORDER_UNSPECIFIED",
@@ -248,9 +251,6 @@
             "SORT_ORDER_ASCENDING",
             "SORT_ORDER_DESCENDING"
           ]
-        },
-        "fieldSource": {
-          "$ref": "FieldSource"
         }
       }
     },

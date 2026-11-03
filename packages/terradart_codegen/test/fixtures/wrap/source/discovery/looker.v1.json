@@ -32,17 +32,8 @@
     },
     "Instance": {
       "properties": {
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
         "customDomain": {
           "$ref": "CustomDomain"
-        },
-        "pscConfig": {
-          "$ref": "PscConfig"
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
         },
         "platformEdition": {
           "enum": [
@@ -60,14 +51,6 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "RAPID",
-            "REGULAR",
-            "STABLE"
-          ]
-        },
         "softDeleteReason": {
           "enum": [
             "SOFT_DELETE_REASON_UNSPECIFIED",
@@ -76,11 +59,12 @@
             "CUSTOMER_REQUEST"
           ]
         },
-        "classType": {
+        "releaseChannel": {
           "enum": [
-            "CLASS_TYPE_UNSPECIFIED",
-            "R1",
-            "P1"
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
           ]
         },
         "state": {
@@ -95,6 +79,22 @@
             "EXPORTING",
             "IMPORTING"
           ]
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig"
         }
       }
     },

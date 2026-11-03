@@ -6,26 +6,23 @@
   "schemas": {
     "GoogleCloudDataplexV1AspectType": {
       "properties": {
+        "dataClassification": {
+          "enum": [
+            "DATA_CLASSIFICATION_UNSPECIFIED",
+            "METADATA_AND_DATA"
+          ]
+        },
         "transferStatus": {
           "enum": [
             "TRANSFER_STATUS_UNSPECIFIED",
             "TRANSFER_STATUS_MIGRATED",
             "TRANSFER_STATUS_TRANSFERRED"
           ]
-        },
-        "dataClassification": {
-          "enum": [
-            "DATA_CLASSIFICATION_UNSPECIFIED",
-            "METADATA_AND_DATA"
-          ]
         }
       }
     },
     "GoogleCloudDataplexV1Asset": {
       "properties": {
-        "discoveryStatus": {
-          "$ref": "GoogleCloudDataplexV1AssetDiscoveryStatus"
-        },
         "securityStatus": {
           "$ref": "GoogleCloudDataplexV1AssetSecurityStatus"
         },
@@ -38,11 +35,14 @@
             "ACTION_REQUIRED"
           ]
         },
+        "resourceStatus": {
+          "$ref": "GoogleCloudDataplexV1AssetResourceStatus"
+        },
         "resourceSpec": {
           "$ref": "GoogleCloudDataplexV1AssetResourceSpec"
         },
-        "resourceStatus": {
-          "$ref": "GoogleCloudDataplexV1AssetResourceStatus"
+        "discoveryStatus": {
+          "$ref": "GoogleCloudDataplexV1AssetDiscoveryStatus"
         }
       }
     },
@@ -61,18 +61,18 @@
     },
     "GoogleCloudDataplexV1AssetResourceSpec": {
       "properties": {
-        "readAccessMode": {
-          "enum": [
-            "ACCESS_MODE_UNSPECIFIED",
-            "DIRECT",
-            "MANAGED"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "STORAGE_BUCKET",
             "BIGQUERY_DATASET"
+          ]
+        },
+        "readAccessMode": {
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "DIRECT",
+            "MANAGED"
           ]
         }
       }
@@ -142,14 +142,14 @@
     },
     "GoogleCloudDataplexV1DataDocumentationResult": {
       "properties": {
+        "datasetResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultDatasetResult"
+        },
         "dataProductResult": {
           "$ref": "GoogleCloudDataplexV1DataDocumentationResultDataProductResult"
         },
         "tableResult": {
           "$ref": "GoogleCloudDataplexV1DataDocumentationResultTableResult"
-        },
-        "datasetResult": {
-          "$ref": "GoogleCloudDataplexV1DataDocumentationResultDatasetResult"
         }
       }
     },
@@ -164,14 +164,14 @@
     },
     "GoogleCloudDataplexV1DataDocumentationResultDatasetResult": {
       "properties": {
-        "schemaRelationships": {
-          "items": {
-            "$ref": "GoogleCloudDataplexV1DataDocumentationResultSchemaRelationship"
-          }
-        },
         "queries": {
           "items": {
             "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          }
+        },
+        "schemaRelationships": {
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultSchemaRelationship"
           }
         }
       }
@@ -283,11 +283,11 @@
     },
     "GoogleCloudDataplexV1DataQualityResult": {
       "properties": {
-        "catalogPublishingStatus": {
-          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus"
-        },
         "postScanActionsResult": {
           "$ref": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult"
+        },
+        "catalogPublishingStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus"
         },
         "rules": {
           "items": {
@@ -352,32 +352,11 @@
     },
     "GoogleCloudDataplexV1DataScan": {
       "properties": {
-        "dataQualitySpec": {
-          "$ref": "GoogleCloudDataplexV1DataQualitySpec"
-        },
-        "dataDiscoverySpec": {
-          "$ref": "GoogleCloudDataplexV1DataDiscoverySpec"
-        },
-        "dataProfileSpec": {
-          "$ref": "GoogleCloudDataplexV1DataProfileSpec"
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "DELETING",
-            "ACTION_REQUIRED"
-          ]
-        },
         "dataDocumentationResult": {
           "$ref": "GoogleCloudDataplexV1DataDocumentationResult"
         },
-        "dataQualityResult": {
-          "$ref": "GoogleCloudDataplexV1DataQualityResult"
-        },
-        "dataProfileResult": {
-          "$ref": "GoogleCloudDataplexV1DataProfileResult"
+        "dataQualitySpec": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpec"
         },
         "type": {
           "enum": [
@@ -388,8 +367,29 @@
             "DATA_DOCUMENTATION"
           ]
         },
+        "dataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpec"
+        },
         "dataDocumentationSpec": {
           "$ref": "GoogleCloudDataplexV1DataDocumentationSpec"
+        },
+        "dataQualityResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResult"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ]
+        },
+        "dataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResult"
+        },
+        "dataDiscoverySpec": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpec"
         }
       }
     },
@@ -568,15 +568,15 @@
     },
     "GoogleCloudDataplexV1Zone": {
       "properties": {
-        "resourceSpec": {
-          "$ref": "GoogleCloudDataplexV1ZoneResourceSpec"
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "RAW",
             "CURATED"
           ]
+        },
+        "resourceSpec": {
+          "$ref": "GoogleCloudDataplexV1ZoneResourceSpec"
         },
         "state": {
           "enum": [

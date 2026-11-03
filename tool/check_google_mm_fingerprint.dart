@@ -51,6 +51,7 @@ const _fingerprintFalsePositives = <String>{
   'google_dataproc_job', // third_party resource_dataproc_job.go; no mmv1/products/dataproc/Job.yaml (Job.yaml 404, probed 2026-07-25)
   'google_dataproc_workflow_template', // third_party resource_dataproc_workflow_template.go.tmpl (DCL→handwritten); no mmv1/products/dataproc/WorkflowTemplate.yaml (404, probed 2026-08-14; product has AutoscalingPolicy/Batch/SessionTemplate only)
   'google_dataflow_job', // third_party resource_dataflow_job.go; mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
+  'google_dataflow_flex_template_job', // third_party resource_dataflow_flex_template_job.go; mmv1/products/dataflow has product.yaml only (probed 2026-11-03)
   // Apigee handwritten (mmv1/third_party/terraform/services/apigee/*); no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25).
   'google_apigee_api',
   'google_apigee_sharedflow',

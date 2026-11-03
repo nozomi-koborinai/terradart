@@ -16,19 +16,19 @@
     },
     "InvocationConfig": {
       "properties": {
-        "queryPriority": {
-          "enum": [
-            "QUERY_PRIORITY_UNSPECIFIED",
-            "INTERACTIVE",
-            "BATCH"
-          ]
-        },
         "executionMode": {
           "enum": [
             "EXECUTION_MODE_UNSPECIFIED",
             "DEFAULT",
             "ALL_EXCEPT_UNIT_TESTS",
             "UNIT_TESTS_ONLY"
+          ]
+        },
+        "queryPriority": {
+          "enum": [
+            "QUERY_PRIORITY_UNSPECIFIED",
+            "INTERACTIVE",
+            "BATCH"
           ]
         }
       }
@@ -54,11 +54,11 @@
     },
     "WorkflowConfig": {
       "properties": {
-        "workflowTriggerConfig": {
-          "$ref": "WorkflowTriggerConfig"
-        },
         "invocationConfig": {
           "$ref": "InvocationConfig"
+        },
+        "workflowTriggerConfig": {
+          "$ref": "WorkflowTriggerConfig"
         }
       }
     },

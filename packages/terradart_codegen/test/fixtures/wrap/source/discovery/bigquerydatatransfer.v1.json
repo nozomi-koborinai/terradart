@@ -6,13 +6,6 @@
   "schemas": {
     "DataSource": {
       "properties": {
-        "transferType": {
-          "enum": [
-            "TRANSFER_TYPE_UNSPECIFIED",
-            "BATCH",
-            "STREAMING"
-          ]
-        },
         "authorizationType": {
           "enum": [
             "AUTHORIZATION_TYPE_UNSPECIFIED",
@@ -21,27 +14,29 @@
             "FIRST_PARTY_OAUTH"
           ]
         },
-        "parameters": {
-          "items": {
-            "$ref": "DataSourceParameter"
-          }
-        },
         "dataRefreshType": {
           "enum": [
             "DATA_REFRESH_TYPE_UNSPECIFIED",
             "SLIDING_WINDOW",
             "CUSTOM_SLIDING_WINDOW"
           ]
+        },
+        "parameters": {
+          "items": {
+            "$ref": "DataSourceParameter"
+          }
+        },
+        "transferType": {
+          "enum": [
+            "TRANSFER_TYPE_UNSPECIFIED",
+            "BATCH",
+            "STREAMING"
+          ]
         }
       }
     },
     "DataSourceParameter": {
       "properties": {
-        "fields": {
-          "items": {
-            "$ref": "DataSourceParameter"
-          }
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -53,18 +48,16 @@
             "PLUS_PAGE",
             "LIST"
           ]
+        },
+        "fields": {
+          "items": {
+            "$ref": "DataSourceParameter"
+          }
         }
       }
     },
     "TransferConfig": {
       "properties": {
-        "managedTableType": {
-          "enum": [
-            "MANAGED_TABLE_TYPE_UNSPECIFIED",
-            "NATIVE",
-            "BIGLAKE"
-          ]
-        },
         "state": {
           "enum": [
             "TRANSFER_STATE_UNSPECIFIED",
@@ -73,6 +66,13 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
+          ]
+        },
+        "managedTableType": {
+          "enum": [
+            "MANAGED_TABLE_TYPE_UNSPECIFIED",
+            "NATIVE",
+            "BIGLAKE"
           ]
         }
       }

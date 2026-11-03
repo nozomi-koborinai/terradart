@@ -6,14 +6,11 @@
   "schemas": {
     "Argument": {
       "properties": {
-        "argumentKind": {
-          "enum": [
-            "ARGUMENT_KIND_UNSPECIFIED",
-            "FIXED_TYPE",
-            "ANY_TYPE",
-            "FIXED_TABLE",
-            "ANY_TABLE"
-          ]
+        "tableType": {
+          "$ref": "StandardSqlTableType"
+        },
+        "dataType": {
+          "$ref": "StandardSqlDataType"
         },
         "mode": {
           "enum": [
@@ -23,13 +20,24 @@
             "INOUT"
           ]
         },
-        "dataType": {
-          "$ref": "StandardSqlDataType"
+        "argumentKind": {
+          "enum": [
+            "ARGUMENT_KIND_UNSPECIFIED",
+            "FIXED_TYPE",
+            "ANY_TYPE",
+            "FIXED_TABLE",
+            "ANY_TABLE"
+          ]
         }
       }
     },
     "ArimaForecastingMetrics": {
       "properties": {
+        "arimaSingleModelForecastingMetrics": {
+          "items": {
+            "$ref": "ArimaSingleModelForecastingMetrics"
+          }
+        },
         "seasonalPeriods": {
           "items": {
             "enum": [
@@ -42,11 +50,6 @@
               "YEARLY",
               "HOURLY"
             ]
-          }
-        },
-        "arimaSingleModelForecastingMetrics": {
-          "items": {
-            "$ref": "ArimaSingleModelForecastingMetrics"
           }
         }
       }
@@ -71,6 +74,11 @@
     },
     "ArimaResult": {
       "properties": {
+        "arimaModelInfo": {
+          "items": {
+            "$ref": "ArimaModelInfo"
+          }
+        },
         "seasonalPeriods": {
           "items": {
             "enum": [
@@ -83,11 +91,6 @@
               "YEARLY",
               "HOURLY"
             ]
-          }
-        },
-        "arimaModelInfo": {
-          "items": {
-            "$ref": "ArimaModelInfo"
           }
         }
       }
@@ -127,10 +130,13 @@
     },
     "BiEngineStatistics": {
       "properties": {
-        "biEngineReasons": {
-          "items": {
-            "$ref": "BiEngineReason"
-          }
+        "biEngineMode": {
+          "enum": [
+            "ACCELERATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "PARTIAL",
+            "FULL"
+          ]
         },
         "accelerationMode": {
           "enum": [
@@ -141,13 +147,10 @@
             "FULL_QUERY"
           ]
         },
-        "biEngineMode": {
-          "enum": [
-            "ACCELERATION_MODE_UNSPECIFIED",
-            "DISABLED",
-            "PARTIAL",
-            "FULL"
-          ]
+        "biEngineReasons": {
+          "items": {
+            "$ref": "BiEngineReason"
+          }
         }
       }
     },
@@ -169,9 +172,6 @@
     },
     "Dataset": {
       "properties": {
-        "linkedDatasetMetadata": {
-          "$ref": "LinkedDatasetMetadata"
-        },
         "storageBillingModel": {
           "enum": [
             "STORAGE_BILLING_MODEL_UNSPECIFIED",
@@ -179,12 +179,18 @@
             "PHYSICAL"
           ]
         },
+        "linkedDatasetMetadata": {
+          "$ref": "LinkedDatasetMetadata"
+        },
         "defaultRoundingMode": {
           "enum": [
             "ROUNDING_MODE_UNSPECIFIED",
             "ROUND_HALF_AWAY_FROM_ZERO",
             "ROUND_HALF_EVEN"
           ]
+        },
+        "restrictions": {
+          "$ref": "RestrictionConfig"
         },
         "access": {
           "items": {
@@ -194,9 +200,6 @@
               }
             }
           }
-        },
-        "restrictions": {
-          "$ref": "RestrictionConfig"
         }
       }
     },
@@ -215,19 +218,19 @@
     },
     "DmlStatistics": {
       "properties": {
-        "dmlMode": {
-          "enum": [
-            "DML_MODE_UNSPECIFIED",
-            "COARSE_GRAINED_DML",
-            "FINE_GRAINED_DML"
-          ]
-        },
         "fineGrainedDmlUnusedReason": {
           "enum": [
             "FINE_GRAINED_DML_UNUSED_REASON_UNSPECIFIED",
             "MAX_PARTITION_SIZE_EXCEEDED",
             "TABLE_NOT_ENROLLED",
             "DML_IN_MULTI_STATEMENT_TRANSACTION"
+          ]
+        },
+        "dmlMode": {
+          "enum": [
+            "DML_MODE_UNSPECIFIED",
+            "COARSE_GRAINED_DML",
+            "FINE_GRAINED_DML"
           ]
         }
       }
@@ -252,6 +255,28 @@
     },
     "ExternalDataConfiguration": {
       "properties": {
+        "objectMetadata": {
+          "enum": [
+            "OBJECT_METADATA_UNSPECIFIED",
+            "DIRECTORY",
+            "SIMPLE"
+          ]
+        },
+        "jsonExtension": {
+          "enum": [
+            "JSON_EXTENSION_UNSPECIFIED",
+            "GEOJSON"
+          ]
+        },
+        "fileSetSpecType": {
+          "enum": [
+            "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
+            "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST"
+          ]
+        },
+        "schema": {
+          "$ref": "TableSchema"
+        },
         "decimalTargetTypes": {
           "items": {
             "enum": [
@@ -262,21 +287,8 @@
             ]
           }
         },
-        "objectMetadata": {
-          "enum": [
-            "OBJECT_METADATA_UNSPECIFIED",
-            "DIRECTORY",
-            "SIMPLE"
-          ]
-        },
         "parquetOptions": {
           "$ref": "ParquetOptions"
-        },
-        "fileSetSpecType": {
-          "enum": [
-            "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
-            "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST"
-          ]
         },
         "metadataCacheMode": {
           "enum": [
@@ -284,15 +296,6 @@
             "AUTOMATIC",
             "MANUAL"
           ]
-        },
-        "jsonExtension": {
-          "enum": [
-            "JSON_EXTENSION_UNSPECIFIED",
-            "GEOJSON"
-          ]
-        },
-        "schema": {
-          "$ref": "TableSchema"
         }
       }
     },
@@ -322,6 +325,9 @@
         "hparamTuningEvaluationMetrics": {
           "$ref": "EvaluationMetrics"
         },
+        "hparams": {
+          "$ref": "TrainingOptions"
+        },
         "status": {
           "enum": [
             "TRIAL_STATUS_UNSPECIFIED",
@@ -332,9 +338,6 @@
             "INFEASIBLE",
             "STOPPED_EARLY"
           ]
-        },
-        "hparams": {
-          "$ref": "TrainingOptions"
         },
         "evaluationMetrics": {
           "$ref": "EvaluationMetrics"
@@ -394,21 +397,21 @@
         "jobCreationReason": {
           "$ref": "JobCreationReason"
         },
-        "configuration": {
-          "$ref": "JobConfiguration"
-        },
         "statistics": {
           "$ref": "JobStatistics"
+        },
+        "configuration": {
+          "$ref": "JobConfiguration"
         }
       }
     },
     "JobConfiguration": {
       "properties": {
-        "load": {
-          "$ref": "JobConfigurationLoad"
-        },
         "copy": {
           "$ref": "JobConfigurationTableCopy"
+        },
+        "load": {
+          "$ref": "JobConfigurationLoad"
         },
         "query": {
           "$ref": "JobConfigurationQuery"
@@ -417,37 +420,10 @@
     },
     "JobConfigurationLoad": {
       "properties": {
-        "sourceColumnMatch": {
-          "enum": [
-            "SOURCE_COLUMN_MATCH_UNSPECIFIED",
-            "POSITION",
-            "NAME"
-          ]
-        },
         "jsonExtension": {
           "enum": [
             "JSON_EXTENSION_UNSPECIFIED",
             "GEOJSON"
-          ]
-        },
-        "columnNameCharacterMap": {
-          "enum": [
-            "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
-            "STRICT",
-            "V1",
-            "V2"
-          ]
-        },
-        "parquetOptions": {
-          "$ref": "ParquetOptions"
-        },
-        "schema": {
-          "$ref": "TableSchema"
-        },
-        "fileSetSpecType": {
-          "enum": [
-            "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
-            "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST"
           ]
         },
         "decimalTargetTypes": {
@@ -459,11 +435,41 @@
               "STRING"
             ]
           }
+        },
+        "parquetOptions": {
+          "$ref": "ParquetOptions"
+        },
+        "sourceColumnMatch": {
+          "enum": [
+            "SOURCE_COLUMN_MATCH_UNSPECIFIED",
+            "POSITION",
+            "NAME"
+          ]
+        },
+        "fileSetSpecType": {
+          "enum": [
+            "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
+            "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST"
+          ]
+        },
+        "schema": {
+          "$ref": "TableSchema"
+        },
+        "columnNameCharacterMap": {
+          "enum": [
+            "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+            "STRICT",
+            "V1",
+            "V2"
+          ]
         }
       }
     },
     "JobConfigurationQuery": {
       "properties": {
+        "systemVariables": {
+          "$ref": "SystemVariables"
+        },
         "scriptOptions": {
           "$ref": "ScriptOptions"
         },
@@ -471,9 +477,6 @@
           "additionalProperties": {
             "$ref": "ExternalDataConfiguration"
           }
-        },
-        "systemVariables": {
-          "$ref": "SystemVariables"
         }
       }
     },
@@ -505,9 +508,6 @@
     },
     "JobStatistics": {
       "properties": {
-        "scriptStatistics": {
-          "$ref": "ScriptStatistics"
-        },
         "edition": {
           "enum": [
             "RESERVATION_EDITION_UNSPECIFIED",
@@ -516,6 +516,9 @@
             "ENTERPRISE_PLUS"
           ]
         },
+        "scriptStatistics": {
+          "$ref": "ScriptStatistics"
+        },
         "query": {
           "$ref": "JobStatistics2"
         }
@@ -523,42 +526,42 @@
     },
     "JobStatistics2": {
       "properties": {
-        "incrementalResultStats": {
-          "$ref": "IncrementalResultStats"
-        },
-        "dmlStats": {
-          "$ref": "DmlStatistics"
-        },
-        "materializedViewStatistics": {
-          "$ref": "MaterializedViewStatistics"
-        },
-        "metadataCacheStatistics": {
-          "$ref": "MetadataCacheStatistics"
-        },
-        "schema": {
-          "$ref": "TableSchema"
-        },
         "mlStatistics": {
           "$ref": "MlStatistics"
-        },
-        "searchStatistics": {
-          "$ref": "SearchStatistics"
-        },
-        "vectorSearchStatistics": {
-          "$ref": "VectorSearchStatistics"
-        },
-        "biEngineStatistics": {
-          "$ref": "BiEngineStatistics"
         },
         "queryPlan": {
           "items": {
             "$ref": "ExplainQueryStage"
           }
         },
+        "incrementalResultStats": {
+          "$ref": "IncrementalResultStats"
+        },
         "objectStorageStats": {
           "items": {
             "$ref": "ObjectStorageStats"
           }
+        },
+        "schema": {
+          "$ref": "TableSchema"
+        },
+        "materializedViewStatistics": {
+          "$ref": "MaterializedViewStatistics"
+        },
+        "searchStatistics": {
+          "$ref": "SearchStatistics"
+        },
+        "dmlStats": {
+          "$ref": "DmlStatistics"
+        },
+        "biEngineStatistics": {
+          "$ref": "BiEngineStatistics"
+        },
+        "vectorSearchStatistics": {
+          "$ref": "VectorSearchStatistics"
+        },
+        "metadataCacheStatistics": {
+          "$ref": "MetadataCacheStatistics"
         },
         "performanceInsights": {
           "$ref": "PerformanceInsights"
@@ -728,41 +731,17 @@
     },
     "Routine": {
       "properties": {
-        "buildStatus": {
-          "$ref": "RoutineBuildStatus"
+        "returnTableType": {
+          "$ref": "StandardSqlTableType"
         },
-        "securityMode": {
-          "enum": [
-            "SECURITY_MODE_UNSPECIFIED",
-            "DEFINER",
-            "INVOKER"
-          ]
-        },
-        "language": {
-          "enum": [
-            "LANGUAGE_UNSPECIFIED",
-            "SQL",
-            "JAVASCRIPT",
-            "PYTHON",
-            "JAVA",
-            "SCALA"
-          ]
-        },
-        "determinismLevel": {
-          "enum": [
-            "DETERMINISM_LEVEL_UNSPECIFIED",
-            "DETERMINISTIC",
-            "NOT_DETERMINISTIC"
-          ]
+        "returnType": {
+          "$ref": "StandardSqlDataType"
         },
         "dataGovernanceType": {
           "enum": [
             "DATA_GOVERNANCE_TYPE_UNSPECIFIED",
             "DATA_MASKING"
           ]
-        },
-        "returnType": {
-          "$ref": "StandardSqlDataType"
         },
         "arguments": {
           "items": {
@@ -777,6 +756,33 @@
             "TABLE_VALUED_FUNCTION",
             "AGGREGATE_FUNCTION"
           ]
+        },
+        "securityMode": {
+          "enum": [
+            "SECURITY_MODE_UNSPECIFIED",
+            "DEFINER",
+            "INVOKER"
+          ]
+        },
+        "determinismLevel": {
+          "enum": [
+            "DETERMINISM_LEVEL_UNSPECIFIED",
+            "DETERMINISTIC",
+            "NOT_DETERMINISTIC"
+          ]
+        },
+        "language": {
+          "enum": [
+            "LANGUAGE_UNSPECIFIED",
+            "SQL",
+            "JAVASCRIPT",
+            "PYTHON",
+            "JAVA",
+            "SCALA"
+          ]
+        },
+        "buildStatus": {
+          "$ref": "RoutineBuildStatus"
         }
       }
     },
@@ -845,12 +851,6 @@
     },
     "StandardSqlDataType": {
       "properties": {
-        "arrayElementType": {
-          "$ref": "StandardSqlDataType"
-        },
-        "rangeElementType": {
-          "$ref": "StandardSqlDataType"
-        },
         "typeKind": {
           "enum": [
             "TYPE_KIND_UNSPECIFIED",
@@ -873,6 +873,40 @@
             "RANGE",
             "UUID"
           ]
+        },
+        "structType": {
+          "$ref": "StandardSqlStructType"
+        },
+        "arrayElementType": {
+          "$ref": "StandardSqlDataType"
+        },
+        "rangeElementType": {
+          "$ref": "StandardSqlDataType"
+        }
+      }
+    },
+    "StandardSqlField": {
+      "properties": {
+        "type": {
+          "$ref": "StandardSqlDataType"
+        }
+      }
+    },
+    "StandardSqlStructType": {
+      "properties": {
+        "fields": {
+          "items": {
+            "$ref": "StandardSqlField"
+          }
+        }
+      }
+    },
+    "StandardSqlTableType": {
+      "properties": {
+        "columns": {
+          "items": {
+            "$ref": "StandardSqlField"
+          }
         }
       }
     },
@@ -911,17 +945,21 @@
     },
     "Table": {
       "properties": {
+        "schema": {
+          "$ref": "TableSchema"
+        },
+        "defaultRoundingMode": {
+          "enum": [
+            "ROUNDING_MODE_UNSPECIFIED",
+            "ROUND_HALF_AWAY_FROM_ZERO",
+            "ROUND_HALF_EVEN"
+          ]
+        },
         "view": {
           "$ref": "ViewDefinition"
         },
         "restrictions": {
           "$ref": "RestrictionConfig"
-        },
-        "externalDataConfiguration": {
-          "$ref": "ExternalDataConfiguration"
-        },
-        "schema": {
-          "$ref": "TableSchema"
         },
         "managedTableType": {
           "enum": [
@@ -933,15 +971,11 @@
         "tableReplicationInfo": {
           "$ref": "TableReplicationInfo"
         },
+        "externalDataConfiguration": {
+          "$ref": "ExternalDataConfiguration"
+        },
         "biglakeConfiguration": {
           "$ref": "BigLakeConfiguration"
-        },
-        "defaultRoundingMode": {
-          "enum": [
-            "ROUNDING_MODE_UNSPECIFIED",
-            "ROUND_HALF_AWAY_FROM_ZERO",
-            "ROUND_HALF_EVEN"
-          ]
         }
       }
     },
@@ -991,89 +1025,31 @@
     },
     "TableSchema": {
       "properties": {
+        "foreignTypeInfo": {
+          "$ref": "ForeignTypeInfo"
+        },
         "fields": {
           "items": {
             "$ref": "TableFieldSchema"
           }
-        },
-        "foreignTypeInfo": {
-          "$ref": "ForeignTypeInfo"
         }
       }
     },
     "TrainingOptions": {
       "properties": {
-        "holidayRegion": {
+        "feedbackType": {
           "enum": [
-            "HOLIDAY_REGION_UNSPECIFIED",
-            "GLOBAL",
-            "NA",
-            "JAPAC",
-            "EMEA",
-            "LAC",
-            "AE",
-            "AR",
-            "AT",
-            "AU",
-            "BE",
-            "BR",
-            "CA",
-            "CH",
-            "CL",
-            "CN",
-            "CO",
-            "CS",
-            "CZ",
-            "DE",
-            "DK",
-            "DZ",
-            "EC",
-            "EE",
-            "EG",
-            "ES",
-            "FI",
-            "FR",
-            "GB",
-            "GR",
-            "HK",
-            "HU",
-            "ID",
-            "IE",
-            "IL",
-            "IN",
-            "IR",
-            "IT",
-            "JP",
-            "KR",
-            "LV",
-            "MA",
-            "MX",
-            "MY",
-            "NG",
-            "NL",
-            "NO",
-            "NZ",
-            "PE",
-            "PH",
-            "PK",
-            "PL",
-            "PT",
-            "RO",
-            "RS",
-            "RU",
-            "SA",
-            "SE",
-            "SG",
-            "SI",
-            "SK",
-            "TH",
-            "TR",
-            "TW",
-            "UA",
-            "US",
-            "VE",
-            "VN",
-            "ZA"
+            "FEEDBACK_TYPE_UNSPECIFIED",
+            "IMPLICIT",
+            "EXPLICIT"
+          ]
+        },
+        "kmeansInitializationMethod": {
+          "enum": [
+            "KMEANS_INITIALIZATION_METHOD_UNSPECIFIED",
+            "RANDOM",
+            "CUSTOM",
+            "KMEANS_PLUS_PLUS"
           ]
         },
         "distanceType": {
@@ -1083,6 +1059,20 @@
             "COSINE"
           ]
         },
+        "learnRateStrategy": {
+          "enum": [
+            "LEARN_RATE_STRATEGY_UNSPECIFIED",
+            "LINE_SEARCH",
+            "CONSTANT"
+          ]
+        },
+        "boosterType": {
+          "enum": [
+            "BOOSTER_TYPE_UNSPECIFIED",
+            "GBTREE",
+            "DART"
+          ]
+        },
         "dartNormalizeType": {
           "enum": [
             "DART_NORMALIZE_TYPE_UNSPECIFIED",
@@ -1090,11 +1080,83 @@
             "FOREST"
           ]
         },
-        "feedbackType": {
+        "reservationAffinityType": {
           "enum": [
-            "FEEDBACK_TYPE_UNSPECIFIED",
-            "IMPLICIT",
-            "EXPLICIT"
+            "RESERVATION_AFFINITY_TYPE_UNSPECIFIED",
+            "NO_RESERVATION",
+            "ANY_RESERVATION",
+            "SPECIFIC_RESERVATION"
+          ]
+        },
+        "modelRegistry": {
+          "enum": [
+            "MODEL_REGISTRY_UNSPECIFIED",
+            "VERTEX_AI"
+          ]
+        },
+        "hparamTuningObjectives": {
+          "items": {
+            "enum": [
+              "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED",
+              "MEAN_ABSOLUTE_ERROR",
+              "MEAN_SQUARED_ERROR",
+              "MEAN_SQUARED_LOG_ERROR",
+              "MEDIAN_ABSOLUTE_ERROR",
+              "R_SQUARED",
+              "EXPLAINED_VARIANCE",
+              "PRECISION",
+              "RECALL",
+              "ACCURACY",
+              "F1_SCORE",
+              "LOG_LOSS",
+              "ROC_AUC",
+              "DAVIES_BOULDIN_INDEX",
+              "MEAN_AVERAGE_PRECISION",
+              "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN",
+              "AVERAGE_RANK"
+            ]
+          }
+        },
+        "treeMethod": {
+          "enum": [
+            "TREE_METHOD_UNSPECIFIED",
+            "AUTO",
+            "EXACT",
+            "APPROX",
+            "HIST"
+          ]
+        },
+        "categoryEncodingMethod": {
+          "enum": [
+            "ENCODING_METHOD_UNSPECIFIED",
+            "ONE_HOT_ENCODING",
+            "LABEL_ENCODING",
+            "DUMMY_ENCODING"
+          ]
+        },
+        "pcaSolver": {
+          "enum": [
+            "UNSPECIFIED",
+            "FULL",
+            "RANDOMIZED",
+            "AUTO"
+          ]
+        },
+        "optimizationStrategy": {
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "BATCH_GRADIENT_DESCENT",
+            "NORMAL_EQUATION"
+          ]
+        },
+        "colorSpace": {
+          "enum": [
+            "COLOR_SPACE_UNSPECIFIED",
+            "RGB",
+            "HSV",
+            "YIQ",
+            "YUV",
+            "GRAYSCALE"
           ]
         },
         "lossType": {
@@ -1104,19 +1166,14 @@
             "MEAN_LOG_LOSS"
           ]
         },
-        "learnRateStrategy": {
+        "dataSplitMethod": {
           "enum": [
-            "LEARN_RATE_STRATEGY_UNSPECIFIED",
-            "LINE_SEARCH",
-            "CONSTANT"
-          ]
-        },
-        "reservationAffinityType": {
-          "enum": [
-            "RESERVATION_AFFINITY_TYPE_UNSPECIFIED",
-            "NO_RESERVATION",
-            "ANY_RESERVATION",
-            "SPECIFIC_RESERVATION"
+            "DATA_SPLIT_METHOD_UNSPECIFIED",
+            "RANDOM",
+            "CUSTOM",
+            "SEQUENTIAL",
+            "NO_SPLIT",
+            "AUTO_SPLIT"
           ]
         },
         "holidayRegions": {
@@ -1194,102 +1251,6 @@
             ]
           }
         },
-        "dataSplitMethod": {
-          "enum": [
-            "DATA_SPLIT_METHOD_UNSPECIFIED",
-            "RANDOM",
-            "CUSTOM",
-            "SEQUENTIAL",
-            "NO_SPLIT",
-            "AUTO_SPLIT"
-          ]
-        },
-        "pcaSolver": {
-          "enum": [
-            "UNSPECIFIED",
-            "FULL",
-            "RANDOMIZED",
-            "AUTO"
-          ]
-        },
-        "hparamTuningObjectives": {
-          "items": {
-            "enum": [
-              "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED",
-              "MEAN_ABSOLUTE_ERROR",
-              "MEAN_SQUARED_ERROR",
-              "MEAN_SQUARED_LOG_ERROR",
-              "MEDIAN_ABSOLUTE_ERROR",
-              "R_SQUARED",
-              "EXPLAINED_VARIANCE",
-              "PRECISION",
-              "RECALL",
-              "ACCURACY",
-              "F1_SCORE",
-              "LOG_LOSS",
-              "ROC_AUC",
-              "DAVIES_BOULDIN_INDEX",
-              "MEAN_AVERAGE_PRECISION",
-              "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN",
-              "AVERAGE_RANK"
-            ]
-          }
-        },
-        "categoryEncodingMethod": {
-          "enum": [
-            "ENCODING_METHOD_UNSPECIFIED",
-            "ONE_HOT_ENCODING",
-            "LABEL_ENCODING",
-            "DUMMY_ENCODING"
-          ]
-        },
-        "kmeansInitializationMethod": {
-          "enum": [
-            "KMEANS_INITIALIZATION_METHOD_UNSPECIFIED",
-            "RANDOM",
-            "CUSTOM",
-            "KMEANS_PLUS_PLUS"
-          ]
-        },
-        "treeMethod": {
-          "enum": [
-            "TREE_METHOD_UNSPECIFIED",
-            "AUTO",
-            "EXACT",
-            "APPROX",
-            "HIST"
-          ]
-        },
-        "boosterType": {
-          "enum": [
-            "BOOSTER_TYPE_UNSPECIFIED",
-            "GBTREE",
-            "DART"
-          ]
-        },
-        "modelRegistry": {
-          "enum": [
-            "MODEL_REGISTRY_UNSPECIFIED",
-            "VERTEX_AI"
-          ]
-        },
-        "colorSpace": {
-          "enum": [
-            "COLOR_SPACE_UNSPECIFIED",
-            "RGB",
-            "HSV",
-            "YIQ",
-            "YUV",
-            "GRAYSCALE"
-          ]
-        },
-        "optimizationStrategy": {
-          "enum": [
-            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "BATCH_GRADIENT_DESCENT",
-            "NORMAL_EQUATION"
-          ]
-        },
         "dataFrequency": {
           "enum": [
             "DATA_FREQUENCY_UNSPECIFIED",
@@ -1301,6 +1262,79 @@
             "DAILY",
             "HOURLY",
             "PER_MINUTE"
+          ]
+        },
+        "holidayRegion": {
+          "enum": [
+            "HOLIDAY_REGION_UNSPECIFIED",
+            "GLOBAL",
+            "NA",
+            "JAPAC",
+            "EMEA",
+            "LAC",
+            "AE",
+            "AR",
+            "AT",
+            "AU",
+            "BE",
+            "BR",
+            "CA",
+            "CH",
+            "CL",
+            "CN",
+            "CO",
+            "CS",
+            "CZ",
+            "DE",
+            "DK",
+            "DZ",
+            "EC",
+            "EE",
+            "EG",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "GR",
+            "HK",
+            "HU",
+            "ID",
+            "IE",
+            "IL",
+            "IN",
+            "IR",
+            "IT",
+            "JP",
+            "KR",
+            "LV",
+            "MA",
+            "MX",
+            "MY",
+            "NG",
+            "NL",
+            "NO",
+            "NZ",
+            "PE",
+            "PH",
+            "PK",
+            "PL",
+            "PT",
+            "RO",
+            "RS",
+            "RU",
+            "SA",
+            "SE",
+            "SG",
+            "SI",
+            "SK",
+            "TH",
+            "TR",
+            "TW",
+            "UA",
+            "US",
+            "VE",
+            "VN",
+            "ZA"
           ]
         }
       }

@@ -9,8 +9,8 @@ Each provider package wraps its provider's catalog at the pinned release. Its pa
 
 | Provider | Package | Resources | Data sources | In an example |
 | --- | --- | ---: | ---: | ---: |
-| [Google Cloud](/docs/coverage/google/) | `terradart_google` | 1380 | 472 | 1284 |
-| [Google Cloud (beta-only)](/docs/coverage/google-beta/) | `terradart_google_beta` | 112 | 0 | 112 |
+| [Google Cloud](/docs/coverage/google/) | `terradart_google` | 1391 | 473 | 1285 |
+| [Google Cloud (beta-only)](/docs/coverage/google-beta/) | `terradart_google_beta` | 110 | 0 | 110 |
 | [Appwrite](/docs/coverage/appwrite/) | `terradart_appwrite` | 46 | 28 | 73 |
 | [Cloudflare](/docs/coverage/cloudflare/) | `terradart_cloudflare` | 272 | 468 | 739 |
 | [AWS](/docs/coverage/aws/) | `terradart_aws` | 1742 | 685 | 2427 |

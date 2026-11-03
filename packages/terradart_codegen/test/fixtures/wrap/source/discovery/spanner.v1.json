@@ -25,6 +25,13 @@
     },
     "Database": {
       "properties": {
+        "databaseDialect": {
+          "enum": [
+            "DATABASE_DIALECT_UNSPECIFIED",
+            "GOOGLE_STANDARD_SQL",
+            "POSTGRESQL"
+          ]
+        },
         "restoreInfo": {
           "$ref": "RestoreInfo"
         },
@@ -33,16 +40,6 @@
             "$ref": "EncryptionInfo"
           }
         },
-        "databaseDialect": {
-          "enum": [
-            "DATABASE_DIALECT_UNSPECIFIED",
-            "GOOGLE_STANDARD_SQL",
-            "POSTGRESQL"
-          ]
-        },
-        "quorumInfo": {
-          "$ref": "QuorumInfo"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -50,6 +47,9 @@
             "READY",
             "READY_OPTIMIZING"
           ]
+        },
+        "quorumInfo": {
+          "$ref": "QuorumInfo"
         }
       }
     },
@@ -77,6 +77,9 @@
     },
     "Instance": {
       "properties": {
+        "freeInstanceMetadata": {
+          "$ref": "FreeInstanceMetadata"
+        },
         "edition": {
           "enum": [
             "EDITION_UNSPECIFIED",
@@ -85,21 +88,18 @@
             "ENTERPRISE_PLUS"
           ]
         },
-        "freeInstanceMetadata": {
-          "$ref": "FreeInstanceMetadata"
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY"
+          ]
         },
         "instanceType": {
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "PROVISIONED",
             "FREE_INSTANCE"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY"
           ]
         },
         "defaultBackupScheduleType": {
@@ -113,29 +113,17 @@
     },
     "InstanceConfig": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY"
-          ]
-        },
-        "replicas": {
-          "items": {
-            "$ref": "ReplicaInfo"
-          }
-        },
-        "optionalReplicas": {
-          "items": {
-            "$ref": "ReplicaInfo"
-          }
-        },
         "configType": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "GOOGLE_MANAGED",
             "USER_MANAGED"
           ]
+        },
+        "optionalReplicas": {
+          "items": {
+            "$ref": "ReplicaInfo"
+          }
         },
         "freeInstanceAvailability": {
           "enum": [
@@ -146,12 +134,24 @@
             "QUOTA_EXCEEDED"
           ]
         },
+        "replicas": {
+          "items": {
+            "$ref": "ReplicaInfo"
+          }
+        },
         "quorumType": {
           "enum": [
             "QUORUM_TYPE_UNSPECIFIED",
             "REGION",
             "DUAL_REGION",
             "MULTI_REGION"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY"
           ]
         }
       }

@@ -234,9 +234,9 @@ final class AccessContextManagerServicePerimeterEgressPolicyMethodSelectors {
 /// stanzas must be matched. If an EgressPolicy matches a request, the request
 /// is allowed to span the ServicePerimeter boundary. For example, an
 /// EgressPolicy can be used to allow VMs on networks within the
-/// ServicePerimeter to access a defined set of projects outside the perimeter
-/// in certain contexts (e.g. to read data from a Cloud Storage bucket or query
-/// against a BigQuery dataset).
+/// ServicePerimeter to access a defined set of resources (projects, folders, or
+/// organizations) outside the perimeter in certain contexts (e.g. to read data
+/// from a Cloud Storage bucket or query against a BigQuery dataset).
 ///
 /// ~> **Note:** If this resource is used alongside a
 /// `google_access_context_manager_service_perimeter` resource, the service

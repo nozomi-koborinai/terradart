@@ -22,17 +22,17 @@
     },
     "Release": {
       "properties": {
-        "inputVariableDefaults": {
-          "items": {
-            "$ref": "UnitVariable"
-          }
-        },
         "outputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
         },
         "inputVariables": {
+          "items": {
+            "$ref": "UnitVariable"
+          }
+        },
+        "inputVariableDefaults": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -52,11 +52,6 @@
     },
     "Saas": {
       "properties": {
-        "conditions": {
-          "items": {
-            "$ref": "SaasCondition"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -65,24 +60,29 @@
             "STATE_RUNNING",
             "STATE_FAILED"
           ]
+        },
+        "conditions": {
+          "items": {
+            "$ref": "SaasCondition"
+          }
         }
       }
     },
     "SaasCondition": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "TYPE_READY",
-            "TYPE_SYNCHRONIZED"
-          ]
-        },
         "status": {
           "enum": [
             "STATUS_UNSPECIFIED",
             "STATUS_UNKNOWN",
             "STATUS_TRUE",
             "STATUS_FALSE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_READY",
+            "TYPE_SYNCHRONIZED"
           ]
         }
       }
@@ -103,11 +103,6 @@
     },
     "Unit": {
       "properties": {
-        "conditions": {
-          "items": {
-            "$ref": "UnitCondition"
-          }
-        },
         "state": {
           "enum": [
             "UNIT_STATE_UNSPECIFIED",
@@ -119,12 +114,25 @@
             "UNIT_STATE_ERROR"
           ]
         },
-        "inputVariables": {
+        "outputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
         },
-        "outputVariables": {
+        "conditions": {
+          "items": {
+            "$ref": "UnitCondition"
+          }
+        },
+        "systemManagedState": {
+          "enum": [
+            "SYSTEM_MANAGED_STATE_UNSPECIFIED",
+            "SYSTEM_MANAGED_STATE_ACTIVE",
+            "SYSTEM_MANAGED_STATE_INACTIVE",
+            "SYSTEM_MANAGED_STATE_DECOMMISSIONED"
+          ]
+        },
+        "inputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -134,14 +142,6 @@
             "MANAGEMENT_MODE_UNSPECIFIED",
             "MANAGEMENT_MODE_USER",
             "MANAGEMENT_MODE_SYSTEM"
-          ]
-        },
-        "systemManagedState": {
-          "enum": [
-            "SYSTEM_MANAGED_STATE_UNSPECIFIED",
-            "SYSTEM_MANAGED_STATE_ACTIVE",
-            "SYSTEM_MANAGED_STATE_INACTIVE",
-            "SYSTEM_MANAGED_STATE_DECOMMISSIONED"
           ]
         }
       }
@@ -186,6 +186,12 @@
     },
     "UnitOperation": {
       "properties": {
+        "provision": {
+          "$ref": "Provision"
+        },
+        "upgrade": {
+          "$ref": "Upgrade"
+        },
         "state": {
           "enum": [
             "UNIT_OPERATION_STATE_UNKNOWN",
@@ -211,12 +217,6 @@
           "items": {
             "$ref": "UnitOperationCondition"
           }
-        },
-        "provision": {
-          "$ref": "Provision"
-        },
-        "upgrade": {
-          "$ref": "Upgrade"
         }
       }
     },

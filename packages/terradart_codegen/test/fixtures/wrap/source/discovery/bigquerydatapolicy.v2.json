@@ -26,19 +26,19 @@
         "dataMaskingPolicy": {
           "$ref": "DataMaskingPolicy"
         },
+        "version": {
+          "enum": [
+            "VERSION_UNSPECIFIED",
+            "V1",
+            "V2"
+          ]
+        },
         "dataPolicyType": {
           "enum": [
             "DATA_POLICY_TYPE_UNSPECIFIED",
             "DATA_MASKING_POLICY",
             "RAW_DATA_ACCESS_POLICY",
             "COLUMN_LEVEL_SECURITY_POLICY"
-          ]
-        },
-        "version": {
-          "enum": [
-            "VERSION_UNSPECIFIED",
-            "V1",
-            "V2"
           ]
         }
       }

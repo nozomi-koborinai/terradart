@@ -6,6 +6,24 @@
   "schemas": {
     "Aggregation": {
       "properties": {
+        "crossSeriesReducer": {
+          "enum": [
+            "REDUCE_NONE",
+            "REDUCE_MEAN",
+            "REDUCE_MIN",
+            "REDUCE_MAX",
+            "REDUCE_SUM",
+            "REDUCE_STDDEV",
+            "REDUCE_COUNT",
+            "REDUCE_COUNT_TRUE",
+            "REDUCE_COUNT_FALSE",
+            "REDUCE_FRACTION_TRUE",
+            "REDUCE_PERCENTILE_99",
+            "REDUCE_PERCENTILE_95",
+            "REDUCE_PERCENTILE_50",
+            "REDUCE_PERCENTILE_05"
+          ]
+        },
         "perSeriesAligner": {
           "enum": [
             "ALIGN_NONE",
@@ -28,24 +46,6 @@
             "ALIGN_PERCENTILE_05",
             "ALIGN_PERCENT_CHANGE"
           ]
-        },
-        "crossSeriesReducer": {
-          "enum": [
-            "REDUCE_NONE",
-            "REDUCE_MEAN",
-            "REDUCE_MIN",
-            "REDUCE_MAX",
-            "REDUCE_SUM",
-            "REDUCE_STDDEV",
-            "REDUCE_COUNT",
-            "REDUCE_COUNT_TRUE",
-            "REDUCE_COUNT_FALSE",
-            "REDUCE_FRACTION_TRUE",
-            "REDUCE_PERCENTILE_99",
-            "REDUCE_PERCENTILE_95",
-            "REDUCE_PERCENTILE_50",
-            "REDUCE_PERCENTILE_05"
-          ]
         }
       }
     },
@@ -64,6 +64,9 @@
             "AND_WITH_MATCHING_RESOURCE"
           ]
         },
+        "alertStrategy": {
+          "$ref": "AlertStrategy"
+        },
         "severity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
@@ -71,9 +74,6 @@
             "ERROR",
             "WARNING"
           ]
-        },
-        "alertStrategy": {
-          "$ref": "AlertStrategy"
         }
       }
     },
@@ -92,6 +92,9 @@
     },
     "Condition": {
       "properties": {
+        "conditionAbsent": {
+          "$ref": "MetricAbsence"
+        },
         "conditionThreshold": {
           "$ref": "MetricThreshold"
         },
@@ -100,14 +103,14 @@
         },
         "conditionSql": {
           "$ref": "SqlCondition"
-        },
-        "conditionAbsent": {
-          "$ref": "MetricAbsence"
         }
       }
     },
     "ContentMatcher": {
       "properties": {
+        "jsonPathMatcher": {
+          "$ref": "JsonPathMatcher"
+        },
         "matcher": {
           "enum": [
             "CONTENT_MATCHER_OPTION_UNSPECIFIED",
@@ -118,9 +121,6 @@
             "MATCHES_JSON_PATH",
             "NOT_MATCHES_JSON_PATH"
           ]
-        },
-        "jsonPathMatcher": {
-          "$ref": "JsonPathMatcher"
         }
       }
     },
@@ -129,10 +129,8 @@
     },
     "HttpCheck": {
       "properties": {
-        "acceptedResponseStatusCodes": {
-          "items": {
-            "$ref": "ResponseStatusCode"
-          }
+        "serviceAgentAuthentication": {
+          "$ref": "ServiceAgentAuthentication"
         },
         "requestMethod": {
           "enum": [
@@ -141,15 +139,17 @@
             "POST"
           ]
         },
-        "serviceAgentAuthentication": {
-          "$ref": "ServiceAgentAuthentication"
-        },
         "contentType": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "URL_ENCODED",
             "USER_PROVIDED"
           ]
+        },
+        "acceptedResponseStatusCodes": {
+          "items": {
+            "$ref": "ResponseStatusCode"
+          }
         }
       }
     },
@@ -220,9 +220,6 @@
             "MONEY"
           ]
         },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
-        },
         "labels": {
           "items": {
             "$ref": "LabelDescriptor"
@@ -235,11 +232,24 @@
             "DELTA",
             "CUMULATIVE"
           ]
+        },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
         }
       }
     },
     "MetricDescriptorMetadata": {
       "properties": {
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
+        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -251,21 +261,16 @@
             "GA",
             "DEPRECATED"
           ]
-        },
-        "timeSeriesResourceHierarchyLevel": {
-          "items": {
-            "enum": [
-              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
-              "PROJECT",
-              "ORGANIZATION",
-              "FOLDER"
-            ]
-          }
         }
       }
     },
     "MetricThreshold": {
       "properties": {
+        "aggregations": {
+          "items": {
+            "$ref": "Aggregation"
+          }
+        },
         "comparison": {
           "enum": [
             "COMPARISON_UNSPECIFIED",
@@ -277,11 +282,6 @@
             "COMPARISON_NE"
           ]
         },
-        "denominatorAggregations": {
-          "items": {
-            "$ref": "Aggregation"
-          }
-        },
         "evaluationMissingData": {
           "enum": [
             "EVALUATION_MISSING_DATA_UNSPECIFIED",
@@ -290,7 +290,7 @@
             "EVALUATION_MISSING_DATA_NO_OP"
           ]
         },
-        "aggregations": {
+        "denominatorAggregations": {
           "items": {
             "$ref": "Aggregation"
           }
@@ -402,20 +402,21 @@
     },
     "UptimeCheckConfig": {
       "properties": {
-        "checkerType": {
-          "enum": [
-            "CHECKER_TYPE_UNSPECIFIED",
-            "STATIC_IP_CHECKERS",
-            "VPC_CHECKERS"
-          ]
+        "httpCheck": {
+          "$ref": "HttpCheck"
         },
         "contentMatchers": {
           "items": {
             "$ref": "ContentMatcher"
           }
         },
-        "httpCheck": {
-          "$ref": "HttpCheck"
+        "resourceGroup": {
+          "$ref": "ResourceGroup"
+        },
+        "internalCheckers": {
+          "items": {
+            "$ref": "InternalChecker"
+          }
         },
         "selectedRegions": {
           "items": {
@@ -431,13 +432,12 @@
             ]
           }
         },
-        "resourceGroup": {
-          "$ref": "ResourceGroup"
-        },
-        "internalCheckers": {
-          "items": {
-            "$ref": "InternalChecker"
-          }
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
         }
       }
     }

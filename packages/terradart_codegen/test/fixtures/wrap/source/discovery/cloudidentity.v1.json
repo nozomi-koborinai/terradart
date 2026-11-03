@@ -6,13 +6,13 @@
   "schemas": {
     "DynamicGroupMetadata": {
       "properties": {
+        "status": {
+          "$ref": "DynamicGroupStatus"
+        },
         "queries": {
           "items": {
             "$ref": "DynamicGroupQuery"
           }
-        },
-        "status": {
-          "$ref": "DynamicGroupStatus"
         }
       }
     },

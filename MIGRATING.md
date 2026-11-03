@@ -1,5 +1,45 @@
 # Migrating terradart
 
+## Unreleased
+
+### Google provider 8.9.0
+
+**Breaking (`terradart_google`).** Provider 8.9.0 adds `scheduling_policy`
+to `google_bigquery_reservation_assignment`, and an assignment sets exactly
+one of it and `job_type`. `GoogleBigqueryReservationAssignment.jobType` is
+replaced by the required `workload`, whose `.jobType(...)` variant takes the
+same enum and whose `.schedulingPolicy(...)` variant takes a
+`BigqueryReservationAssignmentSchedulingPolicy`.
+
+The same release adds `custom_container_image` to the `workbench_runtime`
+block of `google_colab_notebook_execution`, which sets exactly one of it and
+`vm_image`. `ColabNotebookExecutionWorkbenchRuntime` is sealed. Its
+`.vmImage(...)` variant takes the `ColabNotebookExecutionVmImage` the
+`vmImage` field took. The Terraform JSON for the same value is unchanged.
+
+| Before | After |
+|---|---|
+| `GoogleBigqueryReservationAssignment('a', jobType: .query, ...)` | `GoogleBigqueryReservationAssignment('a', workload: .jobType(.query), ...)` |
+| `ColabNotebookExecutionWorkbenchRuntime(vmImage: ...)` | `ColabNotebookExecutionWorkbenchRuntime.vmImage(...)` |
+
+#### Beta-only types now in `terradart_google`
+
+**Breaking (`terradart_google_beta`).** Provider 8.9.0 promoted
+`google_dataflow_flex_template_job` and
+`google_network_services_service_lb_policies` to GA, so
+`GoogleDataflowFlexTemplateJob` and `GoogleNetworkServicesServiceLbPolicies`
+move from `terradart_google_beta` to `terradart_google`
+(`package:terradart_google/dataflow.dart` and
+`package:terradart_google/network.dart`). `package:terradart_google_beta/dataflow.dart`
+is gone. Change the import; the compiler finds every use. The fields are the
+same, except that `isolationConfig` and its
+`NetworkServicesServiceLbPoliciesIsolationConfig` helper are removed. The
+provider keeps `isolation_config` in google-beta only. The factories no
+longer pin `provider = google-beta`, so the resources move to the `google`
+provider (`GoogleProvider` must be in the Stack). Confirm that
+`terraform plan` shows no replacement before you apply. Pass
+`provider: 'google-beta'` to keep a resource on the beta provider.
+
 ## 0.35.x → 0.36.0
 
 ### Google inputs the migrator could not build are typed

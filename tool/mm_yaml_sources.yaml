@@ -2888,7 +2888,7 @@ files:
   google_bigtable_memory_layer:
     upstream: mmv1/products/bigtable/MemoryLayer.yaml
   google_dataflow_flex_template_job:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+    upstream: null  # handwritten: mmv1/third_party/terraform/services/dataflow/resource_dataflow_flex_template_job.go; mmv1/products/dataflow has product.yaml only
   google_network_services_service_lb_policies:
     upstream: mmv1/products/networkservices/ServiceLbPolicies.yaml
   google_resource_manager_boundary:

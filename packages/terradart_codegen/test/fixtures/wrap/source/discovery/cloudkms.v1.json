@@ -27,6 +27,15 @@
     },
     "CryptoKey": {
       "properties": {
+        "keyAccessJustificationsPolicy": {
+          "$ref": "KeyAccessJustificationsPolicy"
+        },
+        "primary": {
+          "$ref": "CryptoKeyVersion"
+        },
+        "versionTemplate": {
+          "$ref": "CryptoKeyVersionTemplate"
+        },
         "purpose": {
           "enum": [
             "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
@@ -38,22 +47,35 @@
             "KEY_ENCAPSULATION",
             "AES_WRAPPING"
           ]
-        },
-        "versionTemplate": {
-          "$ref": "CryptoKeyVersionTemplate"
-        },
-        "keyAccessJustificationsPolicy": {
-          "$ref": "KeyAccessJustificationsPolicy"
-        },
-        "primary": {
-          "$ref": "CryptoKeyVersion"
         }
       }
     },
     "CryptoKeyVersion": {
       "properties": {
-        "attestation": {
-          "$ref": "KeyOperationAttestation"
+        "state": {
+          "enum": [
+            "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
+            "PENDING_GENERATION",
+            "ENABLED",
+            "DISABLED",
+            "DESTROYED",
+            "DESTROY_SCHEDULED",
+            "PENDING_IMPORT",
+            "IMPORT_FAILED",
+            "GENERATION_FAILED",
+            "PENDING_EXTERNAL_DESTRUCTION",
+            "EXTERNAL_DESTRUCTION_FAILED"
+          ]
+        },
+        "protectionLevel": {
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
+          ]
         },
         "algorithm": {
           "enum": [
@@ -109,30 +131,8 @@
             "AES_256_KWP"
           ]
         },
-        "state": {
-          "enum": [
-            "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
-            "PENDING_GENERATION",
-            "ENABLED",
-            "DISABLED",
-            "DESTROYED",
-            "DESTROY_SCHEDULED",
-            "PENDING_IMPORT",
-            "IMPORT_FAILED",
-            "GENERATION_FAILED",
-            "PENDING_EXTERNAL_DESTRUCTION",
-            "EXTERNAL_DESTRUCTION_FAILED"
-          ]
-        },
-        "protectionLevel": {
-          "enum": [
-            "PROTECTION_LEVEL_UNSPECIFIED",
-            "SOFTWARE",
-            "HSM",
-            "EXTERNAL",
-            "EXTERNAL_VPC",
-            "HSM_SINGLE_TENANT"
-          ]
+        "attestation": {
+          "$ref": "KeyOperationAttestation"
         }
       }
     },
@@ -217,18 +217,6 @@
     },
     "ImportJob": {
       "properties": {
-        "publicKeyFormat": {
-          "enum": [
-            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
-            "PEM",
-            "DER",
-            "NIST_PQC",
-            "XWING_RAW_BYTES"
-          ]
-        },
-        "attestation": {
-          "$ref": "KeyOperationAttestation"
-        },
         "protectionLevel": {
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
@@ -237,6 +225,18 @@
             "EXTERNAL",
             "EXTERNAL_VPC",
             "HSM_SINGLE_TENANT"
+          ]
+        },
+        "attestation": {
+          "$ref": "KeyOperationAttestation"
+        },
+        "publicKeyFormat": {
+          "enum": [
+            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+            "PEM",
+            "DER",
+            "NIST_PQC",
+            "XWING_RAW_BYTES"
           ]
         },
         "importMethod": {

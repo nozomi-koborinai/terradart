@@ -52,13 +52,6 @@
     },
     "GoogleCloudDatapipelinesV1Pipeline": {
       "properties": {
-        "type": {
-          "enum": [
-            "PIPELINE_TYPE_UNSPECIFIED",
-            "PIPELINE_TYPE_BATCH",
-            "PIPELINE_TYPE_STREAMING"
-          ]
-        },
         "workload": {
           "$ref": "GoogleCloudDatapipelinesV1Workload"
         },
@@ -70,6 +63,13 @@
             "STATE_STOPPING",
             "STATE_ARCHIVED",
             "STATE_PAUSED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "PIPELINE_TYPE_BATCH",
+            "PIPELINE_TYPE_STREAMING"
           ]
         }
       }

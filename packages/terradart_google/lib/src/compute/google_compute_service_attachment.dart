@@ -143,6 +143,10 @@ final class GoogleComputeServiceAttachment extends Resource {
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
+  /// Reference to `service_attachment_id` attribute.
+  TfRef<num> get serviceAttachmentId =>
+      TfRef.attribute<num>(this, 'service_attachment_id');
+
   /// Reference to `connection_preference` attribute.
   TfRef<String> get connectionPreference =>
       TfRef.attribute<String>(this, 'connection_preference');

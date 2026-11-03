@@ -9,6 +9,9 @@
     },
     "BackupPlan": {
       "properties": {
+        "backupSchedule": {
+          "$ref": "Schedule"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -19,9 +22,6 @@
             "DEACTIVATED",
             "DELETING"
           ]
-        },
-        "backupSchedule": {
-          "$ref": "Schedule"
         }
       }
     },
@@ -55,12 +55,23 @@
     },
     "RestoreConfig": {
       "properties": {
-        "clusterResourceConflictPolicy": {
+        "volumeDataRestorePolicyBindings": {
+          "items": {
+            "$ref": "VolumeDataRestorePolicyBinding"
+          }
+        },
+        "volumeDataRestorePolicy": {
           "enum": [
-            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
-            "USE_EXISTING_VERSION",
-            "USE_BACKUP_VERSION"
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
           ]
+        },
+        "transformationRules": {
+          "items": {
+            "$ref": "TransformationRule"
+          }
         },
         "namespacedResourceRestoreMode": {
           "enum": [
@@ -72,23 +83,12 @@
             "MERGE_REPLACE_ON_CONFLICT"
           ]
         },
-        "volumeDataRestorePolicy": {
+        "clusterResourceConflictPolicy": {
           "enum": [
-            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
-            "RESTORE_VOLUME_DATA_FROM_BACKUP",
-            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
-            "NO_VOLUME_DATA_RESTORATION"
+            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
+            "USE_EXISTING_VERSION",
+            "USE_BACKUP_VERSION"
           ]
-        },
-        "volumeDataRestorePolicyBindings": {
-          "items": {
-            "$ref": "VolumeDataRestorePolicyBinding"
-          }
-        },
-        "transformationRules": {
-          "items": {
-            "$ref": "TransformationRule"
-          }
         }
       }
     },

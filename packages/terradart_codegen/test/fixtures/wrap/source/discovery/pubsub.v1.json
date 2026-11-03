@@ -147,23 +147,23 @@
     },
     "IngestionDataSourceSettings": {
       "properties": {
-        "cloudStorage": {
-          "$ref": "CloudStorage"
-        },
-        "awsKinesis": {
-          "$ref": "AwsKinesis"
-        },
-        "confluentCloud": {
-          "$ref": "ConfluentCloud"
+        "azureEventHubs": {
+          "$ref": "AzureEventHubs"
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings"
         },
-        "azureEventHubs": {
-          "$ref": "AzureEventHubs"
+        "awsKinesis": {
+          "$ref": "AwsKinesis"
+        },
+        "cloudStorage": {
+          "$ref": "CloudStorage"
         },
         "awsMsk": {
           "$ref": "AwsMsk"
+        },
+        "confluentCloud": {
+          "$ref": "ConfluentCloud"
         }
       }
     },
@@ -212,11 +212,14 @@
     },
     "Subscription": {
       "properties": {
+        "bigtableConfig": {
+          "$ref": "BigtableConfig"
+        },
         "cloudStorageConfig": {
           "$ref": "CloudStorageConfig"
         },
-        "bigtableConfig": {
-          "$ref": "BigtableConfig"
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig"
         },
         "state": {
           "enum": [
@@ -229,24 +232,13 @@
           "items": {
             "$ref": "MessageTransform"
           }
-        },
-        "bigqueryConfig": {
-          "$ref": "BigQueryConfig"
         }
       }
     },
     "Topic": {
       "properties": {
-        "ingestionDataSourceSettings": {
-          "$ref": "IngestionDataSourceSettings"
-        },
         "schemaSettings": {
           "$ref": "SchemaSettings"
-        },
-        "messageTransforms": {
-          "items": {
-            "$ref": "MessageTransform"
-          }
         },
         "state": {
           "enum": [
@@ -254,6 +246,14 @@
             "ACTIVE",
             "INGESTION_RESOURCE_ERROR"
           ]
+        },
+        "ingestionDataSourceSettings": {
+          "$ref": "IngestionDataSourceSettings"
+        },
+        "messageTransforms": {
+          "items": {
+            "$ref": "MessageTransform"
+          }
         }
       }
     }

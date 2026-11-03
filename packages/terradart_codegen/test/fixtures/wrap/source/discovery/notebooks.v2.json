@@ -65,13 +65,6 @@
     },
     "DataDisk": {
       "properties": {
-        "diskEncryption": {
-          "enum": [
-            "DISK_ENCRYPTION_UNSPECIFIED",
-            "GMEK",
-            "CMEK"
-          ]
-        },
         "diskType": {
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
@@ -85,34 +78,41 @@
             "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
             "HYPERDISK_ML"
           ]
+        },
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
         }
       }
     },
     "GceSetup": {
       "properties": {
-        "bootDisk": {
-          "$ref": "BootDisk"
-        },
-        "dataDisks": {
-          "items": {
-            "$ref": "DataDisk"
-          }
-        },
-        "networkInterfaces": {
-          "items": {
-            "$ref": "NetworkInterface"
-          }
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
         },
         "acceleratorConfigs": {
           "items": {
             "$ref": "AcceleratorConfig"
           }
         },
+        "dataDisks": {
+          "items": {
+            "$ref": "DataDisk"
+          }
+        },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig"
         },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
+        "bootDisk": {
+          "$ref": "BootDisk"
+        },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
         }
       }
     },
@@ -126,6 +126,14 @@
             "AGENT_NOT_INSTALLED",
             "AGENT_NOT_RUNNING"
           ]
+        },
+        "upgradeHistory": {
+          "items": {
+            "$ref": "UpgradeHistoryEntry"
+          }
+        },
+        "gceSetup": {
+          "$ref": "GceSetup"
         },
         "state": {
           "enum": [
@@ -142,14 +150,6 @@
             "SUSPENDED",
             "ORPHANED"
           ]
-        },
-        "upgradeHistory": {
-          "items": {
-            "$ref": "UpgradeHistoryEntry"
-          }
-        },
-        "gceSetup": {
-          "$ref": "GceSetup"
         }
       }
     },
@@ -178,19 +178,19 @@
     },
     "UpgradeHistoryEntry": {
       "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "UPGRADE",
+            "ROLLBACK"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "STARTED",
             "SUCCEEDED",
             "FAILED"
-          ]
-        },
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "UPGRADE",
-            "ROLLBACK"
           ]
         }
       }

@@ -6,9 +6,6 @@
   "schemas": {
     "AccessSettings": {
       "properties": {
-        "reauthSettings": {
-          "$ref": "ReauthSettings"
-        },
         "identitySources": {
           "items": {
             "enum": [
@@ -16,6 +13,9 @@
               "WORKFORCE_IDENTITY_FEDERATION"
             ]
           }
+        },
+        "reauthSettings": {
+          "$ref": "ReauthSettings"
         }
       }
     },
@@ -52,13 +52,6 @@
     },
     "ReauthSettings": {
       "properties": {
-        "policyType": {
-          "enum": [
-            "POLICY_TYPE_UNSPECIFIED",
-            "MINIMUM",
-            "DEFAULT"
-          ]
-        },
         "method": {
           "enum": [
             "METHOD_UNSPECIFIED",
@@ -66,6 +59,13 @@
             "PASSWORD",
             "SECURE_KEY",
             "ENROLLED_SECOND_FACTORS"
+          ]
+        },
+        "policyType": {
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "MINIMUM",
+            "DEFAULT"
           ]
         }
       }

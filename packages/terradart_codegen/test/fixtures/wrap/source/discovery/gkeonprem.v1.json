@@ -13,11 +13,14 @@
     },
     "BareMetalAdminCluster": {
       "properties": {
+        "controlPlane": {
+          "$ref": "BareMetalAdminControlPlaneConfig"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
         "loadBalancer": {
           "$ref": "BareMetalAdminLoadBalancerConfig"
-        },
-        "status": {
-          "$ref": "ResourceStatus"
         },
         "state": {
           "enum": [
@@ -30,14 +33,11 @@
             "DEGRADED"
           ]
         },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
+        "status": {
+          "$ref": "ResourceStatus"
         },
         "binaryAuthorization": {
           "$ref": "BinaryAuthorization"
-        },
-        "controlPlane": {
-          "$ref": "BareMetalAdminControlPlaneConfig"
         }
       }
     },
@@ -81,8 +81,20 @@
         "binaryAuthorization": {
           "$ref": "BinaryAuthorization"
         },
+        "nodeConfig": {
+          "$ref": "BareMetalWorkloadNodeConfig"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
         "controlPlane": {
           "$ref": "BareMetalControlPlaneConfig"
+        },
+        "loadBalancer": {
+          "$ref": "BareMetalLoadBalancerConfig"
         },
         "state": {
           "enum": [
@@ -97,18 +109,6 @@
         },
         "upgradePolicy": {
           "$ref": "BareMetalClusterUpgradePolicy"
-        },
-        "loadBalancer": {
-          "$ref": "BareMetalLoadBalancerConfig"
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
-        "status": {
-          "$ref": "ResourceStatus"
-        },
-        "nodeConfig": {
-          "$ref": "BareMetalWorkloadNodeConfig"
         }
       }
     },
@@ -163,9 +163,6 @@
     },
     "BareMetalNodePool": {
       "properties": {
-        "status": {
-          "$ref": "ResourceStatus"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -179,21 +176,24 @@
         },
         "nodePoolConfig": {
           "$ref": "BareMetalNodePoolConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
         }
       }
     },
     "BareMetalNodePoolConfig": {
       "properties": {
+        "taints": {
+          "items": {
+            "$ref": "NodeTaint"
+          }
+        },
         "operatingSystem": {
           "enum": [
             "OPERATING_SYSTEM_UNSPECIFIED",
             "LINUX"
           ]
-        },
-        "taints": {
-          "items": {
-            "$ref": "NodeTaint"
-          }
         }
       }
     },
@@ -260,15 +260,15 @@
             "SKIP_VALIDATION_ALL"
           ]
         },
-        "status": {
-          "$ref": "ValidationCheckStatus"
-        },
         "scenario": {
           "enum": [
             "SCENARIO_UNSPECIFIED",
             "CREATE",
             "UPDATE"
           ]
+        },
+        "status": {
+          "$ref": "ValidationCheckStatus"
         }
       }
     },
@@ -296,15 +296,6 @@
     },
     "VmwareAdminCluster": {
       "properties": {
-        "platformConfig": {
-          "$ref": "VmwarePlatformConfig"
-        },
-        "status": {
-          "$ref": "ResourceStatus"
-        },
-        "validationCheck": {
-          "$ref": "ValidationCheck"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -315,6 +306,15 @@
             "ERROR",
             "DEGRADED"
           ]
+        },
+        "platformConfig": {
+          "$ref": "VmwarePlatformConfig"
+        },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
+        "validationCheck": {
+          "$ref": "ValidationCheck"
         }
       }
     },
@@ -333,6 +333,9 @@
         "validationCheck": {
           "$ref": "ValidationCheck"
         },
+        "status": {
+          "$ref": "ResourceStatus"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -343,9 +346,6 @@
             "ERROR",
             "DEGRADED"
           ]
-        },
-        "status": {
-          "$ref": "ResourceStatus"
         }
       }
     },
@@ -360,6 +360,9 @@
     },
     "VmwareNodePool": {
       "properties": {
+        "config": {
+          "$ref": "VmwareNodeConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -370,9 +373,6 @@
             "ERROR",
             "DEGRADED"
           ]
-        },
-        "config": {
-          "$ref": "VmwareNodeConfig"
         },
         "status": {
           "$ref": "ResourceStatus"

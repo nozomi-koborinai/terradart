@@ -30,8 +30,8 @@
     },
     "CaPool": {
       "properties": {
-        "issuancePolicy": {
-          "$ref": "IssuancePolicy"
+        "publishingOptions": {
+          "$ref": "PublishingOptions"
         },
         "tier": {
           "enum": [
@@ -40,15 +40,15 @@
             "DEVOPS"
           ]
         },
-        "publishingOptions": {
-          "$ref": "PublishingOptions"
+        "issuancePolicy": {
+          "$ref": "IssuancePolicy"
         }
       }
     },
     "Certificate": {
       "properties": {
-        "certificateDescription": {
-          "$ref": "CertificateDescription"
+        "revocationDetails": {
+          "$ref": "RevocationDetails"
         },
         "config": {
           "$ref": "CertificateConfig"
@@ -61,17 +61,30 @@
             "REFLECTED_SPIFFE"
           ]
         },
-        "revocationDetails": {
-          "$ref": "RevocationDetails"
+        "certificateDescription": {
+          "$ref": "CertificateDescription"
         }
       }
     },
     "CertificateAuthority": {
       "properties": {
+        "keySpec": {
+          "$ref": "KeyVersionSpec"
+        },
         "caCertificateDescriptions": {
           "items": {
             "$ref": "CertificateDescription"
           }
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ENTERPRISE",
+            "DEVOPS"
+          ]
+        },
+        "config": {
+          "$ref": "CertificateConfig"
         },
         "state": {
           "enum": [
@@ -83,25 +96,12 @@
             "DELETED"
           ]
         },
-        "config": {
-          "$ref": "CertificateConfig"
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
             "SELF_SIGNED",
             "SUBORDINATE"
           ]
-        },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "ENTERPRISE",
-            "DEVOPS"
-          ]
-        },
-        "keySpec": {
-          "$ref": "KeyVersionSpec"
         }
       }
     },
@@ -117,11 +117,11 @@
     },
     "CertificateDescription": {
       "properties": {
-        "subjectDescription": {
-          "$ref": "SubjectDescription"
-        },
         "publicKey": {
           "$ref": "PublicKey"
+        },
+        "subjectDescription": {
+          "$ref": "SubjectDescription"
         }
       }
     },

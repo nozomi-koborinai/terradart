@@ -23,13 +23,6 @@
     },
     "Instance": {
       "properties": {
-        "stateNote": {
-          "enum": [
-            "STATE_NOTE_UNSPECIFIED",
-            "PAUSED_CMEK_UNAVAILABLE",
-            "INSTANCE_RESUMING"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -38,6 +31,13 @@
             "DELETING",
             "PAUSED",
             "UNKNOWN"
+          ]
+        },
+        "stateNote": {
+          "enum": [
+            "STATE_NOTE_UNSPECIFIED",
+            "PAUSED_CMEK_UNAVAILABLE",
+            "INSTANCE_RESUMING"
           ]
         }
       }

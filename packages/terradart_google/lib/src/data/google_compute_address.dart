@@ -43,6 +43,9 @@ final class DataGoogleComputeAddress extends Data {
   /// Reference to `address` attribute.
   TfRef<String> get address => TfRef.attribute<String>(this, 'address');
 
+  /// Reference to `address_id` attribute.
+  TfRef<String> get addressId => TfRef.attribute<String>(this, 'address_id');
+
   /// Reference to `address_type` attribute.
   TfRef<String> get addressType =>
       TfRef.attribute<String>(this, 'address_type');

@@ -61,13 +61,13 @@
     },
     "DomainMapping": {
       "properties": {
-        "sslSettings": {
-          "$ref": "SslSettings"
-        },
         "resourceRecords": {
           "items": {
             "$ref": "ResourceRecord"
           }
+        },
+        "sslSettings": {
+          "$ref": "SslSettings"
         }
       }
     },
@@ -143,11 +143,11 @@
     },
     "Service": {
       "properties": {
-        "split": {
-          "$ref": "TrafficSplit"
-        },
         "networkSettings": {
           "$ref": "NetworkSettings"
+        },
+        "split": {
+          "$ref": "TrafficSplit"
         }
       }
     },
@@ -176,12 +176,11 @@
     },
     "UrlMap": {
       "properties": {
-        "login": {
+        "authFailAction": {
           "enum": [
-            "LOGIN_UNSPECIFIED",
-            "LOGIN_OPTIONAL",
-            "LOGIN_ADMIN",
-            "LOGIN_REQUIRED"
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
           ]
         },
         "securityLevel": {
@@ -193,6 +192,14 @@
             "SECURE_ALWAYS"
           ]
         },
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        },
         "redirectHttpResponseCode": {
           "enum": [
             "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
@@ -201,64 +208,22 @@
             "REDIRECT_HTTP_RESPONSE_CODE_303",
             "REDIRECT_HTTP_RESPONSE_CODE_307"
           ]
-        },
-        "authFailAction": {
-          "enum": [
-            "AUTH_FAIL_ACTION_UNSPECIFIED",
-            "AUTH_FAIL_ACTION_REDIRECT",
-            "AUTH_FAIL_ACTION_UNAUTHORIZED"
-          ]
         }
       }
     },
     "Version": {
       "properties": {
-        "servingStatus": {
-          "enum": [
-            "SERVING_STATUS_UNSPECIFIED",
-            "SERVING",
-            "STOPPED"
-          ]
-        },
         "vpcAccessConnector": {
           "$ref": "VpcAccessConnector"
         },
-        "handlers": {
-          "items": {
-            "$ref": "UrlMap"
-          }
-        },
-        "inboundServices": {
-          "items": {
-            "enum": [
-              "INBOUND_SERVICE_UNSPECIFIED",
-              "INBOUND_SERVICE_MAIL",
-              "INBOUND_SERVICE_MAIL_BOUNCE",
-              "INBOUND_SERVICE_XMPP_ERROR",
-              "INBOUND_SERVICE_XMPP_MESSAGE",
-              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
-              "INBOUND_SERVICE_XMPP_PRESENCE",
-              "INBOUND_SERVICE_CHANNEL_PRESENCE",
-              "INBOUND_SERVICE_WARMUP"
-            ]
-          }
+        "apiConfig": {
+          "$ref": "ApiConfigHandler"
         },
         "vpcAccess": {
           "$ref": "VpcAccess"
         },
         "endpointsApiService": {
           "$ref": "EndpointsApiService"
-        },
-        "network": {
-          "$ref": "Network"
-        },
-        "apiConfig": {
-          "$ref": "ApiConfigHandler"
-        },
-        "errorHandlers": {
-          "items": {
-            "$ref": "ErrorHandler"
-          }
         },
         "appEngineBundledServices": {
           "items": {
@@ -279,6 +244,41 @@
               "BUNDLED_SERVICE_TYPE_TASKQUEUES",
               "BUNDLED_SERVICE_TYPE_URLFETCH",
               "BUNDLED_SERVICE_TYPE_USERS"
+            ]
+          }
+        },
+        "servingStatus": {
+          "enum": [
+            "SERVING_STATUS_UNSPECIFIED",
+            "SERVING",
+            "STOPPED"
+          ]
+        },
+        "errorHandlers": {
+          "items": {
+            "$ref": "ErrorHandler"
+          }
+        },
+        "handlers": {
+          "items": {
+            "$ref": "UrlMap"
+          }
+        },
+        "network": {
+          "$ref": "Network"
+        },
+        "inboundServices": {
+          "items": {
+            "enum": [
+              "INBOUND_SERVICE_UNSPECIFIED",
+              "INBOUND_SERVICE_MAIL",
+              "INBOUND_SERVICE_MAIL_BOUNCE",
+              "INBOUND_SERVICE_XMPP_ERROR",
+              "INBOUND_SERVICE_XMPP_MESSAGE",
+              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+              "INBOUND_SERVICE_XMPP_PRESENCE",
+              "INBOUND_SERVICE_CHANNEL_PRESENCE",
+              "INBOUND_SERVICE_WARMUP"
             ]
           }
         }

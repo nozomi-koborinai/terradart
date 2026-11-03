@@ -23,6 +23,16 @@ export 'src/agent/google_agent_identity_auth_provider.dart'
         AgentIdentityAuthProviderTypeParamsThreeLeggedOauth,
         AgentIdentityAuthProviderTypeParamsTwoLeggedOauth,
         GoogleAgentIdentityAuthProvider;
+export 'src/agent/google_agent_identity_auth_provider_iam_binding.dart'
+    show
+        AgentIdentityAuthProviderIamBindingCondition,
+        GoogleAgentIdentityAuthProviderIamBinding;
+export 'src/agent/google_agent_identity_auth_provider_iam_member.dart'
+    show
+        AgentIdentityAuthProviderIamMemberCondition,
+        GoogleAgentIdentityAuthProviderIamMember;
+export 'src/agent/google_agent_identity_auth_provider_iam_policy.dart'
+    show GoogleAgentIdentityAuthProviderIamPolicy;
 export 'src/agent/google_agent_registry_binding.dart'
     show
         AgentRegistryBindingAuthProviderBinding,
@@ -41,6 +51,8 @@ export 'src/agent/google_agent_registry_service.dart'
         AgentRegistryServiceMcpServerSpecType,
         AgentRegistryServiceSpec,
         GoogleAgentRegistryService;
+export 'src/data/google_agent_identity_auth_provider_iam_policy.dart'
+    show DataGoogleAgentIdentityAuthProviderIamPolicy;
 export 'src/data/google_agent_registry_agent.dart'
     show DataGoogleAgentRegistryAgent;
 export 'src/data/google_agent_registry_endpoint.dart'
