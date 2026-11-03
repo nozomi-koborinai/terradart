@@ -23,7 +23,7 @@ Each of these is one path you can paste, from installing the `terradart` command
 - Dart SDK ≥ 3.10
 - Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
 - Appwrite only: [Terraform](https://developer.hashicorp.com/terraform/install) on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, so OpenTofu cannot install it, and an Appwrite Stack runs on Terraform (`--engine terraform`, or `terraform` as the `engine` of the `terradart` section of `pubspec.yaml`).
-- Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, `APPWRITE_API_KEY`, or `ARM_CLIENT_ID` and the other `ARM_*` variables. Synth needs none, and none are written into the output.
+- Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `ARM_CLIENT_ID` and the other `ARM_*` variables, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Create a project
 
@@ -53,11 +53,11 @@ In a terminal, `terradart init` asks for what the flags leave out — the provid
 
 | Flag | Takes |
 |---|---|
-| `--provider` | `google`, `aws`, `cloudflare`, `appwrite`, `azure`, comma-separated |
+| `--provider` | `google`, `aws`, `azure`, `cloudflare`, `appwrite`, comma-separated |
 | `--env` | any lowerCamelCase names, comma-separated |
 | `--gcp-project`, `--aws-region`, `--aws-account`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment |
 | `--state-bucket` | a bucket that already exists, one name or `<env>=<name>` pairs: GCS for google, S3 for aws, R2 for cloudflare |
-| `--backend` | `local` (a file under `tf-out/`), `gcs`, `s3`, `r2` or `azurerm` |
+| `--backend` | `local` (a file under `tf-out/`), `gcs`, `s3`, `azurerm` or `r2` |
 | `--defaults` | `--env dev,prd --backend local` |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory |
 
@@ -109,6 +109,19 @@ dependencies:
 ```
 
 </TabItem>
+<TabItem label="Azure">
+
+```yaml
+# pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
+dependencies:
+  terradart_core: ^0.36.0
+  terradart_azure: ^0.36.0
+```
+
+</TabItem>
 <TabItem label="Cloudflare">
 
 ```yaml
@@ -134,19 +147,6 @@ dependencies:
   terradart_appwrite: ^0.36.0
 terradart:
   engine: terraform # Appwrite currently needs Terraform on PATH
-```
-
-</TabItem>
-<TabItem label="Azure">
-
-```yaml
-# pubspec.yaml
-name: my_app
-environment:
-  sdk: ^3.10.0
-dependencies:
-  terradart_core: ^0.36.0
-  terradart_azure: ^0.36.0
 ```
 
 </TabItem>
@@ -216,6 +216,33 @@ final class QueueStack extends Stack {
 More on AWS — Lambda, ECS Express Mode, S3 + CloudFront: [AWS](/docs/providers/aws/).
 
 </TabItem>
+<TabItem label="Azure">
+
+```dart
+// lib/group_stack.dart
+import 'package:terradart_azure/provider.dart';
+import 'package:terradart_azure/resource.dart';
+
+final class GroupStack extends Stack {
+  GroupStack()
+    : super(
+        providers: [const AzureProvider()],
+        appExports: AppExports('lib/generated/group_stack.app.dart'),
+      ) {
+    final group = add(AzurermResourceGroup(
+      'app',
+      location: .literal('eastus'),
+      name: .literal('app'),
+    ));
+    addConstant('resourceGroupName', .ref(group.name));
+    addOutput('resource_group_id', group.id);
+  }
+}
+```
+
+More on Azure: [Azure](/docs/providers/azure/). [`examples/azure_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) covers every factory with placeholder values and is never applied.
+
+</TabItem>
 <TabItem label="Cloudflare">
 
 ```dart
@@ -282,33 +309,6 @@ final class UploadsStack extends Stack {
 ```
 
 Runnable: [`examples/appwrite_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/appwrite_quickstart), which covers every Appwrite factory.
-
-</TabItem>
-<TabItem label="Azure">
-
-```dart
-// lib/group_stack.dart
-import 'package:terradart_azure/provider.dart';
-import 'package:terradart_azure/resource.dart';
-
-final class GroupStack extends Stack {
-  GroupStack()
-    : super(
-        providers: [const AzureProvider()],
-        appExports: AppExports('lib/generated/group_stack.app.dart'),
-      ) {
-    final group = add(AzurermResourceGroup(
-      'app',
-      location: .literal('eastus'),
-      name: .literal('app'),
-    ));
-    addConstant('resourceGroupName', .ref(group.name));
-    addOutput('resource_group_id', group.id);
-  }
-}
-```
-
-More on Azure: [Azure](/docs/providers/azure/). [`examples/azure_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) covers every factory with placeholder values and is never applied.
 
 </TabItem>
 </Tabs>
@@ -465,7 +465,7 @@ Rename `orders-prod` in the Stack and the subscriber follows on the next synth �
 - [Environments](/docs/environments/) — dev, staging and prod as a Dart enum, one define file each
 - [How TerraDart works](/docs/how-it-works/) — synth, plan and apply, and the values your app reads back
 - [Coverage](/docs/coverage/) — every factory of every provider package, its barrel, and runnable examples
-- Providers: [Google Cloud](/docs/providers/google/) (with google-beta and Firebase), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/), [Azure](/docs/providers/azure/)
+- Providers: [Google Cloud](/docs/providers/google/) (with google-beta and Firebase), [AWS](/docs/providers/aws/), [Azure](/docs/providers/azure/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/)
 - [Migrating from HCL](/docs/migrate-from-hcl/) — bring an existing Terraform tree over
 - [Upgrading](/docs/upgrading/) — read before every minor bump
 - [Status & versioning](/docs/status/) — alpha vs beta vs 1.0

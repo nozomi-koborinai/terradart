@@ -175,52 +175,6 @@ providers:
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google_beta.g.dart
     references: typed
     referencesFrom: google
-  appwrite:
-    source: appwrite/appwrite
-    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_appwrite
-    schemaMode: filtered
-    mm: false
-    outputPackage: packages/terradart_appwrite
-    typePrefix: appwrite_
-    siteTitle: Appwrite
-    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
-    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
-    resourceProvider: null # appwrite_ prefix collides with nothing
-    migrateManifest: packages/terradart_migrate/lib/src/manifest/appwrite.g.dart
-    providerEnums: true
-    references: typed
-    bump:
-      mode: auto
-      repo: appwrite/terraform-provider-appwrite
-      major: 2
-      cron: '0 22 * * 3' # Wednesday 22:00 UTC
-      refresh: extract
-      dataSources: true
-      scaffold: lane
-      exampleGenerator: tool/generate_appwrite_leftover_example.dart
-  cloudflare:
-    source: cloudflare/cloudflare
-    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
-    schemaMode: filtered
-    mm: false
-    outputPackage: packages/terradart_cloudflare
-    typePrefix: cloudflare_
-    siteTitle: Cloudflare
-    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml
-    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
-    resourceProvider: null # cloudflare_ prefix collides with nothing
-    migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
-    providerEnums: true
-    references: typed
-    bump:
-      mode: pr-only # minor releases ship breaking changes
-      repo: cloudflare/terraform-provider-cloudflare
-      major: 5
-      cron: '0 22 * * 2' # Tuesday 22:00 UTC
-      refresh: extract
-      dataSources: true
-      scaffold: lane
-      exampleGenerator: tool/generate_cloudflare_leftover_example.dart
   aws:
     source: hashicorp/aws
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_aws
@@ -267,3 +221,49 @@ providers:
       dataSources: true
       scaffold: lane
       exampleGenerator: tool/generate_azure_leftover_example.dart
+  cloudflare:
+    source: cloudflare/cloudflare
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_cloudflare
+    typePrefix: cloudflare_
+    siteTitle: Cloudflare
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
+    resourceProvider: null # cloudflare_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
+    providerEnums: true
+    references: typed
+    bump:
+      mode: pr-only # minor releases ship breaking changes
+      repo: cloudflare/terraform-provider-cloudflare
+      major: 5
+      cron: '0 22 * * 2' # Tuesday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      scaffold: lane
+      exampleGenerator: tool/generate_cloudflare_leftover_example.dart
+  appwrite:
+    source: appwrite/appwrite
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_appwrite
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_appwrite
+    typePrefix: appwrite_
+    siteTitle: Appwrite
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
+    resourceProvider: null # appwrite_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/appwrite.g.dart
+    providerEnums: true
+    references: typed
+    bump:
+      mode: auto
+      repo: appwrite/terraform-provider-appwrite
+      major: 2
+      cron: '0 22 * * 3' # Wednesday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      scaffold: lane
+      exampleGenerator: tool/generate_appwrite_leftover_example.dart
