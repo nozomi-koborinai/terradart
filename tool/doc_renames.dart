@@ -11,6 +11,10 @@
 // the packages of the last release, plus the SDK's `dart:` libraries. A
 // declaration under `lib/src/` that no entrypoint exports is not API.
 //
+// The last release is the one the top section of MIGRATING.md upgrades from
+// (`0.35.x` under `## 0.35.x → 0.36.0`, the newest under `## Unreleased`),
+// read from pub.dev, so publishing the next one does not change the verdict.
+//
 // A doc may name only the public API. A type, `Type.member` or top-level
 // name a workspace package declares but no entrypoint exports is internal
 // (`AppExportsEmitter`), and naming it fails like naming a removed one.
@@ -21,7 +25,7 @@
 //   tables included): a type (`OldName`, `Foo<Bar>`, `OldName(...)`, outside
 //   string literals), a member through its type (`Type.member`), or a whole
 //   lowerCamel span (`addExport`), or
-// - the last release on pub.dev declared: a type, a member of a type
+// - the last release declared: a type, a member of a type
 //   (`Type.member`; constructors, fields, getters, methods, enum values),
 //   or a top-level name, which only a top-level declaration of the same
 //   name keeps (a parameter or member spelled the same does not). A
@@ -68,7 +72,7 @@ import 'package:yaml/yaml.dart';
 
 import 'code_spans.dart';
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
-import 'migrating_cells.dart' show beforeRelease, publishedVersions;
+import 'migrating_cells.dart' show previousRelease, publishedVersions;
 
 const migratingPath = 'MIGRATING.md';
 const allowPath = 'tool/doc_renames_allow.yaml';
@@ -299,24 +303,26 @@ final class PublicApi {
     };
   }
 
-  /// What the entrypoints of the last release's packages on pub.dev export,
-  /// fetched into a scratch package.
-  static Future<({String version, PublicApi api})> released() =>
-      _released ??= readReleased();
+  /// What the [docCommentPackages] exported at the release the top section
+  /// of [migrating] upgrades from ([previousRelease]).
+  static Future<({String version, PublicApi api})> released(
+    String migrating,
+  ) async => readReleased(
+    previousRelease(migrating, await publishedVersions(docCommentPackages)),
+  );
 
-  static Future<({String version, PublicApi api})>? _released;
+  /// What the entrypoints of [pins] (package → version) export, fetched
+  /// from pub.dev into a scratch package.
+  static Future<({String version, PublicApi api})> readReleased(
+    Map<String, String> pins,
+  ) => _releases[pins.entries.join(',')] ??= _readReleased(pins);
 
-  /// What the entrypoints of [docCommentPackages] export at each one's newest
-  /// stable release in [published] (package → its versions; pub.dev by
-  /// default). A release PR's CHANGELOGs already top the version it is about
-  /// to publish, so they cannot name the last release.
-  static Future<({String version, PublicApi api})> readReleased({
-    Map<String, List<String>>? published,
-  }) async {
-    final pins = beforeRelease(
-      'x',
-      published ?? await publishedVersions(docCommentPackages),
-    );
+  static final _releases =
+      <String, Future<({String version, PublicApi api})>>{};
+
+  static Future<({String version, PublicApi api})> _readReleased(
+    Map<String, String> pins,
+  ) async {
     final release = (
       version: (pins.values.toSet().toList()..sort()).join(' / '),
       packages: pins.keys.toSet(),
@@ -1039,7 +1045,7 @@ AllowList parseAllowList(String allowYaml) {
 /// One message per doc line that names a removed symbol, and per stale
 /// entry of [allow] (default: [allowPath]; a mention entry is stale only on
 /// the default [docs] and [libs]). [migrating] defaults to the
-/// repo's MIGRATING.md; [released] (default: the last release) adds the
+/// repo's MIGRATING.md; [released] (default: the release it upgrades from) adds the
 /// symbols that release declared.
 Future<List<String>> checkDocRenames(
   String root, {
@@ -1054,9 +1060,10 @@ Future<List<String>> checkDocRenames(
         ? File(p.join(root, allowPath)).readAsStringSync()
         : '',
   );
-  final symbols = migratingSymbols(
-    File(migrating ?? p.join(root, migratingPath)).readAsStringSync(),
-  );
+  final migratingText = File(
+    migrating ?? p.join(root, migratingPath),
+  ).readAsStringSync();
+  final symbols = migratingSymbols(migratingText);
   if (symbols.isEmpty) {
     throw StateError(
       'MIGRATING.md names no symbol; tool/doc_renames.dart cannot check the '
@@ -1067,7 +1074,7 @@ Future<List<String>> checkDocRenames(
   final removed = removedSymbols(
     migrating: symbols,
     current: current,
-    released: released ? await PublicApi.released() : null,
+    released: released ? await PublicApi.released(migratingText) : null,
   );
   final internal = current.internalSymbols;
   final out = <String>[];

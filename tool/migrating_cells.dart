@@ -176,6 +176,24 @@ Map<String, String> beforeRelease(
   };
 }
 
+/// The release the top section of [migrating] upgrades from: [beforeRelease]
+/// of the series its heading names. A publish never moves it, because the
+/// release PR renames the heading before it publishes.
+Map<String, String> previousRelease(
+  String migrating,
+  Map<String, List<String>> published,
+) {
+  final top = topMigratingHeading(migrating);
+  final series = top == null ? null : beforeSeries(top.heading);
+  if (series == null) {
+    throw StateError(
+      '$migratingPath: the top section is neither `## Unreleased` nor '
+      '`## <from> → <to>`',
+    );
+  }
+  return beforeRelease(series, published);
+}
+
 /// Every version pub.dev lists for each of [packages]; none for a package
 /// pub.dev does not have.
 Future<Map<String, List<String>>> publishedVersions(
@@ -327,7 +345,7 @@ Future<MigratingReport> checkMigratingCells(
   final packages = docSnippetPackages(
     File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
   );
-  final release = beforeRelease(series, await publishedVersions(packages));
+  final release = previousRelease(text, await publishedVersions(packages));
   if (release.isEmpty) return failed(['$at: pub.dev has no $series release']);
 
   final failures = <String>[];
