@@ -121,10 +121,20 @@ final class StackRejection extends Rejection {
   StackRejection(super.summary, super.detail);
 }
 
+final _workflowCommand = RegExp(
+  r'^::(?:debug|error|warning|notice)::.*$',
+  multiLine: true,
+);
+
+/// [stdout] without the `::error::...` lines `hashicorp/setup-terraform`'s
+/// wrapper appends after `terraform validate -json`.
+String stripWorkflowCommands(String stdout) =>
+    stdout.replaceAll(_workflowCommand, '');
+
 /// Parses `tofu validate -json` [stdout] against the [mainTfJson] it
 /// validated. Throws a [FormatException] when [stdout] is not that report.
 List<Rejection> parseValidateJson(String stdout, String mainTfJson) {
-  final report = jsonDecode(stdout);
+  final report = jsonDecode(stripWorkflowCommands(stdout));
   if (report is! Map<String, Object?> || report['diagnostics'] is! List) {
     throw const FormatException('not a `validate -json` report');
   }
@@ -286,7 +296,7 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   ),
   DiagnosticFamily(
     'ipv4',
-    RegExp(r'valid IPv4|valid IP(?!v)'),
+    RegExp(r'valid IPv4|IPv4 address|valid IP(?!v)'),
     (_) => [LiteralDummy('10.0.0.1')],
   ),
   DiagnosticFamily(

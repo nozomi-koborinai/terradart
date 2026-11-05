@@ -50,7 +50,11 @@ final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
     for (final factory in todo) {
       final args = <(_Param, _Written)>[];
       var blocked = false;
-      for (final param in factory.required) {
+      for (final param in factory.params) {
+        if (!param.required &&
+            !dummies.ownsValue(factory.className, param.name)) {
+          continue;
+        }
         switch (_argument(factory, param, dummies, enums, sealed)) {
           case final _Unplaceable arg:
             unplaceable[factory.className] = arg.reason;
@@ -86,22 +90,24 @@ final class _Factory {
     required this.className,
     required this.tfType,
     required this.kind,
-    required this.required,
+    required this.params,
   });
 
   final String className;
   final String tfType;
   final _Kind kind;
 
-  final List<_Param> required;
+  final List<_Param> params;
 }
 
 final class _Param {
-  const _Param(this.name, this.type);
+  const _Param(this.name, this.type, {required this.required});
 
   final String name;
 
   final String type;
+
+  final bool required;
 }
 
 sealed class _Arg {
@@ -175,11 +181,15 @@ List<_Factory> _parseFactories(String srcRoot) {
           className: className,
           tfType: tfType.group(1)!,
           kind: match.group(2) == 'Resource' ? _Kind.resource : _Kind.data,
-          required: [
+          params: [
             for (final param in RegExp(
-              r'required\s+(\S+)\s+(\w+)\s*,',
+              r'(required\s+)?(\S+?)\??\s+(\w+)\s*,',
             ).allMatches(params))
-              _Param(param.group(2)!, param.group(1)!),
+              _Param(
+                param.group(3)!,
+                param.group(2)!,
+                required: param.group(1) != null,
+              ),
           ],
         ),
       );
@@ -260,7 +270,7 @@ _Arg _argument(
   if (sealed[type] case final member?) {
     final inner = _argument(
       factory,
-      _Param(member.name, member.type),
+      _Param(member.name, member.type, required: true),
       dummies,
       enums,
       sealed,

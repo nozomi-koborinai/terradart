@@ -210,7 +210,7 @@ class ExactPinLane {
   List<RegExp> get stalePhrases {
     final (resources, dataSources) = counts;
     return [
-      RegExp('(?<![\\d.])${RegExp.escape(pin)}(?![\\d.])'),
+      RegExp('(?<![\\d.^])${RegExp.escape(pin)}(?![\\d.])'),
       RegExp('\\b$resources resource'),
       RegExp('\\b$dataSources data source'),
       RegExp('\\b${resources + dataSources} catalog'),
