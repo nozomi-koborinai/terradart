@@ -106,6 +106,9 @@ barrels:
   documentsdb:
     doc: |-
       /// `documentsdb` factories, added by the weekly schema bump.
+  domain:
+    doc: |-
+      /// `domain` factories, added by the weekly schema bump.
   project:
     doc: |-
       /// Appwrite projects and project API keys (organization-scoped).
@@ -146,6 +149,9 @@ barrels:
   vectorsdb:
     doc: |-
       /// `vectorsdb` factories, added by the weekly schema bump.
+  waf:
+    doc: |-
+      /// `waf` factories, added by the weekly schema bump.
   webhooks:
     doc: |-
       /// Appwrite webhooks.

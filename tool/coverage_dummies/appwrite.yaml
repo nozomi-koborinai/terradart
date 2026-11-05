@@ -28,3 +28,16 @@ framework: 'other'
 runtime: 'node-22'
 schedule: '0 3 * * *'
 services: ['databases']
+
+AppwriteDomainRecord.type:
+  value: 'A'
+  why: 'appwrite_domain_record.domain_record.type rejected leftover: Attribute type value must be one of: ["A" "AAAA" "ALIAS" "CAA" "CNAME" "HTTPS" "MX" "NS" "SRV" "TXT"], got: "leftover" (family one-of)'
+AppwriteDomainRecord.value:
+  value: '10.0.0.1'
+  why: 'appwrite_domain_record.domain_record.value rejected leftover: A records take an IPv4 address, got "leftover". (family ipv4)'
+AppwriteWafRule.type:
+  value: 'bypass'
+  why: 'appwrite_waf_rule.waf_rule.type rejected leftover: Attribute type value must be one of: ["bypass" "challenge" "deny" "rateLimit" "redirect"], got: "leftover" (family one-of)'
+DataAppwriteDomain.domain:
+  value: 'leftover.example.com'
+  why: 'data.appwrite_domain.domain: Exactly one of these attributes must be configured: [id,domain]'

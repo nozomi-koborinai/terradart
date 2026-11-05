@@ -19,8 +19,11 @@ void main() {
       );
       expect(rendered.unplaceable, isEmpty);
       expect(rendered.source, contains('AppwriteDocumentsdb('));
+      expect(rendered.source, contains('AppwriteDomainRecord('));
       expect(rendered.source, contains('AppwriteVectorsdb('));
+      expect(rendered.source, contains('AppwriteWafRule('));
       expect(rendered.source, contains('DataAppwriteDocumentsdb('));
+      expect(rendered.source, contains('DataAppwriteDomain('));
       expect(rendered.source, contains('DataAppwriteVectorsdb('));
     },
   );
@@ -81,8 +84,8 @@ void main() {
         ),
       );
       expect(rendered.source, isNot(contains('.valueWo(')));
-      expect(rendered.source, isNot(contains('value: .literal(')));
-      expect(rendered.source, isNot(contains('value: TfArg.literal(')));
+      expect(rendered.source, isNot(contains('.value(.literal(')));
+      expect(rendered.source, isNot(contains('accessKey: .literal(')));
     },
   );
 }

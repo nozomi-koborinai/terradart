@@ -36,6 +36,28 @@ final class AppwriteLeftoverStack extends Stack {
         type: .literal('leftover'),
       ),
     );
+    add(AppwriteDomain('domain', domain: .literal('leftover.example.com')));
+    add(
+      AppwriteDomainNameservers(
+        'domain_nameservers',
+        domainId: .literal('leftover'),
+      ),
+    );
+    add(
+      AppwriteDomainNameserversVerification(
+        'domain_nameservers_verification',
+        domainId: .literal('leftover'),
+      ),
+    );
+    add(
+      AppwriteDomainRecord(
+        'domain_record',
+        domainId: .literal('leftover'),
+        name: .literal('leftover'),
+        type: .literal('A'),
+        value: .literal('10.0.0.1'),
+      ),
+    );
     add(AppwriteVectorsdb('vectorsdb', name: .literal('leftover')));
     add(
       AppwriteVectorsdbCollection(
@@ -63,8 +85,16 @@ final class AppwriteLeftoverStack extends Stack {
         type: .literal('leftover'),
       ),
     );
+    add(
+      AppwriteWafRule(
+        'waf_rule',
+        name: .literal('leftover'),
+        type: .literal('bypass'),
+      ),
+    );
     add(DataAppwriteDocumentsdb('documentsdb', id: .literal('leftover')));
     add(DataAppwriteDocumentsdbSpecifications('documentsdb_specifications'));
+    add(DataAppwriteDomain('domain', domain: .literal('leftover.example.com')));
     add(DataAppwriteVectorsdb('vectorsdb', id: .literal('leftover')));
     add(DataAppwriteVectorsdbSpecifications('vectorsdb_specifications'));
   }

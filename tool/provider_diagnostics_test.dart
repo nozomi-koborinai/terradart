@@ -100,6 +100,15 @@ void main() {
       );
       expect(rejections, isEmpty);
     });
+
+    test('strips setup-terraform wrapper lines after the JSON report', () {
+      final rejections = parseValidateJson(
+        '${_fixture('aws_directory_validate.json')}\n'
+        '::error::Terraform exited with code 1.\n',
+        _fixture('aws_directory_main.tf.json'),
+      );
+      expect(rejections, hasLength(1));
+    });
   });
 
   test('jsonPathAt names a list element by its index', () {
@@ -244,6 +253,9 @@ void main() {
         shapes('expected end_ip_address to contain a valid IP, got: leftover'),
         [('10.0.0.1', 'family ipv4')],
       );
+      expect(shapes('A records take an IPv4 address, got "leftover".'), [
+        ('10.0.0.1', 'family ipv4'),
+      ]);
       expect(
         shapes(
           'expected peer_ip to contain a valid IPv6 address, got: leftover',

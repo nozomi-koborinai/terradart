@@ -12,6 +12,7 @@ export 'src/data/appwrite_auth_user.dart' show DataAppwriteAuthUser;
 export 'src/data/appwrite_documentsdb.dart' show DataAppwriteDocumentsdb;
 export 'src/data/appwrite_documentsdb_specifications.dart'
     show DataAppwriteDocumentsdbSpecifications;
+export 'src/data/appwrite_domain.dart' show DataAppwriteDomain;
 export 'src/data/appwrite_function.dart' show DataAppwriteFunction;
 export 'src/data/appwrite_messaging_topic.dart' show DataAppwriteMessagingTopic;
 export 'src/data/appwrite_mongo_backups.dart' show DataAppwriteMongoBackups;

@@ -1,5 +1,6 @@
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -13,6 +14,9 @@ String repinFixture(
   required String source,
   required String version,
 }) {
+  if (hcl.trimLeft().startsWith('{')) {
+    return _repinJsonFixture(hcl, source: source, version: version);
+  }
   final edits = <({int start, int end})>[];
   for (final expr in TfModule.fromHcl(hcl).requiredProviders.values) {
     if (expr is! ObjectExpr) continue;
@@ -34,27 +38,61 @@ String repinFixture(
   return out;
 }
 
+String _repinJsonFixture(
+  String json, {
+  required String source,
+  required String version,
+}) {
+  final root = jsonDecode(json);
+  if (root is! Map) return json;
+  final tf = root['terraform'];
+  final providers = tf is Map ? tf['required_providers'] : null;
+  if (providers is! Map) return json;
+  var changed = false;
+  for (final entry in providers.values) {
+    if (entry is! Map || entry['source'] != source) continue;
+    final current = entry['version'];
+    if (current is! String ||
+        current == version ||
+        !_isSingleVersion(current)) {
+      continue;
+    }
+    entry['version'] = version;
+    changed = true;
+  }
+  if (!changed) return json;
+  return '${const JsonEncoder.withIndent('  ').convert(root)}\n';
+}
+
 List<String> repinLaneFixtures(
   String repoRoot, {
   required String source,
   required String version,
 }) {
-  final lanes = Directory(p.join(repoRoot, migrateFixturesRoot, 'lanes'));
-  if (!lanes.existsSync()) return const [];
-  final files =
-      lanes
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where((file) => file.path.endsWith('.tf'))
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+  final fixtures = Directory(p.join(repoRoot, migrateFixturesRoot));
+  if (!fixtures.existsSync()) return const [];
   final moved = <String>[];
-  for (final file in files) {
-    final before = file.readAsStringSync();
-    final after = repinFixture(before, source: source, version: version);
-    if (after == before) continue;
-    file.writeAsStringSync(after);
-    moved.add(p.split(p.relative(file.path, from: lanes.path)).join('/'));
+  for (final sub in ['lanes', 'shapes']) {
+    final dir = Directory(p.join(fixtures.path, sub));
+    if (!dir.existsSync()) continue;
+    final files =
+        dir
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where(
+              (file) =>
+                  file.path.endsWith('.tf') || file.path.endsWith('.tf.json'),
+            )
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
+    for (final file in files) {
+      final before = file.readAsStringSync();
+      final after = repinFixture(before, source: source, version: version);
+      if (after == before) continue;
+      file.writeAsStringSync(after);
+      final rel = p.split(p.relative(file.path, from: dir.path)).join('/');
+      moved.add(sub == 'lanes' ? rel : '$sub/$rel');
+    }
   }
   moved.sort();
   return moved;

@@ -640,9 +640,10 @@ final class ProcessOracle implements Oracle {
   /// or reported invalid without an error.
   static List<Rejection>? _rejections(ProcessResult r, String mainTfJson) {
     try {
-      final report = jsonDecode(r.stdout as String);
+      final stdout = stripWorkflowCommands(r.stdout as String);
+      final report = jsonDecode(stdout);
       if (report is Map && report['valid'] == true) return const [];
-      final rejections = parseValidateJson(r.stdout as String, mainTfJson);
+      final rejections = parseValidateJson(stdout, mainTfJson);
       return rejections.isEmpty ? null : rejections;
     } on FormatException {
       return null;
