@@ -86,14 +86,22 @@ terraform {
     final file = File(
       p.join(root.path, migrateFixturesRoot, 'lanes', 'demo', 'main.tf'),
     );
+    final shape = File(
+      p.join(root.path, migrateFixturesRoot, 'shapes', 'demo', 'main.tf.json'),
+    );
     file.parent.createSync(recursive: true);
+    shape.parent.createSync(recursive: true);
     file.writeAsStringSync(_hcl);
+    shape.writeAsStringSync(
+      '{"terraform":{"required_providers":{"aws":{"source":"hashicorp/aws","version":"1.2.3"}}}}\n',
+    );
     expect(
       repinLaneFixtures(root.path, source: 'hashicorp/aws', version: '9.9.9'),
-      ['demo/main.tf'],
+      ['demo/main.tf', 'shapes/demo/main.tf.json'],
     );
     expect(file.readAsStringSync(), contains('version = "9.9.9"'));
     expect(file.readAsStringSync(), contains('version = "~> 8.0"'));
+    expect(shape.readAsStringSync(), contains('"version": "9.9.9"'));
     expect(
       repinLaneFixtures(root.path, source: 'hashicorp/aws', version: '9.9.9'),
       isEmpty,
