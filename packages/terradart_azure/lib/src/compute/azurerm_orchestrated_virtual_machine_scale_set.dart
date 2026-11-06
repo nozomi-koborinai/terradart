@@ -1752,6 +1752,7 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
 
   AzurermOrchestratedVirtualMachineScaleSet(
     super.localName, {
+    TfArg<bool>? automaticZoneRebalancingEnabled,
     OrchestratedVirtualMachineScaleSetGroupId? groupId,
     TfArg<bool>? encryptionAtHostEnabled,
     OrchestratedVirtualMachineScaleSetEvictionPolicy? evictionPolicy,
@@ -1765,6 +1766,8 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
     OrchestratedVirtualMachineScaleSetNetworkApiVersion? networkApiVersion,
     required TfArg<num> platformFaultDomainCount,
     OrchestratedVirtualMachineScaleSetPriority? priority,
+    TfArg<bool>? resilientVirtualMachineCreationEnabled,
+    TfArg<bool>? resilientVirtualMachineDeletionEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? singlePlacementGroup,
     TfArg<String>? skuName,
@@ -1799,6 +1802,8 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'automatic_zone_rebalancing_enabled':
+               ?automaticZoneRebalancingEnabled,
            ...?groupId?.argMap,
            'encryption_at_host_enabled': ?encryptionAtHostEnabled,
            'eviction_policy': ?evictionPolicy,
@@ -1812,6 +1817,10 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
            'network_api_version': ?networkApiVersion,
            'platform_fault_domain_count': platformFaultDomainCount,
            'priority': ?priority,
+           'resilient_virtual_machine_creation_enabled':
+               ?resilientVirtualMachineCreationEnabled,
+           'resilient_virtual_machine_deletion_enabled':
+               ?resilientVirtualMachineDeletionEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'single_placement_group': ?singlePlacementGroup,
            'sku_name': ?skuName,
@@ -1878,6 +1887,10 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
 
+  /// Reference to `automatic_zone_rebalancing_enabled` attribute.
+  TfRef<bool> get automaticZoneRebalancingEnabled =>
+      TfRef.attribute<bool>(this, 'automatic_zone_rebalancing_enabled');
+
   /// Reference to `capacity_reservation_group_id` attribute.
   TfRef<String> get capacityReservationGroupId =>
       TfRef.attribute<String>(this, 'capacity_reservation_group_id');
@@ -1925,6 +1938,14 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
   /// Reference to `proximity_placement_group_id` attribute.
   TfRef<String> get proximityPlacementGroupId =>
       TfRef.attribute<String>(this, 'proximity_placement_group_id');
+
+  /// Reference to `resilient_virtual_machine_creation_enabled` attribute.
+  TfRef<bool> get resilientVirtualMachineCreationEnabled =>
+      TfRef.attribute<bool>(this, 'resilient_virtual_machine_creation_enabled');
+
+  /// Reference to `resilient_virtual_machine_deletion_enabled` attribute.
+  TfRef<bool> get resilientVirtualMachineDeletionEnabled =>
+      TfRef.attribute<bool>(this, 'resilient_virtual_machine_deletion_enabled');
 
   /// Reference to `resource_group_name` attribute.
   TfRef<String> get resourceGroupName =>

@@ -86,6 +86,7 @@ final class ContainerAppIngress {
     this.clientCertificateMode,
     this.exposedPort,
     this.externalEnabled,
+    this.sessionAffinityEnabled,
     required this.targetPort,
     this.transport,
     this.cors,
@@ -100,6 +101,8 @@ final class ContainerAppIngress {
   final TfArg<num>? exposedPort;
 
   final TfArg<bool>? externalEnabled;
+
+  final TfArg<bool>? sessionAffinityEnabled;
 
   final TfArg<num> targetPort;
 
@@ -117,6 +120,7 @@ final class ContainerAppIngress {
     'client_certificate_mode': ?clientCertificateMode?.toTfJson(),
     'exposed_port': ?exposedPort?.toTfJson(),
     'external_enabled': ?externalEnabled?.toTfJson(),
+    'session_affinity_enabled': ?sessionAffinityEnabled?.toTfJson(),
     'target_port': targetPort.toTfJson(),
     'transport': ?transport?.toTfJson(),
     'cors': ?cors?.encode(),
@@ -941,6 +945,9 @@ extension type const ContainerAppCustomRuleType._(TfArg<String> _)
   static const githubRunner = ContainerAppCustomRuleType._(
     TfArgLiteral('github-runner'),
   );
+  static const temporal = ContainerAppCustomRuleType._(
+    TfArgLiteral('temporal'),
+  );
 
   static const List<ContainerAppCustomRuleType> values = [
     activemq,
@@ -1003,6 +1010,7 @@ extension type const ContainerAppCustomRuleType._(TfArg<String> _)
     seleniumGrid,
     solaceEventQueue,
     githubRunner,
+    temporal,
   ];
 }
 

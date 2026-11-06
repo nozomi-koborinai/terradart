@@ -1518,6 +1518,7 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
     required Sensitive<String> adminPassword,
     required TfArg<String> adminUsername,
     TfArg<bool>? automaticUpdatesEnabled,
+    TfArg<bool>? automaticZoneRebalancingEnabled,
     WindowsVirtualMachineScaleSetGroupId? groupId,
     TfArg<String>? computerNamePrefix,
     Sensitive<String>? customData,
@@ -1585,6 +1586,8 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
            'admin_password': adminPassword,
            'admin_username': adminUsername,
            'automatic_updates_enabled': ?automaticUpdatesEnabled,
+           'automatic_zone_rebalancing_enabled':
+               ?automaticZoneRebalancingEnabled,
            ...?groupId?.argMap,
            'computer_name_prefix': ?computerNamePrefix,
            'custom_data': ?customData,
@@ -1702,6 +1705,10 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
   /// Reference to `automatic_updates_enabled` attribute.
   TfRef<bool> get automaticUpdatesEnabled =>
       TfRef.attribute<bool>(this, 'automatic_updates_enabled');
+
+  /// Reference to `automatic_zone_rebalancing_enabled` attribute.
+  TfRef<bool> get automaticZoneRebalancingEnabled =>
+      TfRef.attribute<bool>(this, 'automatic_zone_rebalancing_enabled');
 
   /// Reference to `capacity_reservation_group_id` attribute.
   TfRef<String> get capacityReservationGroupId =>

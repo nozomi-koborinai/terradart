@@ -974,6 +974,7 @@ final class AzurermStorageAccount extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? sftpEnabled,
     TfArg<bool>? sharedAccessKeyEnabled,
+    TfArg<bool>? smbOauthEnabled,
     StorageAccountTableEncryptionKeyType? tableEncryptionKeyType,
     TfArg<Map<String, String>>? tags,
     StorageAccountAzureFilesAuthentication? azureFilesAuthentication,
@@ -1020,6 +1021,7 @@ final class AzurermStorageAccount extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'sftp_enabled': ?sftpEnabled,
            'shared_access_key_enabled': ?sharedAccessKeyEnabled,
+           'smb_oauth_enabled': ?smbOauthEnabled,
            'table_encryption_key_type': ?tableEncryptionKeyType,
            'tags': ?tags,
            if (azureFilesAuthentication != null)
@@ -1450,6 +1452,10 @@ final class AzurermStorageAccount extends Resource {
   /// Reference to `shared_access_key_enabled` attribute.
   TfRef<bool> get sharedAccessKeyEnabled =>
       TfRef.attribute<bool>(this, 'shared_access_key_enabled');
+
+  /// Reference to `smb_oauth_enabled` attribute.
+  TfRef<bool> get smbOauthEnabled =>
+      TfRef.attribute<bool>(this, 'smb_oauth_enabled');
 
   /// Reference to `table_encryption_key_type` attribute.
   TfRef<String> get tableEncryptionKeyType =>

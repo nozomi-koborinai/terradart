@@ -400,6 +400,10 @@ final class DataAzurermStorageAccount extends Data {
   TfRef<String> get secondaryWebMicrosoftHost =>
       TfRef.attribute<String>(this, 'secondary_web_microsoft_host');
 
+  /// Reference to `smb_oauth_enabled` attribute.
+  TfRef<bool> get smbOauthEnabled =>
+      TfRef.attribute<bool>(this, 'smb_oauth_enabled');
+
   /// Reference to `table_encryption_key_type` attribute.
   TfRef<String> get tableEncryptionKeyType =>
       TfRef.attribute<String>(this, 'table_encryption_key_type');

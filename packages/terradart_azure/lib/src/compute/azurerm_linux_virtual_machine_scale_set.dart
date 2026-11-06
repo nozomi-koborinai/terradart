@@ -1402,6 +1402,7 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
     super.localName, {
     Sensitive<String>? adminPassword,
     required TfArg<String> adminUsername,
+    TfArg<bool>? automaticZoneRebalancingEnabled,
     LinuxVirtualMachineScaleSetGroupId? groupId,
     TfArg<String>? computerNamePrefix,
     Sensitive<String>? customData,
@@ -1462,6 +1463,8 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
          argMap: {
            'admin_password': ?adminPassword,
            'admin_username': adminUsername,
+           'automatic_zone_rebalancing_enabled':
+               ?automaticZoneRebalancingEnabled,
            ...?groupId?.argMap,
            'computer_name_prefix': ?computerNamePrefix,
            'custom_data': ?customData,
@@ -1570,6 +1573,10 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
   /// Reference to `admin_username` attribute.
   TfRef<String> get adminUsername =>
       TfRef.attribute<String>(this, 'admin_username');
+
+  /// Reference to `automatic_zone_rebalancing_enabled` attribute.
+  TfRef<bool> get automaticZoneRebalancingEnabled =>
+      TfRef.attribute<bool>(this, 'automatic_zone_rebalancing_enabled');
 
   /// Reference to `capacity_reservation_group_id` attribute.
   TfRef<String> get capacityReservationGroupId =>

@@ -8,6 +8,8 @@ export 'src/data/azurerm_data_protection_backup_vault.dart'
     show DataAzurermDataProtectionBackupVault;
 export 'src/data_protection/azurerm_data_protection_backup_instance_blob_storage.dart'
     show AzurermDataProtectionBackupInstanceBlobStorage;
+export 'src/data_protection/azurerm_data_protection_backup_instance_cosmosdb_account.dart'
+    show AzurermDataProtectionBackupInstanceCosmosdbAccount;
 export 'src/data_protection/azurerm_data_protection_backup_instance_data_lake_storage.dart'
     show AzurermDataProtectionBackupInstanceDataLakeStorage;
 export 'src/data_protection/azurerm_data_protection_backup_instance_disk.dart'

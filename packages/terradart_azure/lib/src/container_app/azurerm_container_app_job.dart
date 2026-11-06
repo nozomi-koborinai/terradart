@@ -366,6 +366,9 @@ extension type const ContainerAppJobCustomRuleType._(TfArg<String> _)
   static const githubRunner = ContainerAppJobCustomRuleType._(
     TfArgLiteral('github-runner'),
   );
+  static const temporal = ContainerAppJobCustomRuleType._(
+    TfArgLiteral('temporal'),
+  );
 
   static const List<ContainerAppJobCustomRuleType> values = [
     activemq,
@@ -428,6 +431,7 @@ extension type const ContainerAppJobCustomRuleType._(TfArg<String> _)
     seleniumGrid,
     solaceEventQueue,
     githubRunner,
+    temporal,
   ];
 }
 
