@@ -2236,6 +2236,7 @@ extension type const LinuxWebAppNodeVersion._(TfArg<String> _)
   static const v20Lts = LinuxWebAppNodeVersion._(TfArgLiteral('20-lts'));
   static const v22Lts = LinuxWebAppNodeVersion._(TfArgLiteral('22-lts'));
   static const v24Lts = LinuxWebAppNodeVersion._(TfArgLiteral('24-lts'));
+  static const v26 = LinuxWebAppNodeVersion._(TfArgLiteral('26'));
 
   static const List<LinuxWebAppNodeVersion> values = [
     v12Lts,
@@ -2245,6 +2246,7 @@ extension type const LinuxWebAppNodeVersion._(TfArg<String> _)
     v20Lts,
     v22Lts,
     v24Lts,
+    v26,
   ];
 }
 

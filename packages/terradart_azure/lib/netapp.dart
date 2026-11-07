@@ -31,7 +31,8 @@ export 'src/netapp/azurerm_netapp_account.dart'
     show
         AzurermNetappAccount,
         NetappAccountActiveDirectory,
-        NetappAccountIdentity;
+        NetappAccountIdentity,
+        NetappAccountLdapSearchScope;
 export 'src/netapp/azurerm_netapp_account_encryption.dart'
     show
         AzurermNetappAccountEncryption,

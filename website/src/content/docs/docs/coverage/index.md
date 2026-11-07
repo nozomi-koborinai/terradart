@@ -12,7 +12,7 @@ Each provider package wraps its provider's catalog at the pinned release. Its pa
 | [Google Cloud](/docs/coverage/google/) | `terradart_google` | 1391 | 473 | 1285 |
 | [Google Cloud (beta-only)](/docs/coverage/google-beta/) | `terradart_google_beta` | 110 | 0 | 110 |
 | [AWS](/docs/coverage/aws/) | `terradart_aws` | 1746 | 687 | 2433 |
-| [Azure](/docs/coverage/azure/) | `terradart_azure` | 1107 | 398 | 1306 |
+| [Azure](/docs/coverage/azure/) | `terradart_azure` | 1108 | 398 | 1306 |
 | [Cloudflare](/docs/coverage/cloudflare/) | `terradart_cloudflare` | 272 | 468 | 739 |
 | [Appwrite](/docs/coverage/appwrite/) | `terradart_appwrite` | 51 | 29 | 79 |
 

@@ -1032,9 +1032,12 @@ final class KubernetesClusterIngressApplicationGateway {
 @immutable
 final class KubernetesClusterKeyManagementService {
   const KubernetesClusterKeyManagementService({
+    this.keyVaultId,
     required this.keyVaultKeyId,
     this.keyVaultNetworkAccess,
   });
+
+  final TfArg<String>? keyVaultId;
 
   final TfArg<String> keyVaultKeyId;
 
@@ -1042,6 +1045,7 @@ final class KubernetesClusterKeyManagementService {
 
   @internal
   Map<String, Object?> encode() => {
+    'key_vault_id': ?keyVaultId?.toTfJson(),
     'key_vault_key_id': keyVaultKeyId.toTfJson(),
     'key_vault_network_access': ?keyVaultNetworkAccess?.toTfJson(),
   };

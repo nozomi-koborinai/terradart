@@ -9055,6 +9055,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `azurerm_data_protection_backup_instance_blob_storage`.',
   ),
   CatalogEntry(
+    tfType: 'azurerm_data_protection_backup_instance_cosmosdb_account',
+    className: 'AzurermDataProtectionBackupInstanceCosmosdbAccount',
+    barrel: 'data_protection',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `azurerm_data_protection_backup_instance_cosmosdb_account`.',
+    constructorParams: <String>[
+      'localName',
+      'cosmosdbAccountId',
+      'dataProtectionBackupPolicyCosmosdbAccountId',
+      'dataProtectionBackupVaultId',
+      'location',
+      'name',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `azurerm_data_protection_backup_instance_cosmosdb_account`.',
+  ),
+  CatalogEntry(
     tfType: 'azurerm_data_protection_backup_instance_data_lake_storage',
     className: 'AzurermDataProtectionBackupInstanceDataLakeStorage',
     barrel: 'data_protection',
@@ -16669,6 +16689,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'localName',
       'adminPassword',
       'adminUsername',
+      'automaticZoneRebalancingEnabled',
       'groupId',
       'computerNamePrefix',
       'customData',
@@ -21068,6 +21089,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'NetappAccountActiveDirectory',
+      'NetappAccountLdapSearchScope',
       'NetappAccountIdentity',
     ],
     sensitiveFields: <String>[
@@ -23379,6 +23401,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `azurerm_orchestrated_virtual_machine_scale_set`.',
     constructorParams: <String>[
       'localName',
+      'automaticZoneRebalancingEnabled',
       'groupId',
       'encryptionAtHostEnabled',
       'evictionPolicy',
@@ -23392,6 +23415,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'networkApiVersion',
       'platformFaultDomainCount',
       'priority',
+      'resilientVirtualMachineCreationEnabled',
+      'resilientVirtualMachineDeletionEnabled',
       'resourceGroupName',
       'singlePlacementGroup',
       'skuName',
@@ -29844,6 +29869,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'resourceGroupName',
       'sftpEnabled',
       'sharedAccessKeyEnabled',
+      'smbOauthEnabled',
       'tableEncryptionKeyType',
       'tags',
       'azureFilesAuthentication',
@@ -34976,6 +35002,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'adminPassword',
       'adminUsername',
       'automaticUpdatesEnabled',
+      'automaticZoneRebalancingEnabled',
       'groupId',
       'computerNamePrefix',
       'customData',
