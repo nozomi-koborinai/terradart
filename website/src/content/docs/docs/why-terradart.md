@@ -34,7 +34,7 @@ What it does is take Terraform's authoring model — provider blocks, resource b
 The in-memory step that builds the JSON tree is called **`synth()`** in code (`stack.synth()` → `SynthResult`, then `writeTo(outDir)`). The landing page uses "generate" for readability. See [How TerraDart works — Synth](/docs/how-it-works/#synth).
 :::
 
-This is intentionally narrower than Pulumi, which has its own runtime, its own state model, and its own resource graph. With TerraDart the boundary is sharp: Dart is the **authoring** layer, Terraform is the **execution** layer. If you migrate off TerraDart tomorrow, your existing state and your existing modules are unchanged.
+This is intentionally narrower than Pulumi, which has its own runtime, its own state model, and its own resource graph. With TerraDart the boundary is sharp: Dart is the **authoring** layer, Terraform is the **execution** layer. TerraDart's output is standard Terraform JSON (`main.tf.json`). If you stop using TerraDart, plain Terraform or OpenTofu keeps running those files as-is alongside your existing state and modules, so there is [no lock-in](/docs/how-its-built/#sustainability).
 
 CDKTF used to occupy this same "code-first authoring of Terraform" niche, but only for TypeScript / Python / Java / Go — never Dart. CDKTF was [archived in December 2025](https://github.com/hashicorp/terraform-cdk), leaving a Dart-shaped hole that TerraDart now fills.
 
