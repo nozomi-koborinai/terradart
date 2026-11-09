@@ -12,11 +12,14 @@ const Set<String> _googleModelArmorTemplateSensitive = <String>{};
 @immutable
 final class ModelArmorTemplateFilterConfig {
   const ModelArmorTemplateFilterConfig({
+    this.filterRuleSettings,
     this.maliciousUriFilterSettings,
     this.piAndJailbreakFilterSettings,
     this.raiSettings,
     this.sdpSettings,
   });
+
+  final ModelArmorTemplateFilterRuleSettings? filterRuleSettings;
 
   final ModelArmorTemplateMaliciousUriFilterSettings?
   maliciousUriFilterSettings;
@@ -30,11 +33,162 @@ final class ModelArmorTemplateFilterConfig {
 
   @internal
   Map<String, Object?> encode() => {
+    'filter_rule_settings': ?filterRuleSettings?.encode(),
     'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
     'pi_and_jailbreak_filter_settings': ?piAndJailbreakFilterSettings?.encode(),
     'rai_settings': ?raiSettings?.encode(),
     'sdp_settings': ?sdpSettings?.encode(),
   };
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateFilterRuleSettings {
+  const ModelArmorTemplateFilterRuleSettings({this.ruleSets});
+
+  final List<ModelArmorTemplateRuleSets>? ruleSets;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (ruleSets != null) 'rule_sets': [for (final e in ruleSets!) e.encode()],
+  };
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateRuleSets {
+  const ModelArmorTemplateRuleSets({
+    required this.filterTypes,
+    required this.rules,
+  });
+
+  final EnumList<ModelArmorTemplateFilterTypes> filterTypes;
+
+  final List<ModelArmorTemplateRules> rules;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'filter_types': filterTypes.toTfJson(),
+    'rules': [for (final e in rules) e.encode()],
+  };
+}
+
+/// `filter_types` — derived from the provider schema description.
+extension type const ModelArmorTemplateFilterTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateFilterTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateFilterTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateFilterTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const promptInjectionAndJailbreak = ModelArmorTemplateFilterTypes._(
+    TfArgLiteral('PROMPT_INJECTION_AND_JAILBREAK'),
+  );
+  static const responsibleAi = ModelArmorTemplateFilterTypes._(
+    TfArgLiteral('RESPONSIBLE_AI'),
+  );
+
+  static const List<ModelArmorTemplateFilterTypes> values = [
+    promptInjectionAndJailbreak,
+    responsibleAi,
+  ];
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets.rules` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateRules {
+  const ModelArmorTemplateRules({this.exclusionRule});
+
+  final ModelArmorTemplateExclusionRule? exclusionRule;
+
+  @internal
+  Map<String, Object?> encode() => {'exclusion_rule': ?exclusionRule?.encode()};
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets.rules.exclusion_rule` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateExclusionRule {
+  const ModelArmorTemplateExclusionRule({
+    this.matchingScope,
+    this.dictionary,
+    this.regex,
+  });
+
+  final ModelArmorTemplateMatchingScope? matchingScope;
+
+  final ModelArmorTemplateDictionary? dictionary;
+
+  final ModelArmorTemplateRegex? regex;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'matching_scope': ?matchingScope?.toTfJson(),
+    'dictionary': ?dictionary?.encode(),
+    'regex': ?regex?.encode(),
+  };
+}
+
+/// `matching_scope` — derived from the provider schema description.
+extension type const ModelArmorTemplateMatchingScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateMatchingScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateMatchingScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateMatchingScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const matchingScopeFullMatch = ModelArmorTemplateMatchingScope._(
+    TfArgLiteral('MATCHING_SCOPE_FULL_MATCH'),
+  );
+  static const matchingScopePartialMatch = ModelArmorTemplateMatchingScope._(
+    TfArgLiteral('MATCHING_SCOPE_PARTIAL_MATCH'),
+  );
+
+  static const List<ModelArmorTemplateMatchingScope> values = [
+    matchingScopeFullMatch,
+    matchingScopePartialMatch,
+  ];
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets.rules.exclusion_rule.dictionary` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateDictionary {
+  const ModelArmorTemplateDictionary({this.wordList});
+
+  final ModelArmorTemplateWordList? wordList;
+
+  @internal
+  Map<String, Object?> encode() => {'word_list': ?wordList?.encode()};
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets.rules.exclusion_rule.dictionary.word_list` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateWordList {
+  const ModelArmorTemplateWordList({required this.words});
+
+  final TfArg<List<String>> words;
+
+  @internal
+  Map<String, Object?> encode() => {'words': words.toTfJson()};
+}
+
+/// Typed helper for the `filter_config.filter_rule_settings.rule_sets.rules.exclusion_rule.regex` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateRegex {
+  const ModelArmorTemplateRegex({required this.pattern});
+
+  final TfArg<String> pattern;
+
+  @internal
+  Map<String, Object?> encode() => {'pattern': pattern.toTfJson()};
 }
 
 /// Typed helper for the `filter_config.malicious_uri_filter_settings` block of
@@ -283,6 +437,7 @@ final class ModelArmorTemplateMetadata {
     this.customLlmResponseSafetyErrorMessage,
     this.customPromptSafetyErrorCode,
     this.customPromptSafetyErrorMessage,
+    this.dataResidencyCompliant,
     this.enforcementType,
     this.ignorePartialInvocationFailures,
     this.logSanitizeOperations,
@@ -299,6 +454,8 @@ final class ModelArmorTemplateMetadata {
   final TfArg<num>? customPromptSafetyErrorCode;
 
   final TfArg<String>? customPromptSafetyErrorMessage;
+
+  final TfArg<bool>? dataResidencyCompliant;
 
   final ModelArmorTemplateEnforcementType? enforcementType;
 
@@ -323,6 +480,7 @@ final class ModelArmorTemplateMetadata {
     'custom_prompt_safety_error_code': ?customPromptSafetyErrorCode?.toTfJson(),
     'custom_prompt_safety_error_message': ?customPromptSafetyErrorMessage
         ?.toTfJson(),
+    'data_residency_compliant': ?dataResidencyCompliant?.toTfJson(),
     'enforcement_type': ?enforcementType?.toTfJson(),
     'ignore_partial_invocation_failures': ?ignorePartialInvocationFailures
         ?.toTfJson(),

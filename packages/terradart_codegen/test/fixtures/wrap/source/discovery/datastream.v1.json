@@ -1,7 +1,7 @@
 {
   "name": "datastream",
   "version": "v1",
-  "revision": "20261014",
+  "revision": "20261028",
   "sourceUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BigQueryDestinationConfig": {
@@ -49,11 +49,11 @@
     },
     "DestinationConfig": {
       "properties": {
-        "gcsDestinationConfig": {
-          "$ref": "GcsDestinationConfig"
-        },
         "bigqueryDestinationConfig": {
           "$ref": "BigQueryDestinationConfig"
+        },
+        "gcsDestinationConfig": {
+          "$ref": "GcsDestinationConfig"
         }
       }
     },
@@ -79,18 +79,18 @@
     },
     "JsonFileFormat": {
       "properties": {
-        "schemaFileFormat": {
-          "enum": [
-            "SCHEMA_FILE_FORMAT_UNSPECIFIED",
-            "NO_SCHEMA_FILE",
-            "AVRO_SCHEMA_FILE"
-          ]
-        },
         "compression": {
           "enum": [
             "JSON_COMPRESSION_UNSPECIFIED",
             "NO_COMPRESSION",
             "GZIP"
+          ]
+        },
+        "schemaFileFormat": {
+          "enum": [
+            "SCHEMA_FILE_FORMAT_UNSPECIFIED",
+            "NO_SCHEMA_FILE",
+            "AVRO_SCHEMA_FILE"
           ]
         }
       }
@@ -156,13 +156,13 @@
         "sourceConfig": {
           "$ref": "SourceConfig"
         },
-        "destinationConfig": {
-          "$ref": "DestinationConfig"
-        },
         "ruleSets": {
           "items": {
             "$ref": "RuleSet"
           }
+        },
+        "destinationConfig": {
+          "$ref": "DestinationConfig"
         },
         "state": {
           "enum": [

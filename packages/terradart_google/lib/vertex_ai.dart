@@ -143,8 +143,6 @@ export 'src/vertex_ai/google_vertex_ai_index.dart'
     show
         GoogleVertexAiIndex,
         VertexAiIndexAlgorithmConfig,
-        VertexAiIndexAlgorithmConfigBruteForceConfig,
-        VertexAiIndexAlgorithmConfigTreeAhConfig,
         VertexAiIndexBruteForceConfig,
         VertexAiIndexConfig,
         VertexAiIndexDistanceMeasureType,
@@ -318,14 +316,9 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineManagedTopicEnum,
         VertexAiReasoningEngineMemoryBankConfig,
         VertexAiReasoningEngineMemoryTopics,
-        VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic,
-        VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic,
         VertexAiReasoningEngineOutcome,
         VertexAiReasoningEnginePackageSpec,
         VertexAiReasoningEngineParts,
-        VertexAiReasoningEnginePolicy,
-        VertexAiReasoningEnginePolicyDefaultTtl,
-        VertexAiReasoningEnginePolicyGranularTtlConfig,
         VertexAiReasoningEnginePscInterfaceConfig,
         VertexAiReasoningEnginePythonSpec,
         VertexAiReasoningEngineRole,
@@ -366,3 +359,24 @@ export 'src/vertex_ai/google_vertex_ai_tensorboard_experiment.dart'
     show GoogleVertexAiTensorboardExperiment;
 export 'src/vertex_ai/google_vertex_ai_tensorboard_run.dart'
     show GoogleVertexAiTensorboardRun;
+export 'src/vertex_ai/google_vertex_ai_training_pipeline.dart'
+    show
+        GoogleVertexAiTrainingPipeline,
+        VertexAiTrainingPipelineBigqueryDestination,
+        VertexAiTrainingPipelineContainerSpec,
+        VertexAiTrainingPipelineEncryptionSpec,
+        VertexAiTrainingPipelineEnv,
+        VertexAiTrainingPipelineExec,
+        VertexAiTrainingPipelineExplanationSpec,
+        VertexAiTrainingPipelineFilterSplit,
+        VertexAiTrainingPipelineFractionSplit,
+        VertexAiTrainingPipelineGcsDestination,
+        VertexAiTrainingPipelineGrpcPorts,
+        VertexAiTrainingPipelineHealthProbe,
+        VertexAiTrainingPipelineInputDataConfig,
+        VertexAiTrainingPipelineModelToUpload,
+        VertexAiTrainingPipelinePorts,
+        VertexAiTrainingPipelinePredefinedSplit,
+        VertexAiTrainingPipelineStartupProbe,
+        VertexAiTrainingPipelineStratifiedSplit,
+        VertexAiTrainingPipelineTimestampSplit;

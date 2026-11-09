@@ -68,6 +68,38 @@ final class BigqueryDataTransferConfigScheduleOptions {
   };
 }
 
+/// Typed helper for the `schedule_options_v2` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
+@immutable
+final class BigqueryDataTransferConfigScheduleOptionsV2 {
+  const BigqueryDataTransferConfigScheduleOptionsV2({
+    required this.eventDrivenSchedule,
+  });
+
+  final BigqueryDataTransferConfigEventDrivenSchedule eventDrivenSchedule;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'event_driven_schedule': eventDrivenSchedule.encode(),
+  };
+}
+
+/// Typed helper for the `schedule_options_v2.event_driven_schedule` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
+@immutable
+final class BigqueryDataTransferConfigEventDrivenSchedule {
+  const BigqueryDataTransferConfigEventDrivenSchedule({
+    required this.pubsubSubscription,
+  });
+
+  final TfArg<String> pubsubSubscription;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'pubsub_subscription': pubsubSubscription.toTfJson(),
+  };
+}
+
 /// Typed helper for the `sensitive_params` block of
 /// `google_bigquery_data_transfer_config` (derived from provider schema).
 @immutable

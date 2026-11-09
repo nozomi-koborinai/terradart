@@ -333,6 +333,27 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
   };
 }
 
+/// Typed helper for the `search_index_options` block of
+/// `google_firestore_index` (derived from provider schema).
+@immutable
+final class FirestoreIndexSearchIndexOptions {
+  const FirestoreIndexSearchIndexOptions({
+    this.textLanguage,
+    this.textLanguageOverrideFieldPath,
+  });
+
+  final TfArg<String>? textLanguage;
+
+  final TfArg<String>? textLanguageOverrideFieldPath;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'text_language': ?textLanguage?.toTfJson(),
+    'text_language_override_field_path': ?textLanguageOverrideFieldPath
+        ?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_firestore_index`.
 ///
 /// Cloud Firestore indexes enable simple and complex queries against documents

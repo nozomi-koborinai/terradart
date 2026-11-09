@@ -1,7 +1,7 @@
 {
   "name": "cloudscheduler",
   "version": "v1",
-  "revision": "20261020",
+  "revision": "20261106",
   "sourceUrl": "https://cloudscheduler.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -47,11 +47,11 @@
             "UPDATE_FAILED"
           ]
         },
-        "appEngineHttpTarget": {
-          "$ref": "AppEngineHttpTarget"
-        },
         "httpTarget": {
           "$ref": "HttpTarget"
+        },
+        "appEngineHttpTarget": {
+          "$ref": "AppEngineHttpTarget"
         }
       }
     }

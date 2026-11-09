@@ -1,7 +1,7 @@
 {
   "name": "osconfig",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AptSettings": {
@@ -46,17 +46,17 @@
     },
     "OSPolicy": {
       "properties": {
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
+        },
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
         }
       }
     },
@@ -80,11 +80,11 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
-        },
         "exec": {
           "$ref": "OSPolicyResourceExecResource"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
         },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
@@ -171,6 +171,12 @@
         "preStep": {
           "$ref": "ExecStep"
         },
+        "windowsUpdate": {
+          "$ref": "WindowsUpdateSettings"
+        },
+        "apt": {
+          "$ref": "AptSettings"
+        },
         "postStep": {
           "$ref": "ExecStep"
         },
@@ -181,17 +187,14 @@
             "ALWAYS",
             "NEVER"
           ]
-        },
-        "windowsUpdate": {
-          "$ref": "WindowsUpdateSettings"
-        },
-        "apt": {
-          "$ref": "AptSettings"
         }
       }
     },
     "PatchDeployment": {
       "properties": {
+        "rollout": {
+          "$ref": "PatchRollout"
+        },
         "recurringSchedule": {
           "$ref": "RecurringSchedule"
         },
@@ -204,9 +207,6 @@
             "ACTIVE",
             "PAUSED"
           ]
-        },
-        "rollout": {
-          "$ref": "PatchRollout"
         }
       }
     },

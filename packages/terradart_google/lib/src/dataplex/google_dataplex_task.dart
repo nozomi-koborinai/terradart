@@ -219,73 +219,24 @@ final class DataplexTaskContainerImage {
 /// Shared by every block of this shape in the resource.
 @immutable
 final class DataplexTaskVpcNetwork {
-  const DataplexTaskVpcNetwork({required this.target, this.networkTags});
+  const DataplexTaskVpcNetwork({
+    this.network,
+    this.networkTags,
+    this.subNetwork,
+  });
 
-  final DataplexTaskTarget target;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<List<String>>? networkTags;
 
+  final TfArg<String>? subNetwork;
+
   @internal
   Map<String, Object?> encode() => {
-    ...target.encode(),
+    'network': ?network?.encodeAs('id').toTfJson(),
     'network_tags': ?networkTags?.toTfJson(),
+    'sub_network': ?subNetwork?.toTfJson(),
   };
-}
-
-/// Exactly one of `network`, `sub_network` on the `notebook.infrastructure_spec.vpc_network` block of `google_dataplex_task`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.network(...)`.
-sealed class DataplexTaskTarget {
-  const DataplexTaskTarget();
-
-  /// Sets `network`.
-  const factory DataplexTaskTarget.network(
-    RefTo<GoogleComputeNetwork> network,
-  ) = DataplexTaskTargetNetwork;
-
-  /// Sets `sub_network`.
-  const factory DataplexTaskTarget.subNetwork(TfArg<String> subNetwork) =
-      DataplexTaskTargetSubNetwork;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DataplexTaskTarget.network] choice: sets `network`.
-final class DataplexTaskTargetNetwork extends DataplexTaskTarget {
-  const DataplexTaskTargetNetwork(this.network);
-
-  final RefTo<GoogleComputeNetwork> network;
-
-  @internal
-  @override
-  String get blockKey => 'network';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'network': network.encodeAs('id').toTfJson(),
-  };
-}
-
-/// The [DataplexTaskTarget.subNetwork] choice: sets `sub_network`.
-final class DataplexTaskTargetSubNetwork extends DataplexTaskTarget {
-  const DataplexTaskTargetSubNetwork(this.subNetwork);
-
-  final TfArg<String> subNetwork;
-
-  @internal
-  @override
-  String get blockKey => 'sub_network';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'sub_network': subNetwork.toTfJson()};
 }
 
 /// Typed helper for the `spark` block of
@@ -295,7 +246,11 @@ final class DataplexTaskSpark {
   const DataplexTaskSpark({
     this.archiveUris,
     this.fileUris,
-    required this.driver,
+    this.mainClass,
+    this.mainJarFileUri,
+    this.pythonScriptFile,
+    this.sqlScript,
+    this.sqlScriptFile,
     this.infrastructureSpec,
   });
 
@@ -303,7 +258,15 @@ final class DataplexTaskSpark {
 
   final TfArg<List<String>>? fileUris;
 
-  final DataplexTaskDriver driver;
+  final TfArg<String>? mainClass;
+
+  final TfArg<String>? mainJarFileUri;
+
+  final TfArg<String>? pythonScriptFile;
+
+  final TfArg<String>? sqlScript;
+
+  final TfArg<String>? sqlScriptFile;
 
   final DataplexTaskInfrastructureSpec? infrastructureSpec;
 
@@ -311,127 +274,13 @@ final class DataplexTaskSpark {
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'file_uris': ?fileUris?.toTfJson(),
-    ...driver.encode(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
+    'python_script_file': ?pythonScriptFile?.toTfJson(),
+    'sql_script': ?sqlScript?.toTfJson(),
+    'sql_script_file': ?sqlScriptFile?.toTfJson(),
     'infrastructure_spec': ?infrastructureSpec?.encode(),
   };
-}
-
-/// Exactly one of `main_jar_file_uri`, `main_class`, `python_script_file`, `sql_script_file`, `sql_script` on the `spark` block of `google_dataplex_task`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.mainJarFileUri(...)`.
-sealed class DataplexTaskDriver {
-  const DataplexTaskDriver();
-
-  /// Sets `main_jar_file_uri`.
-  const factory DataplexTaskDriver.mainJarFileUri(
-    TfArg<String> mainJarFileUri,
-  ) = DataplexTaskDriverMainJarFileUri;
-
-  /// Sets `main_class`.
-  const factory DataplexTaskDriver.mainClass(TfArg<String> mainClass) =
-      DataplexTaskDriverMainClass;
-
-  /// Sets `python_script_file`.
-  const factory DataplexTaskDriver.pythonScriptFile(
-    TfArg<String> pythonScriptFile,
-  ) = DataplexTaskDriverPythonScriptFile;
-
-  /// Sets `sql_script_file`.
-  const factory DataplexTaskDriver.sqlScriptFile(TfArg<String> sqlScriptFile) =
-      DataplexTaskDriverSqlScriptFile;
-
-  /// Sets `sql_script`.
-  const factory DataplexTaskDriver.sqlScript(TfArg<String> sqlScript) =
-      DataplexTaskDriverSqlScript;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DataplexTaskDriver.mainJarFileUri] choice: sets `main_jar_file_uri`.
-final class DataplexTaskDriverMainJarFileUri extends DataplexTaskDriver {
-  const DataplexTaskDriverMainJarFileUri(this.mainJarFileUri);
-
-  final TfArg<String> mainJarFileUri;
-
-  @internal
-  @override
-  String get blockKey => 'main_jar_file_uri';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'main_jar_file_uri': mainJarFileUri.toTfJson(),
-  };
-}
-
-/// The [DataplexTaskDriver.mainClass] choice: sets `main_class`.
-final class DataplexTaskDriverMainClass extends DataplexTaskDriver {
-  const DataplexTaskDriverMainClass(this.mainClass);
-
-  final TfArg<String> mainClass;
-
-  @internal
-  @override
-  String get blockKey => 'main_class';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'main_class': mainClass.toTfJson()};
-}
-
-/// The [DataplexTaskDriver.pythonScriptFile] choice: sets `python_script_file`.
-final class DataplexTaskDriverPythonScriptFile extends DataplexTaskDriver {
-  const DataplexTaskDriverPythonScriptFile(this.pythonScriptFile);
-
-  final TfArg<String> pythonScriptFile;
-
-  @internal
-  @override
-  String get blockKey => 'python_script_file';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'python_script_file': pythonScriptFile.toTfJson(),
-  };
-}
-
-/// The [DataplexTaskDriver.sqlScriptFile] choice: sets `sql_script_file`.
-final class DataplexTaskDriverSqlScriptFile extends DataplexTaskDriver {
-  const DataplexTaskDriverSqlScriptFile(this.sqlScriptFile);
-
-  final TfArg<String> sqlScriptFile;
-
-  @internal
-  @override
-  String get blockKey => 'sql_script_file';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'sql_script_file': sqlScriptFile.toTfJson(),
-  };
-}
-
-/// The [DataplexTaskDriver.sqlScript] choice: sets `sql_script`.
-final class DataplexTaskDriverSqlScript extends DataplexTaskDriver {
-  const DataplexTaskDriverSqlScript(this.sqlScript);
-
-  final TfArg<String> sqlScript;
-
-  @internal
-  @override
-  String get blockKey => 'sql_script';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'sql_script': sqlScript.toTfJson()};
 }
 
 /// Typed helper for the `trigger_spec` block of

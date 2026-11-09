@@ -42,9 +42,6 @@ export 'src/firestore/google_firestore_field.dart'
         FirestoreFieldArrayConfig,
         FirestoreFieldIndexConfig,
         FirestoreFieldIndexes,
-        FirestoreFieldMode,
-        FirestoreFieldModeArrayConfig,
-        FirestoreFieldModeOrder,
         FirestoreFieldOrder,
         FirestoreFieldQueryScope,
         FirestoreFieldTtlConfig,
@@ -64,6 +61,7 @@ export 'src/firestore/google_firestore_index.dart'
         FirestoreIndexFieldVectorConfig,
         FirestoreIndexOrder,
         FirestoreIndexQueryScope,
+        FirestoreIndexSearchIndexOptions,
         FirestoreIndexTextIndexType,
         FirestoreIndexTextMatchType,
         GoogleFirestoreIndex;

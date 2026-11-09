@@ -1,7 +1,7 @@
 {
   "name": "gkebackup",
   "version": "v1",
-  "revision": "20261014",
+  "revision": "20261026",
   "sourceUrl": "https://gkebackup.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackupChannel": {
@@ -55,10 +55,12 @@
     },
     "RestoreConfig": {
       "properties": {
-        "volumeDataRestorePolicyBindings": {
-          "items": {
-            "$ref": "VolumeDataRestorePolicyBinding"
-          }
+        "clusterResourceConflictPolicy": {
+          "enum": [
+            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
+            "USE_EXISTING_VERSION",
+            "USE_BACKUP_VERSION"
+          ]
         },
         "volumeDataRestorePolicy": {
           "enum": [
@@ -67,11 +69,6 @@
             "REUSE_VOLUME_HANDLE_FROM_BACKUP",
             "NO_VOLUME_DATA_RESTORATION"
           ]
-        },
-        "transformationRules": {
-          "items": {
-            "$ref": "TransformationRule"
-          }
         },
         "namespacedResourceRestoreMode": {
           "enum": [
@@ -83,20 +80,20 @@
             "MERGE_REPLACE_ON_CONFLICT"
           ]
         },
-        "clusterResourceConflictPolicy": {
-          "enum": [
-            "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
-            "USE_EXISTING_VERSION",
-            "USE_BACKUP_VERSION"
-          ]
+        "volumeDataRestorePolicyBindings": {
+          "items": {
+            "$ref": "VolumeDataRestorePolicyBinding"
+          }
+        },
+        "transformationRules": {
+          "items": {
+            "$ref": "TransformationRule"
+          }
         }
       }
     },
     "RestorePlan": {
       "properties": {
-        "restoreConfig": {
-          "$ref": "RestoreConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -105,6 +102,9 @@
             "FAILED",
             "DELETING"
           ]
+        },
+        "restoreConfig": {
+          "$ref": "RestoreConfig"
         }
       }
     },
@@ -150,18 +150,18 @@
     },
     "VolumeDataRestorePolicyBinding": {
       "properties": {
+        "volumeType": {
+          "enum": [
+            "VOLUME_TYPE_UNSPECIFIED",
+            "GCE_PERSISTENT_DISK"
+          ]
+        },
         "policy": {
           "enum": [
             "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
             "RESTORE_VOLUME_DATA_FROM_BACKUP",
             "REUSE_VOLUME_HANDLE_FROM_BACKUP",
             "NO_VOLUME_DATA_RESTORATION"
-          ]
-        },
-        "volumeType": {
-          "enum": [
-            "VOLUME_TYPE_UNSPECIFIED",
-            "GCE_PERSISTENT_DISK"
           ]
         }
       }

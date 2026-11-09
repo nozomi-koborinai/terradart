@@ -724,82 +724,27 @@ final class DatabaseMigrationServiceConnectionProfileIpConfig {
 @immutable
 final class DatabaseMigrationServiceConnectionProfileAuthorizedNetworks {
   const DatabaseMigrationServiceConnectionProfileAuthorizedNetworks({
-    required this.expiration,
+    this.expireTime,
     this.label,
+    this.ttl,
     required this.value,
   });
 
-  final DatabaseMigrationServiceConnectionProfileExpiration expiration;
+  final TfArg<String>? expireTime;
 
   final TfArg<String>? label;
+
+  final TfArg<String>? ttl;
 
   final TfArg<String> value;
 
   @internal
   Map<String, Object?> encode() => {
-    ...expiration.encode(),
+    'expire_time': ?expireTime?.toTfJson(),
     'label': ?label?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// Exactly one of `expire_time`, `ttl` on the `cloudsql.settings.ip_config.authorized_networks` block of `google_database_migration_service_connection_profile`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.expireTime(...)`.
-sealed class DatabaseMigrationServiceConnectionProfileExpiration {
-  const DatabaseMigrationServiceConnectionProfileExpiration();
-
-  /// Sets `expire_time`.
-  const factory DatabaseMigrationServiceConnectionProfileExpiration.expireTime(
-    TfArg<String> expireTime,
-  ) = DatabaseMigrationServiceConnectionProfileExpirationExpireTime;
-
-  /// Sets `ttl`.
-  const factory DatabaseMigrationServiceConnectionProfileExpiration.ttl(
-    TfArg<String> ttl,
-  ) = DatabaseMigrationServiceConnectionProfileExpirationTtl;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DatabaseMigrationServiceConnectionProfileExpiration.expireTime] choice: sets `expire_time`.
-final class DatabaseMigrationServiceConnectionProfileExpirationExpireTime
-    extends DatabaseMigrationServiceConnectionProfileExpiration {
-  const DatabaseMigrationServiceConnectionProfileExpirationExpireTime(
-    this.expireTime,
-  );
-
-  final TfArg<String> expireTime;
-
-  @internal
-  @override
-  String get blockKey => 'expire_time';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
-}
-
-/// The [DatabaseMigrationServiceConnectionProfileExpiration.ttl] choice: sets `ttl`.
-final class DatabaseMigrationServiceConnectionProfileExpirationTtl
-    extends DatabaseMigrationServiceConnectionProfileExpiration {
-  const DatabaseMigrationServiceConnectionProfileExpirationTtl(this.ttl);
-
-  final TfArg<String> ttl;
-
-  @internal
-  @override
-  String get blockKey => 'ttl';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 }
 
 /// Typed helper for the `mysql` block of

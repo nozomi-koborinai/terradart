@@ -1177,3 +1177,7 @@ GoogleVertexAiCustomJob: awaiting-example: google_vertex_ai_custom_job added in 
 GoogleVertexAiPipelineJob: awaiting-example: google_vertex_ai_pipeline_job added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
 GoogleVertexAiRagFile: awaiting-example: google_vertex_ai_rag_file added in hashicorp/google 8.9.0 (schema bump 2026-11-02)
 AzurermDataProtectionBackupInstanceCosmosdbAccount: awaiting-example: azurerm_data_protection_backup_instance_cosmosdb_account added in hashicorp/azurerm 5.13.0 (schema bump 2026-11-06)
+GoogleManagedKafkaAclBinding: awaiting-example: google_managed_kafka_acl_binding added in hashicorp/google 8.10.0 (schema bump 2026-11-09)
+GoogleOracleDatabaseOdbDnsZone: awaiting-example: google_oracle_database_odb_dns_zone added in hashicorp/google 8.10.0 (schema bump 2026-11-09)
+GoogleSecretManagerRegionalSecretManagedRotation: awaiting-example: google_secret_manager_regional_secret_managed_rotation added in hashicorp/google 8.10.0 (schema bump 2026-11-09)
+GoogleVertexAiTrainingPipeline: awaiting-example: google_vertex_ai_training_pipeline added in hashicorp/google 8.10.0 (schema bump 2026-11-09)

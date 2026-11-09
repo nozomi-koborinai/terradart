@@ -1,7 +1,7 @@
 {
   "name": "monitoring",
   "version": "v3",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3",
   "schemas": {
     "Aggregation": {
@@ -51,11 +51,6 @@
     },
     "AlertPolicy": {
       "properties": {
-        "conditions": {
-          "items": {
-            "$ref": "Condition"
-          }
-        },
         "combiner": {
           "enum": [
             "COMBINE_UNSPECIFIED",
@@ -64,8 +59,10 @@
             "AND_WITH_MATCHING_RESOURCE"
           ]
         },
-        "alertStrategy": {
-          "$ref": "AlertStrategy"
+        "conditions": {
+          "items": {
+            "$ref": "Condition"
+          }
         },
         "severity": {
           "enum": [
@@ -74,6 +71,9 @@
             "ERROR",
             "WARNING"
           ]
+        },
+        "alertStrategy": {
+          "$ref": "AlertStrategy"
         }
       }
     },
@@ -92,6 +92,9 @@
     },
     "Condition": {
       "properties": {
+        "conditionSql": {
+          "$ref": "SqlCondition"
+        },
         "conditionAbsent": {
           "$ref": "MetricAbsence"
         },
@@ -100,17 +103,11 @@
         },
         "conditionMonitoringQueryLanguage": {
           "$ref": "MonitoringQueryLanguageCondition"
-        },
-        "conditionSql": {
-          "$ref": "SqlCondition"
         }
       }
     },
     "ContentMatcher": {
       "properties": {
-        "jsonPathMatcher": {
-          "$ref": "JsonPathMatcher"
-        },
         "matcher": {
           "enum": [
             "CONTENT_MATCHER_OPTION_UNSPECIFIED",
@@ -121,6 +118,9 @@
             "MATCHES_JSON_PATH",
             "NOT_MATCHES_JSON_PATH"
           ]
+        },
+        "jsonPathMatcher": {
+          "$ref": "JsonPathMatcher"
         }
       }
     },
@@ -131,13 +131,6 @@
       "properties": {
         "serviceAgentAuthentication": {
           "$ref": "ServiceAgentAuthentication"
-        },
-        "requestMethod": {
-          "enum": [
-            "METHOD_UNSPECIFIED",
-            "GET",
-            "POST"
-          ]
         },
         "contentType": {
           "enum": [
@@ -150,6 +143,13 @@
           "items": {
             "$ref": "ResponseStatusCode"
           }
+        },
+        "requestMethod": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "GET",
+            "POST"
+          ]
         }
       }
     },
@@ -209,6 +209,14 @@
             "DEPRECATED"
           ]
         },
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
         "valueType": {
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
@@ -220,11 +228,6 @@
             "MONEY"
           ]
         },
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
-        },
         "metricKind": {
           "enum": [
             "METRIC_KIND_UNSPECIFIED",
@@ -232,24 +235,11 @@
             "DELTA",
             "CUMULATIVE"
           ]
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
         }
       }
     },
     "MetricDescriptorMetadata": {
       "properties": {
-        "timeSeriesResourceHierarchyLevel": {
-          "items": {
-            "enum": [
-              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
-              "PROJECT",
-              "ORGANIZATION",
-              "FOLDER"
-            ]
-          }
-        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -261,12 +251,30 @@
             "GA",
             "DEPRECATED"
           ]
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
         }
       }
     },
     "MetricThreshold": {
       "properties": {
-        "aggregations": {
+        "evaluationMissingData": {
+          "enum": [
+            "EVALUATION_MISSING_DATA_UNSPECIFIED",
+            "EVALUATION_MISSING_DATA_INACTIVE",
+            "EVALUATION_MISSING_DATA_ACTIVE",
+            "EVALUATION_MISSING_DATA_NO_OP"
+          ]
+        },
+        "denominatorAggregations": {
           "items": {
             "$ref": "Aggregation"
           }
@@ -282,15 +290,7 @@
             "COMPARISON_NE"
           ]
         },
-        "evaluationMissingData": {
-          "enum": [
-            "EVALUATION_MISSING_DATA_UNSPECIFIED",
-            "EVALUATION_MISSING_DATA_INACTIVE",
-            "EVALUATION_MISSING_DATA_ACTIVE",
-            "EVALUATION_MISSING_DATA_NO_OP"
-          ]
-        },
-        "denominatorAggregations": {
+        "aggregations": {
           "items": {
             "$ref": "Aggregation"
           }
@@ -402,13 +402,20 @@
     },
     "UptimeCheckConfig": {
       "properties": {
-        "httpCheck": {
-          "$ref": "HttpCheck"
-        },
         "contentMatchers": {
           "items": {
             "$ref": "ContentMatcher"
           }
+        },
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
+        },
+        "httpCheck": {
+          "$ref": "HttpCheck"
         },
         "resourceGroup": {
           "$ref": "ResourceGroup"
@@ -431,13 +438,6 @@
               "USA_VIRGINIA"
             ]
           }
-        },
-        "checkerType": {
-          "enum": [
-            "CHECKER_TYPE_UNSPECIFIED",
-            "STATIC_IP_CHECKERS",
-            "VPC_CHECKERS"
-          ]
         }
       }
     }

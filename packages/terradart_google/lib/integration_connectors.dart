@@ -46,6 +46,7 @@ export 'src/integration_connectors/google_integration_connectors_connection.dart
         IntegrationConnectorsConnectionSshClientCertPass,
         IntegrationConnectorsConnectionSshPublicKey,
         IntegrationConnectorsConnectionSslConfig,
+        IntegrationConnectorsConnectionTrafficShapingConfigs,
         IntegrationConnectorsConnectionTrustModel,
         IntegrationConnectorsConnectionType,
         IntegrationConnectorsConnectionUserPassword;

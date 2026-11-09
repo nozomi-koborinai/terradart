@@ -1,7 +1,7 @@
 {
   "name": "firebasevertexai",
   "version": "v1beta",
-  "revision": "20261026",
+  "revision": "20261106",
   "sourceUrl": "https://firebasevertexai.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "Config": {

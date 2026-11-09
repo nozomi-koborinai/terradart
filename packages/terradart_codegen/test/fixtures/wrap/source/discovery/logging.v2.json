@@ -1,7 +1,7 @@
 {
   "name": "logging",
   "version": "v2",
-  "revision": "20261023",
+  "revision": "20261106",
   "sourceUrl": "https://logging.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "DefaultSinkConfig": {
@@ -48,14 +48,6 @@
     },
     "FilterPredicate": {
       "properties": {
-        "leafPredicate": {
-          "$ref": "FilterExpression"
-        },
-        "childPredicates": {
-          "items": {
-            "$ref": "FilterPredicate"
-          }
-        },
         "operatorType": {
           "enum": [
             "OPERATOR_TYPE_UNSPECIFIED",
@@ -63,6 +55,14 @@
             "OR",
             "LEAF"
           ]
+        },
+        "childPredicates": {
+          "items": {
+            "$ref": "FilterPredicate"
+          }
+        },
+        "leafPredicate": {
+          "$ref": "FilterExpression"
         }
       }
     },
@@ -93,14 +93,14 @@
     },
     "LogMetric": {
       "properties": {
+        "metricDescriptor": {
+          "$ref": "MetricDescriptor"
+        },
         "version": {
           "enum": [
             "V2",
             "V1"
           ]
-        },
-        "metricDescriptor": {
-          "$ref": "MetricDescriptor"
         }
       }
     },
@@ -112,6 +112,20 @@
     },
     "MetricDescriptor": {
       "properties": {
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "valueType": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
+          ]
+        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -123,9 +137,6 @@
             "GA",
             "DEPRECATED"
           ]
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
         },
         "metricKind": {
           "enum": [
@@ -139,17 +150,6 @@
           "items": {
             "$ref": "LabelDescriptor"
           }
-        },
-        "valueType": {
-          "enum": [
-            "VALUE_TYPE_UNSPECIFIED",
-            "BOOL",
-            "INT64",
-            "DOUBLE",
-            "STRING",
-            "DISTRIBUTION",
-            "MONEY"
-          ]
         }
       }
     },
@@ -220,15 +220,15 @@
     },
     "SavedQuery": {
       "properties": {
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery"
+        },
         "visibility": {
           "enum": [
             "VISIBILITY_UNSPECIFIED",
             "PRIVATE",
             "SHARED"
           ]
-        },
-        "opsAnalyticsQuery": {
-          "$ref": "OpsAnalyticsQuery"
         }
       }
     },
@@ -241,9 +241,6 @@
     },
     "SortOrderParameter": {
       "properties": {
-        "fieldSource": {
-          "$ref": "FieldSource"
-        },
         "sortOrderDirection": {
           "enum": [
             "SORT_ORDER_UNSPECIFIED",
@@ -251,21 +248,24 @@
             "SORT_ORDER_ASCENDING",
             "SORT_ORDER_DESCENDING"
           ]
+        },
+        "fieldSource": {
+          "$ref": "FieldSource"
         }
       }
     },
     "VirtualField": {
       "properties": {
+        "underlyingFieldSources": {
+          "items": {
+            "$ref": "FieldSource"
+          }
+        },
         "virtualFieldType": {
           "enum": [
             "VIRTUAL_FIELD_TYPE_UNSPECIFIED",
             "COALESCE"
           ]
-        },
-        "underlyingFieldSources": {
-          "items": {
-            "$ref": "FieldSource"
-          }
         }
       }
     }

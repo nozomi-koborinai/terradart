@@ -73,71 +73,20 @@ final class FirestoreFieldIndexConfig {
 /// `google_firestore_field` (derived from provider schema).
 @immutable
 final class FirestoreFieldIndexes {
-  const FirestoreFieldIndexes({required this.mode, this.queryScope});
+  const FirestoreFieldIndexes({this.arrayConfig, this.order, this.queryScope});
 
-  final FirestoreFieldMode mode;
+  final FirestoreFieldArrayConfig? arrayConfig;
+
+  final FirestoreFieldOrder? order;
 
   final FirestoreFieldQueryScope? queryScope;
 
   @internal
   Map<String, Object?> encode() => {
-    ...mode.encode(),
+    'array_config': ?arrayConfig?.toTfJson(),
+    'order': ?order?.toTfJson(),
     'query_scope': ?queryScope?.toTfJson(),
   };
-}
-
-/// Exactly one of `order`, `array_config` on the `index_config.indexes` block of `google_firestore_field`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.order(...)`.
-sealed class FirestoreFieldMode {
-  const FirestoreFieldMode();
-
-  /// Sets `order`.
-  const factory FirestoreFieldMode.order(FirestoreFieldOrder order) =
-      FirestoreFieldModeOrder;
-
-  /// Sets `array_config`.
-  const factory FirestoreFieldMode.arrayConfig(
-    FirestoreFieldArrayConfig arrayConfig,
-  ) = FirestoreFieldModeArrayConfig;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [FirestoreFieldMode.order] choice: sets `order`.
-final class FirestoreFieldModeOrder extends FirestoreFieldMode {
-  const FirestoreFieldModeOrder(this.order);
-
-  final FirestoreFieldOrder order;
-
-  @internal
-  @override
-  String get blockKey => 'order';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'order': order.toTfJson()};
-}
-
-/// The [FirestoreFieldMode.arrayConfig] choice: sets `array_config`.
-final class FirestoreFieldModeArrayConfig extends FirestoreFieldMode {
-  const FirestoreFieldModeArrayConfig(this.arrayConfig);
-
-  final FirestoreFieldArrayConfig arrayConfig;
-
-  @internal
-  @override
-  String get blockKey => 'array_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'array_config': arrayConfig.toTfJson()};
 }
 
 /// `array_config` — derived from the provider schema description.

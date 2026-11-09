@@ -1,7 +1,7 @@
 {
   "name": "geminidataanalytics",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://geminidataanalytics.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudGeminidataanalyticsV1BigQueryTableReference": {
@@ -22,9 +22,6 @@
     },
     "GoogleCloudGeminidataanalyticsV1Context": {
       "properties": {
-        "options": {
-          "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
-        },
         "datasourceReferences": {
           "$ref": "GoogleCloudGeminidataanalyticsV1DatasourceReferences"
         },
@@ -32,6 +29,9 @@
           "items": {
             "$ref": "GoogleCloudGeminidataanalyticsV1ContextSchemaRelationship"
           }
+        },
+        "options": {
+          "$ref": "GoogleCloudGeminidataanalyticsV1ConversationOptions"
         }
       }
     },
@@ -71,13 +71,13 @@
     },
     "GoogleCloudGeminidataanalyticsV1DataAnalyticsAgent": {
       "properties": {
-        "lastPublishedContext": {
+        "stagingContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         },
         "publishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         },
-        "stagingContext": {
+        "lastPublishedContext": {
           "$ref": "GoogleCloudGeminidataanalyticsV1Context"
         }
       }

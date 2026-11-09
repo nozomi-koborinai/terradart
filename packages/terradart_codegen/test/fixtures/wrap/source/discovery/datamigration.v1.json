@@ -1,7 +1,7 @@
 {
   "name": "datamigration",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261103",
   "sourceUrl": "https://datamigration.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -35,35 +35,6 @@
     },
     "CloudSqlSettings": {
       "properties": {
-        "availabilityType": {
-          "enum": [
-            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
-            "ZONAL",
-            "REGIONAL"
-          ]
-        },
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
-        "dataDiskType": {
-          "enum": [
-            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
-            "PD_SSD",
-            "PD_HDD",
-            "HYPERDISK_BALANCED"
-          ]
-        },
-        "activationPolicy": {
-          "enum": [
-            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
-            "ALWAYS",
-            "NEVER"
-          ]
-        },
         "databaseVersion": {
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
@@ -92,6 +63,35 @@
             "POSTGRES_15",
             "POSTGRES_16"
           ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
+        "activationPolicy": {
+          "enum": [
+            "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ]
+        },
+        "availabilityType": {
+          "enum": [
+            "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "dataDiskType": {
+          "enum": [
+            "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+            "PD_SSD",
+            "PD_HDD",
+            "HYPERDISK_BALANCED"
+          ]
         }
       }
     },
@@ -107,15 +107,6 @@
             "AZURE_DATABASE"
           ]
         },
-        "cloudsql": {
-          "$ref": "CloudSqlConnectionProfile"
-        },
-        "alloydb": {
-          "$ref": "AlloyDbConnectionProfile"
-        },
-        "oracle": {
-          "$ref": "OracleConnectionProfile"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -128,6 +119,21 @@
             "FAILED"
           ]
         },
+        "mysql": {
+          "$ref": "MySqlConnectionProfile"
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlConnectionProfile"
+        },
+        "cloudsql": {
+          "$ref": "CloudSqlConnectionProfile"
+        },
+        "alloydb": {
+          "$ref": "AlloyDbConnectionProfile"
+        },
+        "sqlserver": {
+          "$ref": "SqlServerConnectionProfile"
+        },
         "role": {
           "enum": [
             "ROLE_UNSPECIFIED",
@@ -135,28 +141,13 @@
             "DESTINATION"
           ]
         },
-        "postgresql": {
-          "$ref": "PostgreSqlConnectionProfile"
-        },
-        "mysql": {
-          "$ref": "MySqlConnectionProfile"
-        },
-        "sqlserver": {
-          "$ref": "SqlServerConnectionProfile"
+        "oracle": {
+          "$ref": "OracleConnectionProfile"
         }
       }
     },
     "DatabaseType": {
       "properties": {
-        "engine": {
-          "enum": [
-            "DATABASE_ENGINE_UNSPECIFIED",
-            "MYSQL",
-            "POSTGRESQL",
-            "SQLSERVER",
-            "ORACLE"
-          ]
-        },
         "provider": {
           "enum": [
             "DATABASE_PROVIDER_UNSPECIFIED",
@@ -166,36 +157,32 @@
             "ALLOYDB",
             "AZURE_DATABASE"
           ]
+        },
+        "engine": {
+          "enum": [
+            "DATABASE_ENGINE_UNSPECIFIED",
+            "MYSQL",
+            "POSTGRESQL",
+            "SQLSERVER",
+            "ORACLE"
+          ]
         }
       }
     },
     "MigrationJob": {
       "properties": {
-        "objectsConfig": {
-          "$ref": "MigrationJobObjectsConfig"
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "ONE_TIME",
-            "CONTINUOUS"
-          ]
-        },
-        "dumpType": {
-          "enum": [
-            "DUMP_TYPE_UNSPECIFIED",
-            "LOGICAL",
-            "PHYSICAL"
-          ]
-        },
-        "destinationDatabase": {
-          "$ref": "DatabaseType"
-        },
-        "sourceDatabase": {
-          "$ref": "DatabaseType"
-        },
         "performanceConfig": {
           "$ref": "PerformanceConfig"
+        },
+        "purpose": {
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "MIGRATE",
+            "FAILBACK"
+          ]
+        },
+        "objectsConfig": {
+          "$ref": "MigrationJobObjectsConfig"
         },
         "phase": {
           "enum": [
@@ -209,11 +196,11 @@
             "PHASE_FAILBACK"
           ]
         },
-        "purpose": {
+        "type": {
           "enum": [
-            "PURPOSE_UNSPECIFIED",
-            "MIGRATE",
-            "FAILBACK"
+            "TYPE_UNSPECIFIED",
+            "ONE_TIME",
+            "CONTINUOUS"
           ]
         },
         "state": {
@@ -234,6 +221,19 @@
             "STARTING",
             "RESTARTING",
             "RESUMING"
+          ]
+        },
+        "destinationDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "sourceDatabase": {
+          "$ref": "DatabaseType"
+        },
+        "dumpType": {
+          "enum": [
+            "DUMP_TYPE_UNSPECIFIED",
+            "LOGICAL",
+            "PHYSICAL"
           ]
         }
       }
@@ -261,24 +261,16 @@
     },
     "OracleConnectionProfile": {
       "properties": {
-        "ssl": {
-          "$ref": "SslConfig"
-        },
         "oracleAsmConfig": {
           "$ref": "OracleAsmConfig"
+        },
+        "ssl": {
+          "$ref": "SslConfig"
         }
       }
     },
     "PerformanceConfig": {
       "properties": {
-        "dumpParallelLevel": {
-          "enum": [
-            "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
-            "MIN",
-            "OPTIMAL",
-            "MAX"
-          ]
-        },
         "loadParallelLevel": {
           "enum": [
             "LOAD_PARALLEL_LEVEL_UNSPECIFIED",
@@ -286,20 +278,28 @@
             "LOAD_OPTIMAL",
             "LOAD_MAX"
           ]
+        },
+        "dumpParallelLevel": {
+          "enum": [
+            "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
+            "MIN",
+            "OPTIMAL",
+            "MAX"
+          ]
         }
       }
     },
     "PostgreSqlConnectionProfile": {
       "properties": {
-        "ssl": {
-          "$ref": "SslConfig"
-        },
         "networkArchitecture": {
           "enum": [
             "NETWORK_ARCHITECTURE_UNSPECIFIED",
             "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
             "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER"
           ]
+        },
+        "ssl": {
+          "$ref": "SslConfig"
         }
       }
     },
@@ -345,6 +345,11 @@
             "ALL_OBJECTS",
             "SPECIFIED_OBJECTS"
           ]
+        },
+        "excludedObjectConfigs": {
+          "items": {
+            "$ref": "SourceObjectConfig"
+          }
         },
         "objectConfigs": {
           "items": {

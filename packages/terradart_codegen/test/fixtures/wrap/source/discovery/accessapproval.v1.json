@@ -1,7 +1,7 @@
 {
   "name": "accessapproval",
   "version": "v1",
-  "revision": "20261023",
+  "revision": "20261107",
   "sourceUrl": "https://accessapproval.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessApprovalSettings": {
@@ -14,6 +14,14 @@
             "$ref": "EnrolledService"
           }
         },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
+        },
+        "enrolledServices": {
+          "items": {
+            "$ref": "EnrolledService"
+          }
+        },
         "requestScopeMaxWidthPreference": {
           "enum": [
             "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
@@ -21,14 +29,6 @@
             "FOLDER",
             "PROJECT"
           ]
-        },
-        "enrolledServices": {
-          "items": {
-            "$ref": "EnrolledService"
-          }
-        },
-        "approvalPolicy": {
-          "$ref": "CustomerApprovalApprovalPolicy"
         }
       }
     },

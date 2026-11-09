@@ -27,9 +27,6 @@
     },
     "Agent": {
       "properties": {
-        "modelSettings": {
-          "$ref": "ModelSettings"
-        },
         "remoteA2aAgent": {
           "$ref": "AgentRemoteA2aAgent"
         },
@@ -37,6 +34,9 @@
           "items": {
             "$ref": "TransferRule"
           }
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
         }
       }
     },
@@ -82,26 +82,6 @@
     },
     "App": {
       "properties": {
-        "audioProcessingConfig": {
-          "$ref": "AudioProcessingConfig"
-        },
-        "evaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholds"
-        },
-        "dataStoreSettings": {
-          "$ref": "DataStoreSettings"
-        },
-        "modelSettings": {
-          "$ref": "ModelSettings"
-        },
-        "errorHandlingSettings": {
-          "$ref": "ErrorHandlingSettings"
-        },
-        "variableDeclarations": {
-          "items": {
-            "$ref": "AppVariableDeclaration"
-          }
-        },
         "defaultChannelProfile": {
           "$ref": "ChannelProfile"
         },
@@ -116,16 +96,31 @@
             "PARALLEL",
             "SEQUENTIAL"
           ]
+        },
+        "modelSettings": {
+          "$ref": "ModelSettings"
+        },
+        "audioProcessingConfig": {
+          "$ref": "AudioProcessingConfig"
+        },
+        "variableDeclarations": {
+          "items": {
+            "$ref": "AppVariableDeclaration"
+          }
+        },
+        "errorHandlingSettings": {
+          "$ref": "ErrorHandlingSettings"
+        },
+        "dataStoreSettings": {
+          "$ref": "DataStoreSettings"
+        },
+        "evaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholds"
         }
       }
     },
     "AppSnapshot": {
       "properties": {
-        "tools": {
-          "items": {
-            "$ref": "Tool"
-          }
-        },
         "agents": {
           "items": {
             "$ref": "Agent"
@@ -134,14 +129,19 @@
         "app": {
           "$ref": "App"
         },
-        "toolsets": {
+        "tools": {
           "items": {
-            "$ref": "Toolset"
+            "$ref": "Tool"
           }
         },
         "guardrails": {
           "items": {
             "$ref": "Guardrail"
+          }
+        },
+        "toolsets": {
+          "items": {
+            "$ref": "Toolset"
           }
         }
       }
@@ -162,13 +162,13 @@
     },
     "AudioProcessingConfig": {
       "properties": {
+        "ambientSoundConfig": {
+          "$ref": "AmbientSoundConfig"
+        },
         "customVoiceSamples": {
           "items": {
             "$ref": "CustomVoiceSample"
           }
-        },
-        "ambientSoundConfig": {
-          "$ref": "AmbientSoundConfig"
         }
       }
     },
@@ -210,13 +210,6 @@
     },
     "ChannelProfileWebWidgetConfig": {
       "properties": {
-        "theme": {
-          "enum": [
-            "THEME_UNSPECIFIED",
-            "LIGHT",
-            "DARK"
-          ]
-        },
         "modality": {
           "enum": [
             "MODALITY_UNSPECIFIED",
@@ -225,15 +218,22 @@
             "CHAT_ONLY",
             "CHAT_VOICE_AND_VIDEO"
           ]
+        },
+        "theme": {
+          "enum": [
+            "THEME_UNSPECIFIED",
+            "LIGHT",
+            "DARK"
+          ]
         }
       }
     },
     "ClientFunction": {
       "properties": {
-        "parameters": {
+        "response": {
           "$ref": "Schema"
         },
-        "response": {
+        "parameters": {
           "$ref": "Schema"
         }
       }
@@ -283,13 +283,6 @@
     },
     "DataStore": {
       "properties": {
-        "documentProcessingMode": {
-          "enum": [
-            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
-            "DOCUMENTS",
-            "CHUNKS"
-          ]
-        },
         "type": {
           "enum": [
             "DATA_STORE_TYPE_UNSPECIFIED",
@@ -297,6 +290,13 @@
             "UNSTRUCTURED",
             "FAQ",
             "CONNECTOR"
+          ]
+        },
+        "documentProcessingMode": {
+          "enum": [
+            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
           ]
         }
       }
@@ -323,11 +323,6 @@
     },
     "DataStoreTool": {
       "properties": {
-        "modalityConfigs": {
-          "items": {
-            "$ref": "DataStoreToolModalityConfig"
-          }
-        },
         "filterParameterBehavior": {
           "enum": [
             "FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED",
@@ -335,16 +330,21 @@
             "NEVER_INCLUDE"
           ]
         },
+        "modalityConfigs": {
+          "items": {
+            "$ref": "DataStoreToolModalityConfig"
+          }
+        },
         "engineSource": {
           "$ref": "DataStoreToolEngineSource"
+        },
+        "dataStoreSource": {
+          "$ref": "DataStoreToolDataStoreSource"
         },
         "boostSpecs": {
           "items": {
             "$ref": "DataStoreToolBoostSpecs"
           }
-        },
-        "dataStoreSource": {
-          "$ref": "DataStoreToolDataStoreSource"
         }
       }
     },
@@ -408,15 +408,15 @@
     },
     "DataStoreToolModalityConfig": {
       "properties": {
+        "summarizationConfig": {
+          "$ref": "DataStoreToolSummarizationConfig"
+        },
         "modalityType": {
           "enum": [
             "MODALITY_TYPE_UNSPECIFIED",
             "TEXT",
             "AUDIO"
           ]
-        },
-        "summarizationConfig": {
-          "$ref": "DataStoreToolSummarizationConfig"
         },
         "rewriterConfig": {
           "$ref": "DataStoreToolRewriterConfig"
@@ -439,8 +439,11 @@
     },
     "Deployment": {
       "properties": {
-        "modelSettings": {
-          "$ref": "ModelSettings"
+        "experimentConfig": {
+          "$ref": "ExperimentConfig"
+        },
+        "channelProfile": {
+          "$ref": "ChannelProfile"
         },
         "modality": {
           "enum": [
@@ -450,11 +453,8 @@
             "MODALITY_VIDEO"
           ]
         },
-        "channelProfile": {
-          "$ref": "ChannelProfile"
-        },
-        "experimentConfig": {
-          "$ref": "ExperimentConfig"
+        "modelSettings": {
+          "$ref": "ModelSettings"
         }
       }
     },
@@ -472,16 +472,6 @@
     },
     "EvaluationMetricsThresholds": {
       "properties": {
-        "hallucinationMetricBehavior": {
-          "enum": [
-            "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED"
-          ]
-        },
-        "goldenEvaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
-        },
         "goldenHallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
@@ -495,16 +485,26 @@
             "DISABLED",
             "ENABLED"
           ]
+        },
+        "hallucinationMetricBehavior": {
+          "enum": [
+            "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "goldenEvaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
         }
       }
     },
     "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds": {
       "properties": {
-        "turnLevelMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
-        },
         "toolMatchingSettings": {
           "$ref": "EvaluationMetricsThresholdsToolMatchingSettings"
+        },
+        "turnLevelMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
         }
       }
     },
@@ -566,20 +566,20 @@
     },
     "Guardrail": {
       "properties": {
-        "contentFilter": {
-          "$ref": "GuardrailContentFilter"
-        },
-        "llmPromptSecurity": {
-          "$ref": "GuardrailLlmPromptSecurity"
-        },
-        "modelSafety": {
-          "$ref": "GuardrailModelSafety"
-        },
         "supervisor": {
           "$ref": "GuardrailSupervisor"
         },
         "llmPolicy": {
           "$ref": "GuardrailLlmPolicy"
+        },
+        "llmPromptSecurity": {
+          "$ref": "GuardrailLlmPromptSecurity"
+        },
+        "contentFilter": {
+          "$ref": "GuardrailContentFilter"
+        },
+        "modelSafety": {
+          "$ref": "GuardrailModelSafety"
         }
       }
     },
@@ -678,14 +678,6 @@
     },
     "McpTool": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "INACTIVE",
-            "STALE"
-          ]
-        },
         "apiAuthentication": {
           "$ref": "ApiAuthentication"
         },
@@ -694,15 +686,23 @@
         },
         "outputSchema": {
           "$ref": "Schema"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "STALE"
+          ]
         }
       }
     },
     "McpToolDefinition": {
       "properties": {
-        "outputSchema": {
+        "inputSchema": {
           "$ref": "Schema"
         },
-        "inputSchema": {
+        "outputSchema": {
           "$ref": "Schema"
         }
       }
@@ -716,13 +716,13 @@
     },
     "McpToolset": {
       "properties": {
-        "apiAuthentication": {
-          "$ref": "ApiAuthentication"
-        },
         "toolOverrides": {
           "items": {
             "$ref": "McpToolOverride"
           }
+        },
+        "apiAuthentication": {
+          "$ref": "ApiAuthentication"
         }
       }
     },
@@ -779,24 +779,24 @@
     },
     "Schema": {
       "properties": {
-        "items": {
-          "$ref": "Schema"
-        },
-        "additionalProperties": {
-          "$ref": "Schema"
+        "anyOf": {
+          "items": {
+            "$ref": "Schema"
+          }
         },
         "properties": {
           "additionalProperties": {
             "$ref": "Schema"
           }
         },
+        "additionalProperties": {
+          "$ref": "Schema"
+        },
+        "items": {
+          "$ref": "Schema"
+        },
         "defs": {
           "additionalProperties": {
-            "$ref": "Schema"
-          }
-        },
-        "prefixItems": {
-          "items": {
             "$ref": "Schema"
           }
         },
@@ -811,7 +811,7 @@
             "ARRAY"
           ]
         },
-        "anyOf": {
+        "prefixItems": {
           "items": {
             "$ref": "Schema"
           }
@@ -820,29 +820,20 @@
     },
     "Tool": {
       "properties": {
-        "remoteAgentTool": {
-          "$ref": "RemoteAgentTool"
-        },
-        "dataStoreTool": {
-          "$ref": "DataStoreTool"
+        "widgetTool": {
+          "$ref": "WidgetTool"
         },
         "mcpTool": {
           "$ref": "McpTool"
         },
-        "connectorTool": {
-          "$ref": "ConnectorTool"
-        },
-        "clientFunction": {
-          "$ref": "ClientFunction"
+        "openApiTool": {
+          "$ref": "OpenApiTool"
         },
         "fileSearchTool": {
           "$ref": "FileSearchTool"
         },
-        "openApiTool": {
-          "$ref": "OpenApiTool"
-        },
-        "widgetTool": {
-          "$ref": "WidgetTool"
+        "connectorTool": {
+          "$ref": "ConnectorTool"
         },
         "executionType": {
           "enum": [
@@ -850,17 +841,20 @@
             "SYNCHRONOUS",
             "ASYNCHRONOUS"
           ]
+        },
+        "remoteAgentTool": {
+          "$ref": "RemoteAgentTool"
+        },
+        "clientFunction": {
+          "$ref": "ClientFunction"
+        },
+        "dataStoreTool": {
+          "$ref": "DataStoreTool"
         }
       }
     },
     "Toolset": {
       "properties": {
-        "mcpToolset": {
-          "$ref": "McpToolset"
-        },
-        "connectorToolset": {
-          "$ref": "ConnectorToolset"
-        },
         "openApiToolset": {
           "$ref": "OpenApiToolset"
         },
@@ -870,6 +864,12 @@
             "SYNCHRONOUS",
             "ASYNCHRONOUS"
           ]
+        },
+        "connectorToolset": {
+          "$ref": "ConnectorToolset"
+        },
+        "mcpToolset": {
+          "$ref": "McpToolset"
         }
       }
     },
@@ -886,9 +886,6 @@
     },
     "WidgetTool": {
       "properties": {
-        "textResponseConfig": {
-          "$ref": "WidgetToolTextResponseConfig"
-        },
         "widgetType": {
           "enum": [
             "WIDGET_TYPE_UNSPECIFIED",
@@ -906,11 +903,14 @@
             "CONTACT_FORM"
           ]
         },
-        "parameters": {
-          "$ref": "Schema"
-        },
         "dataMapping": {
           "$ref": "WidgetToolDataMapping"
+        },
+        "textResponseConfig": {
+          "$ref": "WidgetToolTextResponseConfig"
+        },
+        "parameters": {
+          "$ref": "Schema"
         }
       }
     },

@@ -27,19 +27,6 @@
     },
     "Instance": {
       "properties": {
-        "networkConfig": {
-          "$ref": "NetworkConfig"
-        },
-        "maintenanceEvents": {
-          "items": {
-            "$ref": "MaintenanceEvent"
-          }
-        },
-        "availableVersion": {
-          "items": {
-            "$ref": "Version"
-          }
-        },
         "disabledReason": {
           "items": {
             "enum": [
@@ -49,11 +36,6 @@
             ]
           }
         },
-        "accelerators": {
-          "items": {
-            "$ref": "Accelerator"
-          }
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -61,6 +43,19 @@
             "ENTERPRISE",
             "DEVELOPER"
           ]
+        },
+        "accelerators": {
+          "items": {
+            "$ref": "Accelerator"
+          }
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig"
+        },
+        "availableVersion": {
+          "items": {
+            "$ref": "Version"
+          }
         },
         "state": {
           "enum": [
@@ -77,6 +72,11 @@
             "DISABLED",
             "ENABLING"
           ]
+        },
+        "maintenanceEvents": {
+          "items": {
+            "$ref": "MaintenanceEvent"
+          }
         }
       }
     },

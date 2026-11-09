@@ -278,6 +278,10 @@ final class GoogleDiscoveryEngineAssistant extends Resource {
   TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
+  /// Reference to `default_web_grounding_toggle_off` attribute.
+  TfRef<bool> get defaultWebGroundingToggleOff =>
+      TfRef.attribute<bool>(this, 'default_web_grounding_toggle_off');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');

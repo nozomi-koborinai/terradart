@@ -189,7 +189,7 @@ sealed class CloudbuildTriggerBitbucketServerTriggerConfigEvent {
 
   /// Sets `push`.
   const factory CloudbuildTriggerBitbucketServerTriggerConfigEvent.push(
-    CloudbuildTriggerPush push,
+    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
   ) = CloudbuildTriggerBitbucketServerTriggerConfigEventPush;
 
   /// The Terraform argument this choice sets.
@@ -223,7 +223,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigEventPush
     extends CloudbuildTriggerBitbucketServerTriggerConfigEvent {
   const CloudbuildTriggerBitbucketServerTriggerConfigEventPush(this.push);
 
-  final CloudbuildTriggerPush push;
+  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
   @internal
   @override
@@ -290,8 +290,11 @@ extension type const CloudbuildTriggerCommentControl._(TfArg<String> _)
 /// `google_cloudbuild_trigger` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class CloudbuildTriggerPush {
-  const CloudbuildTriggerPush({required this.revision, this.invertRegex});
+final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
+  const CloudbuildTriggerBitbucketServerTriggerConfigPush({
+    required this.revision,
+    this.invertRegex,
+  });
 
   final CloudbuildTriggerPushRevision revision;
 
@@ -1080,77 +1083,22 @@ final class CloudbuildTriggerStepVolumes {
 final class CloudbuildTriggerDeveloperConnectEventConfig {
   const CloudbuildTriggerDeveloperConnectEventConfig({
     required this.gitRepositoryLink,
-    required this.event,
+    this.pullRequest,
+    this.push,
   });
 
   final TfArg<String> gitRepositoryLink;
 
-  final CloudbuildTriggerDeveloperConnectEventConfigEvent event;
+  final CloudbuildTriggerDeveloperConnectEventConfigPullRequest? pullRequest;
+
+  final CloudbuildTriggerDeveloperConnectEventConfigPush? push;
 
   @internal
   Map<String, Object?> encode() => {
     'git_repository_link': gitRepositoryLink.toTfJson(),
-    ...event.encode(),
+    'pull_request': ?pullRequest?.encode(),
+    'push': ?push?.encode(),
   };
-}
-
-/// Exactly one of `pull_request`, `push` on the `developer_connect_event_config` block of `google_cloudbuild_trigger`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.pullRequest(...)`.
-sealed class CloudbuildTriggerDeveloperConnectEventConfigEvent {
-  const CloudbuildTriggerDeveloperConnectEventConfigEvent();
-
-  /// Sets `pull_request`.
-  const factory CloudbuildTriggerDeveloperConnectEventConfigEvent.pullRequest(
-    CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest,
-  ) = CloudbuildTriggerDeveloperConnectEventConfigEventPullRequest;
-
-  /// Sets `push`.
-  const factory CloudbuildTriggerDeveloperConnectEventConfigEvent.push(
-    CloudbuildTriggerPush push,
-  ) = CloudbuildTriggerDeveloperConnectEventConfigEventPush;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudbuildTriggerDeveloperConnectEventConfigEvent.pullRequest] choice: sets `pull_request`.
-final class CloudbuildTriggerDeveloperConnectEventConfigEventPullRequest
-    extends CloudbuildTriggerDeveloperConnectEventConfigEvent {
-  const CloudbuildTriggerDeveloperConnectEventConfigEventPullRequest(
-    this.pullRequest,
-  );
-
-  final CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest;
-
-  @internal
-  @override
-  String get blockKey => 'pull_request';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'pull_request': pullRequest.encode()};
-}
-
-/// The [CloudbuildTriggerDeveloperConnectEventConfigEvent.push] choice: sets `push`.
-final class CloudbuildTriggerDeveloperConnectEventConfigEventPush
-    extends CloudbuildTriggerDeveloperConnectEventConfigEvent {
-  const CloudbuildTriggerDeveloperConnectEventConfigEventPush(this.push);
-
-  final CloudbuildTriggerPush push;
-
-  @internal
-  @override
-  String get blockKey => 'push';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'push': push.encode()};
 }
 
 /// Typed helper for the `developer_connect_event_config.pull_request` block of
@@ -1175,6 +1123,31 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
     'branch': ?branch?.toTfJson(),
     'comment_control': ?commentControl?.toTfJson(),
     'invert_regex': ?invertRegex?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `developer_connect_event_config.push` block of
+/// `google_cloudbuild_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class CloudbuildTriggerDeveloperConnectEventConfigPush {
+  const CloudbuildTriggerDeveloperConnectEventConfigPush({
+    this.branch,
+    this.invertRegex,
+    this.tag,
+  });
+
+  final TfArg<String>? branch;
+
+  final TfArg<bool>? invertRegex;
+
+  final TfArg<String>? tag;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'branch': ?branch?.toTfJson(),
+    'invert_regex': ?invertRegex?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
   };
 }
 
@@ -1286,8 +1259,9 @@ sealed class CloudbuildTriggerGithubEvent {
   ) = CloudbuildTriggerGithubEventPullRequest;
 
   /// Sets `push`.
-  const factory CloudbuildTriggerGithubEvent.push(CloudbuildTriggerPush push) =
-      CloudbuildTriggerGithubEventPush;
+  const factory CloudbuildTriggerGithubEvent.push(
+    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
+  ) = CloudbuildTriggerGithubEventPush;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1318,7 +1292,7 @@ final class CloudbuildTriggerGithubEventPush
     extends CloudbuildTriggerGithubEvent {
   const CloudbuildTriggerGithubEventPush(this.push);
 
-  final CloudbuildTriggerPush push;
+  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
   @internal
   @override
@@ -1355,77 +1329,22 @@ final class CloudbuildTriggerPubsubConfig {
 final class CloudbuildTriggerRepositoryEventConfig {
   const CloudbuildTriggerRepositoryEventConfig({
     this.repository,
-    required this.event,
+    this.pullRequest,
+    this.push,
   });
 
   final TfArg<String>? repository;
 
-  final CloudbuildTriggerRepositoryEventConfigEvent event;
+  final CloudbuildTriggerDeveloperConnectEventConfigPullRequest? pullRequest;
+
+  final CloudbuildTriggerDeveloperConnectEventConfigPush? push;
 
   @internal
   Map<String, Object?> encode() => {
     'repository': ?repository?.toTfJson(),
-    ...event.encode(),
+    'pull_request': ?pullRequest?.encode(),
+    'push': ?push?.encode(),
   };
-}
-
-/// Exactly one of `pull_request`, `push` on the `repository_event_config` block of `google_cloudbuild_trigger`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.pullRequest(...)`.
-sealed class CloudbuildTriggerRepositoryEventConfigEvent {
-  const CloudbuildTriggerRepositoryEventConfigEvent();
-
-  /// Sets `pull_request`.
-  const factory CloudbuildTriggerRepositoryEventConfigEvent.pullRequest(
-    CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest,
-  ) = CloudbuildTriggerRepositoryEventConfigEventPullRequest;
-
-  /// Sets `push`.
-  const factory CloudbuildTriggerRepositoryEventConfigEvent.push(
-    CloudbuildTriggerPush push,
-  ) = CloudbuildTriggerRepositoryEventConfigEventPush;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudbuildTriggerRepositoryEventConfigEvent.pullRequest] choice: sets `pull_request`.
-final class CloudbuildTriggerRepositoryEventConfigEventPullRequest
-    extends CloudbuildTriggerRepositoryEventConfigEvent {
-  const CloudbuildTriggerRepositoryEventConfigEventPullRequest(
-    this.pullRequest,
-  );
-
-  final CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest;
-
-  @internal
-  @override
-  String get blockKey => 'pull_request';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'pull_request': pullRequest.encode()};
-}
-
-/// The [CloudbuildTriggerRepositoryEventConfigEvent.push] choice: sets `push`.
-final class CloudbuildTriggerRepositoryEventConfigEventPush
-    extends CloudbuildTriggerRepositoryEventConfigEvent {
-  const CloudbuildTriggerRepositoryEventConfigEventPush(this.push);
-
-  final CloudbuildTriggerPush push;
-
-  @internal
-  @override
-  String get blockKey => 'push';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'push': push.encode()};
 }
 
 /// Typed helper for the `source_to_build` block of

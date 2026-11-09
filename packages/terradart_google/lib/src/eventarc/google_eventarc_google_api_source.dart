@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
     show EventarcMessageBusLoggingConfig;
 import 'package:terradart_core/terradart_core.dart';
@@ -11,6 +12,32 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_eventarc_google_api_source`.
 const Set<String> _googleEventarcGoogleApiSourceSensitive = <String>{};
+
+/// Typed helper for the `organization_subscription` block of
+/// `google_eventarc_google_api_source` (derived from provider schema).
+@immutable
+final class EventarcGoogleApiSourceOrganizationSubscription {
+  const EventarcGoogleApiSourceOrganizationSubscription({
+    required this.enabled,
+  });
+
+  final TfArg<bool> enabled;
+
+  @internal
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `project_subscriptions` block of
+/// `google_eventarc_google_api_source` (derived from provider schema).
+@immutable
+final class EventarcGoogleApiSourceProjectSubscriptions {
+  const EventarcGoogleApiSourceProjectSubscriptions({required this.list});
+
+  final TfArg<List<String>> list;
+
+  @internal
+  Map<String, Object?> encode() => {'list': list.toTfJson()};
+}
 
 /// Factory wrapper for `google_eventarc_google_api_source`.
 ///

@@ -1,7 +1,7 @@
 {
   "name": "dataflow",
   "version": "v1b3",
-  "revision": "20261022",
+  "revision": "20261107",
   "sourceUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3",
   "schemas": {
     "FlexTemplateRuntimeEnvironment": {
@@ -13,11 +13,11 @@
             "AUTOSCALING_ALGORITHM_BASIC"
           ]
         },
-        "flexrsGoal": {
+        "streamingMode": {
           "enum": [
-            "FLEXRS_UNSPECIFIED",
-            "FLEXRS_SPEED_OPTIMIZED",
-            "FLEXRS_COST_OPTIMIZED"
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
           ]
         },
         "ipConfiguration": {
@@ -27,11 +27,11 @@
             "WORKER_IP_PRIVATE"
           ]
         },
-        "streamingMode": {
+        "flexrsGoal": {
           "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_EXACTLY_ONCE",
-            "STREAMING_MODE_AT_LEAST_ONCE"
+            "FLEXRS_UNSPECIFIED",
+            "FLEXRS_SPEED_OPTIMIZED",
+            "FLEXRS_COST_OPTIMIZED"
           ]
         }
       }

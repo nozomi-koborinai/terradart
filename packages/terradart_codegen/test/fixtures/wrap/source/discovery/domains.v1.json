@@ -27,16 +27,25 @@
     },
     "DnsSettings": {
       "properties": {
-        "customDns": {
-          "$ref": "CustomDns"
-        },
         "googleDomainsDns": {
           "$ref": "GoogleDomainsDns"
+        },
+        "customDns": {
+          "$ref": "CustomDns"
         }
       }
     },
     "DsRecord": {
       "properties": {
+        "digestType": {
+          "enum": [
+            "DIGEST_TYPE_UNSPECIFIED",
+            "SHA1",
+            "SHA256",
+            "GOST3411",
+            "SHA384"
+          ]
+        },
         "algorithm": {
           "enum": [
             "ALGORITHM_UNSPECIFIED",
@@ -58,31 +67,22 @@
             "PRIVATEDNS",
             "PRIVATEOID"
           ]
-        },
-        "digestType": {
-          "enum": [
-            "DIGEST_TYPE_UNSPECIFIED",
-            "SHA1",
-            "SHA256",
-            "GOST3411",
-            "SHA384"
-          ]
         }
       }
     },
     "GoogleDomainsDns": {
       "properties": {
-        "dsRecords": {
-          "items": {
-            "$ref": "DsRecord"
-          }
-        },
         "dsState": {
           "enum": [
             "DS_STATE_UNSPECIFIED",
             "DS_RECORDS_UNPUBLISHED",
             "DS_RECORDS_PUBLISHED"
           ]
+        },
+        "dsRecords": {
+          "items": {
+            "$ref": "DsRecord"
+          }
         }
       }
     },
@@ -94,6 +94,13 @@
             "AUTOMATIC_RENEWAL",
             "MANUAL_RENEWAL",
             "RENEWAL_DISABLED"
+          ]
+        },
+        "transferLockState": {
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
           ]
         },
         "effectiveTransferLockState": {
@@ -110,27 +117,11 @@
             "MANUAL_RENEWAL",
             "RENEWAL_DISABLED"
           ]
-        },
-        "transferLockState": {
-          "enum": [
-            "TRANSFER_LOCK_STATE_UNSPECIFIED",
-            "UNLOCKED",
-            "LOCKED"
-          ]
         }
       }
     },
     "Registration": {
       "properties": {
-        "domainProperties": {
-          "items": {
-            "enum": [
-              "DOMAIN_PROPERTY_UNSPECIFIED",
-              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
-              "REQUIRE_PUSH_TRANSFER"
-            ]
-          }
-        },
         "supportedPrivacy": {
           "items": {
             "enum": [
@@ -141,29 +132,14 @@
             ]
           }
         },
-        "pendingContactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "managementSettings": {
-          "$ref": "ManagementSettings"
-        },
-        "issues": {
+        "domainProperties": {
           "items": {
             "enum": [
-              "ISSUE_UNSPECIFIED",
-              "CONTACT_SUPPORT",
-              "UNVERIFIED_EMAIL",
-              "PROBLEM_WITH_BILLING",
-              "DNS_NOT_ACTIVATED",
-              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
             ]
           }
-        },
-        "contactSettings": {
-          "$ref": "ContactSettings"
-        },
-        "dnsSettings": {
-          "$ref": "DnsSettings"
         },
         "transferFailureReason": {
           "enum": [
@@ -194,6 +170,24 @@
             "EXPIRED"
           ]
         },
+        "issues": {
+          "items": {
+            "enum": [
+              "ISSUE_UNSPECIFIED",
+              "CONTACT_SUPPORT",
+              "UNVERIFIED_EMAIL",
+              "PROBLEM_WITH_BILLING",
+              "DNS_NOT_ACTIVATED",
+              "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE"
+            ]
+          }
+        },
+        "contactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "managementSettings": {
+          "$ref": "ManagementSettings"
+        },
         "registerFailureReason": {
           "enum": [
             "REGISTER_FAILURE_REASON_UNSPECIFIED",
@@ -201,6 +195,12 @@
             "DOMAIN_NOT_AVAILABLE",
             "INVALID_CONTACTS"
           ]
+        },
+        "pendingContactSettings": {
+          "$ref": "ContactSettings"
+        },
+        "dnsSettings": {
+          "$ref": "DnsSettings"
         }
       }
     }

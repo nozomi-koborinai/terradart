@@ -110,11 +110,8 @@ sealedNames:
   "build.source.repo_source.branch_name, build.source.repo_source.commit_sha, build.source.repo_source.tag_name": revision
   "github.pull_request, github.push": event
   "github.push.branch, github.push.tag": revision
-  "repository_event_config.pull_request, repository_event_config.push": event
-  "repository_event_config.push.branch, repository_event_config.push.tag": revision
   "trigger_template.branch_name, trigger_template.commit_sha, trigger_template.tag_name": revision
   "build, filename, git_file_source": build_spec
-  "developer_connect_event_config.pull_request, developer_connect_event_config.push": event
 
 paramOrder:
   - name

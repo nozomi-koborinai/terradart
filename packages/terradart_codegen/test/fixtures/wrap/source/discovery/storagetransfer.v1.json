@@ -1,7 +1,7 @@
 {
   "name": "storagetransfer",
   "version": "v1",
-  "revision": "20261016",
+  "revision": "20261106",
   "sourceUrl": "https://storagetransfer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AwsS3CompatibleData": {
@@ -37,46 +37,11 @@
     },
     "MetadataOptions": {
       "properties": {
-        "kmsKey": {
-          "enum": [
-            "KMS_KEY_UNSPECIFIED",
-            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
-            "KMS_KEY_PRESERVE"
-          ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "MODE_SKIP",
-            "MODE_PRESERVE"
-          ]
-        },
-        "acl": {
-          "enum": [
-            "ACL_UNSPECIFIED",
-            "ACL_DESTINATION_BUCKET_DEFAULT",
-            "ACL_PRESERVE"
-          ]
-        },
-        "timeCreated": {
-          "enum": [
-            "TIME_CREATED_UNSPECIFIED",
-            "TIME_CREATED_SKIP",
-            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
-          ]
-        },
         "symlink": {
           "enum": [
             "SYMLINK_UNSPECIFIED",
             "SYMLINK_SKIP",
             "SYMLINK_PRESERVE"
-          ]
-        },
-        "gid": {
-          "enum": [
-            "GID_UNSPECIFIED",
-            "GID_SKIP",
-            "GID_NUMBER"
           ]
         },
         "uid": {
@@ -97,11 +62,46 @@
             "STORAGE_CLASS_ARCHIVE"
           ]
         },
+        "acl": {
+          "enum": [
+            "ACL_UNSPECIFIED",
+            "ACL_DESTINATION_BUCKET_DEFAULT",
+            "ACL_PRESERVE"
+          ]
+        },
+        "kmsKey": {
+          "enum": [
+            "KMS_KEY_UNSPECIFIED",
+            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+            "KMS_KEY_PRESERVE"
+          ]
+        },
         "temporaryHold": {
           "enum": [
             "TEMPORARY_HOLD_UNSPECIFIED",
             "TEMPORARY_HOLD_SKIP",
             "TEMPORARY_HOLD_PRESERVE"
+          ]
+        },
+        "gid": {
+          "enum": [
+            "GID_UNSPECIFIED",
+            "GID_SKIP",
+            "GID_NUMBER"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "MODE_SKIP",
+            "MODE_PRESERVE"
+          ]
+        },
+        "timeCreated": {
+          "enum": [
+            "TIME_CREATED_UNSPECIFIED",
+            "TIME_CREATED_SKIP",
+            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
           ]
         }
       }
@@ -168,8 +168,8 @@
     },
     "TransferJob": {
       "properties": {
-        "replicationSpec": {
-          "$ref": "ReplicationSpec"
+        "notificationConfig": {
+          "$ref": "NotificationConfig"
         },
         "status": {
           "enum": [
@@ -179,8 +179,8 @@
             "DELETED"
           ]
         },
-        "notificationConfig": {
-          "$ref": "NotificationConfig"
+        "replicationSpec": {
+          "$ref": "ReplicationSpec"
         },
         "transferSpec": {
           "$ref": "TransferSpec"

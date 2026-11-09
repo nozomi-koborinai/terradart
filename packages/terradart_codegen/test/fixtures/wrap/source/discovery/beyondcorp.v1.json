@@ -1,20 +1,11 @@
 {
   "name": "beyondcorp",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261026",
   "sourceUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders": {
       "properties": {
-        "userInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
-        },
-        "deviceInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
-        },
-        "groupInfo": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
-        },
         "dispatchInfo": {
           "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo"
         },
@@ -25,6 +16,15 @@
             "JSON",
             "NONE"
           ]
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo"
+        },
+        "groupInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo"
+        },
+        "deviceInfo": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo"
         }
       }
     },

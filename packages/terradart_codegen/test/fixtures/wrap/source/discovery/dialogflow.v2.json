@@ -1,18 +1,11 @@
 {
   "name": "dialogflow",
   "version": "v2",
-  "revision": "20261027",
+  "revision": "20261106",
   "sourceUrl": "https://dialogflow.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "GoogleCloudDialogflowV2Agent": {
       "properties": {
-        "matchMode": {
-          "enum": [
-            "MATCH_MODE_UNSPECIFIED",
-            "MATCH_MODE_HYBRID",
-            "MATCH_MODE_ML_ONLY"
-          ]
-        },
         "apiVersion": {
           "enum": [
             "API_VERSION_UNSPECIFIED",
@@ -27,6 +20,13 @@
             "TIER_STANDARD",
             "TIER_ENTERPRISE",
             "TIER_ENTERPRISE_PLUS"
+          ]
+        },
+        "matchMode": {
+          "enum": [
+            "MATCH_MODE_UNSPECIFIED",
+            "MATCH_MODE_HYBRID",
+            "MATCH_MODE_ML_ONLY"
           ]
         }
       }
@@ -87,6 +87,9 @@
     },
     "GoogleCloudDialogflowV2Connection": {
       "properties": {
+        "errorDetails": {
+          "$ref": "GoogleCloudDialogflowV2ConnectionErrorDetails"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -95,9 +98,6 @@
             "AUTHENTICATION_FAILED",
             "KEEPALIVE"
           ]
-        },
-        "errorDetails": {
-          "$ref": "GoogleCloudDialogflowV2ConnectionErrorDetails"
         }
       }
     },
@@ -129,23 +129,23 @@
     },
     "GoogleCloudDialogflowV2ConversationProfile": {
       "properties": {
-        "newRecognitionResultNotificationConfig": {
-          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
-        },
-        "newMessageEventNotificationConfig": {
-          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
-        },
         "humanAgentAssistantConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfig"
-        },
-        "sttConfig": {
-          "$ref": "GoogleCloudDialogflowV2SpeechToTextConfig"
         },
         "ttsConfig": {
           "$ref": "GoogleCloudDialogflowV2SynthesizeSpeechConfig"
         },
         "notificationConfig": {
           "$ref": "GoogleCloudDialogflowV2NotificationConfig"
+        },
+        "newRecognitionResultNotificationConfig": {
+          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
+        },
+        "newMessageEventNotificationConfig": {
+          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
+        },
+        "sttConfig": {
+          "$ref": "GoogleCloudDialogflowV2SpeechToTextConfig"
         }
       }
     },
@@ -186,6 +186,9 @@
         "textToSpeechSettings": {
           "$ref": "GoogleCloudDialogflowV2TextToSpeechSettings"
         },
+        "fulfillment": {
+          "$ref": "GoogleCloudDialogflowV2Fulfillment"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -193,22 +196,19 @@
             "LOADING",
             "RUNNING"
           ]
-        },
-        "fulfillment": {
-          "$ref": "GoogleCloudDialogflowV2Fulfillment"
         }
       }
     },
     "GoogleCloudDialogflowV2FewShotExample": {
       "properties": {
-        "summarizationSectionList": {
-          "$ref": "GoogleCloudDialogflowV2SummarizationSectionList"
-        },
         "conversationContext": {
           "$ref": "GoogleCloudDialogflowV2ConversationContext"
         },
         "output": {
           "$ref": "GoogleCloudDialogflowV2GeneratorSuggestion"
+        },
+        "summarizationSectionList": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationSectionList"
         }
       }
     },
@@ -233,18 +233,13 @@
     },
     "GoogleCloudDialogflowV2Generator": {
       "properties": {
-        "cesToolSpecs": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2CesToolSpec"
-          }
+        "agentCoachingContext": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingContext"
         },
         "cesAppSpecs": {
           "items": {
             "$ref": "GoogleCloudDialogflowV2CesAppSpec"
           }
-        },
-        "summarizationContext": {
-          "$ref": "GoogleCloudDialogflowV2SummarizationContext"
         },
         "toolsetTools": {
           "items": {
@@ -260,20 +255,25 @@
             "AGENT_MESSAGE"
           ]
         },
-        "agentCoachingContext": {
-          "$ref": "GoogleCloudDialogflowV2AgentCoachingContext"
+        "summarizationContext": {
+          "$ref": "GoogleCloudDialogflowV2SummarizationContext"
+        },
+        "cesToolSpecs": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2CesToolSpec"
+          }
         }
       }
     },
     "GoogleCloudDialogflowV2GeneratorSuggestion": {
       "properties": {
+        "agentCoachingSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestion"
+        },
         "toolCallInfo": {
           "items": {
             "$ref": "GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo"
           }
-        },
-        "agentCoachingSuggestion": {
-          "$ref": "GoogleCloudDialogflowV2AgentCoachingSuggestion"
         }
       }
     },
@@ -289,11 +289,11 @@
         "humanAgentSuggestionConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionConfig"
         },
-        "notificationConfig": {
-          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
-        },
         "endUserSuggestionConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionConfig"
+        },
+        "notificationConfig": {
+          "$ref": "GoogleCloudDialogflowV2NotificationConfig"
         }
       }
     },
@@ -308,11 +308,14 @@
     },
     "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionFeatureConfig": {
       "properties": {
-        "queryConfig": {
-          "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig"
+        "raiSettings": {
+          "$ref": "GoogleCloudDialogflowV2RaiSettings"
         },
         "suggestionFeature": {
           "$ref": "GoogleCloudDialogflowV2SuggestionFeature"
+        },
+        "queryConfig": {
+          "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig"
         },
         "suggestionTriggerEvent": {
           "enum": [
@@ -322,9 +325,6 @@
             "CUSTOMER_MESSAGE",
             "AGENT_MESSAGE"
           ]
-        },
-        "raiSettings": {
-          "$ref": "GoogleCloudDialogflowV2RaiSettings"
         }
       }
     },
@@ -354,23 +354,6 @@
     },
     "GoogleCloudDialogflowV2Intent": {
       "properties": {
-        "messages": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2IntentMessage"
-          }
-        },
-        "trainingPhrases": {
-          "items": {
-            "$ref": "GoogleCloudDialogflowV2IntentTrainingPhrase"
-          }
-        },
-        "webhookState": {
-          "enum": [
-            "WEBHOOK_STATE_UNSPECIFIED",
-            "WEBHOOK_STATE_ENABLED",
-            "WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING"
-          ]
-        },
         "defaultResponsePlatforms": {
           "items": {
             "enum": [
@@ -386,17 +369,28 @@
               "GOOGLE_HANGOUTS"
             ]
           }
+        },
+        "webhookState": {
+          "enum": [
+            "WEBHOOK_STATE_UNSPECIFIED",
+            "WEBHOOK_STATE_ENABLED",
+            "WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING"
+          ]
+        },
+        "messages": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2IntentMessage"
+          }
+        },
+        "trainingPhrases": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2IntentTrainingPhrase"
+          }
         }
       }
     },
     "GoogleCloudDialogflowV2IntentMessage": {
       "properties": {
-        "tableCard": {
-          "$ref": "GoogleCloudDialogflowV2IntentMessageTableCard"
-        },
-        "mediaContent": {
-          "$ref": "GoogleCloudDialogflowV2IntentMessageMediaContent"
-        },
         "browseCarouselCard": {
           "$ref": "GoogleCloudDialogflowV2IntentMessageBrowseCarouselCard"
         },
@@ -413,6 +407,12 @@
             "ACTIONS_ON_GOOGLE",
             "GOOGLE_HANGOUTS"
           ]
+        },
+        "tableCard": {
+          "$ref": "GoogleCloudDialogflowV2IntentMessageTableCard"
+        },
+        "mediaContent": {
+          "$ref": "GoogleCloudDialogflowV2IntentMessageMediaContent"
         }
       }
     },
@@ -539,15 +539,6 @@
     },
     "GoogleCloudDialogflowV2RaiSettingsRaiCategoryConfig": {
       "properties": {
-        "category": {
-          "enum": [
-            "RAI_CATEGORY_UNSPECIFIED",
-            "DANGEROUS_CONTENT",
-            "SEXUALLY_EXPLICIT",
-            "HARASSMENT",
-            "HATE_SPEECH"
-          ]
-        },
         "sensitivityLevel": {
           "enum": [
             "SENSITIVITY_LEVEL_UNSPECIFIED",
@@ -556,14 +547,20 @@
             "BLOCK_FEW",
             "BLOCK_NONE"
           ]
+        },
+        "category": {
+          "enum": [
+            "RAI_CATEGORY_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "SEXUALLY_EXPLICIT",
+            "HARASSMENT",
+            "HATE_SPEECH"
+          ]
         }
       }
     },
     "GoogleCloudDialogflowV2SipHostname": {
       "properties": {
-        "errorDetails": {
-          "$ref": "GoogleCloudDialogflowV2SipHostnameHostnameErrorDetails"
-        },
         "connectionState": {
           "enum": [
             "CONNECTION_STATE_UNSPECIFIED",
@@ -575,6 +572,9 @@
         },
         "probeDetails": {
           "$ref": "GoogleCloudDialogflowV2ProbeDetails"
+        },
+        "errorDetails": {
+          "$ref": "GoogleCloudDialogflowV2SipHostnameHostnameErrorDetails"
         }
       }
     },
@@ -597,9 +597,9 @@
     },
     "GoogleCloudDialogflowV2SipTrunk": {
       "properties": {
-        "connections": {
+        "peerHostnames": {
           "items": {
-            "$ref": "GoogleCloudDialogflowV2Connection"
+            "$ref": "GoogleCloudDialogflowV2SipHostname"
           }
         },
         "googleRootCertFile": {
@@ -608,9 +608,9 @@
             "EXTERNAL_PRIVATE_CA"
           ]
         },
-        "peerHostnames": {
+        "connections": {
           "items": {
-            "$ref": "GoogleCloudDialogflowV2SipHostname"
+            "$ref": "GoogleCloudDialogflowV2Connection"
           }
         }
       }
@@ -645,18 +645,18 @@
     },
     "GoogleCloudDialogflowV2SpeechToTextConfigGeminiAsrConfig": {
       "properties": {
-        "endOfSpeechSensitivity": {
-          "enum": [
-            "END_SENSITIVITY_UNSPECIFIED",
-            "END_SENSITIVITY_HIGH",
-            "END_SENSITIVITY_LOW"
-          ]
-        },
         "startOfSpeechSensitivity": {
           "enum": [
             "START_SENSITIVITY_UNSPECIFIED",
             "START_SENSITIVITY_HIGH",
             "START_SENSITIVITY_LOW"
+          ]
+        },
+        "endOfSpeechSensitivity": {
+          "enum": [
+            "END_SENSITIVITY_UNSPECIFIED",
+            "END_SENSITIVITY_HIGH",
+            "END_SENSITIVITY_LOW"
           ]
         }
       }
@@ -719,13 +719,13 @@
     },
     "GoogleCloudDialogflowV2SynthesizeSpeechConfig": {
       "properties": {
+        "voice": {
+          "$ref": "GoogleCloudDialogflowV2VoiceSelectionParams"
+        },
         "pronunciations": {
           "items": {
             "$ref": "GoogleCloudDialogflowV2CustomPronunciationParams"
           }
-        },
-        "voice": {
-          "$ref": "GoogleCloudDialogflowV2VoiceSelectionParams"
         }
       }
     },
@@ -751,11 +751,11 @@
     },
     "GoogleCloudDialogflowV2Tool": {
       "properties": {
+        "openApiSpec": {
+          "$ref": "GoogleCloudDialogflowV2ToolOpenApiTool"
+        },
         "functionSpec": {
           "$ref": "GoogleCloudDialogflowV2ToolFunctionTool"
-        },
-        "connectorSpec": {
-          "$ref": "GoogleCloudDialogflowV2ToolConnectorTool"
         },
         "actionConfirmationRequirement": {
           "additionalProperties": {
@@ -766,8 +766,8 @@
             ]
           }
         },
-        "openApiSpec": {
-          "$ref": "GoogleCloudDialogflowV2ToolOpenApiTool"
+        "connectorSpec": {
+          "$ref": "GoogleCloudDialogflowV2ToolConnectorTool"
         }
       }
     },

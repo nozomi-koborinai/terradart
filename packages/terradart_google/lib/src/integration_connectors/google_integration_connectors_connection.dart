@@ -991,6 +991,26 @@ final class IntegrationConnectorsConnectionPrivateServerCertificate {
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
+/// Typed helper for the `traffic_shaping_configs` block of
+/// `google_integration_connectors_connection` (derived from provider schema).
+@immutable
+final class IntegrationConnectorsConnectionTrafficShapingConfigs {
+  const IntegrationConnectorsConnectionTrafficShapingConfigs({
+    required this.duration,
+    required this.quotaLimit,
+  });
+
+  final TfArg<String> duration;
+
+  final TfArg<String> quotaLimit;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'duration': duration.toTfJson(),
+    'quota_limit': quotaLimit.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_integration_connectors_connection`.
 ///
 /// An Integration connectors Connection.
@@ -1135,6 +1155,14 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `async_operations_enabled` attribute.
+  TfRef<bool> get asyncOperationsEnabled =>
+      TfRef.attribute<bool>(this, 'async_operations_enabled');
+
+  /// Reference to `auth_override_enabled` attribute.
+  TfRef<bool> get authOverrideEnabled =>
+      TfRef.attribute<bool>(this, 'auth_override_enabled');
 
   /// Reference to `connector_version` attribute.
   TfRef<String> get connectorVersion =>

@@ -12,7 +12,10 @@ export 'src/eventarc/google_eventarc_channel.dart' show GoogleEventarcChannel;
 export 'src/eventarc/google_eventarc_enrollment.dart'
     show GoogleEventarcEnrollment;
 export 'src/eventarc/google_eventarc_google_api_source.dart'
-    show GoogleEventarcGoogleApiSource;
+    show
+        EventarcGoogleApiSourceOrganizationSubscription,
+        EventarcGoogleApiSourceProjectSubscriptions,
+        GoogleEventarcGoogleApiSource;
 export 'src/eventarc/google_eventarc_google_channel_config.dart'
     show GoogleEventarcGoogleChannelConfig;
 export 'src/eventarc/google_eventarc_message_bus.dart'

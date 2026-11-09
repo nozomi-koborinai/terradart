@@ -531,6 +531,96 @@ final class ArtifactRegistryRepositoryMavenConfig {
   };
 }
 
+/// Typed helper for the `platform_logs_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryPlatformLogsConfig {
+  const ArtifactRegistryRepositoryPlatformLogsConfig({
+    this.loggingState,
+    this.severityLevel,
+  });
+
+  final ArtifactRegistryRepositoryLoggingState? loggingState;
+
+  final ArtifactRegistryRepositorySeverityLevel? severityLevel;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'logging_state': ?loggingState?.toTfJson(),
+    'severity_level': ?severityLevel?.toTfJson(),
+  };
+}
+
+/// `logging_state` — derived from the provider schema description.
+extension type const ArtifactRegistryRepositoryLoggingState._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryRepositoryLoggingState.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryRepositoryLoggingState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryRepositoryLoggingState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = ArtifactRegistryRepositoryLoggingState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ArtifactRegistryRepositoryLoggingState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ArtifactRegistryRepositoryLoggingState> values = [
+    enabled,
+    disabled,
+  ];
+}
+
+/// `severity_level` — derived from the provider schema description.
+extension type const ArtifactRegistryRepositorySeverityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryRepositorySeverityLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryRepositorySeverityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryRepositorySeverityLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const debug = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+  static const info = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('INFO'),
+  );
+  static const notice = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('NOTICE'),
+  );
+  static const warning = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('WARNING'),
+  );
+  static const error = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const critical = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const alert = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('ALERT'),
+  );
+  static const emergency = ArtifactRegistryRepositorySeverityLevel._(
+    TfArgLiteral('EMERGENCY'),
+  );
+
+  static const List<ArtifactRegistryRepositorySeverityLevel> values = [
+    debug,
+    info,
+    notice,
+    warning,
+    error,
+    critical,
+    alert,
+    emergency,
+  ];
+}
+
 /// Typed helper for the `remote_repository_config` block of
 /// `google_artifact_registry_repository` (derived from provider schema).
 @immutable
@@ -1323,6 +1413,10 @@ final class GoogleArtifactRegistryRepository extends Resource {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disallow_unspecified_mode` attribute.
+  TfRef<bool> get disallowUnspecifiedMode =>
+      TfRef.attribute<bool>(this, 'disallow_unspecified_mode');
 
   /// Reference to `format` attribute.
   TfRef<String> get format => TfRef.attribute<String>(this, 'format');

@@ -1,7 +1,7 @@
 {
   "name": "storage",
   "version": "v1",
-  "revision": "20261030",
+  "revision": "20261103",
   "sourceUrl": "https://storage.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AnywhereCache": {

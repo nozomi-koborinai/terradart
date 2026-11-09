@@ -77,7 +77,6 @@ curatedDoc: |-
   /// ```
 
 sealedNames:
-  "build_config.source.repo_source.branch_name, build_config.source.repo_source.commit_sha, build_config.source.repo_source.tag_name": revision
   "service_config.direct_vpc_network_interface, service_config.vpc_connector": connection
 
 paramOrder:

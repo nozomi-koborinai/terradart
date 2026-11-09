@@ -1,7 +1,7 @@
 {
   "name": "networkconnectivity",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261029",
   "sourceUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AllocationOptions": {
@@ -19,13 +19,13 @@
     },
     "Destination": {
       "properties": {
-        "stateTimeline": {
-          "$ref": "StateTimeline"
-        },
         "endpoints": {
           "items": {
             "$ref": "DestinationEndpoint"
           }
+        },
+        "stateTimeline": {
+          "$ref": "StateTimeline"
         }
       }
     },
@@ -106,12 +106,10 @@
     },
     "Hub": {
       "properties": {
-        "presetTopology": {
+        "policyMode": {
           "enum": [
-            "PRESET_TOPOLOGY_UNSPECIFIED",
-            "MESH",
-            "STAR",
-            "HYBRID_INSPECTION"
+            "POLICY_MODE_UNSPECIFIED",
+            "PRESET"
           ]
         },
         "state": {
@@ -128,14 +126,16 @@
             "FAILED"
           ]
         },
+        "presetTopology": {
+          "enum": [
+            "PRESET_TOPOLOGY_UNSPECIFIED",
+            "MESH",
+            "STAR",
+            "HYBRID_INSPECTION"
+          ]
+        },
         "spokeSummary": {
           "$ref": "SpokeSummary"
-        },
-        "policyMode": {
-          "enum": [
-            "POLICY_MODE_UNSPECIFIED",
-            "PRESET"
-          ]
         }
       }
     },
@@ -148,9 +148,6 @@
             "INTERNAL_ADDRESS"
           ]
         },
-        "allocationOptions": {
-          "$ref": "AllocationOptions"
-        },
         "rangeStatus": {
           "enum": [
             "RANGE_STATUS_UNSPECIFIED",
@@ -159,15 +156,6 @@
             "CREATING",
             "DELETING"
           ]
-        },
-        "overlaps": {
-          "items": {
-            "enum": [
-              "OVERLAP_UNSPECIFIED",
-              "OVERLAP_ROUTE_RANGE",
-              "OVERLAP_EXISTING_SUBNET_RANGE"
-            ]
-          }
         },
         "peering": {
           "enum": [
@@ -184,6 +172,18 @@
             "EXTERNAL_TO_VPC",
             "FOR_MIGRATION"
           ]
+        },
+        "allocationOptions": {
+          "$ref": "AllocationOptions"
+        },
+        "overlaps": {
+          "items": {
+            "enum": [
+              "OVERLAP_UNSPECIFIED",
+              "OVERLAP_ROUTE_RANGE",
+              "OVERLAP_EXISTING_SUBNET_RANGE"
+            ]
+          }
         }
       }
     },
@@ -198,16 +198,16 @@
     },
     "PolicyBasedRoute": {
       "properties": {
-        "warnings": {
-          "items": {
-            "$ref": "Warnings"
-          }
-        },
         "nextHopOtherRoutes": {
           "enum": [
             "OTHER_ROUTES_UNSPECIFIED",
             "DEFAULT_ROUTING"
           ]
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warnings"
+          }
         },
         "filter": {
           "$ref": "Filter"
@@ -285,6 +285,17 @@
     },
     "Spoke": {
       "properties": {
+        "spokeType": {
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK",
+            "GATEWAY",
+            "PRODUCER_VPC_NETWORK"
+          ]
+        },
         "reasons": {
           "items": {
             "$ref": "StateReason"
@@ -305,17 +316,6 @@
             "INACTIVE",
             "OBSOLETE",
             "FAILED"
-          ]
-        },
-        "spokeType": {
-          "enum": [
-            "SPOKE_TYPE_UNSPECIFIED",
-            "VPN_TUNNEL",
-            "INTERCONNECT_ATTACHMENT",
-            "ROUTER_APPLIANCE",
-            "VPC_NETWORK",
-            "GATEWAY",
-            "PRODUCER_VPC_NETWORK"
           ]
         }
       }
@@ -429,6 +429,25 @@
     },
     "Transport": {
       "properties": {
+        "stackType": {
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4_ONLY",
+            "IPV4_IPV6"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "PENDING_CONFIG",
+            "PENDING_KEY",
+            "ACTIVE",
+            "DELETING",
+            "DEPROVISIONED",
+            "SUSPENDED"
+          ]
+        },
         "bandwidth": {
           "enum": [
             "BANDWIDTH_UNSPECIFIED",
@@ -445,25 +464,6 @@
             "BPS_20G",
             "BPS_50G",
             "BPS_100G"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "PENDING_CONFIG",
-            "PENDING_KEY",
-            "ACTIVE",
-            "DELETING",
-            "DEPROVISIONED",
-            "SUSPENDED"
-          ]
-        },
-        "stackType": {
-          "enum": [
-            "STACK_TYPE_UNSPECIFIED",
-            "IPV4_ONLY",
-            "IPV4_IPV6"
           ]
         }
       }

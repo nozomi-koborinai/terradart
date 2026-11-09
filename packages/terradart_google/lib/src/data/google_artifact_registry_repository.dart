@@ -62,6 +62,10 @@ final class DataGoogleArtifactRegistryRepository extends Data {
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
+  /// Reference to `disallow_unspecified_mode` attribute.
+  TfRef<bool> get disallowUnspecifiedMode =>
+      TfRef.attribute<bool>(this, 'disallow_unspecified_mode');
+
   /// Reference to `docker_config` attribute.
   TfRef<List<Map<String, Object?>>> get dockerConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'docker_config');
@@ -86,6 +90,10 @@ final class DataGoogleArtifactRegistryRepository extends Data {
 
   /// Reference to `mode` attribute.
   TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `platform_logs_config` attribute.
+  TfRef<List<Map<String, Object?>>> get platformLogsConfig =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'platform_logs_config');
 
   /// Reference to `registry_uri` attribute.
   TfRef<String> get registryUri =>

@@ -47,9 +47,6 @@ curatedDoc: |-
   /// );
   /// ```
 
-sealedNames:
-  "index_config.indexes.array_config, index_config.indexes.order": mode
-
 paramOrder:
   - collection
   - field

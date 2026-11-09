@@ -7,6 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecurityTlsInspectionPolicySensitive =
     <String>{};
 
+/// Network Security Tls Inspection Policy Certificate Issuance enum for `certificate_issuance_mode`.
+extension type const NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const directLeafProvisioning =
+      NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode._(
+        TfArgLiteral('DIRECT_LEAF_PROVISIONING'),
+      );
+  static const localIntermediateCaSigning =
+      NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode._(
+        TfArgLiteral('LOCAL_INTERMEDIATE_CA_SIGNING'),
+      );
+
+  static const List<NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode>
+  values = [directLeafProvisioning, localIntermediateCaSigning];
+}
+
 /// Network Security Tls Inspection Policy Min Tls enum for `min_tls_version`.
 extension type const NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
   TfArg<String> _
@@ -167,6 +195,10 @@ final class GoogleNetworkSecurityTlsInspectionPolicy extends Resource {
 
   /// Reference to `ca_pool` attribute.
   TfRef<String> get caPool => TfRef.attribute<String>(this, 'ca_pool');
+
+  /// Reference to `certificate_issuance_mode` attribute.
+  TfRef<String> get certificateIssuanceMode =>
+      TfRef.attribute<String>(this, 'certificate_issuance_mode');
 
   /// Reference to `custom_tls_features` attribute.
   TfRef<List<String>> get customTlsFeatures =>

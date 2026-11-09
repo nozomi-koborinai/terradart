@@ -1,7 +1,7 @@
 {
   "name": "metastore",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261103",
   "sourceUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackendMetastore": {
@@ -17,6 +17,11 @@
     },
     "Federation": {
       "properties": {
+        "backendMetastores": {
+          "additionalProperties": {
+            "$ref": "BackendMetastore"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -26,11 +31,6 @@
             "DELETING",
             "ERROR"
           ]
-        },
-        "backendMetastores": {
-          "additionalProperties": {
-            "$ref": "BackendMetastore"
-          }
         }
       }
     },
@@ -75,13 +75,6 @@
     },
     "MetadataExport": {
       "properties": {
-        "databaseDumpType": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "MYSQL",
-            "AVRO"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -89,6 +82,13 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
+          ]
+        },
+        "databaseDumpType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MYSQL",
+            "AVRO"
           ]
         }
       }
@@ -109,6 +109,13 @@
     },
     "Restore": {
       "properties": {
+        "type": {
+          "enum": [
+            "RESTORE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA_ONLY"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -116,13 +123,6 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
-          ]
-        },
-        "type": {
-          "enum": [
-            "RESTORE_TYPE_UNSPECIFIED",
-            "FULL",
-            "METADATA_ONLY"
           ]
         }
       }
@@ -150,6 +150,19 @@
     },
     "Service": {
       "properties": {
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "DEVELOPER",
+            "ENTERPRISE"
+          ]
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup"
+        },
         "releaseChannel": {
           "enum": [
             "RELEASE_CHANNEL_UNSPECIFIED",
@@ -157,8 +170,24 @@
             "STABLE"
           ]
         },
+        "scalingConfig": {
+          "$ref": "ScalingConfig"
+        },
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
+        },
         "metadataManagementActivity": {
           "$ref": "MetadataManagementActivity"
+        },
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "MYSQL",
+            "SPANNER"
+          ]
+        },
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig"
         },
         "state": {
           "enum": [
@@ -174,35 +203,6 @@
             "MIGRATING",
             "PROXY"
           ]
-        },
-        "scheduledBackup": {
-          "$ref": "ScheduledBackup"
-        },
-        "databaseType": {
-          "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "MYSQL",
-            "SPANNER"
-          ]
-        },
-        "telemetryConfig": {
-          "$ref": "TelemetryConfig"
-        },
-        "hiveMetastoreConfig": {
-          "$ref": "HiveMetastoreConfig"
-        },
-        "scalingConfig": {
-          "$ref": "ScalingConfig"
-        },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "DEVELOPER",
-            "ENTERPRISE"
-          ]
-        },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
         }
       }
     },

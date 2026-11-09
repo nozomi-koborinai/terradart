@@ -1,7 +1,7 @@
 {
   "name": "pubsub",
   "version": "v1",
-  "revision": "20261020",
+  "revision": "20261106",
   "sourceUrl": "https://pubsub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AwsKinesis": {
@@ -114,17 +114,17 @@
     },
     "Compression": {
       "properties": {
-        "compressionAlgorithm": {
-          "enum": [
-            "COMPRESSION_ALGORITHM_UNSPECIFIED",
-            "ZLIB"
-          ]
-        },
         "compressionMode": {
           "enum": [
             "COMPRESSION_MODE_UNSPECIFIED",
             "COMPRESS",
             "DECOMPRESS"
+          ]
+        },
+        "compressionAlgorithm": {
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB"
           ]
         }
       }
@@ -147,23 +147,23 @@
     },
     "IngestionDataSourceSettings": {
       "properties": {
+        "confluentCloud": {
+          "$ref": "ConfluentCloud"
+        },
         "azureEventHubs": {
           "$ref": "AzureEventHubs"
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings"
         },
-        "awsKinesis": {
-          "$ref": "AwsKinesis"
+        "awsMsk": {
+          "$ref": "AwsMsk"
         },
         "cloudStorage": {
           "$ref": "CloudStorage"
         },
-        "awsMsk": {
-          "$ref": "AwsMsk"
-        },
-        "confluentCloud": {
-          "$ref": "ConfluentCloud"
+        "awsKinesis": {
+          "$ref": "AwsKinesis"
         }
       }
     },
@@ -212,15 +212,6 @@
     },
     "Subscription": {
       "properties": {
-        "bigtableConfig": {
-          "$ref": "BigtableConfig"
-        },
-        "cloudStorageConfig": {
-          "$ref": "CloudStorageConfig"
-        },
-        "bigqueryConfig": {
-          "$ref": "BigQueryConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -232,6 +223,15 @@
           "items": {
             "$ref": "MessageTransform"
           }
+        },
+        "cloudStorageConfig": {
+          "$ref": "CloudStorageConfig"
+        },
+        "bigtableConfig": {
+          "$ref": "BigtableConfig"
+        },
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig"
         }
       }
     },
@@ -239,6 +239,11 @@
       "properties": {
         "schemaSettings": {
           "$ref": "SchemaSettings"
+        },
+        "messageTransforms": {
+          "items": {
+            "$ref": "MessageTransform"
+          }
         },
         "state": {
           "enum": [
@@ -249,11 +254,6 @@
         },
         "ingestionDataSourceSettings": {
           "$ref": "IngestionDataSourceSettings"
-        },
-        "messageTransforms": {
-          "items": {
-            "$ref": "MessageTransform"
-          }
         }
       }
     }

@@ -134,7 +134,8 @@ final class Cloudfunctions2FunctionBuildConfig {
     this.runtime,
     this.serviceAccount,
     this.workerPool,
-    required this.updatePolicy,
+    this.automaticUpdatePolicy,
+    this.onDeployUpdatePolicy,
     this.source,
   });
 
@@ -150,7 +151,9 @@ final class Cloudfunctions2FunctionBuildConfig {
 
   final TfArg<String>? workerPool;
 
-  final Cloudfunctions2FunctionUpdatePolicy updatePolicy;
+  final Cloudfunctions2FunctionAutomaticUpdatePolicy? automaticUpdatePolicy;
+
+  final Cloudfunctions2FunctionOnDeployUpdatePolicy? onDeployUpdatePolicy;
 
   final Cloudfunctions2FunctionSource? source;
 
@@ -162,75 +165,9 @@ final class Cloudfunctions2FunctionBuildConfig {
     'runtime': ?runtime?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('name').toTfJson(),
     'worker_pool': ?workerPool?.toTfJson(),
-    ...updatePolicy.encode(),
+    'automatic_update_policy': ?automaticUpdatePolicy?.encode(),
+    'on_deploy_update_policy': ?onDeployUpdatePolicy?.encode(),
     'source': ?source?.encode(),
-  };
-}
-
-/// Exactly one of `automatic_update_policy`, `on_deploy_update_policy` on the `build_config` block of `google_cloudfunctions2_function`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.automaticUpdatePolicy(...)`.
-sealed class Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionUpdatePolicy();
-
-  /// Sets `automatic_update_policy`.
-  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy([
-    Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy,
-  ]) = Cloudfunctions2FunctionAutomaticUpdatePolicyChoice;
-
-  /// Sets `on_deploy_update_policy`.
-  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy([
-    Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy,
-  ]) = Cloudfunctions2FunctionOnDeployUpdatePolicyChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy] choice: sets `automatic_update_policy`.
-final class Cloudfunctions2FunctionAutomaticUpdatePolicyChoice
-    extends Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionAutomaticUpdatePolicyChoice([
-    this.automaticUpdatePolicy =
-        const Cloudfunctions2FunctionAutomaticUpdatePolicy(),
-  ]);
-
-  final Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy;
-
-  @internal
-  @override
-  String get blockKey => 'automatic_update_policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'automatic_update_policy': automaticUpdatePolicy.encode(),
-  };
-}
-
-/// The [Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy] choice: sets `on_deploy_update_policy`.
-final class Cloudfunctions2FunctionOnDeployUpdatePolicyChoice
-    extends Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionOnDeployUpdatePolicyChoice([
-    this.onDeployUpdatePolicy =
-        const Cloudfunctions2FunctionOnDeployUpdatePolicy(),
-  ]);
-
-  final Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy;
-
-  @internal
-  @override
-  String get blockKey => 'on_deploy_update_policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'on_deploy_update_policy': onDeployUpdatePolicy.encode(),
   };
 }
 
@@ -254,61 +191,21 @@ final class Cloudfunctions2FunctionOnDeployUpdatePolicy {
   Map<String, Object?> encode() => {};
 }
 
-/// Exactly one of `storage_source`, `repo_source` on the `build_config.source` block of `google_cloudfunctions2_function`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.storageSource(...)`.
-sealed class Cloudfunctions2FunctionSource {
-  const Cloudfunctions2FunctionSource();
+/// Typed helper for the `build_config.source` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
+@immutable
+final class Cloudfunctions2FunctionSource {
+  const Cloudfunctions2FunctionSource({this.repoSource, this.storageSource});
 
-  /// Sets `storage_source`.
-  const factory Cloudfunctions2FunctionSource.storageSource(
-    Cloudfunctions2FunctionStorageSource storageSource,
-  ) = Cloudfunctions2FunctionStorageSourceChoice;
+  final Cloudfunctions2FunctionRepoSource? repoSource;
 
-  /// Sets `repo_source`.
-  const factory Cloudfunctions2FunctionSource.repoSource(
-    Cloudfunctions2FunctionRepoSource repoSource,
-  ) = Cloudfunctions2FunctionRepoSourceChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final Cloudfunctions2FunctionStorageSource? storageSource;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [Cloudfunctions2FunctionSource.storageSource] choice: sets `storage_source`.
-final class Cloudfunctions2FunctionStorageSourceChoice
-    extends Cloudfunctions2FunctionSource {
-  const Cloudfunctions2FunctionStorageSourceChoice(this.storageSource);
-
-  final Cloudfunctions2FunctionStorageSource storageSource;
-
-  @internal
-  @override
-  String get blockKey => 'storage_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'storage_source': storageSource.encode()};
-}
-
-/// The [Cloudfunctions2FunctionSource.repoSource] choice: sets `repo_source`.
-final class Cloudfunctions2FunctionRepoSourceChoice
-    extends Cloudfunctions2FunctionSource {
-  const Cloudfunctions2FunctionRepoSourceChoice(this.repoSource);
-
-  final Cloudfunctions2FunctionRepoSource repoSource;
-
-  @internal
-  @override
-  String get blockKey => 'repo_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'repo_source': repoSource.encode()};
+  Map<String, Object?> encode() => {
+    'repo_source': ?repoSource?.encode(),
+    'storage_source': ?storageSource?.encode(),
+  };
 }
 
 /// Typed helper for the `build_config.source.repo_source` block of
@@ -316,14 +213,18 @@ final class Cloudfunctions2FunctionRepoSourceChoice
 @immutable
 final class Cloudfunctions2FunctionRepoSource {
   const Cloudfunctions2FunctionRepoSource({
-    required this.revision,
+    this.branchName,
+    this.commitSha,
     this.dir,
     this.invertRegex,
     this.projectId,
     this.repoName,
+    this.tagName,
   });
 
-  final Cloudfunctions2FunctionRevision revision;
+  final TfArg<String>? branchName;
+
+  final TfArg<String>? commitSha;
 
   final TfArg<String>? dir;
 
@@ -333,91 +234,18 @@ final class Cloudfunctions2FunctionRepoSource {
 
   final TfArg<String>? repoName;
 
+  final TfArg<String>? tagName;
+
   @internal
   Map<String, Object?> encode() => {
-    ...revision.encode(),
+    'branch_name': ?branchName?.toTfJson(),
+    'commit_sha': ?commitSha?.toTfJson(),
     'dir': ?dir?.toTfJson(),
     'invert_regex': ?invertRegex?.toTfJson(),
     'project_id': ?projectId?.toTfJson(),
     'repo_name': ?repoName?.toTfJson(),
+    'tag_name': ?tagName?.toTfJson(),
   };
-}
-
-/// Exactly one of `branch_name`, `tag_name`, `commit_sha` on the `build_config.source.repo_source` block of `google_cloudfunctions2_function`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.branchName(...)`.
-sealed class Cloudfunctions2FunctionRevision {
-  const Cloudfunctions2FunctionRevision();
-
-  /// Sets `branch_name`.
-  const factory Cloudfunctions2FunctionRevision.branchName(
-    TfArg<String> branchName,
-  ) = Cloudfunctions2FunctionRevisionBranchName;
-
-  /// Sets `tag_name`.
-  const factory Cloudfunctions2FunctionRevision.tagName(TfArg<String> tagName) =
-      Cloudfunctions2FunctionRevisionTagName;
-
-  /// Sets `commit_sha`.
-  const factory Cloudfunctions2FunctionRevision.commitSha(
-    TfArg<String> commitSha,
-  ) = Cloudfunctions2FunctionRevisionCommitSha;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [Cloudfunctions2FunctionRevision.branchName] choice: sets `branch_name`.
-final class Cloudfunctions2FunctionRevisionBranchName
-    extends Cloudfunctions2FunctionRevision {
-  const Cloudfunctions2FunctionRevisionBranchName(this.branchName);
-
-  final TfArg<String> branchName;
-
-  @internal
-  @override
-  String get blockKey => 'branch_name';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
-}
-
-/// The [Cloudfunctions2FunctionRevision.tagName] choice: sets `tag_name`.
-final class Cloudfunctions2FunctionRevisionTagName
-    extends Cloudfunctions2FunctionRevision {
-  const Cloudfunctions2FunctionRevisionTagName(this.tagName);
-
-  final TfArg<String> tagName;
-
-  @internal
-  @override
-  String get blockKey => 'tag_name';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
-}
-
-/// The [Cloudfunctions2FunctionRevision.commitSha] choice: sets `commit_sha`.
-final class Cloudfunctions2FunctionRevisionCommitSha
-    extends Cloudfunctions2FunctionRevision {
-  const Cloudfunctions2FunctionRevisionCommitSha(this.commitSha);
-
-  final TfArg<String> commitSha;
-
-  @internal
-  @override
-  String get blockKey => 'commit_sha';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
 }
 
 /// Typed helper for the `build_config.source.storage_source` block of

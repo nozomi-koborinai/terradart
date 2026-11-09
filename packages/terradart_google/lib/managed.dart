@@ -11,6 +11,8 @@ export 'src/managed/google_managed_kafka_acl.dart'
         ManagedKafkaAclEntries,
         ManagedKafkaAclOperation,
         ManagedKafkaAclPermissionType;
+export 'src/managed/google_managed_kafka_acl_binding.dart'
+    show GoogleManagedKafkaAclBinding;
 export 'src/managed/google_managed_kafka_cluster.dart'
     show
         GoogleManagedKafkaCluster,
