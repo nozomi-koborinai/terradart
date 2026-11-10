@@ -61,6 +61,10 @@ final class DataAwsBatchComputeEnvironment extends Data {
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
+  /// Reference to `unmanaged_vcpus` attribute.
+  TfRef<num> get unmanagedVcpus =>
+      TfRef.attribute<num>(this, 'unmanaged_vcpus');
+
   /// Reference to `update_policy` attribute.
   TfRef<List<Map<String, Object?>>> get updatePolicy =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'update_policy');

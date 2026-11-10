@@ -2001,6 +2001,20 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
+    add(
+      AwsBedrockdataautomationLibrary(
+        'bedrockdataautomation_library',
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsBedrockdataautomationProject(
+        'bedrockdataautomation_project',
+        name: .literal(leftover),
+      ),
+    );
+
     add(AwsBillingView('billing_view', name: .literal(leftover)));
 
     add(
@@ -5133,6 +5147,8 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
+    add(AwsEc2CapacityManager('ec2_capacity_manager', enabled: .literal(true)));
+
     add(
       AwsEc2CapacityReservation(
         'ec2_capacity_reservation',
@@ -8011,6 +8027,31 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsLambdawebFunction(
+        'lambdaweb_function',
+        functionName: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsLambdawebFunctionEndpoint(
+        'lambdaweb_function_endpoint',
+        authType: .applicationmanaged,
+        endpointName: .literal(leftover),
+        endpointType: .homeregion,
+        functionName: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsLambdawebResourcePolicy(
+        'lambdaweb_resource_policy',
+        policy: .literal(policy),
+        resourceArn: .literal(arn),
+      ),
+    );
+
+    add(
       AwsLaunchConfiguration(
         'launch_configuration',
         imageId: .literal(leftover),
@@ -10344,6 +10385,13 @@ final class AwsLeftoverStack extends Stack {
         kinesisConfiguration: QldbStreamKinesisConfiguration(
           streamArn: .literal(arn),
         ),
+      ),
+    );
+
+    add(
+      AwsQuicksightAccountCustomPermission(
+        'quicksight_account_custom_permission',
+        customPermissionsName: .literal(leftover),
       ),
     );
 
@@ -17148,6 +17196,21 @@ final class AwsLeftoverStack extends Stack {
         'd_lambdamicrovms_image_version',
         imageIdentifier: .literal(leftover),
         imageVersion: .literal(leftover),
+      ),
+    );
+
+    add(
+      DataAwsLambdawebFunction(
+        'd_lambdaweb_function',
+        functionName: .literal(leftover),
+      ),
+    );
+
+    add(
+      DataAwsLambdawebFunctionEndpoint(
+        'd_lambdaweb_function_endpoint',
+        endpointName: .literal(leftover),
+        functionName: .literal(leftover),
       ),
     );
 

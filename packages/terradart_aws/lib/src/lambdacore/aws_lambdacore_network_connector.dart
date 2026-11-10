@@ -150,6 +150,13 @@ final class AwsLambdacoreNetworkConnector extends Resource {
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
+  /// Reference to `latest_version` attribute.
+  TfRef<num> get latestVersion => TfRef.attribute<num>(this, 'latest_version');
+
+  /// Reference to `latest_version_arn` attribute.
+  TfRef<String> get latestVersionArn =>
+      TfRef.attribute<String>(this, 'latest_version_arn');
+
   /// Reference to `operator_role` attribute.
   TfRef<String> get operatorRole =>
       TfRef.attribute<String>(this, 'operator_role');

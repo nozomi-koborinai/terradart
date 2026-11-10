@@ -332,6 +332,7 @@ final class AwsCloudtrail extends Resource {
     TfArg<bool>? isOrganizationTrail,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
+    TfArg<bool>? recursiveLogging,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3BucketName,
     TfArg<String>? s3KeyPrefix,
@@ -355,6 +356,7 @@ final class AwsCloudtrail extends Resource {
            'is_organization_trail': ?isOrganizationTrail,
            'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
+           'recursive_logging': ?recursiveLogging,
            'region': ?region,
            's3_bucket_name': s3BucketName.encodeAs('id'),
            's3_key_prefix': ?s3KeyPrefix,
@@ -421,6 +423,10 @@ final class AwsCloudtrail extends Resource {
 
   /// Reference to `kms_key_id` attribute.
   TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `recursive_logging` attribute.
+  TfRef<bool> get recursiveLogging =>
+      TfRef.attribute<bool>(this, 'recursive_logging');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');

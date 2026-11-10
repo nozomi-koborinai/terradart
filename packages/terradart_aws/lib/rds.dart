@@ -94,3 +94,9 @@ export 'src/rds/aws_rds_instance_state.dart'
 export 'src/rds/aws_rds_integration.dart' show AwsRdsIntegration;
 export 'src/rds/aws_rds_reserved_instance.dart' show AwsRdsReservedInstance;
 export 'src/rds/aws_rds_shard_group.dart' show AwsRdsShardGroup;
+export 'src/rds/aws_rds_tenant_database.dart'
+    show
+        AwsRdsTenantDatabase,
+        RdsTenantDatabaseMasterUserPassword,
+        RdsTenantDatabaseMasterUserPasswordChoice,
+        RdsTenantDatabaseMasterUserPasswordWo;
