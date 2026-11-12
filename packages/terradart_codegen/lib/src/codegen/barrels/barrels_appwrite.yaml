@@ -103,6 +103,9 @@ umbrellaExtraExports:
   - "export 'provider.dart';"
 
 barrels:
+  analytics:
+    doc: |-
+      /// `analytics` factories, added by the weekly schema bump.
   documentsdb:
     doc: |-
       /// `documentsdb` factories, added by the weekly schema bump.

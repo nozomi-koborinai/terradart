@@ -8,22 +8,10 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 /// Sensitive field paths for `appwrite_proxy_rule`.
 const Set<String> _appwriteProxyRuleSensitive = <String>{};
 
-/// Proxy Rule enum for `type`.
-extension type const ProxyRuleType._(TfArg<String> _) implements TfArg<String> {
-  ProxyRuleType.variable(String name) : this._(TfArg.variable(name));
-  ProxyRuleType.expression(String template)
-    : this._(TfArg.expression(template));
-  const ProxyRuleType.arg(TfArg<String> arg) : this._(arg);
-
-  static const site = ProxyRuleType._(TfArgLiteral('site'));
-  static const function = ProxyRuleType._(TfArgLiteral('function'));
-
-  static const List<ProxyRuleType> values = [site, function];
-}
-
 /// Factory wrapper for `appwrite_proxy_rule`.
 ///
-/// Manages a custom domain proxy rule for an Appwrite site or function.
+/// Manages a custom domain proxy rule: serving an Appwrite site, function or
+/// the Appwrite API on a domain, or redirecting a domain to a URL.
 final class AppwriteProxyRule extends Resource {
   static const String tfType = 'appwrite_proxy_rule';
 
@@ -32,8 +20,11 @@ final class AppwriteProxyRule extends Resource {
     TfArg<String>? branch,
     required TfArg<String> domain,
     RefTo<AppwriteProject>? projectId,
-    required TfArg<String> resourceId,
-    required ProxyRuleType type,
+    TfArg<String>? redirectResourceType,
+    TfArg<num>? redirectStatusCode,
+    TfArg<String>? redirectUrl,
+    TfArg<String>? resourceId,
+    required TfArg<String> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,7 +35,10 @@ final class AppwriteProxyRule extends Resource {
            'branch': ?branch,
            'domain': domain,
            'project_id': ?projectId?.encodeAs('id'),
-           'resource_id': resourceId,
+           'redirect_resource_type': ?redirectResourceType,
+           'redirect_status_code': ?redirectStatusCode,
+           'redirect_url': ?redirectUrl,
+           'resource_id': ?resourceId,
            'type': type,
          },
        );
@@ -82,6 +76,18 @@ final class AppwriteProxyRule extends Resource {
 
   /// Reference to `project_id` attribute.
   TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `redirect_resource_type` attribute.
+  TfRef<String> get redirectResourceType =>
+      TfRef.attribute<String>(this, 'redirect_resource_type');
+
+  /// Reference to `redirect_status_code` attribute.
+  TfRef<num> get redirectStatusCode =>
+      TfRef.attribute<num>(this, 'redirect_status_code');
+
+  /// Reference to `redirect_url` attribute.
+  TfRef<String> get redirectUrl =>
+      TfRef.attribute<String>(this, 'redirect_url');
 
   /// Reference to `resource_id` attribute.
   TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');

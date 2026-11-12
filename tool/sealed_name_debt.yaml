@@ -7,4 +7,5 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-{}
+appwrite_auth_team_membership:
+  "email, phone, user_id": "awaiting-name: appwrite/appwrite 2.7.0"
