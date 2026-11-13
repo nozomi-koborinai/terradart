@@ -201,6 +201,9 @@ barrels:
   bedrockagentcore:
     doc: |-
       /// AWS Bedrock AgentCore.
+  bedrockdataautomation:
+    doc: |-
+      /// `bedrockdataautomation` factories, added by the weekly schema bump.
   billing:
     doc: |-
       /// AWS Billing views.
@@ -514,6 +517,9 @@ barrels:
   lambdamicrovms:
     doc: |-
       /// `lambdamicrovms` images and microVMs.
+  lambdaweb:
+    doc: |-
+      /// `lambdaweb` factories, added by the weekly schema bump.
   lex:
     doc: |-
       /// AWS Lex (V1).
@@ -577,6 +583,9 @@ barrels:
   networkmonitor:
     doc: |-
       /// AWS CloudWatch Network Monitor.
+  networksecuritymanager:
+    doc: |-
+      /// `networksecuritymanager` factories, added by the weekly schema bump.
   notifications:
     doc: |-
       /// AWS User Notifications.

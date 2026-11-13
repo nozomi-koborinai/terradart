@@ -9,6 +9,8 @@ export 'src/data/aws_quicksight_data_set.dart' show DataAwsQuicksightDataSet;
 export 'src/data/aws_quicksight_group.dart' show DataAwsQuicksightGroup;
 export 'src/data/aws_quicksight_theme.dart' show DataAwsQuicksightTheme;
 export 'src/data/aws_quicksight_user.dart' show DataAwsQuicksightUser;
+export 'src/quicksight/aws_quicksight_account_custom_permission.dart'
+    show AwsQuicksightAccountCustomPermission;
 export 'src/quicksight/aws_quicksight_account_settings.dart'
     show AwsQuicksightAccountSettings;
 export 'src/quicksight/aws_quicksight_account_subscription.dart'
