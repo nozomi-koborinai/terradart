@@ -278,6 +278,7 @@ export 'src/ec2/aws_ec2_capacity_block_reservation.dart'
     show
         AwsEc2CapacityBlockReservation,
         Ec2CapacityBlockReservationInstancePlatform;
+export 'src/ec2/aws_ec2_capacity_manager.dart' show AwsEc2CapacityManager;
 export 'src/ec2/aws_ec2_capacity_reservation.dart'
     show
         AwsEc2CapacityReservation,
