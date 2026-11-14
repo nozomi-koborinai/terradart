@@ -33,12 +33,12 @@
     },
     "GetHealthOperationMetadataHealthInfo": {
       "properties": {
-        "unhealthyReason": {
+        "availabilitySloStatus": {
           "enum": [
-            "UNHEALTHY_REASON_UNSPECIFIED",
-            "UNHEALTHY_REASON_REPAIRING",
-            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
-            "UNHEALTHY_REASON_UNSCHEDULABLE"
+            "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
+            "AVAILABILITY_SLO_STATUS_IN_SLO",
+            "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+            "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
           ]
         },
         "repairCategory": {
@@ -57,12 +57,12 @@
             "HEALTH_STATUS_UNHEALTHY"
           ]
         },
-        "availabilitySloStatus": {
+        "unhealthyReason": {
           "enum": [
-            "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
-            "AVAILABILITY_SLO_STATUS_IN_SLO",
-            "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
-            "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
           ]
         }
       }
@@ -78,8 +78,30 @@
     },
     "Operation": {
       "properties": {
+        "setCommonInstanceMetadataOperationMetadata": {
+          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        },
         "getHealthOperationMetadata": {
           "$ref": "GetHealthOperationMetadata"
+        },
+        "error": {
+          "properties": {
+            "errors": {
+              "items": {
+                "properties": {
+                  "errorDetails": {
+                    "items": {
+                      "properties": {
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         "warnings": {
           "items": {
@@ -132,37 +154,15 @@
             }
           }
         },
-        "error": {
-          "properties": {
-            "errors": {
-              "items": {
-                "properties": {
-                  "errorDetails": {
-                    "items": {
-                      "properties": {
-                        "quotaInfo": {
-                          "$ref": "QuotaExceededInfo"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "setCommonInstanceMetadataOperationMetadata": {
-          "$ref": "SetCommonInstanceMetadataOperationMetadata"
-        },
-        "instancesBulkInsertOperationMetadata": {
-          "$ref": "InstancesBulkInsertOperationMetadata"
-        },
         "status": {
           "enum": [
             "PENDING",
             "RUNNING",
             "DONE"
           ]
+        },
+        "instancesBulkInsertOperationMetadata": {
+          "$ref": "InstancesBulkInsertOperationMetadata"
         }
       }
     },

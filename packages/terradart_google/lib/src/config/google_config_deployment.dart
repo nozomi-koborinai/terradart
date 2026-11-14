@@ -62,74 +62,24 @@ extension type const ConfigDeploymentQuotaValidation._(TfArg<String> _)
 @immutable
 final class ConfigDeploymentTerraformBlueprint {
   const ConfigDeploymentTerraformBlueprint({
-    required this.source,
+    this.gcsSource,
+    this.gitSource,
     this.inputValues,
   });
 
-  final ConfigDeploymentSource source;
+  final TfArg<String>? gcsSource;
+
+  final ConfigDeploymentGitSource? gitSource;
 
   final List<ConfigDeploymentInputValues>? inputValues;
 
   @internal
   Map<String, Object?> encode() => {
-    ...source.encode(),
+    'gcs_source': ?gcsSource?.toTfJson(),
+    'git_source': ?gitSource?.encode(),
     if (inputValues != null)
       'input_values': [for (final e in inputValues!) e.encode()],
   };
-}
-
-/// Exactly one of `gcs_source`, `git_source` on the `terraform_blueprint` block of `google_config_deployment`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.gcsSource(...)`.
-sealed class ConfigDeploymentSource {
-  const ConfigDeploymentSource();
-
-  /// Sets `gcs_source`.
-  const factory ConfigDeploymentSource.gcsSource(TfArg<String> gcsSource) =
-      ConfigDeploymentGcsSource;
-
-  /// Sets `git_source`.
-  const factory ConfigDeploymentSource.gitSource(
-    ConfigDeploymentGitSource gitSource,
-  ) = ConfigDeploymentGitSourceChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [ConfigDeploymentSource.gcsSource] choice: sets `gcs_source`.
-final class ConfigDeploymentGcsSource extends ConfigDeploymentSource {
-  const ConfigDeploymentGcsSource(this.gcsSource);
-
-  final TfArg<String> gcsSource;
-
-  @internal
-  @override
-  String get blockKey => 'gcs_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'gcs_source': gcsSource.toTfJson()};
-}
-
-/// The [ConfigDeploymentSource.gitSource] choice: sets `git_source`.
-final class ConfigDeploymentGitSourceChoice extends ConfigDeploymentSource {
-  const ConfigDeploymentGitSourceChoice(this.gitSource);
-
-  final ConfigDeploymentGitSource gitSource;
-
-  @internal
-  @override
-  String get blockKey => 'git_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'git_source': gitSource.encode()};
 }
 
 /// Typed helper for the `terraform_blueprint.git_source` block of
@@ -197,14 +147,12 @@ final class ConfigDeploymentInputValues {
 ///     'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com',
 ///   ),
 ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-///     source: .gitSource(
-///       .new(
-///         repo: .literal(
-///           'https://github.com/terraform-google-modules/terraform-google-network',
-///         ),
-///         directory: .literal('modules/vpc'),
-///         ref: .literal('main'),
+///     gitSource: .new(
+///       repo: .literal(
+///         'https://github.com/terraform-google-modules/terraform-google-network',
 ///       ),
+///       directory: .literal('modules/vpc'),
+///       ref: .literal('main'),
 ///     ),
 ///     inputValues: [
 ///       .new(

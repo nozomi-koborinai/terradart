@@ -1,7 +1,7 @@
 {
   "name": "dlp",
   "version": "v2",
-  "revision": "20261028",
+  "revision": "20261106",
   "sourceUrl": "https://dlp.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -16,6 +16,11 @@
     },
     "GooglePrivacyDlpV2AdjustByImageFindings": {
       "properties": {
+        "infoTypes": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InfoType"
+          }
+        },
         "minLikelihood": {
           "enum": [
             "LIKELIHOOD_UNSPECIFIED",
@@ -25,16 +30,16 @@
             "LIKELY",
             "VERY_LIKELY"
           ]
-        },
-        "infoTypes": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2InfoType"
-          }
         }
       }
     },
     "GooglePrivacyDlpV2AdjustByMatchingInfoTypes": {
       "properties": {
+        "infoTypes": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InfoType"
+          }
+        },
         "matchingType": {
           "enum": [
             "MATCHING_TYPE_UNSPECIFIED",
@@ -53,24 +58,19 @@
             "LIKELY",
             "VERY_LIKELY"
           ]
-        },
-        "infoTypes": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2InfoType"
-          }
         }
       }
     },
     "GooglePrivacyDlpV2AdjustmentRule": {
       "properties": {
+        "likelihoodAdjustment": {
+          "$ref": "GooglePrivacyDlpV2LikelihoodAdjustment"
+        },
         "adjustByMatchingInfoTypes": {
           "$ref": "GooglePrivacyDlpV2AdjustByMatchingInfoTypes"
         },
         "adjustByImageFindings": {
           "$ref": "GooglePrivacyDlpV2AdjustByImageFindings"
-        },
-        "likelihoodAdjustment": {
-          "$ref": "GooglePrivacyDlpV2LikelihoodAdjustment"
         }
       }
     },
@@ -136,10 +136,10 @@
     },
     "GooglePrivacyDlpV2Bucket": {
       "properties": {
-        "replacementValue": {
+        "max": {
           "$ref": "GooglePrivacyDlpV2Value"
         },
-        "max": {
+        "replacementValue": {
           "$ref": "GooglePrivacyDlpV2Value"
         },
         "min": {
@@ -181,33 +181,26 @@
     },
     "GooglePrivacyDlpV2CloudSqlDiscoveryTarget": {
       "properties": {
-        "generationCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence"
-        },
         "conditions": {
           "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlConditions"
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence"
         }
       }
     },
     "GooglePrivacyDlpV2CloudStorageDiscoveryTarget": {
       "properties": {
-        "generationCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryCloudStorageGenerationCadence"
-        },
         "conditions": {
           "$ref": "GooglePrivacyDlpV2DiscoveryFileStoreConditions"
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryCloudStorageGenerationCadence"
         }
       }
     },
     "GooglePrivacyDlpV2CloudStorageOptions": {
       "properties": {
-        "sampleMethod": {
-          "enum": [
-            "SAMPLE_METHOD_UNSPECIFIED",
-            "TOP",
-            "RANDOM_START"
-          ]
-        },
         "fileTypes": {
           "items": {
             "enum": [
@@ -224,11 +217,21 @@
               "EXCEL"
             ]
           }
+        },
+        "sampleMethod": {
+          "enum": [
+            "SAMPLE_METHOD_UNSPECIFIED",
+            "TOP",
+            "RANDOM_START"
+          ]
         }
       }
     },
     "GooglePrivacyDlpV2Condition": {
       "properties": {
+        "value": {
+          "$ref": "GooglePrivacyDlpV2Value"
+        },
         "operator": {
           "enum": [
             "RELATIONAL_OPERATOR_UNSPECIFIED",
@@ -240,9 +243,6 @@
             "LESS_THAN_OR_EQUALS",
             "EXISTS"
           ]
-        },
-        "value": {
-          "$ref": "GooglePrivacyDlpV2Value"
         }
       }
     },
@@ -257,7 +257,20 @@
     },
     "GooglePrivacyDlpV2ContentPolicy": {
       "properties": {
-        "defaultAction": {
+        "errors": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          }
+        },
+        "rules": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2PolicyRule"
+          }
+        },
+        "inspectConfig": {
+          "$ref": "GooglePrivacyDlpV2InspectConfig"
+        },
+        "inputTooLarge": {
           "$ref": "GooglePrivacyDlpV2PolicyAction"
         },
         "failedToScanSupportedFileType": {
@@ -266,21 +279,8 @@
         "unsupportedFileType": {
           "$ref": "GooglePrivacyDlpV2PolicyAction"
         },
-        "inspectConfig": {
-          "$ref": "GooglePrivacyDlpV2InspectConfig"
-        },
-        "errors": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2Error"
-          }
-        },
-        "inputTooLarge": {
+        "defaultAction": {
           "$ref": "GooglePrivacyDlpV2PolicyAction"
-        },
-        "rules": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2PolicyRule"
-          }
         }
       }
     },
@@ -312,6 +312,11 @@
         "infoType": {
           "$ref": "GooglePrivacyDlpV2InfoType"
         },
+        "detectionRules": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2DetectionRule"
+          }
+        },
         "likelihood": {
           "enum": [
             "LIKELIHOOD_UNSPECIFIED",
@@ -330,21 +335,16 @@
         },
         "sensitivityScore": {
           "$ref": "GooglePrivacyDlpV2SensitivityScore"
-        },
-        "detectionRules": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2DetectionRule"
-          }
         }
       }
     },
     "GooglePrivacyDlpV2DataProfileAction": {
       "properties": {
-        "pubSubNotification": {
-          "$ref": "GooglePrivacyDlpV2PubSubNotification"
-        },
         "tagResources": {
           "$ref": "GooglePrivacyDlpV2TagResources"
+        },
+        "pubSubNotification": {
+          "$ref": "GooglePrivacyDlpV2PubSubNotification"
         }
       }
     },
@@ -378,14 +378,14 @@
     },
     "GooglePrivacyDlpV2DeidentifyConfig": {
       "properties": {
+        "infoTypeTransformations": {
+          "$ref": "GooglePrivacyDlpV2InfoTypeTransformations"
+        },
         "recordTransformations": {
           "$ref": "GooglePrivacyDlpV2RecordTransformations"
         },
         "imageTransformations": {
           "$ref": "GooglePrivacyDlpV2ImageTransformations"
-        },
-        "infoTypeTransformations": {
-          "$ref": "GooglePrivacyDlpV2InfoTypeTransformations"
         }
       }
     },
@@ -405,29 +405,20 @@
     },
     "GooglePrivacyDlpV2DiscoveryBigQueryConditions": {
       "properties": {
+        "types": {
+          "$ref": "GooglePrivacyDlpV2BigQueryTableTypes"
+        },
         "typeCollection": {
           "enum": [
             "BIG_QUERY_COLLECTION_UNSPECIFIED",
             "BIG_QUERY_COLLECTION_ALL_TYPES",
             "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES"
           ]
-        },
-        "types": {
-          "$ref": "GooglePrivacyDlpV2BigQueryTableTypes"
         }
       }
     },
     "GooglePrivacyDlpV2DiscoveryCloudSqlConditions": {
       "properties": {
-        "types": {
-          "items": {
-            "enum": [
-              "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
-              "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES",
-              "DATABASE_RESOURCE_TYPE_TABLE"
-            ]
-          }
-        },
         "databaseEngines": {
           "items": {
             "enum": [
@@ -435,6 +426,15 @@
               "ALL_SUPPORTED_DATABASE_ENGINES",
               "MYSQL",
               "POSTGRES"
+            ]
+          }
+        },
+        "types": {
+          "items": {
+            "enum": [
+              "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
+              "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES",
+              "DATABASE_RESOURCE_TYPE_TABLE"
             ]
           }
         }
@@ -445,9 +445,6 @@
         "schemaModifiedCadence": {
           "$ref": "GooglePrivacyDlpV2SchemaModifiedCadence"
         },
-        "inspectTemplateModifiedCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
-        },
         "refreshFrequency": {
           "enum": [
             "UPDATE_FREQUENCY_UNSPECIFIED",
@@ -455,21 +452,14 @@
             "UPDATE_FREQUENCY_DAILY",
             "UPDATE_FREQUENCY_MONTHLY"
           ]
+        },
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
         }
       }
     },
     "GooglePrivacyDlpV2DiscoveryCloudStorageConditions": {
       "properties": {
-        "includedBucketAttributes": {
-          "items": {
-            "enum": [
-              "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED",
-              "ALL_SUPPORTED_BUCKETS",
-              "AUTOCLASS_DISABLED",
-              "AUTOCLASS_ENABLED"
-            ]
-          }
-        },
         "includedObjectAttributes": {
           "items": {
             "enum": [
@@ -484,11 +474,24 @@
               "DURABLE_REDUCED_AVAILABILITY"
             ]
           }
+        },
+        "includedBucketAttributes": {
+          "items": {
+            "enum": [
+              "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED",
+              "ALL_SUPPORTED_BUCKETS",
+              "AUTOCLASS_DISABLED",
+              "AUTOCLASS_ENABLED"
+            ]
+          }
         }
       }
     },
     "GooglePrivacyDlpV2DiscoveryCloudStorageGenerationCadence": {
       "properties": {
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
+        },
         "refreshFrequency": {
           "enum": [
             "UPDATE_FREQUENCY_UNSPECIFIED",
@@ -496,9 +499,6 @@
             "UPDATE_FREQUENCY_DAILY",
             "UPDATE_FREQUENCY_MONTHLY"
           ]
-        },
-        "inspectTemplateModifiedCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
         }
       }
     },
@@ -509,17 +509,17 @@
             "$ref": "GooglePrivacyDlpV2DiscoveryTarget"
           }
         },
-        "errors": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2Error"
-          }
-        },
         "status": {
           "enum": [
             "STATUS_UNSPECIFIED",
             "RUNNING",
             "PAUSED"
           ]
+        },
+        "errors": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          }
         },
         "actions": {
           "items": {
@@ -540,6 +540,9 @@
         "tableModifiedCadence": {
           "$ref": "GooglePrivacyDlpV2DiscoveryTableModifiedCadence"
         },
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
+        },
         "schemaModifiedCadence": {
           "$ref": "GooglePrivacyDlpV2DiscoverySchemaModifiedCadence"
         },
@@ -550,9 +553,6 @@
             "UPDATE_FREQUENCY_DAILY",
             "UPDATE_FREQUENCY_MONTHLY"
           ]
-        },
-        "inspectTemplateModifiedCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
         }
       }
     },
@@ -592,14 +592,6 @@
     },
     "GooglePrivacyDlpV2DiscoverySchemaModifiedCadence": {
       "properties": {
-        "frequency": {
-          "enum": [
-            "UPDATE_FREQUENCY_UNSPECIFIED",
-            "UPDATE_FREQUENCY_NEVER",
-            "UPDATE_FREQUENCY_DAILY",
-            "UPDATE_FREQUENCY_MONTHLY"
-          ]
-        },
         "types": {
           "items": {
             "enum": [
@@ -608,6 +600,14 @@
               "SCHEMA_REMOVED_COLUMNS"
             ]
           }
+        },
+        "frequency": {
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ]
         }
       }
     },
@@ -633,14 +633,14 @@
     },
     "GooglePrivacyDlpV2DiscoveryTarget": {
       "properties": {
+        "bigQueryTarget": {
+          "$ref": "GooglePrivacyDlpV2BigQueryDiscoveryTarget"
+        },
         "vertexDatasetTarget": {
           "$ref": "GooglePrivacyDlpV2VertexDatasetDiscoveryTarget"
         },
         "otherCloudTarget": {
           "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryTarget"
-        },
-        "bigQueryTarget": {
-          "$ref": "GooglePrivacyDlpV2BigQueryDiscoveryTarget"
         },
         "cloudStorageTarget": {
           "$ref": "GooglePrivacyDlpV2CloudStorageDiscoveryTarget"
@@ -652,9 +652,6 @@
     },
     "GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence": {
       "properties": {
-        "inspectTemplateModifiedCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
-        },
         "refreshFrequency": {
           "enum": [
             "UPDATE_FREQUENCY_UNSPECIFIED",
@@ -662,6 +659,9 @@
             "UPDATE_FREQUENCY_DAILY",
             "UPDATE_FREQUENCY_MONTHLY"
           ]
+        },
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence"
         }
       }
     },
@@ -699,6 +699,9 @@
         "excludeByImageFindings": {
           "$ref": "GooglePrivacyDlpV2ExcludeByImageFindings"
         },
+        "excludeInfoTypes": {
+          "$ref": "GooglePrivacyDlpV2ExcludeInfoTypes"
+        },
         "matchingType": {
           "enum": [
             "MATCHING_TYPE_UNSPECIFIED",
@@ -707,35 +710,32 @@
             "MATCHING_TYPE_INVERSE_MATCH",
             "MATCHING_TYPE_RULE_SPECIFIC"
           ]
-        },
-        "excludeInfoTypes": {
-          "$ref": "GooglePrivacyDlpV2ExcludeInfoTypes"
         }
       }
     },
     "GooglePrivacyDlpV2Expressions": {
       "properties": {
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2Conditions"
+        },
         "logicalOperator": {
           "enum": [
             "LOGICAL_OPERATOR_UNSPECIFIED",
             "AND"
           ]
-        },
-        "conditions": {
-          "$ref": "GooglePrivacyDlpV2Conditions"
         }
       }
     },
     "GooglePrivacyDlpV2FieldTransformation": {
       "properties": {
-        "infoTypeTransformations": {
-          "$ref": "GooglePrivacyDlpV2InfoTypeTransformations"
-        },
         "primitiveTransformation": {
           "$ref": "GooglePrivacyDlpV2PrimitiveTransformation"
         },
         "condition": {
           "$ref": "GooglePrivacyDlpV2RecordCondition"
+        },
+        "infoTypeTransformations": {
+          "$ref": "GooglePrivacyDlpV2InfoTypeTransformations"
         }
       }
     },
@@ -750,10 +750,10 @@
     },
     "GooglePrivacyDlpV2FixedSizeBucketingConfig": {
       "properties": {
-        "upperBound": {
+        "lowerBound": {
           "$ref": "GooglePrivacyDlpV2Value"
         },
-        "lowerBound": {
+        "upperBound": {
           "$ref": "GooglePrivacyDlpV2Value"
         }
       }
@@ -790,6 +790,9 @@
     },
     "GooglePrivacyDlpV2InfoTypeLikelihood": {
       "properties": {
+        "infoType": {
+          "$ref": "GooglePrivacyDlpV2InfoType"
+        },
         "minLikelihood": {
           "enum": [
             "LIKELIHOOD_UNSPECIFIED",
@@ -799,9 +802,6 @@
             "LIKELY",
             "VERY_LIKELY"
           ]
-        },
-        "infoType": {
-          "$ref": "GooglePrivacyDlpV2InfoType"
         }
       }
     },
@@ -814,13 +814,13 @@
     },
     "GooglePrivacyDlpV2InfoTypeTransformation": {
       "properties": {
+        "primitiveTransformation": {
+          "$ref": "GooglePrivacyDlpV2PrimitiveTransformation"
+        },
         "infoTypes": {
           "items": {
             "$ref": "GooglePrivacyDlpV2InfoType"
           }
-        },
-        "primitiveTransformation": {
-          "$ref": "GooglePrivacyDlpV2PrimitiveTransformation"
         }
       }
     },
@@ -835,15 +835,13 @@
     },
     "GooglePrivacyDlpV2InspectConfig": {
       "properties": {
-        "minLikelihood": {
-          "enum": [
-            "LIKELIHOOD_UNSPECIFIED",
-            "VERY_UNLIKELY",
-            "UNLIKELY",
-            "POSSIBLE",
-            "LIKELY",
-            "VERY_LIKELY"
-          ]
+        "limits": {
+          "$ref": "GooglePrivacyDlpV2FindingLimits"
+        },
+        "ruleSet": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InspectionRuleSet"
+          }
         },
         "minLikelihoodPerInfoType": {
           "items": {
@@ -864,33 +862,35 @@
             "$ref": "GooglePrivacyDlpV2CustomInfoType"
           }
         },
-        "ruleSet": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2InspectionRuleSet"
-          }
+        "minLikelihood": {
+          "enum": [
+            "LIKELIHOOD_UNSPECIFIED",
+            "VERY_UNLIKELY",
+            "UNLIKELY",
+            "POSSIBLE",
+            "LIKELY",
+            "VERY_LIKELY"
+          ]
         },
         "infoTypes": {
           "items": {
             "$ref": "GooglePrivacyDlpV2InfoType"
           }
-        },
-        "limits": {
-          "$ref": "GooglePrivacyDlpV2FindingLimits"
         }
       }
     },
     "GooglePrivacyDlpV2InspectJobConfig": {
       "properties": {
-        "actions": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2Action"
-          }
+        "storageConfig": {
+          "$ref": "GooglePrivacyDlpV2StorageConfig"
         },
         "inspectConfig": {
           "$ref": "GooglePrivacyDlpV2InspectConfig"
         },
-        "storageConfig": {
-          "$ref": "GooglePrivacyDlpV2StorageConfig"
+        "actions": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Action"
+          }
         }
       }
     },
@@ -903,11 +903,11 @@
     },
     "GooglePrivacyDlpV2InspectionRule": {
       "properties": {
-        "exclusionRule": {
-          "$ref": "GooglePrivacyDlpV2ExclusionRule"
-        },
         "hotwordRule": {
           "$ref": "GooglePrivacyDlpV2HotwordRule"
+        },
+        "exclusionRule": {
+          "$ref": "GooglePrivacyDlpV2ExclusionRule"
         },
         "adjustmentRule": {
           "$ref": "GooglePrivacyDlpV2AdjustmentRule"
@@ -916,23 +916,20 @@
     },
     "GooglePrivacyDlpV2InspectionRuleSet": {
       "properties": {
-        "rules": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2InspectionRule"
-          }
-        },
         "infoTypes": {
           "items": {
             "$ref": "GooglePrivacyDlpV2InfoType"
+          }
+        },
+        "rules": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InspectionRule"
           }
         }
       }
     },
     "GooglePrivacyDlpV2JobTrigger": {
       "properties": {
-        "inspectJob": {
-          "$ref": "GooglePrivacyDlpV2InspectJobConfig"
-        },
         "status": {
           "enum": [
             "STATUS_UNSPECIFIED",
@@ -940,6 +937,9 @@
             "PAUSED",
             "CANCELLED"
           ]
+        },
+        "inspectJob": {
+          "$ref": "GooglePrivacyDlpV2InspectJobConfig"
         },
         "errors": {
           "items": {
@@ -964,11 +964,11 @@
     },
     "GooglePrivacyDlpV2OtherCloudDiscoveryTarget": {
       "properties": {
-        "generationCadence": {
-          "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence"
-        },
         "conditions": {
           "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudConditions"
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence"
         }
       }
     },
@@ -1006,11 +1006,17 @@
     },
     "GooglePrivacyDlpV2PrimitiveTransformation": {
       "properties": {
-        "bucketingConfig": {
-          "$ref": "GooglePrivacyDlpV2BucketingConfig"
-        },
         "replaceConfig": {
           "$ref": "GooglePrivacyDlpV2ReplaceValueConfig"
+        },
+        "timePartConfig": {
+          "$ref": "GooglePrivacyDlpV2TimePartConfig"
+        },
+        "cryptoDeterministicConfig": {
+          "$ref": "GooglePrivacyDlpV2CryptoDeterministicConfig"
+        },
+        "cryptoReplaceFfxFpeConfig": {
+          "$ref": "GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig"
         },
         "fixedSizeBucketingConfig": {
           "$ref": "GooglePrivacyDlpV2FixedSizeBucketingConfig"
@@ -1018,27 +1024,21 @@
         "characterMaskConfig": {
           "$ref": "GooglePrivacyDlpV2CharacterMaskConfig"
         },
-        "cryptoReplaceFfxFpeConfig": {
-          "$ref": "GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig"
-        },
-        "timePartConfig": {
-          "$ref": "GooglePrivacyDlpV2TimePartConfig"
-        },
-        "cryptoDeterministicConfig": {
-          "$ref": "GooglePrivacyDlpV2CryptoDeterministicConfig"
+        "bucketingConfig": {
+          "$ref": "GooglePrivacyDlpV2BucketingConfig"
         }
       }
     },
     "GooglePrivacyDlpV2PubSubCondition": {
       "properties": {
-        "minimumSensitivityScore": {
+        "minimumRiskScore": {
           "enum": [
             "PROFILE_SCORE_BUCKET_UNSPECIFIED",
             "HIGH",
             "MEDIUM_OR_HIGH"
           ]
         },
-        "minimumRiskScore": {
+        "minimumSensitivityScore": {
           "enum": [
             "PROFILE_SCORE_BUCKET_UNSPECIFIED",
             "HIGH",
@@ -1065,6 +1065,15 @@
     },
     "GooglePrivacyDlpV2PubSubNotification": {
       "properties": {
+        "event": {
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "NEW_PROFILE",
+            "CHANGED_PROFILE",
+            "SCORE_INCREASED",
+            "ERROR_CHANGED"
+          ]
+        },
         "detailOfMessage": {
           "enum": [
             "DETAIL_LEVEL_UNSPECIFIED",
@@ -1075,15 +1084,6 @@
         },
         "pubsubCondition": {
           "$ref": "GooglePrivacyDlpV2DataProfilePubSubCondition"
-        },
-        "event": {
-          "enum": [
-            "EVENT_TYPE_UNSPECIFIED",
-            "NEW_PROFILE",
-            "CHANGED_PROFILE",
-            "SCORE_INCREASED",
-            "ERROR_CHANGED"
-          ]
         }
       }
     },
@@ -1131,14 +1131,6 @@
     },
     "GooglePrivacyDlpV2SchemaModifiedCadence": {
       "properties": {
-        "frequency": {
-          "enum": [
-            "UPDATE_FREQUENCY_UNSPECIFIED",
-            "UPDATE_FREQUENCY_NEVER",
-            "UPDATE_FREQUENCY_DAILY",
-            "UPDATE_FREQUENCY_MONTHLY"
-          ]
-        },
         "types": {
           "items": {
             "enum": [
@@ -1147,6 +1139,14 @@
               "REMOVED_COLUMNS"
             ]
           }
+        },
+        "frequency": {
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ]
         }
       }
     },
@@ -1196,6 +1196,11 @@
     },
     "GooglePrivacyDlpV2StoredInfoTypeVersion": {
       "properties": {
+        "errors": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          }
+        },
         "state": {
           "enum": [
             "STORED_INFO_TYPE_STATE_UNSPECIFIED",
@@ -1204,11 +1209,6 @@
             "FAILED",
             "INVALID"
           ]
-        },
-        "errors": {
-          "items": {
-            "$ref": "GooglePrivacyDlpV2Error"
-          }
         }
       }
     },

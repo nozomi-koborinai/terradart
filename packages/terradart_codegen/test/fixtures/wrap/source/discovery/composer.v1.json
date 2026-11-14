@@ -1,7 +1,7 @@
 {
   "name": "composer",
   "version": "v1",
-  "revision": "20261015",
+  "revision": "20261106",
   "sourceUrl": "https://composer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -17,16 +17,25 @@
     },
     "DataRetentionConfig": {
       "properties": {
-        "taskLogsRetentionConfig": {
-          "$ref": "TaskLogsRetentionConfig"
-        },
         "airflowMetadataRetentionConfig": {
           "$ref": "AirflowMetadataRetentionPolicyConfig"
+        },
+        "taskLogsRetentionConfig": {
+          "$ref": "TaskLogsRetentionConfig"
         }
       }
     },
     "Environment": {
       "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DEVELOPMENT"
+          ]
+        },
+        "config": {
+          "$ref": "EnvironmentConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -37,15 +46,6 @@
             "DELETING",
             "ERROR"
           ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEVELOPMENT"
-          ]
-        },
-        "config": {
-          "$ref": "EnvironmentConfig"
         }
       }
     },
@@ -54,11 +54,14 @@
         "softwareConfig": {
           "$ref": "SoftwareConfig"
         },
-        "privateEnvironmentConfig": {
-          "$ref": "PrivateEnvironmentConfig"
-        },
         "dataRetentionConfig": {
           "$ref": "DataRetentionConfig"
+        },
+        "resilienceMode": {
+          "enum": [
+            "RESILIENCE_MODE_UNSPECIFIED",
+            "HIGH_RESILIENCE"
+          ]
         },
         "environmentSize": {
           "enum": [
@@ -66,14 +69,12 @@
             "ENVIRONMENT_SIZE_SMALL",
             "ENVIRONMENT_SIZE_MEDIUM",
             "ENVIRONMENT_SIZE_LARGE",
-            "ENVIRONMENT_SIZE_EXTRA_LARGE"
+            "ENVIRONMENT_SIZE_EXTRA_LARGE",
+            "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
           ]
         },
-        "resilienceMode": {
-          "enum": [
-            "RESILIENCE_MODE_UNSPECIFIED",
-            "HIGH_RESILIENCE"
-          ]
+        "privateEnvironmentConfig": {
+          "$ref": "PrivateEnvironmentConfig"
         }
       }
     },

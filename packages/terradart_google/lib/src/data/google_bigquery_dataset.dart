@@ -58,6 +58,10 @@ final class DataGoogleBigqueryDataset extends Data {
   TfRef<num> get defaultPartitionExpirationMs =>
       TfRef.attribute<num>(this, 'default_partition_expiration_ms');
 
+  /// Reference to `default_rounding_mode` attribute.
+  TfRef<String> get defaultRoundingMode =>
+      TfRef.attribute<String>(this, 'default_rounding_mode');
+
   /// Reference to `default_table_expiration_ms` attribute.
   TfRef<num> get defaultTableExpirationMs =>
       TfRef.attribute<num>(this, 'default_table_expiration_ms');

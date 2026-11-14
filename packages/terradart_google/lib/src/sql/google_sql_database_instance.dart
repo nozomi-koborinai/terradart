@@ -16,6 +16,31 @@ const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
   'server_ca_cert',
 };
 
+/// Sql Database Instance Database Center enum for `database_center_integration`.
+extension type const SqlDatabaseInstanceDatabaseCenterIntegration._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  SqlDatabaseInstanceDatabaseCenterIntegration.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlDatabaseInstanceDatabaseCenterIntegration.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlDatabaseInstanceDatabaseCenterIntegration.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = SqlDatabaseInstanceDatabaseCenterIntegration._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SqlDatabaseInstanceDatabaseCenterIntegration._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SqlDatabaseInstanceDatabaseCenterIntegration> values = [
+    enabled,
+    disabled,
+  ];
+}
+
 /// Sql Database Instance enum for `instance_type`.
 extension type const SqlDatabaseInstanceType._(TfArg<String> _)
     implements TfArg<String> {
@@ -284,6 +309,34 @@ extension type const SqlDiskType._(TfArg<String> _) implements TfArg<String> {
 // ===========================================================================
 // replica_configuration (top-level, separate from settings)
 // ===========================================================================
+
+/// Typed helper for the `blue_green_deployment` block of
+/// `google_sql_database_instance` (derived from provider schema).
+@immutable
+final class SqlDatabaseInstanceBlueGreenDeployment {
+  const SqlDatabaseInstanceBlueGreenDeployment({
+    this.activeEnvironment,
+    this.deleteOldSourceOnDestroy,
+    required this.deploymentName,
+    this.targetDatabaseVersion,
+  });
+
+  final TfArg<String>? activeEnvironment;
+
+  final TfArg<bool>? deleteOldSourceOnDestroy;
+
+  final TfArg<String> deploymentName;
+
+  final TfArg<String>? targetDatabaseVersion;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'active_environment': ?activeEnvironment?.toTfJson(),
+    'delete_old_source_on_destroy': ?deleteOldSourceOnDestroy?.toTfJson(),
+    'deployment_name': deploymentName.toTfJson(),
+    'target_database_version': ?targetDatabaseVersion?.toTfJson(),
+  };
+}
 
 /// Typed helper for the `clone` block of
 /// `google_sql_database_instance` (derived from provider schema).
@@ -1053,7 +1106,7 @@ final class SqlDatabaseInstanceIpConfiguration {
 
   final List<SqlDatabaseInstanceAuthorizedNetworks>? authorizedNetworks;
 
-  final List<SqlDatabaseInstancePscConfig>? pscConfig;
+  final SqlDatabaseInstancePscConfig? pscConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -1071,8 +1124,7 @@ final class SqlDatabaseInstanceIpConfiguration {
     'ssl_mode': ?sslMode?.toTfJson(),
     if (authorizedNetworks != null)
       'authorized_networks': [for (final e in authorizedNetworks!) e.encode()],
-    if (pscConfig != null)
-      'psc_config': [for (final e in pscConfig!) e.encode()],
+    'psc_config': ?pscConfig?.encode(),
   };
 }
 
@@ -1550,6 +1602,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     SqlDatabaseInstancePointInTimeRestoreContext? pointInTimeRestoreContext,
     SqlDatabaseInstanceReplicationCluster? replicationCluster,
     SqlDatabaseInstanceRestoreBackupContext? restoreBackupContext,
+    SqlDatabaseInstanceBlueGreenDeployment? blueGreenDeployment,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1594,6 +1647,10 @@ final class GoogleSqlDatabaseInstance extends Resource {
            if (restoreBackupContext != null)
              'restore_backup_context': TfArg.literal(
                restoreBackupContext.encode(),
+             ),
+           if (blueGreenDeployment != null)
+             'blue_green_deployment': TfArg.literal(
+               blueGreenDeployment.encode(),
              ),
          },
        );
@@ -1663,6 +1720,10 @@ final class GoogleSqlDatabaseInstance extends Resource {
   /// Reference to `backupdr_backup` attribute.
   TfRef<String> get backupdrBackup =>
       TfRef.attribute<String>(this, 'backupdr_backup');
+
+  /// Reference to `database_center_integration` attribute.
+  TfRef<String> get databaseCenterIntegration =>
+      TfRef.attribute<String>(this, 'database_center_integration');
 
   /// Reference to `database_version` attribute.
   TfRef<String> get databaseVersion =>

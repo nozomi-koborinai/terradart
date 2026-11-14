@@ -44,6 +44,7 @@ final class PrivatecaCaPoolIssuancePolicy {
     this.allowedKeyTypes,
     this.baselineValues,
     this.identityConstraints,
+    this.passthroughExtensions,
   });
 
   final PrivatecaCaPoolNotBefore? notBefore;
@@ -58,6 +59,8 @@ final class PrivatecaCaPoolIssuancePolicy {
 
   final PrivatecaCaPoolIdentityConstraints? identityConstraints;
 
+  final PrivatecaCaPoolPassthroughExtensions? passthroughExtensions;
+
   @internal
   Map<String, Object?> encode() => {
     ...?notBefore?.encode(),
@@ -67,6 +70,7 @@ final class PrivatecaCaPoolIssuancePolicy {
       'allowed_key_types': [for (final e in allowedKeyTypes!) e.encode()],
     'baseline_values': ?baselineValues?.encode(),
     'identity_constraints': ?identityConstraints?.encode(),
+    'passthrough_extensions': ?passthroughExtensions?.encode(),
   };
 }
 
@@ -567,6 +571,82 @@ final class PrivatecaCaPoolCelExpression {
     'location': ?location?.toTfJson(),
     'title': ?title?.toTfJson(),
   };
+}
+
+/// Typed helper for the `issuance_policy.passthrough_extensions` block of
+/// `google_privateca_ca_pool` (derived from provider schema).
+@immutable
+final class PrivatecaCaPoolPassthroughExtensions {
+  const PrivatecaCaPoolPassthroughExtensions({
+    this.knownExtensions,
+    this.additionalExtensions,
+  });
+
+  final EnumList<PrivatecaCaPoolKnownExtensions>? knownExtensions;
+
+  final List<PrivatecaCaPoolPassthroughExtensionsAdditionalExtensions>?
+  additionalExtensions;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'known_extensions': ?knownExtensions?.toTfJson(),
+    if (additionalExtensions != null)
+      'additional_extensions': [
+        for (final e in additionalExtensions!) e.encode(),
+      ],
+  };
+}
+
+/// `known_extensions` — derived from the provider schema description.
+extension type const PrivatecaCaPoolKnownExtensions._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCaPoolKnownExtensions.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCaPoolKnownExtensions.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCaPoolKnownExtensions.arg(TfArg<String> arg) : this._(arg);
+
+  static const baseKeyUsage = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('BASE_KEY_USAGE'),
+  );
+  static const extendedKeyUsage = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('EXTENDED_KEY_USAGE'),
+  );
+  static const caOptions = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('CA_OPTIONS'),
+  );
+  static const policyIds = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('POLICY_IDS'),
+  );
+  static const aiaOcspServers = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('AIA_OCSP_SERVERS'),
+  );
+  static const nameConstraints = PrivatecaCaPoolKnownExtensions._(
+    TfArgLiteral('NAME_CONSTRAINTS'),
+  );
+
+  static const List<PrivatecaCaPoolKnownExtensions> values = [
+    baseKeyUsage,
+    extendedKeyUsage,
+    caOptions,
+    policyIds,
+    aiaOcspServers,
+    nameConstraints,
+  ];
+}
+
+/// Typed helper for the `issuance_policy.passthrough_extensions.additional_extensions` block of
+/// `google_privateca_ca_pool` (derived from provider schema).
+@immutable
+final class PrivatecaCaPoolPassthroughExtensionsAdditionalExtensions {
+  const PrivatecaCaPoolPassthroughExtensionsAdditionalExtensions({
+    required this.objectIdPath,
+  });
+
+  final TfArg<List<num>> objectIdPath;
+
+  @internal
+  Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
 /// Typed helper for the `publishing_options` block of

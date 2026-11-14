@@ -82,6 +82,10 @@ final class DataGoogleSecretManagerRegionalSecret extends Data {
   TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
+  /// Reference to `policy_member` attribute.
+  TfRef<List<Map<String, Object?>>> get policyMember =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'policy_member');
+
   /// Reference to `rotation` attribute.
   TfRef<List<Map<String, Object?>>> get rotation =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rotation');

@@ -203,7 +203,9 @@ final class PubsubTopicCloudStorage {
     required this.bucket,
     this.matchGlob,
     this.minimumObjectCreateTime,
-    required this.format,
+    this.avroFormat,
+    this.pubsubAvroFormat,
+    this.textFormat,
   });
 
   final RefTo<GoogleStorageBucket> bucket;
@@ -212,94 +214,20 @@ final class PubsubTopicCloudStorage {
 
   final TfArg<String>? minimumObjectCreateTime;
 
-  final PubsubTopicFormat format;
+  final PubsubTopicAvroFormat? avroFormat;
+
+  final PubsubTopicPubsubAvroFormat? pubsubAvroFormat;
+
+  final PubsubTopicTextFormat? textFormat;
 
   @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'match_glob': ?matchGlob?.toTfJson(),
     'minimum_object_create_time': ?minimumObjectCreateTime?.toTfJson(),
-    ...format.encode(),
-  };
-}
-
-/// Exactly one of `text_format`, `avro_format`, `pubsub_avro_format` on the `ingestion_data_source_settings.cloud_storage` block of `google_pubsub_topic`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.textFormat(...)`.
-sealed class PubsubTopicFormat {
-  const PubsubTopicFormat();
-
-  /// Sets `text_format`.
-  const factory PubsubTopicFormat.textFormat(PubsubTopicTextFormat textFormat) =
-      PubsubTopicTextFormatChoice;
-
-  /// Sets `avro_format`.
-  const factory PubsubTopicFormat.avroFormat([
-    PubsubTopicAvroFormat avroFormat,
-  ]) = PubsubTopicAvroFormatChoice;
-
-  /// Sets `pubsub_avro_format`.
-  const factory PubsubTopicFormat.pubsubAvroFormat([
-    PubsubTopicPubsubAvroFormat pubsubAvroFormat,
-  ]) = PubsubTopicPubsubAvroFormatChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [PubsubTopicFormat.textFormat] choice: sets `text_format`.
-final class PubsubTopicTextFormatChoice extends PubsubTopicFormat {
-  const PubsubTopicTextFormatChoice(this.textFormat);
-
-  final PubsubTopicTextFormat textFormat;
-
-  @internal
-  @override
-  String get blockKey => 'text_format';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'text_format': textFormat.encode()};
-}
-
-/// The [PubsubTopicFormat.avroFormat] choice: sets `avro_format`.
-final class PubsubTopicAvroFormatChoice extends PubsubTopicFormat {
-  const PubsubTopicAvroFormatChoice([
-    this.avroFormat = const PubsubTopicAvroFormat(),
-  ]);
-
-  final PubsubTopicAvroFormat avroFormat;
-
-  @internal
-  @override
-  String get blockKey => 'avro_format';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'avro_format': avroFormat.encode()};
-}
-
-/// The [PubsubTopicFormat.pubsubAvroFormat] choice: sets `pubsub_avro_format`.
-final class PubsubTopicPubsubAvroFormatChoice extends PubsubTopicFormat {
-  const PubsubTopicPubsubAvroFormatChoice([
-    this.pubsubAvroFormat = const PubsubTopicPubsubAvroFormat(),
-  ]);
-
-  final PubsubTopicPubsubAvroFormat pubsubAvroFormat;
-
-  @internal
-  @override
-  String get blockKey => 'pubsub_avro_format';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'pubsub_avro_format': pubsubAvroFormat.encode(),
+    'avro_format': ?avroFormat?.encode(),
+    'pubsub_avro_format': ?pubsubAvroFormat?.encode(),
+    'text_format': ?textFormat?.encode(),
   };
 }
 
@@ -406,6 +334,7 @@ final class PubsubTopicMessageTransforms {
   const PubsubTopicMessageTransforms({
     this.disabled,
     this.aiInference,
+    this.compression,
     this.javascriptUdf,
   });
 
@@ -413,12 +342,15 @@ final class PubsubTopicMessageTransforms {
 
   final PubsubTopicAiInference? aiInference;
 
+  final PubsubTopicCompression? compression;
+
   final PubsubTopicJavascriptUdf? javascriptUdf;
 
   @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
+    'compression': ?compression?.encode(),
     'javascript_udf': ?javascriptUdf?.encode(),
   };
 }
@@ -457,6 +389,59 @@ final class PubsubTopicUnstructuredInference {
 
   @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
+}
+
+/// Typed helper for the `message_transforms.compression` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicCompression {
+  const PubsubTopicCompression({
+    required this.compressionAlgorithm,
+    required this.compressionMode,
+  });
+
+  final PubsubTopicCompressionAlgorithm compressionAlgorithm;
+
+  final PubsubTopicCompressionMode compressionMode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'compression_algorithm': compressionAlgorithm.toTfJson(),
+    'compression_mode': compressionMode.toTfJson(),
+  };
+}
+
+/// `compression_algorithm` — derived from the provider schema description.
+extension type const PubsubTopicCompressionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubTopicCompressionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubTopicCompressionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubTopicCompressionAlgorithm.arg(TfArg<String> arg) : this._(arg);
+
+  static const zlib = PubsubTopicCompressionAlgorithm._(TfArgLiteral('ZLIB'));
+
+  static const List<PubsubTopicCompressionAlgorithm> values = [zlib];
+}
+
+/// `compression_mode` — derived from the provider schema description.
+extension type const PubsubTopicCompressionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubTopicCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubTopicCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubTopicCompressionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const compress = PubsubTopicCompressionMode._(
+    TfArgLiteral('COMPRESS'),
+  );
+  static const decompress = PubsubTopicCompressionMode._(
+    TfArgLiteral('DECOMPRESS'),
+  );
+
+  static const List<PubsubTopicCompressionMode> values = [compress, decompress];
 }
 
 /// Typed helper for the `message_transforms.javascript_udf` block of

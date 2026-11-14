@@ -1,16 +1,26 @@
 {
   "name": "networkservices",
   "version": "v1",
-  "revision": "20261027",
+  "revision": "20261101",
   "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AgentConnectivityTemplate": {
       "properties": {
+        "egressNetworkConfig": {
+          "$ref": "EgressNetworkConfig"
+        },
         "deploymentModel": {
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "CENTRALIZED",
             "AMBIENT"
+          ]
+        },
+        "accessPath": {
+          "enum": [
+            "ACCESS_PATH_UNSPECIFIED",
+            "CLIENT_TO_AGENT",
+            "AGENT_TO_ANYWHERE"
           ]
         },
         "accessTypes": {
@@ -29,16 +39,6 @@
             "CLOUD_RUN",
             "BORG",
             "GCE_VM"
-          ]
-        },
-        "egressNetworkConfig": {
-          "$ref": "EgressNetworkConfig"
-        },
-        "accessPath": {
-          "enum": [
-            "ACCESS_PATH_UNSPECIFIED",
-            "CLIENT_TO_AGENT",
-            "AGENT_TO_ANYWHERE"
           ]
         }
       }
@@ -71,33 +71,33 @@
     },
     "AuthzExtension": {
       "properties": {
-        "wireFormat": {
-          "enum": [
-            "WIRE_FORMAT_UNSPECIFIED",
-            "EXT_PROC_GRPC",
-            "EXT_AUTHZ_GRPC"
-          ]
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "wireFormat": {
+          "enum": [
+            "WIRE_FORMAT_UNSPECIFIED",
+            "EXT_PROC_GRPC",
+            "EXT_AUTHZ_GRPC"
+          ]
         }
       }
     },
     "EgressNetworkConfig": {
       "properties": {
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig"
+        },
         "vpcEgress": {
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",
             "PRIVATE_RANGES_ONLY"
           ]
-        },
-        "tlsConfig": {
-          "$ref": "EgressNetworkConfigTlsConfig"
         }
       }
     },
@@ -132,15 +132,15 @@
     },
     "EndpointPolicy": {
       "properties": {
-        "endpointMatcher": {
-          "$ref": "EndpointMatcher"
-        },
         "type": {
           "enum": [
             "ENDPOINT_POLICY_TYPE_UNSPECIFIED",
             "SIDECAR_PROXY",
             "GRPC_SERVER"
           ]
+        },
+        "endpointMatcher": {
+          "$ref": "EndpointMatcher"
         }
       }
     },
@@ -168,14 +168,14 @@
             ]
           }
         },
-        "requestBodySendMode": {
+        "responseBodySendMode": {
           "enum": [
             "BODY_SEND_MODE_UNSPECIFIED",
             "BODY_SEND_MODE_STREAMED",
             "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
           ]
         },
-        "responseBodySendMode": {
+        "requestBodySendMode": {
           "enum": [
             "BODY_SEND_MODE_UNSPECIFIED",
             "BODY_SEND_MODE_STREAMED",
@@ -186,6 +186,12 @@
     },
     "Gateway": {
       "properties": {
+        "routingMode": {
+          "enum": [
+            "EXPLICIT_ROUTING_MODE",
+            "NEXT_HOP_ROUTING_MODE"
+          ]
+        },
         "envoyHeaders": {
           "enum": [
             "ENVOY_HEADERS_UNSPECIFIED",
@@ -193,10 +199,11 @@
             "DEBUG_HEADERS"
           ]
         },
-        "routingMode": {
+        "ipVersion": {
           "enum": [
-            "EXPLICIT_ROUTING_MODE",
-            "NEXT_HOP_ROUTING_MODE"
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
           ]
         },
         "type": {
@@ -204,13 +211,6 @@
             "TYPE_UNSPECIFIED",
             "OPEN_MESH",
             "SECURE_WEB_GATEWAY"
-          ]
-        },
-        "ipVersion": {
-          "enum": [
-            "IP_VERSION_UNSPECIFIED",
-            "IPV4",
-            "IPV6"
           ]
         }
       }
@@ -306,17 +306,17 @@
     },
     "LbEdgeExtension": {
       "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
-        },
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
         }
       }
     },
@@ -338,17 +338,17 @@
     },
     "LbTrafficExtension": {
       "properties": {
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
         }
       }
     },
@@ -365,29 +365,29 @@
     },
     "MulticastConsumerAssociation": {
       "properties": {
-        "state": {
-          "$ref": "MulticastResourceState"
-        },
         "resourceState": {
           "enum": [
             "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
             "ACTIVE",
             "OBSOLETE"
           ]
+        },
+        "state": {
+          "$ref": "MulticastResourceState"
         }
       }
     },
     "MulticastGroupConsumerActivation": {
       "properties": {
-        "state": {
-          "$ref": "MulticastResourceState"
-        },
         "resourceState": {
           "enum": [
             "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
             "ACTIVE",
             "OBSOLETE"
           ]
+        },
+        "state": {
+          "$ref": "MulticastResourceState"
         }
       }
     },
@@ -429,17 +429,17 @@
     },
     "ServiceLbPolicyIsolationConfig": {
       "properties": {
+        "isolationGranularity": {
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ]
+        },
         "isolationMode": {
           "enum": [
             "ISOLATION_MODE_UNSPECIFIED",
             "NEAREST",
             "STRICT"
-          ]
-        },
-        "isolationGranularity": {
-          "enum": [
-            "ISOLATION_GRANULARITY_UNSPECIFIED",
-            "REGION"
           ]
         }
       }

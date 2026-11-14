@@ -6,12 +6,11 @@
   "schemas": {
     "DataSource": {
       "properties": {
-        "authorizationType": {
+        "transferType": {
           "enum": [
-            "AUTHORIZATION_TYPE_UNSPECIFIED",
-            "AUTHORIZATION_CODE",
-            "GOOGLE_PLUS_AUTHORIZATION_CODE",
-            "FIRST_PARTY_OAUTH"
+            "TRANSFER_TYPE_UNSPECIFIED",
+            "BATCH",
+            "STREAMING"
           ]
         },
         "dataRefreshType": {
@@ -26,17 +25,23 @@
             "$ref": "DataSourceParameter"
           }
         },
-        "transferType": {
+        "authorizationType": {
           "enum": [
-            "TRANSFER_TYPE_UNSPECIFIED",
-            "BATCH",
-            "STREAMING"
+            "AUTHORIZATION_TYPE_UNSPECIFIED",
+            "AUTHORIZATION_CODE",
+            "GOOGLE_PLUS_AUTHORIZATION_CODE",
+            "FIRST_PARTY_OAUTH"
           ]
         }
       }
     },
     "DataSourceParameter": {
       "properties": {
+        "fields": {
+          "items": {
+            "$ref": "DataSourceParameter"
+          }
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -48,16 +53,18 @@
             "PLUS_PAGE",
             "LIST"
           ]
-        },
-        "fields": {
-          "items": {
-            "$ref": "DataSourceParameter"
-          }
         }
       }
     },
     "TransferConfig": {
       "properties": {
+        "managedTableType": {
+          "enum": [
+            "MANAGED_TABLE_TYPE_UNSPECIFIED",
+            "NATIVE",
+            "BIGLAKE"
+          ]
+        },
         "state": {
           "enum": [
             "TRANSFER_STATE_UNSPECIFIED",
@@ -66,13 +73,6 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
-          ]
-        },
-        "managedTableType": {
-          "enum": [
-            "MANAGED_TABLE_TYPE_UNSPECIFIED",
-            "NATIVE",
-            "BIGLAKE"
           ]
         }
       }

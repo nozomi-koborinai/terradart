@@ -408,9 +408,17 @@ final class GoogleBackupDrBackupPlan extends Resource {
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
   /// Reference to `supported_resource_types` attribute.
   TfRef<List<String>> get supportedResourceTypes =>
       TfRef.attribute<List<String>>(this, 'supported_resource_types');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
@@ -429,6 +437,10 @@ final class GoogleBackupDrBackupPlan extends Resource {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');

@@ -134,6 +134,7 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
     this.likelihood,
     this.dictionary,
     required this.infoType,
+    this.metadataKeyValueExpression,
     this.regex,
     this.sensitivityScore,
     this.storedType,
@@ -147,6 +148,9 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
   final DataLossPreventionInspectTemplateDictionary? dictionary;
 
   final DataLossPreventionInspectTemplateCustomInfoTypesInfoType infoType;
+
+  final DataLossPreventionInspectTemplateMetadataKeyValueExpression?
+  metadataKeyValueExpression;
 
   final DataLossPreventionInspectTemplateRegex? regex;
 
@@ -162,6 +166,7 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
     'likelihood': ?likelihood?.toTfJson(),
     'dictionary': ?dictionary?.encode(),
     'info_type': infoType.encode(),
+    'metadata_key_value_expression': ?metadataKeyValueExpression?.encode(),
     'regex': ?regex?.encode(),
     'sensitivity_score': ?sensitivityScore?.encode(),
     'stored_type': ?storedType?.encode(),
@@ -340,6 +345,26 @@ extension type const DataLossPreventionInspectTemplateScore._(TfArg<String> _)
     sensitivityModerate,
     sensitivityHigh,
   ];
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.metadata_key_value_expression` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateMetadataKeyValueExpression {
+  const DataLossPreventionInspectTemplateMetadataKeyValueExpression({
+    required this.keyRegex,
+    required this.valueRegex,
+  });
+
+  final TfArg<String> keyRegex;
+
+  final TfArg<String> valueRegex;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'key_regex': keyRegex.toTfJson(),
+    'value_regex': valueRegex.toTfJson(),
+  };
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.regex` block of
@@ -547,6 +572,7 @@ final class DataLossPreventionInspectTemplateExclusionRule {
     required this.matchingType,
     this.dictionary,
     this.excludeByHotword,
+    this.excludeByImageFindings,
     this.excludeInfoTypes,
     this.regex,
   });
@@ -557,6 +583,9 @@ final class DataLossPreventionInspectTemplateExclusionRule {
 
   final DataLossPreventionInspectTemplateExcludeByHotword? excludeByHotword;
 
+  final DataLossPreventionInspectTemplateExcludeByImageFindings?
+  excludeByImageFindings;
+
   final DataLossPreventionInspectTemplateExcludeInfoTypes? excludeInfoTypes;
 
   final DataLossPreventionInspectTemplateRegex? regex;
@@ -566,6 +595,7 @@ final class DataLossPreventionInspectTemplateExclusionRule {
     'matching_type': matchingType.toTfJson(),
     'dictionary': ?dictionary?.encode(),
     'exclude_by_hotword': ?excludeByHotword?.encode(),
+    'exclude_by_image_findings': ?excludeByImageFindings?.encode(),
     'exclude_info_types': ?excludeInfoTypes?.encode(),
     'regex': ?regex?.encode(),
   };
@@ -595,11 +625,16 @@ extension type const DataLossPreventionInspectTemplateMatchingType._(
       DataLossPreventionInspectTemplateMatchingType._(
         TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
       );
+  static const matchingTypeRuleSpecific =
+      DataLossPreventionInspectTemplateMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_RULE_SPECIFIC'),
+      );
 
   static const List<DataLossPreventionInspectTemplateMatchingType> values = [
     matchingTypeFullMatch,
     matchingTypePartialMatch,
     matchingTypeInverseMatch,
+    matchingTypeRuleSpecific,
   ];
 }
 
@@ -663,6 +698,81 @@ final class DataLossPreventionInspectTemplateProximity {
     'window_after': ?windowAfter?.toTfJson(),
     'window_before': ?windowBefore?.toTfJson(),
   };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateExcludeByImageFindings {
+  const DataLossPreventionInspectTemplateExcludeByImageFindings({
+    this.imageContainmentType,
+    required this.infoTypes,
+  });
+
+  final DataLossPreventionInspectTemplateImageContainmentType?
+  imageContainmentType;
+
+  final List<DataLossPreventionInspectTemplateInfoTypes> infoTypes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'image_containment_type': ?imageContainmentType?.encode(),
+    'info_types': [for (final e in infoTypes) e.encode()],
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings.image_containment_type` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateImageContainmentType {
+  const DataLossPreventionInspectTemplateImageContainmentType({
+    this.encloses,
+    this.fullyInside,
+    this.overlaps,
+  });
+
+  final DataLossPreventionInspectTemplateEncloses? encloses;
+
+  final DataLossPreventionInspectTemplateFullyInside? fullyInside;
+
+  final DataLossPreventionInspectTemplateOverlaps? overlaps;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'encloses': ?encloses?.encode(),
+    'fully_inside': ?fullyInside?.encode(),
+    'overlaps': ?overlaps?.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings.image_containment_type.encloses` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateEncloses {
+  const DataLossPreventionInspectTemplateEncloses();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings.image_containment_type.fully_inside` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateFullyInside {
+  const DataLossPreventionInspectTemplateFullyInside();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings.image_containment_type.overlaps` block of
+/// `google_data_loss_prevention_inspect_template` (derived from provider schema).
+@immutable
+final class DataLossPreventionInspectTemplateOverlaps {
+  const DataLossPreventionInspectTemplateOverlaps();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_info_types` block of

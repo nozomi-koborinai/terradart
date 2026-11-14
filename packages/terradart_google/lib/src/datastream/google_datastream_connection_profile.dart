@@ -714,70 +714,24 @@ final class DatastreamConnectionProfilePostgresqlProfile {
   };
 }
 
-/// Exactly one of `server_verification`, `server_and_client_verification` on the `postgresql_profile.ssl_config` block of `google_datastream_connection_profile`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.serverVerification(...)`.
-sealed class DatastreamConnectionProfilePostgresqlProfileSslConfig {
-  const DatastreamConnectionProfilePostgresqlProfileSslConfig();
-
-  /// Sets `server_verification`.
-  const factory DatastreamConnectionProfilePostgresqlProfileSslConfig.serverVerification(
-    DatastreamConnectionProfileServerVerification serverVerification,
-  ) = DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification;
-
-  /// Sets `server_and_client_verification`.
-  const factory DatastreamConnectionProfilePostgresqlProfileSslConfig.serverAndClientVerification(
-    DatastreamConnectionProfileServerAndClientVerification
-    serverAndClientVerification,
-  ) = DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DatastreamConnectionProfilePostgresqlProfileSslConfig.serverVerification] choice: sets `server_verification`.
-final class DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification
-    extends DatastreamConnectionProfilePostgresqlProfileSslConfig {
-  const DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification(
-    this.serverVerification,
-  );
-
-  final DatastreamConnectionProfileServerVerification serverVerification;
-
-  @internal
-  @override
-  String get blockKey => 'server_verification';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'server_verification': serverVerification.encode(),
-  };
-}
-
-/// The [DatastreamConnectionProfilePostgresqlProfileSslConfig.serverAndClientVerification] choice: sets `server_and_client_verification`.
-final class DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification
-    extends DatastreamConnectionProfilePostgresqlProfileSslConfig {
-  const DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification(
+/// Typed helper for the `postgresql_profile.ssl_config` block of
+/// `google_datastream_connection_profile` (derived from provider schema).
+@immutable
+final class DatastreamConnectionProfilePostgresqlProfileSslConfig {
+  const DatastreamConnectionProfilePostgresqlProfileSslConfig({
     this.serverAndClientVerification,
-  );
+    this.serverVerification,
+  });
 
-  final DatastreamConnectionProfileServerAndClientVerification
+  final DatastreamConnectionProfileServerAndClientVerification?
   serverAndClientVerification;
 
-  @internal
-  @override
-  String get blockKey => 'server_and_client_verification';
+  final DatastreamConnectionProfileServerVerification? serverVerification;
 
   @internal
-  @override
   Map<String, Object?> encode() => {
-    'server_and_client_verification': serverAndClientVerification.encode(),
+    'server_and_client_verification': ?serverAndClientVerification?.encode(),
+    'server_verification': ?serverVerification?.encode(),
   };
 }
 

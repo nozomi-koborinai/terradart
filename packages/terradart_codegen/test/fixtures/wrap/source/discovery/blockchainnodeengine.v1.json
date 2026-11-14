@@ -19,32 +19,27 @@
             "SYNCING"
           ]
         },
-        "ethereumDetails": {
-          "$ref": "EthereumDetails"
-        },
         "blockchainType": {
           "enum": [
             "BLOCKCHAIN_TYPE_UNSPECIFIED",
             "ETHEREUM"
           ]
+        },
+        "ethereumDetails": {
+          "$ref": "EthereumDetails"
         }
       }
     },
     "EthereumDetails": {
       "properties": {
-        "consensusClient": {
-          "enum": [
-            "CONSENSUS_CLIENT_UNSPECIFIED",
-            "LIGHTHOUSE",
-            "ERIGON_EMBEDDED_CONSENSUS_LAYER"
-          ]
+        "gethDetails": {
+          "$ref": "GethDetails"
         },
-        "nodeType": {
+        "executionClient": {
           "enum": [
-            "NODE_TYPE_UNSPECIFIED",
-            "LIGHT",
-            "FULL",
-            "ARCHIVE"
+            "EXECUTION_CLIENT_UNSPECIFIED",
+            "GETH",
+            "ERIGON"
           ]
         },
         "network": {
@@ -56,15 +51,20 @@
             "TESTNET_HOLESKY"
           ]
         },
-        "executionClient": {
+        "nodeType": {
           "enum": [
-            "EXECUTION_CLIENT_UNSPECIFIED",
-            "GETH",
-            "ERIGON"
+            "NODE_TYPE_UNSPECIFIED",
+            "LIGHT",
+            "FULL",
+            "ARCHIVE"
           ]
         },
-        "gethDetails": {
-          "$ref": "GethDetails"
+        "consensusClient": {
+          "enum": [
+            "CONSENSUS_CLIENT_UNSPECIFIED",
+            "LIGHTHOUSE",
+            "ERIGON_EMBEDDED_CONSENSUS_LAYER"
+          ]
         }
       }
     },

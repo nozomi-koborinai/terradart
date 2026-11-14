@@ -1,22 +1,11 @@
 {
   "name": "websecurityscanner",
   "version": "v1beta",
-  "revision": "20260806",
+  "revision": "20261104",
   "sourceUrl": "https://websecurityscanner.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "ScanConfig": {
       "properties": {
-        "targetPlatforms": {
-          "items": {
-            "enum": [
-              "TARGET_PLATFORM_UNSPECIFIED",
-              "APP_ENGINE",
-              "COMPUTE",
-              "CLOUD_RUN",
-              "CLOUD_FUNCTIONS"
-            ]
-          }
-        },
         "riskLevel": {
           "enum": [
             "RISK_LEVEL_UNSPECIFIED",
@@ -41,6 +30,17 @@
             "ENABLED",
             "DISABLED"
           ]
+        },
+        "targetPlatforms": {
+          "items": {
+            "enum": [
+              "TARGET_PLATFORM_UNSPECIFIED",
+              "APP_ENGINE",
+              "COMPUTE",
+              "CLOUD_RUN",
+              "CLOUD_FUNCTIONS"
+            ]
+          }
         }
       }
     },
@@ -97,13 +97,8 @@
     },
     "ScanRun": {
       "properties": {
-        "resultState": {
-          "enum": [
-            "RESULT_STATE_UNSPECIFIED",
-            "SUCCESS",
-            "ERROR",
-            "KILLED"
-          ]
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
         },
         "warningTraces": {
           "items": {
@@ -118,13 +113,21 @@
             "FINISHED"
           ]
         },
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
+        "resultState": {
+          "enum": [
+            "RESULT_STATE_UNSPECIFIED",
+            "SUCCESS",
+            "ERROR",
+            "KILLED"
+          ]
         }
       }
     },
     "ScanRunErrorTrace": {
       "properties": {
+        "scanConfigError": {
+          "$ref": "ScanConfigError"
+        },
         "code": {
           "enum": [
             "CODE_UNSPECIFIED",
@@ -136,9 +139,6 @@
             "TOO_MANY_HTTP_ERRORS",
             "STARTING_URLS_CRAWL_HTTP_ERRORS"
           ]
-        },
-        "scanConfigError": {
-          "$ref": "ScanConfigError"
         }
       }
     },

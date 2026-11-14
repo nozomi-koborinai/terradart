@@ -120,18 +120,20 @@ final class ShapesGoogleStack extends Stack {
       GoogleDataLossPreventionDeidentifyTemplate(
         'template',
         parent: .literal('projects/shapes-project'),
-        deidentifyConfig: .recordTransformations(
-          .new(
-            fieldTransformations: [
-              .new(
-                fields: [.new(name: .literal('email'))],
-                infoTypeTransformations: .new(
-                  transformations: [
-                    .new(primitiveTransformation: .new(redactConfig: .new())),
-                  ],
+        deidentifyConfig: DataLossPreventionDeidentifyTemplateDeidentifyConfig(
+          transformation: .recordTransformations(
+            .new(
+              fieldTransformations: [
+                .new(
+                  fields: [.new(name: .literal('email'))],
+                  infoTypeTransformations: .new(
+                    transformations: [
+                      .new(primitiveTransformation: .new(redactConfig: .new())),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

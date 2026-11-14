@@ -1,7 +1,7 @@
 {
   "name": "contactcenterinsights",
   "version": "v1",
-  "revision": "20261029",
+  "revision": "20261106",
   "sourceUrl": "https://contactcenterinsights.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1AnalysisRule": {
@@ -47,11 +47,11 @@
     },
     "GoogleCloudContactcenterinsightsV1QaQuestion": {
       "properties": {
-        "tuningMetadata": {
-          "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadata"
-        },
         "predefinedQuestionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig"
+        },
+        "tuningMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadata"
         },
         "questionType": {
           "enum": [
@@ -104,6 +104,9 @@
     },
     "GoogleCloudContactcenterinsightsV1QaScorecardRevision": {
       "properties": {
+        "snapshot": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QaScorecard"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -114,9 +117,6 @@
             "DELETING",
             "TRAINING_CANCELLED"
           ]
-        },
-        "snapshot": {
-          "$ref": "GoogleCloudContactcenterinsightsV1QaScorecard"
         }
       }
     },

@@ -98,6 +98,9 @@ final class DataGoogleOracleDatabaseCloudVmCluster extends Data {
   /// Reference to `network` attribute.
   TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
+  /// Reference to `odb_dns_zone` attribute.
+  TfRef<String> get odbDnsZone => TfRef.attribute<String>(this, 'odb_dns_zone');
+
   /// Reference to `odb_network` attribute.
   TfRef<String> get odbNetwork => TfRef.attribute<String>(this, 'odb_network');
 

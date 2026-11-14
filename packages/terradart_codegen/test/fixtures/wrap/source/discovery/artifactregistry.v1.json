@@ -1,7 +1,7 @@
 {
   "name": "artifactregistry",
   "version": "v1",
-  "revision": "20261017",
+  "revision": "20261106",
   "sourceUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AptRepository": {
@@ -13,15 +13,15 @@
     },
     "CleanupPolicy": {
       "properties": {
+        "condition": {
+          "$ref": "CleanupPolicyCondition"
+        },
         "action": {
           "enum": [
             "ACTION_UNSPECIFIED",
             "DELETE",
             "KEEP"
           ]
-        },
-        "condition": {
-          "$ref": "CleanupPolicyCondition"
         }
       }
     },
@@ -165,23 +165,23 @@
     },
     "RemoteRepositoryConfig": {
       "properties": {
+        "mavenRepository": {
+          "$ref": "MavenRepository"
+        },
+        "dockerRepository": {
+          "$ref": "DockerRepository"
+        },
         "pythonRepository": {
           "$ref": "PythonRepository"
         },
         "aptRepository": {
           "$ref": "AptRepository"
         },
-        "yumRepository": {
-          "$ref": "YumRepository"
-        },
-        "mavenRepository": {
-          "$ref": "MavenRepository"
-        },
         "npmRepository": {
           "$ref": "NpmRepository"
         },
-        "dockerRepository": {
-          "$ref": "DockerRepository"
+        "yumRepository": {
+          "$ref": "YumRepository"
         }
       }
     },
@@ -197,19 +197,19 @@
             "ASSURED_OSS_REPOSITORY"
           ]
         },
-        "cleanupPolicies": {
-          "additionalProperties": {
-            "$ref": "CleanupPolicy"
-          }
-        },
-        "mavenConfig": {
-          "$ref": "MavenRepositoryConfig"
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
         },
         "remoteRepositoryConfig": {
           "$ref": "RemoteRepositoryConfig"
         },
-        "vulnerabilityScanningConfig": {
-          "$ref": "VulnerabilityScanningConfig"
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
+        },
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
         },
         "format": {
           "enum": [
@@ -235,19 +235,19 @@
     },
     "VulnerabilityScanningConfig": {
       "properties": {
-        "enablementConfig": {
-          "enum": [
-            "ENABLEMENT_CONFIG_UNSPECIFIED",
-            "INHERITED",
-            "DISABLED"
-          ]
-        },
         "enablementState": {
           "enum": [
             "ENABLEMENT_STATE_UNSPECIFIED",
             "SCANNING_UNSUPPORTED",
             "SCANNING_DISABLED",
             "SCANNING_ACTIVE"
+          ]
+        },
+        "enablementConfig": {
+          "enum": [
+            "ENABLEMENT_CONFIG_UNSPECIFIED",
+            "INHERITED",
+            "DISABLED"
           ]
         }
       }

@@ -213,12 +213,8 @@ export 'src/network/google_network_security_client_tls_policy.dart'
         GoogleNetworkSecurityClientTlsPolicy,
         NetworkSecurityClientTlsPolicyCertificateProviderInstance,
         NetworkSecurityClientTlsPolicyClientCertificate,
-        NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint,
-        NetworkSecurityClientTlsPolicyClientCertificateProviderInstance,
         NetworkSecurityClientTlsPolicyGrpcEndpoint,
-        NetworkSecurityClientTlsPolicyServerValidationCa,
-        NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance,
-        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint;
+        NetworkSecurityClientTlsPolicyServerValidationCa;
 export 'src/network/google_network_security_dns_threat_detector.dart'
     show
         GoogleNetworkSecurityDnsThreatDetector,
@@ -316,17 +312,15 @@ export 'src/network/google_network_security_server_tls_policy.dart'
         GoogleNetworkSecurityServerTlsPolicy,
         NetworkSecurityServerTlsPolicyCertificateProviderInstance,
         NetworkSecurityServerTlsPolicyClientValidationCa,
-        NetworkSecurityServerTlsPolicyClientValidationCaCertificateProviderInstance,
-        NetworkSecurityServerTlsPolicyClientValidationCaGrpcEndpoint,
         NetworkSecurityServerTlsPolicyClientValidationMode,
+        NetworkSecurityServerTlsPolicyClientValidationRelaxations,
         NetworkSecurityServerTlsPolicyGrpcEndpoint,
         NetworkSecurityServerTlsPolicyMtlsPolicy,
-        NetworkSecurityServerTlsPolicyServerCertificate,
-        NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint,
-        NetworkSecurityServerTlsPolicyServerCertificateProviderInstance;
+        NetworkSecurityServerTlsPolicyServerCertificate;
 export 'src/network/google_network_security_tls_inspection_policy.dart'
     show
         GoogleNetworkSecurityTlsInspectionPolicy,
+        NetworkSecurityTlsInspectionPolicyCertificateIssuanceMode,
         NetworkSecurityTlsInspectionPolicyMinTlsVersion,
         NetworkSecurityTlsInspectionPolicyTlsFeatureProfile;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'
@@ -453,6 +447,7 @@ export 'src/network/google_network_services_grpc_route.dart'
         NetworkServicesGrpcRouteHeaders,
         NetworkServicesGrpcRouteMatches,
         NetworkServicesGrpcRouteMethod,
+        NetworkServicesGrpcRouteMethodType,
         NetworkServicesGrpcRouteRetryConditions,
         NetworkServicesGrpcRouteRetryPolicy,
         NetworkServicesGrpcRouteRules,
@@ -466,27 +461,13 @@ export 'src/network/google_network_services_http_route.dart'
         NetworkServicesHttpRouteDelay,
         NetworkServicesHttpRouteDestination,
         NetworkServicesHttpRouteDestinations,
+        NetworkServicesHttpRouteDirectResponse,
         NetworkServicesHttpRouteFaultInjectionPolicy,
-        NetworkServicesHttpRouteFullPathMatch,
         NetworkServicesHttpRouteHeaders,
-        NetworkServicesHttpRouteHeadersExactMatch,
-        NetworkServicesHttpRouteHeadersMatch,
-        NetworkServicesHttpRouteHeadersPrefixMatch,
-        NetworkServicesHttpRouteHeadersPresentMatch,
-        NetworkServicesHttpRouteHeadersRangeMatch,
-        NetworkServicesHttpRouteHeadersRegexMatch,
-        NetworkServicesHttpRouteHeadersSuffixMatch,
-        NetworkServicesHttpRouteMatch,
         NetworkServicesHttpRouteMatches,
-        NetworkServicesHttpRoutePrefixMatch,
         NetworkServicesHttpRouteQueryParameters,
-        NetworkServicesHttpRouteQueryParametersExactMatch,
-        NetworkServicesHttpRouteQueryParametersMatch,
-        NetworkServicesHttpRouteQueryParametersPresentMatch,
-        NetworkServicesHttpRouteQueryParametersRegexMatch,
         NetworkServicesHttpRouteRangeMatch,
         NetworkServicesHttpRouteRedirect,
-        NetworkServicesHttpRouteRegexMatch,
         NetworkServicesHttpRouteRequestHeaderModifier,
         NetworkServicesHttpRouteRequestMirrorPolicy,
         NetworkServicesHttpRouteResponseCode,

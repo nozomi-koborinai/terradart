@@ -13,6 +13,9 @@
     },
     "Backup": {
       "properties": {
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -40,9 +43,6 @@
             "POSTGRES_17",
             "POSTGRES_18"
           ]
-        },
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
         }
       }
     },
@@ -55,18 +55,21 @@
     },
     "Cluster": {
       "properties": {
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
+        "sslConfig": {
+          "$ref": "SslConfig"
         },
-        "maintenanceVersionSelectionPolicy": {
+        "continuousBackupInfo": {
+          "$ref": "ContinuousBackupInfo"
+        },
+        "clusterType": {
           "enum": [
-            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY"
           ]
         },
-        "automatedBackupPolicy": {
-          "$ref": "AutomatedBackupPolicy"
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy"
         },
         "subscriptionType": {
           "enum": [
@@ -74,6 +77,12 @@
             "STANDARD",
             "TRIAL"
           ]
+        },
+        "migrationSource": {
+          "$ref": "MigrationSource"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
         },
         "databaseVersion": {
           "enum": [
@@ -84,22 +93,6 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18"
-          ]
-        },
-        "sslConfig": {
-          "$ref": "SslConfig"
-        },
-        "continuousBackupInfo": {
-          "$ref": "ContinuousBackupInfo"
-        },
-        "maintenanceUpdatePolicy": {
-          "$ref": "MaintenanceUpdatePolicy"
-        },
-        "clusterType": {
-          "enum": [
-            "CLUSTER_TYPE_UNSPECIFIED",
-            "PRIMARY",
-            "SECONDARY"
           ]
         },
         "state": {
@@ -117,14 +110,21 @@
             "SWITCHOVER"
           ]
         },
-        "migrationSource": {
-          "$ref": "MigrationSource"
+        "automatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy"
+        },
+        "maintenanceVersionSelectionPolicy": {
+          "enum": [
+            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
+          ]
         }
       }
     },
     "ConnectionPoolConfig": {
       "properties": {
-        "authproxyPoolerScalingType": {
+        "poolerScalingType": {
           "enum": [
             "POOLER_SCALING_TYPE_UNSPECIFIED",
             "POOLER_NONE",
@@ -132,7 +132,7 @@
             "POOLER_MANUAL_OVERRIDE"
           ]
         },
-        "poolerScalingType": {
+        "authproxyPoolerScalingType": {
           "enum": [
             "POOLER_SCALING_TYPE_UNSPECIFIED",
             "POOLER_NONE",
@@ -144,6 +144,9 @@
     },
     "ContinuousBackupInfo": {
       "properties": {
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
         "schedule": {
           "items": {
             "enum": [
@@ -157,9 +160,6 @@
               "SUNDAY"
             ]
           }
-        },
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
         }
       }
     },
@@ -197,11 +197,36 @@
             "REGIONAL"
           ]
         },
-        "connectionPoolConfig": {
-          "$ref": "ConnectionPoolConfig"
+        "activationPolicy": {
+          "enum": [
+            "ACTIVATION_POLICY_UNSPECIFIED",
+            "ALWAYS",
+            "NEVER"
+          ]
+        },
+        "dataApiAccess": {
+          "enum": [
+            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "instanceType": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "READ_POOL",
+            "SECONDARY"
+          ]
         },
         "clientConnectionConfig": {
           "$ref": "ClientConnectionConfig"
+        },
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig"
+        },
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig"
         },
         "state": {
           "enum": [
@@ -217,31 +242,6 @@
             "SWITCHOVER",
             "STOPPING",
             "STARTING"
-          ]
-        },
-        "instanceType": {
-          "enum": [
-            "INSTANCE_TYPE_UNSPECIFIED",
-            "PRIMARY",
-            "READ_POOL",
-            "SECONDARY"
-          ]
-        },
-        "activationPolicy": {
-          "enum": [
-            "ACTIVATION_POLICY_UNSPECIFIED",
-            "ALWAYS",
-            "NEVER"
-          ]
-        },
-        "pscInstanceConfig": {
-          "$ref": "PscInstanceConfig"
-        },
-        "dataApiAccess": {
-          "enum": [
-            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
-            "DISABLED",
-            "ENABLED"
           ]
         }
       }
@@ -292,11 +292,6 @@
     },
     "PscInstanceConfig": {
       "properties": {
-        "pscAutoConnections": {
-          "items": {
-            "$ref": "PscAutoConnectionConfig"
-          }
-        },
         "pscAutoConnectionPolicyState": {
           "enum": [
             "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
@@ -310,6 +305,11 @@
             "PSC_AUTO_DNS_STATE_ENABLED",
             "PSC_AUTO_DNS_STATE_DISABLED"
           ]
+        },
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          }
         }
       }
     },

@@ -1,24 +1,24 @@
 {
   "name": "binaryauthorization",
   "version": "v1",
-  "revision": "20261030",
+  "revision": "20261107",
   "sourceUrl": "https://binaryauthorization.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AdmissionRule": {
       "properties": {
-        "enforcementMode": {
-          "enum": [
-            "ENFORCEMENT_MODE_UNSPECIFIED",
-            "ENFORCED_BLOCK_AND_AUDIT_LOG",
-            "DRYRUN_AUDIT_LOG_ONLY"
-          ]
-        },
         "evaluationMode": {
           "enum": [
             "EVALUATION_MODE_UNSPECIFIED",
             "ALWAYS_ALLOW",
             "REQUIRE_ATTESTATION",
             "ALWAYS_DENY"
+          ]
+        },
+        "enforcementMode": {
+          "enum": [
+            "ENFORCEMENT_MODE_UNSPECIFIED",
+            "ENFORCED_BLOCK_AND_AUDIT_LOG",
+            "DRYRUN_AUDIT_LOG_ONLY"
           ]
         }
       }
@@ -70,12 +70,17 @@
         "defaultAdmissionRule": {
           "$ref": "AdmissionRule"
         },
-        "kubernetesNamespaceAdmissionRules": {
+        "kubernetesServiceAccountAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
         },
-        "kubernetesServiceAccountAdmissionRules": {
+        "istioServiceIdentityAdmissionRules": {
+          "additionalProperties": {
+            "$ref": "AdmissionRule"
+          }
+        },
+        "clusterAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
@@ -87,12 +92,7 @@
             "DISABLE"
           ]
         },
-        "istioServiceIdentityAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          }
-        },
-        "clusterAdmissionRules": {
+        "kubernetesNamespaceAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }

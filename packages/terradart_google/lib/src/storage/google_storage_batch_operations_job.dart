@@ -272,6 +272,66 @@ final class StorageBatchOperationsJobDeleteObject {
   };
 }
 
+/// Typed helper for the `logging_config` block of
+/// `google_storage_batch_operations_job` (derived from provider schema).
+@immutable
+final class StorageBatchOperationsJobLoggingConfig {
+  const StorageBatchOperationsJobLoggingConfig({
+    required this.logActionStates,
+    required this.logActions,
+  });
+
+  final EnumList<StorageBatchOperationsJobLogActionStates> logActionStates;
+
+  final EnumList<StorageBatchOperationsJobLogActions> logActions;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'log_action_states': logActionStates.toTfJson(),
+    'log_actions': logActions.toTfJson(),
+  };
+}
+
+/// `log_action_states` — derived from the provider schema description.
+extension type const StorageBatchOperationsJobLogActionStates._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBatchOperationsJobLogActionStates.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBatchOperationsJobLogActionStates.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBatchOperationsJobLogActionStates.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const succeeded = StorageBatchOperationsJobLogActionStates._(
+    TfArgLiteral('SUCCEEDED'),
+  );
+  static const failed = StorageBatchOperationsJobLogActionStates._(
+    TfArgLiteral('FAILED'),
+  );
+
+  static const List<StorageBatchOperationsJobLogActionStates> values = [
+    succeeded,
+    failed,
+  ];
+}
+
+/// `log_actions` — derived from the provider schema description.
+extension type const StorageBatchOperationsJobLogActions._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBatchOperationsJobLogActions.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBatchOperationsJobLogActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBatchOperationsJobLogActions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const transform = StorageBatchOperationsJobLogActions._(
+    TfArgLiteral('TRANSFORM'),
+  );
+
+  static const List<StorageBatchOperationsJobLogActions> values = [transform];
+}
+
 /// Typed helper for the `put_metadata` block of
 /// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
@@ -442,6 +502,7 @@ final class GoogleStorageBatchOperationsJob extends Resource {
     TfArg<String>? jobId,
     required StorageBatchOperationsJobBucketList bucketList,
     required StorageBatchOperationsJobOperation operation,
+    StorageBatchOperationsJobLoggingConfig? loggingConfig,
     TfArg<String>? description,
     TfArg<bool>? deleteProtection,
     TfArg<String>? deletionPolicy,
@@ -455,6 +516,8 @@ final class GoogleStorageBatchOperationsJob extends Resource {
          argMap: {
            'job_id': ?jobId,
            'bucket_list': TfArg.literal(bucketList.encode()),
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal(loggingConfig.encode()),
            'description': ?description,
            'delete_protection': ?deleteProtection,
            'deletion_policy': ?deletionPolicy,
@@ -500,6 +563,9 @@ final class GoogleStorageBatchOperationsJob extends Resource {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `dry_run` attribute.
+  TfRef<bool> get dryRun => TfRef.attribute<bool>(this, 'dry_run');
 
   /// Reference to `job_id` attribute.
   TfRef<String> get jobId => TfRef.attribute<String>(this, 'job_id');

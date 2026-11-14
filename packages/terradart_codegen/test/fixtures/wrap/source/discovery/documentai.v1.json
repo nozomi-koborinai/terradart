@@ -1,7 +1,7 @@
 {
   "name": "documentai",
   "version": "v1",
-  "revision": "20261026",
+  "revision": "20261106",
   "sourceUrl": "https://documentai.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDocumentaiV1DocumentSchema": {
@@ -24,6 +24,14 @@
     },
     "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty": {
       "properties": {
+        "method": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE",
+            "RELAXED_EXTRACT"
+          ]
+        },
         "occurrenceType": {
           "enum": [
             "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -31,14 +39,6 @@
             "OPTIONAL_MULTIPLE",
             "REQUIRED_ONCE",
             "REQUIRED_MULTIPLE"
-          ]
-        },
-        "method": {
-          "enum": [
-            "METHOD_UNSPECIFIED",
-            "EXTRACT",
-            "DERIVE",
-            "RELAXED_EXTRACT"
           ]
         }
       }

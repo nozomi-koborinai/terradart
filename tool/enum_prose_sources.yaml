@@ -749,6 +749,12 @@ google:
   google_managed_kafka_acl.acl_entries.permission_type:
     values: [ALLOW, DENY]
     source: no-enum
+  google_managed_kafka_acl_binding.operation:
+    values: [ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, CLUSTER_ACTION, DESCRIBE_CONFIGS, ALTER_CONFIGS, IDEMPOTENT_WRITE]
+    source: no-document
+  google_managed_kafka_acl_binding.permission_type:
+    values: [ALLOW, DENY]
+    source: no-document
   google_memorystore_instance.authorization_mode:
     values: [AUTH_DISABLED, IAM_AUTH, TOKEN_AUTH]
     source: no-document

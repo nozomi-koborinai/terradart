@@ -1,7 +1,7 @@
 {
   "name": "cloudquotas",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261028",
   "sourceUrl": "https://cloudquotas.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "QuotaAdjusterSettings": {

@@ -17,4 +17,3 @@ paramOrder:
 
 sealedNames:
   "custom_actions, tasks": actions
-  "custom_actions.include_skaffold_modules.git, custom_actions.include_skaffold_modules.google_cloud_build_repo, custom_actions.include_skaffold_modules.google_cloud_storage": source

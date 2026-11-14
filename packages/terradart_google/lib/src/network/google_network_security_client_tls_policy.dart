@@ -7,68 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_security_client_tls_policy`.
 const Set<String> _googleNetworkSecurityClientTlsPolicySensitive = <String>{};
 
-/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `client_certificate` block of `google_network_security_client_tls_policy`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
-sealed class NetworkSecurityClientTlsPolicyClientCertificate {
-  const NetworkSecurityClientTlsPolicyClientCertificate();
-
-  /// Sets `grpc_endpoint`.
-  const factory NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint(
-    NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint,
-  ) = NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint;
-
-  /// Sets `certificate_provider_instance`.
-  const factory NetworkSecurityClientTlsPolicyClientCertificate.certificateProviderInstance(
-    NetworkSecurityClientTlsPolicyCertificateProviderInstance
-    certificateProviderInstance,
-  ) = NetworkSecurityClientTlsPolicyClientCertificateProviderInstance;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint] choice: sets `grpc_endpoint`.
-final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint
-    extends NetworkSecurityClientTlsPolicyClientCertificate {
-  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint(
-    this.grpcEndpoint,
-  );
-
-  final NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint;
-
-  @internal
-  @override
-  String get blockKey => 'grpc_endpoint';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
-}
-
-/// The [NetworkSecurityClientTlsPolicyClientCertificate.certificateProviderInstance] choice: sets `certificate_provider_instance`.
-final class NetworkSecurityClientTlsPolicyClientCertificateProviderInstance
-    extends NetworkSecurityClientTlsPolicyClientCertificate {
-  const NetworkSecurityClientTlsPolicyClientCertificateProviderInstance(
+/// Typed helper for the `client_certificate` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyClientCertificate {
+  const NetworkSecurityClientTlsPolicyClientCertificate({
     this.certificateProviderInstance,
-  );
+    this.grpcEndpoint,
+  });
 
-  final NetworkSecurityClientTlsPolicyCertificateProviderInstance
+  final NetworkSecurityClientTlsPolicyCertificateProviderInstance?
   certificateProviderInstance;
 
-  @internal
-  @override
-  String get blockKey => 'certificate_provider_instance';
+  final NetworkSecurityClientTlsPolicyGrpcEndpoint? grpcEndpoint;
 
   @internal
-  @override
   Map<String, Object?> encode() => {
-    'certificate_provider_instance': certificateProviderInstance.encode(),
+    'certificate_provider_instance': ?certificateProviderInstance?.encode(),
+    'grpc_endpoint': ?grpcEndpoint?.encode(),
   };
 }
 
@@ -102,68 +58,24 @@ final class NetworkSecurityClientTlsPolicyGrpcEndpoint {
   Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
 }
 
-/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `server_validation_ca` block of `google_network_security_client_tls_policy`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
-sealed class NetworkSecurityClientTlsPolicyServerValidationCa {
-  const NetworkSecurityClientTlsPolicyServerValidationCa();
-
-  /// Sets `grpc_endpoint`.
-  const factory NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint(
-    NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint,
-  ) = NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint;
-
-  /// Sets `certificate_provider_instance`.
-  const factory NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance(
-    NetworkSecurityClientTlsPolicyCertificateProviderInstance
-    certificateProviderInstance,
-  ) = NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint] choice: sets `grpc_endpoint`.
-final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint
-    extends NetworkSecurityClientTlsPolicyServerValidationCa {
-  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint(
-    this.grpcEndpoint,
-  );
-
-  final NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint;
-
-  @internal
-  @override
-  String get blockKey => 'grpc_endpoint';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
-}
-
-/// The [NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance] choice: sets `certificate_provider_instance`.
-final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
-    extends NetworkSecurityClientTlsPolicyServerValidationCa {
-  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance(
+/// Typed helper for the `server_validation_ca` block of
+/// `google_network_security_client_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityClientTlsPolicyServerValidationCa {
+  const NetworkSecurityClientTlsPolicyServerValidationCa({
     this.certificateProviderInstance,
-  );
+    this.grpcEndpoint,
+  });
 
-  final NetworkSecurityClientTlsPolicyCertificateProviderInstance
+  final NetworkSecurityClientTlsPolicyCertificateProviderInstance?
   certificateProviderInstance;
 
-  @internal
-  @override
-  String get blockKey => 'certificate_provider_instance';
+  final NetworkSecurityClientTlsPolicyGrpcEndpoint? grpcEndpoint;
 
   @internal
-  @override
   Map<String, Object?> encode() => {
-    'certificate_provider_instance': certificateProviderInstance.encode(),
+    'certificate_provider_instance': ?certificateProviderInstance?.encode(),
+    'grpc_endpoint': ?grpcEndpoint?.encode(),
   };
 }
 

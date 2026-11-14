@@ -1,23 +1,23 @@
 {
   "name": "datapipelines",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261107",
   "sourceUrl": "https://datapipelines.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment": {
       "properties": {
-        "ipConfiguration": {
-          "enum": [
-            "WORKER_IP_UNSPECIFIED",
-            "WORKER_IP_PUBLIC",
-            "WORKER_IP_PRIVATE"
-          ]
-        },
         "flexrsGoal": {
           "enum": [
             "FLEXRS_UNSPECIFIED",
             "FLEXRS_SPEED_OPTIMIZED",
             "FLEXRS_COST_OPTIMIZED"
+          ]
+        },
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
           ]
         }
       }
@@ -55,6 +55,13 @@
         "workload": {
           "$ref": "GoogleCloudDatapipelinesV1Workload"
         },
+        "type": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "PIPELINE_TYPE_BATCH",
+            "PIPELINE_TYPE_STREAMING"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -63,13 +70,6 @@
             "STATE_STOPPING",
             "STATE_ARCHIVED",
             "STATE_PAUSED"
-          ]
-        },
-        "type": {
-          "enum": [
-            "PIPELINE_TYPE_UNSPECIFIED",
-            "PIPELINE_TYPE_BATCH",
-            "PIPELINE_TYPE_STREAMING"
           ]
         }
       }

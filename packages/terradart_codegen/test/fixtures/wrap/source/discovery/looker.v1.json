@@ -32,8 +32,37 @@
     },
     "Instance": {
       "properties": {
-        "customDomain": {
-          "$ref": "CustomDomain"
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
+          ]
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "EXPORTING",
+            "IMPORTING"
+          ]
+        },
+        "softDeleteReason": {
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ]
         },
         "platformEdition": {
           "enum": [
@@ -51,37 +80,8 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
-        "softDeleteReason": {
-          "enum": [
-            "SOFT_DELETE_REASON_UNSPECIFIED",
-            "BILLING_ACCOUNT_ISSUE",
-            "TRIAL_EXPIRED",
-            "CUSTOMER_REQUEST"
-          ]
-        },
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "RAPID",
-            "REGULAR",
-            "STABLE"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "FAILED",
-            "SUSPENDED",
-            "UPDATING",
-            "DELETING",
-            "EXPORTING",
-            "IMPORTING"
-          ]
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
         },
         "classType": {
           "enum": [
@@ -90,8 +90,8 @@
             "P1"
           ]
         },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
+        "customDomain": {
+          "$ref": "CustomDomain"
         },
         "pscConfig": {
           "$ref": "PscConfig"

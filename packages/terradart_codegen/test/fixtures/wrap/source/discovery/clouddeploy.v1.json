@@ -1,7 +1,7 @@
 {
   "name": "clouddeploy",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261028",
   "sourceUrl": "https://clouddeploy.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Automation": {
@@ -91,6 +91,15 @@
         "timeWindows": {
           "$ref": "TimeWindows"
         },
+        "invokers": {
+          "items": {
+            "enum": [
+              "INVOKER_UNSPECIFIED",
+              "USER",
+              "DEPLOY_AUTOMATION"
+            ]
+          }
+        },
         "actions": {
           "items": {
             "enum": [
@@ -103,15 +112,6 @@
               "RETRY_JOB",
               "ROLLBACK",
               "TERMINATE_JOBRUN"
-            ]
-          }
-        },
-        "invokers": {
-          "items": {
-            "enum": [
-              "INVOKER_UNSPECIFIED",
-              "USER",
-              "DEPLOY_AUTOMATION"
             ]
           }
         }

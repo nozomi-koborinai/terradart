@@ -116,103 +116,25 @@ final class ClouddeployCustomTargetTypeCustomActions {
 final class ClouddeployCustomTargetTypeIncludeSkaffoldModules {
   const ClouddeployCustomTargetTypeIncludeSkaffoldModules({
     this.configs,
-    required this.source,
+    this.git,
+    this.googleCloudBuildRepo,
+    this.googleCloudStorage,
   });
 
   final TfArg<List<String>>? configs;
 
-  final ClouddeployCustomTargetTypeSource source;
+  final ClouddeployCustomTargetTypeGit? git;
+
+  final ClouddeployCustomTargetTypeGoogleCloudBuildRepo? googleCloudBuildRepo;
+
+  final ClouddeployCustomTargetTypeGoogleCloudStorage? googleCloudStorage;
 
   @internal
   Map<String, Object?> encode() => {
     'configs': ?configs?.toTfJson(),
-    ...source.encode(),
-  };
-}
-
-/// Exactly one of `git`, `google_cloud_storage`, `google_cloud_build_repo` on the `custom_actions.include_skaffold_modules` block of `google_clouddeploy_custom_target_type`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.git(...)`.
-sealed class ClouddeployCustomTargetTypeSource {
-  const ClouddeployCustomTargetTypeSource();
-
-  /// Sets `git`.
-  const factory ClouddeployCustomTargetTypeSource.git(
-    ClouddeployCustomTargetTypeGit git,
-  ) = ClouddeployCustomTargetTypeSourceGit;
-
-  /// Sets `google_cloud_storage`.
-  const factory ClouddeployCustomTargetTypeSource.googleCloudStorage(
-    ClouddeployCustomTargetTypeGoogleCloudStorage googleCloudStorage,
-  ) = ClouddeployCustomTargetTypeSourceGoogleCloudStorage;
-
-  /// Sets `google_cloud_build_repo`.
-  const factory ClouddeployCustomTargetTypeSource.googleCloudBuildRepo(
-    ClouddeployCustomTargetTypeGoogleCloudBuildRepo googleCloudBuildRepo,
-  ) = ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [ClouddeployCustomTargetTypeSource.git] choice: sets `git`.
-final class ClouddeployCustomTargetTypeSourceGit
-    extends ClouddeployCustomTargetTypeSource {
-  const ClouddeployCustomTargetTypeSourceGit(this.git);
-
-  final ClouddeployCustomTargetTypeGit git;
-
-  @internal
-  @override
-  String get blockKey => 'git';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'git': git.encode()};
-}
-
-/// The [ClouddeployCustomTargetTypeSource.googleCloudStorage] choice: sets `google_cloud_storage`.
-final class ClouddeployCustomTargetTypeSourceGoogleCloudStorage
-    extends ClouddeployCustomTargetTypeSource {
-  const ClouddeployCustomTargetTypeSourceGoogleCloudStorage(
-    this.googleCloudStorage,
-  );
-
-  final ClouddeployCustomTargetTypeGoogleCloudStorage googleCloudStorage;
-
-  @internal
-  @override
-  String get blockKey => 'google_cloud_storage';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'google_cloud_storage': googleCloudStorage.encode(),
-  };
-}
-
-/// The [ClouddeployCustomTargetTypeSource.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
-final class ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo
-    extends ClouddeployCustomTargetTypeSource {
-  const ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo(
-    this.googleCloudBuildRepo,
-  );
-
-  final ClouddeployCustomTargetTypeGoogleCloudBuildRepo googleCloudBuildRepo;
-
-  @internal
-  @override
-  String get blockKey => 'google_cloud_build_repo';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'google_cloud_build_repo': googleCloudBuildRepo.encode(),
+    'git': ?git?.encode(),
+    'google_cloud_build_repo': ?googleCloudBuildRepo?.encode(),
+    'google_cloud_storage': ?googleCloudStorage?.encode(),
   };
 }
 

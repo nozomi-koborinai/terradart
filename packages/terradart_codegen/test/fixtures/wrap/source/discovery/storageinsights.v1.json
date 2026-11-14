@@ -6,6 +6,9 @@
   "schemas": {
     "DatasetConfig": {
       "properties": {
+        "identity": {
+          "$ref": "Identity"
+        },
         "datasetConfigState": {
           "enum": [
             "CONFIG_STATE_UNSPECIFIED",
@@ -14,9 +17,6 @@
             "CONFIG_STATE_CREATED",
             "CONFIG_STATE_PROCESSING"
           ]
-        },
-        "identity": {
-          "$ref": "Identity"
         }
       }
     },

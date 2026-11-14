@@ -1,11 +1,14 @@
 {
   "name": "apihub",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261104",
   "sourceUrl": "https://apihub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudApihubV1ApiHubInstance": {
       "properties": {
+        "config": {
+          "$ref": "GoogleCloudApihubV1Config"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -16,9 +19,6 @@
             "DELETING",
             "FAILED"
           ]
-        },
-        "config": {
-          "$ref": "GoogleCloudApihubV1Config"
         }
       }
     },
@@ -38,9 +38,6 @@
     },
     "GoogleCloudApihubV1AuthConfig": {
       "properties": {
-        "apiKeyConfig": {
-          "$ref": "GoogleCloudApihubV1ApiKeyConfig"
-        },
         "authType": {
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
@@ -50,6 +47,9 @@
             "API_KEY",
             "OAUTH2_CLIENT_CREDENTIALS"
           ]
+        },
+        "apiKeyConfig": {
+          "$ref": "GoogleCloudApihubV1ApiKeyConfig"
         }
       }
     },
@@ -140,15 +140,15 @@
     },
     "GoogleCloudApihubV1ExecutionStatus": {
       "properties": {
+        "lastExecution": {
+          "$ref": "GoogleCloudApihubV1LastExecution"
+        },
         "currentExecutionState": {
           "enum": [
             "CURRENT_EXECUTION_STATE_UNSPECIFIED",
             "RUNNING",
             "NOT_RUNNING"
           ]
-        },
-        "lastExecution": {
-          "$ref": "GoogleCloudApihubV1LastExecution"
         }
       }
     },
@@ -168,21 +168,6 @@
     },
     "GoogleCloudApihubV1Plugin": {
       "properties": {
-        "actionsConfig": {
-          "items": {
-            "$ref": "GoogleCloudApihubV1PluginActionConfig"
-          }
-        },
-        "configTemplate": {
-          "$ref": "GoogleCloudApihubV1ConfigTemplate"
-        },
-        "ownershipType": {
-          "enum": [
-            "OWNERSHIP_TYPE_UNSPECIFIED",
-            "SYSTEM_OWNED",
-            "USER_OWNED"
-          ]
-        },
         "gatewayType": {
           "enum": [
             "GATEWAY_TYPE_UNSPECIFIED",
@@ -197,6 +182,21 @@
             "AZURE_API_MANAGEMENT"
           ]
         },
+        "configTemplate": {
+          "$ref": "GoogleCloudApihubV1ConfigTemplate"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "actionsConfig": {
+          "items": {
+            "$ref": "GoogleCloudApihubV1PluginActionConfig"
+          }
+        },
         "pluginCategory": {
           "enum": [
             "PLUGIN_CATEGORY_UNSPECIFIED",
@@ -204,11 +204,11 @@
             "API_PRODUCER"
           ]
         },
-        "state": {
+        "ownershipType": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
+            "OWNERSHIP_TYPE_UNSPECIFIED",
+            "SYSTEM_OWNED",
+            "USER_OWNED"
           ]
         }
       }
@@ -227,9 +227,6 @@
     },
     "GoogleCloudApihubV1PluginInstance": {
       "properties": {
-        "authConfig": {
-          "$ref": "GoogleCloudApihubV1AuthConfig"
-        },
         "actions": {
           "items": {
             "$ref": "GoogleCloudApihubV1PluginInstanceAction"
@@ -245,13 +242,16 @@
             "FAILED",
             "DELETING"
           ]
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudApihubV1AuthConfig"
         }
       }
     },
     "GoogleCloudApihubV1PluginInstanceAction": {
       "properties": {
-        "curationConfig": {
-          "$ref": "GoogleCloudApihubV1CurationConfig"
+        "hubInstanceAction": {
+          "$ref": "GoogleCloudApihubV1ExecutionStatus"
         },
         "state": {
           "enum": [
@@ -263,8 +263,8 @@
             "ERROR"
           ]
         },
-        "hubInstanceAction": {
-          "$ref": "GoogleCloudApihubV1ExecutionStatus"
+        "curationConfig": {
+          "$ref": "GoogleCloudApihubV1CurationConfig"
         },
         "resourceConfig": {
           "$ref": "GoogleCloudApihubV1ResourceConfig"

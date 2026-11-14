@@ -1,13 +1,17 @@
 {
   "name": "billingbudgets",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261106",
   "sourceUrl": "https://billingbudgets.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
       "properties": {
-        "budgetFilter": {
-          "$ref": "GoogleCloudBillingBudgetsV1Filter"
+        "ownershipScope": {
+          "enum": [
+            "OWNERSHIP_SCOPE_UNSPECIFIED",
+            "ALL_USERS",
+            "BILLING_ACCOUNT"
+          ]
         },
         "spendCap": {
           "$ref": "GoogleCloudBillingBudgetsV1SpendCap"
@@ -17,31 +21,27 @@
             "$ref": "GoogleCloudBillingBudgetsV1ThresholdRule"
           }
         },
-        "ownershipScope": {
-          "enum": [
-            "OWNERSHIP_SCOPE_UNSPECIFIED",
-            "ALL_USERS",
-            "BILLING_ACCOUNT"
-          ]
+        "budgetFilter": {
+          "$ref": "GoogleCloudBillingBudgetsV1Filter"
         }
       }
     },
     "GoogleCloudBillingBudgetsV1Filter": {
       "properties": {
-        "creditTypesTreatment": {
-          "enum": [
-            "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
-            "INCLUDE_ALL_CREDITS",
-            "EXCLUDE_ALL_CREDITS",
-            "INCLUDE_SPECIFIED_CREDITS"
-          ]
-        },
         "calendarPeriod": {
           "enum": [
             "CALENDAR_PERIOD_UNSPECIFIED",
             "MONTH",
             "QUARTER",
             "YEAR"
+          ]
+        },
+        "creditTypesTreatment": {
+          "enum": [
+            "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
+            "INCLUDE_ALL_CREDITS",
+            "EXCLUDE_ALL_CREDITS",
+            "INCLUDE_SPECIFIED_CREDITS"
           ]
         }
       }

@@ -1,7 +1,7 @@
 {
   "name": "networkmanagement",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261028",
   "sourceUrl": "https://networkmanagement.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AbortInfo": {
@@ -65,17 +65,17 @@
         "probingDetails": {
           "$ref": "ProbingDetails"
         },
+        "source": {
+          "$ref": "Endpoint"
+        },
         "reachabilityDetails": {
+          "$ref": "ReachabilityDetails"
+        },
+        "returnReachabilityDetails": {
           "$ref": "ReachabilityDetails"
         },
         "destination": {
           "$ref": "Endpoint"
-        },
-        "source": {
-          "$ref": "Endpoint"
-        },
-        "returnReachabilityDetails": {
-          "$ref": "ReachabilityDetails"
         }
       }
     },
@@ -241,14 +241,6 @@
     },
     "Endpoint": {
       "properties": {
-        "networkType": {
-          "enum": [
-            "NETWORK_TYPE_UNSPECIFIED",
-            "GCP_NETWORK",
-            "NON_GCP_NETWORK",
-            "INTERNET"
-          ]
-        },
         "forwardingRuleTarget": {
           "enum": [
             "FORWARDING_RULE_TARGET_UNSPECIFIED",
@@ -271,6 +263,14 @@
             "NETWORK_LOAD_BALANCER",
             "LEGACY_NETWORK_LOAD_BALANCER",
             "TCP_UDP_INTERNAL_LOAD_BALANCER"
+          ]
+        },
+        "networkType": {
+          "enum": [
+            "NETWORK_TYPE_UNSPECIFIED",
+            "GCP_NETWORK",
+            "NON_GCP_NETWORK",
+            "INTERNET"
           ]
         }
       }
@@ -430,11 +430,6 @@
     },
     "LoadBalancerInfo": {
       "properties": {
-        "backends": {
-          "items": {
-            "$ref": "LoadBalancerBackend"
-          }
-        },
         "backendType": {
           "enum": [
             "BACKEND_TYPE_UNSPECIFIED",
@@ -442,6 +437,11 @@
             "TARGET_POOL",
             "TARGET_INSTANCE"
           ]
+        },
+        "backends": {
+          "items": {
+            "$ref": "LoadBalancerBackend"
+          }
         },
         "loadBalancerType": {
           "enum": [
@@ -457,16 +457,6 @@
     },
     "NatInfo": {
       "properties": {
-        "cloudNatGatewayType": {
-          "enum": [
-            "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
-            "PUBLIC_NAT44",
-            "PUBLIC_NAT64",
-            "PRIVATE_NAT_NCC",
-            "PRIVATE_NAT_HYBRID",
-            "PRIVATE_NAT64"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -476,11 +466,27 @@
             "PRIVATE_SERVICE_CONNECT",
             "GKE_POD_IP_MASQUERADING"
           ]
+        },
+        "cloudNatGatewayType": {
+          "enum": [
+            "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
+            "PUBLIC_NAT44",
+            "PUBLIC_NAT64",
+            "PRIVATE_NAT_NCC",
+            "PRIVATE_NAT_HYBRID",
+            "PRIVATE_NAT64"
+          ]
         }
       }
     },
     "NetworkMonitoringProvider": {
       "properties": {
+        "providerType": {
+          "enum": [
+            "PROVIDER_TYPE_UNSPECIFIED",
+            "EXTERNAL"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -491,21 +497,17 @@
             "DELETING",
             "DELETED"
           ]
-        },
-        "providerType": {
-          "enum": [
-            "PROVIDER_TYPE_UNSPECIFIED",
-            "EXTERNAL"
-          ]
         }
       }
     },
     "ProbingDetails": {
       "properties": {
-        "edgeResponses": {
-          "items": {
-            "$ref": "SingleEdgeResponse"
-          }
+        "abortCause": {
+          "enum": [
+            "PROBING_ABORT_CAUSE_UNSPECIFIED",
+            "PERMISSION_DENIED",
+            "NO_SOURCE_LOCATION"
+          ]
         },
         "result": {
           "enum": [
@@ -516,22 +518,15 @@
             "UNDETERMINED"
           ]
         },
-        "abortCause": {
-          "enum": [
-            "PROBING_ABORT_CAUSE_UNSPECIFIED",
-            "PERMISSION_DENIED",
-            "NO_SOURCE_LOCATION"
-          ]
+        "edgeResponses": {
+          "items": {
+            "$ref": "SingleEdgeResponse"
+          }
         }
       }
     },
     "ReachabilityDetails": {
       "properties": {
-        "traces": {
-          "items": {
-            "$ref": "Trace"
-          }
-        },
         "result": {
           "enum": [
             "RESULT_UNSPECIFIED",
@@ -540,6 +535,11 @@
             "AMBIGUOUS",
             "UNDETERMINED"
           ]
+        },
+        "traces": {
+          "items": {
+            "$ref": "Trace"
+          }
         }
       }
     },
@@ -600,11 +600,8 @@
     },
     "Step": {
       "properties": {
-        "vpnTunnel": {
-          "$ref": "VpnTunnelInfo"
-        },
-        "googleService": {
-          "$ref": "GoogleServiceInfo"
+        "drop": {
+          "$ref": "DropInfo"
         },
         "state": {
           "enum": [
@@ -659,50 +656,53 @@
             "VIEWER_PERMISSION_MISSING"
           ]
         },
-        "loadBalancerBackendInfo": {
-          "$ref": "LoadBalancerBackendInfo"
+        "ipMasqueradingSkipped": {
+          "$ref": "IpMasqueradingSkippedInfo"
         },
         "loadBalancer": {
           "$ref": "LoadBalancerInfo"
         },
-        "firewall": {
-          "$ref": "FirewallInfo"
+        "abort": {
+          "$ref": "AbortInfo"
+        },
+        "googleService": {
+          "$ref": "GoogleServiceInfo"
         },
         "route": {
           "$ref": "RouteInfo"
         },
-        "deliver": {
-          "$ref": "DeliverInfo"
-        },
-        "abort": {
-          "$ref": "AbortInfo"
-        },
-        "forwardingRule": {
-          "$ref": "ForwardingRuleInfo"
-        },
-        "ipMasqueradingSkipped": {
-          "$ref": "IpMasqueradingSkippedInfo"
-        },
-        "viewerPermissionMissingInfo": {
-          "$ref": "ViewerPermissionMissingInfo"
-        },
         "nat": {
           "$ref": "NatInfo"
         },
-        "instance": {
-          "$ref": "InstanceInfo"
-        },
-        "gkeNetworkPolicySkipped": {
-          "$ref": "GkeNetworkPolicySkippedInfo"
-        },
-        "drop": {
-          "$ref": "DropInfo"
+        "loadBalancerBackendInfo": {
+          "$ref": "LoadBalancerBackendInfo"
         },
         "forward": {
           "$ref": "ForwardInfo"
         },
         "interconnectAttachment": {
           "$ref": "InterconnectAttachmentInfo"
+        },
+        "viewerPermissionMissingInfo": {
+          "$ref": "ViewerPermissionMissingInfo"
+        },
+        "instance": {
+          "$ref": "InstanceInfo"
+        },
+        "forwardingRule": {
+          "$ref": "ForwardingRuleInfo"
+        },
+        "firewall": {
+          "$ref": "FirewallInfo"
+        },
+        "vpnTunnel": {
+          "$ref": "VpnTunnelInfo"
+        },
+        "deliver": {
+          "$ref": "DeliverInfo"
+        },
+        "gkeNetworkPolicySkipped": {
+          "$ref": "GkeNetworkPolicySkippedInfo"
         }
       }
     },
@@ -731,12 +731,15 @@
     },
     "VpcFlowLogsConfig": {
       "properties": {
-        "metadata": {
+        "aggregationInterval": {
           "enum": [
-            "METADATA_UNSPECIFIED",
-            "INCLUDE_ALL_METADATA",
-            "EXCLUDE_ALL_METADATA",
-            "CUSTOM_METADATA"
+            "AGGREGATION_INTERVAL_UNSPECIFIED",
+            "INTERVAL_5_SEC",
+            "INTERVAL_30_SEC",
+            "INTERVAL_1_MIN",
+            "INTERVAL_5_MIN",
+            "INTERVAL_10_MIN",
+            "INTERVAL_15_MIN"
           ]
         },
         "state": {
@@ -753,13 +756,6 @@
             "CROSS_PROJECT_METADATA_DISABLED"
           ]
         },
-        "targetResourceState": {
-          "enum": [
-            "TARGET_RESOURCE_STATE_UNSPECIFIED",
-            "TARGET_RESOURCE_EXISTS",
-            "TARGET_RESOURCE_DOES_NOT_EXIST"
-          ]
-        },
         "connectionLogging": {
           "enum": [
             "CONNECTION_LOGGING_UNSPECIFIED",
@@ -767,15 +763,19 @@
             "CONNECTION_LOGGING_DISABLED"
           ]
         },
-        "aggregationInterval": {
+        "metadata": {
           "enum": [
-            "AGGREGATION_INTERVAL_UNSPECIFIED",
-            "INTERVAL_5_SEC",
-            "INTERVAL_30_SEC",
-            "INTERVAL_1_MIN",
-            "INTERVAL_5_MIN",
-            "INTERVAL_10_MIN",
-            "INTERVAL_15_MIN"
+            "METADATA_UNSPECIFIED",
+            "INCLUDE_ALL_METADATA",
+            "EXCLUDE_ALL_METADATA",
+            "CUSTOM_METADATA"
+          ]
+        },
+        "targetResourceState": {
+          "enum": [
+            "TARGET_RESOURCE_STATE_UNSPECIFIED",
+            "TARGET_RESOURCE_EXISTS",
+            "TARGET_RESOURCE_DOES_NOT_EXIST"
           ]
         }
       }

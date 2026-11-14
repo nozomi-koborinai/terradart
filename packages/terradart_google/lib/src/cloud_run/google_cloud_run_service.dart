@@ -311,7 +311,8 @@ final class CloudRunServiceLivenessProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    required this.check,
+    this.grpc,
+    this.httpGet,
   });
 
   final TfArg<num>? failureThreshold;
@@ -322,7 +323,9 @@ final class CloudRunServiceLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceLivenessProbeCheck check;
+  final CloudRunServiceGrpc? grpc;
+
+  final CloudRunServiceLivenessProbeHttpGet? httpGet;
 
   @internal
   Map<String, Object?> encode() => {
@@ -330,65 +333,9 @@ final class CloudRunServiceLivenessProbe {
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
     'period_seconds': ?periodSeconds?.toTfJson(),
     'timeout_seconds': ?timeoutSeconds?.toTfJson(),
-    ...check.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
   };
-}
-
-/// Exactly one of `http_get`, `grpc` on the `template.spec.containers.liveness_probe` block of `google_cloud_run_service`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceLivenessProbeCheck {
-  const CloudRunServiceLivenessProbeCheck();
-
-  /// Sets `http_get`.
-  const factory CloudRunServiceLivenessProbeCheck.httpGet(
-    CloudRunServiceLivenessProbeHttpGet httpGet,
-  ) = CloudRunServiceLivenessProbeCheckHttpGet;
-
-  /// Sets `grpc`.
-  const factory CloudRunServiceLivenessProbeCheck.grpc(
-    CloudRunServiceGrpc grpc,
-  ) = CloudRunServiceLivenessProbeCheckGrpc;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunServiceLivenessProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceLivenessProbeCheckHttpGet
-    extends CloudRunServiceLivenessProbeCheck {
-  const CloudRunServiceLivenessProbeCheckHttpGet(this.httpGet);
-
-  final CloudRunServiceLivenessProbeHttpGet httpGet;
-
-  @internal
-  @override
-  String get blockKey => 'http_get';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
-}
-
-/// The [CloudRunServiceLivenessProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceLivenessProbeCheckGrpc
-    extends CloudRunServiceLivenessProbeCheck {
-  const CloudRunServiceLivenessProbeCheckGrpc(this.grpc);
-
-  final CloudRunServiceGrpc grpc;
-
-  @internal
-  @override
-  String get blockKey => 'grpc';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.liveness_probe.grpc` block of
@@ -496,7 +443,8 @@ final class CloudRunServiceReadinessProbe {
     this.periodSeconds,
     this.successThreshold,
     this.timeoutSeconds,
-    required this.check,
+    this.grpc,
+    this.httpGet,
   });
 
   final TfArg<num>? failureThreshold;
@@ -507,7 +455,9 @@ final class CloudRunServiceReadinessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceReadinessProbeCheck check;
+  final CloudRunServiceGrpc? grpc;
+
+  final CloudRunServiceReadinessProbeHttpGet? httpGet;
 
   @internal
   Map<String, Object?> encode() => {
@@ -515,65 +465,9 @@ final class CloudRunServiceReadinessProbe {
     'period_seconds': ?periodSeconds?.toTfJson(),
     'success_threshold': ?successThreshold?.toTfJson(),
     'timeout_seconds': ?timeoutSeconds?.toTfJson(),
-    ...check.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
   };
-}
-
-/// Exactly one of `http_get`, `grpc` on the `template.spec.containers.readiness_probe` block of `google_cloud_run_service`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceReadinessProbeCheck {
-  const CloudRunServiceReadinessProbeCheck();
-
-  /// Sets `http_get`.
-  const factory CloudRunServiceReadinessProbeCheck.httpGet(
-    CloudRunServiceReadinessProbeHttpGet httpGet,
-  ) = CloudRunServiceReadinessProbeCheckHttpGet;
-
-  /// Sets `grpc`.
-  const factory CloudRunServiceReadinessProbeCheck.grpc(
-    CloudRunServiceGrpc grpc,
-  ) = CloudRunServiceReadinessProbeCheckGrpc;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunServiceReadinessProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceReadinessProbeCheckHttpGet
-    extends CloudRunServiceReadinessProbeCheck {
-  const CloudRunServiceReadinessProbeCheckHttpGet(this.httpGet);
-
-  final CloudRunServiceReadinessProbeHttpGet httpGet;
-
-  @internal
-  @override
-  String get blockKey => 'http_get';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
-}
-
-/// The [CloudRunServiceReadinessProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceReadinessProbeCheckGrpc
-    extends CloudRunServiceReadinessProbeCheck {
-  const CloudRunServiceReadinessProbeCheckGrpc(this.grpc);
-
-  final CloudRunServiceGrpc grpc;
-
-  @internal
-  @override
-  String get blockKey => 'grpc';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.readiness_probe.http_get` block of
@@ -619,7 +513,9 @@ final class CloudRunServiceStartupProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    required this.check,
+    this.grpc,
+    this.httpGet,
+    this.tcpSocket,
   });
 
   final TfArg<num>? failureThreshold;
@@ -630,7 +526,11 @@ final class CloudRunServiceStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceStartupProbeCheck check;
+  final CloudRunServiceGrpc? grpc;
+
+  final CloudRunServiceLivenessProbeHttpGet? httpGet;
+
+  final CloudRunServiceTcpSocket? tcpSocket;
 
   @internal
   Map<String, Object?> encode() => {
@@ -638,86 +538,10 @@ final class CloudRunServiceStartupProbe {
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
     'period_seconds': ?periodSeconds?.toTfJson(),
     'timeout_seconds': ?timeoutSeconds?.toTfJson(),
-    ...check.encode(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
   };
-}
-
-/// Exactly one of `tcp_socket`, `http_get`, `grpc` on the `template.spec.containers.startup_probe` block of `google_cloud_run_service`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.tcpSocket(...)`.
-sealed class CloudRunServiceStartupProbeCheck {
-  const CloudRunServiceStartupProbeCheck();
-
-  /// Sets `tcp_socket`.
-  const factory CloudRunServiceStartupProbeCheck.tcpSocket(
-    CloudRunServiceTcpSocket tcpSocket,
-  ) = CloudRunServiceStartupProbeCheckTcpSocket;
-
-  /// Sets `http_get`.
-  const factory CloudRunServiceStartupProbeCheck.httpGet(
-    CloudRunServiceLivenessProbeHttpGet httpGet,
-  ) = CloudRunServiceStartupProbeCheckHttpGet;
-
-  /// Sets `grpc`.
-  const factory CloudRunServiceStartupProbeCheck.grpc(
-    CloudRunServiceGrpc grpc,
-  ) = CloudRunServiceStartupProbeCheckGrpc;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunServiceStartupProbeCheck.tcpSocket] choice: sets `tcp_socket`.
-final class CloudRunServiceStartupProbeCheckTcpSocket
-    extends CloudRunServiceStartupProbeCheck {
-  const CloudRunServiceStartupProbeCheckTcpSocket(this.tcpSocket);
-
-  final CloudRunServiceTcpSocket tcpSocket;
-
-  @internal
-  @override
-  String get blockKey => 'tcp_socket';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'tcp_socket': tcpSocket.encode()};
-}
-
-/// The [CloudRunServiceStartupProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceStartupProbeCheckHttpGet
-    extends CloudRunServiceStartupProbeCheck {
-  const CloudRunServiceStartupProbeCheckHttpGet(this.httpGet);
-
-  final CloudRunServiceLivenessProbeHttpGet httpGet;
-
-  @internal
-  @override
-  String get blockKey => 'http_get';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
-}
-
-/// The [CloudRunServiceStartupProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceStartupProbeCheckGrpc
-    extends CloudRunServiceStartupProbeCheck {
-  const CloudRunServiceStartupProbeCheckGrpc(this.grpc);
-
-  final CloudRunServiceGrpc grpc;
-
-  @internal
-  @override
-  String get blockKey => 'grpc';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.startup_probe.tcp_socket` block of

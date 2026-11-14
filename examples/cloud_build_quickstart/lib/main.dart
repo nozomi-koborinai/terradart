@@ -218,7 +218,7 @@ final class CloudBuildStack extends Stack {
         location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: lbRepo.id,
-          event: .push(.new(revision: .branch(.literal('^main\$')))),
+          push: .new(branch: .literal('^main\$')),
         ),
         buildSpec: .filename(.literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path

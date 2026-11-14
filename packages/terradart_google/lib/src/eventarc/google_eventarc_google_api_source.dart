@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
     show EventarcMessageBusLoggingConfig;
 import 'package:terradart_core/terradart_core.dart';
@@ -11,6 +12,118 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_eventarc_google_api_source`.
 const Set<String> _googleEventarcGoogleApiSourceSensitive = <String>{};
+
+/// At most one of `organization_subscription`, `project_subscriptions` on `google_eventarc_google_api_source`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.organizationSubscription(...)`.
+sealed class EventarcGoogleApiSourceSubscriptions {
+  const EventarcGoogleApiSourceSubscriptions();
+
+  /// Sets `organization_subscription`.
+  const factory EventarcGoogleApiSourceSubscriptions.organizationSubscription(
+    EventarcGoogleApiSourceOrganizationSubscription organizationSubscription,
+  ) = EventarcGoogleApiSourceSubscriptionsOrganizationSubscription;
+
+  /// Sets `project_subscriptions`.
+  const factory EventarcGoogleApiSourceSubscriptions.projectSubscriptions(
+    EventarcGoogleApiSourceProjectSubscriptions projectSubscriptions,
+  ) = EventarcGoogleApiSourceProjectSubscriptionsChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [EventarcGoogleApiSourceSubscriptions.organizationSubscription] choice: sets `organization_subscription`.
+final class EventarcGoogleApiSourceSubscriptionsOrganizationSubscription
+    extends EventarcGoogleApiSourceSubscriptions {
+  const EventarcGoogleApiSourceSubscriptionsOrganizationSubscription(
+    this.organizationSubscription,
+  );
+
+  final EventarcGoogleApiSourceOrganizationSubscription
+  organizationSubscription;
+
+  @internal
+  @override
+  String get blockKey => 'organization_subscription';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'organization_subscription': organizationSubscription.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'organization_subscription': TfArg.literal(
+      organizationSubscription.encode(),
+    ),
+  };
+}
+
+/// The [EventarcGoogleApiSourceSubscriptions.projectSubscriptions] choice: sets `project_subscriptions`.
+final class EventarcGoogleApiSourceProjectSubscriptionsChoice
+    extends EventarcGoogleApiSourceSubscriptions {
+  const EventarcGoogleApiSourceProjectSubscriptionsChoice(
+    this.projectSubscriptions,
+  );
+
+  final EventarcGoogleApiSourceProjectSubscriptions projectSubscriptions;
+
+  @internal
+  @override
+  String get blockKey => 'project_subscriptions';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'project_subscriptions': projectSubscriptions.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'project_subscriptions': TfArg.literal(projectSubscriptions.encode()),
+  };
+}
+
+/// Typed helper for the `organization_subscription` block of
+/// `google_eventarc_google_api_source` (derived from provider schema).
+@immutable
+final class EventarcGoogleApiSourceOrganizationSubscription {
+  const EventarcGoogleApiSourceOrganizationSubscription({
+    required this.enabled,
+  });
+
+  final TfArg<bool> enabled;
+
+  @internal
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `project_subscriptions` block of
+/// `google_eventarc_google_api_source` (derived from provider schema).
+@immutable
+final class EventarcGoogleApiSourceProjectSubscriptions {
+  const EventarcGoogleApiSourceProjectSubscriptions({required this.list});
+
+  final TfArg<List<String>> list;
+
+  @internal
+  Map<String, Object?> encode() => {'list': list.toTfJson()};
+}
 
 /// Factory wrapper for `google_eventarc_google_api_source`.
 ///
@@ -29,6 +142,7 @@ final class GoogleEventarcGoogleApiSource extends Resource {
     required TfArg<String> location,
     TfArg<String>? project,
     EventarcMessageBusLoggingConfig? loggingConfig,
+    EventarcGoogleApiSourceSubscriptions? subscriptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -46,6 +160,7 @@ final class GoogleEventarcGoogleApiSource extends Resource {
            'project': ?project,
            if (loggingConfig != null)
              'logging_config': TfArg.literal([loggingConfig.encode()]),
+           ...?subscriptions?.argMap,
          },
        );
 

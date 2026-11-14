@@ -28,7 +28,6 @@ export 'src/monitoring/google_monitoring_alert_policy.dart'
         MonitoringAlertPolicyAggregations,
         MonitoringAlertPolicyAlertStrategy,
         MonitoringAlertPolicyBooleanTest,
-        MonitoringAlertPolicyBooleanTestChoice,
         MonitoringAlertPolicyConditionAbsent,
         MonitoringAlertPolicyConditionMatchedLog,
         MonitoringAlertPolicyConditionMonitoringQueryLanguage,
@@ -48,12 +47,6 @@ export 'src/monitoring/google_monitoring_alert_policy.dart'
         MonitoringAlertPolicyNotificationPrompts,
         MonitoringAlertPolicyNotificationRateLimit,
         MonitoringAlertPolicyRowCountTest,
-        MonitoringAlertPolicyRowCountTestChoice,
-        MonitoringAlertPolicySchedule,
-        MonitoringAlertPolicyScheduleDaily,
-        MonitoringAlertPolicyScheduleHourly,
-        MonitoringAlertPolicyScheduleMinutes,
-        MonitoringAlertPolicyTest,
         MonitoringAlertPolicyTrigger,
         Reducer;
 export 'src/monitoring/google_monitoring_custom_service.dart'

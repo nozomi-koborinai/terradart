@@ -1,13 +1,32 @@
 {
   "name": "config",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261028",
   "sourceUrl": "https://config.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Deployment": {
       "properties": {
         "providerConfig": {
           "$ref": "ProviderConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "FAILED",
+            "SUSPENDED",
+            "DELETED"
+          ]
+        },
+        "quotaValidation": {
+          "enum": [
+            "QUOTA_VALIDATION_UNSPECIFIED",
+            "ENABLED",
+            "ENFORCED"
+          ]
         },
         "lockState": {
           "enum": [
@@ -20,13 +39,6 @@
             "UNLOCK_FAILED"
           ]
         },
-        "quotaValidation": {
-          "enum": [
-            "QUOTA_VALIDATION_UNSPECIFIED",
-            "ENABLED",
-            "ENFORCED"
-          ]
-        },
         "errorCode": {
           "enum": [
             "ERROR_CODE_UNSPECIFIED",
@@ -37,18 +49,6 @@
             "BUCKET_CREATION_PERMISSION_DENIED",
             "BUCKET_CREATION_FAILED",
             "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "UPDATING",
-            "DELETING",
-            "FAILED",
-            "SUSPENDED",
-            "DELETED"
           ]
         }
       }

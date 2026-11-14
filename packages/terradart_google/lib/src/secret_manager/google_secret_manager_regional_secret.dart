@@ -173,6 +173,10 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
+  /// Reference to `policy_member` attribute.
+  TfRef<List<Map<String, Object?>>> get policyMember =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'policy_member');
+
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');

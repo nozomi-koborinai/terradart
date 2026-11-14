@@ -41,4 +41,7 @@ final class GoogleVertexAiCacheConfig extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

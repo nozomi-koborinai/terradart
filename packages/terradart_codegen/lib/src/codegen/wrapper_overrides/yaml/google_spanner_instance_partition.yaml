@@ -37,5 +37,3 @@ paramOrder:
 
 sealedNames:
   "autoscaling_config, node_count, processing_units": capacity
-  "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": max_capacity
-  "autoscaling_config.autoscaling_limits.min_nodes, autoscaling_config.autoscaling_limits.min_processing_units": min_capacity

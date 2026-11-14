@@ -1,7 +1,7 @@
 {
   "name": "workflows",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261026",
   "sourceUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "StateError": {
@@ -23,6 +23,13 @@
             "UNAVAILABLE"
           ]
         },
+        "executionHistoryLevel": {
+          "enum": [
+            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+            "EXECUTION_HISTORY_BASIC",
+            "EXECUTION_HISTORY_DETAILED"
+          ]
+        },
         "callLogLevel": {
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
@@ -33,13 +40,6 @@
         },
         "stateError": {
           "$ref": "StateError"
-        },
-        "executionHistoryLevel": {
-          "enum": [
-            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
-            "EXECUTION_HISTORY_BASIC",
-            "EXECUTION_HISTORY_DETAILED"
-          ]
         }
       }
     }

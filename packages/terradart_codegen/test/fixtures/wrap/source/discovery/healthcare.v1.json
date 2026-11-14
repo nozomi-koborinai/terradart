@@ -18,17 +18,17 @@
     },
     "ConsentConfig": {
       "properties": {
-        "consentHeaderHandling": {
-          "$ref": "ConsentHeaderHandling"
-        },
-        "accessDeterminationLogConfig": {
-          "$ref": "AccessDeterminationLogConfig"
-        },
         "version": {
           "enum": [
             "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
             "V1"
           ]
+        },
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling"
+        },
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig"
         }
       }
     },
@@ -61,11 +61,11 @@
         "dicom": {
           "$ref": "DicomConfig"
         },
-        "image": {
-          "$ref": "ImageConfig"
-        },
         "fhir": {
           "$ref": "FhirConfig"
+        },
+        "image": {
+          "$ref": "ImageConfig"
         }
       }
     },
@@ -102,13 +102,15 @@
     },
     "FhirStore": {
       "properties": {
+        "complexDataTypeReferenceParsing": {
+          "enum": [
+            "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
         "consentConfig": {
           "$ref": "ConsentConfig"
-        },
-        "streamConfigs": {
-          "items": {
-            "$ref": "StreamConfig"
-          }
         },
         "version": {
           "enum": [
@@ -119,12 +121,10 @@
             "R5"
           ]
         },
-        "complexDataTypeReferenceParsing": {
-          "enum": [
-            "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED"
-          ]
+        "streamConfigs": {
+          "items": {
+            "$ref": "StreamConfig"
+          }
         }
       }
     },
@@ -161,9 +161,6 @@
     },
     "GoogleCloudHealthcareV1FhirBigQueryDestination": {
       "properties": {
-        "schemaConfig": {
-          "$ref": "SchemaConfig"
-        },
         "writeDisposition": {
           "enum": [
             "WRITE_DISPOSITION_UNSPECIFIED",
@@ -171,6 +168,9 @@
             "WRITE_TRUNCATE",
             "WRITE_APPEND"
           ]
+        },
+        "schemaConfig": {
+          "$ref": "SchemaConfig"
         }
       }
     },
@@ -204,9 +204,6 @@
     },
     "ParserConfig": {
       "properties": {
-        "schema": {
-          "$ref": "SchemaPackage"
-        },
         "version": {
           "enum": [
             "PARSER_VERSION_UNSPECIFIED",
@@ -214,6 +211,9 @@
             "V2",
             "V3"
           ]
+        },
+        "schema": {
+          "$ref": "SchemaPackage"
         }
       }
     },
@@ -233,6 +233,13 @@
     },
     "SchemaPackage": {
       "properties": {
+        "schematizedParsingType": {
+          "enum": [
+            "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
+            "SOFT_FAIL",
+            "HARD_FAIL"
+          ]
+        },
         "unexpectedSegmentHandling": {
           "enum": [
             "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
@@ -245,13 +252,6 @@
           "items": {
             "$ref": "Hl7TypesConfig"
           }
-        },
-        "schematizedParsingType": {
-          "enum": [
-            "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
-            "SOFT_FAIL",
-            "HARD_FAIL"
-          ]
         }
       }
     },

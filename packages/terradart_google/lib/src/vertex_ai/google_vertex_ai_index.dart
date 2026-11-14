@@ -177,64 +177,23 @@ extension type const VertexAiIndexShardSize._(TfArg<String> _)
   ];
 }
 
-/// Exactly one of `tree_ah_config`, `brute_force_config` on the `metadata.config.algorithm_config` block of `google_vertex_ai_index`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.treeAhConfig(...)`.
-sealed class VertexAiIndexAlgorithmConfig {
-  const VertexAiIndexAlgorithmConfig();
+/// Typed helper for the `metadata.config.algorithm_config` block of
+/// `google_vertex_ai_index` (derived from provider schema).
+@immutable
+final class VertexAiIndexAlgorithmConfig {
+  const VertexAiIndexAlgorithmConfig({
+    this.bruteForceConfig,
+    this.treeAhConfig,
+  });
 
-  /// Sets `tree_ah_config`.
-  const factory VertexAiIndexAlgorithmConfig.treeAhConfig(
-    VertexAiIndexTreeAhConfig treeAhConfig,
-  ) = VertexAiIndexAlgorithmConfigTreeAhConfig;
+  final VertexAiIndexBruteForceConfig? bruteForceConfig;
 
-  /// Sets `brute_force_config`.
-  const factory VertexAiIndexAlgorithmConfig.bruteForceConfig([
-    VertexAiIndexBruteForceConfig bruteForceConfig,
-  ]) = VertexAiIndexAlgorithmConfigBruteForceConfig;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final VertexAiIndexTreeAhConfig? treeAhConfig;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [VertexAiIndexAlgorithmConfig.treeAhConfig] choice: sets `tree_ah_config`.
-final class VertexAiIndexAlgorithmConfigTreeAhConfig
-    extends VertexAiIndexAlgorithmConfig {
-  const VertexAiIndexAlgorithmConfigTreeAhConfig(this.treeAhConfig);
-
-  final VertexAiIndexTreeAhConfig treeAhConfig;
-
-  @internal
-  @override
-  String get blockKey => 'tree_ah_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'tree_ah_config': treeAhConfig.encode()};
-}
-
-/// The [VertexAiIndexAlgorithmConfig.bruteForceConfig] choice: sets `brute_force_config`.
-final class VertexAiIndexAlgorithmConfigBruteForceConfig
-    extends VertexAiIndexAlgorithmConfig {
-  const VertexAiIndexAlgorithmConfigBruteForceConfig([
-    this.bruteForceConfig = const VertexAiIndexBruteForceConfig(),
-  ]);
-
-  final VertexAiIndexBruteForceConfig bruteForceConfig;
-
-  @internal
-  @override
-  String get blockKey => 'brute_force_config';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'brute_force_config': bruteForceConfig.encode(),
+    'brute_force_config': ?bruteForceConfig?.encode(),
+    'tree_ah_config': ?treeAhConfig?.encode(),
   };
 }
 
@@ -306,8 +265,8 @@ final class VertexAiIndexTreeAhConfig {
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
 ///       distanceMeasureType: .dotProductDistance,
-///       algorithmConfig: .treeAhConfig(
-///         .new(
+///       algorithmConfig: .new(
+///         treeAhConfig: .new(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),
 ///           leafNodesToSearchPercent: TfArg.literal(10),
 ///         ),

@@ -260,7 +260,7 @@ final class SpannerInstanceOverrides {
 
   final TfArg<bool>? disableTotalCpuAutoscaling;
 
-  final SpannerInstanceOverridesAutoscalingLimits? autoscalingLimits;
+  final SpannerInstanceAutoscalingLimits? autoscalingLimits;
 
   @internal
   Map<String, Object?> encode() => {
@@ -275,142 +275,32 @@ final class SpannerInstanceOverrides {
   };
 }
 
-/// Typed helper for the `autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits` block of
+/// Typed helper for the `autoscaling_config.autoscaling_limits` block of
 /// `google_spanner_instance` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SpannerInstanceOverridesAutoscalingLimits {
-  const SpannerInstanceOverridesAutoscalingLimits({
-    required this.max,
-    required this.min,
+final class SpannerInstanceAutoscalingLimits {
+  const SpannerInstanceAutoscalingLimits({
+    this.maxNodes,
+    this.maxProcessingUnits,
+    this.minNodes,
+    this.minProcessingUnits,
   });
 
-  final SpannerInstanceAutoscalingLimitsMax max;
+  final TfArg<num>? maxNodes;
 
-  final SpannerInstanceAutoscalingLimitsMin min;
+  final TfArg<num>? maxProcessingUnits;
 
-  @internal
-  Map<String, Object?> encode() => {...max.encode(), ...min.encode()};
-}
+  final TfArg<num>? minNodes;
 
-/// Exactly one of `min_nodes`, `min_processing_units` on the `autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits` block of `google_spanner_instance`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.minNodes(...)`.
-sealed class SpannerInstanceAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingLimitsMin();
-
-  /// Sets `min_nodes`.
-  const factory SpannerInstanceAutoscalingLimitsMin.minNodes(
-    TfArg<num> minNodes,
-  ) = SpannerInstanceAutoscalingLimitsMinNodes;
-
-  /// Sets `min_processing_units`.
-  const factory SpannerInstanceAutoscalingLimitsMin.minProcessingUnits(
-    TfArg<num> minProcessingUnits,
-  ) = SpannerInstanceAutoscalingLimitsMinProcessingUnits;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final TfArg<num>? minProcessingUnits;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstanceAutoscalingLimitsMin.minNodes] choice: sets `min_nodes`.
-final class SpannerInstanceAutoscalingLimitsMinNodes
-    extends SpannerInstanceAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingLimitsMinNodes(this.minNodes);
-
-  final TfArg<num> minNodes;
-
-  @internal
-  @override
-  String get blockKey => 'min_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
-}
-
-/// The [SpannerInstanceAutoscalingLimitsMin.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstanceAutoscalingLimitsMinProcessingUnits
-    extends SpannerInstanceAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingLimitsMinProcessingUnits(
-    this.minProcessingUnits,
-  );
-
-  final TfArg<num> minProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'min_processing_units';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'min_processing_units': minProcessingUnits.toTfJson(),
-  };
-}
-
-/// Exactly one of `max_nodes`, `max_processing_units` on the `autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits` block of `google_spanner_instance`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.maxNodes(...)`.
-sealed class SpannerInstanceAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingLimitsMax();
-
-  /// Sets `max_nodes`.
-  const factory SpannerInstanceAutoscalingLimitsMax.maxNodes(
-    TfArg<num> maxNodes,
-  ) = SpannerInstanceAutoscalingLimitsMaxNodes;
-
-  /// Sets `max_processing_units`.
-  const factory SpannerInstanceAutoscalingLimitsMax.maxProcessingUnits(
-    TfArg<num> maxProcessingUnits,
-  ) = SpannerInstanceAutoscalingLimitsMaxProcessingUnits;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstanceAutoscalingLimitsMax.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstanceAutoscalingLimitsMaxNodes
-    extends SpannerInstanceAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingLimitsMaxNodes(this.maxNodes);
-
-  final TfArg<num> maxNodes;
-
-  @internal
-  @override
-  String get blockKey => 'max_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
-}
-
-/// The [SpannerInstanceAutoscalingLimitsMax.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstanceAutoscalingLimitsMaxProcessingUnits
-    extends SpannerInstanceAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingLimitsMaxProcessingUnits(
-    this.maxProcessingUnits,
-  );
-
-  final TfArg<num> maxProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'max_processing_units';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'max_processing_units': maxProcessingUnits.toTfJson(),
+    'max_nodes': ?maxNodes?.toTfJson(),
+    'max_processing_units': ?maxProcessingUnits?.toTfJson(),
+    'min_nodes': ?minNodes?.toTfJson(),
+    'min_processing_units': ?minProcessingUnits?.toTfJson(),
   };
 }
 
@@ -424,135 +314,6 @@ final class SpannerInstanceReplicaSelection {
 
   @internal
   Map<String, Object?> encode() => {'location': location.toTfJson()};
-}
-
-/// Typed helper for the `autoscaling_config.autoscaling_limits` block of
-/// `google_spanner_instance` (derived from provider schema).
-@immutable
-final class SpannerInstanceAutoscalingLimits {
-  const SpannerInstanceAutoscalingLimits({
-    required this.max,
-    required this.min,
-  });
-
-  final SpannerInstanceMax max;
-
-  final SpannerInstanceMin min;
-
-  @internal
-  Map<String, Object?> encode() => {...max.encode(), ...min.encode()};
-}
-
-/// Exactly one of `min_processing_units`, `min_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.minProcessingUnits(...)`.
-sealed class SpannerInstanceMin {
-  const SpannerInstanceMin();
-
-  /// Sets `min_processing_units`.
-  const factory SpannerInstanceMin.minProcessingUnits(
-    TfArg<num> minProcessingUnits,
-  ) = SpannerInstanceMinProcessingUnits;
-
-  /// Sets `min_nodes`.
-  const factory SpannerInstanceMin.minNodes(TfArg<num> minNodes) =
-      SpannerInstanceMinNodes;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstanceMin.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstanceMinProcessingUnits extends SpannerInstanceMin {
-  const SpannerInstanceMinProcessingUnits(this.minProcessingUnits);
-
-  final TfArg<num> minProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'min_processing_units';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'min_processing_units': minProcessingUnits.toTfJson(),
-  };
-}
-
-/// The [SpannerInstanceMin.minNodes] choice: sets `min_nodes`.
-final class SpannerInstanceMinNodes extends SpannerInstanceMin {
-  const SpannerInstanceMinNodes(this.minNodes);
-
-  final TfArg<num> minNodes;
-
-  @internal
-  @override
-  String get blockKey => 'min_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
-}
-
-/// Exactly one of `max_processing_units`, `max_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.maxProcessingUnits(...)`.
-sealed class SpannerInstanceMax {
-  const SpannerInstanceMax();
-
-  /// Sets `max_processing_units`.
-  const factory SpannerInstanceMax.maxProcessingUnits(
-    TfArg<num> maxProcessingUnits,
-  ) = SpannerInstanceMaxProcessingUnits;
-
-  /// Sets `max_nodes`.
-  const factory SpannerInstanceMax.maxNodes(TfArg<num> maxNodes) =
-      SpannerInstanceMaxNodes;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstanceMax.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstanceMaxProcessingUnits extends SpannerInstanceMax {
-  const SpannerInstanceMaxProcessingUnits(this.maxProcessingUnits);
-
-  final TfArg<num> maxProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'max_processing_units';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'max_processing_units': maxProcessingUnits.toTfJson(),
-  };
-}
-
-/// The [SpannerInstanceMax.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstanceMaxNodes extends SpannerInstanceMax {
-  const SpannerInstanceMaxNodes(this.maxNodes);
-
-  final TfArg<num> maxNodes;
-
-  @internal
-  @override
-  String get blockKey => 'max_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
 }
 
 /// Typed helper for the `autoscaling_config.autoscaling_targets` block of

@@ -6,14 +6,14 @@
   "schemas": {
     "Constraint": {
       "properties": {
-        "securityHealthAnalyticsCustomModule": {
-          "$ref": "SecurityHealthAnalyticsCustomModule"
-        },
         "securityHealthAnalyticsModule": {
           "$ref": "SecurityHealthAnalyticsModule"
         },
         "orgPolicyConstraintCustom": {
           "$ref": "OrgPolicyConstraintCustom"
+        },
+        "securityHealthAnalyticsCustomModule": {
+          "$ref": "SecurityHealthAnalyticsCustomModule"
         }
       }
     },
@@ -32,13 +32,6 @@
     },
     "GoogleCloudSecuritypostureV1CustomConstraint": {
       "properties": {
-        "actionType": {
-          "enum": [
-            "ACTION_TYPE_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
         "methodTypes": {
           "items": {
             "enum": [
@@ -48,6 +41,13 @@
               "DELETE"
             ]
           }
+        },
+        "actionType": {
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
         }
       }
     },
@@ -76,9 +76,15 @@
     },
     "Posture": {
       "properties": {
-        "policySets": {
+        "categories": {
           "items": {
-            "$ref": "PolicySet"
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI",
+              "AWS",
+              "GCP",
+              "AZURE"
+            ]
           }
         },
         "state": {
@@ -89,32 +95,15 @@
             "ACTIVE"
           ]
         },
-        "categories": {
+        "policySets": {
           "items": {
-            "enum": [
-              "CATEGORY_UNSPECIFIED",
-              "AI",
-              "AWS",
-              "GCP",
-              "AZURE"
-            ]
+            "$ref": "PolicySet"
           }
         }
       }
     },
     "PostureDeployment": {
       "properties": {
-        "categories": {
-          "items": {
-            "enum": [
-              "CATEGORY_UNSPECIFIED",
-              "AI",
-              "AWS",
-              "GCP",
-              "AZURE"
-            ]
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -126,20 +115,31 @@
             "UPDATE_FAILED",
             "DELETE_FAILED"
           ]
+        },
+        "categories": {
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI",
+              "AWS",
+              "GCP",
+              "AZURE"
+            ]
+          }
         }
       }
     },
     "SecurityHealthAnalyticsCustomModule": {
       "properties": {
+        "config": {
+          "$ref": "CustomConfig"
+        },
         "moduleEnablementState": {
           "enum": [
             "ENABLEMENT_STATE_UNSPECIFIED",
             "ENABLED",
             "DISABLED"
           ]
-        },
-        "config": {
-          "$ref": "CustomConfig"
         }
       }
     },

@@ -2901,6 +2901,14 @@ files:
     upstream: mmv1/products/vertexai/PipelineJob.yaml
   google_vertex_ai_rag_file:
     upstream: mmv1/products/vertexai/RagFile.yaml
+  google_managed_kafka_acl_binding:
+    upstream: mmv1/products/managedkafka/AclBinding.yaml
+  google_oracle_database_odb_dns_zone:
+    upstream: mmv1/products/oracledatabase/OdbDnsZone.yaml
+  google_secret_manager_regional_secret_managed_rotation:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecretManagedRotation.yaml
+  google_vertex_ai_training_pipeline:
+    upstream: mmv1/products/vertexai/TrainingPipeline.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3603,6 +3611,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_oracle_database_goldengate_deployment_versions:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_odb_dns_zone:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_oracle_database_odb_network:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_oracle_database_odb_subnet:

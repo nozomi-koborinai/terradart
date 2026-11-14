@@ -234,61 +234,24 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
   };
 }
 
-/// Exactly one of `table`, `routine` on the `bigquery_dataset.selected_resources` block of `google_bigquery_analytics_hub_listing`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.table(...)`.
-sealed class BigqueryAnalyticsHubListingSelectedResources {
-  const BigqueryAnalyticsHubListingSelectedResources();
+/// Typed helper for the `bigquery_dataset.selected_resources` block of
+/// `google_bigquery_analytics_hub_listing` (derived from provider schema).
+@immutable
+final class BigqueryAnalyticsHubListingSelectedResources {
+  const BigqueryAnalyticsHubListingSelectedResources({
+    this.routine,
+    this.table,
+  });
 
-  /// Sets `table`.
-  const factory BigqueryAnalyticsHubListingSelectedResources.table(
-    TfArg<String> table,
-  ) = BigqueryAnalyticsHubListingSelectedResourcesTable;
+  final TfArg<String>? routine;
 
-  /// Sets `routine`.
-  const factory BigqueryAnalyticsHubListingSelectedResources.routine(
-    TfArg<String> routine,
-  ) = BigqueryAnalyticsHubListingSelectedResourcesRoutine;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final TfArg<String>? table;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [BigqueryAnalyticsHubListingSelectedResources.table] choice: sets `table`.
-final class BigqueryAnalyticsHubListingSelectedResourcesTable
-    extends BigqueryAnalyticsHubListingSelectedResources {
-  const BigqueryAnalyticsHubListingSelectedResourcesTable(this.table);
-
-  final TfArg<String> table;
-
-  @internal
-  @override
-  String get blockKey => 'table';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'table': table.toTfJson()};
-}
-
-/// The [BigqueryAnalyticsHubListingSelectedResources.routine] choice: sets `routine`.
-final class BigqueryAnalyticsHubListingSelectedResourcesRoutine
-    extends BigqueryAnalyticsHubListingSelectedResources {
-  const BigqueryAnalyticsHubListingSelectedResourcesRoutine(this.routine);
-
-  final TfArg<String> routine;
-
-  @internal
-  @override
-  String get blockKey => 'routine';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'routine': routine.toTfJson()};
+  Map<String, Object?> encode() => {
+    'routine': ?routine?.toTfJson(),
+    'table': ?table?.toTfJson(),
+  };
 }
 
 /// Typed helper for the `data_provider` block of

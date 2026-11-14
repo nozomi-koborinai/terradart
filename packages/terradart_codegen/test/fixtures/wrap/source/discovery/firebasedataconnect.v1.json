@@ -1,7 +1,7 @@
 {
   "name": "firebasedataconnect",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261101",
   "sourceUrl": "https://firebasedataconnect.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CloudSqlInstance": {
@@ -33,14 +33,14 @@
             "COMPATIBLE"
           ]
         },
+        "cloudSql": {
+          "$ref": "CloudSqlInstance"
+        },
         "schemaMigration": {
           "enum": [
             "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
             "MIGRATE_COMPATIBLE"
           ]
-        },
-        "cloudSql": {
-          "$ref": "CloudSqlInstance"
         }
       }
     },

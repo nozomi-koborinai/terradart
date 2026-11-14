@@ -6,18 +6,18 @@
   "schemas": {
     "AccessConfig": {
       "properties": {
-        "type": {
-          "enum": [
-            "DIRECT_IPV6",
-            "ONE_TO_ONE_NAT"
-          ]
-        },
         "networkTier": {
           "enum": [
             "FIXED_STANDARD",
             "PREMIUM",
             "STANDARD",
             "STANDARD_OVERRIDES_FIXED_STANDARD"
+          ]
+        },
+        "type": {
+          "enum": [
+            "DIRECT_IPV6",
+            "ONE_TO_ONE_NAT"
           ]
         }
       }
@@ -36,21 +36,11 @@
     },
     "AttachedDisk": {
       "properties": {
-        "interface": {
-          "enum": [
-            "NVME",
-            "SCSI"
-          ]
-        },
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
-          ]
-        },
         "initializeParams": {
           "$ref": "AttachedDiskInitializeParams"
+        },
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
         },
         "savedState": {
           "enum": [
@@ -58,13 +48,22 @@
             "PRESERVED"
           ]
         },
-        "shieldedInstanceInitialState": {
-          "$ref": "InitialStateConfig"
+        "guestOsFeatures": {
+          "items": {
+            "$ref": "GuestOsFeature"
+          }
         },
         "mode": {
           "enum": [
             "READ_ONLY",
             "READ_WRITE"
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
           ]
         },
         "type": {
@@ -73,27 +72,28 @@
             "SCRATCH"
           ]
         },
-        "guestOsFeatures": {
-          "items": {
-            "$ref": "GuestOsFeature"
-          }
+        "interface": {
+          "enum": [
+            "NVME",
+            "SCSI"
+          ]
         }
       }
     },
     "AttachedDiskInitializeParams": {
       "properties": {
-        "onUpdateAction": {
-          "enum": [
-            "RECREATE_DISK",
-            "RECREATE_DISK_IF_SOURCE_CHANGED",
-            "USE_EXISTING_DISK"
-          ]
-        },
         "architecture": {
           "enum": [
             "ARCHITECTURE_UNSPECIFIED",
             "ARM64",
             "X86_64"
+          ]
+        },
+        "onUpdateAction": {
+          "enum": [
+            "RECREATE_DISK",
+            "RECREATE_DISK_IF_SOURCE_CHANGED",
+            "USE_EXISTING_DISK"
           ]
         },
         "guestOsFeatures": {
@@ -156,30 +156,73 @@
     },
     "InitialStateConfig": {
       "properties": {
-        "keks": {
-          "items": {
-            "$ref": "FileContentBuffer"
-          }
-        },
         "dbxs": {
-          "items": {
-            "$ref": "FileContentBuffer"
-          }
-        },
-        "dbs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
         },
         "pk": {
           "$ref": "FileContentBuffer"
+        },
+        "dbs": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
+        },
+        "keks": {
+          "items": {
+            "$ref": "FileContentBuffer"
+          }
         }
       }
     },
     "Instance": {
       "properties": {
-        "scheduling": {
-          "$ref": "Scheduling"
+        "status": {
+          "enum": [
+            "DEPROVISIONING",
+            "PENDING",
+            "PENDING_STOP",
+            "PROVISIONING",
+            "REPAIRING",
+            "RUNNING",
+            "STAGING",
+            "STOPPED",
+            "STOPPING",
+            "SUSPENDED",
+            "SUSPENDING",
+            "TERMINATED"
+          ]
+        },
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
+        },
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
+        },
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
+        },
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "disks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "localSsdEncryptionMode": {
+          "enum": [
+            "CMEK_ENCRYPTION",
+            "EPHEMERAL_KEY_ENCRYPTION",
+            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+            "STANDARD_ENCRYPTION"
+          ]
         },
         "postKeyRevocationActionType": {
           "enum": [
@@ -198,46 +241,8 @@
             "STOP"
           ]
         },
-        "workloadIdentityConfig": {
-          "$ref": "WorkloadIdentityConfig"
-        },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
-        },
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
-        },
-        "status": {
-          "enum": [
-            "DEPROVISIONING",
-            "PENDING",
-            "PENDING_STOP",
-            "PROVISIONING",
-            "REPAIRING",
-            "RUNNING",
-            "STAGING",
-            "STOPPED",
-            "STOPPING",
-            "SUSPENDED",
-            "SUSPENDING",
-            "TERMINATED"
-          ]
-        },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
-        },
-        "disks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
-        },
-        "localSsdEncryptionMode": {
-          "enum": [
-            "CMEK_ENCRYPTION",
-            "EPHEMERAL_KEY_ENCRYPTION",
-            "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
-            "STANDARD_ENCRYPTION"
-          ]
+        "scheduling": {
+          "$ref": "Scheduling"
         },
         "privateIpv6GoogleAccess": {
           "enum": [
@@ -246,13 +251,8 @@
             "INHERIT_FROM_SUBNETWORK"
           ]
         },
-        "networkPerformanceConfig": {
-          "$ref": "NetworkPerformanceConfig"
-        },
-        "networkInterfaces": {
-          "items": {
-            "$ref": "NetworkInterface"
-          }
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
         }
       }
     },
@@ -270,6 +270,23 @@
             "$ref": "AccessConfig"
           }
         },
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
+          ]
+        },
+        "igmpQuery": {
+          "enum": [
+            "IGMP_QUERY_DISABLED",
+            "IGMP_QUERY_V2"
+          ]
+        },
+        "ipv6AccessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
         "nicType": {
           "enum": [
             "GVNIC",
@@ -278,23 +295,6 @@
             "MRDMA",
             "UNSPECIFIED_NIC_TYPE",
             "VIRTIO_NET"
-          ]
-        },
-        "ipv6AccessConfigs": {
-          "items": {
-            "$ref": "AccessConfig"
-          }
-        },
-        "igmpQuery": {
-          "enum": [
-            "IGMP_QUERY_DISABLED",
-            "IGMP_QUERY_V2"
-          ]
-        },
-        "ipv6AccessType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL"
           ]
         }
       }
@@ -352,18 +352,6 @@
     },
     "Scheduling": {
       "properties": {
-        "maintenanceInterval": {
-          "enum": [
-            "AS_NEEDED",
-            "PERIODIC",
-            "RECURRENT"
-          ]
-        },
-        "nodeAffinities": {
-          "items": {
-            "$ref": "SchedulingNodeAffinity"
-          }
-        },
         "instanceTerminationAction": {
           "enum": [
             "DELETE",
@@ -375,6 +363,18 @@
           "enum": [
             "MIGRATE",
             "TERMINATE"
+          ]
+        },
+        "nodeAffinities": {
+          "items": {
+            "$ref": "SchedulingNodeAffinity"
+          }
+        },
+        "maintenanceInterval": {
+          "enum": [
+            "AS_NEEDED",
+            "PERIODIC",
+            "RECURRENT"
           ]
         },
         "provisioningModel": {

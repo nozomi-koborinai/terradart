@@ -1,7 +1,7 @@
 {
   "name": "firebaseapphosting",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261029",
   "sourceUrl": "https://firebaseapphosting.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Backend": {
@@ -55,17 +55,6 @@
     },
     "CustomDomainStatus": {
       "properties": {
-        "ownershipState": {
-          "enum": [
-            "OWNERSHIP_STATE_UNSPECIFIED",
-            "OWNERSHIP_MISSING",
-            "OWNERSHIP_UNREACHABLE",
-            "OWNERSHIP_MISMATCH",
-            "OWNERSHIP_CONFLICT",
-            "OWNERSHIP_PENDING",
-            "OWNERSHIP_ACTIVE"
-          ]
-        },
         "hostState": {
           "enum": [
             "HOST_STATE_UNSPECIFIED",
@@ -75,6 +64,17 @@
             "HOST_CONFLICT",
             "HOST_WRONG_SHARD",
             "HOST_ACTIVE"
+          ]
+        },
+        "ownershipState": {
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
           ]
         },
         "requiredDnsUpdates": {
@@ -97,11 +97,14 @@
     },
     "DnsRecord": {
       "properties": {
-        "requiredAction": {
+        "type": {
           "enum": [
-            "NONE",
-            "ADD",
-            "REMOVE"
+            "TYPE_UNSPECIFIED",
+            "A",
+            "CNAME",
+            "TXT",
+            "AAAA",
+            "CAA"
           ]
         },
         "relevantState": {
@@ -114,14 +117,11 @@
             ]
           }
         },
-        "type": {
+        "requiredAction": {
           "enum": [
-            "TYPE_UNSPECIFIED",
-            "A",
-            "CNAME",
-            "TXT",
-            "AAAA",
-            "CAA"
+            "NONE",
+            "ADD",
+            "REMOVE"
           ]
         }
       }
@@ -210,12 +210,12 @@
     },
     "RolloutPolicy": {
       "properties": {
-        "ignoredPaths": {
+        "requiredPaths": {
           "items": {
             "$ref": "Path"
           }
         },
-        "requiredPaths": {
+        "ignoredPaths": {
           "items": {
             "$ref": "Path"
           }

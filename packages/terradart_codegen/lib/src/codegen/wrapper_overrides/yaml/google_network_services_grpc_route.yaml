@@ -6,6 +6,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+typeNames:
+  rules.matches.headers.type: NetworkServicesGrpcRouteType
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

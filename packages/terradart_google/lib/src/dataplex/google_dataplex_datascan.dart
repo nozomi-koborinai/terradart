@@ -416,18 +416,51 @@ final class DataplexDatascanJsonOptions {
 final class DataplexDatascanDataDocumentationSpec {
   const DataplexDatascanDataDocumentationSpec({
     this.catalogPublishingEnabled,
+    this.generationScopes,
     this.sqlDialect,
   });
 
   final TfArg<bool>? catalogPublishingEnabled;
+
+  final EnumList<DataplexDatascanGenerationScopes>? generationScopes;
 
   final DataplexDatascanSqlDialect? sqlDialect;
 
   @internal
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
+    'generation_scopes': ?generationScopes?.toTfJson(),
     'sql_dialect': ?sqlDialect?.toTfJson(),
   };
+}
+
+/// `generation_scopes` — derived from the provider schema description.
+extension type const DataplexDatascanGenerationScopes._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanGenerationScopes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexDatascanGenerationScopes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanGenerationScopes.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = DataplexDatascanGenerationScopes._(TfArgLiteral('ALL'));
+  static const tableAndColumnDescriptions = DataplexDatascanGenerationScopes._(
+    TfArgLiteral('TABLE_AND_COLUMN_DESCRIPTIONS'),
+  );
+  static const sqlQueries = DataplexDatascanGenerationScopes._(
+    TfArgLiteral('SQL_QUERIES'),
+  );
+  static const businessGlossaryTermAssociations =
+      DataplexDatascanGenerationScopes._(
+        TfArgLiteral('BUSINESS_GLOSSARY_TERM_ASSOCIATIONS'),
+      );
+
+  static const List<DataplexDatascanGenerationScopes> values = [
+    all,
+    tableAndColumnDescriptions,
+    sqlQueries,
+    businessGlossaryTermAssociations,
+  ];
 }
 
 /// `sql_dialect` — derived from the provider schema description.
@@ -455,6 +488,7 @@ extension type const DataplexDatascanSqlDialect._(TfArg<String> _)
 final class DataplexDatascanDataProfileSpec {
   const DataplexDatascanDataProfileSpec({
     this.catalogPublishingEnabled,
+    this.mode,
     this.rowFilter,
     this.samplingPercent,
     this.excludeFields,
@@ -463,6 +497,8 @@ final class DataplexDatascanDataProfileSpec {
   });
 
   final TfArg<bool>? catalogPublishingEnabled;
+
+  final DataplexDatascanMode? mode;
 
   final TfArg<String>? rowFilter;
 
@@ -477,12 +513,29 @@ final class DataplexDatascanDataProfileSpec {
   @internal
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
     'row_filter': ?rowFilter?.toTfJson(),
     'sampling_percent': ?samplingPercent?.toTfJson(),
     'exclude_fields': ?excludeFields?.encode(),
     'include_fields': ?includeFields?.encode(),
     'post_scan_actions': ?postScanActions?.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const DataplexDatascanMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanMode.variable(String name) : this._(TfArg.variable(name));
+  DataplexDatascanMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = DataplexDatascanMode._(TfArgLiteral('STANDARD'));
+  static const lightweight = DataplexDatascanMode._(
+    TfArgLiteral('LIGHTWEIGHT'),
+  );
+
+  static const List<DataplexDatascanMode> values = [standard, lightweight];
 }
 
 /// Typed helper for the `data_profile_spec.exclude_fields` block of
@@ -683,6 +736,7 @@ final class DataplexDatascanRules {
     this.name,
     this.suspended,
     this.threshold,
+    this.debugQueries,
     this.nonNullExpectation,
     this.rangeExpectation,
     this.regexExpectation,
@@ -710,6 +764,8 @@ final class DataplexDatascanRules {
   final TfArg<bool>? suspended;
 
   final TfArg<num>? threshold;
+
+  final List<DataplexDatascanDebugQueries>? debugQueries;
 
   final DataplexDatascanNonNullExpectation? nonNullExpectation;
 
@@ -741,6 +797,8 @@ final class DataplexDatascanRules {
     'name': ?name?.toTfJson(),
     'suspended': ?suspended?.toTfJson(),
     'threshold': ?threshold?.toTfJson(),
+    if (debugQueries != null)
+      'debug_queries': [for (final e in debugQueries!) e.encode()],
     'non_null_expectation': ?nonNullExpectation?.encode(),
     'range_expectation': ?rangeExpectation?.encode(),
     'regex_expectation': ?regexExpectation?.encode(),
@@ -751,6 +809,26 @@ final class DataplexDatascanRules {
     'table_condition_expectation': ?tableConditionExpectation?.encode(),
     'template_reference': ?templateReference?.encode(),
     'uniqueness_expectation': ?uniquenessExpectation?.encode(),
+  };
+}
+
+/// Typed helper for the `data_quality_spec.rules.debug_queries` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanDebugQueries {
+  const DataplexDatascanDebugQueries({
+    this.description,
+    required this.sqlStatement,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> sqlStatement;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'sql_statement': sqlStatement.toTfJson(),
   };
 }
 
