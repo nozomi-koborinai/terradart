@@ -1,0 +1,10 @@
+outputDir: auth
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
+
+sealedNames:
+  "email, phone, user_id": member
+

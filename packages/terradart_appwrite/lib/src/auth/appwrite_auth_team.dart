@@ -17,6 +17,7 @@ final class AppwriteAuthTeam extends Resource {
   AppwriteAuthTeam(
     super.localName, {
     required TfArg<String> name,
+    TfArg<String>? prefs,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? roles,
     super.lifecycle,
@@ -27,6 +28,7 @@ final class AppwriteAuthTeam extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
+           'prefs': ?prefs,
            'project_id': ?projectId?.encodeAs('id'),
            'roles': ?roles,
          },
@@ -50,6 +52,9 @@ final class AppwriteAuthTeam extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `prefs` attribute.
+  TfRef<String> get prefs => TfRef.attribute<String>(this, 'prefs');
 
   /// Reference to `project_id` attribute.
   TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');

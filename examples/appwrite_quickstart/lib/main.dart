@@ -283,7 +283,7 @@ final class AppwriteDemoStack extends Stack {
         'dash_domain',
         domain: .literal('dash.terradart-demo.example'),
         resourceId: site.id,
-        type: .site,
+        type: .literal('site'),
       ),
     );
 

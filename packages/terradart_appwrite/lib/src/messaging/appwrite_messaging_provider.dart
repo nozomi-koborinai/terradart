@@ -7,11 +7,13 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_messaging_provider`.
 const Set<String> _appwriteMessagingProviderSensitive = <String>{
+  'access_key',
   'api_key',
   'api_secret',
   'auth_key',
   'auth_token',
   'password',
+  'secret_key',
   'service_account_json',
 };
 
@@ -58,6 +60,7 @@ final class AppwriteMessagingProvider extends Resource {
 
   AppwriteMessagingProvider(
     super.localName, {
+    Sensitive<String>? accessKey,
     TfArg<String>? accountSid,
     Sensitive<String>? apiKey,
     Sensitive<String>? apiSecret,
@@ -70,6 +73,7 @@ final class AppwriteMessagingProvider extends Resource {
     TfArg<String>? domain,
     TfArg<bool>? enabled,
     TfArg<String>? encryption,
+    TfArg<num>? expiry,
     TfArg<String>? from,
     TfArg<String>? fromEmail,
     TfArg<String>? fromName,
@@ -79,9 +83,12 @@ final class AppwriteMessagingProvider extends Resource {
     Sensitive<String>? password,
     TfArg<num>? port,
     RefTo<AppwriteProject>? projectId,
+    TfArg<num>? qos,
+    TfArg<String>? region,
     TfArg<String>? replyToEmail,
     TfArg<String>? replyToName,
     TfArg<bool>? sandbox,
+    Sensitive<String>? secretKey,
     TfArg<String>? senderId,
     Sensitive<String>? serviceAccountJson,
     TfArg<String>? teamId,
@@ -95,6 +102,7 @@ final class AppwriteMessagingProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'access_key': ?accessKey,
            'account_sid': ?accountSid,
            'api_key': ?apiKey,
            'api_secret': ?apiSecret,
@@ -107,6 +115,7 @@ final class AppwriteMessagingProvider extends Resource {
            'domain': ?domain,
            'enabled': ?enabled,
            'encryption': ?encryption,
+           'expiry': ?expiry,
            'from': ?from,
            'from_email': ?fromEmail,
            'from_name': ?fromName,
@@ -116,9 +125,12 @@ final class AppwriteMessagingProvider extends Resource {
            'password': ?password,
            'port': ?port,
            'project_id': ?projectId?.encodeAs('id'),
+           'qos': ?qos,
+           'region': ?region,
            'reply_to_email': ?replyToEmail,
            'reply_to_name': ?replyToName,
            'sandbox': ?sandbox,
+           'secret_key': ?secretKey,
            'sender_id': ?senderId,
            'service_account_json': ?serviceAccountJson,
            'team_id': ?teamId,
@@ -146,6 +158,9 @@ final class AppwriteMessagingProvider extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `access_key` attribute.
+  TfRef<String> get accessKey => TfRef.attribute<String>(this, 'access_key');
 
   /// Reference to `account_sid` attribute.
   TfRef<String> get accountSid => TfRef.attribute<String>(this, 'account_sid');
@@ -183,6 +198,9 @@ final class AppwriteMessagingProvider extends Resource {
   /// Reference to `encryption` attribute.
   TfRef<String> get encryption => TfRef.attribute<String>(this, 'encryption');
 
+  /// Reference to `expiry` attribute.
+  TfRef<num> get expiry => TfRef.attribute<num>(this, 'expiry');
+
   /// Reference to `from` attribute.
   TfRef<String> get from => TfRef.attribute<String>(this, 'from');
 
@@ -207,6 +225,12 @@ final class AppwriteMessagingProvider extends Resource {
   /// Reference to `project_id` attribute.
   TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
+  /// Reference to `qos` attribute.
+  TfRef<num> get qos => TfRef.attribute<num>(this, 'qos');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
   /// Reference to `reply_to_email` attribute.
   TfRef<String> get replyToEmail =>
       TfRef.attribute<String>(this, 'reply_to_email');
@@ -217,6 +241,9 @@ final class AppwriteMessagingProvider extends Resource {
 
   /// Reference to `sandbox` attribute.
   TfRef<bool> get sandbox => TfRef.attribute<bool>(this, 'sandbox');
+
+  /// Reference to `secret_key` attribute.
+  TfRef<String> get secretKey => TfRef.attribute<String>(this, 'secret_key');
 
   /// Reference to `sender_id` attribute.
   TfRef<String> get senderId => TfRef.attribute<String>(this, 'sender_id');

@@ -10,6 +10,28 @@ import 'package:terradart_appwrite/terradart_appwrite.dart';
 
 final class AppwriteLeftoverStack extends Stack {
   AppwriteLeftoverStack() : super(providers: [const AppwriteProvider()]) {
+    add(
+      AppwriteAnalyticsProperty(
+        'analytics_property',
+        name: .literal('leftover'),
+      ),
+    );
+    add(
+      AppwriteAuthTeamMembership(
+        'auth_team_membership',
+        member: .userId(.literal('leftover')),
+        roles: .literal(['leftover']),
+        teamId: .literal('leftover'),
+      ),
+    );
+    add(
+      AppwriteAuthUserTarget(
+        'auth_user_target',
+        identifier: .literal('leftover@example.com'),
+        providerType: .literal('email'),
+        userId: .literal('leftover'),
+      ),
+    );
     add(AppwriteDocumentsdb('documentsdb', name: .literal('leftover')));
     add(
       AppwriteDocumentsdbCollection(
@@ -56,6 +78,55 @@ final class AppwriteLeftoverStack extends Stack {
         name: .literal('leftover'),
         type: .literal('A'),
         value: .literal('10.0.0.1'),
+      ),
+    );
+    add(AppwriteProjectAuthMethods('project_auth_methods'));
+    add(AppwriteProjectAuthPolicies('project_auth_policies'));
+    add(
+      AppwriteProjectEmailTemplate(
+        'project_email_template',
+        locale: .literal('af'),
+        message: .literal('leftover'),
+        subject: .literal('leftover'),
+        type: .literal('verification'),
+      ),
+    );
+    add(
+      AppwriteProjectMockPhone(
+        'project_mock_phone',
+        number: .literal('+12025550123'),
+        otp: Sensitive.expression(r'${sensitive("123456")}'),
+      ),
+    );
+    add(
+      AppwriteProjectOauthProvider(
+        'project_oauth_provider',
+        providerId: .literal('amazon'),
+      ),
+    );
+    add(
+      AppwriteProjectPlatform(
+        'project_platform',
+        hostname: .literal('leftover.example.com'),
+        name: .literal('leftover'),
+        type: .literal('web'),
+      ),
+    );
+    add(AppwriteProjectProtocols('project_protocols'));
+    add(AppwriteProjectServices('project_services'));
+    add(
+      AppwriteProjectSmtp(
+        'project_smtp',
+        host: .literal('leftover'),
+        port: .literal(1),
+        senderEmail: .literal('leftover@example.com'),
+      ),
+    );
+    add(
+      AppwriteProjectVariable(
+        'project_variable',
+        key: .literal('leftover'),
+        value: .value(Sensitive.expression(r'${sensitive("leftover")}')),
       ),
     );
     add(AppwriteVectorsdb('vectorsdb', name: .literal('leftover')));

@@ -42,6 +42,9 @@ final class DataAppwriteAuthTeam extends Data {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `prefs` attribute.
+  TfRef<String> get prefs => TfRef.attribute<String>(this, 'prefs');
+
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 

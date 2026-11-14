@@ -94,6 +94,7 @@
 /// <!-- argument-rules:end -->
 library;
 
+export 'analytics.dart';
 export 'auth.dart';
 export 'backups.dart';
 export 'data.dart';
