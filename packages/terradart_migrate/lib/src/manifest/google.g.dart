@@ -331163,8 +331163,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'datasetId',
           kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'GoogleBigqueryDataset',
-          attribute: 'dataset_id',
+          dartType: 'GoogleVertexAiDataset',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'persist_ml_use_assignment',

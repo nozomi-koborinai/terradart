@@ -4,8 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;
 
 /// Sensitive field paths for `google_vertex_ai_training_pipeline`.
 const Set<String> _googleVertexAiTrainingPipelineSensitive = <String>{};
@@ -48,7 +48,7 @@ final class VertexAiTrainingPipelineInputDataConfig {
 
   final TfArg<String>? annotationsFilter;
 
-  final RefTo<GoogleBigqueryDataset> datasetId;
+  final RefTo<GoogleVertexAiDataset> datasetId;
 
   final TfArg<bool>? persistMlUseAssignment;
 
@@ -72,7 +72,7 @@ final class VertexAiTrainingPipelineInputDataConfig {
   Map<String, Object?> encode() => {
     'annotation_schema_uri': ?annotationSchemaUri?.toTfJson(),
     'annotations_filter': ?annotationsFilter?.toTfJson(),
-    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
+    'dataset_id': datasetId.encodeAs('name').toTfJson(),
     'persist_ml_use_assignment': ?persistMlUseAssignment?.toTfJson(),
     'saved_query_id': ?savedQueryId?.toTfJson(),
     'bigquery_destination': ?bigqueryDestination?.encode(),

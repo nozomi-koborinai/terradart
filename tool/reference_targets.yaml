@@ -269,6 +269,12 @@ hashicorp/google:
       - google_bigquery_analytics_hub_listing_subscription.destination_dataset.dataset_reference.dataset_id
       # A Cloud Healthcare dataset.
       - data.google_healthcare_dataset_iam_policy.dataset_id
+      # A Vertex AI dataset.
+      - google_vertex_ai_training_pipeline.input_data_config.dataset_id
+  - target: google_vertex_ai_dataset
+    attribute: name
+    slots: '^input_data_config\.dataset_id$'
+    types: '^google_vertex_ai_training_pipeline$'
   - target: google_observability_bucket
     attribute: bucket_id
     slots: '^bucket$'
