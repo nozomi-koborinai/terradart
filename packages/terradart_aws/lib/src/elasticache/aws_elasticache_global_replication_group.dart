@@ -45,6 +45,7 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
     TfArg<String>? parameterGroupName,
     required TfArg<String> primaryReplicationGroupId,
     TfArg<String>? region,
+    TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -63,6 +64,7 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
            'parameter_group_name': ?parameterGroupName,
            'primary_replication_group_id': primaryReplicationGroupId,
            'region': ?region,
+           'tags': ?tags,
          },
        );
 
@@ -104,6 +106,10 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
   TfRef<String> get globalReplicationGroupId =>
       TfRef.attribute<String>(this, 'global_replication_group_id');
 
+  /// Reference to `tags_all` attribute.
+  TfRef<Map<String, String>> get tagsAll =>
+      TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
   /// Reference to `transit_encryption_enabled` attribute.
   TfRef<bool> get transitEncryptionEnabled =>
       TfRef.attribute<bool>(this, 'transit_encryption_enabled');
@@ -144,4 +150,8 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

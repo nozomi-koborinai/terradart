@@ -440,6 +440,7 @@ final class AwsBatchComputeEnvironment extends Resource {
     BatchComputeEnvironmentState? state,
     TfArg<Map<String, String>>? tags,
     required BatchComputeEnvironmentType type,
+    TfArg<num>? unmanagedVcpus,
     BatchComputeEnvironmentComputeResources? computeResources,
     BatchComputeEnvironmentEksConfiguration? eksConfiguration,
     BatchComputeEnvironmentUpdatePolicy? updatePolicy,
@@ -456,6 +457,7 @@ final class AwsBatchComputeEnvironment extends Resource {
            'state': ?state,
            'tags': ?tags,
            'type': type,
+           'unmanaged_vcpus': ?unmanagedVcpus,
            if (computeResources != null)
              'compute_resources': TfArg.literal(computeResources.encode()),
            if (eksConfiguration != null)
@@ -511,4 +513,8 @@ final class AwsBatchComputeEnvironment extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `unmanaged_vcpus` attribute.
+  TfRef<num> get unmanagedVcpus =>
+      TfRef.attribute<num>(this, 'unmanaged_vcpus');
 }

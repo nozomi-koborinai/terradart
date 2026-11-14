@@ -711,6 +711,9 @@ export 'src/data/aws_lambda_invocation.dart' show DataAwsLambdaInvocation;
 export 'src/data/aws_lambda_layer_version.dart' show DataAwsLambdaLayerVersion;
 export 'src/data/aws_lambdamicrovms_image_version.dart'
     show DataAwsLambdamicrovmsImageVersion;
+export 'src/data/aws_lambdaweb_function.dart' show DataAwsLambdawebFunction;
+export 'src/data/aws_lambdaweb_function_endpoint.dart'
+    show DataAwsLambdawebFunctionEndpoint;
 export 'src/data/aws_launch_configuration.dart' show DataAwsLaunchConfiguration;
 export 'src/data/aws_launch_template.dart'
     show DataAwsLaunchTemplate, DataLaunchTemplateFilter;
