@@ -80,6 +80,14 @@ final class DataGoogleBackupDrBackupPlan extends Data {
         'disk_backup_plan_properties',
       );
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
   /// Reference to `log_retention_days` attribute.
   TfRef<num> get logRetentionDays =>
       TfRef.attribute<num>(this, 'log_retention_days');
@@ -95,6 +103,10 @@ final class DataGoogleBackupDrBackupPlan extends Data {
   /// Reference to `supported_resource_types` attribute.
   TfRef<List<String>> get supportedResourceTypes =>
       TfRef.attribute<List<String>>(this, 'supported_resource_types');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');

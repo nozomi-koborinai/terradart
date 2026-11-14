@@ -1,7 +1,7 @@
 {
   "name": "firebasestorage",
   "version": "v1beta",
-  "revision": "20261030",
+  "revision": "20261106",
   "sourceUrl": "https://firebasestorage.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "Bucket": {

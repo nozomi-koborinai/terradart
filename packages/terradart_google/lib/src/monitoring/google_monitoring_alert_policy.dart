@@ -526,157 +526,34 @@ final class MonitoringAlertPolicyConditionPrometheusQueryLanguage {
 final class MonitoringAlertPolicyConditionSql {
   const MonitoringAlertPolicyConditionSql({
     required this.query,
-    required this.test,
-    required this.schedule,
+    this.booleanTest,
+    this.daily,
+    this.hourly,
+    this.minutes,
+    this.rowCountTest,
   });
 
   final TfArg<String> query;
 
-  final MonitoringAlertPolicyTest test;
+  final MonitoringAlertPolicyBooleanTest? booleanTest;
 
-  final MonitoringAlertPolicySchedule schedule;
+  final MonitoringAlertPolicyDaily? daily;
+
+  final MonitoringAlertPolicyHourly? hourly;
+
+  final MonitoringAlertPolicyMinutes? minutes;
+
+  final MonitoringAlertPolicyRowCountTest? rowCountTest;
 
   @internal
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
-    ...test.encode(),
-    ...schedule.encode(),
+    'boolean_test': ?booleanTest?.encode(),
+    'daily': ?daily?.encode(),
+    'hourly': ?hourly?.encode(),
+    'minutes': ?minutes?.encode(),
+    'row_count_test': ?rowCountTest?.encode(),
   };
-}
-
-/// Exactly one of `minutes`, `hourly`, `daily` on the `conditions.condition_sql` block of `google_monitoring_alert_policy`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.minutes(...)`.
-sealed class MonitoringAlertPolicySchedule {
-  const MonitoringAlertPolicySchedule();
-
-  /// Sets `minutes`.
-  const factory MonitoringAlertPolicySchedule.minutes(
-    MonitoringAlertPolicyMinutes minutes,
-  ) = MonitoringAlertPolicyScheduleMinutes;
-
-  /// Sets `hourly`.
-  const factory MonitoringAlertPolicySchedule.hourly(
-    MonitoringAlertPolicyHourly hourly,
-  ) = MonitoringAlertPolicyScheduleHourly;
-
-  /// Sets `daily`.
-  const factory MonitoringAlertPolicySchedule.daily(
-    MonitoringAlertPolicyDaily daily,
-  ) = MonitoringAlertPolicyScheduleDaily;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [MonitoringAlertPolicySchedule.minutes] choice: sets `minutes`.
-final class MonitoringAlertPolicyScheduleMinutes
-    extends MonitoringAlertPolicySchedule {
-  const MonitoringAlertPolicyScheduleMinutes(this.minutes);
-
-  final MonitoringAlertPolicyMinutes minutes;
-
-  @internal
-  @override
-  String get blockKey => 'minutes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'minutes': minutes.encode()};
-}
-
-/// The [MonitoringAlertPolicySchedule.hourly] choice: sets `hourly`.
-final class MonitoringAlertPolicyScheduleHourly
-    extends MonitoringAlertPolicySchedule {
-  const MonitoringAlertPolicyScheduleHourly(this.hourly);
-
-  final MonitoringAlertPolicyHourly hourly;
-
-  @internal
-  @override
-  String get blockKey => 'hourly';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'hourly': hourly.encode()};
-}
-
-/// The [MonitoringAlertPolicySchedule.daily] choice: sets `daily`.
-final class MonitoringAlertPolicyScheduleDaily
-    extends MonitoringAlertPolicySchedule {
-  const MonitoringAlertPolicyScheduleDaily(this.daily);
-
-  final MonitoringAlertPolicyDaily daily;
-
-  @internal
-  @override
-  String get blockKey => 'daily';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'daily': daily.encode()};
-}
-
-/// Exactly one of `row_count_test`, `boolean_test` on the `conditions.condition_sql` block of `google_monitoring_alert_policy`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.rowCountTest(...)`.
-sealed class MonitoringAlertPolicyTest {
-  const MonitoringAlertPolicyTest();
-
-  /// Sets `row_count_test`.
-  const factory MonitoringAlertPolicyTest.rowCountTest(
-    MonitoringAlertPolicyRowCountTest rowCountTest,
-  ) = MonitoringAlertPolicyRowCountTestChoice;
-
-  /// Sets `boolean_test`.
-  const factory MonitoringAlertPolicyTest.booleanTest(
-    MonitoringAlertPolicyBooleanTest booleanTest,
-  ) = MonitoringAlertPolicyBooleanTestChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [MonitoringAlertPolicyTest.rowCountTest] choice: sets `row_count_test`.
-final class MonitoringAlertPolicyRowCountTestChoice
-    extends MonitoringAlertPolicyTest {
-  const MonitoringAlertPolicyRowCountTestChoice(this.rowCountTest);
-
-  final MonitoringAlertPolicyRowCountTest rowCountTest;
-
-  @internal
-  @override
-  String get blockKey => 'row_count_test';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'row_count_test': rowCountTest.encode()};
-}
-
-/// The [MonitoringAlertPolicyTest.booleanTest] choice: sets `boolean_test`.
-final class MonitoringAlertPolicyBooleanTestChoice
-    extends MonitoringAlertPolicyTest {
-  const MonitoringAlertPolicyBooleanTestChoice(this.booleanTest);
-
-  final MonitoringAlertPolicyBooleanTest booleanTest;
-
-  @internal
-  @override
-  String get blockKey => 'boolean_test';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'boolean_test': booleanTest.encode()};
 }
 
 /// Typed helper for the `conditions.condition_sql.boolean_test` block of

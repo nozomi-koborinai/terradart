@@ -1,7 +1,7 @@
 {
   "name": "iam",
   "version": "v3",
-  "revision": "20261023",
+  "revision": "20261106",
   "sourceUrl": "https://iam.googleapis.com/$discovery/rest?version=v3",
   "schemas": {
     "GoogleIamV3AccessPolicy": {

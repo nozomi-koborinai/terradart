@@ -20,9 +20,6 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 sealedNames:
-  "notebook.infrastructure_spec.vpc_network.network, notebook.infrastructure_spec.vpc_network.sub_network": target
-  "spark.infrastructure_spec.vpc_network.network, spark.infrastructure_spec.vpc_network.sub_network": target
-  "spark.main_class, spark.main_jar_file_uri, spark.python_script_file, spark.sql_script, spark.sql_script_file": driver
   "notebook, spark": workload
 
 paramOrder:

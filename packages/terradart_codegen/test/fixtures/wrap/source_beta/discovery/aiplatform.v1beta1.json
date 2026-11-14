@@ -1,7 +1,7 @@
 {
   "name": "aiplatform",
   "version": "v1beta1",
-  "revision": "20261027",
+  "revision": "20261106",
   "sourceUrl": "https://aiplatform.googleapis.com/$discovery/rest?version=v1beta1",
   "schemas": {
     "GoogleCloudAiplatformV1beta1DedicatedResources": {
@@ -13,6 +13,9 @@
     },
     "GoogleCloudAiplatformV1beta1MachineSpec": {
       "properties": {
+        "reservationAffinity": {
+          "$ref": "GoogleCloudAiplatformV1beta1ReservationAffinity"
+        },
         "acceleratorType": {
           "enum": [
             "ACCELERATOR_TYPE_UNSPECIFIED",
@@ -35,9 +38,6 @@
             "TPU_V4_POD",
             "TPU_V5_LITEPOD"
           ]
-        },
-        "reservationAffinity": {
-          "$ref": "GoogleCloudAiplatformV1beta1ReservationAffinity"
         }
       }
     },
@@ -46,13 +46,6 @@
     },
     "GoogleCloudAiplatformV1beta1PublisherModel": {
       "properties": {
-        "versionState": {
-          "enum": [
-            "VERSION_STATE_UNSPECIFIED",
-            "VERSION_STATE_STABLE",
-            "VERSION_STATE_UNSTABLE"
-          ]
-        },
         "openSourceCategory": {
           "enum": [
             "OPEN_SOURCE_CATEGORY_UNSPECIFIED",
@@ -61,6 +54,13 @@
             "THIRD_PARTY_OWNED_OSS_WITH_GOOGLE_CHECKPOINT",
             "GOOGLE_OWNED_OSS",
             "THIRD_PARTY_OWNED_OSS"
+          ]
+        },
+        "versionState": {
+          "enum": [
+            "VERSION_STATE_UNSPECIFIED",
+            "VERSION_STATE_STABLE",
+            "VERSION_STATE_UNSTABLE"
           ]
         },
         "launchStage": {
@@ -79,11 +79,11 @@
     },
     "GoogleCloudAiplatformV1beta1PublisherModelCallToAction": {
       "properties": {
-        "deploy": {
-          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy"
-        },
         "multiDeployVertex": {
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex"
+        },
+        "deploy": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy"
         }
       }
     },

@@ -1,7 +1,7 @@
 {
   "name": "file",
   "version": "v1",
-  "revision": "20261015",
+  "revision": "20261029",
   "sourceUrl": "https://file.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Backup": {
@@ -49,30 +49,24 @@
     },
     "Instance": {
       "properties": {
-        "replication": {
-          "$ref": "Replication"
-        },
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
-        "tier": {
+        "protocol": {
           "enum": [
-            "TIER_UNSPECIFIED",
-            "STANDARD",
-            "PREMIUM",
-            "BASIC_HDD",
-            "BASIC_SSD",
-            "HIGH_SCALE_SSD",
-            "ENTERPRISE",
-            "ZONAL",
-            "REGIONAL"
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
           ]
         },
         "fileShares": {
           "items": {
             "$ref": "FileShareConfig"
+          }
+        },
+        "suspensionReasons": {
+          "items": {
+            "enum": [
+              "SUSPENSION_REASON_UNSPECIFIED",
+              "KMS_KEY_ISSUE"
+            ]
           }
         },
         "state": {
@@ -91,25 +85,39 @@
             "PROMOTING"
           ]
         },
-        "suspensionReasons": {
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "STANDARD",
+            "PREMIUM",
+            "BASIC_HDD",
+            "BASIC_SSD",
+            "HIGH_SCALE_SSD",
+            "ENTERPRISE",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "networks": {
           "items": {
-            "enum": [
-              "SUSPENSION_REASON_UNSPECIFIED",
-              "KMS_KEY_ISSUE"
-            ]
+            "$ref": "NetworkConfig"
           }
         },
-        "protocol": {
-          "enum": [
-            "FILE_PROTOCOL_UNSPECIFIED",
-            "NFS_V3",
-            "NFS_V4_1"
-          ]
+        "replication": {
+          "$ref": "Replication"
         }
       }
     },
     "NetworkConfig": {
       "properties": {
+        "connectMode": {
+          "enum": [
+            "CONNECT_MODE_UNSPECIFIED",
+            "DIRECT_PEERING",
+            "PRIVATE_SERVICE_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
+          ]
+        },
         "modes": {
           "items": {
             "enum": [
@@ -118,14 +126,6 @@
               "MODE_IPV6"
             ]
           }
-        },
-        "connectMode": {
-          "enum": [
-            "CONNECT_MODE_UNSPECIFIED",
-            "DIRECT_PEERING",
-            "PRIVATE_SERVICE_ACCESS",
-            "PRIVATE_SERVICE_CONNECT"
-          ]
         }
       }
     },

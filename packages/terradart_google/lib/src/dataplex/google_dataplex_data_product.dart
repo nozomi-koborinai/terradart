@@ -32,6 +32,7 @@ final class DataplexDataProductAccessGroups {
     required this.displayName,
     required this.groupId,
     required this.id,
+    this.defaultIamRoleConfig,
     required this.principal,
   });
 
@@ -43,6 +44,8 @@ final class DataplexDataProductAccessGroups {
 
   final TfArg<String> id;
 
+  final DataplexDataProductDefaultIamRoleConfig? defaultIamRoleConfig;
+
   final DataplexDataProductPrincipal principal;
 
   @internal
@@ -51,8 +54,21 @@ final class DataplexDataProductAccessGroups {
     'display_name': displayName.toTfJson(),
     'group_id': groupId.toTfJson(),
     'id': id.toTfJson(),
+    'default_iam_role_config': ?defaultIamRoleConfig?.encode(),
     'principal': principal.encode(),
   };
+}
+
+/// Typed helper for the `access_groups.default_iam_role_config` block of
+/// `google_dataplex_data_product` (derived from provider schema).
+@immutable
+final class DataplexDataProductDefaultIamRoleConfig {
+  const DataplexDataProductDefaultIamRoleConfig({required this.role});
+
+  final TfArg<String> role;
+
+  @internal
+  Map<String, Object?> encode() => {'role': role.toTfJson()};
 }
 
 /// Typed helper for the `access_groups.principal` block of

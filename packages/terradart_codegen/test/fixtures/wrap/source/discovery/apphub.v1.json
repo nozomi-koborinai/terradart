@@ -6,11 +6,11 @@
   "schemas": {
     "Application": {
       "properties": {
-        "attributes": {
-          "$ref": "Attributes"
-        },
         "applicationType": {
           "$ref": "ApplicationType"
+        },
+        "attributes": {
+          "$ref": "Attributes"
         },
         "scope": {
           "$ref": "Scope"

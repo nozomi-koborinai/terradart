@@ -38,17 +38,17 @@
     },
     "DatastoreMountConfig": {
       "properties": {
-        "nfsVersion": {
-          "enum": [
-            "NFS_VERSION_UNSPECIFIED",
-            "NFS_V3"
-          ]
-        },
         "accessMode": {
           "enum": [
             "ACCESS_MODE_UNSPECIFIED",
             "READ_ONLY",
             "READ_WRITE"
+          ]
+        },
+        "nfsVersion": {
+          "enum": [
+            "NFS_VERSION_UNSPECIFIED",
+            "NFS_V3"
           ]
         }
       }
@@ -67,6 +67,13 @@
     },
     "ExternalAccessRule": {
       "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -74,13 +81,6 @@
             "CREATING",
             "UPDATING",
             "DELETING"
-          ]
-        },
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
           ]
         }
       }
@@ -174,13 +174,6 @@
         "vcenter": {
           "$ref": "Vcenter"
         },
-        "type": {
-          "enum": [
-            "STANDARD",
-            "TIME_LIMITED",
-            "STRETCHED"
-          ]
-        },
         "hcx": {
           "$ref": "Hcx"
         },
@@ -200,6 +193,13 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig"
+        },
+        "type": {
+          "enum": [
+            "STANDARD",
+            "TIME_LIMITED",
+            "STRETCHED"
+          ]
         }
       }
     },

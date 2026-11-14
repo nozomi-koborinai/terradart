@@ -33,6 +33,8 @@ export 'src/data/google_oracle_database_goldengate_deployment_types.dart'
     show DataGoogleOracleDatabaseGoldengateDeploymentTypes;
 export 'src/data/google_oracle_database_goldengate_deployment_versions.dart'
     show DataGoogleOracleDatabaseGoldengateDeploymentVersions;
+export 'src/data/google_oracle_database_odb_dns_zone.dart'
+    show DataGoogleOracleDatabaseOdbDnsZone;
 export 'src/data/google_oracle_database_odb_network.dart'
     show DataGoogleOracleDatabaseOdbNetwork;
 export 'src/data/google_oracle_database_odb_subnet.dart'
@@ -189,6 +191,8 @@ export 'src/oracle/google_oracle_database_goldengate_deployment.dart'
         OracleDatabaseGoldengateDeploymentMaintenanceWindow,
         OracleDatabaseGoldengateDeploymentOggData,
         OracleDatabaseGoldengateDeploymentProperties;
+export 'src/oracle/google_oracle_database_odb_dns_zone.dart'
+    show GoogleOracleDatabaseOdbDnsZone;
 export 'src/oracle/google_oracle_database_odb_network.dart'
     show GoogleOracleDatabaseOdbNetwork, OracleDatabaseOdbNetworkDeletionPolicy;
 export 'src/oracle/google_oracle_database_odb_subnet.dart'

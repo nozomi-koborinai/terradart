@@ -44,6 +44,7 @@ paramOrder:
   - log_config
   - node_config
   - ssl_config
+  - traffic_shaping_configs
   - labels
   - deletion_policy
   - project

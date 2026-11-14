@@ -954,6 +954,9 @@ final class GoogleNetappVolume extends Resource {
   TfRef<List<String>> get smbSettings =>
       TfRef.attribute<List<String>>(this, 'smb_settings');
 
+  /// Reference to `snap_reserve` attribute.
+  TfRef<num> get snapReserve => TfRef.attribute<num>(this, 'snap_reserve');
+
   /// Reference to `snapshot_directory` attribute.
   TfRef<bool> get snapshotDirectory =>
       TfRef.attribute<bool>(this, 'snapshot_directory');

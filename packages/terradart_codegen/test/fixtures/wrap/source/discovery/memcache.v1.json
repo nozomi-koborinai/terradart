@@ -22,6 +22,11 @@
             "MEMCACHE_1_6_15"
           ]
         },
+        "memcacheNodes": {
+          "items": {
+            "$ref": "Node"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -40,11 +45,6 @@
         },
         "maintenancePolicy": {
           "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
-        },
-        "memcacheNodes": {
-          "items": {
-            "$ref": "Node"
-          }
         }
       }
     },
@@ -60,13 +60,6 @@
     },
     "Node": {
       "properties": {
-        "memcacheVersion": {
-          "enum": [
-            "MEMCACHE_VERSION_UNSPECIFIED",
-            "MEMCACHE_1_5",
-            "MEMCACHE_1_6_15"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -74,6 +67,13 @@
             "READY",
             "DELETING",
             "UPDATING"
+          ]
+        },
+        "memcacheVersion": {
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
           ]
         }
       }

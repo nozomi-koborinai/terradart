@@ -64,16 +64,18 @@ final class DlpStack extends Stack {
         templateId: .literal('terradart-email-redact'),
         displayName: .literal('terradart-email-redact'),
         description: .literal('Quickstart de-identify template'),
-        deidentifyConfig: .infoTypeTransformations(
-          .new(
-            transformations: [
-              .new(
-                infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
-                primitiveTransformation: .new(
-                  replaceWithInfoTypeConfig: .literal(true),
+        deidentifyConfig: DataLossPreventionDeidentifyTemplateDeidentifyConfig(
+          transformation: .infoTypeTransformations(
+            .new(
+              transformations: [
+                .new(
+                  infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
+                  primitiveTransformation: .new(
+                    replaceWithInfoTypeConfig: .literal(true),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         dependsOn: [apiDlp],

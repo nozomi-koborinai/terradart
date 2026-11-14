@@ -575,68 +575,23 @@ extension type const VertexAiReasoningEngineTopicsManagedMemoryTopic._(
   ];
 }
 
-/// Exactly one of `managed_memory_topic`, `custom_memory_topic` on the `context_spec.memory_bank_config.customization_configs.memory_topics` block of `google_vertex_ai_reasoning_engine`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.managedMemoryTopic(...)`.
-sealed class VertexAiReasoningEngineMemoryTopics {
-  const VertexAiReasoningEngineMemoryTopics();
-
-  /// Sets `managed_memory_topic`.
-  const factory VertexAiReasoningEngineMemoryTopics.managedMemoryTopic(
-    VertexAiReasoningEngineManagedMemoryTopic managedMemoryTopic,
-  ) = VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic;
-
-  /// Sets `custom_memory_topic`.
-  const factory VertexAiReasoningEngineMemoryTopics.customMemoryTopic(
-    VertexAiReasoningEngineCustomMemoryTopic customMemoryTopic,
-  ) = VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [VertexAiReasoningEngineMemoryTopics.managedMemoryTopic] choice: sets `managed_memory_topic`.
-final class VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic
-    extends VertexAiReasoningEngineMemoryTopics {
-  const VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic(
-    this.managedMemoryTopic,
-  );
-
-  final VertexAiReasoningEngineManagedMemoryTopic managedMemoryTopic;
-
-  @internal
-  @override
-  String get blockKey => 'managed_memory_topic';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'managed_memory_topic': managedMemoryTopic.encode(),
-  };
-}
-
-/// The [VertexAiReasoningEngineMemoryTopics.customMemoryTopic] choice: sets `custom_memory_topic`.
-final class VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic
-    extends VertexAiReasoningEngineMemoryTopics {
-  const VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic(
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineMemoryTopics {
+  const VertexAiReasoningEngineMemoryTopics({
     this.customMemoryTopic,
-  );
+    this.managedMemoryTopic,
+  });
 
-  final VertexAiReasoningEngineCustomMemoryTopic customMemoryTopic;
+  final VertexAiReasoningEngineCustomMemoryTopic? customMemoryTopic;
+
+  final VertexAiReasoningEngineManagedMemoryTopic? managedMemoryTopic;
 
   @internal
-  @override
-  String get blockKey => 'custom_memory_topic';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'custom_memory_topic': customMemoryTopic.encode(),
+    'custom_memory_topic': ?customMemoryTopic?.encode(),
+    'managed_memory_topic': ?managedMemoryTopic?.encode(),
   };
 }
 
@@ -830,77 +785,22 @@ final class VertexAiReasoningEngineSchemaConfigs {
 @immutable
 final class VertexAiReasoningEngineTtlConfig {
   const VertexAiReasoningEngineTtlConfig({
-    required this.policy,
+    this.defaultTtl,
     this.memoryRevisionDefaultTtl,
+    this.granularTtlConfig,
   });
 
-  final VertexAiReasoningEnginePolicy policy;
+  final TfArg<String>? defaultTtl;
 
   final TfArg<String>? memoryRevisionDefaultTtl;
 
+  final VertexAiReasoningEngineGranularTtlConfig? granularTtlConfig;
+
   @internal
   Map<String, Object?> encode() => {
-    ...policy.encode(),
+    'default_ttl': ?defaultTtl?.toTfJson(),
     'memory_revision_default_ttl': ?memoryRevisionDefaultTtl?.toTfJson(),
-  };
-}
-
-/// Exactly one of `default_ttl`, `granular_ttl_config` on the `context_spec.memory_bank_config.ttl_config` block of `google_vertex_ai_reasoning_engine`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.defaultTtl(...)`.
-sealed class VertexAiReasoningEnginePolicy {
-  const VertexAiReasoningEnginePolicy();
-
-  /// Sets `default_ttl`.
-  const factory VertexAiReasoningEnginePolicy.defaultTtl(
-    TfArg<String> defaultTtl,
-  ) = VertexAiReasoningEnginePolicyDefaultTtl;
-
-  /// Sets `granular_ttl_config`.
-  const factory VertexAiReasoningEnginePolicy.granularTtlConfig(
-    VertexAiReasoningEngineGranularTtlConfig granularTtlConfig,
-  ) = VertexAiReasoningEnginePolicyGranularTtlConfig;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [VertexAiReasoningEnginePolicy.defaultTtl] choice: sets `default_ttl`.
-final class VertexAiReasoningEnginePolicyDefaultTtl
-    extends VertexAiReasoningEnginePolicy {
-  const VertexAiReasoningEnginePolicyDefaultTtl(this.defaultTtl);
-
-  final TfArg<String> defaultTtl;
-
-  @internal
-  @override
-  String get blockKey => 'default_ttl';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'default_ttl': defaultTtl.toTfJson()};
-}
-
-/// The [VertexAiReasoningEnginePolicy.granularTtlConfig] choice: sets `granular_ttl_config`.
-final class VertexAiReasoningEnginePolicyGranularTtlConfig
-    extends VertexAiReasoningEnginePolicy {
-  const VertexAiReasoningEnginePolicyGranularTtlConfig(this.granularTtlConfig);
-
-  final VertexAiReasoningEngineGranularTtlConfig granularTtlConfig;
-
-  @internal
-  @override
-  String get blockKey => 'granular_ttl_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'granular_ttl_config': granularTtlConfig.encode(),
+    'granular_ttl_config': ?granularTtlConfig?.encode(),
   };
 }
 

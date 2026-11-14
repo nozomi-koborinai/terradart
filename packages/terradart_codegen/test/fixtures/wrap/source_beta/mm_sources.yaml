@@ -3,8 +3,8 @@
 # through the provider's generated Go source at the release tag; null when the
 # resource has none. tool/wrap_lanes.dart re-syncs when this file no longer
 # matches provider_version.txt or the schema.json resource set.
-provider_version: 8.9.0
-upstream_ref: 4ccc500196908b4a5b4228b1f526476085c78230
+provider_version: 8.10.0
+upstream_ref: 6cc52d702a3da2a4feb767a8dbebf1c739cf05d6
 files:
   google_active_directory_peering: mmv1/products/activedirectory/Peering.yaml
   google_api_gateway_api: mmv1/products/apigateway/Api.yaml

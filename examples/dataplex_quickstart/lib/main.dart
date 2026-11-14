@@ -514,7 +514,7 @@ final class DataplexCatalogStack extends Stack {
         taskId: .literal('terradart-sql-task'),
         location: .literal('us-central1'),
         lake: .literal('terradart-lake'),
-        workload: .spark(.new(driver: .sqlScript(.literal('SELECT 1')))),
+        workload: .spark(.new(sqlScript: .literal('SELECT 1'))),
         triggerSpec: DataplexTaskTriggerSpec(type: .onDemand),
         executionSpec: DataplexTaskExecutionSpec(
           serviceAccount: .literal(reader.email.interpolation),

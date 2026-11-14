@@ -1,7 +1,7 @@
 {
   "name": "cloudbuild",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261106",
   "sourceUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "ApprovalResult": {
@@ -27,6 +27,31 @@
     },
     "Build": {
       "properties": {
+        "results": {
+          "$ref": "Results"
+        },
+        "steps": {
+          "items": {
+            "$ref": "BuildStep"
+          }
+        },
+        "source": {
+          "$ref": "Source"
+        },
+        "sourceProvenance": {
+          "$ref": "SourceProvenance"
+        },
+        "options": {
+          "$ref": "BuildOptions"
+        },
+        "approval": {
+          "$ref": "BuildApproval"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warning"
+          }
+        },
         "status": {
           "enum": [
             "STATUS_UNKNOWN",
@@ -41,33 +66,8 @@
             "EXPIRED"
           ]
         },
-        "sourceProvenance": {
-          "$ref": "SourceProvenance"
-        },
         "failureInfo": {
           "$ref": "FailureInfo"
-        },
-        "options": {
-          "$ref": "BuildOptions"
-        },
-        "results": {
-          "$ref": "Results"
-        },
-        "source": {
-          "$ref": "Source"
-        },
-        "approval": {
-          "$ref": "BuildApproval"
-        },
-        "warnings": {
-          "items": {
-            "$ref": "Warning"
-          }
-        },
-        "steps": {
-          "items": {
-            "$ref": "BuildStep"
-          }
         }
       }
     },
@@ -89,35 +89,6 @@
     },
     "BuildOptions": {
       "properties": {
-        "rankedMachineSeries": {
-          "items": {
-            "enum": [
-              "MACHINE_SERIES_UNSPECIFIED",
-              "MACHINE_SERIES_E",
-              "MACHINE_SERIES_N",
-              "MACHINE_SERIES_C"
-            ]
-          }
-        },
-        "sourceProvenanceHash": {
-          "items": {
-            "enum": [
-              "NONE",
-              "SHA256",
-              "MD5",
-              "GO_MODULE_H1",
-              "SHA512",
-              "DIRSUM_SHA256"
-            ]
-          }
-        },
-        "defaultLogsBucketBehavior": {
-          "enum": [
-            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
-            "REGIONAL_USER_OWNED_BUCKET",
-            "LEGACY_BUCKET"
-          ]
-        },
         "logging": {
           "enum": [
             "LOGGING_UNSPECIFIED",
@@ -128,11 +99,10 @@
             "NONE"
           ]
         },
-        "requestedVerifyOption": {
+        "substitutionOption": {
           "enum": [
-            "NOT_VERIFIED",
-            "VERIFIED",
-            "BEST_EFFORT"
+            "MUST_MATCH",
+            "ALLOW_LOOSE"
           ]
         },
         "machineType": {
@@ -146,6 +116,13 @@
             "E2_STANDARD_2"
           ]
         },
+        "defaultLogsBucketBehavior": {
+          "enum": [
+            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
+          ]
+        },
         "logStreamingOption": {
           "enum": [
             "STREAM_DEFAULT",
@@ -153,11 +130,34 @@
             "STREAM_OFF"
           ]
         },
-        "substitutionOption": {
+        "rankedMachineSeries": {
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ]
+          }
+        },
+        "requestedVerifyOption": {
           "enum": [
-            "MUST_MATCH",
-            "ALLOW_LOOSE"
+            "NOT_VERIFIED",
+            "VERIFIED",
+            "BEST_EFFORT"
           ]
+        },
+        "sourceProvenanceHash": {
+          "items": {
+            "enum": [
+              "NONE",
+              "SHA256",
+              "MD5",
+              "GO_MODULE_H1",
+              "SHA512",
+              "DIRSUM_SHA256"
+            ]
+          }
         }
       }
     },
@@ -181,26 +181,26 @@
     },
     "BuildTrigger": {
       "properties": {
-        "webhookConfig": {
-          "$ref": "WebhookConfig"
-        },
         "build": {
           "$ref": "Build"
         },
-        "bitbucketServerTriggerConfig": {
-          "$ref": "BitbucketServerTriggerConfig"
+        "pubsubConfig": {
+          "$ref": "PubsubConfig"
         },
-        "repositoryEventConfig": {
-          "$ref": "RepositoryEventConfig"
+        "github": {
+          "$ref": "GitHubEventsConfig"
         },
-        "developerConnectEventConfig": {
-          "$ref": "DeveloperConnectEventConfig"
+        "gitFileSource": {
+          "$ref": "GitFileSource"
         },
         "includeBuildLogs": {
           "enum": [
             "INCLUDE_BUILD_LOGS_UNSPECIFIED",
             "INCLUDE_BUILD_LOGS_WITH_STATUS"
           ]
+        },
+        "developerConnectEventConfig": {
+          "$ref": "DeveloperConnectEventConfig"
         },
         "eventType": {
           "enum": [
@@ -211,17 +211,17 @@
             "MANUAL"
           ]
         },
-        "gitFileSource": {
-          "$ref": "GitFileSource"
+        "repositoryEventConfig": {
+          "$ref": "RepositoryEventConfig"
+        },
+        "webhookConfig": {
+          "$ref": "WebhookConfig"
+        },
+        "bitbucketServerTriggerConfig": {
+          "$ref": "BitbucketServerTriggerConfig"
         },
         "sourceToBuild": {
           "$ref": "GitRepoSource"
-        },
-        "github": {
-          "$ref": "GitHubEventsConfig"
-        },
-        "pubsubConfig": {
-          "$ref": "PubsubConfig"
         }
       }
     },
@@ -370,19 +370,14 @@
     },
     "Results": {
       "properties": {
-        "goModules": {
-          "items": {
-            "$ref": "UploadedGoModule"
-          }
-        },
-        "images": {
-          "items": {
-            "$ref": "BuiltImage"
-          }
-        },
         "npmPackages": {
           "items": {
             "$ref": "UploadedNpmPackage"
+          }
+        },
+        "genericArtifacts": {
+          "items": {
+            "$ref": "UploadedGenericArtifact"
           }
         },
         "mavenArtifacts": {
@@ -390,14 +385,19 @@
             "$ref": "UploadedMavenArtifact"
           }
         },
+        "images": {
+          "items": {
+            "$ref": "BuiltImage"
+          }
+        },
+        "goModules": {
+          "items": {
+            "$ref": "UploadedGoModule"
+          }
+        },
         "pythonPackages": {
           "items": {
             "$ref": "UploadedPythonPackage"
-          }
-        },
-        "genericArtifacts": {
-          "items": {
-            "$ref": "UploadedGenericArtifact"
           }
         }
       }

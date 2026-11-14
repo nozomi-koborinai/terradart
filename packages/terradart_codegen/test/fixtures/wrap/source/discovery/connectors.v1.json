@@ -56,6 +56,26 @@
     },
     "Connection": {
       "properties": {
+        "logConfig": {
+          "$ref": "ConnectorsLogConfig"
+        },
+        "connectorVersionInfraConfig": {
+          "$ref": "ConnectorVersionInfraConfig"
+        },
+        "billingConfig": {
+          "$ref": "BillingConfig"
+        },
+        "adminFilters": {
+          "items": {
+            "$ref": "AdminFilters"
+          }
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
+        "status": {
+          "$ref": "ConnectionStatus"
+        },
         "subscriptionType": {
           "enum": [
             "SUBSCRIPTION_TYPE_UNSPECIFIED",
@@ -63,28 +83,29 @@
             "PAID"
           ]
         },
-        "authConfig": {
+        "euaOauthAuthConfig": {
           "$ref": "AuthConfig"
-        },
-        "status": {
-          "$ref": "ConnectionStatus"
-        },
-        "sslConfig": {
-          "$ref": "SslConfig"
-        },
-        "billingConfig": {
-          "$ref": "BillingConfig"
-        },
-        "eventingConfig": {
-          "$ref": "EventingConfig"
-        },
-        "eventingRuntimeData": {
-          "$ref": "EventingRuntimeData"
         },
         "configVariables": {
           "items": {
             "$ref": "ConfigVariable"
           }
+        },
+        "eventingConfig": {
+          "$ref": "EventingConfig"
+        },
+        "eventingEnablementType": {
+          "enum": [
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
+          ]
+        },
+        "eventingRuntimeData": {
+          "$ref": "EventingRuntimeData"
+        },
+        "authConfig": {
+          "$ref": "AuthConfig"
         },
         "connectorVersionLaunchStage": {
           "enum": [
@@ -95,27 +116,6 @@
             "TEST",
             "PRIVATE_PREVIEW"
           ]
-        },
-        "eventingEnablementType": {
-          "enum": [
-            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
-            "EVENTING_AND_CONNECTION",
-            "ONLY_EVENTING"
-          ]
-        },
-        "logConfig": {
-          "$ref": "ConnectorsLogConfig"
-        },
-        "connectorVersionInfraConfig": {
-          "$ref": "ConnectorVersionInfraConfig"
-        },
-        "euaOauthAuthConfig": {
-          "$ref": "AuthConfig"
-        },
-        "adminFilters": {
-          "items": {
-            "$ref": "AdminFilters"
-          }
         }
       }
     },
@@ -137,13 +137,6 @@
     },
     "ConnectorVersionInfraConfig": {
       "properties": {
-        "tlsMigrationState": {
-          "enum": [
-            "TLS_MIGRATION_STATE_UNSPECIFIED",
-            "TLS_MIGRATION_NOT_STARTED",
-            "TLS_MIGRATION_COMPLETED"
-          ]
-        },
         "deploymentModel": {
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
@@ -158,6 +151,13 @@
             "COMPLETED",
             "ROLLEDBACK",
             "ROLLBACK_IN_PROGRESS"
+          ]
+        },
+        "tlsMigrationState": {
+          "enum": [
+            "TLS_MIGRATION_STATE_UNSPECIFIED",
+            "TLS_MIGRATION_NOT_STARTED",
+            "TLS_MIGRATION_COMPLETED"
           ]
         }
       }
@@ -203,29 +203,29 @@
     },
     "EventingConfig": {
       "properties": {
-        "additionalVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
-        },
-        "sslConfig": {
-          "$ref": "SslConfig"
+        "authConfig": {
+          "$ref": "AuthConfig"
         },
         "listenerAuthConfig": {
           "$ref": "AuthConfig"
         },
-        "authConfig": {
-          "$ref": "AuthConfig"
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
         }
       }
     },
     "EventingRuntimeData": {
       "properties": {
-        "webhookData": {
-          "$ref": "WebhookData"
-        },
         "status": {
           "$ref": "EventingStatus"
+        },
+        "webhookData": {
+          "$ref": "WebhookData"
         },
         "webhookSubscriptions": {
           "$ref": "WebhookSubscriptions"
@@ -249,19 +249,6 @@
     },
     "SslConfig": {
       "properties": {
-        "trustModel": {
-          "enum": [
-            "PUBLIC",
-            "PRIVATE",
-            "INSECURE"
-          ]
-        },
-        "serverCertType": {
-          "enum": [
-            "CERT_TYPE_UNSPECIFIED",
-            "PEM"
-          ]
-        },
         "clientCertType": {
           "enum": [
             "CERT_TYPE_UNSPECIFIED",
@@ -278,6 +265,19 @@
             "SSL_TYPE_UNSPECIFIED",
             "TLS",
             "MTLS"
+          ]
+        },
+        "trustModel": {
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "INSECURE"
+          ]
+        },
+        "serverCertType": {
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
           ]
         }
       }

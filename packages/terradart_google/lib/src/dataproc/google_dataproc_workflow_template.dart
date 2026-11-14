@@ -601,10 +601,13 @@ final class DataprocWorkflowTemplateConfig {
     this.initializationActions,
     this.lifecycleConfig,
     this.masterConfig,
+    this.masterFlexibleConfig,
     this.secondaryWorkerConfig,
+    this.secondaryWorkerFlexibleConfig,
     this.securityConfig,
     this.softwareConfig,
     this.workerConfig,
+    this.workerFlexibleConfig,
   });
 
   final TfArg<String>? stagingBucket;
@@ -626,13 +629,20 @@ final class DataprocWorkflowTemplateConfig {
 
   final DataprocWorkflowTemplateMasterConfig? masterConfig;
 
+  final DataprocWorkflowTemplateMasterFlexibleConfig? masterFlexibleConfig;
+
   final DataprocWorkflowTemplateSecondaryWorkerConfig? secondaryWorkerConfig;
+
+  final DataprocWorkflowTemplateSecondaryWorkerFlexibleConfig?
+  secondaryWorkerFlexibleConfig;
 
   final DataprocWorkflowTemplateSecurityConfig? securityConfig;
 
   final DataprocWorkflowTemplateSoftwareConfig? softwareConfig;
 
   final DataprocWorkflowTemplateWorkerConfig? workerConfig;
+
+  final DataprocWorkflowTemplateWorkerFlexibleConfig? workerFlexibleConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -648,10 +658,14 @@ final class DataprocWorkflowTemplateConfig {
       ],
     'lifecycle_config': ?lifecycleConfig?.encode(),
     'master_config': ?masterConfig?.encode(),
+    'master_flexible_config': ?masterFlexibleConfig?.encode(),
     'secondary_worker_config': ?secondaryWorkerConfig?.encode(),
+    'secondary_worker_flexible_config': ?secondaryWorkerFlexibleConfig
+        ?.encode(),
     'security_config': ?securityConfig?.encode(),
     'software_config': ?softwareConfig?.encode(),
     'worker_config': ?workerConfig?.encode(),
+    'worker_flexible_config': ?workerFlexibleConfig?.encode(),
   };
 }
 
@@ -709,6 +723,7 @@ final class DataprocWorkflowTemplateGceClusterConfig {
     this.subnetwork,
     this.tags,
     this.zone,
+    this.multiZoneConfig,
     this.nodeGroupAffinity,
     this.reservationAffinity,
     this.shieldedInstanceConfig,
@@ -733,6 +748,8 @@ final class DataprocWorkflowTemplateGceClusterConfig {
 
   final TfArg<String>? zone;
 
+  final DataprocWorkflowTemplateMultiZoneConfig? multiZoneConfig;
+
   final DataprocWorkflowTemplateNodeGroupAffinity? nodeGroupAffinity;
 
   final DataprocWorkflowTemplateReservationAffinity? reservationAffinity;
@@ -750,6 +767,7 @@ final class DataprocWorkflowTemplateGceClusterConfig {
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     'tags': ?tags?.toTfJson(),
     'zone': ?zone?.toTfJson(),
+    'multi_zone_config': ?multiZoneConfig?.encode(),
     'node_group_affinity': ?nodeGroupAffinity?.encode(),
     'reservation_affinity': ?reservationAffinity?.encode(),
     'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
@@ -785,6 +803,33 @@ extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
     outbound,
     bidirectional,
   ];
+}
+
+/// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.multi_zone_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplateMultiZoneConfig {
+  const DataprocWorkflowTemplateMultiZoneConfig({this.targetShape});
+
+  final DataprocWorkflowTemplateTargetShape? targetShape;
+
+  @internal
+  Map<String, Object?> encode() => {'target_shape': ?targetShape?.toTfJson()};
+}
+
+/// `target_shape` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateTargetShape._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplateTargetShape.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateTargetShape.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateTargetShape.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const any = DataprocWorkflowTemplateTargetShape._(TfArgLiteral('ANY'));
+
+  static const List<DataprocWorkflowTemplateTargetShape> values = [any];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.node_group_affinity` block of
@@ -1220,6 +1265,57 @@ final class DataprocWorkflowTemplateInstanceSelectionList {
   };
 }
 
+/// Typed helper for the `placement.managed_cluster.config.master_flexible_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplateMasterFlexibleConfig {
+  const DataprocWorkflowTemplateMasterFlexibleConfig({
+    this.bootDiskSizeGb,
+    this.coreCount,
+    this.hardwareClass,
+    this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num>? coreCount;
+
+  final DataprocWorkflowTemplateHardwareClass? hardwareClass;
+
+  final TfArg<num>? numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
+  };
+}
+
+/// `hardware_class` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateHardwareClass._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplateHardwareClass.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateHardwareClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateHardwareClass.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standard = DataprocWorkflowTemplateHardwareClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const performance = DataprocWorkflowTemplateHardwareClass._(
+    TfArgLiteral('PERFORMANCE'),
+  );
+
+  static const List<DataprocWorkflowTemplateHardwareClass> values = [
+    standard,
+    performance,
+  ];
+}
+
 /// Typed helper for the `placement.managed_cluster.config.secondary_worker_config` block of
 /// `google_dataproc_workflow_template` (derived from provider schema).
 @immutable
@@ -1308,6 +1404,34 @@ final class DataprocWorkflowTemplateProvisioningModelMix {
     'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
     'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
         ?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_flexible_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplateSecondaryWorkerFlexibleConfig {
+  const DataprocWorkflowTemplateSecondaryWorkerFlexibleConfig({
+    this.bootDiskSizeGb,
+    this.coreCount,
+    this.hardwareClass,
+    this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num>? coreCount;
+
+  final DataprocWorkflowTemplateHardwareClass? hardwareClass;
+
+  final TfArg<num>? numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
   };
 }
 
@@ -1560,6 +1684,34 @@ final class DataprocWorkflowTemplateWorkerConfig {
       'accelerators': [for (final e in accelerators!) e.encode()],
     'disk_config': ?diskConfig?.encode(),
     'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_flexible_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplateWorkerFlexibleConfig {
+  const DataprocWorkflowTemplateWorkerFlexibleConfig({
+    this.bootDiskSizeGb,
+    this.coreCount,
+    this.hardwareClass,
+    this.numInstances,
+  });
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<num>? coreCount;
+
+  final DataprocWorkflowTemplateHardwareClass? hardwareClass;
+
+  final TfArg<num>? numInstances;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'hardware_class': ?hardwareClass?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
   };
 }
 

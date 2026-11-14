@@ -1,7 +1,7 @@
 {
   "name": "aiplatform",
   "version": "v1",
-  "revision": "20261027",
+  "revision": "20261106",
   "sourceUrl": "https://aiplatform.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudAiplatformV1Artifact": {
@@ -17,13 +17,6 @@
     },
     "GoogleCloudAiplatformV1AudioResponseFormat": {
       "properties": {
-        "delivery": {
-          "enum": [
-            "DELIVERY_UNSPECIFIED",
-            "INLINE",
-            "URI"
-          ]
-        },
         "mimeType": {
           "enum": [
             "MIME_TYPE_UNSPECIFIED",
@@ -33,6 +26,13 @@
             "AUDIO_WAV",
             "AUDIO_ALAW",
             "AUDIO_MULAW"
+          ]
+        },
+        "delivery": {
+          "enum": [
+            "DELIVERY_UNSPECIFIED",
+            "INLINE",
+            "URI"
           ]
         }
       }
@@ -139,13 +139,13 @@
     },
     "GoogleCloudAiplatformV1CustomJobSpec": {
       "properties": {
+        "scheduling": {
+          "$ref": "GoogleCloudAiplatformV1Scheduling"
+        },
         "workerPoolSpecs": {
           "items": {
             "$ref": "GoogleCloudAiplatformV1WorkerPoolSpec"
           }
-        },
-        "scheduling": {
-          "$ref": "GoogleCloudAiplatformV1Scheduling"
         }
       }
     },
@@ -161,6 +161,12 @@
     },
     "GoogleCloudAiplatformV1DeployedIndex": {
       "properties": {
+        "deploymentTier": {
+          "enum": [
+            "DEPLOYMENT_TIER_UNSPECIFIED",
+            "STORAGE"
+          ]
+        },
         "dedicatedResources": {
           "$ref": "GoogleCloudAiplatformV1DedicatedResources"
         },
@@ -168,22 +174,16 @@
           "items": {
             "$ref": "GoogleCloudAiplatformV1PSCAutomationConfig"
           }
-        },
-        "deploymentTier": {
-          "enum": [
-            "DEPLOYMENT_TIER_UNSPECIFIED",
-            "STORAGE"
-          ]
         }
       }
     },
     "GoogleCloudAiplatformV1DeployedModel": {
       "properties": {
-        "dedicatedResources": {
-          "$ref": "GoogleCloudAiplatformV1DedicatedResources"
-        },
         "explanationSpec": {
           "$ref": "GoogleCloudAiplatformV1ExplanationSpec"
+        },
+        "dedicatedResources": {
+          "$ref": "GoogleCloudAiplatformV1DedicatedResources"
         }
       }
     },
@@ -276,9 +276,6 @@
     },
     "GoogleCloudAiplatformV1ExplanationMetadataInputMetadata": {
       "properties": {
-        "visualization": {
-          "$ref": "GoogleCloudAiplatformV1ExplanationMetadataInputMetadataVisualization"
-        },
         "encoding": {
           "enum": [
             "ENCODING_UNSPECIFIED",
@@ -289,6 +286,9 @@
             "COMBINED_EMBEDDING",
             "CONCAT_EMBEDDING"
           ]
+        },
+        "visualization": {
+          "$ref": "GoogleCloudAiplatformV1ExplanationMetadataInputMetadataVisualization"
         }
       }
     },
@@ -312,6 +312,14 @@
             "PINK_WHITE_GREEN"
           ]
         },
+        "polarity": {
+          "enum": [
+            "POLARITY_UNSPECIFIED",
+            "POSITIVE",
+            "NEGATIVE",
+            "BOTH"
+          ]
+        },
         "overlayType": {
           "enum": [
             "OVERLAY_TYPE_UNSPECIFIED",
@@ -319,14 +327,6 @@
             "ORIGINAL",
             "GRAYSCALE",
             "MASK_BLACK"
-          ]
-        },
-        "polarity": {
-          "enum": [
-            "POLARITY_UNSPECIFIED",
-            "POSITIVE",
-            "NEGATIVE",
-            "BOTH"
           ]
         }
       }
@@ -396,15 +396,15 @@
     },
     "GoogleCloudAiplatformV1FeatureOnlineStore": {
       "properties": {
-        "dedicatedServingEndpoint": {
-          "$ref": "GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "STABLE",
             "UPDATING"
           ]
+        },
+        "dedicatedServingEndpoint": {
+          "$ref": "GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint"
         }
       }
     },
@@ -417,15 +417,15 @@
     },
     "GoogleCloudAiplatformV1FeatureView": {
       "properties": {
+        "indexConfig": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewIndexConfig"
+        },
         "serviceAgentType": {
           "enum": [
             "SERVICE_AGENT_TYPE_UNSPECIFIED",
             "SERVICE_AGENT_TYPE_PROJECT",
             "SERVICE_AGENT_TYPE_FEATURE_VIEW"
           ]
-        },
-        "indexConfig": {
-          "$ref": "GoogleCloudAiplatformV1FeatureViewIndexConfig"
         }
       }
     },
@@ -527,19 +527,16 @@
     },
     "GoogleCloudAiplatformV1GenerationConfig": {
       "properties": {
-        "audioTranscriptionConfig": {
-          "$ref": "GoogleCloudAiplatformV1AudioTranscriptionConfig"
-        },
-        "mediaResolution": {
-          "enum": [
-            "MEDIA_RESOLUTION_UNSPECIFIED",
-            "MEDIA_RESOLUTION_LOW",
-            "MEDIA_RESOLUTION_MEDIUM",
-            "MEDIA_RESOLUTION_HIGH"
-          ]
+        "routingConfig": {
+          "$ref": "GoogleCloudAiplatformV1GenerationConfigRoutingConfig"
         },
         "imageConfig": {
           "$ref": "GoogleCloudAiplatformV1ImageConfig"
+        },
+        "responseFormat": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ResponseFormat"
+          }
         },
         "responseModalities": {
           "items": {
@@ -552,16 +549,19 @@
             ]
           }
         },
+        "audioTranscriptionConfig": {
+          "$ref": "GoogleCloudAiplatformV1AudioTranscriptionConfig"
+        },
+        "mediaResolution": {
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "MEDIA_RESOLUTION_LOW",
+            "MEDIA_RESOLUTION_MEDIUM",
+            "MEDIA_RESOLUTION_HIGH"
+          ]
+        },
         "thinkingConfig": {
           "$ref": "GoogleCloudAiplatformV1GenerationConfigThinkingConfig"
-        },
-        "routingConfig": {
-          "$ref": "GoogleCloudAiplatformV1GenerationConfigRoutingConfig"
-        },
-        "responseFormat": {
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1ResponseFormat"
-          }
         },
         "responseSchema": {
           "$ref": "GoogleCloudAiplatformV1Schema"
@@ -656,6 +656,13 @@
             "IMAGE_JPEG"
           ]
         },
+        "delivery": {
+          "enum": [
+            "DELIVERY_UNSPECIFIED",
+            "INLINE",
+            "URI"
+          ]
+        },
         "aspectRatio": {
           "enum": [
             "ASPECT_RATIO_UNSPECIFIED",
@@ -674,13 +681,6 @@
             "ASPECT_RATIO_ONE_BY_FOUR",
             "ASPECT_RATIO_FOUR_BY_ONE"
           ]
-        },
-        "delivery": {
-          "enum": [
-            "DELIVERY_UNSPECIFIED",
-            "INLINE",
-            "URI"
-          ]
         }
       }
     },
@@ -697,23 +697,23 @@
     },
     "GoogleCloudAiplatformV1IndexEndpoint": {
       "properties": {
+        "privateServiceConnectConfig": {
+          "$ref": "GoogleCloudAiplatformV1PrivateServiceConnectConfig"
+        },
         "deployedIndexes": {
           "items": {
             "$ref": "GoogleCloudAiplatformV1DeployedIndex"
           }
-        },
-        "privateServiceConnectConfig": {
-          "$ref": "GoogleCloudAiplatformV1PrivateServiceConnectConfig"
         }
       }
     },
     "GoogleCloudAiplatformV1LLMBasedMetricSpec": {
       "properties": {
-        "judgeAutoraterConfig": {
-          "$ref": "GoogleCloudAiplatformV1AutoraterConfig"
-        },
         "rubricGenerationSpec": {
           "$ref": "GoogleCloudAiplatformV1RubricGenerationSpec"
+        },
+        "judgeAutoraterConfig": {
+          "$ref": "GoogleCloudAiplatformV1AutoraterConfig"
         }
       }
     },
@@ -850,11 +850,11 @@
             ]
           }
         },
-        "llmBasedMetricSpec": {
-          "$ref": "GoogleCloudAiplatformV1LLMBasedMetricSpec"
-        },
         "computationBasedMetricSpec": {
           "$ref": "GoogleCloudAiplatformV1ComputationBasedMetricSpec"
+        },
+        "llmBasedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1LLMBasedMetricSpec"
         }
       }
     },
@@ -862,6 +862,60 @@
       "properties": {
         "metric": {
           "$ref": "GoogleCloudAiplatformV1Metric"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1Model": {
+      "properties": {
+        "modelSourceInfo": {
+          "$ref": "GoogleCloudAiplatformV1ModelSourceInfo"
+        },
+        "supportedExportFormats": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ModelExportFormat"
+          }
+        },
+        "supportedDeploymentResourcesTypes": {
+          "items": {
+            "enum": [
+              "DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED",
+              "DEDICATED_RESOURCES",
+              "AUTOMATIC_RESOURCES",
+              "SHARED_RESOURCES"
+            ]
+          }
+        },
+        "explanationSpec": {
+          "$ref": "GoogleCloudAiplatformV1ExplanationSpec"
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1ModelExportFormat": {
+      "properties": {
+        "exportableContents": {
+          "items": {
+            "enum": [
+              "EXPORTABLE_CONTENT_UNSPECIFIED",
+              "ARTIFACT",
+              "IMAGE"
+            ]
+          }
+        }
+      }
+    },
+    "GoogleCloudAiplatformV1ModelSourceInfo": {
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "MODEL_SOURCE_TYPE_UNSPECIFIED",
+            "AUTOML",
+            "CUSTOM",
+            "BQML",
+            "MODEL_GARDEN",
+            "GENIE",
+            "CUSTOM_TEXT_EMBEDDING",
+            "MARKETPLACE"
+          ]
         }
       }
     },
@@ -912,12 +966,22 @@
         "softwareConfig": {
           "$ref": "GoogleCloudAiplatformV1NotebookSoftwareConfig"
         },
+        "healthState": {
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY"
+          ]
+        },
         "notebookRuntimeType": {
           "enum": [
             "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
             "USER_DEFINED",
             "ONE_CLICK"
           ]
+        },
+        "machineSpec": {
+          "$ref": "GoogleCloudAiplatformV1MachineSpec"
         },
         "runtimeState": {
           "enum": [
@@ -933,16 +997,6 @@
         },
         "reservationAffinity": {
           "$ref": "GoogleCloudAiplatformV1NotebookReservationAffinity"
-        },
-        "healthState": {
-          "enum": [
-            "HEALTH_STATE_UNSPECIFIED",
-            "HEALTHY",
-            "UNHEALTHY"
-          ]
-        },
-        "machineSpec": {
-          "$ref": "GoogleCloudAiplatformV1MachineSpec"
         }
       }
     },
@@ -951,18 +1005,18 @@
         "reservationAffinity": {
           "$ref": "GoogleCloudAiplatformV1NotebookReservationAffinity"
         },
+        "machineSpec": {
+          "$ref": "GoogleCloudAiplatformV1MachineSpec"
+        },
+        "softwareConfig": {
+          "$ref": "GoogleCloudAiplatformV1NotebookSoftwareConfig"
+        },
         "notebookRuntimeType": {
           "enum": [
             "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
             "USER_DEFINED",
             "ONE_CLICK"
           ]
-        },
-        "softwareConfig": {
-          "$ref": "GoogleCloudAiplatformV1NotebookSoftwareConfig"
-        },
-        "machineSpec": {
-          "$ref": "GoogleCloudAiplatformV1MachineSpec"
         }
       }
     },
@@ -975,14 +1029,6 @@
     },
     "GoogleCloudAiplatformV1OnlineEvaluator": {
       "properties": {
-        "cloudObservability": {
-          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability"
-        },
-        "metricSources": {
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1MetricSource"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -991,16 +1037,24 @@
             "FAILED",
             "WARNING"
           ]
+        },
+        "cloudObservability": {
+          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability"
+        },
+        "metricSources": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MetricSource"
+          }
         }
       }
     },
     "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability": {
       "properties": {
-        "traceScope": {
-          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope"
-        },
         "sessionScope": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScope"
+        },
+        "traceScope": {
+          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope"
         }
       }
     },
@@ -1030,25 +1084,25 @@
     },
     "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopePredicate": {
       "properties": {
-        "userTurns": {
-          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
-        },
-        "modelCalls": {
+        "duration": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         },
         "toolCallErrors": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         },
-        "modelCallErrors": {
+        "toolCalls": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         },
-        "duration": {
+        "userTurns": {
+          "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
+        },
+        "modelCallErrors": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         },
         "totalTokenUsage": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         },
-        "toolCalls": {
+        "modelCalls": {
           "$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate"
         }
       }
@@ -1085,20 +1139,20 @@
     },
     "GoogleCloudAiplatformV1Part": {
       "properties": {
+        "mediaResolution": {
+          "$ref": "GoogleCloudAiplatformV1PartMediaResolution"
+        },
         "executableCode": {
           "$ref": "GoogleCloudAiplatformV1ExecutableCode"
-        },
-        "functionResponse": {
-          "$ref": "GoogleCloudAiplatformV1FunctionResponse"
-        },
-        "functionCall": {
-          "$ref": "GoogleCloudAiplatformV1FunctionCall"
         },
         "codeExecutionResult": {
           "$ref": "GoogleCloudAiplatformV1CodeExecutionResult"
         },
-        "mediaResolution": {
-          "$ref": "GoogleCloudAiplatformV1PartMediaResolution"
+        "functionCall": {
+          "$ref": "GoogleCloudAiplatformV1FunctionCall"
+        },
+        "functionResponse": {
+          "$ref": "GoogleCloudAiplatformV1FunctionResponse"
         }
       }
     },
@@ -1126,6 +1180,11 @@
     },
     "GoogleCloudAiplatformV1PersistentResource": {
       "properties": {
+        "resourcePools": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ResourcePool"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -1136,18 +1195,13 @@
             "REBOOTING",
             "UPDATING"
           ]
-        },
-        "resourcePools": {
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1ResourcePool"
-          }
         }
       }
     },
     "GoogleCloudAiplatformV1PipelineJob": {
       "properties": {
-        "runtimeConfig": {
-          "$ref": "GoogleCloudAiplatformV1PipelineJobRuntimeConfig"
+        "jobDetail": {
+          "$ref": "GoogleCloudAiplatformV1PipelineJobDetail"
         },
         "state": {
           "enum": [
@@ -1162,8 +1216,8 @@
             "PIPELINE_STATE_PAUSED"
           ]
         },
-        "jobDetail": {
-          "$ref": "GoogleCloudAiplatformV1PipelineJobDetail"
+        "runtimeConfig": {
+          "$ref": "GoogleCloudAiplatformV1PipelineJobRuntimeConfig"
         }
       }
     },
@@ -1189,10 +1243,8 @@
     },
     "GoogleCloudAiplatformV1PipelineTaskDetail": {
       "properties": {
-        "pipelineTaskStatus": {
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1PipelineTaskDetailPipelineTaskStatus"
-          }
+        "execution": {
+          "$ref": "GoogleCloudAiplatformV1Execution"
         },
         "state": {
           "enum": [
@@ -1208,15 +1260,17 @@
             "NOT_TRIGGERED"
           ]
         },
-        "execution": {
-          "$ref": "GoogleCloudAiplatformV1Execution"
-        },
-        "inputs": {
+        "outputs": {
           "additionalProperties": {
             "$ref": "GoogleCloudAiplatformV1PipelineTaskDetailArtifactList"
           }
         },
-        "outputs": {
+        "pipelineTaskStatus": {
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1PipelineTaskDetailPipelineTaskStatus"
+          }
+        },
+        "inputs": {
           "additionalProperties": {
             "$ref": "GoogleCloudAiplatformV1PipelineTaskDetailArtifactList"
           }
@@ -1264,18 +1318,18 @@
     },
     "GoogleCloudAiplatformV1Presets": {
       "properties": {
-        "query": {
-          "enum": [
-            "PRECISE",
-            "FAST"
-          ]
-        },
         "modality": {
           "enum": [
             "MODALITY_UNSPECIFIED",
             "IMAGE",
             "TEXT",
             "TABULAR"
+          ]
+        },
+        "query": {
+          "enum": [
+            "PRECISE",
+            "FAST"
           ]
         }
       }
@@ -1370,22 +1424,19 @@
         "text": {
           "$ref": "GoogleCloudAiplatformV1TextResponseFormat"
         },
+        "image": {
+          "$ref": "GoogleCloudAiplatformV1ImageResponseFormat"
+        },
         "audio": {
           "$ref": "GoogleCloudAiplatformV1AudioResponseFormat"
         },
         "video": {
           "$ref": "GoogleCloudAiplatformV1VideoResponseFormat"
-        },
-        "image": {
-          "$ref": "GoogleCloudAiplatformV1ImageResponseFormat"
         }
       }
     },
     "GoogleCloudAiplatformV1RubricGenerationSpec": {
       "properties": {
-        "modelConfig": {
-          "$ref": "GoogleCloudAiplatformV1AutoraterConfig"
-        },
         "rubricContentType": {
           "enum": [
             "RUBRIC_CONTENT_TYPE_UNSPECIFIED",
@@ -1393,17 +1444,14 @@
             "NL_QUESTION_ANSWER",
             "PYTHON_CODE_ASSERTION"
           ]
+        },
+        "modelConfig": {
+          "$ref": "GoogleCloudAiplatformV1AutoraterConfig"
         }
       }
     },
     "GoogleCloudAiplatformV1Schedule": {
       "properties": {
-        "createPipelineJobRequest": {
-          "$ref": "GoogleCloudAiplatformV1CreatePipelineJobRequest"
-        },
-        "createNotebookExecutionJobRequest": {
-          "$ref": "GoogleCloudAiplatformV1CreateNotebookExecutionJobRequest"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -1411,6 +1459,12 @@
             "PAUSED",
             "COMPLETED"
           ]
+        },
+        "createPipelineJobRequest": {
+          "$ref": "GoogleCloudAiplatformV1CreatePipelineJobRequest"
+        },
+        "createNotebookExecutionJobRequest": {
+          "$ref": "GoogleCloudAiplatformV1CreateNotebookExecutionJobRequest"
         }
       }
     },
@@ -1430,8 +1484,13 @@
     },
     "GoogleCloudAiplatformV1Schema": {
       "properties": {
-        "defs": {
+        "properties": {
           "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1Schema"
+          }
+        },
+        "anyOf": {
+          "items": {
             "$ref": "GoogleCloudAiplatformV1Schema"
           }
         },
@@ -1447,18 +1506,13 @@
             "NULL"
           ]
         },
-        "items": {
-          "$ref": "GoogleCloudAiplatformV1Schema"
-        },
-        "properties": {
+        "defs": {
           "additionalProperties": {
             "$ref": "GoogleCloudAiplatformV1Schema"
           }
         },
-        "anyOf": {
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1Schema"
-          }
+        "items": {
+          "$ref": "GoogleCloudAiplatformV1Schema"
         }
       }
     },
@@ -1504,20 +1558,40 @@
         }
       }
     },
+    "GoogleCloudAiplatformV1TrainingPipeline": {
+      "properties": {
+        "modelToUpload": {
+          "$ref": "GoogleCloudAiplatformV1Model"
+        },
+        "state": {
+          "enum": [
+            "PIPELINE_STATE_UNSPECIFIED",
+            "PIPELINE_STATE_QUEUED",
+            "PIPELINE_STATE_PENDING",
+            "PIPELINE_STATE_RUNNING",
+            "PIPELINE_STATE_SUCCEEDED",
+            "PIPELINE_STATE_FAILED",
+            "PIPELINE_STATE_CANCELLING",
+            "PIPELINE_STATE_CANCELLED",
+            "PIPELINE_STATE_PAUSED"
+          ]
+        }
+      }
+    },
     "GoogleCloudAiplatformV1VideoResponseFormat": {
       "properties": {
-        "aspectRatio": {
-          "enum": [
-            "ASPECT_RATIO_UNSPECIFIED",
-            "ASPECT_RATIO_SIXTEEN_BY_NINE",
-            "ASPECT_RATIO_NINE_BY_SIXTEEN"
-          ]
-        },
         "delivery": {
           "enum": [
             "DELIVERY_UNSPECIFIED",
             "INLINE",
             "URI"
+          ]
+        },
+        "aspectRatio": {
+          "enum": [
+            "ASPECT_RATIO_UNSPECIFIED",
+            "ASPECT_RATIO_SIXTEEN_BY_NINE",
+            "ASPECT_RATIO_NINE_BY_SIXTEEN"
           ]
         }
       }

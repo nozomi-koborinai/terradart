@@ -53,19 +53,19 @@
     },
     "Service": {
       "properties": {
-        "endpointSpec": {
-          "$ref": "EndpointSpec"
-        },
         "mcpServerSpec": {
           "$ref": "McpServerSpec"
+        },
+        "agentSpec": {
+          "$ref": "AgentSpec"
         },
         "interfaces": {
           "items": {
             "$ref": "Interface"
           }
         },
-        "agentSpec": {
-          "$ref": "AgentSpec"
+        "endpointSpec": {
+          "$ref": "EndpointSpec"
         }
       }
     }

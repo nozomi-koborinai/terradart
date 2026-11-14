@@ -1,7 +1,7 @@
 {
   "name": "dns",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261106",
   "sourceUrl": "https://dns.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DnsKeySpec": {
@@ -41,12 +41,10 @@
     },
     "ManagedZoneDnsSecConfig": {
       "properties": {
-        "state": {
-          "enum": [
-            "off",
-            "on",
-            "transfer"
-          ]
+        "defaultKeySpecs": {
+          "items": {
+            "$ref": "DnsKeySpec"
+          }
         },
         "nonExistence": {
           "enum": [
@@ -54,10 +52,12 @@
             "nsec3"
           ]
         },
-        "defaultKeySpecs": {
-          "items": {
-            "$ref": "DnsKeySpec"
-          }
+        "state": {
+          "enum": [
+            "off",
+            "on",
+            "transfer"
+          ]
         }
       }
     },
@@ -111,14 +111,14 @@
     },
     "RRSetRoutingPolicy": {
       "properties": {
-        "primaryBackup": {
-          "$ref": "RRSetRoutingPolicyPrimaryBackupPolicy"
-        },
         "geo": {
           "$ref": "RRSetRoutingPolicyGeoPolicy"
         },
         "wrr": {
           "$ref": "RRSetRoutingPolicyWrrPolicy"
+        },
+        "primaryBackup": {
+          "$ref": "RRSetRoutingPolicyPrimaryBackupPolicy"
         }
       }
     },
@@ -168,11 +168,11 @@
     },
     "RRSetRoutingPolicyPrimaryBackupPolicy": {
       "properties": {
-        "primaryTargets": {
-          "$ref": "RRSetRoutingPolicyHealthCheckTargets"
-        },
         "backupGeoTargets": {
           "$ref": "RRSetRoutingPolicyGeoPolicy"
+        },
+        "primaryTargets": {
+          "$ref": "RRSetRoutingPolicyHealthCheckTargets"
         }
       }
     },
@@ -204,14 +204,14 @@
     },
     "ResponsePolicyRule": {
       "properties": {
-        "localData": {
-          "$ref": "ResponsePolicyRuleLocalData"
-        },
         "behavior": {
           "enum": [
             "behaviorUnspecified",
             "bypassResponsePolicy"
           ]
+        },
+        "localData": {
+          "$ref": "ResponsePolicyRuleLocalData"
         }
       }
     },

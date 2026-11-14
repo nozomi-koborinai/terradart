@@ -8,6 +8,9 @@ deriveOutputGetters: true
 sealedNames:
   "issuance_policy.allow_requester_specified_not_before_time, issuance_policy.backdate_duration": not_before
 
+typeNames:
+  issuance_policy.baseline_values.additional_extensions: PrivatecaCaPoolAdditionalExtensions
+
 paramOrder:
   - name
   - location

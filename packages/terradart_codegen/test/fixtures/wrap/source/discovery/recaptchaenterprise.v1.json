@@ -1,16 +1,16 @@
 {
   "name": "recaptchaenterprise",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261106",
   "sourceUrl": "https://recaptchaenterprise.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "properties": {
-        "wafSettings": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
-        },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
+        },
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
         },
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
@@ -52,6 +52,14 @@
     },
     "GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
       "properties": {
+        "challengeSecurityPreference": {
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
+          ]
+        },
         "integrationType": {
           "enum": [
             "INTEGRATION_TYPE_UNSPECIFIED",
@@ -59,14 +67,6 @@
             "CHECKBOX",
             "INVISIBLE",
             "POLICY_BASED_CHALLENGE"
-          ]
-        },
-        "challengeSecurityPreference": {
-          "enum": [
-            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
-            "USABILITY",
-            "BALANCE",
-            "SECURITY"
           ]
         }
       }

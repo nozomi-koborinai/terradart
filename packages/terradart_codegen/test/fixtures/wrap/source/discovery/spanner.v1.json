@@ -1,7 +1,7 @@
 {
   "name": "spanner",
   "version": "v1",
-  "revision": "20261029",
+  "revision": "20261108",
   "sourceUrl": "https://spanner.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackupSchedule": {
@@ -25,21 +25,6 @@
     },
     "Database": {
       "properties": {
-        "databaseDialect": {
-          "enum": [
-            "DATABASE_DIALECT_UNSPECIFIED",
-            "GOOGLE_STANDARD_SQL",
-            "POSTGRESQL"
-          ]
-        },
-        "restoreInfo": {
-          "$ref": "RestoreInfo"
-        },
-        "encryptionInfo": {
-          "items": {
-            "$ref": "EncryptionInfo"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -48,8 +33,23 @@
             "READY_OPTIMIZING"
           ]
         },
+        "databaseDialect": {
+          "enum": [
+            "DATABASE_DIALECT_UNSPECIFIED",
+            "GOOGLE_STANDARD_SQL",
+            "POSTGRESQL"
+          ]
+        },
         "quorumInfo": {
           "$ref": "QuorumInfo"
+        },
+        "encryptionInfo": {
+          "items": {
+            "$ref": "EncryptionInfo"
+          }
+        },
+        "restoreInfo": {
+          "$ref": "RestoreInfo"
         }
       }
     },
@@ -77,8 +77,12 @@
     },
     "Instance": {
       "properties": {
-        "freeInstanceMetadata": {
-          "$ref": "FreeInstanceMetadata"
+        "defaultBackupScheduleType": {
+          "enum": [
+            "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED",
+            "NONE",
+            "AUTOMATIC"
+          ]
         },
         "edition": {
           "enum": [
@@ -95,32 +99,21 @@
             "READY"
           ]
         },
+        "freeInstanceMetadata": {
+          "$ref": "FreeInstanceMetadata"
+        },
         "instanceType": {
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "PROVISIONED",
             "FREE_INSTANCE"
           ]
-        },
-        "defaultBackupScheduleType": {
-          "enum": [
-            "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED",
-            "NONE",
-            "AUTOMATIC"
-          ]
         }
       }
     },
     "InstanceConfig": {
       "properties": {
-        "configType": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "GOOGLE_MANAGED",
-            "USER_MANAGED"
-          ]
-        },
-        "optionalReplicas": {
+        "replicas": {
           "items": {
             "$ref": "ReplicaInfo"
           }
@@ -134,11 +127,6 @@
             "QUOTA_EXCEEDED"
           ]
         },
-        "replicas": {
-          "items": {
-            "$ref": "ReplicaInfo"
-          }
-        },
         "quorumType": {
           "enum": [
             "QUORUM_TYPE_UNSPECIFIED",
@@ -147,12 +135,24 @@
             "MULTI_REGION"
           ]
         },
+        "configType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "USER_MANAGED"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
             "READY"
           ]
+        },
+        "optionalReplicas": {
+          "items": {
+            "$ref": "ReplicaInfo"
+          }
         }
       }
     },

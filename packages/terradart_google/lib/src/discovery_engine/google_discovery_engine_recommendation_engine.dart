@@ -189,70 +189,24 @@ extension type const DiscoveryEngineRecommendationEngineType._(TfArg<String> _)
   ];
 }
 
-/// Exactly one of `recommended_for_you_config`, `most_popular_config` on the `media_recommendation_engine_config.engine_features_config` block of `google_discovery_engine_recommendation_engine`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.recommendedForYouConfig(...)`.
-sealed class DiscoveryEngineRecommendationEngineFeaturesConfig {
-  const DiscoveryEngineRecommendationEngineFeaturesConfig();
-
-  /// Sets `recommended_for_you_config`.
-  const factory DiscoveryEngineRecommendationEngineFeaturesConfig.recommendedForYouConfig(
-    DiscoveryEngineRecommendationEngineRecommendedForYouConfig
-    recommendedForYouConfig,
-  ) = DiscoveryEngineRecommendationEngineFeaturesConfigRecommendedForYouConfig;
-
-  /// Sets `most_popular_config`.
-  const factory DiscoveryEngineRecommendationEngineFeaturesConfig.mostPopularConfig(
-    DiscoveryEngineRecommendationEngineMostPopularConfig mostPopularConfig,
-  ) = DiscoveryEngineRecommendationEngineFeaturesConfigMostPopularConfig;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DiscoveryEngineRecommendationEngineFeaturesConfig.recommendedForYouConfig] choice: sets `recommended_for_you_config`.
-final class DiscoveryEngineRecommendationEngineFeaturesConfigRecommendedForYouConfig
-    extends DiscoveryEngineRecommendationEngineFeaturesConfig {
-  const DiscoveryEngineRecommendationEngineFeaturesConfigRecommendedForYouConfig(
+/// Typed helper for the `media_recommendation_engine_config.engine_features_config` block of
+/// `google_discovery_engine_recommendation_engine` (derived from provider schema).
+@immutable
+final class DiscoveryEngineRecommendationEngineFeaturesConfig {
+  const DiscoveryEngineRecommendationEngineFeaturesConfig({
+    this.mostPopularConfig,
     this.recommendedForYouConfig,
-  );
+  });
 
-  final DiscoveryEngineRecommendationEngineRecommendedForYouConfig
+  final DiscoveryEngineRecommendationEngineMostPopularConfig? mostPopularConfig;
+
+  final DiscoveryEngineRecommendationEngineRecommendedForYouConfig?
   recommendedForYouConfig;
 
   @internal
-  @override
-  String get blockKey => 'recommended_for_you_config';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'recommended_for_you_config': recommendedForYouConfig.encode(),
-  };
-}
-
-/// The [DiscoveryEngineRecommendationEngineFeaturesConfig.mostPopularConfig] choice: sets `most_popular_config`.
-final class DiscoveryEngineRecommendationEngineFeaturesConfigMostPopularConfig
-    extends DiscoveryEngineRecommendationEngineFeaturesConfig {
-  const DiscoveryEngineRecommendationEngineFeaturesConfigMostPopularConfig(
-    this.mostPopularConfig,
-  );
-
-  final DiscoveryEngineRecommendationEngineMostPopularConfig mostPopularConfig;
-
-  @internal
-  @override
-  String get blockKey => 'most_popular_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'most_popular_config': mostPopularConfig.encode(),
+    'most_popular_config': ?mostPopularConfig?.encode(),
+    'recommended_for_you_config': ?recommendedForYouConfig?.encode(),
   };
 }
 

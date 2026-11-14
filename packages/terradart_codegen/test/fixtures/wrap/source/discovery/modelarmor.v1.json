@@ -36,20 +36,20 @@
     },
     "FilterConfig": {
       "properties": {
+        "csamFilterSettings": {
+          "$ref": "CsamFilterSettings"
+        },
         "maliciousUriFilterSettings": {
           "$ref": "MaliciousUriFilterSettings"
         },
         "raiSettings": {
           "$ref": "RaiFilterSettings"
         },
-        "csamFilterSettings": {
-          "$ref": "CsamFilterSettings"
+        "sdpSettings": {
+          "$ref": "SdpFilterSettings"
         },
         "piAndJailbreakFilterSettings": {
           "$ref": "PiAndJailbreakFilterSettings"
-        },
-        "sdpSettings": {
-          "$ref": "SdpFilterSettings"
         },
         "filterRuleSettings": {
           "$ref": "FilterRuleSettings"
@@ -65,6 +65,11 @@
     },
     "FilterRuleSet": {
       "properties": {
+        "rules": {
+          "items": {
+            "$ref": "FilterRule"
+          }
+        },
         "filterTypes": {
           "items": {
             "enum": [
@@ -72,11 +77,6 @@
               "PROMPT_INJECTION_AND_JAILBREAK",
               "RESPONSIBLE_AI"
             ]
-          }
-        },
-        "rules": {
-          "items": {
-            "$ref": "FilterRule"
           }
         }
       }
@@ -151,14 +151,6 @@
     },
     "RaiFilter": {
       "properties": {
-        "confidenceLevel": {
-          "enum": [
-            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
-            "LOW_AND_ABOVE",
-            "MEDIUM_AND_ABOVE",
-            "HIGH"
-          ]
-        },
         "filterType": {
           "enum": [
             "RAI_FILTER_TYPE_UNSPECIFIED",
@@ -166,6 +158,14 @@
             "HATE_SPEECH",
             "HARASSMENT",
             "DANGEROUS"
+          ]
+        },
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
           ]
         }
       }
@@ -199,18 +199,22 @@
     },
     "Template": {
       "properties": {
-        "templateMetadata": {
-          "$ref": "TemplateMetadata"
-        },
         "filterConfig": {
           "$ref": "FilterConfig"
+        },
+        "templateMetadata": {
+          "$ref": "TemplateMetadata"
         }
       }
     },
     "TemplateMetadata": {
       "properties": {
-        "filterVersionSelector": {
-          "$ref": "FilterVersionSelector"
+        "enforcementType": {
+          "enum": [
+            "ENFORCEMENT_TYPE_UNSPECIFIED",
+            "INSPECT_ONLY",
+            "INSPECT_AND_BLOCK"
+          ]
         },
         "modalities": {
           "items": {
@@ -221,12 +225,8 @@
             ]
           }
         },
-        "enforcementType": {
-          "enum": [
-            "ENFORCEMENT_TYPE_UNSPECIFIED",
-            "INSPECT_ONLY",
-            "INSPECT_AND_BLOCK"
-          ]
+        "filterVersionSelector": {
+          "$ref": "FilterVersionSelector"
         }
       }
     }

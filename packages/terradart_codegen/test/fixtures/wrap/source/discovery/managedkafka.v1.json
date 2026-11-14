@@ -1,7 +1,7 @@
 {
   "name": "managedkafka",
   "version": "v1",
-  "revision": "20261001",
+  "revision": "20261029",
   "sourceUrl": "https://managedkafka.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Acl": {
@@ -9,6 +9,9 @@
     },
     "Cluster": {
       "properties": {
+        "rebalanceConfig": {
+          "$ref": "RebalanceConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -17,9 +20,6 @@
             "DELETING",
             "UPDATING"
           ]
-        },
-        "rebalanceConfig": {
-          "$ref": "RebalanceConfig"
         }
       }
     },

@@ -47,6 +47,13 @@ final class DataGoogleSqlDatabaseInstance extends Data {
   TfRef<String> get backupdrBackup =>
       TfRef.attribute<String>(this, 'backupdr_backup');
 
+  /// Reference to `blue_green_deployment` attribute.
+  TfRef<List<Map<String, Object?>>> get blueGreenDeployment =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'blue_green_deployment',
+      );
+
   /// Reference to `clone` attribute.
   TfRef<List<Map<String, Object?>>> get clone =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'clone');
@@ -54,6 +61,10 @@ final class DataGoogleSqlDatabaseInstance extends Data {
   /// Reference to `connection_name` attribute.
   TfRef<String> get connectionName =>
       TfRef.attribute<String>(this, 'connection_name');
+
+  /// Reference to `database_center_integration` attribute.
+  TfRef<String> get databaseCenterIntegration =>
+      TfRef.attribute<String>(this, 'database_center_integration');
 
   /// Reference to `database_version` attribute.
   TfRef<String> get databaseVersion =>

@@ -6,21 +6,21 @@
   "schemas": {
     "AccountConnector": {
       "properties": {
-        "customOauthConfig": {
-          "$ref": "CustomOAuthConfig"
-        },
         "providerOauthConfig": {
           "$ref": "ProviderOAuthConfig"
+        },
+        "customOauthConfig": {
+          "$ref": "CustomOAuthConfig"
         }
       }
     },
     "Connection": {
       "properties": {
-        "githubConfig": {
-          "$ref": "GitHubConfig"
-        },
         "installationState": {
           "$ref": "InstallationState"
+        },
+        "githubConfig": {
+          "$ref": "GitHubConfig"
         }
       }
     },
@@ -54,6 +54,11 @@
     },
     "InsightsConfig": {
       "properties": {
+        "runtimeConfigs": {
+          "items": {
+            "$ref": "RuntimeConfig"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -61,11 +66,6 @@
             "COMPLETE",
             "ERROR"
           ]
-        },
-        "runtimeConfigs": {
-          "items": {
-            "$ref": "RuntimeConfig"
-          }
         }
       }
     },

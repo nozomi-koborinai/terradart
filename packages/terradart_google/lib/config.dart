@@ -7,11 +7,8 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/config/google_config_deployment.dart'
     show
         ConfigDeploymentDeletionPolicy,
-        ConfigDeploymentGcsSource,
         ConfigDeploymentGitSource,
-        ConfigDeploymentGitSourceChoice,
         ConfigDeploymentInputValues,
         ConfigDeploymentQuotaValidation,
-        ConfigDeploymentSource,
         ConfigDeploymentTerraformBlueprint,
         GoogleConfigDeployment;

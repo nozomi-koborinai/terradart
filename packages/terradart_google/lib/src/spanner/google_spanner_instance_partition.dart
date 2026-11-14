@@ -158,141 +158,27 @@ final class SpannerInstancePartitionAutoscalingConfig {
 @immutable
 final class SpannerInstancePartitionAutoscalingLimits {
   const SpannerInstancePartitionAutoscalingLimits({
-    required this.maxCapacity,
-    required this.minCapacity,
+    this.maxNodes,
+    this.maxProcessingUnits,
+    this.minNodes,
+    this.minProcessingUnits,
   });
 
-  final SpannerInstancePartitionMaxCapacity maxCapacity;
+  final TfArg<num>? maxNodes;
 
-  final SpannerInstancePartitionMinCapacity minCapacity;
+  final TfArg<num>? maxProcessingUnits;
+
+  final TfArg<num>? minNodes;
+
+  final TfArg<num>? minProcessingUnits;
 
   @internal
   Map<String, Object?> encode() => {
-    ...maxCapacity.encode(),
-    ...minCapacity.encode(),
+    'max_nodes': ?maxNodes?.toTfJson(),
+    'max_processing_units': ?maxProcessingUnits?.toTfJson(),
+    'min_nodes': ?minNodes?.toTfJson(),
+    'min_processing_units': ?minProcessingUnits?.toTfJson(),
   };
-}
-
-/// Exactly one of `min_processing_units`, `min_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance_partition`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.minProcessingUnits(...)`.
-sealed class SpannerInstancePartitionMinCapacity {
-  const SpannerInstancePartitionMinCapacity();
-
-  /// Sets `min_processing_units`.
-  const factory SpannerInstancePartitionMinCapacity.minProcessingUnits(
-    TfArg<num> minProcessingUnits,
-  ) = SpannerInstancePartitionMinCapacityMinProcessingUnits;
-
-  /// Sets `min_nodes`.
-  const factory SpannerInstancePartitionMinCapacity.minNodes(
-    TfArg<num> minNodes,
-  ) = SpannerInstancePartitionMinCapacityMinNodes;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstancePartitionMinCapacity.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstancePartitionMinCapacityMinProcessingUnits
-    extends SpannerInstancePartitionMinCapacity {
-  const SpannerInstancePartitionMinCapacityMinProcessingUnits(
-    this.minProcessingUnits,
-  );
-
-  final TfArg<num> minProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'min_processing_units';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'min_processing_units': minProcessingUnits.toTfJson(),
-  };
-}
-
-/// The [SpannerInstancePartitionMinCapacity.minNodes] choice: sets `min_nodes`.
-final class SpannerInstancePartitionMinCapacityMinNodes
-    extends SpannerInstancePartitionMinCapacity {
-  const SpannerInstancePartitionMinCapacityMinNodes(this.minNodes);
-
-  final TfArg<num> minNodes;
-
-  @internal
-  @override
-  String get blockKey => 'min_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
-}
-
-/// Exactly one of `max_processing_units`, `max_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance_partition`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.maxProcessingUnits(...)`.
-sealed class SpannerInstancePartitionMaxCapacity {
-  const SpannerInstancePartitionMaxCapacity();
-
-  /// Sets `max_processing_units`.
-  const factory SpannerInstancePartitionMaxCapacity.maxProcessingUnits(
-    TfArg<num> maxProcessingUnits,
-  ) = SpannerInstancePartitionMaxCapacityMaxProcessingUnits;
-
-  /// Sets `max_nodes`.
-  const factory SpannerInstancePartitionMaxCapacity.maxNodes(
-    TfArg<num> maxNodes,
-  ) = SpannerInstancePartitionMaxCapacityMaxNodes;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SpannerInstancePartitionMaxCapacity.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstancePartitionMaxCapacityMaxProcessingUnits
-    extends SpannerInstancePartitionMaxCapacity {
-  const SpannerInstancePartitionMaxCapacityMaxProcessingUnits(
-    this.maxProcessingUnits,
-  );
-
-  final TfArg<num> maxProcessingUnits;
-
-  @internal
-  @override
-  String get blockKey => 'max_processing_units';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'max_processing_units': maxProcessingUnits.toTfJson(),
-  };
-}
-
-/// The [SpannerInstancePartitionMaxCapacity.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstancePartitionMaxCapacityMaxNodes
-    extends SpannerInstancePartitionMaxCapacity {
-  const SpannerInstancePartitionMaxCapacityMaxNodes(this.maxNodes);
-
-  final TfArg<num> maxNodes;
-
-  @internal
-  @override
-  String get blockKey => 'max_nodes';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
 }
 
 /// Typed helper for the `autoscaling_config.autoscaling_targets` block of

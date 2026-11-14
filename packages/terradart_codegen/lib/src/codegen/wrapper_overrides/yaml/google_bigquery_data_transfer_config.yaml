@@ -135,6 +135,7 @@ paramOrder:
   - params
   - schedule
   - schedule_options
+  - schedule_options_v2
   - disabled
   - service_account_name
   - notification_pubsub_topic

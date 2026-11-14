@@ -13,20 +13,6 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications": {
       "properties": {
-        "grantActivationFailed": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantExternallyModified": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
         "grantActivated": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
@@ -41,7 +27,21 @@
             "DISABLED"
           ]
         },
+        "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "grantActivationScheduled": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExternallyModified": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -63,7 +63,14 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications": {
       "properties": {
-        "grantExpired": {
+        "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantDenied": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -77,35 +84,7 @@
             "DISABLED"
           ]
         },
-        "grantActivationScheduled": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
         "grantActivated": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantActivationFailed": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantRevoked": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantDenied": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -125,19 +104,40 @@
             "ENABLED",
             "DISABLED"
           ]
+        },
+        "grantActivationScheduled": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantRevoked": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExpired": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
         }
       }
     },
     "SettingsEmailNotificationSettings_CustomNotificationBehavior": {
       "properties": {
+        "requesterNotifications": {
+          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications"
+        },
         "approverNotifications": {
           "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_ApproverNotifications"
         },
         "adminNotifications": {
           "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications"
-        },
-        "requesterNotifications": {
-          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications"
         }
       }
     },

@@ -12,6 +12,9 @@ customSlots:
     paramDeclaration: 'EventarcMessageBusLoggingConfig? loggingConfig'
     argMapEntry: "if (loggingConfig != null) 'logging_config': TfArg.literal([loggingConfig.encode()]),"
 
+sealedNames:
+  "organization_subscription, project_subscriptions": subscriptions
+
 paramOrder:
   - annotations
   - crypto_key_name
@@ -22,3 +25,5 @@ paramOrder:
   - location
   - project
   - logging_config
+  - organization_subscription
+  - project_subscriptions

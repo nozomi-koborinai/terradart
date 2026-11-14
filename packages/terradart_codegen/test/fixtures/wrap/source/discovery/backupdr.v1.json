@@ -1,7 +1,7 @@
 {
   "name": "backupdr",
   "version": "v1",
-  "revision": "20261024",
+  "revision": "20261028",
   "sourceUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackupPlan": {
@@ -52,15 +52,6 @@
     },
     "BackupVault": {
       "properties": {
-        "accessRestriction": {
-          "enum": [
-            "ACCESS_RESTRICTION_UNSPECIFIED",
-            "WITHIN_PROJECT",
-            "WITHIN_ORGANIZATION",
-            "UNRESTRICTED",
-            "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
-          ]
-        },
         "backupRetentionInheritance": {
           "enum": [
             "BACKUP_RETENTION_INHERITANCE_UNSPECIFIED",
@@ -76,6 +67,15 @@
             "DELETING",
             "ERROR",
             "UPDATING"
+          ]
+        },
+        "accessRestriction": {
+          "enum": [
+            "ACCESS_RESTRICTION_UNSPECIFIED",
+            "WITHIN_PROJECT",
+            "WITHIN_ORGANIZATION",
+            "UNRESTRICTED",
+            "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
           ]
         }
       }
@@ -94,16 +94,16 @@
             "ERROR"
           ]
         },
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
+        },
         "type": {
           "enum": [
             "INSTANCE_TYPE_UNSPECIFIED",
             "BACKUP_RESTORE"
           ]
-        },
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
         }
       }
     },
@@ -132,6 +132,30 @@
     },
     "StandardSchedule": {
       "properties": {
+        "recurrenceType": {
+          "enum": [
+            "RECURRENCE_TYPE_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY"
+          ]
+        },
+        "daysOfWeek": {
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        },
         "months": {
           "items": {
             "enum": [
@@ -151,30 +175,6 @@
             ]
           }
         },
-        "daysOfWeek": {
-          "items": {
-            "enum": [
-              "DAY_OF_WEEK_UNSPECIFIED",
-              "MONDAY",
-              "TUESDAY",
-              "WEDNESDAY",
-              "THURSDAY",
-              "FRIDAY",
-              "SATURDAY",
-              "SUNDAY"
-            ]
-          }
-        },
-        "recurrenceType": {
-          "enum": [
-            "RECURRENCE_TYPE_UNSPECIFIED",
-            "HOURLY",
-            "DAILY",
-            "WEEKLY",
-            "MONTHLY",
-            "YEARLY"
-          ]
-        },
         "weekDayOfMonth": {
           "$ref": "WeekDayOfMonth"
         }
@@ -182,16 +182,6 @@
     },
     "WeekDayOfMonth": {
       "properties": {
-        "weekOfMonth": {
-          "enum": [
-            "WEEK_OF_MONTH_UNSPECIFIED",
-            "FIRST",
-            "SECOND",
-            "THIRD",
-            "FOURTH",
-            "LAST"
-          ]
-        },
         "dayOfWeek": {
           "enum": [
             "DAY_OF_WEEK_UNSPECIFIED",
@@ -202,6 +192,16 @@
             "FRIDAY",
             "SATURDAY",
             "SUNDAY"
+          ]
+        },
+        "weekOfMonth": {
+          "enum": [
+            "WEEK_OF_MONTH_UNSPECIFIED",
+            "FIRST",
+            "SECOND",
+            "THIRD",
+            "FOURTH",
+            "LAST"
           ]
         }
       }

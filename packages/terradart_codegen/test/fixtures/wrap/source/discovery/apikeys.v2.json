@@ -1,7 +1,7 @@
 {
   "name": "apikeys",
   "version": "v2",
-  "revision": "20261022",
+  "revision": "20261107",
   "sourceUrl": "https://apikeys.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "V2Key": {

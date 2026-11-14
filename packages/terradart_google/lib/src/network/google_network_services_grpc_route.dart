@@ -29,11 +29,14 @@ final class NetworkServicesGrpcRouteRules {
 @immutable
 final class NetworkServicesGrpcRouteAction {
   const NetworkServicesGrpcRouteAction({
+    this.idleTimeout,
     this.timeout,
     this.destinations,
     this.faultInjectionPolicy,
     this.retryPolicy,
   });
+
+  final TfArg<String>? idleTimeout;
 
   final TfArg<String>? timeout;
 
@@ -45,6 +48,7 @@ final class NetworkServicesGrpcRouteAction {
 
   @internal
   Map<String, Object?> encode() => {
+    'idle_timeout': ?idleTimeout?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
@@ -253,6 +257,7 @@ final class NetworkServicesGrpcRouteMethod {
     this.caseSensitive,
     required this.grpcMethod,
     required this.grpcService,
+    this.type,
   });
 
   final TfArg<bool>? caseSensitive;
@@ -261,12 +266,37 @@ final class NetworkServicesGrpcRouteMethod {
 
   final TfArg<String> grpcService;
 
+  final NetworkServicesGrpcRouteMethodType? type;
+
   @internal
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
     'grpc_method': grpcMethod.toTfJson(),
     'grpc_service': grpcService.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const NetworkServicesGrpcRouteMethodType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGrpcRouteMethodType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGrpcRouteMethodType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGrpcRouteMethodType.arg(TfArg<String> arg) : this._(arg);
+
+  static const exact = NetworkServicesGrpcRouteMethodType._(
+    TfArgLiteral('EXACT'),
+  );
+  static const regularExpression = NetworkServicesGrpcRouteMethodType._(
+    TfArgLiteral('REGULAR_EXPRESSION'),
+  );
+
+  static const List<NetworkServicesGrpcRouteMethodType> values = [
+    exact,
+    regularExpression,
+  ];
 }
 
 /// Factory wrapper for `google_network_services_grpc_route`.

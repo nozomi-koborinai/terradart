@@ -2362,6 +2362,14 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleOracleDatabaseOdbDnsZone(
+        'oracle_database_odb_dns_zone',
+        odbDnsZoneId: TfArg.literal(leftover),
+        odbnetwork: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleOracleDatabaseOdbNetwork(
         'oracle_database_odb_network',
         location: TfArg.literal(leftover),

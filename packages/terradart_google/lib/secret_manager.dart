@@ -41,6 +41,13 @@ export 'src/secret_manager/google_secret_manager_regional_secret_iam_member.dart
         SecretManagerRegionalSecretIamMemberCondition;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_policy.dart'
     show GoogleSecretManagerRegionalSecretIamPolicy;
+export 'src/secret_manager/google_secret_manager_regional_secret_managed_rotation.dart'
+    show
+        GoogleSecretManagerRegionalSecretManagedRotation,
+        SecretManagerRegionalSecretManagedRotationCloudSqlSingleUserCredentials,
+        SecretManagerRegionalSecretManagedRotationPassword,
+        SecretManagerRegionalSecretManagedRotationPasswordChoice,
+        SecretManagerRegionalSecretManagedRotationPasswordWo;
 export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
     show
         GoogleSecretManagerRegionalSecretVersion,

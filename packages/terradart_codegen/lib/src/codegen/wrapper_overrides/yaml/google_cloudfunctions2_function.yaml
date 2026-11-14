@@ -25,15 +25,13 @@ curatedDoc: |-
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('hello'),
-  ///     source: .storageSource(
-  ///       .new(
+  ///     source: .new(
+  ///       storageSource: .new(
   ///         bucket: .of(bucket),
   ///         object: .literal('hello-http.zip'),
   ///       ),
   ///     ),
-  ///     updatePolicy: .automaticUpdatePolicy(
-  ///       .new(),
-  ///     ),
+  ///     automaticUpdatePolicy: .new(),
   ///   ),
   ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
   ///     availableMemory: .literal('256M'),
@@ -58,15 +56,13 @@ curatedDoc: |-
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('handle'),
-  ///     source: .storageSource(
-  ///       .new(
+  ///     source: .new(
+  ///       storageSource: .new(
   ///         bucket: .of(bucket),
   ///         object: .literal('order-handler.zip'),
   ///       ),
   ///     ),
-  ///     updatePolicy: .automaticUpdatePolicy(
-  ///       .new(),
-  ///     ),
+  ///     automaticUpdatePolicy: .new(),
   ///   ),
   ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
   ///     eventType: .literal('google.cloud.pubsub.topic.v1.messagePublished'),
@@ -77,7 +73,6 @@ curatedDoc: |-
   /// ```
 
 sealedNames:
-  "build_config.source.repo_source.branch_name, build_config.source.repo_source.commit_sha, build_config.source.repo_source.tag_name": revision
   "service_config.direct_vpc_network_interface, service_config.vpc_connector": connection
 
 paramOrder:

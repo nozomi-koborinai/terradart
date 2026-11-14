@@ -117,12 +117,16 @@ extension type const ComposerEnvironmentSize._(TfArg<String> _)
   static const environmentSizeExtraLarge = ComposerEnvironmentSize._(
     TfArgLiteral('ENVIRONMENT_SIZE_EXTRA_LARGE'),
   );
+  static const environmentSizeXExtraLarge = ComposerEnvironmentSize._(
+    TfArgLiteral('ENVIRONMENT_SIZE_X_EXTRA_LARGE'),
+  );
 
   static const List<ComposerEnvironmentSize> values = [
     environmentSizeSmall,
     environmentSizeMedium,
     environmentSizeLarge,
     environmentSizeExtraLarge,
+    environmentSizeXExtraLarge,
   ];
 }
 

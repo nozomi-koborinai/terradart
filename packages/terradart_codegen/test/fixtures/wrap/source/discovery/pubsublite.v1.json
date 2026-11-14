@@ -1,7 +1,7 @@
 {
   "name": "pubsublite",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://pubsublite.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DeliveryConfig": {
@@ -17,7 +17,7 @@
     },
     "ExportConfig": {
       "properties": {
-        "desiredState": {
+        "currentState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -26,7 +26,7 @@
             "NOT_FOUND"
           ]
         },
-        "currentState": {
+        "desiredState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -42,11 +42,11 @@
     },
     "Subscription": {
       "properties": {
-        "exportConfig": {
-          "$ref": "ExportConfig"
-        },
         "deliveryConfig": {
           "$ref": "DeliveryConfig"
+        },
+        "exportConfig": {
+          "$ref": "ExportConfig"
         }
       }
     },

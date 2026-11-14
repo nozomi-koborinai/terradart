@@ -330,6 +330,7 @@ final class PubsubTopicMessageTransforms {
   const PubsubTopicMessageTransforms({
     this.disabled,
     this.aiInference,
+    this.compression,
     this.javascriptUdf,
   });
 
@@ -337,12 +338,15 @@ final class PubsubTopicMessageTransforms {
 
   final PubsubTopicAiInference? aiInference;
 
+  final PubsubTopicCompression? compression;
+
   final PubsubTopicJavascriptUdf? javascriptUdf;
 
   @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
+    'compression': ?compression?.encode(),
     'javascript_udf': ?javascriptUdf?.encode(),
   };
 }
@@ -381,6 +385,45 @@ final class PubsubTopicUnstructuredInference {
 
   @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
+}
+
+/// Typed helper for the `message_transforms.compression` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicCompression {
+  const PubsubTopicCompression({
+    required this.compressionAlgorithm,
+    required this.compressionMode,
+  });
+
+  final TfArg<String> compressionAlgorithm;
+
+  final PubsubTopicCompressionMode compressionMode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'compression_algorithm': compressionAlgorithm.toTfJson(),
+    'compression_mode': compressionMode.toTfJson(),
+  };
+}
+
+/// `compression_mode` — derived from the provider schema description.
+extension type const PubsubTopicCompressionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubTopicCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubTopicCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubTopicCompressionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const compress = PubsubTopicCompressionMode._(
+    TfArgLiteral('COMPRESS'),
+  );
+  static const decompress = PubsubTopicCompressionMode._(
+    TfArgLiteral('DECOMPRESS'),
+  );
+
+  static const List<PubsubTopicCompressionMode> values = [compress, decompress];
 }
 
 /// Typed helper for the `message_transforms.javascript_udf` block of

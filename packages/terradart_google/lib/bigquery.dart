@@ -35,8 +35,6 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
         BigqueryAnalyticsHubListingPubsubTopic,
         BigqueryAnalyticsHubListingRestrictedExportConfig,
         BigqueryAnalyticsHubListingSelectedResources,
-        BigqueryAnalyticsHubListingSelectedResourcesRoutine,
-        BigqueryAnalyticsHubListingSelectedResourcesTable,
         BigqueryAnalyticsHubListingSource,
         BigqueryAnalyticsHubListingSourceBigqueryDataset,
         BigqueryAnalyticsHubListingSourcePubsubTopic,
@@ -126,7 +124,9 @@ export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
         BigqueryDataTransferConfigEncryptionConfiguration,
+        BigqueryDataTransferConfigEventDrivenSchedule,
         BigqueryDataTransferConfigScheduleOptions,
+        BigqueryDataTransferConfigScheduleOptionsV2,
         BigqueryDataTransferConfigSecretAccessKey,
         BigqueryDataTransferConfigSecretAccessKeyChoice,
         BigqueryDataTransferConfigSecretAccessKeyWo,

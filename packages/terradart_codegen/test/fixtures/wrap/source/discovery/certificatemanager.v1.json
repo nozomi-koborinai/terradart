@@ -1,11 +1,14 @@
 {
   "name": "certificatemanager",
   "version": "v1",
-  "revision": "20261021",
+  "revision": "20261028",
   "sourceUrl": "https://certificatemanager.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AuthorizationAttemptInfo": {
       "properties": {
+        "troubleshooting": {
+          "$ref": "Troubleshooting"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -13,9 +16,6 @@
             "AUTHORIZED",
             "FAILED"
           ]
-        },
-        "troubleshooting": {
-          "$ref": "Troubleshooting"
         },
         "failureReason": {
           "enum": [
@@ -29,8 +29,8 @@
     },
     "Certificate": {
       "properties": {
-        "managed": {
-          "$ref": "ManagedCertificate"
+        "managedIdentity": {
+          "$ref": "ManagedIdentityCertificate"
         },
         "scope": {
           "enum": [
@@ -40,8 +40,8 @@
             "CLIENT_AUTH"
           ]
         },
-        "managedIdentity": {
-          "$ref": "ManagedIdentityCertificate"
+        "managed": {
+          "$ref": "ManagedCertificate"
         }
       }
     },
@@ -61,17 +61,17 @@
     },
     "CertificateMapEntry": {
       "properties": {
-        "matcher": {
-          "enum": [
-            "MATCHER_UNSPECIFIED",
-            "PRIMARY"
-          ]
-        },
         "state": {
           "enum": [
             "SERVING_STATE_UNSPECIFIED",
             "ACTIVE",
             "PENDING"
+          ]
+        },
+        "matcher": {
+          "enum": [
+            "MATCHER_UNSPECIFIED",
+            "PRIMARY"
           ]
         }
       }
@@ -89,11 +89,6 @@
     },
     "ManagedCertificate": {
       "properties": {
-        "authorizationAttemptInfo": {
-          "items": {
-            "$ref": "AuthorizationAttemptInfo"
-          }
-        },
         "provisioningIssue": {
           "$ref": "ProvisioningIssue"
         },
@@ -104,14 +99,16 @@
             "FAILED",
             "ACTIVE"
           ]
+        },
+        "authorizationAttemptInfo": {
+          "items": {
+            "$ref": "AuthorizationAttemptInfo"
+          }
         }
       }
     },
     "ManagedIdentityCertificate": {
       "properties": {
-        "provisioningIssue": {
-          "$ref": "ProvisioningIssue"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -119,6 +116,9 @@
             "FAILED",
             "ACTIVE"
           ]
+        },
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
         }
       }
     },

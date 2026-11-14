@@ -8,10 +8,6 @@ deriveNestedTypes: true
 
 sealedNames:
   "autoscaling_config, num_nodes, processing_units": capacity
-  "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.max_processing_units": max
-  "autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_nodes, autoscaling_config.asymmetric_autoscaling_options.overrides.autoscaling_limits.min_processing_units": min
-  "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": max
-  "autoscaling_config.autoscaling_limits.min_nodes, autoscaling_config.autoscaling_limits.min_processing_units": min
 
 paramOrder:
   - config

@@ -1,7 +1,7 @@
 {
   "name": "discoveryengine",
   "version": "v1",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDiscoveryengineV1AclConfig": {
@@ -96,14 +96,6 @@
     },
     "GoogleCloudDiscoveryengineV1CmekConfig": {
       "properties": {
-        "notebooklmState": {
-          "enum": [
-            "NOTEBOOK_LM_STATE_UNSPECIFIED",
-            "NOTEBOOK_LM_NOT_READY",
-            "NOTEBOOK_LM_READY",
-            "NOTEBOOK_LM_NOT_ENABLED"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -116,6 +108,14 @@
             "ACTIVE_ROTATING",
             "DELETED",
             "EXPIRED"
+          ]
+        },
+        "notebooklmState": {
+          "enum": [
+            "NOTEBOOK_LM_STATE_UNSPECIFIED",
+            "NOTEBOOK_LM_NOT_READY",
+            "NOTEBOOK_LM_READY",
+            "NOTEBOOK_LM_NOT_ENABLED"
           ]
         }
       }
@@ -172,6 +172,31 @@
     },
     "GoogleCloudDiscoveryengineV1DataConnector": {
       "properties": {
+        "blockingReasons": {
+          "items": {
+            "enum": [
+              "BLOCKING_REASON_UNSPECIFIED",
+              "ALLOWLIST_STATIC_IP",
+              "ALLOWLIST_IN_SERVICE_ATTACHMENT",
+              "ALLOWLIST_SERVICE_ACCOUNT"
+            ]
+          }
+        },
+        "actionState": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "WARNING",
+            "INITIALIZATION_FAILED",
+            "UPDATING"
+          ]
+        },
+        "realtimeSyncConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig"
+        },
         "connectorType": {
           "enum": [
             "CONNECTOR_TYPE_UNSPECIFIED",
@@ -192,17 +217,17 @@
             "GOOGLE_WORKSPACE"
           ]
         },
-        "connectorModes": {
+        "alertPolicyConfigs": {
           "items": {
-            "enum": [
-              "CONNECTOR_MODE_UNSPECIFIED",
-              "DATA_INGESTION",
-              "ACTIONS",
-              "FEDERATED",
-              "EUA",
-              "FEDERATED_AND_EUA"
-            ]
+            "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyConfig"
           }
+        },
+        "syncMode": {
+          "enum": [
+            "PERIODIC",
+            "STREAMING",
+            "UNSPECIFIED"
+          ]
         },
         "bapConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1BAPConfig"
@@ -219,44 +244,19 @@
             "UPDATING"
           ]
         },
-        "syncMode": {
-          "enum": [
-            "PERIODIC",
-            "STREAMING",
-            "UNSPECIFIED"
-          ]
-        },
-        "realtimeSyncConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfig"
-        },
-        "blockingReasons": {
+        "connectorModes": {
           "items": {
             "enum": [
-              "BLOCKING_REASON_UNSPECIFIED",
-              "ALLOWLIST_STATIC_IP",
-              "ALLOWLIST_IN_SERVICE_ATTACHMENT",
-              "ALLOWLIST_SERVICE_ACCOUNT"
+              "CONNECTOR_MODE_UNSPECIFIED",
+              "DATA_INGESTION",
+              "ACTIONS",
+              "FEDERATED",
+              "EUA",
+              "FEDERATED_AND_EUA"
             ]
           }
         },
         "realtimeState": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "FAILED",
-            "RUNNING",
-            "WARNING",
-            "INITIALIZATION_FAILED",
-            "UPDATING"
-          ]
-        },
-        "alertPolicyConfigs": {
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1AlertPolicyConfig"
-          }
-        },
-        "actionState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -291,8 +291,13 @@
     },
     "GoogleCloudDiscoveryengineV1DataStore": {
       "properties": {
-        "workspaceConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1WorkspaceConfig"
+        "industryVertical": {
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA",
+            "HEALTHCARE_FHIR"
+          ]
         },
         "configurableBillingApproach": {
           "enum": [
@@ -313,8 +318,14 @@
             ]
           }
         },
-        "naturalLanguageQueryUnderstandingConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig"
+        "federatedSearchConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfig"
+        },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig"
+        },
+        "workspaceConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1WorkspaceConfig"
         },
         "contentConfig": {
           "enum": [
@@ -325,19 +336,8 @@
             "GOOGLE_WORKSPACE"
           ]
         },
-        "cmekConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig"
-        },
-        "federatedSearchConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfig"
-        },
-        "industryVertical": {
-          "enum": [
-            "INDUSTRY_VERTICAL_UNSPECIFIED",
-            "GENERIC",
-            "MEDIA",
-            "HEALTHCARE_FHIR"
-          ]
+        "naturalLanguageQueryUnderstandingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig"
         }
       }
     },
@@ -368,14 +368,8 @@
     },
     "GoogleCloudDiscoveryengineV1Engine": {
       "properties": {
-        "mediaRecommendationEngineConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig"
-        },
-        "configurableBillingApproach": {
-          "enum": [
-            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
-            "CONFIGURABLE_BILLING_APPROACH_ENABLED"
-          ]
+        "sessionConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1SessionConfig"
         },
         "industryVertical": {
           "enum": [
@@ -385,13 +379,14 @@
             "HEALTHCARE_FHIR"
           ]
         },
-        "marketplaceAgentVisibility": {
+        "solutionType": {
           "enum": [
-            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
-            "SHOW_AVAILABLE_AGENTS_ONLY",
-            "SHOW_AGENTS_ALREADY_INTEGRATED",
-            "SHOW_AGENTS_ALREADY_PURCHASED",
-            "SHOW_ALL_AGENTS"
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ]
         },
         "features": {
@@ -406,17 +401,38 @@
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig"
         },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig"
+        },
+        "effectiveFeatures": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ]
+          }
+        },
+        "configurableBillingApproach": {
+          "enum": [
+            "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED",
+            "CONFIGURABLE_BILLING_APPROACH_ENABLED"
+          ]
+        },
         "appType": {
           "enum": [
             "APP_TYPE_UNSPECIFIED",
             "APP_TYPE_INTRANET"
           ]
         },
-        "sessionConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1SessionConfig"
-        },
-        "cmekConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig"
+        "marketplaceAgentVisibility": {
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ]
         },
         "modelConfigs": {
           "additionalProperties": {
@@ -427,14 +443,62 @@
             ]
           }
         },
-        "solutionType": {
+        "featurePolicies": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicy"
+          }
+        },
+        "globalFeatureToggleState": {
           "enum": [
-            "SOLUTION_TYPE_UNSPECIFIED",
-            "SOLUTION_TYPE_RECOMMENDATION",
-            "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT",
-            "SOLUTION_TYPE_AI_MODE"
+            "GLOBAL_FEATURE_TOGGLE_STATE_UNSPECIFIED",
+            "DELAYED",
+            "SCHEDULED",
+            "GENERAL",
+            "EARLY"
+          ]
+        },
+        "mediaRecommendationEngineConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig"
+        }
+      }
+    },
+    "GoogleCloudDiscoveryengineV1EngineFeaturePolicy": {
+      "properties": {
+        "allowedMembers": {
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember"
+          }
+        },
+        "deniedMembers": {
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember"
+          }
+        },
+        "defaultAccess": {
+          "enum": [
+            "DEFAULT_ACCESS_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDiscoveryengineV1EngineFeaturePolicyMember": {
+      "properties": {
+        "verification": {
+          "enum": [
+            "VERIFICATION_UNSPECIFIED",
+            "VERIFIED",
+            "NOT_FOUND",
+            "NOT_VERIFIABLE",
+            "CHECK_FAILED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "GROUP"
           ]
         }
       }
@@ -460,6 +524,13 @@
             ]
           }
         },
+        "searchTier": {
+          "enum": [
+            "SEARCH_TIER_UNSPECIFIED",
+            "SEARCH_TIER_STANDARD",
+            "SEARCH_TIER_ENTERPRISE"
+          ]
+        },
         "requiredSubscriptionTier": {
           "enum": [
             "SUBSCRIPTION_TIER_UNSPECIFIED",
@@ -479,13 +550,6 @@
             "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
             "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
           ]
-        },
-        "searchTier": {
-          "enum": [
-            "SEARCH_TIER_UNSPECIFIED",
-            "SEARCH_TIER_STANDARD",
-            "SEARCH_TIER_ENTERPRISE"
-          ]
         }
       }
     },
@@ -502,6 +566,15 @@
     },
     "GoogleCloudDiscoveryengineV1LicenseConfig": {
       "properties": {
+        "subscriptionTerm": {
+          "enum": [
+            "SUBSCRIPTION_TERM_UNSPECIFIED",
+            "SUBSCRIPTION_TERM_ONE_MONTH",
+            "SUBSCRIPTION_TERM_ONE_YEAR",
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
+          ]
+        },
         "subscriptionTier": {
           "enum": [
             "SUBSCRIPTION_TIER_UNSPECIFIED",
@@ -520,15 +593,6 @@
             "SUBSCRIPTION_TIER_FRONTLINE_STARTER",
             "SUBSCRIPTION_TIER_CONSUMPTION_ONLY",
             "SUBSCRIPTION_TIER_EDU_GOV_EMERGING"
-          ]
-        },
-        "subscriptionTerm": {
-          "enum": [
-            "SUBSCRIPTION_TERM_UNSPECIFIED",
-            "SUBSCRIPTION_TERM_ONE_MONTH",
-            "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS",
-            "SUBSCRIPTION_TERM_CUSTOM"
           ]
         },
         "state": {
@@ -627,9 +691,6 @@
             "EXCLUDE"
           ]
         },
-        "siteVerificationInfo": {
-          "$ref": "GoogleCloudDiscoveryengineV1SiteVerificationInfo"
-        },
         "indexingStatus": {
           "enum": [
             "INDEXING_STATUS_UNSPECIFIED",
@@ -640,6 +701,9 @@
             "CANCELLABLE",
             "CANCELLED"
           ]
+        },
+        "siteVerificationInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1SiteVerificationInfo"
         }
       }
     },
@@ -648,17 +712,30 @@
     },
     "GoogleCloudDiscoveryengineV1WidgetConfig": {
       "properties": {
-        "uiSettings": {
-          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings"
+        "contentSearchSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpec"
         },
         "nodes": {
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigNode"
           }
         },
-        "batchAuthStatuses": {
+        "solutionType": {
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
+          ]
+        },
+        "uiSettings": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings"
+        },
+        "collectionComponents": {
           "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigBatchAuthStatus"
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent"
           }
         },
         "fieldsUiComponentsMap": {
@@ -666,21 +743,13 @@
             "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUIComponentField"
           }
         },
-        "industryVertical": {
-          "enum": [
-            "INDUSTRY_VERTICAL_UNSPECIFIED",
-            "GENERIC",
-            "MEDIA",
-            "HEALTHCARE_FHIR"
-          ]
-        },
-        "collectionComponents": {
+        "batchAuthStatuses": {
           "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent"
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigBatchAuthStatus"
           }
         },
-        "contentSearchSpec": {
-          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpec"
+        "customerProvidedConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig"
         },
         "resultDisplayType": {
           "enum": [
@@ -701,23 +770,18 @@
         "assistantSettings": {
           "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings"
         },
-        "customerProvidedConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig"
-        },
-        "solutionType": {
-          "enum": [
-            "SOLUTION_TYPE_UNSPECIFIED",
-            "SOLUTION_TYPE_RECOMMENDATION",
-            "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT",
-            "SOLUTION_TYPE_AI_MODE"
-          ]
-        },
         "dataStoreUiConfigs": {
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig"
           }
+        },
+        "industryVertical": {
+          "enum": [
+            "INDUSTRY_VERTICAL_UNSPECIFIED",
+            "GENERIC",
+            "MEDIA",
+            "HEALTHCARE_FHIR"
+          ]
         }
       }
     },
@@ -742,13 +806,13 @@
     },
     "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent": {
       "properties": {
-        "connectorAuthState": {
-          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState"
-        },
         "dataStoreComponents": {
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent"
           }
+        },
+        "connectorAuthState": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState"
         }
       }
     },
@@ -767,18 +831,19 @@
     },
     "GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig": {
       "properties": {
+        "customerType": {
+          "enum": [
+            "DEFAULT_CUSTOMER",
+            "GOVERNMENT_CUSTOMER"
+          ]
+        },
         "complianceLevel": {
           "enum": [
             "COMPLIANCE_LEVEL_UNSPECIFIED",
             "COMPLIANCE_LEVEL_FEDRAMP_HIGH",
             "COMPLIANCE_LEVEL_IL4",
-            "COMPLIANCE_LEVEL_IL5"
-          ]
-        },
-        "customerType": {
-          "enum": [
-            "DEFAULT_CUSTOMER",
-            "GOVERNMENT_CUSTOMER"
+            "COMPLIANCE_LEVEL_IL5",
+            "COMPLIANCE_LEVEL_ITAR"
           ]
         }
       }
@@ -831,6 +896,23 @@
     },
     "GoogleCloudDiscoveryengineV1WidgetConfigUiSettings": {
       "properties": {
+        "modelConfigs": {
+          "additionalProperties": {
+            "enum": [
+              "MODEL_STATE_UNSPECIFIED",
+              "MODEL_ENABLED",
+              "MODEL_DISABLED"
+            ]
+          }
+        },
+        "dataStoreUiConfigs": {
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig"
+          }
+        },
+        "generativeAnswerConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig"
+        },
         "features": {
           "additionalProperties": {
             "enum": [
@@ -838,11 +920,6 @@
               "FEATURE_STATE_ON",
               "FEATURE_STATE_OFF"
             ]
-          }
-        },
-        "dataStoreUiConfigs": {
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigDataStoreUiConfig"
           }
         },
         "interactionType": {
@@ -853,23 +930,37 @@
             "SEARCH_WITH_FOLLOW_UPS"
           ]
         },
-        "generativeAnswerConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig"
-        },
-        "modelConfigs": {
-          "additionalProperties": {
-            "enum": [
-              "MODEL_STATE_UNSPECIFIED",
-              "MODEL_ENABLED",
-              "MODEL_DISABLED"
-            ]
-          }
+        "featureToggleInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeatureToggleInfo"
         },
         "resultDescriptionType": {
           "enum": [
             "RESULT_DISPLAY_TYPE_UNSPECIFIED",
             "SNIPPET",
             "EXTRACTIVE_ANSWER"
+          ]
+        }
+      }
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeatureToggleInfo": {
+      "properties": {
+        "featureToggles": {
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeatureToggleInfoFeatureToggle"
+          }
+        }
+      }
+    },
+    "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeatureToggleInfoFeatureToggle": {
+      "properties": {
+        "launchStage": {
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "SCHEDULED_GA",
+            "DELAYED_GA",
+            "RETIRED"
           ]
         }
       }

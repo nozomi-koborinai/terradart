@@ -1,7 +1,7 @@
 {
   "name": "osconfig",
   "version": "v2",
-  "revision": "20261022",
+  "revision": "20261106",
   "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState": {
@@ -20,10 +20,10 @@
     },
     "GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
       "properties": {
-        "currentIterationState": {
+        "previousIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         },
-        "previousIterationState": {
+        "currentIterationState": {
           "$ref": "GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState"
         }
       }
@@ -47,17 +47,17 @@
     },
     "OSPolicy": {
       "properties": {
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
-        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
+        },
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
         }
       }
     },
@@ -81,26 +81,26 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "pkg": {
-          "$ref": "OSPolicyResourcePackageResource"
-        },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
+        },
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
         },
         "file": {
           "$ref": "OSPolicyResourceFileResource"
         },
-        "exec": {
-          "$ref": "OSPolicyResourceExecResource"
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
         }
       }
     },
     "OSPolicyResourceExecResource": {
       "properties": {
-        "enforce": {
+        "validate": {
           "$ref": "OSPolicyResourceExecResourceExec"
         },
-        "validate": {
+        "enforce": {
           "$ref": "OSPolicyResourceExecResourceExec"
         }
       }

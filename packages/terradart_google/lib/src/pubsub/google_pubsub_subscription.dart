@@ -431,6 +431,7 @@ final class PubsubSubscriptionMessageTransforms {
   const PubsubSubscriptionMessageTransforms({
     this.disabled,
     this.aiInference,
+    this.compression,
     this.javascriptUdf,
   });
 
@@ -438,12 +439,15 @@ final class PubsubSubscriptionMessageTransforms {
 
   final PubsubSubscriptionAiInference? aiInference;
 
+  final PubsubSubscriptionCompression? compression;
+
   final PubsubSubscriptionJavascriptUdf? javascriptUdf;
 
   @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
+    'compression': ?compression?.encode(),
     'javascript_udf': ?javascriptUdf?.encode(),
   };
 }
@@ -482,6 +486,65 @@ final class PubsubSubscriptionUnstructuredInference {
 
   @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
+}
+
+/// Typed helper for the `message_transforms.compression` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionCompression {
+  const PubsubSubscriptionCompression({
+    required this.compressionAlgorithm,
+    required this.compressionMode,
+  });
+
+  final PubsubSubscriptionCompressionAlgorithm compressionAlgorithm;
+
+  final PubsubSubscriptionCompressionMode compressionMode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'compression_algorithm': compressionAlgorithm.toTfJson(),
+    'compression_mode': compressionMode.toTfJson(),
+  };
+}
+
+/// `compression_algorithm` — derived from the provider schema description.
+extension type const PubsubSubscriptionCompressionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubSubscriptionCompressionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubSubscriptionCompressionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubSubscriptionCompressionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const zlib = PubsubSubscriptionCompressionAlgorithm._(
+    TfArgLiteral('ZLIB'),
+  );
+
+  static const List<PubsubSubscriptionCompressionAlgorithm> values = [zlib];
+}
+
+/// `compression_mode` — derived from the provider schema description.
+extension type const PubsubSubscriptionCompressionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubSubscriptionCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubSubscriptionCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubSubscriptionCompressionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const compress = PubsubSubscriptionCompressionMode._(
+    TfArgLiteral('COMPRESS'),
+  );
+  static const decompress = PubsubSubscriptionCompressionMode._(
+    TfArgLiteral('DECOMPRESS'),
+  );
+
+  static const List<PubsubSubscriptionCompressionMode> values = [
+    compress,
+    decompress,
+  ];
 }
 
 /// Typed helper for the `message_transforms.javascript_udf` block of

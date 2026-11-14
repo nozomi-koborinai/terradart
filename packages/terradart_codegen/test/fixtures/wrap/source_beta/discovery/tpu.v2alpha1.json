@@ -43,17 +43,6 @@
     },
     "Node": {
       "properties": {
-        "acceleratorConfig": {
-          "$ref": "AcceleratorConfig"
-        },
-        "symptoms": {
-          "items": {
-            "$ref": "Symptom"
-          }
-        },
-        "upcomingMaintenance": {
-          "$ref": "UpcomingMaintenance"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -74,13 +63,8 @@
             "UNKNOWN"
           ]
         },
-        "schedulingConfig": {
-          "$ref": "SchedulingConfig"
-        },
-        "dataDisks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
         },
         "apiVersion": {
           "enum": [
@@ -98,21 +82,43 @@
             "UNHEALTHY_TENSORFLOW",
             "UNHEALTHY_MAINTENANCE"
           ]
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig"
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
         }
       }
     },
     "NodeSpec": {
       "properties": {
-        "node": {
-          "$ref": "Node"
-        },
         "multiNodeParams": {
           "$ref": "MultiNodeParams"
+        },
+        "node": {
+          "$ref": "Node"
         }
       }
     },
     "QueuedResource": {
       "properties": {
+        "tpu": {
+          "$ref": "Tpu"
+        },
+        "state": {
+          "$ref": "QueuedResourceState"
+        },
         "provisioningModel": {
           "enum": [
             "PROVISIONING_MODEL_UNSPECIFIED",
@@ -121,24 +127,11 @@
             "RESERVATION_BOUND",
             "FLEX_START"
           ]
-        },
-        "state": {
-          "$ref": "QueuedResourceState"
-        },
-        "tpu": {
-          "$ref": "Tpu"
         }
       }
     },
     "QueuedResourceState": {
       "properties": {
-        "stateInitiator": {
-          "enum": [
-            "STATE_INITIATOR_UNSPECIFIED",
-            "USER",
-            "SERVICE"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -151,6 +144,13 @@
             "SUSPENDING",
             "SUSPENDED",
             "WAITING_FOR_RESOURCES"
+          ]
+        },
+        "stateInitiator": {
+          "enum": [
+            "STATE_INITIATOR_UNSPECIFIED",
+            "USER",
+            "SERVICE"
           ]
         }
       }

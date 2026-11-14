@@ -1,7 +1,7 @@
 {
   "name": "appengine",
   "version": "v1",
-  "revision": "20261023",
+  "revision": "20261107",
   "sourceUrl": "https://appengine.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "ApiConfigHandler": {
@@ -34,6 +34,13 @@
     },
     "Application": {
       "properties": {
+        "sslPolicy": {
+          "enum": [
+            "SSL_POLICY_UNSPECIFIED",
+            "DEFAULT",
+            "MODERN"
+          ]
+        },
         "servingStatus": {
           "enum": [
             "UNSPECIFIED",
@@ -48,13 +55,6 @@
             "CLOUD_DATASTORE",
             "CLOUD_FIRESTORE",
             "CLOUD_DATASTORE_COMPATIBILITY"
-          ]
-        },
-        "sslPolicy": {
-          "enum": [
-            "SSL_POLICY_UNSPECIFIED",
-            "DEFAULT",
-            "MODERN"
           ]
         }
       }
@@ -143,11 +143,11 @@
     },
     "Service": {
       "properties": {
-        "networkSettings": {
-          "$ref": "NetworkSettings"
-        },
         "split": {
           "$ref": "TrafficSplit"
+        },
+        "networkSettings": {
+          "$ref": "NetworkSettings"
         }
       }
     },
@@ -176,13 +176,6 @@
     },
     "UrlMap": {
       "properties": {
-        "authFailAction": {
-          "enum": [
-            "AUTH_FAIL_ACTION_UNSPECIFIED",
-            "AUTH_FAIL_ACTION_REDIRECT",
-            "AUTH_FAIL_ACTION_UNAUTHORIZED"
-          ]
-        },
         "securityLevel": {
           "enum": [
             "SECURE_UNSPECIFIED",
@@ -190,14 +183,6 @@
             "SECURE_NEVER",
             "SECURE_OPTIONAL",
             "SECURE_ALWAYS"
-          ]
-        },
-        "login": {
-          "enum": [
-            "LOGIN_UNSPECIFIED",
-            "LOGIN_OPTIONAL",
-            "LOGIN_ADMIN",
-            "LOGIN_REQUIRED"
           ]
         },
         "redirectHttpResponseCode": {
@@ -208,6 +193,21 @@
             "REDIRECT_HTTP_RESPONSE_CODE_303",
             "REDIRECT_HTTP_RESPONSE_CODE_307"
           ]
+        },
+        "login": {
+          "enum": [
+            "LOGIN_UNSPECIFIED",
+            "LOGIN_OPTIONAL",
+            "LOGIN_ADMIN",
+            "LOGIN_REQUIRED"
+          ]
+        },
+        "authFailAction": {
+          "enum": [
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
+          ]
         }
       }
     },
@@ -216,14 +216,33 @@
         "vpcAccessConnector": {
           "$ref": "VpcAccessConnector"
         },
-        "apiConfig": {
-          "$ref": "ApiConfigHandler"
+        "handlers": {
+          "items": {
+            "$ref": "UrlMap"
+          }
+        },
+        "errorHandlers": {
+          "items": {
+            "$ref": "ErrorHandler"
+          }
+        },
+        "inboundServices": {
+          "items": {
+            "enum": [
+              "INBOUND_SERVICE_UNSPECIFIED",
+              "INBOUND_SERVICE_MAIL",
+              "INBOUND_SERVICE_MAIL_BOUNCE",
+              "INBOUND_SERVICE_XMPP_ERROR",
+              "INBOUND_SERVICE_XMPP_MESSAGE",
+              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+              "INBOUND_SERVICE_XMPP_PRESENCE",
+              "INBOUND_SERVICE_CHANNEL_PRESENCE",
+              "INBOUND_SERVICE_WARMUP"
+            ]
+          }
         },
         "vpcAccess": {
           "$ref": "VpcAccess"
-        },
-        "endpointsApiService": {
-          "$ref": "EndpointsApiService"
         },
         "appEngineBundledServices": {
           "items": {
@@ -247,6 +266,9 @@
             ]
           }
         },
+        "network": {
+          "$ref": "Network"
+        },
         "servingStatus": {
           "enum": [
             "SERVING_STATUS_UNSPECIFIED",
@@ -254,33 +276,11 @@
             "STOPPED"
           ]
         },
-        "errorHandlers": {
-          "items": {
-            "$ref": "ErrorHandler"
-          }
+        "endpointsApiService": {
+          "$ref": "EndpointsApiService"
         },
-        "handlers": {
-          "items": {
-            "$ref": "UrlMap"
-          }
-        },
-        "network": {
-          "$ref": "Network"
-        },
-        "inboundServices": {
-          "items": {
-            "enum": [
-              "INBOUND_SERVICE_UNSPECIFIED",
-              "INBOUND_SERVICE_MAIL",
-              "INBOUND_SERVICE_MAIL_BOUNCE",
-              "INBOUND_SERVICE_XMPP_ERROR",
-              "INBOUND_SERVICE_XMPP_MESSAGE",
-              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
-              "INBOUND_SERVICE_XMPP_PRESENCE",
-              "INBOUND_SERVICE_CHANNEL_PRESENCE",
-              "INBOUND_SERVICE_WARMUP"
-            ]
-          }
+        "apiConfig": {
+          "$ref": "ApiConfigHandler"
         }
       }
     },

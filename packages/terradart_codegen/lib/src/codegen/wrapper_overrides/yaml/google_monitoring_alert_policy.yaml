@@ -54,9 +54,6 @@ curatedDoc: |-
 # then optional metadata. Computed-only attrs (creation_record, id, name) are
 # filtered out — they're not constructor inputs. `timeouts` is also filtered
 # (Terraform meta-arg).
-sealedNames:
-  "conditions.condition_sql.daily, conditions.condition_sql.hourly, conditions.condition_sql.minutes": schedule
-
 paramOrder:
   - display_name
   - combiner

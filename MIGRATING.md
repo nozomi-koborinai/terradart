@@ -16,6 +16,67 @@ for the same value is unchanged.
 | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('site'), type: .site)` | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('site'), type: .literal('site'))` |
 | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('fn'), type: .function)` | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('fn'), type: .literal('function'))` |
 
+### Google provider 8.10.0
+
+**Breaking (`terradart_google`).** Magic Modules 8.10.0 removed `exactly_one_of`
+from 23 resource definitions where the provider schema did not enforce the
+constraint. Those sealed arguments and blocks are now plain fields and helper
+classes again, and `SpannerInstanceOverrides.autoscalingLimits` shares
+`SpannerInstanceAutoscalingLimits` with the top-level autoscaling config.
+
+Provider 8.10.0 also adds `transformation_error_handling` to the
+`deidentify_config` block of `google_data_loss_prevention_deidentify_template`
+and changes `settings.ip_configuration.psc_config` on
+`google_sql_database_instance` to a single block.
+`DataLossPreventionDeidentifyTemplateDeidentifyConfig` is now a helper class
+whose `transformation` field takes the
+`DataLossPreventionDeidentifyTemplateTransformation` choice
+(`.infoTypeTransformations(...)`, `.recordTransformations(...)`,
+`.imageTransformations(...)`), and `SqlDatabaseInstanceIpConfiguration.pscConfig`
+takes one `SqlDatabaseInstancePscConfig` instead of a list. The Terraform JSON
+for the same values is unchanged.
+
+| Before | After |
+|---|---|
+| `BigqueryAnalyticsHubListingBigqueryDataset(selectedResources: [.table(.literal('t'))], ...)` | `BigqueryAnalyticsHubListingBigqueryDataset(selectedResources: [BigqueryAnalyticsHubListingSelectedResources(table: .literal('t'))], ...)` |
+| `CloudRunServiceLivenessProbe(check: .httpGet(.new()))` | `CloudRunServiceLivenessProbe(httpGet: .new())` |
+| `CloudRunServiceReadinessProbe(check: .httpGet(.new()))` | `CloudRunServiceReadinessProbe(httpGet: .new())` |
+| `CloudRunServiceStartupProbe(check: .tcpSocket(.new()))` | `CloudRunServiceStartupProbe(tcpSocket: .new())` |
+| `CloudbuildTriggerDeveloperConnectEventConfig(event: .push(.new(revision: .branch(.literal('main')))), ...)` | `CloudbuildTriggerDeveloperConnectEventConfig(push: .new(branch: .literal('main')), ...)` |
+| `CloudbuildTriggerRepositoryEventConfig(event: .push(.new(revision: .branch(.literal('main')))))` | `CloudbuildTriggerRepositoryEventConfig(push: .new(branch: .literal('main')))` |
+| `ClouddeployAutomationRepairRolloutRule(repairPhases: [.retry(.new())], ...)` | `ClouddeployAutomationRepairRolloutRule(repairPhases: [ClouddeployAutomationRepairPhases(retry: .new())], ...)` |
+| `ClouddeployCustomTargetTypeIncludeSkaffoldModules(source: .git(.new(repo: .literal('r'))))` | `ClouddeployCustomTargetTypeIncludeSkaffoldModules(git: .new(repo: .literal('r')))` |
+| `Cloudfunctions2FunctionBuildConfig(source: .storageSource(.new()), updatePolicy: .automaticUpdatePolicy())` | `Cloudfunctions2FunctionBuildConfig(source: .new(storageSource: .new()), automaticUpdatePolicy: .new())` |
+| `Cloudfunctions2FunctionRepoSource(revision: .branchName(.literal('main')))` | `Cloudfunctions2FunctionRepoSource(branchName: .literal('main'))` |
+| `ComputeBackendServiceTlsSettings(subjectAltNames: [.dnsName(.literal('a'))])` | `ComputeBackendServiceTlsSettings(subjectAltNames: [ComputeBackendServiceSubjectAltNames(dnsName: .literal('a'))])` |
+| `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [.dnsName(.literal('a'))])` | `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [ComputeRegionBackendServiceSubjectAltNames(dnsName: .literal('a'))])` |
+| `ConfigDeploymentTerraformBlueprint(source: .gcsSource(.literal('gs://b/p')))` | `ConfigDeploymentTerraformBlueprint(gcsSource: .literal('gs://b/p'))` |
+| `DatabaseMigrationServiceConnectionProfileAuthorizedNetworks(expiration: .ttl(.literal('60s')), ...)` | `DatabaseMigrationServiceConnectionProfileAuthorizedNetworks(ttl: .literal('60s'), ...)` |
+| `DataplexTaskSpark(driver: .sqlScript(.literal('SELECT 1')))` | `DataplexTaskSpark(sqlScript: .literal('SELECT 1'))` |
+| `DataplexTaskVpcNetwork(target: .network(.literal('n')))` | `DataplexTaskVpcNetwork(network: .literal('n'))` |
+| `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .serverVerification(.new(caCertificate: ...)), ...)` | `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .new(serverVerification: .new(caCertificate: ...)), ...)` |
+| `DiscoveryEngineDataStoreDocumentProcessingConfig(defaultParsingConfig: .digitalParsingConfig(.new()))` | `DiscoveryEngineDataStoreDocumentProcessingConfig(defaultParsingConfig: .new(digitalParsingConfig: .new()))` |
+| `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig(engineFeaturesConfig: .mostPopularConfig(.new()))` | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig(engineFeaturesConfig: .new(mostPopularConfig: .new()))` |
+| `FirestoreFieldIndexes(mode: .order(.ascending))` | `FirestoreFieldIndexes(order: .ascending)` |
+| `GoogleClouddeployAutomation('a', rules: [.promoteReleaseRule(.new(id: .literal('r')))], ...)` | `GoogleClouddeployAutomation('a', rules: [ClouddeployAutomationRules(promoteReleaseRule: .new(id: .literal('r')))], ...)` |
+| `GoogleComputeBackendService('b', localityLbPolicies: [.policy(.new(name: .roundRobin))], ...)` | `GoogleComputeBackendService('b', localityLbPolicies: [ComputeBackendServiceLocalityLbPolicies(policy: .new(name: .roundRobin))], ...)` |
+| `GoogleDataLossPreventionDeidentifyTemplate('t', deidentifyConfig: .infoTypeTransformations(.new(transformations: [])), ...)` | `GoogleDataLossPreventionDeidentifyTemplate('t', deidentifyConfig: DataLossPreventionDeidentifyTemplateDeidentifyConfig(transformation: .infoTypeTransformations(.new(transformations: []))), ...)` |
+| `GoogleNetworkSecurityClientTlsPolicy('p', clientCertificate: .grpcEndpoint(.new(targetUri: .literal('u'))), serverValidationCa: [.grpcEndpoint(.new(targetUri: .literal('u')))], ...)` | `GoogleNetworkSecurityClientTlsPolicy('p', clientCertificate: NetworkSecurityClientTlsPolicyClientCertificate(grpcEndpoint: .new(targetUri: .literal('u'))), serverValidationCa: [NetworkSecurityClientTlsPolicyServerValidationCa(grpcEndpoint: .new(targetUri: .literal('u')))], ...)` |
+| `GoogleNetworkSecurityServerTlsPolicy('p', serverCertificate: .grpcEndpoint(.new(targetUri: .literal('u'))), ...)` | `GoogleNetworkSecurityServerTlsPolicy('p', serverCertificate: NetworkSecurityServerTlsPolicyServerCertificate(grpcEndpoint: .new(targetUri: .literal('u'))), ...)` |
+| `MonitoringAlertPolicyConditionSql(schedule: .minutes(.new(periodicity: .literal(5))), test: .booleanTest(.new(column: .literal('c'))), ...)` | `MonitoringAlertPolicyConditionSql(minutes: .new(periodicity: .literal(5)), booleanTest: .new(column: .literal('c')), ...)` |
+| `NetworkSecurityServerTlsPolicyMtlsPolicy(clientValidationCa: [.grpcEndpoint(.new(targetUri: .literal('u')))])` | `NetworkSecurityServerTlsPolicyMtlsPolicy(clientValidationCa: [NetworkSecurityServerTlsPolicyClientValidationCa(grpcEndpoint: .new(targetUri: .literal('u')))])` |
+| `NetworkServicesHttpRouteHeaders(match: .exactMatch(.literal('v')), ...)` | `NetworkServicesHttpRouteHeaders(exactMatch: .literal('v'), ...)` |
+| `NetworkServicesHttpRouteMatches(match: .fullPathMatch(.literal('/p')))` | `NetworkServicesHttpRouteMatches(fullPathMatch: .literal('/p'))` |
+| `NetworkServicesHttpRouteQueryParameters(match: .exactMatch(.literal('v')), ...)` | `NetworkServicesHttpRouteQueryParameters(exactMatch: .literal('v'), ...)` |
+| `PubsubTopicCloudStorage(format: .avroFormat(), ...)` | `PubsubTopicCloudStorage(avroFormat: .new(), ...)` |
+| `SpannerInstanceAutoscalingLimits(min: .minNodes(.literal(1)), max: .maxNodes(.literal(2)))` | `SpannerInstanceAutoscalingLimits(minNodes: .literal(1), maxNodes: .literal(2))` |
+| `SpannerInstanceOverrides(autoscalingLimits: SpannerInstanceOverridesAutoscalingLimits(min: .minNodes(.literal(1)), max: .maxNodes(.literal(2))), ...)` | `SpannerInstanceOverrides(autoscalingLimits: SpannerInstanceAutoscalingLimits(minNodes: .literal(1), maxNodes: .literal(2)), ...)` |
+| `SpannerInstancePartitionAutoscalingLimits(minCapacity: .minNodes(.literal(1)), maxCapacity: .maxNodes(.literal(2)))` | `SpannerInstancePartitionAutoscalingLimits(minNodes: .literal(1), maxNodes: .literal(2))` |
+| `SqlDatabaseInstanceIpConfiguration(pscConfig: [SqlDatabaseInstancePscConfig(pscEnabled: .literal(true))])` | `SqlDatabaseInstanceIpConfiguration(pscConfig: SqlDatabaseInstancePscConfig(pscEnabled: .literal(true)))` |
+| `VertexAiIndexConfig(algorithmConfig: .treeAhConfig(.new()), ...)` | `VertexAiIndexConfig(algorithmConfig: .new(treeAhConfig: .new()), ...)` |
+| `VertexAiReasoningEngineCustomizationConfigs(memoryTopics: [.customMemoryTopic(.new(label: .literal('l'), description: .literal('d')))])` | `VertexAiReasoningEngineCustomizationConfigs(memoryTopics: [VertexAiReasoningEngineMemoryTopics(customMemoryTopic: .new(label: .literal('l'), description: .literal('d')))])` |
+| `VertexAiReasoningEngineTtlConfig(policy: .defaultTtl(.literal('3600s')))` | `VertexAiReasoningEngineTtlConfig(defaultTtl: .literal('3600s'))` |
+
 ### Google provider 8.9.0
 
 **Breaking (`terradart_google`).** Provider 8.9.0 adds `scheduling_policy`

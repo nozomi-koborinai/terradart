@@ -896,61 +896,24 @@ final class ComputeBackendServiceOauth2ClientSecretWo
   };
 }
 
-/// Exactly one of `policy`, `custom_policy` on the `locality_lb_policies` block of `google_compute_backend_service`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.policy(...)`.
-sealed class ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPolicies();
+/// Typed helper for the `locality_lb_policies` block of
+/// `google_compute_backend_service` (derived from provider schema).
+@immutable
+final class ComputeBackendServiceLocalityLbPolicies {
+  const ComputeBackendServiceLocalityLbPolicies({
+    this.customPolicy,
+    this.policy,
+  });
 
-  /// Sets `policy`.
-  const factory ComputeBackendServiceLocalityLbPolicies.policy(
-    ComputeBackendServicePolicy policy,
-  ) = ComputeBackendServiceLocalityLbPoliciesPolicy;
+  final ComputeBackendServiceCustomPolicy? customPolicy;
 
-  /// Sets `custom_policy`.
-  const factory ComputeBackendServiceLocalityLbPolicies.customPolicy(
-    ComputeBackendServiceCustomPolicy customPolicy,
-  ) = ComputeBackendServiceLocalityLbPoliciesCustomPolicy;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final ComputeBackendServicePolicy? policy;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [ComputeBackendServiceLocalityLbPolicies.policy] choice: sets `policy`.
-final class ComputeBackendServiceLocalityLbPoliciesPolicy
-    extends ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesPolicy(this.policy);
-
-  final ComputeBackendServicePolicy policy;
-
-  @internal
-  @override
-  String get blockKey => 'policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'policy': policy.encode()};
-}
-
-/// The [ComputeBackendServiceLocalityLbPolicies.customPolicy] choice: sets `custom_policy`.
-final class ComputeBackendServiceLocalityLbPoliciesCustomPolicy
-    extends ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesCustomPolicy(this.customPolicy);
-
-  final ComputeBackendServiceCustomPolicy customPolicy;
-
-  @internal
-  @override
-  String get blockKey => 'custom_policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'custom_policy': customPolicy.encode()};
+  Map<String, Object?> encode() => {
+    'custom_policy': ?customPolicy?.encode(),
+    'policy': ?policy?.encode(),
+  };
 }
 
 /// Typed helper for the `locality_lb_policies.custom_policy` block of
@@ -1315,65 +1278,24 @@ final class ComputeBackendServiceTlsSettings {
   };
 }
 
-/// Exactly one of `uniform_resource_identifier`, `dns_name` on the `tls_settings.subject_alt_names` block of `google_compute_backend_service`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.uniformResourceIdentifier(...)`.
-sealed class ComputeBackendServiceSubjectAltNames {
-  const ComputeBackendServiceSubjectAltNames();
-
-  /// Sets `uniform_resource_identifier`.
-  const factory ComputeBackendServiceSubjectAltNames.uniformResourceIdentifier(
-    TfArg<String> uniformResourceIdentifier,
-  ) = ComputeBackendServiceSubjectAltNamesUniformResourceIdentifier;
-
-  /// Sets `dns_name`.
-  const factory ComputeBackendServiceSubjectAltNames.dnsName(
-    TfArg<String> dnsName,
-  ) = ComputeBackendServiceSubjectAltNamesDnsName;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [ComputeBackendServiceSubjectAltNames.uniformResourceIdentifier] choice: sets `uniform_resource_identifier`.
-final class ComputeBackendServiceSubjectAltNamesUniformResourceIdentifier
-    extends ComputeBackendServiceSubjectAltNames {
-  const ComputeBackendServiceSubjectAltNamesUniformResourceIdentifier(
+/// Typed helper for the `tls_settings.subject_alt_names` block of
+/// `google_compute_backend_service` (derived from provider schema).
+@immutable
+final class ComputeBackendServiceSubjectAltNames {
+  const ComputeBackendServiceSubjectAltNames({
+    this.dnsName,
     this.uniformResourceIdentifier,
-  );
+  });
 
-  final TfArg<String> uniformResourceIdentifier;
+  final TfArg<String>? dnsName;
 
-  @internal
-  @override
-  String get blockKey => 'uniform_resource_identifier';
+  final TfArg<String>? uniformResourceIdentifier;
 
   @internal
-  @override
   Map<String, Object?> encode() => {
-    'uniform_resource_identifier': uniformResourceIdentifier.toTfJson(),
+    'dns_name': ?dnsName?.toTfJson(),
+    'uniform_resource_identifier': ?uniformResourceIdentifier?.toTfJson(),
   };
-}
-
-/// The [ComputeBackendServiceSubjectAltNames.dnsName] choice: sets `dns_name`.
-final class ComputeBackendServiceSubjectAltNamesDnsName
-    extends ComputeBackendServiceSubjectAltNames {
-  const ComputeBackendServiceSubjectAltNamesDnsName(this.dnsName);
-
-  final TfArg<String> dnsName;
-
-  @internal
-  @override
-  String get blockKey => 'dns_name';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'dns_name': dnsName.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_backend_service`.

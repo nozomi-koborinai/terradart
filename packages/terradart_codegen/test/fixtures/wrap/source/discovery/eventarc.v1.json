@@ -1,7 +1,7 @@
 {
   "name": "eventarc",
   "version": "v1",
-  "revision": "20261023",
+  "revision": "20261030",
   "sourceUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Channel": {
