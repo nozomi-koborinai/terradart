@@ -64,6 +64,7 @@ paramOrder:
   - density
   - multikey
   - unique
+  - search_index_options
   - deletion_policy
   - skip_wait
   - project

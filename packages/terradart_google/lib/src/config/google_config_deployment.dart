@@ -147,14 +147,12 @@ final class ConfigDeploymentInputValues {
 ///     'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com',
 ///   ),
 ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-///     source: .gitSource(
-///       .new(
-///         repo: .literal(
-///           'https://github.com/terraform-google-modules/terraform-google-network',
-///         ),
-///         directory: .literal('modules/vpc'),
-///         ref: .literal('main'),
+///     gitSource: .new(
+///       repo: .literal(
+///         'https://github.com/terraform-google-modules/terraform-google-network',
 ///       ),
+///       directory: .literal('modules/vpc'),
+///       ref: .literal('main'),
 ///     ),
 ///     inputValues: [
 ///       .new(

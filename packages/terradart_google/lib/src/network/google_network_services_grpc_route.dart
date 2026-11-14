@@ -213,7 +213,7 @@ final class NetworkServicesGrpcRouteHeaders {
 
   final TfArg<String> key;
 
-  final NetworkServicesGrpcRouteHeadersType? type;
+  final NetworkServicesGrpcRouteType? type;
 
   final TfArg<String> value;
 
@@ -226,26 +226,23 @@ final class NetworkServicesGrpcRouteHeaders {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const NetworkServicesGrpcRouteHeadersType._(TfArg<String> _)
+extension type const NetworkServicesGrpcRouteType._(TfArg<String> _)
     implements TfArg<String> {
-  NetworkServicesGrpcRouteHeadersType.variable(String name)
+  NetworkServicesGrpcRouteType.variable(String name)
     : this._(TfArg.variable(name));
-  NetworkServicesGrpcRouteHeadersType.expression(String template)
+  NetworkServicesGrpcRouteType.expression(String template)
     : this._(TfArg.expression(template));
-  const NetworkServicesGrpcRouteHeadersType.arg(TfArg<String> arg)
-    : this._(arg);
+  const NetworkServicesGrpcRouteType.arg(TfArg<String> arg) : this._(arg);
 
-  static const typeUnspecified = NetworkServicesGrpcRouteHeadersType._(
+  static const typeUnspecified = NetworkServicesGrpcRouteType._(
     TfArgLiteral('TYPE_UNSPECIFIED'),
   );
-  static const exact = NetworkServicesGrpcRouteHeadersType._(
-    TfArgLiteral('EXACT'),
-  );
-  static const regularExpression = NetworkServicesGrpcRouteHeadersType._(
+  static const exact = NetworkServicesGrpcRouteType._(TfArgLiteral('EXACT'));
+  static const regularExpression = NetworkServicesGrpcRouteType._(
     TfArgLiteral('REGULAR_EXPRESSION'),
   );
 
-  static const List<NetworkServicesGrpcRouteHeadersType> values = [
+  static const List<NetworkServicesGrpcRouteType> values = [
     typeUnspecified,
     exact,
     regularExpression,

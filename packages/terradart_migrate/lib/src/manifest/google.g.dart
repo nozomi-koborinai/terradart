@@ -11324,6 +11324,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ArtifactRegistryRepositoryVulnerabilityScanningConfig',
         ),
         MigrateSlot(
+          tfName: 'platform_logs_config',
+          dartName: 'platformLogsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ArtifactRegistryRepositoryPlatformLogsConfig',
+        ),
+        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
@@ -19430,6 +19438,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'BigqueryDataTransferConfigScheduleOptions',
+        ),
+        MigrateSlot(
+          tfName: 'schedule_options_v2',
+          dartName: 'scheduleOptionsV2',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'BigqueryDataTransferConfigScheduleOptionsV2',
         ),
         MigrateSlot(
           tfName: 'disabled',
@@ -98573,6 +98589,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'EventarcMessageBusLoggingConfig',
         ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'subscriptions',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'organization_subscription':
+                'EventarcGoogleApiSourceSubscriptionsOrganizationSubscription',
+            'project_subscriptions':
+                'EventarcGoogleApiSourceProjectSubscriptionsChoice',
+          },
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -102140,6 +102170,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'search_index_options',
+          dartName: 'searchIndexOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'FirestoreIndexSearchIndexOptions',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -119798,6 +119836,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'IntegrationConnectorsConnectionSslConfig',
         ),
         MigrateSlot(
+          tfName: 'traffic_shaping_configs',
+          dartName: 'trafficShapingConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'IntegrationConnectorsConnectionTrafficShapingConfigs',
+        ),
+        MigrateSlot(
           tfName: 'labels',
           dartName: 'labels',
           kind: MigrateSlotKind.scalar,
@@ -125588,16 +125635,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'operation',
           dartName: 'operation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ManagedKafkaAclBindingOperation',
         ),
         MigrateSlot(
           tfName: 'permission_type',
           dartName: 'permissionType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ManagedKafkaAclBindingPermissionType',
         ),
         MigrateSlot(
           tfName: 'principal',
@@ -164841,6 +164888,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'SqlDatabaseInstanceRestoreBackupContext',
         ),
+        MigrateSlot(
+          tfName: 'blue_green_deployment',
+          dartName: 'blueGreenDeployment',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SqlDatabaseInstanceBlueGreenDeployment',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -165994,6 +166049,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             'put_object_hold':
                 'StorageBatchOperationsJobOperationPutObjectHold',
           },
+        ),
+        MigrateSlot(
+          tfName: 'logging_config',
+          dartName: 'loggingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'StorageBatchOperationsJobLoggingConfig',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -213310,7 +213373,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           wrapped: false,
           positional: true,
-          helper: 'CloudbuildTriggerBitbucketServerTriggerConfigPush',
+          helper: 'CloudbuildTriggerPush',
         ),
       ],
       shorthand: 'push',
@@ -213331,30 +213394,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'CloudbuildTriggerCommentControl',
-        ),
-        MigrateSlot(
-          tfName: 'invert_regex',
-          dartName: 'invertRegex',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-      ],
-    ),
-    'CloudbuildTriggerBitbucketServerTriggerConfigPush': MigrateHelper(
-      className: 'CloudbuildTriggerBitbucketServerTriggerConfigPush',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'revision',
-          kind: MigrateSlotKind.sealed,
-          required: true,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'branch': 'CloudbuildTriggerPushRevisionBranch',
-            'tag': 'CloudbuildTriggerPushRevisionTag',
-          },
         ),
         MigrateSlot(
           tfName: 'invert_regex',
@@ -213703,7 +213742,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           wrapped: false,
           positional: true,
-          helper: 'CloudbuildTriggerBitbucketServerTriggerConfigPush',
+          helper: 'CloudbuildTriggerPush',
         ),
       ],
       shorthand: 'push',
@@ -213915,6 +213954,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           dartType: 'GooglePubsubTopic',
           attribute: 'id',
+        ),
+      ],
+    ),
+    'CloudbuildTriggerPush': MigrateHelper(
+      className: 'CloudbuildTriggerPush',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: '',
+          dartName: 'revision',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'branch': 'CloudbuildTriggerPushRevisionBranch',
+            'tag': 'CloudbuildTriggerPushRevisionTag',
+          },
+        ),
+        MigrateSlot(
+          tfName: 'invert_regex',
+          dartName: 'invertRegex',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -249842,18 +249905,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'transformations',
+          dartName: 'transformation',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'info_type_transformations':
-                'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice',
+                'DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations',
             'record_transformations':
-                'DataLossPreventionDeidentifyTemplateRecordTransformationsChoice',
+                'DataLossPreventionDeidentifyTemplateTransformationRecordTransformations',
             'image_transformations':
-                'DataLossPreventionDeidentifyTemplateImageTransformationsChoice',
+                'DataLossPreventionDeidentifyTemplateTransformationImageTransformations',
           },
         ),
         MigrateSlot(
@@ -250077,7 +250140,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               repeated: true,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations',
+                  'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations',
             ),
           ],
         ),
@@ -250538,31 +250601,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'info_types',
-              dartName: 'infoTypes',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateInfoTypes',
-            ),
-            MigrateSlot(
-              tfName: 'primitive_transformation',
-              dartName: 'primitiveTransformation',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
-            ),
-          ],
-        ),
     'DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound':
         MigrateHelper(
           className:
@@ -250654,24 +250692,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplateImageTransformationsChoice':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateImageTransformationsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'image_transformations',
-              dartName: 'imageTransformations',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateImageTransformations',
-            ),
-          ],
-          shorthand: 'imageTransformations',
-        ),
     'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig':
         MigrateHelper(
           className:
@@ -250870,21 +250890,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations': MigrateHelper(
-      className: 'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'transformations',
-          dartName: 'transformations',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          helper:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations',
+    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'transformations',
+              dartName: 'transformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              helper: 'DataLossPreventionDeidentifyTemplateTransformations',
+            ),
+          ],
         ),
-      ],
-    ),
     'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig':
         MigrateHelper(
           className:
@@ -250901,24 +250922,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
                   'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
             ),
           ],
-        ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'info_type_transformations',
-              dartName: 'infoTypeTransformations',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
-            ),
-          ],
-          shorthand: 'infoTypeTransformations',
         ),
     'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations':
         MigrateHelper(
@@ -250941,7 +250944,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: true,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation',
+                  'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
             ),
           ],
         ),
@@ -251061,24 +251064,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplateRecordTransformationsChoice':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateRecordTransformationsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'record_transformations',
-              dartName: 'recordTransformations',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateRecordTransformations',
-            ),
-          ],
-          shorthand: 'recordTransformations',
-        ),
     'DataLossPreventionDeidentifyTemplateRedactConfig': MigrateHelper(
       className: 'DataLossPreventionDeidentifyTemplateRedactConfig',
       slots: <MigrateSlot>[],
@@ -251251,6 +251236,83 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'throwError',
         ),
+    'DataLossPreventionDeidentifyTemplateTransformationImageTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateTransformationImageTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'image_transformations',
+              dartName: 'imageTransformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateImageTransformations',
+            ),
+          ],
+          shorthand: 'imageTransformations',
+        ),
+    'DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'info_type_transformations',
+              dartName: 'infoTypeTransformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+            ),
+          ],
+          shorthand: 'infoTypeTransformations',
+        ),
+    'DataLossPreventionDeidentifyTemplateTransformationRecordTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateTransformationRecordTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'record_transformations',
+              dartName: 'recordTransformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateRecordTransformations',
+            ),
+          ],
+          shorthand: 'recordTransformations',
+        ),
+    'DataLossPreventionDeidentifyTemplateTransformations': MigrateHelper(
+      className: 'DataLossPreventionDeidentifyTemplateTransformations',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'info_types',
+          dartName: 'infoTypes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'DataLossPreventionDeidentifyTemplateInfoTypes',
+        ),
+        MigrateSlot(
+          tfName: 'primitive_transformation',
+          dartName: 'primitiveTransformation',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation',
+        ),
+      ],
+    ),
     'DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig':
         MigrateHelper(
           className:
@@ -277439,6 +277501,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'EventarcGoogleApiSourceProjectSubscriptionsChoice': MigrateHelper(
+      className: 'EventarcGoogleApiSourceProjectSubscriptionsChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'project_subscriptions',
+          dartName: 'projectSubscriptions',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'EventarcGoogleApiSourceProjectSubscriptions',
+        ),
+      ],
+      shorthand: 'projectSubscriptions',
+    ),
+    'EventarcGoogleApiSourceSubscriptionsOrganizationSubscription':
+        MigrateHelper(
+          className:
+              'EventarcGoogleApiSourceSubscriptionsOrganizationSubscription',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'organization_subscription',
+              dartName: 'organizationSubscription',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'EventarcGoogleApiSourceOrganizationSubscription',
+            ),
+          ],
+          shorthand: 'organizationSubscription',
+        ),
     'EventarcMessageBusLoggingConfig': MigrateHelper(
       className: 'EventarcMessageBusLoggingConfig',
       slots: <MigrateSlot>[
@@ -301808,7 +301902,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'NetworkServicesGrpcRouteHeadersType',
+          dartType: 'NetworkServicesGrpcRouteType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -312037,6 +312131,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'PrivatecaCaPoolAdditionalExtensions': MigrateHelper(
+      className: 'PrivatecaCaPoolAdditionalExtensions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'critical',
+          dartName: 'critical',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'object_id',
+          dartName: 'objectId',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCaPoolObjectId',
+        ),
+      ],
+    ),
     'PrivatecaCaPoolAllowedIssuanceModes': MigrateHelper(
       className: 'PrivatecaCaPoolAllowedIssuanceModes',
       slots: <MigrateSlot>[
@@ -312162,7 +312283,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'PrivatecaCaPoolBaselineValuesAdditionalExtensions',
+          helper: 'PrivatecaCaPoolAdditionalExtensions',
         ),
         MigrateSlot(
           tfName: 'ca_options',
@@ -312196,33 +312317,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'PrivatecaCaPoolPolicyIds',
-        ),
-      ],
-    ),
-    'PrivatecaCaPoolBaselineValuesAdditionalExtensions': MigrateHelper(
-      className: 'PrivatecaCaPoolBaselineValuesAdditionalExtensions',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'critical',
-          dartName: 'critical',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'value',
-          dartName: 'value',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'object_id',
-          dartName: 'objectId',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          helper: 'PrivatecaCaPoolObjectId',
         ),
       ],
     ),
@@ -343292,6 +343386,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ROOT_SQUASH': 'rootSquash',
       },
     ),
+    'ManagedKafkaAclBindingOperation': MigrateEnum(
+      name: 'ManagedKafkaAclBindingOperation',
+      members: <String, String>{
+        'ALL': 'all',
+        'READ': 'read',
+        'WRITE': 'write',
+        'CREATE': 'create',
+        'DELETE': 'delete',
+        'ALTER': 'alter',
+        'DESCRIBE': 'describe',
+        'CLUSTER_ACTION': 'clusterAction',
+        'DESCRIBE_CONFIGS': 'describeConfigs',
+        'ALTER_CONFIGS': 'alterConfigs',
+        'IDEMPOTENT_WRITE': 'idempotentWrite',
+      },
+    ),
+    'ManagedKafkaAclBindingPermissionType': MigrateEnum(
+      name: 'ManagedKafkaAclBindingPermissionType',
+      members: <String, String>{'ALLOW': 'allow', 'DENY': 'deny'},
+    ),
     'ManagedKafkaAclOperation': MigrateEnum(
       name: 'ManagedKafkaAclOperation',
       members: <String, String>{
@@ -344834,14 +344948,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'SECURE_WEB_GATEWAY': 'secureWebGateway',
       },
     ),
-    'NetworkServicesGrpcRouteHeadersType': MigrateEnum(
-      name: 'NetworkServicesGrpcRouteHeadersType',
-      members: <String, String>{
-        'TYPE_UNSPECIFIED': 'typeUnspecified',
-        'EXACT': 'exact',
-        'REGULAR_EXPRESSION': 'regularExpression',
-      },
-    ),
     'NetworkServicesGrpcRouteMethodType': MigrateEnum(
       name: 'NetworkServicesGrpcRouteMethodType',
       members: <String, String>{
@@ -344858,6 +344964,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'deadline-exceeded': 'deadlineExceeded',
         'resource-exhausted': 'resourceExhausted',
         'unavailable': 'unavailable',
+      },
+    ),
+    'NetworkServicesGrpcRouteType': MigrateEnum(
+      name: 'NetworkServicesGrpcRouteType',
+      members: <String, String>{
+        'TYPE_UNSPECIFIED': 'typeUnspecified',
+        'EXACT': 'exact',
+        'REGULAR_EXPRESSION': 'regularExpression',
       },
     ),
     'NetworkServicesHttpRouteResponseCode': MigrateEnum(

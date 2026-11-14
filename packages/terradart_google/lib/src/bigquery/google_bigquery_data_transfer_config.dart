@@ -313,6 +313,7 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
     required TfArg<Map<String, String>> params,
     TfArg<String>? schedule,
     BigqueryDataTransferConfigScheduleOptions? scheduleOptions,
+    BigqueryDataTransferConfigScheduleOptionsV2? scheduleOptionsV2,
     TfArg<bool>? disabled,
     TfArg<String>? serviceAccountName,
     TfArg<String>? notificationPubsubTopic,
@@ -338,6 +339,8 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
            'schedule': ?schedule,
            if (scheduleOptions != null)
              'schedule_options': TfArg.literal(scheduleOptions.encode()),
+           if (scheduleOptionsV2 != null)
+             'schedule_options_v2': TfArg.literal(scheduleOptionsV2.encode()),
            'disabled': ?disabled,
            'service_account_name': ?serviceAccountName,
            'notification_pubsub_topic': ?notificationPubsubTopic,

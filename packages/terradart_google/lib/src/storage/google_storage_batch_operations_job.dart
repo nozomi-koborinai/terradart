@@ -502,6 +502,7 @@ final class GoogleStorageBatchOperationsJob extends Resource {
     TfArg<String>? jobId,
     required StorageBatchOperationsJobBucketList bucketList,
     required StorageBatchOperationsJobOperation operation,
+    StorageBatchOperationsJobLoggingConfig? loggingConfig,
     TfArg<String>? description,
     TfArg<bool>? deleteProtection,
     TfArg<String>? deletionPolicy,
@@ -515,6 +516,8 @@ final class GoogleStorageBatchOperationsJob extends Resource {
          argMap: {
            'job_id': ?jobId,
            'bucket_list': TfArg.literal(bucketList.encode()),
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal(loggingConfig.encode()),
            'description': ?description,
            'delete_protection': ?deleteProtection,
            'deletion_policy': ?deletionPolicy,

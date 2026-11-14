@@ -1339,6 +1339,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<bool>? cleanupPolicyDryRun,
     ArtifactRegistryRepositoryVulnerabilityScanningConfig?
     vulnerabilityScanningConfig,
+    ArtifactRegistryRepositoryPlatformLogsConfig? platformLogsConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -1368,6 +1369,8 @@ final class GoogleArtifactRegistryRepository extends Resource {
              'vulnerability_scanning_config': TfArg.literal(
                vulnerabilityScanningConfig.encode(),
              ),
+           if (platformLogsConfig != null)
+             'platform_logs_config': TfArg.literal(platformLogsConfig.encode()),
            'project': ?project,
          },
        );

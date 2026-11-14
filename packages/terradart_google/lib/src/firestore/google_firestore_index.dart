@@ -424,6 +424,7 @@ final class GoogleFirestoreIndex extends Resource {
     FirestoreIndexDensity? density,
     TfArg<bool>? multikey,
     TfArg<bool>? unique,
+    FirestoreIndexSearchIndexOptions? searchIndexOptions,
     FirestoreIndexDeletionPolicy? deletionPolicy,
     TfArg<bool>? skipWait,
     TfArg<String>? project,
@@ -442,6 +443,8 @@ final class GoogleFirestoreIndex extends Resource {
            'density': ?density,
            'multikey': ?multikey,
            'unique': ?unique,
+           if (searchIndexOptions != null)
+             'search_index_options': TfArg.literal(searchIndexOptions.encode()),
            'deletion_policy': ?deletionPolicy,
            'skip_wait': ?skipWait,
            'project': ?project,

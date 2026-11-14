@@ -445,13 +445,13 @@ export 'src/network/google_network_services_grpc_route.dart'
         NetworkServicesGrpcRouteDestinations,
         NetworkServicesGrpcRouteFaultInjectionPolicy,
         NetworkServicesGrpcRouteHeaders,
-        NetworkServicesGrpcRouteHeadersType,
         NetworkServicesGrpcRouteMatches,
         NetworkServicesGrpcRouteMethod,
         NetworkServicesGrpcRouteMethodType,
         NetworkServicesGrpcRouteRetryConditions,
         NetworkServicesGrpcRouteRetryPolicy,
-        NetworkServicesGrpcRouteRules;
+        NetworkServicesGrpcRouteRules,
+        NetworkServicesGrpcRouteType;
 export 'src/network/google_network_services_http_route.dart'
     show
         GoogleNetworkServicesHttpRoute,

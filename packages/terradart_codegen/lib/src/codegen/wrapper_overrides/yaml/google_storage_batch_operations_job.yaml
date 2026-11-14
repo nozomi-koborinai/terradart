@@ -57,6 +57,7 @@ paramOrder:
   - put_metadata
   - rewrite_object
   - put_object_hold
+  - logging_config
   - description
   - delete_protection
   - deletion_policy
@@ -65,6 +66,7 @@ paramOrder:
 argMapOrder:
   - job_id
   - bucket_list
+  - logging_config
   - description
   - delete_protection
   - deletion_policy

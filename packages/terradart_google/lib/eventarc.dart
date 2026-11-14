@@ -15,6 +15,9 @@ export 'src/eventarc/google_eventarc_google_api_source.dart'
     show
         EventarcGoogleApiSourceOrganizationSubscription,
         EventarcGoogleApiSourceProjectSubscriptions,
+        EventarcGoogleApiSourceProjectSubscriptionsChoice,
+        EventarcGoogleApiSourceSubscriptions,
+        EventarcGoogleApiSourceSubscriptionsOrganizationSubscription,
         GoogleEventarcGoogleApiSource;
 export 'src/eventarc/google_eventarc_google_channel_config.dart'
     show GoogleEventarcGoogleChannelConfig;

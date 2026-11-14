@@ -474,3 +474,10 @@ google_iam_folder_access_policy.details.rules.principals: principal identifiers 
 google_iam_project_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
 google_iam_organization_access_policy.details.rules.principals: principal identifiers in the formats the cue introduces, not values
 google_network_services_authz_extension.service: a service host name or backend service URI in the formats the cue introduces, not a fixed set
+google_managed_kafka_acl_binding.acl_id: one of the ACL id path patterns ('topic/{resource_name}', ...)
+google_eventarc_google_api_source.project_subscriptions.list: the 'either ... or' is ordinary prose about the project identifier format ('project/{identifier}'), not a value set
+google_vertex_ai_training_pipeline.input_data_config.predefined_split.key: a user-defined column name of the dataset ('one of the Dataset\'s data columns'), not a fixed set
+google_vertex_ai_training_pipeline.input_data_config.stratified_split.key: a user-defined column name of the dataset ('one of the Dataset\'s data columns'), not a fixed set
+google_vertex_ai_training_pipeline.input_data_config.timestamp_split.key: a user-defined column name of the dataset ('one of the Dataset\'s data columns'), not a fixed set
+google_network_services_http_route.rules.action.idle_timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_network_services_grpc_route.rules.action.idle_timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set

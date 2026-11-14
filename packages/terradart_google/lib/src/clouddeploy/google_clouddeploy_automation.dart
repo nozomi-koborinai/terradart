@@ -315,8 +315,8 @@ final class ClouddeployAutomationTargets {
 ///     ],
 ///   ),
 ///   rules: [
-///     .promoteReleaseRule(
-///       .new(
+///     .new(
+///       promoteReleaseRule: .new(
 ///         id: .literal('promote-release'),
 ///       ),
 ///     ),

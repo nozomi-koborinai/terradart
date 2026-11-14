@@ -89,11 +89,9 @@ curatedDoc: |-
   ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
   ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
   ///     repository: repository.id,
-  ///     event: .pullRequest(
-  ///       .new(
-  ///         branch: .literal(r'^main$'),
-  ///         commentControl: .commentsEnabled,
-  ///       ),
+  ///     pullRequest: .new(
+  ///       branch: .literal(r'^main$'),
+  ///       commentControl: .commentsEnabled,
   ///     ),
   ///   ),
   /// );
@@ -112,6 +110,9 @@ sealedNames:
   "github.push.branch, github.push.tag": revision
   "trigger_template.branch_name, trigger_template.commit_sha, trigger_template.tag_name": revision
   "build, filename, git_file_source": build_spec
+
+typeNames:
+  bitbucket_server_trigger_config.push: CloudbuildTriggerPush
 
 paramOrder:
   - name

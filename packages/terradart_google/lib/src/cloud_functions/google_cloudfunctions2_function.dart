@@ -605,15 +605,13 @@ final class Cloudfunctions2FunctionVersions {
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('hello'),
-///     source: .storageSource(
-///       .new(
+///     source: .new(
+///       storageSource: .new(
 ///         bucket: .of(bucket),
 ///         object: .literal('hello-http.zip'),
 ///       ),
 ///     ),
-///     updatePolicy: .automaticUpdatePolicy(
-///       .new(),
-///     ),
+///     automaticUpdatePolicy: .new(),
 ///   ),
 ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
 ///     availableMemory: .literal('256M'),
@@ -638,15 +636,13 @@ final class Cloudfunctions2FunctionVersions {
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('handle'),
-///     source: .storageSource(
-///       .new(
+///     source: .new(
+///       storageSource: .new(
 ///         bucket: .of(bucket),
 ///         object: .literal('order-handler.zip'),
 ///       ),
 ///     ),
-///     updatePolicy: .automaticUpdatePolicy(
-///       .new(),
-///     ),
+///     automaticUpdatePolicy: .new(),
 ///   ),
 ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
 ///     eventType: .literal('google.cloud.pubsub.topic.v1.messagePublished'),

@@ -3056,6 +3056,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'cleanupPolicies',
       'cleanupPolicyDryRun',
       'vulnerabilityScanningConfig',
+      'platformLogsConfig',
       'project',
     ],
     nestedTypes: <String>[
@@ -5136,6 +5137,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'params',
       'schedule',
       'scheduleOptions',
+      'scheduleOptionsV2',
       'disabled',
       'serviceAccountName',
       'notificationPubsubTopic',
@@ -9737,7 +9739,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CloudbuildTriggerBitbucketServerTriggerConfigEventPush',
       'CloudbuildTriggerBitbucketServerTriggerConfigPullRequest',
       'CloudbuildTriggerCommentControl',
-      'CloudbuildTriggerBitbucketServerTriggerConfigPush',
+      'CloudbuildTriggerPush',
       'CloudbuildTriggerPushRevision',
       'CloudbuildTriggerPushRevisionBranch',
       'CloudbuildTriggerPushRevisionTag',
@@ -9788,7 +9790,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_cloudbuild_trigger`.\n\nConfiguration for an automated build in response to source repository\nchanges.\n\nThe resource has **two competing repository-connection forms** that\ncallers must pick between:\n\n1. **v1 (legacy)** — point the trigger at a GitHub App / Bitbucket\n   Server installation directly via the inline [github] or\n   [bitbucketServerTriggerConfig] block. The trigger watches the SCM\n   webhook delivered through the legacy Cloud Build first-party\n   integration. Recommended only for installs that pre-date the\n   second-generation connection (i.e. existing GitHub App users).\n2. **v2 (modern, 2024+)** — supply [repositoryEventConfig] referring\n   to a `cloudbuildv2_repository` (which in turn pins a\n   `cloudbuildv2_connection`). The v2 form supports the full matrix\n   of providers — GitHub, GitHub Enterprise, GitLab Self-Managed,\n   Bitbucket Data Center, Bitbucket Cloud — through a single uniform\n   Repo API surface. Recommended for new builds.\n\nEach trigger picks exactly one of: [github] / [bitbucketServerTriggerConfig]\n/ [repositoryEventConfig] / [developerConnectEventConfig] /\n[pubsubConfig] / [webhookConfig] / [triggerTemplate] / [sourceToBuild].\nThe first six wire up an event source; [triggerTemplate] is the\nlegacy Cloud Source Repositories form; [sourceToBuild] declares a\nmanual / Pub/Sub / Webhook-invoked build\'s source explicitly.\n\nBuild content is the required [CloudbuildTriggerBuildSpec] `buildSpec`\nargument, one of:\n- `.filename(...)` — path to an in-repo `cloudbuild.yaml`. Use with\n  [triggerTemplate], [github] or [repositoryEventConfig].\n- `.gitFileSource(...)` — fetch the build config from an arbitrary\n  repo / ref. Use with Pub/Sub, Webhook, Manual, or v2 triggers.\n- `.build(...)` — inline build steps + options.\n\nOptional but commonly set:\n- `location`: Cloud Build region (e.g. `\'asia-northeast1\'`).\n  Defaults to `\'global\'`. Repository-event triggers MUST live in the\n  same region as their `cloudbuildv2_repository`.\n- `name`: trigger name (must be unique within the project). When\n  omitted the API assigns one.\n- `serviceAccount`: the service account the build runs as. When\n  `null` the legacy `[PROJECT_NUM]@cloudbuild.gserviceaccount.com`\n  SA is used.\n\n### Example 1 — v1 form (GitHub App push to `main`, runs in-repo\n`cloudbuild.yaml`):\n```dart\nfinal pushTrigger = GoogleCloudbuildTrigger(\n  \'push_main\',\n  name: .literal(\'push-main\'),\n  location: .literal(\'asia-northeast1\'),\n  buildSpec: .filename(.literal(\'cloudbuild.yaml\')),\n  github: CloudbuildTriggerGithub(\n    owner: .literal(\'myorg\'),\n    name: .literal(\'my-repo\'),\n    event: .push(\n      .new(revision: .branch(.literal(r\'^main\$\'))),\n    ),\n  ),\n);\n```\n\n### Example 2 — v2 form (pull-request gate against a\n`cloudbuildv2_repository`):\n```dart\nfinal runner = add(GoogleServiceAccount(\n  \'runner\',\n  accountId: .literal(\'runner\'),\n));\nfinal repository = add(GoogleCloudbuildv2Repository(\n  \'repository\',\n  name: .literal(\'repository\'),\n  parentConnection: add(GoogleCloudbuildv2Connection(\n    \'connection\',\n    name: .literal(\'connection\'),\n    location: .literal(\'asia-northeast1\'),\n  )).ref,\n  remoteUri: .literal(\'https://github.com/myorg/my-repo.git\'),\n));\nfinal prTrigger = GoogleCloudbuildTrigger(\n  \'pr_gate\',\n  name: .literal(\'pr-gate\'),\n  location: .literal(\'asia-northeast1\'),\n  serviceAccount: .of(runner),\n  buildSpec: .filename(.literal(\'cloudbuild.yaml\')),\n  repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(\n    repository: repository.id,\n    event: .pullRequest(\n      .new(\n        branch: .literal(r\'^main\$\'),\n        commentControl: .commentsEnabled,\n      ),\n    ),\n  ),\n);\n```\n\nCross-resource references:\n- `build.options.pool` accepts a `google_cloudbuild_worker_pool` id.\n- [repositoryEventConfig].`repository` accepts a\n  `google_cloudbuildv2_repository` id.',
+        'Factory wrapper for `google_cloudbuild_trigger`.\n\nConfiguration for an automated build in response to source repository\nchanges.\n\nThe resource has **two competing repository-connection forms** that\ncallers must pick between:\n\n1. **v1 (legacy)** — point the trigger at a GitHub App / Bitbucket\n   Server installation directly via the inline [github] or\n   [bitbucketServerTriggerConfig] block. The trigger watches the SCM\n   webhook delivered through the legacy Cloud Build first-party\n   integration. Recommended only for installs that pre-date the\n   second-generation connection (i.e. existing GitHub App users).\n2. **v2 (modern, 2024+)** — supply [repositoryEventConfig] referring\n   to a `cloudbuildv2_repository` (which in turn pins a\n   `cloudbuildv2_connection`). The v2 form supports the full matrix\n   of providers — GitHub, GitHub Enterprise, GitLab Self-Managed,\n   Bitbucket Data Center, Bitbucket Cloud — through a single uniform\n   Repo API surface. Recommended for new builds.\n\nEach trigger picks exactly one of: [github] / [bitbucketServerTriggerConfig]\n/ [repositoryEventConfig] / [developerConnectEventConfig] /\n[pubsubConfig] / [webhookConfig] / [triggerTemplate] / [sourceToBuild].\nThe first six wire up an event source; [triggerTemplate] is the\nlegacy Cloud Source Repositories form; [sourceToBuild] declares a\nmanual / Pub/Sub / Webhook-invoked build\'s source explicitly.\n\nBuild content is the required [CloudbuildTriggerBuildSpec] `buildSpec`\nargument, one of:\n- `.filename(...)` — path to an in-repo `cloudbuild.yaml`. Use with\n  [triggerTemplate], [github] or [repositoryEventConfig].\n- `.gitFileSource(...)` — fetch the build config from an arbitrary\n  repo / ref. Use with Pub/Sub, Webhook, Manual, or v2 triggers.\n- `.build(...)` — inline build steps + options.\n\nOptional but commonly set:\n- `location`: Cloud Build region (e.g. `\'asia-northeast1\'`).\n  Defaults to `\'global\'`. Repository-event triggers MUST live in the\n  same region as their `cloudbuildv2_repository`.\n- `name`: trigger name (must be unique within the project). When\n  omitted the API assigns one.\n- `serviceAccount`: the service account the build runs as. When\n  `null` the legacy `[PROJECT_NUM]@cloudbuild.gserviceaccount.com`\n  SA is used.\n\n### Example 1 — v1 form (GitHub App push to `main`, runs in-repo\n`cloudbuild.yaml`):\n```dart\nfinal pushTrigger = GoogleCloudbuildTrigger(\n  \'push_main\',\n  name: .literal(\'push-main\'),\n  location: .literal(\'asia-northeast1\'),\n  buildSpec: .filename(.literal(\'cloudbuild.yaml\')),\n  github: CloudbuildTriggerGithub(\n    owner: .literal(\'myorg\'),\n    name: .literal(\'my-repo\'),\n    event: .push(\n      .new(revision: .branch(.literal(r\'^main\$\'))),\n    ),\n  ),\n);\n```\n\n### Example 2 — v2 form (pull-request gate against a\n`cloudbuildv2_repository`):\n```dart\nfinal runner = add(GoogleServiceAccount(\n  \'runner\',\n  accountId: .literal(\'runner\'),\n));\nfinal repository = add(GoogleCloudbuildv2Repository(\n  \'repository\',\n  name: .literal(\'repository\'),\n  parentConnection: add(GoogleCloudbuildv2Connection(\n    \'connection\',\n    name: .literal(\'connection\'),\n    location: .literal(\'asia-northeast1\'),\n  )).ref,\n  remoteUri: .literal(\'https://github.com/myorg/my-repo.git\'),\n));\nfinal prTrigger = GoogleCloudbuildTrigger(\n  \'pr_gate\',\n  name: .literal(\'pr-gate\'),\n  location: .literal(\'asia-northeast1\'),\n  serviceAccount: .of(runner),\n  buildSpec: .filename(.literal(\'cloudbuild.yaml\')),\n  repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(\n    repository: repository.id,\n    pullRequest: .new(\n      branch: .literal(r\'^main\$\'),\n      commentControl: .commentsEnabled,\n    ),\n  ),\n);\n```\n\nCross-resource references:\n- `build.options.pool` accepts a `google_cloudbuild_worker_pool` id.\n- [repositoryEventConfig].`repository` accepts a\n  `google_cloudbuildv2_repository` id.',
   ),
   CatalogEntry(
     tfType: 'google_cloudbuild_trigger',
@@ -10007,7 +10009,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_clouddeploy_automation`.\n\nAn `Automation` enables the automation of manually driven actions for a\nDelivery Pipeline, which includes Release promotion amongst Targets, Rollout\nrepair and Rollout deployment strategy advancement.\n\nCloud Deploy **automation** — promotes / advances / repairs rollouts\non a [GoogleClouddeployDeliveryPipeline]. Nested `rules` and\n`selector` blocks are passed as structured maps (same as the other\nCloud Deploy factories). Set [suspended] to `true` so the automation\ndoes not fire rollouts.\n\n**Cost:** gcp-cost: Cloud Deploy `C3AD-803F-FC89` Active Multiple\nTarget Delivery Pipelines `E1A5-8E1F-C1DE` **\$5/count**.\nbilling-behavior: automations are pipeline config — the catalog SKU\nis for *active multi-target pipelines*, not for creating an\nautomation. Enable `clouddeploy.googleapis.com` before apply.\n\nExample:\n```dart\nfinal pipeline = add(GoogleClouddeployDeliveryPipeline(\n  \'pipeline\',\n  name: .literal(\'pipeline\'),\n  location: .literal(\'us-central1\'),\n));\nfinal deployer = add(GoogleServiceAccount(\n  \'deployer\',\n  accountId: .literal(\'deployer\'),\n));\nGoogleClouddeployAutomation(\n  \'promote\',\n  name: .literal(\'terradart-automation\'),\n  location: .literal(\'us-central1\'),\n  deliveryPipeline: pipeline.ref,\n  serviceAccount: .of(deployer),\n  suspended: .literal(true),\n  selector: ClouddeployAutomationSelector(\n    targets: [\n      .new(\n        id: .literal(\'terradart-run-target\'),\n      ),\n    ],\n  ),\n  rules: [\n    .promoteReleaseRule(\n      .new(\n        id: .literal(\'promote-release\'),\n      ),\n    ),\n  ],\n);\n```',
+        'Factory wrapper for `google_clouddeploy_automation`.\n\nAn `Automation` enables the automation of manually driven actions for a\nDelivery Pipeline, which includes Release promotion amongst Targets, Rollout\nrepair and Rollout deployment strategy advancement.\n\nCloud Deploy **automation** — promotes / advances / repairs rollouts\non a [GoogleClouddeployDeliveryPipeline]. Nested `rules` and\n`selector` blocks are passed as structured maps (same as the other\nCloud Deploy factories). Set [suspended] to `true` so the automation\ndoes not fire rollouts.\n\n**Cost:** gcp-cost: Cloud Deploy `C3AD-803F-FC89` Active Multiple\nTarget Delivery Pipelines `E1A5-8E1F-C1DE` **\$5/count**.\nbilling-behavior: automations are pipeline config — the catalog SKU\nis for *active multi-target pipelines*, not for creating an\nautomation. Enable `clouddeploy.googleapis.com` before apply.\n\nExample:\n```dart\nfinal pipeline = add(GoogleClouddeployDeliveryPipeline(\n  \'pipeline\',\n  name: .literal(\'pipeline\'),\n  location: .literal(\'us-central1\'),\n));\nfinal deployer = add(GoogleServiceAccount(\n  \'deployer\',\n  accountId: .literal(\'deployer\'),\n));\nGoogleClouddeployAutomation(\n  \'promote\',\n  name: .literal(\'terradart-automation\'),\n  location: .literal(\'us-central1\'),\n  deliveryPipeline: pipeline.ref,\n  serviceAccount: .of(deployer),\n  suspended: .literal(true),\n  selector: ClouddeployAutomationSelector(\n    targets: [\n      .new(\n        id: .literal(\'terradart-run-target\'),\n      ),\n    ],\n  ),\n  rules: [\n    .new(\n      promoteReleaseRule: .new(\n        id: .literal(\'promote-release\'),\n      ),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_custom_target_type',
@@ -10478,7 +10480,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_cloudfunctions2_function`.\n\nA Cloud Function that contains user computation executed in response to an\nevent.\n\nCloud Functions Gen 2 function. Gen 2 runs on Cloud Run + Eventarc +\nCloud Build; this resource owns the build step (source archive + runtime),\nthe runtime service config (memory / CPU / scaling), and optionally an\nevent-trigger binding.\n\nExample (HTTP-triggered Python function backed by a GCS source archive):\n```dart\nfinal bucket = add(GoogleStorageBucket(\n  \'bucket\',\n  name: .literal(\'bucket\'),\n  location: .literal(\'US\'),\n));\nfinal fn = GoogleCloudfunctions2Function(\n  \'http_fn\',\n  name: .literal(\'hello-http\'),\n  location: .literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: .literal(\'python311\'),\n    entryPoint: .literal(\'hello\'),\n    source: .storageSource(\n      .new(\n        bucket: .of(bucket),\n        object: .literal(\'hello-http.zip\'),\n      ),\n    ),\n    updatePolicy: .automaticUpdatePolicy(\n      .new(),\n    ),\n  ),\n  serviceConfig: Cloudfunctions2FunctionServiceConfig(\n    availableMemory: .literal(\'256M\'),\n    timeoutSeconds: .literal(60),\n    ingressSettings: .allowAll,\n  ),\n);\n```\n\nExample (Pub/Sub event-triggered function):\n```dart\nfinal bucket = add(GoogleStorageBucket(\n  \'bucket\',\n  name: .literal(\'bucket\'),\n  location: .literal(\'US\'),\n));\nfinal orders = add(GooglePubsubTopic(\'orders\', name: .literal(\'orders\')));\nfinal fn = GoogleCloudfunctions2Function(\n  \'sub_fn\',\n  name: .literal(\'order-handler\'),\n  location: .literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: .literal(\'python311\'),\n    entryPoint: .literal(\'handle\'),\n    source: .storageSource(\n      .new(\n        bucket: .of(bucket),\n        object: .literal(\'order-handler.zip\'),\n      ),\n    ),\n    updatePolicy: .automaticUpdatePolicy(\n      .new(),\n    ),\n  ),\n  eventTrigger: Cloudfunctions2FunctionEventTrigger(\n    eventType: .literal(\'google.cloud.pubsub.topic.v1.messagePublished\'),\n    pubsubTopic: .of(orders),\n    retryPolicy: .retry,\n  ),\n);\n```',
+        'Factory wrapper for `google_cloudfunctions2_function`.\n\nA Cloud Function that contains user computation executed in response to an\nevent.\n\nCloud Functions Gen 2 function. Gen 2 runs on Cloud Run + Eventarc +\nCloud Build; this resource owns the build step (source archive + runtime),\nthe runtime service config (memory / CPU / scaling), and optionally an\nevent-trigger binding.\n\nExample (HTTP-triggered Python function backed by a GCS source archive):\n```dart\nfinal bucket = add(GoogleStorageBucket(\n  \'bucket\',\n  name: .literal(\'bucket\'),\n  location: .literal(\'US\'),\n));\nfinal fn = GoogleCloudfunctions2Function(\n  \'http_fn\',\n  name: .literal(\'hello-http\'),\n  location: .literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: .literal(\'python311\'),\n    entryPoint: .literal(\'hello\'),\n    source: .new(\n      storageSource: .new(\n        bucket: .of(bucket),\n        object: .literal(\'hello-http.zip\'),\n      ),\n    ),\n    automaticUpdatePolicy: .new(),\n  ),\n  serviceConfig: Cloudfunctions2FunctionServiceConfig(\n    availableMemory: .literal(\'256M\'),\n    timeoutSeconds: .literal(60),\n    ingressSettings: .allowAll,\n  ),\n);\n```\n\nExample (Pub/Sub event-triggered function):\n```dart\nfinal bucket = add(GoogleStorageBucket(\n  \'bucket\',\n  name: .literal(\'bucket\'),\n  location: .literal(\'US\'),\n));\nfinal orders = add(GooglePubsubTopic(\'orders\', name: .literal(\'orders\')));\nfinal fn = GoogleCloudfunctions2Function(\n  \'sub_fn\',\n  name: .literal(\'order-handler\'),\n  location: .literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: .literal(\'python311\'),\n    entryPoint: .literal(\'handle\'),\n    source: .new(\n      storageSource: .new(\n        bucket: .of(bucket),\n        object: .literal(\'order-handler.zip\'),\n      ),\n    ),\n    automaticUpdatePolicy: .new(),\n  ),\n  eventTrigger: Cloudfunctions2FunctionEventTrigger(\n    eventType: .literal(\'google.cloud.pubsub.topic.v1.messagePublished\'),\n    pubsubTopic: .of(orders),\n    retryPolicy: .retry,\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_cloudfunctions2_function',
@@ -17329,7 +17331,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: RefTo.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    source: .gitSource(\n      .new(\n        repo: .literal(\n          \'https://github.com/terraform-google-modules/terraform-google-network\',\n        ),\n        directory: .literal(\'modules/vpc\'),\n        ref: .literal(\'main\'),\n      ),\n    ),\n    inputValues: [\n      .new(\n        variableName: .literal(\'project_id\'),\n        inputValue: .literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
+        'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: RefTo.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    gitSource: .new(\n      repo: .literal(\n        \'https://github.com/terraform-google-modules/terraform-google-network\',\n      ),\n      directory: .literal(\'modules/vpc\'),\n      ref: .literal(\'main\'),\n    ),\n    inputValues: [\n      .new(\n        variableName: .literal(\'project_id\'),\n        inputValue: .literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_contact_center_insights_analysis_rule',
@@ -19151,10 +19153,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'DataLossPreventionDeidentifyTemplateDeidentifyConfig',
-      'DataLossPreventionDeidentifyTemplateTransformations',
-      'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice',
-      'DataLossPreventionDeidentifyTemplateRecordTransformationsChoice',
-      'DataLossPreventionDeidentifyTemplateImageTransformationsChoice',
+      'DataLossPreventionDeidentifyTemplateTransformation',
+      'DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations',
+      'DataLossPreventionDeidentifyTemplateTransformationRecordTransformations',
+      'DataLossPreventionDeidentifyTemplateTransformationImageTransformations',
       'DataLossPreventionDeidentifyTemplateImageTransformations',
       'DataLossPreventionDeidentifyTemplateTransforms',
       'DataLossPreventionDeidentifyTemplateAllInfoTypes',
@@ -19165,7 +19167,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataLossPreventionDeidentifyTemplateSensitivityScore',
       'DataLossPreventionDeidentifyTemplateScore',
       'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
-      'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations',
+      'DataLossPreventionDeidentifyTemplateTransformations',
       'DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation',
       'DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig',
       'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
@@ -19212,7 +19214,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataLossPreventionDeidentifyTemplateValue',
       'DataLossPreventionDeidentifyTemplateFields',
       'DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTransformations',
-      'DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations',
+      'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations',
       'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
       'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
       'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
@@ -25065,8 +25067,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
       'loggingConfig',
+      'subscriptions',
     ],
     nestedTypes: <String>[
+      'EventarcGoogleApiSourceSubscriptions',
+      'EventarcGoogleApiSourceSubscriptionsOrganizationSubscription',
+      'EventarcGoogleApiSourceProjectSubscriptionsChoice',
       'EventarcGoogleApiSourceOrganizationSubscription',
       'EventarcGoogleApiSourceProjectSubscriptions',
     ],
@@ -25894,6 +25900,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'density',
       'multikey',
       'unique',
+      'searchIndexOptions',
       'deletionPolicy',
       'skipWait',
       'project',
@@ -30778,6 +30785,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'logConfig',
       'nodeConfig',
       'sslConfig',
+      'trafficShapingConfigs',
       'labels',
       'deletionPolicy',
       'project',
@@ -32259,7 +32267,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'principal',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ManagedKafkaAclBindingOperation',
+      'ManagedKafkaAclBindingPermissionType',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_managed_kafka_acl_binding`.\n\nA single grant (principal, operation, permission type and host) on a Managed\nService for Apache Kafka ACL. Unlike `google_managed_kafka_acl`, whose\n`Update` call (`UpdateAcl`) replaces the entire `acl_entries` list, this\nresource adds and removes exactly one entry via the `AddAclEntry` and\n`RemoveAclEntry` RPCs, so multiple independently-managed Terraform\nconfigurations can each own one grant on the same ACL without clobbering\neach other\'s entries on `apply`. Apache Kafka is a trademark owned by the\nApache Software Foundation.',
@@ -35360,7 +35371,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'NetworkServicesGrpcRouteRetryConditions',
       'NetworkServicesGrpcRouteMatches',
       'NetworkServicesGrpcRouteHeaders',
-      'NetworkServicesGrpcRouteHeadersType',
+      'NetworkServicesGrpcRouteType',
       'NetworkServicesGrpcRouteMethod',
       'NetworkServicesGrpcRouteMethodType',
     ],
@@ -37615,7 +37626,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'PrivatecaCaPoolSignatureAlgorithm',
       'PrivatecaCaPoolRsa',
       'PrivatecaCaPoolBaselineValues',
-      'PrivatecaCaPoolBaselineValuesAdditionalExtensions',
+      'PrivatecaCaPoolAdditionalExtensions',
       'PrivatecaCaPoolObjectId',
       'PrivatecaCaPoolCaOptions',
       'PrivatecaCaPoolKeyUsage',
@@ -41598,6 +41609,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'pointInTimeRestoreContext',
       'replicationCluster',
       'restoreBackupContext',
+      'blueGreenDeployment',
     ],
     nestedTypes: <String>[
       'SqlDatabaseInstanceDatabaseCenterIntegration',
@@ -41854,6 +41866,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'jobId',
       'bucketList',
       'operation',
+      'loggingConfig',
       'description',
       'deleteProtection',
       'deletionPolicy',
@@ -43785,7 +43798,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vertex_ai_index`.\n\nA representation of a collection of database items organized in a way that\nallows for approximate nearest neighbor (a.k.a ANN) algorithms search.\n\nVertex AI **index** — Matching Engine / Vector Search ANN index\n(batch or streaming update).\n\n**Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` bills\n**Vector Search Index Building** when content is ingested (SKU\n`8724-DA51-DA95` **\$3/GiBy**). Deploying the index onto an endpoint\nadds separate **Index Serving** node-hours (see\n[GoogleVertexAiIndexEndpointDeployedIndex]). Too expensive for\napply-smoke — factories ship without a quickstart.\n\nRequires [displayName] and [metadata] (with `config.dimensions`).\nSet [indexUpdateMethod] to `STREAM_UPDATE` for near-real-time upserts,\nor leave the default `BATCH_UPDATE` and point\n`metadata.contents_delta_uri` at a GCS directory of datapoints.\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply.\n\nExample:\n```dart\nGoogleVertexAiIndex(\n  \'idx\',\n  displayName: TfArg.literal(\'terradart-idx\'),\n  region: TfArg.literal(\'us-central1\'),\n  indexUpdateMethod: .streamUpdate,\n  metadata: VertexAiIndexMetadata(\n    config: .new(\n      dimensions: TfArg.literal(128),\n      approximateNeighborsCount: TfArg.literal(10),\n      distanceMeasureType: .dotProductDistance,\n      algorithmConfig: .treeAhConfig(\n        .new(\n          leafNodeEmbeddingCount: TfArg.literal(1000),\n          leafNodesToSearchPercent: TfArg.literal(10),\n        ),\n      ),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_vertex_ai_index`.\n\nA representation of a collection of database items organized in a way that\nallows for approximate nearest neighbor (a.k.a ANN) algorithms search.\n\nVertex AI **index** — Matching Engine / Vector Search ANN index\n(batch or streaming update).\n\n**Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` bills\n**Vector Search Index Building** when content is ingested (SKU\n`8724-DA51-DA95` **\$3/GiBy**). Deploying the index onto an endpoint\nadds separate **Index Serving** node-hours (see\n[GoogleVertexAiIndexEndpointDeployedIndex]). Too expensive for\napply-smoke — factories ship without a quickstart.\n\nRequires [displayName] and [metadata] (with `config.dimensions`).\nSet [indexUpdateMethod] to `STREAM_UPDATE` for near-real-time upserts,\nor leave the default `BATCH_UPDATE` and point\n`metadata.contents_delta_uri` at a GCS directory of datapoints.\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply.\n\nExample:\n```dart\nGoogleVertexAiIndex(\n  \'idx\',\n  displayName: TfArg.literal(\'terradart-idx\'),\n  region: TfArg.literal(\'us-central1\'),\n  indexUpdateMethod: .streamUpdate,\n  metadata: VertexAiIndexMetadata(\n    config: .new(\n      dimensions: TfArg.literal(128),\n      approximateNeighborsCount: TfArg.literal(10),\n      distanceMeasureType: .dotProductDistance,\n      algorithmConfig: .new(\n        treeAhConfig: .new(\n          leafNodeEmbeddingCount: TfArg.literal(1000),\n          leafNodesToSearchPercent: TfArg.literal(10),\n        ),\n      ),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_index',

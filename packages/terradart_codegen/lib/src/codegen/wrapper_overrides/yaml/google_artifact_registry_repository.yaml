@@ -29,6 +29,7 @@ paramOrder:
   - cleanup_policies
   - cleanup_policy_dry_run
   - vulnerability_scanning_config
+  - platform_logs_config
   - project
 
 dartTypeOverrides:

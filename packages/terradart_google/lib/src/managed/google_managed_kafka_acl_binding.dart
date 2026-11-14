@@ -6,6 +6,79 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_managed_kafka_acl_binding`.
 const Set<String> _googleManagedKafkaAclBindingSensitive = <String>{};
 
+/// Managed Kafka Acl Binding enum for `operation`.
+extension type const ManagedKafkaAclBindingOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedKafkaAclBindingOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedKafkaAclBindingOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedKafkaAclBindingOperation.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = ManagedKafkaAclBindingOperation._(TfArgLiteral('ALL'));
+  static const read = ManagedKafkaAclBindingOperation._(TfArgLiteral('READ'));
+  static const write = ManagedKafkaAclBindingOperation._(TfArgLiteral('WRITE'));
+  static const create = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('CREATE'),
+  );
+  static const delete = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('DELETE'),
+  );
+  static const alter = ManagedKafkaAclBindingOperation._(TfArgLiteral('ALTER'));
+  static const describe = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('DESCRIBE'),
+  );
+  static const clusterAction = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('CLUSTER_ACTION'),
+  );
+  static const describeConfigs = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('DESCRIBE_CONFIGS'),
+  );
+  static const alterConfigs = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('ALTER_CONFIGS'),
+  );
+  static const idempotentWrite = ManagedKafkaAclBindingOperation._(
+    TfArgLiteral('IDEMPOTENT_WRITE'),
+  );
+
+  static const List<ManagedKafkaAclBindingOperation> values = [
+    all,
+    read,
+    write,
+    create,
+    delete,
+    alter,
+    describe,
+    clusterAction,
+    describeConfigs,
+    alterConfigs,
+    idempotentWrite,
+  ];
+}
+
+/// Managed Kafka Acl Binding Permission enum for `permission_type`.
+extension type const ManagedKafkaAclBindingPermissionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedKafkaAclBindingPermissionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedKafkaAclBindingPermissionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedKafkaAclBindingPermissionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = ManagedKafkaAclBindingPermissionType._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = ManagedKafkaAclBindingPermissionType._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<ManagedKafkaAclBindingPermissionType> values = [
+    allow,
+    deny,
+  ];
+}
+
 /// Factory wrapper for `google_managed_kafka_acl_binding`.
 ///
 /// A single grant (principal, operation, permission type and host) on a Managed
@@ -26,8 +99,8 @@ final class GoogleManagedKafkaAclBinding extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? host,
     required TfArg<String> location,
-    required TfArg<String> operation,
-    TfArg<String>? permissionType,
+    required ManagedKafkaAclBindingOperation operation,
+    ManagedKafkaAclBindingPermissionType? permissionType,
     required TfArg<String> principal,
     TfArg<String>? project,
     super.lifecycle,

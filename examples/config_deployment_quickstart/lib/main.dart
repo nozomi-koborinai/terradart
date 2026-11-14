@@ -56,14 +56,12 @@ final class ConfigDeploymentStack extends Stack {
         serviceAccount: actuationSa.ref,
         forceDestroy: .literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-          source: .gitSource(
-            .new(
-              repo: .literal(
-                'https://github.com/terraform-google-modules/terraform-google-network',
-              ),
-              directory: .literal('modules/vpc'),
-              ref: .literal('main'),
+          gitSource: .new(
+            repo: .literal(
+              'https://github.com/terraform-google-modules/terraform-google-network',
             ),
+            directory: .literal('modules/vpc'),
+            ref: .literal('main'),
           ),
           inputValues: [
             .new(

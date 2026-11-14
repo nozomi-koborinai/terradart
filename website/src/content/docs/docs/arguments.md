@@ -176,19 +176,16 @@ add(
 );
 ```
 
-A variant whose block has no fields takes no argument, as the Avro `format` of this import does:
+A variant whose block has no fields takes no argument, as the BigQuery `endpoint` of this profile does:
 
 ```dart
-final bucket = add(
-  GoogleStorageBucket('drop', name: .literal('my-project-drop'), location: .literal('EU')),
-);
 add(
-  GooglePubsubTopic(
-    'imports',
-    name: .literal('imports'),
-    ingestionDataSourceSettings: .new(
-      cloudStorage: .new(bucket: bucket.ref, format: .avroFormat()),
-    ),
+  GoogleDatastreamConnectionProfile(
+    'warehouse',
+    connectionProfileId: .literal('warehouse'),
+    location: .literal('us-central1'),
+    displayName: .literal('Warehouse'),
+    endpoint: .bigqueryProfile(),
   ),
 );
 ```

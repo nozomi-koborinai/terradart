@@ -1602,6 +1602,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     SqlDatabaseInstancePointInTimeRestoreContext? pointInTimeRestoreContext,
     SqlDatabaseInstanceReplicationCluster? replicationCluster,
     SqlDatabaseInstanceRestoreBackupContext? restoreBackupContext,
+    SqlDatabaseInstanceBlueGreenDeployment? blueGreenDeployment,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1646,6 +1647,10 @@ final class GoogleSqlDatabaseInstance extends Resource {
            if (restoreBackupContext != null)
              'restore_backup_context': TfArg.literal(
                restoreBackupContext.encode(),
+             ),
+           if (blueGreenDeployment != null)
+             'blue_green_deployment': TfArg.literal(
+               blueGreenDeployment.encode(),
              ),
          },
        );

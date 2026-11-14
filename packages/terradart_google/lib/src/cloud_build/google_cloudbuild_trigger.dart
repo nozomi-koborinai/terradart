@@ -189,7 +189,7 @@ sealed class CloudbuildTriggerBitbucketServerTriggerConfigEvent {
 
   /// Sets `push`.
   const factory CloudbuildTriggerBitbucketServerTriggerConfigEvent.push(
-    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
+    CloudbuildTriggerPush push,
   ) = CloudbuildTriggerBitbucketServerTriggerConfigEventPush;
 
   /// The Terraform argument this choice sets.
@@ -223,7 +223,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigEventPush
     extends CloudbuildTriggerBitbucketServerTriggerConfigEvent {
   const CloudbuildTriggerBitbucketServerTriggerConfigEventPush(this.push);
 
-  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
+  final CloudbuildTriggerPush push;
 
   @internal
   @override
@@ -290,11 +290,8 @@ extension type const CloudbuildTriggerCommentControl._(TfArg<String> _)
 /// `google_cloudbuild_trigger` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
-  const CloudbuildTriggerBitbucketServerTriggerConfigPush({
-    required this.revision,
-    this.invertRegex,
-  });
+final class CloudbuildTriggerPush {
+  const CloudbuildTriggerPush({required this.revision, this.invertRegex});
 
   final CloudbuildTriggerPushRevision revision;
 
@@ -1259,9 +1256,8 @@ sealed class CloudbuildTriggerGithubEvent {
   ) = CloudbuildTriggerGithubEventPullRequest;
 
   /// Sets `push`.
-  const factory CloudbuildTriggerGithubEvent.push(
-    CloudbuildTriggerBitbucketServerTriggerConfigPush push,
-  ) = CloudbuildTriggerGithubEventPush;
+  const factory CloudbuildTriggerGithubEvent.push(CloudbuildTriggerPush push) =
+      CloudbuildTriggerGithubEventPush;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -1292,7 +1288,7 @@ final class CloudbuildTriggerGithubEventPush
     extends CloudbuildTriggerGithubEvent {
   const CloudbuildTriggerGithubEventPush(this.push);
 
-  final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
+  final CloudbuildTriggerPush push;
 
   @internal
   @override
@@ -1590,11 +1586,9 @@ final class CloudbuildTriggerWebhookConfig {
 ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
 ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
 ///     repository: repository.id,
-///     event: .pullRequest(
-///       .new(
-///         branch: .literal(r'^main$'),
-///         commentControl: .commentsEnabled,
-///       ),
+///     pullRequest: .new(
+///       branch: .literal(r'^main$'),
+///       commentControl: .commentsEnabled,
 ///     ),
 ///   ),
 /// );

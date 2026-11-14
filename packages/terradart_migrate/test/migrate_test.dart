@@ -701,17 +701,14 @@ resource "aws_s3_bucket" "logs" {
 
     test('a variant of an empty block takes no argument', () {
       final r = _migrateHcl('''
-resource "google_pubsub_topic" "t" {
-  name = "t"
-  ingestion_data_source_settings {
-    cloud_storage {
-      bucket = "b"
-      avro_format {}
-    }
-  }
+resource "google_datastream_connection_profile" "warehouse" {
+  connection_profile_id = "warehouse"
+  location              = "us-central1"
+  display_name          = "Warehouse"
+  bigquery_profile {}
 }
 ''');
-      expect(r.stackSource, contains('format: .avroFormat()'));
+      expect(r.stackSource, contains('endpoint: .bigqueryProfile()'));
     });
 
     test('a helper variant whose block has a scalar of the same name', () {

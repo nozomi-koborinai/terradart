@@ -248,8 +248,7 @@ final class PrivatecaCaPoolBaselineValues {
 
   final TfArg<List<String>>? aiaOcspServers;
 
-  final List<PrivatecaCaPoolBaselineValuesAdditionalExtensions>?
-  additionalExtensions;
+  final List<PrivatecaCaPoolAdditionalExtensions>? additionalExtensions;
 
   final PrivatecaCaPoolCaOptions caOptions;
 
@@ -277,8 +276,8 @@ final class PrivatecaCaPoolBaselineValues {
 /// Typed helper for the `issuance_policy.baseline_values.additional_extensions` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolBaselineValuesAdditionalExtensions {
-  const PrivatecaCaPoolBaselineValuesAdditionalExtensions({
+final class PrivatecaCaPoolAdditionalExtensions {
+  const PrivatecaCaPoolAdditionalExtensions({
     required this.critical,
     required this.value,
     required this.objectId,

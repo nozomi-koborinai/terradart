@@ -20,18 +20,18 @@ _googleDataLossPreventionDeidentifyTemplateSensitive = <String>{
 @immutable
 final class DataLossPreventionDeidentifyTemplateDeidentifyConfig {
   const DataLossPreventionDeidentifyTemplateDeidentifyConfig({
-    required this.transformations,
+    required this.transformation,
     this.transformationErrorHandling,
   });
 
-  final DataLossPreventionDeidentifyTemplateTransformations transformations;
+  final DataLossPreventionDeidentifyTemplateTransformation transformation;
 
   final DataLossPreventionDeidentifyTemplateTransformationErrorHandling?
   transformationErrorHandling;
 
   @internal
   Map<String, Object?> encode() => {
-    ...transformations.encode(),
+    ...transformation.encode(),
     'transformation_error_handling': ?transformationErrorHandling?.encode(),
   };
 }
@@ -40,26 +40,26 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.infoTypeTransformations(...)`.
-sealed class DataLossPreventionDeidentifyTemplateTransformations {
-  const DataLossPreventionDeidentifyTemplateTransformations();
+sealed class DataLossPreventionDeidentifyTemplateTransformation {
+  const DataLossPreventionDeidentifyTemplateTransformation();
 
   /// Sets `info_type_transformations`.
-  const factory DataLossPreventionDeidentifyTemplateTransformations.infoTypeTransformations(
+  const factory DataLossPreventionDeidentifyTemplateTransformation.infoTypeTransformations(
     DataLossPreventionDeidentifyTemplateInfoTypeTransformations
     infoTypeTransformations,
-  ) = DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations;
 
   /// Sets `record_transformations`.
-  const factory DataLossPreventionDeidentifyTemplateTransformations.recordTransformations(
+  const factory DataLossPreventionDeidentifyTemplateTransformation.recordTransformations(
     DataLossPreventionDeidentifyTemplateRecordTransformations
     recordTransformations,
-  ) = DataLossPreventionDeidentifyTemplateRecordTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateTransformationRecordTransformations;
 
   /// Sets `image_transformations`.
-  const factory DataLossPreventionDeidentifyTemplateTransformations.imageTransformations(
+  const factory DataLossPreventionDeidentifyTemplateTransformation.imageTransformations(
     DataLossPreventionDeidentifyTemplateImageTransformations
     imageTransformations,
-  ) = DataLossPreventionDeidentifyTemplateImageTransformationsChoice;
+  ) = DataLossPreventionDeidentifyTemplateTransformationImageTransformations;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -69,10 +69,10 @@ sealed class DataLossPreventionDeidentifyTemplateTransformations {
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionDeidentifyTemplateTransformations.infoTypeTransformations] choice: sets `info_type_transformations`.
-final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice
-    extends DataLossPreventionDeidentifyTemplateTransformations {
-  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice(
+/// The [DataLossPreventionDeidentifyTemplateTransformation.infoTypeTransformations] choice: sets `info_type_transformations`.
+final class DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations
+    extends DataLossPreventionDeidentifyTemplateTransformation {
+  const DataLossPreventionDeidentifyTemplateTransformationInfoTypeTransformations(
     this.infoTypeTransformations,
   );
 
@@ -90,10 +90,10 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsChoice
   };
 }
 
-/// The [DataLossPreventionDeidentifyTemplateTransformations.recordTransformations] choice: sets `record_transformations`.
-final class DataLossPreventionDeidentifyTemplateRecordTransformationsChoice
-    extends DataLossPreventionDeidentifyTemplateTransformations {
-  const DataLossPreventionDeidentifyTemplateRecordTransformationsChoice(
+/// The [DataLossPreventionDeidentifyTemplateTransformation.recordTransformations] choice: sets `record_transformations`.
+final class DataLossPreventionDeidentifyTemplateTransformationRecordTransformations
+    extends DataLossPreventionDeidentifyTemplateTransformation {
+  const DataLossPreventionDeidentifyTemplateTransformationRecordTransformations(
     this.recordTransformations,
   );
 
@@ -111,10 +111,10 @@ final class DataLossPreventionDeidentifyTemplateRecordTransformationsChoice
   };
 }
 
-/// The [DataLossPreventionDeidentifyTemplateTransformations.imageTransformations] choice: sets `image_transformations`.
-final class DataLossPreventionDeidentifyTemplateImageTransformationsChoice
-    extends DataLossPreventionDeidentifyTemplateTransformations {
-  const DataLossPreventionDeidentifyTemplateImageTransformationsChoice(
+/// The [DataLossPreventionDeidentifyTemplateTransformation.imageTransformations] choice: sets `image_transformations`.
+final class DataLossPreventionDeidentifyTemplateTransformationImageTransformations
+    extends DataLossPreventionDeidentifyTemplateTransformation {
+  const DataLossPreventionDeidentifyTemplateTransformationImageTransformations(
     this.imageTransformations,
   );
 
@@ -315,9 +315,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformations {
     required this.transformations,
   });
 
-  final List<
-    DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations
-  >
+  final List<DataLossPreventionDeidentifyTemplateTransformations>
   transformations;
 
   @internal
@@ -329,8 +327,8 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformations {
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations {
-  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations({
+final class DataLossPreventionDeidentifyTemplateTransformations {
+  const DataLossPreventionDeidentifyTemplateTransformations({
     this.infoTypes,
     required this.primitiveTransformation,
   });
@@ -1546,7 +1544,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTran
   });
 
   final List<
-    DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations
+    DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations
   >
   transformations;
 
@@ -1559,8 +1557,8 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTran
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations {
-  const DataLossPreventionDeidentifyTemplateFieldTransformationsTransformations({
+final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations {
+  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations({
     this.infoTypes,
     required this.primitiveTransformation,
   });

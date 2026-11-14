@@ -1051,6 +1051,8 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
     IntegrationConnectorsConnectionLogConfig? logConfig,
     IntegrationConnectorsConnectionNodeConfig? nodeConfig,
     IntegrationConnectorsConnectionSslConfig? sslConfig,
+    List<IntegrationConnectorsConnectionTrafficShapingConfigs>?
+    trafficShapingConfigs,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -1088,6 +1090,10 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
              'node_config': TfArg.literal(nodeConfig.encode()),
            if (sslConfig != null)
              'ssl_config': TfArg.literal(sslConfig.encode()),
+           if (trafficShapingConfigs != null)
+             'traffic_shaping_configs': TfArg.literal([
+               for (final e in trafficShapingConfigs) e.encode(),
+             ]),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

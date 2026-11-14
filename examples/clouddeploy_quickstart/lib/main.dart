@@ -171,7 +171,9 @@ final class DeployStack extends Stack {
         selector: ClouddeployAutomationSelector(
           targets: [.new(id: .literal('terradart-run-target'))],
         ),
-        rules: [.promoteReleaseRule(.new(id: .literal('promote-release')))],
+        rules: [
+          .new(promoteReleaseRule: .new(id: .literal('promote-release'))),
+        ],
         dependsOn: [
           apiClouddeploy,
           pipeline,

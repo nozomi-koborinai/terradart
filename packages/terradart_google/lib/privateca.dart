@@ -14,11 +14,11 @@ export 'src/data/google_privateca_certificate_template_iam_policy.dart'
 export 'src/privateca/google_privateca_ca_pool.dart'
     show
         GooglePrivatecaCaPool,
+        PrivatecaCaPoolAdditionalExtensions,
         PrivatecaCaPoolAllowedIssuanceModes,
         PrivatecaCaPoolAllowedKeyTypes,
         PrivatecaCaPoolBaseKeyUsage,
         PrivatecaCaPoolBaselineValues,
-        PrivatecaCaPoolBaselineValuesAdditionalExtensions,
         PrivatecaCaPoolCaOptions,
         PrivatecaCaPoolCelExpression,
         PrivatecaCaPoolEllipticCurve,

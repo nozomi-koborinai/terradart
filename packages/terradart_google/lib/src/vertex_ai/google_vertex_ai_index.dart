@@ -265,8 +265,8 @@ final class VertexAiIndexTreeAhConfig {
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
 ///       distanceMeasureType: .dotProductDistance,
-///       algorithmConfig: .treeAhConfig(
-///         .new(
+///       algorithmConfig: .new(
+///         treeAhConfig: .new(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),
 ///           leafNodesToSearchPercent: TfArg.literal(10),
 ///         ),
