@@ -209,15 +209,15 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'userIdOrEmailOrPhone',
+          dartName: 'member',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'user_id': 'AuthTeamMembershipUserIdOrEmailOrPhoneUserId',
-            'email': 'AuthTeamMembershipUserIdOrEmailOrPhoneEmail',
-            'phone': 'AuthTeamMembershipUserIdOrEmailOrPhoneChoice',
+            'user_id': 'AuthTeamMembershipMemberUserId',
+            'email': 'AuthTeamMembershipMemberEmail',
+            'phone': 'AuthTeamMembershipMemberPhone',
           },
         ),
         MigrateSlot(
@@ -10255,22 +10255,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     ),
   ],
   helpers: <String, MigrateHelper>{
-    'AuthTeamMembershipUserIdOrEmailOrPhoneChoice': MigrateHelper(
-      className: 'AuthTeamMembershipUserIdOrEmailOrPhoneChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'phone',
-          dartName: 'phone',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'phone',
-    ),
-    'AuthTeamMembershipUserIdOrEmailOrPhoneEmail': MigrateHelper(
-      className: 'AuthTeamMembershipUserIdOrEmailOrPhoneEmail',
+    'AuthTeamMembershipMemberEmail': MigrateHelper(
+      className: 'AuthTeamMembershipMemberEmail',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'email',
@@ -10283,8 +10269,22 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       shorthand: 'email',
     ),
-    'AuthTeamMembershipUserIdOrEmailOrPhoneUserId': MigrateHelper(
-      className: 'AuthTeamMembershipUserIdOrEmailOrPhoneUserId',
+    'AuthTeamMembershipMemberPhone': MigrateHelper(
+      className: 'AuthTeamMembershipMemberPhone',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'phone',
+          dartName: 'phone',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'phone',
+    ),
+    'AuthTeamMembershipMemberUserId': MigrateHelper(
+      className: 'AuthTeamMembershipMemberUserId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'user_id',

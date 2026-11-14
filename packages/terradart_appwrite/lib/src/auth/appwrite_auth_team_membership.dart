@@ -13,23 +13,20 @@ const Set<String> _appwriteAuthTeamMembershipSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.userId(...)`.
-sealed class AuthTeamMembershipUserIdOrEmailOrPhone {
-  const AuthTeamMembershipUserIdOrEmailOrPhone();
+sealed class AuthTeamMembershipMember {
+  const AuthTeamMembershipMember();
 
   /// Sets `user_id`.
-  const factory AuthTeamMembershipUserIdOrEmailOrPhone.userId(
-    TfArg<String> userId,
-  ) = AuthTeamMembershipUserIdOrEmailOrPhoneUserId;
+  const factory AuthTeamMembershipMember.userId(TfArg<String> userId) =
+      AuthTeamMembershipMemberUserId;
 
   /// Sets `email`.
-  const factory AuthTeamMembershipUserIdOrEmailOrPhone.email(
-    TfArg<String> email,
-  ) = AuthTeamMembershipUserIdOrEmailOrPhoneEmail;
+  const factory AuthTeamMembershipMember.email(TfArg<String> email) =
+      AuthTeamMembershipMemberEmail;
 
   /// Sets `phone`.
-  const factory AuthTeamMembershipUserIdOrEmailOrPhone.phone(
-    TfArg<String> phone,
-  ) = AuthTeamMembershipUserIdOrEmailOrPhoneChoice;
+  const factory AuthTeamMembershipMember.phone(TfArg<String> phone) =
+      AuthTeamMembershipMemberPhone;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -44,10 +41,9 @@ sealed class AuthTeamMembershipUserIdOrEmailOrPhone {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AuthTeamMembershipUserIdOrEmailOrPhone.userId] choice: sets `user_id`.
-final class AuthTeamMembershipUserIdOrEmailOrPhoneUserId
-    extends AuthTeamMembershipUserIdOrEmailOrPhone {
-  const AuthTeamMembershipUserIdOrEmailOrPhoneUserId(this.userId);
+/// The [AuthTeamMembershipMember.userId] choice: sets `user_id`.
+final class AuthTeamMembershipMemberUserId extends AuthTeamMembershipMember {
+  const AuthTeamMembershipMemberUserId(this.userId);
 
   final TfArg<String> userId;
 
@@ -64,10 +60,9 @@ final class AuthTeamMembershipUserIdOrEmailOrPhoneUserId
   Map<String, TfArg<Object?>> get argMap => {'user_id': userId};
 }
 
-/// The [AuthTeamMembershipUserIdOrEmailOrPhone.email] choice: sets `email`.
-final class AuthTeamMembershipUserIdOrEmailOrPhoneEmail
-    extends AuthTeamMembershipUserIdOrEmailOrPhone {
-  const AuthTeamMembershipUserIdOrEmailOrPhoneEmail(this.email);
+/// The [AuthTeamMembershipMember.email] choice: sets `email`.
+final class AuthTeamMembershipMemberEmail extends AuthTeamMembershipMember {
+  const AuthTeamMembershipMemberEmail(this.email);
 
   final TfArg<String> email;
 
@@ -84,10 +79,9 @@ final class AuthTeamMembershipUserIdOrEmailOrPhoneEmail
   Map<String, TfArg<Object?>> get argMap => {'email': email};
 }
 
-/// The [AuthTeamMembershipUserIdOrEmailOrPhone.phone] choice: sets `phone`.
-final class AuthTeamMembershipUserIdOrEmailOrPhoneChoice
-    extends AuthTeamMembershipUserIdOrEmailOrPhone {
-  const AuthTeamMembershipUserIdOrEmailOrPhoneChoice(this.phone);
+/// The [AuthTeamMembershipMember.phone] choice: sets `phone`.
+final class AuthTeamMembershipMemberPhone extends AuthTeamMembershipMember {
+  const AuthTeamMembershipMemberPhone(this.phone);
 
   final TfArg<String> phone;
 
@@ -117,7 +111,7 @@ final class AppwriteAuthTeamMembership extends Resource {
 
   AppwriteAuthTeamMembership(
     super.localName, {
-    required AuthTeamMembershipUserIdOrEmailOrPhone userIdOrEmailOrPhone,
+    required AuthTeamMembershipMember member,
     TfArg<String>? name,
     RefTo<AppwriteProject>? projectId,
     required TfArg<List<String>> roles,
@@ -129,7 +123,7 @@ final class AppwriteAuthTeamMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...userIdOrEmailOrPhone.argMap,
+           ...member.argMap,
            'name': ?name,
            'project_id': ?projectId?.encodeAs('id'),
            'roles': roles,

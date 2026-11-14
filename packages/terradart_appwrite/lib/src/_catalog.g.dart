@@ -62,17 +62,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `appwrite_auth_team_membership`.',
     constructorParams: <String>[
       'localName',
-      'userIdOrEmailOrPhone',
+      'member',
       'name',
       'projectId',
       'roles',
       'teamId',
     ],
     nestedTypes: <String>[
-      'AuthTeamMembershipUserIdOrEmailOrPhone',
-      'AuthTeamMembershipUserIdOrEmailOrPhoneUserId',
-      'AuthTeamMembershipUserIdOrEmailOrPhoneEmail',
-      'AuthTeamMembershipUserIdOrEmailOrPhoneChoice',
+      'AuthTeamMembershipMember',
+      'AuthTeamMembershipMemberUserId',
+      'AuthTeamMembershipMemberEmail',
+      'AuthTeamMembershipMemberPhone',
     ],
     sensitiveFields: <String>[],
     docComment:

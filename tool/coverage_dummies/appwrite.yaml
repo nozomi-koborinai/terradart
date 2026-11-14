@@ -29,6 +29,9 @@ runtime: 'node-22'
 schedule: '0 3 * * *'
 services: ['databases']
 
+AppwriteAuthUserTarget.identifier:
+  value: 'leftover@example.com'
+  why: 'appwrite_auth_user_target.auth_user_target.identifier rejected leftover: email targets take an email address, got "leftover".'
 AppwriteAuthUserTarget.providerType:
   value: 'email'
   why: 'appwrite_auth_user_target.auth_user_target.provider_type rejected leftover: Attribute provider_type value must be one of: ["email" "sms" "push"], got: "leftover" (family one-of)'
@@ -44,9 +47,21 @@ AppwriteProjectEmailTemplate.locale:
 AppwriteProjectEmailTemplate.type:
   value: 'verification'
   why: 'appwrite_project_email_template.project_email_template.type rejected leftover: Attribute type value must be one of: ["verification" "magicSession" "recovery" "invitation" "mfaChallenge" "sessionAlert" "otpSession"], got: "leftover" (family one-of)'
+AppwriteProjectMockPhone.number:
+  value: '+12025550123'
+  why: 'appwrite_project_mock_phone.project_mock_phone.number rejected leftover: Attribute number must be an E.164 phone number: a + followed by 7 to 15 digits, not starting with 0, got: leftover'
+AppwriteProjectMockPhone.otp:
+  value: '123456'
+  why: 'appwrite_project_mock_phone.project_mock_phone.otp rejected ${sensitive("leftover")}: Attribute otp must be exactly six digits, got: leftover'
 AppwriteProjectOauthProvider.providerId:
   value: 'amazon'
   why: 'appwrite_project_oauth_provider.project_oauth_provider.provider_id rejected leftover: Attribute provider_id value must be one of: ["amazon" "apple" "appwrite" "auth0" "authentik" "autodesk" "bitbucket" "bitly" "box" "cloudflare" "dailymotion" "discord" "disqus" "dropbox" "etsy" "facebook" "figma" "fusionauth" "github" "gitlab" "google" "huggingface" "kakao" "keycloak" "kick" "linkedin" "microsoft" "notion" "oidc" "okta" "paypal" "paypalSandbox" "podio" "resend" "salesforce" "slack" "spotify" "stripe" "tiktok" "tradeshift" "tradeshiftBox" "twitch" "vipps" "vippsSandbox" "webflow" "wordpress" "x" "yahoo" "yandex" "zoho" "zoom"], got: "leftover" (family one-of)'
+AppwriteProjectPlatform.hostname:
+  value: 'leftover.example.com'
+  why: 'appwrite_project_platform.project_platform: web platforms require hostname, the app''s host name.'
+AppwriteProjectPlatform.type:
+  value: 'web'
+  why: 'appwrite_project_platform.project_platform.type rejected leftover: Attribute type value must be one of: ["web" "android" "apple" "linux" "windows"], got: "leftover" (family one-of)'
 AppwriteWafRule.type:
   value: 'bypass'
   why: 'appwrite_waf_rule.waf_rule.type rejected leftover: Attribute type value must be one of: ["bypass" "challenge" "deny" "rateLimit" "redirect"], got: "leftover" (family one-of)'

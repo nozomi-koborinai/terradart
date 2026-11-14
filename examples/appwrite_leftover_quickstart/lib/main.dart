@@ -16,6 +16,22 @@ final class AppwriteLeftoverStack extends Stack {
         name: .literal('leftover'),
       ),
     );
+    add(
+      AppwriteAuthTeamMembership(
+        'auth_team_membership',
+        member: .userId(.literal('leftover')),
+        roles: .literal(['leftover']),
+        teamId: .literal('leftover'),
+      ),
+    );
+    add(
+      AppwriteAuthUserTarget(
+        'auth_user_target',
+        identifier: .literal('leftover@example.com'),
+        providerType: .literal('email'),
+        userId: .literal('leftover'),
+      ),
+    );
     add(AppwriteDocumentsdb('documentsdb', name: .literal('leftover')));
     add(
       AppwriteDocumentsdbCollection(
@@ -76,9 +92,24 @@ final class AppwriteLeftoverStack extends Stack {
       ),
     );
     add(
+      AppwriteProjectMockPhone(
+        'project_mock_phone',
+        number: .literal('+12025550123'),
+        otp: Sensitive.expression(r'${sensitive("123456")}'),
+      ),
+    );
+    add(
       AppwriteProjectOauthProvider(
         'project_oauth_provider',
         providerId: .literal('amazon'),
+      ),
+    );
+    add(
+      AppwriteProjectPlatform(
+        'project_platform',
+        hostname: .literal('leftover.example.com'),
+        name: .literal('leftover'),
+        type: .literal('web'),
       ),
     );
     add(AppwriteProjectProtocols('project_protocols'));

@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+### Appwrite provider 2.7.0
+
+**Breaking (`terradart_appwrite`).** Provider 2.7.0 removes the
+`stringvalidator.OneOf` validator from `appwrite_proxy_rule.type` and adds
+redirect and API rule fields, so `AppwriteProxyRule.type` takes a
+`TfArg<String>` instead of `ProxyRuleType`, and `ProxyRuleType`
+(`ProxyRuleType.site`, `ProxyRuleType.function`) is removed. The Terraform JSON
+for the same value is unchanged.
+
+| Before | After |
+|---|---|
+| `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('site'), type: .site)` | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('site'), type: .literal('site'))` |
+| `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('fn'), type: .function)` | `AppwriteProxyRule('r', domain: .literal('example.com'), resourceId: .literal('fn'), type: .literal('function'))` |
+
 ### Google provider 8.9.0
 
 **Breaking (`terradart_google`).** Provider 8.9.0 adds `scheduling_policy`

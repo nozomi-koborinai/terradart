@@ -10,10 +10,10 @@ export 'src/auth/appwrite_auth_team.dart' show AppwriteAuthTeam;
 export 'src/auth/appwrite_auth_team_membership.dart'
     show
         AppwriteAuthTeamMembership,
-        AuthTeamMembershipUserIdOrEmailOrPhone,
-        AuthTeamMembershipUserIdOrEmailOrPhoneChoice,
-        AuthTeamMembershipUserIdOrEmailOrPhoneEmail,
-        AuthTeamMembershipUserIdOrEmailOrPhoneUserId;
+        AuthTeamMembershipMember,
+        AuthTeamMembershipMemberEmail,
+        AuthTeamMembershipMemberPhone,
+        AuthTeamMembershipMemberUserId;
 export 'src/auth/appwrite_auth_user.dart'
     show
         AppwriteAuthUser,
