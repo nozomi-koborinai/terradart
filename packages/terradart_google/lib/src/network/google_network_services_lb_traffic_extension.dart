@@ -70,6 +70,7 @@ final class NetworkServicesLbTrafficExtensionExtensions {
     this.forwardHeaders,
     this.metadata,
     required this.name,
+    this.observabilityMode,
     required this.service,
     this.supportedEvents,
     this.timeout,
@@ -87,6 +88,8 @@ final class NetworkServicesLbTrafficExtensionExtensions {
 
   final TfArg<String> name;
 
+  final TfArg<bool>? observabilityMode;
+
   final TfArg<String> service;
 
   final EnumList<NetworkServicesLbTrafficExtensionSupportedEvents>?
@@ -102,6 +105,7 @@ final class NetworkServicesLbTrafficExtensionExtensions {
     'forward_headers': ?forwardHeaders?.toTfJson(),
     'metadata': ?metadata?.toTfJson(),
     'name': name.toTfJson(),
+    'observability_mode': ?observabilityMode?.toTfJson(),
     'service': service.toTfJson(),
     'supported_events': ?supportedEvents?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),

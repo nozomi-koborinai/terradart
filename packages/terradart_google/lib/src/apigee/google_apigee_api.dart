@@ -60,6 +60,10 @@ final class GoogleApigeeApi extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
   /// Reference to `latest_revision_id` attribute.
   TfRef<String> get latestRevisionId =>
       TfRef.attribute<String>(this, 'latest_revision_id');
@@ -75,6 +79,10 @@ final class GoogleApigeeApi extends Resource {
   TfRef<List<String>> get revision =>
       TfRef.attribute<List<String>>(this, 'revision');
 
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   /// Reference to `config_bundle` attribute.
   TfRef<String> get configBundle =>
       TfRef.attribute<String>(this, 'config_bundle');
@@ -86,6 +94,10 @@ final class GoogleApigeeApi extends Resource {
   /// Reference to `detect_md5hash` attribute.
   TfRef<String> get detectMd5hash =>
       TfRef.attribute<String>(this, 'detect_md5hash');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `org_id` attribute.
   TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');

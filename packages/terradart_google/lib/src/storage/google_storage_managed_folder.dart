@@ -1,12 +1,69 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_managed_folder`.
 const Set<String> _googleStorageManagedFolderSensitive = <String>{};
+
+/// Typed helper for the `rapid_cache_config` block of
+/// `google_storage_managed_folder` (derived from provider schema).
+@immutable
+final class StorageManagedFolderRapidCacheConfig {
+  const StorageManagedFolderRapidCacheConfig({required this.policies});
+
+  final List<StorageManagedFolderPolicies> policies;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'policies': [for (final e in policies) e.encode()],
+  };
+}
+
+/// Typed helper for the `rapid_cache_config.policies` block of
+/// `google_storage_managed_folder` (derived from provider schema).
+@immutable
+final class StorageManagedFolderPolicies {
+  const StorageManagedFolderPolicies({
+    this.ingestOnWrite,
+    required this.rapidCacheId,
+  });
+
+  final StorageManagedFolderIngestOnWrite? ingestOnWrite;
+
+  final TfArg<String> rapidCacheId;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'ingest_on_write': ?ingestOnWrite?.toTfJson(),
+    'rapid_cache_id': rapidCacheId.toTfJson(),
+  };
+}
+
+/// `ingest_on_write` — derived from the provider schema description.
+extension type const StorageManagedFolderIngestOnWrite._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageManagedFolderIngestOnWrite.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageManagedFolderIngestOnWrite.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageManagedFolderIngestOnWrite.arg(TfArg<String> arg) : this._(arg);
+
+  static const enabled = StorageManagedFolderIngestOnWrite._(
+    TfArgLiteral('enabled'),
+  );
+  static const unspecified = StorageManagedFolderIngestOnWrite._(
+    TfArgLiteral('unspecified'),
+  );
+
+  static const List<StorageManagedFolderIngestOnWrite> values = [
+    enabled,
+    unspecified,
+  ];
+}
 
 /// Factory wrapper for `google_storage_managed_folder`.
 ///

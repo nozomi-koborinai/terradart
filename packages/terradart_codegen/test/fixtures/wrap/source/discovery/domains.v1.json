@@ -37,15 +37,6 @@
     },
     "DsRecord": {
       "properties": {
-        "digestType": {
-          "enum": [
-            "DIGEST_TYPE_UNSPECIFIED",
-            "SHA1",
-            "SHA256",
-            "GOST3411",
-            "SHA384"
-          ]
-        },
         "algorithm": {
           "enum": [
             "ALGORITHM_UNSPECIFIED",
@@ -66,6 +57,15 @@
             "INDIRECT",
             "PRIVATEDNS",
             "PRIVATEOID"
+          ]
+        },
+        "digestType": {
+          "enum": [
+            "DIGEST_TYPE_UNSPECIFIED",
+            "SHA1",
+            "SHA256",
+            "GOST3411",
+            "SHA384"
           ]
         }
       }
@@ -96,11 +96,12 @@
             "RENEWAL_DISABLED"
           ]
         },
-        "transferLockState": {
+        "preferredRenewalMethod": {
           "enum": [
-            "TRANSFER_LOCK_STATE_UNSPECIFIED",
-            "UNLOCKED",
-            "LOCKED"
+            "RENEWAL_METHOD_UNSPECIFIED",
+            "AUTOMATIC_RENEWAL",
+            "MANUAL_RENEWAL",
+            "RENEWAL_DISABLED"
           ]
         },
         "effectiveTransferLockState": {
@@ -110,36 +111,33 @@
             "LOCKED"
           ]
         },
-        "preferredRenewalMethod": {
+        "transferLockState": {
           "enum": [
-            "RENEWAL_METHOD_UNSPECIFIED",
-            "AUTOMATIC_RENEWAL",
-            "MANUAL_RENEWAL",
-            "RENEWAL_DISABLED"
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
           ]
         }
       }
     },
     "Registration": {
       "properties": {
-        "supportedPrivacy": {
-          "items": {
-            "enum": [
-              "CONTACT_PRIVACY_UNSPECIFIED",
-              "PUBLIC_CONTACT_DATA",
-              "PRIVATE_CONTACT_DATA",
-              "REDACTED_CONTACT_DATA"
-            ]
-          }
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REGISTRATION_PENDING",
+            "REGISTRATION_FAILED",
+            "TRANSFER_PENDING",
+            "TRANSFER_FAILED",
+            "IMPORT_PENDING",
+            "ACTIVE",
+            "SUSPENDED",
+            "EXPORTED",
+            "EXPIRED"
+          ]
         },
-        "domainProperties": {
-          "items": {
-            "enum": [
-              "DOMAIN_PROPERTY_UNSPECIFIED",
-              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
-              "REQUIRE_PUSH_TRANSFER"
-            ]
-          }
+        "dnsSettings": {
+          "$ref": "DnsSettings"
         },
         "transferFailureReason": {
           "enum": [
@@ -156,19 +154,32 @@
             "TRANSFER_ALREADY_PENDING"
           ]
         },
-        "state": {
+        "domainProperties": {
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ]
+          }
+        },
+        "registerFailureReason": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "REGISTRATION_PENDING",
-            "REGISTRATION_FAILED",
-            "TRANSFER_PENDING",
-            "TRANSFER_FAILED",
-            "IMPORT_PENDING",
-            "ACTIVE",
-            "SUSPENDED",
-            "EXPORTED",
-            "EXPIRED"
+            "REGISTER_FAILURE_REASON_UNSPECIFIED",
+            "REGISTER_FAILURE_REASON_UNKNOWN",
+            "DOMAIN_NOT_AVAILABLE",
+            "INVALID_CONTACTS"
           ]
+        },
+        "supportedPrivacy": {
+          "items": {
+            "enum": [
+              "CONTACT_PRIVACY_UNSPECIFIED",
+              "PUBLIC_CONTACT_DATA",
+              "PRIVATE_CONTACT_DATA",
+              "REDACTED_CONTACT_DATA"
+            ]
+          }
         },
         "issues": {
           "items": {
@@ -182,25 +193,14 @@
             ]
           }
         },
-        "contactSettings": {
-          "$ref": "ContactSettings"
-        },
         "managementSettings": {
           "$ref": "ManagementSettings"
         },
-        "registerFailureReason": {
-          "enum": [
-            "REGISTER_FAILURE_REASON_UNSPECIFIED",
-            "REGISTER_FAILURE_REASON_UNKNOWN",
-            "DOMAIN_NOT_AVAILABLE",
-            "INVALID_CONTACTS"
-          ]
+        "contactSettings": {
+          "$ref": "ContactSettings"
         },
         "pendingContactSettings": {
           "$ref": "ContactSettings"
-        },
-        "dnsSettings": {
-          "$ref": "DnsSettings"
         }
       }
     }

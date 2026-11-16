@@ -8,6 +8,7 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/google_dataform_repository_iam_policy.dart'
     show DataGoogleDataformRepositoryIamPolicy;
+export 'src/dataform/google_dataform_config.dart' show GoogleDataformConfig;
 export 'src/dataform/google_dataform_folder.dart' show GoogleDataformFolder;
 export 'src/dataform/google_dataform_repository.dart'
     show
@@ -29,5 +30,14 @@ export 'src/dataform/google_dataform_repository_iam_member.dart'
         GoogleDataformRepositoryIamMember;
 export 'src/dataform/google_dataform_repository_iam_policy.dart'
     show GoogleDataformRepositoryIamPolicy;
+export 'src/dataform/google_dataform_repository_release_config.dart'
+    show
+        DataformRepositoryReleaseConfigCodeCompilationConfig,
+        GoogleDataformRepositoryReleaseConfig;
+export 'src/dataform/google_dataform_repository_workflow_config.dart'
+    show
+        DataformRepositoryWorkflowConfigIncludedTargets,
+        DataformRepositoryWorkflowConfigInvocationConfig,
+        GoogleDataformRepositoryWorkflowConfig;
 export 'src/dataform/google_dataform_team_folder.dart'
     show GoogleDataformTeamFolder;

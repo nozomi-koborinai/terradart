@@ -733,6 +733,8 @@ export 'src/data/google_pubsub_topic_iam_policy.dart'
 export 'src/data/google_redis_cluster.dart' show DataGoogleRedisCluster;
 export 'src/data/google_redis_cluster_acl_policy.dart'
     show DataGoogleRedisClusterAclPolicy;
+export 'src/data/google_redis_cluster_token_auth_user.dart'
+    show DataGoogleRedisClusterTokenAuthUser;
 export 'src/data/google_redis_instance.dart' show DataGoogleRedisInstance;
 export 'src/data/google_scc_source_iam_policy.dart'
     show DataGoogleSccSourceIamPolicy;

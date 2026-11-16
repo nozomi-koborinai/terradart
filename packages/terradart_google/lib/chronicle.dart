@@ -73,7 +73,6 @@ export 'src/chronicle/google_chronicle_data_table.dart'
         ChronicleDataTableColumnInfo,
         ChronicleDataTableColumnType,
         ChronicleDataTableScopeInfo,
-        ChronicleDataTableUpdateSource,
         GoogleChronicleDataTable;
 export 'src/chronicle/google_chronicle_data_table_row.dart'
     show GoogleChronicleDataTableRow;

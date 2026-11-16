@@ -6,38 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vertex_ai_model_garden_enable_model`.
 const Set<String> _googleVertexAiModelGardenEnableModelSensitive = <String>{};
 
-/// Vertex Ai Model Garden Enable Model Enablement enum for `enablement_state`.
-extension type const VertexAiModelGardenEnableModelEnablementState._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  VertexAiModelGardenEnableModelEnablementState.variable(String name)
-    : this._(TfArg.variable(name));
-  VertexAiModelGardenEnableModelEnablementState.expression(String template)
-    : this._(TfArg.expression(template));
-  const VertexAiModelGardenEnableModelEnablementState.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const enablementStateUnspecified =
-      VertexAiModelGardenEnableModelEnablementState._(
-        TfArgLiteral('ENABLEMENT_STATE_UNSPECIFIED'),
-      );
-  static const enablementStateSucceeded =
-      VertexAiModelGardenEnableModelEnablementState._(
-        TfArgLiteral('ENABLEMENT_STATE_SUCCEEDED'),
-      );
-  static const enablementStateFailed =
-      VertexAiModelGardenEnableModelEnablementState._(
-        TfArgLiteral('ENABLEMENT_STATE_FAILED'),
-      );
-
-  static const List<VertexAiModelGardenEnableModelEnablementState> values = [
-    enablementStateUnspecified,
-    enablementStateSucceeded,
-    enablementStateFailed,
-  ];
-}
-
 /// Factory wrapper for `google_vertex_ai_model_garden_enable_model`.
 ///
 /// Enables a Model Garden publisher model for a project so that it can be

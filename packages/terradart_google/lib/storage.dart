@@ -150,7 +150,6 @@ export 'src/storage/google_storage_insights_dataset_config.dart'
         StorageInsightsDatasetConfigSource,
         StorageInsightsDatasetConfigSourceFolders,
         StorageInsightsDatasetConfigSourceProjects,
-        StorageInsightsDatasetConfigState,
         StorageInsightsDatasetConfigType;
 export 'src/storage/google_storage_insights_report_config.dart'
     show
@@ -166,7 +165,11 @@ export 'src/storage/google_storage_insights_report_config.dart'
         StorageInsightsReportConfigStorageDestinationOptions,
         StorageInsightsReportConfigStorageFilters;
 export 'src/storage/google_storage_managed_folder.dart'
-    show GoogleStorageManagedFolder;
+    show
+        GoogleStorageManagedFolder,
+        StorageManagedFolderIngestOnWrite,
+        StorageManagedFolderPolicies,
+        StorageManagedFolderRapidCacheConfig;
 export 'src/storage/google_storage_managed_folder_iam_binding.dart'
     show
         GoogleStorageManagedFolderIamBinding,
@@ -186,10 +189,7 @@ export 'src/storage/google_storage_object_access_control.dart'
     show GoogleStorageObjectAccessControl, StorageObjectAccessControlRole;
 export 'src/storage/google_storage_object_acl.dart' show GoogleStorageObjectAcl;
 export 'src/storage/google_storage_transfer_agent_pool.dart'
-    show
-        GoogleStorageTransferAgentPool,
-        StorageTransferAgentPoolBandwidthLimit,
-        StorageTransferAgentPoolState;
+    show GoogleStorageTransferAgentPool, StorageTransferAgentPoolBandwidthLimit;
 export 'src/storage/google_storage_transfer_job.dart'
     show
         GoogleStorageTransferJob,

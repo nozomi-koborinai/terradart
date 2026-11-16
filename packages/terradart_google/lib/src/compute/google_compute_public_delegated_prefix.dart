@@ -9,31 +9,6 @@ import '../compute/google_compute_public_advertised_prefix.dart'
 /// Sensitive field paths for `google_compute_public_delegated_prefix`.
 const Set<String> _googleComputePublicDelegatedPrefixSensitive = <String>{};
 
-/// Compute Public Delegated Prefix Ipv6 Access enum for `ipv6_access_type`.
-extension type const ComputePublicDelegatedPrefixIpv6AccessType._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  ComputePublicDelegatedPrefixIpv6AccessType.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputePublicDelegatedPrefixIpv6AccessType.expression(String template)
-    : this._(TfArg.expression(template));
-  const ComputePublicDelegatedPrefixIpv6AccessType.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const external = ComputePublicDelegatedPrefixIpv6AccessType._(
-    TfArgLiteral('EXTERNAL'),
-  );
-  static const internal = ComputePublicDelegatedPrefixIpv6AccessType._(
-    TfArgLiteral('INTERNAL'),
-  );
-
-  static const List<ComputePublicDelegatedPrefixIpv6AccessType> values = [
-    external,
-    internal,
-  ];
-}
-
 /// Compute Public Delegated Prefix enum for `mode`.
 extension type const ComputePublicDelegatedPrefixMode._(TfArg<String> _)
     implements TfArg<String> {

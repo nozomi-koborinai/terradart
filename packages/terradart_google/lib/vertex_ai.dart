@@ -86,6 +86,32 @@ export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dar
         VertexAiEndpointWithModelGardenDeploymentScheme,
         VertexAiEndpointWithModelGardenDeploymentStartupProbe,
         VertexAiEndpointWithModelGardenDeploymentTcpSocket;
+export 'src/vertex_ai/google_vertex_ai_evaluation_item.dart'
+    show
+        GoogleVertexAiEvaluationItem,
+        VertexAiEvaluationItemCandidateResponses,
+        VertexAiEvaluationItemContent,
+        VertexAiEvaluationItemEvaluationRequest,
+        VertexAiEvaluationItemEvaluationRequestOrGcsUri,
+        VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice,
+        VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest,
+        VertexAiEvaluationItemGoldenResponse,
+        VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData,
+        VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice,
+        VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText,
+        VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue,
+        VertexAiEvaluationItemImportance,
+        VertexAiEvaluationItemPrompt,
+        VertexAiEvaluationItemPromptAgentData,
+        VertexAiEvaluationItemPromptTemplateData,
+        VertexAiEvaluationItemPromptTemplateDataChoice,
+        VertexAiEvaluationItemPromptText,
+        VertexAiEvaluationItemPromptUserScenario,
+        VertexAiEvaluationItemPromptValue,
+        VertexAiEvaluationItemProperty,
+        VertexAiEvaluationItemRubrics,
+        VertexAiEvaluationItemRubricsRubrics,
+        VertexAiEvaluationItemUserScenario;
 export 'src/vertex_ai/google_vertex_ai_evaluation_metric.dart'
     show GoogleVertexAiEvaluationMetric, VertexAiEvaluationMetricEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
@@ -331,6 +357,7 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSimilaritySearchConfig,
         VertexAiReasoningEngineSourceCodeSpec,
         VertexAiReasoningEngineSpec,
+        VertexAiReasoningEngineSpeechMetadata,
         VertexAiReasoningEngineStructuredMemoryConfigs,
         VertexAiReasoningEngineTopics,
         VertexAiReasoningEngineTopicsManagedMemoryTopic,

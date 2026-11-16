@@ -6,6 +6,14 @@
   "schemas": {
     "AutokeyConfig": {
       "properties": {
+        "keyProjectResolutionMode": {
+          "enum": [
+            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+            "DEDICATED_KEY_PROJECT",
+            "RESOURCE_PROJECT",
+            "DISABLED"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -14,21 +22,13 @@
             "UNINITIALIZED",
             "KEY_PROJECT_PERMISSION_DENIED"
           ]
-        },
-        "keyProjectResolutionMode": {
-          "enum": [
-            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
-            "DEDICATED_KEY_PROJECT",
-            "RESOURCE_PROJECT",
-            "DISABLED"
-          ]
         }
       }
     },
     "CryptoKey": {
       "properties": {
-        "keyAccessJustificationsPolicy": {
-          "$ref": "KeyAccessJustificationsPolicy"
+        "primary": {
+          "$ref": "CryptoKeyVersion"
         },
         "purpose": {
           "enum": [
@@ -45,13 +45,16 @@
         "versionTemplate": {
           "$ref": "CryptoKeyVersionTemplate"
         },
-        "primary": {
-          "$ref": "CryptoKeyVersion"
+        "keyAccessJustificationsPolicy": {
+          "$ref": "KeyAccessJustificationsPolicy"
         }
       }
     },
     "CryptoKeyVersion": {
       "properties": {
+        "attestation": {
+          "$ref": "KeyOperationAttestation"
+        },
         "protectionLevel": {
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
@@ -61,9 +64,6 @@
             "EXTERNAL_VPC",
             "HSM_SINGLE_TENANT"
           ]
-        },
-        "attestation": {
-          "$ref": "KeyOperationAttestation"
         },
         "state": {
           "enum": [
@@ -138,6 +138,16 @@
     },
     "CryptoKeyVersionTemplate": {
       "properties": {
+        "protectionLevel": {
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
+          ]
+        },
         "algorithm": {
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
@@ -191,16 +201,6 @@
             "KEM_ECDH_P384",
             "AES_256_KWP"
           ]
-        },
-        "protectionLevel": {
-          "enum": [
-            "PROTECTION_LEVEL_UNSPECIFIED",
-            "SOFTWARE",
-            "HSM",
-            "EXTERNAL",
-            "EXTERNAL_VPC",
-            "HSM_SINGLE_TENANT"
-          ]
         }
       }
     },
@@ -217,6 +217,16 @@
     },
     "ImportJob": {
       "properties": {
+        "protectionLevel": {
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
+          ]
+        },
         "importMethod": {
           "enum": [
             "IMPORT_METHOD_UNSPECIFIED",
@@ -231,6 +241,9 @@
             "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM"
           ]
         },
+        "attestation": {
+          "$ref": "KeyOperationAttestation"
+        },
         "publicKeyFormat": {
           "enum": [
             "PUBLIC_KEY_FORMAT_UNSPECIFIED",
@@ -240,16 +253,6 @@
             "XWING_RAW_BYTES"
           ]
         },
-        "protectionLevel": {
-          "enum": [
-            "PROTECTION_LEVEL_UNSPECIFIED",
-            "SOFTWARE",
-            "HSM",
-            "EXTERNAL",
-            "EXTERNAL_VPC",
-            "HSM_SINGLE_TENANT"
-          ]
-        },
         "state": {
           "enum": [
             "IMPORT_JOB_STATE_UNSPECIFIED",
@@ -257,9 +260,6 @@
             "ACTIVE",
             "EXPIRED"
           ]
-        },
-        "attestation": {
-          "$ref": "KeyOperationAttestation"
         }
       }
     },

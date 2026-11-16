@@ -7,36 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_security_sac_attachment`.
 const Set<String> _googleNetworkSecuritySacAttachmentSensitive = <String>{};
 
-/// Network Security Sac Attachment enum for `state`.
-extension type const NetworkSecuritySacAttachmentState._(TfArg<String> _)
-    implements TfArg<String> {
-  NetworkSecuritySacAttachmentState.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkSecuritySacAttachmentState.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkSecuritySacAttachmentState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = NetworkSecuritySacAttachmentState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const pendingPartnerAttachment = NetworkSecuritySacAttachmentState._(
-    TfArgLiteral('PENDING_PARTNER_ATTACHMENT'),
-  );
-  static const partnerAttached = NetworkSecuritySacAttachmentState._(
-    TfArgLiteral('PARTNER_ATTACHED'),
-  );
-  static const partnerDetached = NetworkSecuritySacAttachmentState._(
-    TfArgLiteral('PARTNER_DETACHED'),
-  );
-
-  static const List<NetworkSecuritySacAttachmentState> values = [
-    stateUnspecified,
-    pendingPartnerAttachment,
-    partnerAttached,
-    partnerDetached,
-  ];
-}
-
 /// Typed helper for the `symantec_options` block of
 /// `google_network_security_sac_attachment` (derived from provider schema).
 @immutable

@@ -111,29 +111,6 @@ extension type const RedisClusterServerCaMode._(TfArg<String> _)
   ];
 }
 
-/// Redis Cluster enum for `state`.
-extension type const RedisClusterState._(TfArg<String> _)
-    implements TfArg<String> {
-  RedisClusterState.variable(String name) : this._(TfArg.variable(name));
-  RedisClusterState.expression(String template)
-    : this._(TfArg.expression(template));
-  const RedisClusterState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = RedisClusterState._(TfArgLiteral('CREATING'));
-  static const ready = RedisClusterState._(TfArgLiteral('READY'));
-  static const updating = RedisClusterState._(TfArgLiteral('UPDATING'));
-  static const deleting = RedisClusterState._(TfArgLiteral('DELETING'));
-  static const suspended = RedisClusterState._(TfArgLiteral('SUSPENDED'));
-
-  static const List<RedisClusterState> values = [
-    creating,
-    ready,
-    updating,
-    deleting,
-    suspended,
-  ];
-}
-
 /// Redis Cluster Transit Encryption enum for `transit_encryption_mode`.
 extension type const RedisClusterTransitEncryptionMode._(TfArg<String> _)
     implements TfArg<String> {
@@ -630,16 +607,19 @@ final class RedisClusterPscConfigs {
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
 final class RedisClusterZoneDistributionConfig {
-  const RedisClusterZoneDistributionConfig({this.mode, this.zone});
+  const RedisClusterZoneDistributionConfig({this.mode, this.zone, this.zones});
 
   final RedisClusterZoneDistributionConfigMode? mode;
 
   final TfArg<String>? zone;
 
+  final TfArg<List<String>>? zones;
+
   @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'zone': ?zone?.toTfJson(),
+    'zones': ?zones?.toTfJson(),
   };
 }
 

@@ -17,6 +17,19 @@ export 'src/dialogflow/google_dialogflow_agent.dart'
         DialogflowAgentMatchMode,
         DialogflowAgentTier,
         GoogleDialogflowAgent;
+export 'src/dialogflow/google_dialogflow_companion_agent.dart'
+    show
+        DialogflowCompanionAgentActions,
+        DialogflowCompanionAgentCesToolSpecs,
+        DialogflowCompanionAgentConfirmationRequirement,
+        DialogflowCompanionAgentGuidanceInstructions,
+        DialogflowCompanionAgentGuidanceSkillConfig,
+        DialogflowCompanionAgentParameterOverrides,
+        DialogflowCompanionAgentSkillConfigs,
+        DialogflowCompanionAgentSkillTriggeringEvent,
+        DialogflowCompanionAgentToolsetTools,
+        DialogflowCompanionAgentTriggerEvent,
+        GoogleDialogflowCompanionAgent;
 export 'src/dialogflow/google_dialogflow_conversation_profile.dart'
     show
         DialogflowConversationProfileAudioEncoding,
@@ -253,7 +266,7 @@ export 'src/dialogflow/google_dialogflow_cx_tool_version.dart'
         DialogflowCxToolVersionTool,
         GoogleDialogflowCxToolVersion;
 export 'src/dialogflow/google_dialogflow_cx_version.dart'
-    show DialogflowCxVersionState, GoogleDialogflowCxVersion;
+    show GoogleDialogflowCxVersion;
 export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
     show
         DialogflowCxWebhookGenericWebService,
@@ -279,7 +292,6 @@ export 'src/dialogflow/google_dialogflow_environment.dart'
         DialogflowEnvironmentGenericWebService,
         DialogflowEnvironmentOutputAudioEncoding,
         DialogflowEnvironmentSsmlGender,
-        DialogflowEnvironmentState,
         DialogflowEnvironmentSynthesizeSpeechConfigs,
         DialogflowEnvironmentTextToSpeechSettings,
         DialogflowEnvironmentType,

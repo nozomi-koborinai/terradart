@@ -1,7 +1,7 @@
 {
   "name": "clouddeploy",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261104",
   "sourceUrl": "https://clouddeploy.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Automation": {
@@ -88,9 +88,6 @@
     },
     "RolloutRestriction": {
       "properties": {
-        "timeWindows": {
-          "$ref": "TimeWindows"
-        },
         "invokers": {
           "items": {
             "enum": [
@@ -114,6 +111,9 @@
               "TERMINATE_JOBRUN"
             ]
           }
+        },
+        "timeWindows": {
+          "$ref": "TimeWindows"
         }
       }
     },

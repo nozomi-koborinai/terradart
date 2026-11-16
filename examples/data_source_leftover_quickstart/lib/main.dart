@@ -2566,6 +2566,14 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleRedisClusterTokenAuthUser(
+        'redis_cluster_token_auth_user',
+        cluster: TfArg.literal(leftover),
+        userId: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleRedisInstance('redis_instance', name: TfArg.literal(leftover)),
     );
 

@@ -1,7 +1,7 @@
 {
   "name": "composer",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261109",
   "sourceUrl": "https://composer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -17,22 +17,16 @@
     },
     "DataRetentionConfig": {
       "properties": {
-        "airflowMetadataRetentionConfig": {
-          "$ref": "AirflowMetadataRetentionPolicyConfig"
-        },
         "taskLogsRetentionConfig": {
           "$ref": "TaskLogsRetentionConfig"
+        },
+        "airflowMetadataRetentionConfig": {
+          "$ref": "AirflowMetadataRetentionPolicyConfig"
         }
       }
     },
     "Environment": {
       "properties": {
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEVELOPMENT"
-          ]
-        },
         "config": {
           "$ref": "EnvironmentConfig"
         },
@@ -46,23 +40,17 @@
             "DELETING",
             "ERROR"
           ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DEVELOPMENT"
+          ]
         }
       }
     },
     "EnvironmentConfig": {
       "properties": {
-        "softwareConfig": {
-          "$ref": "SoftwareConfig"
-        },
-        "dataRetentionConfig": {
-          "$ref": "DataRetentionConfig"
-        },
-        "resilienceMode": {
-          "enum": [
-            "RESILIENCE_MODE_UNSPECIFIED",
-            "HIGH_RESILIENCE"
-          ]
-        },
         "environmentSize": {
           "enum": [
             "ENVIRONMENT_SIZE_UNSPECIFIED",
@@ -73,8 +61,20 @@
             "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
           ]
         },
+        "resilienceMode": {
+          "enum": [
+            "RESILIENCE_MODE_UNSPECIFIED",
+            "HIGH_RESILIENCE"
+          ]
+        },
+        "dataRetentionConfig": {
+          "$ref": "DataRetentionConfig"
+        },
         "privateEnvironmentConfig": {
           "$ref": "PrivateEnvironmentConfig"
+        },
+        "softwareConfig": {
+          "$ref": "SoftwareConfig"
         }
       }
     },
@@ -91,32 +91,32 @@
     },
     "PrivateEnvironmentConfig": {
       "properties": {
-        "networkingConfig": {
-          "$ref": "NetworkingConfig"
-        },
         "networkingType": {
           "enum": [
             "NETWORKING_TYPE_UNSPECIFIED",
             "PRIVATE",
             "PUBLIC"
           ]
+        },
+        "networkingConfig": {
+          "$ref": "NetworkingConfig"
         }
       }
     },
     "SoftwareConfig": {
       "properties": {
-        "webServerPluginsMode": {
-          "enum": [
-            "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
-            "PLUGINS_DISABLED",
-            "PLUGINS_ENABLED"
-          ]
-        },
         "auditLogsReplicationMode": {
           "enum": [
             "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
             "AUDIT_LOGS_REPLICATION_DISABLED",
             "AUDIT_LOGS_REPLICATION_ENABLED"
+          ]
+        },
+        "webServerPluginsMode": {
+          "enum": [
+            "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
+            "PLUGINS_DISABLED",
+            "PLUGINS_ENABLED"
           ]
         }
       }

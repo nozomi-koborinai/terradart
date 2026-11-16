@@ -1,7 +1,7 @@
 {
   "name": "redis",
   "version": "v1",
-  "revision": "20261102",
+  "revision": "20261105",
   "sourceUrl": "https://redis.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AOFConfig": {
@@ -67,20 +67,6 @@
     },
     "Cluster": {
       "properties": {
-        "serverCaMode": {
-          "enum": [
-            "SERVER_CA_MODE_UNSPECIFIED",
-            "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
-            "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
-            "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA"
-          ]
-        },
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
-        },
-        "crossClusterReplicationConfig": {
-          "$ref": "CrossClusterReplicationConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -90,10 +76,12 @@
             "DELETING"
           ]
         },
-        "pscConnections": {
-          "items": {
-            "$ref": "PscConnection"
-          }
+        "transitEncryptionMode": {
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "TRANSIT_ENCRYPTION_MODE_DISABLED",
+            "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION"
+          ]
         },
         "authorizationMode": {
           "enum": [
@@ -102,6 +90,11 @@
             "AUTH_MODE_DISABLED",
             "AUTH_MODE_TOKEN_AUTH"
           ]
+        },
+        "pscConnections": {
+          "items": {
+            "$ref": "PscConnection"
+          }
         },
         "nodeType": {
           "enum": [
@@ -115,40 +108,47 @@
             "REDIS_HIGHMEM_2XLARGE"
           ]
         },
+        "crossClusterReplicationConfig": {
+          "$ref": "CrossClusterReplicationConfig"
+        },
         "pscServiceAttachments": {
           "items": {
             "$ref": "PscServiceAttachment"
           }
         },
-        "transitEncryptionMode": {
-          "enum": [
-            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
-            "TRANSIT_ENCRYPTION_MODE_DISABLED",
-            "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION"
-          ]
+        "maintenancePolicy": {
+          "$ref": "ClusterMaintenancePolicy"
         },
-        "zoneDistributionConfig": {
-          "$ref": "ZoneDistributionConfig"
+        "serverCaMode": {
+          "enum": [
+            "SERVER_CA_MODE_UNSPECIFIED",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
+            "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA"
+          ]
         },
         "persistenceConfig": {
           "$ref": "ClusterPersistenceConfig"
         },
+        "zoneDistributionConfig": {
+          "$ref": "ZoneDistributionConfig"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
         "stateInfo": {
           "$ref": "StateInfo"
-        },
-        "aclPolicyInfo": {
-          "$ref": "AclPolicyInfo"
         },
         "clusterEndpoints": {
           "items": {
             "$ref": "ClusterEndpoint"
           }
         },
-        "maintenancePolicy": {
-          "$ref": "ClusterMaintenancePolicy"
-        },
         "automatedBackupConfig": {
           "$ref": "AutomatedBackupConfig"
+        },
+        "aclPolicyInfo": {
+          "$ref": "AclPolicyInfo"
         }
       }
     },
@@ -181,6 +181,9 @@
     },
     "ClusterPersistenceConfig": {
       "properties": {
+        "aofConfig": {
+          "$ref": "AOFConfig"
+        },
         "mode": {
           "enum": [
             "PERSISTENCE_MODE_UNSPECIFIED",
@@ -191,9 +194,6 @@
         },
         "rdbConfig": {
           "$ref": "RDBConfig"
-        },
-        "aofConfig": {
-          "$ref": "AOFConfig"
         }
       }
     },
@@ -215,11 +215,11 @@
     },
     "ConnectionDetail": {
       "properties": {
-        "pscAutoConnection": {
-          "$ref": "PscAutoConnection"
-        },
         "pscConnection": {
           "$ref": "PscConnection"
+        },
+        "pscAutoConnection": {
+          "$ref": "PscAutoConnection"
         }
       }
     },
@@ -237,6 +237,13 @@
     },
     "EncryptionInfo": {
       "properties": {
+        "encryptionType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ]
+        },
         "kmsKeyPrimaryState": {
           "enum": [
             "KMS_KEY_STATE_UNSPECIFIED",
@@ -249,18 +256,18 @@
             "BILLING_DISABLED",
             "UNKNOWN_FAILURE"
           ]
-        },
-        "encryptionType": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "GOOGLE_DEFAULT_ENCRYPTION",
-            "CUSTOMER_MANAGED_ENCRYPTION"
-          ]
         }
       }
     },
     "Instance": {
       "properties": {
+        "transitEncryptionMode": {
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "SERVER_AUTHENTICATION",
+            "DISABLED"
+          ]
+        },
         "connectMode": {
           "enum": [
             "CONNECT_MODE_UNSPECIFIED",
@@ -268,11 +275,17 @@
             "PRIVATE_SERVICE_ACCESS"
           ]
         },
-        "transitEncryptionMode": {
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy"
+        },
+        "persistenceConfig": {
+          "$ref": "PersistenceConfig"
+        },
+        "readReplicasMode": {
           "enum": [
-            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
-            "SERVER_AUTHENTICATION",
-            "DISABLED"
+            "READ_REPLICAS_MODE_UNSPECIFIED",
+            "READ_REPLICAS_DISABLED",
+            "READ_REPLICAS_ENABLED"
           ]
         },
         "tier": {
@@ -290,13 +303,6 @@
             ]
           }
         },
-        "readReplicasMode": {
-          "enum": [
-            "READ_REPLICAS_MODE_UNSPECIFIED",
-            "READ_REPLICAS_DISABLED",
-            "READ_REPLICAS_ENABLED"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -309,12 +315,6 @@
             "IMPORTING",
             "FAILING_OVER"
           ]
-        },
-        "maintenancePolicy": {
-          "$ref": "MaintenancePolicy"
-        },
-        "persistenceConfig": {
-          "$ref": "PersistenceConfig"
         }
       }
     },
@@ -349,19 +349,19 @@
     },
     "PscAutoConnection": {
       "properties": {
+        "pscConnectionStatus": {
+          "enum": [
+            "PSC_CONNECTION_STATUS_UNSPECIFIED",
+            "PSC_CONNECTION_STATUS_ACTIVE",
+            "PSC_CONNECTION_STATUS_NOT_FOUND"
+          ]
+        },
         "connectionType": {
           "enum": [
             "CONNECTION_TYPE_UNSPECIFIED",
             "CONNECTION_TYPE_DISCOVERY",
             "CONNECTION_TYPE_PRIMARY",
             "CONNECTION_TYPE_READER"
-          ]
-        },
-        "pscConnectionStatus": {
-          "enum": [
-            "PSC_CONNECTION_STATUS_UNSPECIFIED",
-            "PSC_CONNECTION_STATUS_ACTIVE",
-            "PSC_CONNECTION_STATUS_NOT_FOUND"
           ]
         }
       }

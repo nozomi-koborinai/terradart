@@ -11,17 +11,17 @@
             "$ref": "RemoteConfigParameterGroup"
           }
         },
-        "conditions": {
-          "items": {
-            "$ref": "RemoteConfigCondition"
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "RemoteConfigParameter"
           }
         },
         "version": {
           "$ref": "Version"
         },
-        "parameters": {
-          "additionalProperties": {
-            "$ref": "RemoteConfigParameter"
+        "conditions": {
+          "items": {
+            "$ref": "RemoteConfigCondition"
           }
         }
       }
@@ -70,20 +70,20 @@
     },
     "Version": {
       "properties": {
-        "updateType": {
-          "enum": [
-            "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED",
-            "INCREMENTAL_UPDATE",
-            "FORCED_UPDATE",
-            "ROLLBACK"
-          ]
-        },
         "updateOrigin": {
           "enum": [
             "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED",
             "CONSOLE",
             "REST_API",
             "ADMIN_SDK_NODE"
+          ]
+        },
+        "updateType": {
+          "enum": [
+            "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED",
+            "INCREMENTAL_UPDATE",
+            "FORCED_UPDATE",
+            "ROLLBACK"
           ]
         }
       }

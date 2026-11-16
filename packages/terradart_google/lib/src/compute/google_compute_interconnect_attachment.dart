@@ -180,44 +180,6 @@ extension type const ComputeInterconnectAttachmentStackType._(TfArg<String> _)
   ];
 }
 
-/// Compute Interconnect Attachment enum for `state`.
-extension type const ComputeInterconnectAttachmentState._(TfArg<String> _)
-    implements TfArg<String> {
-  ComputeInterconnectAttachmentState.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputeInterconnectAttachmentState.expression(String template)
-    : this._(TfArg.expression(template));
-  const ComputeInterconnectAttachmentState.arg(TfArg<String> arg) : this._(arg);
-
-  static const active = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('ACTIVE'),
-  );
-  static const defunct = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('DEFUNCT'),
-  );
-  static const partnerRequestReceived = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('PARTNER_REQUEST_RECEIVED'),
-  );
-  static const pendingCustomer = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('PENDING_CUSTOMER'),
-  );
-  static const pendingPartner = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('PENDING_PARTNER'),
-  );
-  static const stateUnspecified = ComputeInterconnectAttachmentState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-
-  static const List<ComputeInterconnectAttachmentState> values = [
-    active,
-    defunct,
-    partnerRequestReceived,
-    pendingCustomer,
-    pendingPartner,
-    stateUnspecified,
-  ];
-}
-
 /// Compute Interconnect Attachment enum for `type`.
 extension type const ComputeInterconnectAttachmentType._(TfArg<String> _)
     implements TfArg<String> {

@@ -1,7 +1,7 @@
 {
   "name": "cloudidentity",
   "version": "v1beta1",
-  "revision": "20261106",
+  "revision": "20261108",
   "sourceUrl": "https://cloudidentity.googleapis.com/$discovery/rest?version=v1beta1",
   "schemas": {
     "Policy": {

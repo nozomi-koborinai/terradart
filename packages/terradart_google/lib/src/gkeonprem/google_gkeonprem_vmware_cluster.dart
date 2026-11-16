@@ -147,44 +147,6 @@ extension type const GkeonpremVmwareClusterSkipValidations._(TfArg<String> _)
   ];
 }
 
-/// Gkeonprem Vmware Cluster enum for `state`.
-extension type const GkeonpremVmwareClusterState._(TfArg<String> _)
-    implements TfArg<String> {
-  GkeonpremVmwareClusterState.variable(String name)
-    : this._(TfArg.variable(name));
-  GkeonpremVmwareClusterState.expression(String template)
-    : this._(TfArg.expression(template));
-  const GkeonpremVmwareClusterState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = GkeonpremVmwareClusterState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const provisioning = GkeonpremVmwareClusterState._(
-    TfArgLiteral('PROVISIONING'),
-  );
-  static const running = GkeonpremVmwareClusterState._(TfArgLiteral('RUNNING'));
-  static const reconciling = GkeonpremVmwareClusterState._(
-    TfArgLiteral('RECONCILING'),
-  );
-  static const stopping = GkeonpremVmwareClusterState._(
-    TfArgLiteral('STOPPING'),
-  );
-  static const error = GkeonpremVmwareClusterState._(TfArgLiteral('ERROR'));
-  static const degraded = GkeonpremVmwareClusterState._(
-    TfArgLiteral('DEGRADED'),
-  );
-
-  static const List<GkeonpremVmwareClusterState> values = [
-    stateUnspecified,
-    provisioning,
-    running,
-    reconciling,
-    stopping,
-    error,
-    degraded,
-  ];
-}
-
 /// Typed helper for the `anti_affinity_groups` block of
 /// `google_gkeonprem_vmware_cluster` (derived from provider schema).
 @immutable

@@ -7,4 +7,6 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-{}
+google_vertex_ai_evaluation_item:
+  "evaluation_request, gcs_uri": "awaiting-name: hashicorp/google 8.11.0"
+  "evaluation_request.golden_response.agent_data, evaluation_request.golden_response.text, evaluation_request.golden_response.value": "awaiting-name: hashicorp/google 8.11.0"

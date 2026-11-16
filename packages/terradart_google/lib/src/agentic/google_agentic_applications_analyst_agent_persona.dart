@@ -843,6 +843,8 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
     this.oauthTokenUrl,
     this.prompt,
     required this.serverUrl,
+    this.sessionIdHeader,
+    this.taskIdHeader,
   });
 
   final Sensitive<String>? apiKey;
@@ -867,6 +869,10 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
 
   final TfArg<String> serverUrl;
 
+  final TfArg<String>? sessionIdHeader;
+
+  final TfArg<String>? taskIdHeader;
+
   @internal
   Map<String, Object?> encode() => {
     'api_key': ?apiKey?.toTfJson(),
@@ -880,6 +886,8 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
     'oauth_token_url': ?oauthTokenUrl?.toTfJson(),
     'prompt': ?prompt?.toTfJson(),
     'server_url': serverUrl.toTfJson(),
+    'session_id_header': ?sessionIdHeader?.toTfJson(),
+    'task_id_header': ?taskIdHeader?.toTfJson(),
   };
 }
 

@@ -21,6 +21,12 @@ export 'src/dataflow/google_data_pipeline_pipeline.dart'
         DataPipelinePipelineType,
         DataPipelinePipelineWorkload,
         GoogleDataPipelinePipeline;
+export 'src/dataflow/google_dataflow_config_store_setting.dart'
+    show
+        DataflowConfigStoreSettingBoolValue,
+        DataflowConfigStoreSettingStringValue,
+        DataflowConfigStoreSettingValue,
+        GoogleDataflowConfigStoreSetting;
 export 'src/dataflow/google_dataflow_flex_template_job.dart'
     show
         DataflowFlexTemplateJobAutoscalingAlgorithm,

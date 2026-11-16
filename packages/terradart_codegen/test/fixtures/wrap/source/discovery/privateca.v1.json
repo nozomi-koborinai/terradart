@@ -1,7 +1,7 @@
 {
   "name": "privateca",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261104",
   "sourceUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AllowedKeyType": {
@@ -33,25 +33,28 @@
         "publishingOptions": {
           "$ref": "PublishingOptions"
         },
+        "issuancePolicy": {
+          "$ref": "IssuancePolicy"
+        },
         "tier": {
           "enum": [
             "TIER_UNSPECIFIED",
             "ENTERPRISE",
             "DEVOPS"
           ]
-        },
-        "issuancePolicy": {
-          "$ref": "IssuancePolicy"
         }
       }
     },
     "Certificate": {
       "properties": {
+        "revocationDetails": {
+          "$ref": "RevocationDetails"
+        },
         "certificateDescription": {
           "$ref": "CertificateDescription"
         },
-        "revocationDetails": {
-          "$ref": "RevocationDetails"
+        "config": {
+          "$ref": "CertificateConfig"
         },
         "subjectMode": {
           "enum": [
@@ -60,22 +63,11 @@
             "RDN_SEQUENCE",
             "REFLECTED_SPIFFE"
           ]
-        },
-        "config": {
-          "$ref": "CertificateConfig"
         }
       }
     },
     "CertificateAuthority": {
       "properties": {
-        "keySpec": {
-          "$ref": "KeyVersionSpec"
-        },
-        "caCertificateDescriptions": {
-          "items": {
-            "$ref": "CertificateDescription"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -86,9 +78,6 @@
             "DELETED"
           ]
         },
-        "config": {
-          "$ref": "CertificateConfig"
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -96,12 +85,23 @@
             "SUBORDINATE"
           ]
         },
+        "caCertificateDescriptions": {
+          "items": {
+            "$ref": "CertificateDescription"
+          }
+        },
+        "config": {
+          "$ref": "CertificateConfig"
+        },
         "tier": {
           "enum": [
             "TIER_UNSPECIFIED",
             "ENTERPRISE",
             "DEVOPS"
           ]
+        },
+        "keySpec": {
+          "$ref": "KeyVersionSpec"
         }
       }
     },
@@ -117,11 +117,11 @@
     },
     "CertificateDescription": {
       "properties": {
-        "publicKey": {
-          "$ref": "PublicKey"
-        },
         "subjectDescription": {
           "$ref": "SubjectDescription"
+        },
+        "publicKey": {
+          "$ref": "PublicKey"
         }
       }
     },
@@ -163,13 +163,13 @@
     },
     "IssuancePolicy": {
       "properties": {
+        "passthroughExtensions": {
+          "$ref": "CertificateExtensionConstraints"
+        },
         "allowedKeyTypes": {
           "items": {
             "$ref": "AllowedKeyType"
           }
-        },
-        "passthroughExtensions": {
-          "$ref": "CertificateExtensionConstraints"
         }
       }
     },

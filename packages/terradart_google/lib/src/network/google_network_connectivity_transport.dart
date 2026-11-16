@@ -75,44 +75,6 @@ extension type const NetworkConnectivityTransportBandwidth._(TfArg<String> _)
   ];
 }
 
-/// Network Connectivity Transport enum for `state`.
-extension type const NetworkConnectivityTransportState._(TfArg<String> _)
-    implements TfArg<String> {
-  NetworkConnectivityTransportState.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkConnectivityTransportState.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkConnectivityTransportState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = NetworkConnectivityTransportState._(
-    TfArgLiteral('CREATING'),
-  );
-  static const pendingConfig = NetworkConnectivityTransportState._(
-    TfArgLiteral('PENDING_CONFIG'),
-  );
-  static const pendingKey = NetworkConnectivityTransportState._(
-    TfArgLiteral('PENDING_KEY'),
-  );
-  static const active = NetworkConnectivityTransportState._(
-    TfArgLiteral('ACTIVE'),
-  );
-  static const deleting = NetworkConnectivityTransportState._(
-    TfArgLiteral('DELETING'),
-  );
-  static const deprovisioned = NetworkConnectivityTransportState._(
-    TfArgLiteral('DEPROVISIONED'),
-  );
-
-  static const List<NetworkConnectivityTransportState> values = [
-    creating,
-    pendingConfig,
-    pendingKey,
-    active,
-    deleting,
-    deprovisioned,
-  ];
-}
-
 /// Terraform `deletion_policy` for Network Connectivity transports.
 extension type const NetworkConnectivityTransportDeletionPolicy._(
   TfArg<String> _

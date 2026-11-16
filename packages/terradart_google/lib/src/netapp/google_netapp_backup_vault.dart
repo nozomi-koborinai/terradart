@@ -30,40 +30,6 @@ extension type const NetappBackupVaultType._(TfArg<String> _)
   ];
 }
 
-/// Netapp Backup Vault Encryption enum for `encryption_state`.
-extension type const NetappBackupVaultEncryptionState._(TfArg<String> _)
-    implements TfArg<String> {
-  NetappBackupVaultEncryptionState.variable(String name)
-    : this._(TfArg.variable(name));
-  NetappBackupVaultEncryptionState.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetappBackupVaultEncryptionState.arg(TfArg<String> arg) : this._(arg);
-
-  static const encryptionStateUnspecified = NetappBackupVaultEncryptionState._(
-    TfArgLiteral('ENCRYPTION_STATE_UNSPECIFIED'),
-  );
-  static const encryptionStatePending = NetappBackupVaultEncryptionState._(
-    TfArgLiteral('ENCRYPTION_STATE_PENDING'),
-  );
-  static const encryptionStateCompleted = NetappBackupVaultEncryptionState._(
-    TfArgLiteral('ENCRYPTION_STATE_COMPLETED'),
-  );
-  static const encryptionStateInProgress = NetappBackupVaultEncryptionState._(
-    TfArgLiteral('ENCRYPTION_STATE_IN_PROGRESS'),
-  );
-  static const encryptionStateFailed = NetappBackupVaultEncryptionState._(
-    TfArgLiteral('ENCRYPTION_STATE_FAILED'),
-  );
-
-  static const List<NetappBackupVaultEncryptionState> values = [
-    encryptionStateUnspecified,
-    encryptionStatePending,
-    encryptionStateCompleted,
-    encryptionStateInProgress,
-    encryptionStateFailed,
-  ];
-}
-
 /// Typed helper for the `backup_retention_policy` block of
 /// `google_netapp_backup_vault` (derived from provider schema).
 @immutable

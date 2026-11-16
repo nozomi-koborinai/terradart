@@ -341,6 +341,14 @@ final class GoogleStorageInsightsReportConfig extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
@@ -351,6 +359,10 @@ final class GoogleStorageInsightsReportConfig extends Resource {
 
   /// Reference to `force_destroy` attribute.
   TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');

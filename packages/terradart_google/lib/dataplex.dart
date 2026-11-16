@@ -38,6 +38,18 @@ export 'src/dataplex/google_data_lineage_config.dart'
         DataLineageConfigLineageEnablement,
         DataLineageConfigRule,
         GoogleDataLineageConfig;
+export 'src/dataplex/google_data_lineage_open_lineage_job.dart'
+    show
+        DataLineageOpenLineageJobCatalog,
+        DataLineageOpenLineageJobColumnLineage,
+        DataLineageOpenLineageJobDatasetInput,
+        DataLineageOpenLineageJobField,
+        DataLineageOpenLineageJobFieldInput,
+        DataLineageOpenLineageJobInput,
+        DataLineageOpenLineageJobOutput,
+        DataLineageOpenLineageJobSymlink,
+        DataLineageOpenLineageJobTransformation,
+        GoogleDataLineageOpenLineageJob;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
 export 'src/dataplex/google_dataplex_aspect_type_iam_binding.dart'
@@ -134,7 +146,6 @@ export 'src/dataplex/google_dataplex_datascan.dart'
         DataplexDatascanSetExpectation,
         DataplexDatascanSqlAssertion,
         DataplexDatascanSqlDialect,
-        DataplexDatascanState,
         DataplexDatascanStatistic,
         DataplexDatascanStatisticRangeExpectation,
         DataplexDatascanStorageConfig,
@@ -145,7 +156,6 @@ export 'src/dataplex/google_dataplex_datascan.dart'
         DataplexDatascanTriggerOnDemand,
         DataplexDatascanTriggerOneTime,
         DataplexDatascanTriggerSchedule,
-        DataplexDatascanType,
         DataplexDatascanUniquenessExpectation,
         DataplexDatascanUserCredential,
         DataplexDatascanValues,
