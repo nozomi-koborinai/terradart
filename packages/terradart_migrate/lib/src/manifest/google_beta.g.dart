@@ -15606,25 +15606,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       name: 'FirebaseDatabaseInstanceDesiredState',
       members: <String, String>{'ACTIVE': 'active', 'DISABLED': 'disabled'},
     ),
-    'FirebaseDatabaseInstanceState': MigrateEnum(
-      name: 'FirebaseDatabaseInstanceState',
-      members: <String, String>{'ACTIVE': 'active', 'DISABLED': 'disabled'},
-    ),
     'FirebaseDatabaseInstanceType': MigrateEnum(
       name: 'FirebaseDatabaseInstanceType',
       members: <String, String>{
         'DEFAULT_DATABASE': 'defaultDatabase',
         'USER_DATABASE': 'userDatabase',
-      },
-    ),
-    'FirebaseExtensionsInstanceState': MigrateEnum(
-      name: 'FirebaseExtensionsInstanceState',
-      members: <String, String>{
-        'DEPLOYING': 'deploying',
-        'UNINSTALLING': 'uninstalling',
-        'ACTIVE': 'active',
-        'ERRORED': 'errored',
-        'PAUSED': 'paused',
       },
     ),
     'FirebaseHostingCustomDomainCertPreference': MigrateEnum(
@@ -15633,17 +15619,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'GROUPED': 'grouped',
         'PROJECT_GROUPED': 'projectGrouped',
         'DEDICATED': 'dedicated',
-      },
-    ),
-    'FirebaseHostingCustomDomainOwnershipState': MigrateEnum(
-      name: 'FirebaseHostingCustomDomainOwnershipState',
-      members: <String, String>{
-        'OWNERSHIP_MISSING': 'ownershipMissing',
-        'OWNERSHIP_UNREACHABLE': 'ownershipUnreachable',
-        'OWNERSHIP_MISMATCH': 'ownershipMismatch',
-        'OWNERSHIP_CONFLICT': 'ownershipConflict',
-        'OWNERSHIP_PENDING': 'ownershipPending',
-        'ACTIVE': 'active',
       },
     ),
     'FirebaseHostingReleaseType': MigrateEnum(
@@ -15725,31 +15700,12 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       name: 'NetworkSecurityAuthorizationPolicyAction',
       members: <String, String>{'ALLOW': 'allow', 'DENY': 'deny'},
     ),
-    'NetworkSecuritySacAttachmentState': MigrateEnum(
-      name: 'NetworkSecuritySacAttachmentState',
-      members: <String, String>{
-        'STATE_UNSPECIFIED': 'stateUnspecified',
-        'PENDING_PARTNER_ATTACHMENT': 'pendingPartnerAttachment',
-        'PARTNER_ATTACHED': 'partnerAttached',
-        'PARTNER_DETACHED': 'partnerDetached',
-      },
-    ),
     'NetworkSecuritySacRealmSecurityService': MigrateEnum(
       name: 'NetworkSecuritySacRealmSecurityService',
       members: <String, String>{
         'SECURITY_SERVICE_UNSPECIFIED': 'securityServiceUnspecified',
         'PALO_ALTO_PRISMA_ACCESS': 'paloAltoPrismaAccess',
         'SYMANTEC_CLOUD_SWG': 'symantecCloudSwg',
-      },
-    ),
-    'NetworkSecuritySacRealmState': MigrateEnum(
-      name: 'NetworkSecuritySacRealmState',
-      members: <String, String>{
-        'STATE_UNSPECIFIED': 'stateUnspecified',
-        'PENDING_PARTNER_ATTACHMENT': 'pendingPartnerAttachment',
-        'PARTNER_ATTACHED': 'partnerAttached',
-        'PARTNER_DETACHED': 'partnerDetached',
-        'KEY_EXPIRED': 'keyExpired',
       },
     ),
     'OsConfigGuestPoliciesArchiveType': MigrateEnum(
@@ -15937,14 +15893,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'V5LITE_POD': 'v5litePod',
         'V5P': 'v5p',
         'V6E': 'v6e',
-      },
-    ),
-    'VertexAiModelGardenEnableModelEnablementState': MigrateEnum(
-      name: 'VertexAiModelGardenEnableModelEnablementState',
-      members: <String, String>{
-        'ENABLEMENT_STATE_UNSPECIFIED': 'enablementStateUnspecified',
-        'ENABLEMENT_STATE_SUCCEEDED': 'enablementStateSucceeded',
-        'ENABLEMENT_STATE_FAILED': 'enablementStateFailed',
       },
     ),
   },

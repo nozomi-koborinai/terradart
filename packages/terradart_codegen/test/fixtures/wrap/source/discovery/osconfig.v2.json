@@ -81,14 +81,14 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "repository": {
-          "$ref": "OSPolicyResourceRepositoryResource"
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
         },
         "exec": {
           "$ref": "OSPolicyResourceExecResource"
         },
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource"
         },
         "pkg": {
           "$ref": "OSPolicyResourcePackageResource"

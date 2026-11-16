@@ -6,44 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_workstations_workstation`.
 const Set<String> _googleWorkstationsWorkstationSensitive = <String>{};
 
-/// Workstations Workstation enum for `state`.
-extension type const WorkstationsWorkstationState._(TfArg<String> _)
-    implements TfArg<String> {
-  WorkstationsWorkstationState.variable(String name)
-    : this._(TfArg.variable(name));
-  WorkstationsWorkstationState.expression(String template)
-    : this._(TfArg.expression(template));
-  const WorkstationsWorkstationState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateStarting = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_STARTING'),
-  );
-  static const stateRunning = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_RUNNING'),
-  );
-  static const stateStopping = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_STOPPING'),
-  );
-  static const stateStopped = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_STOPPED'),
-  );
-  static const stateSuspending = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_SUSPENDING'),
-  );
-  static const stateSuspended = WorkstationsWorkstationState._(
-    TfArgLiteral('STATE_SUSPENDED'),
-  );
-
-  static const List<WorkstationsWorkstationState> values = [
-    stateStarting,
-    stateRunning,
-    stateStopping,
-    stateStopped,
-    stateSuspending,
-    stateSuspended,
-  ];
-}
-
 /// Factory wrapper for `google_workstations_workstation`.
 ///
 /// A single instance of a developer workstation with its own persistent

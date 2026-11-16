@@ -1,26 +1,26 @@
 {
   "name": "developerconnect",
   "version": "v1",
-  "revision": "20261025",
+  "revision": "20261109",
   "sourceUrl": "https://developerconnect.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccountConnector": {
       "properties": {
-        "providerOauthConfig": {
-          "$ref": "ProviderOAuthConfig"
-        },
         "customOauthConfig": {
           "$ref": "CustomOAuthConfig"
+        },
+        "providerOauthConfig": {
+          "$ref": "ProviderOAuthConfig"
         }
       }
     },
     "Connection": {
       "properties": {
-        "installationState": {
-          "$ref": "InstallationState"
-        },
         "githubConfig": {
           "$ref": "GitHubConfig"
+        },
+        "installationState": {
+          "$ref": "InstallationState"
         }
       }
     },

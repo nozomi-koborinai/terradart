@@ -1,7 +1,7 @@
 {
   "name": "lustre",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261109",
   "sourceUrl": "https://lustre.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessRule": {
@@ -44,8 +44,8 @@
     },
     "Instance": {
       "properties": {
-        "accessRulesOptions": {
-          "$ref": "AccessRulesOptions"
+        "dynamicTierOptions": {
+          "$ref": "DynamicTierOptions"
         },
         "state": {
           "enum": [
@@ -63,8 +63,8 @@
         "maintenancePolicy": {
           "$ref": "MaintenancePolicy"
         },
-        "dynamicTierOptions": {
-          "$ref": "DynamicTierOptions"
+        "accessRulesOptions": {
+          "$ref": "AccessRulesOptions"
         }
       }
     },

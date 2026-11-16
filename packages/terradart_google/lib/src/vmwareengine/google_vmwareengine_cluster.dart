@@ -7,31 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vmwareengine_cluster`.
 const Set<String> _googleVmwareengineClusterSensitive = <String>{};
 
-/// Vmwareengine Cluster enum for `state`.
-extension type const VmwareengineClusterState._(TfArg<String> _)
-    implements TfArg<String> {
-  VmwareengineClusterState.variable(String name) : this._(TfArg.variable(name));
-  VmwareengineClusterState.expression(String template)
-    : this._(TfArg.expression(template));
-  const VmwareengineClusterState.arg(TfArg<String> arg) : this._(arg);
-
-  static const active = VmwareengineClusterState._(TfArgLiteral('ACTIVE'));
-  static const creating = VmwareengineClusterState._(TfArgLiteral('CREATING'));
-  static const updating = VmwareengineClusterState._(TfArgLiteral('UPDATING'));
-  static const deleting = VmwareengineClusterState._(TfArgLiteral('DELETING'));
-  static const repairing = VmwareengineClusterState._(
-    TfArgLiteral('REPAIRING'),
-  );
-
-  static const List<VmwareengineClusterState> values = [
-    active,
-    creating,
-    updating,
-    deleting,
-    repairing,
-  ];
-}
-
 /// Typed helper for the `autoscaling_settings` block of
 /// `google_vmwareengine_cluster` (derived from provider schema).
 @immutable

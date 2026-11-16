@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_integration_connectors_connection`.
 const Set<String> _googleIntegrationConnectorsConnectionSensitive = <String>{};
@@ -522,28 +523,44 @@ final class IntegrationConnectorsConnectionDestination {
 @immutable
 final class IntegrationConnectorsConnectionEventingConfig {
   const IntegrationConnectorsConnectionEventingConfig({
+    this.allowedEventTypes,
     this.enrichmentEnabled,
+    this.globalEventFilter,
     this.additionalVariable,
     this.authConfig,
+    this.deadLetterConfig,
+    this.enrichmentConfig,
     required this.registrationDestinationConfig,
   });
 
+  final TfArg<List<String>>? allowedEventTypes;
+
   final TfArg<bool>? enrichmentEnabled;
+
+  final TfArg<String>? globalEventFilter;
 
   final List<IntegrationConnectorsConnectionEventingConfigAdditionalVariable>?
   additionalVariable;
 
   final IntegrationConnectorsConnectionEventingConfigAuthConfig? authConfig;
 
+  final IntegrationConnectorsConnectionDeadLetterConfig? deadLetterConfig;
+
+  final IntegrationConnectorsConnectionEnrichmentConfig? enrichmentConfig;
+
   final IntegrationConnectorsConnectionRegistrationDestinationConfig
   registrationDestinationConfig;
 
   @internal
   Map<String, Object?> encode() => {
+    'allowed_event_types': ?allowedEventTypes?.toTfJson(),
     'enrichment_enabled': ?enrichmentEnabled?.toTfJson(),
+    'global_event_filter': ?globalEventFilter?.toTfJson(),
     if (additionalVariable != null)
       'additional_variable': [for (final e in additionalVariable!) e.encode()],
     'auth_config': ?authConfig?.encode(),
+    'dead_letter_config': ?deadLetterConfig?.encode(),
+    'enrichment_config': ?enrichmentConfig?.encode(),
     'registration_destination_config': registrationDestinationConfig.encode(),
   };
 }
@@ -676,6 +693,38 @@ final class IntegrationConnectorsConnectionAuthConfigUserPassword {
     'username': ?username?.toTfJson(),
     'password': ?password?.encode(),
   };
+}
+
+/// Typed helper for the `eventing_config.dead_letter_config` block of
+/// `google_integration_connectors_connection` (derived from provider schema).
+@immutable
+final class IntegrationConnectorsConnectionDeadLetterConfig {
+  const IntegrationConnectorsConnectionDeadLetterConfig({
+    required this.projectId,
+    required this.topic,
+  });
+
+  final TfArg<String> projectId;
+
+  final RefTo<GooglePubsubTopic> topic;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'project_id': projectId.toTfJson(),
+    'topic': topic.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `eventing_config.enrichment_config` block of
+/// `google_integration_connectors_connection` (derived from provider schema).
+@immutable
+final class IntegrationConnectorsConnectionEnrichmentConfig {
+  const IntegrationConnectorsConnectionEnrichmentConfig({this.appendAcl});
+
+  final TfArg<bool>? appendAcl;
+
+  @internal
+  Map<String, Object?> encode() => {'append_acl': ?appendAcl?.toTfJson()};
 }
 
 /// Typed helper for the `eventing_config.registration_destination_config` block of

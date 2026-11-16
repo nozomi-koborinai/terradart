@@ -1,7 +1,7 @@
 {
   "name": "recaptchaenterprise",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261108",
   "sourceUrl": "https://recaptchaenterprise.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1Key": {
@@ -9,11 +9,11 @@
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
         },
-        "wafSettings": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
-        },
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
+        },
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
         }
       }
     },
@@ -30,15 +30,6 @@
     },
     "GoogleCloudRecaptchaenterpriseV1WafSettings": {
       "properties": {
-        "wafService": {
-          "enum": [
-            "WAF_SERVICE_UNSPECIFIED",
-            "CA",
-            "FASTLY",
-            "CLOUDFLARE",
-            "AKAMAI"
-          ]
-        },
         "wafFeature": {
           "enum": [
             "WAF_FEATURE_UNSPECIFIED",
@@ -47,19 +38,20 @@
             "ACTION_TOKEN",
             "EXPRESS"
           ]
+        },
+        "wafService": {
+          "enum": [
+            "WAF_SERVICE_UNSPECIFIED",
+            "CA",
+            "FASTLY",
+            "CLOUDFLARE",
+            "AKAMAI"
+          ]
         }
       }
     },
     "GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
       "properties": {
-        "challengeSecurityPreference": {
-          "enum": [
-            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
-            "USABILITY",
-            "BALANCE",
-            "SECURITY"
-          ]
-        },
         "integrationType": {
           "enum": [
             "INTEGRATION_TYPE_UNSPECIFIED",
@@ -67,6 +59,14 @@
             "CHECKBOX",
             "INVISIBLE",
             "POLICY_BASED_CHALLENGE"
+          ]
+        },
+        "challengeSecurityPreference": {
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
           ]
         }
       }

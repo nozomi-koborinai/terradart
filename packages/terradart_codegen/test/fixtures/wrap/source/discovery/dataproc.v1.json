@@ -64,16 +64,16 @@
     },
     "Batch": {
       "properties": {
+        "runtimeConfig": {
+          "$ref": "RuntimeConfig"
+        },
         "stateHistory": {
           "items": {
             "$ref": "StateHistory"
           }
         },
-        "runtimeConfig": {
-          "$ref": "RuntimeConfig"
-        },
-        "runtimeInfo": {
-          "$ref": "RuntimeInfo"
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
         },
         "state": {
           "enum": [
@@ -86,8 +86,8 @@
             "FAILED"
           ]
         },
-        "environmentConfig": {
-          "$ref": "EnvironmentConfig"
+        "runtimeInfo": {
+          "$ref": "RuntimeInfo"
         }
       }
     },
@@ -96,38 +96,30 @@
         "config": {
           "$ref": "ClusterConfig"
         },
-        "statusHistory": {
-          "items": {
-            "$ref": "ClusterStatus"
-          }
+        "status": {
+          "$ref": "ClusterStatus"
         },
         "virtualClusterConfig": {
           "$ref": "VirtualClusterConfig"
         },
-        "status": {
-          "$ref": "ClusterStatus"
+        "statusHistory": {
+          "items": {
+            "$ref": "ClusterStatus"
+          }
         }
       }
     },
     "ClusterConfig": {
       "properties": {
-        "workerConfig": {
-          "$ref": "InstanceGroupConfig"
-        },
-        "auxiliaryNodeGroups": {
-          "items": {
-            "$ref": "AuxiliaryNodeGroup"
-          }
-        },
-        "gceClusterConfig": {
-          "$ref": "GceClusterConfig"
-        },
         "clusterTier": {
           "enum": [
             "CLUSTER_TIER_UNSPECIFIED",
             "CLUSTER_TIER_STANDARD",
             "CLUSTER_TIER_PREMIUM"
           ]
+        },
+        "gceClusterConfig": {
+          "$ref": "GceClusterConfig"
         },
         "engine": {
           "enum": [
@@ -136,17 +128,14 @@
             "LIGHTNING"
           ]
         },
-        "masterConfig": {
+        "secondaryWorkerConfig": {
           "$ref": "InstanceGroupConfig"
         },
-        "workerFlexibleConfig": {
+        "secondaryWorkerFlexibleConfig": {
           "$ref": "FlexibleInstanceGroupConfig"
         },
-        "gkeClusterConfig": {
-          "$ref": "GkeClusterConfig"
-        },
-        "dataprocMetricConfig": {
-          "$ref": "DataprocMetricConfig"
+        "masterConfig": {
+          "$ref": "InstanceGroupConfig"
         },
         "clusterType": {
           "enum": [
@@ -156,22 +145,40 @@
             "ZERO_SCALE"
           ]
         },
-        "secondaryWorkerConfig": {
+        "workerConfig": {
           "$ref": "InstanceGroupConfig"
         },
-        "secondaryWorkerFlexibleConfig": {
+        "masterFlexibleConfig": {
           "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "workerFlexibleConfig": {
+          "$ref": "FlexibleInstanceGroupConfig"
+        },
+        "auxiliaryNodeGroups": {
+          "items": {
+            "$ref": "AuxiliaryNodeGroup"
+          }
+        },
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig"
         },
         "softwareConfig": {
           "$ref": "SoftwareConfig"
         },
-        "masterFlexibleConfig": {
-          "$ref": "FlexibleInstanceGroupConfig"
+        "dataprocMetricConfig": {
+          "$ref": "DataprocMetricConfig"
         }
       }
     },
     "ClusterStatus": {
       "properties": {
+        "substate": {
+          "enum": [
+            "UNSPECIFIED",
+            "UNHEALTHY",
+            "STALE_STATUS"
+          ]
+        },
         "state": {
           "enum": [
             "UNKNOWN",
@@ -186,13 +193,6 @@
             "STARTING",
             "REPAIRING",
             "SCHEDULED"
-          ]
-        },
-        "substate": {
-          "enum": [
-            "UNSPECIFIED",
-            "UNHEALTHY",
-            "STALE_STATUS"
           ]
         }
       }
@@ -272,11 +272,14 @@
     },
     "GceClusterConfig": {
       "properties": {
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig"
         },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
+        "multiZoneConfig": {
+          "$ref": "MultiZoneConfig"
         },
         "privateIpv6GoogleAccess": {
           "enum": [
@@ -285,9 +288,6 @@
             "OUTBOUND",
             "BIDIRECTIONAL"
           ]
-        },
-        "multiZoneConfig": {
-          "$ref": "MultiZoneConfig"
         }
       }
     },
@@ -333,6 +333,12 @@
     },
     "InstanceGroupConfig": {
       "properties": {
+        "diskConfig": {
+          "$ref": "DiskConfig"
+        },
+        "instanceFlexibilityPolicy": {
+          "$ref": "InstanceFlexibilityPolicy"
+        },
         "preemptibility": {
           "enum": [
             "PREEMPTIBILITY_UNSPECIFIED",
@@ -340,12 +346,6 @@
             "PREEMPTIBLE",
             "SPOT"
           ]
-        },
-        "instanceFlexibilityPolicy": {
-          "$ref": "InstanceFlexibilityPolicy"
-        },
-        "diskConfig": {
-          "$ref": "DiskConfig"
         }
       }
     },
@@ -444,32 +444,32 @@
     },
     "OrderedJob": {
       "properties": {
-        "flinkJob": {
-          "$ref": "FlinkJob"
-        },
-        "hadoopJob": {
-          "$ref": "HadoopJob"
-        },
         "pigJob": {
           "$ref": "PigJob"
-        },
-        "pysparkJob": {
-          "$ref": "PySparkJob"
         },
         "sparkRJob": {
           "$ref": "SparkRJob"
         },
+        "hadoopJob": {
+          "$ref": "HadoopJob"
+        },
+        "flinkJob": {
+          "$ref": "FlinkJob"
+        },
+        "sparkSqlJob": {
+          "$ref": "SparkSqlJob"
+        },
         "prestoJob": {
           "$ref": "PrestoJob"
-        },
-        "sparkJob": {
-          "$ref": "SparkJob"
         },
         "trinoJob": {
           "$ref": "TrinoJob"
         },
-        "sparkSqlJob": {
-          "$ref": "SparkSqlJob"
+        "sparkJob": {
+          "$ref": "SparkJob"
+        },
+        "pysparkJob": {
+          "$ref": "PySparkJob"
         }
       }
     },
@@ -522,11 +522,11 @@
     },
     "SessionTemplate": {
       "properties": {
-        "environmentConfig": {
-          "$ref": "EnvironmentConfig"
-        },
         "jupyterSession": {
           "$ref": "JupyterConfig"
+        },
+        "environmentConfig": {
+          "$ref": "EnvironmentConfig"
         },
         "runtimeConfig": {
           "$ref": "RuntimeConfig"
@@ -615,13 +615,13 @@
     },
     "WorkflowTemplate": {
       "properties": {
-        "placement": {
-          "$ref": "WorkflowTemplatePlacement"
-        },
         "jobs": {
           "items": {
             "$ref": "OrderedJob"
           }
+        },
+        "placement": {
+          "$ref": "WorkflowTemplatePlacement"
         }
       }
     },

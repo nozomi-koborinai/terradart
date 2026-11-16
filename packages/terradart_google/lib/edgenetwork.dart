@@ -11,4 +11,4 @@ export 'src/edgenetwork/google_edgenetwork_interconnect_attachment.dart'
 export 'src/edgenetwork/google_edgenetwork_network.dart'
     show GoogleEdgenetworkNetwork;
 export 'src/edgenetwork/google_edgenetwork_subnet.dart'
-    show EdgenetworkSubnetState, GoogleEdgenetworkSubnet;
+    show GoogleEdgenetworkSubnet;

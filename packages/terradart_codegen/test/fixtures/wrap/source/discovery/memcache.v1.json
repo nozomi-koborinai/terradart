@@ -15,18 +15,6 @@
     },
     "Instance": {
       "properties": {
-        "memcacheVersion": {
-          "enum": [
-            "MEMCACHE_VERSION_UNSPECIFIED",
-            "MEMCACHE_1_5",
-            "MEMCACHE_1_6_15"
-          ]
-        },
-        "memcacheNodes": {
-          "items": {
-            "$ref": "Node"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -38,13 +26,25 @@
             "MEMCACHE_VERSION_UPGRADING"
           ]
         },
+        "memcacheNodes": {
+          "items": {
+            "$ref": "Node"
+          }
+        },
+        "memcacheVersion": {
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ]
+        },
+        "maintenancePolicy": {
+          "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
+        },
         "instanceMessages": {
           "items": {
             "$ref": "InstanceMessage"
           }
-        },
-        "maintenancePolicy": {
-          "$ref": "GoogleCloudMemcacheV1MaintenancePolicy"
         }
       }
     },

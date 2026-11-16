@@ -1,7 +1,7 @@
 {
   "name": "cloudfunctions",
   "version": "v2",
-  "revision": "20261107",
+  "revision": "20261106",
   "sourceUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "BuildConfig": {
@@ -31,6 +31,9 @@
         "serviceConfig": {
           "$ref": "ServiceConfig"
         },
+        "upgradeInfo": {
+          "$ref": "UpgradeInfo"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -43,19 +46,11 @@
             "DETACH_FAILED"
           ]
         },
-        "eventTrigger": {
-          "$ref": "EventTrigger"
-        },
-        "stateMessages": {
-          "items": {
-            "$ref": "GoogleCloudFunctionsV2StateMessage"
-          }
-        },
         "buildConfig": {
           "$ref": "BuildConfig"
         },
-        "upgradeInfo": {
-          "$ref": "UpgradeInfo"
+        "eventTrigger": {
+          "$ref": "EventTrigger"
         },
         "environment": {
           "enum": [
@@ -63,6 +58,11 @@
             "GEN_1",
             "GEN_2"
           ]
+        },
+        "stateMessages": {
+          "items": {
+            "$ref": "GoogleCloudFunctionsV2StateMessage"
+          }
         }
       }
     },
@@ -80,13 +80,6 @@
     },
     "ServiceConfig": {
       "properties": {
-        "securityLevel": {
-          "enum": [
-            "SECURITY_LEVEL_UNSPECIFIED",
-            "SECURE_ALWAYS",
-            "SECURE_OPTIONAL"
-          ]
-        },
         "vpcConnectorEgressSettings": {
           "enum": [
             "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
@@ -102,6 +95,13 @@
             "ALLOW_INTERNAL_AND_GCLB"
           ]
         },
+        "securityLevel": {
+          "enum": [
+            "SECURITY_LEVEL_UNSPECIFIED",
+            "SECURE_ALWAYS",
+            "SECURE_OPTIONAL"
+          ]
+        },
         "directVpcEgress": {
           "enum": [
             "DIRECT_VPC_EGRESS_UNSPECIFIED",
@@ -113,9 +113,6 @@
     },
     "UpgradeInfo": {
       "properties": {
-        "serviceConfig": {
-          "$ref": "ServiceConfig"
-        },
         "upgradeState": {
           "enum": [
             "UPGRADE_STATE_UNSPECIFIED",
@@ -133,6 +130,9 @@
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR"
           ]
+        },
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
         },
         "buildConfig": {
           "$ref": "BuildConfig"

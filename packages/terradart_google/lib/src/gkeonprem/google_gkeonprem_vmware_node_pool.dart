@@ -10,46 +10,6 @@ import '../gkeonprem/google_gkeonprem_vmware_cluster.dart'
 /// Sensitive field paths for `google_gkeonprem_vmware_node_pool`.
 const Set<String> _googleGkeonpremVmwareNodePoolSensitive = <String>{};
 
-/// Gkeonprem Vmware Node Pool enum for `state`.
-extension type const GkeonpremVmwareNodePoolState._(TfArg<String> _)
-    implements TfArg<String> {
-  GkeonpremVmwareNodePoolState.variable(String name)
-    : this._(TfArg.variable(name));
-  GkeonpremVmwareNodePoolState.expression(String template)
-    : this._(TfArg.expression(template));
-  const GkeonpremVmwareNodePoolState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const provisioning = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('PROVISIONING'),
-  );
-  static const running = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('RUNNING'),
-  );
-  static const reconciling = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('RECONCILING'),
-  );
-  static const stopping = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('STOPPING'),
-  );
-  static const error = GkeonpremVmwareNodePoolState._(TfArgLiteral('ERROR'));
-  static const degraded = GkeonpremVmwareNodePoolState._(
-    TfArgLiteral('DEGRADED'),
-  );
-
-  static const List<GkeonpremVmwareNodePoolState> values = [
-    stateUnspecified,
-    provisioning,
-    running,
-    reconciling,
-    stopping,
-    error,
-    degraded,
-  ];
-}
-
 /// Typed helper for the `config` block of
 /// `google_gkeonprem_vmware_node_pool` (derived from provider schema).
 @immutable

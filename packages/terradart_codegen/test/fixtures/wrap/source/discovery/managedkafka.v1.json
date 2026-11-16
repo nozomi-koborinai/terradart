@@ -9,9 +9,6 @@
     },
     "Cluster": {
       "properties": {
-        "rebalanceConfig": {
-          "$ref": "RebalanceConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -20,6 +17,9 @@
             "DELETING",
             "UPDATING"
           ]
+        },
+        "rebalanceConfig": {
+          "$ref": "RebalanceConfig"
         }
       }
     },

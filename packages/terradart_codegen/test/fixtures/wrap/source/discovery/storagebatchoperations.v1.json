@@ -1,7 +1,7 @@
 {
   "name": "storagebatchoperations",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261110",
   "sourceUrl": "https://storagebatchoperations.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "ErrorSummary": {
@@ -31,20 +31,6 @@
     },
     "Job": {
       "properties": {
-        "errorSummaries": {
-          "items": {
-            "$ref": "ErrorSummary"
-          }
-        },
-        "rewriteObject": {
-          "$ref": "RewriteObject"
-        },
-        "putObjectHold": {
-          "$ref": "PutObjectHold"
-        },
-        "loggingConfig": {
-          "$ref": "LoggingConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -55,8 +41,22 @@
             "QUEUED"
           ]
         },
+        "putObjectHold": {
+          "$ref": "PutObjectHold"
+        },
+        "rewriteObject": {
+          "$ref": "RewriteObject"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
         "putMetadata": {
           "$ref": "PutMetadata"
+        },
+        "errorSummaries": {
+          "items": {
+            "$ref": "ErrorSummary"
+          }
         }
       }
     },

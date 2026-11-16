@@ -35,48 +35,6 @@ extension type const FirebaseHostingCustomDomainCertPreference._(
   ];
 }
 
-/// Firebase Hosting Custom Domain Ownership enum for `ownership_state`.
-extension type const FirebaseHostingCustomDomainOwnershipState._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  FirebaseHostingCustomDomainOwnershipState.variable(String name)
-    : this._(TfArg.variable(name));
-  FirebaseHostingCustomDomainOwnershipState.expression(String template)
-    : this._(TfArg.expression(template));
-  const FirebaseHostingCustomDomainOwnershipState.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const ownershipMissing = FirebaseHostingCustomDomainOwnershipState._(
-    TfArgLiteral('OWNERSHIP_MISSING'),
-  );
-  static const ownershipUnreachable =
-      FirebaseHostingCustomDomainOwnershipState._(
-        TfArgLiteral('OWNERSHIP_UNREACHABLE'),
-      );
-  static const ownershipMismatch = FirebaseHostingCustomDomainOwnershipState._(
-    TfArgLiteral('OWNERSHIP_MISMATCH'),
-  );
-  static const ownershipConflict = FirebaseHostingCustomDomainOwnershipState._(
-    TfArgLiteral('OWNERSHIP_CONFLICT'),
-  );
-  static const ownershipPending = FirebaseHostingCustomDomainOwnershipState._(
-    TfArgLiteral('OWNERSHIP_PENDING'),
-  );
-  static const active = FirebaseHostingCustomDomainOwnershipState._(
-    TfArgLiteral('ACTIVE'),
-  );
-
-  static const List<FirebaseHostingCustomDomainOwnershipState> values = [
-    ownershipMissing,
-    ownershipUnreachable,
-    ownershipMismatch,
-    ownershipConflict,
-    ownershipPending,
-    active,
-  ];
-}
-
 /// Factory wrapper for `google_firebase_hosting_custom_domain`.
 ///
 /// Manages Custom Domains for Firebase Hosting. Custom Domains link your domain

@@ -1,7 +1,7 @@
 {
   "name": "vectorsearch",
   "version": "v1",
-  "revision": "20261029",
+  "revision": "20261105",
   "sourceUrl": "https://vectorsearch.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudVectorsearchV1Collection": {
@@ -47,18 +47,18 @@
     },
     "GoogleCloudVectorsearchV1Index": {
       "properties": {
+        "denseScann": {
+          "$ref": "GoogleCloudVectorsearchV1DenseScannIndex"
+        },
+        "dedicatedInfrastructure": {
+          "$ref": "GoogleCloudVectorsearchV1DedicatedInfrastructure"
+        },
         "distanceMetric": {
           "enum": [
             "DISTANCE_METRIC_UNSPECIFIED",
             "DOT_PRODUCT",
             "COSINE_DISTANCE"
           ]
-        },
-        "dedicatedInfrastructure": {
-          "$ref": "GoogleCloudVectorsearchV1DedicatedInfrastructure"
-        },
-        "denseScann": {
-          "$ref": "GoogleCloudVectorsearchV1DenseScannIndex"
         }
       }
     },

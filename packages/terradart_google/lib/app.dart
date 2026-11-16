@@ -90,13 +90,16 @@ export 'src/app/google_app_engine_standard_app_version.dart'
         AppEngineStandardAppVersionLogin,
         AppEngineStandardAppVersionManualScaling,
         AppEngineStandardAppVersionManualScalingChoice,
+        AppEngineStandardAppVersionNetworkInterfaces,
         AppEngineStandardAppVersionRedirectHttpResponseCode,
         AppEngineStandardAppVersionScaling,
         AppEngineStandardAppVersionScript,
         AppEngineStandardAppVersionSecurityLevel,
         AppEngineStandardAppVersionStandardSchedulerSettings,
         AppEngineStandardAppVersionStaticFiles,
+        AppEngineStandardAppVersionVpcAccess,
         AppEngineStandardAppVersionVpcAccessConnector,
+        AppEngineStandardAppVersionVpcEgress,
         AppEngineStandardAppVersionZip,
         GoogleAppEngineStandardAppVersion;
 export 'src/data/google_app_engine_default_service_account.dart'

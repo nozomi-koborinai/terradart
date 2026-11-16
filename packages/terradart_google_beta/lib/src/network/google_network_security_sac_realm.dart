@@ -35,40 +35,6 @@ extension type const NetworkSecuritySacRealmSecurityService._(TfArg<String> _)
   ];
 }
 
-/// Network Security Sac Realm enum for `state`.
-extension type const NetworkSecuritySacRealmState._(TfArg<String> _)
-    implements TfArg<String> {
-  NetworkSecuritySacRealmState.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkSecuritySacRealmState.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkSecuritySacRealmState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = NetworkSecuritySacRealmState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const pendingPartnerAttachment = NetworkSecuritySacRealmState._(
-    TfArgLiteral('PENDING_PARTNER_ATTACHMENT'),
-  );
-  static const partnerAttached = NetworkSecuritySacRealmState._(
-    TfArgLiteral('PARTNER_ATTACHED'),
-  );
-  static const partnerDetached = NetworkSecuritySacRealmState._(
-    TfArgLiteral('PARTNER_DETACHED'),
-  );
-  static const keyExpired = NetworkSecuritySacRealmState._(
-    TfArgLiteral('KEY_EXPIRED'),
-  );
-
-  static const List<NetworkSecuritySacRealmState> values = [
-    stateUnspecified,
-    pendingPartnerAttachment,
-    partnerAttached,
-    partnerDetached,
-    keyExpired,
-  ];
-}
-
 /// Typed helper for the `symantec_options` block of
 /// `google_network_security_sac_realm` (derived from provider schema).
 @immutable

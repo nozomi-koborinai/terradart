@@ -663,16 +663,23 @@ extension type const MemorystoreInstanceRdbSnapshotPeriod._(TfArg<String> _)
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
 final class MemorystoreInstanceZoneDistributionConfig {
-  const MemorystoreInstanceZoneDistributionConfig({this.mode, this.zone});
+  const MemorystoreInstanceZoneDistributionConfig({
+    this.mode,
+    this.zone,
+    this.zones,
+  });
 
   final MemorystoreInstanceZoneDistributionConfigMode? mode;
 
   final TfArg<String>? zone;
 
+  final TfArg<List<String>>? zones;
+
   @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'zone': ?zone?.toTfJson(),
+    'zones': ?zones?.toTfJson(),
   };
 }
 

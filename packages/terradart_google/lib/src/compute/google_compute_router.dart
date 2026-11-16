@@ -7,7 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_router`.
-const Set<String> _googleComputeRouterSensitive = <String>{};
+const Set<String> _googleComputeRouterSensitive = <String>{
+  'md5_authentication_keys.key',
+};
 
 /// `bgp.advertise_mode` — which BGP prefix advertisement mode the router
 /// uses. Default (when unset) is [ComputeRouterBgpAdvertiseMode.defaultMode].
@@ -166,7 +168,7 @@ final class ComputeRouterMd5AuthenticationKeys {
     required this.name,
   });
 
-  final TfArg<String> key;
+  final Sensitive<String> key;
 
   final TfArg<String> name;
 

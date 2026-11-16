@@ -36,6 +36,11 @@
             ]
           }
         },
+        "availableVersion": {
+          "items": {
+            "$ref": "Version"
+          }
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -44,18 +49,8 @@
             "DEVELOPER"
           ]
         },
-        "accelerators": {
-          "items": {
-            "$ref": "Accelerator"
-          }
-        },
         "networkConfig": {
           "$ref": "NetworkConfig"
-        },
-        "availableVersion": {
-          "items": {
-            "$ref": "Version"
-          }
         },
         "state": {
           "enum": [
@@ -76,6 +71,11 @@
         "maintenanceEvents": {
           "items": {
             "$ref": "MaintenanceEvent"
+          }
+        },
+        "accelerators": {
+          "items": {
+            "$ref": "Accelerator"
           }
         }
       }

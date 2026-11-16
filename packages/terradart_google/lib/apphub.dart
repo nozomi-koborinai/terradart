@@ -16,7 +16,6 @@ export 'src/apphub/google_apphub_application.dart'
         ApphubApplicationEnvironmentType,
         ApphubApplicationOperatorOwners,
         ApphubApplicationScope,
-        ApphubApplicationState,
         ApphubApplicationType,
         GoogleApphubApplication;
 export 'src/apphub/google_apphub_boundary.dart' show GoogleApphubBoundary;

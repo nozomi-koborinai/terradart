@@ -76,20 +76,6 @@ extension type const SpannerInstanceType._(TfArg<String> _)
   static const List<SpannerInstanceType> values = [provisioned, freeInstance];
 }
 
-/// Spanner Instance enum for `state`.
-extension type const SpannerInstanceState._(TfArg<String> _)
-    implements TfArg<String> {
-  SpannerInstanceState.variable(String name) : this._(TfArg.variable(name));
-  SpannerInstanceState.expression(String template)
-    : this._(TfArg.expression(template));
-  const SpannerInstanceState.arg(TfArg<String> arg) : this._(arg);
-
-  static const ready = SpannerInstanceState._(TfArgLiteral('READY'));
-  static const creating = SpannerInstanceState._(TfArgLiteral('CREATING'));
-
-  static const List<SpannerInstanceState> values = [ready, creating];
-}
-
 /// At most one of `num_nodes`, `processing_units`, `autoscaling_config` on `google_spanner_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.

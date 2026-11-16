@@ -19,7 +19,6 @@ export 'src/data_fusion/google_data_fusion_instance.dart'
         DataFusionInstanceNetworkConfig,
         DataFusionInstancePrivateServiceConnectConfig,
         DataFusionInstanceRecurringTimeWindow,
-        DataFusionInstanceState,
         DataFusionInstanceType,
         DataFusionInstanceWindow,
         GoogleDataFusionInstance;

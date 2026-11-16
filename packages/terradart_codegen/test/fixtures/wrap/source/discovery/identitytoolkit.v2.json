@@ -45,13 +45,10 @@
     },
     "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED",
-            "MANDATORY"
-          ]
+        "providerConfigs": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig"
+          }
         },
         "enabledProviders": {
           "items": {
@@ -61,10 +58,13 @@
             ]
           }
         },
-        "providerConfigs": {
-          "items": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig"
-          }
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "MANDATORY"
+          ]
         }
       }
     },
@@ -96,13 +96,10 @@
     },
     "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig": {
       "properties": {
-        "emailPasswordEnforcementState": {
-          "enum": [
-            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
-            "OFF",
-            "AUDIT",
-            "ENFORCE"
-          ]
+        "tollFraudManagedRules": {
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
+          }
         },
         "managedRules": {
           "items": {
@@ -117,15 +114,18 @@
             "ENFORCE"
           ]
         },
-        "tollFraudManagedRules": {
-          "items": {
-            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
-          }
-        },
         "recaptchaKeys": {
           "items": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey"
           }
+        },
+        "emailPasswordEnforcementState": {
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ]
         }
       }
     },
@@ -163,17 +163,17 @@
     },
     "GoogleCloudIdentitytoolkitAdminV2Tenant": {
       "properties": {
-        "mfaConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig"
-        },
-        "passwordPolicyConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig"
-        },
         "recaptchaConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig"
         },
         "mobileLinksConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig"
+        },
+        "passwordPolicyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig"
+        },
+        "mfaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig"
         },
         "hashConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2HashConfig"

@@ -11,23 +11,6 @@ import '../spanner/google_spanner_instance_config.dart'
 /// Sensitive field paths for `google_spanner_instance_partition`.
 const Set<String> _googleSpannerInstancePartitionSensitive = <String>{};
 
-/// Spanner Instance Partition enum for `state`.
-extension type const SpannerInstancePartitionState._(TfArg<String> _)
-    implements TfArg<String> {
-  SpannerInstancePartitionState.variable(String name)
-    : this._(TfArg.variable(name));
-  SpannerInstancePartitionState.expression(String template)
-    : this._(TfArg.expression(template));
-  const SpannerInstancePartitionState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = SpannerInstancePartitionState._(
-    TfArgLiteral('CREATING'),
-  );
-  static const ready = SpannerInstancePartitionState._(TfArgLiteral('READY'));
-
-  static const List<SpannerInstancePartitionState> values = [creating, ready];
-}
-
 /// Exactly one of `node_count`, `processing_units`, `autoscaling_config` on `google_spanner_instance_partition`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///

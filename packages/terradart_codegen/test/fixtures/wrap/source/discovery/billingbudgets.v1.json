@@ -1,18 +1,11 @@
 {
   "name": "billingbudgets",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261108",
   "sourceUrl": "https://billingbudgets.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
       "properties": {
-        "ownershipScope": {
-          "enum": [
-            "OWNERSHIP_SCOPE_UNSPECIFIED",
-            "ALL_USERS",
-            "BILLING_ACCOUNT"
-          ]
-        },
         "spendCap": {
           "$ref": "GoogleCloudBillingBudgetsV1SpendCap"
         },
@@ -23,6 +16,13 @@
         },
         "budgetFilter": {
           "$ref": "GoogleCloudBillingBudgetsV1Filter"
+        },
+        "ownershipScope": {
+          "enum": [
+            "OWNERSHIP_SCOPE_UNSPECIFIED",
+            "ALL_USERS",
+            "BILLING_ACCOUNT"
+          ]
         }
       }
     },
@@ -48,7 +48,7 @@
     },
     "GoogleCloudBillingBudgetsV1SpendCap": {
       "properties": {
-        "inputState": {
+        "outputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",
@@ -56,7 +56,7 @@
             "AWAITING_NEXT_PERIOD"
           ]
         },
-        "outputState": {
+        "inputState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIGURED",

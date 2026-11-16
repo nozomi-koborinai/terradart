@@ -1,7 +1,7 @@
 {
   "name": "dataplex",
   "version": "v1",
-  "revision": "20261030",
+  "revision": "20261106",
   "sourceUrl": "https://dataplex.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDataplexV1DataAsset": {

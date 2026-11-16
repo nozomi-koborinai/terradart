@@ -64,6 +64,4 @@ export 'src/vertex_ai/google_vertex_ai_featurestore_iam_policy.dart'
 export 'src/vertex_ai/google_vertex_ai_metadata_store.dart'
     show GoogleVertexAiMetadataStore, VertexAiMetadataStoreEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_model_garden_enable_model.dart'
-    show
-        GoogleVertexAiModelGardenEnableModel,
-        VertexAiModelGardenEnableModelEnablementState;
+    show GoogleVertexAiModelGardenEnableModel;

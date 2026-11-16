@@ -7,49 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gkeonprem_bare_metal_admin_cluster`.
 const Set<String> _googleGkeonpremBareMetalAdminClusterSensitive = <String>{};
 
-/// Gkeonprem Bare Metal Admin Cluster enum for `state`.
-extension type const GkeonpremBareMetalAdminClusterState._(TfArg<String> _)
-    implements TfArg<String> {
-  GkeonpremBareMetalAdminClusterState.variable(String name)
-    : this._(TfArg.variable(name));
-  GkeonpremBareMetalAdminClusterState.expression(String template)
-    : this._(TfArg.expression(template));
-  const GkeonpremBareMetalAdminClusterState.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const stateUnspecified = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const provisioning = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('PROVISIONING'),
-  );
-  static const running = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('RUNNING'),
-  );
-  static const reconciling = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('RECONCILING'),
-  );
-  static const stopping = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('STOPPING'),
-  );
-  static const error = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('ERROR'),
-  );
-  static const degraded = GkeonpremBareMetalAdminClusterState._(
-    TfArgLiteral('DEGRADED'),
-  );
-
-  static const List<GkeonpremBareMetalAdminClusterState> values = [
-    stateUnspecified,
-    provisioning,
-    running,
-    reconciling,
-    stopping,
-    error,
-    degraded,
-  ];
-}
-
 /// Typed helper for the `cluster_operations` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable

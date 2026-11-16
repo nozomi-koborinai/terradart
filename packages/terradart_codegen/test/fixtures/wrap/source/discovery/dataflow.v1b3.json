@@ -1,16 +1,19 @@
 {
   "name": "dataflow",
   "version": "v1b3",
-  "revision": "20261107",
+  "revision": "20261110",
   "sourceUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3",
   "schemas": {
+    "ConfigStoreSetting": {
+      "properties": {}
+    },
     "FlexTemplateRuntimeEnvironment": {
       "properties": {
-        "autoscalingAlgorithm": {
+        "ipConfiguration": {
           "enum": [
-            "AUTOSCALING_ALGORITHM_UNKNOWN",
-            "AUTOSCALING_ALGORITHM_NONE",
-            "AUTOSCALING_ALGORITHM_BASIC"
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
           ]
         },
         "streamingMode": {
@@ -18,13 +21,6 @@
             "STREAMING_MODE_UNSPECIFIED",
             "STREAMING_MODE_EXACTLY_ONCE",
             "STREAMING_MODE_AT_LEAST_ONCE"
-          ]
-        },
-        "ipConfiguration": {
-          "enum": [
-            "WORKER_IP_UNSPECIFIED",
-            "WORKER_IP_PUBLIC",
-            "WORKER_IP_PRIVATE"
           ]
         },
         "flexrsGoal": {
@@ -33,23 +29,30 @@
             "FLEXRS_SPEED_OPTIMIZED",
             "FLEXRS_COST_OPTIMIZED"
           ]
+        },
+        "autoscalingAlgorithm": {
+          "enum": [
+            "AUTOSCALING_ALGORITHM_UNKNOWN",
+            "AUTOSCALING_ALGORITHM_NONE",
+            "AUTOSCALING_ALGORITHM_BASIC"
+          ]
         }
       }
     },
     "RuntimeEnvironment": {
       "properties": {
-        "ipConfiguration": {
-          "enum": [
-            "WORKER_IP_UNSPECIFIED",
-            "WORKER_IP_PUBLIC",
-            "WORKER_IP_PRIVATE"
-          ]
-        },
         "streamingMode": {
           "enum": [
             "STREAMING_MODE_UNSPECIFIED",
             "STREAMING_MODE_EXACTLY_ONCE",
             "STREAMING_MODE_AT_LEAST_ONCE"
+          ]
+        },
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
           ]
         }
       }

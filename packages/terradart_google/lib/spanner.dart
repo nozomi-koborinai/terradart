@@ -52,7 +52,6 @@ export 'src/spanner/google_spanner_instance.dart'
         SpannerInstanceEdition,
         SpannerInstanceOverrides,
         SpannerInstanceReplicaSelection,
-        SpannerInstanceState,
         SpannerInstanceType;
 export 'src/spanner/google_spanner_instance_config.dart'
     show
@@ -74,5 +73,4 @@ export 'src/spanner/google_spanner_instance_partition.dart'
         SpannerInstancePartitionCapacity,
         SpannerInstancePartitionCapacityAutoscalingConfig,
         SpannerInstancePartitionCapacityNodeCount,
-        SpannerInstancePartitionCapacityProcessingUnits,
-        SpannerInstancePartitionState;
+        SpannerInstancePartitionCapacityProcessingUnits;
