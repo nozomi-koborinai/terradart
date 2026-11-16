@@ -85,6 +85,10 @@ google:
   google_apigee_keystores_aliases_self_signed_cert.sig_alg:
     values: [SHA512withRSA, SHA384withRSA, SHA256withRSA]
     source: no-enum
+  google_apigee_organization.retention:
+    values: [DELETION_RETENTION_UNSPECIFIED, MINIMUM]
+    upstream: [DELETION_RETENTION_UNSPECIFIED, MINIMUM, NO_RETENTION]
+    disagrees: awaiting-review
   google_apigee_security_action.condition_config.http_methods:
     values: [GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH]
     source: no-enum
@@ -313,8 +317,8 @@ google:
     source: no-enum
   google_cloudfunctions_function.status:
     values: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTIVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
-    upstream: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTOVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
-    disagrees: 'Magic Modules misspells ACTIVE as ACTOVE; the Cloud Functions v1 API (CloudFunction.status) and the provider report ACTIVE'
+    upstream: [ACTIVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
+    disagrees: awaiting-review
   google_colab_runtime.desired_state:
     values: [RUNNING, STOPPED]
     source: no-enum
@@ -334,6 +338,10 @@ google:
   google_composer_environment.config.web_server_config.machine_type:
     values: [composer-n1-webserver-2, composer-n1-webserver-4, composer-n1-webserver-8]
     source: no-enum
+  google_compute_backend_service.load_balancing_scheme:
+    values: [EXTERNAL, EXTERNAL_MANAGED, INTERNAL_SELF_MANAGED, INTERNAL_MANAGED]
+    upstream: [EXTERNAL, INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, EXTERNAL_MANAGED, EXTERNAL_PASSTHROUGH]
+    disagrees: awaiting-review
   google_compute_firewall_policy_with_rules.rule.action:
     values: [allow, deny, apply_security_profile_group, goto_next]
     source: no-enum
@@ -341,10 +349,14 @@ google:
     values: [VPC_PEERING, PRIVATE_SERVICE_CONNECT]
     upstream: [DNS_RESOLVER, GCE_ENDPOINT, IPSEC_INTERCONNECT, NAT_AUTO, PRIVATE_SERVICE_CONNECT, SERVERLESS, SHARED_LOADBALANCER_VIP, VPC_PEERING]
     disagrees: 'Address.purpose is shared by regional and global addresses; the API description and the provider document only VPC_PEERING and PRIVATE_SERVICE_CONNECT for a global address, and the other purposes are regional'
+  google_compute_global_forwarding_rule.load_balancing_scheme:
+    values: [EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED, INTERNAL_SELF_MANAGED]
+    upstream: [EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED, INTERNAL_SELF_MANAGED, EXTERNAL_PASSTHROUGH]
+    disagrees: awaiting-review
   google_compute_health_check.type:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
-    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
-    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
+    upstream: [GRPC, GRPC_WITH_TLS, HTTP, HTTP2, HTTPS, INVALID, SSL, TCP]
+    disagrees: awaiting-review
   google_compute_instance.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
@@ -388,8 +400,8 @@ google:
     disagrees: 'the hand-written provider resource validates PREMIUM and STANDARD only (resource_compute_project_default_network_tier.go StringInSlice), as the API description says; STANDARD_OVERRIDES_FIXED_STANDARD is output only'
   google_compute_region_health_check.type:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
-    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
-    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
+    upstream: [GRPC, GRPC_WITH_TLS, HTTP, HTTP2, HTTPS, INVALID, SSL, TCP]
+    disagrees: awaiting-review
   google_compute_region_instant_snapshot.deletion_policy:
     values: [DELETE, PREVENT, ABANDON]
     source: no-document
@@ -405,12 +417,28 @@ google:
   google_compute_region_security_policy.rules.action:
     values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, throttle]
     source: no-enum
+  google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
+  google_compute_region_security_policy.rules.rate_limit_options.enforce_on_key_configs.enforce_on_key_type:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
   google_compute_region_security_policy.rules.rate_limit_options.exceed_action:
     values: ['deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
     source: no-enum
   google_compute_region_security_policy_rule.action:
     values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, throttle]
     source: no-enum
+  google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
+  google_compute_region_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_type:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
   google_compute_region_security_policy_rule.rate_limit_options.exceed_action:
     values: ['deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
     source: no-enum
@@ -449,6 +477,14 @@ google:
   google_compute_security_policy_rule.action:
     values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, redirect, throttle]
     source: no-enum
+  google_compute_security_policy_rule.rate_limit_options.enforce_on_key:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
+  google_compute_security_policy_rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_type:
+    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
+    upstream: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, ASN]
+    disagrees: awaiting-review
   google_compute_security_policy_rule.rate_limit_options.exceed_action:
     values: [redirect, 'deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
     source: no-enum
@@ -728,6 +764,10 @@ google:
   google_hypercomputecluster_cluster.storage_resources.config.new_lustre.per_unit_storage_throughput:
     values: ['125', '250', '500', '1000']
     source: no-enum
+  google_iam_workforce_pool_provider.scim_usage:
+    values: [SCIM_USAGE_UNSPECIFIED, ENABLED_FOR_GROUPS]
+    upstream: [SCIM_USAGE_UNSPECIFIED, ENABLED_FOR_GROUPS, ENABLED_FOR_USERS_GROUPS]
+    disagrees: awaiting-review
   google_identity_platform_default_supported_idp_config.idp_id:
     values: [apple.com, facebook.com, gc.apple.com, github.com, google.com, linkedin.com, microsoft.com, playgames.google.com, twitter.com, yahoo.com]
     source: no-enum

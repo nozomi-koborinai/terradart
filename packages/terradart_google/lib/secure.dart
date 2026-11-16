@@ -21,8 +21,6 @@ export 'src/secure/google_secure_source_manager_instance.dart'
         GoogleSecureSourceManagerInstance,
         SecureSourceManagerInstanceCustomHostConfig,
         SecureSourceManagerInstancePrivateConfig,
-        SecureSourceManagerInstanceState,
-        SecureSourceManagerInstanceStateNote,
         SecureSourceManagerInstanceWorkforceIdentityFederationConfig;
 export 'src/secure/google_secure_source_manager_instance_iam_binding.dart'
     show

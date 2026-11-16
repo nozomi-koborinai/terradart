@@ -10,26 +10,6 @@ import '../dialogflow/google_dialogflow_version.dart'
 /// Sensitive field paths for `google_dialogflow_environment`.
 const Set<String> _googleDialogflowEnvironmentSensitive = <String>{};
 
-/// Dialogflow Environment enum for `state`.
-extension type const DialogflowEnvironmentState._(TfArg<String> _)
-    implements TfArg<String> {
-  DialogflowEnvironmentState.variable(String name)
-    : this._(TfArg.variable(name));
-  DialogflowEnvironmentState.expression(String template)
-    : this._(TfArg.expression(template));
-  const DialogflowEnvironmentState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stopped = DialogflowEnvironmentState._(TfArgLiteral('STOPPED'));
-  static const loading = DialogflowEnvironmentState._(TfArgLiteral('LOADING'));
-  static const running = DialogflowEnvironmentState._(TfArgLiteral('RUNNING'));
-
-  static const List<DialogflowEnvironmentState> values = [
-    stopped,
-    loading,
-    running,
-  ];
-}
-
 /// Typed helper for the `fulfillment` block of
 /// `google_dialogflow_environment` (derived from provider schema).
 @immutable

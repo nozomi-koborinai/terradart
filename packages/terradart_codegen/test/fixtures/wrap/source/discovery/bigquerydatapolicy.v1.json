@@ -23,15 +23,15 @@
     },
     "DataPolicy": {
       "properties": {
+        "dataMaskingPolicy": {
+          "$ref": "DataMaskingPolicy"
+        },
         "dataPolicyType": {
           "enum": [
             "DATA_POLICY_TYPE_UNSPECIFIED",
             "COLUMN_LEVEL_SECURITY_POLICY",
             "DATA_MASKING_POLICY"
           ]
-        },
-        "dataMaskingPolicy": {
-          "$ref": "DataMaskingPolicy"
         }
       }
     }

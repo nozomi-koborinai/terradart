@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
@@ -788,6 +790,74 @@ final class AppEngineStandardAppVersionManualScaling {
 
   @internal
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
+}
+
+/// Typed helper for the `vpc_access` block of
+/// `google_app_engine_standard_app_version` (derived from provider schema).
+@immutable
+final class AppEngineStandardAppVersionVpcAccess {
+  const AppEngineStandardAppVersionVpcAccess({
+    this.vpcEgress,
+    this.networkInterfaces,
+  });
+
+  final AppEngineStandardAppVersionVpcEgress? vpcEgress;
+
+  final List<AppEngineStandardAppVersionNetworkInterfaces>? networkInterfaces;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'vpc_egress': ?vpcEgress?.toTfJson(),
+    if (networkInterfaces != null)
+      'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
+  };
+}
+
+/// `vpc_egress` — derived from the provider schema description.
+extension type const AppEngineStandardAppVersionVpcEgress._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionVpcEgress.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionVpcEgress.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionVpcEgress.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allTraffic = AppEngineStandardAppVersionVpcEgress._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateIpRanges = AppEngineStandardAppVersionVpcEgress._(
+    TfArgLiteral('PRIVATE_IP_RANGES'),
+  );
+
+  static const List<AppEngineStandardAppVersionVpcEgress> values = [
+    allTraffic,
+    privateIpRanges,
+  ];
+}
+
+/// Typed helper for the `vpc_access.network_interfaces` block of
+/// `google_app_engine_standard_app_version` (derived from provider schema).
+@immutable
+final class AppEngineStandardAppVersionNetworkInterfaces {
+  const AppEngineStandardAppVersionNetworkInterfaces({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  final TfArg<List<String>>? tags;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+  };
 }
 
 /// Typed helper for the `vpc_access_connector` block of

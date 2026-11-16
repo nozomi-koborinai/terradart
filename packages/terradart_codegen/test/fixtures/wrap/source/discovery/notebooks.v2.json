@@ -65,13 +65,6 @@
     },
     "DataDisk": {
       "properties": {
-        "diskEncryption": {
-          "enum": [
-            "DISK_ENCRYPTION_UNSPECIFIED",
-            "GMEK",
-            "CMEK"
-          ]
-        },
         "diskType": {
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
@@ -85,6 +78,13 @@
             "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
             "HYPERDISK_ML"
           ]
+        },
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
         }
       }
     },
@@ -95,8 +95,8 @@
             "$ref": "DataDisk"
           }
         },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
         },
         "acceleratorConfigs": {
           "items": {
@@ -108,8 +108,8 @@
             "$ref": "NetworkInterface"
           }
         },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
         },
         "bootDisk": {
           "$ref": "BootDisk"
@@ -118,6 +118,9 @@
     },
     "Instance": {
       "properties": {
+        "gceSetup": {
+          "$ref": "GceSetup"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -147,9 +150,6 @@
             "AGENT_NOT_INSTALLED",
             "AGENT_NOT_RUNNING"
           ]
-        },
-        "gceSetup": {
-          "$ref": "GceSetup"
         }
       }
     },
@@ -178,19 +178,19 @@
     },
     "UpgradeHistoryEntry": {
       "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "UPGRADE",
+            "ROLLBACK"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "STARTED",
             "SUCCEEDED",
             "FAILED"
-          ]
-        },
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "UPGRADE",
-            "ROLLBACK"
           ]
         }
       }

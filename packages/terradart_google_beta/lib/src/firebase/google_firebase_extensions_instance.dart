@@ -7,40 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_extensions_instance`.
 const Set<String> _googleFirebaseExtensionsInstanceSensitive = <String>{};
 
-/// Firebase Extensions Instance enum for `state`.
-extension type const FirebaseExtensionsInstanceState._(TfArg<String> _)
-    implements TfArg<String> {
-  FirebaseExtensionsInstanceState.variable(String name)
-    : this._(TfArg.variable(name));
-  FirebaseExtensionsInstanceState.expression(String template)
-    : this._(TfArg.expression(template));
-  const FirebaseExtensionsInstanceState.arg(TfArg<String> arg) : this._(arg);
-
-  static const deploying = FirebaseExtensionsInstanceState._(
-    TfArgLiteral('DEPLOYING'),
-  );
-  static const uninstalling = FirebaseExtensionsInstanceState._(
-    TfArgLiteral('UNINSTALLING'),
-  );
-  static const active = FirebaseExtensionsInstanceState._(
-    TfArgLiteral('ACTIVE'),
-  );
-  static const errored = FirebaseExtensionsInstanceState._(
-    TfArgLiteral('ERRORED'),
-  );
-  static const paused = FirebaseExtensionsInstanceState._(
-    TfArgLiteral('PAUSED'),
-  );
-
-  static const List<FirebaseExtensionsInstanceState> values = [
-    deploying,
-    uninstalling,
-    active,
-    errored,
-    paused,
-  ];
-}
-
 /// Typed helper for the `config` block of
 /// `google_firebase_extensions_instance` (derived from provider schema).
 @immutable

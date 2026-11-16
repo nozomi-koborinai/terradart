@@ -123,6 +123,10 @@ export 'src/discovery_engine/google_discovery_engine_license_config.dart'
         DiscoveryEngineLicenseConfigSubscriptionTerm,
         DiscoveryEngineLicenseConfigSubscriptionTier,
         GoogleDiscoveryEngineLicenseConfig;
+export 'src/discovery_engine/google_discovery_engine_project_provision.dart'
+    show
+        DiscoveryEngineProjectProvisionSaasParams,
+        GoogleDiscoveryEngineProjectProvision;
 export 'src/discovery_engine/google_discovery_engine_recommendation_engine.dart'
     show
         DiscoveryEngineRecommendationEngineCommonConfig,
@@ -171,7 +175,6 @@ export 'src/discovery_engine/google_discovery_engine_sitemap.dart'
     show DiscoveryEngineSitemapLocation, GoogleDiscoveryEngineSitemap;
 export 'src/discovery_engine/google_discovery_engine_target_site.dart'
     show
-        DiscoveryEngineTargetSiteIndexingStatus,
         DiscoveryEngineTargetSiteLocation,
         DiscoveryEngineTargetSiteType,
         GoogleDiscoveryEngineTargetSite;

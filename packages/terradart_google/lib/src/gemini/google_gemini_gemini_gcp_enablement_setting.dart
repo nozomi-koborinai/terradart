@@ -138,6 +138,10 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   TfRef<String> get geminiGcpEnablementSettingId =>
       TfRef.attribute<String>(this, 'gemini_gcp_enablement_setting_id');
 
+  /// Reference to `has_custom_instructions` attribute.
+  TfRef<bool> get hasCustomInstructions =>
+      TfRef.attribute<bool>(this, 'has_custom_instructions');
+
   /// Reference to `labels` attribute.
   TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');

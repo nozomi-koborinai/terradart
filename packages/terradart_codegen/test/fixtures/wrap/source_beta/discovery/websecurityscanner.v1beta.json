@@ -1,28 +1,13 @@
 {
   "name": "websecurityscanner",
   "version": "v1beta",
-  "revision": "20261104",
+  "revision": "20261108",
   "sourceUrl": "https://websecurityscanner.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "ScanConfig": {
       "properties": {
-        "riskLevel": {
-          "enum": [
-            "RISK_LEVEL_UNSPECIFIED",
-            "NORMAL",
-            "LOW"
-          ]
-        },
         "latestRun": {
           "$ref": "ScanRun"
-        },
-        "userAgent": {
-          "enum": [
-            "USER_AGENT_UNSPECIFIED",
-            "CHROME_LINUX",
-            "CHROME_ANDROID",
-            "SAFARI_IPHONE"
-          ]
         },
         "exportToSecurityCommandCenter": {
           "enum": [
@@ -41,6 +26,21 @@
               "CLOUD_FUNCTIONS"
             ]
           }
+        },
+        "userAgent": {
+          "enum": [
+            "USER_AGENT_UNSPECIFIED",
+            "CHROME_LINUX",
+            "CHROME_ANDROID",
+            "SAFARI_IPHONE"
+          ]
+        },
+        "riskLevel": {
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "NORMAL",
+            "LOW"
+          ]
         }
       }
     },
@@ -97,13 +97,13 @@
     },
     "ScanRun": {
       "properties": {
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
-        },
-        "warningTraces": {
-          "items": {
-            "$ref": "ScanRunWarningTrace"
-          }
+        "resultState": {
+          "enum": [
+            "RESULT_STATE_UNSPECIFIED",
+            "SUCCESS",
+            "ERROR",
+            "KILLED"
+          ]
         },
         "executionState": {
           "enum": [
@@ -113,13 +113,13 @@
             "FINISHED"
           ]
         },
-        "resultState": {
-          "enum": [
-            "RESULT_STATE_UNSPECIFIED",
-            "SUCCESS",
-            "ERROR",
-            "KILLED"
-          ]
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
+        },
+        "warningTraces": {
+          "items": {
+            "$ref": "ScanRunWarningTrace"
+          }
         }
       }
     },

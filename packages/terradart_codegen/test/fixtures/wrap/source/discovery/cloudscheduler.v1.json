@@ -38,6 +38,12 @@
     },
     "Job": {
       "properties": {
+        "httpTarget": {
+          "$ref": "HttpTarget"
+        },
+        "appEngineHttpTarget": {
+          "$ref": "AppEngineHttpTarget"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -46,12 +52,6 @@
             "DISABLED",
             "UPDATE_FAILED"
           ]
-        },
-        "httpTarget": {
-          "$ref": "HttpTarget"
-        },
-        "appEngineHttpTarget": {
-          "$ref": "AppEngineHttpTarget"
         }
       }
     }

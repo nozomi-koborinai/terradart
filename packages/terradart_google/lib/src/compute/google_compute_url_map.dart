@@ -257,6 +257,7 @@ final class ComputeUrlMapDefaultRouteAction {
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
+    this.imageOptimizationPolicy,
     this.maxStreamDuration,
     this.requestMirrorPolicy,
     this.retryPolicy,
@@ -270,6 +271,8 @@ final class ComputeUrlMapDefaultRouteAction {
   final ComputeUrlMapCorsPolicy? corsPolicy;
 
   final ComputeUrlMapFaultInjectionPolicy? faultInjectionPolicy;
+
+  final ComputeUrlMapImageOptimizationPolicy? imageOptimizationPolicy;
 
   final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
@@ -288,6 +291,7 @@ final class ComputeUrlMapDefaultRouteAction {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'image_optimization_policy': ?imageOptimizationPolicy?.encode(),
     'max_stream_duration': ?maxStreamDuration?.encode(),
     'request_mirror_policy': ?requestMirrorPolicy?.encode(),
     'retry_policy': ?retryPolicy?.encode(),
@@ -677,6 +681,48 @@ final class ComputeUrlMapFixedDelay {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
   };
+}
+
+/// Typed helper for the `default_route_action.image_optimization_policy` block of
+/// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ComputeUrlMapImageOptimizationPolicy {
+  const ComputeUrlMapImageOptimizationPolicy({
+    this.queryParameterInterpretation,
+  });
+
+  final ComputeUrlMapQueryParameterInterpretation? queryParameterInterpretation;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'query_parameter_interpretation': ?queryParameterInterpretation?.toTfJson(),
+  };
+}
+
+/// `query_parameter_interpretation` — derived from the provider schema description.
+extension type const ComputeUrlMapQueryParameterInterpretation._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  ComputeUrlMapQueryParameterInterpretation.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeUrlMapQueryParameterInterpretation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeUrlMapQueryParameterInterpretation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const disabled = ComputeUrlMapQueryParameterInterpretation._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = ComputeUrlMapQueryParameterInterpretation._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<ComputeUrlMapQueryParameterInterpretation> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `default_route_action.max_stream_duration` block of
@@ -1165,6 +1211,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
+    this.imageOptimizationPolicy,
     this.maxStreamDuration,
     this.requestMirrorPolicy,
     this.retryPolicy,
@@ -1178,6 +1225,8 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
   final ComputeUrlMapCorsPolicy? corsPolicy;
 
   final ComputeUrlMapFaultInjectionPolicy? faultInjectionPolicy;
+
+  final ComputeUrlMapImageOptimizationPolicy? imageOptimizationPolicy;
 
   final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
@@ -1196,6 +1245,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'image_optimization_policy': ?imageOptimizationPolicy?.encode(),
     'max_stream_duration': ?maxStreamDuration?.encode(),
     'request_mirror_policy': ?requestMirrorPolicy?.encode(),
     'retry_policy': ?retryPolicy?.encode(),
@@ -1368,6 +1418,7 @@ final class ComputeUrlMapPathRuleRouteAction {
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
+    this.imageOptimizationPolicy,
     this.maxStreamDuration,
     this.requestMirrorPolicy,
     this.retryPolicy,
@@ -1381,6 +1432,8 @@ final class ComputeUrlMapPathRuleRouteAction {
   final ComputeUrlMapRouteActionCorsPolicy? corsPolicy;
 
   final ComputeUrlMapPathRuleFaultInjectionPolicy? faultInjectionPolicy;
+
+  final ComputeUrlMapImageOptimizationPolicy? imageOptimizationPolicy;
 
   final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
@@ -1400,6 +1453,7 @@ final class ComputeUrlMapPathRuleRouteAction {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'image_optimization_policy': ?imageOptimizationPolicy?.encode(),
     'max_stream_duration': ?maxStreamDuration?.encode(),
     'request_mirror_policy': ?requestMirrorPolicy?.encode(),
     'retry_policy': ?retryPolicy?.encode(),
@@ -1882,6 +1936,7 @@ final class ComputeUrlMapRouteRulesRouteAction {
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
+    this.imageOptimizationPolicy,
     this.maxStreamDuration,
     this.requestMirrorPolicy,
     this.retryPolicy,
@@ -1895,6 +1950,8 @@ final class ComputeUrlMapRouteRulesRouteAction {
   final ComputeUrlMapCorsPolicy? corsPolicy;
 
   final ComputeUrlMapRouteRulesFaultInjectionPolicy? faultInjectionPolicy;
+
+  final ComputeUrlMapImageOptimizationPolicy? imageOptimizationPolicy;
 
   final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
@@ -1914,6 +1971,7 @@ final class ComputeUrlMapRouteRulesRouteAction {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'image_optimization_policy': ?imageOptimizationPolicy?.encode(),
     'max_stream_duration': ?maxStreamDuration?.encode(),
     'request_mirror_policy': ?requestMirrorPolicy?.encode(),
     'retry_policy': ?retryPolicy?.encode(),

@@ -1,29 +1,11 @@
 {
   "name": "monitoring",
   "version": "v3",
-  "revision": "20261106",
+  "revision": "20261109",
   "sourceUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3",
   "schemas": {
     "Aggregation": {
       "properties": {
-        "crossSeriesReducer": {
-          "enum": [
-            "REDUCE_NONE",
-            "REDUCE_MEAN",
-            "REDUCE_MIN",
-            "REDUCE_MAX",
-            "REDUCE_SUM",
-            "REDUCE_STDDEV",
-            "REDUCE_COUNT",
-            "REDUCE_COUNT_TRUE",
-            "REDUCE_COUNT_FALSE",
-            "REDUCE_FRACTION_TRUE",
-            "REDUCE_PERCENTILE_99",
-            "REDUCE_PERCENTILE_95",
-            "REDUCE_PERCENTILE_50",
-            "REDUCE_PERCENTILE_05"
-          ]
-        },
         "perSeriesAligner": {
           "enum": [
             "ALIGN_NONE",
@@ -46,17 +28,35 @@
             "ALIGN_PERCENTILE_05",
             "ALIGN_PERCENT_CHANGE"
           ]
+        },
+        "crossSeriesReducer": {
+          "enum": [
+            "REDUCE_NONE",
+            "REDUCE_MEAN",
+            "REDUCE_MIN",
+            "REDUCE_MAX",
+            "REDUCE_SUM",
+            "REDUCE_STDDEV",
+            "REDUCE_COUNT",
+            "REDUCE_COUNT_TRUE",
+            "REDUCE_COUNT_FALSE",
+            "REDUCE_FRACTION_TRUE",
+            "REDUCE_PERCENTILE_99",
+            "REDUCE_PERCENTILE_95",
+            "REDUCE_PERCENTILE_50",
+            "REDUCE_PERCENTILE_05"
+          ]
         }
       }
     },
     "AlertPolicy": {
       "properties": {
-        "combiner": {
+        "severity": {
           "enum": [
-            "COMBINE_UNSPECIFIED",
-            "AND",
-            "OR",
-            "AND_WITH_MATCHING_RESOURCE"
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "ERROR",
+            "WARNING"
           ]
         },
         "conditions": {
@@ -64,12 +64,12 @@
             "$ref": "Condition"
           }
         },
-        "severity": {
+        "combiner": {
           "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "CRITICAL",
-            "ERROR",
-            "WARNING"
+            "COMBINE_UNSPECIFIED",
+            "AND",
+            "OR",
+            "AND_WITH_MATCHING_RESOURCE"
           ]
         },
         "alertStrategy": {
@@ -95,19 +95,22 @@
         "conditionSql": {
           "$ref": "SqlCondition"
         },
-        "conditionAbsent": {
-          "$ref": "MetricAbsence"
+        "conditionMonitoringQueryLanguage": {
+          "$ref": "MonitoringQueryLanguageCondition"
         },
         "conditionThreshold": {
           "$ref": "MetricThreshold"
         },
-        "conditionMonitoringQueryLanguage": {
-          "$ref": "MonitoringQueryLanguageCondition"
+        "conditionAbsent": {
+          "$ref": "MetricAbsence"
         }
       }
     },
     "ContentMatcher": {
       "properties": {
+        "jsonPathMatcher": {
+          "$ref": "JsonPathMatcher"
+        },
         "matcher": {
           "enum": [
             "CONTENT_MATCHER_OPTION_UNSPECIFIED",
@@ -118,9 +121,6 @@
             "MATCHES_JSON_PATH",
             "NOT_MATCHES_JSON_PATH"
           ]
-        },
-        "jsonPathMatcher": {
-          "$ref": "JsonPathMatcher"
         }
       }
     },
@@ -129,6 +129,13 @@
     },
     "HttpCheck": {
       "properties": {
+        "requestMethod": {
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "GET",
+            "POST"
+          ]
+        },
         "serviceAgentAuthentication": {
           "$ref": "ServiceAgentAuthentication"
         },
@@ -143,13 +150,6 @@
           "items": {
             "$ref": "ResponseStatusCode"
           }
-        },
-        "requestMethod": {
-          "enum": [
-            "METHOD_UNSPECIFIED",
-            "GET",
-            "POST"
-          ]
         }
       }
     },
@@ -197,6 +197,22 @@
     },
     "MetricDescriptor": {
       "properties": {
+        "metadata": {
+          "$ref": "MetricDescriptorMetadata"
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -208,14 +224,6 @@
             "GA",
             "DEPRECATED"
           ]
-        },
-        "metadata": {
-          "$ref": "MetricDescriptorMetadata"
-        },
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
         },
         "valueType": {
           "enum": [
@@ -227,19 +235,21 @@
             "DISTRIBUTION",
             "MONEY"
           ]
-        },
-        "metricKind": {
-          "enum": [
-            "METRIC_KIND_UNSPECIFIED",
-            "GAUGE",
-            "DELTA",
-            "CUMULATIVE"
-          ]
         }
       }
     },
     "MetricDescriptorMetadata": {
       "properties": {
+        "timeSeriesResourceHierarchyLevel": {
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ]
+          }
+        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -251,21 +261,22 @@
             "GA",
             "DEPRECATED"
           ]
-        },
-        "timeSeriesResourceHierarchyLevel": {
-          "items": {
-            "enum": [
-              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
-              "PROJECT",
-              "ORGANIZATION",
-              "FOLDER"
-            ]
-          }
         }
       }
     },
     "MetricThreshold": {
       "properties": {
+        "comparison": {
+          "enum": [
+            "COMPARISON_UNSPECIFIED",
+            "COMPARISON_GT",
+            "COMPARISON_GE",
+            "COMPARISON_LT",
+            "COMPARISON_LE",
+            "COMPARISON_EQ",
+            "COMPARISON_NE"
+          ]
+        },
         "evaluationMissingData": {
           "enum": [
             "EVALUATION_MISSING_DATA_UNSPECIFIED",
@@ -278,17 +289,6 @@
           "items": {
             "$ref": "Aggregation"
           }
-        },
-        "comparison": {
-          "enum": [
-            "COMPARISON_UNSPECIFIED",
-            "COMPARISON_GT",
-            "COMPARISON_GE",
-            "COMPARISON_LT",
-            "COMPARISON_LE",
-            "COMPARISON_EQ",
-            "COMPARISON_NE"
-          ]
         },
         "aggregations": {
           "items": {
@@ -407,24 +407,6 @@
             "$ref": "ContentMatcher"
           }
         },
-        "checkerType": {
-          "enum": [
-            "CHECKER_TYPE_UNSPECIFIED",
-            "STATIC_IP_CHECKERS",
-            "VPC_CHECKERS"
-          ]
-        },
-        "httpCheck": {
-          "$ref": "HttpCheck"
-        },
-        "resourceGroup": {
-          "$ref": "ResourceGroup"
-        },
-        "internalCheckers": {
-          "items": {
-            "$ref": "InternalChecker"
-          }
-        },
         "selectedRegions": {
           "items": {
             "enum": [
@@ -438,6 +420,24 @@
               "USA_VIRGINIA"
             ]
           }
+        },
+        "resourceGroup": {
+          "$ref": "ResourceGroup"
+        },
+        "checkerType": {
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ]
+        },
+        "internalCheckers": {
+          "items": {
+            "$ref": "InternalChecker"
+          }
+        },
+        "httpCheck": {
+          "$ref": "HttpCheck"
         }
       }
     }

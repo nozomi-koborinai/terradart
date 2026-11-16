@@ -29,23 +29,6 @@ extension type const FirebaseDatabaseInstanceDesiredState._(TfArg<String> _)
   ];
 }
 
-/// Firebase Database Instance enum for `state`.
-extension type const FirebaseDatabaseInstanceState._(TfArg<String> _)
-    implements TfArg<String> {
-  FirebaseDatabaseInstanceState.variable(String name)
-    : this._(TfArg.variable(name));
-  FirebaseDatabaseInstanceState.expression(String template)
-    : this._(TfArg.expression(template));
-  const FirebaseDatabaseInstanceState.arg(TfArg<String> arg) : this._(arg);
-
-  static const active = FirebaseDatabaseInstanceState._(TfArgLiteral('ACTIVE'));
-  static const disabled = FirebaseDatabaseInstanceState._(
-    TfArgLiteral('DISABLED'),
-  );
-
-  static const List<FirebaseDatabaseInstanceState> values = [active, disabled];
-}
-
 /// Firebase Database Instance enum for `type`.
 extension type const FirebaseDatabaseInstanceType._(TfArg<String> _)
     implements TfArg<String> {

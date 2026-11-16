@@ -9,39 +9,6 @@ import '../edgenetwork/google_edgenetwork_network.dart'
 /// Sensitive field paths for `google_edgenetwork_subnet`.
 const Set<String> _googleEdgenetworkSubnetSensitive = <String>{};
 
-/// Edgenetwork Subnet enum for `state`.
-extension type const EdgenetworkSubnetState._(TfArg<String> _)
-    implements TfArg<String> {
-  EdgenetworkSubnetState.variable(String name) : this._(TfArg.variable(name));
-  EdgenetworkSubnetState.expression(String template)
-    : this._(TfArg.expression(template));
-  const EdgenetworkSubnetState.arg(TfArg<String> arg) : this._(arg);
-
-  static const statePending = EdgenetworkSubnetState._(
-    TfArgLiteral('STATE_PENDING'),
-  );
-  static const stateProvisioning = EdgenetworkSubnetState._(
-    TfArgLiteral('STATE_PROVISIONING'),
-  );
-  static const stateRunning = EdgenetworkSubnetState._(
-    TfArgLiteral('STATE_RUNNING'),
-  );
-  static const stateSuspended = EdgenetworkSubnetState._(
-    TfArgLiteral('STATE_SUSPENDED'),
-  );
-  static const stateDeleting = EdgenetworkSubnetState._(
-    TfArgLiteral('STATE_DELETING'),
-  );
-
-  static const List<EdgenetworkSubnetState> values = [
-    statePending,
-    stateProvisioning,
-    stateRunning,
-    stateSuspended,
-    stateDeleting,
-  ];
-}
-
 /// Factory wrapper for `google_edgenetwork_subnet`.
 ///
 /// A Distributed Cloud Edge subnet, which provides L2 isolation within a

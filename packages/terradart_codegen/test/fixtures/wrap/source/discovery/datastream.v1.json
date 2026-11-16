@@ -1,7 +1,7 @@
 {
   "name": "datastream",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261105",
   "sourceUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BigQueryDestinationConfig": {
@@ -13,26 +13,26 @@
     },
     "BigQueryPartitioning": {
       "properties": {
-        "timeUnitPartition": {
-          "$ref": "TimeUnitPartition"
-        },
         "ingestionTimePartition": {
           "$ref": "IngestionTimePartition"
+        },
+        "timeUnitPartition": {
+          "$ref": "TimeUnitPartition"
         }
       }
     },
     "BlmtConfig": {
       "properties": {
-        "fileFormat": {
-          "enum": [
-            "FILE_FORMAT_UNSPECIFIED",
-            "PARQUET"
-          ]
-        },
         "tableFormat": {
           "enum": [
             "TABLE_FORMAT_UNSPECIFIED",
             "ICEBERG"
+          ]
+        },
+        "fileFormat": {
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "PARQUET"
           ]
         }
       }
@@ -79,18 +79,18 @@
     },
     "JsonFileFormat": {
       "properties": {
-        "compression": {
-          "enum": [
-            "JSON_COMPRESSION_UNSPECIFIED",
-            "NO_COMPRESSION",
-            "GZIP"
-          ]
-        },
         "schemaFileFormat": {
           "enum": [
             "SCHEMA_FILE_FORMAT_UNSPECIFIED",
             "NO_SCHEMA_FILE",
             "AVRO_SCHEMA_FILE"
+          ]
+        },
+        "compression": {
+          "enum": [
+            "JSON_COMPRESSION_UNSPECIFIED",
+            "NO_COMPRESSION",
+            "GZIP"
           ]
         }
       }
@@ -153,13 +153,13 @@
     },
     "Stream": {
       "properties": {
-        "sourceConfig": {
-          "$ref": "SourceConfig"
-        },
         "ruleSets": {
           "items": {
             "$ref": "RuleSet"
           }
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig"
         },
         "destinationConfig": {
           "$ref": "DestinationConfig"

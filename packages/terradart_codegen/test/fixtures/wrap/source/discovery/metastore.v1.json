@@ -1,7 +1,7 @@
 {
   "name": "metastore",
   "version": "v1",
-  "revision": "20261103",
+  "revision": "20261105",
   "sourceUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BackendMetastore": {
@@ -75,6 +75,13 @@
     },
     "MetadataExport": {
       "properties": {
+        "databaseDumpType": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MYSQL",
+            "AVRO"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -83,26 +90,19 @@
             "FAILED",
             "CANCELLED"
           ]
-        },
-        "databaseDumpType": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "MYSQL",
-            "AVRO"
-          ]
         }
       }
     },
     "MetadataManagementActivity": {
       "properties": {
-        "metadataExports": {
-          "items": {
-            "$ref": "MetadataExport"
-          }
-        },
         "restores": {
           "items": {
             "$ref": "Restore"
+          }
+        },
+        "metadataExports": {
+          "items": {
+            "$ref": "MetadataExport"
           }
         }
       }
@@ -150,8 +150,8 @@
     },
     "Service": {
       "properties": {
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
+        "scalingConfig": {
+          "$ref": "ScalingConfig"
         },
         "tier": {
           "enum": [
@@ -160,25 +160,6 @@
             "ENTERPRISE"
           ]
         },
-        "scheduledBackup": {
-          "$ref": "ScheduledBackup"
-        },
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "CANARY",
-            "STABLE"
-          ]
-        },
-        "scalingConfig": {
-          "$ref": "ScalingConfig"
-        },
-        "hiveMetastoreConfig": {
-          "$ref": "HiveMetastoreConfig"
-        },
-        "metadataManagementActivity": {
-          "$ref": "MetadataManagementActivity"
-        },
         "databaseType": {
           "enum": [
             "DATABASE_TYPE_UNSPECIFIED",
@@ -186,8 +167,15 @@
             "SPANNER"
           ]
         },
-        "telemetryConfig": {
-          "$ref": "TelemetryConfig"
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "CANARY",
+            "STABLE"
+          ]
         },
         "state": {
           "enum": [
@@ -203,6 +191,18 @@
             "MIGRATING",
             "PROXY"
           ]
+        },
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig"
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup"
+        },
+        "metadataManagementActivity": {
+          "$ref": "MetadataManagementActivity"
+        },
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
         }
       }
     },

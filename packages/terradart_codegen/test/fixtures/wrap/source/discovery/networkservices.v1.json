@@ -1,13 +1,28 @@
 {
   "name": "networkservices",
   "version": "v1",
-  "revision": "20261101",
+  "revision": "20261109",
   "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AgentConnectivityTemplate": {
       "properties": {
-        "egressNetworkConfig": {
-          "$ref": "EgressNetworkConfig"
+        "agentCompute": {
+          "enum": [
+            "AGENT_COMPUTE_UNSPECIFIED",
+            "GKE",
+            "CLOUD_RUN",
+            "BORG",
+            "GCE_VM"
+          ]
+        },
+        "accessTypes": {
+          "items": {
+            "enum": [
+              "ACCESS_TYPE_UNSPECIFIED",
+              "PUBLIC",
+              "PRIVATE"
+            ]
+          }
         },
         "deploymentModel": {
           "enum": [
@@ -23,28 +38,16 @@
             "AGENT_TO_ANYWHERE"
           ]
         },
-        "accessTypes": {
-          "items": {
-            "enum": [
-              "ACCESS_TYPE_UNSPECIFIED",
-              "PUBLIC",
-              "PRIVATE"
-            ]
-          }
-        },
-        "agentCompute": {
-          "enum": [
-            "AGENT_COMPUTE_UNSPECIFIED",
-            "GKE",
-            "CLOUD_RUN",
-            "BORG",
-            "GCE_VM"
-          ]
+        "egressNetworkConfig": {
+          "$ref": "EgressNetworkConfig"
         }
       }
     },
     "AgentGateway": {
       "properties": {
+        "googleManaged": {
+          "$ref": "AgentGatewayGoogleManaged"
+        },
         "protocols": {
           "items": {
             "enum": [
@@ -52,9 +55,6 @@
               "MCP"
             ]
           }
-        },
-        "googleManaged": {
-          "$ref": "AgentGatewayGoogleManaged"
         }
       }
     },
@@ -155,6 +155,13 @@
     },
     "ExtensionChainExtension": {
       "properties": {
+        "requestBodySendMode": {
+          "enum": [
+            "BODY_SEND_MODE_UNSPECIFIED",
+            "BODY_SEND_MODE_STREAMED",
+            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
+          ]
+        },
         "supportedEvents": {
           "items": {
             "enum": [
@@ -174,13 +181,6 @@
             "BODY_SEND_MODE_STREAMED",
             "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
           ]
-        },
-        "requestBodySendMode": {
-          "enum": [
-            "BODY_SEND_MODE_UNSPECIFIED",
-            "BODY_SEND_MODE_STREAMED",
-            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
-          ]
         }
       }
     },
@@ -190,6 +190,13 @@
           "enum": [
             "EXPLICIT_ROUTING_MODE",
             "NEXT_HOP_ROUTING_MODE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "OPEN_MESH",
+            "SECURE_WEB_GATEWAY"
           ]
         },
         "envoyHeaders": {
@@ -204,13 +211,6 @@
             "IP_VERSION_UNSPECIFIED",
             "IPV4",
             "IPV6"
-          ]
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "OPEN_MESH",
-            "SECURE_WEB_GATEWAY"
           ]
         }
       }
@@ -248,13 +248,13 @@
     },
     "GrpcRouteRouteMatch": {
       "properties": {
-        "method": {
-          "$ref": "GrpcRouteMethodMatch"
-        },
         "headers": {
           "items": {
             "$ref": "GrpcRouteHeaderMatch"
           }
+        },
+        "method": {
+          "$ref": "GrpcRouteMethodMatch"
         }
       }
     },
@@ -306,49 +306,49 @@
     },
     "LbEdgeExtension": {
       "properties": {
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
         }
       }
     },
     "LbRouteExtension": {
       "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
-        },
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
         }
       }
     },
     "LbTrafficExtension": {
       "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
-        },
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
         }
       }
     },
@@ -379,15 +379,15 @@
     },
     "MulticastGroupConsumerActivation": {
       "properties": {
+        "state": {
+          "$ref": "MulticastResourceState"
+        },
         "resourceState": {
           "enum": [
             "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
             "ACTIVE",
             "OBSOLETE"
           ]
-        },
-        "state": {
-          "$ref": "MulticastResourceState"
         }
       }
     },

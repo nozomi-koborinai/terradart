@@ -44,6 +44,9 @@
     },
     "Listing": {
       "properties": {
+        "commercialInfo": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
+        },
         "discoveryType": {
           "enum": [
             "DISCOVERY_TYPE_UNSPECIFIED",
@@ -54,21 +57,12 @@
         "bigqueryDataset": {
           "$ref": "BigQueryDatasetSource"
         },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE"
-          ]
-        },
         "resourceType": {
           "enum": [
             "SHARED_RESOURCE_TYPE_UNSPECIFIED",
             "BIGQUERY_DATASET",
             "PUBSUB_TOPIC"
           ]
-        },
-        "commercialInfo": {
-          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
         },
         "categories": {
           "items": {
@@ -97,6 +91,12 @@
             ]
           }
         },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ]
+        },
         "storedProcedureConfig": {
           "$ref": "StoredProcedureConfig"
         }
@@ -104,9 +104,6 @@
     },
     "QueryTemplate": {
       "properties": {
-        "routine": {
-          "$ref": "Routine"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -115,6 +112,9 @@
             "DELETED",
             "APPROVED"
           ]
+        },
+        "routine": {
+          "$ref": "Routine"
         }
       }
     },
@@ -159,19 +159,19 @@
     },
     "Subscription": {
       "properties": {
-        "resourceType": {
-          "enum": [
-            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
-            "BIGQUERY_DATASET",
-            "PUBSUB_TOPIC"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "STATE_ACTIVE",
             "STATE_STALE",
             "STATE_INACTIVE"
+          ]
+        },
+        "resourceType": {
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
           ]
         }
       }

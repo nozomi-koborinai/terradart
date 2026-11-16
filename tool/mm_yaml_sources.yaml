@@ -2909,6 +2909,26 @@ files:
     upstream: mmv1/products/secretmanagerregional/RegionalSecretManagedRotation.yaml
   google_vertex_ai_training_pipeline:
     upstream: mmv1/products/vertexai/TrainingPipeline.yaml
+  google_backup_dr_auto_protection_policy:
+    upstream: mmv1/products/backupdr/AutoProtectionPolicy.yaml
+  google_data_lineage_open_lineage_job:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_dataflow_config_store_setting:
+    upstream: mmv1/products/dataflow/ConfigStoreSetting.yaml
+  google_dataform_config:
+    upstream: mmv1/products/dataform/Config.yaml
+  google_dataform_repository_release_config:
+    upstream: mmv1/products/dataform/RepositoryReleaseConfig.yaml
+  google_dataform_repository_workflow_config:
+    upstream: mmv1/products/dataform/RepositoryWorkflowConfig.yaml
+  google_dialogflow_companion_agent:
+    upstream: mmv1/products/dialogflow/CompanionAgent.yaml
+  google_discovery_engine_project_provision:
+    upstream: mmv1/products/discoveryengine/ProjectProvision.yaml
+  google_redis_cluster_token_auth_user:
+    upstream: mmv1/products/redis/ClusterTokenAuthUser.yaml
+  google_vertex_ai_evaluation_item:
+    upstream: mmv1/products/vertexai/EvaluationItem.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3678,6 +3698,8 @@ files:
   data_google_redis_cluster:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_redis_cluster_acl_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
+  data_google_redis_cluster_token_auth_user:
     upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_redis_instance:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)

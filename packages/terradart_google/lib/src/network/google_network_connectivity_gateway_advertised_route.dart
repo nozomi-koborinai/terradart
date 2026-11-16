@@ -33,64 +33,6 @@ extension type const NetworkConnectivityGatewayAdvertisedRouteRecipient._(
       [recipientUnspecified, advertiseToHub];
 }
 
-/// Network Connectivity Gateway Advertised Route enum for `state`.
-extension type const NetworkConnectivityGatewayAdvertisedRouteState._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  NetworkConnectivityGatewayAdvertisedRouteState.variable(String name)
-    : this._(TfArg.variable(name));
-  NetworkConnectivityGatewayAdvertisedRouteState.expression(String template)
-    : this._(TfArg.expression(template));
-  const NetworkConnectivityGatewayAdvertisedRouteState.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const stateUnspecified =
-      NetworkConnectivityGatewayAdvertisedRouteState._(
-        TfArgLiteral('STATE_UNSPECIFIED'),
-      );
-  static const creating = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('CREATING'),
-  );
-  static const active = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('ACTIVE'),
-  );
-  static const deleting = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('DELETING'),
-  );
-  static const accepting = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('ACCEPTING'),
-  );
-  static const rejecting = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('REJECTING'),
-  );
-  static const updating = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('UPDATING'),
-  );
-  static const inactive = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('INACTIVE'),
-  );
-  static const obsolete = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('OBSOLETE'),
-  );
-  static const failed = NetworkConnectivityGatewayAdvertisedRouteState._(
-    TfArgLiteral('FAILED'),
-  );
-
-  static const List<NetworkConnectivityGatewayAdvertisedRouteState> values = [
-    stateUnspecified,
-    creating,
-    active,
-    deleting,
-    accepting,
-    rejecting,
-    updating,
-    inactive,
-    obsolete,
-    failed,
-  ];
-}
-
 /// Factory wrapper for `google_network_connectivity_gateway_advertised_route`.
 ///
 /// A gateway advertised route is a route that a gateway spoke advertises

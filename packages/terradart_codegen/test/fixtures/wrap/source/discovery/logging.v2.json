@@ -27,6 +27,9 @@
         "fieldSourceValue": {
           "$ref": "FieldSource"
         },
+        "fieldSource": {
+          "$ref": "FieldSource"
+        },
         "comparator": {
           "enum": [
             "COMPARATOR_UNSPECIFIED",
@@ -40,9 +43,6 @@
             "IN",
             "LIKE"
           ]
-        },
-        "fieldSource": {
-          "$ref": "FieldSource"
         }
       }
     },
@@ -56,13 +56,13 @@
             "LEAF"
           ]
         },
+        "leafPredicate": {
+          "$ref": "FilterExpression"
+        },
         "childPredicates": {
           "items": {
             "$ref": "FilterPredicate"
           }
-        },
-        "leafPredicate": {
-          "$ref": "FilterExpression"
         }
       }
     },
@@ -93,14 +93,14 @@
     },
     "LogMetric": {
       "properties": {
-        "metricDescriptor": {
-          "$ref": "MetricDescriptor"
-        },
         "version": {
           "enum": [
             "V2",
             "V1"
           ]
+        },
+        "metricDescriptor": {
+          "$ref": "MetricDescriptor"
         }
       }
     },
@@ -114,17 +114,6 @@
       "properties": {
         "metadata": {
           "$ref": "MetricDescriptorMetadata"
-        },
-        "valueType": {
-          "enum": [
-            "VALUE_TYPE_UNSPECIFIED",
-            "BOOL",
-            "INT64",
-            "DOUBLE",
-            "STRING",
-            "DISTRIBUTION",
-            "MONEY"
-          ]
         },
         "launchStage": {
           "enum": [
@@ -144,6 +133,17 @@
             "GAUGE",
             "DELTA",
             "CUMULATIVE"
+          ]
+        },
+        "valueType": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
           ]
         },
         "labels": {
@@ -188,9 +188,6 @@
     },
     "ProjectedField": {
       "properties": {
-        "virtualField": {
-          "$ref": "VirtualField"
-        },
         "operation": {
           "enum": [
             "FIELD_OPERATION_UNSPECIFIED",
@@ -198,11 +195,17 @@
             "GROUP_BY",
             "AGGREGATE"
           ]
+        },
+        "virtualField": {
+          "$ref": "VirtualField"
         }
       }
     },
     "QueryBuilderConfig": {
       "properties": {
+        "filter": {
+          "$ref": "FilterPredicate"
+        },
         "orderBys": {
           "items": {
             "$ref": "SortOrderParameter"
@@ -212,9 +215,6 @@
           "items": {
             "$ref": "FieldSource"
           }
-        },
-        "filter": {
-          "$ref": "FilterPredicate"
         }
       }
     },
@@ -241,6 +241,9 @@
     },
     "SortOrderParameter": {
       "properties": {
+        "fieldSource": {
+          "$ref": "FieldSource"
+        },
         "sortOrderDirection": {
           "enum": [
             "SORT_ORDER_UNSPECIFIED",
@@ -248,9 +251,6 @@
             "SORT_ORDER_ASCENDING",
             "SORT_ORDER_DESCENDING"
           ]
-        },
-        "fieldSource": {
-          "$ref": "FieldSource"
         }
       }
     },

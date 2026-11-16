@@ -10,33 +10,6 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 /// Sensitive field paths for `google_data_fusion_instance`.
 const Set<String> _googleDataFusionInstanceSensitive = <String>{};
 
-/// Data Fusion Instance enum for `state`.
-extension type const DataFusionInstanceState._(TfArg<String> _)
-    implements TfArg<String> {
-  DataFusionInstanceState.variable(String name) : this._(TfArg.variable(name));
-  DataFusionInstanceState.expression(String template)
-    : this._(TfArg.expression(template));
-  const DataFusionInstanceState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = DataFusionInstanceState._(TfArgLiteral('CREATING'));
-  static const running = DataFusionInstanceState._(TfArgLiteral('RUNNING'));
-  static const failed = DataFusionInstanceState._(TfArgLiteral('FAILED'));
-  static const deleting = DataFusionInstanceState._(TfArgLiteral('DELETING'));
-  static const upgrading = DataFusionInstanceState._(TfArgLiteral('UPGRADING'));
-  static const restarting = DataFusionInstanceState._(
-    TfArgLiteral('RESTARTING'),
-  );
-
-  static const List<DataFusionInstanceState> values = [
-    creating,
-    running,
-    failed,
-    deleting,
-    upgrading,
-    restarting,
-  ];
-}
-
 /// Data Fusion Instance enum for `type`.
 extension type const DataFusionInstanceType._(TfArg<String> _)
     implements TfArg<String> {

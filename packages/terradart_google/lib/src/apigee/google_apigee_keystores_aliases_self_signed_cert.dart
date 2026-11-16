@@ -37,34 +37,6 @@ extension type const ApigeeKeystoresAliasesSelfSignedCertSigAlg._(
   ];
 }
 
-/// Apigee Keystores Aliases Self Signed Cert enum for `type`.
-extension type const ApigeeKeystoresAliasesSelfSignedCertType._(TfArg<String> _)
-    implements TfArg<String> {
-  ApigeeKeystoresAliasesSelfSignedCertType.variable(String name)
-    : this._(TfArg.variable(name));
-  ApigeeKeystoresAliasesSelfSignedCertType.expression(String template)
-    : this._(TfArg.expression(template));
-  const ApigeeKeystoresAliasesSelfSignedCertType.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const aliasTypeUnspecified =
-      ApigeeKeystoresAliasesSelfSignedCertType._(
-        TfArgLiteral('ALIAS_TYPE_UNSPECIFIED'),
-      );
-  static const cert = ApigeeKeystoresAliasesSelfSignedCertType._(
-    TfArgLiteral('CERT'),
-  );
-  static const keyCert = ApigeeKeystoresAliasesSelfSignedCertType._(
-    TfArgLiteral('KEY_CERT'),
-  );
-
-  static const List<ApigeeKeystoresAliasesSelfSignedCertType> values = [
-    aliasTypeUnspecified,
-    cert,
-    keyCert,
-  ];
-}
-
 /// Typed helper for the `subject` block of
 /// `google_apigee_keystores_aliases_self_signed_cert` (derived from provider schema).
 @immutable

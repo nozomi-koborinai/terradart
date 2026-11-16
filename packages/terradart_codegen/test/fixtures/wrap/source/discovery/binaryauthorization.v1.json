@@ -75,7 +75,7 @@
             "$ref": "AdmissionRule"
           }
         },
-        "istioServiceIdentityAdmissionRules": {
+        "kubernetesNamespaceAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
@@ -92,7 +92,7 @@
             "DISABLE"
           ]
         },
-        "kubernetesNamespaceAdmissionRules": {
+        "istioServiceIdentityAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }

@@ -9,37 +9,6 @@ import '../discovery_engine/google_discovery_engine_data_store.dart'
 /// Sensitive field paths for `google_discovery_engine_target_site`.
 const Set<String> _googleDiscoveryEngineTargetSiteSensitive = <String>{};
 
-/// Discovery Engine Target Site Indexing enum for `indexing_status`.
-extension type const DiscoveryEngineTargetSiteIndexingStatus._(TfArg<String> _)
-    implements TfArg<String> {
-  DiscoveryEngineTargetSiteIndexingStatus.variable(String name)
-    : this._(TfArg.variable(name));
-  DiscoveryEngineTargetSiteIndexingStatus.expression(String template)
-    : this._(TfArg.expression(template));
-  const DiscoveryEngineTargetSiteIndexingStatus.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const pending = DiscoveryEngineTargetSiteIndexingStatus._(
-    TfArgLiteral('PENDING'),
-  );
-  static const failed = DiscoveryEngineTargetSiteIndexingStatus._(
-    TfArgLiteral('FAILED'),
-  );
-  static const succeeded = DiscoveryEngineTargetSiteIndexingStatus._(
-    TfArgLiteral('SUCCEEDED'),
-  );
-  static const deleting = DiscoveryEngineTargetSiteIndexingStatus._(
-    TfArgLiteral('DELETING'),
-  );
-
-  static const List<DiscoveryEngineTargetSiteIndexingStatus> values = [
-    pending,
-    failed,
-    succeeded,
-    deleting,
-  ];
-}
-
 /// Discovery Engine Target Site enum for `location`.
 extension type const DiscoveryEngineTargetSiteLocation._(TfArg<String> _)
     implements TfArg<String> {

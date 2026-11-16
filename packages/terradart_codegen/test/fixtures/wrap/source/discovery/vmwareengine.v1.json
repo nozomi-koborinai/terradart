@@ -67,13 +67,6 @@
     },
     "ExternalAccessRule": {
       "properties": {
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -81,6 +74,13 @@
             "CREATING",
             "UPDATING",
             "DELETING"
+          ]
+        },
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
           ]
         }
       }
@@ -112,6 +112,15 @@
     },
     "NetworkPeering": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
+          ]
+        },
         "peerNetworkType": {
           "enum": [
             "PEER_NETWORK_TYPE_UNSPECIFIED",
@@ -124,24 +133,15 @@
             "GOOGLE_CLOUD_NETAPP_VOLUMES",
             "GOOGLE_CLOUD_FILESTORE_INSTANCES"
           ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "INACTIVE",
-            "ACTIVE",
-            "CREATING",
-            "DELETING"
-          ]
         }
       }
     },
     "NetworkPolicy": {
       "properties": {
-        "internetAccess": {
+        "externalIp": {
           "$ref": "NetworkService"
         },
-        "externalIp": {
+        "internetAccess": {
           "$ref": "NetworkService"
         }
       }
@@ -171,15 +171,6 @@
     },
     "PrivateCloud": {
       "properties": {
-        "vcenter": {
-          "$ref": "Vcenter"
-        },
-        "hcx": {
-          "$ref": "Hcx"
-        },
-        "nsx": {
-          "$ref": "Nsx"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -200,6 +191,15 @@
             "TIME_LIMITED",
             "STRETCHED"
           ]
+        },
+        "hcx": {
+          "$ref": "Hcx"
+        },
+        "nsx": {
+          "$ref": "Nsx"
+        },
+        "vcenter": {
+          "$ref": "Vcenter"
         }
       }
     },
@@ -231,6 +231,15 @@
     },
     "VmwareEngineNetwork": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        },
         "vpcNetworks": {
           "items": {
             "$ref": "VpcNetwork"
@@ -241,15 +250,6 @@
             "TYPE_UNSPECIFIED",
             "LEGACY",
             "STANDARD"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "ACTIVE",
-            "UPDATING",
-            "DELETING"
           ]
         }
       }

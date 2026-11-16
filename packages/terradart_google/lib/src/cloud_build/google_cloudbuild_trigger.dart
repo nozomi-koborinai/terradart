@@ -587,6 +587,7 @@ final class CloudbuildTriggerOptions {
     this.sourceProvenanceHash,
     this.substitutionOption,
     this.workerPool,
+    this.workerRelease,
     this.volumes,
   });
 
@@ -612,6 +613,8 @@ final class CloudbuildTriggerOptions {
 
   final TfArg<String>? workerPool;
 
+  final TfArg<String>? workerRelease;
+
   final List<CloudbuildTriggerOptionsVolumes>? volumes;
 
   @internal
@@ -627,6 +630,7 @@ final class CloudbuildTriggerOptions {
     'source_provenance_hash': ?sourceProvenanceHash?.toTfJson(),
     'substitution_option': ?substitutionOption?.toTfJson(),
     'worker_pool': ?workerPool?.toTfJson(),
+    'worker_release': ?workerRelease?.toTfJson(),
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
   };
 }

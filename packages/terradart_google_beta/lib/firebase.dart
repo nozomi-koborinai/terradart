@@ -26,14 +26,10 @@ export 'src/firebase/google_firebase_apple_app.dart'
 export 'src/firebase/google_firebase_database_instance.dart'
     show
         FirebaseDatabaseInstanceDesiredState,
-        FirebaseDatabaseInstanceState,
         FirebaseDatabaseInstanceType,
         GoogleFirebaseDatabaseInstance;
 export 'src/firebase/google_firebase_extensions_instance.dart'
-    show
-        FirebaseExtensionsInstanceConfig,
-        FirebaseExtensionsInstanceState,
-        GoogleFirebaseExtensionsInstance;
+    show FirebaseExtensionsInstanceConfig, GoogleFirebaseExtensionsInstance;
 export 'src/firebase/google_firebase_hosting_channel.dart'
     show
         FirebaseHostingChannelExpiration,
@@ -43,7 +39,6 @@ export 'src/firebase/google_firebase_hosting_channel.dart'
 export 'src/firebase/google_firebase_hosting_custom_domain.dart'
     show
         FirebaseHostingCustomDomainCertPreference,
-        FirebaseHostingCustomDomainOwnershipState,
         GoogleFirebaseHostingCustomDomain;
 export 'src/firebase/google_firebase_hosting_release.dart'
     show FirebaseHostingReleaseType, GoogleFirebaseHostingRelease;

@@ -1,7 +1,7 @@
 {
   "name": "cloudresourcemanager",
   "version": "v3",
-  "revision": "20261026",
+  "revision": "20261107",
   "sourceUrl": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v3",
   "schemas": {
     "Boundary": {
@@ -20,6 +20,12 @@
     },
     "CapabilityConfig": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
+          ]
+        },
         "types": {
           "items": {
             "enum": [
@@ -28,12 +34,6 @@
               "AGENT_MANAGEMENT"
             ]
           }
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE"
-          ]
         }
       }
     },

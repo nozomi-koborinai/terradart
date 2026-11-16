@@ -17,10 +17,10 @@
     },
     "ExecStep": {
       "properties": {
-        "linuxExecStepConfig": {
+        "windowsExecStepConfig": {
           "$ref": "ExecStepConfig"
         },
-        "windowsExecStepConfig": {
+        "linuxExecStepConfig": {
           "$ref": "ExecStepConfig"
         }
       }
@@ -46,17 +46,17 @@
     },
     "OSPolicy": {
       "properties": {
+        "resourceGroups": {
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          }
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
             "VALIDATION",
             "ENFORCEMENT"
           ]
-        },
-        "resourceGroups": {
-          "items": {
-            "$ref": "OSPolicyResourceGroup"
-          }
         }
       }
     },
@@ -80,17 +80,17 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "exec": {
-          "$ref": "OSPolicyResourceExecResource"
-        },
         "file": {
           "$ref": "OSPolicyResourceFileResource"
         },
-        "repository": {
-          "$ref": "OSPolicyResourceRepositoryResource"
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource"
         },
         "pkg": {
           "$ref": "OSPolicyResourcePackageResource"
+        },
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource"
         }
       }
     },
@@ -168,16 +168,10 @@
     },
     "PatchConfig": {
       "properties": {
-        "preStep": {
-          "$ref": "ExecStep"
-        },
-        "windowsUpdate": {
-          "$ref": "WindowsUpdateSettings"
-        },
         "apt": {
           "$ref": "AptSettings"
         },
-        "postStep": {
+        "preStep": {
           "$ref": "ExecStep"
         },
         "rebootConfig": {
@@ -187,19 +181,22 @@
             "ALWAYS",
             "NEVER"
           ]
+        },
+        "windowsUpdate": {
+          "$ref": "WindowsUpdateSettings"
+        },
+        "postStep": {
+          "$ref": "ExecStep"
         }
       }
     },
     "PatchDeployment": {
       "properties": {
-        "rollout": {
-          "$ref": "PatchRollout"
+        "patchConfig": {
+          "$ref": "PatchConfig"
         },
         "recurringSchedule": {
           "$ref": "RecurringSchedule"
-        },
-        "patchConfig": {
-          "$ref": "PatchConfig"
         },
         "state": {
           "enum": [
@@ -207,6 +204,9 @@
             "ACTIVE",
             "PAUSED"
           ]
+        },
+        "rollout": {
+          "$ref": "PatchRollout"
         }
       }
     },

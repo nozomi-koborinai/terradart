@@ -65,6 +65,11 @@
     },
     "SoftwareRecipe": {
       "properties": {
+        "installSteps": {
+          "items": {
+            "$ref": "SoftwareRecipeStep"
+          }
+        },
         "desiredState": {
           "enum": [
             "DESIRED_STATE_UNSPECIFIED",
@@ -72,11 +77,6 @@
             "UPDATED",
             "REMOVED"
           ]
-        },
-        "installSteps": {
-          "items": {
-            "$ref": "SoftwareRecipeStep"
-          }
         },
         "updateSteps": {
           "items": {

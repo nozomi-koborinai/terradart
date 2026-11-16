@@ -43,6 +43,19 @@
     },
     "Node": {
       "properties": {
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -63,17 +76,6 @@
             "UNKNOWN"
           ]
         },
-        "acceleratorConfig": {
-          "$ref": "AcceleratorConfig"
-        },
-        "apiVersion": {
-          "enum": [
-            "API_VERSION_UNSPECIFIED",
-            "V1_ALPHA1",
-            "V1",
-            "V2_ALPHA1"
-          ]
-        },
         "health": {
           "enum": [
             "HEALTH_UNSPECIFIED",
@@ -83,21 +85,19 @@
             "UNHEALTHY_MAINTENANCE"
           ]
         },
-        "dataDisks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
-        },
-        "upcomingMaintenance": {
-          "$ref": "UpcomingMaintenance"
-        },
         "schedulingConfig": {
           "$ref": "SchedulingConfig"
         },
-        "symptoms": {
-          "items": {
-            "$ref": "Symptom"
-          }
+        "apiVersion": {
+          "enum": [
+            "API_VERSION_UNSPECIFIED",
+            "V1_ALPHA1",
+            "V1",
+            "V2_ALPHA1"
+          ]
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
         }
       }
     },
@@ -116,9 +116,6 @@
         "tpu": {
           "$ref": "Tpu"
         },
-        "state": {
-          "$ref": "QueuedResourceState"
-        },
         "provisioningModel": {
           "enum": [
             "PROVISIONING_MODEL_UNSPECIFIED",
@@ -127,6 +124,9 @@
             "RESERVATION_BOUND",
             "FLEX_START"
           ]
+        },
+        "state": {
+          "$ref": "QueuedResourceState"
         }
       }
     },

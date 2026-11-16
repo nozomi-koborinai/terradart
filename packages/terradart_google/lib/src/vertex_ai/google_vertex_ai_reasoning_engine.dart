@@ -218,6 +218,7 @@ final class VertexAiReasoningEngineParts {
     this.functionCall,
     this.functionResponse,
     this.inlineData,
+    this.speechMetadata,
     this.videoMetadata,
   });
 
@@ -239,6 +240,8 @@ final class VertexAiReasoningEngineParts {
 
   final VertexAiReasoningEngineInlineData? inlineData;
 
+  final VertexAiReasoningEngineSpeechMetadata? speechMetadata;
+
   final VertexAiReasoningEngineVideoMetadata? videoMetadata;
 
   @internal
@@ -252,6 +255,7 @@ final class VertexAiReasoningEngineParts {
     'function_call': ?functionCall?.encode(),
     'function_response': ?functionResponse?.encode(),
     'inline_data': ?inlineData?.encode(),
+    'speech_metadata': ?speechMetadata?.encode(),
     'video_metadata': ?videoMetadata?.encode(),
   };
 }
@@ -475,6 +479,23 @@ final class VertexAiReasoningEngineInlineData {
   Map<String, Object?> encode() => {
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.speech_metadata` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpeechMetadata {
+  const VertexAiReasoningEngineSpeechMetadata({this.speaker, this.style});
+
+  final TfArg<String>? speaker;
+
+  final TfArg<String>? style;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'speaker': ?speaker?.toTfJson(),
+    'style': ?style?.toTfJson(),
   };
 }
 

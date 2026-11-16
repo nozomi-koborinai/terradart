@@ -9,67 +9,6 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_secure_source_manager_instance`.
 const Set<String> _googleSecureSourceManagerInstanceSensitive = <String>{};
 
-/// Secure Source Manager Instance enum for `state`.
-extension type const SecureSourceManagerInstanceState._(TfArg<String> _)
-    implements TfArg<String> {
-  SecureSourceManagerInstanceState.variable(String name)
-    : this._(TfArg.variable(name));
-  SecureSourceManagerInstanceState.expression(String template)
-    : this._(TfArg.expression(template));
-  const SecureSourceManagerInstanceState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = SecureSourceManagerInstanceState._(
-    TfArgLiteral('CREATING'),
-  );
-  static const active = SecureSourceManagerInstanceState._(
-    TfArgLiteral('ACTIVE'),
-  );
-  static const deleting = SecureSourceManagerInstanceState._(
-    TfArgLiteral('DELETING'),
-  );
-  static const paused = SecureSourceManagerInstanceState._(
-    TfArgLiteral('PAUSED'),
-  );
-  static const unknown = SecureSourceManagerInstanceState._(
-    TfArgLiteral('UNKNOWN'),
-  );
-
-  static const List<SecureSourceManagerInstanceState> values = [
-    creating,
-    active,
-    deleting,
-    paused,
-    unknown,
-  ];
-}
-
-/// Secure Source Manager Instance State enum for `state_note`.
-extension type const SecureSourceManagerInstanceStateNote._(TfArg<String> _)
-    implements TfArg<String> {
-  SecureSourceManagerInstanceStateNote.variable(String name)
-    : this._(TfArg.variable(name));
-  SecureSourceManagerInstanceStateNote.expression(String template)
-    : this._(TfArg.expression(template));
-  const SecureSourceManagerInstanceStateNote.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const stateNoteUnspecified = SecureSourceManagerInstanceStateNote._(
-    TfArgLiteral('STATE_NOTE_UNSPECIFIED'),
-  );
-  static const pausedCmekUnavailable = SecureSourceManagerInstanceStateNote._(
-    TfArgLiteral('PAUSED_CMEK_UNAVAILABLE'),
-  );
-  static const instanceResuming = SecureSourceManagerInstanceStateNote._(
-    TfArgLiteral('INSTANCE_RESUMING'),
-  );
-
-  static const List<SecureSourceManagerInstanceStateNote> values = [
-    stateNoteUnspecified,
-    pausedCmekUnavailable,
-    instanceResuming,
-  ];
-}
-
 /// Typed helper for the `private_config` block of
 /// `google_secure_source_manager_instance` (derived from provider schema).
 @immutable
