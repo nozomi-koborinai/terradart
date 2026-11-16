@@ -8,11 +8,11 @@ environment:
 resolution: workspace
 
 dependencies:
+  crypto_keys: ^0.3.1
   genkit: ^0.14.1
   genkit_shelf: ^0.1.9
   genkit_vertexai: ^0.2.9
   http: ^1.5.0
-  jose: ^0.3.5
   lunch_concierge_shared:
     path: ../shared
   postgres: ^3.5.12
