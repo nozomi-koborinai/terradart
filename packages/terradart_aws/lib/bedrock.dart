@@ -104,6 +104,8 @@ export 'src/bedrock/aws_bedrock_guardrail.dart'
         BedrockGuardrailTopicsConfigType,
         BedrockGuardrailWordPolicyConfig,
         BedrockGuardrailWordsConfig;
+export 'src/bedrock/aws_bedrock_guardrail_resource_policy.dart'
+    show AwsBedrockGuardrailResourcePolicy;
 export 'src/bedrock/aws_bedrock_guardrail_version.dart'
     show AwsBedrockGuardrailVersion;
 export 'src/bedrock/aws_bedrock_inference_profile.dart'

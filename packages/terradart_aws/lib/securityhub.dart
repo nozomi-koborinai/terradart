@@ -107,10 +107,11 @@ export 'src/securityhub/aws_securityhub_configuration_policy_association.dart'
 export 'src/securityhub/aws_securityhub_connector_v2.dart'
     show
         AwsSecurityhubConnectorV2,
+        SecurityhubConnectorV2Azure,
         SecurityhubConnectorV2ConnectorProvider,
-        SecurityhubConnectorV2ConnectorProviderJiraCloud,
-        SecurityhubConnectorV2ConnectorProviderServiceNow,
         SecurityhubConnectorV2JiraCloud,
+        SecurityhubConnectorV2ScopeConfiguration,
+        SecurityhubConnectorV2ScopeType,
         SecurityhubConnectorV2ServiceNow;
 export 'src/securityhub/aws_securityhub_feature_v2.dart'
     show

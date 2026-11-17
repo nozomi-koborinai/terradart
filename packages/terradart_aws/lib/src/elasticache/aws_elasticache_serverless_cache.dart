@@ -11,6 +11,29 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_elasticache_serverless_cache`.
 const Set<String> _awsElasticacheServerlessCacheSensitive = <String>{};
 
+/// Elasticache Serverless Cache Connection enum for `connection_type`.
+extension type const ElasticacheServerlessCacheConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheServerlessCacheConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheServerlessCacheConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheServerlessCacheConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vpc = ElasticacheServerlessCacheConnectionType._(
+    TfArgLiteral('vpc'),
+  );
+  static const public = ElasticacheServerlessCacheConnectionType._(
+    TfArgLiteral('public'),
+  );
+
+  static const List<ElasticacheServerlessCacheConnectionType> values = [
+    vpc,
+    public,
+  ];
+}
+
 /// Elasticache Serverless Cache Network enum for `network_type`.
 extension type const ElasticacheServerlessCacheNetworkType._(TfArg<String> _)
     implements TfArg<String> {
@@ -121,6 +144,7 @@ final class AwsElasticacheServerlessCache extends Resource {
 
   AwsElasticacheServerlessCache(
     super.localName, {
+    ElasticacheServerlessCacheConnectionType? connectionType,
     TfArg<String>? dailySnapshotTime,
     TfArg<String>? description,
     required TfArg<String> engine,
@@ -143,6 +167,7 @@ final class AwsElasticacheServerlessCache extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'connection_type': ?connectionType,
            'daily_snapshot_time': ?dailySnapshotTime,
            'description': ?description,
            'engine': engine,
@@ -201,6 +226,10 @@ final class AwsElasticacheServerlessCache extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `connection_type` attribute.
+  TfRef<String> get connectionType =>
+      TfRef.attribute<String>(this, 'connection_type');
 
   /// Reference to `daily_snapshot_time` attribute.
   TfRef<String> get dailySnapshotTime =>

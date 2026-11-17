@@ -1609,6 +1609,14 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsBedrockGuardrailResourcePolicy(
+        'bedrock_guardrail_resource_policy',
+        policy: .literal(policy),
+        resourceArn: .literal(arn),
+      ),
+    );
+
+    add(
       AwsBedrockGuardrailVersion(
         'bedrock_guardrail_version',
         guardrailArn: .literal(arn),
@@ -9535,6 +9543,23 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsNetworksecuritymanagerAdminAccount(
+        'networksecuritymanager_admin_account',
+        accountId: .literal('123456789012'),
+        priority: .literal(1),
+      ),
+    );
+
+    add(
+      AwsNetworksecuritymanagerTemplate(
+        'networksecuritymanager_template',
+        firewallType: .waf,
+        name: .literal(leftover),
+        ruleArns: .literal([arn]),
+      ),
+    );
+
+    add(
       AwsNotificationsChannelAssociation(
         'notifications_channel_association',
         arn: .literal(arn),
@@ -10209,6 +10234,12 @@ final class AwsLeftoverStack extends Stack {
         'pinpointsmsvoicev2_pool',
         messageType: .transactional,
         originationIdentities: .literal([leftover]),
+      ),
+    );
+
+    add(
+      AwsPinpointsmsvoicev2ProtectConfiguration(
+        'pinpointsmsvoicev2_protect_configuration',
       ),
     );
 
@@ -12692,16 +12723,6 @@ final class AwsLeftoverStack extends Stack {
         'securityhub_configuration_policy_association',
         policyId: .literal('SELF_MANAGED_SECURITY_HUB'),
         targetId: .literal('123456789012'),
-      ),
-    );
-
-    add(
-      AwsSecurityhubConnectorV2(
-        'securityhub_connector_v2',
-        name: .literal(leftover),
-        connectorProvider: [
-          .jiraCloud([.new(projectKey: .literal(leftover))]),
-        ],
       ),
     );
 
