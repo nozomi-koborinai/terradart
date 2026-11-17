@@ -4,6 +4,33 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/networksecuritymanager/aws_networksecuritymanager_admin_account.dart'
+    show
+        AwsNetworksecuritymanagerAdminAccount,
+        NetworksecuritymanagerAdminAccountAdminScope,
+        NetworksecuritymanagerAdminAccountExcludeOnly,
+        NetworksecuritymanagerAdminAccountFirewallTypeScope,
+        NetworksecuritymanagerAdminAccountFirewallTypes,
+        NetworksecuritymanagerAdminAccountIncludeOnly,
+        NetworksecuritymanagerAdminAccountScopeFilter,
+        NetworksecuritymanagerAdminAccountScopeFilterExcludeOnly,
+        NetworksecuritymanagerAdminAccountScopeFilterIncludeAll,
+        NetworksecuritymanagerAdminAccountScopeFilterIncludeOnly;
+export 'src/networksecuritymanager/aws_networksecuritymanager_deployment.dart'
+    show
+        AwsNetworksecuritymanagerDeployment,
+        NetworksecuritymanagerDeploymentConfiguration;
+export 'src/networksecuritymanager/aws_networksecuritymanager_policy.dart'
+    show
+        AwsNetworksecuritymanagerPolicy,
+        NetworksecuritymanagerPolicyConfiguration,
+        NetworksecuritymanagerPolicyConflictResolution,
+        NetworksecuritymanagerPolicyExistingCustomerWebAclResolution,
+        NetworksecuritymanagerPolicyFirewallType,
+        NetworksecuritymanagerPolicyTemplateOrRule,
+        NetworksecuritymanagerPolicyTemplateOrRuleIdentifier,
+        NetworksecuritymanagerPolicyTemplateOrRuleTemplateIdentifier,
+        NetworksecuritymanagerPolicyWafConfig;
 export 'src/networksecuritymanager/aws_networksecuritymanager_rule.dart'
     show
         AwsNetworksecuritymanagerRule,
@@ -28,3 +55,7 @@ export 'src/networksecuritymanager/aws_networksecuritymanager_scope.dart'
         NetworksecuritymanagerScopeResourceScopeInclude,
         NetworksecuritymanagerScopeResourceType,
         NetworksecuritymanagerScopeScheme;
+export 'src/networksecuritymanager/aws_networksecuritymanager_template.dart'
+    show
+        AwsNetworksecuritymanagerTemplate,
+        NetworksecuritymanagerTemplateFirewallType;

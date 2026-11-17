@@ -37,6 +37,10 @@ final class DataAwsElasticacheServerlessCache extends Data {
   TfRef<Map<String, Object?>> get cacheUsageLimits =>
       TfRef.attribute<Map<String, Object?>>(this, 'cache_usage_limits');
 
+  /// Reference to `connection_type` attribute.
+  TfRef<String> get connectionType =>
+      TfRef.attribute<String>(this, 'connection_type');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
