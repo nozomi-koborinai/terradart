@@ -335,6 +335,9 @@ entries:
   - resource: aws_sagemaker_inference_component
     detected_at: 2026-10-27
     provider_version: 6.70.0
+  - resource: azurerm_cognitive_account_project_connection_entra_id
+    detected_at: 2026-11-20
+    provider_version: 5.14.0
   - resource: azurerm_data_protection_backup_instance_cosmosdb_account
     detected_at: 2026-11-06
     provider_version: 5.13.0
