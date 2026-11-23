@@ -10,8 +10,8 @@ The domain, the Cloudflare account id, and the Azure names are placeholders. A p
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/), installed with `dart pub global activate terradart_cli`. Synth needs no Azure or Cloudflare credentials.
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/), installed with `dart install terradart_cli`. Synth needs no Azure or Cloudflare credentials.
 
 ## Usage
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 - **Breaking:** follows `appwrite/appwrite` 2.3.0 (was 2.0.0-beta.1), and synth output pins that version. `AppwriteFunctionVariable` and `AppwriteSiteVariable` take a required `value: .value(...)` or `.valueWo(...)`. See [MIGRATING.md](../../MIGRATING.md#function-and-site-variables-seal-value).

@@ -1,6 +1,6 @@
 # terradart_migrate
 
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 The HCL → Dart migrator library behind `terradart migrate` ([#80](https://github.com/nozomi-koborinai/terradart/issues/80)). Reads a Terraform module through [`terradart_hcl`](../terradart_hcl/) and rewrites what the curated [TerraDart](https://terradart.dev) factories cover as a Dart `Stack`, leaving the rest in a Terraform sidecar.
@@ -14,11 +14,11 @@ The HCL → Dart migrator library behind `terradart migrate` ([#80](https://gith
 Migration runs before a Dart project exists, so install the user CLI globally:
 
 ```sh
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart migrate --version
 ```
 
-`terradart` lands in `~/.pub-cache/bin` (add it to your `PATH` if `dart pub global activate` says so). It needs a Dart SDK — the one the migrated package needs anyway.
+Add the bin directory `dart install` prints to your `PATH` if it asks you to. For a one-off run without installing globally, run `dart run terradart_cli:terradart@ migrate --dir infra --out infra_dart`. It needs a Dart SDK (3.12 or later) — the one the migrated package needs anyway.
 
 **From a checkout:** `dart run bin/terradart.dart migrate --help` in `packages/terradart_cli`.
 

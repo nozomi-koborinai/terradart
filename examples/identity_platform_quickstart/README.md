@@ -19,8 +19,8 @@ Tenants need Identity Platform multi-tenancy on a project linked to Firebase Aut
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with Identity Toolkit API enabled (and Identity Platform on)
 
 ## Usage

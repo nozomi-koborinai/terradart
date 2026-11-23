@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.11.0`). Install with `dart install terradart_codegen`.
+
 ## 0.36.0 - 2026-11-01
 
 - The `hashicorp/azurerm` lane. `wrap` generates `terradart_azure` and its migration manifest, the sixth.

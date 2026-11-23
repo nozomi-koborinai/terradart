@@ -1,7 +1,7 @@
 # terradart_codegen
 
 [![pub: terradart_codegen](https://img.shields.io/pub/v/terradart_codegen.svg?label=pub%3A%20codegen)](https://pub.dev/packages/terradart_codegen)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.11-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 Maintainer tooling for [TerraDart](https://terradart.dev). Parses `terraform providers schema -json` (plus optional Magic Modules YAML overlays) into a unified provider IR and emits typed Dart factory wrappers for [`terradart_google`](https://pub.dev/packages/terradart_google) and other provider packages.
@@ -18,13 +18,13 @@ End users depend on [`terradart_google`](https://pub.dev/packages/terradart_goog
 
 ## Installation
 
-Activate on the same minor line as your workspace when working on the repo:
+Install on the same minor line as your workspace when working on the repo:
 
 ```bash
-dart pub global activate terradart_codegen ^0.36.0
+dart install terradart_codegen@^0.36.0
 ```
 
-Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch. Inside the repository, `dart run terradart_codegen:terradart <command>` runs the same CLI without activating it.
+Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch. Inside the repository, `dart run terradart_codegen:terradart <command>` runs the same CLI without installing it.
 
 ## Maintainer quickstart
 

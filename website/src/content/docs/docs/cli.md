@@ -12,8 +12,14 @@ You never install or call Terraform yourself: `terradart` downloads a pinned Ope
 Once per machine:
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart init
+```
+
+For a one-off run without installing globally (Dart 3.12+):
+
+```bash
+dart run terradart_cli:terradart@ init
 ```
 
 To pin the version per project, so everyone on it runs the same one, add it as a dev dependency of the infrastructure package instead:

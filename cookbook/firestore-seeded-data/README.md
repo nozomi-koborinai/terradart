@@ -31,7 +31,7 @@ See [terradart_google CHANGELOG `0.10.0` § Supersedes 0.3.0-dev note](https://p
 
 ## Prerequisites
 
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`
 - `gcloud auth application-default login` with `roles/datastore.owner` on the target project
 - A GCP project (e.g., `terradart-validate`). The default `(default)` Firestore database must NOT already exist (Firestore creates one automatically the first time the API is enabled — if `(default)` already exists, see "Recovery" below).
 

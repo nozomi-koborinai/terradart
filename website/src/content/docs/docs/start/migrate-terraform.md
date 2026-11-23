@@ -5,16 +5,16 @@ description: Turn a Terraform tree into a TerraDart package with terradart migra
 
 Bring an existing Terraform tree into Dart without a rewrite and without touching your infrastructure. `terradart migrate` translates what it can into typed Dart, keeps the rest in Terraform exactly as written, and keeps every resource address, so the first plan against your existing state reports *No changes*. From there you move the remaining blocks one at a time, with a plan after each.
 
-You need the Dart SDK, 3.10 or later, and the access to the state you have today. The migration reads files only: it never runs an engine, never reads or writes state, and never writes into your tree.
+You need the Dart SDK, 3.12 or later, and the access to the state you have today. The migration reads files only: it never runs an engine, never reads or writes state, and never writes into your tree.
 
 ## 1. Install the command
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart --help
 ```
 
-`terradart` lands in `~/.pub-cache/bin`. If the second line is not found, add that directory to your `PATH`, as `dart pub global activate` says. The migration needs no Dart project: run it from anywhere.
+If the second line is not found, add the bin directory `dart install` prints to your `PATH`. For a one-off run without installing globally, prefix each command with `dart run terradart_cli:terradart@` instead of `terradart`. The migration needs no Dart project: run it from anywhere.
 
 ## 2. Size it
 

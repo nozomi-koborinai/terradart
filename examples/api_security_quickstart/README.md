@@ -9,8 +9,8 @@ API keys are soft-deleted for 30 days. Applying again with the same key name aft
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project (the stack enables `apikeys.googleapis.com`,
   `recaptchaenterprise.googleapis.com`, and `networkmanagement.googleapis.com`)
 

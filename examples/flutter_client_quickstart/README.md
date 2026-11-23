@@ -32,7 +32,7 @@ examples/flutter_client_quickstart/
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
+- Dart SDK >= 3.12
 - Flutter SDK, only to run the app
 - A GCP project with the Cloud Run and Cloud Storage APIs enabled, and credentials (`gcloud auth application-default login`). Synth needs the project id and no credentials.
 
@@ -43,7 +43,7 @@ From this directory:
 ```bash
 dart pub get
 export GCP_PROJECT_ID=YOUR-PROJECT-ID
-dart pub global activate terradart_cli
+dart install terradart_cli
 
 terradart synth --env dev
 terradart plan --env dev

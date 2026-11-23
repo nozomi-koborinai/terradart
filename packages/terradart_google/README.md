@@ -1,7 +1,7 @@
 # terradart_google
 
 [![pub: terradart_google](https://img.shields.io/pub/v/terradart_google.svg?label=pub%3A%20google)](https://pub.dev/packages/terradart_google)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 Curated factory wrappers for **Google Cloud** resources (the official [`hashicorp/google`](https://registry.terraform.io/providers/hashicorp/google) Terraform provider) for Dart-first Terraform stacks.
@@ -52,7 +52,7 @@ Future<void> main() async {
 
 ```bash
 dart pub get
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart apply
 ```
 

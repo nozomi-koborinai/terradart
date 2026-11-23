@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). `terradart init` writes `sdk: ^3.12.0`. Install with `dart install terradart_cli` (or run one-off commands without installing via `dart run terradart_cli:terradart@ <command>`). CLI upgrade hints and the bundled agent skill use `dart install terradart_cli`.
+
 ## 0.36.0 - 2026-11-01
 
 - `terradart init --provider azure` writes a Stack with `AzureProvider` and one `azurerm_resource_group` (location `eastus` by default) that depends on `terradart_azure` and runs on OpenTofu. `AzureProvider()` leaves subscription and tenant to `ARM_SUBSCRIPTION_ID` and `ARM_TENANT_ID`.

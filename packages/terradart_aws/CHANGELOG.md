@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 - **Breaking:** 9 inputs that took a string take an enum of the set the provider's validators accept. See [MIGRATING.md](../../MIGRATING.md#fixed-value-sets-are-enums).

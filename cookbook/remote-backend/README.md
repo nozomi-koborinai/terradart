@@ -32,7 +32,7 @@ final class StateStack extends Stack {
 
 ## Run (Stage 0 — create the bucket with a local backend)
 
-Prerequisites: `gcloud auth application-default login`, and the [`terradart` command](https://terradart.dev/docs/cli/) (`dart pub global activate terradart_cli`).
+Prerequisites: `gcloud auth application-default login`, and the [`terradart` command](https://terradart.dev/docs/cli/) (`dart install terradart_cli`).
 
 ```bash
 export GCP_PROJECT_ID=terradart-validate

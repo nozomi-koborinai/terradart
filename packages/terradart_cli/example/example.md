@@ -3,7 +3,7 @@
 A TerraDart package whose `bin/infra.dart` calls `runStack` or `runEnvironments`:
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 
 terradart plan --env qa
 terradart apply --env qa

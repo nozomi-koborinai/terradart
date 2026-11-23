@@ -10,10 +10,10 @@ It reads files only. It never runs Terraform, never reads or writes state, never
 ## Install
 
 ```sh
-dart pub global activate terradart_cli
+dart install terradart_cli
 ```
 
-`terradart` lands in `~/.pub-cache/bin`; add that directory to your `PATH` if `dart pub global activate` asks you to. Migration runs before a Dart project exists, so a global install is enough — there is no `pubspec.yaml` to find. The only prerequisite is a Dart SDK, which the migrated package needs anyway.
+Add the bin directory `dart install` prints to your `PATH` if it asks you to. Migration runs before a Dart project exists, so a global install is enough — there is no `pubspec.yaml` to find. For a one-off migration without installing globally, run `dart run terradart_cli:terradart@ migrate --dir infra --out infra_dart`. The only prerequisite is a Dart SDK (3.12 or later), which the migrated package needs anyway.
 
 **From a checkout:** `dart run bin/terradart.dart migrate --help` in `packages/terradart_cli`.
 

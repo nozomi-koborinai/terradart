@@ -16,8 +16,8 @@ Needs an existing Chronicle (Google SecOps) instance; the placeholder instance U
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with Chronicle (Google SecOps) enabled and an instance ID
 
 ## Usage

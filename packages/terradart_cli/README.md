@@ -3,13 +3,13 @@
 The `terradart` command for [TerraDart](https://terradart.dev) projects: synthesize the Stack, run `init` and `plan` or `apply` with OpenTofu or Terraform, and write the define file a Flutter or Dart client builds with.
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart init            # writes infra/ and runs dart pub get
 cd infra
 terradart plan --env dev
 ```
 
-To pin the version per project, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart apply`.
+For a one-off run without installing globally, run `dart run terradart_cli:terradart@ <command>`. To pin the version per project, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart apply`.
 
 | Command | Runs |
 |---|---|

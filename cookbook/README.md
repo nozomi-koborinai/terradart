@@ -19,7 +19,7 @@ Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses 
 ## Usage
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 cd cookbook/<name>
 dart pub get
 terradart plan

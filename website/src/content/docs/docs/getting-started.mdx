@@ -20,7 +20,7 @@ Each of these is one path you can paste, from installing the `terradart` command
 
 ## Prerequisites
 
-- Dart SDK ≥ 3.10
+- Dart SDK ≥ 3.12
 - Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
 - Appwrite only: [Terraform](https://developer.hashicorp.com/terraform/install) on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, so OpenTofu cannot install it, and an Appwrite Stack runs on Terraform (`--engine terraform`, or `terraform` as the `engine` of the `terradart` section of `pubspec.yaml`).
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `ARM_CLIENT_ID` and the other `ARM_*` variables, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
@@ -30,11 +30,13 @@ Each of these is one path you can paste, from installing the `terradart` command
 Install the [`terradart` command](/docs/cli/) once, and let it write the project:
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart init --provider google --env dev,prd --gcp-project dev=acme-dev,prd=acme-prd --backend local
 cd infra
 terradart plan --env dev
 ```
+
+For a one-off run without installing globally, Dart 3.12+ runs the remote package executable directly: `dart run terradart_cli:terradart@ init ...`.
 
 `terradart init` writes `infra/` (or the directory you name), runs `dart pub get` in it, and prints what to run next. The project plans as it is:
 
@@ -88,7 +90,7 @@ The rest of this guide builds the same pieces by hand, one at a time.
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_google: ^0.36.0
@@ -102,7 +104,7 @@ dependencies:
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_aws: ^0.36.0
@@ -115,7 +117,7 @@ dependencies:
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_azure: ^0.36.0
@@ -128,7 +130,7 @@ dependencies:
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_cloudflare: ^0.36.0
@@ -141,7 +143,7 @@ dependencies:
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_appwrite: ^0.36.0
@@ -154,10 +156,10 @@ terradart:
 
 ```bash
 dart pub get
-dart pub global activate terradart_cli
+dart install terradart_cli
 ```
 
-The second line installs the [`terradart` command](/docs/cli/), which synthesizes the Stack and runs `plan` or `apply` for you. To pin it per project instead, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart`.
+The second line installs the [`terradart` command](/docs/cli/), which synthesizes the Stack and runs `plan` or `apply` for you. For a one-off run without installing it, run `dart run terradart_cli:terradart@ <command>`. To pin it per project instead, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart`.
 
 Each provider package wraps the whole catalog of its Terraform provider (Google's beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)), so any resource the provider documents has a factory. One Stack can mix packages.
 
